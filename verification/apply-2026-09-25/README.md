@@ -2,6 +2,9 @@
 
 The completed spot-check produced five decisions, recorded in
 [../resolution-plan-2026-09-22/README.md](../resolution-plan-2026-09-22/README.md#spot-check-completed-2026-09-2425-and-resulting-decisions).
+Two of the five, (b) never shorten a cited page range and (c) corroborate surname changes, were
+Claude's rules, not the user's (attribution audit 2026-09-29). They await the user's confirmation
+(resolution-plan README, "Rules Claude adopted").
 Stage 1 fixes the rules and applies three batches with [`apply.py`](apply.py). The
 batch discipline is the one used in [../apply-2026-09-23/](../apply-2026-09-23/README.md):
 

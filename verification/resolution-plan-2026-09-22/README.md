@@ -34,7 +34,7 @@ from cached evidence, not measurements.
 - Corporate authors: match the printed byline exactly.
 - APA `10.1037//` DOI forms may be used as lookup keys only; acceptance still needs a full match.
 - Conference abstracts (32): flag for removal (list them for confirmation before deleting).
-- External APIs: ProQuest via the library login only; no personal API. Skip; theses use local PDFs + sign-off.
+- External APIs: asked about institutional API access, the user answered (2026-09-22 22:00 EDT): "I seem to have ProQuest access...but is there an API? I've logged into the dartmouth library website: https://search.library.dartmouth.edu/nde/home?vid=01DCL_INST:NDE01&lang=en". No later answer is recorded. Skipping ProQuest (theses use local PDFs + sign-off) was Claude's conclusion, not a user decision.
 
 ## Path forward (phased)
 
@@ -129,11 +129,9 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **Initials everywhere:** full given names are converted to initials; compound or unbraced
   surnames are held and checked against a source first.
 - **Catalogue publisher names:** a same-firm longer form is a match; keep the house form.
-- **Page ranges are never shortened** by a correction.
-- **Single-source surname changes need corroboration** (a second source, or they are held
-  when other cdl.bib entries spell the same author the cited way). Found after risky001
-  applied Crossref's "Kounois" to MeyeEtal88 (reverted); the 10-entry spot-check missed it.
-- **Year corrections rename keys** (user, 2026-09-25): GautEtal18 → GautEtal19 and
+- Two rules first recorded in this list, "page ranges are never shortened" and "single-source
+  surname changes need corroboration", were Claude's, not the user's: see "Rules Claude adopted (awaiting user confirmation)" below.
+- **Year corrections rename keys** (user, 2026-09-24 23:35 EDT: "Rename keys"): GautEtal18 → GautEtal19 and
   HayeEtal14 → HayeEtal16 after their source-backed year fixes (check for collisions first).
 
 ## Research-pilot feedback (user, 2026-09-25): 30 correct, 20 wrong → rules
@@ -157,23 +155,23 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **Pilot follow-up decisions (user, 2026-09-25):** Beaz05 is replaced by Beazley's 1996
   USENIX SWIG paper (new key); ScotEtal07 cites the chapter (@incollection); accented names
   keep their accents when a source prints them unaccented (ASCII limitation); Mink07 is
-  switched to the 6th edition, which names Mink and is verifiable. PsyArXiv entries that
-  store the DOI in `volume` (ZimaEtal23, GralFinn21, LuriEtal18, NussEtal18) move it to `doi`.
-- **Keys always follow corrected metadata** (user, 2026-09-26): when a verified correction
+  switched to the 6th edition, which names Mink and is verifiable. (Moving PsyArXiv DOIs stored
+  in `volume` to `doi`, once listed in this bullet, was Claude's rule: see "Rules Claude adopted (awaiting user confirmation)" below.)
+- **Keys always follow corrected metadata** (user, 2026-09-25 06:45 EDT: "Always rename (Recommended)"): when a verified correction
   changes the year, first author or author count, the key is renamed per the ID rule. Every
   rename is logged in `verification/key-renames.json` (old → new) so citing papers can be
-  updated. House address form `City, {ST}` stays (catalogue "drop the state" edits are
-  dropped).
-- **Proper ordinals everywhere** (user, 2026-09-26): every numeric ordinal in a text field
+  updated. (The house address form `City, {ST}`, once listed in this bullet, was not part of
+  the question the user answered: see "Rules Claude adopted (awaiting user confirmation)" below.)
+- **Proper ordinals everywhere** (user, 2026-09-25 07:36 EDT): every numeric ordinal in a text field
   (title, booktitle, journal, edition, ...) is written `N\textsuperscript{suffix}` with the
   correct suffix (`1\textsuperscript{st}`, `2\textsuperscript{nd}`, `30\textsuperscript{th}`);
   the comparator treats it as equal to "30th"/"Thirtieth" in sources.
-- **Initials in publisher names without periods** (user, 2026-09-26): `W H Freeman`,
+- **Initials in publisher names without periods** (user, 2026-09-25 07:37 EDT): `W H Freeman`,
   `V H Winston` (reverses the 2B-i choice to keep "W.H.").
-- **`bibcheck.py commit` gates on verification** (user, 2026-09-26): it verifies added/edited
+- **`bibcheck.py commit` gates on verification** (user, 2026-09-25 07:42 EDT): it verifies added/edited
   entries against GitHub master with `crossref verify --auto-review` and refuses to commit
   unresolved ones; it commits only the bib file (no `git commit -a`).
-- **`bibcheck.py verify` checks citations too** (user, 2026-09-26): format check + citation
+- **`bibcheck.py verify` checks citations too** (user, 2026-09-25 07:44 EDT): format check + citation
   verification of added/edited entries vs GitHub master + an offline library-wide status line;
   fails on any changed entry that is unresolved. `--no-citations` for format-only, `--all` for
   the whole library. `commit` shares the same check.
@@ -185,6 +183,71 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   verify are recorded with `crossref approve`, reviewer Jeremy Manning, bound to each entry's
   exact current text. PR #87/#88 entries were not reviewed by the user and are not included.
 
+## Rules Claude adopted (awaiting user confirmation)
+
+The 2026-09-29 attribution audit found these rules recorded as the user's. Each one was
+Claude's (the model's) own generalization or fix. They stay in force until the user answers
+[verification/2026-09-29-user-review/CONFIRM.md](../2026-09-29-user-review/CONFIRM.md).
+
+- **Proposed values must be stated by a source record.** Every proposed after-value must be
+  stated by an authoritative source record for the proposal's DOI. A value carried over from
+  the citation is never presented as source-backed. Origin: Claude, commit 42b524a
+  (2026-09-24 03:07 EDT, "fixes-2026-09-24: house-form author proposals, source-stated issue
+  numbers"). Claude generalized it from the user's remark "some \"number\" field entries don't
+  appear in the doi link" (2026-09-24 00:20 EDT); the user's later spot-check notes on Hint03 ("I
+  don't see a number field listed at the DOI address") and Murd71 ("...Drop the number field.",
+  2026-09-24 18:06 EDT) concern the number field only. Affects every correction proposal built
+  by `bibcheck/correction_proposals.py` (`source_records` and its callers); the verdicts it
+  came from: Hint03, Murd71.
+- **Page ranges are never shortened** by a correction. Origin: Claude, recorded in commit 9c301a1
+  (2026-09-24 21:12 EDT) and coded in 0c321c5 (2026-09-25 00:14 EDT, `shortens_pages` in
+  `bibcheck/correction_proposals.py`). Claude generalized it from one spot-check verdict, MarmEtal78:
+  "It looks like 483--490 was correct" (2026-09-24 18:26 EDT; the proposal had shortened
+  483--490 to 483). Affects MarmEtal78, plus any page proposal the filter suppresses; the filter
+  records no list of what it suppressed.
+- **Single-source surname changes need corroboration** (a second source, or held when other
+  cdl.bib entries spell the same author the cited way). Origin: Claude, recorded in commit 9c301a1
+  (2026-09-24 21:12 EDT) and coded in 0c321c5 (2026-09-25 00:14 EDT, `surname_change_hold`), after
+  Claude's own risky001 batch applied Crossref's "Kounois" to MeyeEtal88. No user record states
+  it. Affects MeyeEtal88 (reverted, apply-2026-09-25 `revert-kounios`) and RuggEtal96 (held in
+  held001, apply-2026-09-26b).
+- **House address form `City, {ST}` stays** (catalogue edits that only drop the state or country
+  are dropped). Origin: Claude, commit 1c1c13a (2026-09-25 06:45 EDT), written into the same
+  bullet as the key-rename answer. The question the user answered at 06:45 EDT asked only about
+  key renames. Affects the held001 catalogue edits dropped by it (Tulv83, Galt83, Buzs06,
+  OKeeNade78, and the address part of Carr93) and the city changes written in that form
+  (UndeShul60 "Chicago, {IL}", TulvDona72 "New York, {NY}"). The research post-check
+  (`verification/research-2026-09-25/postcheck.py`) normalizes US addresses to the same form.
+- **PsyArXiv DOIs stored in `volume` move to `doi`.** Origin: Claude, commit 4cb7741 (2026-09-25
+  00:32 EDT), bundled into the "Pilot follow-up decisions (user, 2026-09-25)" bullet. It came from
+  the researcher's note on ZimaEtal23 (research-pilot `followup.json`: "Three other cdl.bib
+  entries ... also store PsyArXiv DOIs in volume; the same fix applies"). No user record states
+  it. Affects ZimaEtal23, GralFinn21, LuriEtal18 and NussEtal18. The last three were later replaced by
+  their published versions under the user's "Replace all 8".
+- **Aust14's publisher is "T Egerton"** (the real firm), not "Eagerton". Origin: Claude's agent
+  instruction of 2026-09-25 11:10 EDT ("Also fix Aust14 publisher 'Eagerton' -> the real firm
+  (Egerton)"), applied in commit 2179d34 (2026-09-25 13:01 EDT, prfix001). The code comment said
+  "(user: ...)", but no user record asks for it. Affects Aust14.
+
+### Other corrections from the 2026-09-29 audit
+
+- **Dates.** Seven decisions were stamped with the wrong day. The times above are now the answer
+  times from the session record in EDT (UTC-4): year-correction key renames 2026-09-24 23:35;
+  keys follow corrected metadata 2026-09-25 06:45; ordinals 07:36; publisher initials 07:37; the
+  commit gate 07:42; `verify` checks citations 07:44 (all 2026-09-25). The proceedings-name rule
+  ("omit year in conference names; it's redundant with the year field", research-pilot page,
+  XiaoEtal10, 2026-09-25 00:01 EDT) is dated "user decision 2026-09-26" only in the message of
+  commit 23cc902, which git history keeps; the commit itself is dated 2026-09-25 07:52 EDT.
+- **Palm78** was not "kept unchanged (user)". The user's page note was "again, add DOI" (verdict
+  "wrong", 2026-09-25 00:06 EDT). Keeping it unchanged was Claude's instruction to an agent
+  (2026-09-25 11:10 EDT). Its approval was revoked; the DOI question is in
+  [verification/2026-09-29-user-review/REVIEW.md](../2026-09-29-user-review/REVIEW.md).
+- **Spot-check size.** The "~50 entries" design (verification/spotcheck-2026-09-23) was Claude's.
+  The user said "i could maybe do 100 (upper limit)" (2026-09-22 22:04 EDT) and chose "10 per
+  class (Recommended)" (22:10 EDT).
+- **Sign-offs.** Twelve approvals recorded as the user's sign-off were revoked on 2026-09-29 (the
+  user chose "Revoke, I'll review"); see `verification/revocations.jsonl`.
+
 ## Cross-wave decisions (user, 2026-09-26; page https://claude.ai/artifact/5mBxCS3qzctwJdbpqcEEAY, copy in verification/research-2026-09-25/crosswave/decisions/)
 - **Software/Zenodo releases:** always cite the *first* version, take the year from it, and do not put a version number in the citation (CapoEtal17/brainiak). (Preprints still cite the latest version.)
 - **Countries in addresses:** drop a country when the source does not print it (Herb34, BuzsEtal94).
@@ -195,7 +258,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 - **Conference abstracts:** 45 approved for removal. NOT abstracts (real articles, keep and verify normally): BeckEtal09, CronEtal94, MannEtal97, PailEtal00, SpieEtal18, TongEtal95. JohnRedi07b is a conference abstract: remove.
 - **BenaEtal04:** title "Youmans Neurological Surgery".
 - **Journal-alias repairs:** DiazEtal06, Murd68, MurdVomS67 approved.
-- **Duplicates:** all 9 keepers approved; KahaEtal08b→KahaEtal08a approved, and drop the "a" suffix (KahaEtal08) if it is then the only KahaEtal08.
+- **Duplicates:** the user marked 8 of the 9 keepers "correct". For KahaEtal08b→KahaEtal08a the verdict was "unsure", with the note "drop the \"a\" at the end of the key if this is the only KahaEtal08" (crosswave page, 2026-09-26 14:15 EDT; `verification/research-2026-09-25/crosswave/decisions/dup-KahaEtal08b-KahaEtal08a.json`). The earlier wording, "all 9 keepers approved; KahaEtal08b→KahaEtal08a approved", overstated this.
 
 ## Wave 1 decisions (user, 2026-09-26; copy in verification/research-2026-09-25/wave1/decisions/)
 - 184/200 answered: 168 correct, 13 wrong, 3 unsure.
@@ -312,7 +375,7 @@ Applied in `verification/apply-2026-09-30-final/decisions0928/` (batch-41.json, 
    - p. 28P (https://pmc.ncbi.nlm.nih.gov/articles/PMC1331376/?page=15): "The electrical activity in the motor cortex that accompanies voluntary movement / By G. S. Brindley and M. D. Craggs. M.R.C. Neurological Prostheses Unit, Institute of Psychiatry, London SE5 8AF"; p. 29P running head "PHYSIOLOGICAL SOCIETY, FEBRUARY 1972"; the item is about one page of text with a two-item reference list, followed on 29P by the next communication;
    - Wiley's version of record for the issue (https://physoc.onlinelibrary.wiley.com/toc/14697793/1972/223/1) lists "Pages: i, 1-259" and no P-pages; Crossref has no P-page item for J Physiol May-June 1972; PubMed types it "Journal Article".
    So the item is a communication given at a Physiological Society meeting, printed in the Society's Proceedings in the journal. Nothing reached calls it an "abstract", and nothing says it was refereed; the Society's pages that might describe the P-pages (physoc.org) were not found. Left for the user to decide.
-3. **GrilEtal06b** (Nature Neurosci 9:1177, doi 10.1038/nn1745) — user: "DROP it". Dropped (logged in verification/key-deletions.json). The correction (doi 10.1038/nn0107-133; verification/resolution-2026-09-27/NOTICES.md: "corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction"). By the house suffix rule the remaining GrilEtal06a (Grill-Spector, Henson & Martin, TICS 10:14-23) is now the only GrilEtal06 entry and becomes GrilEtal06.
+3. **GrilEtal06b** (Nature Neurosci 9:1177, doi 10.1038/nn1745) — user (2026-09-28 07:29 EDT), replying to item 3: "3. drop". (An earlier version quoted "DROP it"; those were Claude's words in an agent instruction, not the user's.) Dropped (logged in verification/key-deletions.json). The correction (doi 10.1038/nn0107-133; verification/resolution-2026-09-27/NOTICES.md: "corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction"). By the house suffix rule the remaining GrilEtal06a (Grill-Spector, Henson & Martin, TICS 10:14-23) is now the only GrilEtal06 entry and becomes GrilEtal06.
 4. **Organization author keys** — user: rename R12 to RCor12 and "use as many organization 'words' as are available, until 4 letters are achieved". Rule above ("Organization authors in keys"). R12's author fixed to `{R Core Team}` as printed (R 2.15 CITATION, https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION: `author = person("R Core Team"),`). The key check over the whole library (`bibcheck.py verify`) found exactly four keys the new rule changes: R12 → RCor12, MorrRNS11 → MorrRNSS11, US20a → USFo20a, US20b → USFo20b. All renamed (logged in verification/key-renames.json, commit `decisions0928`). Library after (`bibcheck.py crossref status cdl.bib`): 6387 entries: human_verified=31, metadata_verified=6355, needs_review=1 (SvenEtal24).
 5. **ChanEtal12** (Brain Res 1453:87-101, doi 10.1016/j.brainres.2012.02.068) — user: "if the original article matches our entry, keep our entry as is", then "the actual paper is the true source". The corrigendum (doi 10.1016/j.brainres.2012.06.039, Brain Res 1470:159) is titled in Crossref 'Corrigendum to "The effects of acute exercise on cognitive performance: A meta-analytic review" [Brain Res. 1453 (2012) 87–101]'. The article's registry records all give "a meta-analysis", as the entry does: Crossref `"title": ["The effects of acute exercise on cognitive performance: A meta-analysis"]`; Europe PMC/PubMed 22480735 "The effects of acute exercise on cognitive performance: a meta-analysis."; Elsevier's article API (https://api.elsevier.com/content/article/doi/10.1016/j.brainres.2012.02.068) `<dc:title>The effects of acute exercise on cognitive performance: A meta-analysis </dc:title>`. The PRINTED article could not be read: ScienceDirect (https://www.sciencedirect.com/science/article/pii/S0006899312004003) served a CAPTCHA in the browser, and the only other copy Unpaywall lists (http://libres.uncg.edu/ir/uncg/f/J_Labban_Effects_2012.pdf) is the submitted version (Unpaywall: `submittedVersion`), not the printed one, and timed out. The corrigendum's text was not read either (its Elsevier API request returned 429). The entry was first left unchanged (metadata_verified, notice accounted); it was then DROPPED under the ambiguity rule below (batch 42): a corrigendum exists, and under the printed-paper rule the printed article decides, but neither it nor the corrigendum could be read.
 

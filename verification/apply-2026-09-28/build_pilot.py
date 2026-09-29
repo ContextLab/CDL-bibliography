@@ -6,7 +6,8 @@
 - 20 marked wrong: followup.json's resolution, with the user's instructions of 2026-09-25:
   Mink07 cites the 6th edition (LoC 2015458479 + LWW contents list, verified 2026-09-25) and is
   renamed Mink15; Beaz05 is replaced by Beazley's 1996 USENIX Tcl/Tk Workshop SWIG paper
-  (Beaz96); NetwLab25 is removed (user); Palm78 is kept unchanged.
+  (Beaz96); NetwLab25 is removed (user); Palm78 is kept unchanged (Claude's choice, not the
+  user's: the user asked for a DOI; question open in verification/2026-09-29-user-review/REVIEW.md).
 - Keys follow corrected metadata: KahaEtal22 -> KahaEtal24 (year 2022 -> 2024).
 
     .venv/bin/python verification/apply-2026-09-28/build_pilot.py
@@ -112,7 +113,8 @@ def main():
             kept[key] = HELD[key]
             continue
         if key == "Palm78":
-            kept[key] = "user: keep unchanged (no DOI for the cited 1978 Erlbaum edition)"
+            kept[key] = ("Claude: keep unchanged (no DOI for the cited 1978 Erlbaum edition); the user asked for a DOI "
+                         "(\"again, add DOI\"), question open")
             continue
         if key == "Mink07":
             source = {f: {"before": fields.get(f), "after": v, "evidence": MINK_EVIDENCE} for f, v in MINK.items()}

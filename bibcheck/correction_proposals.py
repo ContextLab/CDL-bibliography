@@ -42,7 +42,7 @@ def pagination_proposal(entry, previous):
                 continue
             proposed = dict(fields, pages=pages.replace("-", "--"))
             if proposed == fields or shortens_pages(fields.get("pages"), proposed["pages"]):
-                continue  # a cited range is never shortened (2026-09-24/25)
+                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; awaiting user confirmation)
             primary_evidence, primary_issues = safe_compare(proposed, record)
             if primary_issues:
                 continue
@@ -1530,8 +1530,9 @@ def surname_changes(before, after):
 def surname_change_hold(key, before, after, corroborated=False, library=None):
     """Why an author change that alters a surname must be held, or None.
 
-    User decision 2026-09-25 (after risky001 applied Crossref's "Kounois" to
-    MeyeEtal88): a surname change needs corroboration.
+    Rule Claude adopted 2026-09-24 (commit 9c301a1; awaiting user confirmation, see the
+    resolution-plan README), after risky001 applied Crossref's "Kounois" to MeyeEtal88: a
+    surname change needs corroboration.
       * Library consensus holds it: the cited spelling is used for the same
         person (surname + first initial) in other cdl.bib entries and the
         proposed spelling is not. This holds even when a second source agrees.
@@ -1576,7 +1577,8 @@ def add_doi_proposal(entry, result):
 
 
 # ---------------------------------------------------------------------------
-# General principle (user, 2026-09-24): every proposed after-value must be
+# General principle (adopted by Claude 2026-09-24, commit 42b524a; awaiting user
+# confirmation, see the resolution-plan README): every proposed after-value must be
 # stated by an authoritative source record for the proposal's DOI; a value
 # carried over from the citation itself is never presented as source-backed.
 # ---------------------------------------------------------------------------

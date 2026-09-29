@@ -96,7 +96,8 @@ FIXES = {
     "Niel17": {"doi": doi("10.3389/fneur.2017.00201")},
     "StroEtal25": {"doi": doi("10.48550/arxiv.2510.21958", AX + "2510.21958", "arXiv 2510.21958v1 (only version)")},
     "VallWalk21": {"doi": doi("10.7554/elife.70092")},
-    # ---- Aust14 (user: fix the publisher to the real firm)
+    # ---- Aust14 (Claude's fix, not the user's: Claude's agent instruction of 2026-09-25 11:10 EDT
+    #      said to fix the publisher to the real firm; awaiting user confirmation)
     "Aust14": {"publisher": ev("T Egerton", "verification/baseline.jsonl.gz: Aust14 loc-catalogue candidate (LoC MARCXML, field 264)",
                                "<subfield code=\"b\">Printed for T. Egerton, Military Library, Whitehall,</subfield> "
                                "<subfield code=\"c\">1814.</subfield>; 700 'Egerton, Thomas (Bookseller)'"),

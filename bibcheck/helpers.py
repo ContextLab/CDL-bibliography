@@ -835,7 +835,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     ``dotted_initials`` (publishers): a word made only of capital initials, with or
     without periods or braces ("W.H.", "V.", "{W}.", "W"), is written in the house
     initials style, undotted and space-separated: "W.H. Freeman" -> "W H Freeman"
-    (user decision 2026-09-26, reversing stage 2B-i's dotted form). The
+    (user decision 2026-09-25 07:37 EDT, reversing stage 2B-i's dotted form). The
     word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82),
     and force_caps braced undotted initials ("{W} {H} Freeman").
     """

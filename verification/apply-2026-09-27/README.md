@@ -8,8 +8,8 @@ These batches apply the user's form decisions from
 - issue ranges written `3--4`;
 - proceedings names without the year;
 - `@book` entries have no pages;
-- editions and every other numeric ordinal written `N\textsuperscript{..}` (user, 2026-09-26);
-- publisher initials undotted, `W H Freeman` (user, 2026-09-26);
+- editions and every other numeric ordinal written `N\textsuperscript{..}` (user, 2026-09-25 07:36 EDT);
+- publisher initials undotted, `W H Freeman` (user, 2026-09-25 07:37 EDT);
 - DOIs everywhere.
 
 Each batch follows the stage 2A/2B-i discipline:
@@ -233,7 +233,7 @@ build (pilot, merged PRs, replacements, sign-offs, formatter fixes), so the prop
   applied batch. `verification/apply-2026-09-29/library-changes.json` still names replace001 as
   `last_staged`.
 
-## verify/commit gate (user, 2026-09-26)
+## verify/commit gate (user, 2026-09-25 07:42 and 07:44 EDT)
 
 `bibcheck.py check_library` is the gate shared by `bibcheck.py verify` and `bibcheck.py commit`.
 It runs three steps:

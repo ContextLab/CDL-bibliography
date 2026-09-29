@@ -638,7 +638,8 @@ def test_accent_commands_are_not_case_protection():
     assert source_authors(record, entry["fields"]["author"]) == \
         "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
     # Magymáté -> Nagymáté is a single-source surname change: held without
-    # corroboration (user decision 2026-09-25), never proposed from Crossref alone.
+    # corroboration (rule Claude adopted 2026-09-24, awaiting user confirmation), never
+    # proposed from Crossref alone.
     explain = {}
     assert single_source_proposal(entry, result, explain) is None
     assert "lacks corroboration" in explain["detail"]

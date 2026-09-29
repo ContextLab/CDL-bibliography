@@ -8,7 +8,7 @@
    "key": "ShafGood08",
    "fingerprint": "v2:6181fb3cafcb39d341f4efbe4951ae3eeb07d6737251b22d89de2a3b226ad3cc",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 30th Annual Conference of the Cognitive Science Society",
@@ -16,14 +16,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "XionEtal17",
    "fingerprint": "v2:2a7a2174ffe099b224cc1e88ccc855ab1ab57c710a51a26631f0cb77608cfc9d",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "journal": {
      "before": "{WWW} '17: Proceedings of the 26th International Conference on World Wide Web",
@@ -31,14 +31,14 @@
     }
    },
    "form_notes": {
-    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "RagaWill18",
    "fingerprint": "v2:f3faf884c013d24f281a467f7d9ca7298debd8be84628b74a8eadc1eea86e2e8",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 17th {Python} in Science Conference",
@@ -46,14 +46,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "HallGree08",
    "fingerprint": "v2:8e294fd4725f3cb068cceac2e147ad841ef199a5d7e0abe9fe7e717b02a011b4",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "21st century education: a reference handbook",
@@ -61,14 +61,14 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "McKi10",
    "fingerprint": "v2:7f7532c253d3a26d231d52f33ca91a8a67cc8bf720a7c8577ace9c1dfc83ecda",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 9th {Python} in Science Conference",
@@ -76,14 +76,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "Murd79",
    "fingerprint": "v2:263de3bfa53de8a0a3be69ba652fe10f3a7ef08e70fd8e1ef5ef874790d912cd",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Perspectives in Memory Research: Essays in Honor of {Uppsala} {University's} 500th Anniversary",
@@ -91,14 +91,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "OhrtGron99",
    "fingerprint": "v2:68e27372a13e76c60cdb3c4608d9fe2eb92976ac6da9912d440bf30aab948daf",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "On Human Memory: Evolution, Progress, and Reflections on the 30th Anniversary of the {Atkinson}-{Shiffrin} Model",
@@ -106,14 +106,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "RuggEtal02",
    "fingerprint": "v2:82af52d508db5f76c8945774849b0f68eb22d035f4024b7facc66787637b1e4b",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "Neuropsychology of memory (3rd ed.)",
@@ -121,14 +121,14 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "Cohe88",
    "fingerprint": "v2:6a6ea1768e385138250d111c2c7ad44d881005573ddaea6fb4ebbeb8e8759cff",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "Statistical power analysis for the behavioral sciences (2nd ed.)",
@@ -136,14 +136,14 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "Murd99",
    "fingerprint": "v2:e36d70f8f88968945f755273b06312547dc8a5bbf3aa213be9a5ac2300593255",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "On Human Memory: Evolution, Progress, and Reflections on the 30th Anniversary of the {Atkinson}-{Shiffrin} Model",
@@ -151,14 +151,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "McGeIrio52",
    "fingerprint": "v2:fcef7542c9543ecfb085a39d070b51683436d731a8dc482cfbc3f622e06f630f",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "The psychology of human learning, 2nd edition",
@@ -166,14 +166,14 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "Free03",
    "fingerprint": "v2:767af8ff91abd2dcef432474ec8d99e3323d7d434e55672ddc900d276e91df7f",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "The wave packet: an action potential for the 21st century",
@@ -181,14 +181,14 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "KwonEtal23",
    "fingerprint": "v2:54c820a00c28944399851fc9a81ee746ec2cd9547bfa5beecaed2ed7cfe4e28c",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "journal": {
      "before": "Proceedings of the 29th {ACM} Symposium on Operating Systems Principles",
@@ -196,14 +196,14 @@
     }
    },
    "form_notes": {
-    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "BorzEtal23a",
    "fingerprint": "v2:69c0d1b4a035f3f50a387ecf9f5561997dc8576fbe546bea5ccb540b43160a11",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "journal": {
      "before": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (volume 3: System Demonstrations)",
@@ -211,14 +211,14 @@
     }
    },
    "form_notes": {
-    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TangEtal24",
    "fingerprint": "v2:47bed96d7d5c208a57674cb47b11d4248ca756a193606dbed43887089b23d752",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "journal": {
      "before": "Proceedings of the 41st International Conference on Machine Learning",
@@ -226,14 +226,14 @@
     }
    },
    "form_notes": {
-    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "Ande04",
    "fingerprint": "v2:75a90656f83e38dbcb649652cab07ee63c8f64b1beafebd4cd121b93232a08f0",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "journal": {
      "before": "Proceedings of the 5th {IEEE} International Workshop on Grid Computing",
@@ -241,14 +241,14 @@
     }
    },
    "form_notes": {
-    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "journal": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "NguyEtal16b",
    "fingerprint": "v2:724d8c319e61a1e60f14699e5898a300c1c8a34a63d0b67d1a4ee695a37219b5",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 14th {ACM} Conference on Embedded Networked Sensor Systems",
@@ -256,14 +256,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "NguyEtal18",
    "fingerprint": "v2:9aa1eaf99a3774bec598ea18b30b719e2095f87d656870b3b225776dd1b5d8af",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services",
@@ -271,14 +271,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "AchiEtal17",
    "fingerprint": "v2:fe682138da28ccda12d5a416606dff7b67bbf17130f7bd9160279e4c416668c2",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 34th International Conference on Machine Learning",
@@ -286,14 +286,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "JianLi16",
    "fingerprint": "v2:5a6bd4288e27aa238f4020da3428a5b2d5794eb3632450114b85ce08e9577bee",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 33rd International Conference on Machine Learning",
@@ -301,14 +301,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "FaraEtal18",
    "fingerprint": "v2:7020f765a7ba47b46ee92f4671047a9dabd901476dcb58435096ae627c6a20a9",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 35th International Conference on Machine Learning",
@@ -316,14 +316,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "LiEtal16",
    "fingerprint": "v2:e7aa3ffce4274a543ff846efc57ddd39d16c1eb96fe849fb5d7d3aeb95e542d2",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 14th Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
@@ -331,14 +331,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TianEtal16a",
    "fingerprint": "v2:7329cf2d763b0d79049950ad8648db7f2502b88eae09f0ce1c8e5ef51cad6970",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 22nd Annual International Conference on Mobile Computing and Networking",
@@ -346,14 +346,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TianEtal16b",
    "fingerprint": "v2:cd981a65be31ab934cccea9ad22345204221924c3a8ff53bfeb52fc72984ecf2",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 17th International Workshop on Mobile Computing Systems and Applications (hotmobile)",
@@ -361,14 +361,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "LiEtal17b",
    "fingerprint": "v2:e16926822440cb1a0fb283114e73f8ce5c15fe719875017deef3e4a29d4b4d2f",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 15th {ACM} Conference on Embedded Network Sensor Systems (sensys)",
@@ -376,14 +376,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TianEtal17",
    "fingerprint": "v2:746aa56f2bb5e18e8aa485cedd19c562e7862c4c43faf0f83c24f99907e20454",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 4th {ACM} Workshop on Visible Light Communication Systems (vlcs)",
@@ -391,14 +391,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TianEtal18",
    "fingerprint": "v2:b36592738aad5a702b8c1a16a51883a0e8c908c2d43b8e66506fb51e3a052963",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
@@ -406,14 +406,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "LiEtal18",
    "fingerprint": "v2:86cb63339f6e1a43b235926903c132fe41beece8ce3517cae0fdeac1507f0edd",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 31st Annual {ACM} Symposium on User Interface Software and Technology (uist)",
@@ -421,14 +421,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "LiZhou18",
    "fingerprint": "v2:6c91bf81abb65e560ce2ea744ee72ce8025bca5aa12ba9e3f7242d12f1e4909b",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 24th Annual International Conference on Mobile Computing and Networking (mobicom)",
@@ -436,14 +436,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "TianEtal20b",
    "fingerprint": "v2:e796e533ac177a693589c46109fd188a14311314b27129223661226beb1e75da",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 21st International Workshop on Mobile Computing Systems and Applications (hotmobile)",
@@ -451,14 +451,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "LiEtal20",
    "fingerprint": "v2:5fea4a9385665ff27f196129566a0c03acb5a9ade24f71b25ee119eebcc33153",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 18th Conference on Embedded Networked Sensor Systems (sensys)",
@@ -466,14 +466,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "CarvEtal22a",
    "fingerprint": "v2:eb6aa07f85226bb4a1a5674dcf9af6c8108245328e6f5ec53ff3f771fd6afd3d",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "14th International Conference on Communication Systems \\& Networks ({comsnets})",
@@ -481,14 +481,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "CarvEtal22b",
    "fingerprint": "v2:5bfe80935f0b496199703f4f09695e3e7baf51b15857e449524623986bb8c2d1",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "booktitle": {
      "before": "Proceedings of the 20th Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
@@ -496,14 +496,14 @@
     }
    },
    "form_notes": {
-    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "booktitle": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   },
   {
    "key": "SnijBosk12",
    "fingerprint": "v2:1cf6b9e04820dcf799a996807180c6c105e37d6587e8184e0d6521d382768150",
    "kind": "house_ordinals",
-   "rule": "user-2026-09-26 proper ordinals",
+   "rule": "user-2026-09-25 proper ordinals",
    "changes": {
     "title": {
      "before": "Multilevel analysis: an introduction to basic and advanced multilevel modeling, 2nd edition",
@@ -511,7 +511,7 @@
     }
    },
    "form_notes": {
-    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+    "title": "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
    }
   }
  ]

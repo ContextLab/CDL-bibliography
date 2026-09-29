@@ -2,10 +2,12 @@
 
 This folder applies the 30 edits that stage 2A held
 ([../apply-2026-09-26/README.md](../apply-2026-09-26/README.md), `classes001-proposals.json`
-`skipped`). It follows the user's rules in
+`skipped`). It follows the rules in
 [../resolution-plan-2026-09-22/README.md](../resolution-plan-2026-09-22/README.md): keys follow
-corrected metadata, every rename is logged in [../key-renames.json](../key-renames.json), and the
-house address form `City, {ST}` stays.
+corrected metadata (user), every rename is logged in [../key-renames.json](../key-renames.json), and the
+house address form `City, {ST}` stays. The address rule, like the surname-corroboration rule that
+keeps RuggEtal96 held, was Claude's and awaits the user's confirmation (resolution-plan README,
+"Rules Claude adopted").
 
 Library counts come from `bibcheck.py crossref status cdl.bib` (metadata_verified / needs_review, of 6,422).
 

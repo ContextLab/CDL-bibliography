@@ -81,7 +81,7 @@ They were not approved here: they are not pilot entries.
 ## signoff001: named-human approvals of the pilot verdicts
 
 [`signoff.py`](signoff.py) takes the 46 pilot keys the user listed (31 marked Correct; 16 marked wrong with a
-fix the user specified, AndeEtal66 on both lists; KahaEtal22 and Mink07 under their current keys KahaEtal24
+fix the user requested, AndeEtal66 on both lists; KahaEtal22 and Mink07 under their current keys KahaEtal24
 and Mink15). 15 were already metadata_verified. The other 31 were needs_review and were each recorded with
 `bibcheck.py crossref approve`, reviewer Jeremy Manning, bound to the entry's current fingerprint. Each note
 cites the verdict, the date 2026-09-25 and the evidence files (`../research-pilot-2026-09-24/pilot-proposals.json`
@@ -98,6 +98,16 @@ McCrGrac07, NilsEtal75, RovaVirs79, SchwHump73, Unde48a, Weiz66, XiaoEtal10, Zim
 
 Not included: Beaz96, RamaEtal12b, SommEtal12 and every PR #87/#88 entry. The plan and the notes are in
 [`signoff001-plan.json`](signoff001-plan.json); statuses in [`signoff001-results.json`](signoff001-results.json).
+
+**Correction (2026-09-29).** The attribution audit found that 12 of these approvals were not the user's.
+For 11 entries (AndeEtal66, BiswEtal95, Hook69, Jame90, KahaMill13, MikoEtal13b, Mink15, ParaEtal04,
+PuceEtal99, ScotEtal07, vanEEtal18) the user marked the pilot row wrong and asked for a fix, but never saw
+the fix as applied; the notes' "the fix as applied ... is user-approved" was not true. Palm78's note ("the
+user's resolution is to keep the entry unchanged") has no user record behind it: the user's page note was
+"again, add DOI". The user chose to revoke them (AskUserQuestion, 2026-09-29 17:51 EDT), and all 12 were
+revoked with `crossref revoke` ([../revocations.jsonl](../revocations.jsonl)). The notes quoted in the plan
+and results files are kept unchanged as the record of what was written. See
+[../2026-09-29-user-review/REVIEW.md](../2026-09-29-user-review/REVIEW.md).
 A production pipeline run over the 31 keys afterwards made 0 requests and 0 review writes, and every result
 was unchanged.
 

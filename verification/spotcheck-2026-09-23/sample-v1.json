@@ -1,7 +1,7 @@
 {
  "seed": 20260923,
  "commit": "964405a",
- "design": "Draw the pooled spot-check sample for the Phase 0 correction proposals.\n\nDesign (user decisions, 2026-09-22/23): the user reviews ~50 entries in total.\n- 10 random entries from S1-TWO-FIELDS-RISKY and 10 from S1-AUTHOR-NAMES\n  (the two riskiest article classes);\n- 30 pooled draws across every other article and catalogue class: one per\n  class, the remainder proportional to class size.\nA wrong proposal in a sample reopens its whole class's rule.\n\nReads proposals from the phase0 and catalogue folders, entry fields from the\nbibliography at the commit the proposals were generated against, and source\nevidence from the main cache opened read-only. Writes sample.json only.",
+ "design": "Draw the pooled spot-check sample for the Phase 0 correction proposals.\n\nDesign (Claude's, 2026-09-22/23): the user reviews ~50 entries in total. The user's inputs were\n\"i could maybe do 100 (upper limit)\" (2026-09-22 22:04 EDT) and \"10 per class (Recommended)\" (22:10 EDT).\n- 10 random entries from S1-TWO-FIELDS-RISKY and 10 from S1-AUTHOR-NAMES\n  (the two riskiest article classes);\n- 30 pooled draws across every other article and catalogue class: one per\n  class, the remainder proportional to class size.\nA wrong proposal in a sample reopens its whole class's rule.\n\nReads proposals from the phase0 and catalogue folders, entry fields from the\nbibliography at the commit the proposals were generated against, and source\nevidence from the main cache opened read-only. Writes sample.json only.",
  "class_sizes": {
   "A1b-ARTICLE-NUMBER": 15,
   "CAT A1 byline: given names/suffix/surname from the title page": 8,

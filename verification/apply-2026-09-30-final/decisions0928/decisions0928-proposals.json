@@ -144,7 +144,7 @@
    "key": "GrilEtal06b",
    "fingerprint": "v2:0934f4b072adba5805d15a0cb3d99fc990f425bc7737b188aa13786ac9db3630",
    "kind": "remove",
-   "reason": "user decision 2026-09-28: \"DROP it\" (a later correction, doi 10.1038/nn0107-133, withdraws the paper's headline claim; verification/resolution-2026-09-27/NOTICES.md: 'corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction')",
+   "reason": "user decision 2026-09-28: \"3. drop\" (reply to item 3, GrilEtal06b) (a later correction, doi 10.1038/nn0107-133, withdraws the paper's headline claim; verification/resolution-2026-09-27/NOTICES.md: 'corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction')",
    "decision": "verification/apply-2026-09-30-final/decisions0928/batch-41.json (drop): User answers 2026-09-28 (3): drop GrilEtal06b."
   },
   {

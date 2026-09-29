@@ -534,7 +534,7 @@ def test_editor_keys_share_suffixes_and_authors_take_precedence(tmp_path, monkey
     ("Freeman", "Freeman"),
 ])
 def test_publisher_initials_use_the_house_form(publisher, house):
-    # User decision 2026-09-26 ("W.H. Freeman should be W H Freeman"), reversing stage 2B-i's
+    # User decision 2026-09-25 07:37 EDT ("W.H. Freeman should be W H Freeman"), reversing stage 2B-i's
     # dotted-initials rule: publisher initials are undotted and space-separated, like author
     # initials. The formatter used to rewrite "W.H. Freeman" as "W.h. Freeman" (Marr82) and
     # to brace undotted initials ("{W} {H} Freeman").
@@ -732,7 +732,7 @@ def test_publisher_initials_compare_undotted(a, b, same):
 
 
 # 16. verify/commit gate: format check + citation verification of changed entries ------
-# User decision 2026-09-26: `bibcheck.py verify` and `bibcheck.py commit` share one gate
+# User decisions 2026-09-25 07:42 and 07:44 EDT: `bibcheck.py verify` and `bibcheck.py commit` share one gate
 # (bibcheck.py check_library). Real entry (cdl.bib Rame72, verified from Crossref
 # 10.1016/S0146-664X(72)80017-0); the citation check makes real Crossref requests into a
 # fresh cache in tmp_path. No mocks.

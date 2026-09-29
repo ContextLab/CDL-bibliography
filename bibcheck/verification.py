@@ -965,7 +965,7 @@ def numeric_ordinal(number):
 
 
 def ordinal_form(text):
-    """Ordinal words as numeric ordinals, for comparison only (user decision 2026-09-26).
+    """Ordinal words as numeric ordinals, for comparison only (user decision 2026-09-25 07:36 EDT).
 
     Applied to already-normalized (lowercase) text: 'thirtieth' -> '30th',
     'twenty-fourth'/'twenty fourth' -> '24th'. Numeric ordinals are left as written,
@@ -977,7 +977,7 @@ def ordinal_form(text):
 
 
 def publisher_initials(text):
-    """Publisher initials compare undotted (user decision 2026-09-26, 'W H Freeman').
+    """Publisher initials compare undotted (user decision 2026-09-25 07:37 EDT, 'W H Freeman').
 
     Applied to normalized text: a single letter followed by a period is an initial
     ('w.h. freeman', 'w. h. freeman' -> 'w h freeman'). Undotted run-together
@@ -1027,7 +1027,7 @@ def normalized(value):
         "d",
         "t",
     }
-    # House ordinals (user decision 2026-09-26): '30\\textsuperscript{th}' reads as
+    # House ordinals (user decision 2026-09-25 07:36 EDT): '30\\textsuperscript{th}' reads as
     # '30th'. Only a number followed by an ordinal suffix; any other superscript
     # stays unknown markup.
     value = HOUSE_ORDINAL.sub(r"\1\2", value)

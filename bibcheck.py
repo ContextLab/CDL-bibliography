@@ -26,7 +26,7 @@ def run_check(fname, **kwargs):
 
 def check_library(fname, reference='github', citations=True, all_entries=False, autofix=False,
                   outfile=None, verbose=False, database=None, mailto=None):
-    """The shared gate of `verify` and `commit` (user decision 2026-09-26).
+    """The shared gate of `verify` and `commit` (user decisions 2026-09-25 07:42 and 07:44 EDT).
 
     (1) the format check (check_bib); (2) citation verification of the added/edited
     entries relative to ``reference`` (the GitHub master cdl.bib by default, the file

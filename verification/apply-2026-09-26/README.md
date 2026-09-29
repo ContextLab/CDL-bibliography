@@ -200,7 +200,7 @@ Holds (30, listed under `skipped` with reasons):
   S1-TWO-FIELDS-RISKY 2;
 - catalogue: T 7, P2 2, A1 1, A1+P2 1, A2 1 and A2+T 1.
 
-**Key renames (user decision 2026-09-25):**
+**Key renames (user decision 2026-09-24 23:35 EDT, "Rename keys"):**
 
 - GautEtal18 → **GautEtal19**: title fixed, year 2019.
 - HayeEtal14 → **HayeEtal16**: journal "The Journals of Gerontology: Series {B}", year 2016.

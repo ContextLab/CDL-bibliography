@@ -4,7 +4,7 @@
  "count": 47,
  "skipped": {
   "HogeEtal99": "no change left: the resolution is already in cdl.bib",
-  "Palm78": "user: keep unchanged (no DOI for the cited 1978 Erlbaum edition)",
+  "Palm78": "Claude: keep unchanged (no DOI for the cited 1978 Erlbaum edition); the user asked for a DOI (\"again, add DOI\"), question open",
   "RamaEtal12b": "held: SfN route KeyError 'accepted_doi' in osf_review.merge (code fix needed; see README)",
   "SommEtal12": "held: SfN route KeyError 'accepted_doi' in osf_review.merge (code fix needed; see README)"
  },

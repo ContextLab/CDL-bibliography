@@ -79,7 +79,7 @@ The 20 marked **wrong** follow `../research-pilot-2026-09-24/followup.json`:
   - It is logged in key-renames.json with `"kind": "replacement"`.
 - **NetwLab25: REMOVED (user-approved removal, research-pilot verdict 2026-09-25).** This removal and the
   Beaz05 replacement are the only keys that disappear in pilot001.
-- **Palm78:** kept unchanged (user).
+- **Palm78:** kept unchanged. This was Claude's choice, not the user's. The user's page note was "again, add DOI" (verdict wrong, 2026-09-25 00:06 EDT), and "keep unchanged" was Claude's instruction to an agent (2026-09-25 11:10 EDT). The DOI question is open: see [../2026-09-29-user-review/REVIEW.md](../2026-09-29-user-review/REVIEW.md).
 - **RamaEtal12b and SommEtal12: HELD, not applied.** The SfN route raises an exception when it verifies an
   entry (see "Code change needed" below).
 

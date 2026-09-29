@@ -12,7 +12,7 @@ Batches:
 
   revert-kounios     MeyeEtal88: put back "J Kounios". risky001 applied Crossref's
                      "Kounois"; five other cdl.bib entries spell J Kounios and none
-                     spells Kounois (user decision 2026-09-25).
+                     spells Kounois (rule Claude adopted 2026-09-24, awaiting user confirmation).
   suffix-reassess    No BibTeX edit. The entries the comparator newly verifies now
                      that it ignores name suffixes (Jr, Sr, II, III, IV) on both
                      sides: BrodMurd77, CalvEtal73, RoedKarp06a, RoedKarp06b and any

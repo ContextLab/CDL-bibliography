@@ -21,7 +21,7 @@ Batches:
                whose changes are identical to the approved and spot-checked
                fixes-2026-09-24 / catalogue-phase0-2026-09-22 versions; plus the two
                held year fixes with their key renames (GautEtal18 -> GautEtal19,
-               HayeEtal14 -> HayeEtal16; user decision 2026-09-25). Built by
+               HayeEtal14 -> HayeEtal16; user decision 2026-09-24 23:35 EDT). Built by
                select_classes.py into classes001-proposals.json.
 
     .venv/bin/python verification/apply-2026-09-26/apply.py BATCH [--apply]

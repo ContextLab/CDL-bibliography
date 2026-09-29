@@ -1,13 +1,16 @@
 """Build held001-proposals.json: the 30 edits held in stage 2A (classes001 ``skipped``),
-re-expressed under the user's rules (resolution-plan-2026-09-22/README.md):
+re-expressed under the rules in resolution-plan-2026-09-22/README.md (the user's, except the two
+marked as Claude's below):
 
 - keys always follow corrected metadata: a key the ID rule demands is a rename, checked
   unused in cdl.bib and logged in verification/key-renames.json;
 - editions in house form ``N\\textsuperscript{..}``; catalogue titles without LoC's " : "
   statement of responsibility; editors in initials; ``{EEG}`` braced (house formatter);
-- house address form ``City, {ST}`` stays: catalogue L-class edits that only remove the
+- house address form ``City, {ST}`` stays (Claude's rule, awaiting user confirmation): catalogue
+  L-class edits that only remove the
   state/country suffix are dropped; a city change is kept in house form;
-- RuggEtal96 stays held (single-source surname change without corroboration).
+- RuggEtal96 stays held (single-source surname change without corroboration; Claude's rule,
+  awaiting user confirmation).
 
 Every changed value comes from the frozen classes001 proposal (source-stated); only its
 form changes. A proposal is kept only when helpers.check_bib then accepts the entry
@@ -38,7 +41,8 @@ spec.loader.exec_module(base)
 SOURCE = ROOT / "verification/apply-2026-09-26/classes001-proposals.json"
 EDITIONS = {"1": "1\\textsuperscript{st}", "2": "2\\textsuperscript{nd}", "3": "3\\textsuperscript{rd}"}
 
-# Form changes under the user's rules; the values themselves are the source-stated ones.
+# Form changes under the resolution-plan rules (the user's, and Claude's address rule awaiting
+# confirmation); the values themselves are the source-stated ones.
 FORM = {
     "HastEtal01": {"title": ("The elements of statistical learning: data mining, inference, and prediction",
                              "LoC title 'The elements of statistical learning : data mining, inference, and "
@@ -51,7 +55,7 @@ FORM = {
     "TulvDona72": {"address": ("New York, {NY}", "LoC city New York in house form City, {ST}")},
 }
 HELD_BY_RULE = {"RuggEtal96": "single-source surname change 'G Patchin' -> 'G R Patching' lacks corroboration "
-                              "(user rule 2026-09-25; stays held)"}
+                              "(rule Claude adopted 2026-09-24, awaiting user confirmation; stays held)"}
 
 
 def suffix_only(before, after):

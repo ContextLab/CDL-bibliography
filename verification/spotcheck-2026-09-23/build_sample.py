@@ -1,6 +1,7 @@
 """Draw the pooled spot-check sample for the Phase 0 correction proposals.
 
-Design (user decisions, 2026-09-22/23): the user reviews ~50 entries in total.
+Design (Claude's, 2026-09-22/23): the user reviews ~50 entries in total. The user's inputs were
+"i could maybe do 100 (upper limit)" (2026-09-22 22:04 EDT) and "10 per class (Recommended)" (22:10 EDT).
 - 10 random entries from S1-TWO-FIELDS-RISKY and 10 from S1-AUTHOR-NAMES
   (the two riskiest article classes);
 - 30 pooled draws across every other article and catalogue class: one per

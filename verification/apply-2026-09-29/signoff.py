@@ -80,12 +80,15 @@ def main():
             skipped[key] = status
             continue
         url, files = evidence(key)
-        verdict = ("marked wrong on the research-pilot page with a fix the user specified; the fix as applied "
-                   "(pilot001, commit 689de07) is user-approved" if key in FIXED
+        # Corrected 2026-09-29 (attribution audit): the notes this script wrote said the fix as applied
+        # was "user-approved" and that Palm78's "resolution is to keep the entry unchanged". Neither was
+        # the user's; those twelve approvals were revoked (verification/revocations.jsonl).
+        verdict = ("marked wrong on the research-pilot page with a fix the user requested; the user did not see "
+                   "the fix as applied (pilot001, commit 689de07)" if key in FIXED
                    else "marked Correct on the research-pilot page")
         if key == "Palm78":
-            verdict = ("marked wrong on the research-pilot page; the user's resolution is to keep the entry "
-                       "unchanged (no DOI for the cited 1978 Erlbaum edition)")
+            verdict = ("marked wrong on the research-pilot page with the note 'again, add DOI'; keeping the "
+                       "entry unchanged (no DOI for the cited 1978 Erlbaum edition) was Claude's choice")
         if key in FIXED and key in CORRECT:
             verdict = "marked Correct with a user correction (number 3--4) on the research-pilot page, applied in pilot001"
         if key in PILOT_KEY:

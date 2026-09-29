@@ -12,9 +12,9 @@ User decisions (verification/resolution-plan-2026-09-22/README.md):
                 lists four authors: Posner, Walker, Friedrich, Rafal).
   formats       Issue ranges 'N-M' -> 'N--M' in `number`; proceedings booktitles omit the
                 year; bare editions in house form 'N\\textsuperscript{..}'; no `pages` on @book;
-                publisher initials undotted ('W.H. Freeman' -> 'W H Freeman', user 2026-09-26).
+                publisher initials undotted ('W.H. Freeman' -> 'W H Freeman', user 2026-09-25).
   ordinals      Every plain numeric ordinal in a text field (title, booktitle, journal,
-                series, note, ...) becomes N\\textsuperscript{suffix} (user 2026-09-26).
+                series, note, ...) becomes N\\textsuperscript{suffix} (user 2026-09-25).
   adddoi002     Built by build_adddoi.py (needs the verification cache).
 
 Every proposal carries the entry fingerprint; helpers.check_bib must accept the staged
@@ -158,7 +158,7 @@ def propose_formats(entries):
             house = helpers.format_journal_name(publisher, key=helpers.publisher_key, dotted_initials=True)
             if house != publisher and re.sub(r"[.{}\s]", "", house) == re.sub(r"[.{}\s]", "", publisher):
                 changes["publisher"] = {"before": publisher, "after": house}
-                notes["publisher"] = "publisher initials undotted, space-separated (user 2026-09-26: 'W H Freeman')"
+                notes["publisher"] = "publisher initials undotted, space-separated (user 2026-09-25: 'W H Freeman')"
             else:
                 held[key] = f"publisher '{publisher}': house formatter gives '{house}' (not an initials-only change)"
         if fields["ENTRYTYPE"] == "book" and "pages" in fields:
@@ -177,7 +177,7 @@ NOT_TEXT = {"ID", "ENTRYTYPE", "doi", "url", "pages", "volume", "number", "autho
 
 def propose_ordinals(entries):
     """Every plain numeric ordinal in a text field becomes N\\textsuperscript{suffix} with the
-    correct suffix (user decision 2026-09-26, "Use proper ordinals wherever present")."""
+    correct suffix (user decision 2026-09-25 07:36 EDT, "Use proper ordinals wherever present")."""
     rows, held = [], {}
     for key, entry in entries.items():
         changes, notes = {}, {}
@@ -193,10 +193,10 @@ def propose_ordinals(entries):
             new = PLAIN_ORDINAL.sub(lambda m: ordinal(m[1]), value)
             if new != value:
                 changes[field] = {"before": value, "after": new}
-                notes[field] = "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-26)"
+                notes[field] = "numeric ordinal in house form N\\textsuperscript{..} (user 2026-09-25)"
         if changes:
             rows.append({"key": key, "fingerprint": entry["fingerprint"], "kind": "house_ordinals",
-                         "rule": "user-2026-09-26 proper ordinals", "changes": changes, "form_notes": notes})
+                         "rule": "user-2026-09-25 proper ordinals", "changes": changes, "form_notes": notes})
     return rows, held
 
 

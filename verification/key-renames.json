@@ -3,105 +3,105 @@
   "old_key": "GautEtal18",
   "new_key": "GautEtal19",
   "date": "2026-09-25",
-  "reason": "classes001: source-backed year correction 2018 -> 2019 (and title fix); key follows the corrected year (user decision 2026-09-25)",
+  "reason": "classes001: source-backed year correction 2018 -> 2019 (and title fix); key follows the corrected year (user decision 2026-09-24)",
   "commit": "bac94e68062c6d44d748513454f031a4b08e7a63"
  },
  {
   "old_key": "HayeEtal14",
   "new_key": "HayeEtal16",
   "date": "2026-09-25",
-  "reason": "classes001: source-backed year correction 2014 -> 2016 (journal 'The Journals of Gerontology: Series {B}'); key follows the corrected year (user decision 2026-09-25)",
+  "reason": "classes001: source-backed year correction 2014 -> 2016 (journal 'The Journals of Gerontology: Series {B}'); key follows the corrected year (user decision 2026-09-24)",
   "commit": "bac94e68062c6d44d748513454f031a4b08e7a63"
  },
  {
   "old_key": "Lewi10",
   "new_key": "Lewi97",
   "date": "2026-09-25",
-  "reason": "held001 (S1-COORDINATES, stated by crossref): year '2010' -> '1997'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (S1-COORDINATES, stated by crossref): year '2010' -> '1997'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "SiroDas08",
   "new_key": "SiroDas09",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:19158795): year '2008' -> '2009'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:19158795): year '2008' -> '2009'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "SchlEtal07",
   "new_key": "SchlEtal08",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:17429407): year '2007' -> '2008'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:17429407): year '2007' -> '2008'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "RotsEtal04",
   "new_key": "RotsEtal05",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:15592463): year '2004' -> '2005'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:15592463): year '2004' -> '2005'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "Cowa97",
   "new_key": "Cowa95",
   "date": "2026-09-25",
-  "reason": "held001 (Y, stated by loc-catalogue:1123886): year '1997' -> '1995'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (Y, stated by loc-catalogue:1123886): year '1997' -> '1995'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "HillLour98",
   "new_key": "HillAnll98",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pmc-jats, pubmed:9448241): author 'S A Hillyard and A-V Lourdes' -> 'S A Hillyard and L Anllo-Vento'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pmc-jats, pubmed:9448241): author 'S A Hillyard and A-V Lourdes' -> 'S A Hillyard and L Anllo-Vento'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "deBeEtal08",
   "new_key": "OpdeEtal08",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:18200027): author 'H P O {de Beeck} and J Haushofer and N G Kanwisher' -> 'H P {Op de Beeck} and J Haushofer and N G Kanwisher'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:18200027): author 'H P O {de Beeck} and J Haushofer and N G Kanwisher' -> 'H P {Op de Beeck} and J Haushofer and N G Kanwisher'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "BonhEtal91",
   "new_key": "BonhGrin91",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:1896085): author 'T Bonhoeffer and A Grinvald and others' -> 'T Bonhoeffer and A Grinvald'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:1896085): author 'T Bonhoeffer and A Grinvald and others' -> 'T Bonhoeffer and A Grinvald'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "UndeShul60",
   "new_key": "UndeSchu60",
   "date": "2026-09-25",
-  "reason": "held001 (A1+L, stated by loc-catalogue:7489304): author 'B J Underwood and R W Shultz' -> 'B J Underwood and R W Schulz'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (A1+L, stated by loc-catalogue:7489304): author 'B J Underwood and R W Shultz' -> 'B J Underwood and R W Schulz'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "Lang01",
   "new_key": "LangEtal01",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:11722692): author 'K M Langa' -> 'K M Langa and M E Chernew and M U Kabeto and A R Herzog and M B Ofstedal and R J Willis and R B Wallace and L M Mucha and W L Straus and A M Fendrick'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:11722692): author 'K M Langa' -> 'K M Langa and M E Chernew and M U Kabeto and A R Herzog and M B Ofstedal and R J Willis and R B Wallace and L M Mucha and W L Straus and A M Fendrick'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "GeviEtal99",
   "new_key": "SmitEtal99",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:9838200): author 'A Gevins and L McEvoy and M E Smith' -> 'M E Smith and L K McEvoy and A Gevins'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:9838200): author 'A Gevins and L McEvoy and M E Smith' -> 'M E Smith and L K McEvoy and A Gevins'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "Koun94",
   "new_key": "KounEtal94",
   "date": "2026-09-25",
-  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:7808282): author 'J Kounios' -> 'J Kounios and E C Montgomery and R W Smith'; key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "held001 (TWO-SOURCE, stated by crossref, pubmed:7808282): author 'J Kounios' -> 'J Kounios and E C Montgomery and R W Smith'; key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "12ede17d1f81cc28e95ed16af3a39a4521d4f097"
  },
  {
   "old_key": "KahaEtal22",
   "new_key": "KahaEtal24",
   "date": "2026-09-25",
-  "reason": "pilot001 (research pilot, user: correct): year 2022 -> 2024 (The Oxford Handbook of Human Memory, Crossref 10.1093/oxfordhb/9780190917982.013.2); key follows the corrected metadata (user decision 2026-09-26)",
+  "reason": "pilot001 (research pilot, user: correct): year 2022 -> 2024 (The Oxford Handbook of Human Memory, Crossref 10.1093/oxfordhb/9780190917982.013.2); key follows the corrected metadata (user decision 2026-09-25)",
   "commit": "689de07"
  },
  {
