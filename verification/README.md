@@ -1,24 +1,26 @@
-# Bibliography verification baseline
+# Bibliography verification records
 
-The latest completed **policy-2** stage covers all **6,422 entries**: **3,526 metadata matches** and **2,896 unresolved entries**, updated September 17, 2026. The [local completion run](completion-2026-09-15/README.md) records 792 source-backed bibliography edits, comparison fixes, and two reopened correction-notice cases and the repaired eight-entry suffix audit. Every completed positive stage passed a repeat with zero requests and zero new reviews. No human or LLM-based approvals were created. The full-library verification goal remains unfinished; source collection and further corrections continue. The [earlier follow-up](resolution-followup-2026-09-15/README.md) and [preceding pass](resolution-2026-09-15/README.md) remain historical reports.
+As of September 29, 2026, every one of the **6,384 entries** in `cdl.bib` is verified: **6,353** have status `metadata_verified` and **31** have status `human_verified`. No entry is left unresolved. The rules used to decide each case (cite as printed, no conference abstracts, drop what can't be verified or stays ambiguous) are in the [decision log](resolution-plan-2026-09-22/README.md).
 
-The earlier automatic review extension resolved **1,047** of the 5,617 entries flagged by the first Crossref pass. See the [September 9 results](automatic-review.md) for that historical run. Fingerprints now use key-independent format v2 / snapshot schema 2: a key-only rename reuses approval; every other raw entry or dependency edit invalidates it.
-
-- [Current baseline](baseline.jsonl.gz): complete evidence and statuses under policy 2.
-- [Compact research queue](review-queue.jsonl.gz): current unresolved entries, fingerprints, and research routes.
-- [Historical policy-1 baseline](baseline-policy1.jsonl.gz): original 805 accepted / 5,617 unresolved result; it cannot grant current policy-2 approval.
+- [Current baseline](baseline.jsonl.gz): the saved result and evidence for every entry. `python bibcheck.py crossref restore verification/baseline.jsonl.gz` loads it into a local database; the pull request check reads it from the base branch.
+- [Key renames](key-renames.json) and [key deletions](key-deletions.json): every citation key that was renamed or removed during verification, with the reason. Check these if a paper's `\cite` key stops resolving.
+- [Historical policy-1 baseline](baseline-policy1.jsonl.gz): the first Crossref pass (805 accepted / 5,617 unresolved). It can't approve anything under the current policy.
 
 ```bash
+export CROSSREF_MAILTO='your.name@dartmouth.edu'
 python bibcheck.py crossref restore verification/baseline.jsonl.gz
-python bibcheck.py crossref verify cdl.bib --auto-review
+python bibcheck.py crossref status cdl.bib
 ```
 
-Set `CROSSREF_MAILTO` before network use. Restore accepts matching fingerprints only. Exit 1 is expected while unresolved entries remain. Subsequent unchanged runs reuse their completed review stages; edits invalidate the associated results automatically.
+A result applies only to an entry whose text matches exactly; editing an entry sends it back through verification. "Verified" means the entry agrees with the published record, not that the record itself is free of errors.
 
-The current baseline matches all keys, fingerprints, and statuses in the local report; SQLite integrity passed. Metadata agreement is evidence of source consistency, not an absolute accuracy guarantee. The optional paid LLM/PDF batch layer is implemented but has not been live-run.
+## How the library got here
 
-The refreshed free Dartmouth adapter defaults to full GLM 5.3 and checks live free eligibility before inference. Its fifty source-extraction comparisons matched the assistant's recorded audit after three failed calls were retried and one omitted publisher metadata section was retrieved. This tests extraction from available sources, not certification of fifty citations or unattended retrieval. See the [pilot report](pilot50/README.md) and the earlier [benchmark](benchmark/README.md).
+The folders in this directory are dated working records, kept as an audit trail. In rough order:
 
-The baseline and compact queue contain matching current fingerprints. Resolver revisions revisit unresolved evidence once; repeated unchanged runs do not create fresh review records.
+1. **First Crossref pass and automatic review** (September 9–17): Crossref, PubMed/Europe PMC, publisher full text, catalogues and preprint servers. See [automatic-review.md](automatic-review.md), [resolution-2026-09-15](resolution-2026-09-15/README.md) and [completion-2026-09-15](completion-2026-09-15/README.md). This stage ended at 3,526 verified and 2,896 unresolved entries.
+2. **New sources and rules** (September 22–25): DataCite, the ACL Anthology, PsyArXiv (through the OSF API), the Society for Neuroscience abstract archive, and the lab's decision rules. See [phase0-2026-09-22](phase0-2026-09-22/), [routes-2026-09-25](routes-2026-09-25/) and [machinery-2026-09-25](machinery-2026-09-25/).
+3. **Research waves** (September 24–27): the entries no automatic source could settle were researched one at a time. Each field was matched to a quotation from an official source, then checked independently and reviewed. See [research-pilot-2026-09-24](research-pilot-2026-09-24/), [research-2026-09-25](research-2026-09-25/), [resolution-2026-09-26](resolution-2026-09-26/) and [resolution-2026-09-27](resolution-2026-09-27/).
+4. **Applying the results** (the `apply-*` folders): each batch of corrections was applied, re-verified, and tested before it was committed. The [research route](research-route-2026-09-27/README.md) records the research evidence as verification results.
 
-See the [README](../README.md) and [design documentation](../docs/verification.md) for commands and acceptance rules.
+The [benchmark](benchmark/README.md) and [PDF benchmark](pdf-benchmark/) measure the checker against real entries and deliberately altered copies. See the [README](../README.md) and the [design documentation](../docs/verification.md) for commands and acceptance rules.

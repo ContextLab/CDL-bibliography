@@ -1,5 +1,68 @@
 # Citation verification design
 
+This is the design reference for `bibcheck.py crossref` and the `verify` gate. The
+[README](../README.md) covers everyday use. The dated folders in
+[verification/](../verification/README.md) record how the library was brought to its
+current state; sections below that describe a dated pilot or measurement say so.
+
+## Current state
+
+As of September 29, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
+`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=31,
+metadata_verified=6353`. Run it again for the current figures. The `accepted_source` of
+each approval in the committed baseline (snapshot of 2026-09-28) breaks down as follows:
+
+|Source (`accepted_source`)|Approvals|
+|-|-|
+|`crossref`|4,400, plus 99 older Crossref approvals saved before the field existed|
+|`research-evidence` (research route)|1,224|
+|`europepmc` (PubMed through Europe PMC)|411|
+|`loc-catalogue` (Library of Congress)|113|
+|`pmc-jats` (open-access PMC front matter)|39|
+|`arxiv-repository`|38|
+|`publisher-head` (Cambridge publisher metadata)|13|
+|`biorxiv-preprint`|5|
+|`osf-repository` (PsyArXiv)|4|
+|`datacite-registry`|4|
+|`acl-anthology`|2|
+|`catalogue-imprint`|1|
+|`human_verified` (explicit `approve`)|31|
+
+## Decision rules for what the library contains
+
+The lab's rules, with every case they were applied to, are in
+[verification/resolution-plan-2026-09-22/README.md](../verification/resolution-plan-2026-09-22/README.md).
+The checker enforces agreement with a source; these rules decide which source and whether
+an entry stays:
+
+1. **Cite as printed.** Every field must match the official record, up to the formatting
+   differences `check_bib` requires (standing rule 3, 2026-09-26).
+2. **The printed paper wins when there is reason to doubt the registry** (2026-09-28).
+   Registry metadata (Crossref, PubMed and so on) stands as verification unless a
+   correction or erratum notice, a disagreement between sources, or a user flag gives a
+   reason to doubt it; then the printed paper (publisher PDF, full-text page or scan)
+   decides. There is no blanket re-read of PDFs.
+3. **No conference abstracts; proceedings papers are fine** (standing rule 2). An item
+   is checked to be a real abstract before it is dropped. This applies to abstracts the
+   SfN route can verify, too.
+4. **Drop what cannot be verified or stays ambiguous.** An entry with no verifiable
+   record after web research is dropped (standing rule 1), and so is one whose question
+   stays ambiguous after research (2026-09-28: "if ambiguous, drop-- we can always add
+   back if needed later"). A work known only from other publications' reference lists
+   counts as unverifiable; an abstracting-index record (PsycINFO, Scholar) counts as a
+   record.
+
+Every rename and deletion is logged in `verification/key-renames.json` and
+`verification/key-deletions.json`.
+
+**Organization authors in keys** (2026-09-28, superseding the 2026-09-27 first-word
+rule). A fully braced author name is one author. Its key part is the letters of its
+successive words, concatenated until four letters are reached and then truncated, with
+the capitalization as printed; digits and punctuation are skipped
+(`helpers.organization_key`, tests in `tests/test_formatter_held_forms.py`).
+`{R Core Team}` gives `RCor12` and `{U.S. Food and Drug Administration}` gives `USFo20`
+(computed with `helpers.authors2key`).
+
 ## Accuracy contract
 
 The program establishes agreement with recorded source metadata. It cannot guarantee that a database deposit is correct, that a finite search found every competing work, that an initial uniquely identifies a person, or that the final rendered bibliography follows every submission requirement. Neither an LLM assertion nor the absence of a detected mismatch is sufficient evidence.
@@ -14,8 +77,8 @@ A wrong DOI is particularly important: the DOI must agree with the title, author
 2. Fingerprint the exact raw entry except its citation-key token, plus string/preamble definitions and inherited entry fingerprints. Look up a review indexed by bibliography path, content fingerprint and comparison-policy version. Keys label report rows; they do not determine cache identity.
 3. For an uncached entry, fetch its DOI record or search Crossref for candidates. Query construction uses the title, first author, year and venue; all authors are checked during comparison. No fuzzy score grants approval.
 4. Compare publication type, title/subtitle, complete ordered authors, year, venue and supported fields. Missing evidence and conflicting dates block approval. Keep all candidate records and comparisons for review.
-5. Where relevant, collect DataCite DOI or arXiv identifier evidence. Their date/type semantics are not silently converted into journal metadata. This implementation does not automatically approve these fallback records.
-6. Optionally invoke a configured web-search/PDF adapter for an unresolved entry. Download the actual PDF, extract its text and validate quotations against page text. Retain the result for human review.
+5. With `--auto-review`, run the free review layers on unresolved selected entries, in this order: Europe PMC/PubMed (`auto_review`), open-access PMC front matter (`fulltext_review`), PMC OAI front matter (`pmc_metadata`), publisher print-year metadata (`publisher_year_review`), the Library of Congress catalogue (`catalogue_review`), bioRxiv (`preprint_review`), arXiv (`arxiv_review`), then the PsyArXiv, DataCite, ACL Anthology and SfN routes (`verification_cli.run_review_layers`). Each route approves only what its own source records; repository and registry date/type semantics are never converted into journal metadata.
+6. Optionally invoke a configured web-search/PDF adapter for an unresolved entry. Download the actual PDF, extract its text and validate quotations against page text. Retain the result for human review. (The separate research route, `crossref research-approve`, is described [below](#research-route-research-approve).)
 7. Record explicit human decisions only with reviewer, source, notes and the exact fingerprint. A stale fingerprint is rejected.
 8. Checkpoint each result in a SQLite transaction. Regenerate the final report from a fresh bibliography read, so edits during a run remain pending.
 
@@ -76,9 +139,9 @@ SQLite is the working store: indexed lookup, append-only review history, transac
 
 A single JSON object would require repeated whole-file rewrites and careful locking; a bare text list of keys would miss edits and lack evidence. JSON Lines is useful for sequential inspection/export but lacks efficient keyed updates. Compressed JSONL snapshots provide a portable audit artifact; SQLite provides local operation. The changing database, PDF downloads and report are ignored by Git. Snapshots can be shared or committed intentionally.
 
-Snapshots have a schema/policy header and one record per entry. Schema 2 restores by key-independent content fingerprint. Schema 1 restores only exact legacy key/fingerprint matches and records the migration. Restore validates the complete file before writes, maps reviews to the destination bibliography path, accepts matching fingerprints only, and does not overwrite local reviews. Machine approvals require recorded evidence from Crossref or an identified Europe PMC, PMC, Cambridge publisher-head, or bound catalogue-imprint adjudication; secondary approvals retain their raw source metadata and provenance. Snapshot files are trusted data, not cryptographic certificates. They exclude HTTP cache entries and downloaded PDF bytes; archive those separately if needed.
+Snapshots have a schema/policy header and one record per entry. Schema 2 restores by key-independent content fingerprint. Schema 1 restores only exact legacy key/fingerprint matches and records the migration. Restore validates the complete file before writes, maps reviews to the destination bibliography path, accepts matching fingerprints only, and does not overwrite local reviews. Machine approvals require recorded evidence from Crossref or from one of the review layers listed under [Current state](#current-state); secondary approvals retain their raw source metadata and provenance. The later routes (OSF, DataCite, ACL, SfN, research evidence) register an approval validator with `verification.register_approval_validator`, and an imported approval must pass it. Snapshot files are trusted data, not cryptographic certificates. They exclude HTTP cache entries and downloaded PDF bytes; archive those separately if needed.
 
-`verify --against BASE.bib` and `status --against BASE.bib` gate entries whose content fingerprints are absent from the base. This includes dependency changes and new entries; key-only renames are excluded. `--keys` is an alternative explicit selection. Selection is propagated to every free review layer, and the final gate rereads the bibliography to detect edits during checking. Full reports retain the historical backlog without letting it mask failures in selected entries. The Actions implementation and cache retention boundaries are documented in the README.
+`verify --against BASE.bib` and `status --against BASE.bib` gate entries whose content fingerprints are absent from the base. This includes dependency changes and new entries; key-only renames are excluded. `--keys` is an alternative explicit selection. Selection is propagated to every free review layer, and the final gate rereads the bibliography to detect edits during checking. Full reports retain the historical backlog without letting it mask failures in selected entries. The Actions implementation is described under [Continuous integration](#continuous-integration).
 
 SQLite serializes writes. The runner additionally takes an OS advisory lock for the whole run, preventing two processes sharing a cache from multiplying request rates. Independent caches/machines do not share that lock; users must coordinate aggregate traffic. A blocked run does not hold an open SQLite write transaction while waiting on the network.
 
@@ -136,7 +199,7 @@ A human should check the publication's identity and edition, all cited authors a
 ## Operational limits
 
 - Crossref deposits can be incomplete or incorrect. A metadata match is not independent corroboration from the PDF.
-- Automatic journal checks support `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types and additional fields require review.
+- The Crossref comparison supports `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types (software and data in DataCite, repository preprints, catalogue books) need one of the other routes, and a field no route verifies blocks approval (`no deterministic verifier for this field`).
 - A finite candidate set cannot establish global uniqueness. Exact title/author competitors among retrieved records block approval.
 - Initials agree with given names but do not establish personal identity. Use human source review for the stronger gate.
 - Direct Crossref publication dates must collapse to a single year, with one exception (resolver 28): when Crossref's print date and its issued date both equal the cited year, a later online/digitization date does not block, provided no linked PubMed, JATS or publisher record contradicts the print year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
@@ -220,7 +283,7 @@ OpenAI request limits are four web-tool calls per discovery and 4,000 output tok
 
 `bibcheck/dartmouth_research_adapter.py` uses Dartmouth's documented `/api/chat/completions` endpoint and `DARTMOUTH_CHAT_API_KEY`. `BIBCHECK_RESEARCH_MODEL` defaults to `zai-org.glm-5.3`, live-confirmed on September 14, 2026. `--check-model` and every adapter invocation check `/api/models` for that exact ID and free eligibility; they never substitute another provider. Both **Local** and **Free** tags qualify, but an explicit nonzero or malformed price overrides the tag and rejects inference. Run `python bibcheck/dartmouth_models.py .bibcheck/dartmouth-models.json` to refresh a sanitized catalog without private upstream metadata. See [Dartmouth model tags](https://rc.dartmouth.edu/ai/online-resources/understanding-tags/), [API usage](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/basic_usage/) and [model discovery](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/model_list/).
 
-The full GLM 5.3 model is the selected free text model; Flash is a separate faster multimodal option. The [full model card](https://huggingface.co/zai-org/GLM-5.3) describes text-only input despite Dartmouth's reported vision capability. Requests use maximum reasoning, temperature 1, top-p 0.95, clear thinking history, a 16,000-token output cap, and a 240-second read timeout. Model benchmarks informed selection; the repository's representative source audit tests actual extraction behavior separately. The Qwen-specific limits and live results below describe the earlier Qwen configuration, not the new GLM default.
+The full GLM 5.3 model is the selected free text model; Flash is a separate faster multimodal option. The [full model card](https://huggingface.co/zai-org/GLM-5.3) describes text-only input despite Dartmouth's reported vision capability. Requests use maximum reasoning, temperature 1, top-p 0.95, clear thinking history, a 16,000-token output cap, and a 240-second read timeout. Model benchmarks informed selection; the repository's representative source audit tests actual extraction behavior separately. The adapter was first built and piloted with `qwen.qwen3.5-122b`, which it still supports with its own settings (below); the live results in this section date from that Qwen configuration, not the GLM default.
 
 The model uses a client-side JSON action loop, so native function calling or hosted search support is not required. It can request `web_search(query)`, see the results, revise its query, select a retrieved PDF source by index, or report that the source remains unresolved. Only these actions are interpreted; no shell commands, arbitrary functions, or model-supplied URLs execute. Tool data is explicitly untrusted. Allowed hosts govern page and PDF retrieval, including redirects. URLs from registry records and publisher `citation_pdf_url` metadata can also supply candidates. A link is a discovery clue, not evidence that the publication/version matches.
 
@@ -231,13 +294,13 @@ The model uses a client-side JSON action loop, so native function calling or hos
 
 Each search returns up to five results. Successful queries, including recognized empty results, are cached for seven days in `.bibcheck/search.sqlite3`; change its location with `BIBCHECK_SEARCH_CACHE`. Uncached queries wait three seconds, source requests wait one second, and Dartmouth calls wait two seconds. Runs are serial within the existing research batch lock; the Actions workflow additionally serializes its jobs. Do not launch independent research processes with different verification databases to evade pacing. Cached discovery results never change a verification status or defeat exact-entry invalidation.
 
-Per entry, discovery permits at most three distinct searches, four model responses, three landing-page lookups (each with at most four requests including redirects), and twenty candidate PDFs. Extraction adds one model response. Each model request caps input data at 100 KB and output at 4,000 tokens. The adapter timeout is 600 seconds per phase to accommodate this bounded loop. Each discovery model response has a 90-second read timeout; PDF extraction allows 240 seconds after a live extraction exceeded the original 90-second limit. Refused, truncated, malformed, or unsupported responses fail closed. These limits bound requests, not model accuracy. JSON is requested in the prompt and checked locally; strict provider JSON-schema support is not assumed. Optional Markdown fences are removed without changing JSON values. Duplicate JSON keys, trailing prose, multiple objects, and invalid field evidence are rejected. For `qwen.qwen3.5-122b`, requests use Qwen’s documented direct-response settings (`chat_template_kwargs.enable_thinking=false`, temperature 0.7, top-p 0.8, top-k 20, presence penalty 1.5). These settings are based on the [official Qwen model guide](https://huggingface.co/Qwen/Qwen3.5-122B-A10B); gateway support must be validated live and the settings are not an accuracy guarantee.
+Per entry, discovery permits at most three distinct searches, four model responses, three landing-page lookups (each with at most four requests including redirects), and twenty candidate PDFs. Extraction adds one model response. Each model request caps input data at 100 KB; output is capped at 16,000 tokens for GLM 5.3 and 4,000 tokens for other models. The adapter timeout is 600 seconds per phase to accommodate this bounded loop. GLM 5.3 responses have a 240-second read timeout. For other models, discovery responses have a 90-second read timeout and PDF extraction allows 240 seconds, after a live Qwen extraction exceeded the original 90-second limit. Refused, truncated, malformed, or unsupported responses fail closed. These limits bound requests, not model accuracy. JSON is requested in the prompt and checked locally; strict provider JSON-schema support is not assumed. Optional Markdown fences are removed without changing JSON values. Duplicate JSON keys, trailing prose, multiple objects, and invalid field evidence are rejected. For `qwen.qwen3.5-122b`, requests use Qwen’s documented direct-response settings (`chat_template_kwargs.enable_thinking=false`, temperature 0.7, top-p 0.8, top-k 20, presence penalty 1.5). These settings are based on the [official Qwen model guide](https://huggingface.co/Qwen/Qwen3.5-122B-A10B); gateway support must be validated live and the settings are not an accuracy guarantee.
 
-Publisher landing-page discovery reads `citation_*` metadata only from HTML head tags, excluding body/reference-list tags and retaining conflicting values. Its supplied PDF links become candidates; this is discovery evidence, not a new HTML acceptance rule. Qwen may select a retrieved publisher PDF without making a general search call. PDF selection returns only an existing source index. Up to two alternative PDF links from that same retrieved record may accompany it; links from other candidate publications cannot be substituted. Bibcheck tries at most three supplied copies after download failures and records each attempt. This does not establish that mirrors have identical publication versions. Bibcheck downloads the actual PDF and saves its hash and first five pages of extracted text. Dartmouth extraction receives numbered source passages without the input BibTeX fields. Qwen returns field values and passage IDs; Python copies the exact original slices and validates every page, offset, and quotation. Unknown IDs and duplicate non-author fields fail closed. Individual author selections are assembled in source order. Conservative literal checks preserve accents and subtitles and flag inferred values; BibTeX entry type always requires interpretation. Literal support does not establish field role, identity, author completeness, or publication version. Because a receipt date, a copyright notice, a preprint version stamp, an affiliation line and a reference-list entry are all literally present on the page, each field's evidence additionally carries a `role_risk` list, collected in `role_risk_fields`, naming printed roles that make the proposed value suspect: `reference_list`, `receipt_or_revision_date`, `copyright_line`, `preprint_version_stamp`, `affiliation_line`, `institution_named_as_venue` and `possible_omitted_author`. Each match also becomes an explicit uncertainty. These are pattern heuristics over the selected passages, never an approval and never a rejection; they deliberately over-flag, because a false positive withholds acceptance while a false negative would admit a wrong value. An empty `role_risk` is not evidence that the role is correct. The generic adapter contract above remains supported for other providers. Both discovery and extraction uncertainties survive in the evidence. Successful evidence includes the search queries/results, source URLs, timestamps, cache-use indicators, and model usage. Failed research attempts are checkpointed; successful search results remain cached even if later model/PDF processing fails. Neither adapter edits BibTeX or grants verification.
+Publisher landing-page discovery reads `citation_*` metadata only from HTML head tags, excluding body/reference-list tags and retaining conflicting values. Its supplied PDF links become candidates; this is discovery evidence, not a new HTML acceptance rule. The model may select a retrieved publisher PDF without making a general search call. PDF selection returns only an existing source index. Up to two alternative PDF links from that same retrieved record may accompany it; links from other candidate publications cannot be substituted. Bibcheck tries at most three supplied copies after download failures and records each attempt. This does not establish that mirrors have identical publication versions. Bibcheck downloads the actual PDF and saves its hash and first five pages of extracted text. Dartmouth extraction receives numbered source passages without the input BibTeX fields. The model returns field values and passage IDs; Python copies the exact original slices and validates every page, offset, and quotation. Unknown IDs and duplicate non-author fields fail closed. Individual author selections are assembled in source order. Conservative literal checks preserve accents and subtitles and flag inferred values; BibTeX entry type always requires interpretation. Literal support does not establish field role, identity, author completeness, or publication version. Because a receipt date, a copyright notice, a preprint version stamp, an affiliation line and a reference-list entry are all literally present on the page, each field's evidence additionally carries a `role_risk` list, collected in `role_risk_fields`, naming printed roles that make the proposed value suspect: `reference_list`, `receipt_or_revision_date`, `copyright_line`, `preprint_version_stamp`, `affiliation_line`, `institution_named_as_venue` and `possible_omitted_author`. Each match also becomes an explicit uncertainty. These are pattern heuristics over the selected passages, never an approval and never a rejection; they deliberately over-flag, because a false positive withholds acceptance while a false negative would admit a wrong value. An empty `role_risk` is not evidence that the role is correct. The generic adapter contract above remains supported for other providers. Both discovery and extraction uncertainties survive in the evidence. Successful evidence includes the search queries/results, source URLs, timestamps, cache-use indicators, and model usage. Failed research attempts are checkpointed; successful search results remain cached even if later model/PDF processing fails. Neither adapter edits BibTeX or grants verification.
 
 The manual `.github/workflows/dartmouth-research.yml` pilot consumes the GitHub repository secret, checks model availability, and defaults to three entries (maximum ten). Inputs reach commands through environment variables and argument lists, not interpolated shell code. It restores the portable baseline and caches `.bibcheck` between runs; edited entries still lose eligibility automatically. An always-run checkpoint exports a snapshot artifact, including failure records. PDFs stay in the runner/cache, not the artifact. A GitHub cache is temporary storage and can be evicted. No credentials appear in snapshots or model prompts. Existing attempts are skipped unless the explicit retry input is enabled.
 
-Validation: both search connectors returned real results in a September 9, 2026 probe; DuckDuckGo found the proceedings PDF and arXiv record for “Attention Is All You Need.” Local tests cover adaptive query revision, persistent caching, fabricated source indexes, invalid quotations, budgets, blocked redirects, and challenge handling. Live Dartmouth authentication and Qwen search actions have now succeeded. Testing exposed DuckDuckGo HTTP 202 challenges, a stale publisher PDF returning 404, and Europe PMC PDF throttling (429). These failures remain unresolved rather than becoming approvals. The exact live model ID is `qwen.qwen3.5-122b`. GitHub cannot reveal an Actions secret for local use, and the new manual workflow must be published to the default branch before dispatch.
+Validation (September 2026, Qwen configuration): both search connectors returned real results in a September 9, 2026 probe; DuckDuckGo found the proceedings PDF and arXiv record for “Attention Is All You Need.” Live Dartmouth authentication and search actions with `qwen.qwen3.5-122b` succeeded. Testing exposed DuckDuckGo HTTP 202 challenges, a stale publisher PDF returning 404, and Europe PMC PDF throttling (429). These failures remain unresolved rather than becoming approvals. Local tests cover adaptive query revision, persistent caching, fabricated source indexes, invalid quotations, budgets, blocked redirects, and challenge handling. GitHub cannot reveal an Actions secret for local use, and a manual workflow can be dispatched only once it is on the default branch.
 
 
 ### Local credentials and live debugging
@@ -247,7 +310,7 @@ If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads `.bibcheck/sec
 `python verification/dartmouth_pilot.py --key ElSo18 --backend europepmc` runs a bounded live attempt without altering the bibliography or verification database. Diagnostics and returned model evidence are saved under ignored `.bibcheck/debug/` with restricted permissions; credentials are redacted before diagnostic writes. Diagnostic responses retain content, usage and sanitized errors, excluding request headers and model reasoning text. `--allow-host` adds an exact permitted source host. `--landing-url` starts discovery from a known publisher page, fetching its metadata before model selection. `--source-url` skips discovery to isolate extraction against an already retrieved PDF; its evidence explicitly records that discovery was not exercised in that run. The script checks the model ID, downloads the actual PDF, extracts up to the first five pages (`--pages 1` isolates the front page), and applies the same quote checks as production research. A successful extraction probe is not evidence of a successful end-to-end search run or a citation approval.
 
 
-The [earlier live pilot](../verification/dartmouth-live-pilot.md) exposed an invented ellipsis and an inferred series title. The [follow-up benchmark](../verification/benchmark/README.md) records source-passage extraction and a complete known publisher-page → PDF → Qwen evidence run, with all quotations passing. Its 60 offline cases across 30 real entries test documentary metadata comparisons, not 30 independent PDF reviews or model accuracy. The ten-entry expanded Crossref pilot accepted no additional entries. Broad-batch reliability and automatic PDF adjudication remain unestablished; all model findings stay `needs_review`.
+The [earlier live pilot](../verification/dartmouth-live-pilot.md) exposed an invented ellipsis and an inferred series title. The [follow-up benchmark](../verification/benchmark/README.md) (September 10, 2026) records source-passage extraction and a complete known publisher-page → PDF → Qwen evidence run, with all quotations passing. Its 60 offline cases across 30 real entries test documentary metadata comparisons, not 30 independent PDF reviews or model accuracy. The ten-entry expanded Crossref pilot accepted no additional entries. Broad-batch reliability and automatic PDF adjudication remain unestablished; all model findings stay `needs_review`. The September 2026 research waves were a separate process (research agents following `verification/research-pilot-2026-09-24/PROTOCOL.md` and `verification/research-2026-09-25/AGENT-BRIEF.md`, with independent checks and user decisions); their evidence reached the library only through the [research route](#research-route-research-approve).
 
 ## Catalogue verification for books
 
@@ -462,3 +525,122 @@ Congress record parser (`verification/catalogue-phase0-2026-09-22/README.md`).
 `bibcheck/pdf_evidence.py` is a position-aware local-PDF verifier with a
 subtle-error benchmark (`verification/pdf-benchmark/README.md`); it is **not** wired
 into any approval path.
+
+## Repository and registry routes (2026-09-25)
+
+Four further `verify --auto-review` routes cover works Crossref does not describe. Each
+has its own module, policy constant, `run_*` function and registered approval
+validator; design, meeting keys and the 2026-09-25 yield are in
+[verification/routes-2026-09-25/README.md](../verification/routes-2026-09-25/README.md).
+
+|Route|Module|Source|
+|-|-|-|
+|PsyArXiv|`bibcheck/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
+|Software and data|`bibcheck/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
+|ACL Anthology|`bibcheck/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
+|SfN abstracts|`bibcheck/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
+
+A route can verify an entry, propose source-backed field values, flag a published
+version for replacement, or hold the entry. Only PsyArXiv is supported among OSF
+preprint servers (`osf_review.PROVIDERS`). A preprint is compared with its latest
+version, and when OSF lists a published article DOI the entry is classed `replacement`
+and never verifies. Software titles take the house form `{Owner}/repo: {version}` and
+every creator is compared in order. The SfN route can confirm a meeting abstract, but
+under the lab's rules conference abstracts are dropped from `cdl.bib` (see
+[Decision rules](#decision-rules-for-what-the-library-contains)).
+
+## Correction, erratum and retraction notices
+
+A DOI-linked notice (from PubMed, JATS front matter, or a Crossref `update-to` /
+`updated-by` relation), a PubMed author-suffix conflict, or a coordinate conflict holds
+a machine approval (`preprint_review.context_issues`, `Cache.retain_notices`). Only
+`human_verified` is exempt. The evidence is scoped to the cited work's own DOI
+(resolver 28) and survives edits and restores, as described under
+[Known correction notices](#known-correction-notices).
+
+The notices that held entries in September 2026 were read and classified by hand in
+[verification/resolution-2026-09-27/NOTICES.md](../verification/resolution-2026-09-27/NOTICES.md)
+(`notices-classified.json`, one row per notice with its URL and quote). The research
+route settles a notice only through that classification
+(`research_route.notice_adjudication`):
+
+- a retraction or expression of concern is never approved; the user decides;
+- a content-only erratum, a metadata correction the entry already carries, a same-DOI
+  new version, a notice that is itself the cited work, and a record that is no notice or
+  belongs to another work are settled, and the approval carries a `notice_*` flag;
+- a coordinate conflict is settled when the entry carries the Crossref value (round-1
+  rule: the publisher/Crossref record wins);
+- a notice nobody could read (paywall, CAPTCHA, no notice DOI) is treated as an erratum
+  only when the classifier's notes record that Crossref and Europe PMC show no retraction
+  or expression of concern; the approval is flagged `notice_unread`.
+
+A notice learned after approval reopens the entry. The 2026-09-28 printed-paper rule
+applies here: a correction is a reason to doubt the registry, so when neither the
+printed article nor the notice could be read, the entry was dropped as ambiguous
+(ChanEtal12). A correction that withdraws a paper's headline claim was reported to the
+user, who dropped the entry (GrilEtal06b).
+
+## Research route (`research-approve`)
+
+`bibcheck/research_route.py` records as `metadata_verified`
+(`accepted_source = research-evidence`) the entries that the September 2026 research
+waves verified field by field. Design, evidence files and counts are in
+[verification/research-route-2026-09-27/README.md](../verification/research-route-2026-09-27/README.md).
+
+```sh
+python bibcheck.py crossref research-approve cdl.bib [--dry-run] [--output FILE] [--keys FILE]
+```
+
+It reads only saved, committed files and makes no network request. Evidence files with
+uncommitted changes are left out and listed, and a repeat run writes nothing. An entry
+is approved only when:
+
+1. a research row (or a resolution decision) settled it, nothing marks it for removal,
+   and an identity quote is found in its saved source body;
+2. every field of the current entry except `ID` and `ENTRYTYPE` equals the latest
+   researched value after house normalization, and that value is supported by a quote
+   found in the saved body (`.bibcheck/research-pilot/`, sha256 recorded). No field is
+   exempt;
+3. the entry type matches the evidence;
+4. no DOI-linked notice, suffix or coordinate conflict is open, unless the notice
+   classification above settles it.
+
+Quotes read in a real browser or transcribed from an image-only scan count only for
+resolution and manual rows whose notes say so, and are flagged `browser_or_scan`.
+`valid_research_approval` is registered as an approval validator, so a restored
+research approval is re-checked: against the saved bodies where they exist, otherwise
+against the recorded quote results. A fresh clone has no `.bibcheck/research-pilot/`
+bodies, so it relies on the committed baseline's recorded evidence.
+
+This route is separate from the optional LLM adapter below: `crossref research` and
+`research-batch` save evidence for review and never approve.
+
+## Continuous integration
+
+`.github/workflows/citation-check.yml` (workflow name "Citation verification") runs
+`verification/check_ci.py` on pull requests to `master`, pushes to `master`, and manual
+dispatch. All jobs share one serial concurrency group, and `CROSSREF_MAILTO` comes from
+the repository's Actions variable.
+
+- On a pull request or push, it writes the base revision's `cdl.bib` to
+  `.bibcheck/base.bib`, restores the base revision's `verification/baseline.jsonl.gz`
+  (never the snapshot in the pull request), and runs
+  `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
+  edited content is gated; key-only renames are excluded.
+- A manual run restores the committed baseline and checks the whole library.
+- The SQLite database is kept in the Actions cache, keyed by ref; a pull request can
+  fall back to the `master` cache, and `master` never restores a pull-request cache. The
+  report and a checkpoint snapshot are uploaded as artifacts. The cache only saves
+  lookups: an approval in it can come only from the checker's own runs, never from a
+  file in the pull request.
+- Exit status: `0` when every selected entry is verified, `1` otherwise, `2` for a
+  configuration or provider error.
+
+Because approvals are trusted only from the base branch, a pull request that adds a
+`human_verified` approval to `baseline.jsonl.gz` still fails its own check for that
+entry; a maintainer merges it after checking the approval. The job runs the pull
+request's own code, so this guarantee assumes the checker itself is unchanged; review any
+change under `bibcheck/` or `verification/check_ci.py` separately.
+
+The separate `autocheck` workflow runs `bibcheck/test.py` (the formatting check of
+`cdl.bib`) and `pytest tests` on Python 3.11.
