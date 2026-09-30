@@ -513,3 +513,129 @@ research post-check follows key-renames.json in log order, so the key swap does 
 KahaEtal08c (the reply) to the chapter. Details:
 [apply-2026-09-30b-answers](../apply-2026-09-30b-answers/README.md). Library after the batch:
 `6384 entries: human_verified=23, metadata_verified=6353, needs_review=8`.
+
+
+## User surname decisions 2026-09-30
+
+The user's rule (2026-09-30): "one source is sufficient; manual entry is the weakest part. notify
+user if mismatch is found and ask how they want to resolve it". The 137 mismatches were put to
+the user on the review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM (collection
+`review0930`). The answer documents were read with the ArtifactData tool on 2026-09-30 and are
+copied in [verification/apply-2026-09-30c-surnames/answers/](../apply-2026-09-30c-surnames/answers/);
+every mismatch's decision is in
+[decisions.json](../apply-2026-09-30c-surnames/decisions.json). Applied as batch
+`surnames0930c` ([apply-2026-09-30c-surnames](../apply-2026-09-30c-surnames/README.md)). Times
+are the documents' `updatedAt` (UTC) and EDT (UTC-4). Sections E and F had no documents: their
+rows were settled by the printed bylines (below) or asked again in section I.
+
+| Doc | Section | Choice | Note | Answered (UTC) | EDT |
+|-|-|-|-|-|-|
+| surname-AndeEtal66-2 | C | entry |  | 2026-09-30T15:56:04.244Z | 11:56:04 |
+| surname-AndeEtal66-3 | C | source |  | 2026-09-30T15:56:51.933Z | 11:56:51 |
+| surname-BahrPhel87-2 | C | entry |  | 2026-09-30T15:57:38.288Z | 11:57:38 |
+| surname-Buzs98-1 | C | entry |  | 2026-09-30T15:58:16.959Z | 11:58:16 |
+| surname-FreeEtal03b-3 | C | entry |  | 2026-09-30T15:58:30.178Z | 11:58:30 |
+| surname-IshiEtal75-3 | C | source |  | 2026-09-30T15:58:53.264Z | 11:58:53 |
+| surname-KatzEtal89-3 | C | source |  | 2026-09-30T15:59:39.969Z | 11:59:39 |
+| surname-KimbEtal08-1 | C | entry |  | 2026-09-30T16:00:10.406Z | 12:00:10 |
+| surname-LuriEtal20-6 | C | entry |  | 2026-09-30T16:01:12.263Z | 12:01:12 |
+| surname-Madi71-1 | C | entry |  | 2026-09-30T16:01:59.601Z | 12:01:59 |
+| surname-MallEtal97-3 | C | source |  | 2026-09-30T16:02:28.655Z | 12:02:28 |
+| surname-MeyeEtal88-4 | C | source |  | 2026-09-30T16:03:18.677Z | 12:03:18 |
+| surname-NewmBuck62-2 | C | entry |  | 2026-09-30T16:04:31.836Z | 12:04:31 |
+| surname-RebeEtal02-3 | C | source |  | 2026-09-30T16:05:44.861Z | 12:05:44 |
+| surname-SlamFevr83-1 | C | entry |  | 2026-09-30T16:06:21.899Z | 12:06:21 |
+| surname-TulvHast72-1 | C | entry |  | 2026-09-30T16:06:34.134Z | 12:06:34 |
+| surname-WaszWalt83-1 | C | entry |  | 2026-09-30T16:07:27.056Z | 12:07:27 |
+| surname-WatkPeyn83-2 | C | other | should actually be Peyn\dot{i}rc\dot{i}o\u{g}lu | 2026-09-30T16:09:29.471Z | 12:09:29 |
+| surname-Wick69-1 | C | entry |  | 2026-09-30T16:10:02.024Z | 12:10:02 |
+| surname-KragEtal19-9 | C | source |  | 2026-09-30T16:11:08.415Z | 12:11:08 |
+| surname-LopeEtal73-4 | C | source |  | 2026-09-30T16:11:11.883Z | 12:11:11 |
+| surname-dBakEtal08-1 | C | source |  | 2026-09-30T16:11:57.821Z | 12:11:57 |
+| surname-group-format | C | show | Unify the spellings | 2026-09-30T16:13:42.400Z | 12:13:42 |
+| surname-group-longer | C | except | Vom{S}aal should be "{vom Saal}" | 2026-09-30T16:16:45.772Z | 12:16:45 |
+| surname-group-shorter | C | show |  | 2026-09-30T16:18:59.037Z | 12:18:59 |
+| surname-group-corrupt | C | show |  | 2026-09-30T16:19:36.024Z | 12:19:36 |
+| typo-RebeEtal02-3 | H | correct |  | 2026-09-30T17:22:08.184Z | 13:22:08 |
+| manual-recheck-IshiEtal75-3 | I | source |  | 2026-09-30T17:22:34.437Z | 13:22:34 |
+| manual-surname1-KarpRoed07-2 | I | entry |  | 2026-09-30T17:22:50.239Z | 13:22:50 |
+| manual-surname1-BuzsEtal83-2 | I | entry |  | 2026-09-30T17:23:02.558Z | 13:23:02 |
+| manual-surname1-GallRoed02-2 | I | entry |  | 2026-09-30T17:23:08.025Z | 13:23:08 |
+| manual-surname1-LopeEtal73-1 | I | other | "{Lopes da Silva}" | 2026-09-30T17:23:41.745Z | 13:23:41 |
+| manual-surname1-SpinEtal88-2 | I | entry |  | 2026-09-30T17:24:03.447Z | 13:24:03 |
+| manual-surname1-VieiEtal03-2 | I | entry |  | 2026-09-30T17:24:17.215Z | 13:24:17 |
+| manual-surname1-vandEtal11-1 | I | entry |  | 2026-09-30T17:24:27.233Z | 13:24:27 |
+| manual-surname1-ConwEtal00-4 | I | source |  | 2026-09-30T17:24:44.151Z | 13:24:44 |
+| manual-surname1-MillEtal07c-2 | I | source |  | 2026-09-30T17:24:59.253Z | 13:24:59 |
+| manual-surname1-MillEtal07d-5 | I | source |  | 2026-09-30T17:25:05.487Z | 13:25:05 |
+| manual-surname1-PennEtal94-3 | I | other | "{Lopes da Silva}" | 2026-09-30T17:25:23.111Z | 13:25:23 |
+| manual-surname1-SchaEtal11-3 | I | source |  | 2026-09-30T17:25:44.691Z | 13:25:44 |
+| manual-surname1-StJaEtal12-1 | I | source |  | 2026-09-30T17:25:50.224Z | 13:25:50 |
+| manual-surname1-VanSEtal07-1 | I | entry |  | 2026-09-30T17:25:56.459Z | 13:25:56 |
+| manual-surname1-VanSEtal07-3 | I | entry |  | 2026-09-30T17:26:14.927Z | 13:26:14 |
+| manual-surname1-BrisEtal02-3 | I | entry |  | 2026-09-30T17:26:54.181Z | 13:26:54 |
+| manual-surname1-NuneEtal87-1 | I | entry |  | 2026-09-30T17:27:47.604Z | 13:27:47 |
+| manual-surname1-NuneEtal87-2 | I | entry |  | 2026-09-30T17:27:58.704Z | 13:27:58 |
+| manual-surname1-SlawKasi95-1 | I | entry |  | 2026-09-30T17:28:09.105Z | 13:28:09 |
+| rule-unify | G | per-paper |  | 2026-09-30T17:28:37.258Z | 13:28:37 |
+
+**Rule answers recorded here.**
+
+- **Per-paper (user, doc rule-unify, "per-paper", 2026-09-30T17:28:37.258Z = 13:28:37 EDT).**
+  Question: the same person's name is printed differently in different papers; option chosen:
+  "Each entry follows its own printed paper" (not "One spelling per person everywhere"). Applied:
+  FreuEtal09 author 6 "J Klosterkoetter", LatiEtal10 author 7 "F Dagata", NadeEtal00 author 3
+  "J E {Le Doux}", each as its printed byline shows (printed.json). Other entries of the same
+  people are not changed.
+- **The printed paper wins** (user rule 2026-09-28, above) settled 43 rows whose printed byline
+  equals the entry (printed.json class PRINTED=ENTRY), including four where the user had first
+  picked Crossref's spelling in section C: AndeEtal66#3 Hamberger, KatzEtal89#3 Kong,
+  MallEtal97#3 Sch{\"o}lkopf, MeyeEtal88#4 Kounios.
+- **Gitelman exception (user, doc typo-RebeEtal02-3, "correct", 2026-09-30T17:22:08.184Z =
+  13:22:08 EDT).** The Journal of Neuroscience printed author 3 as "Darren R. Gitleman" (p. 9541,
+  https://www.jneurosci.org/content/22/21/9541.full.pdf); the user chose the correct spelling
+  "Gitelman" over the printed typo. A user-approved exception to the as-printed rule; the entry
+  is unchanged.
+- **Name suffixes.** The six rows whose source adds a suffix (EngeEtal10#6, GomeEtal96#3,
+  IyyeEtal15#4, PollGero68#2, Roed08#1, Warr98#1) keep the entry under the user's rule in
+  "Spot-check completed (2026-09-24/25) and resulting decisions" above: "No name suffixes (Jr, Sr,
+  II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes."
+- **"St. Jacques"** (SchaEtal11#3, StJaEtal12#1, answered "source"): in house form (periods
+  stripped) this is "{St Jacques}", the entry's spelling; no edit.
+- **The three rows the page left open (user, 2026-09-30, relayed verbatim by the orchestrating
+  session; message time not recorded here):** "1. ConwEtal00 had an apostrophe, not an accent /
+  2. denNijs is printed as one word in the example pub". Applied with the user's section I
+  "source" answers: ConwEtal00 author 4 "M Racsma'ny" (ASCII apostrophe), MillEtal07c author 2
+  and MillEtal07d author 5 "M denNijs".
+
+**Changes (cdl.bib).** KragEtal19 #9 "L F Barrett" → "L {Feldman Barrett}"; LopeEtal73 #4
+"W S {van Leeuwen}" → "W {Storm van Leeuwen}" and #1 "F H {Lopes Da Silva}" → "F H {Lopes da
+Silva}"; PennEtal94 #3 → "F H {Lopes da Silva}"; dBakEtal08 #1 "R S J {d Baker}" → "R S J {d}
+Baker"; MurdVomS67 #2 "W {Vom {S}aal}" → "W {vom Saal}", key renamed **MurdVomS67 → MurdvomS67**
+(helpers.authors2key; logged in verification/key-renames.json, commit `surnames0930c`, with the
+user's note "Vom{S}aal should be \"{vom Saal}\"" from doc surname-group-longer, "except",
+2026-09-30T16:16:45.772Z); IshiEtal75 #3 "N Yoshimasu" → "N Yoshimasa"; FreuEtal09, LatiEtal10,
+NadeEtal00, ConwEtal00, MillEtal07c, MillEtal07d as above. Everything else is kept.
+
+**Not applied as written, for the user to decide** (evidence in the batch README):
+- dBakEtal08: "R S J d Baker" renders in BibTeX as "d Baker" (the lowercase d is read as a
+  particle), so the author is "R S J {d} Baker", which renders "Baker, R. S. J. d." as Crossref
+  has it. The key stays dBakEtal08 (authors2key reads "d" as a surname prefix either way).
+- WatkPeyn83: the user's "Peyn\dot{i}rc\dot{i}o\u{g}lu" was not applied. `\dot` is a
+  math-mode accent; in text mode pdflatex stops ("! Missing $ inserted."), so every paper citing
+  the entry would fail to build. The entry keeps "Z F Peynircio\u{g}lu" and stays verified.
+- LatiEtal10: its published erratum (10.1007/s00426-016-0761-6, Psychol Res 80(4):727, 2016)
+  corrects "Dagata" to "D'Agata" (PubMed: "Dagata, Federico [corrected to D’Agata, Federico]").
+  The per-paper spelling "Dagata" is applied as the user chose, but the entry is `needs_review`
+  on that correction notice until the user decides between the printed article and its
+  correction.
+- FreuEtal09: `needs_review` on its erratum (10.1001/archneurol.2011.75), which corrects a
+  Methods sentence, not the byline; earlier adjudicated (research wave 2) as no change to the
+  citation, but that approval was bound to the old text.
+
+**Approvals** (`bibcheck.py crossref approve`, reviewer "Jeremy Manning", current fingerprint;
+source: the page, collection, doc id(s), choice and answer time, or for entries settled by the
+printed byline alone the page and the 2026-09-28 rule; note: the chosen spelling and the printed
+evidence): ConwEtal00, dBakEtal08, LopeEtal73, PennEtal94, MeyeEtal88, BragEtal99, RobeEtal99,
+NoldEtal98, SchaEtal11, StJaEtal08, StJaEtal12, StJaScha13.
+Library after the batch (`bibcheck.py crossref status cdl.bib`): `6384 entries: human_verified=35, metadata_verified=6347, needs_review=2`.

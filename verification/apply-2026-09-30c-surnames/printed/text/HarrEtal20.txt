@@ -1,0 +1,86 @@
+sha256: 6728d4ba00fcb73e7872b1cb4b05a7a51482a152da6a9464a15d8f6dcdeb8a3d  file: pdfs/HarrEtal20.pdf
+
+Review
+
+Array programming with NumPy
+https://doi.org/10.1038/s41586-020-2649-2
+Received: 21 February 2020
+Accepted: 17 June 2020
+Published online: 16 September 2020
+Open access
+Check for updates
+
+Charles R. Harris1, K. Jarrod Millman2,3,4 ✉, Stéfan J. van der Walt2,4,5 ✉, Ralf Gommers6 ✉,
+Pauli Virtanen7,8, David Cournapeau9, Eric Wieser10, Julian Taylor11, Sebastian Berg4,
+Nathaniel J. Smith12, Robert Kern13, Matti Picus4, Stephan Hoyer14, Marten H. van Kerkwijk15,
+Matthew Brett2,16, Allan Haldane17, Jaime Fernández del Río18, Mark Wiebe19,20,
+Pearu Peterson6,21,22, Pierre Gérard-Marchant23,24, Kevin Sheppard25, Tyler Reddy26,
+Warren Weckesser4, Hameer Abbasi6, Christoph Gohlke27 & Travis E. Oliphant6
+
+Array programming provides a powerful, compact and expressive syntax for
+accessing, manipulating and operating on data in vectors, matrices and
+higher-dimensional arrays. NumPy is the primary array programming library for the
+Python language. It has an essential role in research analysis pipelines in fields as
+diverse as physics, chemistry, astronomy, geoscience, biology, psychology, materials
+science, engineering, finance and economics. For example, in astronomy, NumPy was
+an important part of the software stack used in the discovery of gravitational waves1
+and in the first imaging of a black hole2. Here we review how a few fundamental array
+concepts lead to a simple and powerful programming paradigm for organizing,
+exploring and analysing scientific data. NumPy is the foundation upon which the
+scientific Python ecosystem is constructed. It is so pervasive that several projects,
+targeting audiences with specialized needs, have developed their own NumPy-like
+interfaces and array objects. Owing to its central position in the ecosystem, NumPy
+increasingly acts as an interoperability layer between such array computation
+libraries and, together with its application programming interface (API), provides a
+flexible framework to support the next decade of scientific and industrial analysis.
+
+Two Python array packages existed before NumPy. The Numeric package was developed in the mid-1990s and provided array objects and
+array-aware functions in Python. It was written in C and linked to standard fast implementations of linear algebra3,4. One of its earliest uses was
+to steer C++ applications for inertial confinement fusion research at
+Lawrence Livermore National Laboratory5. To handle large astronomical images coming from the Hubble Space Telescope, a reimplementation of Numeric, called Numarray, added support for structured arrays,
+flexible indexing, memory mapping, byte-order variants, more efficient
+memory use, flexible IEEE 754-standard error-handling capabilities, and
+better type-casting rules6. Although Numarray was highly compatible
+with Numeric, the two packages had enough differences that it divided
+the community; however, in 2005 NumPy emerged as a ‘best of both
+worlds’ unification7—combining the features of Numarray with the
+small-array performance of Numeric and its rich C API.
+Now, 15 years later, NumPy underpins almost every Python library
+that does scientific or numerical computation8–11, including SciPy12,
+Matplotlib13, pandas14, scikit-learn15 and scikit-image16. NumPy is a
+community-developed, open-source library, which provides a multidimensional Python array object along with array-aware functions
+
+that operate on it. Because of its inherent simplicity, the NumPy array
+is the de facto exchange format for array data in Python.
+NumPy operates on in-memory arrays using the central processing
+unit (CPU). To utilize modern, specialized storage and hardware, there
+has been a recent proliferation of Python array packages. Unlike with
+the Numarray–Numeric divide, it is now much harder for these new
+libraries to fracture the user community—given how much work is
+already built on top of NumPy. However, to provide the community with
+access to new and exploratory technologies, NumPy is transitioning
+into a central coordinating mechanism that specifies a well defined
+array programming API and dispatches it, as appropriate, to specialized array implementations.
+
+NumPy arrays
+The NumPy array is a data structure that efficiently stores and accesses
+multidimensional arrays17 (also known as tensors), and enables a wide
+variety of scientific computation. It consists of a pointer to memory,
+along with metadata used to interpret the data stored there, notably
+‘data type’, ‘shape’ and ‘strides’ (Fig. 1a).
+
+Independent researcher, Logan, UT, USA. 2Brain Imaging Center, University of California, Berkeley, Berkeley, CA, USA. 3Division of Biostatistics, University of California, Berkeley, Berkeley, CA,
+USA. 4Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA. 5Applied Mathematics, Stellenbosch University, Stellenbosch, South Africa. 6Quansight, Austin,
+TX, USA. 7Department of Physics, University of Jyväskylä, Jyväskylä, Finland. 8Nanoscience Center, University of Jyväskylä, Jyväskylä, Finland. 9Mercari JP, Tokyo, Japan. 10Department of
+Engineering, University of Cambridge, Cambridge, UK. 11Independent researcher, Karlsruhe, Germany. 12Independent researcher, Berkeley, CA, USA. 13Enthought, Austin, TX, USA. 14Google
+Research, Mountain View, CA, USA. 15Department of Astronomy and Astrophysics, University of Toronto, Toronto, Ontario, Canada. 16School of Psychology, University of Birmingham,
+Edgbaston, Birmingham, UK. 17Department of Physics, Temple University, Philadelphia, PA, USA. 18Google, Zurich, Switzerland. 19Department of Physics and Astronomy, The University of
+British Columbia, Vancouver, British Columbia, Canada. 20Amazon, Seattle, WA, USA. 21Independent researcher, Saue, Estonia. 22Department of Mechanics and Applied Mathematics, Institute
+of Cybernetics at Tallinn Technical University, Tallinn, Estonia. 23Department of Biological and Agricultural Engineering, University of Georgia, Athens, GA, USA. 24France-IX Services, Paris,
+France. 25Department of Economics, University of Oxford, Oxford, UK. 26CCS-7, Los Alamos National Laboratory, Los Alamos, NM, USA. 27Laboratory for Fluorescence Dynamics, Biomedical
+Engineering Department, University of California, Irvine, Irvine, CA, USA. ✉e-mail: millman@berkeley.edu; stefanv@berkeley.edu; ralf.gommers@gmail.com
+1
+
+Nature | Vol 585 | 17 September 2020 | 357
+
+

@@ -1,0 +1,88 @@
+sha256: 314c3ae9754a55a1fd8d7c7cab74b7561356fbc6c48b806722dd0b034ad2b10e  file: pdfs/PollGero68.pdf
+
+The Role of Rules in Recall
+Author(s): Howard R. Pollio and Joshua R. Gerow III
+Source: The American Journal of Psychology, Vol. 81, No. 3 (Sep., 1968), pp. 303-313
+Published by: University of Illinois Press
+Stable URL: https://www.jstor.org/stable/1420627
+Accessed: 30-09-2026 16:51 UTC
+REFERENCES
+Linked references are available on JSTOR for this article:
+https://www.jstor.org/stable/1420627?seq=1&cid=pdf-reference#references_tab_contents
+You may need to log in to JSTOR to access the linked references.
+JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide
+range of content in a trusted digital archive. We use information technology and tools to increase productivity and
+facilitate new forms of scholarship. For more information about JSTOR, please contact support@jstor.org.
+Your use of the JSTOR archive indicates your acceptance of the Terms & Conditions of Use, available at
+https://about.jstor.org/terms
+
+University of Illinois Press is collaborating with JSTOR to digitize, preserve and extend
+access to The American Journal of Psychology
+
+This content downloaded from 129.170.192.77 on Wed, 30 Sep 2026 16:51:03 UTC
+All use subject to https://about.jstor.org/terms
+
+THE ROLE OF RULES IN RECALL
+
+By HOWARD R. POLLIO and JOSHUA R. GEROW III,
+University of Tennessee
+
+Recall-clustering, as first described by Bousfield,' is subject to bo
+
+ciative and information-processing explanations. Associative expla
+assume that Ss cluster words in recall to the degree that the wor
+common associative relations, e.g. are mutual word associates2 or
+
+mantically similar.3 Informational analyses, on the other hand, assu
+Ss actively organize or code materials into categories on the basis o
+
+rule or strategy during acquisition and that recall is best considered
+reconstruction on the basis of the initial coding rule.4
+
+Since the role of associative factors in clustering has been reaso
+well established, the present experiments attempted to determine
+of coding rules in recall and recall-clustering. In a free-recall task
+
+ing clustered materials, it is reasonable to assume that Ss rearran
+
+domly presented materials so as to minimize the number of specif
+to be stored. Under this strategy, specific category-items need not
+tained but rather may be subsumed under more general rubrics suc
+
+category-name and later generated during recall itself. Thus, Ss pr
+
+the letters C, A, and T would code these into a single word, an
+
+production of the individual letters during recall could be constr
+
+case of generation or reconstruction during recall. Such an analysis
+that if Ss were told explicitly the rule by which a categorized list w
+structed, this information would facilitate the storage- or reconst
+
+stages of memory and thereby lead to increased clustering and grea
+
+* Received for publication August 21, 1967. The research was supported b
+MH-80903 from the United States Public Health Service. A preliminary
+this work was presented at the Southeastern Psychological Association me
+Atlanta, Georgia, in April, 1967. Dr. Gerow is now at the University of
+
+Denver.
+
+1 W. A. Bousfield, The occurrence of clustering in the recall of randomly arranged
+
+associates, J. gen. Psychol., 49, 1953, 229-240.
+2 j. J. Jenkins and W. A. Russell, Associative clustering during recall, J. abnorm.
+soc. Psychol., 47, 1952, 818-821; J. J. Jenkins, W. D. Mink, and W. A. Russell,
+Associative clustering as a function of verbal association strength, Psychol. Rep.,
+4, 1958, 127-136.
+3H. R. Pollio, R. A. Kasschau, and H. DeNise, Associative structures and the
+temporal characteristics of free recall, J. exp. Psychol., 76, 1968, 190-197.
+4G. Mandler, Association and organization: Facts, fancies and theories, in T.
+Dixon and D. L. Horton (eds.), Verbal Behavior Theory and S-R Behavior Theory,
+1968, 109-118; G. A. Miller, Information and memory, Sci. Amer., 195, 1956, 42-46.
+303
+
+This content downloaded from 129.170.192.77 on Wed, 30 Sep 2026 16:51:03 UTC
+All use subject to https://about.jstor.org/terms
+
+

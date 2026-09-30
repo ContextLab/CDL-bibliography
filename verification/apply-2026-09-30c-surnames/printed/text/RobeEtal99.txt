@@ -1,0 +1,98 @@
+sha256: 641f859e1c29c9e2e4185bad33847abc4b00ad80f74e73385a3490018945d634  file: pdfs/RobeEtal99.pdf
+
+HIPPOCAMPUS 9:206–219 (1999)
+
+RESEARCH ARTICLES
+Head Direction Cells in the Primate Pre-Subiculum
+Robert G. Robertson, Edmund T. Rolls,*
+Pierre Georges-François, and Stefano Panzeri
+Department of Experimental Psychology,
+University of Oxford, Oxford, England
+
+ABSTRACT:
+The function of the primate hippocampus and related
+structures was analysed by making recordings from the hippocampus,
+subiculum, presubiculum, and parahippocampal gyrus in monkeys actively walking in the laboratory. Head direction cells were found in the
+presubiculum. The firing rate of these cells was a function of the head
+direction of the monkey, with a response that was typically 10–100 times
+larger to the best as compared to the opposite direction. The mean
+half-amplitude width of the tuning of the cells was 76°. The response of
+head direction cells in the presubiculum was not influenced by the place
+where the monkey was, there being the same tuning to head direction at
+different places in a room, and even outside the room. The response of
+these cells was also independent of the ‘‘spatial view’’ observed by the
+monkey, and also the position of the eyes in the head. The average
+information about head direction was 0.64 bits, about place was 0.10 bits,
+about spatial view was 0.27 bits, and about eye position was 0.04 bits. The
+cells maintained their tuning for periods of at least several minutes when
+the view details were obscured or the room was darkened. This representation of head direction could be useful together with the hippocampal
+spatial view cells and whole body motion cells found in primates in such
+spatial and memory functions as path integration. Hippocampus 1999;
+9:206–219. r 1999 Wiley-Liss, Inc.
+KEY WORDS:
+subiculum
+
+hippocampus; space; view; place; memory; monkey;
+
+Damage to the temporal lobe, which includes the hippocampal formation, or to one of its main connection pathways, the fornix, produces
+amnesia (see Scoville and Milner, 1957; Squire and Knowlton, 1994;
+Gaffan, 1994). One of the memory deficits in amnesic humans is a major
+impairment in remembering not just what objects have been seen recently,
+but also where they have been seen (Smith and Milner, 1981). In
+experimental studies in monkeys to define the crucial structures to which
+damage produces memory impairments, it has been shown that hippocampal or fornix damage produces deficits in learning about where objects have
+been seen, in object-place memory tasks (Parkinson et al., 1988; Angeli et
+al., 1993; Gaffan, 1994). To analyze how the hippocampus operates to help
+implement this type of memory, recordings have been made from single
+neurons in the hippocampus while monkeys perform object-place memory
+
+Grant sponsor: Medical Research Council; Grant number: PG8513579;
+Grant sponsor: Human Frontier Science Program.
+*Correspondence to: E.T. Rolls, Department of Experimental Psychology,
+University of Oxford, Oxford OX1 3UD England.
+E-mail: Edmund.Rolls@psy.ox.ac.uk
+Accepted for publication 5 January 1998
+
+r 1999 WILEY-LISS, INC.
+
+tasks in which they must remember where on a video
+monitor a picture has been shown. It was found that
+approximately 10% of hippocampal neurons responded
+when images were shown in some positions on the screen
+(Rolls et al., 1989). Moreover, the representation was in
+allocentric (world) rather than egocentric (related to the
+body) coordinates, in that the spatial fields of these
+neurons remained in the same position on the video
+monitor even when the whole monitor was moved
+relative to the monkey’s body axis (Feigenbaum and
+Rolls, 1991).
+However, in rats, the spatial representation provided
+by hippocampal neurons that has been described is of
+the place where the rat is (O’Keefe and Speakman,
+1987). A theory that the hippocampus is a computer for
+spatial navigation, computing bearings, and distances to
+the next place, has been built on the basis of the
+properties of rat place cells (Burgess et al., 1994).
+Because it is not clear whether the primate hippocampus
+should be considered a spatial computer, with perhaps
+place cells like those of rats (Ono et al., 1993), or is
+instead a structure involved in storing memories including memories with a spatial component such as where an
+object has been seen, we recorded from single hippocampal neurons while monkeys were moved to different
+places in a cue-controlled spatial environment. We
+found ‘‘spatial view’’ cells that responded to the position
+in space a monkey could see, rather than the place where
+the monkey was (Rolls and O’Mara, 1995). However,
+because it is only during active locomotion that the place
+fields of rat hippocampal neurons become evident
+(Foster et al., 1989), we set up a recording situation to
+allow active walking by the monkey, in a rich spatial
+environment. We again found ‘‘spatial view’’ cells that
+responded when the monkey looked at one part of the
+environment, but not when he looked at another (Rolls
+et al., 1997a). The majority of these cells (in, e.g., CA1)
+can respond when the view details are obscured, so that
+they encode an abstract representation of space (Robertson et al., 1998). The use of information theoretic
+techniques has shown that the information available
+from an ensemble of these cells increases approximately
+
+

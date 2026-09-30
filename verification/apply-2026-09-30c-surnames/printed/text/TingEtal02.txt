@@ -1,0 +1,70 @@
+sha256: 34c3e43b49f9c5cc879d5733aba4a20dd1010232de42ab43475931f76d4cd944  file: pdfs/TingEtal02.pdf
+
+BIOMETRICS
+58, 981-988
+December 2002
+
+CONSULTANT’S FORUM
+
+Mei-Ling Ting Lee,122’3>*
+Martha L. B ~ l y k ,G.~ A. Whitrn~re,~
+and George M. Church4
+‘Channing Laboratory, Brigham & Women’s Hospital,
+181 Longwood Avenue, Boston, Massachusetts 02115, U.S.A.
+2Harvard Medical School, Boston, Massachusetts 02115, U.S.A.
+3Biostatistics Department, Harvard School of Public Health, Boston, Massachusetts 02115, U.S.A.
+4Department of Genetics, Harvard Medical School, Boston, Massachusetts 02115, U.S.A.
+5McGill University, Montreal, Quebec H3A 1G5, Canada
+* email: meiling@channing.harvard.edu
+
+SUMMARY.There is considerable scientific interest in knowing the probability that a site-specific transcription factor will bind to a given DNA sequence. Microarray methods provide an effective means for
+assessing the binding affinities of a large number of DNA sequences as demonstrated by Bulyk et al. (2001,
+Proceedings of the National Academy of Sciences, USA 98, 7158-7163) in their study of the DNA-binding
+specificities of Zif268 zinc fingers using microarray technology. In a follow-up investigation, Bulyk, Johnson,
+and Church (2002, Nucleic Acid Research 30, 1255-1261) studied the interdependence of nucleotides on the
+binding affinities of transcription proteins. Our article is motivated by this pair of studies. We present a
+general statistical methodology for analyzing microarray intensity measurements reflecting DNA-protein interactions. The log probability of a protein binding to a DNA sequence on an array is modeled using a linear
+ANOVA model. This model is convenient because it employs familiar statistical concepts and procedures
+and also because it is effective for investigating the probability structure of the binding mechanism.
+KEY WORDS: Binding probability; Dependence; Log-linear model; Log-probability model; Microarrays;
+Multistage ANOVA; Protein; Transcription factor.
+
+1. Background
+
+Genes are regulated in part through the action of site-specific
+transcription factors. The DNA sequences at which these proteins bind are not unique. Binding can also occur at variants
+of the optimal site, with some variants being more preferential for binding than others. There is considerable scientific
+interest in knowing the binding affinity of a sequence, i.e., the
+probability that a protein will bind to a given sequence. Micoarray methods permit the assessment of the binding affinities of a large number of DNA sequences in a single study.
+They allow the estimation of binding affinities across the full
+range from very low to very high affinities. This estimation
+is valuable because it is possible that even low-affinity DNA
+sites are functionally important in transcriptional regulation
+of gene expression.
+Bulyk et al. (2001) studied the DNA-binding specificities
+of Zif268 zinc fingers using microarray technology in an ex-
+
+periment that tested the feasibility of using microarrays for
+analyzing large numbers of DNA-protein interactions. They
+employed the full set of 64 possible bbase pair (bp) sequences
+in their study but noted that “A full set of sequences spanning all possible 8-bp binding sites would consist of roughly
+65,000 spots which could fit onto a single microscope slide”
+(p. 7163). Thus, the cost of DNA synthesis would appear to be
+the only practical limitation to generalizing the experimental
+method from a scientific point of view. We return to consider
+the implications of large-scale studies for statistical analysis
+later.
+In a follow-up investigation, Bulyk, Johnson, and Church
+(2002) studied the interdependence of nucleotides in the binding affinities of transcription proteins using several techniques,
+including t-tests and a hidden Markov model. Two statistical
+problems are of interest in this kind of context. First, it is
+of interest to test whether the probability of a protein binding to any sequence of nucleotides, representing a transcrip-
+
+981
+
+Downloaded from academic.oup.com/biometrics/article/58/4/981/7276031 by Dartmouth Libraries user on 30 September 2026
+
+A Statistical Model for Investigating Binding Probabilities of
+DNA Nucleotide Sequences Using Microarrays
+
+

@@ -1,0 +1,43 @@
+sha256: fb152602566509d536b87a0dcf1a2e422500827f44df9265140ca5089747436a  file: pdfs/MallEtal97.pdf
+
+The View-Graph Approach to Visual Navigation
+and Spatial Memory
+H a n s p e t e r A. Mallot, Matthias Franz, Bernhard SchSlkopf
+and Heinrich H. Biilthoff
+Max-Planck-Institut fiir biologische Kybernetik
+Spemannstr. 38, 72076 Tiibingen, Germany
+A b s t r a c t . This paper describes a purely visual navigation scheme based
+on two elementary mecha~fisms (piloting and guidance) and a graph
+structure combining individual navigation steps controlled by these mechanisms. In robot experiments in real environments, both mechanisms
+have been tested, piloting in an open environment and guidance in a
+maze with restricted movement opportunities. The results indicate that
+navigation and path planning can be brought about with these simple
+mechanisms. We argue that the graph of local views (snapshots) is a
+general and biologically plausible means of representing space and integrating the various mechanisms of map behaviour.
+1
+
+Introduction
+
+In animal navigation, three basic mechanisms of spatial m e m o r y have been identified:
+• Path integration or dead reackoning is the continuous u p d a t e of the egocentric
+coordinates of the starting position based on instantaneous displacement and
+rotation d a t a (see [8] for review). O d o m e t r y d a t a are often taken from optic
+flow but other modalities such as proprioception (e.g., counting steps) m a y be
+involved as well. Since error accunmlation is a problem, the use of global orientation information ("compasses", e.g., distant landmarks or the polarization
+p a t t e r n of the skylight) is advantageous. P a t h integration involves some kind
+of working m e m o r y in which only the current "home---vector" (coordinates of
+starting point) is represented, not the entire path.
+• "Piloting": Approaching a place whose local position information matches a
+stored "snapshot". This mechanism requires long t e r m storage of the local position information, such as a view or snapshot visible at that point. From a
+comparison of the stored view with the current view, an approach direction can
+be derived. Moving in this direction will lead to a closer m a t c h between the two
+views [1, 4].
+• "Guidance": Associations of recognized views (local position information) to
+raovements. Here, l o n g - t e r m m e m o r y of the local position information (view) is
+required as well. W h e n recognized, it triggers an action, i.e. a movement or a
+behavioural routine. The existence of such associations ha~s been shown in bees
+[31 ~ d humans [71.
+Using these basic mechanisms, different levels of complexity of spatial knowledge
+and behaviour can be formulated. Concatenating individual steps of either pi-
+
+

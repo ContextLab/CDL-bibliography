@@ -1,0 +1,90 @@
+sha256: 12f0fc123bbaaaf499c26c0f29b98145a9b0803570f399f9065e2ea114252b60  file: pdfs/BragEtal99.pdf
+
+HIPPOCAMPUS 9:137–142 (1999)
+
+High-Frequency Oscillations in Human Brain
+Anatol Bragin,1,2, Jerome Engel, Jr.,1,2,4,*
+Charles L. Wilson,1,2,4 Itzhak Fried,3,4
+and Gyorgy Buzsáki 5
+1Reed Neurological Research Center, UCLA School of
+
+Medicine, Los Angeles, California
+2Department of Neurology, UCLA School of Medicine,
+
+Los Angeles, California
+3Division of Neurosurgery, UCLA School of Medicine,
+
+Los Angeles, California
+4Brain Research Institute, UCLA School of Medicine,
+
+Los Angeles, California
+5Center for Molecular and Behavioral Neuroscience,
+
+Rutgers, State University of New Jersey,
+Newark, New Jersey
+
+ABSTRACT:
+Ripples are 100–200 Hz short-duration oscillatory field
+potentials that have recently been recorded in rat hippocampus and
+entorhinal cortex. They reflect fast IPSPs on the soma of pyramidal cells,
+which occur during synchronous afferent excitation of principal cells and
+interneuron networks. We now describe two similar types of highfrequency field oscillations recorded from the entorhinal cortex and
+hippocampus of patients with mesial temporal lobe epilepsy. The first type
+appears be the human equivalent of normal ripples in the rat. The second,
+which we have termed fast ripples (FR), are in the frequency range of
+250–500 Hz. FR are found in the epileptogenic region and may reflect
+pathological hypersynchronous population spikes of bursting pyramidal
+cells. Hippocampus 1999;9:137–142. r 1999 Wiley-Liss, Inc.
+KEY WORDS:
+
+hippocampus; ripples; epilepsy
+
+INTRODUCTION
+Oscillatory field potentials reflect short-term synchronization of neuronal
+electrical activity. It is believed that oscillations with a frequency of 40–100 Hz
+play an important role in the process of learning and memory, because they
+promote coherence, and possibly ‘‘binding’’ of local and distant neuronal activity
+(Llinas et al., 1991; Lytton and Sejnowski, 1991; Gray, 1994; Buzsáki and
+Chrobak, 1995; Singer and Gray, 1995). Ripples (100–200 Hz oscillations) are a
+recently studied oscillatory phenomenon in hippocampus and parahippocampal
+areas of rats (Buzsáki et al., 1992; Chrobak and Buzsáki, 1996). They are believed
+
+Grant sponsor: National Institute of Health; Grant numbers: NS-33310 and
+NS-02808.
+Anatol Bragin’s permanent address is Institute of Theoretical and Experimental Biophysics, Puschino, Russia.
+*Correspondence to: Jerome Engel, Jr., MD, PhD, Dept. of Neurology, UCLA
+School of Medicine, 710 Westwood Plaza, Los Angeles, CA 90095–1769.
+E-mail: engel@ucla.edu
+Accepted for publication 31 October 1998
+
+r 1999 WILEY-LISS, INC.
+
+to be due to simultaneous excitation of pyramidal cells and
+interneuronal networks and represent IPSPs on the somata of
+the pyramidal cells due to feedback from basket cells (Buzsáki
+et al., 1992; Ylinen et al.,1995; Chrobak and Buzsáki, 1996).
+It has been suggested that discharges of hippocampal cells
+occurring during ripples induce synaptic modification in
+hippocampal target areas that could be a mechanism of the
+consolidation process (Buzsáki, 1989, 1996). It is unknown
+whether a homologue of ripples exists in human brain.
+We studied high-frequency oscillations in patients with
+mesial temporal lobe epilepsy undergoing chronic depth
+electrode investigation to verify the location of a temporal
+lobe epileptogenic region prior to surgical resection. Mesial
+temporal lobe epilepsy is that form of human temporal lobe
+epilepsy associated with hippocampal sclerosis and neuronal
+loss, which produces significant synaptic reorganization of
+hippocampal circuitry (Babb and Brown, 1987; de Lanerolle
+et al., 1992). Epileptic seizures originate in mesial limbic
+structures including hippocampal formation, amygdala, entorhinal cortex, and parahippocampal gyrus (Engel et al.,
+1997). Platinum-iridium microwires implanted with clinical
+depth electrodes were used to record local field potentials and
+unit activity. All patients gave their informed consent for
+participation in these studies under the approval of the
+UCLA Human Subjects Protection Committee.
+
+METHODS
+Patients (n ⫽ 9) required depth electrode investigation to verify the location of a temporal lobe epilepto-
+
+

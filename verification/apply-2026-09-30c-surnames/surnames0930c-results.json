@@ -1,0 +1,1365 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 763.0,
+   "network_requests": 1,
+   "added_review_records": 36,
+   "batch": [
+    "BragEtal99",
+    "ConwEtal00",
+    "FreuEtal09",
+    "IshiEtal75",
+    "KragEtal19",
+    "LatiEtal10",
+    "LopeEtal73",
+    "MeyeEtal88",
+    "MillEtal07c",
+    "MillEtal07d",
+    "MurdvomS67",
+    "NadeEtal00",
+    "NoldEtal98",
+    "PennEtal94",
+    "RobeEtal99",
+    "SchaEtal11",
+    "StJaEtal08",
+    "StJaEtal12",
+    "StJaScha13",
+    "dBakEtal08"
+   ],
+   "batch_statuses_before": {
+    "metadata_verified": 12,
+    "needs_review": 8
+   },
+   "batch_statuses_after": {
+    "needs_review": 14,
+    "metadata_verified": 6
+   },
+   "previously_accepted_now_unresolved": [
+    "ConwEtal00",
+    "FreuEtal09",
+    "LatiEtal10",
+    "LopeEtal73",
+    "PennEtal94",
+    "dBakEtal08"
+   ],
+   "newly_accepted": [],
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 23,
+    "needs_review": 8
+   },
+   "library_statuses": {
+    "metadata_verified": 6347,
+    "human_verified": 23,
+    "needs_review": 14
+   }
+  },
+  {
+   "cycle": "approve",
+   "network_requests": 0,
+   "added_review_records": 12,
+   "approved": {
+    "BragEtal99": {
+     "status": "human_verified",
+     "fingerprint": "v2:2947d801a3a2c9fd1018e589a816c3ff0b9b22d47191dea5d7c07526936de2e1",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 5: kept 'Buzs\\'{a}ki' (entry 'Buzs\\'{a}ki', source 'Buzs�ki'): printed paper = entry | printed byline (https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:2<137::AID-HIPO5>3.0.CO;2-0, p. 137): \"Charles L. Wilson,1,2,4 Itzhak Fried,3,4 and Gyorgy Buzsáki 5\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+     },
+     "cli": "Human review recorded for BragEtal99; any source edit invalidates it."
+    },
+    "ConwEtal00": {
+     "status": "human_verified",
+     "fingerprint": "v2:b2e9cfbd1bad1a83949ea6e93f2ff8c199e73f9aef1c5ca240ddf5d04b12747b",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 4: changed to 'M Racsma'ny' (entry 'Racsm\\'{a}ny', source 'Racsma'ny'): the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-ConwEtal00-4 ('source'), answered 2026-09-30T17:24:44.151Z"
+     },
+     "cli": "Human review recorded for ConwEtal00; any source edit invalidates it."
+    },
+    "LopeEtal73": {
+     "status": "human_verified",
+     "fingerprint": "v2:1ce756a163909bf585537c999ae395a3983b2646b47080f6c00ff2c241c227cc",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 1: changed to 'F H {Lopes da Silva}' (entry '{Lopes Da Silva}', source 'da Silva'): the user's text: \"{Lopes da Silva}\" | author 4: changed to 'W {Storm van Leeuwen}' (entry '{van Leeuwen}', source 'Storm van Leeuwen'): user chose the source's spelling",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-LopeEtal73-1 ('other', note \"{Lopes da Silva}\"), answered 2026-09-30T17:23:41.745Z; doc surname-LopeEtal73-4 ('source'), answered 2026-09-30T16:11:11.883Z"
+     },
+     "cli": "Human review recorded for LopeEtal73; any source edit invalidates it."
+    },
+    "MeyeEtal88": {
+     "status": "human_verified",
+     "fingerprint": "v2:919c5166cecd77e6c5ac0e5dd7de5b67cbc5344163f9fa5a3d275ffb8038059c",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 4: kept 'Kounios' (entry 'Kounios', source 'Kounois'): printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins | printed byline (https://search.ebscohost.com/login.aspx?direct=true&db=pdh&AN=1988-28535-001&site=ehost-live (APA PsycArticles scan via EBSCO; psycnet.apa.org said Get Access), p. 183): \"David E. Meyer / University of Michigan ... John Kounios / Tufts University\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-MeyeEtal88-4 ('source'), answered 2026-09-30T16:03:18.677Z"
+     },
+     "cli": "Human review recorded for MeyeEtal88; any source edit invalidates it."
+    },
+    "NoldEtal98": {
+     "status": "human_verified",
+     "fingerprint": "v2:8d6b1dbc7446e4e1bee31bd970ed930ed69911a29995c1bc558bc495b87c99fa",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 3: kept 'D'Esposito' (entry 'D'Esposito', source 'DʼEsposito'): printed paper = entry | printed byline (https://www.ovid.com/jnls/neuroreport/pdf/00001756-199810260-00032~left-prefrontal-activation-during-episodic-remembering-an, p. 3509): \"Scott F. Nolde, Marcia K. JohnsonCA and Mark D’Esposito1\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+     },
+     "cli": "Human review recorded for NoldEtal98; any source edit invalidates it."
+    },
+    "PennEtal94": {
+     "status": "human_verified",
+     "fingerprint": "v2:5f26bb277b208013a734ceba276d7b2518ba5516a6f99848e02bfbea6e83904c",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 3: changed to 'F H {Lopes da Silva}' (entry '{Lopes Da Silva}', source 'LOPESDASILVA'): the user's text: \"{Lopes da Silva}\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-PennEtal94-3 ('other', note \"{Lopes da Silva}\"), answered 2026-09-30T17:25:23.111Z"
+     },
+     "cli": "Human review recorded for PennEtal94; any source edit invalidates it."
+    },
+    "RobeEtal99": {
+     "status": "human_verified",
+     "fingerprint": "v2:31c6c5003c6aad53ffdcbed618453a947cfa1594f5b6e59ba689c94aab39b4f6",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 3: kept 'Georges-Fran{\\c{c}}ois' (entry 'Georges-Fran{\\c{c}}ois', source 'Georges-Fran�ois'): printed paper = entry | printed byline (https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:3<206::AID-HIPO2>3.0.CO;2-H, p. 206): \"Robert G. Robertson, Edmund T. Rolls,* Pierre Georges-François, and Stefano Panzeri\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+     },
+     "cli": "Human review recorded for RobeEtal99; any source edit invalidates it."
+    },
+    "SchaEtal11": {
+     "status": "human_verified",
+     "fingerprint": "v2:3e67e046a9bb1c425c11adbfd52d5b47f6a4771d9288813fbc3c741ce6144573",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 3: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-SchaEtal11-3 ('source'), answered 2026-09-30T17:25:44.691Z"
+     },
+     "cli": "Human review recorded for SchaEtal11; any source edit invalidates it."
+    },
+    "StJaEtal08": {
+     "status": "human_verified",
+     "fingerprint": "v2:508573d8c2bb793699d2a5dc0eb4f275206c195a305b02866a3a8669d26304e3",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): printed paper = entry | printed byline (https://direct.mit.edu/jocn/article-pdf/20/7/1327/1936921/jocn.2008.20091.pdf, p. 1327): \"Peggy St. Jacques, David C. Rubin, Kevin S. LaBar, and Roberto Cabeza\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+     },
+     "cli": "Human review recorded for StJaEtal08; any source edit invalidates it."
+    },
+    "StJaEtal12": {
+     "status": "human_verified",
+     "fingerprint": "v2:5fee99c0f1089e5725ba561271e85c77cd7d67ff84b583801910c22780278ec8",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-StJaEtal12-1 ('source'), answered 2026-09-30T17:25:50.224Z"
+     },
+     "cli": "Human review recorded for StJaEtal12; any source edit invalidates it."
+    },
+    "StJaScha13": {
+     "status": "human_verified",
+     "fingerprint": "v2:9b333b72bb9ed7b1460d5e85dec02ce096f6574d110dfa58618549090ec32e57",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): printed paper = entry | printed byline (https://journals.sagepub.com/doi/pdf/10.1177/0956797612457377, p. 537): \"Peggy L. St. Jacques and Daniel L. Schacter\"",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+     },
+     "cli": "Human review recorded for StJaScha13; any source edit invalidates it."
+    },
+    "dBakEtal08": {
+     "status": "human_verified",
+     "fingerprint": "v2:3354e2575d059fdefe17bc02700adf16c26a7bd3c69da270c8260c0a28727841",
+     "human_review": {
+      "note": "User surname decision 2026-09-30. author 1: changed to 'R S J {d} Baker' (entry '{d Baker}', source 'Baker'): user chose the source's spelling",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-dBakEtal08-1 ('source'), answered 2026-09-30T16:11:57.821Z"
+     },
+     "cli": "Human review recorded for dBakEtal08; any source edit invalidates it."
+    }
+   },
+   "not_approved_other_issues": {
+    "FreuEtal09": [
+     "DOI-linked source correction/retraction notice requires adjudication"
+    ],
+    "LatiEtal10": [
+     "DOI-linked source correction/retraction notice requires adjudication"
+    ]
+   },
+   "stale_fingerprint_controls": {
+    "ConwEtal00": "Entry changed since review; approval rejected",
+    "FreuEtal09": "Entry changed since review; approval rejected",
+    "IshiEtal75": "Entry changed since review; approval rejected",
+    "KragEtal19": "Entry changed since review; approval rejected",
+    "LatiEtal10": "Entry changed since review; approval rejected",
+    "LopeEtal73": "Entry changed since review; approval rejected",
+    "MillEtal07c": "Entry changed since review; approval rejected",
+    "MillEtal07d": "Entry changed since review; approval rejected",
+    "MurdvomS67": "Entry changed since review; approval rejected",
+    "NadeEtal00": "Entry changed since review; approval rejected",
+    "PennEtal94": "Entry changed since review; approval rejected",
+    "dBakEtal08": "Entry changed since review; approval rejected"
+   },
+   "held": {
+    "WatkPeyn83": "metadata_verified"
+   },
+   "library_statuses": {
+    "metadata_verified": 6347,
+    "human_verified": 35,
+    "needs_review": 2
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 722.75,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch": [
+    "BragEtal99",
+    "ConwEtal00",
+    "FreuEtal09",
+    "IshiEtal75",
+    "KragEtal19",
+    "LatiEtal10",
+    "LopeEtal73",
+    "MeyeEtal88",
+    "MillEtal07c",
+    "MillEtal07d",
+    "MurdvomS67",
+    "NadeEtal00",
+    "NoldEtal98",
+    "PennEtal94",
+    "RobeEtal99",
+    "SchaEtal11",
+    "StJaEtal08",
+    "StJaEtal12",
+    "StJaScha13",
+    "dBakEtal08"
+   ],
+   "batch_statuses_before": {
+    "metadata_verified": 12,
+    "needs_review": 8
+   },
+   "batch_statuses_after": {
+    "human_verified": 12,
+    "needs_review": 2,
+    "metadata_verified": 6
+   },
+   "previously_accepted_now_unresolved": [
+    "FreuEtal09",
+    "LatiEtal10"
+   ],
+   "newly_accepted": [
+    "BragEtal99",
+    "MeyeEtal88",
+    "NoldEtal98",
+    "RobeEtal99",
+    "SchaEtal11",
+    "StJaEtal08",
+    "StJaEtal12",
+    "StJaScha13"
+   ],
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 23,
+    "needs_review": 8
+   },
+   "library_statuses": {
+    "metadata_verified": 6347,
+    "human_verified": 35,
+    "needs_review": 2
+   }
+  }
+ ],
+ "entries": {
+  "AllaEtal98": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:28c9ca5a1cebb63f0c6cd840b4b51cba50dde23a79ca81adfb6e7bb6c39dcdc2",
+   "fingerprint": "v2:28c9ca5a1cebb63f0c6cd840b4b51cba50dde23a79ca81adfb6e7bb6c39dcdc2",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0001-6918(97)00044-9",
+   "human_review": null,
+   "issues": []
+  },
+  "AndeEtal66": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d6bf8f41c1eec324da34a073ae05c1727867b14e46a2f88a9b1df71b98b1fefe",
+   "fingerprint": "v2:d6bf8f41c1eec324da34a073ae05c1727867b14e46a2f88a9b1df71b98b1fefe",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/j.1748-1716.1966.tb03317.x",
+   "human_review": null,
+   "issues": []
+  },
+  "AriEtal04": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:710de9cf2e483b2fefee8bf4331c8756a2e5cb58214e65117be645af125d85cf",
+   "fingerprint": "v2:710de9cf2e483b2fefee8bf4331c8756a2e5cb58214e65117be645af125d85cf",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1080/00207450490430499",
+   "human_review": null,
+   "issues": []
+  },
+  "BabiEtal04": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:564bca6f48427c4105cb3ea9b4982abe2ceaae3377dd23a506899a376bf204a7",
+   "fingerprint": "v2:564bca6f48427c4105cb3ea9b4982abe2ceaae3377dd23a506899a376bf204a7",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/j.0953-816x.2004.03431.x",
+   "human_review": null,
+   "issues": []
+  },
+  "BaddEcob73": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:f34f4cb0c81905ce8ad3a565a0f7f571d9d78945af447722414dd131703f5c7d",
+   "fingerprint": "v2:f34f4cb0c81905ce8ad3a565a0f7f571d9d78945af447722414dd131703f5c7d",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1080/14640747308400342",
+   "human_review": null,
+   "issues": []
+  },
+  "BahrPhel87": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e8e26f476de0d765dfc994a4eff6fa8b3528687b92ab39347ad27767262cba9a",
+   "fingerprint": "v2:e8e26f476de0d765dfc994a4eff6fa8b3528687b92ab39347ad27767262cba9a",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1037/0278-7393.13.2.344",
+   "human_review": null,
+   "issues": []
+  },
+  "BastEtal05": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5d5faca6a3ba85032810d52fc230b625725de41cf1f1c13173313efcac435f92",
+   "fingerprint": "v2:5d5faca6a3ba85032810d52fc230b625725de41cf1f1c13173313efcac435f92",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1162/0898929053279469",
+   "human_review": null,
+   "issues": []
+  },
+  "BiswEtal95": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b97428e86424d637a674082fa3372e191cbba68ca0afecff9300aa0e95acb6bc",
+   "fingerprint": "v2:b97428e86424d637a674082fa3372e191cbba68ca0afecff9300aa0e95acb6bc",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1002/mrm.1910340409",
+   "human_review": null,
+   "issues": []
+  },
+  "BragEtal99": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:2947d801a3a2c9fd1018e589a816c3ff0b9b22d47191dea5d7c07526936de2e1",
+   "fingerprint": "v2:2947d801a3a2c9fd1018e589a816c3ff0b9b22d47191dea5d7c07526936de2e1",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 5: kept 'Buzs\\'{a}ki' (entry 'Buzs\\'{a}ki', source 'Buzs�ki'): printed paper = entry | printed byline (https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:2<137::AID-HIPO5>3.0.CO;2-0, p. 137): \"Charles L. Wilson,1,2,4 Itzhak Fried,3,4 and Gyorgy Buzsáki 5\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+   },
+   "issues": [
+    "author: surname mismatch: author 5 is \"Buzs\\\\'{a}ki\" in the citation and PubMed 10226774 but 'Buzs�ki' in Crossref 10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0 (https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0, https://europepmc.org/article/MED/10226774); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "BranEtal96": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:8832c507079b945dde1d46166ae9588882a670a9e822ef67d1eb25ee8ae805f6",
+   "fingerprint": "v2:8832c507079b945dde1d46166ae9588882a670a9e822ef67d1eb25ee8ae805f6",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1002/(sici)1098-1063(1996)6:5<475::aid-hipo1>3.0.co;2-i",
+   "human_review": null,
+   "issues": []
+  },
+  "BrisEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:cc0bb19cb2718e8963b44ff34c88ed3b3a61bce5081e973d809e178a84374167",
+   "fingerprint": "v2:cc0bb19cb2718e8963b44ff34c88ed3b3a61bce5081e973d809e178a84374167",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.2165/00007256-200232090-00002",
+   "human_review": null,
+   "issues": []
+  },
+  "Buzs98": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:69ddae4ecd52e00582b103ee88fbc3baaec1ed1903c36b14729ac65de04f47ab",
+   "fingerprint": "v2:69ddae4ecd52e00582b103ee88fbc3baaec1ed1903c36b14729ac65de04f47ab",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1046/j.1365-2869.7.s1.3.x",
+   "human_review": null,
+   "issues": []
+  },
+  "BuzsEtal83": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:820c383994fc810cbfc46dbce8c3c1c8e006fefd2fbb95be371148982f0190ad",
+   "fingerprint": "v2:820c383994fc810cbfc46dbce8c3c1c8e006fefd2fbb95be371148982f0190ad",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0165-0173(83)90037-1",
+   "human_review": null,
+   "issues": []
+  },
+  "CarvEtal22b": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2c5d46042c1412307821438d1c43b6c67380761f0c5795e293ce12d778b0c593",
+   "fingerprint": "v2:2c5d46042c1412307821438d1c43b6c67380761f0c5795e293ce12d778b0c593",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1145/3498361.3539773",
+   "human_review": null,
+   "issues": []
+  },
+  "CassEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e4f6cdfe3dae495d8831cde28b70f60eed7bfd1864f36aa98dcd7d9da3c3cb61",
+   "fingerprint": "v2:e4f6cdfe3dae495d8831cde28b70f60eed7bfd1864f36aa98dcd7d9da3c3cb61",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1093/brain/awf135",
+   "human_review": null,
+   "issues": []
+  },
+  "CoheEtal96": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:18a3404c5e101df595a25fbce0286227a8e9992db0d020fa88ea7d72086ff86c",
+   "fingerprint": "v2:18a3404c5e101df595a25fbce0286227a8e9992db0d020fa88ea7d72086ff86c",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1098/rstb.1996.0138",
+   "human_review": null,
+   "issues": []
+  },
+  "ConwEtal00": {
+   "status_before": "metadata_verified",
+   "status": "human_verified",
+   "fingerprint_before": "v2:c87ad64fb58b3c08b052ee4f33bebfa44584c1ae22309752e6b12f9cec5f36a1",
+   "fingerprint": "v2:b2e9cfbd1bad1a83949ea6e93f2ff8c199e73f9aef1c5ca240ddf5d04b12747b",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 4: changed to 'M Racsma'ny' (entry 'Racsm\\'{a}ny', source 'Racsma'ny'): the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-ConwEtal00-4 ('source'), answered 2026-09-30T17:24:44.151Z"
+   },
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "DengEtal09": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:fc74b36a316ac1fd2265480512af974e65a969a15d4b658a58d2ab7e5a584ce0",
+   "fingerprint": "v2:fc74b36a316ac1fd2265480512af974e65a969a15d4b658a58d2ab7e5a584ce0",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1109/cvpr.2009.5206848",
+   "human_review": null,
+   "issues": []
+  },
+  "DesaEtal12": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d41e9e4553f86a0fe32e4c0b7cae9ee8e90ddbdeab734c6511f13495a3c4e5aa",
+   "fingerprint": "v2:d41e9e4553f86a0fe32e4c0b7cae9ee8e90ddbdeab734c6511f13495a3c4e5aa",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1109/embc.2012.6346879",
+   "human_review": null,
+   "issues": []
+  },
+  "DoveEtal00": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:454bfc0922ed8692872c94ca6590a5d5127fa027c10aa894b373569d1e4a1581",
+   "fingerprint": "v2:454bfc0922ed8692872c94ca6590a5d5127fa027c10aa894b373569d1e4a1581",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0926-6410(99)00029-4",
+   "human_review": null,
+   "issues": []
+  },
+  "ElHaEtal19": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d9de515c53e786b293ccabf17f62f0c839228d1b95218670069367bd87c5fa3f",
+   "fingerprint": "v2:d9de515c53e786b293ccabf17f62f0c839228d1b95218670069367bd87c5fa3f",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1515/tnsci-2019-0044",
+   "human_review": null,
+   "issues": []
+  },
+  "EngeEtal10": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:cd31631a99be83d4443af11ca2edce9d20149061a6d1e905bca4e16101bfc512",
+   "fingerprint": "v2:cd31631a99be83d4443af11ca2edce9d20149061a6d1e905bca4e16101bfc512",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.7551/mitpress/9780262014717.003.0018",
+   "human_review": null,
+   "issues": []
+  },
+  "EsteMadd05": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:90697f73a2bb3f87c8c59e06e67f2ed0a1ec088464071e46411129d57512dc71",
+   "fingerprint": "v2:90697f73a2bb3f87c8c59e06e67f2ed0a1ec088464071e46411129d57512dc71",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3758/bf03193784",
+   "human_review": null,
+   "issues": []
+  },
+  "FernEtal99a": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:0ce6b0be6b4aeceacd52b1dc0b2de9c43e96e5ebd4253ca4b95ab1e24b2810bd",
+   "fingerprint": "v2:0ce6b0be6b4aeceacd52b1dc0b2de9c43e96e5ebd4253ca4b95ab1e24b2810bd",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1126/science.285.5433.1582",
+   "human_review": null,
+   "issues": []
+  },
+  "FernEtal99b": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4aee0fd430bdbfe193a889192584aea56befeb9be5035fc0f16d8e52a9ffdf03",
+   "fingerprint": "v2:4aee0fd430bdbfe193a889192584aea56befeb9be5035fc0f16d8e52a9ffdf03",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1002/(sici)1098-1063(1999)9:1<35::aid-hipo4>3.0.co;2-z",
+   "human_review": null,
+   "issues": []
+  },
+  "FreeEtal03b": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:db48522c29ea9331dc72ef1e952c0401f107df7227d9414091c46b6ef9754e60",
+   "fingerprint": "v2:db48522c29ea9331dc72ef1e952c0401f107df7227d9414091c46b6ef9754e60",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1142/s0218127403008260",
+   "human_review": null,
+   "issues": []
+  },
+  "FreuEtal09": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:5589747b1da0f690c6382471b440e2eafc3a0417a42b70c19eb17b856a9c4780",
+   "fingerprint": "v2:b34a15237436128505055413798e474913ca20a8f1a7519819c048956f171700",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "GallRoed02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:3fc818042c11d45deaccc9499d06fd572227eeb88f105597154f39a76e13a5ea",
+   "fingerprint": "v2:3fc818042c11d45deaccc9499d06fd572227eeb88f105597154f39a76e13a5ea",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0749-596x(02)00013-x",
+   "human_review": null,
+   "issues": []
+  },
+  "GhosEtal11": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:3513c2e609a17b6283a1a04736411498453c2f72f4f1107e4f61cb8fbe122699",
+   "fingerprint": "v2:3513c2e609a17b6283a1a04736411498453c2f72f4f1107e4f61cb8fbe122699",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1038/nmeth.1694",
+   "human_review": null,
+   "issues": []
+  },
+  "GomeEtal96": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:96dc003cdc02c145cfc2c871010b91469c2b346a7388431a5cd8773bd43b59de",
+   "fingerprint": "v2:96dc003cdc02c145cfc2c871010b91469c2b346a7388431a5cd8773bd43b59de",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1523/jneurosci.16-14-04491.1996",
+   "human_review": null,
+   "issues": []
+  },
+  "HarrEtal20": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:8a877ede2e0cbea8a87b4f1c27244c7245a872edeb9920a5cd126347e9d18a3d",
+   "fingerprint": "v2:8a877ede2e0cbea8a87b4f1c27244c7245a872edeb9920a5cd126347e9d18a3d",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1038/s41586-020-2649-2",
+   "human_review": null,
+   "issues": []
+  },
+  "HassEich05": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:716ccb04463433bfb3a981f3f0cd6ff47e6598874587d38c4d83a3cf8d47ffa2",
+   "fingerprint": "v2:716ccb04463433bfb3a981f3f0cd6ff47e6598874587d38c4d83a3cf8d47ffa2",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/j.neunet.2005.08.007",
+   "human_review": null,
+   "issues": []
+  },
+  "Heal16": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:fe821a2d0a54ed2ec1ed320f7d1fa7f72920572259c897456c2e89b360b876eb",
+   "fingerprint": "v2:fe821a2d0a54ed2ec1ed320f7d1fa7f72920572259c897456c2e89b360b876eb",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1002/9781118521373.wbeaa067",
+   "human_review": null,
+   "issues": []
+  },
+  "HeusEtal17": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5f5993a187a8c8580b3bd5e4fcf2aa91582d888b0fe407f1f49ef4c68b6119f6",
+   "fingerprint": "v2:5f5993a187a8c8580b3bd5e4fcf2aa91582d888b0fe407f1f49ef4c68b6119f6",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.21105/joss.00424",
+   "human_review": null,
+   "issues": []
+  },
+  "HoltEtal12": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:f12bdc94f93705f94c23c7e7c213cc3526a56ce4471b71005d2c6e1e30947efc",
+   "fingerprint": "v2:f12bdc94f93705f94c23c7e7c213cc3526a56ce4471b71005d2c6e1e30947efc",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1001/archgenpsychiatry.2011.1456",
+   "human_review": null,
+   "issues": []
+  },
+  "HughEtal12": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6be86a78d68a50b3e8117154d3c39411f8f85f7e78a51ae415fde88ee83bc242",
+   "fingerprint": "v2:6be86a78d68a50b3e8117154d3c39411f8f85f7e78a51ae415fde88ee83bc242",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1109/tpami.2012.16",
+   "human_review": null,
+   "issues": []
+  },
+  "Hunt03": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:29c9767431438755a1a2217a4dcc3d8735c0d3195ee4848816e984f8410fcd29",
+   "fingerprint": "v2:29c9767431438755a1a2217a4dcc3d8735c0d3195ee4848816e984f8410fcd29",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0749-596x(03)00018-4",
+   "human_review": null,
+   "issues": []
+  },
+  "IshiEtal75": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4c4a746c8a787b70d73ce8f96c3307d2f035c98d24ab195b416b68d0c82dfcbd",
+   "fingerprint": "v2:051e1dd46c704897aacd19358b53d3e8bb5cad1a32e8fee9ad245fa5d29fa4de",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1016/0013-4694(75)90077-2",
+   "human_review": null,
+   "issues": []
+  },
+  "IyyeEtal15": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6f0dc665dac3af70861eb0f06cf7a61b1c5c9416717a630841ad9922cdb27e9d",
+   "fingerprint": "v2:6f0dc665dac3af70861eb0f06cf7a61b1c5c9416717a630841ad9922cdb27e9d",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3115/v1/p15-1162",
+   "human_review": null,
+   "issues": []
+  },
+  "KarpRoed07": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:a2132e6970a5b8a04bf9d05935018ff842acd06b4ad5f4bc5645541901d22774",
+   "fingerprint": "v2:a2132e6970a5b8a04bf9d05935018ff842acd06b4ad5f4bc5645541901d22774",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/j.jml.2006.09.004",
+   "human_review": null,
+   "issues": []
+  },
+  "KatzEtal89": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:8b08b2b2f7cd630e93bfd8f27aecdd427a4d6c06ecac0c16b836552c3e6ed11d",
+   "fingerprint": "v2:8b08b2b2f7cd630e93bfd8f27aecdd427a4d6c06ecac0c16b836552c3e6ed11d",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/j.1528-1157.1989.tb05336.x",
+   "human_review": null,
+   "issues": []
+  },
+  "KessEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:1a7ea0dc87f2d49bcf56d5e60cbe3f5e6228a134a7ceff4ead03eb67e1b1b79a",
+   "fingerprint": "v2:1a7ea0dc87f2d49bcf56d5e60cbe3f5e6228a134a7ceff4ead03eb67e1b1b79a",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0028-3932(01)00199-3",
+   "human_review": null,
+   "issues": []
+  },
+  "KimbEtal08": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2c869c07fbe8da0f7c5e16df36c9d91e831b0797ad3a9e8c8d77b0089c3129ff",
+   "fingerprint": "v2:2c869c07fbe8da0f7c5e16df36c9d91e831b0797ad3a9e8c8d77b0089c3129ff",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3758/pbr.15.2.296",
+   "human_review": null,
+   "issues": []
+  },
+  "KleiEtal07a": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:03853746cc2d723081f3978c30a18472e46e5910636b43f89573960a4d3b4f01",
+   "fingerprint": "v2:03853746cc2d723081f3978c30a18472e46e5910636b43f89573960a4d3b4f01",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3171/jns-07/07/0029",
+   "human_review": null,
+   "issues": []
+  },
+  "KluyEtal16": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:048586225fb4e246944eff5fc4324694cdc5d804e526c12757bfac95e2db26cb",
+   "fingerprint": "v2:048586225fb4e246944eff5fc4324694cdc5d804e526c12757bfac95e2db26cb",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3233/978-1-61499-649-1-87",
+   "human_review": null,
+   "issues": []
+  },
+  "KragEtal19": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:0f288c5eb8062a99514978a2140367640ff720e422571f73d6c98c65df839362",
+   "fingerprint": "v2:077ead0d20fbad61b13c538d34718513b11885f1237444344db36125bf425d34",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1523/jneurosci.2043-18.2019",
+   "human_review": null,
+   "issues": []
+  },
+  "LatiEtal10": {
+   "status_before": "metadata_verified",
+   "status": "needs_review",
+   "fingerprint_before": "v2:c5a3d0e792f59303020e0d8e8dfd7e28ea27c07be58c0bb772ff7b12dfca4ddf",
+   "fingerprint": "v2:0f352873f07b57833292279c3380a5ccde01cbe41ce79a28e2d02ffd3db026d4",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match",
+    "DOI-linked source correction/retraction notice requires adjudication"
+   ]
+  },
+  "LeunYim86": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e0b2d75e4e0c6b45b2cd1e62c186569593737d9fef9e7bd7c54acf7c63affd91",
+   "fingerprint": "v2:e0b2d75e4e0c6b45b2cd1e62c186569593737d9fef9e7bd7c54acf7c63affd91",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0006-8993(86)91611-2",
+   "human_review": null,
+   "issues": []
+  },
+  "LopeEtal73": {
+   "status_before": "metadata_verified",
+   "status": "human_verified",
+   "fingerprint_before": "v2:ec40e3dbd228d28b31606b2303a5fb89cf9733aa10de2f2df7f24d29a3e84e55",
+   "fingerprint": "v2:1ce756a163909bf585537c999ae395a3983b2646b47080f6c00ff2c241c227cc",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 1: changed to 'F H {Lopes da Silva}' (entry '{Lopes Da Silva}', source 'da Silva'): the user's text: \"{Lopes da Silva}\" | author 4: changed to 'W {Storm van Leeuwen}' (entry '{van Leeuwen}', source 'Storm van Leeuwen'): user chose the source's spelling",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-LopeEtal73-1 ('other', note \"{Lopes da Silva}\"), answered 2026-09-30T17:23:41.745Z; doc surname-LopeEtal73-4 ('source'), answered 2026-09-30T16:11:11.883Z"
+   },
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "LuriEtal20": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b892d86441390a7ef3923d1faccfb7a1e31b5f2c00f988239accc10e78663e99",
+   "fingerprint": "v2:b892d86441390a7ef3923d1faccfb7a1e31b5f2c00f988239accc10e78663e99",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1162/netn_a_00116",
+   "human_review": null,
+   "issues": []
+  },
+  "MacWEtal01": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2a49fd2799811e4b24a75944c63443fe240b8c7d63c839f68bc92e2b3684781f",
+   "fingerprint": "v2:2a49fd2799811e4b24a75944c63443fe240b8c7d63c839f68bc92e2b3684781f",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3758/bf03195379",
+   "human_review": null,
+   "issues": []
+  },
+  "Madi71": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b698be7366a4552025df2d96a2c8a3f52b479c10116e5c3a9fe6420b0c5a0098",
+   "fingerprint": "v2:b698be7366a4552025df2d96a2c8a3f52b479c10116e5c3a9fe6420b0c5a0098",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1037/h0030549",
+   "human_review": null,
+   "issues": []
+  },
+  "MallEtal97": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d296afcd5c25bc499a15a51c088510485f975f8697285a229950d3c12eae4de8",
+   "fingerprint": "v2:d296afcd5c25bc499a15a51c088510485f975f8697285a229950d3c12eae4de8",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1007/bfb0020244",
+   "human_review": null,
+   "issues": []
+  },
+  "MeckEtal99": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:658ee0d748c6ae7d7d90965b5f4b75aa0bde3291daa7f1bf2cee9ee1a4fa3e4f",
+   "fingerprint": "v2:658ee0d748c6ae7d7d90965b5f4b75aa0bde3291daa7f1bf2cee9ee1a4fa3e4f",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1076/jcen.21.5.606.873",
+   "human_review": null,
+   "issues": []
+  },
+  "MeckHage84": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d23ab1baf249f381d08b9b0627fd4c249c8afb7d03491f18e73c949d48455c7d",
+   "fingerprint": "v2:d23ab1baf249f381d08b9b0627fd4c249c8afb7d03491f18e73c949d48455c7d",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1007/bf00309069",
+   "human_review": null,
+   "issues": []
+  },
+  "MeyeEtal88": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:919c5166cecd77e6c5ac0e5dd7de5b67cbc5344163f9fa5a3d275ffb8038059c",
+   "fingerprint": "v2:919c5166cecd77e6c5ac0e5dd7de5b67cbc5344163f9fa5a3d275ffb8038059c",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 4: kept 'Kounios' (entry 'Kounios', source 'Kounois'): printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins | printed byline (https://search.ebscohost.com/login.aspx?direct=true&db=pdh&AN=1988-28535-001&site=ehost-live (APA PsycArticles scan via EBSCO; psycnet.apa.org said Get Access), p. 183): \"David E. Meyer / University of Michigan ... John Kounios / Tufts University\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-MeyeEtal88-4 ('source'), answered 2026-09-30T16:03:18.677Z"
+   },
+   "issues": [
+    "author: surname mismatch: author 4 is 'Kounios' in the citation and PubMed 3375399 but 'Kounois' in Crossref 10.1037/0033-295x.95.2.183 (https://api.crossref.org/works/10.1037/0033-295x.95.2.183, https://europepmc.org/article/MED/3375399); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "MillEtal07c": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:85d0b394bf29872e2097940299178e6ca4ebc953f929fca5f6edd003476abdf4",
+   "fingerprint": "v2:3948aef87f2eb4f6bfca4211d2b5cb53a4d30cc2911da89f3347a5aafe24745f",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1016/j.neuroimage.2007.05.029",
+   "human_review": null,
+   "issues": []
+  },
+  "MillEtal07d": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:04e24adb92c6810c3ddd9de3dd341f8ad0db1e3aff581e3f792877f78eba34c4",
+   "fingerprint": "v2:63969c49bd0630486398ea2d81b8b2fb55aaa0f2f382fb86f75251d0b6251a49",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1016/j.jneumeth.2007.01.019",
+   "human_review": null,
+   "issues": []
+  },
+  "MillEtal08": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d87961813190d84bffa1c115b7e44361abf03308db516a392ce69109e2fff413",
+   "fingerprint": "v2:d87961813190d84bffa1c115b7e44361abf03308db516a392ce69109e2fff413",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1109/tbme.2008.918569",
+   "human_review": null,
+   "issues": []
+  },
+  "MullWehn94": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:ac4a174ab12da419db6af9f311323c46bfee6fb49b4380c0b0cf53a2d2620a84",
+   "fingerprint": "v2:ac4a174ab12da419db6af9f311323c46bfee6fb49b4380c0b0cf53a2d2620a84",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1007/bf00199474",
+   "human_review": null,
+   "issues": []
+  },
+  "MurdvomS67": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c3aa451c23c9b84ed18f65373b57848906eda39d332333a7e10596814bbad334",
+   "fingerprint": "v2:8a57ce784b14da6de76c711954a2588fd04f2056a099447b0ae782e2faf975cb",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1037/h0024507",
+   "human_review": null,
+   "issues": []
+  },
+  "NadeEtal00": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2ade259227e52a715da5f1949531ebb7063dbf9cf4dcc50c599cc322145a90fe",
+   "fingerprint": "v2:1bc1d400c330a014a4ba93628dfb2b48c959aee9fb5a51553103ea5e1196d776",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1038/35021052",
+   "human_review": null,
+   "issues": []
+  },
+  "NewmBuck62": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4041799268792316237076df3ea43a70f9e210cb04e79bf85dd3f274fb9a61e8",
+   "fingerprint": "v2:4041799268792316237076df3ea43a70f9e210cb04e79bf85dd3f274fb9a61e8",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.2307/1419866",
+   "human_review": null,
+   "issues": []
+  },
+  "NoldEtal98": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:8d6b1dbc7446e4e1bee31bd970ed930ed69911a29995c1bc558bc495b87c99fa",
+   "fingerprint": "v2:8d6b1dbc7446e4e1bee31bd970ed930ed69911a29995c1bc558bc495b87c99fa",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 3: kept 'D'Esposito' (entry 'D'Esposito', source 'DʼEsposito'): printed paper = entry | printed byline (https://www.ovid.com/jnls/neuroreport/pdf/00001756-199810260-00032~left-prefrontal-activation-during-episodic-remembering-an, p. 3509): \"Scott F. Nolde, Marcia K. JohnsonCA and Mark D’Esposito1\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+   },
+   "issues": [
+    "author: surname mismatch: author 3 is \"D'Esposito\" in the citation and PubMed 9855308 but 'DʼEsposito' in Crossref 10.1097/00001756-199810260-00032 (https://api.crossref.org/works/10.1097/00001756-199810260-00032, https://europepmc.org/article/MED/9855308); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "NuneEtal87": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:90f9eda387bd7918ba5ff21c532403c353efee5aa95ab0b830948e12922c2b7e",
+   "fingerprint": "v2:90f9eda387bd7918ba5ff21c532403c353efee5aa95ab0b830948e12922c2b7e",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0006-8993(87)90909-7",
+   "human_review": null,
+   "issues": []
+  },
+  "NybeEtal03": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:7a2f395292c6e07e9b6e7e6c2514a347645caa0549e55073503cbed961a61d46",
+   "fingerprint": "v2:7a2f395292c6e07e9b6e7e6c2514a347645caa0549e55073503cbed961a61d46",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1073/pnas.1735487100",
+   "human_review": null,
+   "issues": []
+  },
+  "PennEtal94": {
+   "status_before": "metadata_verified",
+   "status": "human_verified",
+   "fingerprint_before": "v2:2f10d310aa0cc8df908ccdf91b7c115873101ee2732b1c04ddda15749865b918",
+   "fingerprint": "v2:5f26bb277b208013a734ceba276d7b2518ba5516a6f99848e02bfbea6e83904c",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 3: changed to 'F H {Lopes da Silva}' (entry '{Lopes Da Silva}', source 'LOPESDASILVA'): the user's text: \"{Lopes da Silva}\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-PennEtal94-3 ('other', note \"{Lopes da Silva}\"), answered 2026-09-30T17:25:23.111Z"
+   },
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "PollGero68": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:0fb265825dc1ffed2ae348f1a5ab2b049e3c3d2619bf24618f652d27ee349e1f",
+   "fingerprint": "v2:0fb265825dc1ffed2ae348f1a5ab2b049e3c3d2619bf24618f652d27ee349e1f",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.2307/1420627",
+   "human_review": null,
+   "issues": []
+  },
+  "PradEtal93": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2915d10ee7a1a93e5932dead3c8df40a7e609dae44ba5416cf9eb8c780a306f4",
+   "fingerprint": "v2:2915d10ee7a1a93e5932dead3c8df40a7e609dae44ba5416cf9eb8c780a306f4",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0010-4825(93)90104-9",
+   "human_review": null,
+   "issues": []
+  },
+  "RebeEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:826fee93471044a8d4524e13c7744ae49a4826762fd5c5d105ffd27df2a9f7c3",
+   "fingerprint": "v2:826fee93471044a8d4524e13c7744ae49a4826762fd5c5d105ffd27df2a9f7c3",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1523/jneurosci.22-21-09541.2002",
+   "human_review": null,
+   "issues": []
+  },
+  "RhoaEtal13": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:539e1ac2b1b681a812a01c93f42fab74aac2c67ca0640edc744a40f91ec5d5ef",
+   "fingerprint": "v2:539e1ac2b1b681a812a01c93f42fab74aac2c67ca0640edc744a40f91ec5d5ef",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/edth.12011",
+   "human_review": null,
+   "issues": []
+  },
+  "RobeEtal99": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:31c6c5003c6aad53ffdcbed618453a947cfa1594f5b6e59ba689c94aab39b4f6",
+   "fingerprint": "v2:31c6c5003c6aad53ffdcbed618453a947cfa1594f5b6e59ba689c94aab39b4f6",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 3: kept 'Georges-Fran{\\c{c}}ois' (entry 'Georges-Fran{\\c{c}}ois', source 'Georges-Fran�ois'): printed paper = entry | printed byline (https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:3<206::AID-HIPO2>3.0.CO;2-H, p. 206): \"Robert G. Robertson, Edmund T. Rolls,* Pierre Georges-François, and Stefano Panzeri\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+   },
+   "issues": [
+    "author: surname mismatch: author 3 is 'Georges-Fran{\\\\c{c}}ois' in the citation and PubMed 10401637 but 'Georges-Fran�ois' in Crossref 10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h (https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h, https://europepmc.org/article/MED/10401637); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Roed08": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:bfd85859c07a8a7041b48e572204b67aac93d30d3c493ead843bfdce904e863e",
+   "fingerprint": "v2:bfd85859c07a8a7041b48e572204b67aac93d30d3c493ead843bfdce904e863e",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1146/annurev.psych.57.102904.190139",
+   "human_review": null,
+   "issues": []
+  },
+  "SandEtal98": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:476b7817441f008463ceaccdf05d58c0f8088efaf89b6e56069513a3c5533447",
+   "fingerprint": "v2:476b7817441f008463ceaccdf05d58c0f8088efaf89b6e56069513a3c5533447",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0926-6410(98)00002-0",
+   "human_review": null,
+   "issues": []
+  },
+  "SchaEtal11": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:3e67e046a9bb1c425c11adbfd52d5b47f6a4771d9288813fbc3c741ce6144573",
+   "fingerprint": "v2:3e67e046a9bb1c425c11adbfd52d5b47f6a4771d9288813fbc3c741ce6144573",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 3: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-SchaEtal11-3 ('source'), answered 2026-09-30T17:25:44.691Z"
+   },
+   "issues": [
+    "author: surname mismatch: author 3 is '{St Jacques}' in the citation and PubMed 21908231 but 'St. Jacques' in Crossref 10.1016/j.tics.2011.08.004 (https://api.crossref.org/works/10.1016/j.tics.2011.08.004, https://europepmc.org/article/MED/21908231); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SedeEtal10": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5c7e344622ff989e63be7bd8bb974de7805942fe1b47cecc6ea893e3941367ce",
+   "fingerprint": "v2:5c7e344622ff989e63be7bd8bb974de7805942fe1b47cecc6ea893e3941367ce",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.3758/mc.38.6.689",
+   "human_review": null,
+   "issues": []
+  },
+  "SlamFevr83": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:18c90edd245b600dcab8b929be49884bdb60adf1bcceb7a7478449b6ffc317a3",
+   "fingerprint": "v2:18c90edd245b600dcab8b929be49884bdb60adf1bcceb7a7478449b6ffc317a3",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0022-5371(83)90112-3",
+   "human_review": null,
+   "issues": []
+  },
+  "SlawKasi95": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:dbe839507019fe8eaf4a09ebb5348ebf5c44d94ba04f44f0334cc766965c8de9",
+   "fingerprint": "v2:dbe839507019fe8eaf4a09ebb5348ebf5c44d94ba04f44f0334cc766965c8de9",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0006-8993(95)00174-o",
+   "human_review": null,
+   "issues": []
+  },
+  "SpinEtal88": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:1b954c6959d35b898c7c33ac79c4d2e459af21ccd3ad263a33dabf577d049412",
+   "fingerprint": "v2:1b954c6959d35b898c7c33ac79c4d2e459af21ccd3ad263a33dabf577d049412",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1080/02643298808252933",
+   "human_review": null,
+   "issues": []
+  },
+  "StJaEtal08": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:508573d8c2bb793699d2a5dc0eb4f275206c195a305b02866a3a8669d26304e3",
+   "fingerprint": "v2:508573d8c2bb793699d2a5dc0eb4f275206c195a305b02866a3a8669d26304e3",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): printed paper = entry | printed byline (https://direct.mit.edu/jocn/article-pdf/20/7/1327/1936921/jocn.2008.20091.pdf, p. 1327): \"Peggy St. Jacques, David C. Rubin, Kevin S. LaBar, and Roberto Cabeza\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+   },
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 18284345 but 'St. Jacques' in Crossref 10.1162/jocn.2008.20091 (https://api.crossref.org/works/10.1162/jocn.2008.20091, https://europepmc.org/article/MED/18284345); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "StJaEtal12": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:5fee99c0f1089e5725ba561271e85c77cd7d67ff84b583801910c22780278ec8",
+   "fingerprint": "v2:5fee99c0f1089e5725ba561271e85c77cd7d67ff84b583801910c22780278ec8",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-StJaEtal12-1 ('source'), answered 2026-09-30T17:25:50.224Z"
+   },
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 21190759 but 'St. Jacques' in Crossref 10.1016/j.neurobiolaging.2010.11.007 (https://api.crossref.org/works/10.1016/j.neurobiolaging.2010.11.007, https://europepmc.org/article/MED/21190759); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "StJaScha13": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint_before": "v2:9b333b72bb9ed7b1460d5e85dec02ce096f6574d110dfa58618549090ec32e57",
+   "fingerprint": "v2:9b333b72bb9ed7b1460d5e85dec02ce096f6574d110dfa58618549090ec32e57",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 1: kept '{St Jacques}' (entry '{St Jacques}', source 'St. Jacques'): printed paper = entry | printed byline (https://journals.sagepub.com/doi/pdf/10.1177/0956797612457377, p. 537): \"Peggy L. St. Jacques and Daniel L. Schacter\"",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930 (section C/E rows settled by the printed byline, as the page told the user); user rule 2026-09-28 (decision log): \"the printed paper is the source of truth. When the printed paper ... and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins\""
+   },
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 23406611 but 'St. Jacques' in Crossref 10.1177/0956797612457377 (https://api.crossref.org/works/10.1177/0956797612457377, https://europepmc.org/article/MED/23406611); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SteeEtal97": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4b3734b0c9a3c67994ea01a919c15fc3113ec9f9c8f46909d1de2691b30d03f3",
+   "fingerprint": "v2:4b3734b0c9a3c67994ea01a919c15fc3113ec9f9c8f46909d1de2691b30d03f3",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/j.1600-0722.1997.tb00245.x",
+   "human_review": null,
+   "issues": []
+  },
+  "TervEtal00": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:5e7a321c21134c84abb4208c4236ce044105721ffd3280ad2b6278564a7b3b9d",
+   "fingerprint": "v2:5e7a321c21134c84abb4208c4236ce044105721ffd3280ad2b6278564a7b3b9d",
+   "accepted_source": "pmc-jats",
+   "accepted_doi": "10.1002/(sici)1097-0193(200006)10:2<74::aid-hbm30>3.0.co;2-2",
+   "human_review": null,
+   "issues": []
+  },
+  "TingEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:35cafd1121105bafa4fd956480af48b5c2e8d7f201758a32831a869144ec783e",
+   "fingerprint": "v2:35cafd1121105bafa4fd956480af48b5c2e8d7f201758a32831a869144ec783e",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1111/j.0006-341x.2002.00981.x",
+   "human_review": null,
+   "issues": []
+  },
+  "TulaEtal07": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:081fb714333e3bfea2c147a82d87c63652004bd43649d3d4393a9c5216488010",
+   "fingerprint": "v2:081fb714333e3bfea2c147a82d87c63652004bd43649d3d4393a9c5216488010",
+   "accepted_source": "pmc-jats",
+   "accepted_doi": "10.1002/hbm.20306",
+   "human_review": null,
+   "issues": []
+  },
+  "TulvHast72": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:e8439b365f8aa71f4a712c84f4b7cbe6093f51281585da88b60e04ed5115bedd",
+   "fingerprint": "v2:e8439b365f8aa71f4a712c84f4b7cbe6093f51281585da88b60e04ed5115bedd",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1037/h0032367",
+   "human_review": null,
+   "issues": []
+  },
+  "TulvRose06": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:cda6d0f1117d307813011b0d98ea494ff10b9e21b372fa0d3def47cd80271b84",
+   "fingerprint": "v2:cda6d0f1117d307813011b0d98ea494ff10b9e21b372fa0d3def47cd80271b84",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1093/acprof:oso/9780195169669.003.0018",
+   "human_review": null,
+   "issues": []
+  },
+  "VanSEtal07": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:195836c907b4b285247275d0971ad2187eed27e35a49ff17f92a57a8a3aaa3aa",
+   "fingerprint": "v2:195836c907b4b285247275d0971ad2187eed27e35a49ff17f92a57a8a3aaa3aa",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/j.ijpsycho.2007.07.003",
+   "human_review": null,
+   "issues": []
+  },
+  "VieiEtal03": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:b47eefe7347f65d3ed8ff0f4a53804068608db58d2a6035ea4185646260f68da",
+   "fingerprint": "v2:b47eefe7347f65d3ed8ff0f4a53804068608db58d2a6035ea4185646260f68da",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1142/s0129065703001443",
+   "human_review": null,
+   "issues": []
+  },
+  "Warr98": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:7d96c0454451fbfc2fa4bca58c6057993a728be2cf799a3fdd5de298f126d636",
+   "fingerprint": "v2:7d96c0454451fbfc2fa4bca58c6057993a728be2cf799a3fdd5de298f126d636",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1080/10407413.1998.9652682",
+   "human_review": null,
+   "issues": []
+  },
+  "WaszWalt83": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:32f40f965b2cae2d506d182360b8d1db8c259264592b808d0256feb63d8c43e1",
+   "fingerprint": "v2:32f40f965b2cae2d506d182360b8d1db8c259264592b808d0256feb63d8c43e1",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1126/science.6828891",
+   "human_review": null,
+   "issues": []
+  },
+  "WatkPeyn83": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:6e6617f8cb89200931decdd60f2ce97dd610857eddb94d171039a75e191242ea",
+   "fingerprint": "v2:6e6617f8cb89200931decdd60f2ce97dd610857eddb94d171039a75e191242ea",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/s0022-5371(83)90237-2",
+   "human_review": null,
+   "issues": []
+  },
+  "Wick69": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:c41d912bc1a6eabc555c3bfe1528bb7af03ad500991afbfff6717c32b14c0be3",
+   "fingerprint": "v2:c41d912bc1a6eabc555c3bfe1528bb7af03ad500991afbfff6717c32b14c0be3",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1037/h0026823",
+   "human_review": null,
+   "issues": []
+  },
+  "YeoEtal11": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:9f2d5f98541bf6c338f63f306564aebe15ac21f0dd8ca8ff60c88bbe14208279",
+   "fingerprint": "v2:9f2d5f98541bf6c338f63f306564aebe15ac21f0dd8ca8ff60c88bbe14208279",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1152/jn.00338.2011",
+   "human_review": null,
+   "issues": []
+  },
+  "dBakEtal08": {
+   "status_before": "metadata_verified",
+   "status": "human_verified",
+   "fingerprint_before": "v2:67d32e7422b80f60098e64060d961a52b5d5bfa475ea3315cbc8fe6feeb00917",
+   "fingerprint": "v2:3354e2575d059fdefe17bc02700adf16c26a7bd3c69da270c8260c0a28727841",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "human_review": {
+    "note": "User surname decision 2026-09-30. author 1: changed to 'R S J {d} Baker' (entry '{d Baker}', source 'Baker'): user chose the source's spelling",
+    "reviewer": "Jeremy Manning",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-dBakEtal08-1 ('source'), answered 2026-09-30T16:11:57.821Z"
+   },
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "deArEtal02": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:d23e205b6251973cb3dfee17d536d85afb673f10e8db97f3e10fd788074283b9",
+   "fingerprint": "v2:d23e205b6251973cb3dfee17d536d85afb673f10e8db97f3e10fd788074283b9",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1162/089892902317205339",
+   "human_review": null,
+   "issues": []
+  },
+  "deCh08": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:4e10168b18873c58464af05785edb3efd2b321fc490fd358dd53923917e27580",
+   "fingerprint": "v2:4e10168b18873c58464af05785edb3efd2b321fc490fd358dd53923917e27580",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1038/nrn2414",
+   "human_review": null,
+   "issues": []
+  },
+  "duBoEtal06": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:2eed46b73004ebae1a2ead06f46cf87125d32f8bd7f3d2eed69ce328256dc26f",
+   "fingerprint": "v2:2eed46b73004ebae1a2ead06f46cf87125d32f8bd7f3d2eed69ce328256dc26f",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1093/brain/awl244",
+   "human_review": null,
+   "issues": []
+  },
+  "vandEtal11": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint_before": "v2:87a983d17f3f4fdde35869b7b5b896adc55435c96fb687ab0da027c13a13ffa2",
+   "fingerprint": "v2:87a983d17f3f4fdde35869b7b5b896adc55435c96fb687ab0da027c13a13ffa2",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/j.learninstruc.2009.10.004",
+   "human_review": null,
+   "issues": []
+  }
+ }
+}

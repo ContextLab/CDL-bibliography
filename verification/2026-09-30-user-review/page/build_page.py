@@ -129,6 +129,42 @@ if len(sys.argv) > 2 and Path(sys.argv[2]).exists():
             rows=[f"{s['key']} (author {s['position']}): entry “{s['entry_spelling']}” / source “{s['source_spelling']}”" for s in lst],
             context=[]))
 
+# ---- E/F. round 2 (user 2026-09-30: groups "show" one by one; recheck Crossref-only choices) --
+RECHECK = {("AndeEtal66", 3): "Andén NE, Hfuxe K, Hamberger B, Hökfelt T. (PMID 5967596)",
+           ("IshiEtal75", 3): "Ishijima B, Hori T, Yoshimasu N, Fukushima T, Hirakawa K. (PMID 53143)",
+           ("KatzEtal89", 3): "Katz A, Awad IA, Kong AK, Chelune GJ, ... (PMID 2591343)",
+           ("MeyeEtal88", 4): "Meyer DE, Irwin DE, Osman AM, Kounios J. (PMID 3375399)",
+           ("RebeEtal02", 3): "Reber PJ, Siwiec RM, Gitelman DR, Parrish TB, ... (PMID 12417678)",
+           ("MallEtal97", 3): "not in PubMed; Springer's page blocked automated reading. The author is Bernhard Schölkopf; Crossref's “Schälkopf” looks like a garbled “ö”."}
+FORMAT_NOTE = "Your note on this group: “Unify the spellings”."
+if len(sys.argv) > 2 and Path(sys.argv[2]).exists():
+    for s in json.loads(Path(sys.argv[2]).read_text()):
+        k, pos = s["key"], s["position"]
+        if (k, pos) in RECHECK:
+            items.append(dict(
+                id=f"recheck-{k}-{pos}", section="F", key=k,
+                question=(f"You chose Crossref's “{s['source_spelling']}” over the entry's “{s['entry_spelling']}”. "
+                          f"PubMed prints: {RECHECK[(k, pos)]} Since the two sources disagree, your rule says the printed paper decides. Which spelling?"),
+                options=[["entry", f"“{s['entry_spelling']}” (entry, PubMed)"], ["source", f"“{s['source_spelling']}” (Crossref)"],
+                         ["other", "Something else (say what)"]],
+                after=entry_text("HEAD", k), context=[["Crossref", s.get("source", "")]]))
+            continue
+        if (k, pos) in GENUINE:
+            continue
+        grp = "corrupt" if s["class"] == "spelling" else s["class"]
+        if grp == "words":
+            longer = len(s["source_spelling"].replace("{", "").split()) > len(s["entry_spelling"].replace("{", "").split())
+            if longer:
+                continue          # answered as a group ("keep all except" MurdVomS67)
+            grp = "shorter"
+        items.append(dict(
+            id=f"surname1-{k}-{pos}", section="E", key=k,
+            question=f"Author {pos} ({grp}): the entry has “{s['entry_spelling']}”, the source has “{s['source_spelling']}”.",
+            options=[["entry", f"Keep “{s['entry_spelling']}”"], ["source", f"Use “{s['source_spelling']}”"],
+                     ["other", "Something else (say what)"]],
+            after=entry_text("HEAD", k),
+            context=[["Source", s.get("source", "")]] + ([["Note", FORMAT_NOTE]] if grp == "format" else [])))
+
 # ---- D. resolved under the user's rule (information) ------------------------------
 for r in NOTES:
     k = r.get("current_key") or r["key"]
@@ -140,6 +176,10 @@ for r in NOTES:
             context=[["Your page note", f"{r['verdict']}: “{r['note']}” ({r['updated_edt']})"]]))
 
 SECTIONS = {
+    "F": ("Recheck: where Crossref and PubMed disagree",
+          "For these six you chose Crossref's spelling. PubMed prints the entry's spelling, so the sources disagree. Please confirm."),
+    "E": ("Surname mismatches, one by one",
+          "You asked to see these groups individually: formatting-only differences, sources that drop part of a compound surname, and garbled source text."),
     "A": ("Approved entries changed by the brace cleanup",
           "You approved these earlier. The brace cleanup (4cdc644) removed braces that protect nothing, so the approvals lapsed. Nothing else changed."),
     "B": ("Page notes that weren't followed, or that you left open",

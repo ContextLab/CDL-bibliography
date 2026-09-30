@@ -1,0 +1,78 @@
+sha256: ddd750c7850739f15d4a52fae3ced4ca4eed9d7bb567a598bda90275f1960bd2  file: pdfs/StJaScha13.pdf
+
+Research Report
+
+Modifying Memory: Selectively Enhancing
+and Updating Personal Memories for a
+Museum Tour by Reactivating Them
+
+Psychological Science
+24(4) 537­–543
+© The Author(s) 2013
+Reprints and permission:
+sagepub.com/journalsPermissions.nav
+DOI: 10.1177/0956797612457377
+http://pss.sagepub.com
+
+Peggy L. St. Jacques and Daniel L. Schacter
+
+Department of Psychology and Center for Brain Science, Harvard University
+
+Abstract
+Memory can be modified when reactivated, but little is known about how the properties and extent of reactivation can
+selectively affect subsequent memory. We developed a novel museum paradigm to directly investigate reactivation-induced
+plasticity for personal memories. Participants reactivated memories triggered by photos taken from a camera they wore
+during a museum tour and made relatedness judgments on novel photos taken from a different tour of the same museum.
+Subsequent recognition memory for events at the museum was better for memories that were highly reactivated (i.e., the
+retrieval cues during reactivation matched the encoding experience) than for memories that were reactivated at a lower
+level (i.e., the retrieval cues during reactivation mismatched the encoding experience), but reactivation also increased false
+recognition of photographs depicting stops that were not experienced during the museum tour. Reactivation thus enables
+memories to be selectively enhanced and distorted via updating, thereby supporting the dynamic and flexible nature of
+memory.
+Keywords
+memory, false memory, autobiographical memory, episodic memory, long-term memory
+Received 1/16/12; Revision accepted 5/28/12
+
+People are frequently reminded of past experiences (Berntsen,
+1998; Hintzman, 2011), but how the properties and extent of
+memory reactivation modify subsequent retrieval is unresolved (e.g., Diekelmann, Buchel, Born, & Rasch, 2011;
+Schiller & Phelps, 2011). Reactivating a memory following
+consolidation can bring a stable memory into a labile state,
+which requires a period of reconsolidation that is sensitive to
+pharmacological modification (Misanin, Miller, & Lewis,
+1968; Nader, Schafe, & Le Doux, 2000). Moreover, reactivation preceding new learning can increase memory interference
+(Hupbach, Gomez, Hardt, & Nadel, 2007) and prevent a
+learned fear response from returning (Schiller et al., 2010).
+Reactivation-induced modification of memory thus provides
+an opportunity for memories to be enhanced or updated (Johnson & Chalfonte, 1994). However, such adaptive updating
+processes—critical for the operation of a dynamic memory
+system that flexibly incorporates relevant new information—
+could also contribute to certain kinds of memory distortion
+(Hardt, Einarsson, & Nader, 2010; Schacter, 2012; Schacter,
+Guerin, & St. Jacques, 2011).
+It is also well known that memory can be strengthened
+by additional rehearsal. However, the properties of rehearsal
+can differentially affect later memory. For example, spaced
+
+studying has greater benefits for long-term memory than
+massed studying does (Ebbinghaus, 1885/1913). Further,
+repeated testing enhances later memory more than repeated
+studying does (for a review, see Roediger & Karpicke,
+2006). Reminder cues may also differ in their effectiveness in
+reactivating a memory (e.g., Forcato, Argibay, Pedreira, &
+Maldonado, 2009; Hupbach, Hardt, Gomez, & Nadel, 2008).
+However, it remains unknown whether the properties of reactivation can selectively enhance and also distort personal
+memories.
+We developed a museum paradigm to investigate whether
+the properties of reactivation affect subsequent retrieval of
+personal memories. People conducted a self-guided museum
+tour while wearing a camera that automatically took photographs using a timer (e.g., St. Jacques, Conway, Lowder, &
+Cabeza, 2011; St. Jacques, Rubin, LaBar, & Cabeza, 2008).
+Following a 48-hr delay, they were shown photos of stops
+from events in their tour (i.e., retrieval cues) and then rated the
+Corresponding Author:
+Peggy L. St. Jacques, Department of Psychology, Harvard University, William
+James Hall, Room 864, Cambridge, MA 02138
+E-mail: peggyls@wjh.harvard.edu
+
+

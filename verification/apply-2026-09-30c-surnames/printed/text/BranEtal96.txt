@@ -1,0 +1,77 @@
+sha256: 1e6319ac708608143c0672d5e0f4da15a758b050f813cfac66ddb7ea61fd8961  file: pdfs/BranEtal96.pdf
+
+HIPPOCXVlPUS 6475482 (1996)
+
+Task-Relevant Late Positive ComDonent in Rats: Is it
+Related to Hippocampal Theta Rhthm?
+Jurij BrankaZk,l Thomas Seidenbecher? and
+Hans-Wilhelm Miiller-Gartnerl
+
+IHeinrich-Heine-University,Department of Nuclear
+Medicine at the Research Center Jiilich GmbH, Jiilich, and
+21nstifute of Neurobiology, Magdeburg, Germany
+
+ABSTRACT:
+Long-latency components of event-related potentials (like
+the P300 or P3) correlate with the ability of subjects to detect and process
+unexpected, novel or task-relevant events. Task-relevant late positive
+components were recorded in the neocortex and hippocampus of rats
+performing an auditory discrimination task, similar to the “odd-ball” paradigm used in human experiments. Surface and depth electrodes were
+implanted in anaesthetized rats at frontal, temporal and anterior occipital neocortical regions and the hippocampus. After recovery from surgery
+rats were trained to discriminate two auditory signals, a frequent irrelevant tone and a rare tone related to water reward. In response to the
+task-relevant tone but not the irrelevant tone, P300-like late positive components (mean latency of 274 ms) were recorded throughout the surface
+of the neocortex. The largest amplitudes were found at the anterior occipital cortex situated above the hippocampal CA1 region. The amplitude
+of the task-relevant positive component increased further with cortical
+depth without reversing its polarity. An amplitude maximum was found
+in the CA1 region with a polarity reversal at the pyramidal cell layer and
+the largest negative amplitude in stratum radiatum. Power spectra of differences between responses evoked by task-relevant tones and those
+evoked by irrelevant tones revealed peaks i n the theta range (4-12 Hz).
+It is suggested that the P300-like component in rats corresponds to a theta
+wave out of a burst of hippocampal theta cycles. 0 1996 Wiley-Liss, inc.
+
+KEY WORDS:
+auditory discrimination task, P300, CAI, neocortex,
+freely behaving rat
+
+The task-relevant late positive component of the human event-related potential (P300 or P3) has been studied extensively since its discovery by Sutton
+et al. (1965). It was shown that it depends upon the circumstances under
+which stimuli are presented and is rather independent of their physical parameters. The task-relevant late positive component appears to be an electrophysiological correlate of such cognitive finctions as sequential information processing, stimulus discrimination and short-term memory (Pritchard,
+1981; Donchin et al., 1986). Although knowledge of its origin would be of
+interest both because of its cognitive significance and because of its abnormality in Alzheimer’s disease (Polich, 1989; Kraiuhin et al., 1989) and schizophrenia (Ford et al., 1992), the neural substrate of the P300 is not known.
+
+Generators of the human P300 were postulated to be located in the frontal cortex (Courchesne, 1978; Knight et
+al., 1981; Wood and McCarthy, 1985), temporal cortex
+(Richer et al., 1983) and the hippocampal formation
+(Halgren et al., 1980; Squires et al., 1983; Okada et al.,
+1983; Halgren et al., 1986; McCarthy et al., 1989).
+P3OO-like potentials have been reported in monkeys
+(Neville and Foote, 1984; Pineda et al., 1989), cats
+(Wilder et al., 1981; Harrison and Buchwald, 1987;
+Basar-Eroglu et al., 1991) and rats (Ehlers et al., 1991;
+Yamaguchi et al., 1993; Jodo et al., 1993; Iwanami et
+al., 1994). The P300-like potential in cats disappeared
+after medial septal lesions (Harrison et al., 1988) but not
+after ablation of the primary auditory cortex or the associational cortex (Harrison et al., 1986, 1990). In primates, lesions of the locus coeruleus caused an amplitude
+decrease of the P300 (Pineda et al., 1989). The following study was designed to further investigate the neocortical distribution of the rat’s P300 and its source of
+generation. Some of these results have been presented in
+preliminary form elsewhere (BrankaEk and Seidenbecher,
+1995).
+
+Sixteen male Wistar rats weighing between 200 and
+
+300 g were housed individually and allowed ad libitum
+access to food. Water was available until behavioral training began, after which the rats received water as reinforcement in the testing apparatus and for 30 min after
+each training session.
+
+Experimental Chamber
+Accepted for publication May 23, 1996.
+Address correspondence and reprint requests to Jurij Brankatk, Ph.D.,
+Heinrich-Heine-University of Dusseldorf, Department of Nuclear Medicine
+at the Research Center Julich GmbH, D-52425 Jiilich, Germany.
+0 I996 WTLEY-LISS,INC.
+
+The experimental chamber and testing apparatus was
+a box (40 cm D by 40 cm W by 40 cm H) with an open
+round window of 20 cm diameter at the top. A drinking tube, 3 cm above the floor, was attached to one of
+
+

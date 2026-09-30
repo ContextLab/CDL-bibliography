@@ -1,0 +1,392 @@
+{
+ "batch": "surnames0930c",
+ "frozen_at": "2026-09-30 13:45:24 EDT",
+ "answers": {
+  "manual-recheck-IshiEtal75-3": "2026-09-30T17:22:34.437Z",
+  "manual-surname1-BrisEtal02-3": "2026-09-30T17:26:54.181Z",
+  "manual-surname1-BuzsEtal83-2": "2026-09-30T17:23:02.558Z",
+  "manual-surname1-ConwEtal00-4": "2026-09-30T17:24:44.151Z",
+  "manual-surname1-GallRoed02-2": "2026-09-30T17:23:08.025Z",
+  "manual-surname1-KarpRoed07-2": "2026-09-30T17:22:50.239Z",
+  "manual-surname1-LopeEtal73-1": "2026-09-30T17:23:41.745Z",
+  "manual-surname1-MillEtal07c-2": "2026-09-30T17:24:59.253Z",
+  "manual-surname1-MillEtal07d-5": "2026-09-30T17:25:05.487Z",
+  "manual-surname1-NuneEtal87-1": "2026-09-30T17:27:47.604Z",
+  "manual-surname1-NuneEtal87-2": "2026-09-30T17:27:58.704Z",
+  "manual-surname1-PennEtal94-3": "2026-09-30T17:25:23.111Z",
+  "manual-surname1-SchaEtal11-3": "2026-09-30T17:25:44.691Z",
+  "manual-surname1-SlawKasi95-1": "2026-09-30T17:28:09.105Z",
+  "manual-surname1-SpinEtal88-2": "2026-09-30T17:24:03.447Z",
+  "manual-surname1-StJaEtal12-1": "2026-09-30T17:25:50.224Z",
+  "manual-surname1-VanSEtal07-1": "2026-09-30T17:25:56.459Z",
+  "manual-surname1-VanSEtal07-3": "2026-09-30T17:26:14.927Z",
+  "manual-surname1-VieiEtal03-2": "2026-09-30T17:24:17.215Z",
+  "manual-surname1-vandEtal11-1": "2026-09-30T17:24:27.233Z",
+  "rule-unify": "2026-09-30T17:28:37.258Z",
+  "surname-AndeEtal66-2": "2026-09-30T15:56:04.244Z",
+  "surname-AndeEtal66-3": "2026-09-30T15:56:51.933Z",
+  "surname-BahrPhel87-2": "2026-09-30T15:57:38.288Z",
+  "surname-Buzs98-1": "2026-09-30T15:58:16.959Z",
+  "surname-FreeEtal03b-3": "2026-09-30T15:58:30.178Z",
+  "surname-IshiEtal75-3": "2026-09-30T15:58:53.264Z",
+  "surname-KatzEtal89-3": "2026-09-30T15:59:39.969Z",
+  "surname-KimbEtal08-1": "2026-09-30T16:00:10.406Z",
+  "surname-KragEtal19-9": "2026-09-30T16:11:08.415Z",
+  "surname-LopeEtal73-4": "2026-09-30T16:11:11.883Z",
+  "surname-LuriEtal20-6": "2026-09-30T16:01:12.263Z",
+  "surname-Madi71-1": "2026-09-30T16:01:59.601Z",
+  "surname-MallEtal97-3": "2026-09-30T16:02:28.655Z",
+  "surname-MeyeEtal88-4": "2026-09-30T16:03:18.677Z",
+  "surname-NewmBuck62-2": "2026-09-30T16:04:31.836Z",
+  "surname-RebeEtal02-3": "2026-09-30T16:05:44.861Z",
+  "surname-SlamFevr83-1": "2026-09-30T16:06:21.899Z",
+  "surname-TulvHast72-1": "2026-09-30T16:06:34.134Z",
+  "surname-WaszWalt83-1": "2026-09-30T16:07:27.056Z",
+  "surname-WatkPeyn83-2": "2026-09-30T16:09:29.471Z",
+  "surname-Wick69-1": "2026-09-30T16:10:02.024Z",
+  "surname-dBakEtal08-1": "2026-09-30T16:11:57.821Z",
+  "surname-group-longer": "2026-09-30T16:16:45.772Z",
+  "typo-RebeEtal02-3": "2026-09-30T17:22:08.184Z"
+ },
+ "proposals": [
+  {
+   "key": "ConwEtal00",
+   "fingerprint": "v2:c87ad64fb58b3c08b052ee4f33bebfa44584c1ae22309752e6b12f9cec5f36a1",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "M A Conway and K Harries and J M Noyes and M Racsm\\'{a}ny and C R Frankish",
+     "after": "M A Conway and K Harries and J M Noyes and M Racsma'ny and C R Frankish"
+    }
+   },
+   "positions": [
+    {
+     "position": 4,
+     "old": "M Racsm\\'{a}ny",
+     "new": "M Racsma'ny",
+     "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\""
+    }
+   ]
+  },
+  {
+   "key": "FreuEtal09",
+   "fingerprint": "v2:5589747b1da0f690c6382471b440e2eafc3a0417a42b70c19eb17b856a9c4780",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "H-J Freund and J Kuhn and D Lenartz and J K Mai and T Schnell and J Klosterk{\\\"o}tter and V Sturm",
+     "after": "H-J Freund and J Kuhn and D Lenartz and J K Mai and T Schnell and J Klosterkoetter and V Sturm"
+    }
+   },
+   "positions": [
+    {
+     "position": 6,
+     "old": "J Klosterk{\\\"o}tter",
+     "new": "J Klosterkoetter",
+     "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)"
+    }
+   ]
+  },
+  {
+   "key": "IshiEtal75",
+   "fingerprint": "v2:4c4a746c8a787b70d73ce8f96c3307d2f035c98d24ab195b416b68d0c82dfcbd",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "B Ishijima and T Hori and N Yoshimasu and T Fukushima and K Hirakawa and H Sekino",
+     "after": "B Ishijima and T Hori and N Yoshimasa and T Fukushima and K Hirakawa and H Sekino"
+    }
+   },
+   "positions": [
+    {
+     "position": 3,
+     "old": "N Yoshimasu",
+     "new": "N Yoshimasa",
+     "why": "the user checked the print: 'Yoshimasa' (source)"
+    }
+   ]
+  },
+  {
+   "key": "KragEtal19",
+   "fingerprint": "v2:0f288c5eb8062a99514978a2140367640ff720e422571f73d6c98c65df839362",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "P A Kragel and M Bianciardi and L Hartley and G Matthewson and J-K Choi and K S Quigley and L L Wald and T D Wager and L F Barrett and A B Satpute",
+     "after": "P A Kragel and M Bianciardi and L Hartley and G Matthewson and J-K Choi and K S Quigley and L L Wald and T D Wager and L {Feldman Barrett} and A B Satpute"
+    }
+   },
+   "positions": [
+    {
+     "position": 9,
+     "old": "L F Barrett",
+     "new": "L {Feldman Barrett}",
+     "why": "user chose the source's spelling"
+    }
+   ]
+  },
+  {
+   "key": "LatiEtal10",
+   "fingerprint": "v2:c5a3d0e792f59303020e0d8e8dfd7e28ea27c07be58c0bb772ff7b12dfca4ddf",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "L Latini-Corazzini and M P Nesa and M Ceccaldi and E Guedj and C Thinus-Blanc and F Cauda and F D'Agata and P P{\\'e}ruch",
+     "after": "L Latini-Corazzini and M P Nesa and M Ceccaldi and E Guedj and C Thinus-Blanc and F Cauda and F Dagata and P P{\\'e}ruch"
+    }
+   },
+   "positions": [
+    {
+     "position": 7,
+     "old": "F D'Agata",
+     "new": "F Dagata",
+     "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)"
+    }
+   ]
+  },
+  {
+   "key": "LopeEtal73",
+   "fingerprint": "v2:ec40e3dbd228d28b31606b2303a5fb89cf9733aa10de2f2df7f24d29a3e84e55",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "F H {Lopes Da Silva} and T H {van Lierop} and C F Schrijer and W S {van Leeuwen}",
+     "after": "F H {Lopes da Silva} and T H {van Lierop} and C F Schrijer and W {Storm van Leeuwen}"
+    }
+   },
+   "positions": [
+    {
+     "position": 1,
+     "old": "F H {Lopes Da Silva}",
+     "new": "F H {Lopes da Silva}",
+     "why": "the user's text: \"{Lopes da Silva}\""
+    },
+    {
+     "position": 4,
+     "old": "W S {van Leeuwen}",
+     "new": "W {Storm van Leeuwen}",
+     "why": "user chose the source's spelling"
+    }
+   ]
+  },
+  {
+   "key": "MillEtal07c",
+   "fingerprint": "v2:85d0b394bf29872e2097940299178e6ca4ebc953f929fca5f6edd003476abdf4",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "K J Miller and M {den Nijs} and P Shenoy and J W Miller and R P N Rao and J G Ojemann",
+     "after": "K J Miller and M denNijs and P Shenoy and J W Miller and R P N Rao and J G Ojemann"
+    }
+   },
+   "positions": [
+    {
+     "position": 2,
+     "old": "M {den Nijs}",
+     "new": "M denNijs",
+     "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\""
+    }
+   ]
+  },
+  {
+   "key": "MillEtal07d",
+   "fingerprint": "v2:04e24adb92c6810c3ddd9de3dd341f8ad0db1e3aff581e3f792877f78eba34c4",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "K J Miller and S Makeig and A O Hebb and R P N Rao and M {den Nijs} and J G Ojemann",
+     "after": "K J Miller and S Makeig and A O Hebb and R P N Rao and M denNijs and J G Ojemann"
+    }
+   },
+   "positions": [
+    {
+     "position": 5,
+     "old": "M {den Nijs}",
+     "new": "M denNijs",
+     "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\""
+    }
+   ]
+  },
+  {
+   "key": "MurdVomS67",
+   "fingerprint": "v2:c3aa451c23c9b84ed18f65373b57848906eda39d332333a7e10596814bbad334",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "B B Murdock and W {Vom {S}aal}",
+     "after": "B B Murdock and W {vom Saal}"
+    }
+   },
+   "positions": [
+    {
+     "position": 2,
+     "old": "W {Vom {S}aal}",
+     "new": "W {vom Saal}",
+     "why": "group 'longer': the user's exception, note: Vom{S}aal should be \"{vom Saal}\""
+    }
+   ],
+   "rename": "MurdvomS67"
+  },
+  {
+   "key": "NadeEtal00",
+   "fingerprint": "v2:2ade259227e52a715da5f1949531ebb7063dbf9cf4dcc50c599cc322145a90fe",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "K Nader and G E Schafe and J E LeDoux",
+     "after": "K Nader and G E Schafe and J E {Le Doux}"
+    }
+   },
+   "positions": [
+    {
+     "position": 3,
+     "old": "J E LeDoux",
+     "new": "J E {Le Doux}",
+     "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)"
+    }
+   ]
+  },
+  {
+   "key": "PennEtal94",
+   "fingerprint": "v2:2f10d310aa0cc8df908ccdf91b7c115873101ee2732b1c04ddda15749865b918",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "C M A Pennartz and H J Groenewegen and F H {Lopes Da Silva}",
+     "after": "C M A Pennartz and H J Groenewegen and F H {Lopes da Silva}"
+    }
+   },
+   "positions": [
+    {
+     "position": 3,
+     "old": "F H {Lopes Da Silva}",
+     "new": "F H {Lopes da Silva}",
+     "why": "the user's text: \"{Lopes da Silva}\""
+    }
+   ]
+  },
+  {
+   "key": "dBakEtal08",
+   "fingerprint": "v2:67d32e7422b80f60098e64060d961a52b5d5bfa475ea3315cbc8fe6feeb00917",
+   "kind": "edit",
+   "changes": {
+    "author": {
+     "before": "R S J {d Baker} and A T Corbett and V Aleven",
+     "after": "R S J {d} Baker and A T Corbett and V Aleven"
+    }
+   },
+   "positions": [
+    {
+     "position": 1,
+     "old": "R S J {d Baker}",
+     "new": "R S J {d} Baker",
+     "why": "user chose the source's spelling"
+    }
+   ]
+  }
+ ],
+ "decided_keys": [
+  "AllaEtal98",
+  "AndeEtal66",
+  "AriEtal04",
+  "BabiEtal04",
+  "BaddEcob73",
+  "BahrPhel87",
+  "BastEtal05",
+  "BiswEtal95",
+  "BragEtal99",
+  "BranEtal96",
+  "BrisEtal02",
+  "Buzs98",
+  "BuzsEtal83",
+  "CarvEtal22b",
+  "CassEtal02",
+  "CoheEtal96",
+  "ConwEtal00",
+  "DengEtal09",
+  "DesaEtal12",
+  "DoveEtal00",
+  "ElHaEtal19",
+  "EngeEtal10",
+  "EsteMadd05",
+  "FernEtal99a",
+  "FernEtal99b",
+  "FreeEtal03b",
+  "FreuEtal09",
+  "GallRoed02",
+  "GhosEtal11",
+  "GomeEtal96",
+  "HarrEtal20",
+  "HassEich05",
+  "Heal16",
+  "HeusEtal17",
+  "HoltEtal12",
+  "HughEtal12",
+  "Hunt03",
+  "IshiEtal75",
+  "IyyeEtal15",
+  "KarpRoed07",
+  "KatzEtal89",
+  "KessEtal02",
+  "KimbEtal08",
+  "KleiEtal07a",
+  "KluyEtal16",
+  "KragEtal19",
+  "LatiEtal10",
+  "LeunYim86",
+  "LopeEtal73",
+  "LuriEtal20",
+  "MacWEtal01",
+  "Madi71",
+  "MallEtal97",
+  "MeckEtal99",
+  "MeckHage84",
+  "MeyeEtal88",
+  "MillEtal07c",
+  "MillEtal07d",
+  "MillEtal08",
+  "MullWehn94",
+  "MurdVomS67",
+  "NadeEtal00",
+  "NewmBuck62",
+  "NoldEtal98",
+  "NuneEtal87",
+  "NybeEtal03",
+  "PennEtal94",
+  "PollGero68",
+  "PradEtal93",
+  "RebeEtal02",
+  "RhoaEtal13",
+  "RobeEtal99",
+  "Roed08",
+  "SandEtal98",
+  "SchaEtal11",
+  "SedeEtal10",
+  "SlamFevr83",
+  "SlawKasi95",
+  "SpinEtal88",
+  "StJaEtal08",
+  "StJaEtal12",
+  "StJaScha13",
+  "SteeEtal97",
+  "TervEtal00",
+  "TingEtal02",
+  "TulaEtal07",
+  "TulvHast72",
+  "TulvRose06",
+  "VanSEtal07",
+  "VieiEtal03",
+  "Warr98",
+  "WaszWalt83",
+  "Wick69",
+  "YeoEtal11",
+  "dBakEtal08",
+  "deArEtal02",
+  "deCh08",
+  "duBoEtal06",
+  "vandEtal11"
+ ],
+ "held_keys": [
+  "WatkPeyn83"
+ ]
+}

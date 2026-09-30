@@ -1,0 +1,64 @@
+sha256: 791eb7f47a2d3233add51c531921e887f96b1349074aa3ed7ea9765ff2f71a67  file: pdfs/Roed08.pdf
+
+Downloaded from www.annualreviews.org. Dartmouth Libraries (ar-147301) IP: 129.170.192.77 On: Wed, 30 Sept 2026 16:46:44
+
+ANRV331-PS59-09
+
+ARI
+
+15 November 2007
+
+15:26
+
+AR Further
+Click here for quick links to
+Annual Reviews content online,
+including:
+• Other articles in this volume
+• Top cited articles
+• Top downloaded articles
+• AR’s comprehensive search
+
+Relativity of Remembering:
+Why the Laws of Memory
+Vanished
+Henry L. Roediger, III
+Department of Psychology, Washington University in St. Louis, Missouri 63130;
+email: roediger@wustl.edu
+
+Annu. Rev. Psychol. 2008. 59:225–54
+
+Key Words
+
+First published online as a Review in Advance on
+September 12, 2007
+
+learning, recall, recognition, retention, transfer
+
+The Annual Review of Psychology is online at
+http://psych.annualreviews.org
+This article’s doi:
+10.1146/annurev.psych.57.102904.190139
+c 2008 by Annual Reviews.
+Copyright 
+All rights reserved
+0066-4308/08/0203-0225$20.00
+
+Abstract
+For 120 years, cognitive psychologists have sought general laws of
+learning and memory. In this review I conclude that none has stood
+the test of time. No empirical law withstands manipulation across
+the four sets of factors that Jenkins (1979) identiﬁed as critical to
+memory experiments: types of subjects, kinds of events to be remembered, manipulation of encoding conditions, and variations in test
+conditions. Another factor affecting many phenomena is whether a
+manipulation of conditions occurs in randomized, within-subjects
+designs rather than between-subjects (or within-subject, blocked)
+designs. The fact that simple laws do not hold reveals the complex,
+interactive nature of memory phenomena. Nonetheless, the science
+of memory is robust, with most ﬁndings easily replicated under the
+same conditions as originally used, but when other variables are manipulated, effects may disappear or reverse. These same points are
+probably true of psychological research in most, if not all, domains.
+
+225
+
+

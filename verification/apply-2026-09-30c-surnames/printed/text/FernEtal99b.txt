@@ -1,0 +1,89 @@
+sha256: 3defa962df15a04d3e8fb232ac02837743cf43be0752e27924791bbd112309b3  file: pdfs/FernEtal99b.pdf
+
+HIPPOCAMPUS 9:35–44 (1999)
+
+Level of Sustained Entorhinal Activity at Study
+Correlates With Subsequent Cued-Recall Performance:
+A Functional Magnetic Resonance Imaging Study
+With High Acquisition Rate
+Guillén Fernández,1,4,5 James B. Brewer,2 Zuo Zhao,1
+Gary H. Glover,3 and John D.E. Gabrieli1,2,3
+1Department of Psychology, Stanford University,
+
+Stanford, California
+2Neuroscience Program, Stanford University,
+
+Stanford, California
+3Department of Radiology, Stanford University,
+
+Stanford, California
+4Department of Neurology II, University of Magdeburg,
+
+Magdeburg, Germany
+5Department of Epileptology, University of Bonn,
+
+Bonn, Germany
+
+ABSTRACT:
+Functional magnetic resonance imaging (fMRI) with high
+acquisition rate was performed during the intentional memorizing of
+words to specify which medial temporal lobe structure is important in
+determining what words are subsequently remembered in a cued-recall
+test and to characterize the time course of activation in that structure.
+Functional images of six healthy young subjects were analyzed by two
+subject- and voxel-wise statistics: First, to identify brain areas transiently
+engaged in encoding of words, brain activity during memorizing visually
+presented words and watching a fixation cross was compared by a
+Kolmogorov-Smirnov statistic (KS-test). Second, to identify brain areas
+whose activity correlates with memory encoding success, a Kendall’s
+correlation was calculated between signal intensity at study and performance in a subsequent cued-recall test. Averaged signal intensities were
+plotted as a function of time to depict the time course of brain activity
+detected by both statistical tests. The level of slowly modulated, sustained
+activity in Brodmann area 28 (entorhinal cortex) did not respond transiently as study words appeared, but did correlate positively with subsequent test performance. More left than right activity in Brodmann area 45
+(dorso-lateral prefrontal cortex) and bilateral activity in Brodmann area 44
+(premotor cortex) exhibited transient hemodynamic responses that did not
+show any relation to subsequent memory performance. Thus, the study
+identified a novel pattern of slowly modulated brain activity in human
+entorhinal cortex that may represent a declarative memory encoding state
+whose level predicts whether experiences will be remembered or forgotten. Hippocampus 1999;9:35–44. r 1999 Wiley-Liss, Inc.
+KEY WORDS:
+declarative memory; encoding; medial temporal lobe;
+functional neuroimaging; human
+
+Grant Sponsor: NIA; Grant number: AG 12995, AG 11121; Grant sponsor:
+NCRR; Grant number: P41 RR09784; Grant sponsor: NIH; Grant number:
+GM 07365; Grant sponsor: DFG; Grant number: FE 479/1-1.
+*Correspondence to: Dr. G. Fernández, Klinik fuer Epileptologie, 53105
+Bonn, Germany. E-mail: gf@mailer.meb.uni-bonn.de
+Accepted for publication 30 October 1998
+
+r 1999 WILEY-LISS, INC.
+
+INTRODUCTION
+Evidence that the medial temporal lobe is essential for
+declarative memory came initially from the pervasive
+and severe amnesia that occurs in humans and animals
+after bilateral damage to that brain region (Scoville and
+Milner, 1957; Squire and Zola-Morgan, 1991). Functional neuroimaging studies have now confirmed the
+importance of the medial temporal lobe in normal
+declarative memory processing. For example, studies
+contrasting encoding of novel relative to familiar stimuli
+found consistently a medial temporal lobe activation
+(Tulving et al., 1994, 1996; Grady et al., 1995; Haxby et
+al., 1996; Stern et al., 1996; Gabrieli et al., 1997; Dolan
+and Fletcher, 1997; Rombouts et al., 1997). Improved
+spatial resolution with functional magnetic resonance
+imaging (fMRI) revealed that this activation is centered
+within the posterior parahippocampal cortex (Stern et
+al., 1996; Gabrieli et al., 1997; Rombouts et al., 1997).
+Moreover, the improved temporal resolution of singletrial fMRI allowed assessment of transient, event-related
+encoding activity in the same posterior parahippocampal
+area that predicted whether experiences are remembered
+or forgotten independently of item novelty (Brewer et
+al., 1998; Wagner et al., 1998).
+Imaging studies utilizing across- or within-subject
+correlations have also shown medial temporal lobe
+activity related to declarative memory encoding. Varying
+magnitudes of medial temporal lobe activity were correlated positively with encoding success measured as
+
+

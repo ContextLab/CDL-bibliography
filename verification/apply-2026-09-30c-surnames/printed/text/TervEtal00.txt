@@ -1,0 +1,62 @@
+sha256: 2aa8317b91c666254128279faa45b7b4e30ecb32a52110273926cdd8da8f03b6  file: pdfs/TervEtal00.pdf
+
+䉬
+
+Human Brain Mapping 10:74 –79(2000) 䉬
+
+Lateralized Automatic Auditory Processing
+of Phonetic Versus Musical Information:
+A PET Study
+M. Tervaniemi,1* S. V. Medvedev,2 K. Alho,1,3 S. V. Pakhomov,2
+M. S. Roudas,2 T. L. van Zuijen,1 and R. Näätänen1,4
+1
+
+Cognitive Brain Research Unit, Department of Psychology, University of Helsinki, Finland
+2
+Institute of the Human Brain, Russian Academy of Sciences, St. Petersburg, Russia
+3
+Department of Psychology, University of Tampere, Finland
+4
+BioMag Laboratory, Medical Engineering Centre, Helsinki University Central Hospital,
+Helsinki, Finland
+
+䉬
+
+䉬
+
+Abstract: Previous positron emission tomography (PET) and functional magnetic resonance imaging
+(fMRI) studies show that during attentive listening, processing of phonetic information is associated with
+higher activity in the left auditory cortex than in the right auditory cortex while the opposite is true for
+musical information. The present PET study determined whether automatically activated neural mechanisms for phonetic and musical information are lateralized. To this end, subjects engaged in a visual word
+classification task were presented with phonetic sound sequences consisting of frequent (P ⫽ 0.8) and
+infrequent (P ⫽ 0.2) phonemes and with musical sound sequences consisting of frequent (P ⫽ 0.8) and
+infrequent (P ⫽ 0.2) chords. The phonemes and chords were matched in spectral complexity as well as in
+the magnitude of frequency difference between the frequent and infrequent sounds (/e/ vs. /o/; A major
+vs. A minor). In addition, control sequences, consisting of either frequent (/e/; A major) or infrequent
+sounds (/o/; A minor) were employed in separate blocks. When sound sequences consisted of intermixed
+frequent and infrequent sounds, automatic phonetic processing was lateralized to the left hemisphere and
+musical to the right hemisphere. This lateralization, however, did not occur in control blocks with one
+type of sound (frequent or infrequent). The data thus indicate that automatic activation of lateralized
+neuronal circuits requires sound comparison based on short-term sound representations. Hum. Brain
+Mapping 10:74 –79, 2000. © 2000 Wiley-Liss, Inc.
+Key words: musical information; phonetic information; lateralization; complex tones; automatic processing; mismatch negativity (MMN); position emission tomography (PET)
+䉬
+
+䉬
+
+INTRODUCTION
+
+Contract grant sponsor: Academy of Finland.
+*Correspondence to: Dr. Mari Tervaniemi, Cognitive Brain Research
+Unit, Department of Psychology, P.O. Box 13, FIN-00014 University
+of Helsinki, Finland. E-mail: Tervanie@Helsinki.Fi
+Received for publication 9 July 1999; accepted 10 March 2000
+© 2000 Wiley-Liss, Inc.
+
+As early as 1874, Wernicke assigned auditory perception functions to a specific brain area by demonstrating that a patient who had suffered from a severe
+deficit in speech understanding, exhibited a broad
+lesion in the left temporal lobe on autopsy. During the
+following decades, several researchers confirmed the
+importance of the left temporal areas for speech per-
+
+

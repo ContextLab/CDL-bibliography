@@ -1,0 +1,3112 @@
+[
+ {
+  "key": "AndeEtal66",
+  "position": 2,
+  "entry_spelling": "Fuxe",
+  "source_spelling": "Hfuxe",
+  "source": "https://europepmc.org/article/MED/5967596 (PubMed via Europe PMC: K Hfuxe)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-AndeEtal66-2",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T15:56:04.244Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-AndeEtal66-2, answered 2026-09-30T15:56:04.244Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "AndeEtal66",
+  "position": 3,
+  "entry_spelling": "Hamberger",
+  "source_spelling": "Hamberoer",
+  "source": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x (Crossref: \"given\":\"Bertil\",\"family\":\"Hamberoer\")",
+  "printed": {
+   "id": "recheck-AndeEtal66-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "Hamberger",
+   "quote": "By NILS-ERIK ANDÉN, KJELL FUXE, BERTIL HAMBERGER and TOMAS HÖKFELT",
+   "page": 306,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1748-1716.1966.tb03317.x",
+   "pdf_sha256": "9d699bda2a449177aa93653e2e24ac3b55393bc9937cbf4fea94b2a03feba32d",
+   "how": "image",
+   "note": "Byline in small capitals; the large initial capital shows the case Hamberger. OCR text layer also reads HAMBERGER. Crossref \"Hamberoer\" is an OCR error."
+  },
+  "docs": [
+   {
+    "doc": "surname-AndeEtal66-3",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T15:56:51.933Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-AndeEtal66-3, answered 2026-09-30T15:56:51.933Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins"
+ },
+ {
+  "key": "BahrPhel87",
+  "position": 2,
+  "entry_spelling": "Phelps",
+  "source_spelling": "Phelphs",
+  "source": "https://api.crossref.org/works/10.1037/0278-7393.13.2.344 (Crossref: \"given\":\"Elizabeth\",\"family\":\"Phelphs\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-BahrPhel87-2",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T15:57:38.288Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-BahrPhel87-2, answered 2026-09-30T15:57:38.288Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "Buzs98",
+  "position": 1,
+  "entry_spelling": "Buzs\\'aki",
+  "source_spelling": "BuzsÁk",
+  "source": "https://api.crossref.org/works/10.1046/j.1365-2869.7.s1.3.x (Crossref: \"given\":\"GyÖrgy\",\"family\":\"BuzsÁk\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-Buzs98-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T15:58:16.959Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-Buzs98-1, answered 2026-09-30T15:58:16.959Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "FreeEtal03b",
+  "position": 3,
+  "entry_spelling": "J{\\\"o}rnsten",
+  "source_spelling": "JORSTEN",
+  "source": "https://api.crossref.org/works/10.1142/s0218127403008260 (Crossref: \"given\":\"REBECKA\",\"family\":\"JORSTEN\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-FreeEtal03b-3",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T15:58:30.178Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-FreeEtal03b-3, answered 2026-09-30T15:58:30.178Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "IshiEtal75",
+  "position": 3,
+  "entry_spelling": "Yoshimasu",
+  "source_spelling": "Yoshimasa",
+  "source": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2 (Crossref: \"given\":\"N\",\"family\":\"Yoshimasa\")",
+  "printed": {
+   "id": "recheck-IshiEtal75-3",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "surname-IshiEtal75-3",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T15:58:53.264Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-IshiEtal75-3, answered 2026-09-30T15:58:53.264Z"
+   },
+   {
+    "doc": "manual-recheck-IshiEtal75-3",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:22:34.437Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-recheck-IshiEtal75-3, answered 2026-09-30T17:22:34.437Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user checked the print: 'Yoshimasa' (source)",
+  "old_name": "N Yoshimasu",
+  "new_name": "N Yoshimasa"
+ },
+ {
+  "key": "KarpRoed07",
+  "position": 2,
+  "entry_spelling": "Roediger",
+  "source_spelling": "ROEDIGERIII",
+  "source": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004 (Crossref: \"given\":\"H\",\"family\":\"ROEDIGERIII\")",
+  "printed": {
+   "id": "surname1-KarpRoed07-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed). EBSCO has an index record only (MLA): \"Roediger, Henry L., III\"."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-KarpRoed07-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:22:50.239Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-KarpRoed07-2, answered 2026-09-30T17:22:50.239Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "KatzEtal89",
+  "position": 3,
+  "entry_spelling": "Kong",
+  "source_spelling": "Kongy",
+  "source": "https://api.crossref.org/works/10.1111/j.1528-1157.1989.tb05336.x (Crossref: \"given\":\"Alan K.\",\"family\":\"Kongy\")",
+  "printed": {
+   "id": "recheck-KatzEtal89-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "Kong",
+   "quote": "Amiram Katz, *Issam A. Awad, Alan K. Kong, †Gordon J. Chelune,",
+   "page": 763,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1528-1157.1989.tb05336.x",
+   "pdf_sha256": "686ab0bf110fd69d03463e00524ee2b6aa44a3ae4b9c7f3d7737561ab104e6c2",
+   "how": "image",
+   "note": "OCR layer agrees (\"Alan K. Kong\")."
+  },
+  "docs": [
+   {
+    "doc": "surname-KatzEtal89-3",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T15:59:39.969Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-KatzEtal89-3, answered 2026-09-30T15:59:39.969Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins"
+ },
+ {
+  "key": "KimbEtal08",
+  "position": 1,
+  "entry_spelling": "Kimball",
+  "source_spelling": "Kimbal",
+  "source": "https://europepmc.org/article/MED/18488643 (PubMed via Europe PMC: Daniel R Kimbal)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-KimbEtal08-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:00:10.406Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-KimbEtal08-1, answered 2026-09-30T16:00:10.406Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "LuriEtal20",
+  "position": 6,
+  "entry_spelling": "Keilholz",
+  "source_spelling": "Kheilholz",
+  "source": "https://api.crossref.org/works/10.1162/netn_a_00116 (Crossref: \"given\":\"Shella\",\"family\":\"Kheilholz\"); https://europepmc.org/article/MED/32043043 (PubMed via Europe PMC: Shella Kheilholz); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7006871/fullTextXML (PMC full-text front matter: Shella Kheilholz)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-LuriEtal20-6",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:01:12.263Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-LuriEtal20-6, answered 2026-09-30T16:01:12.263Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "Madi71",
+  "position": 1,
+  "entry_spelling": "Madigan",
+  "source_spelling": "Madigna",
+  "source": "https://api.crossref.org/works/10.1037/h0030549 (Crossref: \"given\":\"Stephen A.\",\"family\":\"Madigna\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-Madi71-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:01:59.601Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-Madi71-1, answered 2026-09-30T16:01:59.601Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "MallEtal97",
+  "position": 3,
+  "entry_spelling": "Sch{\\\"o}lkopf",
+  "source_spelling": "Schälkopf",
+  "source": "https://api.crossref.org/works/10.1007/bfb0020244 (Crossref: \"given\":\"Bernhard\",\"family\":\"Schälkopf\")",
+  "printed": {
+   "id": "recheck-MallEtal97-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "Sch{\\\"o}lkopf",
+   "quote": "Hanspeter A. Mallot, Matthias Franz, Bernhard Schölkopf and Heinrich H. Bülthoff",
+   "page": 751,
+   "url": "https://link.springer.com/content/pdf/10.1007/BFb0020244.pdf",
+   "pdf_sha256": "fb152602566509d536b87a0dcf1a2e422500827f44df9265140ca5089747436a",
+   "how": "image",
+   "note": "Text layer is garbled (\"SchSlkopf\"); read from the rendered page."
+  },
+  "docs": [
+   {
+    "doc": "surname-MallEtal97-3",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:02:28.655Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-MallEtal97-3, answered 2026-09-30T16:02:28.655Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins"
+ },
+ {
+  "key": "MeyeEtal88",
+  "position": 4,
+  "entry_spelling": "Kounios",
+  "source_spelling": "Kounois",
+  "source": "https://api.crossref.org/works/10.1037/0033-295x.95.2.183 (Crossref: \"given\":\"John\",\"family\":\"Kounois\")",
+  "printed": {
+   "id": "recheck-MeyeEtal88-4",
+   "class": "PRINTED=ENTRY",
+   "printed": "Kounios",
+   "quote": "David E. Meyer / University of Michigan ... John Kounios / Tufts University",
+   "page": 183,
+   "url": "https://search.ebscohost.com/login.aspx?direct=true&db=pdh&AN=1988-28535-001&site=ehost-live (APA PsycArticles scan via EBSCO; psycnet.apa.org said Get Access)",
+   "pdf_sha256": "68efd42eaf6ebdd7e387be99ba666a601d1a139b25c308d97f513900721c071a",
+   "how": "image",
+   "note": "Also in acknowledgments: \"(Meyer, Osman, Kounios, & Irwin, 1985)\". Crossref and psycnet metadata \"Kounois\" is not what is printed."
+  },
+  "docs": [
+   {
+    "doc": "surname-MeyeEtal88-4",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:03:18.677Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-MeyeEtal88-4, answered 2026-09-30T16:03:18.677Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "printed paper = entry; overrides the user's earlier 'source' (Crossref) pick, because the printed paper wins"
+ },
+ {
+  "key": "NewmBuck62",
+  "position": 2,
+  "entry_spelling": "Buckhout",
+  "source_spelling": "BUCHOUT",
+  "source": "https://europepmc.org/article/MED/14479342 (PubMed via Europe PMC: R BUCHOUT)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-NewmBuck62-2",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:04:31.836Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-NewmBuck62-2, answered 2026-09-30T16:04:31.836Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "RebeEtal02",
+  "position": 3,
+  "entry_spelling": "Gitelman",
+  "source_spelling": "Gitleman",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.22-21-09541.2002 (Crossref: \"given\":\"Darren R.\",\"family\":\"Gitleman\")",
+  "printed": {
+   "id": "recheck-RebeEtal02-3",
+   "class": "PRINTED=SOURCE",
+   "printed": "Gitleman",
+   "quote": "Paul J. Reber,1,3 Robert M. Siwiec,1 Darren R. Gitleman,2,3 Todd B. Parrish,2,3 M.-Marsel Mesulam,3 and Ken A. Paller1,3",
+   "page": 9541,
+   "url": "https://www.jneurosci.org/content/22/21/9541.full.pdf",
+   "pdf_sha256": "ef7378680d42afbd70e7fd9435efa426d2cefdf04ea53277906a59fe3549bc16",
+   "how": "pdf-text",
+   "note": "Checked on the rendered page image too: the printed byline really says \"Gitleman\" (a typo by the journal; the person is Darren R. Gitelman). The printed-paper rule gives Gitleman."
+  },
+  "docs": [
+   {
+    "doc": "surname-RebeEtal02-3",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:05:44.861Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-RebeEtal02-3, answered 2026-09-30T16:05:44.861Z"
+   },
+   {
+    "doc": "typo-RebeEtal02-3",
+    "section": "H",
+    "choice": "correct",
+    "note": "",
+    "answered": "2026-09-30T17:22:08.184Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc typo-RebeEtal02-3, answered 2026-09-30T17:22:08.184Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "printed 'Gitleman' (a typo); the user chose 'correct' (Gitelman): user-approved exception to the as-printed rule"
+ },
+ {
+  "key": "SlamFevr83",
+  "position": 1,
+  "entry_spelling": "Slamecka",
+  "source_spelling": "Slamucka",
+  "source": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3 (Crossref: \"given\":\"Norman J.\",\"family\":\"Slamucka\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-SlamFevr83-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:06:21.899Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-SlamFevr83-1, answered 2026-09-30T16:06:21.899Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "TulvHast72",
+  "position": 1,
+  "entry_spelling": "Tulving",
+  "source_spelling": "Tulvig",
+  "source": "https://api.crossref.org/works/10.1037/h0032367 (Crossref: \"given\":\"Endel\",\"family\":\"Tulvig\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-TulvHast72-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:06:34.134Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-TulvHast72-1, answered 2026-09-30T16:06:34.134Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "WaszWalt83",
+  "position": 1,
+  "entry_spelling": "Waszczak",
+  "source_spelling": "Waszcak",
+  "source": "https://api.crossref.org/works/10.1126/science.6828891 (Crossref: \"given\":\"Barbara L.\",\"family\":\"Waszcak\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-WaszWalt83-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:07:27.056Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-WaszWalt83-1, answered 2026-09-30T16:07:27.056Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "WatkPeyn83",
+  "position": 2,
+  "entry_spelling": "Peynircio\\u{g}lu",
+  "source_spelling": "Peynrcoğlu",
+  "source": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2 (Crossref: \"given\":\"Zehra F.\",\"family\":\"Peynrcoğlu\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-WatkPeyn83-2",
+    "section": "C",
+    "choice": "other",
+    "note": "should actually be Peyn\\dot{i}rc\\dot{i}o\\u{g}lu",
+    "answered": "2026-09-30T16:09:29.471Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-WatkPeyn83-2, answered 2026-09-30T16:09:29.471Z"
+   }
+  ],
+  "decision": "hold",
+  "why": "user's text uses \\dot{i}, a math-mode accent that stops LaTeX in text mode; the user decides the spelling"
+ },
+ {
+  "key": "Wick69",
+  "position": 1,
+  "entry_spelling": "Wickelgren",
+  "source_spelling": "Wickelgran",
+  "source": "https://api.crossref.org/works/10.1037/h0026823 (Crossref: \"given\":\"Wayne A.\",\"family\":\"Wickelgran\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-Wick69-1",
+    "section": "C",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T16:10:02.024Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-Wick69-1, answered 2026-09-30T16:10:02.024Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "user chose the entry's spelling"
+ },
+ {
+  "key": "FreuEtal09",
+  "position": 6,
+  "entry_spelling": "Klosterk{\\\"o}tter",
+  "source_spelling": "Klosterkoetter",
+  "source": "https://api.crossref.org/works/10.1001/archneurol.2009.102 (Crossref: \"given\":\"Joachim\",\"family\":\"Klosterkoetter\")",
+  "printed": {
+   "id": "surname1-FreuEtal09-6",
+   "class": "PRINTED=SOURCE",
+   "printed": "Klosterkoetter",
+   "quote": "Thomas Schnell, PhD; Joachim Klosterkoetter, MD; Volker Sturm, MD",
+   "page": 781,
+   "url": "https://jamanetwork.com/journals/jamaneurology/articlepdf/797247/nob90006_781_785.pdf",
+   "pdf_sha256": "133d9c8a5d4eb1a8953c6d40a4c95142161a3ca64564f51e3bfd4cd4c5ded7cc",
+   "how": "pdf-text",
+   "note": "Checked on the image: printed \"oe\", not \"ö\"."
+  },
+  "docs": [
+   {
+    "doc": "rule-unify",
+    "section": "G",
+    "choice": "per-paper",
+    "note": "",
+    "answered": "2026-09-30T17:28:37.258Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc rule-unify, answered 2026-09-30T17:28:37.258Z"
+   }
+  ],
+  "decision": "change",
+  "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)",
+  "old_name": "J Klosterk{\\\"o}tter",
+  "new_name": "J Klosterkoetter"
+ },
+ {
+  "key": "AllaEtal98",
+  "position": 2,
+  "entry_spelling": "Wilding",
+  "source_spelling": "L. Wilding",
+  "source": "https://api.crossref.org/works/10.1016/s0001-6918(97)00044-9 (Crossref: \"given\":\"Edward\",\"family\":\"L. Wilding\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "AriEtal04",
+  "position": 3,
+  "entry_spelling": "Uyanik",
+  "source_spelling": "SAMI UYANIK",
+  "source": "https://api.crossref.org/works/10.1080/00207450490430499 (Crossref: \"given\":\"BEKIR\",\"family\":\"SAMI UYANIK\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 1,
+  "entry_spelling": "Babiloni",
+  "source_spelling": "Claudio",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Babiloni\",\"family\":\"Claudio\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "Babiloni",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Babiloni Claudio\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 2,
+  "entry_spelling": "Bares",
+  "source_spelling": "Martin",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Bares\",\"family\":\"Martin\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-2",
+   "class": "PRINTED=ENTRY",
+   "printed": "Bares",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Bares Martin\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 3,
+  "entry_spelling": "Vecchio",
+  "source_spelling": "Fabrizio",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Vecchio\",\"family\":\"Fabrizio\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "Vecchio",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Vecchio Fabrizio\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 4,
+  "entry_spelling": "Brazdil",
+  "source_spelling": "Milan",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Brazdil\",\"family\":\"Milan\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-4",
+   "class": "PRINTED=ENTRY",
+   "printed": "Brazdil",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Brazdil Milan\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 5,
+  "entry_spelling": "Jurak",
+  "source_spelling": "Pavel",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Jurak\",\"family\":\"Pavel\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-5",
+   "class": "PRINTED=ENTRY",
+   "printed": "Jurak",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Jurak Pavel\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 6,
+  "entry_spelling": "Moretti",
+  "source_spelling": "Vito",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Moretti Davide\",\"family\":\"Vito\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-6",
+   "class": "PRINTED=ENTRY",
+   "printed": "Moretti",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Moretti Davide Vito\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 7,
+  "entry_spelling": "Ubaldi",
+  "source_spelling": "Alessandra",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Ubaldi\",\"family\":\"Alessandra\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-7",
+   "class": "PRINTED=ENTRY",
+   "printed": "Ubaldi",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Ubaldi Alessandra\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 8,
+  "entry_spelling": "Rossini",
+  "source_spelling": "Maria",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Rossini Paolo\",\"family\":\"Maria\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-8",
+   "class": "PRINTED=ENTRY",
+   "printed": "Rossini",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Rossini Paolo Maria\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 9,
+  "entry_spelling": "Rektor",
+  "source_spelling": "Ivan",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Rektor\",\"family\":\"Ivan\")",
+  "printed": {
+   "id": "surname1-BabiEtal04-9",
+   "class": "PRINTED=ENTRY",
+   "printed": "Rektor",
+   "quote": "Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2 Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6",
+   "page": 3088,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.0953-816X.2004.03431.x",
+   "pdf_sha256": "cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e",
+   "how": "pdf-text",
+   "note": "The byline prints every name surname first (\"Rektor Ivan\"); the correspondence line \"Dr Claudio Babiloni\" confirms the order. Crossref took the given names as surnames."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BaddEcob73",
+  "position": 2,
+  "entry_spelling": "Ecob",
+  "source_spelling": "Russell Ecob",
+  "source": "https://api.crossref.org/works/10.1080/14640747308400342 (Crossref: \"given\":\"J.\",\"family\":\"Russell Ecob\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "BastEtal05",
+  "position": 2,
+  "entry_spelling": "{van der Linden}",
+  "source_spelling": "Linden",
+  "source": "https://api.crossref.org/works/10.1162/0898929053279469 (Crossref: \"given\":\"Marieke van der\",\"family\":\"Linden\")",
+  "printed": {
+   "id": "surname1-BastEtal05-2",
+   "class": "PRINTED=ENTRY",
+   "printed": "{van der Linden}",
+   "quote": "Marcel C.M. Bastiaansen1,2, Marieke van der Linden1, Mariken ter Keurs2, Ton Dijkstra3, and Peter Hagoort1",
+   "page": 530,
+   "url": "https://direct.mit.edu/jocn/article-pdf/17/3/530/1935157/0898929053279469.pdf",
+   "pdf_sha256": "4b3a34115f4dbc6e6208c61637e7f8e7338a912c6774e1cbe9b03fc7b343f259",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BastEtal05",
+  "position": 3,
+  "entry_spelling": "{ter Keurs}",
+  "source_spelling": "Keurs",
+  "source": "https://api.crossref.org/works/10.1162/0898929053279469 (Crossref: \"given\":\"Mariken ter\",\"family\":\"Keurs\")",
+  "printed": {
+   "id": "surname1-BastEtal05-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "{ter Keurs}",
+   "quote": "Marieke van der Linden1, Mariken ter Keurs2, Ton Dijkstra3",
+   "page": 530,
+   "url": "https://direct.mit.edu/jocn/article-pdf/17/3/530/1935157/0898929053279469.pdf",
+   "pdf_sha256": "4b3a34115f4dbc6e6208c61637e7f8e7338a912c6774e1cbe9b03fc7b343f259",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BiswEtal95",
+  "position": 2,
+  "entry_spelling": "Yetkin",
+  "source_spelling": "Zerrin Yetkin",
+  "source": "https://api.crossref.org/works/10.1002/mrm.1910340409 (Crossref: \"given\":\"F.\",\"family\":\"Zerrin Yetkin\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "BuzsEtal83",
+  "position": 2,
+  "entry_spelling": "Leung",
+  "source_spelling": "Lai-Wo S.",
+  "source": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1 (Crossref: \"given\":\"Leung\",\"family\":\"Lai-Wo S.\")",
+  "printed": {
+   "id": "surname1-BuzsEtal83-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-BuzsEtal83-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:23:02.558Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-BuzsEtal83-2, answered 2026-09-30T17:23:02.558Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "CarvEtal22b",
+  "position": 7,
+  "entry_spelling": "{Quattrini Li}",
+  "source_spelling": "Li",
+  "source": "https://api.crossref.org/works/10.1145/3498361.3539773 (Crossref: \"given\":\"Alberto Quattrini\",\"family\":\"Li\")",
+  "printed": {
+   "id": "surname1-CarvEtal22b-7",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Quattrini Li}",
+   "quote": "Hunter Gallant, Alberto Quattrini Li, and Xia Zhou ... {alberto.quattrini.li, xia.zhou}@dartmouth.edu",
+   "page": 14,
+   "url": "https://dl.acm.org/doi/pdf/10.1145/3498361.3539773",
+   "pdf_sha256": "57c43f125c07140ebb243f135a601d52b37f932035cd5c6afa9cfe0973431278",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "CassEtal02",
+  "position": 6,
+  "entry_spelling": "{Di Lazzaro}",
+  "source_spelling": "Lazzaro",
+  "source": "https://api.crossref.org/works/10.1093/brain/awf135 (Crossref: \"given\":\"Vincenzo Di\",\"family\":\"Lazzaro\")",
+  "printed": {
+   "id": "surname1-CassEtal02-6",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Di Lazzaro}",
+   "quote": "Pietro Tonali,3 Vincenzo Di Lazzaro3 and Peter Brown1",
+   "page": 1235,
+   "url": "https://academic.oup.com/brain/article-pdf/125/6/1235/17864924/1251235.pdf",
+   "pdf_sha256": "6d3563554647caa95c9d33bebf635c5f49b911ffb15eff3187c5599463504d55",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "DengEtal09",
+  "position": 5,
+  "entry_spelling": "Li",
+  "source_spelling": "Kai Li",
+  "source": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848 (Crossref: \"given\":\"\",\"family\":\"Kai Li\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "DengEtal09",
+  "position": 6,
+  "entry_spelling": "Fei-Fei",
+  "source_spelling": "Li Fei-Fei",
+  "source": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848 (Crossref: \"given\":\"\",\"family\":\"Li Fei-Fei\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "DesaEtal12",
+  "position": 1,
+  "entry_spelling": "Desai",
+  "source_spelling": "Arcot Desai",
+  "source": "https://api.crossref.org/works/10.1109/embc.2012.6346879 (Crossref: \"given\":\"Sharanya\",\"family\":\"Arcot Desai\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "DoveEtal00",
+  "position": 5,
+  "entry_spelling": "{von Cramon}",
+  "source_spelling": "Yves von Cramon",
+  "source": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4 (Crossref: \"given\":\"D.\",\"family\":\"Yves von Cramon\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "ElHaEtal19",
+  "position": 2,
+  "entry_spelling": "Janssen",
+  "source_spelling": "M J Janssen",
+  "source": "https://europepmc.org/article/MED/31915538 (PubMed via Europe PMC: Steve M J Janssen); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6943370/fullTextXML (PMC full-text front matter: Steve M J Janssen)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "ElHaEtal19",
+  "position": 2,
+  "entry_spelling": "Janssen",
+  "source_spelling": "M. J. Janssen",
+  "source": "https://api.crossref.org/works/10.1515/tnsci-2019-0044 (Crossref: \"given\":\"Steve\",\"family\":\"M. J. Janssen\"); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6943370&metadataPrefix=pmc_fm (PMC full-text front matter: Steve M. J. Janssen)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "EngeEtal10",
+  "position": 6,
+  "entry_spelling": "MacDonald",
+  "source_spelling": "MacDonald III",
+  "source": "https://api.crossref.org/works/10.7551/mitpress/9780262014717.003.0018 (Crossref: \"given\":\"Angus\",\"family\":\"MacDonald III\")",
+  "printed": {
+   "id": "surname1-EngeEtal10-6",
+   "class": "PRINTED=SOURCE",
+   "printed": "MacDonald, III",
+   "quote": "Peter König, Ilona Kovács, Angus MacDonald III, Earl K. Miller",
+   "page": 267,
+   "url": "https://direct.mit.edu/books/edited-volume/chapter-pdf/2275090/9780262289818_car.pdf",
+   "pdf_sha256": "efdfd151b3163e8f4b7f35121592a9c05e63baccea0e24c0ffcac0b2367247fb",
+   "how": "pdf-text",
+   "note": "House form with suffix: \"MacDonald, III, A\". MIT Press Direct open chapter PDF."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "EsteMadd05",
+  "position": 2,
+  "entry_spelling": "Maddox",
+  "source_spelling": "Todd Maddox",
+  "source": "https://api.crossref.org/works/10.3758/bf03193784 (Crossref: \"given\":\"W.\",\"family\":\"Todd Maddox\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "FernEtal99a",
+  "position": 7,
+  "entry_spelling": "{Van Roost}",
+  "source_spelling": "Roost",
+  "source": "https://api.crossref.org/works/10.1126/science.285.5433.1582 (Crossref: \"given\":\"Dirk Van\",\"family\":\"Roost\")",
+  "printed": {
+   "id": "surname1-FernEtal99a-7",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Van Roost}",
+   "quote": "Nico Pezer,1 Klaus Lehnertz,1 Matthias Dümpelmann,1 Dirk Van Roost,3 Christian E. Elger1",
+   "page": 1582,
+   "url": "https://www.science.org/doi/pdf/10.1126/science.285.5433.1582",
+   "pdf_sha256": "d299f74afff4fdc9edb79c866663967ccb8a7dbfc21bf9f05f6de92ad7415f30",
+   "how": "pdf-text",
+   "note": "Byline is on PDF page 2 (printed p. 1582)."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "GallRoed02",
+  "position": 2,
+  "entry_spelling": "Roediger",
+  "source_spelling": "Roediger, III",
+  "source": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x (Crossref: \"given\":\"Henry L.\",\"family\":\"Roediger, III\")",
+  "printed": {
+   "id": "surname1-GallRoed02-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-GallRoed02-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:23:08.025Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-GallRoed02-2, answered 2026-09-30T17:23:08.025Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "GhosEtal11",
+  "position": 6,
+  "entry_spelling": "{El Gamal}",
+  "source_spelling": "Gamal",
+  "source": "https://api.crossref.org/works/10.1038/nmeth.1694 (Crossref: \"given\":\"Abbas El\",\"family\":\"Gamal\"); https://europepmc.org/article/MED/21909102 (PubMed via Europe PMC: Abbas El Gamal)",
+  "printed": {
+   "id": "surname1-GhosEtal11-6",
+   "class": "PRINTED=ENTRY",
+   "printed": "{El Gamal}",
+   "quote": "Axel Nimmerjahn2, Yaniv Ziv2, Abbas El Gamal1 & Mark J Schnitzer2–4",
+   "page": 871,
+   "url": "https://www.nature.com/articles/nmeth.1694.pdf",
+   "pdf_sha256": "7113568608f81cbb791b974c4e58dce8fcf28265945204585caf4bd33cb62a38",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "GomeEtal96",
+  "position": 3,
+  "entry_spelling": "McKeel",
+  "source_spelling": "McKeel Jr.",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.16-14-04491.1996 (Crossref: \"given\":\"Daniel W.\",\"family\":\"McKeel Jr.\")",
+  "printed": {
+   "id": "surname1-GomeEtal96-3",
+   "class": "PRINTED=SOURCE",
+   "printed": "McKeel, Jr",
+   "quote": "Teresa Gómez-Isla,1 Joseph L. Price,2 Daniel W. McKeel Jr.,2 John C. Morris,2",
+   "page": 4491,
+   "url": "https://www.jneurosci.org/content/16/14/4491.full.pdf",
+   "pdf_sha256": "5f567a0f26b9a523ac6fb3addca80b3770aeb0aed9826de7a855af5e29713196",
+   "how": "pdf-text",
+   "note": "Printed with suffix; house form \"McKeel, Jr, D W\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "HarrEtal20",
+  "position": 17,
+  "entry_spelling": "{Fern{\\'{a}}ndez del R{\\'{i}}o}",
+  "source_spelling": "del Río",
+  "source": "https://api.crossref.org/works/10.1038/s41586-020-2649-2 (Crossref: \"given\":\"Jaime Fernández\",\"family\":\"del Río\"); https://europepmc.org/article/MED/32939066 (PubMed via Europe PMC: Jaime Fernández Del Río); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7759461/fullTextXML (PMC full-text front matter: Jaime Fernández del Río)",
+  "printed": {
+   "id": "surname1-HarrEtal20-17",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Fern{\\'a}ndez del R{\\'i}o}",
+   "quote": "Allan Haldane17, Jaime Fernández del Río18, Mark Wiebe19,20,",
+   "page": 357,
+   "url": "https://www.nature.com/articles/s41586-020-2649-2.pdf",
+   "pdf_sha256": "6728d4ba00fcb73e7872b1cb4b05a7a51482a152da6a9464a15d8f6dcdeb8a3d",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "HassEich05",
+  "position": 2,
+  "entry_spelling": "Eichenbaum",
+  "source_spelling": "Howard Eichenbaum",
+  "source": "https://api.crossref.org/works/10.1016/j.neunet.2005.08.007 (Crossref: \"given\":\"\",\"family\":\"Howard Eichenbaum\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "Heal16",
+  "position": 1,
+  "entry_spelling": "Healey",
+  "source_spelling": "Karl Healey",
+  "source": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067 (Crossref: \"given\":\"M.\",\"family\":\"Karl Healey\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 1,
+  "entry_spelling": "Heusser",
+  "source_spelling": "C. Heusser",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Andrew\",\"family\":\"C. Heusser\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 2,
+  "entry_spelling": "Fitzpatrick",
+  "source_spelling": "C. Fitzpatrick",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Paxton\",\"family\":\"C. Fitzpatrick\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 3,
+  "entry_spelling": "Field",
+  "source_spelling": "E. Field",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Campbell\",\"family\":\"E. Field\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 5,
+  "entry_spelling": "Manning",
+  "source_spelling": "R. Manning",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Jeremy\",\"family\":\"R. Manning\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HoltEtal12",
+  "position": 13,
+  "entry_spelling": "{Riva Posse}",
+  "source_spelling": "Posse",
+  "source": "https://europepmc.org/article/MED/22213770 (PubMed via Europe PMC: Patricio Riva Posse)",
+  "printed": {
+   "id": "surname1-HoltEtal12-13",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Riva Posse}",
+   "quote": "Klaus Mewes, PhD; Patricio Riva Posse, MD; David A. Gutman, MD, PhD",
+   "page": 150,
+   "url": "https://jamanetwork.com/journals/jamapsychiatry/articlepdf/1107402/yoa110032_150_158.pdf",
+   "pdf_sha256": "ac378503c35e58770ff5adc54d5b0e3fe3a072d71625d3079fec60691d2b35ce",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "HughEtal12",
+  "position": 2,
+  "entry_spelling": "Mao",
+  "source_spelling": "Dong Mao",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Dong Mao\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HughEtal12",
+  "position": 4,
+  "entry_spelling": "Wang",
+  "source_spelling": "Yang Wang",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Yang Wang\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "HughEtal12",
+  "position": 5,
+  "entry_spelling": "Wu",
+  "source_spelling": "Qiang Wu",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Qiang Wu\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "Hunt03",
+  "position": 1,
+  "entry_spelling": "Hunt",
+  "source_spelling": "Reed Hunt",
+  "source": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4 (Crossref: \"given\":\"R\",\"family\":\"Reed Hunt\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "IyyeEtal15",
+  "position": 4,
+  "entry_spelling": "{Daum\\'{e}}",
+  "source_spelling": "Daumé III",
+  "source": "https://api.crossref.org/works/10.3115/v1/p15-1162 (Crossref: \"given\":\"Hal\",\"family\":\"Daumé III\")",
+  "printed": {
+   "id": "surname1-IyyeEtal15-4",
+   "class": "PRINTED=SOURCE",
+   "printed": "Daum{\\'e}, III",
+   "quote": "Mohit Iyyer,1 Varun Manjunatha,1 Jordan Boyd-Graber,2 Hal Daumé III1",
+   "page": 1681,
+   "url": "https://aclanthology.org/P15-1162.pdf",
+   "pdf_sha256": "b83885f420f62a4bb8604351b686d2947de16dd17030dfc636d4d68d1fc9b595",
+   "how": "pdf-text",
+   "note": "House form with suffix: \"Daum{\\'e}, III, H\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "KessEtal02",
+  "position": 2,
+  "entry_spelling": "Kappelle",
+  "source_spelling": "Jaap Kappelle",
+  "source": "https://api.crossref.org/works/10.1016/s0028-3932(01)00199-3 (Crossref: \"given\":\"L\",\"family\":\"Jaap Kappelle\"); https://europepmc.org/article/MED/11931950 (PubMed via Europe PMC: L Jaap Kappelle)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KleiEtal07a",
+  "position": 2,
+  "entry_spelling": "Liang",
+  "source_spelling": "Lin Liang",
+  "source": "https://api.crossref.org/works/10.3171/jns-07/07/0029 (Crossref: \"given\":\"Grace S.\",\"family\":\"Lin Liang\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 1,
+  "entry_spelling": "Kluyver",
+  "source_spelling": "Kluyver Thomas",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Kluyver Thomas\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 2,
+  "entry_spelling": "Ragan-Kelley",
+  "source_spelling": "Ragan-Kelley Benjamin",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Ragan-Kelley Benjamin\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 4,
+  "entry_spelling": "Granger",
+  "source_spelling": "Granger Brian",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Granger Brian\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 5,
+  "entry_spelling": "Bussonnier",
+  "source_spelling": "Bussonnier Matthias",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Bussonnier Matthias\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 6,
+  "entry_spelling": "Frederic",
+  "source_spelling": "Frederic Jonathan",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Frederic Jonathan\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 7,
+  "entry_spelling": "Kelley",
+  "source_spelling": "Kelley Kyle",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Kelley Kyle\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 8,
+  "entry_spelling": "Hamrick",
+  "source_spelling": "Hamrick Jessica",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Hamrick Jessica\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 9,
+  "entry_spelling": "Grout",
+  "source_spelling": "Grout Jason",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Grout Jason\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 10,
+  "entry_spelling": "Corlay",
+  "source_spelling": "Corlay Sylvain",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Corlay Sylvain\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 11,
+  "entry_spelling": "Ivanov",
+  "source_spelling": "Ivanov Paul",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Ivanov Paul\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 13,
+  "entry_spelling": "Abdalla",
+  "source_spelling": "Abdalla Safia",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Abdalla Safia\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 14,
+  "entry_spelling": "Willing",
+  "source_spelling": "Willing Carol",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Willing Carol\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "KragEtal19",
+  "position": 9,
+  "entry_spelling": "Barrett",
+  "source_spelling": "Feldman Barrett",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.2043-18.2019 (Crossref: \"given\":\"Lisa\",\"family\":\"Feldman Barrett\"); https://europepmc.org/article/MED/31160537 (PubMed via Europe PMC: Lisa Feldman Barrett); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6668211&metadataPrefix=pmc_fm (PMC full-text front matter: Lisa Feldman Barrett)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-KragEtal19-9",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:11:08.415Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-KragEtal19-9, answered 2026-09-30T16:11:08.415Z"
+   }
+  ],
+  "decision": "change",
+  "why": "user chose the source's spelling",
+  "old_name": "L F Barrett",
+  "new_name": "L {Feldman Barrett}"
+ },
+ {
+  "key": "LeunYim86",
+  "position": 2,
+  "entry_spelling": "Yim",
+  "source_spelling": "Chi Yiu Yim",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2 (Crossref: \"given\":\"\",\"family\":\"Chi Yiu Yim\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "LopeEtal73",
+  "position": 1,
+  "entry_spelling": "{Lopes Da Silva}",
+  "source_spelling": "da Silva",
+  "source": "https://europepmc.org/article/MED/4128158 (PubMed via Europe PMC: F H da Silva)",
+  "printed": {
+   "id": "surname1-LopeEtal73-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-LopeEtal73-1",
+    "section": "I",
+    "choice": "other",
+    "note": "\"{Lopes da Silva}\"",
+    "answered": "2026-09-30T17:23:41.745Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-LopeEtal73-1, answered 2026-09-30T17:23:41.745Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user's text: \"{Lopes da Silva}\"",
+  "old_name": "F H {Lopes Da Silva}",
+  "new_name": "F H {Lopes da Silva}"
+ },
+ {
+  "key": "LopeEtal73",
+  "position": 4,
+  "entry_spelling": "{van Leeuwen}",
+  "source_spelling": "Storm van Leeuwen",
+  "source": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2 (Crossref: \"given\":\"W\",\"family\":\"Storm van Leeuwen\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-LopeEtal73-4",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:11:11.883Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-LopeEtal73-4, answered 2026-09-30T16:11:11.883Z"
+   }
+  ],
+  "decision": "change",
+  "why": "user chose the source's spelling",
+  "old_name": "W S {van Leeuwen}",
+  "new_name": "W {Storm van Leeuwen}"
+ },
+ {
+  "key": "MeckEtal99",
+  "position": 2,
+  "entry_spelling": "{von Cramon}",
+  "source_spelling": "Yves von Cramon",
+  "source": "https://api.crossref.org/works/10.1076/jcen.21.5.606.873 (Crossref: \"given\":\"D.\",\"family\":\"Yves von Cramon\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "MurdVomS67",
+  "position": 2,
+  "entry_spelling": "{Vom {S}aal}",
+  "source_spelling": "Saal W vom",
+  "source": "https://europepmc.org/article/MED/6032566 (PubMed via Europe PMC: Saal W vom)",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "change",
+  "why": "group 'longer': the user's exception, note: Vom{S}aal should be \"{vom Saal}\"",
+  "old_name": "W {Vom {S}aal}",
+  "new_name": "W {vom Saal}"
+ },
+ {
+  "key": "NybeEtal03",
+  "position": 4,
+  "entry_spelling": "{Stigsdotter Neely}",
+  "source_spelling": "Neely",
+  "source": "https://api.crossref.org/works/10.1073/pnas.1735487100 (Crossref: \"given\":\"Anna Stigsdotter\",\"family\":\"Neely\"); https://europepmc.org/article/MED/14597711 (PubMed via Europe PMC: Anna Stigsdotter Neely); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A263881&metadataPrefix=pmc_fm (PMC full-text front matter: Anna Stigsdotter Neely)",
+  "printed": {
+   "id": "surname1-NybeEtal03-4",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Stigsdotter Neely}",
+   "quote": "Lars Nyberg*†, Johan Sandblom‡, Sari Jones§, Anna Stigsdotter Neely*, Karl Magnus Petersson‡¶",
+   "page": 13728,
+   "url": "https://www.pnas.org/doi/pdf/10.1073/pnas.1735487100",
+   "pdf_sha256": "504f7d96514f1dbbece8c1840695b214eabcc5ef788071904bbb3e93894af86b",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "PollGero68",
+  "position": 2,
+  "entry_spelling": "Gerow",
+  "source_spelling": "III",
+  "source": "https://api.crossref.org/works/10.2307/1420627 (Crossref: \"given\":\"Joshua R. Gerow\",\"family\":\"III\")",
+  "printed": {
+   "id": "surname1-PollGero68-2",
+   "class": "PRINTED=OTHER",
+   "printed": "Gerow, III",
+   "quote": "By HOWARD R. POLLIO and JOSHUA R. GEROW III, University of Tennessee",
+   "page": 303,
+   "url": "https://www.jstor.org/stable/pdf/1420627.pdf",
+   "pdf_sha256": "314c3ae9754a55a1fd8d7c7cab74b7561356fbc6c48b806722dd0b034ad2b10e",
+   "how": "image",
+   "note": "Small capitals (case from large initials: Gerow). JSTOR cover sheet: \"Howard R. Pollio and Joshua R. Gerow III\". Printed surname Gerow plus suffix III: house form \"Gerow, III, J R\". The entry lacks the suffix; the source took \"III\" as the surname."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "PradEtal93",
+  "position": 2,
+  "entry_spelling": "Dutt",
+  "source_spelling": "Narayana Dutt",
+  "source": "https://api.crossref.org/works/10.1016/0010-4825(93)90104-9 (Crossref: \"given\":\"D.\",\"family\":\"Narayana Dutt\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "Roed08",
+  "position": 1,
+  "entry_spelling": "Roediger",
+  "source_spelling": "Roediger, III",
+  "source": "https://api.crossref.org/works/10.1146/annurev.psych.57.102904.190139 (Crossref: \"given\":\"Henry L.\",\"family\":\"Roediger, III\")",
+  "printed": {
+   "id": "surname1-Roed08-1",
+   "class": "PRINTED=SOURCE",
+   "printed": "Roediger, III",
+   "quote": "Relativity of Remembering: Why the Laws of Memory Vanished / Henry L. Roediger, III",
+   "page": 225,
+   "url": "https://www.annualreviews.org/doi/pdf/10.1146/annurev.psych.57.102904.190139",
+   "pdf_sha256": "791eb7f47a2d3233add51c531921e887f96b1349074aa3ed7ea9765ff2f71a67",
+   "how": "pdf-text",
+   "note": "House form \"Roediger, III, H L\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "SandEtal98",
+  "position": 3,
+  "entry_spelling": "Huettel",
+  "source_spelling": "A. Huettel",
+  "source": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0 (Crossref: \"given\":\"Scott\",\"family\":\"A. Huettel\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 1,
+  "entry_spelling": "Sederberg",
+  "source_spelling": "B. Sederberg",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Per\",\"family\":\"B. Sederberg\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 2,
+  "entry_spelling": "Miller",
+  "source_spelling": "F. Miller",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Jonathan\",\"family\":\"F. Miller\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 3,
+  "entry_spelling": "Howard",
+  "source_spelling": "W. Howard",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Marc\",\"family\":\"W. Howard\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 4,
+  "entry_spelling": "Kahana",
+  "source_spelling": "J. Kahana",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Michael\",\"family\":\"J. Kahana\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "SpinEtal88",
+  "position": 2,
+  "entry_spelling": "{Della Sala}",
+  "source_spelling": "Sala",
+  "source": "https://api.crossref.org/works/10.1080/02643298808252933 (Crossref: \"given\":\"S. Della\",\"family\":\"Sala\")",
+  "printed": {
+   "id": "surname1-SpinEtal88-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "Taylor & Francis page says \"Get Access\" (no Dartmouth subscription to this volume); EBSCO has an index record only (MLA: \"Sala, S. Della\")."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-SpinEtal88-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:24:03.447Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-SpinEtal88-2, answered 2026-09-30T17:24:03.447Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "SteeEtal97",
+  "position": 3,
+  "entry_spelling": "{van Nieuw Amerongen}",
+  "source_spelling": "Amerongen",
+  "source": "https://api.crossref.org/works/10.1111/j.1600-0722.1997.tb00245.x (Crossref: \"given\":\"Arievan Nieuw\",\"family\":\"Amerongen\")",
+  "printed": {
+   "id": "surname1-SteeEtal97-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "{van Nieuw Amerongen}",
+   "quote": "Peter A. Steerenberg1, Ilse A. van Asperen2, Arie van Nieuw Amerongen3, Jeike Biewenga4, Damaris Mol1, Gertjan Medema5",
+   "page": 305,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1600-0722.1997.tb00245.x",
+   "pdf_sha256": "3b5992cd104d90093f3e61121a30842b6935ce88f42ee488c2b13fdc713ac39f",
+   "how": "image",
+   "note": "OCR layer misreads the given name as \"Aria\"; the image shows \"Arie\". The citation line under the title capitalises \"Van Nieuw Amerongen A\"; the byline has lowercase \"van\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "TingEtal02",
+  "position": 1,
+  "entry_spelling": "{Ting Lee}",
+  "source_spelling": "Lee",
+  "source": "https://api.crossref.org/works/10.1111/j.0006-341x.2002.00981.x (Crossref: \"given\":\"Mei-Ling Ting\",\"family\":\"Lee\"); https://europepmc.org/article/MED/12495153 (PubMed via Europe PMC: Mei-Ling Ting Lee)",
+  "printed": {
+   "id": "surname1-TingEtal02-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "{Ting Lee}",
+   "quote": "Mei-Ling Ting Lee,1,2,3,* Martha L. Bulyk,4 G. A. Whitmore,5 and George M. Church4",
+   "page": 981,
+   "url": "https://academic.oup.com/biometrics/article-pdf/58/4/981/51699095/biometrics_58_4_981.pdf",
+   "pdf_sha256": "34c3e43b49f9c5cc879d5733aba4a20dd1010232de42ab43475931f76d4cd944",
+   "how": "image",
+   "note": "Text layer is partly garbled for the other names; read from the rendered page."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "TulaEtal07",
+  "position": 2,
+  "entry_spelling": "{ter Huurne}",
+  "source_spelling": "Huurne",
+  "source": "https://api.crossref.org/works/10.1002/hbm.20306 (Crossref: \"given\":\"Niels ter\",\"family\":\"Huurne\")",
+  "printed": {
+   "id": "surname1-TulaEtal07-2",
+   "class": "PRINTED=ENTRY",
+   "printed": "{ter Huurne}",
+   "quote": "Anil M. Tuladhar,1 Niels ter Huurne,1 Jan-Mathijs Schoffelen,1 Eric Maris,2",
+   "page": 785,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/hbm.20306",
+   "pdf_sha256": "a6cede510e8a145bace222d12ad5f814598d6182d5fdc91ce91add34d5f75b5a",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "TulvRose06",
+  "position": 2,
+  "entry_spelling": "Rosenbaum",
+  "source_spelling": "Shayna Rosenbaum",
+  "source": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018 (Crossref: \"given\":\"R.\",\"family\":\"Shayna Rosenbaum\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "VieiEtal03",
+  "position": 2,
+  "entry_spelling": "{D{\\'o}ria Neto}",
+  "source_spelling": "Neto",
+  "source": "https://api.crossref.org/works/10.1142/s0129065703001443 (Crossref: \"given\":\"Adrião Duarte Dória\",\"family\":\"Neto\")",
+  "printed": {
+   "id": "surname1-VieiEtal03-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "World Scientific shows \"No Access\" for this article (PDF returns 403) although it recognises Dartmouth; EBSCO has MEDLINE index only. The publisher abstract page (not the printed paper) lists \"Adrião Duarte Dória Neto\"."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-VieiEtal03-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:24:17.215Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-VieiEtal03-2, answered 2026-09-30T17:24:17.215Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "Warr98",
+  "position": 1,
+  "entry_spelling": "Warren",
+  "source_spelling": "Warren Jr.",
+  "source": "https://api.crossref.org/works/10.1080/10407413.1998.9652682 (Crossref: \"given\":\"William H.\",\"family\":\"Warren Jr.\")",
+  "printed": {
+   "id": "surname1-Warr98-1",
+   "class": "PRINTED=SOURCE",
+   "printed": "Warren, Jr",
+   "quote": "William H. Warren, Jr. / Department of Cognitive and Linguistic Sciences / Brown University",
+   "page": 177,
+   "url": "https://research.ebsco.com/c/72mzer/search/details/uzbql7os7f (Academic Search Complete scan)",
+   "pdf_sha256": "601a062912f104a9a2c88b4f67d35a5cfc6f0a21ba8f170387ac48db3ba86182",
+   "how": "image",
+   "note": "Scanned page, no text layer. Footnote: \"Requests for reprints should be sent to William H. Warren, Jr., ...\". House form \"Warren, Jr, W H\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "name suffix: user rule, decision log (verification/resolution-plan-2026-09-22/README.md), section 'Spot-check completed (2026-09-24/25) and resulting decisions': \"No name suffixes (Jr, Sr, II, III, IV): never added; the 27 existing ones are stripped; the comparator ignores suffixes.\""
+ },
+ {
+  "key": "YeoEtal11",
+  "position": 1,
+  "entry_spelling": "Yeo",
+  "source_spelling": "Thomas Yeo",
+  "source": "https://api.crossref.org/works/10.1152/jn.00338.2011 (Crossref: \"given\":\"B. T.\",\"family\":\"Thomas Yeo\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "dBakEtal08",
+  "position": 1,
+  "entry_spelling": "{d Baker}",
+  "source_spelling": "Baker",
+  "source": "https://api.crossref.org/works/10.1007/978-3-540-69132-7_44 (Crossref: \"given\":\"Ryan S. J. d.\",\"family\":\"Baker\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-dBakEtal08-1",
+    "section": "C",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T16:11:57.821Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-dBakEtal08-1, answered 2026-09-30T16:11:57.821Z"
+   }
+  ],
+  "decision": "change",
+  "why": "user chose the source's spelling",
+  "old_name": "R S J {d Baker}",
+  "new_name": "R S J {d} Baker"
+ },
+ {
+  "key": "deArEtal02",
+  "position": 1,
+  "entry_spelling": "{de Ara\\'{u}jo}",
+  "source_spelling": "Araújo",
+  "source": "https://api.crossref.org/works/10.1162/089892902317205339 (Crossref: \"given\":\"Dráulio B. de\",\"family\":\"Araújo\")",
+  "printed": {
+   "id": "surname1-deArEtal02-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "{de Ara{\\'u}jo}",
+   "quote": "Dráulio B. de Araújo1,2, Oswaldo Baffa2, and Ronald T. Wakai1",
+   "page": 70,
+   "url": "https://direct.mit.edu/jocn/article-pdf/14/1/70/1934071/089892902317205339.pdf",
+   "pdf_sha256": "68a7a01e36d5ee8a03f09d00c5bac7501378308b70beb18a9cac3ff1edbdf8cb",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "deCh08",
+  "position": 1,
+  "entry_spelling": "deCharms",
+  "source_spelling": "Christopher deCharms",
+  "source": "https://api.crossref.org/works/10.1038/nrn2414 (Crossref: \"given\":\"R.\",\"family\":\"Christopher deCharms\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "duBoEtal06",
+  "position": 1,
+  "entry_spelling": "{du Boisgueheneuc}",
+  "source_spelling": "Boisgueheneuc",
+  "source": "https://api.crossref.org/works/10.1093/brain/awl244 (Crossref: \"given\":\"F. d.\",\"family\":\"Boisgueheneuc\")",
+  "printed": {
+   "id": "surname1-duBoEtal06-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "{du Boisgueheneuc}",
+   "quote": "Foucaud du Boisgueheneuc,1,2 Richard Levy,1,2,6 Emmanuelle Volle,2,3,6",
+   "page": 3315,
+   "url": "https://academic.oup.com/brain/article-pdf/129/12/3315/741983/awl244.pdf",
+   "pdf_sha256": "54f20053bdee5f765c9f3c99466916a2342b148822f48f77c8eaf1563d1ee222",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "vandEtal11",
+  "position": 1,
+  "entry_spelling": "{van de Pol}",
+  "source_spelling": "Pol",
+  "source": "https://api.crossref.org/works/10.1016/j.learninstruc.2009.10.004 (Crossref: \"given\":\"Janneke van de\",\"family\":\"Pol\")",
+  "printed": {
+   "id": "surname1-vandEtal11-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; the VU Amsterdam repository record has no file)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-vandEtal11-1",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:24:27.233Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-vandEtal11-1, answered 2026-09-30T17:24:27.233Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "ConwEtal00",
+  "position": 4,
+  "entry_spelling": "Racsm\\'{a}ny",
+  "source_spelling": "Racsma'ny",
+  "source": "https://api.crossref.org/works/10.1006/jmla.2000.2706 (Crossref: \"given\":\"Mihaly\",\"family\":\"Racsma'ny\")",
+  "printed": {
+   "id": "surname1-ConwEtal00-4",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; the Bristol repository record has no file)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-ConwEtal00-4",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:24:44.151Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-ConwEtal00-4, answered 2026-09-30T17:24:44.151Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\"",
+  "user_message": "1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub",
+  "old_name": "M Racsm\\'{a}ny",
+  "new_name": "M Racsma'ny"
+ },
+ {
+  "key": "LatiEtal10",
+  "position": 7,
+  "entry_spelling": "D'Agata",
+  "source_spelling": "Dagata",
+  "source": "https://api.crossref.org/works/10.1007/s00426-010-0276-5 (Crossref: \"given\":\"Federico\",\"family\":\"Dagata\")",
+  "printed": {
+   "id": "surname1-LatiEtal10-7",
+   "class": "PRINTED=SOURCE",
+   "printed": "Dagata",
+   "quote": "Catherine Thinus-Blanc · Franco Cauda · Federico Dagata · Patrick Péruch",
+   "page": 545,
+   "url": "https://link.springer.com/content/pdf/10.1007/s00426-010-0276-5.pdf",
+   "pdf_sha256": "8a96482c4df84b6b4ce9667326625af0597e123a4b5b63b7bdd82ea722785df5",
+   "how": "pdf-text",
+   "note": "Checked on the image: printed \"Dagata\" with no apostrophe."
+  },
+  "docs": [
+   {
+    "doc": "rule-unify",
+    "section": "G",
+    "choice": "per-paper",
+    "note": "",
+    "answered": "2026-09-30T17:28:37.258Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc rule-unify, answered 2026-09-30T17:28:37.258Z"
+   }
+  ],
+  "decision": "change",
+  "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)",
+  "old_name": "F D'Agata",
+  "new_name": "F Dagata"
+ },
+ {
+  "key": "MacWEtal01",
+  "position": 2,
+  "entry_spelling": "{St James}",
+  "source_spelling": "St. James",
+  "source": "https://api.crossref.org/works/10.3758/bf03195379 (Crossref: \"given\":\"James\",\"family\":\"St. James\")",
+  "printed": {
+   "id": "surname1-MacWEtal01-2",
+   "class": "PRINTED=ENTRY",
+   "printed": "{St James}",
+   "quote": "BRIAN MACWHINNEY / Carnegie Mellon University ... JAMES ST. JAMES / Millikin University, Decatur, Illinois",
+   "page": 287,
+   "url": "https://link.springer.com/content/pdf/10.3758/BF03195379.pdf",
+   "pdf_sha256": "7318533406d8dc97f955f26fe0e15256cffa858618fd602eacb98e34cfc784ff",
+   "how": "pdf-text",
+   "note": "Byline in capitals; case from body text p. 288: \"James St. James is currently adapting\". Printed \"St. James\"; bibcheck strips periods from name tokens, so entry {St James} and source \"St. James\" are the same after house formatting."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "MillEtal07c",
+  "position": 2,
+  "entry_spelling": "{den Nijs}",
+  "source_spelling": "denNijs",
+  "source": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029 (Crossref: \"given\":\"Marcel\",\"family\":\"denNijs\"); https://europepmc.org/article/MED/17604183 (PubMed via Europe PMC: Marcel denNijs)",
+  "printed": {
+   "id": "surname1-MillEtal07c-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed). For unifying: MillEtal08 (IEEE) prints \"Marcel den Nijs\"."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-MillEtal07c-2",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:24:59.253Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-MillEtal07c-2, answered 2026-09-30T17:24:59.253Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\"",
+  "user_message": "1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub",
+  "old_name": "M {den Nijs}",
+  "new_name": "M denNijs"
+ },
+ {
+  "key": "MillEtal07d",
+  "position": 5,
+  "entry_spelling": "{den Nijs}",
+  "source_spelling": "denNijs",
+  "source": "https://api.crossref.org/works/10.1016/j.jneumeth.2007.01.019 (Crossref: \"given\":\"Marcel\",\"family\":\"denNijs\"); https://europepmc.org/article/MED/17343918 (PubMed via Europe PMC: Marcel denNijs)",
+  "printed": {
+   "id": "surname1-MillEtal07d-5",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed). For unifying: MillEtal08 (IEEE) prints \"Marcel den Nijs\"."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-MillEtal07d-5",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:25:05.487Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-MillEtal07d-5, answered 2026-09-30T17:25:05.487Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user chose the source's spelling; the user's message (2026-09-30): \"1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub\"",
+  "user_message": "1. ConwEtal00 had an apostrophe, not an accent / 2. denNijs is printed as one word in the example pub",
+  "old_name": "M {den Nijs}",
+  "new_name": "M denNijs"
+ },
+ {
+  "key": "MillEtal08",
+  "position": 1,
+  "entry_spelling": "Miller",
+  "source_spelling": "Miller $^*$",
+  "source": "https://api.crossref.org/works/10.1109/tbme.2008.918569 (Crossref: \"given\":\"Kai J.\",\"family\":\"Miller $^*$\")",
+  "printed": {
+   "id": "surname1-MillEtal08-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "Miller",
+   "quote": "Kai J. Miller∗ , Pradeep Shenoy, Marcel den Nijs, Larry B. Sorensen,",
+   "page": 1634,
+   "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4490078",
+   "pdf_sha256": "79b7b48b29e8a32d7e9492ddb82565a26cea8b745cb7e97bb948661c6de3b18a",
+   "how": "pdf-text",
+   "note": "The ∗ is a footnote marker, not part of the name."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "NadeEtal00",
+  "position": 3,
+  "entry_spelling": "LeDoux",
+  "source_spelling": "Le Doux",
+  "source": "https://api.crossref.org/works/10.1038/35021052 (Crossref: \"given\":\"Joseph E.\",\"family\":\"Le Doux\"); https://europepmc.org/article/MED/10963596 (PubMed via Europe PMC: J E Le Doux)",
+  "printed": {
+   "id": "surname1-NadeEtal00-3",
+   "class": "PRINTED=SOURCE",
+   "printed": "{Le Doux}",
+   "quote": "Fear memories require protein synthesis in the amygdala for reconsolidation after retrieval / Karim Nader, Glenn E. Schafe & Joseph E. Le Doux",
+   "page": 722,
+   "url": "https://www.nature.com/articles/35021052.pdf",
+   "pdf_sha256": "fcba6fa6455cd438e83cc78341dbea44537622d68e62263cb17926f0a28f9eda",
+   "how": "pdf-text",
+   "note": "Checked on the image: Nature printed \"Le Doux\" (two words) in this byline."
+  },
+  "docs": [
+   {
+    "doc": "rule-unify",
+    "section": "G",
+    "choice": "per-paper",
+    "note": "",
+    "answered": "2026-09-30T17:28:37.258Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc rule-unify, answered 2026-09-30T17:28:37.258Z"
+   }
+  ],
+  "decision": "change",
+  "why": "printed form, under the user's rule answer 'per-paper' (each entry follows its own printed paper)",
+  "old_name": "J E LeDoux",
+  "new_name": "J E {Le Doux}"
+ },
+ {
+  "key": "NoldEtal98",
+  "position": 3,
+  "entry_spelling": "D'Esposito",
+  "source_spelling": "DʼEsposito",
+  "source": "https://api.crossref.org/works/10.1097/00001756-199810260-00032 (Crossref: \"given\":\"Mark\",\"family\":\"DʼEsposito\")",
+  "printed": {
+   "id": "surname1-NoldEtal98-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "D'Esposito",
+   "quote": "Scott F. Nolde, Marcia K. JohnsonCA and Mark D’Esposito1",
+   "page": 3509,
+   "url": "https://www.ovid.com/jnls/neuroreport/pdf/00001756-199810260-00032~left-prefrontal-activation-during-episodic-remembering-an",
+   "pdf_sha256": "bb00e4e37f3a4ccecb641d8bf7a1aa207c21d7fa7173f828da9571f1f8fa708c",
+   "how": "pdf-text",
+   "note": "Printed with a typographic apostrophe (’), which is the house ASCII apostrophe."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "PennEtal94",
+  "position": 3,
+  "entry_spelling": "{Lopes Da Silva}",
+  "source_spelling": "LOPESDASILVA",
+  "source": "https://api.crossref.org/works/10.1016/0301-0082(94)90025-6 (Crossref: \"given\":\"F\",\"family\":\"LOPESDASILVA\")",
+  "printed": {
+   "id": "surname1-PennEtal94-3",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; the only other copy, pure.uva.nl, is a submitted version, which does not count)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-PennEtal94-3",
+    "section": "I",
+    "choice": "other",
+    "note": "\"{Lopes da Silva}\"",
+    "answered": "2026-09-30T17:25:23.111Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-PennEtal94-3, answered 2026-09-30T17:25:23.111Z"
+   }
+  ],
+  "decision": "change",
+  "why": "the user's text: \"{Lopes da Silva}\"",
+  "old_name": "F H {Lopes Da Silva}",
+  "new_name": "F H {Lopes da Silva}"
+ },
+ {
+  "key": "RhoaEtal13",
+  "position": 2,
+  "entry_spelling": "Berdan",
+  "source_spelling": "Berdan,",
+  "source": "https://api.crossref.org/works/10.1111/edth.12011 (Crossref: \"given\":\"Jennifer\",\"family\":\"Berdan,\")",
+  "printed": {
+   "id": "surname1-RhoaEtal13-2",
+   "class": "PRINTED=ENTRY",
+   "printed": "Berdan",
+   "quote": "Robert A. Rhoads, Jennifer Berdan, and Brit Toven-Lindsey",
+   "page": 87,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/edth.12011",
+   "pdf_sha256": "3061a1b5306904105d618ee2cf9f8f9355ad71e8b605e64cdd3e89d05b8203be",
+   "how": "pdf-text",
+   "note": "The comma in the source is list punctuation."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "SchaEtal11",
+  "position": 3,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1016/j.tics.2011.08.004 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "printed": {
+   "id": "surname1-SchaEtal11-3",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; PMC3183109 and Sussex copies are author manuscripts, which do not count)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-SchaEtal11-3",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:25:44.691Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-SchaEtal11-3, answered 2026-09-30T17:25:44.691Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit"
+ },
+ {
+  "key": "StJaEtal08",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1162/jocn.2008.20091 (Crossref: \"given\":\"Peggy\",\"family\":\"St. Jacques\")",
+  "printed": {
+   "id": "surname1-StJaEtal08-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "{St Jacques}",
+   "quote": "Peggy St. Jacques, David C. Rubin, Kevin S. LaBar, and Roberto Cabeza",
+   "page": 1327,
+   "url": "https://direct.mit.edu/jocn/article-pdf/20/7/1327/1936921/jocn.2008.20091.pdf",
+   "pdf_sha256": "dda32078a575f12a768d4eef7cc7e8022bfce58c9be9d5d34e351420051b72f3",
+   "how": "pdf-text",
+   "note": "Printed \"St. Jacques\"; bibcheck strips periods, so entry and source agree after house formatting."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "StJaEtal12",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1016/j.neurobiolaging.2010.11.007 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "printed": {
+   "id": "surname1-StJaEtal12-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; PMC3084340 is an author manuscript, which does not count)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-StJaEtal12-1",
+    "section": "I",
+    "choice": "source",
+    "note": "",
+    "answered": "2026-09-30T17:25:50.224Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-StJaEtal12-1, answered 2026-09-30T17:25:50.224Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read 'St. Jacques' (source); the house form strips periods, so it is '{St Jacques}', the entry's spelling: no edit"
+ },
+ {
+  "key": "StJaScha13",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1177/0956797612457377 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "printed": {
+   "id": "surname1-StJaScha13-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "{St Jacques}",
+   "quote": "Peggy L. St. Jacques and Daniel L. Schacter",
+   "page": 537,
+   "url": "https://journals.sagepub.com/doi/pdf/10.1177/0956797612457377",
+   "pdf_sha256": "ddd750c7850739f15d4a52fae3ced4ca4eed9d7bb567a598bda90275f1960bd2",
+   "how": "pdf-text",
+   "note": "Printed \"St. Jacques\"; bibcheck strips periods, so entry and source agree after house formatting."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "VanSEtal07",
+  "position": 1,
+  "entry_spelling": "{Van Strien}",
+  "source_spelling": "VANSTRIEN",
+  "source": "https://api.crossref.org/works/10.1016/j.ijpsycho.2007.07.003 (Crossref: \"given\":\"J\",\"family\":\"VANSTRIEN\")",
+  "printed": {
+   "id": "surname1-VanSEtal07-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; Erasmus repository file is behind a login)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-VanSEtal07-1",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:25:56.459Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-VanSEtal07-1, answered 2026-09-30T17:25:56.459Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "VanSEtal07",
+  "position": 3,
+  "entry_spelling": "{Van der Meer}",
+  "source_spelling": "VANDERMEER",
+  "source": "https://api.crossref.org/works/10.1016/j.ijpsycho.2007.07.003 (Crossref: \"given\":\"N\",\"family\":\"VANDERMEER\")",
+  "printed": {
+   "id": "surname1-VanSEtal07-3",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed; Erasmus repository file is behind a login)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-VanSEtal07-3",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:26:14.927Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-VanSEtal07-3, answered 2026-09-30T17:26:14.927Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "BragEtal99",
+  "position": 5,
+  "entry_spelling": "Buzs\\'{a}ki",
+  "source_spelling": "Buzs�ki",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0 (Crossref: \"given\":\"Gyorgy\",\"family\":\"Buzs�ki\")",
+  "printed": {
+   "id": "surname1-BragEtal99-5",
+   "class": "PRINTED=ENTRY",
+   "printed": "Buzs{\\'a}ki",
+   "quote": "Charles L. Wilson,1,2,4 Itzhak Fried,3,4 and Gyorgy Buzsáki 5",
+   "page": 137,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:2<137::AID-HIPO5>3.0.CO;2-0",
+   "pdf_sha256": "12f0fc123bbaaaf499c26c0f29b98145a9b0803570f399f9065e2ea114252b60",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BranEtal96",
+  "position": 1,
+  "entry_spelling": "Branka\\v{c}k",
+  "source_spelling": "Branka?k",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1996)6:5<475::aid-hipo1>3.0.co;2-i (Crossref: \"given\":\"Jurij\",\"family\":\"Branka?k\")",
+  "printed": {
+   "id": "surname1-BranEtal96-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "Branka{\\v{c}}k",
+   "quote": "Jurij Brankačk,1 Thomas Seidenbecher,2 and Hans-Wilhelm Müller-Gärtner1",
+   "page": 475,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1996)6:5<475::AID-HIPO1>3.0.CO;2-I",
+   "pdf_sha256": "1e6319ac708608143c0672d5e0f4da15a758b050f813cfac66ddb7ea61fd8961",
+   "how": "image",
+   "note": "Text layer is garbled (\"BrankaZk\", \"Miiller-Gartnerl\")."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BranEtal96",
+  "position": 3,
+  "entry_spelling": "M{\\\"{u}}ller-G{\\\"{a}}rtner",
+  "source_spelling": "M�ller-G�rtner",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1996)6:5<475::aid-hipo1>3.0.co;2-i (Crossref: \"given\":\"Hans-Wilhelm\",\"family\":\"M�ller-G�rtner\")",
+  "printed": {
+   "id": "surname1-BranEtal96-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "M{\\\"u}ller-G{\\\"a}rtner",
+   "quote": "Jurij Brankačk,1 Thomas Seidenbecher,2 and Hans-Wilhelm Müller-Gärtner1",
+   "page": 475,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1996)6:5<475::AID-HIPO1>3.0.CO;2-I",
+   "pdf_sha256": "1e6319ac708608143c0672d5e0f4da15a758b050f813cfac66ddb7ea61fd8961",
+   "how": "image",
+   "note": "Text layer is garbled (\"Miiller-Gartnerl\")."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "BrisEtal02",
+  "position": 3,
+  "entry_spelling": "Ren\\'{e}",
+  "source_spelling": "Ren??",
+  "source": "https://api.crossref.org/works/10.2165/00007256-200232090-00002 (Crossref: \"given\":\"Arcelin\",\"family\":\"Ren??\")",
+  "printed": {
+   "id": "surname1-BrisEtal02-3",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "Springer (Sports Medicine) says \"This is a preview of subscription content, log in via an institution\"; EBSCO has MEDLINE index only. Warning: Springer and MEDLINE both list the third author as \"Arcelin René\", so the real surname is probably Arcelin and the entry's \"Ren{\\'e}\" may be the given name. Not verified on the printed page."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-BrisEtal02-3",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:26:54.181Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-BrisEtal02-3, answered 2026-09-30T17:26:54.181Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "CoheEtal96",
+  "position": 3,
+  "entry_spelling": "O'Reilly",
+  "source_spelling": "O´Reilly",
+  "source": "https://api.crossref.org/works/10.1098/rstb.1996.0138 (Crossref: \"given\":\"Randall\",\"family\":\"O´Reilly\")",
+  "printed": {
+   "id": "surname1-CoheEtal96-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "O'Reilly",
+   "quote": "JONATHAN D. COHEN1,2, TODD S. BRAVER1 and RANDALL C. O’REILLY1",
+   "page": 1515,
+   "url": "https://royalsocietypublishing.org/rstb/article-pdf/351/1346/1515/84172/rstb.1996.0138.pdf",
+   "pdf_sha256": "e84f3211f2885d6f5b2748cc00cd2482746fc1818a374e8c043c73ed127dca8e",
+   "how": "pdf-text",
+   "note": "Byline in capitals; case from the references in the same paper: \"Cohen, J. D. & O’Reilly, R. C. 1996\". The apostrophe is typographic (’)."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "FernEtal99b",
+  "position": 1,
+  "entry_spelling": "Fern\\'{a}ndez",
+  "source_spelling": "Fern�ndez",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:1<35::aid-hipo4>3.0.co;2-z (Crossref: \"given\":\"Guill�n\",\"family\":\"Fern�ndez\")",
+  "printed": {
+   "id": "surname1-FernEtal99b-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "Fern{\\'a}ndez",
+   "quote": "Guillén Fernández,1,4,5 James B. Brewer,2 Zuo Zhao,1",
+   "page": 35,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:1<35::AID-HIPO4>3.0.CO;2-Z",
+   "pdf_sha256": "3defa962df15a04d3e8fb232ac02837743cf43be0752e27924791bbd112309b3",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 3,
+  "entry_spelling": "P{\\'e}rez",
+  "source_spelling": "P&eacute;rez Fernando",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"P&eacute;rez Fernando\")",
+  "printed": {
+   "id": "surname1-KluyEtal16-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "P{\\'e}rez",
+   "quote": "Thomas KLUYVERa,1, Benjamin RAGAN-KELLEYb,1, Fernando PÉREZc, Brian GRANGERd",
+   "page": 87,
+   "url": "https://ebooks.iospress.nl/DOI/10.3233/978-1-61499-649-1-87",
+   "pdf_sha256": "1c5809aa6fd178d6c1dd0f95c268195cd0252b47f08fa1f01ad58123b7bc368a",
+   "how": "pdf-text",
+   "note": "Surnames in capitals; case from the paper's own reference \"Pérez, F. & Granger, B.E. (2007)\"."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 12,
+  "entry_spelling": "Avila",
+  "source_spelling": "Avila Dami&aacute;n",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Avila Dami&aacute;n\")",
+  "printed": null,
+  "docs": [
+   {
+    "doc": "surname-group-longer",
+    "section": "C",
+    "choice": "except",
+    "note": "Vom{S}aal should be \"{vom Saal}\"",
+    "answered": "2026-09-30T16:16:45.772Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, answered 2026-09-30T16:16:45.772Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "group 'longer' (source adds words): keep all except MurdVomS67"
+ },
+ {
+  "key": "MeckHage84",
+  "position": 1,
+  "entry_spelling": "Mecklenbr{\\\"a}uker",
+  "source_spelling": "Mecklenbr�uker",
+  "source": "https://api.crossref.org/works/10.1007/bf00309069 (Crossref: \"given\":\"Silvia\",\"family\":\"Mecklenbr�uker\")",
+  "printed": {
+   "id": "surname1-MeckHage84-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "Mecklenbr{\\\"a}uker",
+   "quote": "Silvia Mecklenbräuker1 and Willi Hager2",
+   "page": 355,
+   "url": "https://link.springer.com/content/pdf/10.1007/BF00309069.pdf",
+   "pdf_sha256": "85dc4788fbecc93171cc19a669c24db7e26abbd20fe58d75a262e035a6c701fe",
+   "how": "image",
+   "note": "Text layer garbled (\"Mecklenbri/uker\")."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "MullWehn94",
+  "position": 1,
+  "entry_spelling": "M{\\\"u}ller",
+  "source_spelling": "M�ller",
+  "source": "https://api.crossref.org/works/10.1007/bf00199474 (Crossref: \"given\":\"M.\",\"family\":\"M�ller\")",
+  "printed": {
+   "id": "surname1-MullWehn94-1",
+   "class": "PRINTED=ENTRY",
+   "printed": "M{\\\"u}ller",
+   "quote": "M. Müller · R. Wehner",
+   "page": 525,
+   "url": "https://link.springer.com/content/pdf/10.1007/BF00199474.pdf",
+   "pdf_sha256": "0688f196d7d93bfd81571d4049cfc41e2b97da228c47d5b14ed5b1d2f18a25cb",
+   "how": "image",
+   "note": "Text layer garbled (\"Miiller\")."
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "NuneEtal87",
+  "position": 1,
+  "entry_spelling": "N\\'{u}ñez",
+  "source_spelling": "Nu´n˜ez",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7 (Crossref: \"given\":\"Angel\",\"family\":\"Nu´n˜ez\")",
+  "printed": {
+   "id": "surname1-NuneEtal87-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-NuneEtal87-1",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:27:47.604Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-NuneEtal87-1, answered 2026-09-30T17:27:47.604Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "NuneEtal87",
+  "position": 2,
+  "entry_spelling": "Garc\\'{i}a-Austt",
+  "source_spelling": "Garci´a-Austt",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7 (Crossref: \"given\":\"Elio\",\"family\":\"Garci´a-Austt\")",
+  "printed": {
+   "id": "surname1-NuneEtal87-2",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-NuneEtal87-2",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:27:58.704Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-NuneEtal87-2, answered 2026-09-30T17:27:58.704Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "RobeEtal99",
+  "position": 3,
+  "entry_spelling": "Georges-Fran{\\c{c}}ois",
+  "source_spelling": "Georges-Fran�ois",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h (Crossref: \"given\":\"Pierre\",\"family\":\"Georges-Fran�ois\")",
+  "printed": {
+   "id": "surname1-RobeEtal99-3",
+   "class": "PRINTED=ENTRY",
+   "printed": "Georges-Fran{\\c{c}}ois",
+   "quote": "Robert G. Robertson, Edmund T. Rolls,* Pierre Georges-François, and Stefano Panzeri",
+   "page": 206,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1098-1063(1999)9:3<206::AID-HIPO2>3.0.CO;2-H",
+   "pdf_sha256": "641f859e1c29c9e2e4185bad33847abc4b00ad80f74e73385a3490018945d634",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ },
+ {
+  "key": "SlawKasi95",
+  "position": 1,
+  "entry_spelling": "S{\\l}awi{\\'n}ska",
+  "source_spelling": "Sl&z.shtsls;;awińska",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o (Crossref: \"given\":\"Urszula\",\"family\":\"Sl&z.shtsls;;awińska\")",
+  "printed": {
+   "id": "surname1-SlawKasi95-1",
+   "class": "NO-ACCESS",
+   "printed": null,
+   "quote": "",
+   "page": null,
+   "url": null,
+   "pdf_sha256": null,
+   "how": null,
+   "note": "ScienceDirect answered every visit (article page and PDF endpoint) with a Cloudflare \"Are you a robot? Verify you are human\" CAPTCHA; not bypassed. Elsevier API returns metadata only. No publisher-version copy found elsewhere (OpenAlex lists only DOI/PubMed)."
+  },
+  "docs": [
+   {
+    "doc": "manual-surname1-SlawKasi95-1",
+    "section": "I",
+    "choice": "entry",
+    "note": "",
+    "answered": "2026-09-30T17:28:09.105Z",
+    "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc manual-surname1-SlawKasi95-1, answered 2026-09-30T17:28:09.105Z"
+   }
+  ],
+  "decision": "keep",
+  "why": "the user read the printed byline: entry's spelling"
+ },
+ {
+  "key": "TervEtal00",
+  "position": 7,
+  "entry_spelling": "N{\\\"a}{\\\"a}t{\\\"a}nen",
+  "source_spelling": "N��t�nen",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1097-0193(200006)10:2<74::aid-hbm30>3.0.co;2-2 (Crossref: \"given\":\"R.\",\"family\":\"N��t�nen\")",
+  "printed": {
+   "id": "surname1-TervEtal00-7",
+   "class": "PRINTED=ENTRY",
+   "printed": "N{\\\"a}{\\\"a}t{\\\"a}nen",
+   "quote": "M. S. Roudas,2 T. L. van Zuijen,1 and R. Näätänen1,4",
+   "page": 74,
+   "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/(SICI)1097-0193(200006)10:2<74::AID-HBM30>3.0.CO;2-2",
+   "pdf_sha256": "2aa8317b91c666254128279faa45b7b4e30ecb32a52110273926cdd8da8f03b6",
+   "how": "pdf-text",
+   "note": ""
+  },
+  "docs": [],
+  "decision": "keep",
+  "why": "printed paper = entry"
+ }
+]

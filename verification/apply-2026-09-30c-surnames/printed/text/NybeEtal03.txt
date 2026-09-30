@@ -1,0 +1,120 @@
+sha256: 504f7d96514f1dbbece8c1840695b214eabcc5ef788071904bbb3e93894af86b  file: pdfs/NybeEtal03.pdf
+
+Neural correlates of training-related memory
+improvement in adulthood and aging
+Lars Nyberg*†, Johan Sandblom‡, Sari Jones§, Anna Stigsdotter Neely*, Karl Magnus Petersson‡¶, Martin Ingvar‡,
+and Lars Bäckman§
+*Department of Psychology, Umeå University, S-901 87 Umeå, Sweden; ‡Cognitive Neurophysiology Research Group R2-01, Department of Clinical
+Neuroscience, Karolinska Institutet, S-17176 Stockholm, Sweden; §Aging Research Center, Division of Geriatric Epidemiology, Neurotec,
+Karolinska Institutet, and Stockholm Gerontology Research Center, S-11382 Stockholm, Sweden; and ¶Cognitive Neurology and
+Memory Research Group, F. C. Donders Centre for Cognitive Neuroimaging, NL-6500 HB Nijmegen, The Netherlands
+
+Downloaded from https://www.pnas.org by DARTMOUTH COLLEGE; ACQ SERVICES/SERIALS A on September 30, 2026 from IP address 129.170.192.77.
+
+Communicated by Endel Tulving, Rotman Research Institute of Baycrest Centre, North York, Canada, August 27, 2003 (received for review May 10, 2003)
+
+Cognitive studies show that both younger and older adults can
+increase their memory performance after training in using a visuospatial mnemonic, although age-related memory deficits tend to
+be magnified rather than reduced after training. Little is known
+about the changes in functional brain activity that accompany
+training-induced memory enhancement, and whether age-related
+activity changes are associated with the size of training-related
+gains. Here, we demonstrate that younger adults show increased
+activity during memory encoding in occipito-parietal and frontal
+brain regions after learning the mnemonic. Older adults did not
+show increased frontal activity, and only those elderly persons
+who benefited from the mnemonic showed increased occipitoparietal activity. These findings suggest that age-related differences in cognitive reserve capacity may reflect both a frontal
+processing deficiency and a posterior production deficiency.
+
+T
+
+he existence of age-related deficits in episodic memory
+functioning are well documented (1). Given the impact of
+such deficits, much research has been directed at examining
+possible means of enhancing memory performance in older
+adults by various forms of cognitive support (2). One approach
+that has received considerable attention involves estimation of
+latent cognitive potential, or cognitive reserve capacity, in older
+age (3). In one variant of this approach, younger and older
+participants are given training in using a classical mnemonic, the
+method of loci (4), to memorize and retrieve words. This method
+involves learning to visualize a series of mental landmarks (e.g.,
+places along one’s route to work). After acquisition of the
+landmarks, the to-be-remembered information is linked to the
+various loci at the time of encoding. At test, the landmarks are
+mentally revisited in serial order, and the information associated
+with each locus is retrieved.
+Serial recall is substantially enhanced by the loci mnemonic for
+both younger and older adults (5, 6), demonstrating cognitive
+reserve capacity in aging (i.e., cognitive reserve capacity is
+defined as the ability to enhance one’s memory performance
+after learning a mnemonic). However, the most striking aspect
+of previous findings is that age differences in memory performance are magnified rather than reduced after training (7). This
+pattern of results suggests an age-related decrease in cognitive
+reserve capacity. Little is known about the basis for this phenomenon. Baltes and Kliegl (7) hypothesized that older adults
+may have difficulty in forming novel relations between the
+landmarks and the to-be-remembered information (i.e., a difficulty in using rather than acquiring the mnemonic), and they
+proposed neurobiological constraints as a determinant of this
+deficit. However, no direct evidence for this account has been
+provided. Here, we present the results from an age-comparative
+positron emission tomography (PET) study of the neural underpinnings of acquisition and use of the loci method.
+
+phase, as outlined in Fig. 1a, was carried out while the participants were placed in the scanner (data on background variables
+were collected before scanning). In pretest 1-2 the participants
+were instructed to encode 18 words in the order they were
+presented. They were scanned during encoding and immediately
+after encoding兾scanning they were instructed to orally recall the
+encoded words (serial recall). In loci acquisition 1-3 participants
+were instructed to memorize a list of 18 words denoting locations
+in the order they were presented (the loci list). They were
+scanned during location encoding, and immediately after encoding兾scanning they were instructed to orally recall the locations (serial recall of locations). In between each scan in the
+acquisition phase, the participants were presented the loci list
+and instructed to try to memorize the locations. Hence, after loci
+acquisition 3, the loci list had been presented seven times. At that
+point, if a participant was unable to recall the list of locations in
+correct serial order in two consecutive runs with a maximum of
+one error, additional training was given until the criterion was
+reached. Only one participant needed additional training. Finally, in posttest 1-2 the participants were instructed to use the
+loci that they learned in the acquisition phase to encode 18 words
+in serial order (loci utilization). They were scanned during
+encoding, and immediately after encoding兾scanning they were
+instructed to orally recall the words (serial recall). In between
+scans in the utilization phase, participants practiced using the
+loci method by using the same word for all locations (e.g., the
+participants were instructed to imagine placing a ball in each of
+the loci and then to retrieve the ball from each loci while walking
+through the imagined home). Seven baseline tasks were interspersed throughout the scanning protocol. During these tasks,
+participants were to covertly count the number of abstract words
+in a list of 18 words. In all 14 scans, each word was presented for
+5,000 ms with no delay between words.
+Word Lists. Three types of word lists with words varying between
+five and eight letters in length were prepared. The words were
+presented in black lowercase letters on a white computer screen.
+For pretest and posttest, four lists of 18 concrete words were
+used. The lists were equal with regard to mean word frequency,
+according to established Swedish norms (8). The lists were
+randomly assigned to be either pretest or posttest lists for each
+participant. For loci acquisition, a list of 18 words representing
+locations in a home was used (e.g., bed, cupboard, sofa). The
+locations and their presentation order were the same for each
+participant. For the baseline task we used seven lists of 18 words,
+3–6 abstract words per list, and the rest concrete words. The
+presentation order of baseline lists was randomized across
+participants.
+
+Methods
+
+Abbreviation: PET, positron emission tomography.
+
+Tasks and Procedure. The whole experiment, including a pretest
+
+†To whom correspondence should be addressed. E-mail: lars.nyberg@psy.umu.se.
+
+phase, a loci acquisition phase, and a loci utilization posttest
+13728 –13733 兩 PNAS 兩 November 11, 2003 兩 vol. 100 兩 no. 23
+
+© 2003 by The National Academy of Sciences of the USA
+
+www.pnas.org兾cgi兾doi兾10.1073兾pnas.1735487100
+
+

@@ -1,0 +1,89 @@
+sha256: 79b7b48b29e8a32d7e9492ddb82565a26cea8b745cb7e97bb948661c6de3b18a  file: pdfs/MillEtal08.pdf
+
+1634
+
+IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING, VOL. 55, NO. 5, MAY 2008
+
+Communications
+Beyond the Gamma Band: The Role of High-Frequency
+Features in Movement Classification
+Kai J. Miller∗ , Pradeep Shenoy, Marcel den Nijs, Larry B. Sorensen,
+Rajesh P. N. Rao, and Jeffrey G. Ojemann
+Abstract—Electrocorticographic spectral changes during movement
+show a behavioral inflection in the classic gamma band (30–70 Hz). We
+quantify this inflection and demonstrate that it limits classification accuracy. We call for the designation of a functionally defined band above it,
+which we denote the χ-band.
+Index Terms—Chi (χ) band, electrocorticographic spectrum.
+
+I. INTRODUCTION
+Several current brain–computer interfaces (BCIs) using electrocorticographic (ECoG) arrays rely upon changes in the power of specific spectral bands associated with actual or imagined motor movement [4]–[7], [14], [18], [19]. The α (8–12) and β (14–25 Hz, also
+known as µ [12]) bands have been associated in the BCI literature
+with characteristic decreases in power with movement compared with
+rest over a range of motor tasks. Recent results have demonstrated that
+cortical spectral changes during movement imagery mimic those of
+actual movement. The γ range (>30 Hz) has been reported to show
+a corresponding power increase [2], [3], [12], [14]. In a previous paper, we hypothesized the existence of two complementary processes:
+one is the dissolution of power in band-specific peaks in the classic
+electroencephalography (EEG) frequency range (up to ∼50 Hz) with
+movement [event-related desynchronization—entity relationship diagram (ERD) [Fig. 1(A)], [12]. The other is a power-law like broad
+spectral increase across all frequencies [Fig. 1(B)] that is most cleanly
+observed at high frequencies because it is masked by an ERD at low
+frequencies [Fig. 1(C)]. The superposition of these two phenomena
+produces an intersection point between power spectra for movement
+and rest inside the classic gamma range. We denote this the “primary
+junction” (J0 ) [9]. In a previous paper, we demonstrated how the integrated power in a high-frequency band, characteristically above J0 ,
+could capture the broad spectral increase (χ-index), and allows functional mapping of the brain in real time [8]. In this paper, we quantify
+the frequency values for J0 , and show how they influence binary classification accuracy between both movement and rest, and between two
+different types of movement. The choice of a frequency range above
+this, χ, will be shown to be the best for classification.
+Manuscript received July 18, 2007; revised October 16, 2007. This work
+was supported in part by the National Science Foundation (NSF) under Grant
+0622252 and Grant 0130705, in part by the National Institutes of Health (NIH)
+under Grant T32-NS07144, and in part by the Poncin Foundation. Asterisk indicates corresponding author.
+*K. J. Miller is with the Department of Physics, University of Washington,
+Seattle, WA 98195 USA (e-mail: kjmiller@u.washington.edu).
+P. Shenoy and R. P. N. Rao are with the Department of Computer Science
+and Engineering, University of Washington, Seattle, WA 98105 USA (e-mail:
+pshenoy@cs.washington.edu; rao@cs.washington.edu).
+M. den Nijs, L. B. Sorensen, and are with the Department of Physics,
+University of Washington, Seattle, WA 98195 USA (e-mail: dennijs@
+phys.washington.edu; seattle@u.washington.edu).
+J. G. Ojemann is with the Department of Neurological Surgery, University of
+Washington, Seattle, WA 98105 USA (e-mail: jojemann@u.washington.edu).
+Color versions of one or more of the figures in this paper are available online
+at http://ieeexplore.ieee.org.
+Digital Object Identifier 10.1109/TBME.2008.918569
+
+Fig. 1. Schematic illustrations of the two types of processes which create a
+junction in the power spectrum. (a) Decoherence of discrete peaks in the power
+spectrum with movement (ERD). (b) Power-law like power spectrum that shifts
+upward with movement. It is most easily observed at high frequencies because
+it is masked by peaked ERD at low frequencies. (c) Example of an actual
+spectrum that demonstrates the spectral shift between hand movement and rest
+for the most task-specific electrode (also for hand movement) for subject 5. The
+superposition of the phenomena in (a) and (b) produces an intersection (J0 ) in
+the power spectrum in the classic gamma range (shown shaded). The squares and
+triangles below the curves in the shaded region indicate the individual values of
+J0 for tongue and hand, respectively. Asterisks indicate the mean values across
+subjects; for hand movement, J0 = 48 ± 9 Hz (mean ± SD) (range 32–57 Hz),
+for tongue movement, J0 = 40 ± 8 Hz (range 26–48 Hz). The individual values
+for each subject can be found in Table I.
+
+II. METHODS
+Eight patients (Table I) at the University of Washington Regional
+Epilepsy Center (Seattle, WA) were implanted with subdural platinum
+electrode arrays (AdTech, Racine, WI) for 7–10 days monitoring prior
+to seizure focus resection, during which they participated in this motor
+task study. Data were sampled in parallel with the clinical recording
+system using Synamps2 amplifiers (Neuroscan, El Paso, TX) recording at 1000 Hz, with a bandpass filter from 0.15 to 200 Hz. A scalp
+or subdural electrode was used for reference. Electrode locations in
+Talairach atlas coordinates [16] were characterized from standard Xrays using the “location on cortex (LOC) package” [11]. Using the
+BCI2000 software [13], subjects were presented with visual stimuli
+instructing them to perform hand or tongue movements for 3-s-long
+intervals; 30 intervals of each movement kind were presented in random order. Movement intervals were interspersed with 3-s-long rest
+
+0018-9294/$25.00 © 2008 IEEE
+
+Authorized licensed use limited to: Dartmouth Libraries. Downloaded on September 30,2026 at 16:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+

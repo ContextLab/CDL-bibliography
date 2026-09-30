@@ -155,6 +155,7 @@ function render() {
       const card = $("article", {class: "entry" + (d.choice ? " v-chosen" : "")});
       card.append($("div", {class: "top"}, $("span", {class: "key"}, it.key)));
       card.append($("p", {class: "q"}, it.question));
+      if (it.links && it.links.length) { const lk = $("div", {class: "ev"}); for (const [l, u] of it.links) lk.append($("div", {}, $("b", {}, l + ": "), $("a", {href: u, target: "_blank", rel: "noopener"}, u))); card.append(lk); }
       const ctx = $("div", {class: "ctx"}); for (const [l, t] of it.context || []) ctx.append($("div", {}, $("b", {}, l + ": "), t)); card.append(ctx);
       if (it.rows) { const det = $("details", {}, $("summary", {}, "Show all " + it.rows.length)); const ul = $("ul", {class: "notes"}); for (const r of it.rows) ul.append($("li", {}, r)); det.append(ul); card.append(det); }
       if (it.before && it.after) card.append($("div", {class: "pair"}, pre("Before", it.before), pre("Now", it.after)));

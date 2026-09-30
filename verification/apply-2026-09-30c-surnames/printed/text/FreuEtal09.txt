@@ -1,0 +1,99 @@
+sha256: 133d9c8a5d4eb1a8953c6d40a4c95142161a3ca64564f51e3bfd4cd4c5ded7cc  file: pdfs/FreuEtal09.pdf
+
+OBSERVATION
+
+Cognitive Functions in a Patient
+With Parkinson-Dementia Syndrome
+Undergoing Deep Brain Stimulation
+Hans-Joachim Freund, MD; Jens Kuhn, MD; Doris Lenartz, MD; Jürgen K. Mai, MD;
+Thomas Schnell, PhD; Joachim Klosterkoetter, MD; Volker Sturm, MD
+
+Background: Dementia represents one of the most challenging health problems. Despite intense research, available therapies have thus far only achieved modest results. Deep brain stimulation (DBS) is an effective
+treatment option for some movement disorders and is under study for psychiatric applications. Recently, diencephalic DBS revealed selective effects on memory functions, another facet of subcortical DBS.
+Objective: To report a new DBS strategy for the modification of cognitive functions in a patient with severe
+Parkinson-dementia syndrome.
+Design: Prospective study with double-blinded sham
+
+stimulation period.
+Setting: Departments of Stereotaxy and Functional Neu-
+
+rosurgery and Psychiatry and Psychotherapy, University of Cologne, Cologne, Germany.
+Patient: A 71-year-old man with slowly progressive Parkinson-dementia syndrome.
+Intervention: We inserted 2 electrodes into the nucleus
+
+basalis of Meynert in addition to electrodes in the subthalamic nucleus.
+
+Results: Turning on the subthalamic nucleus electrodes improved motor symptoms but left cognitive
+performance almost unchanged. Turning on electrical
+stimulation of the nucleus basalis of Meynert resulted
+in markedly improved cognitive functions. The
+improvement in attention, concentration, alertness,
+drive, and spontaneity resulted in the patient’s
+renewed enjoyment of former interests and enhanced
+social communication.
+Conclusions: Such a broad effect on cognition
+is consistent with ample experimental evidence
+revealing that the nucleus basalis of Meynert provides
+cholinergic innervation to the cortical mantle, complemented by glutaminergic and ␥-aminobutyric acid–
+transmitting projections from the basal forebrain.
+These projections provide background tuning facilitating cortical operations. Furthermore, nucleus basalis
+of Meynert stimulation paired with sensory stimuli
+can accomplish persistent reorganization of specific
+processing modules. The improvements in cognitive
+and behavioral performance in our patient are likely to
+be related to the effects of stimulating residual cholinergic projections and cell bodies in the nucleus basalis
+of Meynert.
+
+Main Outcome Measure: Improvement of cognitive
+
+Arch Neurol. 2009;66(6):781-785
+
+functions.
+Author Affiliations: Institute
+for Neuroscience and Medicine
+(INM-7) and Forschungszentrum Juelich, International
+Neuroscience Institute,
+Hannover (Dr Freund);
+Departments of Psychiatry and
+Psychotherapy (Drs Kuhn,
+Schnell, and Klosterkoetter),
+and Stereotaxy and Functional
+Neurosurgery (Drs Lenartz and
+Sturm), University of Cologne,
+Cologne; and Institute of
+Anatomy I, Heinrich-HeineUniversity of Duesseldorf,
+Duesseldorf (Dr Mai), Germany.
+
+R
+
+EGARDING THE EFFECTS OF
+
+deep brain stimulation
+(DBS) of the subthalamic
+nucleus (STN) on cognitive functions, a randomized, multicenter study showed that STNDBS does not reduce overall cognition but
+is associated with a selective decrease in
+frontal cognitive functions.1 Clear improvements in the cognitive state in patients with
+Parkinson disease dementia (PDD) have so
+far not been shown. We describe a new DBS
+strategy for the modification of cognitive
+functions by stimulating the nucleus basa-
+
+(REPRINTED) ARCH NEUROL / VOL 66 (NO. 6), JUNE 2009
+781
+
+lis of Meynert (NBM) in addition to the STN
+in a patient with PDD.
+REPORT OF A CASE
+
+A 71-year-old man developed slowly progressing PD over a 22-year period. At the
+time of observation, the clinical picture was
+characterized by akinetic-rigid PD without prominent tremor. For an extended period, the patient had responded well to dopaminergic medication but had increasingly
+experienced on-off fluctuations over the last
+2-3 years.
+
+WWW.ARCHNEUROL.COM
+
+©2009 American Medical Association. All rights reserved.
+Downloaded from jamanetwork.​com by Dartmouth Libraries user on 09/​30/​2026
+
+

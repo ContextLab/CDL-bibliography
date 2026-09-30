@@ -1,0 +1,87 @@
+sha256: cdea086de370092304150c24c10fcd1d5e6f077276f9c65811045efc24d97c9e  file: pdfs/BabiEtal04.pdf
+
+European Journal of Neuroscience, Vol. 19, pp. 3088±3098, 2004
+
+ß Federation of European Neuroscience Societies
+
+Synchronization of gamma oscillations increases functional
+connectivity of human hippocampus and inferior-middle
+temporal cortex during repetitive visuomotor events
+Babiloni Claudio,1,2,3 Bares Martin,6 Vecchio Fabrizio,1,2 Brazdil Milan,6 Jurak Pavel,5 Moretti Davide Vito,1,2
+Ubaldi Alessandra,1 Rossini Paolo Maria2,3,4 and Rektor Ivan6
+1
+
+Dipartimento di Fisiologia Umana e Farmacologia, UniversitaÁ degli Studi di Roma `La SapienzaP.le Aldo Moro 5, 00185, Rome, Italy
+A.Fa.R Dip. Neuroscienze, Ospedale FBF; Isola Tiberina, Rome, Italy
+3
+IRCCS `Centro S. Giovanni di Dio-FBF', Brescia, Italy
+4
+Clinica Neurologica, UniversitaÁ `Campus Biomedico', Rome, Italy
+5
+Institute of Scienti®c Instruments, Academy of Sciences of the Czech Republic, Brno, Czech Republic
+6
+First Department of Neurology, Masaryk University, St. Anne's Hospital, Pekarska, Brno, Czech Republic
+2
+
+Keywords: CNV paradigm, coherence, event-related desynchronization/ synchronization (ERD/ ERS), P3 paradigm, recency, stereo
+EEG
+
+Abstract
+Do recency processes associated with repetitive sensorimotor events modulate the magnitude and functional coupling of brain
+rhythmicity in human temporal cortex? Intracranial stereo electroencephalographic activity (SEEG; 256 Hz sampling rate) was
+recorded from hippocampus, and inferior (BA20) and middle (BA21) temporal cortex in four epilepsy patients. The repetitive events
+were represented by predicted imperative somatosensory stimuli (CNV paradigm) triggering hand movements (`repetitive visuomotor')
+or counting (`repetitive counting'). The non-repetitive events were `rare' (P3 paradigm) somatosensory stimuli triggering hand
+movements (`non-repetitive visuomotor') or counting (`non-repetitive counting'). Brain rhythmicity was indexed by event-related
+desynchronization/synchronization (ERD/ERS) of SEEG data, whereas the functional coupling was evaluated by spectral SEEG
+coherence between pairs of the mentioned areas. The frequency bands of interest were theta (4±8 Hz), alpha (8±12 Hz), beta
+(14±30 Hz), and gamma (32±46 Hz). Compared to the non-repetitive events, the `repetitive visuomotor' events showed a signi®cant beta and
+gamma ERS in the hippocampus and a signi®cant theta ERD in the inferior temporal cortex. Furthermore, the `repetitive visuomotor'
+events induced a task-speci®c signi®cant gamma coherence among the examined areas. These results suggest that recency
+processes do modulate the magnitude and functional coupling of brain rhythmicity (especially gamma) in the human temporal cortex.
+
+Introduction
+Recency processes allow us to establish whether or not a particular
+stimulus has been recently encountered, regardless of whether it is
+relatively familiar or unfamiliar (Fahy et al., 1993). Previous animal
+studies have shown that temporo-hippocampal systems are involved in
+the judgement of recency on repetitive visuomotor events (Brown et al.,
+1987; Riches et al., 1991; Xiang & Brown, 1997, 1998, 1999). Along
+the same lines, studies in humans have pointed to a crucial role of
+hippocampus (Kesner & Hopkins, 2001) and inferior temporal cortex
+(Baylis & Rolls, 1987) for the short-term memorization. Finally, the
+hippocampus and medial temporal cortex have been found to be
+engaged in the recall of newly learned information (Miller et al.,
+1998) and during the judgement of stimulus recency (Konishi et al.,
+2002), respectively.
+The recency processes associated with repetitive sensorimotor
+events may be related to a synchronization of neuronal ®ring at the
+
+Correspondence: Dr Claudio Babiloni, 1Dipartimento di Fisiologia Umana e Farmacologia, as above.
+E-mail: claudio.babiloni@uniroma1.it
+Received 9 April 2004, accepted 14 April 2004
+doi:10.1111/j.1460-9568.2004.03431.x
+
+temporal cortex, which is re¯ected by event-related synchronization/
+desynchronization (ERD/ERS) of brain rhythms (Pfurtscheller &
+Lopes da Silva, 1999). Indeed, a bulk of evidence has indicated that
+cognitive events change the magnitude of several electroencephalographic (EEG) frequencies at delta/theta (2±7 Hz), alpha (8±12 Hz),
+beta (around 20 Hz), and gamma (around 40 Hz) bands (Murthy &
+Fetz, 1992; Crone et al., 1998a,b; Klimesch, 1999; Singer, 1999; Engel
+et al., 2001). In particular, the theta and gamma responses may
+facilitate the rapid selection of perceptually relevant information
+for further processing in working memory (Demiralp et al., 1994;
+Newman & Grace, 1999). Furthermore, functional coupling of these
+gamma responses across temporal areas (including hippocampus)
+would `stream' conscious episodes during the memorization (Fell
+et al., 2002).
+Here we tested the hypothesis that recency processes associated with
+repetitive sensorimotor events modulate the magnitude and functional
+coupling of brain rhythmicity in human temporal cortex. To this aim,
+intracranial stereo electroencephalographic activity (SEEG; 256 Hz
+sampling rate) was recorded from hippocampus, and inferior and
+middle temporal cortex, in epilepsy patients during presurgical
+monitoring. The repetitive events were represented by predicted
+imperative somatosensory stimuli triggering hand movements
+
+

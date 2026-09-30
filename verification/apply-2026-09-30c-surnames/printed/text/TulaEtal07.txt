@@ -1,0 +1,63 @@
+sha256: a6cede510e8a145bace222d12ad5f814598d6182d5fdc91ce91add34d5f75b5a  file: pdfs/TulaEtal07.pdf
+
+r
+
+Human Brain Mapping 28:785–792 (2007) r
+
+Parieto-Occipital Sources Account for the Increase
+in Alpha Activity with Working Memory Load
+Anil M. Tuladhar,1 Niels ter Huurne,1 Jan-Mathijs Schoffelen,1 Eric Maris,2
+Robert Oostenveld,1 and Ole Jensen1*
+1
+
+2
+
+F.C. Donders Centre for Cognitive Neuroimaging, Nijmegen, The Netherlands
+Nijmegen Institute for Cognition and Information, Radboud University Nijmegen,
+Nijmegen, The Netherlands
+
+Abstract: The role of oscillatory alpha activity (8–13 Hz) in cognitive processing remains an open question. It has been debated whether alpha activity plays a direct role in the neuronal processing required
+for a given task or whether it reflects idling and/or functional inhibition. Recent electroencephalography (EEG) studies have demonstrated that alpha activity increases parametrically with load during
+retention in working memory paradigms. While it is known that the parieto-occipital cortex is involved
+in the generation of the spontaneous alpha oscillations, it remains unknown where the sources of the
+memory-dependent alpha activity are located. We recorded brain activity using magnetoencephalography (MEG) from human subjects performing a Sternberg memory task where faces were used as stimuli. Spectral analysis revealed a parametric increase in alpha activity with memory load over posterior
+brain areas. We then applied a source reconstruction technique that allowed us to map the parametric
+increase in alpha activity to the anatomical magnetic resonance (MR) images of the subject. The primary sources of the memory-dependent alpha activity were in the vicinity of the parieto-occipital sulcus. This region is not directly involved in working memory maintenance of faces. Our findings are
+consistent with the notion that alpha activity reflects disengagement or inhibition of the visual dorsal
+stream. We propose that the disengagement reflected in alpha power serves to suppress visual input in
+order to devote resources to structures responsible for working memory maintenance. Hum Brain Mapp
+28:785–792, 2007. V 2007 Wiley-Liss, Inc.
+C
+
+Key words: electroencephalography; EEG; magnetoencephalography; MEG; oscillations; attention;
+encoding; recall
+
+INTRODUCTION
+Contract grant sponsors: within the framework of the NWO Innovative Research Incentive Schemes with financial aid from the
+Netherlands Organization for Scientific Research (NWO) and the
+Volkswagen Foundation; Contract grant number: I/79876.
+*Correspondence to: Ole Jensen, F.C. Donders Centre for Cognitive
+Neuroimaging, Kapittelweg 29, NL-6525 EN Nijmegen, The Netherlands. E-mail: ole.jensen@fcdonders.ru.nl
+Received for publication 26 October 2005; Revision 11 April 2006;
+Accepted 15 May 2006
+DOI: 10.1002/hbm.20306
+Published online 31 January 2007 in Wiley InterScience (www.
+interscience.wiley.com).
+C
+V
+
+2007 Wiley-Liss, Inc.
+
+In the late 1920s the first electroencephalographic scalp
+recordings in humans were performed by Hans Berger
+[1929]. The dominating feature in the EEG was oscillatory
+activity in the alpha band (8–13 Hz). Even though alpha
+band activity has been the subject of multiple EEG and
+MEG studies, its actual role in cognitive processing
+remains unclear. It has been proposed that oscillatory
+alpha activity reflects a state in which the brain is idle but
+ready to be engaged [Adrian and Matthews, 1934;
+Pfurtscheller et al., 1996]. However, the notion of idling
+has recently been challenged by working memory studies.
+
+

@@ -1,0 +1,91 @@
+sha256: 7113568608f81cbb791b974c4e58dce8fcf28265945204585caf4bd33cb62a38  file: pdfs/GhosEtal11.pdf
+
+Articles
+
+Miniaturized integration of a fluorescence microscope
+
+© 2011 Nature America, Inc. All rights reserved.
+
+Kunal K Ghosh1,2,5, Laurie D Burns2,5, Eric D Cocker2,5, Axel Nimmerjahn2, Yaniv Ziv2, Abbas El Gamal1 &
+Mark J Schnitzer2–4
+The light microscope is traditionally an instrument of
+substantial size and expense. Its miniaturized integration
+would enable many new applications based on mass-producible,
+tiny microscopes. Key prospective usages include brain imaging
+in behaving animals for relating cellular dynamics to animal
+behavior. Here we introduce a miniature (1.9 g) integrated
+fluorescence microscope made from mass-producible parts,
+including a semiconductor light source and sensor. This device
+enables high-speed cellular imaging across ~0.5 mm2 areas
+in active mice. This capability allowed concurrent tracking of
+Ca2+ spiking in >200 Purkinje neurons across nine cerebellar
+microzones. During mouse locomotion, individual microzones
+exhibited large-scale, synchronized Ca2+ spiking. This is
+a mesoscopic neural dynamic missed by prior techniques
+for studying the brain at other length scales. Overall, the
+integrated microscope is a potentially transformative
+technology that permits distribution to many animals and
+enables diverse usages, such as portable diagnostics or
+microscope arrays for large-scale screens.
+
+Modern understanding of technology recognizes miniaturized
+integration as a pivotal advance that facilitates low-cost production and typically leads to improved performance and unanticipated applications1. Such impact has been shown in diverse arenas,
+including telecommunications, computing and genomics. One
+technology that has largely resisted integration is the light microscope, which generally remains a bulky and costly tabletop instrument. In neuroscience, microscopy has achieved widespread use
+in live animals, but the limitations of conventional microscopes
+hamper the scope and scale of brain-imaging experiments 2. To
+improve the accessibility, quality and throughput of brain-imaging
+studies in freely behaving mice, we created a miniature, integrated
+fluorescence microscope with a design permitting mass-­production
+and high-speed tracking of neural dynamics. The microscope is
+based on micro-optics and semiconductor optoelectronics, both
+readily mass-fabricated, and integrates all optical parts in a tiny
+package that is easily held by the fingertips. Compared to highresolution fiber-optic microscopes, our device offers advantages in
+optical sensitivity, field of view, attainable resolution, mechanical
+flexibility for the animal, cost and portability.
+
+Previous methods for microscopy in behaving animals required
+tabletop optical instrumentation that could not be readily distributed to many mice in parallel2–9. Some methods also required
+head fixation of the mouse4,5,8,9, which is incompatible with standard rodent behavioral assays. Our microscope clears both these
+challenges, is 1.9 g in mass and can be carried by an adult mouse
+on its head. Electrical wires carry power, control signals and data
+to and from the mouse, but these are sufficiently fine to permit a
+highly flexible mechanical connection. This is unlike fiber-optic
+microscopes, which are prone to exerting torque on the mouse
+owing to the finite bending radius of the optical fiber.
+We explored the integrated microscope’s capabilities for brain
+imaging by visualizing cerebellar microcirculation across different
+locomotor behaviors. The ~500% increase in optical ­throughput
+over our prior fiber-optic microscope6 improved data quality
+sufficiently that we could analyze capillary diameters and flow
+speeds with seconds-scale resolution rather than averaging over
+behavioral epochs6. Although we had expected capillaries across
+the imaging field would be regulated uniformly, only a spatially
+scattered minority of vessels significantly changed diameters
+and flow speeds as the mouse switched from resting to active
+­behaviors. Capillary regulation may thus have unanticipated
+precision at the tens of micrometers scale.
+We also tracked Ca2+ spiking in up to 206 individual cerebellar
+Purkinje neurons, ~700% more than with our fiber-optic microscope6. The improved throughput implied our recordings required
+lower illumination power and lasted up to 1 h without noticeable
+photobleaching. These improvements allowed collection of far
+larger Ca2+-spiking datasets, enabling the initial analysis in freely
+behaving mice of higher-order spiking correlations among Purkinje
+neurons. This revealed synchronized Ca2+ spiking that arose
+during motor behavior in individual cerebellar microzones.
+Beyond brain imaging, there has been considerable recognition of new applications that would be enabled by miniaturized
+integration of the light microscope, particularly portable, imagebased diagnostics and high-throughput screening10. Past efforts
+to address these have yielded miniaturized devices that needed
+accessory, conventional optical instrumentation11,12 or that did
+not permit fluorescence imaging and made specialized assumptions about the specimen13,14.
+
+1David Packard Electrical Engineering Building, Stanford University, Stanford, California, USA. 2James H. Clark Center, Stanford University, Stanford, California, USA.
+3Howard Hughes Medical Institute, Stanford University, Stanford, California, USA. 4CNC Program, Stanford University, Stanford, California, USA. 5These authors
+
+contributed equally to this work. Correspondence should be addressed to M.J.S. (mschnitz@stanford.edu).
+
+Received 29 November 2010; accepted 2 August 2011; published online 11 september 2011; doi:10.1038/nmeth.1694
+
+nature methods | VOL.8 NO.10 | OCTOBER 2011 | 871
+
+
