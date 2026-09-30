@@ -11,7 +11,7 @@ import json
 import re
 
 import requests
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 from publisher_metadata import PublisherMetadata
 from verification import (ProviderError, author_evidence, current_results, export_snapshot,
                           load_entries, normalize_doi, normalize_title, normalized, now,

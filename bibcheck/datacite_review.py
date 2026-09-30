@@ -157,7 +157,7 @@ def discover(hits, fields):
 
     A concept DOI and its own versions count as one work; the concept DOI
     (which serves the latest version) is returned. Anything else is ambiguous."""
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import split_authors
     first = splitname(split_authors(fields.get('author', ''))[0], strict_mode=True)
     surname = normalized(' '.join(first['von'] + first['last']))

@@ -1058,7 +1058,7 @@ def reformat_author(author, fragment=False):
     # BibTeX's explicit ``family, suffix, given`` form must retain the suffix.
     # rearrange() deliberately removes suffixes for citation-key construction;
     # using it here used to silently discard Jr/Sr/III from author bylines.
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     try:
         parts = splitname(author, strict_mode=True)
         if parts["jr"] and parts["last"] and parts["first"]:

@@ -424,3 +424,90 @@ Applied in `verification/apply-2026-09-27b-final/decisions0928/` (batch-41.json,
 **Rule (user, 2026-09-28): the printed paper is the source of truth.** When the printed paper (the publisher's PDF or full-text page, or a scan of it) and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins. Scope (user-approved 2026-09-28): the printed paper is checked only when there is reason to doubt the registry record: a correction/erratum notice, a mismatch between sources, or a user flag. Otherwise publisher/registry metadata (Crossref etc.) stands as verification. No blanket re-read of PDFs.
 
 **Rule (user, 2026-09-28): "ok, if ambiguous, drop-- we can always add back if needed later".** If a question stays ambiguous after research (it can't be settled from an official or printed source), drop the entry; it can be re-added later. Applied to BrinCrag72, SvenEtal24 and ChanEtal12 (`verification/apply-2026-09-27b-final/decisions0928b/`, batch-42.json; logged in verification/key-deletions.json). No suffixed siblings existed, so no key changed. MorrRNSS11 keeps its key under the organization rule.
+
+## User answers 2026-09-30 (review page)
+
+The user answered the review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM (database
+collection `review0930`; the page, its template, its build script and the notes-audit input are
+in [verification/2026-09-30-user-review/page/](../2026-09-30-user-review/page/)). The answer
+documents were read with the ArtifactData tool on 2026-09-30 (15:25 UTC) and are copied in
+[verification/apply-2026-09-30b-answers/answers/](../apply-2026-09-30b-answers/answers/). The
+user's message on sending them: "i've answered all questions". Sections A, B and D are applied
+here (batch `answers0930b`,
+[apply-2026-09-30b-answers](../apply-2026-09-30b-answers/README.md)); section C (surnames) is
+still being answered and is not applied. Times are the documents' `updatedAt` (UTC) and EDT
+(UTC-4).
+
+**A. Approved entries changed by the brace cleanup (4cdc644).** Question: "The brace cleanup
+changed this approved entry (braces only). Approve the new text?" Each answered "approve"
+(option "Approve"), no note. Recorded with `crossref approve` on the entry's current fingerprint,
+reviewer "Jeremy Manning", source "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM,
+collection review0930, doc brace-KEY, answered UTC-time", note "User approved the
+post-brace-cleanup text on the 2026-09-30 review page (choice: approve)."
+
+| Entry | Doc | Answered (UTC) | EDT |
+|-|-|-|-|
+| Bart32 | brace-Bart32 | 2026-09-30T14:38:48.029Z | 10:38:48 |
+| KahaEtal24 | brace-KahaEtal24 | 2026-09-30T14:38:52.661Z | 10:38:52 |
+| Mink15 | brace-Mink15 | 2026-09-30T14:38:57.195Z | 10:38:57 |
+| Youn61 | brace-Youn61 | 2026-09-30T14:38:59.862Z | 10:38:59 |
+
+Mink15's earlier approval (fingerprint v2:0c83ad54..., before the brace cleanup) was revoked on
+2026-09-29; the new approval is on the current fingerprint (v2:91136b00...) with a new note, so the
+revocation does not touch it, and the old approval still cannot be replayed (refused: "Entry
+changed since review").
+
+**B. Page notes that weren't followed, or that the user left open.**
+
+| Entry | Doc | Answer | Answered (UTC) | EDT | Applied |
+|-|-|-|-|-|-|
+| CronEtal94 | note-CronEtal94 | "drop" ("Confirm the drop") | 2026-09-30T14:39:09.996Z | 10:39:09 | stays deleted; `confirmed_by` (doc and time) added to its row in verification/key-deletions.json |
+| DougPeuc73 | note-DougPeuc73 | "keep" ("Keep 'The Canadian Cartographer' (name printed in 1973)") | 2026-09-30T14:39:12.229Z | 10:39:12 | no change |
+| Mann06 | note-Mann06 | "keep" ("Keep @mastersthesis with Type = {Senior thesis}") | 2026-09-30T14:39:15.613Z | 10:39:15 | no change |
+| Hint03 | note-Hint03 | "keep" ("Keep Number = 1 (Crossref states issue 1)") | 2026-09-30T14:39:05.912Z | 10:39:05 | Number = {1} kept (Crossref: "issue":"1") |
+| Murd71 | note-Murd71 | "keep" ("Keep Number = 4 (Crossref states issue 4)") | 2026-09-30T14:39:07.379Z | 10:39:07 | Number = {4} kept (Crossref: "issue":"4") |
+| KahaEtal08b | note-KahaEtal08b | "change" ("Something else (say what)") | 2026-09-30T14:39:59.669Z | 10:39:59 | keys swapped (below) |
+
+KahaEtal08b, the user's note verbatim: "Use KahaEta08a for \"Putting short-term memory into
+context:...\" and KahaEtal08b for \"Associative processes in episodic memory\"". Interpretation
+(the orchestrating session's, stated to the user): swap the two keys. The Psychological Review
+reply (doi 10.1037/a0013724, until now KahaEtal08b) is now **KahaEtal08a**; the chapter (doi
+10.1016/b978-012370509-9.00185-6, until now KahaEtal08a) is now **KahaEtal08b**. "KahaEta08a" in
+the note is read as KahaEtal08a. The chapter keeps its printed title "Associative retrieval
+processes in episodic memory": the user's wording identified the chapter, and the user was told
+the title would stay as printed. Logged in verification/key-renames.json (commit `answers0930b`,
+with the user's note and the doc time) as three renames through a temporary key
+(KahaEtal08a → KahaEtal08-swap-2026-09-30, KahaEtal08b → KahaEtal08a, KahaEtal08-swap-2026-09-30
+→ KahaEtal08b), so that `research_route.rename_walk`, which follows the log in order, maps each
+work's research evidence to its new key. Content fingerprints are key-independent; both entries
+kept `metadata_verified` with the same accepted record (reply: Crossref 10.1037/a0013724; chapter:
+research evidence, 10.1016/b978-012370509-9.00185-6).
+
+**D. Resolved under the user's rule.** Each answered "ok" (option "Fine"), no note.
+
+| Entry | Doc | Answered (UTC) | EDT | The user's page request | Applied |
+|-|-|-|-|-|-|
+| Hook69 | resolved-Hook69 | 2026-09-30T14:40:01.051Z | 10:40:01 | "title should be \"The posthumous works of Robert Hooke\"" | `crossref approve` |
+| KahaMill13 | resolved-KahaMill13 | 2026-09-30T14:40:02.634Z | 10:40:02 | "add doi too" | `crossref approve` |
+| Palm78 | resolved-Palm78 | 2026-09-30T14:40:04.267Z | 10:40:04 | "again, add DOI" | recorded as resolved; already `metadata_verified` (research route), no write |
+| ScotEtal07 | resolved-ScotEtal07 | 2026-09-30T14:40:07.101Z | 10:40:07 | "this is a book; shouldn't be a pages field" | `crossref approve` |
+
+The three approvals: reviewer "Jeremy Manning", source "review page
+https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc resolved-KEY,
+answered UTC-time", note "Resolved under the user's 2026-09-30 rule ('if you followed what i
+asked then mark as resolved'); the user's page request (“request”) was followed; confirmed 'ok'
+on the 2026-09-30 review page." The rule's wording is quoted as the orchestrating session gave
+it; no copy of that message is in the repository. The page's own summary of the rule (section D
+heading): "Your rule (2026-09-30): if your request was followed, it's resolved; a DOI that
+doesn't exist counts as resolved."
+
+**Checker changes made with this batch (Claude's, not the user's decisions).** Two name-parsing
+defects found by the surname scan were fixed (a tilde accent outside braces, `Pi\~{n}a`, split
+the surname; `\aa` was rejected); no entry's status changes. Replaying a revoked approval as
+the revocation ledger shows it was accepted, because commit 856d637 had edited the ledger's
+approval text (ScotEtal07's replay was accepted during this batch and then re-read as revoked);
+a revocation now revokes the approval text it carries as well as its recorded digest. The
+research post-check follows key-renames.json in log order, so the key swap does not send
+KahaEtal08c (the reply) to the chapter. Details:
+[apply-2026-09-30b-answers](../apply-2026-09-30b-answers/README.md). Library after the batch:
+`6384 entries: human_verified=23, metadata_verified=6353, needs_review=8`.

@@ -2456,3 +2456,27 @@ def test_resolution_pages_from_pdf_footers_and_unregistered_doi(bib):
     assert "resolution_doi_unregistered" in codes(rec)
     assert rec["final_entry"].get("doi") != "10.4324/9780203837672-11"
     assert not any(r.startswith("doi:") and "did not survive" in r for r in residue(rec))
+
+
+def test_renamed_away_follows_the_log_in_order_through_a_key_swap(tmp_path, monkeypatch):
+    """The 2026-09-30 swap (user, review page doc note-KahaEtal08b): the reply KahaEtal08b
+    became KahaEtal08a and the chapter KahaEtal08a became KahaEtal08b, logged as three renames
+    through a temporary key. Frozen rows: the wave-1 rename and the three swap rows."""
+    log = [{"old_key": "KahaEtal08c", "new_key": "KahaEtal08b"},
+           {"old_key": "KahaEtal08a", "new_key": "KahaEtal08-swap-2026-09-30"},
+           {"old_key": "KahaEtal08b", "new_key": "KahaEtal08a"},
+           {"old_key": "KahaEtal08-swap-2026-09-30", "new_key": "KahaEtal08b"},
+           {"old_key": "HerrEtal10", "new_key": "HerrEtal10a"}]
+    (tmp_path / "verification").mkdir()
+    (tmp_path / "verification/key-renames.json").write_text(json.dumps(log))
+    monkeypatch.setattr(pc, "ROOT", tmp_path)
+    renames = pc.renamed_away()
+    bib = {"KahaEtal08a": {}, "KahaEtal08b": {}, "HerrEtal10a": {}}
+    # the reply, first keyed KahaEtal08c, is KahaEtal08a now (last-row-wins sent it to the chapter)
+    assert pc.follow_renames("KahaEtal08c", bib, renames, {"KahaEtal08b"}) == \
+        ("KahaEtal08a", ["KahaEtal08c", "KahaEtal08a"])
+    assert renames["KahaEtal08a"] == "KahaEtal08b" and renames["KahaEtal08b"] == "KahaEtal08a"
+    # keys still in the bibliography are never redirected; a deleted key is never followed
+    assert pc.follow_renames("KahaEtal08a", bib, renames, {"KahaEtal08b"}) == ("KahaEtal08a", [])
+    # negative control: an ordinary chain reads the same either way
+    assert pc.follow_renames("HerrEtal10", bib, renames, set())[0] == "HerrEtal10a"

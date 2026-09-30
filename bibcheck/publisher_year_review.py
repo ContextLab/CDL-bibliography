@@ -10,7 +10,7 @@ import re
 from urllib.parse import quote, urlparse
 
 import requests
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 
 from publisher_metadata import PublisherMetadata
 from search_tools import get_source, SourceHTTPError

@@ -225,14 +225,19 @@ each approval it appends one row to `verification/revocations.jsonl` and to the 
 entry becomes `needs_review`, and the revoked approval is kept under `revoked_approval`.
 
 A revocation matches an approval on its fingerprint, and on either its exact
-reviewer/source/note digest or a recording time no later than the revocation. So:
+reviewer/source/note digest or a recording time no later than the revocation. The digest is
+checked two ways: the one recorded when the revocation was made, and the digest of the
+approval text the ledger row carries (they differ when that text was edited later, as commit
+856d637 did to eleven rows; before 2026-09-30 a replay of the ledger's text was accepted as a
+new approval). The database's copy and the ledger's copy of a revocation both count. So:
 
 - `Cache.get` never returns a revoked approval as current, whatever route wrote it back;
 - `restore` of any snapshot, however old, records a revoked approval as `needs_review`, into
   an empty database too (the ledger is committed; `snapshot` also carries the revocations in
   its header);
-- `approve` refuses to replay the exact revoked approval, but a new approval with a new note,
-  recorded after the revocation, is a new decision and counts.
+- `approve` refuses to replay the revoked approval (as recorded, or as the ledger now shows
+  it), but a new approval with a new note, recorded after the revocation, is a new decision
+  and counts; the revocation notice is dropped from its issues.
 
 Tests: `tests/test_revocation.py` (real entries and approval rows frozen from commit 7f3eead).
 

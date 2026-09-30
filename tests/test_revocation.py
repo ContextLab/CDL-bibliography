@@ -177,3 +177,41 @@ def test_malformed_ledger_fails_closed(library):
     Path(v.REVOCATION_LEDGER).write_text('{"key": "Palm78"}\n')
     with pytest.raises(ValueError, match="Invalid revocation record"):
         statuses(bib, database)
+
+
+def test_ledger_copy_edited_after_revocation_is_still_revoked(library):
+    """Commit 856d637 renamed folders inside the approval notes of eleven ledger rows, so
+    their approval text no longer hashed to the recorded digest, and replaying the approval
+    as the ledger shows it was accepted as new (ScotEtal07, 2026-09-30). A revocation now
+    revokes both its recorded digest and the digest of the approval text it carries."""
+    bib, database = library
+    assert revoke(bib, database, "Palm78").exit_code == 0
+    [row] = v.read_revocation_ledger()
+    original = dict(row["approval"])
+    edited = dict(original, note=original["note"] + " (folder renamed: apply-2026-09-28 -> apply-2026-09-25e)")
+    Path(v.REVOCATION_LEDGER).write_text(v.dumps(dict(row, approval=edited)) + "\n")
+    [row] = v.read_revocation_ledger()
+    assert v.approval_digest(row["approval"]) != row["approval_digest"]
+    assert v.revoked_digests(row) == {row["approval_digest"], v.approval_digest(edited)}
+    base = ["approve", "Palm78", "--fname", str(bib), "--database", str(database),
+            "--fingerprint", PALM_FP, "--reviewer", original["reviewer"], "--source", original["source"]]
+    for note in (edited["note"], original["note"]):  # the ledger's text and the text approved
+        replay = CliRunner().invoke(app, base + ["--note", note])
+        assert replay.exit_code == 2 and "revoked" in replay.output, replay.output
+        assert statuses(bib, database)["Palm78"] == "needs_review"
+    # A stored row carrying the ledger's text is revoked even when recorded after the revocation.
+    later = {"status": "human_verified", "human_review": edited, "checked_at": "2099-01-01T00:00:00+00:00"}
+    assert v.revocation_matches(row, PALM_FP, later)
+    # Negative controls: a genuinely new review stands and does not carry the revocation notice;
+    # other approvals are untouched.
+    fresh = CliRunner().invoke(app, base + ["--note", "Checked the 1978 Erlbaum printing myself"])
+    assert fresh.exit_code == 0, fresh.output
+    cache = v.Cache(database)
+    try:
+        now = v.current_results(str(bib), cache)
+    finally:
+        cache.close()
+    assert now["Palm78"]["status"] == "human_verified"
+    assert not any(str(i).startswith("Human approval revoked") for i in now["Palm78"].get("issues", []))
+    assert not v.revocation_matches(row, PALM_FP, now["Palm78"])
+    assert now["NastEtal20"]["status"] == now["Mink15"]["status"] == "human_verified"

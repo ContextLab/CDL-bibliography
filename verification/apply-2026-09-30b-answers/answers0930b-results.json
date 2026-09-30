@@ -1,0 +1,469 @@
+{
+ "stages": [
+  {
+   "cycle": "run",
+   "seconds": 765.8,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch": [
+    "Bart32",
+    "BragEtal99",
+    "Chri92",
+    "Hook69",
+    "KahaEtal08a",
+    "KahaEtal08b",
+    "KahaEtal24",
+    "KahaMill13",
+    "MagnEtal98",
+    "MeyeEtal88",
+    "Mink15",
+    "NoldEtal98",
+    "NuneEtal87",
+    "PollEtal00",
+    "RobeEtal99",
+    "SchaEtal11",
+    "ScotEtal07",
+    "StJaEtal08",
+    "StJaEtal12",
+    "StJaScha13",
+    "Youn61"
+   ],
+   "batch_statuses_before": {
+    "needs_review": 15,
+    "metadata_verified": 6
+   },
+   "batch_statuses_after": {
+    "human_verified": 6,
+    "metadata_verified": 6,
+    "needs_review": 9
+   },
+   "previously_accepted_now_unresolved": [],
+   "newly_accepted": [
+    "Bart32",
+    "Hook69",
+    "KahaEtal24",
+    "KahaMill13",
+    "Mink15",
+    "Youn61"
+   ],
+   "swapped": {
+    "KahaEtal08a": {
+     "status_before": "metadata_verified",
+     "status": "metadata_verified",
+     "accepted_doi": "10.1037/a0013724",
+     "accepted_source": "crossref",
+     "fingerprint": "v2:ee40d1e437253db9e5da3440f3d250e608be653b79250d049a5edd93cec67b73"
+    },
+    "KahaEtal08b": {
+     "status_before": "metadata_verified",
+     "status": "metadata_verified",
+     "accepted_doi": "10.1016/b978-012370509-9.00185-6",
+     "accepted_source": "research-evidence",
+     "fingerprint": "v2:87db5ab929ec498ded1999aeb0aaddf8d4ca90c5036d0c474a37214c44771bed"
+    }
+   },
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 16,
+    "needs_review": 15
+   },
+   "library_statuses": {
+    "metadata_verified": 6353,
+    "human_verified": 22,
+    "needs_review": 9
+   }
+  },
+  {
+   "cycle": "approve",
+   "network_requests": 0,
+   "added_review_records": 1,
+   "approved": {
+    "Bart32": {
+     "status": "human_verified",
+     "fingerprint": "v2:537f60bccc4037785323fe93bac5b5b37d46b55052006916a4520aa9c9ca8a58",
+     "human_review": {
+      "note": "User approved the post-brace-cleanup text on the 2026-09-30 review page (choice: approve).",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc brace-Bart32, answered 2026-09-30T14:38:48.029Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    },
+    "KahaEtal24": {
+     "status": "human_verified",
+     "fingerprint": "v2:825421e71de43c17a96c3dfe31b0a92cc9ff3f042c106f311b8776633a37baff",
+     "human_review": {
+      "note": "User approved the post-brace-cleanup text on the 2026-09-30 review page (choice: approve).",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc brace-KahaEtal24, answered 2026-09-30T14:38:52.661Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    },
+    "Mink15": {
+     "status": "human_verified",
+     "fingerprint": "v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c",
+     "human_review": {
+      "note": "User approved the post-brace-cleanup text on the 2026-09-30 review page (choice: approve).",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc brace-Mink15, answered 2026-09-30T14:38:57.195Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    },
+    "Youn61": {
+     "status": "human_verified",
+     "fingerprint": "v2:f5ef047a64900114b437a210e4d2cac25b42c5547309eaadb3fb8e93fbeeeb40",
+     "human_review": {
+      "note": "User approved the post-brace-cleanup text on the 2026-09-30 review page (choice: approve).",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc brace-Youn61, answered 2026-09-30T14:38:59.862Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    },
+    "ScotEtal07": {
+     "status": "human_verified",
+     "fingerprint": "v2:102c440cae9315c9f607386dcf3b2f25d9cc7dc68d27b66bba862a207af164bc",
+     "human_review": {
+      "note": "Resolved under the user's 2026-09-30 rule ('if you followed what i asked then mark as resolved'); the user's page request (“this is a book; shouldn't be a pages field”) was followed; confirmed 'ok' on the 2026-09-30 review page.",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc resolved-ScotEtal07, answered 2026-09-30T14:40:07.101Z"
+     },
+     "cli": "Human review recorded for ScotEtal07; any source edit invalidates it."
+    },
+    "KahaMill13": {
+     "status": "human_verified",
+     "fingerprint": "v2:1eb0c55689b963c66d15ca9b144be738997c099aa75cdb26bb20ca0a3171b382",
+     "human_review": {
+      "note": "Resolved under the user's 2026-09-30 rule ('if you followed what i asked then mark as resolved'); the user's page request (“add doi too”) was followed; confirmed 'ok' on the 2026-09-30 review page.",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc resolved-KahaMill13, answered 2026-09-30T14:40:02.634Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    },
+    "Hook69": {
+     "status": "human_verified",
+     "fingerprint": "v2:01574f36dc7f4df2e4a1bcd3f87f3cffbee0be26ee196c3928c296f40dbd4e9c",
+     "human_review": {
+      "note": "Resolved under the user's 2026-09-30 rule ('if you followed what i asked then mark as resolved'); the user's page request (“title should be \"The posthumous works of Robert Hooke\"”) was followed; confirmed 'ok' on the 2026-09-30 review page.",
+      "reviewer": "Jeremy Manning",
+      "source": "review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc resolved-Hook69, answered 2026-09-30T14:40:01.051Z"
+     },
+     "cli": "already recorded (resumed run); not written again"
+    }
+   },
+   "revocation_controls": {
+    "ScotEtal07": {
+     "revoked_fingerprint": "v2:102c440cae9315c9f607386dcf3b2f25d9cc7dc68d27b66bba862a207af164bc",
+     "current_fingerprint": "v2:102c440cae9315c9f607386dcf3b2f25d9cc7dc68d27b66bba862a207af164bc",
+     "old_approval_replay": "This exact approval was revoked 2026-09-29T23:28:42.368466+00:00 (Attribution audit 2026-09-29: recorded as the user's sign-off, but the user's research-pilot verdict was 'wrong' with a requested fix and the user never saw the text as applied; the user will review it); record the new review in a new note",
+     "revocation_still_matches_old_approval": true,
+     "revocation_matches_new_approval": false
+    },
+    "Mink15": {
+     "revoked_fingerprint": "v2:0c83ad54efbd8e0b9d5861cb788114a53c60bde8fc5ad1dcef171b9dbbc5c53b",
+     "current_fingerprint": "v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c",
+     "old_approval_replay": "Entry changed since review; approval rejected",
+     "revocation_still_matches_old_approval": true,
+     "revocation_matches_new_approval": false
+    },
+    "KahaMill13": {
+     "revoked_fingerprint": "v2:1eb0c55689b963c66d15ca9b144be738997c099aa75cdb26bb20ca0a3171b382",
+     "current_fingerprint": "v2:1eb0c55689b963c66d15ca9b144be738997c099aa75cdb26bb20ca0a3171b382",
+     "old_approval_replay": "This exact approval was revoked 2026-09-29T23:29:35.682971+00:00 (Attribution audit 2026-09-29: recorded as the user's sign-off, but the user's research-pilot verdict was 'wrong' with a requested fix and the user never saw the text as applied; the user will review it); record the new review in a new note",
+     "revocation_still_matches_old_approval": true,
+     "revocation_matches_new_approval": false
+    },
+    "Hook69": {
+     "revoked_fingerprint": "v2:01574f36dc7f4df2e4a1bcd3f87f3cffbee0be26ee196c3928c296f40dbd4e9c",
+     "current_fingerprint": "v2:01574f36dc7f4df2e4a1bcd3f87f3cffbee0be26ee196c3928c296f40dbd4e9c",
+     "old_approval_replay": "This exact approval was revoked 2026-09-29T23:29:42.338997+00:00 (Attribution audit 2026-09-29: recorded as the user's sign-off, but the user's research-pilot verdict was 'wrong' with a requested fix and the user never saw the text as applied; the user will review it); record the new review in a new note",
+     "revocation_still_matches_old_approval": true,
+     "revocation_matches_new_approval": false
+    }
+   },
+   "library_statuses": {
+    "metadata_verified": 6353,
+    "human_verified": 23,
+    "needs_review": 8
+   }
+  },
+  {
+   "cycle": "repeat",
+   "seconds": 736.26,
+   "network_requests": 0,
+   "added_review_records": 0,
+   "batch": [
+    "Bart32",
+    "BragEtal99",
+    "Chri92",
+    "Hook69",
+    "KahaEtal08a",
+    "KahaEtal08b",
+    "KahaEtal24",
+    "KahaMill13",
+    "MagnEtal98",
+    "MeyeEtal88",
+    "Mink15",
+    "NoldEtal98",
+    "NuneEtal87",
+    "PollEtal00",
+    "RobeEtal99",
+    "SchaEtal11",
+    "ScotEtal07",
+    "StJaEtal08",
+    "StJaEtal12",
+    "StJaScha13",
+    "Youn61"
+   ],
+   "batch_statuses_before": {
+    "needs_review": 15,
+    "metadata_verified": 6
+   },
+   "batch_statuses_after": {
+    "human_verified": 7,
+    "metadata_verified": 6,
+    "needs_review": 8
+   },
+   "previously_accepted_now_unresolved": [],
+   "newly_accepted": [
+    "Bart32",
+    "Hook69",
+    "KahaEtal24",
+    "KahaMill13",
+    "Mink15",
+    "ScotEtal07",
+    "Youn61"
+   ],
+   "swapped": {
+    "KahaEtal08a": {
+     "status_before": "metadata_verified",
+     "status": "metadata_verified",
+     "accepted_doi": "10.1037/a0013724",
+     "accepted_source": "crossref",
+     "fingerprint": "v2:ee40d1e437253db9e5da3440f3d250e608be653b79250d049a5edd93cec67b73"
+    },
+    "KahaEtal08b": {
+     "status_before": "metadata_verified",
+     "status": "metadata_verified",
+     "accepted_doi": "10.1016/b978-012370509-9.00185-6",
+     "accepted_source": "research-evidence",
+     "fingerprint": "v2:87db5ab929ec498ded1999aeb0aaddf8d4ca90c5036d0c474a37214c44771bed"
+    }
+   },
+   "library_statuses_before": {
+    "metadata_verified": 6353,
+    "human_verified": 16,
+    "needs_review": 15
+   },
+   "library_statuses": {
+    "metadata_verified": 6353,
+    "human_verified": 23,
+    "needs_review": 8
+   }
+  }
+ ],
+ "entries": {
+  "Bart32": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:537f60bccc4037785323fe93bac5b5b37d46b55052006916a4520aa9c9ca8a58",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "No unique, fully matching catalogue edition"
+   ]
+  },
+  "BragEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:2947d801a3a2c9fd1018e589a816c3ff0b9b22d47191dea5d7c07526936de2e1",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 5 is \"Buzs\\\\'{a}ki\" in the citation and PubMed 10226774 but 'Buzs�ki' in Crossref 10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0 (https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0, https://europepmc.org/article/MED/10226774); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Chri92": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:5fc966d80d370c362a51b70cc1320af42d2f755a55f456d9f89a9ca87baa4916",
+   "accepted_source": "research-evidence",
+   "accepted_doi": null,
+   "issues": []
+  },
+  "Hook69": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:01574f36dc7f4df2e4a1bcd3f87f3cffbee0be26ee196c3928c296f40dbd4e9c",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "Human approval revoked 2026-09-29T23:29:42.338997+00:00 by Jeremy Manning (decision: AskUserQuestion 2026-09-29 17:51 EDT, \"Revoke, I'll review (Recommended)\"); run by Claude: Attribution audit 2026-09-29: recorded as the user's sign-off, but the user's research-pilot verdict was 'wrong' with a requested fix and the user never saw the text as applied; the user will review it"
+   ]
+  },
+  "KahaEtal08a": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:ee40d1e437253db9e5da3440f3d250e608be653b79250d049a5edd93cec67b73",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1037/a0013724",
+   "issues": []
+  },
+  "KahaEtal08b": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:87db5ab929ec498ded1999aeb0aaddf8d4ca90c5036d0c474a37214c44771bed",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/b978-012370509-9.00185-6",
+   "issues": []
+  },
+  "KahaEtal24": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:825421e71de43c17a96c3dfe31b0a92cc9ff3f042c106f311b8776633a37baff",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "KahaMill13": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:1eb0c55689b963c66d15ca9b144be738997c099aa75cdb26bb20ca0a3171b382",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "Human approval revoked 2026-09-29T23:29:35.682971+00:00 by Jeremy Manning (decision: AskUserQuestion 2026-09-29 17:51 EDT, \"Revoke, I'll review (Recommended)\"); run by Claude: Attribution audit 2026-09-29: recorded as the user's sign-off, but the user's research-pilot verdict was 'wrong' with a requested fix and the user never saw the text as applied; the user will review it"
+   ]
+  },
+  "MagnEtal98": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:f1f361e007ad2cac4cb2c51a7e87f86f763960b5ac5716582b41ee5317d4a70d",
+   "accepted_source": "crossref",
+   "accepted_doi": "10.1037/0096-1523.24.3.707",
+   "issues": []
+  },
+  "MeyeEtal88": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:919c5166cecd77e6c5ac0e5dd7de5b67cbc5344163f9fa5a3d275ffb8038059c",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 4 is 'Kounios' in the citation and PubMed 3375399 but 'Kounois' in Crossref 10.1037/0033-295x.95.2.183 (https://api.crossref.org/works/10.1037/0033-295x.95.2.183, https://europepmc.org/article/MED/3375399); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Mink15": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "NoldEtal98": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:8d6b1dbc7446e4e1bee31bd970ed930ed69911a29995c1bc558bc495b87c99fa",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 3 is \"D'Esposito\" in the citation and PubMed 9855308 but 'DʼEsposito' in Crossref 10.1097/00001756-199810260-00032 (https://api.crossref.org/works/10.1097/00001756-199810260-00032, https://europepmc.org/article/MED/9855308); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "NuneEtal87": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:90f9eda387bd7918ba5ff21c532403c353efee5aa95ab0b830948e12922c2b7e",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1016/0006-8993(87)90909-7",
+   "issues": []
+  },
+  "PollEtal00": {
+   "status_before": "metadata_verified",
+   "status": "metadata_verified",
+   "fingerprint": "v2:9b698995cda7f280ce2454d0cc4cb33dd11929b85eaf0303fadd2e66b0b5a4d5",
+   "accepted_source": "research-evidence",
+   "accepted_doi": "10.1161/01.cir.101.7.828",
+   "issues": []
+  },
+  "RobeEtal99": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:31c6c5003c6aad53ffdcbed618453a947cfa1594f5b6e59ba689c94aab39b4f6",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 3 is 'Georges-Fran{\\\\c{c}}ois' in the citation and PubMed 10401637 but 'Georges-Fran�ois' in Crossref 10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h (https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h, https://europepmc.org/article/MED/10401637); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "SchaEtal11": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:3e67e046a9bb1c425c11adbfd52d5b47f6a4771d9288813fbc3c741ce6144573",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 3 is '{St Jacques}' in the citation and PubMed 21908231 but 'St. Jacques' in Crossref 10.1016/j.tics.2011.08.004 (https://api.crossref.org/works/10.1016/j.tics.2011.08.004, https://europepmc.org/article/MED/21908231); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "ScotEtal07": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:102c440cae9315c9f607386dcf3b2f25d9cc7dc68d27b66bba862a207af164bc",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": []
+  },
+  "StJaEtal08": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:508573d8c2bb793699d2a5dc0eb4f275206c195a305b02866a3a8669d26304e3",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 18284345 but 'St. Jacques' in Crossref 10.1162/jocn.2008.20091 (https://api.crossref.org/works/10.1162/jocn.2008.20091, https://europepmc.org/article/MED/18284345); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "StJaEtal12": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:5fee99c0f1089e5725ba561271e85c77cd7d67ff84b583801910c22780278ec8",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 21190759 but 'St. Jacques' in Crossref 10.1016/j.neurobiolaging.2010.11.007 (https://api.crossref.org/works/10.1016/j.neurobiolaging.2010.11.007, https://europepmc.org/article/MED/21190759); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "StJaScha13": {
+   "status_before": "needs_review",
+   "status": "needs_review",
+   "fingerprint": "v2:9b333b72bb9ed7b1460d5e85dec02ce096f6574d110dfa58618549090ec32e57",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "author: surname mismatch: author 1 is '{St Jacques}' in the citation and PubMed 23406611 but 'St. Jacques' in Crossref 10.1177/0956797612457377 (https://api.crossref.org/works/10.1177/0956797612457377, https://europepmc.org/article/MED/23406611); user rule 2026-09-30: one source is sufficient; a surname mismatch is the user's to resolve",
+    "No unambiguous, fully supported metadata match"
+   ]
+  },
+  "Youn61": {
+   "status_before": "needs_review",
+   "status": "human_verified",
+   "fingerprint": "v2:f5ef047a64900114b437a210e4d2cac25b42c5547309eaadb3fb8e93fbeeeb40",
+   "accepted_source": null,
+   "accepted_doi": null,
+   "issues": [
+    "No unambiguous, fully supported metadata match"
+   ]
+  }
+ }
+}

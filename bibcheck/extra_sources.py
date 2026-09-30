@@ -195,7 +195,7 @@ def words(value):
 
 
 def first_surname(fields):
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     try:
         name = split_authors(fields.get("author", ""))[0]
     except (IndexError, ValueError):

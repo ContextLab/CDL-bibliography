@@ -6,7 +6,7 @@ import unicodedata
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 from catalogue_discovery import M, MAX_BYTES, fetch_search, parse_search, search_query
 from verification import (author_evidence, compare_record, current_results,
                           export_snapshot, given_name_tokens, given_token_matches,

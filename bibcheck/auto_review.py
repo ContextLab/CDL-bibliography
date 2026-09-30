@@ -37,7 +37,7 @@ from verification import (
     valid_doi_alias,
     write_report,
 )
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted

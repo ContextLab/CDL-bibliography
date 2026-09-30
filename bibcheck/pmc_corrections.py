@@ -61,7 +61,7 @@ def pmc_publisher_proposal(entry, previous):
 
 def preserves_byline_details(local, people):
     """Permit missing given-name additions, never lose or change supplied names."""
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     names = split_authors(local)
     if len(names) != len(people):
         return False

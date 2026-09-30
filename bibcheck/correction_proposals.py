@@ -260,7 +260,7 @@ def _family_text(source_family, citation_name):
     only by case or braces (surnames, particles and accents are never altered
     here); otherwise write the source surname, braced when it has several
     words and no lower-case particle, so BibTeX parses it as one surname."""
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     if citation_name and not citation_name.startswith("{"):
         parts = splitname(citation_name, strict_mode=True)
         cited = " ".join(parts["von"] + parts["last"])
@@ -285,7 +285,7 @@ def house_byline(people, citation=None):
     through the BibTeX name parser: the parsed surname must be the source
     surname and the parsed given names the house initials, or it raises.
     """
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import split_authors
     cited = [n for n in split_authors(citation)] if citation else []
     cited = [n for n in cited if normalized(n) != "others"]
@@ -326,7 +326,7 @@ def source_authors(record, citation=None):
 def _house_marks_text(byline):
     """Surnames plus given-name initials of a byline: the characters a house
     byline keeps. Accents on dropped given-name letters are not a loss."""
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import split_authors
     out = []
     for name in split_authors(byline or ""):
@@ -857,7 +857,7 @@ def title_small_difference(local, source):
 
 
 def _first_family(value):
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import split_authors
     name = split_authors(value)[0]
     if name.startswith("{"):
@@ -935,7 +935,7 @@ def byline_adds_information(local, people):
     source token in order; surnames equal up to accents or a two-letter typo
     fix; any citation suffix is kept by the source.
     """
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import given_name_tokens, given_token_matches, same_suffix, split_authors
     names = split_authors(local)
     if names and normalized(names[-1]) == "others":
@@ -992,7 +992,7 @@ def byline_loses_detail(local, people):
     garbled or placeholder byline can still be replaced by a complete one.
     A citation with more people than the source always loses detail.
     """
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import given_name_tokens, split_authors
     try:
         names = [n for n in split_authors(local) if normalized(n) != "others"]
@@ -1394,7 +1394,7 @@ def change_subclass(field, before, after, year=None, corroborated=False):
                 return "title-typography-only"
             return "title-crossref+pubmed" if corroborated else "title-crossref-only"
         if field == "author":
-            from bibtexparser.customization import splitname
+            from name_parsing import splitname
             from verification import split_authors
             old = [n for n in split_authors(before) if normalized(n) != "others"]
             new = split_authors(after)
@@ -1471,7 +1471,7 @@ def surname_changes(before, after):
     A reordering is not a respelling: a pair is left out when the cited surname is still
     in the proposed byline and the proposed one was already in the cited byline (SfN
     RamaEtal12b, where the planner lists Baltuch before Kahana)."""
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     from verification import split_authors
     try:
         old = [n for n in split_authors(before or "") if normalized(n) != "others"]

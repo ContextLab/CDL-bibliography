@@ -12,7 +12,7 @@ from urllib.parse import quote, unquote, urlparse
 import xml.etree.ElementTree as ET
 
 import requests
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 
 from auto_review import epmc_record, reassess, safe_compare
 from correction_proposals import source_authors, source_title

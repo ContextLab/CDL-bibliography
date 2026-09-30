@@ -1,0 +1,192 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Bibliography Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  --ground:#F3F5F6; --surface:#FFFFFF; --ink:#172026; --muted:#5E6B74; --rule:#D9DFE3;
+  --accent:#1F5F8B; --accent-soft:#E3EEF6;
+  --ok:#2F7D4E; --ok-soft:#E4F2E9; --bad:#B42318; --bad-soft:#FBE7E5; --warn:#A15C07; --warn-soft:#FBEFDC;
+  --del:#9B2C22; --ins:#1E6B41;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0F1519; --surface:#161E23; --ink:#E4EAEE; --muted:#93A1AB; --rule:#28343C;
+    --accent:#6FB3E0; --accent-soft:#1A2C38;
+    --ok:#5CC28A; --ok-soft:#16291F; --bad:#F0766B; --bad-soft:#341B19; --warn:#E3A548; --warn-soft:#33260F;
+    --del:#F19A91; --ins:#7FD3A4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0F1519; --surface:#161E23; --ink:#E4EAEE; --muted:#93A1AB; --rule:#28343C;
+  --accent:#6FB3E0; --accent-soft:#1A2C38;
+  --ok:#5CC28A; --ok-soft:#16291F; --bad:#F0766B; --bad-soft:#341B19; --warn:#E3A548; --warn-soft:#33260F;
+  --del:#F19A91; --ins:#7FD3A4;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.5 var(--sans);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:980px;margin:0 auto}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding-block:14px 12px;margin-inline:-16px;padding-inline:16px}
+.bar-inner{max-width:980px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+h1{font:600 22px/1.2 var(--serif);margin:0;text-wrap:balance}
+.progress{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.meter{width:160px;max-width:40vw;height:6px;border-radius:3px;background:var(--rule);overflow:hidden;display:flex}
+.meter span{display:block;height:100%}
+.tally b{color:var(--ink);font-weight:600}
+.filters{display:flex;gap:4px}
+.filters button{font:500 12px var(--sans);letter-spacing:.02em;border:1px solid var(--rule);background:var(--surface);color:var(--muted);padding:5px 10px;border-radius:4px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.intro{max-width:68ch;color:var(--muted);margin:22px 0 8px}
+.intro strong{color:var(--ink);font-weight:600}
+.status{font-size:13px;margin:0 0 18px;color:var(--muted)}
+.status.warn{color:var(--warn)}
+section.cls{margin-top:30px}
+.cls-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.cls-head h2{font:600 17px/1.3 var(--serif);margin:0;text-wrap:balance}
+.cls-head .meta{font-size:12px;color:var(--muted);letter-spacing:.03em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.cls-head .risky{color:var(--warn)}
+.entry{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-bottom:14px;display:grid;gap:12px}
+.entry.v-correct{border-left:4px solid var(--ok)}
+.entry.v-wrong{border-left:4px solid var(--bad)}
+.entry.v-unsure{border-left:4px solid var(--warn)}
+.top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.key{font:500 13px var(--mono);color:var(--accent)}
+.num{font:500 12px var(--mono);color:var(--muted)}
+.cite{font:15px/1.45 var(--serif)}
+.cite .t{font-style:italic}
+.links{display:flex;gap:12px;flex-wrap:wrap;font-size:13px}
+.links a{color:var(--accent)}
+.label{font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;vertical-align:top;padding:5px 8px;border-bottom:1px solid var(--rule)}
+th{font:600 11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.f{font:500 12px var(--mono);color:var(--muted);white-space:nowrap}
+td.v{font:13px/1.45 var(--mono);word-break:break-word}
+.del{color:var(--del);text-decoration:line-through;text-decoration-thickness:1px}
+.ins{color:var(--ins);font-weight:500}
+.none{color:var(--muted);font-style:italic;font-family:var(--sans)}
+.m{font:600 12px var(--sans);white-space:nowrap}
+.m.yes{color:var(--ok)} .m.no{color:var(--bad)}
+.decide{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.decide button{font:500 13px var(--sans);padding:6px 14px;border-radius:4px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);cursor:pointer}
+.decide button:hover{border-color:var(--muted)}
+.decide button:focus-visible,.filters button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.decide button[data-v="correct"][aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.decide button[data-v="wrong"][aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.decide button[data-v="unsure"][aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.decide input{flex:1 1 220px;min-width:0;font:13px var(--sans);padding:6px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--ground);color:var(--ink)}
+.saved{font-size:12px;color:var(--muted)}
+.revised{font-size:13px;background:var(--warn-soft);color:var(--ink);border-radius:4px;padding:8px 10px}
+.revised b{color:var(--warn)}
+td.src{font-size:12px;color:var(--muted);white-space:nowrap}
+td.src a{color:var(--accent)}
+details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+@media (max-width:520px){ .cite{font-size:14px} .entry{padding:14px} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.grp-desc{max-width:70ch;color:var(--muted);font-size:14px;margin:-6px 0 12px}
+.bulk{font:500 12px var(--sans);border:1px solid var(--ok);color:var(--ok);background:var(--surface);padding:4px 10px;border-radius:4px;cursor:pointer}
+.bulk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ev{font-size:12.5px;color:var(--muted);display:grid;gap:4px}
+.ev q{font-family:var(--mono);color:var(--ink);quotes:"“" "”"}
+.ev a{color:var(--accent)}
+.rev{font-size:13px;border-radius:4px;padding:8px 10px;background:var(--accent-soft)}
+.rev.partly{background:var(--warn-soft)}
+.rev b{color:var(--accent)} .rev.partly b{color:var(--warn)}
+.tag{font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--warn);margin-left:6px}
+.notes{font-size:13px;color:var(--muted);max-width:75ch;overflow-wrap:anywhere}
+.dl{color:var(--ink);font-weight:600}
+.ev div{overflow-wrap:anywhere}
+.entry.v-chosen{border-left:4px solid var(--accent)}
+.entry.info{opacity:.85}
+.decide button.opt[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+code{font:13px var(--mono)}
+td.v.yr{white-space:nowrap}
+</style>
+<style>
+pre.bib{font:12.5px/1.45 var(--mono);background:var(--ground);border:1px solid var(--rule);border-radius:4px;padding:8px 10px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.pair{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+@media (max-width:720px){.pair{grid-template-columns:1fr}}
+.lbl{font:600 11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.q{max-width:75ch}
+.ctx{font-size:13px;color:var(--muted);display:grid;gap:4px}
+.ctx b{color:var(--ink);font-weight:600}
+.decide{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+</style>
+
+<header class="bar"><div class="bar-inner"><h1>Open bibliography questions</h1>
+<div class="progress"><span class="tally"><b id="done">0</b> of <b id="total">0</b> answered</span><div class="meter"><span id="fill" style="background:var(--accent);width:0"></span></div></div></div></header>
+<main class="wrap">
+<p class="intro">Everything still waiting on you before the verification branch (PR #89) is merged. Pick an answer for each item; add a note when an option asks for one. <strong>Answers save automatically</strong> and Claude reads them from this page's database.</p>
+<p class="status" id="status">Connecting to the decision store…</p>
+<div id="root"></div>
+</main>
+<script>
+const DATA = /*DATA*/[];
+const SECTIONS = /*SECTIONS*/{};
+const COLL = "review0930";
+let db = null; const decisions = {};
+const $ = (t, a = {}, ...kids) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const c of kids) if (c != null) e.append(c); return e; };
+function pre(label, text) { return text ? $("div", {}, $("div", {class: "lbl"}, label), $("pre", {class: "bib"}, text)) : null; }
+function tally() { const n = DATA.filter(i => decisions[i.id] && decisions[i.id].choice).length;
+  document.getElementById("done").textContent = n; document.getElementById("total").textContent = DATA.length;
+  document.getElementById("fill").style.width = (100 * n / Math.max(1, DATA.length)) + "%"; }
+async function save(item, how) {
+  const d = decisions[item.id] || {}; const tag = document.getElementById("saved-" + item.id);
+  const doc = {id: item.id, key: item.key, section: item.section, choice: d.choice || null, note: d.note || "", how: how || "individual", updatedAt: new Date().toISOString()};
+  if (!db) { try { localStorage.setItem(COLL + ":" + item.id, JSON.stringify(doc)); } catch (e) {} if (tag) tag.textContent = "saved in this browser only"; return; }
+  try { await db.doc(COLL + "/" + item.id).set(doc); if (tag) tag.textContent = "saved"; }
+  catch (e) { if (tag) tag.textContent = "not saved: " + (e && (e.code || e.message) || e); }
+}
+function render() {
+  const root = document.getElementById("root"); root.textContent = "";
+  for (const [s, [title, desc]] of Object.entries(SECTIONS)) {
+    const its = DATA.filter(i => i.section === s); if (!its.length) continue;
+    const sec = $("section", {class: "cls"}, $("div", {class: "cls-head"}, $("h2", {}, title), $("span", {class: "meta"}, its.length + (its.length === 1 ? " item" : " items"))), $("p", {class: "grp-desc"}, desc));
+    for (const it of its) {
+      const d = decisions[it.id] || {};
+      const card = $("article", {class: "entry" + (d.choice ? " v-chosen" : "")});
+      card.append($("div", {class: "top"}, $("span", {class: "key"}, it.key)));
+      card.append($("p", {class: "q"}, it.question));
+      const ctx = $("div", {class: "ctx"}); for (const [l, t] of it.context || []) ctx.append($("div", {}, $("b", {}, l + ": "), t)); card.append(ctx);
+      if (it.rows) { const det = $("details", {}, $("summary", {}, "Show all " + it.rows.length)); const ul = $("ul", {class: "notes"}); for (const r of it.rows) ul.append($("li", {}, r)); det.append(ul); card.append(det); }
+      if (it.before && it.after) card.append($("div", {class: "pair"}, pre("Before", it.before), pre("Now", it.after)));
+      else if (it.after) card.append(pre("Current entry", it.after));
+      const row = $("div", {class: "decide"});
+      for (const [v, label] of it.options) {
+        row.append($("button", {class: "opt", type: "button", "aria-pressed": String(d.choice === v), onclick: () => { decisions[it.id] = Object.assign({}, decisions[it.id], {choice: v}); save(it); render(); }}, label));
+      }
+      const inp = $("input", {type: "text", placeholder: "Note (optional unless the option asks)", value: d.note || "", "aria-label": "Note for " + it.key});
+      inp.addEventListener("change", () => { decisions[it.id] = Object.assign({}, decisions[it.id], {note: inp.value}); save(it); });
+      row.append(inp, $("span", {class: "saved", id: "saved-" + it.id}, d.choice || d.note ? "saved" : ""));
+      card.append(row); sec.append(card);
+    }
+    root.append(sec);
+  }
+  tally();
+}
+(async () => {
+  render();
+  const status = document.getElementById("status");
+  try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch (e) { db = null; }
+  if (!db) {
+    for (const i of DATA) { try { const v = localStorage.getItem(COLL + ":" + i.id); if (v) decisions[i.id] = JSON.parse(v); } catch (e) {} }
+    status.textContent = "Decision store unavailable: answers are kept in this browser only."; status.className = "status warn"; render(); return;
+  }
+  for (const i of DATA) { try { const v = localStorage.getItem(COLL + ":" + i.id);
+    if (v) { const d = JSON.parse(v); if (d && (d.choice || d.note)) { decisions[i.id] = d; await save(i, "browser-sync"); localStorage.removeItem(COLL + ":" + i.id); } } } catch (e) {} }
+  status.textContent = "Connected: answers save to this page's database.";
+  db.collection(COLL).onSnapshot(snap => {
+    const docs = snap && snap.docs ? snap.docs : [];
+    for (const doc of docs) { const v = typeof doc.data === "function" ? doc.data() : doc; if (v && v.id) decisions[v.id] = v; }
+    const a = document.activeElement; if (a && a.tagName === "INPUT") tally(); else render();
+  }, err => { status.textContent = "Answers couldn't load (" + (err && err.code) + "). Reload the page to try again."; status.className = "status warn"; });
+})();
+</script>

@@ -27,7 +27,7 @@ from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 import xml.etree.ElementTree as ET
 
 import bibtexparser
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 from pylatexenc.latex2text import LatexNodes2Text
 import requests
 
@@ -259,11 +259,25 @@ def _instant(value):
     return moment if moment.tzinfo else moment.replace(tzinfo=timezone.utc)
 
 
+def revoked_digests(revocation):
+    """The approval identities a revocation revokes: the digest recorded when it was made,
+    and the digest of the approval text the ledger row carries.
+
+    The two differ when the ledger's copy of the approval was edited after the revocation
+    (commit 856d637 renamed folders inside eleven of the 2026-09-29 notes). Without the
+    second, replaying the approval as the ledger shows it was a "new" approval: ScotEtal07's
+    was accepted on 2026-09-30 (verification/apply-2026-09-30b-answers/README.md)."""
+    out = {revocation["approval_digest"]}
+    if revocation.get("approval"):
+        out.add(approval_digest(revocation["approval"]))
+    return out
+
+
 def revocation_matches(revocation, fingerprint, result):
     """True when ``revocation`` revokes the human approval in ``result``."""
     if result.get("status") != "human_verified" or revocation["fingerprint"] != fingerprint:
         return False
-    if approval_digest(result.get("human_review")) == revocation["approval_digest"]:
+    if approval_digest(result.get("human_review")) in revoked_digests(revocation):
         return True
     approved, revoked = _instant(result.get("checked_at")), _instant(revocation["revoked_at"])
     # An approval with no readable time cannot be shown to postdate the revocation.
@@ -336,13 +350,16 @@ class Cache:
         self.db.close()
 
     def revocations(self):
-        """Every known revocation: this database's table plus the committed ledger."""
+        """Every known revocation: this database's table plus the committed ledger.
+
+        Both copies of a revocation are kept when they differ (the ledger's approval text
+        was edited after the fact by 856d637): each revokes the approval text it carries."""
         known = {}
         for (row,) in self.db.execute("SELECT record FROM revocations"):
             record = json.loads(row)
-            known[(record["fingerprint"], record["approval_digest"])] = record
+            known[dumps(record)] = record
         for record in read_revocation_ledger():
-            known.setdefault((record["fingerprint"], record["approval_digest"]), record)
+            known.setdefault(dumps(record), record)
         return list(known.values())
 
     def remember_revocations(self, records):
@@ -1008,6 +1025,10 @@ def normalized(value):
         "TeX",
         "ae",
         "AE",
+        # \aa and \AA (å, Å; "E Id{\aa}s", MagnEtal98) were rejected as unknown commands
+        # until 2026-09-30 (verification/apply-2026-09-30b-answers/README.md).
+        "aa",
+        "AA",
         "oe",
         "OE",
         "o",

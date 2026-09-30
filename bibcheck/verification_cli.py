@@ -15,6 +15,7 @@ from verification import (
     approval_digest,
     dumps,
     now,
+    revoked_digests,
     revoked_view,
     PoliteClient,
     ProviderError,
@@ -721,11 +722,16 @@ def approve(
             human_review = {"reviewer": reviewer, "source": source, "note": note}
             for revocation in cache.revocations():
                 if (revocation["fingerprint"] == fingerprint
-                        and revocation["approval_digest"] == approval_digest(human_review)):
+                        and approval_digest(human_review) in revoked_digests(revocation)):
                     raise ValueError(
                         f"This exact approval was revoked {revocation['revoked_at']} "
                         f"({revocation['reason']}); record the new review in a new note")
             previous = cache.get(fname, entry) or outcome("pending", [])
+            if previous.get("revoked_approval"):
+                # The revocation notice describes the withdrawn approval, not this one.
+                previous = dict(previous, issues=[
+                    i for i in previous.get("issues", [])
+                    if not (isinstance(i, str) and i.startswith("Human approval revoked "))])
             previous = {k: v for k, v in previous.items() if k != "revoked_approval"}
             cache.put(
                 fname,

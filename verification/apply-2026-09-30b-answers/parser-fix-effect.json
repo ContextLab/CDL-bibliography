@@ -1,0 +1,27 @@
+{
+ "entries": 6384,
+ "errors_before_fix": [],
+ "errors_after_fix": [],
+ "status_changes": [],
+ "changed": {
+  "MagnEtal98": {
+   "status_before_fix": "metadata_verified",
+   "status_after_fix": "metadata_verified",
+   "issues_removed": [],
+   "issues_added": [],
+   "candidate_issues_removed": [],
+   "candidate_issues_added": [
+    "author: Missing authors or different author counts",
+    "doi: missing evidence or mismatch",
+    "journal: missing evidence or mismatch",
+    "number: missing evidence or mismatch",
+    "pages: missing evidence or mismatch",
+    "publication type/version is unsupported or differs",
+    "title: missing evidence or mismatch",
+    "volume: missing evidence or mismatch",
+    "year: conflicting or missing publication dates; select the cited edition explicitly",
+    "year: missing evidence or mismatch"
+   ]
+  }
+ }
+}

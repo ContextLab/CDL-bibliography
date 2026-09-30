@@ -9,7 +9,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 
 import requests
-from bibtexparser.customization import splitname
+from name_parsing import splitname
 from verification import ProviderError, normalized, now, split_authors
 
 ENDPOINT = "https://lx2.loc.gov/sru/lcdb"

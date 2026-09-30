@@ -1,0 +1,45 @@
+{
+ "note": "Frozen 2026-09-30 from cdl.bib at 33905aa and the review0930 documents (ArtifactData list, 2026-09-30 15:25 UTC). Section C (surname-*) documents: none present at read time; not applied.",
+ "answers": {
+  "brace-Bart32": "2026-09-30T14:38:48.029Z",
+  "brace-KahaEtal24": "2026-09-30T14:38:52.661Z",
+  "brace-Mink15": "2026-09-30T14:38:57.195Z",
+  "brace-Youn61": "2026-09-30T14:38:59.862Z",
+  "note-CronEtal94": "2026-09-30T14:39:09.996Z",
+  "note-DougPeuc73": "2026-09-30T14:39:12.229Z",
+  "note-Hint03": "2026-09-30T14:39:05.912Z",
+  "note-KahaEtal08b": "2026-09-30T14:39:59.669Z",
+  "note-Mann06": "2026-09-30T14:39:15.613Z",
+  "note-Murd71": "2026-09-30T14:39:07.379Z",
+  "resolved-Hook69": "2026-09-30T14:40:01.051Z",
+  "resolved-KahaMill13": "2026-09-30T14:40:02.634Z",
+  "resolved-Palm78": "2026-09-30T14:40:04.267Z",
+  "resolved-ScotEtal07": "2026-09-30T14:40:07.101Z"
+ },
+ "fingerprints": {
+  "Bart32": "v2:537f60bccc4037785323fe93bac5b5b37d46b55052006916a4520aa9c9ca8a58",
+  "KahaEtal24": "v2:825421e71de43c17a96c3dfe31b0a92cc9ff3f042c106f311b8776633a37baff",
+  "Mink15": "v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c",
+  "Youn61": "v2:f5ef047a64900114b437a210e4d2cac25b42c5547309eaadb3fb8e93fbeeeb40",
+  "ScotEtal07": "v2:102c440cae9315c9f607386dcf3b2f25d9cc7dc68d27b66bba862a207af164bc",
+  "KahaMill13": "v2:1eb0c55689b963c66d15ca9b144be738997c099aa75cdb26bb20ca0a3171b382",
+  "Hook69": "v2:01574f36dc7f4df2e4a1bcd3f87f3cffbee0be26ee196c3928c296f40dbd4e9c",
+  "Palm78": "v2:c2cb1560ba3267d42b4af49e7c6a285368e2ecd97a7c3d7a20c69aed034882d1",
+  "DougPeuc73": "v2:a52d9c3ac9ba6cb95884effa8c9fe10020ae161d6972bf6ce289b988a38d8672",
+  "Mann06": "v2:b14089b31dce9d5ce765bdbbcbae519284e03b0b91df0cf6785822d6e6e4697a",
+  "Hint03": "v2:670f135cc04bd326cf6a6f202f3acc96d40cbd15e7a3406f26319850c009d8ce",
+  "Murd71": "v2:a918e169398c73f7b4e417fb65c82c40edfb2e35e98e2cc449e162744fff902f",
+  "KahaEtal08a": "v2:87db5ab929ec498ded1999aeb0aaddf8d4ca90c5036d0c474a37214c44771bed",
+  "KahaEtal08b": "v2:ee40d1e437253db9e5da3440f3d250e608be653b79250d049a5edd93cec67b73",
+  "PollEtal00": "v2:9b698995cda7f280ce2454d0cc4cb33dd11929b85eaf0303fadd2e66b0b5a4d5",
+  "Chri92": "v2:5fc966d80d370c362a51b70cc1320af42d2f755a55f456d9f89a9ca87baa4916",
+  "NuneEtal87": "v2:90f9eda387bd7918ba5ff21c532403c353efee5aa95ab0b830948e12922c2b7e",
+  "MagnEtal98": "v2:f1f361e007ad2cac4cb2c51a7e87f86f763960b5ac5716582b41ee5317d4a70d"
+ },
+ "parser_fix_keys": [
+  "PollEtal00",
+  "Chri92",
+  "NuneEtal87",
+  "MagnEtal98"
+ ]
+}

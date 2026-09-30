@@ -77,7 +77,7 @@ def cited_year(fields):
 
 
 def first_author(fields):
-    from bibtexparser.customization import splitname
+    from name_parsing import splitname
     names = split_authors(fields.get('author', ''))
     parts = splitname(names[0], strict_mode=True)
     family = ' '.join(parts['von'] + parts['last'])
