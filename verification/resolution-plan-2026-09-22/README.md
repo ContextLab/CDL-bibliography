@@ -496,8 +496,10 @@ The three approvals: reviewer "Jeremy Manning", source "review page
 https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc resolved-KEY,
 answered UTC-time", note "Resolved under the user's 2026-09-30 rule ('if you followed what i
 asked then mark as resolved'); the user's page request (“request”) was followed; confirmed 'ok'
-on the 2026-09-30 review page." The rule's wording is quoted as the orchestrating session gave
-it; no copy of that message is in the repository. The page's own summary of the rule (section D
+on the 2026-09-30 review page." The rule is the user's own message in the orchestrating session
+(transcript 0ff7c242, 2026-09-30T13:42:04Z = 09:42:04 EDT), verbatim: "1. if I asked to add a
+DOI and the DOI doesn't exist, mark resolved. for other notes/requests, if you followed what i
+asked then mark as resolved and otherwise flag for my re-review." The page's own summary of the rule (section D
 heading): "Your rule (2026-09-30): if your request was followed, it's resolved; a DOI that
 doesn't exist counts as resolved."
 
