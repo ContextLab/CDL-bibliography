@@ -4,7 +4,7 @@
 
 The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/).
 
-As of September 29, 2026, the 6,384 entries in `cdl.bib` have been checked against the published record. 6,361 entries match their source's metadata, and a person reviewed and approved 16 more against the source itself. The remaining 7 are waiting for review ([verification/2026-09-29-user-review/REVIEW.md](verification/2026-09-29-user-review/REVIEW.md)). New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
+As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been checked against the published record. 6,348 entries match their source's metadata, and a person reviewed and approved the remaining 36 against the source itself. New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
 
 ## Contents:
 - [What can you use this repository for?](#what-can-you-use-this-repository-for)

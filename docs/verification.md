@@ -7,20 +7,18 @@ current state; sections below that describe a dated pilot or measurement say so.
 
 ## Current state
 
-As of September 29, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
-`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=16,
-metadata_verified=6361, needs_review=7`. The seven are waiting for the user's own review
-([verification/2026-09-29-user-review/REVIEW.md](../verification/2026-09-29-user-review/REVIEW.md)):
-twelve approvals recorded in the user's name were revoked after an attribution audit, and
-eight of those twelve were then verified by the research route. Run the command again for
-the current figures. The `accepted_source` of each approval in the committed baseline
-(snapshot of 2026-09-29) breaks down as follows:
+As of September 30, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
+`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=36,
+metadata_verified=6348`: every entry is verified. The 36 human approvals are the user's own
+answers, recorded with the page or message they came from (see the decision log sections dated
+2026-09-30). Run the command again for the current figures. The `accepted_source` of each
+approval in the committed baseline (snapshot of 2026-09-30) breaks down as follows:
 
 |Source (`accepted_source`)|Approvals|
 |-|-|
-|`crossref`|4,401, plus 98 older Crossref approvals saved before the field existed|
-|`research-evidence` (research route)|1,232|
-|`europepmc` (PubMed through Europe PMC)|411|
+|`crossref`|4,407, plus 98 older Crossref approvals saved before the field existed|
+|`research-evidence` (research route)|1,221|
+|`europepmc` (PubMed through Europe PMC)|403|
 |`loc-catalogue` (Library of Congress)|113|
 |`pmc-jats` (open-access PMC front matter)|39|
 |`arxiv-repository`|38|
