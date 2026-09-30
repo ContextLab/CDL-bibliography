@@ -639,3 +639,21 @@ printed byline alone the page and the 2026-09-28 rule; note: the chosen spelling
 evidence): ConwEtal00, dBakEtal08, LopeEtal73, PennEtal94, MeyeEtal88, BragEtal99, RobeEtal99,
 NoldEtal98, SchaEtal11, StJaEtal08, StJaEtal12, StJaScha13.
 Library after the batch (`bibcheck.py crossref status cdl.bib`): `6384 entries: human_verified=35, metadata_verified=6347, needs_review=2`.
+
+**Follow-up (user, 2026-09-30; batch `followup0930d`,
+[apply-2026-09-30d-followup](../apply-2026-09-30d-followup/README.md)).** The orchestrating
+session asked: (1) keep WatkPeyn83 as Peynircio\u{g}lu, since `\dot` is a math-only accent and
+plain i is the dotted i? (2) use "D'Agata" per the erratum 10.1007/s00426-016-0761-6? (3)
+re-approve FreuEtal09, whose erratum concerns only a Methods sentence? The user's answer,
+verbatim (relayed by the orchestrating session; message time not recorded here): "1. yes / 2. use
+D'Agata / 3. Re-confirm". Applied: (1) WatkPeyn83 unchanged ("Z F Peynircio\u{g}lu",
+`metadata_verified`); the hold is withdrawn. (2) LatiEtal10 author 7 "F Dagata" → "F D'Agata" per
+the publisher's erratum (Crossref title "Erratum to: Route and survey processing of topographical
+memory during navigation", update-to 10.1007/s00426-010-0276-5; correction text "the name of the
+seventh author was incorrectly published as Federico Dagata. However, the correct name should
+read as Federico D'Agata."; PubMed 20174930 "Dagata, Federico [corrected to D’Agata,
+Federico]"); this overrides the per-paper spelling for this entry because the publisher corrected
+the printed byline. It verifies again on its earlier research evidence. (3) FreuEtal09: `crossref
+approve`, reviewer "Jeremy Manning", note "User re-confirmed 2026-09-30; the erratum
+(10.1001/archneurol.2011.75) corrects a Methods sentence, not the citation." Library after:
+`6384 entries: human_verified=36, metadata_verified=6348`.
