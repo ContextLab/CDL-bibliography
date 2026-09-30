@@ -7,7 +7,7 @@ The pipeline made 0 network requests, and its repeat added 0 review records.
 
 ## After the user answers of 2026-09-28 (decisions0928): 1 approved, 3 re-approved, 1 left
 
-The decisions0928 batch (`../apply-2026-09-30-final/decisions0928/`, commit 4071cf3) changed R12's author and
+The decisions0928 batch (`../apply-2026-09-27b-final/decisions0928/`, commit 4071cf3) changed R12's author and
 renamed R12 -> RCor12, MorrRNS11 -> MorrRNSS11, US20a/b -> USFo20a/b, GrilEtal06a -> GrilEtal06, and dropped
 GrilEtal06b. `bibcheck.py crossref status cdl.bib`:
 
@@ -59,7 +59,7 @@ cleared each group:
   DougPeuc73 and Kolo13 had `field_not_found`. McCaEtal06 had the DOI residue, which the DOI default settles.
   ChanEtal12 then showed an unclassified corrigendum, which is now classified as unread.
 
-cdl.bib edits (mop-up apply, `../apply-2026-09-30-final/mopup/`): ElliAshb88 address and Mann06 type. There were
+cdl.bib edits (mop-up apply, `../apply-2026-09-27b-final/mopup/`): ElliAshb88 address and Mann06 type. There were
 no renames or deletions. The run made 0 requests, and its repeat made 0 requests and 0 review writes.
 
 ### The 1 entry still needs_review

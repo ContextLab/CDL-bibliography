@@ -294,7 +294,7 @@ named, and another unnamed record reopens it. Existing DOI declarations keep the
 ### Mop-up rules (2026-09-27, later)
 
 **Renames for batches keyed as committed.** Resolution batches from 27 on were written against the cdl.bib of
-their commit (apply-2026-09-30-final README: "Every key was found in cdl.bib as written"). Their rows now follow
+their commit (apply-2026-09-27b-final README: "Every key was found in cdl.bib as written"). Their rows now follow
 only the renames logged after the batch was committed (`renames_when_committed`: the length of
 `key-renames.json` in the commit that added the batch, by git; the old log must be a prefix of the current one,
 or the route raises). Before this, batch 30's `Frie08` row (Friendly's *Handbook of Data Visualization* chapter,

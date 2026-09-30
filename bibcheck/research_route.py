@@ -290,7 +290,7 @@ def rename_walk(renames, deleted):
 
 
 # Resolution batches from number 27 on were written against the cdl.bib of their commit:
-# each row's key names the entry as it was then (apply-2026-09-30-final README: "Every key
+# each row's key names the entry as it was then (apply-2026-09-27b-final README: "Every key
 # was found in cdl.bib as written"). Their rows follow only the renames logged after the
 # batch was committed. Batch 30's Frie08 is Friendly's handbook chapter (keyed Frie08 since
 # the wave-8 renames); following the whole log took it through Frie08 -> Frie08a -> Frie12
@@ -750,7 +750,7 @@ def gates(bundle, fields=None):
     for m in bundle['merged']:
         wave = m['origin'].split('/')[0]
         # The wave-1 page asked the user about every wave-1 row; a row the user marked
-        # correct was applied as proposed (apply-2026-09-28-wave1), which settles its
+        # correct was applied as proposed (apply-2026-09-26-wave1), which settles its
         # needs_user. Held fields stayed as cited and are checked like any other field.
         if m['needs_user'] and user.get((wave, m['key'])) != 'correct':
             if not (settled and m.get('residue') and all(residue_settled(r, fields) for r in m['residue'])):

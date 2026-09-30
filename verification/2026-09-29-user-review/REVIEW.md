@@ -80,7 +80,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "followup.json"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "followup.json"):
   - `ENTRYTYPE`: `inbook` -> `incollection`
     - evidence: https://catdir.loc.gov/catdir/enhancements/fy0701/2006031809-t.html quotes `P. Scott, H. Asoko, J. Leach, Student Conceptions and Conceptual Learning in Science.`
   - `title`: `Handbook of research on science education` -> `Student conceptions and conceptual learning in science`
@@ -135,7 +135,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "user 2026-09-25: cite the 6th edition (verified LoC + LWW)"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "user 2026-09-25: cite the 6th edition (verified LoC + LWW)"):
   - `author`: `Jonathan W Mink` -> `J W Mink`
     - evidence: https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479 quotes `<edition>Sixth edition.</edition> ... <namePart>Wolters Kluwer,</namePart> ... <dateIssued>[2015]</dateIssued> ... <tableOfContents type="Contents">Functional organization of the basal ganglia -- ...`
     - evidence: https://shop.lww.com/Parkinson-s-Disease-and-Movement-Disorders/p/9781608311767 quotes `CONTENTS 1. Functional Organization of the Basal Ganglia Jonathan W. Mink ... Edition 6 Publication Date May 21, 2015`
@@ -195,7 +195,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "followup.json"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "followup.json"):
   - `doi`: (none) -> `10.4135/9781452257044.n183`
     - evidence: https://api.crossref.org/works/10.4135/9781452257044.n183 quotes `"DOI":"10.4135\/9781452257044.n183"`
     - evidence: https://api.crossref.org/works/10.4135/9781452257044.n183 quotes `"container-title":["Encyclopedia of the Mind"]`
@@ -238,7 +238,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "followup.json"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "followup.json"):
   - `title`: `The posthumous works of {R}obert {H}ooke: with a new introduction by {R}ichard {S.} {W}estfall` -> `The posthumous works of {R}obert {H}ooke`
     - evidence: https://openlibrary.org/books/OL21113026M.json quotes `"title": "The posthumous works of Robert Hooke"`
     - evidence: https://lccn.loc.gov/68026912/mods quotes `<title>posthumous works of Robert Hooke</title>`
@@ -279,7 +279,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
   - `publisher`: `{Oxford} {University} Press` -> `Cambridge {University} Press`
     - evidence: https://lccn.loc.gov/39016008/mods quotes `Cambridge [Eng.] The University press 1932`
     - evidence: https://lccn.loc.gov/33014008/mods quotes `Cambridge, Eng The Macmillan company The University press 1932`
@@ -323,7 +323,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
   - `booktitle`: `Handbook of Human Memory` -> `The {Oxford} Handbook of Human Memory`
     - evidence: https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2 quotes `"container-title":["The Oxford Handbook of Human Memory, Two Volume Pack"]`
   - `year`: `2022` -> `2024`
@@ -375,7 +375,7 @@ What you said:
 
 What was applied:
 
-- pilot001 (commit 689de07, `verification/apply-2026-09-28/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
+- pilot001 (commit 689de07, `verification/apply-2026-09-25e/pilot001-proposals.json`; origin recorded as "pilot-proposals.json (user: correct)"):
   - `journal`: `{American} Journal of Psychology` -> `The {American} Journal of Psychology`
     - evidence: https://api.crossref.org/works/10.2307/1419662 quotes `"container-title":["The American Journal of Psychology"]`
   - `number`: (none) -> `4`

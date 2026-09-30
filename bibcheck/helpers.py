@@ -475,7 +475,7 @@ def get_key_suffixes(n):
 # suffixes span a, b, c, ..., etc. without gaps
 def key_names(bd):
     """The names a cite key is built from: the authors, or for an edited volume
-    with no author (``editor`` only), the editors (stage 2B-i, 2026-09-26; the
+    with no author (``editor`` only), the editors (stage 2B-i, 2026-09-25; the
     rule used to demand a year-only key such as ``94``)."""
     return [a if a.strip() else e
             for a, e in zip(get_vals(bd, "author"), get_vals(bd, "editor"))]

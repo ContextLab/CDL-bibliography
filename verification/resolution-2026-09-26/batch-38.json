@@ -84,7 +84,7 @@
    }
   },
   "remove": [],
-  "notes": "Crossref 10.1037/h0093547 prints the monograph's pages as \"i-33\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-29 HELD list), so applying needs a rule or checker change; see question.",
+  "notes": "Crossref 10.1037/h0093547 prints the monograph's pages as \"i-33\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-25f HELD list), so applying needs a rule or checker change; see question.",
   "questions": [
    "Psychological Monographs pages printed roman-to-arabic by Crossref/APA (i-33, i-64, i-90; also Perr14, Calk96): cite 'i--N' (needs check_bib to accept mixed roman/arabic ranges) or '1--N' (house majority, Gate17 precedent, but no record prints page 1)?"
   ]
@@ -207,7 +207,7 @@
    }
   },
   "remove": [],
-  "notes": "HEAD's author list is the researcher's evidenced list in house form: 'İ Polat' in Unicode and '{SciPy 1 0 Contributors}' are the formatter's fixed points (apply-2026-09-29 HOUSE_FORM); re-set with the researcher's PubMed quotes."
+  "notes": "HEAD's author list is the researcher's evidenced list in house form: 'İ Polat' in Unicode and '{SciPy 1 0 Contributors}' are the formatter's fixed points (apply-2026-09-25f HOUSE_FORM); re-set with the researcher's PubMed quotes."
  },
  {
   "key": "ViveEtal10",
@@ -221,7 +221,7 @@
    }
   },
   "remove": [],
-  "notes": "PubMed 20375008 prints the article locator 24ra22 (Crossref has no page); HEAD 1--9 is the PDF's own page count. check_bib cannot parse '24ra22' (HELD in apply-2026-09-29), so applying needs a checker change.",
+  "notes": "PubMed 20375008 prints the article locator 24ra22 (Crossref has no page); HEAD 1--9 is the PDF's own page count. check_bib cannot parse '24ra22' (HELD in apply-2026-09-25f), so applying needs a checker change.",
   "questions": [
    "Article-number locators such as Science Translational Medicine '24ra22' (and eNeuro 'ENEURO.0306-19.2019'): should check_bib accept them as single-page article numbers, as it already does for 'IMAG.a.136'?"
   ]
@@ -276,7 +276,7 @@
    }
   },
   "remove": [],
-  "notes": "Crossref 10.1037/h0093534 prints the monograph's pages as \"i-64\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-29 HELD list), so applying needs a rule or checker change; see question.",
+  "notes": "Crossref 10.1037/h0093534 prints the monograph's pages as \"i-64\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-25f HELD list), so applying needs a rule or checker change; see question.",
   "questions": [
    "Psychological Monographs pages printed roman-to-arabic by Crossref/APA (i-33, i-64, i-90; also Perr14, Calk96): cite 'i--N' (needs check_bib to accept mixed roman/arabic ranges) or '1--N' (house majority, Gate17 precedent, but no record prints page 1)?"
   ]
@@ -312,7 +312,7 @@
    }
   },
   "remove": [],
-  "notes": "Crossref 10.1037/h0093121 prints the monograph's pages as \"i-90\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-29 HELD list), so applying needs a rule or checker change; see question.",
+  "notes": "Crossref 10.1037/h0093121 prints the monograph's pages as \"i-90\" (roman front matter to arabic end), the researcher's evidenced value. check_bib cannot parse a roman-to-arabic range (apply-2026-09-25f HELD list), so applying needs a rule or checker change; see question.",
   "questions": [
    "Psychological Monographs pages printed roman-to-arabic by Crossref/APA (i-33, i-64, i-90; also Perr14, Calk96): cite 'i--N' (needs check_bib to accept mixed roman/arabic ranges) or '1--N' (house majority, Gate17 precedent, but no record prints page 1)?"
   ]

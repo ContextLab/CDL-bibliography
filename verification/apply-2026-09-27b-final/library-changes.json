@@ -1,0 +1,35 @@
+{
+ "note": "This folder's batches in order, each with its removals and simultaneous renames (logged in key-deletions.json and key-renames.json), read by .bibcheck/validate-current-checkpoint.py after ../apply-2026-09-27-waves2-9/library-changes.json.",
+ "steps": [
+  {
+   "batch": "res27",
+   "removed": [],
+   "renames": {
+    "RegeEtal18": "RegeEtal19",
+    "HameChid08": "HameChid09",
+    "Luca83": "Luca81"
+   }
+  },
+  {
+   "batch": "res28to33",
+   "removed": [
+    "EngeEtal93"
+   ],
+   "renames": {
+    "BeckBurg01": "BeckBurg00",
+    "Buzs01": "Buzs02b",
+    "KingEtal11": "MorrRNSS11",
+    "LohnEtal14": "LohnEtal15",
+    "Buzs02": "Buzs02a"
+   }
+  },
+  {
+   "batch": "res34to39",
+   "removed": [
+    "Rayp68"
+   ],
+   "renames": {}
+  }
+ ],
+ "last_staged": ".bibcheck/apply-2026-09-27b-final/res34to39-staged.bib"
+}

@@ -1,0 +1,160 @@
+{
+ "batch": "decisions0928",
+ "generated": "2026-09-28 07:48:22",
+ "input": [
+  {
+   "file": "verification/apply-2026-09-27b-final/decisions0928/batch-41.json",
+   "sha256": "d64e79f0c3dce6ace83de919ea171d673c4216916d77a176464cabe64016855d",
+   "rows": 5
+  }
+ ],
+ "count": 6,
+ "counts": {
+  "edit": 5,
+  "remove": 1
+ },
+ "renames": {
+  "R12": "RCor12",
+  "MorrRNS11": "MorrRNSS11",
+  "US20a": "USFo20a",
+  "US20b": "USFo20b",
+  "GrilEtal06a": "GrilEtal06"
+ },
+ "key_mismatch": {},
+ "followed_renames": {},
+ "noops": {},
+ "skipped": {},
+ "set_not_applied": {},
+ "house_form_check_bib": [
+  {
+   "key": "HeniEtal19",
+   "field": "journal",
+   "value": "eNeuro",
+   "applied": "{eNeuro}",
+   "note": "the value as cited: no change"
+  },
+  {
+   "key": "RangEtal14",
+   "field": "publisher",
+   "value": "PMLR",
+   "applied": "{PMLR}",
+   "note": "the value as cited: no change"
+  }
+ ],
+ "check_bib_rejects": [],
+ "held_changes": [],
+ "flags": {},
+ "conflicts": [],
+ "held_forms": [
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "pages",
+   "proposed": "ENEURO.0306-19.2019",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave3",
+   "key": "HeniEtal19",
+   "field": "journal",
+   "proposed": "eNeuro",
+   "outcome": "applied: 'eNeuro'"
+  },
+  {
+   "wave": "wave6",
+   "key": "Calk96",
+   "field": "pages",
+   "proposed": "i--56",
+   "outcome": "already in the entry"
+  },
+  {
+   "wave": "wave7",
+   "key": "Youn12",
+   "field": "url",
+   "proposed": "https://www.chronicle.com/article/inside-the-coursera-contract-how-an-upstart-company-might-profit-from-free-courses/",
+   "outcome": "still rejected: url is not a house field (bibcheck/keep_fields.txt; check_bib 'non-essential fields'); 9f84506 did not change that"
+  },
+  {
+   "wave": "wave9",
+   "key": "RangEtal14",
+   "field": "publisher",
+   "proposed": "PMLR",
+   "outcome": "applied: 'PMLR'"
+  },
+  {
+   "wave": "wave9",
+   "key": "BartEtal04c",
+   "field": "address",
+   "proposed": "La Jolla, {CA}",
+   "outcome": "already in the entry"
+  }
+ ],
+ "questions": {},
+ "normalised": {},
+ "proposals": [
+  {
+   "key": "R12",
+   "fingerprint": "v2:bf612ce49ff4fc66635b28f3afba2d36ee6780555af93105fac57b068bb3f3ef",
+   "kind": "edit",
+   "origin": "resolution batch-41 (apply)",
+   "changes": {
+    "author": {
+     "before": "{ R Core Team}",
+     "after": "{R Core Team}",
+     "source": "resolution batch-41",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+       "quote": "author = person(\"R Core Team\"),"
+      }
+     ]
+    }
+   },
+   "rename": "RCor12",
+   "rename_reason": "house key rule (authors2key of author/editor and year, suffix rule)"
+  },
+  {
+   "key": "MorrRNS11",
+   "fingerprint": "v2:48f59c9f58b0f80b10f28b61de8178122125a444d59ddf8ba67985528c4f80c0",
+   "kind": "edit",
+   "origin": "resolution batch-41 (apply)",
+   "changes": {},
+   "rename": "MorrRNSS11",
+   "rename_reason": "house key rule (authors2key of author/editor and year, suffix rule)"
+  },
+  {
+   "key": "US20a",
+   "fingerprint": "v2:d8f740dd705e5c0eeacbbff22a95d53b8af884e79f8c2509dc4b253a1c07ea00",
+   "kind": "edit",
+   "origin": "resolution batch-41 (apply)",
+   "changes": {},
+   "rename": "USFo20a",
+   "rename_reason": "house key rule (authors2key of author/editor and year, suffix rule)"
+  },
+  {
+   "key": "US20b",
+   "fingerprint": "v2:a62a9515d01e2221eb6af0eee2786d4fd74d635d4eba7ad03191fe3c735e28eb",
+   "kind": "edit",
+   "origin": "resolution batch-41 (apply)",
+   "changes": {},
+   "rename": "USFo20b",
+   "rename_reason": "house key rule (authors2key of author/editor and year, suffix rule)"
+  },
+  {
+   "key": "GrilEtal06b",
+   "fingerprint": "v2:0934f4b072adba5805d15a0cb3d99fc990f425bc7737b188aa13786ac9db3630",
+   "kind": "remove",
+   "reason": "user decision 2026-09-28: \"3. drop\" (reply to item 3, GrilEtal06b) (a later correction, doi 10.1038/nn0107-133, withdraws the paper's headline claim; verification/resolution-2026-09-27/NOTICES.md: 'corrigendum withdraws the headline claim (FFA nonface-selective voxels); Figs 4 and 8 invalid. Not a retraction')",
+   "decision": "verification/apply-2026-09-27b-final/decisions0928/batch-41.json (drop): User answers 2026-09-28 (3): drop GrilEtal06b."
+  },
+  {
+   "key": "GrilEtal06a",
+   "fingerprint": "v2:952b7fa534f18c8213bf1de68043b35f48b04f9ca7bbec9172c5103a52e61255",
+   "kind": "edit",
+   "changes": {},
+   "rename": "GrilEtal06",
+   "origin": "house suffix rule (helpers.check_key_suffixes) after this batch",
+   "rename_reason": "suffix rule: another entry moves to this key base"
+  }
+ ]
+}

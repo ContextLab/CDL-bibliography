@@ -3128,7 +3128,7 @@
       "approval_checked_at": "2026-09-25T19:05:45.522928+00:00",
       "approval_digest": "40898fbe51e313bec9e39b488adf31e3af40a70ed8e8f021e0330850bdd678c0",
       "human_review": {
-        "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).",
+        "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).",
         "reviewer": "Jeremy Manning",
         "source": "https://openlibrary.org/books/OL21113026M.json"
       },

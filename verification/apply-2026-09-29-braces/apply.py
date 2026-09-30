@@ -1,7 +1,7 @@
 """Apply the braces0929 batch (braces that protect nothing, removed; see build.py).
 
-The runner is ../apply-2026-09-29-caps/apply.py's (../apply-2026-09-28-wave1/apply.py on
-../apply-2026-09-29/apply.py and ../apply-2026-09-28/apply.py), pointed at this folder:
+The runner is ../apply-2026-09-29-caps/apply.py's (../apply-2026-09-26-wave1/apply.py on
+../apply-2026-09-25f/apply.py and ../apply-2026-09-25e/apply.py), pointed at this folder:
 frozen proposals with fingerprints (braces0929-proposals.json), a staging copy whose diff
 is limited to the batch, helpers.check_bib, backup + snapshot under
 .bibcheck/braces0929-2026-09-29/, apply, the production pipeline for the batch keys, a
@@ -16,7 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-_spec = importlib.util.spec_from_file_location("applywave1", ROOT / "verification/apply-2026-09-28-wave1/apply.py")
+_spec = importlib.util.spec_from_file_location("applywave1", ROOT / "verification/apply-2026-09-26-wave1/apply.py")
 wave1 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(wave1)
 runner = wave1.runner

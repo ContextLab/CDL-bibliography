@@ -24,7 +24,7 @@ Lapsed approval:
 
 - reviewer: Jeremy Manning
 - source: https://lccn.loc.gov/39016008/mods
-- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).
+- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).
 
 Entry now:
 
@@ -39,7 +39,7 @@ Entry now:
 Approve command:
 
 ```sh
-python bibcheck.py crossref approve Bart32 --fingerprint v2:537f60bccc4037785323fe93bac5b5b37d46b55052006916a4520aa9c9ca8a58 --reviewer 'Jeremy Manning' --source https://lccn.loc.gov/39016008/mods --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (publisher). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).'
+python bibcheck.py crossref approve Bart32 --fingerprint v2:537f60bccc4037785323fe93bac5b5b37d46b55052006916a4520aa9c9ca8a58 --reviewer 'Jeremy Manning' --source https://lccn.loc.gov/39016008/mods --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (publisher). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unique, fully matching catalogue edition).'
 ```
 
 ## KahaEtal24
@@ -55,7 +55,7 @@ Lapsed approval:
 
 - reviewer: Jeremy Manning
 - source: https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2
-- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page (pilot key KahaEtal22, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
+- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page (pilot key KahaEtal22, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
 
 Entry now:
 
@@ -74,7 +74,7 @@ Entry now:
 Approve command:
 
 ```sh
-python bibcheck.py crossref approve KahaEtal24 --fingerprint v2:825421e71de43c17a96c3dfe31b0a92cc9ff3f042c106f311b8776633a37baff --reviewer 'Jeremy Manning' --source https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2 --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle, publisher). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page (pilot key KahaEtal22, renamed per the key rule). Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
+python bibcheck.py crossref approve KahaEtal24 --fingerprint v2:825421e71de43c17a96c3dfe31b0a92cc9ff3f042c106f311b8776633a37baff --reviewer 'Jeremy Manning' --source https://api.crossref.org/works/10.1093/oxfordhb/9780190917982.013.2 --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle, publisher). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page (pilot key KahaEtal22, renamed per the key rule). Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
 ```
 
 ## MikoEtal13b
@@ -88,7 +88,7 @@ Lapsed approval:
 
 - reviewer: Jeremy Manning
 - source: https://aclanthology.org/N13-1090/
-- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: address: missing evidence or mismatch).
+- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: address: missing evidence or mismatch).
 
 Entry now:
 
@@ -106,7 +106,7 @@ Entry now:
 Approve command:
 
 ```sh
-python bibcheck.py crossref approve MikoEtal13b --fingerprint v2:6746ff202cde361fa04295b9292b69c25b62be034649dddc3a907602e30f2784 --reviewer 'Jeremy Manning' --source https://aclanthology.org/N13-1090/ --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: address: missing evidence or mismatch).'
+python bibcheck.py crossref approve MikoEtal13b --fingerprint v2:6746ff202cde361fa04295b9292b69c25b62be034649dddc3a907602e30f2784 --reviewer 'Jeremy Manning' --source https://aclanthology.org/N13-1090/ --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: address: missing evidence or mismatch).'
 ```
 
 ## Mink15
@@ -120,7 +120,7 @@ Lapsed approval:
 
 - reviewer: Jeremy Manning
 - source: https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479
-- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved (pilot key Mink07, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
+- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved (pilot key Mink07, renamed per the key rule). Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
 
 Entry now:
 
@@ -139,7 +139,7 @@ Entry now:
 Approve command:
 
 ```sh
-python bibcheck.py crossref approve Mink15 --fingerprint v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c --reviewer 'Jeremy Manning' --source 'https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479' --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved (pilot key Mink07, renamed per the key rule). Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
+python bibcheck.py crossref approve Mink15 --fingerprint v2:91136b0010930ba1ba3850e1ef80d253f27f73cdf34a9149154ce40ad27e253c --reviewer 'Jeremy Manning' --source 'https://lx2.loc.gov/sru/lcdb?version=1.1&operation=searchRetrieve&maximumRecords=1&recordSchema=mods&query=bath.lccn%3D2015458479' --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (booktitle). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved (pilot key Mink07, renamed per the key rule). Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
 ```
 
 ## Youn61
@@ -153,7 +153,7 @@ Lapsed approval:
 
 - reviewer: Jeremy Manning
 - source: https://api.crossref.org/works/10.2307/1419662
-- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
+- note: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).
 
 Entry now:
 
@@ -172,5 +172,5 @@ Entry now:
 Approve command:
 
 ```sh
-python bibcheck.py crossref approve Youn61 --fingerprint v2:f5ef047a64900114b437a210e4d2cac25b42c5547309eaadb3fb8e93fbeeeb40 --reviewer 'Jeremy Manning' --source https://api.crossref.org/works/10.2307/1419662 --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (journal). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
+python bibcheck.py crossref approve Youn61 --fingerprint v2:f5ef047a64900114b437a210e4d2cac25b42c5547309eaadb3fb8e93fbeeeb40 --reviewer 'Jeremy Manning' --source https://api.crossref.org/works/10.2307/1419662 --note 'Re-approval after braces0929 (2026-09-29): only braces around ordinary words changed (journal). Previous approval: Research-pilot verdict by Jeremy Manning, 2026-09-25: marked Correct on the research-pilot page. Approval bound to the entry'"'"'s current text. Evidence: verification/research-pilot-2026-09-24/pilot-proposals.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).'
 ```

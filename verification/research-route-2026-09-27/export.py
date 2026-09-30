@@ -1,5 +1,5 @@
 """Export verification/baseline.jsonl.gz and verification/review-queue.jsonl.gz after the
-research-route backfill, the way the apply runners do (../apply-2026-09-28/apply.py:
+research-route backfill, the way the apply runners do (../apply-2026-09-25e/apply.py:
 export_snapshot, then completion-2026-09-15/reassess.py's export_queue).
 
     .venv/bin/python verification/research-route-2026-09-27/export.py

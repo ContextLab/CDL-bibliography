@@ -481,7 +481,7 @@ def test_meyer88_negative_controls(library):
     assert status(entry, no_pubmed) == "needs_review"
 
 
-# 14. Stage 2B-i (2026-09-26): formatter key rule, publisher initials, route rechecks ---
+# 14. Stage 2B-i (2026-09-25): formatter key rule, publisher initials, route rechecks ---
 
 SCHACTER94 = """@book{%s,
 	Address = {Cambridge, {MA}},
@@ -620,11 +620,11 @@ def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
     assert result["status"] == "metadata_verified" and requests == 0
 
 
-# 15. Stage 2B-ii (2026-09-27): ordinals, proceedings names, publisher initials ---------
+# 15. Stage 2B-ii (2026-09-25): ordinals, proceedings names, publisher initials ---------
 # Real records frozen from verification/baseline.jsonl.gz (89c5b70) by
-# verification/apply-2026-09-27/build_cases.py.
+# verification/apply-2026-09-25d/build_cases.py.
 
-CASES27 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-27/cases.json.gz").read())["cases"]
+CASES27 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-25d/cases.json.gz").read())["cases"]
 
 
 def case27(key, **fields):

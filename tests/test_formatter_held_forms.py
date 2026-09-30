@@ -1,6 +1,6 @@
 """Researched values the formatter/checker used to reject or rewrite (held 2026-09-27).
 
-verification/apply-2026-09-29-waves2-9/README.md, "Fields check_bib rejects", lists
+verification/apply-2026-09-27-waves2-9/README.md, "Fields check_bib rejects", lists
 source-backed values that stayed unapplied because bibcheck mangled or rejected them.
 Every value below is frozen from that list (and from the resolution batches it cites);
 no test reads the live cdl.bib. Each accepted form has a negative control showing that

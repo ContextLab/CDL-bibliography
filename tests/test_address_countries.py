@@ -4,7 +4,7 @@ User decision 2026-09-26 (verification/resolution-plan-2026-09-22/README.md): a 
 is dropped from an entry's address when the source does not print it. address_key.xls
 mapped bare cities onto city + country ('london' -> 'london, uk', 'paris' -> 'paris, fr'),
 so check_bib rejected Galt83/Yate66 'London' and BancEtal65 'Paris' (wave-1 held rows,
-verification/apply-2026-09-28-wave1/). Entries are frozen here from cdl.bib at 03b8abd;
+verification/apply-2026-09-26-wave1/). Entries are frozen here from cdl.bib at 03b8abd;
 the live bibliography is never read.
 """
 from pathlib import Path

@@ -1,0 +1,3225 @@
+{
+ "batch": "wave9",
+ "generated": "2026-09-27 05:22:32",
+ "input": [
+  {
+   "merged": ".bibcheck/apply-2026-09-27-waves2-9/inputs-93ae192/wave9/merged.json",
+   "sha256": "36c7ea34037e81a97c66e9eced1491a7aec0c8d067ce36fd8d45b64e288a09ec",
+   "rows": 110
+  }
+ ],
+ "count": 76,
+ "counts": {
+  "edit": 74,
+  "remove": 2
+ },
+ "renames": {
+  "OGra11": "OGra08",
+  "TorvHama05": "Torv05",
+  "Schl07": "Schl00",
+  "Smit05": "Smit01",
+  "Stra06": "Stra01",
+  "deCa05a": "deCa04",
+  "deCa05b": "deCa05",
+  "vond81": "vond94",
+  "RaoHowa08": "RaoHowa07",
+  "RagaWill18": "ProjEtal18",
+  "HaonEtal16": "YuEtal16",
+  "YingEtal92": "YingEtal93"
+ },
+ "held_rows": {},
+ "needs_user_resolved": {},
+ "noops": {
+  "Wech97": "ready row, entry not in cdl.bib (resolution drop: not in the bibliography)",
+  "HealEtal12b": "not in the bibliography",
+  "LongKaha12a": "not in the bibliography",
+  "BurkKaha13": "not in the bibliography",
+  "RamaEtal13": "not in the bibliography",
+  "PolyEtal05b": "not in the bibliography",
+  "CrutEtal12": "not in the bibliography",
+  "vanVEtal06": "not in the bibliography",
+  "LohnEtal09": "not in the bibliography",
+  "LohnEtal10": "not in the bibliography",
+  "PolyEtal06": "not in the bibliography",
+  "MillEtal07e": "not in the bibliography",
+  "MortEtal07": "not in the bibliography",
+  "PolyEtal07": "not in the bibliography",
+  "MannEtal09b": "not in the bibliography",
+  "WatrEtal09": "not in the bibliography",
+  "RamaEtal10": "not in the bibliography",
+  "GratEtal11": "not in the bibliography",
+  "LongEtal11": "not in the bibliography",
+  "BurkEtal12": "not in the bibliography",
+  "KrauEtal12": "not in the bibliography",
+  "LongKaha12b": "not in the bibliography",
+  "RamaEtal12a": "not in the bibliography",
+  "LongKaha13": "not in the bibliography",
+  "HartEtal05": "not in the bibliography",
+  "vanVEtal05": "not in the bibliography",
+  "SedeNorm07": "not in the bibliography",
+  "DetrEtal07": "not in the bibliography",
+  "DerdEtal06": "not in the bibliography",
+  "ReccOKee89": "not in the bibliography"
+ },
+ "skipped": {
+  "Nola11": "no change: the entry stands as cited",
+  "Poly05": "no change: the entry stands as cited",
+  "RCor12.author": "proposed '{R Core Team}'; house form (check_bib) is the value as cited",
+  "Laks01.booktitle": "proposed 'Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'; house form (check_bib) is the value as cited",
+  "Beaz96": "no change: the entry stands as cited (resolution keep)",
+  "ZengEtal14": "no change: the entry stands as cited"
+ },
+ "held_fields": {
+  "RangEtal14.publisher": "the publisher formatter turns 'PMLR' into 'Pmlr' ('{PMLR}' into '{pmlr}'); the entry keeps no publisher",
+  "BartEtal04c.address": "the address formatter reads 'La' as the Louisiana code ('{LA} Jolla, {CA}') in every form tried; the entry keeps no address"
+ },
+ "proposals": [
+  {
+   "key": "WolzEtal88",
+   "fingerprint": "v2:441531a7e7934dbe0f83eca2e6673c2a41c2ec2888b3293fb81e2befc7479d90",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.7916/d8k07cdw",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.datacite.org/dois/10.7916/d8k07cdw",
+       "quote": "\"doi\":\"10.7916/d8k07cdw\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Yama08",
+   "fingerprint": "v2:5607e86e54279d111c5856c61a750ce87b9b17cbea104a0a8441942a87797760",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "misc",
+     "after": "incollection",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"type\":\"book-chapter\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": null,
+     "after": "Dynamic Brain -- From Neural Spikes to Behaviors",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
+      }
+     ],
+     "proposed": "Dynamic Brain -- from Neural Spikes to Behaviors",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1007/978-3-540-88853-6_1",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"DOI\":\"10.1007\\/978-3-540-88853-6_1\""
+      }
+     ]
+    },
+    "editor": {
+     "before": null,
+     "after": "M Marinaro and S Scarpetta and Y Yamaguchi",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+       "quote": "\"given\":\"Maria\",\"family\":\"Marinaro\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+       "quote": "\"given\":\"Silvia\",\"family\":\"Scarpetta\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6",
+       "quote": "\"given\":\"Yoko\",\"family\":\"Yamaguchi\""
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "1--12",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"page\":\"1-12\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Springer",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
+      }
+     ]
+    },
+    "series": {
+     "before": null,
+     "after": "Lecture Notes in Computer Science",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-88853-6_1",
+       "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Dynamic Brain - from Neural Spikes to Behaviors\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "deBr24",
+   "fingerprint": "v2:6891564338c3c5f3ae2962c5f3fca5d8de4a52cbd1e1b0adaa746429c0bc202c",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "school": {
+     "before": "Migration-universit\\'{e} en cours d'affectation",
+     "after": "Facult\\'{e} des sciences de Paris",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.persistentid%20all%20%22ark:/12148/cb31876421v%22&recordSchema=unimarcxchange&maximumRecords=1",
+       "quote": "Faculté des sciences de Paris"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Nota17",
+   "fingerprint": "v2:a6eb8420b15e56066e63e207827d38b709b74255d6f1dbc94d16ee583f3dfa6f",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "school": {
+     "before": "Thayer School of Engineering, Dartmouth College",
+     "after": "Dartmouth College",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://search.library.dartmouth.edu/primaws/rest/pub/pnxs?blendFacetsSeparately=false&disableCache=false&getMore=0&inst=01DCL_INST&lang=en&limit=10&newspapersActive=false&newspapersSearch=false&offset=0&pcAvailability=true&q=any,contains,Notaro%20bio-measurement&qExclude=&qInclude=&rapido=false&refEntryActive=false&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01DCL_INST:01DCL",
+       "quote": "\"lds06\" : [ \"Thesis (Ph.D.)--Dartmouth College, 2017.\" ]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RussJenk54",
+   "fingerprint": "v2:58ba2be880637a50239d480a7f4e85c5f4a8a44fcda4866ece3af5d530b3298f",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "institution": {
+     "before": null,
+     "after": "University of Minnesota",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://archive.org/metadata/DTIC_AD0043237/metadata",
+       "quote": "MINNESOTA UNIV MINNEAPOLIS"
+      },
+      {
+       "url": "https://archive.org/download/DTIC_AD0043237/DTIC_AD0043237_djvu.txt",
+       "quote": "students  in  beginning  psychology  classes  at  the  University \nof  Minnesota"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "OGra11",
+   "fingerprint": "v2:a0179e8d1ef84d6e25b84c214a225565639756b3444efe5805c3654b0baa9b60",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{https://www.themoth.org/stories/pie-man}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://themoth.org/stories/pie-man",
+       "quote": "content=\"https://www.themoth.org/stories/pie-man\" property=\"og:url\""
+      }
+     ]
+    },
+    "year": {
+     "before": "2011",
+     "after": "2008",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://themoth.org/stories/pie-man",
+       "quote": "November 18, 2008"
+      }
+     ]
+    }
+   },
+   "rename": "OGra08",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key OGra08 confirmed"
+  },
+  {
+   "key": "Qwen26",
+   "fingerprint": "v2:e7df32cdf64495111725fa0a88943a6f4c7e5b16d9c8d8eb62a42ce7dd9bcb08",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "title": {
+     "before": "Qwen3.5: towards native multimodal agents",
+     "after": "{Qwen3.5}: towards native multimodal agents",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+       "quote": "title  = {{Qwen3.5}: Towards Native Multimodal Agents},"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RCor12",
+   "fingerprint": "v2:1d52f206210b883837b53cb2191a8b9cc0013f2ca1e09f2846bb4623e7993eac",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "title": {
+     "before": "{R}: {A} language and environment for statistical computing",
+     "after": "{R}: a language and environment for statistical computing",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/wch/r-source/R-2-15-branch/src/library/base/inst/CITATION",
+       "quote": "R: A Language and Environment for Statistical Computing"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Stan13",
+   "fingerprint": "v2:67678253e123354f12c74985fae394bedad1e426e5442402e71a0f4c903893b6",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "title": {
+     "before": "Stan modeling language users guide and reference manual, version 2.1",
+     "after": "{Stan} modeling language: user's guide and reference manual, version 2.1.0",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+       "quote": "Stan Modeling Language: User’s Guide"
+      },
+      {
+       "url": "https://github.com/stan-dev/stan/releases/download/v2.1.0/stan-reference-2.1.0.pdf",
+       "quote": "and Reference Manual. Version 2.1.0"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "TorvHama05",
+   "fingerprint": "v2:998842a4d233fdb4edb9311a7402d2c2f02b5cba5a298b55fc78e4bf52bafa14",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "author": {
+     "before": "L Torvalds and J Hamano",
+     "after": "L Torvalds",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.github.com/repos/git/git/commits/e83c5163316f89bfbde7d9ab23ca2e25604af290",
+       "quote": "MTZmODliZmJkZTdkOWFiMjNjYTJlMjU2MDRhZjI5MA==\",\"commit\":{\"author\":{\"name\":\"Linus Torvalds\",\"email\":\"torvalds@ppc970.osdl.org\",\"date\":\"2005-04-07T22:13:13Z\"},\"committer\":"
+      }
+     ]
+    },
+    "title": {
+     "before": "Git: {F}ast version control system",
+     "after": "{GIT}: the stupid content tracker",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/git/git/e83c5163316f89bfbde7d9ab23ca2e25604af290/README",
+       "quote": "GIT - the stupid content tracker"
+      }
+     ]
+    }
+   },
+   "rename": "Torv05",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key Torv05 confirmed"
+  },
+  {
+   "key": "Varo10",
+   "fingerprint": "v2:940460b8e54c4b594c9f3e3caef4a6c9e8bde8d66a19634384a1348ac5e94d28",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "title": {
+     "before": "Joblib: {C}omputing with {P}ython functions",
+     "after": "Joblib: computing with {P}ython functions",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.github.com/repos/joblib/joblib",
+       "quote": "\"name\":\"joblib\",\"full_name\":\"joblib/joblib\""
+      },
+      {
+       "url": "https://api.github.com/repos/joblib/joblib",
+       "quote": "\"description\":\"Computing with Python functions.\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Scav05",
+   "fingerprint": "v2:16234c359f89da6443f99a68a80e22d969901bad3f67b4725dc507832c81dcae",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{https://github.com/thestk/rtaudio}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/thestk/rtaudio/master/README.md",
+       "quote": "https://github.com/thestk/rtaudio/actions/workflows/ci.yml/badge.svg"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Schl07",
+   "fingerprint": "v2:0fa627fa61f5e38218a109b3327511ea6bf370db3c6b12e6b1dd8ad4be43ea75",
+   "kind": "edit",
+   "origin": "wave9 merged.json (ambiguous; resolution apply batch-24)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{http://biosig.sourceforge.net/}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://sourceforge.net/rest/p/biosig",
+       "quote": "\"external_homepage\": \"http://biosig.sourceforge.net/\""
+      }
+     ]
+    },
+    "title": {
+     "before": "The {Biosig} project",
+     "after": "The {BioSig} project",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "http://biosig.sourceforge.net/",
+       "quote": "The BioSig Project"
+      }
+     ]
+    },
+    "year": {
+     "before": "2007",
+     "after": "2000",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://sourceforge.net/rest/p/biosig",
+       "quote": "\"creation_date\": \"2000-06-17\""
+      }
+     ]
+    }
+   },
+   "rename": "Schl00",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key Schl00 confirmed"
+  },
+  {
+   "key": "Smit05",
+   "fingerprint": "v2:5e34a9d5db471e647ff28c26481e11ccfcdc12f859e6e83f7885230179c3ecce",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "author": {
+     "before": "R Smith",
+     "after": "R L Smith",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://www.ode.org/",
+       "quote": "Copyright (C) 2001-2004 Russell L. Smith"
+      },
+      {
+       "url": "https://bitbucket.org/odedevs/ode/raw/master/README.md",
+       "quote": "Copyright (C) 2001-2007 Russell L. Smith."
+      }
+     ]
+    },
+    "howpublished": {
+     "before": null,
+     "after": "\\url{https://www.ode.org/}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://www.ode.org/",
+       "quote": "ODE is an open source, high performance library for simulating rigid body dynamics"
+      }
+     ]
+    },
+    "year": {
+     "before": "2005",
+     "after": "2001",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://www.ode.org/",
+       "quote": "Copyright (C) 2001-2004 Russell L. Smith"
+      }
+     ]
+    }
+   },
+   "rename": "Smit01",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key Smit01 confirmed"
+  },
+  {
+   "key": "Stra06",
+   "fingerprint": "v2:bda482b1655c721909f310bb66f6b8ecc4c4519039414be89ce510c9d615b830",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{http://www.visionegg.org/}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
+       "quote": "http://www.visionegg.org/"
+      }
+     ]
+    },
+    "title": {
+     "before": "Vision{E}gg",
+     "after": "The {Vision Egg}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/visionegg/visionegg/master/README.txt",
+       "quote": "Welcome to the Vision Egg!"
+      }
+     ]
+    },
+    "year": {
+     "before": "2006",
+     "after": "2001",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://sourceforge.net/rest/p/visionegg",
+       "quote": "\"creation_date\": \"2001-11-27\""
+      }
+     ]
+    }
+   },
+   "rename": "Stra01",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key Stra01 confirmed"
+  },
+  {
+   "key": "deCa05a",
+   "fingerprint": "v2:8f6ad0d187cb3241a36d6f69d61bb7163ca40f211725ae4046975031a4141714",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{https://github.com/libsndfile/libsamplerate}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/README.md",
+       "quote": "[GitHub](https://github.com/libsndfile/libsamplerate)"
+      }
+     ]
+    },
+    "year": {
+     "before": "2005",
+     "after": "2004",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/libsndfile/libsamplerate/master/NEWS",
+       "quote": "Version 0.1.0 (2004-03-14)"
+      }
+     ]
+    }
+   },
+   "rename": "deCa04",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key deCa04 confirmed"
+  },
+  {
+   "key": "SingEtal24",
+   "fingerprint": "v2:bed315d046b2f2ef7fee9b4d46655894f366e908396fd41f842d101fd8c7a8a7",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "author": {
+     "before": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C Mejia Arenas and C Zhou and C Caucheteux and C Nayak and C Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C Canton Ferrer and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I Arrieta Ibarra and I Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z Delpierre Coudert and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
+     "after": "A Singh and A Grattafiori and A Dubey and A Jauhri and A Pandey and A Kadian and A Kelsey and A Gangidi and A Al-Dahle and A Sangani and A Goldstand and A Letman and A Menon and A Mathur and A Schelten and A Vaughan and A Yang and A Lupu and A Alvarado and A Gallagher and A Gu and A Ho and A Poulton and A Ryan and A Fan and A Ramchandani and A Hartshorn and A Mitra and A Sravankumar and A Korenev and A Rao and A Gabriel and A Bharambe and A Eisenman and A Zhang and A JJhaveri and A Rodriguez and A Gregerson and A Spataru and B Roziere and B Maurer and B Leonhardi and B Huang and B Paranjape and B Liu and B Tang and B Chern and B Stojkovic and B Fuller and C {Mejia Arenas} and C Zhou and C Caucheteux and C Nayak and C-H Chu and C Bi and C Cai and C Cox and C Marra and C McConnell and C Keller and C Feichtenhofer and C Touret and C Wu and C Wong and C {Canton Ferrer} and D Allonsius and D Kreymer and D Haziza and D Li and D Pintz and D Livshits and D Wyatt and D Adkins and D Esiobu and D Xu and D Testuggine and D David and D Parikh and D Choudhary and D Mahajan and D Liskovich and D Garcia-Olano and D Perino and D Hupkes and D Wang and D Holland and E Lakomkin and E Lobanova and X E Tan and E Dinan and E Smith and E Brinkman and E Arcaute and F Radenovic and F Ozgenel and F Caggioni and F Seide and F Zhang and G Synnaeve and G Schwarz and G Lee and G Badeer and G Anderson and G Nail and G Mialon and G Pang and G Cucurell and H Nguyen and H Shojanazeri and H Korevaar and H Wang and H Habeeb and H Rudolph and H Aspegren and H Xu and H Touvron and I Kozlowska and I Molybog and I Tufanov and I Zarov and I {Arrieta Ibarra} and I-E Veliche and I Kloumann and I Misra and I Evtimov and J Copet and J Weissman and J Geffert and J Vranes and J Asher and J Park and J Mahadeokar and J-B Gaya and J Shah and J van der Linde and J Chan and J Hong and J Lee and J Fu and J Teboul and J Chi and J Huang and J Wang and J Yu and J Bitton and J Spisak and J Pineau and J Carvill and J Park and J Rocca and J Johnstun and J Jia and K Vasuden Alwala and K Hou U and K Plawiak and K Upasani and K Veeraraghavan and K Li and K Heafield and K Stone and K El-Arini and K Iyer and K Malik and K Chiu and K Bhalla and K Huang and L Garg and L Rantala-Yeary and L van der Maaten and L Chen and L Silva and L Bell and L Zhang and L Tan and L Martin and L Madaan and L Wehrstedt and L Blecher and L de Oliveira and M Muzzi and M Khabsa and M Avlani and M Singh and M Paluri and M Zuckerberg and M Kardas and M Mankus and M Oldham and M Rita and M Lennie and M Pavlova and M Keneally and M Kambadur and M Patel and M Samvelyan and M Clark and M Lewis and M Si and M K Singh and M Metanat and M Hassan and N Goyal and N Torabi and N Usunier and N Bashlykov and N Bogoychev and N Chatterji and N Dong and O A Yang and O Duchenne and O Celebi and P Parekh and P Alrassy and P Saab and P Balaji and P Rittner and P Zhang and P Li and P Vasic and P Weng and P Zvyagina and P Bhargava and P Dubal and P Krishnan and P S Koura and P Xu and Q He and R Rodriguez and R Srinivasan and R Mitra and R Calderer and R Li and R Stojnic and R Raileanu and R Battey and R Wang and R Girdhar and R Patel and R Sauvestre and R Polidoro and R Sumbaly and R Taylor and R Silva and R Hou and R Wang and R Howes and R Rinott and S Hosseini and S J Bondu and S Datta and S Singh and S Chugh and S Dhillon and S Pan and S Bell and S Edunov and S Nie and S Narang and S Raparthy and S Lindsay and S Feng and S Shen and S Lin and S Shankar and S Bhosale and S Zhang and S Vandenhende and S Wang and S S Kim and S Batra and S Sootla and S Kehoe and S Gururangan and S Gupta and S Virk and S Borodinsky and T Glaser and T Herman and T Best and T Fowler and T Georgiou and T Scialom and T Li and T Mihaylov and T Xiao and U Karn and V Goswami and V Gupta and V Ramanathan and V Kerkez and V Satish Kumar and V Gonguet and V Vogeti and V Poenaru and V T Mihailescu and V Petrovic and V Ivanov and W Li and W Chu and W Xiong and W Fu and W Bouaziz and W Meers and W Constable and X Martinet and X Wu and X Gao and X Xie and X Jia and Y Goldschlag and Y LeCun and Y Gaur and Y Babaei and Y Qi and Y Li and Y Wen and Y Song and Y Nam and Y Hao and Y Zhang and Y Wang and Y Mao and Y He and Z {Delpierre Coudert} and Z DeVito and Z Hankir and Z Wen and Z Yan and Z Chen and Z Yang and Z Papakipos",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Aaditya Singh; Aaron Grattafiori; Abhimanyu Dubey; Abhinav Jauhri; Abhinav Pandey; Abhishek Kadian; Adam Kelsey; Adi Gangidi; Ahmad Al-Dahle; Amit Sangani; Ahuva Goldstand; Aiesha Letman; Ajay Menon; Akhil Mathur; Alan Schelten"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Alex Vaughan; Amy Yang; Andrei Lupu; Andres Alvarado; Andrew Gallagher; Andrew Gu; Andrew Ho; Andrew Poulton; Andrew Ryan; Angela Fan; Ankit Ramchandani; Anthony Hartshorn; Archi Mitra; Archie Sravankumar; Artem Korenev"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Arun Rao; Ashley Gabriel; Ashwin Bharambe; Assaf Eisenman; Aston Zhang; Ash JJhaveri; Aurelien Rodriguez; Austen Gregerson; Ava Spataru; Baptiste Roziere; Ben Maurer; Benjamin Leonhardi; Bernie Huang; Bhargavi Paranjape; Bing Liu"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Binh Tang; Bobbie Chern; Brani Stojkovic; Brian Fuller; Catalina Mejia Arenas; Chao Zhou; Charlotte Caucheteux; Chaya Nayak; Ching-Hsiang Chu; Chloe Bi; Chris Cai; Chris Cox; Chris Marra; Chris McConnell; Christian Keller"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Christoph Feichtenhofer; Christophe Touret; Chunyang Wu; Corinne Wong; Cristian Canton Ferrer; Damien Allonsius; Daniel Kreymer; Daniel Haziza; Daniel Li; Danielle Pintz; Danny Livshits; Danny Wyatt; David Adkins; David Esiobu; David Xu"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Davide Testuggine; Delia David; Devi Parikh; Dhruv Choudhary; Dhruv Mahajan; Diana Liskovich; Diego Garcia-Olano; Diego Perino; Dieuwke Hupkes; Dingkang Wang; Dustin Holland; Egor Lakomkin; Elina Lobanova; Xiaoqing Ellen Tan; Emily Dinan"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Eric Smith; Erik Brinkman; Esteban Arcaute; Filip Radenovic; Firat Ozgenel; Francesco Caggioni; Frank Seide; Frank Zhang; Gabriel Synnaeve; Gabriella Schwarz; Gabrielle Lee; Gada Badeer; Georgia Anderson; Graeme Nail; Gregoire Mialon"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Guan Pang; Guillem Cucurell; Hailey Nguyen; Hamid Shojanazeri; Hannah Korevaar; Hannah Wang; Haroun Habeeb; Harrison Rudolph; Henry Aspegren; Hu Xu; Hugo Touvron; Iga Kozlowska; Igor Molybog; Igor Tufanov; Iliyan Zarov"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Imanol Arrieta Ibarra; Irina-Elena Veliche; Isabel Kloumann; Ishan Misra; Ivan Evtimov; Jade Copet; Jake Weissman; Jan Geffert; Jana Vranes; Japhet Asher; Jason Park; Jay Mahadeokar; Jean-Baptiste Gaya; Jeet Shah; Jelmer van der Linde"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Jennifer Chan; Jenny Hong; Jenya Lee; Jeremy Fu; Jeremy Teboul; Jianfeng Chi; Jianyu Huang; Jie Wang; Jiecao Yu; Joanna Bitton; Joe Spisak; Joelle Pineau; Jon Carvill; Jongsoo Park; Joseph Rocca"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Joshua Johnstun; Junteng Jia; Kalyan Vasuden Alwala; Kam Hou U; Kate Plawiak; Kartikeya Upasani; Kaushik Veeraraghavan; Ke Li; Kenneth Heafield; Kevin Stone; Khalid El-Arini; Krithika Iyer; Kshitiz Malik; Kuenley Chiu; Kunal Bhalla"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Kyle Huang; Lakshya Garg; Lauren Rantala-Yeary; Laurens van der Maaten; Lawrence Chen; Leandro Silva; Lee Bell; Lei Zhang; Liang Tan; Louis Martin; Lovish Madaan; Luca Wehrstedt; Lukas Blecher; Luke de Oliveira; Madeline Muzzi"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Madian Khabsa; Manav Avlani; Mannat Singh; Manohar Paluri; Mark Zuckerberg; Marcin Kardas; Martynas Mankus; Mathew Oldham; Mathieu Rita; Matthew Lennie; Maya Pavlova; Meghan Keneally; Melanie Kambadur; Mihir Patel; Mikayel Samvelyan"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Mike Clark; Mike Lewis; Min Si; Mitesh Kumar Singh; Mo Metanat; Mona Hassan; Naman Goyal; Narjes Torabi; Nicolas Usunier; Nikolay Bashlykov; Nikolay Bogoychev; Niladri Chatterji; Ning Dong; Oliver Aobo Yang; Olivier Duchenne"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Onur Celebi; Parth Parekh; Patrick Alrassy; Paul Saab; Pavan Balaji; Pedro Rittner; Pengchuan Zhang; Pengwei Li; Petar Vasic; Peter Weng; Polina Zvyagina; Prajjwal Bhargava; Pratik Dubal; Praveen Krishnan; Punit Singh Koura"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Puxin Xu; Qing He; Rachel Rodriguez; Ragavan Srinivasan; Rahul Mitra; Ramon Calderer; Raymond Li; Robert Stojnic; Roberta Raileanu; Robin Battey; Rocky Wang; Rohit Girdhar; Rohit Patel; Romain Sauvestre; Ronnie Polidoro"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Roshan Sumbaly; Ross Taylor; Ruan Silva; Rui Hou; Rui Wang; Russ Howes; Ruty Rinott; Saghar Hosseini; Sai Jayesh Bondu; Samyak Datta; Sanjay Singh; Sara Chugh; Sargun Dhillon; Satadru Pan; Sean Bell"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Sergey Edunov; Shaoliang Nie; Sharan Narang; Sharath Raparthy; Shaun Lindsay; Sheng Feng; Sheng Shen; Shenghao Lin; Shiva Shankar; Shruti Bhosale; Shun Zhang; Simon Vandenhende; Sinong Wang; Seohyun Sonia Kim; Soumya Batra"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Sten Sootla; Steve Kehoe; Suchin Gururangan; Sumit Gupta; Sunny Virk; Sydney Borodinsky; Tamar Glaser; Tamar Herman; Tamara Best; Tara Fowler; Thomas Georgiou; Thomas Scialom; Tianhe Li; Todor Mihaylov; Tong Xiao"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Ujjwal Karn; Vedanuj Goswami; Vibhor Gupta; Vignesh Ramanathan; Viktor Kerkez; Vinay Satish Kumar; Vincent Gonguet; Vish Vogeti; Vlad Poenaru; Vlad Tiberiu Mihailescu; Vladan Petrovic; Vladimir Ivanov; Wei Li; Weiwei Chu; Wenhan Xiong"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Wenyin Fu; Wes Bouaziz; Whitney Meers; Will Constable; Xavier Martinet; Xiaojian Wu; Xinbo Gao; Xinfeng Xie; Xuchao Jia; Yaelle Goldschlag; Yann LeCun; Yashesh Gaur; Yasmine Babaei; Ye Qi; Yenda Li"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Yi Wen; Yiwen Song; Youngjin Nam; Yuchen Hao; Yuchen Zhang; Yun Wang; Yuning Mao; Yuzi He; Zacharie Delpierre Coudert; Zachary DeVito; Zahra Hankir; Zhaoduo Wen; Zheng Yan; Zhengxing Chen; Zhenyu Yang"
+      },
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "Zoe Papakipos"
+      }
+     ]
+    },
+    "howpublished": {
+     "before": "Hugging Face Model Card",
+     "after": "\\url{https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "url = {https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md}"
+      }
+     ]
+    },
+    "title": {
+     "before": "Llama 3",
+     "after": "{Llama 3} model card",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://raw.githubusercontent.com/meta-llama/llama3/main/MODEL_CARD.md",
+       "quote": "title={Llama 3 Model Card},"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "deCa05b",
+   "fingerprint": "v2:e91ab183609c76042213903e5e73d3277a8ab13e2f9b500c6670cfc7f0914e6e",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "\\url{http://www.mega-nerd.com/libsndfile/}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "http://www.mega-nerd.com/libsndfile/",
+       "quote": "Libsndfile is a C library for reading and writing files containing sampled sound"
+      }
+     ]
+    }
+   },
+   "rename": "deCa05",
+   "rename_reason": "suffix rule: deCa05a renamed to deCa04"
+  },
+  {
+   "key": "vanREtal14",
+   "fingerprint": "v2:811f54234703b9d9a5d4ddc62fe77a1b0773b057576e8fa87a2b2c0339819ac5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "techreport",
+     "after": "misc",
+     "source": "resolution",
+     "evidence": []
+    },
+    "author": {
+     "before": "G {van Rossum} and J Lehtosalo and {\\L}ukasz Langa",
+     "after": "G {van Rossum} and J Lehtosalo and Ł Langa",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://peps.python.org/pep-0484/",
+       "quote": "Author : Guido van Rossum <guido at python.org>, Jukka Lehtosalo <jukka.lehtosalo at iki.fi>, Łukasz Langa <lukasz at python.org>"
+      }
+     ],
+     "proposed": "G {van Rossum} and J Lehtosalo and {\\L} Langa",
+     "house_form": "check_bib"
+    },
+    "howpublished": {
+     "before": null,
+     "after": "\\url{https://peps.python.org/pep-0484/}",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://peps.python.org/pep-0484/",
+       "quote": "<title>PEP 484 – Type Hints | peps.python.org"
+      }
+     ]
+    },
+    "title": {
+     "before": "Type {Hints}",
+     "after": "Type hints",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://peps.python.org/pep-0484/",
+       "quote": "PEP 484 – Type Hints"
+      }
+     ]
+    },
+    "institution": {
+     "before": "Python Software Foundation",
+     "after": null,
+     "reason": "resolution asked to remove it (current 'Python Software Foundation')"
+    },
+    "type": {
+     "before": "PEP",
+     "after": null,
+     "reason": "resolution asked to remove it (current 'PEP')"
+    },
+    "number": {
+     "before": "484",
+     "after": null,
+     "reason": "resolution asked to remove it (current '484')"
+    }
+   }
+  },
+  {
+   "key": "vond81",
+   "fingerprint": "v2:8e81293e7e4bfd7c6d8a34b11ef0ddf04562a468ef83011f4d6b95fdf272c638",
+   "kind": "edit",
+   "origin": "wave9 merged.json (ambiguous; resolution apply batch-24)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "techreport",
+     "after": "incollection",
+     "source": "resolution",
+     "evidence": []
+    },
+    "address": {
+     "before": "G{\\\"{o}}ttingen, Germany",
+     "after": "New York, {NY}",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"publisher-location\":\"New York, NY\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": null,
+     "after": "Models of Neural Networks",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"container-title\":[\"Physics of Neural Networks\",\"Models of Neural Networks\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1007/978-1-4612-4320-5_2",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"DOI\":\"10.1007\\/978-1-4612-4320-5_2\""
+      }
+     ]
+    },
+    "editor": {
+     "before": null,
+     "after": "E Domany and J L {van Hemmen} and K Schulten",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5",
+       "quote": "0.1007\\/978-1-4612-4320-5\"}},\"subtitle\":[],\"editor\":[{\"given\":\"Eytan\",\"family\":\"Domany\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"J. Leo\",\"family\":\"van Hemmen\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"editor\"}]},{\"given\":\"Klaus\",\"family\":\"Schulten\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "95--119",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"page\":\"95-119\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Springer",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"publisher\":\"Springer New York\""
+      }
+     ]
+    },
+    "year": {
+     "before": "1981",
+     "after": "1994",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-1-4612-4320-5_2",
+       "quote": "\"published-print\":{\"date-parts\":[[1994]]}"
+      }
+     ]
+    },
+    "number": {
+     "before": "81-2",
+     "after": null,
+     "reason": "resolution asked to remove it (current '81-2')"
+    }
+   },
+   "rename": "vond94",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key vond94 confirmed"
+  },
+  {
+   "key": "Weic96",
+   "fingerprint": "v2:60e863e39920e70fcb760d00dddf57e4229c0ad7ba096c1edf5422cba1df73fb",
+   "kind": "remove",
+   "reason": "no evidence found after: ProQuest/PsycINFO (login), HathiTrust, Open Library, OpenAlex (429), Crossref bibliographic search, Europe PMC, Google Books (quota), WorldCat and Google Scholar (bot walls), CUNY Academic Works (Cloudflare); ORCID 0000-0002-6408-718X confirms only 'PhD, City University of New York Graduate School and University Center, Psychology, 1988-1996', not the title or DAI 57(1-B):757",
+   "decision": "verification/resolution-2026-09-26/batch-24.json (drop; post-check research-2026-09-25/wave9/merged.json): Under round-2 rule 1 (no verifiable record -> drop). A PsycINFO/ProQuest record almost certainly exists; if the user can read it, the entry could be restored as @phdthesis (school CUNY, 1996)."
+  },
+  {
+   "key": "DiazEtal15",
+   "fingerprint": "v2:c05db2f0400945fbc41a9444da5d3d2b13a5755b6df894b7fce4ce0753408ee4",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "misc",
+     "after": "article",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
+       "quote": "\"type\":\"journal-article\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1016/j.ijcard.2015.03.038",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25795203/",
+       "quote": "AID - 10.1016/j.ijcard.2015.03.038 [doi]"
+      }
+     ]
+    },
+    "journal": {
+     "before": null,
+     "after": "International Journal of Cardiology",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1016/j.ijcard.2015.03.038",
+       "quote": "\"container-title\":[\"International Journal of Cardiology\"]"
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "International Journal of Cardiology",
+     "after": null,
+     "reason": "researcher asked to remove it (current 'International Journal of Cardiology')"
+    }
+   }
+  },
+  {
+   "key": "WilsEmmo03",
+   "fingerprint": "v2:1cdaeb967cb043a4c6ff9fd9f3ffce473f5011e2cfa74b516f6c95d25edee947",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "misc",
+     "after": "article",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/deafed/eng010",
+       "quote": "\"type\":\"journal-article\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1093/deafed/eng010",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/15448060/",
+       "quote": "AID - 10.1093/deafed/eng010 [doi]"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "{Oxford} {University} Press",
+     "after": null,
+     "reason": "no publisher on @article (house rule)"
+    }
+   }
+  },
+  {
+   "key": "FellEtal01a",
+   "fingerprint": "v2:09bbe0820b6a45ce94cdf073b0afc7d04cd429ff2d45894e9fa838b17cbcea5e",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "misc",
+     "after": "article",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"type\":\"journal-article\""
+      }
+     ]
+    },
+    "author": {
+     "before": "J M Fellous and A R Houweling and R H Modi and R P N Rao and P H E Tiesinga and T J Sejnowski",
+     "after": "J-M Fellous and A R Houweling and R H Modi and R P N Rao and P H E Tiesinga and T J Sejnowski",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"J.-M.\",\"family\":\"Fellous\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"A. R.\",\"family\":\"Houweling\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"R. H.\",\"family\":\"Modi\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"R.P.N.\",\"family\":\"Rao\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"P.H.E.\",\"family\":\"Tiesinga\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1152/jn.2001.85.4.1782",
+       "quote": "\"given\":\"T. J.\",\"family\":\"Sejnowski\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1152/jn.2001.85.4.1782",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/11287500/",
+       "quote": "AID - 10.1152/jn.2001.85.4.1782 [doi]"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "{American} Physiological Society",
+     "after": null,
+     "reason": "no publisher on @article (house rule)"
+    }
+   }
+  },
+  {
+   "key": "SpenEtal03",
+   "fingerprint": "v2:dc1a1cfd6ce606ed14e167ee5aab300c2f5bfdab21f2b62dcdcf4431654cb7bf",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "misc",
+     "after": "article",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1523/jneurosci.23-19-07407.2003",
+       "quote": "\"type\":\"journal-article\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1523/jneurosci.23-19-07407.2003",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12917376/",
+       "quote": "AID - 10.1523/JNEUROSCI.23-19-07407.2003 [doi]"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Society for Neuroscience",
+     "after": null,
+     "reason": "no publisher on @article (house rule)"
+    }
+   }
+  },
+  {
+   "key": "CoopEtal04",
+   "fingerprint": "v2:fcb3eb7333301a0aed121e98bf8767285c624f744be6bc630b20e690c95f5766",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "howpublished": {
+     "before": null,
+     "after": "{US} Patent 6,757,362",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://patents.google.com/patent/US6757362B1/en",
+       "quote": "<meta name=\"citation_patent_number\" content=\"US:6757362\">"
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Us Patent",
+     "after": null,
+     "reason": "researcher asked to remove it (current 'Us Patent')"
+    }
+   }
+  },
+  {
+   "key": "Mann21d",
+   "fingerprint": "v2:2bfddc3504f42565c627492c6e24c7cd955d4664768a80603c73516915826309",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.5281/zenodo.5182775",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.datacite.org/dois/10.5281/zenodo.5182775",
+       "quote": "\"doi\":\"10.5281/zenodo.5182775\""
+      },
+      {
+       "url": "https://raw.githubusercontent.com/ContextLab/storytelling-with-data/master/README.md",
+       "quote": "zenodo.org/badge/DOI/10.5281/zenodo.5182775.svg"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiuEtal18",
+   "fingerprint": "v2:db09e874710d3df28bb9097bf6b30deb1bb05dfd500bbe4453de51bd3fa4b06c",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "editor": {
+     "before": null,
+     "after": "S Bengio and H Wallach and H Larochelle and K Grauman and N Cesa-Bianchi and R Garnett",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+       "quote": "editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "5356--5366",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Metadata.json",
+       "quote": "\"page_first\": 5356, \"page_last\": 5366"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Curran Associates",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2018/file/dda04f9d634145a9c68d5dfe53b21272-Bibtex.bib",
+       "quote": "publisher = {Curran Associates, Inc.},"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "31",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2018/hash/dda04f9d634145a9c68d5dfe53b21272-Abstract.html",
+       "quote": "<meta name=\"citation_volume\" content=\"31\">"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiuWang16",
+   "fingerprint": "v2:f4964a6d8b481ef4c0af11f6b5bdafbc66aa39454c784aece729e27578c429c5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "editor": {
+     "before": null,
+     "after": "D D Lee and M Sugiyama and U {von Luxburg} and I Guyon and R Garnett",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+       "quote": "editor = {D. Lee and M. Sugiyama and U. Luxburg and I. Guyon and R. Garnett},"
+      },
+      {
+       "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+       "quote": "Daniel D. Lee"
+      },
+      {
+       "url": "https://www.proceedings.com/content/034/034099webtoc.pdf",
+       "quote": "Ulrike von Luxburg"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "2378--2386",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Metadata.json",
+       "quote": "\"page_first\": 2378, \"page_last\": 2386"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Curran Associates",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2016/file/b3ba8f1bee1238a2f37603d90b58898d-Bibtex.bib",
+       "quote": "publisher = {Curran Associates, Inc.},"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "29",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2016/hash/b3ba8f1bee1238a2f37603d90b58898d-Abstract.html",
+       "quote": "<meta name=\"citation_volume\" content=\"29\">"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ParkPill12",
+   "fingerprint": "v2:d4f8f7f19988e4f4036bd2d44bf17f3c06ad427992cf891c1ef8f54d7bda1cb5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "editor": {
+     "before": null,
+     "after": "F Pereira and C J Burges and L Bottou and K Weinberger",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+       "quote": "editor = {F. Pereira and C.J. Burges and L. Bottou and K. Weinberger},"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Curran Associates",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2012/file/4588e674d3f0faf985047d4c3f13ed0d-Bibtex.bib",
+       "quote": "publisher = {Curran Associates, Inc.},"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "25",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2012/hash/4588e674d3f0faf985047d4c3f13ed0d-Abstract.html",
+       "quote": "<meta name=\"citation_volume\" content=\"25\">"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RaoHowa08",
+   "fingerprint": "v2:a9f31e26e3356274c61a6ded7a06093a77e1223bda69d26219698ea8c3bd3299",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "publisher": {
+     "before": "{MIT} Press",
+     "after": "Curran Associates",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+       "quote": "publisher = {Curran Associates, Inc.},"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "20",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2007/hash/b3967a0e938dc2a6340e258630febd5a-Abstract.html",
+       "quote": "<meta name=\"citation_volume\" content=\"20\">"
+      }
+     ]
+    },
+    "year": {
+     "before": "2008",
+     "after": "2007",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2007/file/b3967a0e938dc2a6340e258630febd5a-Bibtex.bib",
+       "quote": "year = {2007}"
+      }
+     ]
+    }
+   },
+   "rename": "RaoHowa07",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-24): key RaoHowa07 confirmed"
+  },
+  {
+   "key": "VaswEtal17",
+   "fingerprint": "v2:ba4404983fab2700981cbfbf698d6f962ac2ea109b8fb4e66ea9e02210bbf019",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "conference",
+     "after": "inproceedings",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+       "quote": "@inproceedings{NIPS2017_3f5ee243,"
+      }
+     ]
+    },
+    "author": {
+     "before": "A Vaswani and N Shazeer and N Parmar and J Uszkoreit and L Jones and A N Gomez and L Kaiser and I Polosukhin",
+     "after": "A Vaswani and N Shazeer and N Parmar and J Uszkoreit and L Jones and A N Gomez and Ł Kaiser and I Polosukhin",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+       "quote": "content=\"Kaiser, Łukasz\""
+      },
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+       "quote": "content=\"Polosukhin, Illia\""
+      },
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+       "quote": "author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser,"
+      }
+     ],
+     "proposed": "A Vaswani and N Shazeer and N Parmar and J Uszkoreit and L Jones and A N Gomez and {\\L} Kaiser and I Polosukhin",
+     "house_form": "check_bib"
+    },
+    "editor": {
+     "before": null,
+     "after": "I Guyon and U {von Luxburg} and S Bengio and H Wallach and R Fergus and S Vishwanathan and R Garnett",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+       "quote": "editor = {I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Curran Associates",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+       "quote": "publisher = {Curran Associates, Inc.},"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "YangEtal13",
+   "fingerprint": "v2:f1dea391268e0060b6d393d573cfded3b44280e1c0113e45d0a413f30a1c3447",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "Advances in Neural Information Processing Systems: Data-Driven Education Workshop",
+     "after": "{NIPS} Workshop on Data Driven Education",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+       "quote": "NIPS Workshop on Data Driven Education (2013)"
+      }
+     ]
+    },
+    "title": {
+     "before": "Turn on, tune in, drop out: anticipating student dropout in massive open online courses",
+     "after": "``{T}urn on, tune in, drop out'': anticipating student dropouts in massive open online courses",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://cs.stanford.edu/~diyiy/docs/nips13.pdf",
+       "quote": "Tune in, Drop out”: Anticipating student dropouts in Massive Open Online Courses"
+      },
+      {
+       "url": "http://web.archive.org/web/20150215160113/http://lytics.stanford.edu/datadriveneducation",
+       "quote": "“Turn on, Tune in, Drop out”: Anticipating student dropouts in Massive Open Online Courses"
+      }
+     ],
+     "proposed": "``Turn on, tune in, drop out'': anticipating student dropouts in massive open online courses",
+     "house_form": "check_bib"
+    },
+    "volume": {
+     "before": "11",
+     "after": null,
+     "reason": "researcher asked to remove it (current '11')"
+    }
+   }
+  },
+  {
+   "key": "RangEtal14",
+   "fingerprint": "v2:be3a213185ab52e6827b324d717fc4acee79bff6fcac9a38d81019cdcbaa34ee",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-24)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "Reykjavik, Iceland",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "address = {Reykjavik, Iceland},"
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Artificial Intellience and Statistics",
+     "after": "Proceedings of the 17\\textsuperscript{th} International Conference on Artificial Intelligence and Statistics",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "booktitle = {Proceedings of the Seventeenth International Conference on Artificial Intelligence and Statistics},"
+      }
+     ]
+    },
+    "editor": {
+     "before": null,
+     "after": "S Kaski and J Corander",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "editor = {Kaski, Samuel and Corander, Jukka},"
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "814--822",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "pages = {814--822},"
+      }
+     ]
+    },
+    "series": {
+     "before": null,
+     "after": "Proceedings of Machine Learning Research",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "series = {Proceedings of Machine Learning Research},"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "33",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.mlr.press/v33/ranganath14.html",
+       "quote": "volume = {33},"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "WolfEtal20",
+   "fingerprint": "v2:72c4761ebed27be1f11436abf6d310822ecf19833ef2cdf5e55e47727fed0eb3",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "Online",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "address = \"Online\","
+      }
+     ]
+    },
+    "author": {
+     "before": "T Wolf and L Debut and V Sanh and J Chaumond and C Delangue and A Moi and P Cistac and C Ma and Y Jernite and J Plu and C Xu and T {Le Scao} and S Gugger and M Drame and Q Lhoest and A M Rush",
+     "after": "T Wolf and L Debut and V Sanh and J Chaumond and C Delangue and A Moi and P Cistac and T Rault and R Louf and M Funtowicz and J Davison and S Shleifer and P {von Platen} and C Ma and Y Jernite and J Plu and C Xu and T {Le Scao} and S Gugger and M Drame and Q Lhoest and A M Rush",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "author = \"Wolf, Thomas and Debut, Lysandre and Sanh, Victor and Chaumond, Julien and Delangue, Clement and Moi, Anthony and Cistac, Pierric and Rault, Tim and Louf, Remi and Funtowicz, Morgan and Davison, Joe and"
+      },
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "Shleifer, Sam and von Platen, Patrick and Ma, Clara and Jernite, Yacine and Plu, Julien and Xu, Canwen and Le Scao, Teven and Gugger, Sylvain and Drame, Mariama and Lhoest, Quentin and Rush, Alexander\","
+      }
+     ]
+    },
+    "booktitle": {
+     "before": null,
+     "after": "Proceedings of the Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "booktitle = \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations\","
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.18653/v1/2020.emnlp-demos.6",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "doi = \"10.18653/v1/2020.emnlp-demos.6\","
+      }
+     ]
+    },
+    "editor": {
+     "before": null,
+     "after": "Q Liu and D Schlangen",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "editor = \"Liu, Qun and Schlangen, David\","
+      }
+     ]
+    },
+    "title": {
+     "before": "Transformers: {S}tate-of-the-{A}rt {N}atural {L}anguage {P}rocessing",
+     "after": "Transformers: state-of-the-art natural language processing",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://aclanthology.org/2020.emnlp-demos.6.bib",
+       "quote": "title = \"Transformers: State-of-the-Art Natural Language Processing\","
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Laks01",
+   "fingerprint": "v2:b98a9524a55dde24d0118f3344112361b3f6ca16cb7790a467419f96d7da26c9",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "conference",
+     "after": "misc",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: ENTRYTYPE conference->inproceedings; different version (German 2003 print) named",
+        "MPG page (Wayback 2002): \"Speech given by the Chairman of the \\\"Organization of the Mengele Twins\\\" Jona Laks, Tel Aviv, on the occasion of the opening of the symposium entitled \\\"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\\\" Berlin, June 7, 2001\". Title, organization and booktitle wording are supported. But the post-check turned @conference into @inproceedings, which asserts a proceedings volume that does not exist (the researcher says so and suggests @misc). Suggest @misc with howpublished giving the symposium and the archived URL."
+       ]
+      }
+     ]
+    },
+    "howpublished": {
+     "before": null,
+     "after": "Speech at the symposium ``Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes: The Auschwitz Connection'', Max Planck Society, Berlin, June 7, 2001, \\url{https://web.archive.org/web/20020222065956/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm}",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Set A reason: ENTRYTYPE conference->inproceedings; different version (German 2003 print) named",
+        "MPG page (Wayback 2002): \"Speech given by the Chairman of the \\\"Organization of the Mengele Twins\\\" Jona Laks, Tel Aviv, on the occasion of the opening of the symposium entitled \\\"Biomedical Sciences and Human Experimentation at Kaiser Wilhelm Institutes - The Auschwitz Connection\\\" Berlin, June 7, 2001\". Title, organization and booktitle wording are supported. But the post-check turned @conference into @inproceedings, which asserts a proceedings volume that does not exist (the researcher says so and suggests @misc). Suggest @misc with howpublished giving the symposium and the archived URL."
+       ]
+      }
+     ]
+    },
+    "organization": {
+     "before": "Max Planck Institute",
+     "after": "Max Planck Society",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+       "quote": "I will begin by thanking the Max Planck Society and Dr. Carola Sachse"
+      }
+     ]
+    },
+    "title": {
+     "before": "Lecture on behalf of the organization of mengele twins",
+     "after": "Speech given by the chairman of the ``{Organization of the Mengele Twins}''",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20020222065956id_/http://www.mpg.de:80/reden/2001/biosymposium/laks_e.htm",
+       "quote": "Speech given by the Chairman of the \"Organization of the Mengele Twins\" Jona Laks"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "dBakEtal08",
+   "fingerprint": "v2:0e8f2048303cf72ec59f8c8979ec3dc1370d192e4e6adbdc0543744755265257",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1007/978-3-540-69132-7_44",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-69132-7_44",
+       "quote": "\"DOI\":\"10.1007\\/978-3-540-69132-7_44\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Springer",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-69132-7_44",
+       "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "FiscMode03",
+   "fingerprint": "v2:e858d5dc8f092ce3acd758611c754a127298f24baf61139a520aba1b840420ab",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "booktitle": {
+     "before": "International Workshop on Biomedical Image Registration",
+     "after": "Biomedical Image Registration",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-39701-4_28",
+       "quote": "\"container-title\":[\"Lecture Notes in Computer Science\",\"Biomedical Image Registration\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1007/978-3-540-39701-4_28",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-39701-4_28",
+       "quote": "\"DOI\":\"10.1007\\/978-3-540-39701-4_28\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Springer",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1007/978-3-540-39701-4_28",
+       "quote": "\"publisher\":\"Springer Berlin Heidelberg\""
+      }
+     ]
+    },
+    "organization": {
+     "before": "Springer",
+     "after": null,
+     "reason": "researcher asked to remove it (current 'Springer')"
+    }
+   }
+  },
+  {
+   "key": "HalpEtal16",
+   "fingerprint": "v2:0b8b2d476d34625c560aab987171be58ee552326f7b834223f8ecff2bf3072a5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.21437/interspeech.2016-1358",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.21437/interspeech.2016-1358",
+       "quote": "\"DOI\":\"10.21437\\/interspeech.2016-1358\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "BernClif94",
+   "fingerprint": "v2:5255ea5caf3e2686691158ddd7eb4ddadf11fefa30f715fe727f3315ab28a0bb",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "booktitle": {
+     "before": "Knowledge Discovery and Data Mining Workshop",
+     "after": "{AAAI}-94 Workshop on Knowledge Discovery in Databases",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://cdn.aaai.org/Workshops/1994/WS-94-03/WS94-03-031.pdf",
+       "quote": "AAAI-94 Workshop on Knowledge Discovery in Databases"
+      }
+     ]
+    },
+    "volume": {
+     "before": "10",
+     "after": null,
+     "reason": "researcher asked to remove it (current '10')"
+    }
+   }
+  },
+  {
+   "key": "KluyEtal16",
+   "fingerprint": "v2:3e4203feb5b6aa63651aa88a5f320ea43fa255c44cf67692eed4b47cacf332a2",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "address": {
+     "before": "Netherlands",
+     "after": "Amsterdam",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "http://lx2.loc.gov:210/lcdb?version=1.1&operation=searchRetrieve&query=bath.isbn=9781614996484&maximumRecords=1&recordSchema=mods",
+       "quote": "Amsterdam :"
+      }
+     ]
+    },
+    "author": {
+     "before": "T Kluyver and B Ragan-Kelley and F P{\\'e}rez and B Granger and M Bussonnier and J Frederic and K Kelley and J Hamrick and J Grout and S Corlay and P Ivanov and D Avila and S Abdalla and C Willing",
+     "after": "T Kluyver and B Ragan-Kelley and F P{\\'e}rez and B Granger and M Bussonnier and J Frederic and K Kelley and J Hamrick and J Grout and S Corlay and P Ivanov and D Avila and S Abdalla and C Willing and {Jupyter Development Team}",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87",
+       "quote": "Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.3233/978-1-61499-649-1-87",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87",
+       "quote": "\"DOI\":\"10.3233\\/978-1-61499-649-1-87\""
+      }
+     ]
+    },
+    "editor": {
+     "before": "F Loizides and B Scmidt",
+     "after": "F Loizides and B Schmidt",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://ebooks.iospress.nl/book/positioning-and-power-in-academic-publishing-players-agents-and-agendas-proceedings-of-the-20th-international-conference-on-electronic-publishing",
+       "quote": "Fernando Loizides, Birgit Schmidt"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "StonEtal25",
+   "fingerprint": "v2:57d3929070332a3371ae44bb69983d1d396065b8a097ad89e48e4b586ce0fc25",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": "New York, {NY}, {USA}",
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3708035.3736076",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiEtal16",
+   "fingerprint": "v2:35daa40d1ec1db4f67ed9eb256dbe2d134b03f43e2165cb877a91aee70234238",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2906388.2906401",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 14\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
+     "after": "Proceedings of the 14\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({mobisys})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2906388.2906401",
+       "quote": "\"container-title\":[\"Proceedings of the 14th Annual International Conference on Mobile Systems, Applications, and Services\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/2906388.2906401",
+       "quote": "\"acronym\":\"MobiSys'16\""
+      }
+     ],
+     "proposed": "Proceedings of the 14\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({MobiSys})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/2906388.2906401",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2906388.2906401",
+       "quote": "\"DOI\":\"10.1145\\/2906388.2906401\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2906388.2906401",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "NguyEtal16b",
+   "fingerprint": "v2:70a61636a8e6bb228c65a0fe6ed97627e6f08b2c72a47ff37c88d9adcadb065d",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2994551.2994562",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/2994551.2994562",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2994551.2994562",
+       "quote": "\"DOI\":\"10.1145\\/2994551.2994562\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2994551.2994562",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiEtal17b",
+   "fingerprint": "v2:b992eaca831e0b30eb8ca991f79967aed2c5b1afd18579beebb1c3877ea1ac83",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3131672.3131682",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 15\\textsuperscript{th} {ACM} Conference on Embedded Network Sensor Systems (sensys)",
+     "after": "Proceedings of the 15\\textsuperscript{th} {ACM} Conference on Embedded Network Sensor Systems ({sensys})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3131672.3131682",
+       "quote": "\"container-title\":[\"Proceedings of the 15th ACM Conference on Embedded Network Sensor Systems\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/3131672.3131682",
+       "quote": "\"acronym\":\"SenSys '17\""
+      }
+     ],
+     "proposed": "Proceedings of the 15\\textsuperscript{th} {ACM} Conference on Embedded Network Sensor Systems ({SenSys})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/3131672.3131682",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3131672.3131682",
+       "quote": "\"DOI\":\"10.1145\\/3131672.3131682\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3131672.3131682",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "TianEtal18",
+   "fingerprint": "v2:ce5aae1d46aeea39e489a240778c6288195f58bdaa3149da7cbd31c126bc41d0",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3210240.3210340",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 16\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
+     "after": "Proceedings of the 16\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({mobisys})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3210240.3210340",
+       "quote": "\"container-title\":[\"Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/3210240.3210340",
+       "quote": "\"acronym\":\"MobiSys '18\""
+      }
+     ],
+     "proposed": "Proceedings of the 16\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services ({MobiSys})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/3210240.3210340",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3210240.3210340",
+       "quote": "\"DOI\":\"10.1145\\/3210240.3210340\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3210240.3210340",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "TianEtal16b",
+   "fingerprint": "v2:bb09c26bcff64401ffe220d1cd9dab23984059c9831c2d686704a50a95b8997a",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2873587.2873598",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 17\\textsuperscript{th} International Workshop on Mobile Computing Systems and Applications (hotmobile)",
+     "after": "Proceedings of the 17\\textsuperscript{th} International Workshop on Mobile Computing Systems and Applications ({hotmobile})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2873587.2873598",
+       "quote": "\"container-title\":[\"Proceedings of the 17th International Workshop on Mobile Computing Systems and Applications\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/2873587.2873598",
+       "quote": "\"acronym\":\"HotMobile '16\""
+      }
+     ],
+     "proposed": "Proceedings of the 17\\textsuperscript{th} International Workshop on Mobile Computing Systems and Applications ({HotMobile})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/2873587.2873598",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2873587.2873598",
+       "quote": "\"DOI\":\"10.1145\\/2873587.2873598\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/2873587.2873598",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "LiEtal20",
+   "fingerprint": "v2:4e7d7eb6d748baa52186fa5cdf62608a9af13dc98af5402538bfdd537f7bcc80",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 18\\textsuperscript{th} Conference on Embedded Networked Sensor Systems (sensys)",
+     "after": "Proceedings of the 18\\textsuperscript{th} Conference on Embedded Networked Sensor Systems ({sensys})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
+       "quote": "\"container-title\":[\"Proceedings of the 18th Conference on Embedded Networked Sensor Systems\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
+       "quote": "\"acronym\":\"SenSys '20\""
+      }
+     ],
+     "proposed": "Proceedings of the 18\\textsuperscript{th} Conference on Embedded Networked Sensor Systems ({SenSys})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/3384419.3430720",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
+       "quote": "\"DOI\":\"10.1145\\/3384419.3430720\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3384419.3430720",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "CarvEtal22b",
+   "fingerprint": "v2:213585d292c76d16464f247b2d958964aed2ec13584c8be9ef4dd8fc7813a931",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "author": {
+     "before": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A Quattrini Li and X Zhou",
+     "after": "C J Carver and Q Shao and S Lensgraf and A Sniffen and M Perroni-Scharf and H Gallant and A {Quattrini Li} and X Zhou",
+     "source": "reviewer",
+     "evidence": [
+      {
+       "reviewer_problems": [
+        "Crossref 10.1145/3498361.3539773: Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and Services pp 14-27, issued 2022. Crossref splits the name as given \"Alberto Quattrini\", family \"Li\", but his surname is Quattrini Li, as all three cdl.bib entries write it. The researcher kept 'A Quattrini Li' unchanged; the post-check formatter turned it into 'A Q Li' and merged.json still labels the change source \"researcher\". Against POSTCHECK.md (\"never adds or removes an initial\"). Same defect in TianEtal20b."
+       ]
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 20\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications, and Services (mobisys)",
+     "after": "Proceedings of the 20\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications and Services ({mobisys})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
+       "quote": "\"container-title\":[\"Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and Services\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
+       "quote": "\"acronym\":\"MobiSys '22\""
+      }
+     ],
+     "proposed": "Proceedings of the 20\\textsuperscript{th} Annual International Conference on Mobile Systems, Applications and Services ({MobiSys})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/3498361.3539773",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
+       "quote": "\"DOI\":\"10.1145\\/3498361.3539773\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3498361.3539773",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "TianEtal20b",
+   "fingerprint": "v2:a65994b7c4c3bb6ca6b837bae561da59708fd73baac006e5056f59b5313f6f14",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": null,
+     "after": "New York, {NY}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
+       "quote": "\"publisher-location\":\"New York, NY, USA\""
+      }
+     ]
+    },
+    "booktitle": {
+     "before": "Proceedings of the 21\\textsuperscript{st} International Workshop on Mobile Computing Systems and Applications (hotmobile)",
+     "after": "Proceedings of the 21\\textsuperscript{st} International Workshop on Mobile Computing Systems and Applications ({hotmobile})",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
+       "quote": "\"container-title\":[\"Proceedings of the 21st International Workshop on Mobile Computing Systems and Applications\"]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
+       "quote": "\"acronym\":\"HotMobile '20\""
+      }
+     ],
+     "proposed": "Proceedings of the 21\\textsuperscript{st} International Workshop on Mobile Computing Systems and Applications ({HotMobile})",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1145/3376897.3377854",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
+       "quote": "\"DOI\":\"10.1145\\/3376897.3377854\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Association for Computing Machinery",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/3376897.3377854",
+       "quote": "\"publisher\":\"ACM\""
+      },
+      {
+       "url": "https://api.crossref.org/members/320",
+       "quote": "\"primary-name\":\"Association for Computing Machinery (ACM)\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "RagaWill18",
+   "fingerprint": "v2:295fa929b6d573da440b2388b9437a3cc50a046a1b08fd128350505d3081af6b",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "author": {
+     "before": "B Ragan-Kelley and C Willing",
+     "after": "{Project Jupyter} and M Bussonnier and J Forde and J Freeman and B Granger and T Head and C Holdgraf and K Kelley and G Nalvarte and A Osheroff and M Pacer and Y Panda and F P{\\'e}rez and B Ragan-Kelley and C Willing",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.25080/Majora-4af1f417-011",
+       "quote": "scale\"],\"prefix\":\"10.25080\",\"author\":[{\"given\":\"Project\",\"family\":\"Jupyter\",\"sequence\":\"first\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Matthias\",\"family\":\"Bussonnier\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jessica\",\"family\":\"Forde\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Jeremy\",\"family\":\"Freeman\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Brian\",\"family\":\"Granger\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Tim\",\"family\":\"Head\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Chris\",\"family\":\"Holdgraf\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Kyle\",\"family\":\"Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Gladys\",\"family\":\"Nalvarte\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Andrew\",\"family\":\"Osheroff\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"M\",\"family\":\"Pacer\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Yuvi\",\"family\":\"Panda\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Fernando\",\"family\":\"Perez\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Benjamin\",\"family\":\"Ragan-Kelley\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"role\":\"author\"}]},{\"given\":\"Carol\",\"family\":\"Willing\",\"sequence\":\"additional\",\"affiliation\":[],\"role\":[{\"vocabulary\":\"crossref\",\"rol"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.25080/majora-4af1f417-011",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.25080/majora-4af1f417-011",
+       "quote": "\"DOI\":\"10.25080\\/majora-4af1f417-011\""
+      }
+     ]
+    },
+    "title": {
+     "before": "Binder 2.0-reproducible, interactive, sharable environments for science at scale",
+     "after": "Binder 2.0 -- reproducible, interactive, sharable environments for science at scale",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://proceedings.scipy.org/articles/Majora-4af1f417-011",
+       "quote": "Binder 2.0 - Reproducible, interactive, sharable environments for science at scale"
+      }
+     ]
+    }
+   },
+   "rename": "ProjEtal18",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-25): key ProjEtal18 confirmed"
+  },
+  {
+   "key": "MallEtal97",
+   "fingerprint": "v2:6a8fa3b814d00d6f9b84142c12f20185bc561516c9c26c1037f5c183bb875ed5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "author": {
+     "before": "H A Mallot and M Franz and B Sch{\\\"o}lkopf and H H B{\\\"u}lthoff",
+     "after": "H A Mallot and M O Franz and B Sch{\\\"o}lkopf and H H B{\\\"u}lthoff",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "\"givenName\":\"HA\",\"familyName\":\"Mallot\""
+      },
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "\"givenName\":\"MO\",\"familyName\":\"Franz\""
+      },
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "\"givenName\":\"B\",\"familyName\":\"Schölkopf\""
+      },
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "\"givenName\":\"HH\",\"familyName\":\"Bülthoff\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1007/bfb0020244",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://link.springer.com/chapter/10.1007/BFb0020244",
+       "quote": "citation_doi\" content=\"10.1007/BFb0020244\""
+      }
+     ]
+    },
+    "pages": {
+     "before": null,
+     "after": "751--756",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://link.springer.com/chapter/10.1007/BFb0020244",
+       "quote": "citation_firstpage\" content=\"751\""
+      },
+      {
+       "url": "https://link.springer.com/chapter/10.1007/BFb0020244",
+       "quote": "citation_lastpage\" content=\"756\""
+      }
+     ]
+    },
+    "series": {
+     "before": null,
+     "after": "Lecture Notes in Computer Science",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "Lecture Notes in Computer Science"
+      }
+     ]
+    },
+    "volume": {
+     "before": null,
+     "after": "1327",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://pure.mpg.de/rest/items/item_1794129",
+       "quote": "\"volume\":\"1327\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "BartEtal04c",
+   "fingerprint": "v2:92ae09d3d5121f8dcab67fe367088f5c65e79a24da2048bff595ff233a644bd5",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "conference",
+     "after": "inproceedings",
+     "source": "postcheck",
+     "evidence": []
+    },
+    "author": {
+     "before": "A Barto and S Singh and N Chentanez",
+     "after": "A G Barto and S Singh and N Chentanez",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20190831110456id_/http://www-all.cs.umass.edu/legacy/pubs.shtml",
+       "quote": "Barto, A.G., Singh, S., and Chentanez, N. (2004)"
+      },
+      {
+       "url": "https://web.archive.org/web/20050312230512id_/http://www-all.cs.umass.edu:80/pubs/2004/barto_sc_ICDL04.pdf",
+       "quote": "Andrew G. Barto"
+      },
+      {
+       "url": "https://web.archive.org/web/20050312230512id_/http://www-all.cs.umass.edu:80/pubs/2004/barto_sc_ICDL04.pdf",
+       "quote": "Nuttapong Chentanez"
+      }
+     ]
+    },
+    "organization": {
+     "before": "Salk Institute, San Diego",
+     "after": null,
+     "reason": "researcher asked to remove it (current 'Salk Institute, San Diego')"
+    }
+   }
+  },
+  {
+   "key": "MuelShif06",
+   "fingerprint": "v2:d1784d3109227c93c378d2bf5ecc265de2d6a8172f49ce032a2d37cc29f96d0f",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the International Conference on Learning and Development",
+     "after": "Proceedings of the International Conference on Development and Learning",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
+       "quote": "Appearing in the Proceedings of the International Conference"
+      },
+      {
+       "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
+       "quote": "on Development and Learning, 5, 2006."
+      }
+     ]
+    },
+    "title": {
+     "before": "{REM} {II}: a model of the developmental co-evolution of episodic memory and semantic knowledge",
+     "after": "{REM-II}: a model of the developmental co-evolution of episodic memory and semantic knowledge",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
+       "quote": "REM-II: A Model of the Developmental Co-Evolution of"
+      },
+      {
+       "url": "https://web.archive.org/web/20110716205542id_/http://obereed.net/docs/MuellerShiffrinICDL2006.pdf",
+       "quote": "Episodic Memory and Semantic Knowledge"
+      }
+     ]
+    },
+    "organization": {
+     "before": "Citeseer",
+     "after": null,
+     "reason": "researcher asked to remove it (current 'Citeseer')"
+    }
+   }
+  },
+  {
+   "key": "BleiLaff06",
+   "fingerprint": "v2:ea140626b56f104952be7c6d0a50f77909acbf892a0684dbd2affd86c6994f4e",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1145/1143844.1143859",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/1143844.1143859",
+       "quote": "\"DOI\":\"10.1145\\/1143844.1143859\""
+      }
+     ]
+    },
+    "publisher": {
+     "before": "Association for Computing Machinery",
+     "after": "{ACM} Press",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/1143844.1143859",
+       "quote": "\"publisher\":\"ACM Press\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "ParkEtal24",
+   "fingerprint": "v2:4acbc37b0470a22861bae41fa8b66109ac02633498b0284033295f37311708b7",
+   "kind": "edit",
+   "origin": "wave9 merged.json (verified)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "conference",
+     "after": "inproceedings",
+     "source": "postcheck",
+     "evidence": []
+    }
+   }
+  },
+  {
+   "key": "PellMoor00",
+   "fingerprint": "v2:4ff7bef11e81d6345f4bcbe9f4ae407303b519470f44ffc2ab853f8a0c653439",
+   "kind": "edit",
+   "origin": "wave9 merged.json (ambiguous; resolution apply batch-25)",
+   "changes": {
+    "author": {
+     "before": "D Pelleg and A Moore",
+     "after": "D Pelleg and A W Moore",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://dblp.org/rec/conf/icml/PellegM00.html",
+       "quote": "Dan Pelleg, Andrew W. Moore:"
+      }
+     ]
+    },
+    "publisher": {
+     "before": null,
+     "after": "Morgan Kaufmann",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://dblp.org/db/conf/icml/icml2000.html",
+       "quote": "Proceedings of the Seventeenth International Conference on Machine Learning (ICML 2000), Stanford University, Stanford, CA, USA, June 29 - July 2, 2000. Morgan Kaufmann 2000, ISBN 1-55860-707-2"
+      }
+     ]
+    },
+    "volume": {
+     "before": "1",
+     "after": null,
+     "reason": "resolution asked to remove it (current '1')"
+    },
+    "organization": {
+     "before": "San Francisco",
+     "after": null,
+     "reason": "resolution asked to remove it (current 'San Francisco')"
+    }
+   }
+  },
+  {
+   "key": "DolfWend98",
+   "fingerprint": "v2:332cbf4fad095ea30cdb94203403ad90d187948bf5834f425d3848c660487bd9",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.21437/icslp.1998-815",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://www.isca-archive.org/icslp_1998/dolfing98_icslp.html",
+       "quote": "content=\"10.21437/ICSLP.1998-815\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "DeloEtal01",
+   "fingerprint": "v2:8b4ed4cb9c14b112737e9d5093fc7f9a52f953e54125ea7495fc6cd05ab21161",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "Proceedings of the International Congress on Acoustics",
+     "after": "Proceedings of the International Conference on Independent Component Analysis and Blind Signal Separation",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20031208152952id_/http://ica2001.ucsd.edu/index_files/main.html",
+       "quote": "3rd International Conference on<BR>INDEPENDENT COMPONENT ANALYSIS<BR>"
+      },
+      {
+       "url": "https://web.archive.org/web/20031208152952id_/http://ica2001.ucsd.edu/index_files/main.html",
+       "quote": "BLIND SIGNAL SEPARATION </H1>"
+      },
+      {
+       "url": "https://web.archive.org/web/20031208152952id_/http://ica2001.ucsd.edu/index_files/main.html",
+       "quote": "ICA-2001 Final Proceedings and Abstracts"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "BambEtal90",
+   "fingerprint": "v2:be75fa1486a033878dd1a4d2a371cf046c2246e99f8828b63c684aea0daf6a1c",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.3115/116580.116610",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.3115/116580.116610",
+       "quote": "\"title\":[\"The dragon continuous speech recognition system\"]"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "HaonEtal16",
+   "fingerprint": "v2:466bd676816d2d19807a989f4b7544319bed94b113e415381f35c7c5500d7f99",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-25)",
+   "changes": {
+    "author": {
+     "before": "Y Haonan and W Jiang and H Zhiheng and Y Yi and X Wei",
+     "after": "H Yu and J Wang and Z Huang and Y Yang and W Xu",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
+       "quote": "content=\"Yu, Haonan\""
+      },
+      {
+       "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
+       "quote": "content=\"Wang, Jiang\""
+      },
+      {
+       "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
+       "quote": "content=\"Huang, Zhiheng\""
+      },
+      {
+       "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
+       "quote": "content=\"Yang, Yi\""
+      },
+      {
+       "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Yu_Video_Paragraph_Captioning_CVPR_2016_paper.html",
+       "quote": "content=\"Xu, Wei\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/cvpr.2016.496",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2016.496",
+       "quote": "\"title\":[\"Video Paragraph Captioning Using Hierarchical Recurrent Neural Networks\"]"
+      }
+     ]
+    }
+   },
+   "rename": "YuEtal16",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-25): key YuEtal16 confirmed"
+  },
+  {
+   "key": "WallEtal57",
+   "fingerprint": "v2:529052cb538be5011bf421bd04a725abb534a1ec5cc0f1190fc22eea51e787db",
+   "kind": "remove",
+   "reason": "no evidence found after: LoC, Internet Archive, Open Library, Crossref, OpenAlex, HathiTrust (researcher); Google Books and Google web search in a real browser (2026-09-26) found only reference-list citations of it in other works (Miller, Galanter & Pribram; Paivio; Kahana 2014; Bugelski 1968), no catalogue, DTIC or index record of the report itself",
+   "decision": "verification/resolution-2026-09-26/batch-25.json (drop; post-check research-2026-09-25/wave9/merged.json): A 1957 Signal Corps technical report (Project No. 1320, Institute for Cooperative Research, Univ. of Pennsylvania); citing works disagree on the project number (1320 vs 132C). Under round-2 rule 1 (no verifiable record -> drop) it is dropped; see question. RECONCILED 2026-09-26: Question answered by rule: reference-list-only -> drop (default)."
+  },
+  {
+   "key": "DengEtal13",
+   "fingerprint": "v2:9b60350c1ecbf0b9fba2a0cec37455b03b18aa02daad76466a42fe18a3330eb2",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+     "after": "{IEEE} International Conference on Acoustics, Speech and Signal Processing",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.2013.6639345",
+       "quote": "\"container-title\":[\"2013 IEEE International Conference on Acoustics, Speech and Signal Processing\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/icassp.2013.6639345",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.2013.6639345",
+       "quote": "\"DOI\":\"10.1109\\/icassp.2013.6639345\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "HuggEtal06",
+   "fingerprint": "v2:5435d188f394ab740b11dd9569edd8f2aef25640839883b7db03c9548f62aa28",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-26)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+     "after": "{IEEE} International Conference on Acoustics, Speech and Signal Processing",
+     "source": "resolution",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+       "quote": "\"container-title\":[\"IEEE International Conference on Acoustics Speech and Signal Processing\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/icassp.2006.1659988",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.2006.1659988",
+       "quote": "\"DOI\":\"10.1109\\/icassp.2006.1659988\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "YingEtal92",
+   "fingerprint": "v2:cef6d384af9ce3db7c731e85d2d80f3c0d108d4b335e6795d41be8ccc922d573",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction; resolution apply batch-26)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Acoustics, Speech, and Signal Processing",
+     "after": "{IEEE} International Conference on Acoustics, Speech and Signal Processing",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+       "quote": "\"container-title\":[\"IEEE International Conference on Acoustics Speech and Signal Processing\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/icassp.1993.319416",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+       "quote": "\"DOI\":\"10.1109\\/icassp.1993.319416\""
+      }
+     ]
+    },
+    "year": {
+     "before": "1992",
+     "after": "1993",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.1993.319416",
+       "quote": "\"published-print\":{\"date-parts\":[[1993]]}"
+      }
+     ]
+    }
+   },
+   "rename": "YingEtal93",
+   "rename_reason": "key does not follow the corrected metadata; resolution (batch-26): key YingEtal93 confirmed"
+  },
+  {
+   "key": "AndeEtal16",
+   "fingerprint": "v2:3ffbdf522843503a8626069d2a41580b69131cf0326e49e344f981cf029a71c8",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Big Data",
+     "after": "{IEEE} International Conference on Big Data",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
+       "quote": "\"container-title\":[\"2016 IEEE International Conference on Big Data (Big Data)\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/bigdata.2016.7840719",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
+       "quote": "\"DOI\":\"10.1109\\/bigdata.2016.7840719\""
+      }
+     ]
+    },
+    "pages": {
+     "before": "1242--1251",
+     "after": "1151--1160",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/bigdata.2016.7840719",
+       "quote": "\"page\":\"1151-1160\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "DalaTrig05",
+   "fingerprint": "v2:b4b43ead58d9be85040d492b4c3cca26b3dc0ed7f8b9e62d88442230383984a3",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+     "after": "{IEEE} Computer Society Conference on Computer Vision and Pattern Recognition",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2005.177",
+       "quote": "2005 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'05)"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "DengEtal09",
+   "fingerprint": "v2:000a489724b0c0a224780d716441f6b38b6f693eb40252456a491a6ad59637f2",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "ENTRYTYPE": {
+     "before": "conference",
+     "after": "inproceedings",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"type\":\"proceedings-article\""
+      }
+     ]
+    },
+    "author": {
+     "before": "J Deng and W Dong and R Socher and L J Li and K Li and L Fei-Fei",
+     "after": "J Deng and W Dong and R Socher and L-J Li and K Li and L Fei-Fei",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"given\":\"Jia\",\"family\":\"Deng\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"given\":\"Wei\",\"family\":\"Dong\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"given\":\"Richard\",\"family\":\"Socher\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"given\":\"Li-Jia\",\"family\":\"Li\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"family\":\"Kai Li\""
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"family\":\"Li Fei-Fei\""
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/cvpr.2009.5206848",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"DOI\":\"10.1109\\/cvpr.2009.5206848\""
+      }
+     ]
+    },
+    "pages": {
+     "before": "710--719",
+     "after": "248--255",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848",
+       "quote": "\"page\":\"248-255\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "MakaEtal06",
+   "fingerprint": "v2:0386a64b875d7ba8cc245ab11d5dc7eadd8e5c193f94f410c3cfbedf57a10805",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Computer Vision and Pattern Recognition",
+     "after": "{IEEE} Computer Society Conference on Computer Vision and Pattern Recognition",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2006.122",
+       "quote": "2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition - Volume 1 (CVPR'06)"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/cvpr.2006.122",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/cvpr.2006.122",
+       "quote": "\"DOI\":\"10.1109\\/cvpr.2006.122\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "BlakEtal08",
+   "fingerprint": "v2:041f7dda000de00e36d0876948ddba0a0cd9b9366cf010a02044e6d02c11d722",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+     "after": "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/iembs.2008.4650328",
+       "quote": "2008 30th Annual International Conference of the IEEE Engineering in Medicine and Biology Society"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/iembs.2008.4650328",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19163831&retmode=xml",
+       "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1109/IEMBS.2008.4650328</ELocationID>"
+      }
+     ]
+    },
+    "title": {
+     "before": "Localization and classification of phonemes using high spatial resolution electrocorticography {(ECoG}) grids",
+     "after": "Localization and classification of phonemes using high spatial resolution electrocorticography ({ECoG}) grids",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=19163831&retmode=xml",
+       "quote": "Localization and classification of phonemes using high spatial resolution electrocorticography (ECoG) grids."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "KellEtal10a",
+   "fingerprint": "v2:c795850ef1a42cb22f7dc4cc363b93229c1dada7265ff6e337c75ef22c15b5d8",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Engineering in Medicine, Biology, and Society",
+     "after": "Annual International Conference of the {IEEE} Engineering in Medicine and Biology Society",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21097062&retmode=xml",
+       "quote": "<Title>Annual International Conference of the IEEE Engineering in Medicine and Biology Society."
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/iembs.2010.5627682",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21097062&retmode=xml",
+       "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.1109/IEMBS.2010.5627682</ELocationID>"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "TardEtal08",
+   "fingerprint": "v2:8d69bc86f3472b2ea8c6697d82510261dd0571c4a51923a81896a3ae79e4c153",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Intelligent Robots and Systems",
+     "after": "{ieee/rsj} International Conference on Intelligent Robots and Systems",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/iros.2008.4651205",
+       "quote": "\"container-title\":[\"2008 IEEE"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1109/iros.2008.4651205",
+       "quote": "RSJ International Conference on Intelligent Robots and Systems"
+      }
+     ],
+     "proposed": "{IEEE/RSJ} International Conference on Intelligent Robots and Systems",
+     "house_form": "check_bib"
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/iros.2008.4651205",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/iros.2008.4651205",
+       "quote": "\"DOI\":\"10.1109\\/iros.2008.4651205\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "NaroEtal11",
+   "fingerprint": "v2:1ea33d5a7165f11524cc7e2a42f1431f94c00f0bf8f897e071e8f79f41a5554f",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Robotics and Automation",
+     "after": "{IEEE} International Conference on Robotics and Automation",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
+       "quote": "\"container-title\":[\"2011 IEEE International Conference on Robotics and Automation\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/icra.2011.5980513",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
+       "quote": "\"DOI\":\"10.1109\\/icra.2011.5980513\""
+      }
+     ]
+    },
+    "title": {
+     "before": "Automatic alignment of a camera with a line scan lidar system",
+     "after": "Automatic alignment of a camera with a line scan {LIDAR} system",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icra.2011.5980513",
+       "quote": "Automatic alignment of a camera with a line scan LIDAR system"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "WangEtal10b",
+   "fingerprint": "v2:3e4e64fef84eecd3656b2f89762a2147ca3bac115906bc7f5613484203bee41f",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "address": {
+     "before": "Dallas, {TX}, {USA}",
+     "after": "Dallas, {TX}",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.2010.5494999",
+       "quote": "\"location\":\"Dallas, TX, USA\""
+      }
+     ]
+    },
+    "doi": {
+     "before": "10.1109/ICASSP.2010.5494999",
+     "after": "10.1109/icassp.2010.5494999",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/icassp.2010.5494999",
+       "quote": "\"DOI\":\"10.1109\\/icassp.2010.5494999\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "CoppEtal17",
+   "fingerprint": "v2:0e2307faf26726f6ec85ae333ed1ee9519ebeac3a095179f6c2dc6ef32fab163",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "doi": {
+     "before": null,
+     "after": "10.1109/bhi.2017.7897288",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/bhi.2017.7897288",
+       "quote": "\"DOI\":\"10.1109\\/bhi.2017.7897288\""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "key": "Subb13",
+   "fingerprint": "v2:7bb6c3d1d305453bed743eb156e69b57c2dbdfef17f768bf467270848bbec99d",
+   "kind": "edit",
+   "origin": "wave9 merged.json (correction)",
+   "changes": {
+    "booktitle": {
+     "before": "{IEEE} Conference on Integrated {STEM} Education",
+     "after": "{IEEE} Integrated {STEM} Education Conference",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/isecon.2013.6525230",
+       "quote": "\"container-title\":[\"2013 IEEE Integrated STEM Education Conference (ISEC)\"]"
+      }
+     ]
+    },
+    "doi": {
+     "before": null,
+     "after": "10.1109/isecon.2013.6525230",
+     "source": "researcher",
+     "evidence": [
+      {
+       "url": "https://api.crossref.org/works/10.1109/isecon.2013.6525230",
+       "quote": "\"DOI\":\"10.1109\\/isecon.2013.6525230\""
+      }
+     ]
+    },
+    "journal": {
+     "before": "{IEEE} {Xplore}",
+     "after": null,
+     "reason": "@inproceedings has no journal (the researcher asked to remove it; not moved to series)"
+    }
+   }
+  }
+ ]
+}

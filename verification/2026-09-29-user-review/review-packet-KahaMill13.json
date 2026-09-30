@@ -4428,7 +4428,7 @@
       "approval_checked_at": "2026-09-25T19:06:11.092525+00:00",
       "approval_digest": "1b55d0f53560c6897964427de263b35f20c59b40406f9b64533608ec49a9e90a",
       "human_review": {
-        "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-28/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).",
+        "note": "Research-pilot verdict by Jeremy Manning, 2026-09-25: marked wrong on the research-pilot page with a fix the user specified; the fix as applied (pilot001, commit 689de07) is user-approved. Approval bound to the entry's current text. Evidence: verification/research-pilot-2026-09-24/followup.json, verification/apply-2026-09-25e/pilot001-proposals.json. No automated route verifies it (closest-source issue: No unambiguous, fully supported metadata match).",
         "reviewer": "Jeremy Manning",
         "source": "https://api.crossref.org/works/10.4135/9781452257044.n183"
       },

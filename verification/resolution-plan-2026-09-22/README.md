@@ -176,7 +176,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   fails on any changed entry that is unresolved. `--no-citations` for format-only, `--all` for
   the whole library. `commit` shares the same check.
 - **Replacements approved** (user, 2026-09-25): all 8 preprints in
-  verification/apply-2026-09-28/replacement-candidates.json are replaced by their published
+  verification/apply-2026-09-25e/replacement-candidates.json are replaced by their published
   versions (LeeEtal20 → LeeEtal20a to make room for LeeEtal20b; LuriEtal20 keeps "Keilholz").
 - **Sign-off of pilot verdicts** (user, 2026-09-25): entries the user marked Correct on the
   research-pilot page (or whose fixes the user approved there) that no automated source can
@@ -210,7 +210,7 @@ Claude's (the model's) own generalization or fix. They stay in force until the u
   (2026-09-24 21:12 EDT) and coded in 0c321c5 (2026-09-25 00:14 EDT, `surname_change_hold`), after
   Claude's own risky001 batch applied Crossref's "Kounois" to MeyeEtal88. No user record states
   it. Affects MeyeEtal88 (reverted, apply-2026-09-25 `revert-kounios`) and RuggEtal96 (held in
-  held001, apply-2026-09-26b).
+  held001, apply-2026-09-25c).
 - **House address form `City, {ST}` stays** (catalogue edits that only drop the state or country
   are dropped). Origin: Claude, commit 1c1c13a (2026-09-25 06:45 EDT), written into the same
   bullet as the key-rename answer. The question the user answered at 06:45 EDT asked only about
@@ -362,7 +362,7 @@ Claude's (the model's) own generalization or fix. They stay in force until the u
 - (Rule of 2026-09-27, superseded) An organization (a fully braced author name) counts as ONE author; its key part is the first 4 letters of its first word (letters only: 'U.S.' → 'US'). Person + group → e.g. MorrRNSS11 → MorrRNS11; 'Centers for Disease Control and Prevention' → Cent23 (not ContPrev23); '{U.S. Food and Drug Administration}' → US20a/b (not FoodAdmi20a/b); Amer23a, Qwen25, Stan13, ProjEtal18 already conform.
 
 ## User answers 2026-09-28
-Applied in `verification/apply-2026-09-30-final/decisions0928/` (batch-41.json, the `decisions0928` batch).
+Applied in `verification/apply-2026-09-27b-final/decisions0928/` (batch-41.json, the `decisions0928` batch).
 
 1. **SvenEtal24, co-author "N T Hoang" / "Hoang NT"** — user: spell the name out as printed in an official record. Stopped (no official record spells it out), then DROPPED under the ambiguity rule below (batch 42). Every official record reached prints the name as given name "Hoang", family name "NT":
    - Crossref, https://api.crossref.org/works/10.1016/j.sleep.2024.01.020: `"given": "Hoang", "family": "NT"`;
@@ -381,4 +381,4 @@ Applied in `verification/apply-2026-09-30-final/decisions0928/` (batch-41.json, 
 
 **Rule (user, 2026-09-28): the printed paper is the source of truth.** When the printed paper (the publisher's PDF or full-text page, or a scan of it) and the registry metadata (Crossref, PubMed, etc.) differ, the printed paper wins. Scope (user-approved 2026-09-28): the printed paper is checked only when there is reason to doubt the registry record: a correction/erratum notice, a mismatch between sources, or a user flag. Otherwise publisher/registry metadata (Crossref etc.) stands as verification. No blanket re-read of PDFs.
 
-**Rule (user, 2026-09-28): "ok, if ambiguous, drop-- we can always add back if needed later".** If a question stays ambiguous after research (it can't be settled from an official or printed source), drop the entry; it can be re-added later. Applied to BrinCrag72, SvenEtal24 and ChanEtal12 (`verification/apply-2026-09-30-final/decisions0928b/`, batch-42.json; logged in verification/key-deletions.json). No suffixed siblings existed, so no key changed. MorrRNSS11 keeps its key under the organization rule.
+**Rule (user, 2026-09-28): "ok, if ambiguous, drop-- we can always add back if needed later".** If a question stays ambiguous after research (it can't be settled from an official or printed source), drop the entry; it can be re-added later. Applied to BrinCrag72, SvenEtal24 and ChanEtal12 (`verification/apply-2026-09-27b-final/decisions0928b/`, batch-42.json; logged in verification/key-deletions.json). No suffixed siblings existed, so no key changed. MorrRNSS11 keeps its key under the organization rule.
