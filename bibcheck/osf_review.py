@@ -22,7 +22,7 @@ from copy import deepcopy
 from datetime import datetime
 import json
 import re
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 
 from preprint_review import checked_body, context_issues, fetch_document, people
 from verification import (author_evidence, current_results, export_snapshot, load_entries,
@@ -174,13 +174,14 @@ def house_initials_byline(authors, citation):
     return house_byline(authors, citation)
 
 
-def classify(fields, issues, proposal, title_ok, published=None, discovered=False, authors=None):
+def classify(fields, issues, proposal, title_ok, published=None, discovered=False, authors=None, source=None):
     """(category, proposal) shared by the 2026-09-25 routes.
 
     verified: no issue. replacement: a published version exists (user
     approval). proposal: the title matches (identity) and every issue is
-    repaired by a source value in ``proposal``, with no uncorroborated surname
-    change. held: anything else (identity or an uncertain source form)."""
+    repaired by a source value in ``proposal``, with no surname change (a surname
+    mismatch is the user's to resolve, user rule 2026-09-30). held: anything else
+    (identity, an uncertain source form, or a surname mismatch)."""
     if not issues:
         return 'verified', None
     if published:
@@ -197,7 +198,7 @@ def classify(fields, issues, proposal, title_ok, published=None, discovered=Fals
         if authors is not None and byline_loses_detail(fields.get('author', ''), authors):
             issues.append('author: the source byline has less detail than the citation (initials/people/accents)')
             return 'held', None
-        hold = surname_change_hold(fields.get('ID', ''), fields.get('author'), proposal['author'])
+        hold = surname_change_hold(fields.get('ID', ''), fields.get('author'), proposal['author'], source=source)
         if hold:
             issues.append(hold)
             return 'held', None
@@ -278,7 +279,7 @@ def assess_osf(fields, raw):
             issues.append('published version exists (DOI %s): replacement candidate for user approval' % normalized(published))
         candidate['category'], candidate['proposal'] = classify(fields, issues, proposal, title_ok,
                                                                 published, discovered=not identity_fields,
-                                                                authors=authors)
+                                                                authors=authors, source=candidate.get('url') or SOURCE)
     except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
         candidate['issues'].append('OSF unresolved: ' + str(exc))
     candidate['issues'] = list(dict.fromkeys(candidate['issues']))

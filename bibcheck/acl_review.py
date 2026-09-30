@@ -199,7 +199,8 @@ def assess_acl(fields, raw):
                                     'doi', 'url', 'publisher', 'address', 'editor'}:
             issues.append(field + ': no Anthology verifier for this field')
         candidate['category'], candidate['proposal'] = classify(fields, issues, proposal, title_ok,
-                                                                discovered=not identity_fields, authors=authors)
+                                                                discovered=not identity_fields, authors=authors,
+                                                                source=candidate.get('url') or SOURCE)
     except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
         candidate['issues'].append('ACL Anthology unresolved: ' + str(exc))
     candidate['issues'] = list(dict.fromkeys(candidate['issues']))

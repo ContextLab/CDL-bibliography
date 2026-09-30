@@ -342,7 +342,8 @@ def assess_sfn(fields, raw):
         for field in set(fields) - {'ENTRYTYPE', 'ID', 'title', 'author', 'year', 'number', 'booktitle', 'address',
                                     'organization', 'journal', 'publisher', 'volume', 'pages'}:
             issues.append(field + ': no SfN planner verifier for this field')
-        candidate['category'], candidate['proposal'] = classify(fields, issues, proposal, title_ok, authors=item['authors'])
+        candidate['category'], candidate['proposal'] = classify(fields, issues, proposal, title_ok, authors=item['authors'],
+                                                                source=url)
     except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
         candidate['issues'].append(str(exc) if str(exc).startswith('SfN') else 'SfN planner unresolved: ' + str(exc))
     candidate['issues'] = list(dict.fromkeys(candidate['issues']))

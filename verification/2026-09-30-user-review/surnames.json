@@ -1,0 +1,1235 @@
+[
+ {
+  "key": "AndeEtal66",
+  "position": 2,
+  "entry_spelling": "Fuxe",
+  "source_spelling": "Hfuxe",
+  "source": "https://europepmc.org/article/MED/5967596 (PubMed via Europe PMC: K Hfuxe)",
+  "question": "Keep 'Fuxe' or change to 'Hfuxe'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "AndeEtal66",
+  "position": 3,
+  "entry_spelling": "Hamberger",
+  "source_spelling": "Hamberoer",
+  "source": "https://api.crossref.org/works/10.1111/j.1748-1716.1966.tb03317.x (Crossref: \"given\":\"Bertil\",\"family\":\"Hamberoer\")",
+  "question": "Keep 'Hamberger' or change to 'Hamberoer'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BahrPhel87",
+  "position": 2,
+  "entry_spelling": "Phelps",
+  "source_spelling": "Phelphs",
+  "source": "https://api.crossref.org/works/10.1037/0278-7393.13.2.344 (Crossref: \"given\":\"Elizabeth\",\"family\":\"Phelphs\")",
+  "question": "Keep 'Phelps' or change to 'Phelphs'?",
+  "printed_quote": "\"HARRY P. BAHRICK AND ELIZABETH PHELPS\n\nrecall test, together with five alternative\" (https://gwern.net/doc/psychology/spaced-repetition/1987-bahrick.pdf)"
+ },
+ {
+  "key": "Buzs98",
+  "position": 1,
+  "entry_spelling": "Buzs\\'aki",
+  "source_spelling": "BuzsÁk",
+  "source": "https://api.crossref.org/works/10.1046/j.1365-2869.7.s1.3.x (Crossref: \"given\":\"GyÖrgy\",\"family\":\"BuzsÁk\")",
+  "question": "Keep 'Buzs\\'aki' or change to 'BuzsÁk'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "FreeEtal03b",
+  "position": 3,
+  "entry_spelling": "J{\\\"o}rnsten",
+  "source_spelling": "JORSTEN",
+  "source": "https://api.crossref.org/works/10.1142/s0218127403008260 (Crossref: \"given\":\"REBECKA\",\"family\":\"JORSTEN\")",
+  "question": "Keep 'J{\\\"o}rnsten' or change to 'JORSTEN'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "IshiEtal75",
+  "position": 3,
+  "entry_spelling": "Yoshimasu",
+  "source_spelling": "Yoshimasa",
+  "source": "https://api.crossref.org/works/10.1016/0013-4694(75)90077-2 (Crossref: \"given\":\"N\",\"family\":\"Yoshimasa\")",
+  "question": "Keep 'Yoshimasu' or change to 'Yoshimasa'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "KarpRoed07",
+  "position": 2,
+  "entry_spelling": "Roediger",
+  "source_spelling": "ROEDIGERIII",
+  "source": "https://api.crossref.org/works/10.1016/j.jml.2006.09.004 (Crossref: \"given\":\"H\",\"family\":\"ROEDIGERIII\")",
+  "question": "Keep 'Roediger' or change to 'ROEDIGERIII'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "KatzEtal89",
+  "position": 3,
+  "entry_spelling": "Kong",
+  "source_spelling": "Kongy",
+  "source": "https://api.crossref.org/works/10.1111/j.1528-1157.1989.tb05336.x (Crossref: \"given\":\"Alan K.\",\"family\":\"Kongy\")",
+  "question": "Keep 'Kong' or change to 'Kongy'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "KimbEtal08",
+  "position": 1,
+  "entry_spelling": "Kimball",
+  "source_spelling": "Kimbal",
+  "source": "https://europepmc.org/article/MED/18488643 (PubMed via Europe PMC: Daniel R Kimbal)",
+  "question": "Keep 'Kimball' or change to 'Kimbal'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "LuriEtal20",
+  "position": 6,
+  "entry_spelling": "Keilholz",
+  "source_spelling": "Kheilholz",
+  "source": "https://api.crossref.org/works/10.1162/netn_a_00116 (Crossref: \"given\":\"Shella\",\"family\":\"Kheilholz\"); https://europepmc.org/article/MED/32043043 (PubMed via Europe PMC: Shella Kheilholz); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7006871/fullTextXML (PMC full-text front matter: Shella Kheilholz)",
+  "question": "Keep 'Keilholz' or change to 'Kheilholz'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Madi71",
+  "position": 1,
+  "entry_spelling": "Madigan",
+  "source_spelling": "Madigna",
+  "source": "https://api.crossref.org/works/10.1037/h0030549 (Crossref: \"given\":\"Stephen A.\",\"family\":\"Madigna\")",
+  "question": "Keep 'Madigan' or change to 'Madigna'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MallEtal97",
+  "position": 3,
+  "entry_spelling": "Sch{\\\"o}lkopf",
+  "source_spelling": "Schälkopf",
+  "source": "https://api.crossref.org/works/10.1007/bfb0020244 (Crossref: \"given\":\"Bernhard\",\"family\":\"Schälkopf\")",
+  "question": "Keep 'Sch{\\\"o}lkopf' or change to 'Schälkopf'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MeyeEtal88",
+  "position": 4,
+  "entry_spelling": "Kounios",
+  "source_spelling": "Kounois",
+  "source": "https://api.crossref.org/works/10.1037/0033-295x.95.2.183 (Crossref: \"given\":\"John\",\"family\":\"Kounois\")",
+  "question": "Keep 'Kounios' or change to 'Kounois'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "NewmBuck62",
+  "position": 2,
+  "entry_spelling": "Buckhout",
+  "source_spelling": "BUCHOUT",
+  "source": "https://europepmc.org/article/MED/14479342 (PubMed via Europe PMC: R BUCHOUT)",
+  "question": "Keep 'Buckhout' or change to 'BUCHOUT'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "RebeEtal02",
+  "position": 3,
+  "entry_spelling": "Gitelman",
+  "source_spelling": "Gitleman",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.22-21-09541.2002 (Crossref: \"given\":\"Darren R.\",\"family\":\"Gitleman\")",
+  "question": "Keep 'Gitelman' or change to 'Gitleman'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SlamFevr83",
+  "position": 1,
+  "entry_spelling": "Slamecka",
+  "source_spelling": "Slamucka",
+  "source": "https://api.crossref.org/works/10.1016/s0022-5371(83)90112-3 (Crossref: \"given\":\"Norman J.\",\"family\":\"Slamucka\")",
+  "question": "Keep 'Slamecka' or change to 'Slamucka'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "TulvHast72",
+  "position": 1,
+  "entry_spelling": "Tulving",
+  "source_spelling": "Tulvig",
+  "source": "https://api.crossref.org/works/10.1037/h0032367 (Crossref: \"given\":\"Endel\",\"family\":\"Tulvig\")",
+  "question": "Keep 'Tulving' or change to 'Tulvig'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "WaszWalt83",
+  "position": 1,
+  "entry_spelling": "Waszczak",
+  "source_spelling": "Waszcak",
+  "source": "https://api.crossref.org/works/10.1126/science.6828891 (Crossref: \"given\":\"Barbara L.\",\"family\":\"Waszcak\")",
+  "question": "Keep 'Waszczak' or change to 'Waszcak'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "WatkPeyn83",
+  "position": 2,
+  "entry_spelling": "Peynircio\\u{g}lu",
+  "source_spelling": "Peynrcoğlu",
+  "source": "https://api.crossref.org/works/10.1016/s0022-5371(83)90237-2 (Crossref: \"given\":\"Zehra F.\",\"family\":\"Peynrcoğlu\")",
+  "question": "Keep 'Peynircio\\u{g}lu' or change to 'Peynrcoğlu'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Wick69",
+  "position": 1,
+  "entry_spelling": "Wickelgren",
+  "source_spelling": "Wickelgran",
+  "source": "https://api.crossref.org/works/10.1037/h0026823 (Crossref: \"given\":\"Wayne A.\",\"family\":\"Wickelgran\")",
+  "question": "Keep 'Wickelgren' or change to 'Wickelgran'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "FreuEtal09",
+  "position": 6,
+  "entry_spelling": "Klosterk{\\\"o}tter",
+  "source_spelling": "Klosterkoetter",
+  "source": "https://api.crossref.org/works/10.1001/archneurol.2009.102 (Crossref: \"given\":\"Joachim\",\"family\":\"Klosterkoetter\")",
+  "question": "Keep 'Klosterk{\\\"o}tter' or change to 'Klosterkoetter'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "AllaEtal98",
+  "position": 2,
+  "entry_spelling": "Wilding",
+  "source_spelling": "L. Wilding",
+  "source": "https://api.crossref.org/works/10.1016/s0001-6918(97)00044-9 (Crossref: \"given\":\"Edward\",\"family\":\"L. Wilding\")",
+  "question": "Keep 'Wilding' or change to 'L. Wilding'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "AriEtal04",
+  "position": 3,
+  "entry_spelling": "Uyanik",
+  "source_spelling": "SAMI UYANIK",
+  "source": "https://api.crossref.org/works/10.1080/00207450490430499 (Crossref: \"given\":\"BEKIR\",\"family\":\"SAMI UYANIK\")",
+  "question": "Keep 'Uyanik' or change to 'SAMI UYANIK'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 1,
+  "entry_spelling": "Babiloni",
+  "source_spelling": "Claudio",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Babiloni\",\"family\":\"Claudio\")",
+  "question": "Keep 'Babiloni' or change to 'Claudio'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 2,
+  "entry_spelling": "Bares",
+  "source_spelling": "Martin",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Bares\",\"family\":\"Martin\")",
+  "question": "Keep 'Bares' or change to 'Martin'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 3,
+  "entry_spelling": "Vecchio",
+  "source_spelling": "Fabrizio",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Vecchio\",\"family\":\"Fabrizio\")",
+  "question": "Keep 'Vecchio' or change to 'Fabrizio'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 4,
+  "entry_spelling": "Brazdil",
+  "source_spelling": "Milan",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Brazdil\",\"family\":\"Milan\")",
+  "question": "Keep 'Brazdil' or change to 'Milan'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 5,
+  "entry_spelling": "Jurak",
+  "source_spelling": "Pavel",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Jurak\",\"family\":\"Pavel\")",
+  "question": "Keep 'Jurak' or change to 'Pavel'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 6,
+  "entry_spelling": "Moretti",
+  "source_spelling": "Vito",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Moretti Davide\",\"family\":\"Vito\")",
+  "question": "Keep 'Moretti' or change to 'Vito'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 7,
+  "entry_spelling": "Ubaldi",
+  "source_spelling": "Alessandra",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Ubaldi\",\"family\":\"Alessandra\")",
+  "question": "Keep 'Ubaldi' or change to 'Alessandra'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 8,
+  "entry_spelling": "Rossini",
+  "source_spelling": "Maria",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Rossini Paolo\",\"family\":\"Maria\")",
+  "question": "Keep 'Rossini' or change to 'Maria'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BabiEtal04",
+  "position": 9,
+  "entry_spelling": "Rektor",
+  "source_spelling": "Ivan",
+  "source": "https://api.crossref.org/works/10.1111/j.0953-816x.2004.03431.x (Crossref: \"given\":\"Rektor\",\"family\":\"Ivan\")",
+  "question": "Keep 'Rektor' or change to 'Ivan'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BaddEcob73",
+  "position": 2,
+  "entry_spelling": "Ecob",
+  "source_spelling": "Russell Ecob",
+  "source": "https://api.crossref.org/works/10.1080/14640747308400342 (Crossref: \"given\":\"J.\",\"family\":\"Russell Ecob\")",
+  "question": "Keep 'Ecob' or change to 'Russell Ecob'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BastEtal05",
+  "position": 2,
+  "entry_spelling": "{van der Linden}",
+  "source_spelling": "Linden",
+  "source": "https://api.crossref.org/works/10.1162/0898929053279469 (Crossref: \"given\":\"Marieke van der\",\"family\":\"Linden\")",
+  "question": "Keep '{van der Linden}' or change to 'Linden'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BastEtal05",
+  "position": 3,
+  "entry_spelling": "{ter Keurs}",
+  "source_spelling": "Keurs",
+  "source": "https://api.crossref.org/works/10.1162/0898929053279469 (Crossref: \"given\":\"Mariken ter\",\"family\":\"Keurs\")",
+  "question": "Keep '{ter Keurs}' or change to 'Keurs'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BiswEtal95",
+  "position": 2,
+  "entry_spelling": "Yetkin",
+  "source_spelling": "Zerrin Yetkin",
+  "source": "https://api.crossref.org/works/10.1002/mrm.1910340409 (Crossref: \"given\":\"F.\",\"family\":\"Zerrin Yetkin\")",
+  "question": "Keep 'Yetkin' or change to 'Zerrin Yetkin'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BuzsEtal83",
+  "position": 2,
+  "entry_spelling": "Leung",
+  "source_spelling": "Lai-Wo S.",
+  "source": "https://api.crossref.org/works/10.1016/0165-0173(83)90037-1 (Crossref: \"given\":\"Leung\",\"family\":\"Lai-Wo S.\")",
+  "question": "Keep 'Leung' or change to 'Lai-Wo S.'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "CarvEtal22b",
+  "position": 7,
+  "entry_spelling": "{Quattrini Li}",
+  "source_spelling": "Li",
+  "source": "https://api.crossref.org/works/10.1145/3498361.3539773 (Crossref: \"given\":\"Alberto Quattrini\",\"family\":\"Li\")",
+  "question": "Keep '{Quattrini Li}' or change to 'Li'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "CassEtal02",
+  "position": 6,
+  "entry_spelling": "{Di Lazzaro}",
+  "source_spelling": "Lazzaro",
+  "source": "https://api.crossref.org/works/10.1093/brain/awf135 (Crossref: \"given\":\"Vincenzo Di\",\"family\":\"Lazzaro\")",
+  "question": "Keep '{Di Lazzaro}' or change to 'Lazzaro'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "DengEtal09",
+  "position": 5,
+  "entry_spelling": "Li",
+  "source_spelling": "Kai Li",
+  "source": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848 (Crossref: \"given\":\"\",\"family\":\"Kai Li\")",
+  "question": "Keep 'Li' or change to 'Kai Li'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "DengEtal09",
+  "position": 6,
+  "entry_spelling": "Fei-Fei",
+  "source_spelling": "Li Fei-Fei",
+  "source": "https://api.crossref.org/works/10.1109/cvpr.2009.5206848 (Crossref: \"given\":\"\",\"family\":\"Li Fei-Fei\")",
+  "question": "Keep 'Fei-Fei' or change to 'Li Fei-Fei'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "DesaEtal12",
+  "position": 1,
+  "entry_spelling": "Desai",
+  "source_spelling": "Arcot Desai",
+  "source": "https://api.crossref.org/works/10.1109/embc.2012.6346879 (Crossref: \"given\":\"Sharanya\",\"family\":\"Arcot Desai\")",
+  "question": "Keep 'Desai' or change to 'Arcot Desai'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "DoveEtal00",
+  "position": 5,
+  "entry_spelling": "{von Cramon}",
+  "source_spelling": "Yves von Cramon",
+  "source": "https://api.crossref.org/works/10.1016/s0926-6410(99)00029-4 (Crossref: \"given\":\"D.\",\"family\":\"Yves von Cramon\")",
+  "question": "Keep '{von Cramon}' or change to 'Yves von Cramon'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "ElHaEtal19",
+  "position": 2,
+  "entry_spelling": "Janssen",
+  "source_spelling": "M J Janssen",
+  "source": "https://europepmc.org/article/MED/31915538 (PubMed via Europe PMC: Steve M J Janssen); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6943370/fullTextXML (PMC full-text front matter: Steve M J Janssen)",
+  "question": "Keep 'Janssen' or change to 'M J Janssen'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "ElHaEtal19",
+  "position": 2,
+  "entry_spelling": "Janssen",
+  "source_spelling": "M. J. Janssen",
+  "source": "https://api.crossref.org/works/10.1515/tnsci-2019-0044 (Crossref: \"given\":\"Steve\",\"family\":\"M. J. Janssen\"); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6943370&metadataPrefix=pmc_fm (PMC full-text front matter: Steve M. J. Janssen)",
+  "question": "Keep 'Janssen' or change to 'M. J. Janssen'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "EngeEtal10",
+  "position": 6,
+  "entry_spelling": "MacDonald",
+  "source_spelling": "MacDonald III",
+  "source": "https://api.crossref.org/works/10.7551/mitpress/9780262014717.003.0018 (Crossref: \"given\":\"Angus\",\"family\":\"MacDonald III\")",
+  "question": "Keep 'MacDonald' or change to 'MacDonald III'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "EsteMadd05",
+  "position": 2,
+  "entry_spelling": "Maddox",
+  "source_spelling": "Todd Maddox",
+  "source": "https://api.crossref.org/works/10.3758/bf03193784 (Crossref: \"given\":\"W.\",\"family\":\"Todd Maddox\")",
+  "question": "Keep 'Maddox' or change to 'Todd Maddox'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "FernEtal99a",
+  "position": 7,
+  "entry_spelling": "{Van Roost}",
+  "source_spelling": "Roost",
+  "source": "https://api.crossref.org/works/10.1126/science.285.5433.1582 (Crossref: \"given\":\"Dirk Van\",\"family\":\"Roost\")",
+  "question": "Keep '{Van Roost}' or change to 'Roost'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "GallRoed02",
+  "position": 2,
+  "entry_spelling": "Roediger",
+  "source_spelling": "Roediger, III",
+  "source": "https://api.crossref.org/works/10.1016/s0749-596x(02)00013-x (Crossref: \"given\":\"Henry L.\",\"family\":\"Roediger, III\")",
+  "question": "Keep 'Roediger' or change to 'Roediger, III'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "GhosEtal11",
+  "position": 6,
+  "entry_spelling": "{El Gamal}",
+  "source_spelling": "Gamal",
+  "source": "https://api.crossref.org/works/10.1038/nmeth.1694 (Crossref: \"given\":\"Abbas El\",\"family\":\"Gamal\"); https://europepmc.org/article/MED/21909102 (PubMed via Europe PMC: Abbas El Gamal)",
+  "question": "Keep '{El Gamal}' or change to 'Gamal'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "GomeEtal96",
+  "position": 3,
+  "entry_spelling": "McKeel",
+  "source_spelling": "McKeel Jr.",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.16-14-04491.1996 (Crossref: \"given\":\"Daniel W.\",\"family\":\"McKeel Jr.\")",
+  "question": "Keep 'McKeel' or change to 'McKeel Jr.'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HarrEtal20",
+  "position": 17,
+  "entry_spelling": "{Fern{\\'{a}}ndez del R{\\'{i}}o}",
+  "source_spelling": "del Río",
+  "source": "https://api.crossref.org/works/10.1038/s41586-020-2649-2 (Crossref: \"given\":\"Jaime Fernández\",\"family\":\"del Río\"); https://europepmc.org/article/MED/32939066 (PubMed via Europe PMC: Jaime Fernández Del Río); https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7759461/fullTextXML (PMC full-text front matter: Jaime Fernández del Río)",
+  "question": "Keep '{Fern{\\'{a}}ndez del R{\\'{i}}o}' or change to 'del Río'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HassEich05",
+  "position": 2,
+  "entry_spelling": "Eichenbaum",
+  "source_spelling": "Howard Eichenbaum",
+  "source": "https://api.crossref.org/works/10.1016/j.neunet.2005.08.007 (Crossref: \"given\":\"\",\"family\":\"Howard Eichenbaum\")",
+  "question": "Keep 'Eichenbaum' or change to 'Howard Eichenbaum'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Heal16",
+  "position": 1,
+  "entry_spelling": "Healey",
+  "source_spelling": "Karl Healey",
+  "source": "https://api.crossref.org/works/10.1002/9781118521373.wbeaa067 (Crossref: \"given\":\"M.\",\"family\":\"Karl Healey\")",
+  "question": "Keep 'Healey' or change to 'Karl Healey'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 1,
+  "entry_spelling": "Heusser",
+  "source_spelling": "C. Heusser",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Andrew\",\"family\":\"C. Heusser\")",
+  "question": "Keep 'Heusser' or change to 'C. Heusser'?",
+  "printed_quote": "\"Andrew C. Heusser\" (https://joss.theoj.org/papers/10.21105/joss.00424)"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 2,
+  "entry_spelling": "Fitzpatrick",
+  "source_spelling": "C. Fitzpatrick",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Paxton\",\"family\":\"C. Fitzpatrick\")",
+  "question": "Keep 'Fitzpatrick' or change to 'C. Fitzpatrick'?",
+  "printed_quote": "\"Paxton C. Fitzpatrick\" (https://joss.theoj.org/papers/10.21105/joss.00424)"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 3,
+  "entry_spelling": "Field",
+  "source_spelling": "E. Field",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Campbell\",\"family\":\"E. Field\")",
+  "question": "Keep 'Field' or change to 'E. Field'?",
+  "printed_quote": "\"Campbell E. Field\" (https://joss.theoj.org/papers/10.21105/joss.00424)"
+ },
+ {
+  "key": "HeusEtal17",
+  "position": 5,
+  "entry_spelling": "Manning",
+  "source_spelling": "R. Manning",
+  "source": "https://api.crossref.org/works/10.21105/joss.00424 (Crossref: \"given\":\"Jeremy\",\"family\":\"R. Manning\")",
+  "question": "Keep 'Manning' or change to 'R. Manning'?",
+  "printed_quote": "\"Jeremy R. Manning\" (https://joss.theoj.org/papers/10.21105/joss.00424)"
+ },
+ {
+  "key": "HoltEtal12",
+  "position": 13,
+  "entry_spelling": "{Riva Posse}",
+  "source_spelling": "Posse",
+  "source": "https://europepmc.org/article/MED/22213770 (PubMed via Europe PMC: Patricio Riva Posse)",
+  "question": "Keep '{Riva Posse}' or change to 'Posse'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HughEtal12",
+  "position": 2,
+  "entry_spelling": "Mao",
+  "source_spelling": "Dong Mao",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Dong Mao\")",
+  "question": "Keep 'Mao' or change to 'Dong Mao'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HughEtal12",
+  "position": 4,
+  "entry_spelling": "Wang",
+  "source_spelling": "Yang Wang",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Yang Wang\")",
+  "question": "Keep 'Wang' or change to 'Yang Wang'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "HughEtal12",
+  "position": 5,
+  "entry_spelling": "Wu",
+  "source_spelling": "Qiang Wu",
+  "source": "https://api.crossref.org/works/10.1109/tpami.2012.16 (Crossref: \"given\":\"\",\"family\":\"Qiang Wu\")",
+  "question": "Keep 'Wu' or change to 'Qiang Wu'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Hunt03",
+  "position": 1,
+  "entry_spelling": "Hunt",
+  "source_spelling": "Reed Hunt",
+  "source": "https://api.crossref.org/works/10.1016/s0749-596x(03)00018-4 (Crossref: \"given\":\"R\",\"family\":\"Reed Hunt\")",
+  "question": "Keep 'Hunt' or change to 'Reed Hunt'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "IyyeEtal15",
+  "position": 4,
+  "entry_spelling": "{Daum\\'{e}}",
+  "source_spelling": "Daumé III",
+  "source": "https://api.crossref.org/works/10.3115/v1/p15-1162 (Crossref: \"given\":\"Hal\",\"family\":\"Daumé III\")",
+  "question": "Keep '{Daum\\'{e}}' or change to 'Daumé III'?",
+  "printed_quote": "\"Mohit Iyyer, Varun Manjunatha, Jordan Boyd-Graber, and Hal Daumé III. 2015.\" (https://aclanthology.org/P15-1162/)"
+ },
+ {
+  "key": "KessEtal02",
+  "position": 2,
+  "entry_spelling": "Kappelle",
+  "source_spelling": "Jaap Kappelle",
+  "source": "https://api.crossref.org/works/10.1016/s0028-3932(01)00199-3 (Crossref: \"given\":\"L\",\"family\":\"Jaap Kappelle\"); https://europepmc.org/article/MED/11931950 (PubMed via Europe PMC: L Jaap Kappelle)",
+  "question": "Keep 'Kappelle' or change to 'Jaap Kappelle'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "KleiEtal07a",
+  "position": 2,
+  "entry_spelling": "Liang",
+  "source_spelling": "Lin Liang",
+  "source": "https://api.crossref.org/works/10.3171/jns-07/07/0029 (Crossref: \"given\":\"Grace S.\",\"family\":\"Lin Liang\")",
+  "question": "Keep 'Liang' or change to 'Lin Liang'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 1,
+  "entry_spelling": "Kluyver",
+  "source_spelling": "Kluyver Thomas",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Kluyver Thomas\")",
+  "question": "Keep 'Kluyver' or change to 'Kluyver Thomas'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 2,
+  "entry_spelling": "Ragan-Kelley",
+  "source_spelling": "Ragan-Kelley Benjamin",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Ragan-Kelley Benjamin\")",
+  "question": "Keep 'Ragan-Kelley' or change to 'Ragan-Kelley Benjamin'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 4,
+  "entry_spelling": "Granger",
+  "source_spelling": "Granger Brian",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Granger Brian\")",
+  "question": "Keep 'Granger' or change to 'Granger Brian'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 5,
+  "entry_spelling": "Bussonnier",
+  "source_spelling": "Bussonnier Matthias",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Bussonnier Matthias\")",
+  "question": "Keep 'Bussonnier' or change to 'Bussonnier Matthias'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 6,
+  "entry_spelling": "Frederic",
+  "source_spelling": "Frederic Jonathan",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Frederic Jonathan\")",
+  "question": "Keep 'Frederic' or change to 'Frederic Jonathan'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 7,
+  "entry_spelling": "Kelley",
+  "source_spelling": "Kelley Kyle",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Kelley Kyle\")",
+  "question": "Keep 'Kelley' or change to 'Kelley Kyle'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 8,
+  "entry_spelling": "Hamrick",
+  "source_spelling": "Hamrick Jessica",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Hamrick Jessica\")",
+  "question": "Keep 'Hamrick' or change to 'Hamrick Jessica'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 9,
+  "entry_spelling": "Grout",
+  "source_spelling": "Grout Jason",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Grout Jason\")",
+  "question": "Keep 'Grout' or change to 'Grout Jason'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 10,
+  "entry_spelling": "Corlay",
+  "source_spelling": "Corlay Sylvain",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Corlay Sylvain\")",
+  "question": "Keep 'Corlay' or change to 'Corlay Sylvain'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 11,
+  "entry_spelling": "Ivanov",
+  "source_spelling": "Ivanov Paul",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Ivanov Paul\")",
+  "question": "Keep 'Ivanov' or change to 'Ivanov Paul'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 13,
+  "entry_spelling": "Abdalla",
+  "source_spelling": "Abdalla Safia",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Abdalla Safia\")",
+  "question": "Keep 'Abdalla' or change to 'Abdalla Safia'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 14,
+  "entry_spelling": "Willing",
+  "source_spelling": "Willing Carol",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Willing Carol\")",
+  "question": "Keep 'Willing' or change to 'Willing Carol'?",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KragEtal19",
+  "position": 9,
+  "entry_spelling": "Barrett",
+  "source_spelling": "Feldman Barrett",
+  "source": "https://api.crossref.org/works/10.1523/jneurosci.2043-18.2019 (Crossref: \"given\":\"Lisa\",\"family\":\"Feldman Barrett\"); https://europepmc.org/article/MED/31160537 (PubMed via Europe PMC: Lisa Feldman Barrett); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A6668211&metadataPrefix=pmc_fm (PMC full-text front matter: Lisa Feldman Barrett)",
+  "question": "Keep 'Barrett' or change to 'Feldman Barrett'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "LeunYim86",
+  "position": 2,
+  "entry_spelling": "Yim",
+  "source_spelling": "Chi Yiu Yim",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(86)91611-2 (Crossref: \"given\":\"\",\"family\":\"Chi Yiu Yim\")",
+  "question": "Keep 'Yim' or change to 'Chi Yiu Yim'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "LopeEtal73",
+  "position": 1,
+  "entry_spelling": "{Lopes Da Silva}",
+  "source_spelling": "da Silva",
+  "source": "https://europepmc.org/article/MED/4128158 (PubMed via Europe PMC: F H da Silva)",
+  "question": "Keep '{Lopes Da Silva}' or change to 'da Silva'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "LopeEtal73",
+  "position": 4,
+  "entry_spelling": "{van Leeuwen}",
+  "source_spelling": "Storm van Leeuwen",
+  "source": "https://api.crossref.org/works/10.1016/0013-4694(73)90216-2 (Crossref: \"given\":\"W\",\"family\":\"Storm van Leeuwen\")",
+  "question": "Keep '{van Leeuwen}' or change to 'Storm van Leeuwen'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MeckEtal99",
+  "position": 2,
+  "entry_spelling": "{von Cramon}",
+  "source_spelling": "Yves von Cramon",
+  "source": "https://api.crossref.org/works/10.1076/jcen.21.5.606.873 (Crossref: \"given\":\"D.\",\"family\":\"Yves von Cramon\")",
+  "question": "Keep '{von Cramon}' or change to 'Yves von Cramon'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MurdVomS67",
+  "position": 2,
+  "entry_spelling": "{Vom {S}aal}",
+  "source_spelling": "Saal W vom",
+  "source": "https://europepmc.org/article/MED/6032566 (PubMed via Europe PMC: Saal W vom)",
+  "question": "Keep '{Vom {S}aal}' or change to 'Saal W vom'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "NybeEtal03",
+  "position": 4,
+  "entry_spelling": "{Stigsdotter Neely}",
+  "source_spelling": "Neely",
+  "source": "https://api.crossref.org/works/10.1073/pnas.1735487100 (Crossref: \"given\":\"Anna Stigsdotter\",\"family\":\"Neely\"); https://europepmc.org/article/MED/14597711 (PubMed via Europe PMC: Anna Stigsdotter Neely); https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/?verb=GetRecord&identifier=oai%3Apubmedcentral.nih.gov%3A263881&metadataPrefix=pmc_fm (PMC full-text front matter: Anna Stigsdotter Neely)",
+  "question": "Keep '{Stigsdotter Neely}' or change to 'Neely'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "PollGero68",
+  "position": 2,
+  "entry_spelling": "Gerow",
+  "source_spelling": "III",
+  "source": "https://api.crossref.org/works/10.2307/1420627 (Crossref: \"given\":\"Joshua R. Gerow\",\"family\":\"III\")",
+  "question": "Keep 'Gerow' or change to 'III'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "PradEtal93",
+  "position": 2,
+  "entry_spelling": "Dutt",
+  "source_spelling": "Narayana Dutt",
+  "source": "https://api.crossref.org/works/10.1016/0010-4825(93)90104-9 (Crossref: \"given\":\"D.\",\"family\":\"Narayana Dutt\")",
+  "question": "Keep 'Dutt' or change to 'Narayana Dutt'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Roed08",
+  "position": 1,
+  "entry_spelling": "Roediger",
+  "source_spelling": "Roediger, III",
+  "source": "https://api.crossref.org/works/10.1146/annurev.psych.57.102904.190139 (Crossref: \"given\":\"Henry L.\",\"family\":\"Roediger, III\")",
+  "question": "Keep 'Roediger' or change to 'Roediger, III'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SandEtal98",
+  "position": 3,
+  "entry_spelling": "Huettel",
+  "source_spelling": "A. Huettel",
+  "source": "https://api.crossref.org/works/10.1016/s0926-6410(98)00002-0 (Crossref: \"given\":\"Scott\",\"family\":\"A. Huettel\")",
+  "question": "Keep 'Huettel' or change to 'A. Huettel'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 1,
+  "entry_spelling": "Sederberg",
+  "source_spelling": "B. Sederberg",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Per\",\"family\":\"B. Sederberg\")",
+  "question": "Keep 'Sederberg' or change to 'B. Sederberg'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 2,
+  "entry_spelling": "Miller",
+  "source_spelling": "F. Miller",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Jonathan\",\"family\":\"F. Miller\")",
+  "question": "Keep 'Miller' or change to 'F. Miller'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 3,
+  "entry_spelling": "Howard",
+  "source_spelling": "W. Howard",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Marc\",\"family\":\"W. Howard\")",
+  "question": "Keep 'Howard' or change to 'W. Howard'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SedeEtal10",
+  "position": 4,
+  "entry_spelling": "Kahana",
+  "source_spelling": "J. Kahana",
+  "source": "https://api.crossref.org/works/10.3758/mc.38.6.689 (Crossref: \"given\":\"Michael\",\"family\":\"J. Kahana\")",
+  "question": "Keep 'Kahana' or change to 'J. Kahana'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SpinEtal88",
+  "position": 2,
+  "entry_spelling": "{Della Sala}",
+  "source_spelling": "Sala",
+  "source": "https://api.crossref.org/works/10.1080/02643298808252933 (Crossref: \"given\":\"S. Della\",\"family\":\"Sala\")",
+  "question": "Keep '{Della Sala}' or change to 'Sala'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "SteeEtal97",
+  "position": 3,
+  "entry_spelling": "{van Nieuw Amerongen}",
+  "source_spelling": "Amerongen",
+  "source": "https://api.crossref.org/works/10.1111/j.1600-0722.1997.tb00245.x (Crossref: \"given\":\"Arievan Nieuw\",\"family\":\"Amerongen\")",
+  "question": "Keep '{van Nieuw Amerongen}' or change to 'Amerongen'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "TingEtal02",
+  "position": 1,
+  "entry_spelling": "{Ting Lee}",
+  "source_spelling": "Lee",
+  "source": "https://api.crossref.org/works/10.1111/j.0006-341x.2002.00981.x (Crossref: \"given\":\"Mei-Ling Ting\",\"family\":\"Lee\"); https://europepmc.org/article/MED/12495153 (PubMed via Europe PMC: Mei-Ling Ting Lee)",
+  "question": "Keep '{Ting Lee}' or change to 'Lee'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "TulaEtal07",
+  "position": 2,
+  "entry_spelling": "{ter Huurne}",
+  "source_spelling": "Huurne",
+  "source": "https://api.crossref.org/works/10.1002/hbm.20306 (Crossref: \"given\":\"Niels ter\",\"family\":\"Huurne\")",
+  "question": "Keep '{ter Huurne}' or change to 'Huurne'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "TulvRose06",
+  "position": 2,
+  "entry_spelling": "Rosenbaum",
+  "source_spelling": "Shayna Rosenbaum",
+  "source": "https://api.crossref.org/works/10.1093/acprof:oso/9780195169669.003.0018 (Crossref: \"given\":\"R.\",\"family\":\"Shayna Rosenbaum\")",
+  "question": "Keep 'Rosenbaum' or change to 'Shayna Rosenbaum'?",
+  "printed_quote": "\"Endel Tulving and R. Shayna Rosenbaum\" (https://catdir.loc.gov/catdir/toc/ecip0513/2005015500.html)"
+ },
+ {
+  "key": "VieiEtal03",
+  "position": 2,
+  "entry_spelling": "{D{\\'o}ria Neto}",
+  "source_spelling": "Neto",
+  "source": "https://api.crossref.org/works/10.1142/s0129065703001443 (Crossref: \"given\":\"Adrião Duarte Dória\",\"family\":\"Neto\")",
+  "question": "Keep '{D{\\'o}ria Neto}' or change to 'Neto'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "Warr98",
+  "position": 1,
+  "entry_spelling": "Warren",
+  "source_spelling": "Warren Jr.",
+  "source": "https://api.crossref.org/works/10.1080/10407413.1998.9652682 (Crossref: \"given\":\"William H.\",\"family\":\"Warren Jr.\")",
+  "question": "Keep 'Warren' or change to 'Warren Jr.'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "YeoEtal11",
+  "position": 1,
+  "entry_spelling": "Yeo",
+  "source_spelling": "Thomas Yeo",
+  "source": "https://api.crossref.org/works/10.1152/jn.00338.2011 (Crossref: \"given\":\"B. T.\",\"family\":\"Thomas Yeo\")",
+  "question": "Keep 'Yeo' or change to 'Thomas Yeo'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "dBakEtal08",
+  "position": 1,
+  "entry_spelling": "{d Baker}",
+  "source_spelling": "Baker",
+  "source": "https://api.crossref.org/works/10.1007/978-3-540-69132-7_44 (Crossref: \"given\":\"Ryan S. J. d.\",\"family\":\"Baker\")",
+  "question": "Keep '{d Baker}' or change to 'Baker'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "deArEtal02",
+  "position": 1,
+  "entry_spelling": "{de Ara\\'{u}jo}",
+  "source_spelling": "Araújo",
+  "source": "https://api.crossref.org/works/10.1162/089892902317205339 (Crossref: \"given\":\"Dráulio B. de\",\"family\":\"Araújo\")",
+  "question": "Keep '{de Ara\\'{u}jo}' or change to 'Araújo'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "deCh08",
+  "position": 1,
+  "entry_spelling": "deCharms",
+  "source_spelling": "Christopher deCharms",
+  "source": "https://api.crossref.org/works/10.1038/nrn2414 (Crossref: \"given\":\"R.\",\"family\":\"Christopher deCharms\")",
+  "question": "Keep 'deCharms' or change to 'Christopher deCharms'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "duBoEtal06",
+  "position": 1,
+  "entry_spelling": "{du Boisgueheneuc}",
+  "source_spelling": "Boisgueheneuc",
+  "source": "https://api.crossref.org/works/10.1093/brain/awl244 (Crossref: \"given\":\"F. d.\",\"family\":\"Boisgueheneuc\")",
+  "question": "Keep '{du Boisgueheneuc}' or change to 'Boisgueheneuc'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "vandEtal11",
+  "position": 1,
+  "entry_spelling": "{van de Pol}",
+  "source_spelling": "Pol",
+  "source": "https://api.crossref.org/works/10.1016/j.learninstruc.2009.10.004 (Crossref: \"given\":\"Janneke van de\",\"family\":\"Pol\")",
+  "question": "Keep '{van de Pol}' or change to 'Pol'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "ConwEtal00",
+  "position": 4,
+  "entry_spelling": "Racsm\\'{a}ny",
+  "source_spelling": "Racsma'ny",
+  "source": "https://api.crossref.org/works/10.1006/jmla.2000.2706 (Crossref: \"given\":\"Mihaly\",\"family\":\"Racsma'ny\")",
+  "question": "Keep 'Racsm\\'{a}ny' or change to 'Racsma'ny'?",
+  "printed_quote": "\"MA Conway and K Harries and JM Noyes and M Racsma'Ny and CR Frankish\" (https://research-information.bris.ac.uk/en/publications/0532dd32-7f8b-4be8-bee9-54e7ade90408)"
+ },
+ {
+  "key": "LatiEtal10",
+  "position": 7,
+  "entry_spelling": "D'Agata",
+  "source_spelling": "Dagata",
+  "source": "https://api.crossref.org/works/10.1007/s00426-010-0276-5 (Crossref: \"given\":\"Federico\",\"family\":\"Dagata\")",
+  "question": "Keep 'D'Agata' or change to 'Dagata'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MacWEtal01",
+  "position": 2,
+  "entry_spelling": "{St James}",
+  "source_spelling": "St. James",
+  "source": "https://api.crossref.org/works/10.3758/bf03195379 (Crossref: \"given\":\"James\",\"family\":\"St. James\")",
+  "question": "Keep '{St James}' or change to 'St. James'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MillEtal07c",
+  "position": 2,
+  "entry_spelling": "{den Nijs}",
+  "source_spelling": "denNijs",
+  "source": "https://api.crossref.org/works/10.1016/j.neuroimage.2007.05.029 (Crossref: \"given\":\"Marcel\",\"family\":\"denNijs\"); https://europepmc.org/article/MED/17604183 (PubMed via Europe PMC: Marcel denNijs)",
+  "question": "Keep '{den Nijs}' or change to 'denNijs'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "MillEtal07d",
+  "position": 5,
+  "entry_spelling": "{den Nijs}",
+  "source_spelling": "denNijs",
+  "source": "https://api.crossref.org/works/10.1016/j.jneumeth.2007.01.019 (Crossref: \"given\":\"Marcel\",\"family\":\"denNijs\"); https://europepmc.org/article/MED/17343918 (PubMed via Europe PMC: Marcel denNijs)",
+  "question": "Keep '{den Nijs}' or change to 'denNijs'?",
+  "printed_quote": "\"Kai J. Miller , Larry B. Sorensen , Jeffrey G. Ojemann , Marcel den Nijs\" (https://arxiv.org/abs/0712.0846)"
+ },
+ {
+  "key": "MillEtal08",
+  "position": 1,
+  "entry_spelling": "Miller",
+  "source_spelling": "Miller $^*$",
+  "source": "https://api.crossref.org/works/10.1109/tbme.2008.918569 (Crossref: \"given\":\"Kai J.\",\"family\":\"Miller $^*$\")",
+  "question": "Keep 'Miller' or change to 'Miller $^*$'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "NadeEtal00",
+  "position": 3,
+  "entry_spelling": "LeDoux",
+  "source_spelling": "Le Doux",
+  "source": "https://api.crossref.org/works/10.1038/35021052 (Crossref: \"given\":\"Joseph E.\",\"family\":\"Le Doux\"); https://europepmc.org/article/MED/10963596 (PubMed via Europe PMC: J E Le Doux)",
+  "question": "Keep 'LeDoux' or change to 'Le Doux'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "NoldEtal98",
+  "position": 3,
+  "entry_spelling": "D'Esposito",
+  "source_spelling": "DʼEsposito",
+  "source": "https://api.crossref.org/works/10.1097/00001756-199810260-00032 (Crossref: \"given\":\"Mark\",\"family\":\"DʼEsposito\")",
+  "question": "Keep 'D'Esposito' or change to 'DʼEsposito'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "PennEtal94",
+  "position": 3,
+  "entry_spelling": "{Lopes Da Silva}",
+  "source_spelling": "LOPESDASILVA",
+  "source": "https://api.crossref.org/works/10.1016/0301-0082(94)90025-6 (Crossref: \"given\":\"F\",\"family\":\"LOPESDASILVA\")",
+  "question": "Keep '{Lopes Da Silva}' or change to 'LOPESDASILVA'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "RhoaEtal13",
+  "position": 2,
+  "entry_spelling": "Berdan",
+  "source_spelling": "Berdan,",
+  "source": "https://api.crossref.org/works/10.1111/edth.12011 (Crossref: \"given\":\"Jennifer\",\"family\":\"Berdan,\")",
+  "question": "Keep 'Berdan' or change to 'Berdan,'?",
+  "printed_quote": "\"Robert Rhoads, Jennifer Berdan, and Brit Toven-Lindsey\" (https://eric.ed.gov/?id=EJ998131)"
+ },
+ {
+  "key": "SchaEtal11",
+  "position": 3,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1016/j.tics.2011.08.004 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "question": "Keep '{St Jacques}' or change to 'St. Jacques'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "StJaEtal08",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1162/jocn.2008.20091 (Crossref: \"given\":\"Peggy\",\"family\":\"St. Jacques\")",
+  "question": "Keep '{St Jacques}' or change to 'St. Jacques'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "StJaEtal12",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1016/j.neurobiolaging.2010.11.007 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "question": "Keep '{St Jacques}' or change to 'St. Jacques'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "StJaScha13",
+  "position": 1,
+  "entry_spelling": "{St Jacques}",
+  "source_spelling": "St. Jacques",
+  "source": "https://api.crossref.org/works/10.1177/0956797612457377 (Crossref: \"given\":\"Peggy L.\",\"family\":\"St. Jacques\")",
+  "question": "Keep '{St Jacques}' or change to 'St. Jacques'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "VanSEtal07",
+  "position": 1,
+  "entry_spelling": "{Van Strien}",
+  "source_spelling": "VANSTRIEN",
+  "source": "https://api.crossref.org/works/10.1016/j.ijpsycho.2007.07.003 (Crossref: \"given\":\"J\",\"family\":\"VANSTRIEN\")",
+  "question": "Keep '{Van Strien}' or change to 'VANSTRIEN'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "VanSEtal07",
+  "position": 3,
+  "entry_spelling": "{Van der Meer}",
+  "source_spelling": "VANDERMEER",
+  "source": "https://api.crossref.org/works/10.1016/j.ijpsycho.2007.07.003 (Crossref: \"given\":\"N\",\"family\":\"VANDERMEER\")",
+  "question": "Keep '{Van der Meer}' or change to 'VANDERMEER'?",
+  "printed_quote": ""
+ },
+ {
+  "key": "BragEtal99",
+  "position": 5,
+  "entry_spelling": "Buzs\\'{a}ki",
+  "source_spelling": "Buzs�ki",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:2<137::aid-hipo5>3.0.co;2-0 (Crossref: \"given\":\"Gyorgy\",\"family\":\"Buzs�ki\")",
+  "question": "Keep 'Buzs\\'{a}ki'? (the source's 'Buzs�ki' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "BranEtal96",
+  "position": 1,
+  "entry_spelling": "Branka\\v{c}k",
+  "source_spelling": "Branka?k",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1996)6:5<475::aid-hipo1>3.0.co;2-i (Crossref: \"given\":\"Jurij\",\"family\":\"Branka?k\")",
+  "question": "Keep 'Branka\\v{c}k'? (the source's 'Branka?k' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "BranEtal96",
+  "position": 3,
+  "entry_spelling": "M{\\\"{u}}ller-G{\\\"{a}}rtner",
+  "source_spelling": "M�ller-G�rtner",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1996)6:5<475::aid-hipo1>3.0.co;2-i (Crossref: \"given\":\"Hans-Wilhelm\",\"family\":\"M�ller-G�rtner\")",
+  "question": "Keep 'M{\\\"{u}}ller-G{\\\"{a}}rtner'? (the source's 'M�ller-G�rtner' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "BrisEtal02",
+  "position": 3,
+  "entry_spelling": "Ren\\'{e}",
+  "source_spelling": "Ren??",
+  "source": "https://api.crossref.org/works/10.2165/00007256-200232090-00002 (Crossref: \"given\":\"Arcelin\",\"family\":\"Ren??\")",
+  "question": "Keep 'Ren\\'{e}'? (the source's 'Ren??' has an unreadable character)",
+  "printed_quote": "\"content=\"René, Arcelin\"\" (https://link.springer.com/article/10.2165/00007256-200232090-00002)"
+ },
+ {
+  "key": "CoheEtal96",
+  "position": 3,
+  "entry_spelling": "O'Reilly",
+  "source_spelling": "O´Reilly",
+  "source": "https://api.crossref.org/works/10.1098/rstb.1996.0138 (Crossref: \"given\":\"Randall\",\"family\":\"O´Reilly\")",
+  "question": "Keep 'O'Reilly'? (the source's 'O´Reilly' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "FernEtal99b",
+  "position": 1,
+  "entry_spelling": "Fern\\'{a}ndez",
+  "source_spelling": "Fern�ndez",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:1<35::aid-hipo4>3.0.co;2-z (Crossref: \"given\":\"Guill�n\",\"family\":\"Fern�ndez\")",
+  "question": "Keep 'Fern\\'{a}ndez'? (the source's 'Fern�ndez' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 3,
+  "entry_spelling": "P{\\'e}rez",
+  "source_spelling": "P&eacute;rez Fernando",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"P&eacute;rez Fernando\")",
+  "question": "Keep 'P{\\'e}rez'? (the source's 'P&eacute;rez Fernando' has an unreadable character)",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "KluyEtal16",
+  "position": 12,
+  "entry_spelling": "Avila",
+  "source_spelling": "Avila Dami&aacute;n",
+  "source": "https://api.crossref.org/works/10.3233/978-1-61499-649-1-87 (Crossref: \"given\":\"\",\"family\":\"Avila Dami&aacute;n\")",
+  "question": "Keep 'Avila'? (the source's 'Avila Dami&aacute;n' has an unreadable character)",
+  "printed_quote": "\"Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, Jupyter Development Team\" (https://ebooks.iospress.nl/doi/10.3233/978-1-61499-649-1-87)"
+ },
+ {
+  "key": "MeckHage84",
+  "position": 1,
+  "entry_spelling": "Mecklenbr{\\\"a}uker",
+  "source_spelling": "Mecklenbr�uker",
+  "source": "https://api.crossref.org/works/10.1007/bf00309069 (Crossref: \"given\":\"Silvia\",\"family\":\"Mecklenbr�uker\")",
+  "question": "Keep 'Mecklenbr{\\\"a}uker'? (the source's 'Mecklenbr�uker' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "MullWehn94",
+  "position": 1,
+  "entry_spelling": "M{\\\"u}ller",
+  "source_spelling": "M�ller",
+  "source": "https://api.crossref.org/works/10.1007/bf00199474 (Crossref: \"given\":\"M.\",\"family\":\"M�ller\")",
+  "question": "Keep 'M{\\\"u}ller'? (the source's 'M�ller' has an unreadable character)",
+  "printed_quote": "\"Müller, M.\" (https://link.springer.com/article/10.1007/BF00199474)"
+ },
+ {
+  "key": "NuneEtal87",
+  "position": 1,
+  "entry_spelling": "N\\'{u}ñez",
+  "source_spelling": "Nu´n˜ez",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7 (Crossref: \"given\":\"Angel\",\"family\":\"Nu´n˜ez\")",
+  "question": "Keep 'N\\'{u}ñez'? (the source's 'Nu´n˜ez' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "NuneEtal87",
+  "position": 2,
+  "entry_spelling": "Garc\\'{i}a-Austt",
+  "source_spelling": "Garci´a-Austt",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(87)90909-7 (Crossref: \"given\":\"Elio\",\"family\":\"Garci´a-Austt\")",
+  "question": "Keep 'Garc\\'{i}a-Austt'? (the source's 'Garci´a-Austt' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "RobeEtal99",
+  "position": 3,
+  "entry_spelling": "Georges-Fran{\\c{c}}ois",
+  "source_spelling": "Georges-Fran�ois",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1098-1063(1999)9:3<206::aid-hipo2>3.0.co;2-h (Crossref: \"given\":\"Pierre\",\"family\":\"Georges-Fran�ois\")",
+  "question": "Keep 'Georges-Fran{\\c{c}}ois'? (the source's 'Georges-Fran�ois' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "SlawKasi95",
+  "position": 1,
+  "entry_spelling": "S{\\l}awi{\\'n}ska",
+  "source_spelling": "Sl&z.shtsls;;awińska",
+  "source": "https://api.crossref.org/works/10.1016/0006-8993(95)00174-o (Crossref: \"given\":\"Urszula\",\"family\":\"Sl&z.shtsls;;awińska\")",
+  "question": "Keep 'S{\\l}awi{\\'n}ska'? (the source's 'Sl&z.shtsls;;awińska' has an unreadable character)",
+  "printed_quote": ""
+ },
+ {
+  "key": "TervEtal00",
+  "position": 7,
+  "entry_spelling": "N{\\\"a}{\\\"a}t{\\\"a}nen",
+  "source_spelling": "N��t�nen",
+  "source": "https://api.crossref.org/works/10.1002/(sici)1097-0193(200006)10:2<74::aid-hbm30>3.0.co;2-2 (Crossref: \"given\":\"R.\",\"family\":\"N��t�nen\")",
+  "question": "Keep 'N{\\\"a}{\\\"a}t{\\\"a}nen'? (the source's 'N��t�nen' has an unreadable character)",
+  "printed_quote": ""
+ }
+]

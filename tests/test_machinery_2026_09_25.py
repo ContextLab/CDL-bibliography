@@ -425,7 +425,13 @@ def test_missing_doi_advisory():
     assert v.result_advisories(no_doi["fields"], held) == []
 
 
-# 14. Crossref surname typo vs PubMed + library consensus ---------------------------
+# 14. Crossref surname mismatch vs PubMed: named for the user ------------------------
+#
+# User rule 2026-09-30 (verification/2026-09-29-user-review/CONFIRM.md, answer 5): "one
+# source is sufficient; manual entry is the weakest part. notify user if mismatch is found
+# and ask how they want to resolve it". Until then (registry-surname-typo, 2026-09-25) a
+# Crossref surname that PubMed and other cdl.bib entries contradicted was resolved in the
+# citation's favour. Now the finding stays open and names both spellings and both records.
 
 @pytest.fixture
 def library(tmp_path, monkeypatch):
@@ -440,6 +446,7 @@ def library(tmp_path, monkeypatch):
 
 
 KOUNIOS = ("AngeEtal07", "JensEtal02", "Koun93", "Koun94", "SmitKoun96")
+MEYER_DOI = "10.1037/0033-295x.95.2.183"
 
 
 def meyer88():
@@ -447,35 +454,64 @@ def meyer88():
     return data["entry"], data["previous"]
 
 
-def test_meyer88_crossref_typo_yields_to_pubmed_and_library_consensus(library):
-    library(*KOUNIOS)
+def mutate_crossref(previous, mutate):
+    changed = deepcopy(previous)
+    for c in changed["candidates"]:
+        if c["source"] == "crossref" and c["doi"] == MEYER_DOI:
+            mutate(c["record"]["author"])
+    return changed
+
+
+def test_meyer88_crossref_mismatch_is_named_for_the_user(library):
+    for make in (lambda: library(*KOUNIOS), lambda: library(extra=[("Other00", "A N Other")])):
+        make()  # other cdl.bib entries spelling "Kounios" no longer matter
+        entry, previous = meyer88()
+        result = auto_review.reassess(entry, previous)
+        assert result["status"] == "needs_review" and not result.get("accepted_source")
+        epmc = next(c for c in result["candidates"] if c["source"] == "europepmc")
+        assert not any(r.get("rule") == "registry-surname-typo" for r in epmc["resolved_findings"])
+        (issue,) = [i for i in epmc["issues"] if i.startswith("author: surname mismatch")]
+        assert ("author 4 is 'Kounios' in the citation and PubMed 3375399 but 'Kounois' in Crossref "
+                f"{MEYER_DOI}") in issue
+        assert f"https://api.crossref.org/works/{MEYER_DOI}" in issue and "user rule 2026-09-30" in issue
+        assert result["issues"][0] == issue  # the entry's own finding names both spellings
+
+
+def test_meyer88_agreeing_single_source_is_accepted():
+    # agree -> accepted on one source: with Crossref's byline corrected to the printed
+    # "Kounios", Crossref alone verifies the entry (no PubMed record, no library).
     entry, previous = meyer88()
-    result = auto_review.reassess(entry, previous)
-    assert result["status"] == "metadata_verified" and result["accepted_source"] == "europepmc"
-    epmc = next(c for c in result["candidates"] if c["source"] == "europepmc")
-    (resolved,) = epmc["resolved_findings"]
-    assert resolved["rule"] == "registry-surname-typo" and resolved["registry_surname"] == "Kounois"
-    assert resolved["library_consensus"] == sorted(KOUNIOS)
-    assert v.result_advisories(entry["fields"], result) == ["missing DOI: 10.1037/0033-295x.95.2.183 (europepmc)"]
+    fixed = mutate_crossref(previous, lambda people: people[3].update(family="Kounios"))
+    fixed["candidates"] = [c for c in fixed["candidates"] if c["source"] != "europepmc"]
+    result = auto_review.reassess(entry, fixed)
+    assert result["status"] == "metadata_verified" and result["accepted_source"] == "crossref"
+    assert not any("surname mismatch" in i for i in result.get("issues", []))
 
 
 def test_meyer88_negative_controls(library):
-    entry, previous = meyer88()
-    library(extra=[("Other00", "A N Other")])  # no library consensus
-    assert status(entry, previous) == "needs_review"
-    library(*KOUNIOS, extra=[("Other00", "J Kounois")])  # the typo is used elsewhere
-    assert status(entry, previous) == "needs_review"
     library(*KOUNIOS)
-    for mutate in (
-        lambda people: people[3].update(family="Konstantinou"),  # not a spelling slip
-        lambda people: people[2].update(family="Osmun"),         # a second position differs
-        lambda people: people[3].update(given="K"),              # another person
+    entry, previous = meyer88()
+    for mutate, named in (
+        (lambda people: people[3].update(family="Konstantinou"), "'Konstantinou' in Crossref"),
+        (lambda people: people[2].update(family="Osmun"), "author 3 is 'Osman'"),
+        (lambda people: people[3].update(given="K"), "'Kounois' in Crossref"),
     ):
-        changed = deepcopy(previous)
-        for c in changed["candidates"]:
-            if c["source"] == "crossref" and c["doi"] == "10.1037/0033-295x.95.2.183":
-                mutate(c["record"]["author"])
-        assert status(entry, changed) == "needs_review", mutate
+        result = auto_review.reassess(entry, mutate_crossref(previous, mutate))
+        assert result["status"] == "needs_review", named
+        assert any(named in i for i in result["issues"]), (named, result["issues"])
+    # an order change is not a spelling: the generic finding stays, nothing is named ...
+    def swap(people):
+        people[3]["family"] = "Kounios"
+        people[0], people[1] = people[1], people[0]
+    result = auto_review.reassess(entry, mutate_crossref(previous, swap))
+    assert result["status"] == "needs_review"
+    assert not any("surname mismatch" in i for i in result["issues"])
+    # ... but a respelling beside it is still named, and only its own position
+    def swap_only(people):
+        people[0], people[1] = people[1], people[0]
+    result = auto_review.reassess(entry, mutate_crossref(previous, swap_only))
+    (issue,) = [i for i in result["issues"] if "surname mismatch" in i]
+    assert "author 4 is 'Kounios'" in issue and "author 1" not in issue and "author 2" not in issue
     no_pubmed = deepcopy(previous)
     no_pubmed["candidates"] = [c for c in no_pubmed["candidates"] if c["source"] != "europepmc"]
     assert status(entry, no_pubmed) == "needs_review"

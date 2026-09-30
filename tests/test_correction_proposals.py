@@ -150,7 +150,14 @@ def test_real_range_completion_is_still_proposed(monkeypatch):
     assert proposal["changes"]["pages"] == {"before": "1063", "after": "1063--1087"}
 
 
-def test_meyer88_kounios_is_held_by_library_consensus(library):
+# User rule 2026-09-30 (verification/2026-09-29-user-review/CONFIRM.md, answer 5): "one
+# source is sufficient; manual entry is the weakest part. notify user if mismatch is found
+# and ask how they want to resolve it". A surname change is never proposed automatically:
+# not from one source, not when a second source agrees, not when other cdl.bib entries use
+# the proposed or the cited spelling. It is held, naming both spellings and the source.
+# (These tests used to assert Claude's 2026-09-24 corroboration / library-consensus rule.)
+
+def test_meyer88_kounios_is_held_for_the_user(library):
     # Regression: risky001 applied Crossref's typo "Kounois"; five other cdl.bib
     # entries spell J Kounios and none spells Kounois.
     library("AngeEtal07", "JensEtal02", "Koun93", "Koun94", "SmitKoun96")
@@ -162,45 +169,63 @@ def test_meyer88_kounios_is_held_by_library_consensus(library):
     assert cp.single_source_proposal(entry, previous, explain) is None
     assert explain["detail"] == "author: sources disagree"
     # When risky001 was generated there was no PubMed record (pubmed_id null):
-    # Crossref alone. Library consensus now holds that case.
+    # Crossref alone. The mismatch is held for the user, with both spellings named.
     previous["candidates"] = [c for c in previous["candidates"] if c["source"] != "europepmc"]
     explain = {}
     assert cp.single_source_proposal(entry, previous, explain) is None
-    assert "library consensus" in explain["detail"] and "Kounois" in explain["detail"]
-    assert cp.surname_change_hold("MeyeEtal88", entry["fields"]["author"],
-                                  entry["fields"]["author"].replace("Kounios", "Kounois"),
-                                  corroborated=True).startswith("author: library consensus")
+    assert explain["reason"] == "value-held"
+    assert "surname mismatch (crossref)" in explain["detail"]
+    assert "'J Kounios'" in explain["detail"] and "'J Kounois'" in explain["detail"]
+    assert "library consensus" not in explain["detail"]
+    hold = cp.surname_change_hold("MeyeEtal88", entry["fields"]["author"],
+                                  entry["fields"]["author"].replace("Kounios", "Kounois"), source="crossref")
+    assert hold.startswith("author: surname mismatch (crossref): cited 'J Kounios', source 'J Kounois'")
 
 
-def test_single_source_surname_change_without_corroboration_is_held(library):
+def test_single_source_surname_change_is_held_for_the_user(library):
     library(extra=[("Other00", "A N Other")])
     entry, previous = stage1("MeyeEtal88")
     previous["candidates"] = [c for c in previous["candidates"] if c["source"] != "europepmc"]
     explain = {}
     assert cp.single_source_proposal(entry, previous, explain) is None
-    assert "lacks corroboration" in explain["detail"]
+    assert "surname mismatch" in explain["detail"] and "Kounois" in explain["detail"]
     entry, previous = stage1("MartJohn15")
     explain = {}
     assert cp.single_source_proposal(entry, previous, explain) is None
-    assert "lacks corroboration" in explain["detail"]
+    assert "cited 'S Johnson', source 'S Johnston'" in explain["detail"]
 
 
-def test_library_use_of_the_proposed_spelling_corroborates(library):
+def test_library_use_of_the_proposed_spelling_does_not_release_a_surname_change(library):
     entry, previous = stage1("CleeMcCl91")
-    library(*[k for k, v in STAGE1["library_authors"].items() if "J L McClelland" in v["author"]][:3])
-    proposal = cp.single_source_proposal(entry, previous)
-    assert proposal and proposal["changes"]["author"]["after"].endswith("J L McClelland")
-    library(extra=[("Other00", "A N Other")])  # negative control: no library use
-    assert cp.single_source_proposal(entry, previous) is None
+    uses = [k for k, v in STAGE1["library_authors"].items() if "J L McClelland" in v["author"]][:3]
+    assert uses  # the library does spell him McClelland elsewhere
+    for make in (lambda: library(*uses), lambda: library(extra=[("Other00", "A N Other")])):
+        make()
+        explain = {}
+        assert cp.single_source_proposal(entry, previous, explain) is None
+        assert "cited 'J L McCleeland', source 'J L McClelland'" in explain["detail"]
 
 
-def test_second_source_corroborates_a_surname_change(library):
+def test_second_source_does_not_release_a_surname_change(library):
     library(extra=[("Other00", "A N Other")])
     entry, previous = stage1("DoesEtal08")  # Kitaj -> Kitajo: Crossref and PubMed 17556771
-    proposal = cp.single_source_proposal(entry, previous)
-    assert proposal and "K Kitajo" in proposal["changes"]["author"]["after"]
-    # ...unless other cdl.bib entries spell the cited name and none the proposed one.
+    explain = {}
+    assert cp.single_source_proposal(entry, previous, explain) is None
+    assert "cited 'K Kitaj', source 'K Kitajo'" in explain["detail"]
     library(extra=[("Other00", "K Kitaj and A N Other")])
     explain = {}
     assert cp.single_source_proposal(entry, previous, explain) is None
-    assert "library consensus" in explain["detail"]
+    assert "surname mismatch" in explain["detail"] and "library consensus" not in explain["detail"]
+
+
+def test_surname_change_hold_controls():
+    # agree -> no hold: a given-name change, an accent restored, a reordering
+    assert cp.surname_change_hold("X", "J L McClelland and A B Smith", "James L McClelland and A B Smith") is None
+    assert cp.surname_change_hold("X", "G Gron", 'G Gr{\\"o}n') is None
+    assert cp.surname_change_hold("X", "G H Baltuch and M J Kahana", "M J Kahana and G H Baltuch") is None
+    # disagree -> held, both spellings and the source named, one clause per position
+    hold = cp.surname_change_hold("X", "A Smith and B Jones", "A Smyth and B Jonas", source="PubMed 123")
+    assert hold == ("author: surname mismatch (PubMed 123): cited 'A Smith', source 'A Smyth'; "
+                    "cited 'B Jones', source 'B Jonas'; " + cp.USER_SURNAME_RULE)
+    # a respelling hidden in a reordering is still held
+    assert "cited 'B Jones', source 'A Smyth'" in cp.surname_change_hold("X", "A Smith and B Jones", "B Jones and A Smyth")

@@ -42,6 +42,9 @@ from bibtexparser.customization import splitname
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted
 # entries retain their approval and original checked_at without reassessment.
+# (Not raised for the 2026-09-30 surname rule: it only withdraws a resolution, so no
+# unresolved entry can gain from a revisit; apply-2026-09-30-surnames rechecked every
+# accepted entry instead.)
 RESOLVER_VERSION = 30  # 30: verification/machinery-2026-09-25 PR-test fixes. 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
 #     publisher same-firm variants). 28: verification/phase0-2026-09-22 rules
 EPMC_FIELDS = {
@@ -494,6 +497,13 @@ def reassess(entry, previous):
         result["research_attempt"] = previous["research_attempt"]
     if previous.get("discovery_review"):
         result["discovery_review"] = previous["discovery_review"]
+    # User rule 2026-09-30: a surname mismatch a source record names is the entry's own
+    # finding, so the status report and the review queue show both spellings.
+    if result.get("status") not in ACCEPTED and not previous.get("external_evidence"):
+        named = [i for c in result.get("candidates", []) for i in c.get("issues", [])
+                 if isinstance(i, str) and i.startswith("author: surname mismatch")]
+        if named:
+            result["issues"] = list(dict.fromkeys(named + list(result.get("issues", []))))
     result["auto_review"] = dict(
         previous.get("auto_review", {}),
         policy=POLICY,
@@ -713,73 +723,47 @@ def authors_with_pubmed_suffixes(primary, secondary):
     return people if added and compatible_authors({"author": people}, secondary) else None
 
 
-def _edit_distance(a, b):
-    row = list(range(len(b) + 1))
-    for i, x in enumerate(a, 1):
-        prev, row[0] = row[0], i
-        for j, y in enumerate(b, 1):
-            prev, row[j] = row[j], min(row[j] + 1, row[j - 1] + 1, prev + (x != y))
-    return row[-1]
+def registry_surname_mismatch(fields, primary, mapped, raw):
+    """The issue naming a Crossref/citation surname mismatch that PubMed does not share.
 
-
-def registry_surname_typo(fields, primary, mapped, secondary_evidence):
-    """A Crossref surname typo contradicted by PubMed and by library consensus.
-
-    Machinery fix 2026-09-25 (MeyeEtal88: Crossref "Kounois", DOI-linked
-    PubMed 3375400 "Kounios", cited "J Kounios", five other cdl.bib entries
-    "Kounios" and none "Kounois"). Returns the resolution record, or None.
-    Every condition must hold:
-      * the DOI-linked PubMed record shares an ISSN with the Crossref record
-        and matches the citation on title, author, year, journal, volume and
-        pages, which Crossref also matches except for the byline;
-      * Crossref and PubMed list the same number of authors with identical
-        surnames except in exactly ONE position, where the two surnames are
-        within two edits of each other (both at least four letters) and the
-        given names agree (a spelling slip, not another person);
-      * library consensus: other cdl.bib entries use the cited spelling for
-        that person (surname + first initial) and none uses Crossref's.
+    User rule 2026-09-30 (verification/2026-09-29-user-review/CONFIRM.md, answer 5):
+    "one source is sufficient; manual entry is the weakest part. notify user if mismatch
+    is found and ask how they want to resolve it". Until then a Crossref surname that
+    differs from the citation was resolved here in the citation's favour when the
+    DOI-linked PubMed record and other cdl.bib entries agreed with it (Claude's
+    registry-surname-typo rule of 2026-09-25, MeyeEtal88 "Kounios" vs Crossref
+    "Kounois"). Now the mismatch is never resolved automatically: the author finding
+    stays open, and this names each differing position, both spellings and both
+    records, for the user. Returns None (the generic finding stays) unless the three
+    bylines have the same length, some cited surname is missing from Crossref's byline
+    (a surname printed at another position is an order change, not a spelling), and
+    PubMed spells each such surname as the citation does.
     """
     try:
-        for field in ("title", "author", "year", "journal", "volume", "pages"):
-            if not secondary_evidence.get(field, {}).get("match"):
-                return None
-            if field != "author" and not primary.get("evidence", {}).get(field, {}).get("match"):
-                return None
-        if not set(mapped.get("ISSN") or []) & set(primary["record"].get("ISSN") or []):
-            return None
         crossref, pubmed = primary["record"].get("author") or [], mapped.get("author") or []
         names = split_authors(fields.get("author", ""))
         if not crossref or not (len(crossref) == len(pubmed) == len(names)):
             return None
-        differ = [i for i, (a, b) in enumerate(zip(crossref, pubmed))
-                  if normalized(a.get("family", "")) != normalized(b.get("family", ""))]
-        if len(differ) != 1:
-            return None
-        i = differ[0]
-        from correction_proposals import _fold, _person_key, library_people
-        wrong, right = _fold(crossref[i].get("family", "")), _fold(pubmed[i].get("family", ""))
-        if min(len(wrong), len(right)) < 4 or _edit_distance(wrong, right) > 2:
-            return None
-        given_a = without_suffix_tokens(given_name_tokens(crossref[i].get("given", "")))
-        given_b = without_suffix_tokens(given_name_tokens(pubmed[i].get("given", "")))
-        if not given_a or not given_b or not all(
-                given_token_matches(x, y) or given_token_matches(y, x) for x, y in zip(given_a, given_b)):
-            return None
-        cited = _person_key(names[i])
-        if not cited or cited[0] != right:
+        cited = []
+        for name in names:
+            parts = splitname(name, strict_mode=True)
+            cited.append(" ".join(parts["von"] + parts["last"]))
+        # A cited surname that Crossref prints at another position is an order
+        # difference, not a spelling: only surnames absent from Crossref's byline count.
+        registry = {normalized(a.get("family", "")) for a in crossref}
+        differ = [i for i, (a, c) in enumerate(zip(crossref, cited))
+                  if normalized(a.get("family", "")) != normalized(c) and normalized(c) not in registry]
+        if not differ or any(normalized(pubmed[i].get("family", "")) != normalized(cited[i]) for i in differ):
             return None
     except (ValueError, TypeError, KeyError, AttributeError):
         return None
-    # A library that cannot be read is an error, never "no consensus".
-    people = library_people()
-    key = fields.get("ID")
-    cited_elsewhere = people.get(cited, set()) - {key}
-    registry_elsewhere = people.get((wrong, cited[1]), set()) - {key}
-    if not cited_elsewhere or registry_elsewhere:
-        return None
-    return {"rule": "registry-surname-typo", "registry_surname": crossref[i].get("family", ""),
-            "pubmed_surname": pubmed[i].get("family", ""),
-            "library_consensus": sorted(cited_elsewhere)}
+    doi = primary.get("doi") or primary["record"].get("DOI", "")
+    pmid = str(raw.get("id", ""))
+    named = "; ".join(f"author {i + 1} is {cited[i]!r} in the citation and PubMed {pmid} but "
+                      f"{crossref[i].get('family', '')!r} in Crossref {doi}" for i in differ)
+    return (f"author: surname mismatch: {named} (https://api.crossref.org/works/{doi}, "
+            f"https://europepmc.org/article/MED/{pmid}); user rule 2026-09-30: one source is "
+            "sufficient; a surname mismatch is the user's to resolve")
 
 
 def assess_epmc(fields, primary, raw, retrieved_at, request_url):
@@ -807,12 +791,11 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
             field = issue.split(":", 1)[0]
             supported = secondary_evidence.get(field, {}).get("match")
             can_resolve = False
-            typo = None
             if field == "author" and supported:
                 can_resolve = suffix_match or compatible_authors(primary["record"], mapped)
                 if not can_resolve and issue == "author: Author surnames/order differ":
-                    typo = registry_surname_typo(fields, primary, mapped, secondary_evidence)
-                    can_resolve = bool(typo)
+                    # Never resolved automatically (user rule 2026-09-30): name it.
+                    issue = registry_surname_mismatch(fields, primary, mapped, raw) or issue
             elif field == "journal" and supported:
                 can_resolve = bool(
                     set(mapped["ISSN"]) & set(primary["record"].get("ISSN", []))
@@ -864,9 +847,7 @@ def assess_epmc(fields, primary, raw, retrieved_at, request_url):
                     )
                 )
             if can_resolve:
-                resolved.append(
-                    dict({"finding": issue, "authority": "PubMed via Europe PMC"}, **(typo or {}))
-                )
+                resolved.append({"finding": issue, "authority": "PubMed via Europe PMC"})
                 evidence[field] = dict(
                     secondary_evidence[field], source_name="europepmc"
                 )

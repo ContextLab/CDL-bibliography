@@ -951,81 +951,13 @@ def house_surname(name, bib, exclude=None):
     return new, f"surname {fam!r} -> {best[0][1]!r} as cdl.bib writes it ({best[0][0]} entries)"
 
 
-_NAME_INDEX = {}
-
-
-def name_initials(name):
-    """The initials of a name's given part as folded letters: 'J-P' -> ('j', 'p')."""
-    return tuple(w[0] for w in fold(given_part(name)).split())
-
-
-def compatible_initials(a, b):
-    """Same first initial, and one list of initials starts the other ('D' ~ 'D M')."""
-    if not a or not b or a[0] != b[0]:
-        return False
-    short, long_ = sorted((a, b), key=len)
-    return long_[:len(short)] == short
-
-
-def house_name_uses(bib, name, exclude_key=None):
-    """Keys of cdl.bib entries (other than exclude_key) whose author or editor field has
-    a person with the same folded surname as `name` and compatible initials."""
-    cached = _NAME_INDEX.get(id(bib))
-    if not (cached and cached[0] is bib):
-        index = {}
-        for k, e in bib.items():
-            for field in NAME_FIELDS:
-                for n in split_names(e.get(field, "")):
-                    if n != "others":
-                        index.setdefault(surname_key(n), []).append((name_initials(n), k))
-        cached = _NAME_INDEX[id(bib)] = (bib, index)
-    mine = name_initials(name)
-    return sorted({k for ini, k in cached[1].get(surname_key(name), []) if k != exclude_key
-                   and compatible_initials(ini, mine)})
-
-
 def given_part(name):
     tokens = split_top(name)
     fam = surname(name)
     return " ".join(tokens[: len(tokens) - len(split_top(fam))])
 
 
-ARXIV_ID = re.compile(r"arxiv\D{0,20}?(\d{4}\.\d{4,5}|[a-z][a-z\-]*(?:\.[A-Z]{2})?/\d{7})", re.I)
 ZENODO_DOI = re.compile(r"10\.5281/zenodo\.(\d+)", re.I)
-
-
-def deposited_witnesses(row, final, ctx, last):
-    """[(host, description)] of author-deposited records that print the folded surname
-    `last`: the arXiv record of an arXiv id named in the row (its title must be the
-    entry's), and the Zenodo record of a 10.5281/zenodo DOI the entry carries. The
-    authors deposit these names themselves, and the post-check fetches them from
-    export.arxiv.org / zenodo.org, not the researcher's quoted host."""
-    fetch = ctx.get("fetch") or http_get
-    text = " ".join([row.get("notes", ""), (row.get("identity") or {}).get("url", "")] +
-                    [e.get("url", "") for f in (row.get("fields") or {}).values() for e in (f or {}).get("evidence") or []] +
-                    [str(final.get("doi", "")), str(final.get("volume", "")), str(final.get("journal", ""))])
-    out = []
-    for aid in dict.fromkeys(m for m in ARXIV_ID.findall(text)):
-        status, body = fetch(f"https://export.arxiv.org/api/query?id_list={aid}")
-        if status != 200:
-            continue
-        entry = (re.search(r"<entry>(.*?)</entry>", body, re.S) or [None, ""])[1]
-        title = re.sub(r"\s+", " ", html.unescape((re.search(r"<title>(.*?)</title>", entry, re.S) or [None, ""])[1]))
-        names = [html.unescape(n) for n in re.findall(r"<name>(.*?)</name>", entry)]
-        if title and titles_match(title, final.get("title", "")) and any(last in fold(n).split() for n in names):
-            out.append(("export.arxiv.org", f"arXiv {aid} ({', '.join(names[:3])})"))
-    for zid in dict.fromkeys(ZENODO_DOI.findall(str(final.get("doi", "")))):
-        status, body = fetch(f"https://zenodo.org/api/records/{zid}")
-        if status != 200:
-            continue
-        try:
-            creators = json.loads(body)["metadata"]["creators"]
-        except (ValueError, KeyError, TypeError):
-            continue
-        fams = [c.get("name", "").split(",")[0] for c in creators]
-        if any(last in fold(f).split() for f in fams):
-            out.append(("zenodo.org", f"Zenodo record {zid} of the entry's DOI"))
-    return out
 
 
 # ---------------------------------------------------------------- user decisions (cross-wave page, 2026-09-26)
@@ -2570,9 +2502,17 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                 names_.append(n)
             set_norm(name, " and ".join(names_), brace_notes)
 
-    # single-source surname change: a new surname that respells a cited one is held,
-    # i.e. that author keeps the cited name, unless the reviewer confirms the author
-    if "author" in applied and applied["author"]["source"] == "researcher" and current.get("author"):
+    # A surname mismatch is the user's to resolve (user rule 2026-09-30, verification/
+    # 2026-09-29-user-review/CONFIRM.md answer 5: "one source is sufficient; manual entry
+    # is the weakest part. notify user if mismatch is found and ask how they want to
+    # resolve it"). A researcher surname that respells a cited one is never applied,
+    # however many hosts print it, whatever cdl.bib's other entries or the reviewer say:
+    # the cited name is kept and the row is held (flag surname_mismatch) with both
+    # spellings and the hosts that print the new one. (This replaces the corroboration
+    # rules Claude adopted in waves 2-7: a second host, the DOI record, an
+    # author-deposited record, cdl.bib's own spelling, or a reviewer's confirmation.)
+    # The reviewer's own value (an agent's, not the user's) is checked the same way.
+    if "author" in applied and applied["author"]["source"] in ("researcher", "reviewer") and current.get("author"):
         strip = surname_key
         old = {}
         for n in split_names(current["author"]):
@@ -2585,9 +2525,7 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
         reg = doi_status if doi_status and "doi" in applied else None
         reg_names = fold(" ".join(reg.get("authors") or [])).split() if reg else []
         reg_host = {"Crossref": "api.crossref.org", "DataCite": "api.datacite.org"}.get((reg or {}).get("ra"), "doi record")
-        rv_author = ((review or {}).get("field_verdicts") or {}).get("author")
-        release = bool(review) and reviewer_confirms(rv_author)
-        out, kept, released = [], [], []
+        out, kept = [], []
         cited_list = [n for n in split_names(current["author"])]
         for pos, n in enumerate(split_names(final["author"])):
             new = strip(n)
@@ -2604,70 +2542,25 @@ def check_entry(row, current, bib, ctx, review=None, validation=None, decision=N
                 out.append(n)  # an added or reordered author, a brace/spacing fix, or a restored accent
                 continue
             last = new.split()[-1]
-            quoted = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
-            hosts = set(quoted)
-            deposited = []
+            hosts = {urlparse(e.get("url", "")).netloc for e in ev if last in fold(e.get("quote", "")).split()}
             if last in reg_names:
                 hosts.add(reg_host)
-            if len(hosts) < 2:
-                # an author-deposited record (arXiv, Zenodo) fetched from a host the
-                # researcher did not quote is a second host (CaliVita05: arXiv
-                # cs/0412098 'Rudi Cilibrasi'; ChanEtal20: Zenodo 'Geerligs, Linda')
-                for host, why in deposited_witnesses(row, final, ctx, last):
-                    if host not in hosts:
-                        hosts.add(host)
-                        deposited.append(why)
-            if len(hosts) >= 2:
-                out.append(n)
-                if deposited:
-                    flag(flags, "surname_corroborated", "author",
-                         f"surname {near[0]!r} -> {new!r}: released by the deposited-record rule, "
-                         f"{'; '.join(deposited)} is the second host {sorted(hosts)}", "applied")
-                elif len(quoted) < 2:
-                    flag(flags, "surname_corroborated", "author",
-                         f"surname {near[0]!r} -> {new!r}: released by the DOI record rule, the {reg_host} "
-                         f"record of the kept DOI is the second host {sorted(hosts)}", "applied")
-                continue
-            # the corrected spelling is already cdl.bib's for this person (same surname,
-            # compatible initials, in another entry) and the cited spelling is not:
-            # a second, independent witness (TulvThom73: editor 'D M Thomson')
-            cited_name = next((c for c in cited_list if near[0] in (strip(c), strip(normalise_name(c)[0]))),
-                              old[near[0]])
-            new_uses = house_name_uses(bib, n, exclude_key=key)
-            old_uses = house_name_uses(bib, cited_name, exclude_key=key)
-            if hosts and new_uses and not old_uses:
-                out.append(n)
-                flag(flags, "surname_corroborated", "author",
-                     f"surname {near[0]!r} -> {new!r}: released by the cdl.bib rule, {sorted(hosts)} plus "
-                     f"cdl.bib's own spelling for this person in {', '.join(new_uses[:5])} (the cited "
-                     "spelling is in no other entry)", "applied")
-                continue
-            detail = (f"surname {near[0]!r} -> {new!r} rests on {len(hosts)} source host(s) {sorted(hosts)}; "
-                      "single-source surname changes need corroboration or the user's sign-off")
-            if release:
-                flag(flags, "surname_single_source", "author",
-                     detail + f"; applied: the reviewer confirms the author ({rv_author})", "applied")
-                out.append(n)
-                released.append(n)
-            else:
-                # the whole cited name, house format; of several cited authors with that
-                # surname (YangEtal24's Yangs), the one at the same position
-                same = [c for c in cited_list if near[0] in (strip(c), strip(normalise_name(c)[0]))]
-                pick = cited_list[pos] if pos < len(cited_list) and cited_list[pos] in same else old[near[0]]
-                cited = normalise_name(pick)[0]
-                flag(flags, "surname_single_source", "author",
-                     detail + f"; held: the cited name {cited!r} is kept", "held")
-                out.append(cited)
-                kept.append(cited)
-        if released:
-            applied["author"]["source"] = "reviewer"
-            applied["author"]["evidence"] = list(applied["author"]["evidence"]) + [
-                {"reviewer_confirmed": rv_author, "reviewer_problems": review.get("problems") or []}]
+            # the whole cited name, house format; of several cited authors with that
+            # surname (YangEtal24's Yangs), the one at the same position
+            same = [c for c in cited_list if near[0] in (strip(c), strip(normalise_name(c)[0]))]
+            pick = cited_list[pos] if pos < len(cited_list) and cited_list[pos] in same else old[near[0]]
+            cited = normalise_name(pick)[0]
+            flag(flags, "surname_mismatch", "author",
+                 f"surname mismatch: cited {cited!r}, {applied['author']['source']} {n!r} (printed by {sorted(hosts)}); "
+                 f"keep {cited!r} or change to {n!r}? The user decides (user rule 2026-09-30); "
+                 "held: the cited name is kept", "held")
+            out.append(cited)
+            kept.append(cited)
         if kept:
             value = " and ".join(out)
             final["author"] = value
             applied["author"]["value"] = value
-            held["author"] = "single-source surname respelling not applied; kept as cited: " + ", ".join(kept)
+            held["author"] = "surname mismatch for the user; kept as cited: " + ", ".join(kept)
 
     for name in list(applied):
         a = applied[name]

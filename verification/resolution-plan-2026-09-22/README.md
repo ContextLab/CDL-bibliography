@@ -130,7 +130,9 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   surnames are held and checked against a source first.
 - **Catalogue publisher names:** a same-firm longer form is a match; keep the house form.
 - Two rules first recorded in this list, "page ranges are never shortened" and "single-source
-  surname changes need corroboration", were Claude's, not the user's: see "Rules Claude adopted (awaiting user confirmation)" below.
+  surname changes need corroboration", were Claude's, not the user's. The user confirmed the first
+  and replaced the second on 2026-09-30: see "Rules Claude adopted, then confirmed or replaced by
+  the user (2026-09-30)" below.
 - **Year corrections rename keys** (user, 2026-09-24 23:35 EDT: "Rename keys"): GautEtal18 → GautEtal19 and
   HayeEtal14 → HayeEtal16 after their source-backed year fixes (check for collisions first).
 
@@ -156,12 +158,12 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   USENIX SWIG paper (new key); ScotEtal07 cites the chapter (@incollection); accented names
   keep their accents when a source prints them unaccented (ASCII limitation); Mink07 is
   switched to the 6th edition, which names Mink and is verifiable. (Moving PsyArXiv DOIs stored
-  in `volume` to `doi`, once listed in this bullet, was Claude's rule: see "Rules Claude adopted (awaiting user confirmation)" below.)
+  in `volume` to `doi`, once listed in this bullet, was Claude's rule, confirmed by the user on 2026-09-30: see "Rules Claude adopted, then confirmed or replaced by the user (2026-09-30)" below.)
 - **Keys always follow corrected metadata** (user, 2026-09-25 06:45 EDT: "Always rename (Recommended)"): when a verified correction
   changes the year, first author or author count, the key is renamed per the ID rule. Every
   rename is logged in `verification/key-renames.json` (old → new) so citing papers can be
   updated. (The house address form `City, {ST}`, once listed in this bullet, was not part of
-  the question the user answered: see "Rules Claude adopted (awaiting user confirmation)" below.)
+  the question the user answered; the user confirmed it on 2026-09-30: see "Rules Claude adopted, then confirmed or replaced by the user (2026-09-30)" below.)
 - **Proper ordinals everywhere** (user, 2026-09-25 07:36 EDT): every numeric ordinal in a text field
   (title, booktitle, journal, edition, ...) is written `N\textsuperscript{suffix}` with the
   correct suffix (`1\textsuperscript{st}`, `2\textsuperscript{nd}`, `30\textsuperscript{th}`);
@@ -183,51 +185,91 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
   verify are recorded with `crossref approve`, reviewer Jeremy Manning, bound to each entry's
   exact current text. PR #87/#88 entries were not reviewed by the user and are not included.
 
-## Rules Claude adopted (awaiting user confirmation)
+## Rules Claude adopted, then confirmed or replaced by the user (2026-09-30)
 
-The 2026-09-29 attribution audit found these rules recorded as the user's. Each one was
-Claude's (the model's) own generalization or fix. They stay in force until the user answers
-[verification/2026-09-29-user-review/CONFIRM.md](../2026-09-29-user-review/CONFIRM.md).
+The 2026-09-29 attribution audit found six rules recorded as the user's. Each one was
+Claude's (the model's) own generalization or fix. The user answered
+[verification/2026-09-29-user-review/CONFIRM.md](../2026-09-29-user-review/CONFIRM.md) on
+2026-09-30 (EDT). Their words, verbatim:
 
-- **Proposed values must be stated by a source record.** Every proposed after-value must be
-  stated by an authoritative source record for the proposal's DOI. A value carried over from
-  the citation is never presented as source-backed. Origin: Claude, commit 42b524a
-  (2026-09-24 03:07 EDT, "fixes-2026-09-24: house-form author proposals, source-stated issue
-  numbers"). Claude generalized it from the user's remark "some \"number\" field entries don't
-  appear in the doi link" (2026-09-24 00:20 EDT); the user's later spot-check notes on Hint03 ("I
-  don't see a number field listed at the DOI address") and Murd71 ("...Drop the number field.",
-  2026-09-24 18:06 EDT) concern the number field only. Affects every correction proposal built
-  by `bibcheck/correction_proposals.py` (`source_records` and its callers); the verdicts it
-  came from: Hint03, Murd71.
-- **Page ranges are never shortened** by a correction. Origin: Claude, recorded in commit 9c301a1
-  (2026-09-24 21:12 EDT) and coded in 0c321c5 (2026-09-25 00:14 EDT, `shortens_pages` in
-  `bibcheck/correction_proposals.py`). Claude generalized it from one spot-check verdict, MarmEtal78:
-  "It looks like 483--490 was correct" (2026-09-24 18:26 EDT; the proposal had shortened
-  483--490 to 483). Affects MarmEtal78, plus any page proposal the filter suppresses; the filter
-  records no list of what it suppressed.
-- **Single-source surname changes need corroboration** (a second source, or held when other
-  cdl.bib entries spell the same author the cited way). Origin: Claude, recorded in commit 9c301a1
-  (2026-09-24 21:12 EDT) and coded in 0c321c5 (2026-09-25 00:14 EDT, `surname_change_hold`), after
-  Claude's own risky001 batch applied Crossref's "Kounois" to MeyeEtal88. No user record states
-  it. Affects MeyeEtal88 (reverted, apply-2026-09-25 `revert-kounios`) and RuggEtal96 (held in
-  held001, apply-2026-09-25c).
+> 1. yes
+> 2. yes
+> 3. yes
+> 4. yes
+> 5. one source is sufficient; manual entry is the weakest part. notify user if mismatch is found and ask how they want to resolve it
+> 6. "T Egerton" is correct -- the "." after "T" and the "..." after "Egerton" are just formatting differences
+>
+> yes to folder renames
+
+### Confirmed by the user (2026-09-30)
+
+Rules 1, 2, 3, 4 and 6 are now the user's. Each origin line below is kept as the record of
+where the rule came from.
+
+- **Proposed values must be stated by a source record** (user, 2026-09-30, question 1: "yes").
+  Every proposed after-value must be stated by an authoritative source record for the
+  proposal's DOI. A value carried over from the citation is never presented as source-backed.
+  Origin: Claude, commit 42b524a (2026-09-24 03:07 EDT, "fixes-2026-09-24: house-form author
+  proposals, source-stated issue numbers"). Claude generalized it from the user's remark "some
+  \"number\" field entries don't appear in the doi link" (2026-09-24 00:20 EDT); the user's later
+  spot-check notes on Hint03 ("I don't see a number field listed at the DOI address") and Murd71
+  ("...Drop the number field.", 2026-09-24 18:06 EDT) concern the number field only. Affects every
+  correction proposal built by `bibcheck/correction_proposals.py` (`source_records` and its
+  callers); the verdicts it came from: Hint03, Murd71.
+- **Page ranges are never shortened** by a correction (user, 2026-09-30, question 2: "yes").
+  Origin: Claude, recorded in commit 9c301a1 (2026-09-24 21:12 EDT) and coded in 0c321c5
+  (2026-09-25 00:14 EDT, `shortens_pages` in `bibcheck/correction_proposals.py`). Claude
+  generalized it from one spot-check verdict, MarmEtal78: "It looks like 483--490 was correct"
+  (2026-09-24 18:26 EDT; the proposal had shortened 483--490 to 483). Affects MarmEtal78, plus any
+  page proposal the filter suppresses; the filter records no list of what it suppressed.
 - **House address form `City, {ST}` stays** (catalogue edits that only drop the state or country
-  are dropped). Origin: Claude, commit 1c1c13a (2026-09-25 06:45 EDT), written into the same
-  bullet as the key-rename answer. The question the user answered at 06:45 EDT asked only about
-  key renames. Affects the held001 catalogue edits dropped by it (Tulv83, Galt83, Buzs06,
-  OKeeNade78, and the address part of Carr93) and the city changes written in that form
-  (UndeShul60 "Chicago, {IL}", TulvDona72 "New York, {NY}"). The research post-check
-  (`verification/research-2026-09-25/postcheck.py`) normalizes US addresses to the same form.
-- **PsyArXiv DOIs stored in `volume` move to `doi`.** Origin: Claude, commit 4cb7741 (2026-09-25
-  00:32 EDT), bundled into the "Pilot follow-up decisions (user, 2026-09-25)" bullet. It came from
-  the researcher's note on ZimaEtal23 (research-pilot `followup.json`: "Three other cdl.bib
-  entries ... also store PsyArXiv DOIs in volume; the same fix applies"). No user record states
-  it. Affects ZimaEtal23, GralFinn21, LuriEtal18 and NussEtal18. The last three were later replaced by
-  their published versions under the user's "Replace all 8".
-- **Aust14's publisher is "T Egerton"** (the real firm), not "Eagerton". Origin: Claude's agent
-  instruction of 2026-09-25 11:10 EDT ("Also fix Aust14 publisher 'Eagerton' -> the real firm
-  (Egerton)"), applied in commit 2179d34 (2026-09-25 13:01 EDT, prfix001). The code comment said
-  "(user: ...)", but no user record asks for it. Affects Aust14.
+  are dropped) (user, 2026-09-30, question 3: "yes"). Origin: Claude, commit 1c1c13a (2026-09-25
+  06:45 EDT), written into the same bullet as the key-rename answer. The question the user
+  answered at 06:45 EDT asked only about key renames. Affects the held001 catalogue edits dropped
+  by it (Tulv83, Galt83, Buzs06, OKeeNade78, and the address part of Carr93) and the city changes
+  written in that form (UndeShul60 "Chicago, {IL}", TulvDona72 "New York, {NY}"). The research
+  post-check (`verification/research-2026-09-25/postcheck.py`) normalizes US addresses to the
+  same form.
+- **PsyArXiv DOIs stored in `volume` move to `doi`** (user, 2026-09-30, question 4: "yes").
+  Origin: Claude, commit 4cb7741 (2026-09-25 00:32 EDT), bundled into the "Pilot follow-up
+  decisions (user, 2026-09-25)" bullet. It came from the researcher's note on ZimaEtal23
+  (research-pilot `followup.json`: "Three other cdl.bib entries ... also store PsyArXiv DOIs in
+  volume; the same fix applies"). Affects ZimaEtal23, GralFinn21, LuriEtal18 and NussEtal18. The
+  last three were later replaced by their published versions under the user's "Replace all 8".
+- **Aust14's publisher is "T Egerton"** (user, 2026-09-30, question 6: '"T Egerton" is correct
+  -- the "." after "T" and the "..." after "Egerton" are just formatting differences').
+  The Library of Congress record prints "Printed for T. Egerton, Military Library, Whitehall".
+  Origin: Claude's agent instruction of 2026-09-25 11:10 EDT ("Also fix Aust14 publisher
+  'Eagerton' -> the real firm (Egerton)"), applied in commit 2179d34 (2026-09-25 13:01 EDT,
+  prfix001). The code comment said "(user: ...)", but no user record asked for it until this
+  answer. Affects Aust14.
+
+### Replaced by the user's rule (2026-09-30)
+
+- **Surname mismatches go to the user** (user, 2026-09-30, question 5: "one source is
+  sufficient; manual entry is the weakest part. notify user if mismatch is found and ask how
+  they want to resolve it"). One authoritative source record is enough to verify an author's
+  surname it agrees with; no second source is needed. When the cited surname and a source's
+  surname disagree, the checker neither keeps the cited spelling nor applies the source's on
+  its own: the entry stays `needs_review` with an issue that names both spellings and the
+  source, and the user decides. Implemented in
+  [apply-2026-09-30-surnames](../apply-2026-09-30-surnames/README.md): the auto-review rule that
+  let PubMed and library consensus overrule a Crossref surname (`registry-surname-typo`) now names
+  the mismatch instead, every surname-changing correction is held (`surname_change_hold`), and the
+  research post-check holds every respelling. The open questions are in
+  [verification/2026-09-30-user-review/SURNAMES.md](../2026-09-30-user-review/SURNAMES.md).
+- The rule it replaces, for the record: **single-source surname changes need corroboration** (a
+  second source, or held when other cdl.bib entries spell the same author the cited way).
+  Origin: Claude, recorded in commit 9c301a1 (2026-09-24 21:12 EDT) and coded in 0c321c5
+  (2026-09-25 00:14 EDT, `surname_change_hold`), after Claude's own risky001 batch applied
+  Crossref's "Kounois" to MeyeEtal88. No user record stated it. Affected MeyeEtal88 (reverted,
+  apply-2026-09-25 `revert-kounios`) and RuggEtal96 (held in held001, apply-2026-09-25c).
+
+### Folder renames confirmed (2026-09-30)
+
+- The user's "yes to folder renames" (2026-09-30) confirms the renames of the eight misdated
+  `apply-*` folders to their creation dates (commit 856d637; table in
+  [verification/README.md](../README.md#renamed-apply-folders-2026-09-29)).
 
 ### Other corrections from the 2026-09-29 audit
 

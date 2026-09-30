@@ -276,8 +276,6 @@ def test_article_number_refuses_other_page_shapes():
     ("KiEtal16", "S1-I1", {"title": {
         "before": "Attention stronly modulates reliability of neural responses to naturalistic narrative stimuli",
         "after": "Attention strongly modulates reliability of neural responses to naturalistic narrative stimuli"}}),
-    ("CleeMcCl91", "S1-I1", {"author": {"before": "A Cleeremans and J L McCleeland",
-                                         "after": "A Cleeremans and J L McClelland"}}),  # house form (2026-09-24)
     ("Game62", "S1-I2", {"journal": {"before": "Journal of Experimental Psychology: General",
                                       "after": "Journal of Experimental Psychology"}}),
 ])
@@ -303,10 +301,13 @@ def test_single_source_preserves_accents_in_house_form():
     ("HopkEtal12", "value-held"),  # citation has full names; source initials only
     ("CahiEtal96", "value-held"),
     ("FourEtal19", "too-many-fields"),
-    # Crossref spells D R Gitelman "Gitleman"; PallEtal03 in cdl.bib spells him
-    # Gitelman, so library consensus holds the change (2026-09-25) before the
-    # erratum check is reached. The cited work's erratum still keeps it open.
+    # Crossref spells D R Gitelman "Gitleman": a surname mismatch, held for the user
+    # (user rule 2026-09-30) before the erratum check is reached. The cited work's
+    # erratum still keeps it open.
     ("RebeEtal02", "value-held"),
+    # Crossref's "McClelland" for the cited "McCleeland" was proposed from one source until
+    # 2026-09-30; under the user's rule the respelling is the user's to decide.
+    ("CleeMcCl91", "value-held"),
 ])
 def test_single_source_holds(key, reason):
     entry, result = reviewed(key)
@@ -314,8 +315,11 @@ def test_single_source_holds(key, reason):
     assert single_source_proposal(entry, result, explain) is None
     assert explain["reason"] == reason
     if key == "RebeEtal02":
-        assert "library consensus" in explain["detail"] and "Gitleman" in explain["detail"]
+        assert "surname mismatch" in explain["detail"] and "'D R Gitleman'" in explain["detail"]
+        assert "library consensus" not in explain["detail"]
         assert result["status"] == "needs_review"
+    if key == "CleeMcCl91":
+        assert "cited 'J L McCleeland', source 'J L McClelland'" in explain["detail"]
 
 
 def test_existing_author_generator_never_discards_given_names():
@@ -637,12 +641,11 @@ def test_accent_commands_are_not_case_protection():
                   and c["record"].get("DOI", "").lower() == "10.1080/17470210701728750")
     assert source_authors(record, entry["fields"]["author"]) == \
         "M Racsm\\'{a}ny and M A Conway and E A Garab and G Nagymáté"
-    # Magymáté -> Nagymáté is a single-source surname change: held without
-    # corroboration (rule Claude adopted 2026-09-24, awaiting user confirmation), never
-    # proposed from Crossref alone.
+    # Magymáté -> Nagymáté is a surname mismatch: held for the user (user rule
+    # 2026-09-30), never proposed automatically.
     explain = {}
     assert single_source_proposal(entry, result, explain) is None
-    assert "lacks corroboration" in explain["detail"]
+    assert "surname mismatch" in explain["detail"] and "Nagymáté" in explain["detail"]
     assert not loses_characters("J Garc\\'{i}a", "J García", "author")
     assert not loses_characters("José García", "J García", "author")  # initials drop given-name letters only
     assert loses_characters("José García", "J Garcia", "author")      # a surname accent is lost

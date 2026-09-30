@@ -198,10 +198,10 @@ def test_initials_not_changed_when_sources_disagree_or_match(bib):
 
 def test_single_source_surname_change_is_flagged(bib):
     rec = check(bib, "MannEtal23b")
-    assert "surname_single_source" in codes(rec)
+    assert "surname_mismatch" in codes(rec)
     # the hold keeps the cited name: the respelled surname is not in the final entry
     assert rec["final_entry"]["author"] == "J R Manning and H Menjunatha and K Kording"
-    assert "surname_single_source" not in codes(check(bib, "DawKenj06"))  # PubMed + Crossref
+    assert "surname_mismatch" not in codes(check(bib, "DawKenj06"))  # PubMed + Crossref
 
 
 # ---------------------------------------------------------------- fields
@@ -587,7 +587,7 @@ def test_author_changes_only_as_researcher_proposed(bib):
                 want, notes = pc.normalise_names(raw)
                 want = want if notes else raw  # set only when the normaliser reports a change
                 if field == "author" and "author" in rec["held"]:  # single-source surname kept as cited
-                    assert "surname_single_source" in codes(rec), k
+                    assert "surname_mismatch" in codes(rec), k
                     got_n, want_n = pc.split_names(ch["proposed"]), pc.split_names(want)
                     cited = {pc.normalise_name(n)[0] for n in pc.split_names(bib[k]["author"])}
                     assert len(got_n) == len(want_n), k
@@ -679,70 +679,89 @@ def test_corroborated_print_year_beats_crossref_deposit(bib):
     assert rec["suggestions"].get("year") == "2005" and "print_year_conflict" in codes(rec)
 
 
+# User rule 2026-09-30 (verification/2026-09-29-user-review/CONFIRM.md, answer 5): "one
+# source is sufficient; manual entry is the weakest part. notify user if mismatch is found
+# and ask how they want to resolve it". A surname respelling is held for the user whatever
+# the number of hosts, cdl.bib's other entries or the (agent) reviewer say; these tests
+# used to assert that such evidence released it.
+
 def test_single_source_surname_hold_keeps_cited_name(bib):
     rec = check3(bib, "FreeEtal03b")  # Crossref deposit typo 'Jorsten'; cited 'Jornten'
-    assert "surname_single_source" in codes(rec)
+    assert "surname_mismatch" in codes(rec)
     names = pc.split_names(rec["final_entry"]["author"])
     assert names[2] == pc.split_names(bib["FreeEtal03b"]["author"])[2] and "Jorsten" not in rec["final_entry"]["author"]
-    rec = check3(bib, "FreeEtal03b", review=True)  # the reviewer's corrected surname
-    assert pc.split_names(rec["final_entry"]["author"])[2] == 'R J{\\"o}rnsten'
-    # a surname the reviewer confirms is released, provenance reviewer (RuggEtal96:
-    # cited 'Patchin', Crossref only 'Patching')
+    # the reviewer's corrected surname is an agent's value, not the user's: held too,
+    # with both spellings named
+    rec = check3(bib, "FreeEtal03b", review=True)
+    assert pc.split_names(rec["final_entry"]["author"])[2] == "R Jornten"
+    (f,) = [f for f in rec["flags"] if f["code"] == "surname_mismatch"]
+    assert f["action"] == "held" and "'R Jornten'" in f["detail"] and "rnsten'" in f["detail"]
+    # RuggEtal96: cited 'Patchin', Crossref only 'Patching'; the reviewer's confirmation
+    # no longer releases it
     rec = check3(bib, "RuggEtal96", review=True)
-    assert "Patching" in rec["final_entry"]["author"]
-    assert {c["field"]: c["source"] for c in rec["changes"]}["author"] == "reviewer"
-    assert any(f["code"] == "surname_single_source" and f["action"] == "applied" for f in rec["flags"])
+    assert "Patching" not in rec["final_entry"]["author"] and "author" in rec["held"]
+    assert any(f["code"] == "surname_mismatch" and f["action"] == "held" for f in rec["flags"])
+    assert not any(f["code"] == "surname_mismatch" and f["action"] == "applied" for f in rec["flags"])
     rules_alone = check3(bib, "RuggEtal96")
     assert "author" in rules_alone["held"] and "Patching" not in rules_alone["final_entry"]["author"]
-    # Brig12's cited 'F De Brigard' -> 'F {De Brigard}' is a particle brace fix (same
-    # letters, wave-4 fix), applied by the rules alone without a hold
+    # Brig12: the frozen bibliography cites 'F D Brigard' (surname Brigard); the researcher's
+    # 'F {De Brigard}' (Crossref and PubMed) changes the surname. Two hosts used to release
+    # it; now it is held for the user and the cited name is kept.
     rec = check3(bib, "Brig12")
-    assert rec["final_entry"]["author"] == "F {De Brigard}" and "surname_single_source" not in codes(rec)
+    assert bib["Brig12"]["author"] == "F D Brigard"
+    assert rec["final_entry"]["author"] == "F D Brigard" and "surname_mismatch" in codes(rec)
+    assert "surname_corroborated" not in codes(rec)
+    # negative control: the same particle braced without a change of letters is no mismatch
+    rec = check3(dict(bib, Brig12=dict(bib["Brig12"], author="F De Brigard")), "Brig12")
+    assert rec["final_entry"]["author"] == "F {De Brigard}" and "surname_mismatch" not in codes(rec)
 
 
 @pytest.mark.parametrize("folder,findings", [(WAVE3, 8)])
 def test_wave3_review_resolution(folder, findings):
     post, page, rules_only, merged = pc.run(folder, write=False, offline=True, bib=FROZEN_BIB)
     res = post["review_resolution"]
-    assert res["findings"] == findings and res["unresolved"] == [], res["unresolved"]
+    # FreeEtal03b: the reviewer's surname 'J{\\"o}rnsten' for the cited 'Jornten' is a
+    # surname mismatch the user decides (user rule 2026-09-30), so it stays unresolved.
+    assert res["findings"] == findings and res["unresolved"] == ["FreeEtal03b"], res["unresolved"]
     assert not any(f["code"] == "initials_from_source" for r in merged.values() for f in r["flags"])
 
 
-def without_house_spelling(bib, name, key):
-    """cdl.bib without the other entries that write `name` for the same person, so a
-    test of another hold rule is not released by the wave-6 cdl.bib rule."""
-    drop = set(pc.house_name_uses(bib, name, exclude_key=key))
-    assert drop  # the corroborating entries exist in HEAD
-    return {k: v for k, v in bib.items() if k not in drop}
-
-
 def test_surname_hold_keeps_the_whole_cited_name(bib):
-    """AguiEtal96: cited 'M D Esposito', researcher 'M D'Esposito' from PubMed alone. The
-    hold keeps the cited name whole, so no initial is dropped ('M Esposito' was wrong).
-    With the proposed DOI kept, its Crossref record is the second host (wave-5 fix) and
-    the surname is applied; without the DOI the hold stands. (Wave-6 cdl.bib rule: cdl.bib
-    writes 'M D'Esposito' in other entries, which alone releases the DOI-less hold, so the
-    hold is tested on the bibliography without those entries.)"""
+    """AguiEtal96: cited 'M D Esposito', researcher 'M D'Esposito'. The hold keeps the
+    cited name whole, so no initial is dropped ('M Esposito' was wrong). Neither the
+    proposed DOI's Crossref record (a second host) nor cdl.bib's other entries writing
+    'M D'Esposito' release it any more (user rule 2026-09-30)."""
     row = copy.deepcopy(ROWS2["AguiEtal96"])
     row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
-    rec = check2(bib, "AguiEtal96", row)
-    assert any(f["code"] == "surname_corroborated" and "cdl.bib rule" in f["detail"] for f in rec["flags"])
-    alone = without_house_spelling(bib, "M D'Esposito", "AguiEtal96")
-    rec = pc.check_entry(row, bib["AguiEtal96"], alone, ctx_for(alone), validation=VALIDATION2.get("AguiEtal96"))
-    assert "surname_single_source" in codes(rec)
-    assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D Esposito"
-    rec = check2(bib, "AguiEtal96")
-    assert "surname_single_source" not in codes(rec)
-    assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D'Esposito"
+    for rec in (check2(bib, "AguiEtal96", row), check2(bib, "AguiEtal96")):
+        assert "surname_mismatch" in codes(rec) and "surname_corroborated" not in codes(rec)
+        assert pc.split_names(rec["final_entry"]["author"])[-1] == "M D Esposito"
+        (f,) = [f for f in rec["flags"] if f["code"] == "surname_mismatch"]
+        assert "'M D Esposito'" in f["detail"] and "M D'Esposito" in f["detail"]
+    # the DOI record is still named as a host that prints the new spelling
+    assert "api.crossref.org" in f["detail"]
 
 
-@pytest.mark.parametrize("wave,key", [("3", "BasaEtal92"), ("3", "KatzEtal89")])
+@pytest.mark.parametrize("wave,key", [("3", "BasaEtal92")])
 def test_brace_or_spacing_fix_is_not_a_respelling(bib, wave, key):
-    """{Schurman n} -> Sch{\\"u}rmann and a broken L{\\\\"u}ders are format fixes of the same
-    letters, not surname respellings: applied, no hold."""
+    """{Schurman n} -> Sch{\\"u}rmann is a format fix of the same letters, not a surname
+    respelling: applied, no hold."""
     rec = (check2 if wave == "2" else check3)(bib, key)
-    assert "surname_single_source" not in codes(rec)
+    assert "surname_mismatch" not in codes(rec)
     assert "author" not in rec["held"] and "author" in changed(rec)
+
+
+def test_format_fix_applies_beside_a_held_respelling(bib):
+    """KatzEtal89: the broken L{\\\\"u}ders is a format fix and is applied, but the same row
+    respells the cited 'A K Kongy' as 'A K Kong' (PubMed and Europe PMC). That respelling
+    used to be released by its two hosts; it is now held for the user (user rule
+    2026-09-30) and the cited name is kept."""
+    rec = check3(bib, "KatzEtal89")
+    assert "author" in changed(rec)
+    names = pc.split_names(rec["final_entry"]["author"])
+    assert names[2] == "A K Kongy" and names[-1] == 'H L{\\"u}ders'
+    (f,) = [f for f in rec["flags"] if f["code"] == "surname_mismatch"]
+    assert f["action"] == "held" and "'A K Kong'" in f["detail"] and "www.ebi.ac.uk" in f["detail"]
 
 
 # ---------------------------------------------------------------- wave-4 review regressions
@@ -764,14 +783,14 @@ def test_particle_brace_fix_is_not_a_respelling(bib):
     assert pc.normalise_names("D Le Bihan")[0] == "D {Le Bihan}"
     rec = check4(bib, "VogtEtal14")
     assert rec["final_entry"]["author"] == "D Vogt and A B Fox and B A L {Di Leone}"
-    assert "surname_single_source" not in codes(rec) and "author" not in rec["held"]
+    assert "surname_mismatch" not in codes(rec) and "author" not in rec["held"]
     # negative controls: a first-token 'Van' is a given name; a real respelling is held and
     # keeps the cited name in house form, never 'B A L D Leone'
     assert pc.normalise_names("Van Morrison")[0] == "V Morrison"
     row = copy.deepcopy(ROWS4["VogtEtal14"])
     row["fields"]["author"]["value"] = "D Vogt and A B Fox and B A L {Di Leoni}"
     rec = check4(bib, "VogtEtal14", row)
-    assert "surname_single_source" in codes(rec)
+    assert "surname_mismatch" in codes(rec)
     assert pc.split_names(rec["final_entry"]["author"])[-1] == "B A L {Di Leone}"
 
 
@@ -927,19 +946,22 @@ def test_part_number_guard_is_live(bib):
                                 ["Functional mapping of human sensorimotor cortex"])[0] == "part_number"
 
 
-@pytest.mark.parametrize("key,name", [("VanEEtal01", "J Dickson"), ("ToluEtal12", "J-P Changeux")])
-def test_doi_record_counts_as_second_surname_host(bib, key, name):
+@pytest.mark.parametrize("key,name,cited", [("VanEEtal01", "J Dickson", "J Dickenson"),
+                                           ("ToluEtal12", "J-P Changeux", "J P Cangeux")])
+def test_doi_record_is_no_longer_a_second_surname_host(bib, key, name, cited):
+    """VanEEtal01, ToluEtal12: the kept DOI's Crossref record used to be the second host
+    that released the respelling. Under the user rule of 2026-09-30 it is held with and
+    without the DOI, the cited name kept and both spellings named."""
     rec = check5(bib, key)
-    assert name in pc.split_names(rec["final_entry"]["author"]) and "surname_single_source" not in codes(rec)
-    row = copy.deepcopy(ROWS5[key])  # negative control: without the DOI record, one host: held
+    assert cited in pc.split_names(rec["final_entry"]["author"]) and name not in pc.split_names(rec["final_entry"]["author"])
+    (f,) = [f for f in rec["flags"] if f["code"] == "surname_mismatch"]
+    assert f["action"] == "held" and repr(cited) in f["detail"] and repr(name) in f["detail"]
+    row = copy.deepcopy(ROWS5[key])  # without the DOI record: held the same way
     row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}
     current = dict(bib[key])
     current.pop("doi", None)
-    # (wave 6: cdl.bib's own spelling of these people, e.g. DehaChan06 'J-P Changeux', is a
-    # witness of its own; the one-host hold is tested without those entries)
-    alone = without_house_spelling(bib, name, key) if pc.house_name_uses(bib, name, key) else bib
-    rec = pc.check_entry(row, current, alone, ctx_for(alone), validation=VALIDATION5.get(key))
-    assert "surname_single_source" in codes(rec) and name not in pc.split_names(rec["final_entry"]["author"])
+    rec = pc.check_entry(row, current, bib, ctx_for(bib), validation=VALIDATION5.get(key))
+    assert "surname_mismatch" in codes(rec) and name not in pc.split_names(rec["final_entry"]["author"])
 
 
 @pytest.mark.parametrize("key,name", [("KrauEtal13", "R J Robinson"), ("ChamEtal03", "A A Artigas"),
@@ -950,7 +972,7 @@ def test_format_damage_is_not_a_respelling(bib, key, name):
     row = copy.deepcopy(ROWS5[key])
     row["fields"] = {k: v for k, v in row["fields"].items() if k.lower() != "doi"}  # no registry host
     rec = check5(bib, key, row)
-    assert name in pc.split_names(rec["final_entry"]["author"]) and "surname_single_source" not in codes(rec)
+    assert name in pc.split_names(rec["final_entry"]["author"]) and "surname_mismatch" not in codes(rec)
 
 
 def test_format_damage_helpers():
@@ -1018,7 +1040,7 @@ def test_hyphenated_dotted_initials(bib):
     """TrulEtal97: 'Jean-{A}rcady Meyer' became 'J-{ Meyer' (the brace read as an
     initial) and the surname hold fired on an unchanged surname."""
     rec = check6(bib, "TrulEtal97")
-    assert "surname_single_source" not in codes(rec) and "author" not in rec["held"]
+    assert "surname_mismatch" not in codes(rec) and "author" not in rec["held"]
     assert pc.split_names(rec["final_entry"]["author"])[-1] == "J-A Meyer"
     assert pc.normalise_name("J.-A. Meyer")[0] == "J-A Meyer"
     assert pc.given_initials("Jean-{A}rcady") == "J-A"
@@ -1027,23 +1049,17 @@ def test_hyphenated_dotted_initials(bib):
     assert pc.given_initials("{\\'E}mile") == "{\\'E}"
 
 
-def test_cdl_bib_spelling_releases_surname_hold(bib):
+def test_cdl_bib_spelling_does_not_release_a_surname_mismatch(bib):
     """TulvThom73: cited 'D M Thompson', Crossref only 'Thomson'. cdl.bib writes the same
-    person 'D M Thomson' (editor, Smit88) and the cited spelling nowhere else: released
-    by the cdl.bib rule and reported."""
-    rec = check6(bib, "TulvThom73")
-    assert rec["final_entry"]["author"] == "E Tulving and D M Thomson" and "author" not in rec["held"]
-    assert any(f["code"] == "surname_corroborated" and "cdl.bib rule" in f["detail"] and "Smit88" in f["detail"]
-               for f in rec["flags"])
-    # negative control 1: without the corroborating entry the hold stands
+    person 'D M Thomson' (editor, Smit88); that used to release the respelling (Claude's
+    cdl.bib rule). Now it is held with or without Smit88 (user rule 2026-09-30)."""
     no_smit = {k: v for k, v in bib.items() if k != "Smit88"}
-    rec = check6(no_smit, "TulvThom73", current=bib["TulvThom73"])
-    assert "surname_single_source" in codes(rec) and "D M Thompson" in rec["final_entry"]["author"]
-    # negative control 2: the cited spelling is also used for that person elsewhere: held
     both = dict(bib, ZzzzTest73={"ENTRYTYPE": "article", "ID": "ZzzzTest73", "author": "D M Thompson",
                                  "title": "x", "year": "1973"})
-    rec = check6(both, "TulvThom73", current=bib["TulvThom73"])
-    assert "surname_single_source" in codes(rec)
+    for library in (bib, no_smit, both):
+        rec = check6(library, "TulvThom73", current=bib["TulvThom73"])
+        assert "surname_mismatch" in codes(rec) and "surname_corroborated" not in codes(rec)
+        assert rec["final_entry"]["author"] == "E Tulving and D M Thompson" and "author" in rec["held"]
 
 
 @pytest.mark.parametrize("key,cited", [("Trop86", "Y Trop"), ("CrosEtal93", "B Crossen"), ("ParkEtal13", "J Gosh")])
@@ -1053,12 +1069,15 @@ def test_one_host_respellings_without_house_spelling_stay_held(bib, key, cited):
     entry for these people: held, as for FreeEtal03b's Crossref typo 'Jorsten' and
     RuggEtal96's Crossref-only 'Patching'."""
     rec = check6(bib, key)
-    assert "surname_single_source" in codes(rec) and cited in pc.split_names(rec["final_entry"]["author"])
+    assert "surname_mismatch" in codes(rec) and cited in pc.split_names(rec["final_entry"]["author"])
 
 
-def test_doi_record_release_is_reported(bib):
+def test_surname_mismatch_names_both_spellings_and_hosts(bib):
     rec = check5(bib, "VanEEtal01")
-    assert any(f["code"] == "surname_corroborated" and "DOI record rule" in f["detail"] for f in rec["flags"])
+    (f,) = [f for f in rec["flags"] if f["code"] == "surname_mismatch"]
+    assert "'J Dickenson'" in f["detail"] and "'J Dickson'" in f["detail"]
+    assert "api.crossref.org" in f["detail"] and "pubmed.ncbi.nlm.nih.gov" in f["detail"]
+    assert "keep 'J Dickenson' or change to 'J Dickson'?" in f["detail"]
 
 
 def test_january_cover_date_beats_crossref_print_year(bib):
@@ -1330,24 +1349,25 @@ def test_type_change_held_with_held_booktitle(bib, key):
 
 # --- wave 7, fix 10: author-deposited records are a second host
 
-def test_deposited_record_releases_surname_hold(bib):
-    """CaliVita05: Crossref and arXiv cs/0412098 both print Cilibrasi (key CiliVita07);
-    ChanEtal20: DataCite and the Zenodo record print Geerligs."""
+def test_deposited_record_does_not_release_a_surname_mismatch(bib):
+    """CaliVita05: Crossref and arXiv cs/0412098 both print Cilibrasi; ChanEtal20: DataCite
+    and the Zenodo record print Geerligs. Author-deposited records used to release these
+    respellings (wave-7 fix 10); under the user rule of 2026-09-30 they are held, with and
+    without the arXiv id or Zenodo DOI, and the cited names are kept."""
     rec = checkw(bib, "7", "CaliVita05")
-    assert rec["final_entry"]["author"] == "R L Cilibrasi and P M B Vitanyi"
-    assert rec["key_plan"]["new_key"] == "CiliVita07"
-    assert any(f["code"] == "surname_corroborated" and "arXiv cs/0412098" in f["detail"] for f in rec["flags"])
+    assert rec["final_entry"]["author"] == "R L Calibrasi and P M B Vitanyi"
+    assert rec["key_plan"]["new_key"] == "CaliVita07" and "surname_mismatch" in codes(rec)
+    assert "surname_corroborated" not in codes(rec)
     rec = checkw(bib, "7", "ChanEtal20")
-    assert "L Geerligs" in pc.split_names(rec["final_entry"]["author"]) and "author" not in rec["held"]
-    # negative controls: without the arXiv id, or without the Zenodo DOI, one host: held
+    assert "L Geerlings" in pc.split_names(rec["final_entry"]["author"]) and "author" in rec["held"]
     row = copy.deepcopy(ROWS7["CaliVita05"])
     row["notes"] = row["notes"].replace("(cs/0412098)", "")
     rec = checkw(bib, "7", "CaliVita05", row)
-    assert "surname_single_source" in codes(rec) and rec["key_plan"]["new_key"] == "CaliVita07"
+    assert "surname_mismatch" in codes(rec) and rec["key_plan"]["new_key"] == "CaliVita07"
     row = copy.deepcopy(ROWS7["ChanEtal20"])
     row["fields"].pop("doi")
     rec = checkw(bib, "7", "ChanEtal20", row)
-    assert "surname_single_source" in codes(rec) and "L Geerlings" in pc.split_names(rec["final_entry"]["author"])
+    assert "surname_mismatch" in codes(rec) and "L Geerlings" in pc.split_names(rec["final_entry"]["author"])
 
 
 # --- wave 7, fixes 11 and 12: another version named in the notes; junk Force field
@@ -1937,10 +1957,13 @@ def test_resolution_keep_changes_nothing(bib):
 
 
 def test_resolution_merge(bib):
-    """WhitEtal96 (batch-06): merge into WitmEtal96 (the same work, same DOI)."""
+    """WhitEtal96 (batch-06): merge into WitmEtal96 (the same work, same DOI). The row also
+    respells the cited 'B G Whitmer' as Crossref's 'B G Witmer'; under the user rule of
+    2026-09-30 that mismatch is the user's, so it is the one residue the merge leaves."""
     rec = checkr(bib, "3", "WhitEtal96")
     assert rec["key_plan"]["action"] == "duplicate" and rec["key_plan"]["merge_into"] == "WitmEtal96"
-    assert residue(rec) == [] and not pc.needs_user(rec)
+    assert residue(rec) == ["surname_mismatch on author is held and the resolution does not address it"]
+    assert pc.needs_user(rec)
     # negative control: a merge target that is neither in the bibliography nor planned is residue
     res = dict(RESOLUTION["WhitEtal96"], merge_into="NoSuchKey99")
     rec = checkr(bib, "3", "WhitEtal96", res=res)

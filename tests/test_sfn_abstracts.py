@@ -2,7 +2,7 @@
 
 RamaEtal12b (program 800.09; the planner lists Baltuch before Kahana) and
 SommEtal12 (746.04; cited as @conference with a publisher) become house-form
-proposals that verify once applied. KrauEtal12 is held (surname consensus).
+proposals that verify once applied. KrauEtal12 is held (a surname mismatch for the user).
 Unsupported years are reported explicitly with no request.
 """
 from copy import deepcopy
@@ -23,8 +23,8 @@ CONTACT = 'jeremy.r.manning@dartmouth.edu'
 
 @pytest.fixture(autouse=True)
 def frozen_library(monkeypatch):
-    # The surname-consensus check reads the library; use the bibliography as frozen before
-    # the research waves were applied, so correcting an entry never changes these tests.
+    # No check here reads the library any more (the surname-consensus hold was replaced by
+    # the user rule of 2026-09-30); the frozen bibliography stays as a guard for any that does.
     import correction_proposals as cp
     monkeypatch.setattr(cp, 'LIBRARY_BIB', ROOT / 'tests/fixtures/cdl-prewave1-2026-09-26.bib')
 
@@ -97,10 +97,17 @@ def test_control_wrong_year_uses_another_meeting():
     assert 'Saved SfN search is for another meeting or author' in result['issues'][0]
 
 
-def test_held_on_surname_consensus():
-    result = assess(case('KrauEtal12'))
-    assert result['candidates'][0]['category'] == 'held'
-    assert any('library consensus' in i for i in result['issues'])
+def test_held_on_surname_mismatch():
+    # User rule 2026-09-30 (CONFIRM.md answer 5): the planner's 'R J Robinson' against the
+    # cited 'R J {Robinson I I }' is held for the user, never applied, and the issue names
+    # both spellings and the abstract page (it was held by library consensus before).
+    c = case('KrauEtal12')
+    result = assess(c)
+    cand = result['candidates'][0]
+    assert cand['category'] == 'held' and cand['proposal'] is None
+    (issue,) = [i for i in result['issues'] if 'surname mismatch' in i]
+    assert "cited 'R J {Robinson I I }', source 'R J Robinson'" in issue and cand['url'] in issue
+    assert 'library consensus' not in issue
 
 
 @pytest.mark.parametrize('year', ['2006', '2003', '2017'])

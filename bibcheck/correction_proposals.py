@@ -42,7 +42,7 @@ def pagination_proposal(entry, previous):
                 continue
             proposed = dict(fields, pages=pages.replace("-", "--"))
             if proposed == fields or shortens_pages(fields.get("pages"), proposed["pages"]):
-                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; awaiting user confirmation)
+                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; confirmed by the user 2026-09-30)
             primary_evidence, primary_issues = safe_compare(proposed, record)
             if primary_issues:
                 continue
@@ -502,8 +502,9 @@ def field_proposal(entry, previous, field):
                 # (audit rule: e.g. full names must not become initials).
                 if byline_loses_detail(fields.get("author", ""), record.get("author", [])):
                     continue
-                # Crossref and PubMed both state it; library consensus still holds.
-                if surname_change_hold(entry["key"], fields.get("author"), value, corroborated=True):
+                # Even when Crossref and PubMed both state it, a surname change is the
+                # user's decision (user rule 2026-09-30): never proposed automatically.
+                if surname_change_hold(entry["key"], fields.get("author"), value):
                     continue
             elif field == "title":
                 # Derive the full title/subtitle with the same production parser.
@@ -1314,7 +1315,7 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
         return None
     if values.get("author"):
         hold = surname_change_hold(entry["key"], fields.get("author"), values["author"],
-                                   corroborated=mapped is not None and sources["author"] == "crossref")
+                                   source=sources["author"])
         if hold:
             explain.update(reason="value-held", detail=hold, fields=sorted(changed))
             return None
@@ -1459,50 +1460,17 @@ def shortens_pages(before, after):
     return len(new) == 1 or not new[1]
 
 
+# The bibliography that library-reading helpers use; tests/conftest.py patches it to a
+# frozen fixture so no test reads the live cdl.bib.
 LIBRARY_BIB = Path(__file__).resolve().parents[1] / "cdl.bib"
-_LIBRARY = {}
-
-
-def _person_key(name):
-    """(folded surname, first given initial) of one BibTeX name, or None."""
-    from bibtexparser.customization import splitname
-    from verification import given_name_tokens, without_suffix_tokens
-    try:
-        if not name or name.startswith("{") or normalized(name) == "others":
-            return None
-        parts = splitname(name, strict_mode=True)
-        family = _fold(" ".join(parts["von"] + parts["last"]))
-        given = without_suffix_tokens(given_name_tokens(" ".join(parts["first"])))
-    except (ValueError, TypeError, KeyError, IndexError):
-        return None
-    if not family or not given or not given[0]:
-        return None
-    return family, given[0][0]
-
-
-def library_people(library=None):
-    """{(folded surname, first initial): cite keys} over every author/editor.
-
-    ``library`` is a bibliography path (default: the repository's cdl.bib),
-    re-read when its modification time changes."""
-    from verification import load_entries, split_authors
-    path = Path(library or LIBRARY_BIB)
-    stamp = (str(path.resolve()), path.stat().st_mtime_ns)
-    if stamp not in _LIBRARY:
-        people = {}
-        for key, entry in load_entries(path).items():
-            for field in ("author", "editor"):
-                for name in split_authors(entry["fields"].get(field) or ""):
-                    ident = _person_key(name)
-                    if ident:
-                        people.setdefault(ident, set()).add(key)
-        _LIBRARY.clear()
-        _LIBRARY[stamp] = people
-    return _LIBRARY[stamp]
 
 
 def surname_changes(before, after):
-    """[(cited name, proposed name)] for positions whose folded surname changes."""
+    """[(cited name, proposed name)] for positions whose folded surname changes.
+
+    A reordering is not a respelling: a pair is left out when the cited surname is still
+    in the proposed byline and the proposed one was already in the cited byline (SfN
+    RamaEtal12b, where the planner lists Baltuch before Kahana)."""
     from bibtexparser.customization import splitname
     from verification import split_authors
     try:
@@ -1512,48 +1480,56 @@ def surname_changes(before, after):
         return []
     if not old or len(old) != len(new):
         return []
+    def family(name):
+        parts = splitname(name, strict_mode=True)
+        return _fold(" ".join(parts["von"] + parts["last"]))
+
+    def families(names):
+        out = set()
+        for name in names:
+            try:
+                out.add(family(name))
+            except (ValueError, TypeError):
+                pass
+        return out
+
+    cited_set, proposed_set = families(old), families(new)
     changed = []
     for a, b in zip(old, new):
         if a.startswith("{") or b.startswith("{"):
             continue
         try:
-            fa = _fold(" ".join(splitname(a, strict_mode=True)["von"] + splitname(a, strict_mode=True)["last"]))
-            fb = _fold(" ".join(splitname(b, strict_mode=True)["von"] + splitname(b, strict_mode=True)["last"]))
+            fa, fb = family(a), family(b)
         except (ValueError, TypeError):
             changed.append((a, b))
             continue
-        if fa != fb:
+        if fa != fb and not (fa in proposed_set and fb in cited_set):
             changed.append((a, b))
     return changed
 
 
-def surname_change_hold(key, before, after, corroborated=False, library=None):
+USER_SURNAME_RULE = ("user rule 2026-09-30: one source is sufficient; a surname mismatch "
+                     "is the user's to resolve")
+
+
+def surname_change_hold(key, before, after, source=None):
     """Why an author change that alters a surname must be held, or None.
 
-    Rule Claude adopted 2026-09-24 (commit 9c301a1; awaiting user confirmation, see the
-    resolution-plan README), after risky001 applied Crossref's "Kounois" to MeyeEtal88: a
-    surname change needs corroboration.
-      * Library consensus holds it: the cited spelling is used for the same
-        person (surname + first initial) in other cdl.bib entries and the
-        proposed spelling is not. This holds even when a second source agrees.
-      * Otherwise it proceeds when a second authoritative source states the same
-        surname (``corroborated``) or other cdl.bib entries already use the
-        proposed spelling for that person; with neither it is held.
+    User rule 2026-09-30 (verification/2026-09-29-user-review/CONFIRM.md, answer 5):
+    "one source is sufficient; manual entry is the weakest part. notify user if mismatch
+    is found and ask how they want to resolve it". One authoritative source is enough
+    to verify a surname it agrees with; when it spells a cited surname differently,
+    neither spelling is chosen automatically, however many sources or other cdl.bib
+    entries agree. Every such change is held, naming both spellings and the source.
+    (This replaces the corroboration and library-consensus rule Claude adopted on
+    2026-09-24, which the user did not confirm.)
     """
     changes = surname_changes(before, after)
     if not changes:
         return None
-    people = library_people(library)
-    for old, new in changes:
-        cited, proposed = _person_key(old), _person_key(new)
-        cited_elsewhere = people.get(cited, set()) - {key} if cited else set()
-        proposed_elsewhere = people.get(proposed, set()) - {key} if proposed else set()
-        if cited_elsewhere and not proposed_elsewhere:
-            return (f"author: library consensus keeps the cited surname {old!r} "
-                    f"(also in {', '.join(sorted(cited_elsewhere)[:5])}); proposed {new!r} is used nowhere else")
-        if not corroborated and not proposed_elsewhere:
-            return f"author: single-source surname change {old!r} -> {new!r} lacks corroboration"
-    return None
+    named = "; ".join(f"cited {old!r}, source {new!r}" for old, new in changes)
+    where = f" ({source})" if source else ""
+    return f"author: surname mismatch{where}: {named}; {USER_SURNAME_RULE}"
 
 
 def drop_publisher_proposal(entry):
@@ -1577,8 +1553,8 @@ def add_doi_proposal(entry, result):
 
 
 # ---------------------------------------------------------------------------
-# General principle (adopted by Claude 2026-09-24, commit 42b524a; awaiting user
-# confirmation, see the resolution-plan README): every proposed after-value must be
+# General principle (adopted by Claude 2026-09-24, commit 42b524a; confirmed by the
+# user 2026-09-30, see the resolution-plan README): every proposed after-value must be
 # stated by an authoritative source record for the proposal's DOI; a value
 # carried over from the citation itself is never presented as source-backed.
 # ---------------------------------------------------------------------------

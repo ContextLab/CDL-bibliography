@@ -979,7 +979,8 @@ def propose_corrections(fields, result):
         from correction_proposals import surname_change_hold
         for c in changes:
             if c['rule'] == 'byline-surname-spelling':
-                hold = surname_change_hold(fields.get('ID'), c['before'], c['after'])
+                hold = surname_change_hold(fields.get('ID'), c['before'], c['after'],
+                                           source=f"LC catalogue {candidate.get('record_id')}")
                 if hold:
                     return {'group': 'surname-change-held', 'reason': hold}
     edited = dict(fields)

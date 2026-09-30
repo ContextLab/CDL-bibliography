@@ -643,7 +643,8 @@ def pubmed_only_assessment(entry, raws, crossref_records=()):
                 if any(p.get("family", "").isupper() and len(p.get("family", "")) > 1 for p in record["author"]):
                     raise ValueError("author: MEDLINE surname in capitals (old record style)")
                 values[field] = source_authors(record)
-                hold = surname_change_hold(entry["key"], fields.get("author"), values[field])
+                hold = surname_change_hold(entry["key"], fields.get("author"), values[field],
+                                           source=f"PubMed {pmid}")
                 if hold:
                     raise ValueError(hold)
             elif field == "year":

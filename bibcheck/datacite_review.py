@@ -251,7 +251,8 @@ def assess_datacite(fields, raw):
         if house and not title_ok:
             candidate['house_title'] = house
         candidate['category'], candidate['proposal'] = classify(fields, issues, proposal, title_ok,
-                                                                discovered=not identity_fields, authors=authors)
+                                                                discovered=not identity_fields, authors=authors,
+                                                                source=candidate.get('url') or SOURCE)
     except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
         candidate['issues'].append('DataCite unresolved: ' + str(exc))
     candidate['issues'] = list(dict.fromkeys(candidate['issues']))

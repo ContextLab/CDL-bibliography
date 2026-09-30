@@ -55,6 +55,19 @@ an entry stays:
    back if needed later"). A work known only from other publications' reference lists
    counts as unverifiable; an abstracting-index record (PsycINFO, Scholar) counts as a
    record.
+5. **Surname mismatches go to the user** (2026-09-30: "one source is sufficient; manual
+   entry is the weakest part. notify user if mismatch is found and ask how they want to
+   resolve it"). One authoritative source that agrees with a cited surname verifies it.
+   When a source spells a cited surname differently (after the typography normalization:
+   accents, braces, case), the checker neither keeps the cited spelling nor applies the
+   source's: the entry stays `needs_review` with an issue naming both spellings and the
+   source. The auto-review names a Crossref mismatch that the DOI-linked PubMed record
+   does not share (`auto_review.registry_surname_mismatch`, which replaced the
+   registry-surname-typo resolution); every correction that would change a surname is
+   held (`correction_proposals.surname_change_hold`, used by the proposal generators and
+   the OSF, DataCite, ACL and SfN routes); the research post-check holds every respelling
+   (flag `surname_mismatch`). A reordering is not a respelling. Open questions:
+   [verification/2026-09-30-user-review/SURNAMES.md](../verification/2026-09-30-user-review/SURNAMES.md).
 
 Every rename and deletion is logged in `verification/key-renames.json` and
 `verification/key-deletions.json`.

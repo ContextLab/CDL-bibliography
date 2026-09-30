@@ -67,7 +67,8 @@ SWITCHES = {
     "leading-the": [(verification, "registry_journal_match", lambda l, r: False)],
     "pubmed-preprint-link": [(auto_review, "blocking_pubmed_relationships", lambda raw: _old_blocking(raw)),
                              (fulltext_review, "blocking_pubmed_relationships", lambda raw: _old_blocking(raw))],
-    "surname-typo": [(auto_review, "registry_surname_typo", lambda *a: None)],
+    # "surname-typo" (auto_review.registry_surname_typo) was removed on 2026-09-30: under the
+    # user's rule a surname mismatch is never resolved automatically (CONFIRM.md answer 5).
     "house-edition": [(catalogue_review, "normalized_edition", _old_edition)],
     "dotted-acronym": [(catalogue_review, "collapse_dotted_acronyms", lambda s: s or "")],
     "same-firm": [(catalogue_review, "publisher_same_firm", lambda a, b: False)],

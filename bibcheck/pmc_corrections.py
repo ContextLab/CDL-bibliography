@@ -133,9 +133,8 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
                 continue
             from correction_proposals import shortens_pages, surname_change_hold
             if "pages" in changed and shortens_pages(fields.get("pages"), values["pages"]):
-                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; awaiting user confirmation)
-            if "author" in changed and surname_change_hold(entry["key"], fields.get("author"), values["author"],
-                                                           corroborated=True):
+                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; confirmed by the user 2026-09-30)
+            if "author" in changed and surname_change_hold(entry["key"], fields.get("author"), values["author"]):
                 continue
             if (not re.fullmatch(r"[1-9]\d{3}", values["year"])
                     or not re.fullmatch(r"[1-9]\d*", values["volume"])
@@ -237,7 +236,7 @@ def pmc_article_number_proposal(entry, previous):
                 continue
             from correction_proposals import shortens_pages
             if shortens_pages(fields.get("pages"), page):
-                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; awaiting user confirmation)
+                continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; confirmed by the user 2026-09-30)
             proposed = dict(fields, volume=volume, pages=page)
             if issue:
                 proposed["number"] = issue
