@@ -2,8 +2,8 @@
 research_route uses to re-check saved approvals).
 
 Copied unchanged from tests/test_research_postcheck.py, which tests the whole post-check
-(verification/research-2026-09-25/postcheck.py) and lives with it on the archive branch
-verification-records-2026-09. Values are frozen in each test; no file or network is read.
+(verification/research-2026-09-25/postcheck.py) and lives with it in the archive repository
+ContextLab/CDL-bibliography-stacks. Values are frozen in each test; no file or network is read.
 """
 from pathlib import Path
 import sys

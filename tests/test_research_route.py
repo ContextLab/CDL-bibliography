@@ -11,7 +11,7 @@ Tulv74, YingEtal93 and Gomu53. No test reads the live cdl.bib, the baseline or .
 
 The tests of the code that built approvals from the research folders (load_evidence,
 run_research_approve and the `research-approve` command) and their fixture,
-tests/fixtures/research_route/, are on the archive branch verification-records-2026-09.
+tests/fixtures/research_route/, are in the archive repository ContextLab/CDL-bibliography-stacks.
 """
 from copy import deepcopy
 import gzip
