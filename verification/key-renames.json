@@ -1601,5 +1601,23 @@
   "reason": "author 2 respelled 'W {Vom {S}aal}' -> 'W {vom Saal}' (user decision); the key rule (helpers.authors2key) gives MurdvomS67",
   "user_note": "Vom{S}aal should be \"{vom Saal}\"",
   "decision_source": "user, review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM, collection review0930, doc surname-group-longer, choice 'except', answered 2026-09-30T16:16:45.772Z (2026-09-30 12:16:45 EDT)"
+ },
+ {
+  "old_key": "USFo20a",
+  "new_key": "Unit20a",
+  "date": "2026-09-30",
+  "commit": "orgkey0930",
+  "reason": "organization-author key rule: a dotted abbreviation counts as the words it stands for (helpers.ORGANIZATION_ABBREVIATIONS); {U.S. Food and Drug Administration} gives Unit",
+  "user_note": "in the README, your parsing example of U.S. Food and Drug Administration is incorrect. 'U.S.' decomposes to 'United States' so the first 4 letters are 'Unit'",
+  "decision_source": "user, Claude Code session of 2026-09-30 (request to lean pull request #89)"
+ },
+ {
+  "old_key": "USFo20b",
+  "new_key": "Unit20b",
+  "date": "2026-09-30",
+  "commit": "orgkey0930",
+  "reason": "organization-author key rule: a dotted abbreviation counts as the words it stands for (helpers.ORGANIZATION_ABBREVIATIONS); {U.S. Food and Drug Administration} gives Unit",
+  "user_note": "in the README, your parsing example of U.S. Food and Drug Administration is incorrect. 'U.S.' decomposes to 'United States' so the first 4 letters are 'Unit'",
+  "decision_source": "user, Claude Code session of 2026-09-30 (request to lean pull request #89)"
  }
 ]

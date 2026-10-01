@@ -104,7 +104,7 @@ def test_group_author_key():
 
 @pytest.mark.parametrize("author,key", [
     # short first words: letters of the next words fill the part up to 4 (rule 2026-09-28)
-    ("{U.S. Food and Drug Administration}", "USFo20"),            # US20a/b -> USFo20a/b
+    ("{U.S. Food and Drug Administration}", "Unit20"),            # "U.S." reads "United States" (2026-09-30)
     ("{R Core Team}", "RCor20"),                                  # R12 -> RCor12
     ("{ R Core Team}", "RCor20"),                                 # the old stray-space form
     ("{SciPy 1.0 Contributors}", "SciP20"),                       # digits are not letters
@@ -114,7 +114,16 @@ def test_group_author_key():
     ("{American Academy of Sleep Medicine}", "Amer20"),           # Amer23a-c (already conform)
     ("{Qwen Team}", "Qwen20"),                                    # Qwen25, Qwen26
     ("{Stan Development Team}", "Stan20"),                        # Stan13
-    ("{{U.S. Food and Drug Administration}}", "USFo20"),          # the double-braced form
+    ("{{U.S. Food and Drug Administration}}", "Unit20"),          # the double-braced form
+    # dotted abbreviations are read as their words (user, 2026-09-30); only listed forms
+    ("{U.K. Biobank}", "Unit20"),                                  # United Kingdom
+    ("{U.S.A. Track and Field}", "Unit20"),                        # United States of America
+    ("{U.N. Statistics Division}", "Unit20"),                      # United Nations
+    # negative controls: undotted, spaced or unlisted forms keep their letters as printed
+    ("{US Food and Drug Administration}", "USFo20"),
+    ("{U S Food and Drug Administration}", "USFo20"),
+    ("{A.B.C. Study Group}", "ABCS20"),
+    ("{Food and Drug Administration of the U.S.}", "Food20"),      # a later word is never reached
 ])
 def test_organization_is_one_author_keyed_by_its_words_up_to_4_letters(author, key):
     assert helpers.split_names(author) == [author]
@@ -131,7 +140,7 @@ def test_organization_with_and_round_trips():
     # a person followed by an organization, and the organization first (ProjEtal18)
     assert helpers.split_names("M J Morrell and " + fda) == ["M J Morrell", fda]
     assert helpers.authors2key("{Project Jupyter} and M Bussonnier and J Forde", "2018") == "ProjEtal18"
-    assert helpers.authors2key(fda + " and J Smith", "2020") == "USFoSmit20"
+    assert helpers.authors2key(fda + " and J Smith", "2020") == "UnitSmit20"
 
 
 def test_braced_particle_surname_is_a_person_not_an_organization():
@@ -253,13 +262,13 @@ def test_held_values_pass_check_bib(tmp_path):
 \tTitle = {Third test title},
 \tYear = {1972}}
 
-@misc{USFo20a,
+@misc{Unit20a,
 \tAuthor = {{U.S. Food and Drug Administration}},
 \tHowpublished = {\\url{https://www.accessdata.fda.gov/cdrh_docs/reviews/DEN200033.pdf}},
 \tTitle = {{DEN200033} de novo decision summary: {NightWare} kit (digital therapy device)},
 \tYear = {2020}}
 
-@misc{USFo20b,
+@misc{Unit20b,
 \tAuthor = {{U.S. Food and Drug Administration}},
 \tHowpublished = {\\url{https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/denovo.cfm?id=DEN200033}},
 \tTitle = {Device classification under section 513(f)(2) (de novo) --- {DEN200033}},
@@ -284,7 +293,8 @@ def test_held_values_pass_check_bib(tmp_path):
 
 def test_check_bib_wants_the_organization_keys(tmp_path):
     # FoodAdmi20a/b (HEAD, with Force) without Force: the author now passes, and the old
-    # keys are corrected to the organization rule's USFo20a/USFo20b (rule 2026-09-28);
+    # keys are corrected to the organization rule's Unit20a/Unit20b (rule 2026-09-28, with
+    # "U.S." read as "United States", 2026-09-30);
     # R12 (the 2026-09-27 first-word rule) is corrected to RCor12.
     bib = tmp_path / "org.bib"
     bib.write_text("""@misc{FoodAdmi20a,
@@ -306,7 +316,7 @@ def test_check_bib_wants_the_organization_keys(tmp_path):
 """)
     errors, _ = helpers.check_bib(str(bib), verbose=False)
     assert set(errors) == {"FoodAdmi20a", "FoodAdmi20b", "R12"}
-    assert {e["ID"] for e in errors.values()} == {"USFo20a", "USFo20b", "RCor12"}
+    assert {e["ID"] for e in errors.values()} == {"Unit20a", "Unit20b", "RCor12"}
     assert all(set(e) == {"ID"} for e in errors.values())   # no author correction
 
 

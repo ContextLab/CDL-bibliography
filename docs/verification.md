@@ -75,7 +75,9 @@ rule). A fully braced author name is one author. Its key part is the letters of 
 successive words, concatenated until four letters are reached and then truncated, with
 the capitalization as printed; digits and punctuation are skipped
 (`helpers.organization_key`, tests in `tests/test_formatter_held_forms.py`).
-`{R Core Team}` gives `RCor12` and `{U.S. Food and Drug Administration}` gives `USFo20`
+A dotted abbreviation listed in `helpers.ORGANIZATION_ABBREVIATIONS` (U.S., U.S.A., U.K., U.N.)
+counts as the words it stands for. `{R Core Team}` gives `RCor12` and
+`{U.S. Food and Drug Administration}` gives `Unit20`
 (computed with `helpers.authors2key`).
 
 ## Accuracy contract

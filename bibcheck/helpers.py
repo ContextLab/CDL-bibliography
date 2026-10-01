@@ -268,22 +268,38 @@ def split_names(names):
     return parts
 
 
+# Dotted abbreviations in an organization's name, read as the words they stand for when
+# the organization's key part is taken (user, 2026-09-30: "'U.S.' decomposes to 'United
+# States' so the first 4 letters are 'Unit'"). Only well-established forms, matched as a
+# whole word exactly as printed; an undotted 'US' or an unlisted dotted form is unchanged.
+ORGANIZATION_ABBREVIATIONS = {
+    "U.S.": "United States",
+    "U.S.A.": "United States of America",
+    "U.K.": "United Kingdom",
+    "U.N.": "United Nations",
+}
+
+
 def organization_key(name):
     """Key part of a fully braced (organization/group) author: the letters of its
     successive words, concatenated until 4 letters are reached, then truncated to 4,
-    with the capitalization as printed (user rule 2026-09-28, resolution-plan README
+    with the capitalization as printed (user rule 2026-09-28, docs/decision-log.md
     "Organization authors in keys": "use as many organization 'words' as are available,
-    until 4 letters are achieved"): {R Core Team} -> RCor, {U.S. Food and Drug
-    Administration} -> USFo, {RNS System ...} -> RNSS, {Centers for Disease Control and
-    Prevention} -> Cent. A name with fewer than 4 letters in all keeps what it has.
-    None for any other name ({van der Meer} inside a personal name is not braced whole)."""
+    until 4 letters are achieved"). A dotted abbreviation in ORGANIZATION_ABBREVIATIONS
+    counts as the words it stands for (user, 2026-09-30): {R Core Team} -> RCor,
+    {U.S. Food and Drug Administration} -> Unit, {RNS System ...} -> RNSS, {Centers for
+    Disease Control and Prevention} -> Cent. A name with fewer than 4 letters in all
+    keeps what it has. None for any other name ({van der Meer} inside a personal name is
+    not braced whole)."""
     name = name.strip()
     if not fully_braced(name):
         return None
     inner = name[1:-1].strip()
     while fully_braced(inner):  # the formatter's double-braced form
         inner = inner[1:-1].strip()
-    words = remove_accents_and_hyphens(decode(inner)).split()
+    words = []
+    for word in remove_accents_and_hyphens(decode(inner)).split():
+        words += ORGANIZATION_ABBREVIATIONS.get(remove_curlies(word), word).split()
     if not words:
         return None
     letters = ""
