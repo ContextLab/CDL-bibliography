@@ -115,6 +115,8 @@ the PDF actually prints:
 
 ## Coverage of the 2,753 needs_review entries (offline dry run, `coverage.json`)
 
+`run.py --coverage` writes `coverage.json` here; the copy these figures come from (September 2026) is on the [`verification-records-2026-09`](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/pdf-benchmark/coverage.json) branch.
+
 - 232 have at least one local PDF: a file named by cite key, or a title/DOI hit in
   `.bibcheck/local-library/candidates.json`. The other 2,521 have none.
 - The verifier would accept **4** (Free77, MankEtal12, Mill10, RichEtal99), all

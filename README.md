@@ -128,7 +128,7 @@ git push
 
 # What belongs in `cdl.bib`
 
-These are the lab's rules for what an entry must look like and when an entry is left out. The full decision log, with the reasoning and every case they were applied to, is in [verification/resolution-plan-2026-09-22/README.md](verification/resolution-plan-2026-09-22/README.md).
+These are the lab's rules for what an entry must look like and when an entry is left out. The full decision log, with the reasoning and every case they were applied to, is in [docs/decision-log.md](docs/decision-log.md).
 
 - **Cite the work as printed.** Every field should match the official published record, up to the formatting conventions below. If the published version and a preprint differ, cite the one you actually mean.
 - **The printed paper wins.** Normally the publisher's metadata (e.g., in Crossref) is taken as the record. When there is reason to doubt it, such as a correction notice, sources that disagree with each other, or a lab member's flag, the paper as printed decides.
@@ -270,7 +270,7 @@ python bibcheck.py crossref status cdl.bib --keys manuscript-keys.txt
 
 ### How an entry is checked
 
-The checker first looks up the entry's DOI in Crossref. If there's no DOI, it searches Crossref by title and authors and compares the top candidates. A close title alone is never enough: to be verified, the entry's title, full author list (in order), year, and venue must match the source, and so must every other field the entry has (volume, issue, pages, publisher, DOI, and so on). A DOI that points to a different paper is reported, not silently replaced.
+The checker first looks up the entry's DOI in Crossref. If there's no DOI, it searches Crossref by title and authors and compares the top candidates. A close title alone is never enough: to be verified, the entry's title, full author list (in order), year, and venue must match the source, and so must every other field the entry has (volume, issue, pages, publisher, DOI, and so on). If a DOI points to a different paper, the conflict is reported.
 
 When Crossref can't settle an entry, the checker tries the other free sources in turn: PubMed records (through Europe PMC), the publisher's own front matter in open-access full text, library catalogues for books, preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite for software and datasets, the ACL Anthology, and the Society for Neuroscience abstract archive (which can identify an abstract, though [abstracts themselves aren't kept](#what-belongs-in-cdlbib)). Each source is only trusted for what it actually records. For example, a preprint server's record can verify a preprint but not the journal version.
 
@@ -320,7 +320,7 @@ The approval is tied to the entry's exact text: if the entry is edited later, it
 
 ### Research evidence
 
-In September 2026 the lab checked the entries that no automatic source could settle, one at a time. Each field was matched to a quotation from an official source (a publisher's page, a scanned table of contents, a library catalogue record, and so on). Those findings are saved under [verification/](verification/). `python bibcheck.py crossref research-approve` turns them into `metadata_verified` results, but only when every field of the entry matches a saved quotation. See [verification/research-route-2026-09-27/README.md](verification/research-route-2026-09-27/README.md) for the details.
+When the library was checked in September 2026, 1,221 entries that no automatic source could settle were verified from quoted evidence: each field was matched to a quotation from an official source (a publisher's page, a scanned table of contents, a library catalogue record, and so on). Each entry's saved result in [verification/baseline.jsonl.gz](verification/baseline.jsonl.gz) holds the quotation and source URL for every field, and `crossref restore` checks them again when it loads the results. These entries have status `metadata_verified` and count as verified like any other. The working records of that check are kept on the [`verification-records-2026-09`](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09) branch.
 
 There is also an optional tool that uses a language model to find a paper's PDF and quote the relevant passages (`crossref research` and `research-batch`). Its findings are evidence for a person to review; it never approves an entry by itself. See [docs/verification.md](docs/verification.md).
 
@@ -328,7 +328,7 @@ There is also an optional tool that uses a language model to find a paper's PDF 
 
 Requests go out one at a time, with at least half a second between them (one second by default), and the checker backs off when a service asks it to. Responses are cached, so re-running a check doesn't repeat requests. Please don't run several checks at once from the same machine. See [Crossref's guidance for API users](https://www.crossref.org/documentation/retrieve-metadata/rest-api/tips-for-using-the-crossref-rest-api/).
 
-More detail on how verification works, including every acceptance rule, is in [docs/verification.md](docs/verification.md). The dated reports in [verification/](verification/) record how the library was brought to its current state.
+More detail on how verification works, including every acceptance rule, is in [docs/verification.md](docs/verification.md).
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 

@@ -1,5 +1,11 @@
 # Citation verification benchmark
 
+The pilot scripts (`verification/dartmouth_pilot.py`, `verification/discovery_pilot.py`) and
+the dated reports this page cites are on the
+[`verification-records-2026-09`](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/benchmark)
+branch. `run.py`, `cases.json` and `results.json` are here; `tests/test_discovery_review.py`
+runs the benchmark.
+
 September 10, 2026. This is a reproducible check of documentary metadata
 comparisons, with separate live retrieval/model probes. It is not a certification
 of the bibliography or an estimate of production accuracy.
@@ -44,7 +50,7 @@ altered cases deliberately change its fields.
 
 ## Live source and model checks
 
-The follow-up to the [earlier pilot](../dartmouth-live-pilot.md) changed Dartmouth
+The follow-up to the [earlier pilot](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/dartmouth-live-pilot.md) changed Dartmouth
 extraction so Qwen selects numbered passages and Python copies their exact
 text. The extraction prompt receives source text without the input citation.
 
@@ -76,7 +82,7 @@ No PDF-based automatic acceptance rule was enabled by this benchmark.
 
 ## Expanded Crossref discovery pilot
 
-[`discovery-pilot.json`](discovery-pilot.json) records ten previously unresolved
+[`discovery-pilot.json`](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/benchmark/discovery-pilot.json) records ten previously unresolved
 entries: five preprints and five older journal citations. Each received one
 focused title query with up to 20 Crossref candidates, using the existing paced
 client and unchanged acceptance rules.
@@ -90,7 +96,7 @@ client and unchanged acceptance rules.
 
 The command is available as `crossref discover-review --limit 10`, with optional
 `--keys` pointing to one citation key per line. The pilot's keys are recorded
-in the JSON report and [repository manifest](discovery-pilot-keys.txt). From the
+in the JSON report and [repository manifest](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/benchmark/discovery-pilot-keys.txt). From the
 repository root, `python verification/discovery_pilot.py` uses that manifest and
 the configured contact (or the contact from an existing cached Crossref request).
 An unresolved queue produces exit code 1 even when every
@@ -110,13 +116,13 @@ findings in the unchanged formatter helper and notebook. A credential scan
 found no occurrences of the local API key in Git-visible files. `cdl.bib`
 remains unchanged.
 
-The [September 11 source-text audit](source-audit-2026-09-11.md) records a separate
+The [September 11 source-text audit](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/benchmark/source-audit-2026-09-11.md) records a separate
 inspection of the two cached front pages and the proceedings fields still
 unsupported by that evidence. No new calls or approvals were made.
 
 ## Source-role cases
 
-The [September 11 source-role audit](source-role-audit-2026-09-11.md) adds the
+The [September 11 source-role audit](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/benchmark/source-role-audit-2026-09-11.md) adds the
 negative cases the earlier audit called for. Six constructed selections, each a
 wrong answer, previously reported `literal_text_present` with no unsupported
 fields: a receipt date, a copyright notice and a preprint stamp each supplying a
@@ -131,7 +137,7 @@ correct. No PDF acceptance rule was enabled.
 
 ## Proceedings record for `VaswEtal17`
 
-The [September 14 proceedings-record note](proceedings-record-2026-09-14.md)
+The [September 14 proceedings-record note](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/benchmark/proceedings-record-2026-09-14.md)
 identifies the publisher record behind the entry whose series title, volume and
 pagination the PDF front page could not establish. Crossref holds no DOI for
 NeurIPS proceedings papers before 2019, and two queries returned only unrelated

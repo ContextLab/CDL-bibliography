@@ -33,7 +33,7 @@ approval in the committed baseline (snapshot of 2026-09-30) breaks down as follo
 ## Decision rules for what the library contains
 
 The lab's rules, with every case they were applied to, are in
-[verification/resolution-plan-2026-09-22/README.md](../verification/resolution-plan-2026-09-22/README.md).
+the [decision log](decision-log.md).
 The checker enforces agreement with a source; these rules decide which source and whether
 an entry stays:
 
@@ -64,8 +64,8 @@ an entry stays:
    registry-surname-typo resolution); every correction that would change a surname is
    held (`correction_proposals.surname_change_hold`, used by the proposal generators and
    the OSF, DataCite, ACL and SfN routes); the research post-check holds every respelling
-   (flag `surname_mismatch`). A reordering is not a respelling. Open questions:
-   [verification/2026-09-30-user-review/SURNAMES.md](../verification/2026-09-30-user-review/SURNAMES.md).
+   (flag `surname_mismatch`). A reordering is not a respelling. Open questions (archive branch):
+   [2026-09-30-user-review/SURNAMES.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/2026-09-30-user-review/SURNAMES.md).
 
 Every rename and deletion is logged in `verification/key-renames.json` and
 `verification/key-deletions.json`.
@@ -95,7 +95,7 @@ A wrong DOI is particularly important: the DOI must agree with the title, author
 3. For an uncached entry, fetch its DOI record or search Crossref for candidates. Query construction uses the title, first author, year and venue; all authors are checked during comparison. No fuzzy score grants approval.
 4. Compare publication type, title/subtitle, complete ordered authors, year, venue and supported fields. Missing evidence and conflicting dates block approval. Keep all candidate records and comparisons for review.
 5. With `--auto-review`, run the free review layers on unresolved selected entries, in this order: Europe PMC/PubMed (`auto_review`), open-access PMC front matter (`fulltext_review`), PMC OAI front matter (`pmc_metadata`), publisher print-year metadata (`publisher_year_review`), the Library of Congress catalogue (`catalogue_review`), bioRxiv (`preprint_review`), arXiv (`arxiv_review`), then the PsyArXiv, DataCite, ACL Anthology and SfN routes (`verification_cli.run_review_layers`). Each route approves only what its own source records; repository and registry date/type semantics are never converted into journal metadata.
-6. Optionally invoke a configured web-search/PDF adapter for an unresolved entry. Download the actual PDF, extract its text and validate quotations against page text. Retain the result for human review. (The separate research route, `crossref research-approve`, is described [below](#research-route-research-approve).)
+6. Optionally invoke a configured web-search/PDF adapter for an unresolved entry. Download the actual PDF, extract its text and validate quotations against page text. Retain the result for human review. (Research approvals from the September 2026 check are described [below](#research-route).)
 7. Record explicit human decisions only with reviewer, source, notes and the exact fingerprint. A stale fingerprint is rejected.
 8. Checkpoint each result in a SQLite transaction. Regenerate the final report from a fresh bibliography read, so edits during a run remain pending.
 
@@ -144,7 +144,7 @@ Deletion removes an entry from the current report. Identical content under anoth
 
 Fingerprint format `v2` is distinct from comparison `POLICY=2`. The upgrade retains the legacy hash calculation solely to recognize exact existing reviews. On an exact match, cache lookup appends a migrated row with the original policy, evidence and check time, plus `fingerprint_migration` provenance. It never relabels an edited entry. Run `status` before key renames when upgrading an old database; a legacy hash alone cannot establish that a renamed entry is otherwise unchanged. Two separate indexed queries avoid scanning the entire bibliography history for each lookup.
 
-`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](../verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
+`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
 
 Acceptance-restricting changes require a new `POLICY` or an explicit audit that reopens every affected approval. A policy mismatch invalidates cached reviews, including human decisions. Additive resolver improvements use `RESOLVER_VERSION` to revisit unresolved saved evidence once while preserving supported approvals and their original check times. Query-only changes do not invalidate already supported reviews. HTTP responses can be reused while applying revised comparisons.
 
@@ -352,10 +352,10 @@ Validation (September 2026, Qwen configuration): both search connectors returned
 
 If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads `.bibcheck/secrets/dartmouth_chat_api_key.txt` (or `BIBCHECK_DARTMOUTH_KEY_FILE`). The local secrets directory is ignored by Git; use directory permissions `700` and file permissions `600`. The environment variable takes precedence. The key must be a single nonempty token. Never include it in source files, command arguments, reports, or prompts.
 
-`python verification/dartmouth_pilot.py --key ElSo18 --backend europepmc` runs a bounded live attempt without altering the bibliography or verification database. Diagnostics and returned model evidence are saved under ignored `.bibcheck/debug/` with restricted permissions; credentials are redacted before diagnostic writes. Diagnostic responses retain content, usage and sanitized errors, excluding request headers and model reasoning text. `--allow-host` adds an exact permitted source host. `--landing-url` starts discovery from a known publisher page, fetching its metadata before model selection. `--source-url` skips discovery to isolate extraction against an already retrieved PDF; its evidence explicitly records that discovery was not exercised in that run. The script checks the model ID, downloads the actual PDF, extracts up to the first five pages (`--pages 1` isolates the front page), and applies the same quote checks as production research. A successful extraction probe is not evidence of a successful end-to-end search run or a citation approval.
+The pilot script `verification/dartmouth_pilot.py` (now on the [archive branch](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/dartmouth_pilot.py)), run as `python verification/dartmouth_pilot.py --key ElSo18 --backend europepmc`, ran a bounded live attempt without altering the bibliography or verification database. Diagnostics and returned model evidence are saved under ignored `.bibcheck/debug/` with restricted permissions; credentials are redacted before diagnostic writes. Diagnostic responses retain content, usage and sanitized errors, excluding request headers and model reasoning text. `--allow-host` adds an exact permitted source host. `--landing-url` starts discovery from a known publisher page, fetching its metadata before model selection. `--source-url` skips discovery to isolate extraction against an already retrieved PDF; its evidence explicitly records that discovery was not exercised in that run. The script checks the model ID, downloads the actual PDF, extracts up to the first five pages (`--pages 1` isolates the front page), and applies the same quote checks as production research. A successful extraction probe is not evidence of a successful end-to-end search run or a citation approval.
 
 
-The [earlier live pilot](../verification/dartmouth-live-pilot.md) exposed an invented ellipsis and an inferred series title. The [follow-up benchmark](../verification/benchmark/README.md) (September 10, 2026) records source-passage extraction and a complete known publisher-page → PDF → Qwen evidence run, with all quotations passing. Its 60 offline cases across 30 real entries test documentary metadata comparisons, not 30 independent PDF reviews or model accuracy. The ten-entry expanded Crossref pilot accepted no additional entries. Broad-batch reliability and automatic PDF adjudication remain unestablished; all model findings stay `needs_review`. The September 2026 research waves were a separate process (research agents following `verification/research-pilot-2026-09-24/PROTOCOL.md` and `verification/research-2026-09-25/AGENT-BRIEF.md`, with independent checks and user decisions); their evidence reached the library only through the [research route](#research-route-research-approve).
+The [earlier live pilot](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/dartmouth-live-pilot.md) exposed an invented ellipsis and an inferred series title. The [follow-up benchmark](../verification/benchmark/README.md) (September 10, 2026) records source-passage extraction and a complete known publisher-page → PDF → Qwen evidence run, with all quotations passing. Its 60 offline cases across 30 real entries test documentary metadata comparisons, not 30 independent PDF reviews or model accuracy. The ten-entry expanded Crossref pilot accepted no additional entries. Broad-batch reliability and automatic PDF adjudication remain unestablished; all model findings stay `needs_review`. The September 2026 research waves were a separate process (research agents following the protocol and brief kept on the archive branch, with independent checks and user decisions); their evidence reached the library only through the [research route](#research-route).
 
 ## Catalogue verification for books
 
@@ -487,7 +487,7 @@ repository formatter. It does not strip symbols from arbitrary journal names
 or paper titles, remove section/subtitle words, infer matching authors, or
 disregard competing publication versions. In particular, WainJord08 still
 requires its printed journal DOI to distinguish the separately indexed
-monograph. See the [source audit](../verification/completion-2026-09-15/documented-journals-audit.json).
+monograph. See the [source audit](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/completion-2026-09-15/documented-journals-audit.json).
 
 Catalogue policy 6 adds a discovery-only fallback for combining accents. If the
 ordinary complete-title/first-surname search returns zero records, a second query
@@ -565,8 +565,9 @@ clean APA `10.1037//` twins as one work, stops chapter/preprint/report rivals an
 contradicting journal rivals from creating ambiguity, and adds four documented
 ISSN-pinned journal-name variants. Correction proposals may come from a single
 authoritative source (Crossref or PubMed) when identity is established; see
-`verification/phase0-2026-09-22/README.md`. Catalogue policy 7 widens the Library of
-Congress record parser (`verification/catalogue-phase0-2026-09-22/README.md`).
+[phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/phase0-2026-09-22/README.md) on the archive branch. Catalogue policy 7
+widens the Library of Congress record parser
+([catalogue-phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/catalogue-phase0-2026-09-22/README.md)).
 `bibcheck/pdf_evidence.py` is a position-aware local-PDF verifier with a
 subtle-error benchmark (`verification/pdf-benchmark/README.md`); it is **not** wired
 into any approval path.
@@ -576,7 +577,8 @@ into any approval path.
 Four further `verify --auto-review` routes cover works Crossref does not describe. Each
 has its own module, policy constant, `run_*` function and registered approval
 validator; design, meeting keys and the 2026-09-25 yield are in
-[verification/routes-2026-09-25/README.md](../verification/routes-2026-09-25/README.md).
+[routes-2026-09-25/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/routes-2026-09-25/README.md)
+on the archive branch.
 
 |Route|Module|Source|
 |-|-|-|
@@ -604,8 +606,9 @@ a machine approval (`preprint_review.context_issues`, `Cache.retain_notices`). O
 [Known correction notices](#known-correction-notices).
 
 The notices that held entries in September 2026 were read and classified by hand in
-[verification/resolution-2026-09-27/NOTICES.md](../verification/resolution-2026-09-27/NOTICES.md)
-(`notices-classified.json`, one row per notice with its URL and quote). The research
+[resolution-2026-09-27/NOTICES.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-2026-09-27/NOTICES.md)
+on the archive branch (`notices-classified.json`, one row per notice with its URL and
+quote). The research
 route settles a notice only through that classification
 (`research_route.notice_adjudication`):
 
@@ -625,37 +628,39 @@ printed article nor the notice could be read, the entry was dropped as ambiguous
 (ChanEtal12). A correction that withdraws a paper's headline claim was reported to the
 user, who dropped the entry (GrilEtal06b).
 
-## Research route (`research-approve`)
+## Research route
 
-`bibcheck/research_route.py` records as `metadata_verified`
-(`accepted_source = research-evidence`) the entries that the September 2026 research
-waves verified field by field. Design, evidence files and counts are in
-[verification/research-route-2026-09-27/README.md](../verification/research-route-2026-09-27/README.md).
+`bibcheck/research_route.py` covers the entries that the September 2026 research waves
+verified field by field. Their saved results in `verification/baseline.jsonl.gz` have
+status `metadata_verified` and `accepted_source = research-evidence`; each records, for
+every field, the researched value, the quotation, the source URL and the sha256 of the
+fetched page. The research files, the route's design notes and the
+`crossref research-approve` command that built these results from them are on the
+archive branch ([research-route-2026-09-27/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/research-route-2026-09-27/README.md)).
+The command is not on this branch, because it read those research files.
 
-```sh
-python bibcheck.py crossref research-approve cdl.bib [--dry-run] [--output FILE] [--keys FILE]
-```
+An entry was approved only when:
 
-It reads only saved, committed files and makes no network request. Evidence files with
-uncommitted changes are left out and listed, and a repeat run writes nothing. An entry
-is approved only when:
-
-1. a research row (or a resolution decision) settled it, nothing marks it for removal,
-   and an identity quote is found in its saved source body;
-2. every field of the current entry except `ID` and `ENTRYTYPE` equals the latest
-   researched value after house normalization, and that value is supported by a quote
-   found in the saved body (`.bibcheck/research-pilot/`, sha256 recorded). No field is
-   exempt;
-3. the entry type matches the evidence;
-4. no DOI-linked notice, suffix or coordinate conflict is open, unless the notice
-   classification above settles it.
+1. a research row (or a resolution decision) settled it, nothing marked it for removal,
+   and an identity quote was found in its saved source body;
+2. every field of the entry except `ID` and `ENTRYTYPE` equalled the latest researched
+   value after house normalization, and that value was supported by a quote found in
+   the saved body. No field was exempt;
+3. the entry type matched the evidence;
+4. no DOI-linked notice, suffix or coordinate conflict was open, unless the notice
+   classification above settled it.
 
 Quotes read in a real browser or transcribed from an image-only scan count only for
 resolution and manual rows whose notes say so, and are flagged `browser_or_scan`.
-`valid_research_approval` is registered as an approval validator, so a restored
-research approval is re-checked: against the saved bodies where they exist, otherwise
-against the recorded quote results. A fresh clone has no `.bibcheck/research-pilot/`
-bodies, so it relies on the committed baseline's recorded evidence.
+
+`valid_research_approval` is registered as an approval validator, so `crossref restore`
+re-checks every research approval offline from the snapshot alone: the saved record must
+be complete and self-consistent, and it must re-derive to the same approval with the
+research validator's quote matching (`bibcheck/research_quotes.py`) and the post-check's
+house normalisers (`bibcheck/research_forms.py`), both copied unchanged from the research
+tools. Where a local `.bibcheck/research-pilot/` body cache exists, a quote is searched
+again in its body; otherwise the recorded quote result is used. Editing an entry sends it
+back through ordinary verification.
 
 This route is separate from the optional LLM adapter below: `crossref research` and
 `research-batch` save evidence for review and never approve.
