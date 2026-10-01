@@ -4,7 +4,7 @@ The spreadsheet mapped names onto different journals ('psychonomic science' ->
 'psychological science', 'j comp neurol' -> 'journal of computational
 neuroscience') and onto misspelled targets ('physiological review',
 'international journal of phychophysiology'). bibcheck/journal_key_overrides.json
-corrects those rows; the audit is verification/journal-alias-audit-2026-09-26.json.
+corrects those rows; the audit is tests/fixtures/journal-alias-audit-2026-09-26.json.
 These tests run the real formatter over the real spreadsheet and override file.
 """
 import json
@@ -125,6 +125,6 @@ def test_overrides_apply_to_journal_names_only():
 
 
 def test_audit_records_every_override():
-    audit = json.loads((ROOT / "verification" / "journal-alias-audit-2026-09-26.json").read_text())
+    audit = json.loads((ROOT / "tests/fixtures/journal-alias-audit-2026-09-26.json").read_text())
     recorded = {r["source"] for r in audit["wrong_rows"]}
     assert {r["source"] for r in OVERRIDES} <= recorded

@@ -1,0 +1,1681 @@
+{
+ "note": "The entries of verification/pilot50/manifest.json (archive branch verification-records-2026-09) that tests use, copied unchanged.",
+ "entries": [
+  {
+   "key": "MannEtal22",
+   "fingerprint": "v2:ec009e7c3ed08c1c8ec6cbda4403d603c208e8ebae7a6e4bb6a10e774d79f81e",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "MannEtal22",
+    "author": "J R Manning and G M Notaro and E Chen and P C Fitzpatrick",
+    "journal": "Scientific Reports",
+    "number": "1",
+    "pages": "13822",
+    "title": "Fitness tracking reveals task-specific associations between memory, mental health, and physical activity",
+    "volume": "12",
+    "year": "2022"
+   },
+   "blocker": "Source has related versions/works; review publication identity",
+   "candidate_doi": "10.1038/s41598-022-17781-0",
+   "cached_candidate": {
+    "advisories": [],
+    "doi": "10.1038/s41598-022-17781-0",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "J R Manning and G M Notaro and E Chen and P C Fitzpatrick",
+      "match": true,
+      "source": [
+       {
+        "affiliation": [],
+        "family": "Manning",
+        "given": "Jeremy R.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [],
+        "family": "Notaro",
+        "given": "Gina M.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Chen",
+        "given": "Esme",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Fitzpatrick",
+        "given": "Paxton C.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Scientific Reports",
+      "match": true,
+      "source": [
+       "Scientific Reports"
+      ]
+     },
+     "number": {
+      "local": "1",
+      "match": true,
+      "source": [
+       "1"
+      ]
+     },
+     "pages": {
+      "local": "13822",
+      "match": true,
+      "source": [
+       "13822"
+      ]
+     },
+     "title": {
+      "local": "Fitness tracking reveals task-specific associations between memory, mental health, and physical activity",
+      "match": true,
+      "source": [
+       "Fitness tracking reveals task-specific associations between memory, mental health, and physical activity"
+      ]
+     },
+     "volume": {
+      "local": "12",
+      "match": true,
+      "source": [
+       "12"
+      ]
+     },
+     "year": {
+      "local": "2022",
+      "match": true,
+      "source": [
+       "2022"
+      ]
+     }
+    },
+    "issues": [
+     "Source has related versions/works; review publication identity"
+    ],
+    "record": {
+     "DOI": "10.1038/s41598-022-17781-0",
+     "ISSN": [
+      "2045-2322"
+     ],
+     "URL": "https://doi.org/10.1038/s41598-022-17781-0",
+     "article-number": "13822",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Manning",
+       "given": "Jeremy R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Notaro",
+       "given": "Gina M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Chen",
+       "given": "Esme",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Fitzpatrick",
+       "given": "Paxton C.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Scientific Reports"
+     ],
+     "issue": "1",
+     "issued": {
+      "date-parts": [
+       [
+        2022,
+        8,
+        15
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://www.nature.com/articles/s41598-022-17781-0.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41598-022-17781-0",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41598-022-17781-0.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "published": {
+      "date-parts": [
+       [
+        2022,
+        8,
+        15
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2022,
+        8,
+        15
+       ]
+      ]
+     },
+     "publisher": "Springer Science and Business Media LLC",
+     "relation": {
+      "has-preprint": [
+       {
+        "asserted-by": "object",
+        "id": "10.1101/2021.10.22.465441",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "title": [
+      "Fitness tracking reveals task-specific associations between memory, mental health, and physical activity"
+     ],
+     "type": "journal-article",
+     "volume": "12"
+    },
+    "retrieved_at": "2026-09-09T19:37:36.015523+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1038/s41598-022-17781-0"
+   }
+  },
+  {
+   "key": "GuesMart21",
+   "fingerprint": "v2:1e72ae0826f5bc7b6e1d657b778fb0484d4eae1de9c531b20b18c4938a8434a0",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "GuesMart21",
+    "author": "O Guest and A E Martin",
+    "journal": "Perspectives on Psychological Science",
+    "number": "4",
+    "pages": "789--802",
+    "title": "How computational modeling can force theory building in psychological science",
+    "volume": "16",
+    "year": "2021"
+   },
+   "blocker": "Source has related versions/works; review publication identity",
+   "candidate_doi": "10.1177/1745691620970585",
+   "cached_candidate": {
+    "advisories": [],
+    "doi": "10.1177/1745691620970585",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "O Guest and A E Martin",
+      "match": true,
+      "source": [
+       {
+        "ORCID": "https://orcid.org/0000-0002-1891-0972",
+        "affiliation": [
+         {
+          "name": "Donders Centre for Cognitive Neuroimaging, Radboud University"
+         },
+         {
+          "name": "Research Centre on Interactive Media, Smart Systems and Emerging Technologies (RISE), Nicosia, Cyprus"
+         },
+         {
+          "name": "Department of Experimental Psychology, University College London"
+         }
+        ],
+        "authenticated-orcid": false,
+        "family": "Guest",
+        "given": "Olivia",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [
+         {
+          "name": "Donders Centre for Cognitive Neuroimaging, Radboud University"
+         },
+         {
+          "name": "Max Planck Institute for Psycholinguistics, Nijmegen, The Netherlands"
+         }
+        ],
+        "family": "Martin",
+        "given": "Andrea E.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Perspectives on Psychological Science",
+      "match": true,
+      "source": [
+       "Perspectives on Psychological Science"
+      ]
+     },
+     "number": {
+      "local": "4",
+      "match": true,
+      "source": [
+       "4"
+      ]
+     },
+     "pages": {
+      "local": "789--802",
+      "match": true,
+      "source": [
+       "789-802"
+      ]
+     },
+     "title": {
+      "local": "How computational modeling can force theory building in psychological science",
+      "match": true,
+      "source": [
+       "How Computational Modeling Can Force Theory Building in Psychological Science"
+      ]
+     },
+     "volume": {
+      "local": "16",
+      "match": true,
+      "source": [
+       "16"
+      ]
+     },
+     "year": {
+      "local": "2021",
+      "match": true,
+      "source": [
+       "2021"
+      ]
+     }
+    },
+    "issues": [
+     "Source has related versions/works; review publication identity"
+    ],
+    "record": {
+     "DOI": "10.1177/1745691620970585",
+     "ISSN": [
+      "1745-6916",
+      "1745-6924"
+     ],
+     "URL": "https://doi.org/10.1177/1745691620970585",
+     "author": [
+      {
+       "ORCID": "https://orcid.org/0000-0002-1891-0972",
+       "affiliation": [
+        {
+         "name": "Donders Centre for Cognitive Neuroimaging, Radboud University"
+        },
+        {
+         "name": "Research Centre on Interactive Media, Smart Systems and Emerging Technologies (RISE), Nicosia, Cyprus"
+        },
+        {
+         "name": "Department of Experimental Psychology, University College London"
+        }
+       ],
+       "authenticated-orcid": false,
+       "family": "Guest",
+       "given": "Olivia",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Donders Centre for Cognitive Neuroimaging, Radboud University"
+        },
+        {
+         "name": "Max Planck Institute for Psycholinguistics, Nijmegen, The Netherlands"
+        }
+       ],
+       "family": "Martin",
+       "given": "Andrea E.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Perspectives on Psychological Science"
+     ],
+     "issue": "4",
+     "issued": {
+      "date-parts": [
+       [
+        2021,
+        1,
+        22
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://journals.sagepub.com/doi/pdf/10.1177/1745691620970585",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://journals.sagepub.com/doi/full-xml/10.1177/1745691620970585",
+       "content-type": "application/xml",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://journals.sagepub.com/doi/pdf/10.1177/1745691620970585",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "789-802",
+     "published": {
+      "date-parts": [
+       [
+        2021,
+        1,
+        22
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2021,
+        1,
+        22
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2021,
+        7
+       ]
+      ]
+     },
+     "publisher": "SAGE Publications",
+     "relation": {
+      "has-preprint": [
+       {
+        "asserted-by": "object",
+        "id": "10.31234/osf.io/rybh9",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "title": [
+      "How Computational Modeling Can Force Theory Building in Psychological Science"
+     ],
+     "type": "journal-article",
+     "volume": "16"
+    },
+    "retrieved_at": "2026-09-09T21:44:51.543665+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1177/1745691620970585"
+   }
+  },
+  {
+   "key": "LifaEtal21",
+   "fingerprint": "v2:e5fccc863a826cd67102cbeaf7e51d03c581ceccfbdc6c69ee4166626837bf4c",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "LifaEtal21",
+    "author": "J Lifanov and J Linde-Domingo and M Wimber",
+    "journal": "Nature Communications",
+    "number": "1",
+    "pages": "3177",
+    "title": "Feature-specific reaction times reveal a semanticisation of memories over time and with repeated remembering",
+    "volume": "12",
+    "year": "2021"
+   },
+   "blocker": "Source has related versions/works; review publication identity",
+   "candidate_doi": "10.1038/s41467-021-23288-5",
+   "cached_candidate": {
+    "advisories": [],
+    "doi": "10.1038/s41467-021-23288-5",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "J Lifanov and J Linde-Domingo and M Wimber",
+      "match": true,
+      "source": [
+       {
+        "ORCID": "https://orcid.org/0000-0002-8769-1865",
+        "affiliation": [],
+        "authenticated-orcid": false,
+        "family": "Lifanov",
+        "given": "Julia",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "ORCID": "https://orcid.org/0000-0002-3301-7453",
+        "affiliation": [],
+        "authenticated-orcid": false,
+        "family": "Linde-Domingo",
+        "given": "Juan",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "ORCID": "https://orcid.org/0000-0002-1917-353X",
+        "affiliation": [],
+        "authenticated-orcid": false,
+        "family": "Wimber",
+        "given": "Maria",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Nature Communications",
+      "match": true,
+      "source": [
+       "Nature Communications"
+      ]
+     },
+     "number": {
+      "local": "1",
+      "match": true,
+      "source": [
+       "1"
+      ]
+     },
+     "pages": {
+      "local": "3177",
+      "match": true,
+      "source": [
+       "3177"
+      ]
+     },
+     "title": {
+      "local": "Feature-specific reaction times reveal a semanticisation of memories over time and with repeated remembering",
+      "match": true,
+      "source": [
+       "Feature-specific reaction times reveal a semanticisation of memories over time and with repeated remembering"
+      ]
+     },
+     "volume": {
+      "local": "12",
+      "match": true,
+      "source": [
+       "12"
+      ]
+     },
+     "year": {
+      "local": "2021",
+      "match": true,
+      "source": [
+       "2021"
+      ]
+     }
+    },
+    "issues": [
+     "Source has related versions/works; review publication identity"
+    ],
+    "record": {
+     "DOI": "10.1038/s41467-021-23288-5",
+     "ISSN": [
+      "2041-1723"
+     ],
+     "URL": "https://doi.org/10.1038/s41467-021-23288-5",
+     "article-number": "3177",
+     "author": [
+      {
+       "ORCID": "https://orcid.org/0000-0002-8769-1865",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Lifanov",
+       "given": "Julia",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-3301-7453",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Linde-Domingo",
+       "given": "Juan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-1917-353X",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Wimber",
+       "given": "Maria",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Nature Communications"
+     ],
+     "issue": "1",
+     "issued": {
+      "date-parts": [
+       [
+        2021,
+        5,
+        26
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://www.nature.com/articles/s41467-021-23288-5.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41467-021-23288-5",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41467-021-23288-5.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "published": {
+      "date-parts": [
+       [
+        2021,
+        5,
+        26
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2021,
+        5,
+        26
+       ]
+      ]
+     },
+     "publisher": "Springer Science and Business Media LLC",
+     "relation": {
+      "has-preprint": [
+       {
+        "asserted-by": "object",
+        "id": "10.1101/2020.09.11.292813",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "title": [
+      "Feature-specific reaction times reveal a semanticisation of memories over time and with repeated remembering"
+     ],
+     "type": "journal-article",
+     "volume": "12"
+    },
+    "retrieved_at": "2026-09-09T21:43:53.497493+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1038/s41467-021-23288-5"
+   }
+  },
+  {
+   "key": "WorrEtal04",
+   "fingerprint": "v2:a6f7c478d94bf115477e4e755b200edaaa66c59ed337ced9cafcf59f600072ae",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "WorrEtal04",
+    "author": "G A Worrell and L Parish and S D Cranstoun and R Jonas and G Baltuch and B Litt",
+    "journal": "Brain",
+    "number": "Pt 7",
+    "pages": "1496--1506",
+    "title": "High-frequency oscillations and seizure generation in neocortical epilepsy",
+    "volume": "127",
+    "year": "2004"
+   },
+   "blocker": "number: missing evidence or mismatch",
+   "candidate_doi": "10.1093/brain/awh149",
+   "cached_candidate": {
+    "advisories": [],
+    "doi": "10.1093/brain/awh149",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "G A Worrell and L Parish and S D Cranstoun and R Jonas and G Baltuch and B Litt",
+      "match": true,
+      "source": [
+       {
+        "affiliation": [],
+        "family": "Worrell",
+        "given": "G. A.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [],
+        "family": "Parish",
+        "given": "L.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Cranstoun",
+        "given": "S. D.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Jonas",
+        "given": "R.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Baltuch",
+        "given": "G.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Litt",
+        "given": "B.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Brain",
+      "match": true,
+      "source": [
+       "Brain"
+      ]
+     },
+     "number": {
+      "local": "Pt 7",
+      "match": false,
+      "source": [
+       "7"
+      ]
+     },
+     "pages": {
+      "local": "1496--1506",
+      "match": true,
+      "source": [
+       "1496-1506"
+      ]
+     },
+     "title": {
+      "local": "High-frequency oscillations and seizure generation in neocortical epilepsy",
+      "match": true,
+      "source": [
+       "High-frequency oscillations and seizure generation in neocortical epilepsy"
+      ]
+     },
+     "volume": {
+      "local": "127",
+      "match": true,
+      "source": [
+       "127"
+      ]
+     },
+     "year": {
+      "local": "2004",
+      "match": true,
+      "source": [
+       "2004"
+      ]
+     }
+    },
+    "issues": [
+     "number: missing evidence or mismatch"
+    ],
+    "record": {
+     "DOI": "10.1093/brain/awh149",
+     "ISSN": [
+      "0006-8950",
+      "1460-2156"
+     ],
+     "URL": "https://doi.org/10.1093/brain/awh149",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Worrell",
+       "given": "G. A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Parish",
+       "given": "L.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Cranstoun",
+       "given": "S. D.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Jonas",
+       "given": "R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Baltuch",
+       "given": "G.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Litt",
+       "given": "B.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Brain"
+     ],
+     "issue": "7",
+     "issued": {
+      "date-parts": [
+       [
+        2004,
+        5,
+        20
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://academic.oup.com/brain/article-pdf/127/7/1496/739544/awh149.pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1496-1506",
+     "published": {
+      "date-parts": [
+       [
+        2004,
+        5,
+        20
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2004,
+        5,
+        20
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2004,
+        7,
+        1
+       ]
+      ]
+     },
+     "publisher": "Oxford University Press (OUP)",
+     "title": [
+      "High-frequency oscillations and seizure generation in neocortical epilepsy"
+     ],
+     "type": "journal-article",
+     "volume": "127"
+    },
+    "retrieved_at": "2026-09-09T20:25:17.955704+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1093/brain/awh149"
+   }
+  },
+  {
+   "key": "DaviEtal09",
+   "fingerprint": "v2:37d072ba954e166254d4f6f47a7512ae491236f8dc9b5f33aae3792396a8744e",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "DaviEtal09",
+    "author": "Thomas J Davidson and Fabian Kloosterman and Matthew A Wilson",
+    "journal": "Neuron",
+    "number": "4",
+    "pages": "497--507",
+    "publisher": "Elsevier",
+    "title": "Hippocampal replay of extended experience",
+    "volume": "63",
+    "year": "2009"
+   },
+   "blocker": "publisher: missing evidence or mismatch",
+   "candidate_doi": "10.1016/j.neuron.2009.07.027",
+   "cached_candidate": {
+    "advisories": [
+     "Non-version source relationships retained: has-review"
+    ],
+    "doi": "10.1016/j.neuron.2009.07.027",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "Thomas J Davidson and Fabian Kloosterman and Matthew A Wilson",
+      "match": true,
+      "source": [
+       {
+        "affiliation": [],
+        "family": "Davidson",
+        "given": "Thomas J.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [],
+        "family": "Kloosterman",
+        "given": "Fabian",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "Wilson",
+        "given": "Matthew A.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Neuron",
+      "match": true,
+      "source": [
+       "Neuron"
+      ]
+     },
+     "number": {
+      "local": "4",
+      "match": true,
+      "source": [
+       "4"
+      ]
+     },
+     "pages": {
+      "local": "497--507",
+      "match": true,
+      "source": [
+       "497-507"
+      ]
+     },
+     "publisher": {
+      "local": "Elsevier",
+      "match": false,
+      "source": [
+       "Elsevier BV"
+      ]
+     },
+     "title": {
+      "local": "Hippocampal replay of extended experience",
+      "match": true,
+      "source": [
+       "Hippocampal Replay of Extended Experience"
+      ]
+     },
+     "volume": {
+      "local": "63",
+      "match": true,
+      "source": [
+       "63"
+      ]
+     },
+     "year": {
+      "local": "2009",
+      "match": true,
+      "source": [
+       "2009"
+      ]
+     }
+    },
+    "issues": [
+     "publisher: missing evidence or mismatch"
+    ],
+    "record": {
+     "DOI": "10.1016/j.neuron.2009.07.027",
+     "ISSN": [
+      "0896-6273"
+     ],
+     "URL": "https://doi.org/10.1016/j.neuron.2009.07.027",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Davidson",
+       "given": "Thomas J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Kloosterman",
+       "given": "Fabian",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Wilson",
+       "given": "Matthew A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Neuron"
+     ],
+     "issue": "4",
+     "issued": {
+      "date-parts": [
+       [
+        2009,
+        8
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://api.elsevier.com/content/article/PII:S0896627309005820?httpAccept=text/xml",
+       "content-type": "text/xml",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://api.elsevier.com/content/article/PII:S0896627309005820?httpAccept=text/plain",
+       "content-type": "text/plain",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      }
+     ],
+     "page": "497-507",
+     "published": {
+      "date-parts": [
+       [
+        2009,
+        8
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2009,
+        8
+       ]
+      ]
+     },
+     "publisher": "Elsevier BV",
+     "relation": {
+      "has-review": [
+       {
+        "asserted-by": "object",
+        "id": "10.3410/f.1163742.627085",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.3410/f.1163742.625527",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "title": [
+      "Hippocampal Replay of Extended Experience"
+     ],
+     "type": "journal-article",
+     "volume": "63"
+    },
+    "retrieved_at": "2026-09-09T19:56:29.319428+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1016/j.neuron.2009.07.027"
+   }
+  },
+  {
+   "key": "MillMcGi52",
+   "fingerprint": "v2:a5f77b1f280839ffd7e7f227a9919500c19dcfc9c8137e0e5894edef933bd771",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "MillMcGi52",
+    "author": "G A Miller and W J Mc{G}ill",
+    "journal": "Psychometrika",
+    "pages": "369--396",
+    "title": "A statistical description of verbal learning",
+    "volume": "17",
+    "year": "1952"
+   },
+   "blocker": "year: conflicting or missing publication dates; select the cited edition explicitly",
+   "candidate_doi": "10.1007/bf02288914",
+   "cached_candidate": {
+    "advisories": [
+     "Optional issue number available from source: 4"
+    ],
+    "doi": "10.1007/bf02288914",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "G A Miller and W J Mc{G}ill",
+      "match": true,
+      "source": [
+       {
+        "affiliation": [],
+        "family": "Miller",
+        "given": "George A.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [],
+        "family": "McGill",
+        "given": "William J.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Psychometrika",
+      "match": true,
+      "source": [
+       "Psychometrika"
+      ]
+     },
+     "pages": {
+      "local": "369--396",
+      "match": true,
+      "source": [
+       "369-396"
+      ]
+     },
+     "title": {
+      "local": "A statistical description of verbal learning",
+      "match": true,
+      "source": [
+       "A Statistical Description of Verbal Learning"
+      ]
+     },
+     "volume": {
+      "local": "17",
+      "match": true,
+      "source": [
+       "17"
+      ]
+     },
+     "year": {
+      "local": "1952",
+      "match": true,
+      "source": [
+       "1952",
+       "2025"
+      ]
+     }
+    },
+    "issues": [
+     "year: conflicting or missing publication dates; select the cited edition explicitly"
+    ],
+    "record": {
+     "DOI": "10.1007/bf02288914",
+     "ISSN": [
+      "0033-3123",
+      "1860-0980"
+     ],
+     "URL": "https://doi.org/10.1007/bf02288914",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Miller",
+       "given": "George A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "McGill",
+       "given": "William J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Psychometrika"
+     ],
+     "issue": "4",
+     "issued": {
+      "date-parts": [
+       [
+        1952,
+        12
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://link.springer.com/content/pdf/10.1007/BF02288914.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "http://link.springer.com/article/10.1007/BF02288914/fulltext.html",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0033312300046895",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "369-396",
+     "published": {
+      "date-parts": [
+       [
+        1952,
+        12
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2025,
+        1,
+        1
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1952,
+        12
+       ]
+      ]
+     },
+     "publisher": "Cambridge University Press (CUP)",
+     "title": [
+      "A Statistical Description of Verbal Learning"
+     ],
+     "type": "journal-article",
+     "volume": "17"
+    },
+    "retrieved_at": "2026-09-09T19:57:19.792524+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1007/bf02288914"
+   }
+  },
+  {
+   "key": "TakaEtal77",
+   "fingerprint": "v2:83d0fe7d452cc3128afbf4b69789194e103602806bd612fbf047bc2f2966c4c3",
+   "entry": {
+    "ENTRYTYPE": "article",
+    "ID": "TakaEtal77",
+    "author": "Y Takane and F W Young and J {de Leeuw}",
+    "journal": "Psychometrika",
+    "number": "1",
+    "pages": "7--67",
+    "title": "Nonmetric individual differences multidimensional scaling: an alternating least squares method with optimal scaling features",
+    "volume": "42",
+    "year": "1977"
+   },
+   "blocker": "year: conflicting or missing publication dates; select the cited edition explicitly",
+   "candidate_doi": "10.1007/bf02293745",
+   "cached_candidate": {
+    "advisories": [],
+    "doi": "10.1007/bf02293745",
+    "evidence": {
+     "author": {
+      "detail": "Complete author list in order; citation initials agree with source names",
+      "local": "Y Takane and F W Young and J {de Leeuw}",
+      "match": true,
+      "source": [
+       {
+        "affiliation": [],
+        "family": "Takane",
+        "given": "Yoshio",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "first"
+       },
+       {
+        "affiliation": [],
+        "family": "Young",
+        "given": "Forrest W.",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       },
+       {
+        "affiliation": [],
+        "family": "de Leeuw",
+        "given": "Jan",
+        "role": [
+         {
+          "role": "author",
+          "vocabulary": "crossref"
+         }
+        ],
+        "sequence": "additional"
+       }
+      ]
+     },
+     "journal": {
+      "local": "Psychometrika",
+      "match": true,
+      "source": [
+       "Psychometrika"
+      ]
+     },
+     "number": {
+      "local": "1",
+      "match": true,
+      "source": [
+       "1"
+      ]
+     },
+     "pages": {
+      "local": "7--67",
+      "match": true,
+      "source": [
+       "7-67"
+      ]
+     },
+     "title": {
+      "local": "Nonmetric individual differences multidimensional scaling: an alternating least squares method with optimal scaling features",
+      "match": true,
+      "source": [
+       "Nonmetric Individual Differences Multidimensional Scaling: An Alternating Least Squares Method with Optimal Scaling Features"
+      ]
+     },
+     "volume": {
+      "local": "42",
+      "match": true,
+      "source": [
+       "42"
+      ]
+     },
+     "year": {
+      "local": "1977",
+      "match": true,
+      "source": [
+       "1977",
+       "2025"
+      ]
+     }
+    },
+    "issues": [
+     "year: conflicting or missing publication dates; select the cited edition explicitly"
+    ],
+    "record": {
+     "DOI": "10.1007/bf02293745",
+     "ISSN": [
+      "0033-3123",
+      "1860-0980"
+     ],
+     "URL": "https://doi.org/10.1007/bf02293745",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Takane",
+       "given": "Yoshio",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Young",
+       "given": "Forrest W.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "de Leeuw",
+       "given": "Jan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Psychometrika"
+     ],
+     "issue": "1",
+     "issued": {
+      "date-parts": [
+       [
+        1977,
+        3
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://link.springer.com/content/pdf/10.1007/BF02293745.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "http://link.springer.com/article/10.1007/BF02293745/fulltext.html",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0033312300036784",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "7-67",
+     "published": {
+      "date-parts": [
+       [
+        1977,
+        3
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2025,
+        1,
+        1
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1977,
+        3
+       ]
+      ]
+     },
+     "publisher": "Cambridge University Press (CUP)",
+     "title": [
+      "Nonmetric Individual Differences Multidimensional Scaling: An Alternating Least Squares Method with Optimal Scaling Features"
+     ],
+     "type": "journal-article",
+     "volume": "42"
+    },
+    "retrieved_at": "2026-09-09T20:42:44.988423+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.1007/bf02293745"
+   }
+  }
+ ]
+}

@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def pilot(key):
-    rows = json.loads((ROOT / "verification/pilot50/manifest.json").read_text())[
+    rows = json.loads((ROOT / "tests/fixtures/pilot50-manifest.json").read_text())[
         "entries"
     ]
     row = next(r for r in rows if r["key"] == key)

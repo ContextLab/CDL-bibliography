@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / 'bibcheck'))
 import sfn_abstracts as s  # noqa: E402
 import verification as v  # noqa: E402
 
-DATA = json.loads((ROOT / 'verification/routes-2026-09-25/fixtures/sfn_abstracts.json').read_text())
+DATA = json.loads((ROOT / 'tests/fixtures/routes/sfn_abstracts.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'
 
 

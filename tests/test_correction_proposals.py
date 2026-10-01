@@ -90,14 +90,14 @@ def test_raw_edits_reject_stale_or_ambiguous_proposals(change):
 
 
 # Spot-check decisions 2026-09-24/25 (verification/apply-2026-09-25/README.md).
-# Real cached cases: verification/apply-2026-09-25/cases.json.gz ---------------
+# Real cached cases: tests/fixtures/apply-2026-09-25-cases.json.gz ---------------
 
 import gzip  # noqa: E402
 
 import correction_proposals as cp  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-STAGE1 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-25/cases.json.gz").read())
+STAGE1 = json.loads(gzip.open(ROOT / "tests/fixtures/apply-2026-09-25-cases.json.gz").read())
 
 
 def stage1(key):

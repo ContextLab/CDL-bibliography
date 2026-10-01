@@ -474,7 +474,7 @@ def test_print_year_approval_is_a_valid_snapshot_envelope():
 # verification/fixes-2026-09-24/: real cached review rows frozen by build_cases.py
 # (unmodified), plus the stored PubMed / publisher issue lookups.
 
-FIX = json.loads(gzip.open(ROOT / "verification/fixes-2026-09-24/cases.json.gz", "rt").read())
+FIX = json.loads(gzip.open(ROOT / "tests/fixtures/fixes-2026-09-24-cases.json.gz", "rt").read())
 
 
 def fix_case(key):

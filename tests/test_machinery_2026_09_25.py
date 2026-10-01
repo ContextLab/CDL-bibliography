@@ -3,8 +3,8 @@
 verification/pr-check-2026-09-25/README.md lists the false rejections; the
 rules are documented in verification/machinery-2026-09-25/README.md. Real PR
 entries and their cached review rows are frozen in
-verification/machinery-2026-09-25/cases.json.gz (build_cases.py); MeyeEtal88 is
-the frozen stage 1 case in verification/apply-2026-09-25/cases.json.gz. Every
+tests/fixtures/machinery-2026-09-25-cases.json.gz (build_cases.py); MeyeEtal88 is
+the frozen stage 1 case in tests/fixtures/apply-2026-09-25-cases.json.gz. Every
 rule has negative controls.
 """
 from copy import deepcopy
@@ -24,8 +24,8 @@ import correction_proposals as cp  # noqa: E402
 import helpers  # noqa: E402
 import verification as v  # noqa: E402
 
-CASES = json.loads(gzip.open(ROOT / "verification/machinery-2026-09-25/cases.json.gz").read())["cases"]
-STAGE1 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-25/cases.json.gz").read())
+CASES = json.loads(gzip.open(ROOT / "tests/fixtures/machinery-2026-09-25-cases.json.gz").read())["cases"]
+STAGE1 = json.loads(gzip.open(ROOT / "tests/fixtures/apply-2026-09-25-cases.json.gz").read())
 
 
 def case(key):
@@ -621,7 +621,7 @@ def recheck(tmp_path, key, fields, approval):
 
 def route_case(module, fixture, key):
     import importlib
-    data = json.loads((ROOT / "verification/routes-2026-09-25/fixtures" / fixture).read_text())
+    data = json.loads((ROOT / "tests/fixtures/routes" / fixture).read_text())
     return importlib.import_module(module), deepcopy(data[key])
 
 
@@ -660,7 +660,7 @@ def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
 # Real records frozen from verification/baseline.jsonl.gz (89c5b70) by
 # verification/apply-2026-09-25d/build_cases.py.
 
-CASES27 = json.loads(gzip.open(ROOT / "verification/apply-2026-09-25d/cases.json.gz").read())["cases"]
+CASES27 = json.loads(gzip.open(ROOT / "tests/fixtures/apply-2026-09-25d-cases.json.gz").read())["cases"]
 
 
 def case27(key, **fields):

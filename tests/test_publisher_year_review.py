@@ -18,7 +18,7 @@ from test_resolution_rules import pilot
 
 def source(key):
     rows = json.loads(
-        (ROOT / "verification/resolution-2026-09-15/source-results.json").read_text()
+        (ROOT / "tests/fixtures/resolution-2026-09-15-source-results.json").read_text()
     )
     row = deepcopy(next(r for r in rows if r["key"] == key))
     row["document_sha256"] = row["sha256"]
@@ -93,7 +93,7 @@ def test_repeated_author_names_are_not_deduplicated():
 
 def test_local_run_repeat_and_snapshot_preserve_provenance(tmp_path, monkeypatch):
     fields, primary = pilot("MillMcGi52")
-    rows = json.loads((ROOT / "verification/pilot50/manifest.json").read_text())[
+    rows = json.loads((ROOT / "tests/fixtures/pilot50-manifest.json").read_text())[
         "entries"
     ]
     row = next(r for r in rows if r["key"] == "MillMcGi52")

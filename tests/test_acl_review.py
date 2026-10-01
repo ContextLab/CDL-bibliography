@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / 'bibcheck'))
 import acl_review as a  # noqa: E402
 import verification as v  # noqa: E402
 
-DATA = json.loads((ROOT / 'verification/routes-2026-09-25/fixtures/acl_review.json').read_text())
+DATA = json.loads((ROOT / 'tests/fixtures/routes/acl_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'
 
 

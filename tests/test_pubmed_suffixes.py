@@ -235,12 +235,12 @@ def test_suffix_on_either_side_or_among_given_names_is_ignored(cited, person):
     assert not author_evidence(cited.replace("Smith", "Smyth"), [person])[0]
 
 
-# Real cached cases (verification/apply-2026-09-25/cases.json.gz: cdl.bib entries
+# Real cached cases (tests/fixtures/apply-2026-09-25-cases.json.gz: cdl.bib entries
 # and their latest review rows, read-only, frozen before the rule change) -------
 
 def stage1_case(key):
     root = Path(__file__).resolve().parents[1]
-    data = json.loads(gzip.open(root / 'verification/apply-2026-09-25/cases.json.gz').read())
+    data = json.loads(gzip.open(root / 'tests/fixtures/apply-2026-09-25-cases.json.gz').read())
     case = deepcopy(data['cases'][key])
     return case['entry'], case['previous']
 

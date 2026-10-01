@@ -1,8 +1,0 @@
-{
-  "stage": "after 500 discovery searches and 24 DOI-alias probes, during DOI-linked Europe PMC collection",
-  "error": "ProviderError: Malformed or truncated Europe PMC response",
-  "completed_searches": 500,
-  "last_observed_request_count": 520,
-  "bibliography_unchanged": true,
-  "handling": "Added bounded identical-query retries (maximum 4) retaining strict response validation and no negative caching. Seven transport tests and all 944 tests passed. Resumption reused all title searches and completed 180 secondary DOI checks in 9 requests; one request was an automatic retry, whose precise cause was not logged. Resumed counters exclude the interrupted attempt."
-}

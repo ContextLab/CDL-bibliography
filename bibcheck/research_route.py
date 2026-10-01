@@ -1,8 +1,16 @@
 """Research route: record entries the research waves verified field by field.
 
-Design and counts: verification/research-route-2026-09-27/README.md.
+On this branch the module's job is to re-check saved research approvals
+(``valid_research_approval``, run by ``crossref restore`` on every row of
+verification/baseline.jsonl.gz): each saved approval carries its quotes, URLs and body
+hashes, and is re-derived from them offline. The research folders the approvals were
+built from, the route's design notes and the ``crossref research-approve`` command that
+read them are on the archive branch ``verification-records-2026-09``
+(https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09).
+``load_evidence`` and ``run_research_approve`` still read that layout under any
+``root`` (the tests use a frozen copy in tests/fixtures/research_route/).
 
-Evidence (read-only, from the repository):
+Evidence layout (relative to ``root``):
 
 * researcher rows: ``verification/research-pilot-2026-09-24/batch-*.json`` and
   ``verification/research-2026-09-25/wave*/batch-*.json`` (schema: the pilot's PROTOCOL.md);
@@ -61,12 +69,10 @@ Nothing here makes a network request.
 from collections import OrderedDict
 from copy import deepcopy
 import hashlib
-import importlib.util
 import json
 import os
 from pathlib import Path
 import re
-import sys
 import unicodedata
 
 from verification import normalize_doi, notice_record_identity, outcome
@@ -78,8 +84,6 @@ NAME = 'research_route'
 # validate.py's fetched bodies. BIBCHECK_RESEARCH_BODIES points both at another directory
 # (the test suite sets it, so live fetches in tests never write into this clone's cache).
 BODY_DIR = Path(os.environ.get('BIBCHECK_RESEARCH_BODIES') or ROOT / '.bibcheck' / 'research-pilot')
-VALIDATE_PY = ROOT / 'verification/research-pilot-2026-09-24/validate.py'
-POSTCHECK_PY = ROOT / 'verification/research-2026-09-25/postcheck.py'
 
 PILOT = 'verification/research-pilot-2026-09-24'
 WAVES = 'verification/research-2026-09-25'
@@ -126,33 +130,20 @@ def says_browser_or_scan(notes):
     notes = str(notes or '')
     return any(not _NEGATED_BEFORE.search(notes[:m.start()]) and not _UNREAD_AFTER.search(notes[m.end():])
                for m in BROWSER_OR_SCAN.finditer(notes))
-_MODULES = {}
-
-
-def _module(name, path):
-    if name not in _MODULES:
-        cwd = os.getcwd()
-        bibcheck = str(ROOT / 'bibcheck')
-        if bibcheck not in sys.path:
-            sys.path.insert(0, bibcheck)
-        spec = importlib.util.spec_from_file_location(name, path)
-        mod = importlib.util.module_from_spec(spec)
-        try:
-            spec.loader.exec_module(mod)
-        finally:
-            os.chdir(cwd)
-        _MODULES[name] = mod
-    return _MODULES[name]
 
 
 def validator():
-    """verification/research-pilot-2026-09-24/validate.py (its matching only; never fetches here)."""
-    return _module('research_route_validate', VALIDATE_PY)
+    """The research validator's quote matching (bibcheck/research_quotes.py, copied from
+    validate.py; never fetches)."""
+    import research_quotes
+    return research_quotes
 
 
 def postcheck():
-    """verification/research-2026-09-25/postcheck.py (its house normalisers only)."""
-    return _module('research_route_postcheck', POSTCHECK_PY)
+    """The research post-check's house normalisers (bibcheck/research_forms.py, copied
+    from postcheck.py)."""
+    import research_forms
+    return research_forms
 
 
 # ------------------------------------------------------------------ house form

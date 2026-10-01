@@ -1,4 +1,4 @@
-"""PsyArXiv/OSF route: real OSF API documents (verification/routes-2026-09-25/fixtures).
+"""PsyArXiv/OSF route: real OSF API documents (tests/fixtures/routes).
 
 Positive cases, correctable citations, published-version replacements and
 negative controls (older version cited, withdrawn preprint, a different work
@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / 'bibcheck'))
 import osf_review as o  # noqa: E402
 import verification as v  # noqa: E402
 
-DATA = json.loads((ROOT / 'verification/routes-2026-09-25/fixtures/osf_review.json').read_text())
+DATA = json.loads((ROOT / 'tests/fixtures/routes/osf_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'  # the project's real Crossref contact
 
 

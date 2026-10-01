@@ -1,8 +1,0 @@
-{
-  "cycle": "run",
-  "status": "incomplete",
-  "completed_entries": 3,
-  "error": "Publisher HTTP 429; retry later (Retry-After: None)",
-  "proposals": 0,
-  "note": "Three saved XML records have no bylines; later entries were not attempted."
-}

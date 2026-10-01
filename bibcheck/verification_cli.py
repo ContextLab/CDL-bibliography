@@ -648,49 +648,6 @@ def research_batch(
         cache.close()
 
 
-@app.command("research-approve")
-def research_approve(
-    fname: str = typer.Argument("cdl.bib"),
-    database: Optional[str] = typer.Option(None, "--database"),
-    dry_run: bool = typer.Option(False, "--dry-run", help="Report what would be approved; write nothing."),
-    output: Optional[str] = typer.Option(
-        None, "--output", help="Write per-entry outcomes and grouped reasons (JSON) to this file."),
-    keys: Optional[str] = typer.Option(
-        None, "--keys", help="Only these citation keys (UTF-8 file, one per line)."),
-):
-    """Approve needs_review entries that the research waves verified field by field.
-
-    Offline: reads the research files and validate.py's saved bodies, never the network.
-    Evidence files with uncommitted changes are left out. Repeat runs write nothing."""
-    database, report = paths(fname, database)
-    cache = Cache(database)
-    try:
-        exclude = research_route.uncommitted_evidence()
-        for rel in exclude:
-            typer.echo(f"left out (uncommitted): {rel}")
-        selected = None if keys is None else [
-            line.strip() for line in Path(keys).read_text(encoding="utf-8").splitlines() if line.strip()]
-        out = research_route.run_research_approve(fname, cache, None if dry_run else report, dry_run=dry_run,
-                                                  exclude=exclude, keys=selected)
-        out["excluded_files"] = exclude
-        out["dry_run"] = dry_run
-        if output:
-            validate_output_path(fname, output, cache)
-            Path(output).parent.mkdir(parents=True, exist_ok=True)
-            Path(output).write_text(json.dumps(out, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
-                                    encoding="utf-8")
-        counts = out["counts"]
-        typer.echo(("dry run: " if dry_run else "") + ", ".join(
-            f"{k}={v}" for k, v in sorted(counts["outcomes"].items())) + f"; review writes {counts['writes']}")
-        for reason, n in counts["first_reason"].items():
-            typer.echo(f"  {n:5d}  {reason}")
-    except (ValueError, OSError) as exc:
-        typer.echo(str(exc), err=True)
-        raise typer.Exit(2)
-    finally:
-        cache.close()
-
-
 @app.command()
 def approve(
     key: str,

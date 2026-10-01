@@ -1,6 +1,7 @@
 """Research route (bibcheck/research_route.py): approvals from the research waves' evidence.
 
-Everything is real and frozen (tests/fixtures/research_route/build.py, 2026-09-27): the
+Everything is real and frozen (2026-09-27, by tests/fixtures/research_route/build.py on the
+archive branch verification-records-2026-09): the
 entries as cdl.bib printed them, the research rows, post-check rows, reviewer rows, user
 decisions and resolution rows that mention them (the repository's layout, trimmed to
 these works), and validate.py's saved fetched bodies. No test reads the live cdl.bib, the
@@ -61,7 +62,10 @@ def test_validator_registered_and_cli_imports_route():
     assert R.valid_research_approval in v.APPROVAL_VALIDATORS
     import verification_cli
     assert verification_cli.research_route is R
-    assert 'research-approve' in [c.name for c in verification_cli.app.registered_commands]
+    # research-approve read the research folders, which are on the archive branch
+    # verification-records-2026-09 only; restore re-checks the saved approvals without them.
+    assert 'research-approve' not in [c.name for c in verification_cli.app.registered_commands]
+    assert R.validator().__name__ == 'research_quotes' and R.postcheck().__name__ == 'research_forms'
 
 
 @pytest.mark.parametrize('key', APPROVED)

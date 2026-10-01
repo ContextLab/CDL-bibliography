@@ -1,4 +1,4 @@
-"""DataCite route: real Zenodo/OSF registry records (verification/routes-2026-09-25/fixtures).
+"""DataCite route: real Zenodo/OSF registry records (tests/fixtures/routes).
 
 Positive: Spee22 (version DOI, registry title). Proposals: Mann26 (the second
 creator DataCite lists, a non-person printed as "Claude"), Mann21b (DOI out of
@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / 'bibcheck'))
 import datacite_review as d  # noqa: E402
 import verification as v  # noqa: E402
 
-DATA = json.loads((ROOT / 'verification/routes-2026-09-25/fixtures/datacite_review.json').read_text())
+DATA = json.loads((ROOT / 'tests/fixtures/routes/datacite_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'
 
 
