@@ -1851,5 +1851,29 @@
   "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
   "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
   "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "WyliEtal07",
+  "new_key": "WyliEtal08",
+  "date": "2026-10-01",
+  "reason": "Force field removed (user 2026-10-01: no overrides); Force only exempted the key check, so the key now follows the entry's printed year 2008. Crossref 10.1093/cercor/bhm101: published-print 2008-03 (vol 18, issue 3, 670-682); online 2007-07-07",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "GrobEtal07",
+  "new_key": "GrobEtal08",
+  "date": "2026-10-01",
+  "reason": "Force field removed (user 2026-10-01: no overrides); Force only exempted the key check, so the key now follows the entry's printed year 2008. Crossref 10.1017/s1355617708080156: published-print 2008-01 (vol 14, issue 1, 130-142); online 2007-12-14",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Cowa00",
+  "new_key": "Cowa01",
+  "date": "2026-10-01",
+  "reason": "Force field removed (user 2026-10-01: no overrides); Force only exempted the key check, so the key now follows the entry's printed year 2001. Crossref 10.1017/s0140525x01003922: published-print 2001-02 (vol 24, issue 1, 87-114)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
  }
 ]
