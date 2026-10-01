@@ -3,9 +3,12 @@
 The spreadsheet mapped names onto different journals ('psychonomic science' ->
 'psychological science', 'j comp neurol' -> 'journal of computational
 neuroscience') and onto misspelled targets ('physiological review',
-'international journal of phychophysiology'). bibcheck/journal_key_overrides.json
-corrects those rows; the audit is tests/fixtures/journal-alias-audit-2026-09-26.json.
-These tests run the real formatter over the real spreadsheet and override file.
+'international journal of phychophysiology'). Those 40 rows were corrected in
+journal_key.xls itself on 2026-10-01 (until then journal_key_overrides.json applied them at
+load time); the list is frozen in tests/fixtures/journal-key-corrections-2026-09-26.json,
+the evidence is in docs/decision-log.md and the audit is
+tests/fixtures/journal-alias-audit-2026-09-26.json. These tests run the real formatter over
+the real spreadsheet.
 """
 import json
 from pathlib import Path
@@ -16,9 +19,10 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "bibcheck"))
 import helpers  # noqa: E402
-from helpers import format_journal_name, journal_key, load_key, load_key_overrides  # noqa: E402
+from helpers import format_journal_name, journal_key, load_key  # noqa: E402
 
-OVERRIDES = json.loads((ROOT / "bibcheck" / "journal_key_overrides.json").read_text())["overrides"]
+OVERRIDES = json.loads(
+    (ROOT / "tests/fixtures/journal-key-corrections-2026-09-26.json").read_text())["corrections"]
 
 
 @pytest.mark.parametrize("name, expected", [
@@ -77,10 +81,10 @@ def test_genuine_aliases_still_apply(name, expected):
     assert format_journal_name(name) == expected
 
 
-def test_every_override_corrects_a_row_the_spreadsheet_still_has():
+def test_every_correction_is_written_into_the_spreadsheet():
     raw = load_key("journal_key.xls")
     for row in OVERRIDES:
-        assert raw.get(row["source"]) == row["old_target"], row["source"]
+        assert raw.get(row["source"]) != row["old_target"], row["source"]
         if row["action"] == "remove":
             assert row["source"] not in journal_key
         else:
@@ -88,7 +92,8 @@ def test_every_override_corrects_a_row_the_spreadsheet_still_has():
             assert row["new_target"] != row["old_target"] or row["class"] == "misspelled_target"
 
 
-def test_only_overridden_rows_differ_from_the_spreadsheet():
+def test_the_spreadsheet_is_used_as_written():
+    # no correction is applied at load time any more: the table is the spreadsheet
     raw = load_key("journal_key.xls")
 
     def target(key, source):
@@ -96,7 +101,9 @@ def test_only_overridden_rows_differ_from_the_spreadsheet():
         return value if isinstance(value, str) else None  # NaN (no alias) == absent
 
     changed = {s for s in set(raw) | set(journal_key) if target(raw, s) != target(journal_key, s)}
-    assert changed == {row["source"] for row in OVERRIDES}
+    assert changed == set()
+    assert not (ROOT / "bibcheck" / "journal_key_overrides.json").exists()
+    assert not hasattr(helpers, "load_key_overrides")
 
 
 @pytest.mark.parametrize("misspelling", [
@@ -106,17 +113,6 @@ def test_only_overridden_rows_differ_from_the_spreadsheet():
 def test_no_active_target_carries_a_known_misspelling(misspelling):
     assert not [t for t in journal_key.values() if isinstance(t, str) and misspelling in t]
     assert "physiological review" not in journal_key.values()
-
-
-def test_loader_refuses_an_override_whose_old_target_no_longer_matches(tmp_path):
-    stale = tmp_path / "stale.json"
-    stale.write_text(json.dumps({"overrides": [{
-        "source": "psychol sci", "old_target": "psychonomic science",
-        "action": "remove", "new_target": None}]}))
-    key = load_key("journal_key.xls")
-    with pytest.raises(ValueError, match="psychol sci"):
-        load_key_overrides(key, stale)
-    assert key["psychol sci"] == "psychological science"
 
 
 def test_overrides_apply_to_journal_names_only():

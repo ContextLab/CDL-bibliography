@@ -196,8 +196,8 @@ def series_present(value_norm, joined):
 
 
 def journal_abbreviations(value):
-    """Abbreviations bibcheck's journal alias table (journal_key.xls with the corrections in
-    journal_key_overrides.json, via helpers.journal_key) maps onto this journal, e.g.
+    """Abbreviations bibcheck's journal alias table (journal_key.xls, via
+    helpers.journal_key) maps onto this journal, e.g.
     'eur j neurosci' for European Journal of Neuroscience. Only aliases whose target is the
     value's own journal and whose words abbreviate that name's words in order are used, so
     a misspelled or different-journal alias in the table never counts."""
