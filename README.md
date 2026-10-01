@@ -168,6 +168,7 @@ The formatting check verifies the following:
   - All unicode characters are converted to their nearest ASCII counterparts (e.g., "é" is converted to "e", etc.)
   - In-press, submitted, under revision, or other "unpublished" manuscripts should use the last two digits of the *submission* year
   - Bibtex keys may not be duplicated.  If two or more entries share the same "base" bibtex key, they should be renamed to make each key unique by adding a suffix to the key: MannEtal21a, MannEtal21b, etc.  If a bibtex key requires a suffix, *all* bibtex keys that share the same base must also have suffixes.  Suffixes must be assigned in order (e.g., if MannEtal21a and MannEtal21c are in the .bib file, then either MannEtal21b must also be in the .bib file, or MannEtal21c must be renamed to MannEtal21b).  Likewise, a key that no longer shares its base with any other entry drops its suffix.
+  - Every entry in `cdl.bib` follows these rules, with no exceptions.  When a correction changes an entry's authors or year, its key changes with it, and the rename is logged in [verification/key-renames.json](verification/key-renames.json) so that an old `\cite` key can be looked up.
 - Proper formatting of author and editor names:
   - The name must appear in the following order with no commas: First Middle Surname(s) Suffixes
   - Multi-word surnames should be enclosed in curly braces (e.g., "{van der Meer}")
@@ -194,7 +195,7 @@ The formatting check verifies the following:
   - The checker never adds a country the source doesn't print.  It does drop the country after some well-known cities (e.g., "Berlin, Germany" becomes "Berlin").
   - Abbreviations should not contain periods (".")
 - Only the following fields are allowed (see [keep_fields.txt](bibcheck/keep_fields.txt)): author, title, year, journal, booktitle, volume, number, pages, doi, publisher, editor, edition, series, chapter, school, institution, organization, address, type, howpublished, and force
-- To override autoformatting or checks for a given entry, add an additional field, "force", to that bibtex entry and set its value to "True".  Most formatting checks are skipped for that entry (duplicate detection and malformed page ranges are still checked).  This is useful if the above rules cannot be properly applied to a given entry.  `force` does **not** skip the accuracy check.
+- To override autoformatting or checks for a given entry, add an additional field, "force", to that bibtex entry and set its value to "True".  Most formatting checks are skipped for that entry (duplicate detection and malformed page ranges are still checked).  This is useful if the above rules cannot be properly applied to a given entry.  `force` does **not** skip the accuracy check.  The library itself uses none: no entry in `cdl.bib` carries a `force` field.
 
 If errors are found, they are printed to the terminal along with suggested corrections (if available).
 

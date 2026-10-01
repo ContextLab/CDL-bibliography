@@ -4,7 +4,7 @@ This folder holds the lab's saved verification results for `cdl.bib` and the log
 
 - [baseline.jsonl.gz](baseline.jsonl.gz): the saved result for every entry, with its evidence. Entries verified from quoted evidence carry the quotation and source URL for each field. `python bibcheck.py crossref restore verification/baseline.jsonl.gz` loads it into a local database, and the pull request check reads it from the base branch.
 - [check_ci.py](check_ci.py): the script the `Citation verification` workflow runs.
-- [key-renames.json](key-renames.json) and [key-deletions.json](key-deletions.json): every citation key that was renamed or removed, with the reason. Check these if a paper's `\cite` key stops resolving.
+- [key-renames.json](key-renames.json) and [key-deletions.json](key-deletions.json): every citation key that was renamed or removed, with the reason. Check these if a paper's `\cite` key stops resolving. Every key follows the key rule in the [README](../README.md#verify), with no exceptions.
 - [revocations.jsonl](revocations.jsonl): every human approval withdrawn with `crossref revoke`. Restoring any snapshot keeps them revoked.
 - [benchmark/](benchmark/README.md) and [pdf-benchmark/](pdf-benchmark/README.md): the checker run against real entries and deliberately altered copies. `tests/test_discovery_review.py` runs the first; `tests/test_pdf_evidence.py` runs the second when the local paper library is mounted.
 

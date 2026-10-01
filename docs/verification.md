@@ -70,6 +70,12 @@ an entry stays:
 Every rename and deletion is logged in `verification/key-renames.json` and
 `verification/key-deletions.json`.
 
+**No exceptions to the key rule** (user, 2026-10-01: "I want *every* entry in cdl.bib to
+follow the same rules. There shouldn't be overrides."). Every key is the one
+`helpers.authors2key` and the suffix rules give; the format check has no per-entry
+exception list, and no entry carries a `force` field. A key changes when a correction
+changes the authors or year it is built from.
+
 **Organization authors in keys** (2026-09-28, superseding the 2026-09-27 first-word
 rule). A fully braced author name is one author. Its key part is the letters of its
 successive words, concatenated until four letters are reached and then truncated, with
@@ -86,7 +92,7 @@ The program establishes agreement with recorded source metadata. It cannot guara
 
 The default gate accepts `metadata_verified` and `human_verified`; `status --require-human` accepts only the latter. The comparison is deliberately conservative. Abbreviated journals, incomplete deposits, translated titles, mathematical titles, editions and competing publication dates often require review. The automatic review layers described below resolve supported cases before human review.
 
-A wrong DOI is particularly important: the DOI must agree with the title, authors, version and remaining fields. Finding an apparently correct paper elsewhere never silently repairs the supplied identifier. Automatic code never changes the bibliography. `force` is a formatting setting, not an accuracy exception.
+A wrong DOI is particularly important: the DOI must agree with the title, authors, version and remaining fields. Finding an apparently correct paper elsewhere never silently repairs the supplied identifier. Automatic code never changes the bibliography. `force` is a formatting setting, not an accuracy exception, and no entry of `cdl.bib` uses it.
 
 ## Stages and persistence
 
@@ -637,7 +643,9 @@ every field, the researched value, the quotation, the source URL and the sha256 
 fetched page. The research files, the route's design notes and the
 `crossref research-approve` command that built these results from them are on the
 archive branch ([research-route-2026-09-27/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/research-route-2026-09-27/README.md)).
-The command is not on this branch, because it read those research files.
+The command is not on this branch, because it read those research files; neither is
+the code that read them or its tests (tests/fixtures/research_route/). What stays in
+`bibcheck/research_route.py` is the re-check below and everything it calls.
 
 An entry was approved only when:
 
@@ -660,7 +668,10 @@ research validator's quote matching (`bibcheck/research_quotes.py`) and the post
 house normalisers (`bibcheck/research_forms.py`), both copied unchanged from the research
 tools. Where a local `.bibcheck/research-pilot/` body cache exists, a quote is searched
 again in its body; otherwise the recorded quote result is used. Editing an entry sends it
-back through ordinary verification.
+back through ordinary verification. `tests/test_research_route.py` runs the re-check on 14
+frozen baseline rows (`tests/fixtures/research_approvals/`, every flag and notice class),
+with negative controls: a changed quote, value, record or body, a missing notice class, or a
+retraction on the cited DOI is rejected.
 
 This route is separate from the optional LLM adapter below: `crossref research` and
 `research-batch` save evidence for review and never approve.

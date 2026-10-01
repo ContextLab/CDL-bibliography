@@ -665,6 +665,26 @@ approve`, reviewer "Jeremy Manning", note "User re-confirmed 2026-09-30; the err
 (10.1001/archneurol.2011.75) corrects a Methods sentence, not the citation." Library after:
 `6384 entries: human_verified=36, metadata_verified=6348`.
 
+## No overrides (user, 2026-10-01)
+
+User, 2026-10-01: "I want *every* entry in cdl.bib to follow the same rules. There shouldn't
+be overrides." Applied:
+
+- **Key-rule exceptions removed.** `bibcheck/key_overrides.json` let 29 keys stand although the
+  key rule gave another key, kept after a source-backed correction: 19 for a corrected year,
+  8 for corrected authors, 1 for the particle's case (VanREtal12) and 1 suffix that the
+  others left unneeded (AlleEtal12a). The file and the check that read it are deleted, and the 29 entries take the rule's
+  key (no collisions, no suffix changes): ChilEtal12 → ChilEtal95, HowaEich14 → HowaEich15, Weis11 → Weis12, SekuKaha08 → SekuKaha07, CruiEtal01 → CruiEtal02, VanREtal12 → vanREtal12, BorgEtal06 → SchaEtal06, Thie03 → ThieSton03, Raz05 → RazEtal05, Baun11 → BaunEtal11, Colo05 → Colo06, DawsEtal09 → DawsEtal10, Haxb96 → HaxbEtal96, Tulv94 → TulvEtal94, AlleEtal12b → AlleEtal14, TigaEtal16 → TigaEtal17, HuanEtal01 → HuanEtal02, NichHolm01 → NichHolm02, MorrEtal18 → MorrEtal19, AlleEtal12a → AlleEtal12, EwbaEtal12 → EwbaEtal13, CoelEtal09 → CoelEtal08, deGaEtal12 → deGaEtal13, LianEtal12 → LianEtal13, SpieEtal13 → SpieEtal15, HabeKnut09 → HabeKnut10, Rasm06 → RasmWill06, ThruEtal06 → ThruEtal05, GuimAmar05 → GuimNune05.
+- **Force removed from the three entries that carried it.** Without it each failed the key
+  rule only (its Year is the printed year, its key the online year; Crossref records quoted
+  in `verification/key-renames.json`): WyliEtal07 → WyliEtal08, GrobEtal07 → GrobEtal08,
+  Cowa00 → Cowa01. No other field changed; all three re-verified (`crossref verify --keys
+  --auto-review`). The tool's `force` field still exists for other users of the checker.
+- **Journal alias corrections written into `journal_key.xls`** (next section).
+
+All 32 renames are in `verification/key-renames.json`. Restore into an empty database after
+the change: `6384 entries: human_verified=36, metadata_verified=6348`.
+
 ## Journal alias table corrections (audit 2026-09-26; written into journal_key.xls 2026-10-01)
 
 `bibcheck/journal_key.xls` mapped 40 names onto a different journal or onto a misspelled
