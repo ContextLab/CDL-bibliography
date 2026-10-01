@@ -2364,6 +2364,42 @@ def notices_accounted_for(entry, result, records):
     return bool(accounts(entry, result))
 
 
+# Optional explanations of a rejected route approval, by accepted_source:
+# ``explain(result) -> str | None`` (the first check the approval fails), used only in
+# import_snapshot's error message.
+APPROVAL_REJECTION_REASONS = {}
+
+
+def register_approval_rejection_reason(source, explain):
+    """Register ``explain(result) -> str | None`` for approvals whose accepted_source is ``source``."""
+    if not callable(explain):
+        raise TypeError("An approval rejection explainer must be callable")
+    APPROVAL_REJECTION_REASONS[source] = explain
+    return explain
+
+
+def approval_rejection_reason(result):
+    """Why no validator accepted ``result``, from its route's explainer when it has one."""
+    explain = APPROVAL_REJECTION_REASONS.get(result.get("accepted_source"))
+    if explain is not None:
+        try:
+            why = explain(result)
+        except Exception as exc:  # the message must still be raised; name the failure
+            why = f"the route's explainer failed: {type(exc).__name__}: {exc}"
+        if why:
+            return why
+    return (f"no route validator accepted it [built-in and registered: {', '.join(approval_validator_names())}], "
+            "and no candidate carries complete crossref/europepmc/pmc-jats/publisher-head/catalogue-imprint evidence")
+
+
+def approval_validator_names():
+    """Names of the route validators route_approval_valid consults (for error messages)."""
+    names = []
+    for validator in builtin_approval_validators() + list(APPROVAL_VALIDATORS):
+        names.append(f"{getattr(validator, '__module__', '?')}.{getattr(validator, '__name__', repr(validator))}")
+    return names
+
+
 def route_approval_valid(result):
     """True when a built-in or registered route validator accepts ``result``."""
     return any(validator(result) for validator in builtin_approval_validators() + list(APPROVAL_VALIDATORS))
@@ -2422,9 +2458,11 @@ def import_snapshot(filename, cache, snapshot):
             or result["policy"] != POLICY
             or result["key"] in seen
         ):
-            raise ValueError("Invalid snapshot review record")
+            key = result.get("key") if isinstance(result, dict) else None
+            raise ValueError(f"Invalid snapshot review record: {key!r} (needs key, fingerprint, policy "
+                             f"{POLICY!r}, a known status and a key not seen before)")
         if result["status"] == "human_verified" and not result.get("human_review"):
-            raise ValueError("Human approval is missing its audit record")
+            raise ValueError(f"Human approval is missing its audit record: {result['key']}")
         if result["status"] == "metadata_verified" and not route_approval_valid(result) and not any(
             c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
             and c.get("evidence")
@@ -2449,7 +2487,11 @@ def import_snapshot(filename, cache, snapshot):
             )
             for c in result.get("candidates", [])
         ):
-            raise ValueError("Machine approval is missing its source evidence")
+            raise ValueError(
+                f"Machine approval is missing its source evidence: {result['key']} "
+                f"(accepted_source {result.get('accepted_source')!r}: {approval_rejection_reason(result)}). "
+                f"Nothing was restored: the snapshot import is all-or-nothing."
+            )
         seen.add(result["key"])
     notices = header.get("source_notices", [])
     from auto_review import secondary_notice_flags, secondary_suffix_dois

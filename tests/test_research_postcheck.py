@@ -35,6 +35,10 @@ VALIDATION = {e["key"]: e for e in json.loads((WAVE / "validation.json").read_te
 # decisions under test were made against it; reading HEAD instead would break these tests
 # every time an approved batch is committed.
 FROZEN_BIB = str(ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib")
+# verification/key-renames.json as committed in 3eb26c9 (2026-09-30): the log keeps growing
+# (the KahaEtal08a/b swap and MurdVomS67 -> MurdvomS67 were added that day), so tests read
+# this frozen copy, never the live file.
+LOGGED_RENAMES = pc.renamed_away(ROOT / "tests/fixtures/key-renames-2026-09-30.json")
 
 
 @pytest.fixture(scope="module")
@@ -43,7 +47,7 @@ def bib():
 
 
 def ctx_for(bib):
-    return {"doi": pc.doi_record, "cities": pc.city_states(bib), "taken": set(), "reserved": pc.renamed_away(),
+    return {"doi": pc.doi_record, "cities": pc.city_states(bib), "taken": set(), "reserved": dict(LOGGED_RENAMES),
             "index": pc.work_index(bib)}
 
 
@@ -350,7 +354,7 @@ def test_reviewer_key_agreement(bib):
 # ---------------------------------------------------------------- whole wave
 
 def test_wave1_run_measures_review(tmp_path):
-    post, page, rules_only, merged = pc.run(WAVE, write=False, bib=FROZEN_BIB)
+    post, page, rules_only, merged = pc.run(WAVE, write=False, bib=FROZEN_BIB, renames=dict(LOGGED_RENAMES))
     m = post["measurement"]
     assert m["findings"] == 29 and m["random_sample_findings"] == 10
     caught = {r["key"] for r in m["rows"] if r["caught"]}
@@ -534,7 +538,7 @@ def test_reviewer_agreement_releases_fetch_blocked_hold(bib):
 
 
 def test_wave2_review_resolution():
-    post, page, rules_only, merged = pc.run(WAVE2, write=False, bib=FROZEN_BIB)
+    post, page, rules_only, merged = pc.run(WAVE2, write=False, bib=FROZEN_BIB, renames=dict(LOGGED_RENAMES))
     res = post["review_resolution"]
     fixed = {r["key"] for r in res["rows"] if r["resolved"]}
     assert {"DezfDali20", "DupoEtal00", "SilbEtal03", "PaszEtal19", "AllpEtal94", "CronEtal98a", "WoodEtal00b",
@@ -576,7 +580,7 @@ def test_author_changes_only_as_researcher_proposed(bib):
     """Every researcher author/editor that is applied ends as the researcher's value in
     house FORMAT: the same number of initials per name (rules alone, waves 1-3)."""
     for folder in (WAVE, WAVE2, WAVE3):
-        post, page, rules_only, merged = pc.run(folder, write=False, offline=True, bib=FROZEN_BIB)
+        post, page, rules_only, merged = offline_run(folder)
         rows_, _, _ = load_wave(folder)
         for k, rec in rules_only.items():
             for field in pc.NAME_FIELDS:
@@ -718,7 +722,7 @@ def test_single_source_surname_hold_keeps_cited_name(bib):
 
 @pytest.mark.parametrize("folder,findings", [(WAVE3, 8)])
 def test_wave3_review_resolution(folder, findings):
-    post, page, rules_only, merged = pc.run(folder, write=False, offline=True, bib=FROZEN_BIB)
+    post, page, rules_only, merged = offline_run(folder)
     res = post["review_resolution"]
     # FreeEtal03b: the reviewer's surname 'J{\\"o}rnsten' for the cited 'Jornten' is a
     # surname mismatch the user decides (user rule 2026-09-30), so it stays unresolved.
@@ -1220,7 +1224,7 @@ def test_duplicate_keeps_the_rule_conforming_key(bib):
     into the other. RuggAlla00 fits the ID rule for the corrected metadata and stays."""
     assert checkw(bib, "8", "RuggAlla00")["key_plan"]["action"] == "keep"
     assert checkw(bib, "8", "Rugg00")["key_plan"]["merge_into"] == "RuggAlla00"
-    post, page, rules_only, merged = pc.run(WAVE8, write=False, offline=True, bib=FROZEN_BIB)
+    post, page, rules_only, merged = offline_run(WAVE8)
     for recs in (rules_only, merged):
         dup = {k: r["key_plan"]["merge_into"] for k, r in recs.items() if r["key_plan"]["action"] == "duplicate"}
         assert dup.get("Rugg00") == "RuggAlla00" and "RuggAlla00" not in dup
@@ -1384,7 +1388,7 @@ def test_other_version_detection_is_conservative(bib):
     assert pc.other_version_named("the 2025 re-depositions, not the published version; no DOI") is None
     assert pc.other_version_named("A bioRxiv preprint exists; the journal version is the one cited.") is None
     assert "other_version_named" not in codes(checkw(bib, "7", "XieEtal21"))
-    post, page, rules_only, merged = pc.run(WAVE7, write=False, offline=True, bib=FROZEN_BIB)
+    post, page, rules_only, merged = offline_run(WAVE7)
     needs = {p["key"]: p["needs_user"] for p in page}
     assert needs["TsitEtal19"] and needs["LiEtal24b"] and needs["JainHuth18"]
 
@@ -1486,11 +1490,52 @@ def checkd(bib, wave, key, row=None, review=True, current=None, decision=None):
 
 
 _RUNS = {}
+# The registry answers (doi.org handles/RA, Crossref, DataCite) the offline wave runs read,
+# frozen on 2026-09-30 from the post-check cache (4540 responses). The runs used to read the
+# git-ignored .bibcheck/research-postcheck/ itself, so their result depended on what the
+# working tree had cached: in a clean clone a test passed in the suite (earlier tests had
+# fetched the DOIs it needs) and failed on its own (WhitEtal96 -> WitmEtal96 needs
+# 10.1006/ijhc.1996.0060).
+WAVE_CACHE = ROOT / "tests/fixtures/postcheck-wave-cache-2026-09-30.jsonl.gz"
+_WAVE_CACHE_DIR = None
+
+
+def wave_cache_dir():
+    """A temporary post-check cache holding exactly the frozen responses (created once)."""
+    global _WAVE_CACHE_DIR
+    if _WAVE_CACHE_DIR is None:
+        import atexit
+        import gzip
+        import hashlib
+        import shutil
+        import tempfile
+        d = Path(tempfile.mkdtemp(prefix="postcheck-wave-cache-"))
+        atexit.register(shutil.rmtree, d, True)
+        with gzip.open(WAVE_CACHE, "rt") as f:
+            for line in f:
+                r = json.loads(line)
+                (d / (hashlib.sha256(r["url"].encode()).hexdigest() + ".json")).write_text(json.dumps(r))
+        (d / "validator").mkdir()
+        _WAVE_CACHE_DIR = d
+    return _WAVE_CACHE_DIR
+
+
+def offline_run(folder, **kw):
+    """pc.run on a wave folder, offline, against the frozen bibliography, key renames and
+    registry answers only; nothing it reads depends on the working tree or on other tests."""
+    d = wave_cache_dir()
+    V = pc.validator()
+    saved = pc.CACHE, V.CACHE
+    pc.CACHE, V.CACHE = d, d / "validator"
+    try:
+        return pc.run(folder, write=False, offline=True, bib=FROZEN_BIB, renames=dict(LOGGED_RENAMES), **kw)
+    finally:
+        pc.CACHE, V.CACHE = saved
 
 
 def wave_run(n):
     if n not in _RUNS:
-        _RUNS[n] = pc.run(ROOT / f"verification/research-2026-09-25/wave{n}", write=False, offline=True, bib=FROZEN_BIB)
+        _RUNS[n] = offline_run(ROOT / f"verification/research-2026-09-25/wave{n}")
     return _RUNS[n]
 
 
@@ -1853,7 +1898,7 @@ def checkr(bib, wave, key, res=None, row=None, current=None):
     bib_ = bib if current is None else {k: v for k, v in bib.items() if k != key}
     rec = pc.check_entry(row or rows_[key], bib_.get(key), bib_, ctx_for(bib_), review=review_.get(key),
                          validation=validation_.get(key), resolution=res)
-    pc.apply_resolutions({key: rec}, {key: res}, bib_, NO_DELETIONS, pc.renamed_away())
+    pc.apply_resolutions({key: rec}, {key: res}, bib_, NO_DELETIONS, dict(LOGGED_RENAMES))
     return rec
 
 
@@ -1923,7 +1968,8 @@ def test_resolution_drop_marks_the_entry_for_removal(bib):
     assert rec["remove_entry"].startswith("no evidence found after: Crossref bibliographic search")
     assert rec["changes"] == [] and rec["removals"] == {} and rec["key_plan"]["action"] == "keep"
     assert not pc.needs_user(rec)
-    rows_, noop = pc.build_resolution_removals({"Seac97": RESOLUTION["Seac97"]}, bib, NO_DELETIONS)
+    rows_, noop = pc.build_resolution_removals({"Seac97": RESOLUTION["Seac97"]}, bib, NO_DELETIONS,
+                                               renames=dict(LOGGED_RENAMES))
     assert [r["key"] for r in rows_] == ["Seac97"] and noop == []
 
 
@@ -1934,7 +1980,8 @@ def test_resolution_drop_of_absent_or_deleted_key_is_a_noop(bib):
     rec = checkr(bib, "3", "Seac97", current={})
     assert not rec.get("remove_entry") and "resolution_noop" in codes(rec) and not pc.needs_user(rec)
     rows_, noop = pc.build_resolution_removals({"Seac97": RESOLUTION["Seac97"]},
-                                               {k: v for k, v in bib.items() if k != "Seac97"}, NO_DELETIONS)
+                                               {k: v for k, v in bib.items() if k != "Seac97"}, NO_DELETIONS,
+                                               renames=dict(LOGGED_RENAMES))
     assert rows_ == [] and noop[0]["key"] == "Seac97"
     deleted = {"KahaEtal08b": {"key": "KahaEtal08b", "reason": "duplicate of KahaEtal08a (approved merge)"}}
     res = RESOLUTION["KahaEtal08b"]
@@ -1943,7 +1990,7 @@ def test_resolution_drop_of_absent_or_deleted_key_is_a_noop(bib):
     pc.apply_resolutions({"KahaEtal08b": rec}, {"KahaEtal08b": res}, bib, deleted, {"KahaEtal08c": "KahaEtal08b"})
     assert not rec.get("remove_entry") and rec["key_plan"]["action"] == "keep"
     assert "renamed from KahaEtal08c" in rec["resolution"]["noop"]
-    rows_, noop = pc.build_resolution_removals({"KahaEtal08b": res}, bib, deleted)
+    rows_, noop = pc.build_resolution_removals({"KahaEtal08b": res}, bib, deleted, renames=dict(LOGGED_RENAMES))
     assert rows_ == [] and "another work" in noop[0]["why"]
 
 
@@ -2045,14 +2092,14 @@ def test_run_reads_resolutions_in_the_final_pass_only(tmp_path):
     res_dir.mkdir()
     (res_dir / "batch-01.json").write_text(json.dumps([RESOLUTION[k] for k in ("Seac97", "DaPo67", "BairNoma78")]))
     post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False, resolutions=res_dir,
-                                            deleted=NO_DELETIONS)
+                                            deleted=NO_DELETIONS, renames=dict(LOGGED_RENAMES))
     rows_ = {p["key"]: p for p in page}
     assert not any(r["needs_user"] for r in rows_.values())
     assert post["summary"]["resolution_removals"] == ["Seac97"] and rows_["Seac97"]["remove_entry"]
     assert post["summary"]["resolution_residue"] == {}
     assert rows_["BairNoma78"]["resolution"]["decision"] == "apply"
     assert not any(f["code"].startswith("resolution_") for r in rules_only.values() for f in r["flags"])
-    post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False)
+    post, page, rules_only, merged = pc.run(wave, bib=FROZEN_BIB, write=False, renames=dict(LOGGED_RENAMES))
     assert post["summary"]["resolutions"] == {} and any(p["needs_user"] for p in page)
 
 

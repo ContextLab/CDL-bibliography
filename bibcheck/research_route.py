@@ -75,7 +75,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = 'research-evidence'
 POLICY = '1'
 NAME = 'research_route'
-BODY_DIR = ROOT / '.bibcheck' / 'research-pilot'
+# validate.py's fetched bodies. BIBCHECK_RESEARCH_BODIES points both at another directory
+# (the test suite sets it, so live fetches in tests never write into this clone's cache).
+BODY_DIR = Path(os.environ.get('BIBCHECK_RESEARCH_BODIES') or ROOT / '.bibcheck' / 'research-pilot')
 VALIDATE_PY = ROOT / 'verification/research-pilot-2026-09-24/validate.py'
 POSTCHECK_PY = ROOT / 'verification/research-2026-09-25/postcheck.py'
 
@@ -576,6 +578,26 @@ class SavedBodies:
 
     def found(self, url, quote):
         return self.saved.get((url, quote), (False, None))
+
+
+class CachedOrSavedBodies:
+    """Offline re-check with a body cache that may be partial: a body the cache holds is
+    searched again (a changed body changes its sha256 and fails the re-check); a URL whose
+    body it does not hold is taken as the saved evidence recorded it, exactly as a clone
+    without the cache does. A missing file is not evidence against the approval: an empty
+    or partial .bibcheck/research-pilot/ (made by a test or a validate.py run that fetched
+    a few URLs) used to reject every research approval, so `crossref restore` restored
+    nothing (2026-09-30)."""
+
+    def __init__(self, candidate, bodies=None):
+        self.local = bodies or Bodies()
+        self.saved = SavedBodies(candidate)
+
+    def found(self, url, quote):
+        text, _ = self.local.get(url)
+        if text is None:
+            return self.saved.found(url, quote)
+        return self.local.found(url, quote)
 
 
 def _saved_items(candidate):
@@ -1314,14 +1336,15 @@ def valid_research_approval(result):
 
     Always: the saved record is complete and self-consistent (``_saved_consistent``) and
     no known DOI-linked evidence contradicts it (preprint_review.context_issues, as for
-    the other route approvals). Then, where this clone can: with validate.py's body cache
-    (.bibcheck/research-pilot/) the saved candidate must re-assess to the same approval,
-    every quote searched again in its saved body and each body's sha256 the recorded one
-    (a missing or changed body fails); without the cache (a fresh clone, CI) the
-    re-assessment uses the recorded quote results, and where validate.py and the
-    post-check's normalisers cannot be imported (the minimal verification requirements
-    lack pandas) the self-consistency check stands alone, the same trust the snapshot
-    import gives a saved Crossref candidate."""
+    the other route approvals). Then, where this clone can: the saved candidate must
+    re-assess to the same approval. A quote whose body validate.py's cache
+    (.bibcheck/research-pilot/) holds is searched again in it and the body's sha256 must
+    be the recorded one (a changed body fails); a quote whose body the cache does not
+    hold (no cache at all in a fresh clone or CI, or a partial one) uses its recorded
+    quote result (CachedOrSavedBodies). Where validate.py and the post-check's
+    normalisers cannot be imported (the minimal verification requirements lack pandas)
+    the self-consistency check stands alone, the same trust the snapshot import gives a
+    saved Crossref candidate."""
     if result.get('accepted_source') != SOURCE or result.get('external_evidence'):
         return False
     try:
@@ -1335,20 +1358,56 @@ def valid_research_approval(result):
             return False
         if not _saved_consistent(result, c):
             return False
-        if BODY_DIR.is_dir():
-            checked = recheck(c, Bodies())
-        else:
-            try:
-                validator(), postcheck()
-            except ImportError:
-                return True
-            checked = recheck(c, SavedBodies(c))
+        try:
+            validator(), postcheck()
+        except ImportError:
+            return True
+        checked = recheck(c, CachedOrSavedBodies(c) if BODY_DIR.is_dir() else SavedBodies(c))
         return (checked['status'] == 'metadata_verified'
                 and checked['accepted_record_id'] == result['accepted_record_id']
                 and checked.get('accepted_doi') == result.get('accepted_doi')
                 and checked['candidates'][0] == c)
     except (ValueError, KeyError, TypeError, AttributeError, ImportError, OSError):
         return False
+
+
+def research_rejection_reason(result):
+    """The first check of valid_research_approval that ``result`` fails, in words (None
+    when it passes); for import_snapshot's error message only."""
+    if result.get('accepted_source') != SOURCE:
+        return None
+    if result.get('external_evidence'):
+        return 'a research approval carries external_evidence'
+    saved = [c for c in result.get('candidates', []) if c.get('source') == SOURCE]
+    if len(saved) != 1:
+        return f'{len(saved)} research candidates (exactly one expected)'
+    c = saved[0]
+    from preprint_review import context_issues
+    if (context_issues(c['checked_fields'], result['candidates'], result.get('accepted_doi'))
+            and notice_blocks(c, result['candidates'])):
+        return 'DOI-linked evidence (a notice) contradicts the saved research record'
+    if not _saved_consistent(result, c):
+        return 'the saved research record is incomplete or inconsistent (fields, identity or accepted id)'
+    try:
+        validator(), postcheck()
+    except ImportError:
+        return None
+    if BODY_DIR.is_dir():
+        local = Bodies()
+        for item in _saved_items(c):
+            text, sha = local.get(item['url'])
+            if text is not None and sha != item.get('body_sha256'):
+                return (f"the body cache {BODY_DIR} holds a different body for {item['url']} "
+                        f"(sha256 {sha[:12]}, the approval recorded {(item.get('body_sha256') or 'none')[:12]}): "
+                        "a refetched or edited page; move that file away (or the cache) to restore from "
+                        "the recorded evidence")
+    checked = recheck(c, CachedOrSavedBodies(c) if BODY_DIR.is_dir() else SavedBodies(c))
+    if checked['status'] != 'metadata_verified':
+        return f"re-assessing the saved evidence gives {checked['status']}: {'; '.join(checked.get('issues') or [])[:300]}"
+    if (checked['accepted_record_id'] == result['accepted_record_id']
+            and checked.get('accepted_doi') == result.get('accepted_doi') and checked['candidates'][0] == c):
+        return None
+    return 'the re-assessed research candidate differs from the saved one'
 
 
 def reason_class(issue):
@@ -1505,4 +1564,6 @@ def uncommitted_evidence(root=ROOT):
 
 from verification import register_approval_validator, register_notice_accounting  # noqa: E402
 register_approval_validator(valid_research_approval)      # hook contract 2026-09-25
+from verification import register_approval_rejection_reason  # noqa: E402
+register_approval_rejection_reason(SOURCE, research_rejection_reason)
 register_notice_accounting(SOURCE, accounts_for_notices)  # hook contract 2026-09-27

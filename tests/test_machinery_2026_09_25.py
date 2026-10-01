@@ -790,11 +790,18 @@ def crossref_contact():
     import sqlite3
     if os.environ.get("CROSSREF_MAILTO"):
         return os.environ["CROSSREF_MAILTO"]
-    db = sqlite3.connect(f"file:{ROOT / '.bibcheck/verification.sqlite3'}?mode=ro", uri=True)
+    missing = ("Set CROSSREF_MAILTO to a real contact address; these tests call the live Crossref API "
+               "(in CI: the repository Actions variable CROSSREF_MAILTO)")
+    cache = ROOT / ".bibcheck/verification.sqlite3"
+    if not cache.is_file():
+        pytest.fail(f"{missing}. No CROSSREF_MAILTO in the environment and no local cache at {cache}.")
+    db = sqlite3.connect(f"file:{cache}?mode=ro", uri=True)
     try:
         row = db.execute("SELECT body FROM responses WHERE body LIKE '%api.crossref.org%mailto=%' LIMIT 1").fetchone()
     finally:
         db.close()
+    if row is None:
+        pytest.fail(f"{missing}. The local cache {cache} holds no Crossref request with a mailto.")
     from urllib.parse import parse_qs, urlparse
     return parse_qs(urlparse(json.loads(row[0])["url"]).query)["mailto"][0]
 

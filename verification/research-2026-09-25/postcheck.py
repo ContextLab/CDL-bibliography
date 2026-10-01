@@ -655,15 +655,15 @@ def load_bib(bib="HEAD"):
     return H.load_bibliography(str(bib), verbose=False)
 
 
-def renamed_away():
-    """{old key: the key it has now}, following key-renames.json in log order.
+def renamed_away(path=None):
+    """{old key: the key it has now}, following key-renames.json (or `path`) in log order.
 
     Composed in order (as research_route.rename_walk reads the log), not last row wins: the
     2026-09-30 swap of KahaEtal08a and KahaEtal08b is logged as three renames through a
     temporary key, and a last-row-wins map sent KahaEtal08c (the reply, now KahaEtal08a) to
     the chapter (now KahaEtal08b). For every other logged key the two readings agree
     (checked on 2026-09-30 against the whole log)."""
-    path = ROOT / "verification/key-renames.json"
+    path = Path(path) if path else ROOT / "verification/key-renames.json"
     if not path.exists():
         return {}
     log = json.loads(path.read_text())

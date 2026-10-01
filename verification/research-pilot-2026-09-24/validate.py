@@ -15,6 +15,7 @@ the source is the right work and version is what the spot-check is for.
 import hashlib
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -27,7 +28,9 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-CACHE = ROOT / ".bibcheck/research-pilot"
+# BIBCHECK_RESEARCH_BODIES overrides the body cache (bibcheck/research_route.py reads the same
+# directory); the test suite sets it so its live fetches never write into the clone's cache.
+CACHE = Path(os.environ.get("BIBCHECK_RESEARCH_BODIES") or ROOT / ".bibcheck/research-pilot")
 import ssl
 import certifi
 SSL = ssl.create_default_context(cafile=certifi.where())

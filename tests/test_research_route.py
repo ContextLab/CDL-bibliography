@@ -239,6 +239,43 @@ def test_offline_revalidation_without_body_cache(entries, bundles, cities, monke
     assert not v.route_approval_valid(tampered)
 
 
+def test_offline_revalidation_with_an_empty_or_partial_body_cache(entries, bundles, cities, monkeypatch, tmp_path):
+    # 2026-09-30: an empty .bibcheck/research-pilot/ (a test or validate.py run had made it)
+    # rejected every research approval, so `crossref restore` restored nothing. A body the
+    # cache does not hold uses the recorded quote result, as in a clone without the cache.
+    result = roundtrip(assess(entries, bundles, cities, 'Tulv74'))
+    c = [x for x in result['candidates'] if x['source'] == R.SOURCE][0]
+    (tmp_path / 'empty').mkdir()
+    monkeypatch.setattr(R, 'BODY_DIR', tmp_path / 'empty')
+    assert v.route_approval_valid(result)
+    tampered = deepcopy(result)
+    [x for x in tampered['candidates'] if x['source'] == R.SOURCE][0]['checked_fields']['year'] = '1975'
+    assert not v.route_approval_valid(tampered)
+    # partial: one quoted body missing, another present (and still searched again)
+    def body(url, root):
+        return root / (hashlib.sha256(url.encode()).hexdigest() + '.txt')
+
+    for key in APPROVED:   # an approval quoting at least two saved bodies
+        result = roundtrip(assess(entries, bundles, cities, key))
+        c = [x for x in result['candidates'] if x['source'] == R.SOURCE][0]
+        urls = sorted({e['url'] for f in c['fields'].values() for e in f.get('evidence', [])
+                       if e.get('found') and body(e['url'], BODIES).exists()})
+        if len(urls) >= 2:
+            break
+    assert len(urls) >= 2, 'no fixture approval quotes two saved bodies'
+    shutil.copytree(BODIES, tmp_path / 'partial')
+    body(urls[0], tmp_path / 'partial').unlink()
+    monkeypatch.setattr(R, 'BODY_DIR', tmp_path / 'partial')
+    assert v.route_approval_valid(result), key
+    assert R.research_rejection_reason(result) is None
+    other = body(urls[1], tmp_path / 'partial')
+    other.write_text(other.read_text() + '\n')   # a changed body the cache holds still fails
+    assert not v.route_approval_valid(result), key
+    # ... and the restore error names the key, the URL and the cause
+    why = v.approval_rejection_reason(result)
+    assert urls[1] in why and 'holds a different body' in why, why
+
+
 def test_offline_revalidation_rejects_changed_body_and_tampering(entries, bundles, cities, monkeypatch, tmp_path):
     result = roundtrip(assess(entries, bundles, cities, 'Tulv74'))
     c = [x for x in result['candidates'] if x['source'] == R.SOURCE][0]

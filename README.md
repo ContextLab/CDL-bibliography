@@ -298,7 +298,7 @@ The lab's results for the whole library are shared in [verification/baseline.jso
 
 The `Citation verification` workflow runs on every pull request to `master`, and on every push to `master`. It takes the base branch's `cdl.bib` and its saved results, and checks every entry that is new or edited in the pull request. The check fails unless all of them are verified. Unchanged entries are not checked again. Saved approvals come only from the base branch (the workflow also reuses its own cache of earlier checks), so a pull request can't approve its own entries. Running the workflow by hand from the Actions tab checks the whole library.
 
-The workflow needs the repository's Actions variable `CROSSREF_MAILTO` to be set to a real contact address.
+The workflow needs the repository's Actions variable `CROSSREF_MAILTO` to be set to a real contact address. The `autocheck` workflow, which runs the test suite, needs it too.
 
 ### Human review
 
@@ -404,7 +404,7 @@ python -m pytest tests
 python bibcheck/test.py
 ```
 
-Almost all tests use saved copies of real source records, so they run offline. Four tests call the live Crossref API, so they need a network connection and `CROSSREF_MAILTO`, and can fail temporarily if Crossref is down. Eight tests read PDFs from a local paper library and are skipped when it isn't available. `bibcheck/test.py` runs the formatting check on `cdl.bib`.
+Almost all tests use saved copies of real source records, so they run offline. Five tests run `bibcheck.py verify` or `commit` and need `CROSSREF_MAILTO`; four of them call the live Crossref API, so they need a network connection and can fail temporarily if Crossref is down. Without it (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. Eight tests read PDFs from a local paper library and are skipped when it isn't available. `bibcheck/test.py` runs the formatting check on `cdl.bib`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a citation, and [docs/verification.md](docs/verification.md) for how verification works.
 
