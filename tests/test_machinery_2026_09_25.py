@@ -859,6 +859,9 @@ def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
         return subprocess.run(["git", *args], cwd=repo, env=env, capture_output=True, text=True, check=True).stdout
 
     git("init", "-q")
+    # CI runners have no global git identity; give this throwaway repo its own.
+    git("config", "user.name", "bibcheck test")
+    git("config", "user.email", "bibcheck-test@example.org")
     base = write_bib(tmp_path / "base.bib", ZOLL90)
     bib = write_bib(repo / "cdl.bib", ZOLL90)
     (repo / "notes.txt").write_text("original\n")
