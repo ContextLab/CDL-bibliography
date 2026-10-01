@@ -688,6 +688,11 @@ the repository's Actions variable.
   (never the snapshot in the pull request), and runs
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
   edited content is gated; key-only renames are excluded.
+- A push whose base revision is not in the history (a force-push, rewritten history, or
+  a new branch) has nothing to compare against. Its content is already merged, so the job
+  restores the pushed commit's own `verification/baseline.jsonl.gz` and runs
+  `crossref status cdl.bib` (offline): every entry must have an accepted result for its
+  exact current text. Pull requests never take this path; one without a base is refused.
 - A manual run restores the committed baseline and checks the whole library.
 - The SQLite database is kept in the Actions cache, keyed by ref; a pull request can
   fall back to the `master` cache, and `master` never restores a pull-request cache. The
