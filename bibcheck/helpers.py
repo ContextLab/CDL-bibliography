@@ -67,11 +67,6 @@ journal_key = load_key_overrides(load_key("journal_key.xls"), "journal_key_overr
 publisher_key = load_key("publisher_key.xls")
 address_key = load_key("address_key.xls")
 
-# Preserve published citation keys after source-backed metadata corrections.
-# Each exception is tied to the exact newly computed name, and affects only
-# key naming checks; it never disables metadata or formatting checks.
-key_overrides = json.loads((Path(__file__).parent / "key_overrides.json").read_text())
-
 LATEST_BIBFILE = (
     "https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib"
 )
@@ -393,8 +388,7 @@ def check_entries(
     tofix = [
         (i, v, t)
         for i, v, t in tqdm(zip(ids, vals, targets))
-        if not ("force" in list(bd[i].keys()) or same(proc(v), proc(t))
-                or (field == "ID" and key_overrides.get(i) == t))
+        if not ("force" in list(bd[i].keys()) or same(proc(v), proc(t)))
     ]
 
     if len(tofix) == 0:

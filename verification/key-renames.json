@@ -1619,5 +1619,237 @@
   "reason": "organization-author key rule: a dotted abbreviation counts as the words it stands for (helpers.ORGANIZATION_ABBREVIATIONS); {U.S. Food and Drug Administration} gives Unit",
   "user_note": "in the README, your parsing example of U.S. Food and Drug Administration is incorrect. 'U.S.' decomposes to 'United States' so the first 4 letters are 'Unit'",
   "decision_source": "user, Claude Code session of 2026-09-30 (request to lean pull request #89)"
+ },
+ {
+  "old_key": "ChilEtal12",
+  "new_key": "ChilEtal95",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "HowaEich14",
+  "new_key": "HowaEich15",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Weis11",
+  "new_key": "Weis12",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "SekuKaha08",
+  "new_key": "SekuKaha07",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "CruiEtal01",
+  "new_key": "CruiEtal02",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "VanREtal12",
+  "new_key": "vanREtal12",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "BorgEtal06",
+  "new_key": "SchaEtal06",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Thie03",
+  "new_key": "ThieSton03",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Raz05",
+  "new_key": "RazEtal05",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Baun11",
+  "new_key": "BaunEtal11",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Colo05",
+  "new_key": "Colo06",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "DawsEtal09",
+  "new_key": "DawsEtal10",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Haxb96",
+  "new_key": "HaxbEtal96",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Tulv94",
+  "new_key": "TulvEtal94",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "AlleEtal12b",
+  "new_key": "AlleEtal14",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "TigaEtal16",
+  "new_key": "TigaEtal17",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "HuanEtal01",
+  "new_key": "HuanEtal02",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "NichHolm01",
+  "new_key": "NichHolm02",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "MorrEtal18",
+  "new_key": "MorrEtal19",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "AlleEtal12a",
+  "new_key": "AlleEtal12",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "EwbaEtal12",
+  "new_key": "EwbaEtal13",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "CoelEtal09",
+  "new_key": "CoelEtal08",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "deGaEtal12",
+  "new_key": "deGaEtal13",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "LianEtal12",
+  "new_key": "LianEtal13",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "SpieEtal13",
+  "new_key": "SpieEtal15",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "HabeKnut09",
+  "new_key": "HabeKnut10",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "Rasm06",
+  "new_key": "RasmWill06",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "ThruEtal06",
+  "new_key": "ThruEtal05",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "GuimAmar05",
+  "new_key": "GuimNune05",
+  "date": "2026-10-01",
+  "reason": "key-rule exception removed (user 2026-10-01: no overrides)",
+  "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
+  "decision_source": "user, Claude Code session of 2026-10-01"
  }
 ]
