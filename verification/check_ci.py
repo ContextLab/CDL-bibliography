@@ -2,6 +2,11 @@
 
 PR snapshots come from the trusted base revision, not the proposed changes.
 PR caches remain scoped to their merge ref; master never restores a PR cache.
+
+A push whose previous commit is not in the history (a force-push or rewritten
+history, or a new branch) has no base to compare against. Pushed content is
+already merged, so its own committed baseline is checked instead: offline,
+every entry must have an accepted result for its exact current text.
 """
 
 import os
@@ -19,6 +24,18 @@ def git_file(revision, path):
     ).stdout
 
 
+def commit_exists(revision):
+    return bool(revision) and set(revision) != {"0"} and subprocess.run(
+        ["git", "cat-file", "-e", f"{revision}^{{commit}}"], capture_output=True
+    ).returncode == 0
+
+
+def library_check(command):
+    """Restore the committed baseline and require every entry to be accepted (offline)."""
+    subprocess.run(command + ["restore", "verification/baseline.jsonl.gz"], check=True)
+    return subprocess.run(command + ["status", "cdl.bib"]).returncode
+
+
 def main():
     work = Path(".bibcheck")
     work.mkdir(exist_ok=True)
@@ -26,6 +43,10 @@ def main():
     event = os.environ.get("EVENT_NAME", "")
     command = [sys.executable, "bibcheck.py", "crossref"]
     snapshot = Path("verification/baseline.jsonl.gz")
+    if event == "push" and not commit_exists(base):
+        print(f"Base revision {base or '(none)'} is not in the history (force-push or new branch); "
+              "checking the whole library against its committed baseline instead.")
+        return library_check(command)
     if event in {"pull_request", "push"}:
         if not base or set(base) == {"0"}:
             raise ValueError("Missing base revision; use a manual full-library run")

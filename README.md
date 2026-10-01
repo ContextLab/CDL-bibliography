@@ -297,7 +297,7 @@ The lab's results for the whole library are shared in [verification/baseline.jso
 
 ### Automatic checks on pull requests
 
-The `Citation verification` workflow runs on every pull request to `master`, and on every push to `master`. It takes the base branch's `cdl.bib` and its saved results, and checks every entry that is new or edited in the pull request. The check fails unless all of them are verified. Unchanged entries are not checked again. Saved approvals come only from the base branch (the workflow also reuses its own cache of earlier checks), so a pull request can't approve its own entries. Running the workflow by hand from the Actions tab checks the whole library.
+The `Citation verification` workflow runs on every pull request to `master`, and on every push to `master`. It takes the base branch's `cdl.bib` and its saved results, and checks every entry that is new or edited in the pull request. The check fails unless all of them are verified. Unchanged entries are not checked again. Saved approvals come only from the base branch (the workflow also reuses its own cache of earlier checks), so a pull request can't approve its own entries. If a push to `master` rewrites history, so that there is no earlier commit to compare against, the workflow instead checks that every entry in the pushed `cdl.bib` has a verified result in the pushed `verification/baseline.jsonl.gz`. Running the workflow by hand from the Actions tab checks the whole library.
 
 The workflow needs the repository's Actions variable `CROSSREF_MAILTO` to be set to a real contact address. The `autocheck` workflow, which runs the test suite, needs it too.
 
