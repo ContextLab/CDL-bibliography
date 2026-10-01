@@ -1,1 +1,0 @@
-{"data":{"item":{"title":"How do blind people know that blue is cold? Distributional semantics encode color-adjective associations.","published":"2021-01-01","journal":"Proceedings of the Annual Meeting of the Cognitive Science Society","volume":"43","authors":{"nodes":[{"name":"van Paridon, Jeroen"},{"name":"Liu, Qiawen"},{"name":"Lupyan, Gary"}]}}}}
