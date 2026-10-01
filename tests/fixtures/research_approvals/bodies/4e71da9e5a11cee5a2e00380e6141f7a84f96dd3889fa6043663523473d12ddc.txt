@@ -1,0 +1,21 @@
+Provider: JSTOR http://www.jstor.org
+Database: JSTOR
+Content: text/plain; charset="UTF-8"
+
+
+TY  - JOUR
+TI  - Cue-Dependent Forgetting: When we forget something we once knew, it does not necessarily mean that the memory trace has been lost; it may only be inaccessible
+AU  - Tulving, Endel
+C1  - Full publication date: January-February 1974
+DB  - JSTOR
+EP  - 82
+IS  - 1
+PB  - Sigma Xi, The Scientific Research Society
+PY  - 1974
+SN  - 00030996
+SP  - 74
+T2  - American Scientist
+UR  - http://www.jstor.org/stable/27844717
+VL  - 62
+Y2  - 2026/09/26/
+ER  - 

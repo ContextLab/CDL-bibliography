@@ -207,10 +207,77 @@ def last_name(names):
         return x[0]
 
 
+def split_names(names):
+    """Split a BibTeX name list at " and " outside braces (2026-09-27): a braced
+    group or organization such as ``{U.S. Food and Drug Administration}`` is one
+    name, not two. A list with unbalanced braces is split as before."""
+    parts, depth, start, i = [], 0, 0, 0
+    while i < len(names):
+        c = names[i]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth < 0:
+                return names.split(" and ")
+        elif depth == 0 and names.startswith(" and ", i):
+            parts.append(names[start:i])
+            i += 5
+            start = i
+            continue
+        i += 1
+    if depth != 0:
+        return names.split(" and ")
+    parts.append(names[start:])
+    return parts
+
+
+# Dotted abbreviations in an organization's name, read as the words they stand for when
+# the organization's key part is taken (user, 2026-09-30: "'U.S.' decomposes to 'United
+# States' so the first 4 letters are 'Unit'"). Only well-established forms, matched as a
+# whole word exactly as printed; an undotted 'US' or an unlisted dotted form is unchanged.
+ORGANIZATION_ABBREVIATIONS = {
+    "U.S.": "United States",
+    "U.S.A.": "United States of America",
+    "U.K.": "United Kingdom",
+    "U.N.": "United Nations",
+}
+
+
+def organization_key(name):
+    """Key part of a fully braced (organization/group) author: the letters of its
+    successive words, concatenated until 4 letters are reached, then truncated to 4,
+    with the capitalization as printed (user rule 2026-09-28, docs/decision-log.md
+    "Organization authors in keys": "use as many organization 'words' as are available,
+    until 4 letters are achieved"). A dotted abbreviation in ORGANIZATION_ABBREVIATIONS
+    counts as the words it stands for (user, 2026-09-30): {R Core Team} -> RCor,
+    {U.S. Food and Drug Administration} -> Unit, {RNS System ...} -> RNSS, {Centers for
+    Disease Control and Prevention} -> Cent. A name with fewer than 4 letters in all
+    keeps what it has. None for any other name ({van der Meer} inside a personal name is
+    not braced whole)."""
+    name = name.strip()
+    if not fully_braced(name):
+        return None
+    inner = name[1:-1].strip()
+    while fully_braced(inner):  # the formatter's double-braced form
+        inner = inner[1:-1].strip()
+    words = []
+    for word in remove_accents_and_hyphens(decode(inner)).split():
+        words += ORGANIZATION_ABBREVIATIONS.get(remove_curlies(word), word).split()
+    if not words:
+        return None
+    letters = ""
+    for word in words:
+        letters += "".join(c for c in remove_curlies(word) if c.isascii() and c.isalpha())
+        if len(letters) >= 4:
+            break
+    return letters[:4] or None
+
+
 def last_names_from_str(x):
     # pass in a single string (and-separated) or list of authors and get back a list of last names
     if type(x) == str:
-        return [last_name(n) for n in x.split(" and ")]
+        return [last_name(n) for n in split_names(x)]
     elif type(x) == list:
         return [last_name(n) for n in x]
     else:
@@ -219,6 +286,12 @@ def last_names_from_str(x):
 
 def authors2key(authors, year):
     def key(author):
+        # an organization (a fully braced name) is one author keyed by the letters of its
+        # successive words, up to 4
+        org = organization_key(author)
+        if org:
+            return org
+
         # convert accented unicode characters to closest ascii equivalent
         author = decode(author)
 
@@ -233,7 +306,7 @@ def authors2key(authors, year):
 
     yr_str = str(year)[-2:]
 
-    authors = authors.split(" and ")
+    authors = split_names(authors)
     if len(authors) == 0:
         raise Exception("Author information missing, no key generated")
     elif len(authors) == 1:
@@ -379,9 +452,17 @@ def get_key_suffixes(n):
 # If keys match aside from suffix then still allow the bibtex file to "pass"
 # as long as all "matching" keys are unique and all have suffixes and the
 # suffixes span a, b, c, ..., etc. without gaps
+def key_names(bd):
+    """The names a cite key is built from: the authors, or for an edited volume
+    with no author (``editor`` only), the editors (stage 2B-i, 2026-09-25; the
+    rule used to demand a year-only key such as ``94``)."""
+    return [a if a.strip() else e
+            for a, e in zip(get_vals(bd, "author"), get_vals(bd, "editor"))]
+
+
 def check_key_suffixes(bd):
     ids = get_vals(bd, "ID")
-    authors = get_vals(bd, "author")
+    authors = key_names(bd)
     years = get_vals(bd, "year")
 
     target_ids = [authors2key(a, y) for a, y in zip(authors, years)]
@@ -438,11 +519,34 @@ def valid_page(p):  # single page, no hyphens
     if len(p) == 0:  # empty string
         return True, "empty", None
 
-    try:
-        v = int(p)  # integer
-        return True, "int", v
-    except:
-        pass
+    if re.fullmatch(r"[0-9]+", p):  # integer
+        return True, "int", int(p)
+
+    # Source-backed alphanumeric article number with dot-separated parts
+    # (machinery fix 2026-09-25, KothEtal25: Crossref article-number
+    # "IMAG.a.136"). It must start with a letter, contain a digit, and have
+    # no hyphen, so it can never be read as a range.
+    if re.fullmatch(r"[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)+", p) and re.search(r"\d", p):
+        return True, "article-number", None
+
+    # Society for Neuroscience eLocator (held form 2026-09-27, HeniEtal19:
+    # "ENEURO.0306-19.2019"): JOURNAL.NNNN-YY.YYYY. Its hyphen is part of the
+    # identifier, so it is matched whole here, before any range splitting.
+    if re.fullmatch(r"[A-Z]+\.\d{4}-\d{2}\.\d{4}", p):
+        return True, "elocator", None
+
+    # Science-family article number (held form 2026-09-27, ViveEtal10: Sci
+    # Transl Med "24ra22" = issue 24, research article 22): issue digits, a
+    # two-letter lowercase article type, then the article digits.
+    if re.fullmatch(r"[1-9]\d*[a-z]{2}[1-9]\d*", p):
+        return True, "article-number", None
+
+    # page number with a capital-letter suffix (held form 2026-09-27,
+    # BrinCrag72: proceedings abstracts printed as "28P--29P", PubMed
+    # "PG  - 28P-29P"). A range needs the same suffix on both ends.
+    x = re.fullmatch(r"(?P<digits>[1-9]\d*)(?P<suffix>[A-Z])", p)
+    if x is not None:
+        return True, "suffixed", [x.group("suffix"), int(x.group("digits"))]
 
     # prefix of one or more letters, followed by a sequence of digits
     r1 = re.compile(r"""(?P<prefix>[a-zA-Z]+)(?P<digits>\d+)""")
@@ -508,6 +612,28 @@ def valid_pages(p):
             suggested_fix = p.replace(dash_char, "-")
             return False, [p, suggested_fix]
 
+    # Cell Press citations may include an electronic-page suffix on the last
+    # printed page (e.g. 439--452.e5). Preserve that published locator exactly.
+    electronic_range = re.fullmatch(r"([1-9]\d*)-{1,2}([1-9]\d*)(\.e[1-9]\d*)", p)
+    if electronic_range:
+        first, last, electronic = electronic_range.groups()
+        return int(first) < int(last), [p, first + "--" + last + electronic]
+
+    # An article printed in two or more parts (held form 2026-09-27,
+    # MullSchu94: "81--190, 257--339"; user default: cite every part). Each
+    # part must be valid on its own and the parts must run forward.
+    if "," in p:
+        parts = [x.strip() for x in p.split(",")]
+        checked = [valid_pages(x) for x in parts]
+        target = ", ".join(c[1][1] for c in checked)
+        if not all(len(x) > 0 and c[0] for x, c in zip(parts, checked)):
+            return False, [p, target]
+        bounds = [[valid_page(y)[1:] for y in c[1][1].split("--")] for c in checked]
+        ordered = all(
+            b1[-1][0] == "int" and b2[0][0] == "int" and b1[-1][1] < b2[0][1]
+            for b1, b2 in zip(bounds, bounds[1:]))
+        return ordered, [p, target]
+
     valid, kind, val = valid_page(p)
     if valid:  # "single" page
         return True, [p, p]
@@ -520,6 +646,14 @@ def valid_pages(p):
 
             valid1, kind1, val1 = valid_page(ps[0])
             valid2, kind2, val2 = valid_page(ps[1])
+
+            # front matter through body text (held form 2026-09-27, Perr14
+            # "i--97", Unde45, Ward37, Webb17, Calk96): a lowercase roman
+            # first page and an arabic last page. The two numberings cannot be
+            # compared, so the order is fixed by the forms: roman first.
+            if (valid1 and valid2 and kind1 == "roman" and kind2 == "int"
+                    and ps[0] == ps[0].lower() and val2 > 0):
+                return True, [p, "--".join(ps)]
 
             if (not (valid1 and valid2)) or (not (kind1 == kind2)):
                 if (kind1 == "prefixed") and (kind2 == "int"):
@@ -539,7 +673,7 @@ def valid_pages(p):
                     if len(p2) < len(p1):
                         return False, [p, "--".join([p1, p1[: -len(p2)] + p2])]
                     return False, [p, "--".join(ps)]
-            elif kind1 in ["prefixed", "conference"]:
+            elif kind1 in ["prefixed", "conference", "suffixed"]:
                 if (val1[0] == val2[0]) and (val1[1] < val2[1]):
                     return True, [p, "--".join(ps)]
                 else:
@@ -560,19 +694,228 @@ def generate_correct_pages(bd):
     return target_pages, unfixable
 
 
-def format_journal_name(n, key=journal_key, force_caps=force_caps):
-    if (n.lower() in key.keys()) and (type(key[n.lower()]) == str):
-        n = key[n.lower()]
+DOTTED_INITIALS = re.compile(r"(?:\{[A-Z]\}\.|[A-Z]\.)+|\{[A-Z]\}|[A-Z]")
+
+# Country forms an alias target may end in, each with the spellings that count as the
+# name already printing that country. address_key.xls maps bare cities onto a city plus
+# country ('london' -> 'london, uk', 'paris' -> 'paris, fr', 'heidleberg' ->
+# 'heidelberg, germany'); user decision 2026-09-26: a country the source does not print
+# is dropped, so the formatter must never add one. Rows that restate a country the name
+# already prints ('london, england' -> 'london, uk', 'prague, czech republic' ->
+# 'prague, cz') are the house country form and still apply. US state codes are not
+# countries and are untouched ('boston' -> 'boston, ma').
+ALIAS_COUNTRIES = {
+    "uk": ["uk", "u. k.", "u.k.", "united kingdom", "england", "great britain",
+           "britain", "scotland", "wales"],
+    "fr": ["fr", "france"],
+    "germany": ["germany", "deutschland"],
+    "ru": ["ru", "russia"],
+    "ch": ["ch", "switzerland"],
+    "it": ["it", "italy"],
+    "au": ["au", "australia"],
+    "cz": ["cz", "czech republic", "czechia"],
+    "usa": ["usa", "u.s.a.", "u. s. a.", "us", "u.s.", "united states", "america"],
+    "canada": ["canada"],
+    "sweden": ["sweden"],
+}
+
+
+# Traditional (GPO/AP-style) US state abbreviations, dotted or not, and the house's
+# two-letter code for each. The house address form is "City, {ST}"; an address whose
+# last comma component is one of these is written with the code (Albe00 "Cambridge,
+# Mass." passed bibcheck because address_key.xls only lists "cambridge, mass" without
+# the period). Two-letter codes themselves are in addresses.txt and need no entry.
+US_STATE_ABBREVIATIONS = {
+    "ala": "AL", "ariz": "AZ", "ark": "AR", "calif": "CA", "cal": "CA", "colo": "CO",
+    "conn": "CT", "del": "DE", "d c": "DC", "fla": "FL", "ga": "GA", "ill": "IL",
+    "ind": "IN", "kans": "KS", "kan": "KS", "ky": "KY", "la": "LA", "md": "MD",
+    "mass": "MA", "mich": "MI", "minn": "MN", "miss": "MS", "mo": "MO", "mont": "MT",
+    "nebr": "NE", "neb": "NE", "nev": "NV", "n h": "NH", "n j": "NJ", "n mex": "NM",
+    "n m": "NM", "n y": "NY", "n c": "NC", "n dak": "ND", "n d": "ND", "okla": "OK",
+    "oreg": "OR", "ore": "OR", "pa": "PA", "penn": "PA", "penna": "PA", "r i": "RI",
+    "s c": "SC", "s dak": "SD", "s d": "SD", "tenn": "TN", "tex": "TX", "vt": "VT",
+    "va": "VA", "wash": "WA", "w va": "WV", "wis": "WI", "wisc": "WI", "wyo": "WY",
+}
+
+
+def us_state_code(component):
+    """The two-letter code for a traditional state abbreviation ("Mass.", "N.Y.",
+    "Calif", "{N}.{J}."), or None. Braces, periods and spacing are ignored; two-letter
+    codes already in house form ("{MA}", "MA") return None and are left to addresses.txt."""
+    plain = remove_curlies(component).strip()
+    if re.fullmatch(r"[A-Z]{2}", plain):
+        return None
+    letters = re.sub(r"\s+", " ", re.sub(r"\.", " ", plain)).strip().lower()
+    return US_STATE_ABBREVIATIONS.get(letters)
+
+
+# A compound acronym joined by "\&" ("AT\&T", "R\&D"): each side is one to three letters.
+AMPERSAND_ACRONYM = re.compile(r"[A-Za-z]{1,3}(?:\\&[A-Za-z]{1,3})+")
+
+
+def compound_acronym(core, force_caps):
+    """The caps form of a compound acronym, or None.
+
+    "AT\&T" and "At\&t" -> "AT\&T" (every side of a "\&" is one to three letters);
+    "ieee/acm" -> "IEEE/ACM" when every "/"-separated part is a caps.txt word. The
+    word-capitalizing rule turned "AT\&T" into "At\&t" (JuanRabi85, RabiEtal85), and a
+    braced "{ieee/acm}" was protected as given (PimeEtal19, Ande04, TardEtal08).
+    """
+    plain = remove_curlies(core)
+    if AMPERSAND_ACRONYM.fullmatch(plain):
+        return plain.upper()
+    parts = plain.split("/")
+    if len(parts) < 2 or not all(re.fullmatch(r"[A-Za-z]+", q) for q in parts):
+        return None
+    forms = []
+    for q in parts:
+        listed = [f for f in force_caps if f.lower() == q.lower()]
+        if not listed:
+            return None
+        forms.append(remove_curlies(listed[-1]))
+    return "/".join(forms)
+
+
+# A word in parentheses given with two or more capitals ("(COMSNETS)", "(MobiSys)") is an
+# acronym as printed. The word-capitalizing rule lowercased it ("(comsnets)"), and a
+# lowercased acronym later braced ("({comsnets})") was then protected as given.
+PAREN_ACRONYM = re.compile(r"\((?:[A-Za-z]*[A-Z][A-Za-z]*[A-Z][A-Za-z]*)\)?[.,;:]?")
+
+
+def drop_added_country(name, target):
+    """Return an alias target without a country that ``name`` does not print.
+
+    If the target's last comma component is a country and no spelling of that country
+    appears as a word in ``name``, the component is removed; the rest of the alias
+    (a spelling fix such as 'heidleberg' -> 'heidelberg') still applies. Returns None
+    when nothing of the alias is left beyond ``name`` itself.
+    """
+    parts = [p.strip() for p in target.split(",")]
+    country = remove_curlies(parts[-1]).strip().lower()
+    if len(parts) < 2 or country not in ALIAS_COUNTRIES:
+        return target
+    printed = remove_curlies(name).lower()
+    if any(re.search(r"(?<![a-z])" + re.escape(form) + r"(?![a-z])", printed)
+           for form in ALIAS_COUNTRIES[country]):
+        return target
+    kept = ", ".join(parts[:-1])
+    return None if kept.lower() == name.lower() else kept
+
+
+def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False,
+                        drop_countries=None):
+    """Format a journal, booktitle, publisher or address name.
+
+    ``drop_countries`` (addresses; default: on exactly when ``key`` is address_key):
+    an alias target never adds a country the name does not print (see
+    drop_added_country). Journal titles are exempt: the USA in "Proceedings of the
+    National Academy of Sciences, USA" is part of the title, not an address.
+
+    ``dotted_initials`` (publishers): a word made only of capital initials, with or
+    without periods or braces ("W.H.", "V.", "{W}.", "W"), is written in the house
+    initials style, undotted and space-separated: "W.H. Freeman" -> "W H Freeman"
+    (user decision 2026-09-25 07:37 EDT, reversing stage 2B-i's dotted form). The
+    word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82),
+    and force_caps braced undotted initials ("{W} {H} Freeman").
+    """
+    # The legacy spreadsheet contains aliases that erase a historical title,
+    # monograph designation, or journal section. Formatting cannot establish
+    # that publication identity; retain those words for source verification.
+    preserve_identity = {
+        "journal of experimental psychology monograph",
+        "journal of experimental psychology monograph supplement",
+        "journal of experimental psychology; journal of experimental psychology",
+        "the quarterly journal of experimental psychology section a",
+        "the quarterly journal of experimental psychology: section a",
+        # The prefixed NLM title applied in 1989-2005. Do not impose it on
+        # articles whose sources use the unprefixed journal title.
+        "brain research reviews",
+        # Two names whose braces used to block their alias ("The {American} Journal of
+        # Psychology", Youn61; "The {Oxford} Handbook of Memory", five chapters). The
+        # aliases drop the leading "The" that the printed titles carry; removing the
+        # braces that protect nothing (unbrace_ordinary, 2026-09-29) must not change
+        # the text, so the titles are kept as given.
+        "the american journal of psychology",
+        "the oxford handbook of memory",
+    }
+    # An alias that only cuts a hyphenated suffix ("journal of physiology-paris" ->
+    # "journal of physiology") names a different journal, not a spelling variant of
+    # the same one (LachEtal03); the name is formatted as given instead.
+    if force_caps is address_codes and "," in n:
+        # "Cambridge, Mass." -> "Cambridge, MA" (house form "City, {ST}")
+        head, _, last = n.rpartition(",")
+        code = us_state_code(last)
+        if code is not None:
+            n = f"{head}, {code}"
+    alias = key.get(n.lower()) if isinstance(key.get(n.lower()), str) else None
+    if drop_countries is None:
+        drop_countries = key is address_key
+    if alias is not None and drop_countries:
+        alias = drop_added_country(n, alias)  # an alias never adds an unprinted country
+    cuts_suffix = alias is not None and re.fullmatch(
+        re.escape(alias.lower()) + r"-\w[\w ]*", n.lower()) is not None
+    aliased = n.lower() not in preserve_identity and alias is not None and not cuts_suffix
+    if aliased:
+        n = alias
+        as_given = n.split(" ")
     else:
+        as_given = n.split(" ")  # before lowercasing: dotted initials keep their capitals
         n = n.lower()
 
     words = n.split(" ")
     # next line isn't working...
     # words = ['-'.join([format_journal_name(x) for x in w.split('-')]) if len(w.split('-')) > 1 else w for w in words] #deal with hyphens
 
+    # Addresses: the words before the first comma name the city, and a city
+    # word given in mixed case is not a state code (held form 2026-09-27,
+    # BartEtal04c "La Jolla, {CA}" was read as "{LA} Jolla"). An all-capital
+    # word there ("Washington DC") is still matched against the codes.
+    city_words = -1
+    if force_caps is address_codes and not aliased and "," in n:
+        city_words = len(n.split(",")[0].split(" "))
+
     for i, w in enumerate(words):
+        if dotted_initials and DOTTED_INITIALS.fullmatch(as_given[i]):
+            words[i] = " ".join(re.findall(r"[A-Z]", as_given[i]))
+            continue
         # Check if word is fully braced (starts and ends with braces around the whole word)
         is_fully_braced = before_letters(w, "{") and after_letters(w, "}")
+
+        if not aliased:
+            given = as_given[i]
+            # A braced word is protected exactly as given (held forms
+            # 2026-09-27: RangEtal14 "{PMLR}" became "{pmlr}", HeniEtal19
+            # "{eNeuro}" became "{eneuro}"); a word in caps.txt keeps its
+            # caps.txt form below.
+            given_braced = before_letters(given, "{") and after_letters(given, "}")
+            core = strip_leading_trailing_non_letters(
+                remove_curlies(given, join=" ") if given_braced else given)[1]
+            listed = core and any(f.lower() == remove_non_letters(core.lower())
+                                  for f in force_caps)
+            compound = core and compound_acronym(core, force_caps)
+            if compound:
+                pre, _, suf = strip_leading_trailing_non_letters(
+                    remove_curlies(given, join=" ") if given_braced else given)
+                words[i] = pre + "{" + compound + "}" + suf
+                continue
+            if (not given_braced and PAREN_ACRONYM.fullmatch(given) and not listed):
+                pre, core_given, suf = strip_leading_trailing_non_letters(given)
+                words[i] = pre + "{" + core_given + "}" + suf
+                continue
+            if given_braced and core and not listed:
+                words[i] = given
+                continue
+            # the article "a", given in lower case inside a name, stays an
+            # article (held form 2026-09-27, Fish22 "Containing Papers of a
+            # Mathematical or Physical Character" became "of {A} Mathematical");
+            # a capital "A" ("Series A") is still the caps.txt letter, and so
+            # is "a" opening a subtitle ("{EEG}: a Guide" -> "{EEG}: {A} Guide").
+            if (0 < i < len(words) - 1 and given == "a"
+                    and as_given[i - 1][-1:].isalnum()):
+                words[i] = "a"
+                continue
+        city_word = (not aliased and i < city_words and not is_fully_braced
+                     and as_given[i] != as_given[i].upper())
 
         if is_fully_braced:
             # Remove outer braces for processing, we'll check caps on the content
@@ -589,7 +932,7 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
 
         correct_caps = [
             f for f in force_caps if f.lower() == remove_non_letters(core.lower())
-        ]
+        ] if not city_word else []
 
         if len(correct_caps) >= 1:
             c = correct_caps[-1]
@@ -599,17 +942,58 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
             words[i] = prefix + c + suffix
         else:
             words[i] = w.capitalize()
+            # "(proceedings" -> "(Proceedings": capitalize the first letter after an
+            # opening parenthesis or bracket, not the parenthesis ("(Eurospeech 2003)"
+            # became "(eurospeech 2003)").
+            if prefix and re.fullmatch(r"[(\[]+", prefix):
+                words[i] = prefix + core.capitalize() + suffix
 
             # deal with hyphens
             if len(w.split("-")) > 1:
                 words[i] = "-".join(
-                    format_journal_name(c, key=key, force_caps=force_caps)
+                    format_journal_name(c, key=key, force_caps=force_caps,
+                                        drop_countries=drop_countries)
                     for c in w.split("-")
                 )
 
             if (i > 0) and (w.lower() in uncaps):
                 words[i] = words[i].lower()
+
+            # a name with a one-letter elided prefix keeps the capital given
+            # after the apostrophe (held form 2026-09-27, BirdEtal09 "O'Reilly"
+            # became "O'reilly"); "Scribner's", or "L'année" given in lower case, is unaffected.
+            if not aliased and re.fullmatch(r"[A-Z]'[A-Z][a-z]+\W*", as_given[i]) \
+                    and re.fullmatch(r"[A-Z]'[a-z]+\W*", words[i]):
+                words[i] = words[i][:2] + words[i][2].upper() + words[i][3:]
+    for i, w in enumerate(words):
+        words[i] = "-".join(unbrace_ordinary(part, i > 0) for part in w.split("-"))
     return " ".join(words)
+
+
+# A braced word that is only ordinary title-case capitalization: a capital, then lower-case
+# letters, optionally a possessive "'s" ("{University}", "{Oxford}", "{Alzheimer's}"), with
+# only non-letter, non-brace, non-command characters around it ("({European}",
+# "{American},"). Acronyms ("{IEEE}", "{MIT}", "{AT\&T}", single letters "{A}"), internal
+# capitals ("{NeuroImage}", "{PLoS}"), deliberate lower case ("{npj}", "{e}") and anything
+# holding a LaTeX command or accent ("{\"u}") do not match and keep their braces.
+ORDINARY_BRACED = re.compile(r"([^A-Za-z{}\\]*)\{([A-Z][a-z]+(?:'s)?)\}([^A-Za-z{}\\]*)")
+
+
+def unbrace_ordinary(word, inside):
+    """Drop braces that protect nothing in a journal, booktitle, publisher or address.
+
+    These fields are printed in title case as given (BibTeX styles do not change their
+    case), so "{University}" prints exactly as "University". caps.txt braced every listed
+    word, which put braces around ordinary capitalized words ("Harvard {University} Press",
+    "{Oxford} {University} Press", "{American} Journal of Psychology"; user decision
+    2026-09-29). A word in uncaps.txt ("{Of}", "{The}") inside a name keeps its braces,
+    because without them this formatter would lower-case it. Article titles (format_title,
+    sentence case) are not affected: there the braces protect proper nouns.
+    """
+    m = ORDINARY_BRACED.fullmatch(word)
+    if m is None or (inside and m[2].lower() in uncaps):
+        return word
+    return m[1] + m[2] + m[3]
 
 
 # rearrange author name (first middle last suffix)
@@ -620,14 +1004,58 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps):
 # AA. --> A A
 # ...
 # AAA --> A A A
-def reformat_author(author):
-    if len(author.split(" and ")) > 1:
-        return " and ".join([reformat_author(a) for a in author.split(" and ")])
+# One letter of a name: a LaTeX accent group or a single character.
+LETTER_UNIT = re.compile(r"\{\\[^A-Za-z\s]\{?[A-Za-z]\}?\}|\\[^A-Za-z\s]\{?[A-Za-z]\}?"
+                         r"|\{\\[A-Za-z]+\s*\{?[A-Za-z]\}?\}|\\[A-Za-z]+\{[A-Za-z]\}|.")
 
+
+def fully_braced(s):
+    """True when the brace opening ``s`` is the one closing it: ``{RNS Group}``,
+    not ``{\\.I} Polat`` or ``{A} and {B}``."""
+    if len(s) < 2 or s[0] != "{" or s[-1] != "}":
+        return False
+    depth = 0
+    for i, c in enumerate(s):
+        depth += (c == "{") - (c == "}")
+        if depth == 0:
+            return i == len(s) - 1
+    return False
+
+
+def reformat_author(author, fragment=False):
+    if len(split_names(author)) > 1:
+        return " and ".join([reformat_author(a) for a in split_names(author)])
+
+    # A name braced whole is a corporate or group author and is kept exactly
+    # as given (held form 2026-09-27, KingEtal11 "{RNS System in Epilepsy
+    # Study Group}"): splitting its capitals as clumped initials turned it
+    # into "{ R N S System ...}". An unbraced group name is still read as a
+    # personal name.
+    if not fragment and fully_braced(author.strip()):
+        return author.strip()
+
+    # BibTeX's explicit ``family, suffix, given`` form must retain the suffix.
+    # rearrange() deliberately removes suffixes for citation-key construction;
+    # using it here used to silently discard Jr/Sr/III from author bylines.
+    from name_parsing import splitname
     try:
-        author = rearrange(author, preserve_non_letters=True)
-    except:
+        parts = splitname(author, strict_mode=True)
+        if parts["jr"] and parts["last"] and parts["first"]:
+            family = " ".join(parts["von"] + parts["last"])
+            suffix = " ".join(parts["jr"]).replace(".", "")
+            given = reformat_author(" ".join(parts["first"]))
+            return family + ", " + suffix + ", " + given
+    except (ValueError, KeyError):
         pass
+
+    # A hyphenated-initials fragment ('X' of 'J-X') is not a whole name and is
+    # not rearranged. A whole name that cannot be parsed is an error; it used
+    # to be swallowed by a bare except.
+    if not fragment:
+        try:
+            author = rearrange(author, preserve_non_letters=True)
+        except Exception as exc:  # rearrange raises bare Exception for malformed names
+            raise ValueError(f"cannot parse name {author!r}: {exc}") from exc
 
     unclumped = []
     names = author.split(" ")
@@ -637,10 +1065,11 @@ def reformat_author(author):
         n = n.replace(".", "")
         if (remove_non_letters(n.lower()) not in suffixes) and (n == n.upper()):
             if n.find("-") >= 0:
-                n = "-".join([reformat_author(c) for c in n.split("-")])
+                n = "-".join([reformat_author(c, fragment=True) for c in n.split("-")])
             else:
-                for c in list(n):
-                    unclumped.append(c)
+                # Split clumped initials ("MA") into letters, keeping a LaTeX accent
+                # group ({\'A}, \'A, {\'{A}}) whole as one letter.
+                unclumped.extend(LETTER_UNIT.findall(n))
                 continue
         unclumped.append(n)
 
@@ -813,6 +1242,9 @@ def insert_non_letters(x, y):
     return z
 
 
+SECTION_DESIGNATION = re.compile(r"\d+[A-Za-z]?(?:\([A-Za-z0-9]{1,4}\))+[.,;:]?")
+
+
 def format_title(title):
     def ends_in_punctuation(s):
         return (len(s) > 0) and (s[-1] in [".", "!", "?"])
@@ -855,6 +1287,10 @@ def format_title(title):
         # leave "a" and specified caps unchanged
         if w.lower() == "a" or (before_letters(w, "{") and after_letters(w, "}")):
             reformatted_title.append(w)
+        # a statutory section with lettered subsections, kept as printed (held form
+        # 2026-09-27, FoodAdmi20b "section 513(f)(2)" became "513({F})(2)")
+        elif SECTION_DESIGNATION.fullmatch(w):
+            reformatted_title.append(w)
         # if w contains curly braces, just append it unchanged
         elif (w.count("{") > 0) or (w.count("}") > 0):
             reformatted_title.append(w)
@@ -894,7 +1330,57 @@ def format_title(title):
     return " ".join([r for r in reformatted_title if len(r) > 0])
 
 
+def duplicate_fields(text):
+    """{citation key: [field names given more than once]} in raw BibTeX text.
+
+    bibtexparser keeps only one value of a repeated field, so a merge that
+    produces two ``Doi`` lines (PR #88: OwenMann24, HeusEtal21) would pass
+    silently. Scans entry bodies with the strict verification scanner's
+    brace/quote rules.
+    """
+    from verification import top_level_parts
+
+    found, pos = {}, 0
+    while True:
+        match = re.compile(r"@([A-Za-z]+)\s*([({])").search(text, pos)
+        if not match:
+            return found
+        kind, opener = match.groups()
+        closer = "}" if opener == "{" else ")"
+        depth, quoted, i = 0, False, match.end()
+        while i < len(text):
+            c = text[i]
+            if c == "\\":
+                i += 2
+                continue
+            if c == '"' and depth == 0:
+                quoted = not quoted
+            elif not quoted:
+                if c == closer and depth == 0:
+                    break
+                if c == "{":
+                    depth += 1
+                elif c == "}":
+                    depth -= 1
+            i += 1
+        body, pos = text[match.end():i], i + 1
+        if kind.lower() in {"comment", "string", "preamble"}:
+            continue
+        parts = top_level_parts(body)
+        key = parts.pop(0).strip()
+        names = [m[1].lower() for m in (re.match(r"\s*([\w-]+)\s*=", p) for p in parts) if m]
+        repeated = sorted({n for n in names if names.count(n) > 1})
+        if repeated:
+            found[key] = repeated
+
+
 def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
+    if bibfile != "github" and os.path.exists(bibfile):
+        with open(bibfile, "r", encoding="utf-8") as handle:
+            repeated = duplicate_fields(handle.read())
+        if repeated:
+            raise Exception("duplicate fields found: " + "; ".join(
+                f"{key}: {', '.join(names)}" for key, names in sorted(repeated.items())))
     bd = load_bibliography(bibfile)
 
     ids = get_vals(bd, "ID")
@@ -925,7 +1411,7 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     fix_dict["ID"] = check_entries(
         "ID",
         bd,
-        [authors2key(a, y) for a, y in zip(authors, years)],
+        [authors2key(a, y) for a, y in zip(key_names(bd), years)],
         same=same_id,
         verbose=verbose,
     )
@@ -966,7 +1452,7 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     fix_dict["publisher"] = check_entries(
         "publisher",
         bd,
-        [format_journal_name(p, key=publisher_key) for p in publishers],
+        [format_journal_name(p, key=publisher_key, dotted_initials=True) for p in publishers],
         verbose=verbose,
     )
 

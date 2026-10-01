@@ -1,0 +1,3400 @@
+{
+  "MoheEtal14": {
+    "entry": {
+      "key": "MoheEtal14",
+      "raw": "@article{MoheEtal14,\n\tAuthor = {J Moher and B M Lakshmanan and H E Egeth and J B Ewen},\n\tJournal = {Psychological Science},\n\tNumber = {2},\n\tPages = {314--324},\n\tTitle = {Inhibition drives early feature-based attention},\n\tVolume = {25},\n\tYear = {2014}}",
+      "fields": {
+        "year": "2014",
+        "volume": "25",
+        "title": "Inhibition drives early feature-based attention",
+        "pages": "314--324",
+        "number": "2",
+        "journal": "Psychological Science",
+        "author": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+        "ENTRYTYPE": "article",
+        "ID": "MoheEtal14"
+      },
+      "base_hash": "00edd145dcb60384dedc46a740a489f8adc6b62f4123bd4a5a32ba4eb2d32d7e",
+      "legacy_base_hash": "9c1352b35656daee8229acf142c356d6db7f464b20238c053347882b51bac182",
+      "fingerprint": "v2:db4e1ba0e61cacfa524c4487f9a981d69d53f4a5a2e90f1eebd7cc1d322187ab",
+      "legacy_fingerprint": "0598a42b45dec816a563bd4f0ab7d42f05fd1ff2626f65feeb26699d2384e191"
+    },
+    "previous": {
+      "attempts": [
+        {
+          "http_status": 200,
+          "source": "crossref-search",
+          "url": "https://api.crossref.org/works?query.bibliographic=Inhibition+drives+early+feature-based+attention+J+Moher+and+B+M+Lakshmanan+and+H+E+Egeth+and+J+B+Ewen+2014+Psychological+Science+&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+        },
+        {
+          "doi": "10.1177/0956797613511257",
+          "matches": 1,
+          "retrieved_at": "2026-09-10T00:58:51.458968+00:00",
+          "source": "europepmc",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2803%2900162-9%22+OR+DOI%3A%2210.3758%2Fs13421-014-0486-y%22+OR+DOI%3A%2210.1016%2Fj.neuron.2007.06.030%22+OR+DOI%3A%2210.1167%2F7.9.782%22+OR+DOI%3A%2210.5334%2Fjoc.70%22+OR+DOI%3A%2210.3758%2Fs13423-020-01790-z%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fpxthv%22+OR+DOI%3A%2210.1162%2Fjocn_a_01748%22+OR+DOI%3A%2210.1101%2F2020.09.14.297341%22+OR+DOI%3A%2210.3758%2Fs13414-022-02557-5%22+OR+DOI%3A%2210.1101%2F2021.01.18.426969%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fnuarq%22+OR+DOI%3A%2210.3758%2Fs13414-022-02593-1%22+OR+DOI%3A%2210.1016%2Fj.cognition.2023.105408%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fj32bn%22+OR+DOI%3A%2210.1111%2Fejn.15264%22+OR+DOI%3A%2210.1101%2F567602%22+OR+DOI%3A%2210.3389%2Ffnhum.2014.00006%22+OR+DOI%3A%2210.1073%2Fpnas.1518931113%22+OR+DOI%3A%2210.1177%2F0956797613511257%22+OR+DOI%3A%2210.1016%2Fj.brainres.2007.07.019%22+OR+DOI%3A%2210.1055%2Fs-2008-1072987%22+OR+DOI%3A%2210.1037%2F%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1037%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960540-x%22&format=json&resultType=core&pageSize=100"
+        }
+      ],
+      "auto_review": {
+        "epmc_checked": true,
+        "policy": "2",
+        "resolver_version": 4
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1177/0956797613511257",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                    }
+                  ],
+                  "family": "Moher",
+                  "given": "Jeff",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                    }
+                  ],
+                  "family": "Lakshmanan",
+                  "given": "Balaji M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                    }
+                  ],
+                  "family": "Egeth",
+                  "given": "Howard E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                    },
+                    {
+                      "name": "Department of Neurology, Johns Hopkins University School of Medicine"
+                    }
+                  ],
+                  "family": "Ewen",
+                  "given": "Joshua B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": true,
+              "source": [
+                "Psychological Science"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": true,
+              "source": [
+                "2"
+              ]
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": [
+                "315-324"
+              ]
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": true,
+              "source": [
+                "Inhibition Drives Early Feature-Based Attention"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": true,
+              "source": [
+                "25"
+              ]
+            },
+            "year": {
+              "local": "2014",
+              "match": true,
+              "source": [
+                "2014"
+              ]
+            }
+          },
+          "issues": [
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1177/0956797613511257",
+            "ISSN": [
+              "0956-7976",
+              "1467-9280"
+            ],
+            "URL": "https://doi.org/10.1177/0956797613511257",
+            "author": [
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                  }
+                ],
+                "family": "Moher",
+                "given": "Jeff",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                  }
+                ],
+                "family": "Lakshmanan",
+                "given": "Balaji M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                  }
+                ],
+                "family": "Egeth",
+                "given": "Howard E.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [
+                  {
+                    "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                  },
+                  {
+                    "name": "Department of Neurology, Johns Hopkins University School of Medicine"
+                  }
+                ],
+                "family": "Ewen",
+                "given": "Joshua B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Psychological Science"
+            ],
+            "issue": "2",
+            "issued": {
+              "date-parts": [
+                [
+                  2014,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://journals.sagepub.com/doi/pdf/10.1177/0956797613511257",
+                "content-type": "application/pdf",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://journals.sagepub.com/doi/full-xml/10.1177/0956797613511257",
+                "content-type": "application/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://journals.sagepub.com/doi/pdf/10.1177/0956797613511257",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "315-324",
+            "published": {
+              "date-parts": [
+                [
+                  2014,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2014,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2014,
+                  2
+                ]
+              ]
+            },
+            "publisher": "SAGE Publications",
+            "title": [
+              "Inhibition Drives Early Feature-Based Attention"
+            ],
+            "type": "journal-article",
+            "volume": "25"
+          },
+          "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1177/0956797613511257"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1037/e633262013-277",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Moher",
+                  "given": "Jeff",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lakshmanan",
+                  "given": "Balaji M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Egeth",
+                  "given": "Howard E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Ewen",
+                  "given": "Joshua B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": false,
+              "source": [
+                "PsycEXTRA Dataset"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": []
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": false,
+              "source": [
+                "Inhibition Drives Early Feature-Based Attention: (633262013-277)"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": false,
+              "source": []
+            },
+            "year": {
+              "local": "2014",
+              "match": false,
+              "source": [
+                "2013"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "year: missing evidence or mismatch",
+            "publication type/version is unsupported or differs",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1037/e633262013-277",
+            "URL": "https://doi.org/10.1037/e633262013-277",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Moher",
+                "given": "Jeff",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Lakshmanan",
+                "given": "Balaji M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Egeth",
+                "given": "Howard E.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Ewen",
+                "given": "Joshua B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "PsycEXTRA Dataset"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  2013
+                ]
+              ]
+            },
+            "published": {
+              "date-parts": [
+                [
+                  2013
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2013
+                ]
+              ]
+            },
+            "publisher": "American Psychological Association (APA)",
+            "subtitle": [
+              "(633262013-277)"
+            ],
+            "title": [
+              "Inhibition Drives Early Feature-Based Attention"
+            ],
+            "type": "dataset"
+          },
+          "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1037/e633262013-277"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1109/ciss.2012.6310951",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Moher",
+                  "given": "Jeff",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lakshmanan",
+                  "given": "Balaji M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Egeth",
+                  "given": "Howard E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Ewen",
+                  "given": "Joshua B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": false,
+              "source": [
+                "2012 46th Annual Conference on Information Sciences and Systems (CISS)"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": [
+                "1-3"
+              ]
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": false,
+              "source": [
+                "Perseveration in attention: Inhibitory feature-based attentional sets automatically carry over to novel task contexts"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": false,
+              "source": []
+            },
+            "year": {
+              "local": "2014",
+              "match": false,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "year: missing evidence or mismatch",
+            "publication type/version is unsupported or differs",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1109/ciss.2012.6310951",
+            "URL": "https://doi.org/10.1109/ciss.2012.6310951",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Moher",
+                "given": "Jeff",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Lakshmanan",
+                "given": "Balaji M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Egeth",
+                "given": "Howard E.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Ewen",
+                "given": "Joshua B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "2012 46th Annual Conference on Information Sciences and Systems (CISS)"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  2012,
+                  3
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://xplorestaging.ieee.org/ielx5/6299180/6310704/06310951.pdf?arnumber=6310951",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "1-3",
+            "published": {
+              "date-parts": [
+                [
+                  2012,
+                  3
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2012,
+                  3
+                ]
+              ]
+            },
+            "publisher": "IEEE",
+            "title": [
+              "Perseveration in attention: Inhibitory feature-based attentional sets automatically carry over to novel task contexts"
+            ],
+            "type": "proceedings-article"
+          },
+          "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1109/ciss.2012.6310951"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1037/e520562012-110",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Egeth",
+                  "given": "Howard E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Moher",
+                  "given": "Jeffrey",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": false,
+              "source": [
+                "PsycEXTRA Dataset"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": []
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": false,
+              "source": [
+                "Does feature detection require focal attention?: (520562012-110)"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": false,
+              "source": []
+            },
+            "year": {
+              "local": "2014",
+              "match": false,
+              "source": [
+                "2009"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "publication type/version is unsupported or differs",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1037/e520562012-110",
+            "URL": "https://doi.org/10.1037/e520562012-110",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Egeth",
+                "given": "Howard E.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Moher",
+                "given": "Jeffrey",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "PsycEXTRA Dataset"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  2009
+                ]
+              ]
+            },
+            "published": {
+              "date-parts": [
+                [
+                  2009
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2009
+                ]
+              ]
+            },
+            "publisher": "American Psychological Association (APA)",
+            "subtitle": [
+              "(520562012-110)"
+            ],
+            "title": [
+              "Does feature detection require focal attention?"
+            ],
+            "type": "dataset"
+          },
+          "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1037/e520562012-110"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1080/87565641.2011.632459",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Ewen",
+                  "given": "Joshua B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Moher",
+                  "given": "Jeffrey S.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lakshmanan",
+                  "given": "Balaji M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Ryan",
+                  "given": "Matthew",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Xavier",
+                  "given": "Priya",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Crone",
+                  "given": "Nathan E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Denckla",
+                  "given": "Martha B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Egeth",
+                  "given": "Howard",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Mahone",
+                  "given": "E. Mark",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": false,
+              "source": [
+                "Developmental Neuropsychology"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": true,
+              "source": [
+                "2"
+              ]
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": [
+                "119-133"
+              ]
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": false,
+              "source": [
+                "Multiple Task Interference is Greater in Children With ADHD"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": false,
+              "source": [
+                "37"
+              ]
+            },
+            "year": {
+              "local": "2014",
+              "match": false,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1080/87565641.2011.632459",
+            "ISSN": [
+              "8756-5641",
+              "1532-6942"
+            ],
+            "URL": "https://doi.org/10.1080/87565641.2011.632459",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Ewen",
+                "given": "Joshua B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Moher",
+                "given": "Jeffrey S.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Lakshmanan",
+                "given": "Balaji M.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Ryan",
+                "given": "Matthew",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Xavier",
+                "given": "Priya",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Crone",
+                "given": "Nathan E.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Denckla",
+                "given": "Martha B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Egeth",
+                "given": "Howard",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Mahone",
+                "given": "E. Mark",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Developmental Neuropsychology"
+            ],
+            "issue": "2",
+            "issued": {
+              "date-parts": [
+                [
+                  2012,
+                  2
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://www.tandfonline.com/doi/pdf/10.1080/87565641.2011.632459",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "119-133",
+            "published": {
+              "date-parts": [
+                [
+                  2012,
+                  2
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2012,
+                  2
+                ]
+              ]
+            },
+            "publisher": "Informa UK Limited",
+            "title": [
+              "Multiple Task Interference is Greater in Children With ADHD"
+            ],
+            "type": "journal-article",
+            "volume": "37"
+          },
+          "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1080/87565641.2011.632459"
+        },
+        {
+          "doi": "10.1177/0956797613511257",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "J Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                    }
+                  ],
+                  "family": "Moher",
+                  "given": "Jeff",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                    }
+                  ],
+                  "family": "Lakshmanan",
+                  "given": "Balaji M.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+                    }
+                  ],
+                  "family": "Egeth",
+                  "given": "Howard E.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [
+                    {
+                      "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+                    },
+                    {
+                      "name": "Department of Neurology, Johns Hopkins University School of Medicine"
+                    }
+                  ],
+                  "family": "Ewen",
+                  "given": "Joshua B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "Psychological Science",
+              "match": true,
+              "source": [
+                "Psychological Science"
+              ]
+            },
+            "number": {
+              "local": "2",
+              "match": true,
+              "source": [
+                "2"
+              ]
+            },
+            "pages": {
+              "local": "314--324",
+              "match": false,
+              "source": [
+                "315-324"
+              ]
+            },
+            "title": {
+              "local": "Inhibition drives early feature-based attention",
+              "match": true,
+              "source": [
+                "Inhibition Drives Early Feature-Based Attention"
+              ]
+            },
+            "volume": {
+              "local": "25",
+              "match": true,
+              "source": [
+                "25"
+              ]
+            },
+            "year": {
+              "local": "2014",
+              "match": true,
+              "source": [
+                "2014"
+              ]
+            }
+          },
+          "issues": [
+            "pages: missing evidence or mismatch",
+            "Secondary pages: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "1Department of Psychological and Brain Sciences, Johns Hopkins University."
+                      }
+                    ]
+                  },
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0002-8646-5348"
+                  },
+                  "firstName": "Jeff",
+                  "fullName": "Moher J",
+                  "initials": "J",
+                  "lastName": "Moher"
+                },
+                {
+                  "firstName": "Balaji M",
+                  "fullName": "Lakshmanan BM",
+                  "initials": "BM",
+                  "lastName": "Lakshmanan"
+                },
+                {
+                  "firstName": "Howard E",
+                  "fullName": "Egeth HE",
+                  "initials": "HE",
+                  "lastName": "Egeth"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0002-9203-9564"
+                  },
+                  "firstName": "Joshua B",
+                  "fullName": "Ewen JB",
+                  "initials": "JB",
+                  "lastName": "Ewen"
+                }
+              ]
+            },
+            "doi": "10.1177/0956797613511257",
+            "firstPublicationDate": "2014-01-03",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1177/0956797613511257"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3946233"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3946233?pdf=render"
+                },
+                {
+                  "availability": "Free",
+                  "availabilityCode": "F",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1177/0956797613511257"
+                }
+              ]
+            },
+            "id": "24390823",
+            "isOpenAccess": "N",
+            "journalInfo": {
+              "dateOfPublication": "2014 Feb",
+              "issue": "2",
+              "journal": {
+                "essn": "1467-9280",
+                "isoabbreviation": "Psychol Sci",
+                "issn": "0956-7976",
+                "medlineAbbreviation": "Psychol Sci",
+                "nlmid": "9007542",
+                "title": "Psychological science"
+              },
+              "journalIssueId": 2125144,
+              "monthOfPublication": 2,
+              "printPublicationDate": "2014-02-01",
+              "volume": "25",
+              "yearOfPublication": 2014
+            },
+            "pageInfo": "315-324",
+            "pmcid": "PMC3946233",
+            "pubTypeList": {
+              "pubType": [
+                "research-article",
+                "Research Support, U.S. Gov't, Non-P.H.S.",
+                "Journal Article",
+                "Research Support, N.I.H., Extramural"
+              ]
+            },
+            "pubYear": "2014",
+            "source": "MED",
+            "title": "Inhibition drives early feature-based attention."
+          },
+          "record": {
+            "DOI": "10.1177/0956797613511257",
+            "ISSN": [
+              "0956-7976",
+              "1467-9280"
+            ],
+            "author": [
+              {
+                "family": "Moher",
+                "given": "Jeff",
+                "suffix": ""
+              },
+              {
+                "family": "Lakshmanan",
+                "given": "Balaji M",
+                "suffix": ""
+              },
+              {
+                "family": "Egeth",
+                "given": "Howard E",
+                "suffix": ""
+              },
+              {
+                "family": "Ewen",
+                "given": "Joshua B",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "Psychological science",
+              "Psychol Sci",
+              "Psychol Sci",
+              "Psychological Science"
+            ],
+            "issue": "2",
+            "page": "315-324",
+            "published": {
+              "date-parts": [
+                [
+                  2014
+                ]
+              ]
+            },
+            "title": [
+              "Inhibition drives early feature-based attention"
+            ],
+            "type": "journal-article",
+            "volume": "25"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2803%2900162-9%22+OR+DOI%3A%2210.3758%2Fs13421-014-0486-y%22+OR+DOI%3A%2210.1016%2Fj.neuron.2007.06.030%22+OR+DOI%3A%2210.1167%2F7.9.782%22+OR+DOI%3A%2210.5334%2Fjoc.70%22+OR+DOI%3A%2210.3758%2Fs13423-020-01790-z%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fpxthv%22+OR+DOI%3A%2210.1162%2Fjocn_a_01748%22+OR+DOI%3A%2210.1101%2F2020.09.14.297341%22+OR+DOI%3A%2210.3758%2Fs13414-022-02557-5%22+OR+DOI%3A%2210.1101%2F2021.01.18.426969%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fnuarq%22+OR+DOI%3A%2210.3758%2Fs13414-022-02593-1%22+OR+DOI%3A%2210.1016%2Fj.cognition.2023.105408%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fj32bn%22+OR+DOI%3A%2210.1111%2Fejn.15264%22+OR+DOI%3A%2210.1101%2F567602%22+OR+DOI%3A%2210.3389%2Ffnhum.2014.00006%22+OR+DOI%3A%2210.1073%2Fpnas.1518931113%22+OR+DOI%3A%2210.1177%2F0956797613511257%22+OR+DOI%3A%2210.1016%2Fj.brainres.2007.07.019%22+OR+DOI%3A%2210.1055%2Fs-2008-1072987%22+OR+DOI%3A%2210.1037%2F%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1037%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960540-x%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T00:58:51.458968+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/24390823"
+        }
+      ],
+      "checked_at": "2026-09-16T02:00:37.843939+00:00",
+      "fingerprint": "v2:db4e1ba0e61cacfa524c4487f9a981d69d53f4a5a2e90f1eebd7cc1d322187ab",
+      "issues": [
+        "No unambiguous, fully supported metadata match"
+      ],
+      "key": "MoheEtal14",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  },
+  "RoigEtal12": {
+    "entry": {
+      "key": "RoigEtal12",
+      "raw": "@article{RoigEtal12,\n\tAuthor = {Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen},\n\tJournal = {{PLoS} One},\n\tNumber = {9},\n\tPages = {28--32},\n\tTitle = {A single bout of exercise improves motor memory},\n\tVolume = {7},\n\tYear = {2012}}",
+      "fields": {
+        "year": "2012",
+        "volume": "7",
+        "title": "A single bout of exercise improves motor memory",
+        "pages": "28--32",
+        "number": "9",
+        "journal": "{PLoS} One",
+        "author": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+        "ENTRYTYPE": "article",
+        "ID": "RoigEtal12"
+      },
+      "base_hash": "e00c721871a9a2eecec331bb4fb0fa6600c1553b963449e9a8b4593cbfd5d854",
+      "legacy_base_hash": "b79ee90f98dd1819efd7c5caa653aa0b612a6774b334e4a65d355938180781d4",
+      "fingerprint": "v2:f00e3c8211f84325e508fb5c03b58a7bbf474343bd7a5b1aa691bba68b137710",
+      "legacy_fingerprint": "bae304d5efa87078e12e677977fa1106da04cec3580a563830aed2e371146c1c"
+    },
+    "previous": {
+      "attempts": [
+        {
+          "http_status": 200,
+          "source": "crossref-search",
+          "url": "https://api.crossref.org/works?query.bibliographic=A+single+bout+of+exercise+improves+motor+memory+Marc+Roig+and+Kasper+Skriver+and+Jesper+Lundbye-Jensen+and+Bente+Kiens+and+Jens+Bo+Nielsen+2012+%7BPLoS%7D+One+&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+        },
+        {
+          "doi": "10.1371/journal.pone.0044594",
+          "matches": 1,
+          "retrieved_at": "2026-09-10T00:59:21.734581+00:00",
+          "source": "europepmc",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2809%2971511-3%22+OR+DOI%3A%2210.1016%2Fj.neuroscience.2005.03.026%22+OR+DOI%3A%2210.1037%2F0882-7974.12.2.255%22+OR+DOI%3A%2210.1016%2Fj.neulet.2004.03.085%22+OR+DOI%3A%2210.1037%2Fhea0000046%22+OR+DOI%3A%2210.2466%2Fpr0.97.6.339-355%22+OR+DOI%3A%2210.2466%2Fpr0.97.2.339-355%22+OR+DOI%3A%2210.1111%2Fj.1532-5415.1993.tb01890.x%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0141393%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0150039%22+OR+DOI%3A%2210.1016%2Fj.mhpa.2009.02.001%22+OR+DOI%3A%2210.1016%2Fj.ijcard.2015.03.038%22+OR+DOI%3A%2210.1016%2Fj.bandc.2015.06.004%22+OR+DOI%3A%2210.1016%2Fj.bandc.2014.03.016%22+OR+DOI%3A%2210.1016%2F0197-4580%2890%2990545-b%22+OR+DOI%3A%2210.1007%2F978-3-319-50406-3_12%22+OR+DOI%3A%2210.1016%2Fs0079-6123%2809%2917610-0%22+OR+DOI%3A%2210.1080%2F027249800410454%22+OR+DOI%3A%2210.1080%2F713755914%22+OR+DOI%3A%2210.1039%2Fb821922b%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0044594%22+OR+DOI%3A%2210.1016%2F0031-9384%2890%2990265-6%22+OR+DOI%3A%2210.1038%2Foby.2006.46%22+OR+DOI%3A%2210.1111%2Fj.1600-0838.2006.00610_1.x%22+OR+DOI%3A%2210.1136%2Fbjsm.30.4.305%22&format=json&resultType=core&pageSize=100"
+        },
+        {
+          "http_status": 200,
+          "source": "pmc-jats",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3433433/fullTextXML"
+        }
+      ],
+      "auto_review": {
+        "epmc_checked": true,
+        "fulltext_checked": true,
+        "fulltext_policy": "1",
+        "policy": "2",
+        "resolver_version": 4
+      },
+      "candidates": [
+        {
+          "advisories": [],
+          "doi": "10.1371/journal.pone.0044594",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Roig",
+                  "given": "Marc",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Skriver",
+                  "given": "Kasper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Kiens",
+                  "given": "Bente",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nielsen",
+                  "given": "Jens Bo",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": true,
+              "source": [
+                "PLoS ONE"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": true,
+              "source": [
+                "9"
+              ]
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "e44594"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": true,
+              "source": [
+                "A Single Bout of Exercise Improves Motor Memory"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": true,
+              "source": [
+                "7"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": true,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1371/journal.pone.0044594",
+            "ISSN": [
+              "1932-6203"
+            ],
+            "URL": "https://doi.org/10.1371/journal.pone.0044594",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Roig",
+                "given": "Marc",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Skriver",
+                "given": "Kasper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Kiens",
+                "given": "Bente",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Nielsen",
+                "given": "Jens Bo",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "PLoS ONE"
+            ],
+            "editor": [
+              {
+                "affiliation": [],
+                "family": "Sinigaglia",
+                "given": "Corrado",
+                "role": [
+                  {
+                    "role": "editor",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              }
+            ],
+            "issue": "9",
+            "issued": {
+              "date-parts": [
+                [
+                  2012,
+                  9,
+                  4
+                ]
+              ]
+            },
+            "page": "e44594",
+            "published": {
+              "date-parts": [
+                [
+                  2012,
+                  9,
+                  4
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2012,
+                  9,
+                  4
+                ]
+              ]
+            },
+            "publisher": "Public Library of Science (PLoS)",
+            "title": [
+              "A Single Bout of Exercise Improves Motor Memory"
+            ],
+            "type": "journal-article",
+            "volume": "7"
+          },
+          "retrieved_at": "2026-09-09T19:46:46.935387+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1371/journal.pone.0044594"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1016/j.nlm.2014.08.004",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Skriver",
+                  "given": "Kasper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Roig",
+                  "given": "Marc",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "ORCID": "https://orcid.org/0000-0002-9977-094X",
+                  "affiliation": [],
+                  "authenticated-orcid": false,
+                  "family": "Pingel",
+                  "given": "Jessica",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Helge",
+                  "given": "J\u00f8rn Wulff",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Kiens",
+                  "given": "Bente",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nielsen",
+                  "given": "Jens Bo",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": false,
+              "source": [
+                "Neurobiology of Learning and Memory"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "46-58"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": false,
+              "source": [
+                "Acute exercise improves motor memory: Exploring potential biomarkers"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": false,
+              "source": [
+                "116"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": false,
+              "source": [
+                "2014"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1016/j.nlm.2014.08.004",
+            "ISSN": [
+              "1074-7427"
+            ],
+            "URL": "https://doi.org/10.1016/j.nlm.2014.08.004",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Skriver",
+                "given": "Kasper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Roig",
+                "given": "Marc",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "ORCID": "https://orcid.org/0000-0002-9977-094X",
+                "affiliation": [],
+                "authenticated-orcid": false,
+                "family": "Pingel",
+                "given": "Jessica",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Helge",
+                "given": "J\u00f8rn Wulff",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Kiens",
+                "given": "Bente",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Nielsen",
+                "given": "Jens Bo",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Neurobiology of Learning and Memory"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  2014,
+                  12
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S1074742714001439?httpAccept=text/xml",
+                "content-type": "text/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              },
+              {
+                "URL": "https://api.elsevier.com/content/article/PII:S1074742714001439?httpAccept=text/plain",
+                "content-type": "text/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+              }
+            ],
+            "page": "46-58",
+            "published": {
+              "date-parts": [
+                [
+                  2014,
+                  12
+                ]
+              ]
+            },
+            "published-print": {
+              "date-parts": [
+                [
+                  2014,
+                  12
+                ]
+              ]
+            },
+            "publisher": "Elsevier BV",
+            "title": [
+              "Acute exercise improves motor memory: Exploring potential biomarkers"
+            ],
+            "type": "journal-article",
+            "volume": "116"
+          },
+          "retrieved_at": "2026-09-09T19:46:46.935387+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1016/j.nlm.2014.08.004"
+        },
+        {
+          "advisories": [],
+          "doi": "10.3389/fnhum.2017.00182",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Skriver",
+                  "given": "Kasper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nielsen",
+                  "given": "Jens B.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Roig",
+                  "given": "Marc",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": false,
+              "source": [
+                "Frontiers in Human Neuroscience"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": false,
+              "source": []
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "182"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": false,
+              "source": [
+                "Acute Exercise Improves Motor Memory Consolidation in Preadolescent Children"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": false,
+              "source": [
+                "11"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": false,
+              "source": [
+                "2017"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "journal: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.3389/fnhum.2017.00182",
+            "ISSN": [
+              "1662-5161"
+            ],
+            "URL": "https://doi.org/10.3389/fnhum.2017.00182",
+            "article-number": "182",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Skriver",
+                "given": "Kasper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Nielsen",
+                "given": "Jens B.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Roig",
+                "given": "Marc",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "Frontiers in Human Neuroscience"
+            ],
+            "issued": {
+              "date-parts": [
+                [
+                  2017,
+                  4,
+                  20
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://journal.frontiersin.org/article/10.3389/fnhum.2017.00182/full",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "published": {
+              "date-parts": [
+                [
+                  2017,
+                  4,
+                  20
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2017,
+                  4,
+                  20
+                ]
+              ]
+            },
+            "publisher": "Frontiers Media SA",
+            "title": [
+              "Acute Exercise Improves Motor Memory Consolidation in Preadolescent Children"
+            ],
+            "type": "journal-article",
+            "volume": "11"
+          },
+          "retrieved_at": "2026-09-09T19:46:46.935387+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.3389/fnhum.2017.00182"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1371/journal.pone.0159589",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": false,
+              "source": [
+                {
+                  "ORCID": "https://orcid.org/0000-0002-8745-7462",
+                  "affiliation": [],
+                  "authenticated-orcid": true,
+                  "family": "Thomas",
+                  "given": "Richard",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Johnsen",
+                  "given": "Line K.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Geertsen",
+                  "given": "Svend S.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Christiansen",
+                  "given": "Lasse",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Ritz",
+                  "given": "Christian",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Roig",
+                  "given": "Marc",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": true,
+              "source": [
+                "PLOS ONE"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": false,
+              "source": [
+                "7"
+              ]
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "e0159589"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": false,
+              "source": [
+                "Acute Exercise and Motor Memory Consolidation: The Role of Exercise Intensity"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": false,
+              "source": [
+                "11"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": false,
+              "source": [
+                "2016"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1371/journal.pone.0159589",
+            "ISSN": [
+              "1932-6203"
+            ],
+            "URL": "https://doi.org/10.1371/journal.pone.0159589",
+            "author": [
+              {
+                "ORCID": "https://orcid.org/0000-0002-8745-7462",
+                "affiliation": [],
+                "authenticated-orcid": true,
+                "family": "Thomas",
+                "given": "Richard",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Johnsen",
+                "given": "Line K.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Geertsen",
+                "given": "Svend S.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Christiansen",
+                "given": "Lasse",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Ritz",
+                "given": "Christian",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Roig",
+                "given": "Marc",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "PLOS ONE"
+            ],
+            "editor": [
+              {
+                "affiliation": [],
+                "family": "Philp",
+                "given": "Andrew",
+                "role": [
+                  {
+                    "role": "editor",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              }
+            ],
+            "issue": "7",
+            "issued": {
+              "date-parts": [
+                [
+                  2016,
+                  7,
+                  25
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://dx.plos.org/10.1371/journal.pone.0159589",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "e0159589",
+            "published": {
+              "date-parts": [
+                [
+                  2016,
+                  7,
+                  25
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2016,
+                  7,
+                  25
+                ]
+              ]
+            },
+            "publisher": "Public Library of Science (PLoS)",
+            "title": [
+              "Acute Exercise and Motor Memory Consolidation: The Role of Exercise Intensity"
+            ],
+            "type": "journal-article",
+            "volume": "11"
+          },
+          "retrieved_at": "2026-09-09T19:46:46.935387+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1371/journal.pone.0159589"
+        },
+        {
+          "advisories": [],
+          "doi": "10.1371/journal.pone.0141393",
+          "evidence": {
+            "author": {
+              "detail": "Missing authors or different author counts",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": false,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Statton",
+                  "given": "Matthew A.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Encarnacion",
+                  "given": "Marysol",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Celnik",
+                  "given": "Pablo",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Bastian",
+                  "given": "Amy J.",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": true,
+              "source": [
+                "PLOS ONE"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": false,
+              "source": [
+                "10"
+              ]
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "e0141393"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": false,
+              "source": [
+                "A Single Bout of Moderate Aerobic Exercise Improves Motor Skill Acquisition"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": false,
+              "source": [
+                "10"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": false,
+              "source": [
+                "2015"
+              ]
+            }
+          },
+          "issues": [
+            "title: missing evidence or mismatch",
+            "author: Missing authors or different author counts",
+            "year: missing evidence or mismatch",
+            "volume: missing evidence or mismatch",
+            "number: missing evidence or mismatch",
+            "pages: missing evidence or mismatch"
+          ],
+          "record": {
+            "DOI": "10.1371/journal.pone.0141393",
+            "ISSN": [
+              "1932-6203"
+            ],
+            "URL": "https://doi.org/10.1371/journal.pone.0141393",
+            "author": [
+              {
+                "affiliation": [],
+                "family": "Statton",
+                "given": "Matthew A.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              },
+              {
+                "affiliation": [],
+                "family": "Encarnacion",
+                "given": "Marysol",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Celnik",
+                "given": "Pablo",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              },
+              {
+                "affiliation": [],
+                "family": "Bastian",
+                "given": "Amy J.",
+                "role": [
+                  {
+                    "role": "author",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "additional"
+              }
+            ],
+            "container-title": [
+              "PLOS ONE"
+            ],
+            "editor": [
+              {
+                "affiliation": [],
+                "family": "Gribble",
+                "given": "Paul L.",
+                "role": [
+                  {
+                    "role": "editor",
+                    "vocabulary": "crossref"
+                  }
+                ],
+                "sequence": "first"
+              }
+            ],
+            "issue": "10",
+            "issued": {
+              "date-parts": [
+                [
+                  2015,
+                  10,
+                  27
+                ]
+              ]
+            },
+            "link": [
+              {
+                "URL": "http://dx.plos.org/10.1371/journal.pone.0141393",
+                "content-type": "unspecified",
+                "content-version": "vor",
+                "intended-application": "similarity-checking"
+              }
+            ],
+            "page": "e0141393",
+            "published": {
+              "date-parts": [
+                [
+                  2015,
+                  10,
+                  27
+                ]
+              ]
+            },
+            "published-online": {
+              "date-parts": [
+                [
+                  2015,
+                  10,
+                  27
+                ]
+              ]
+            },
+            "publisher": "Public Library of Science (PLoS)",
+            "title": [
+              "A Single Bout of Moderate Aerobic Exercise Improves Motor Skill Acquisition"
+            ],
+            "type": "journal-article",
+            "volume": "10"
+          },
+          "retrieved_at": "2026-09-09T19:46:46.935387+00:00",
+          "source": "crossref",
+          "url": "https://doi.org/10.1371/journal.pone.0141393"
+        },
+        {
+          "doi": "10.1371/journal.pone.0044594",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": true,
+              "source": [
+                {
+                  "affiliation": [],
+                  "family": "Roig",
+                  "given": "Marc",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "first"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Skriver",
+                  "given": "Kasper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Kiens",
+                  "given": "Bente",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                },
+                {
+                  "affiliation": [],
+                  "family": "Nielsen",
+                  "given": "Jens Bo",
+                  "role": [
+                    {
+                      "role": "author",
+                      "vocabulary": "crossref"
+                    }
+                  ],
+                  "sequence": "additional"
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": true,
+              "source": [
+                "PLoS ONE"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": true,
+              "source": [
+                "9"
+              ]
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "e44594"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": true,
+              "source": [
+                "A Single Bout of Exercise Improves Motor Memory"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": true,
+              "source": [
+                "7"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": true,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "pages: missing evidence or mismatch",
+            "Secondary pages: missing evidence or mismatch"
+          ],
+          "raw_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Neuroscience and Pharmacology, University of Copenhagen, Copenhagen, Copenhagen, Denmark. markredj@sund.ku.dk"
+                      }
+                    ]
+                  },
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0002-1016-467X"
+                  },
+                  "firstName": "Marc",
+                  "fullName": "Roig M",
+                  "initials": "M",
+                  "lastName": "Roig"
+                },
+                {
+                  "firstName": "Kasper",
+                  "fullName": "Skriver K",
+                  "initials": "K",
+                  "lastName": "Skriver"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-3144-861X"
+                  },
+                  "firstName": "Jesper",
+                  "fullName": "Lundbye-Jensen J",
+                  "initials": "J",
+                  "lastName": "Lundbye-Jensen"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-5705-5625"
+                  },
+                  "firstName": "Bente",
+                  "fullName": "Kiens B",
+                  "initials": "B",
+                  "lastName": "Kiens"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-5568-2916"
+                  },
+                  "firstName": "Jens Bo",
+                  "fullName": "Nielsen JB",
+                  "initials": "JB",
+                  "lastName": "Nielsen"
+                }
+              ]
+            },
+            "doi": "10.1371/journal.pone.0044594",
+            "firstPublicationDate": "2012-09-04",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1371/journal.pone.0044594"
+                },
+                {
+                  "availability": "Open access",
+                  "availabilityCode": "OA",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3433433"
+                },
+                {
+                  "availability": "Open access",
+                  "availabilityCode": "OA",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3433433?pdf=render"
+                }
+              ]
+            },
+            "id": "22973462",
+            "isOpenAccess": "Y",
+            "journalInfo": {
+              "dateOfPublication": "2012 ",
+              "issue": "9",
+              "journal": {
+                "essn": "1932-6203",
+                "isoabbreviation": "PLoS One",
+                "issn": "1932-6203",
+                "medlineAbbreviation": "PLoS One",
+                "nlmid": "101285081",
+                "title": "PloS one"
+              },
+              "journalIssueId": 1963765,
+              "monthOfPublication": 0,
+              "printPublicationDate": "2012-01-01",
+              "volume": "7",
+              "yearOfPublication": 2012
+            },
+            "pageInfo": "e44594",
+            "pmcid": "PMC3433433",
+            "pubTypeList": {
+              "pubType": [
+                "Research Support, Non-U.S. Gov't",
+                "research-article",
+                "Randomized Controlled Trial",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "2012",
+            "source": "MED",
+            "title": "A single bout of exercise improves motor memory."
+          },
+          "record": {
+            "DOI": "10.1371/journal.pone.0044594",
+            "ISSN": [
+              "1932-6203",
+              "1932-6203"
+            ],
+            "author": [
+              {
+                "family": "Roig",
+                "given": "Marc",
+                "suffix": ""
+              },
+              {
+                "family": "Skriver",
+                "given": "Kasper",
+                "suffix": ""
+              },
+              {
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "suffix": ""
+              },
+              {
+                "family": "Kiens",
+                "given": "Bente",
+                "suffix": ""
+              },
+              {
+                "family": "Nielsen",
+                "given": "Jens Bo",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "PloS one",
+              "PLoS One",
+              "PLoS One",
+              "PLoS ONE"
+            ],
+            "issue": "9",
+            "page": "e44594",
+            "published": {
+              "date-parts": [
+                [
+                  2012
+                ]
+              ]
+            },
+            "title": [
+              "A single bout of exercise improves motor memory"
+            ],
+            "type": "journal-article",
+            "volume": "7"
+          },
+          "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2809%2971511-3%22+OR+DOI%3A%2210.1016%2Fj.neuroscience.2005.03.026%22+OR+DOI%3A%2210.1037%2F0882-7974.12.2.255%22+OR+DOI%3A%2210.1016%2Fj.neulet.2004.03.085%22+OR+DOI%3A%2210.1037%2Fhea0000046%22+OR+DOI%3A%2210.2466%2Fpr0.97.6.339-355%22+OR+DOI%3A%2210.2466%2Fpr0.97.2.339-355%22+OR+DOI%3A%2210.1111%2Fj.1532-5415.1993.tb01890.x%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0141393%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0150039%22+OR+DOI%3A%2210.1016%2Fj.mhpa.2009.02.001%22+OR+DOI%3A%2210.1016%2Fj.ijcard.2015.03.038%22+OR+DOI%3A%2210.1016%2Fj.bandc.2015.06.004%22+OR+DOI%3A%2210.1016%2Fj.bandc.2014.03.016%22+OR+DOI%3A%2210.1016%2F0197-4580%2890%2990545-b%22+OR+DOI%3A%2210.1007%2F978-3-319-50406-3_12%22+OR+DOI%3A%2210.1016%2Fs0079-6123%2809%2917610-0%22+OR+DOI%3A%2210.1080%2F027249800410454%22+OR+DOI%3A%2210.1080%2F713755914%22+OR+DOI%3A%2210.1039%2Fb821922b%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0044594%22+OR+DOI%3A%2210.1016%2F0031-9384%2890%2990265-6%22+OR+DOI%3A%2210.1038%2Foby.2006.46%22+OR+DOI%3A%2210.1111%2Fj.1600-0838.2006.00610_1.x%22+OR+DOI%3A%2210.1136%2Fbjsm.30.4.305%22&format=json&resultType=core&pageSize=100",
+          "resolved_findings": [],
+          "retrieved_at": "2026-09-10T00:59:21.734581+00:00",
+          "source": "europepmc",
+          "url": "https://europepmc.org/article/MED/22973462"
+        },
+        {
+          "authority": "Publisher article front matter via Europe PMC",
+          "doi": "10.1371/journal.pone.0044594",
+          "evidence": {
+            "author": {
+              "detail": "Complete author list in order; citation initials agree with source names",
+              "local": "Marc Roig and Kasper Skriver and Jesper Lundbye-Jensen and Bente Kiens and Jens Bo Nielsen",
+              "match": true,
+              "source": [
+                {
+                  "family": "Roig",
+                  "given": "Marc",
+                  "suffix": ""
+                },
+                {
+                  "family": "Skriver",
+                  "given": "Kasper",
+                  "suffix": ""
+                },
+                {
+                  "family": "Lundbye-Jensen",
+                  "given": "Jesper",
+                  "suffix": ""
+                },
+                {
+                  "family": "Kiens",
+                  "given": "Bente",
+                  "suffix": ""
+                },
+                {
+                  "family": "Nielsen",
+                  "given": "Jens Bo",
+                  "suffix": ""
+                }
+              ]
+            },
+            "journal": {
+              "local": "{PLoS} One",
+              "match": true,
+              "source": [
+                "PLoS ONE",
+                "PLoS One"
+              ]
+            },
+            "number": {
+              "local": "9",
+              "match": true,
+              "source": [
+                "9"
+              ]
+            },
+            "pages": {
+              "local": "28--32",
+              "match": false,
+              "source": [
+                "e44594"
+              ]
+            },
+            "title": {
+              "local": "A single bout of exercise improves motor memory",
+              "match": true,
+              "source": [
+                "A Single Bout of Exercise Improves Motor Memory"
+              ]
+            },
+            "volume": {
+              "local": "7",
+              "match": true,
+              "source": [
+                "7"
+              ]
+            },
+            "year": {
+              "local": "2012",
+              "match": true,
+              "source": [
+                "2012"
+              ]
+            }
+          },
+          "issues": [
+            "pages: missing evidence or mismatch"
+          ],
+          "medline_record": {
+            "authorList": {
+              "author": [
+                {
+                  "authorAffiliationDetailsList": {
+                    "authorAffiliation": [
+                      {
+                        "affiliation": "Department of Neuroscience and Pharmacology, University of Copenhagen, Copenhagen, Copenhagen, Denmark. markredj@sund.ku.dk"
+                      }
+                    ]
+                  },
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0002-1016-467X"
+                  },
+                  "firstName": "Marc",
+                  "fullName": "Roig M",
+                  "initials": "M",
+                  "lastName": "Roig"
+                },
+                {
+                  "firstName": "Kasper",
+                  "fullName": "Skriver K",
+                  "initials": "K",
+                  "lastName": "Skriver"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0003-3144-861X"
+                  },
+                  "firstName": "Jesper",
+                  "fullName": "Lundbye-Jensen J",
+                  "initials": "J",
+                  "lastName": "Lundbye-Jensen"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-5705-5625"
+                  },
+                  "firstName": "Bente",
+                  "fullName": "Kiens B",
+                  "initials": "B",
+                  "lastName": "Kiens"
+                },
+                {
+                  "authorId": {
+                    "type": "ORCID",
+                    "value": "0000-0001-5568-2916"
+                  },
+                  "firstName": "Jens Bo",
+                  "fullName": "Nielsen JB",
+                  "initials": "JB",
+                  "lastName": "Nielsen"
+                }
+              ]
+            },
+            "doi": "10.1371/journal.pone.0044594",
+            "firstPublicationDate": "2012-09-04",
+            "fullTextUrlList": {
+              "fullTextUrl": [
+                {
+                  "availability": "Subscription required",
+                  "availabilityCode": "S",
+                  "documentStyle": "doi",
+                  "site": "DOI",
+                  "url": "https://doi.org/10.1371/journal.pone.0044594"
+                },
+                {
+                  "availability": "Open access",
+                  "availabilityCode": "OA",
+                  "documentStyle": "html",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3433433"
+                },
+                {
+                  "availability": "Open access",
+                  "availabilityCode": "OA",
+                  "documentStyle": "pdf",
+                  "site": "Europe_PMC",
+                  "url": "https://europepmc.org/articles/PMC3433433?pdf=render"
+                }
+              ]
+            },
+            "id": "22973462",
+            "isOpenAccess": "Y",
+            "journalInfo": {
+              "dateOfPublication": "2012 ",
+              "issue": "9",
+              "journal": {
+                "essn": "1932-6203",
+                "isoabbreviation": "PLoS One",
+                "issn": "1932-6203",
+                "medlineAbbreviation": "PLoS One",
+                "nlmid": "101285081",
+                "title": "PloS one"
+              },
+              "journalIssueId": 1963765,
+              "monthOfPublication": 0,
+              "printPublicationDate": "2012-01-01",
+              "volume": "7",
+              "yearOfPublication": 2012
+            },
+            "pageInfo": "e44594",
+            "pmcid": "PMC3433433",
+            "pubTypeList": {
+              "pubType": [
+                "Research Support, Non-U.S. Gov't",
+                "research-article",
+                "Randomized Controlled Trial",
+                "Journal Article"
+              ]
+            },
+            "pubYear": "2012",
+            "source": "MED",
+            "title": "A single bout of exercise improves motor memory."
+          },
+          "raw_xml": "<article xml:lang=\"en\" article-type=\"research-article\"><front><journal-meta><journal-id journal-id-type=\"pmc-domain-id\">440</journal-id><journal-id journal-id-type=\"pmc-domain\">plosone</journal-id><journal-title-group><journal-title>PLoS ONE</journal-title><abbrev-journal-title>PLoS One</abbrev-journal-title></journal-title-group><publisher><publisher-name>PLOS</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3433433</article-id><article-id pub-id-type=\"pmcaid\">3433433</article-id><article-id pub-id-type=\"pmcaiid\">3433433</article-id><article-id pub-id-type=\"pmid\">22973462</article-id><article-id pub-id-type=\"doi\">10.1371/journal.pone.0044594</article-id><title-group><article-title>A Single Bout of Exercise Improves Motor Memory</article-title></title-group><contrib-group content-type=\"author\"><contrib><name name-style=\"western\"><surname>Roig</surname><given-names initials=\"M\">Marc</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref><xref ref-type=\"aff\" rid=\"aff2\">2</xref><xref rid=\"cor1\" ref-type=\"author-notes\">*</xref></contrib><contrib><name name-style=\"western\"><surname>Skriver</surname><given-names initials=\"K\">Kasper</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref><xref ref-type=\"aff\" rid=\"aff2\">2</xref></contrib><contrib><name name-style=\"western\"><surname>Lundbye-Jensen</surname><given-names initials=\"J\">Jesper</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref><xref ref-type=\"aff\" rid=\"aff2\">2</xref></contrib><contrib><name name-style=\"western\"><surname>Kiens</surname><given-names initials=\"B\">Bente</given-names></name><xref ref-type=\"aff\" rid=\"aff2\">2</xref></contrib><contrib><name name-style=\"western\"><surname>Nielsen</surname><given-names initials=\"JB\">Jens Bo</given-names></name><xref ref-type=\"aff\" rid=\"aff1\">1</xref><xref ref-type=\"aff\" rid=\"aff2\">2</xref></contrib></contrib-group><contrib-group content-type=\"editor\"><contrib><name name-style=\"western\"><surname>Sinigaglia</surname><given-names initials=\"C\">Corrado</given-names></name><role>Editor</role><xref ref-type=\"aff\" rid=\"edit1\">3</xref></contrib></contrib-group><pub-date><day>4</day><month>9</month><year>2012</year></pub-date><volume>7</volume><issue>9</issue><fpage>e44594</fpage></article-meta><notes notes-type=\"article-notes\"><sec id=\"historyarticle-meta1\" sec-type=\"history\" disp-level=\"2\"><p>Received 2012 May 19; Accepted 2012 Aug 3; Collection date 2012.</p></sec></notes></front></article>",
+          "record": {
+            "DOI": "10.1371/journal.pone.0044594",
+            "ISSN": [],
+            "article-number": null,
+            "author": [
+              {
+                "family": "Roig",
+                "given": "Marc",
+                "suffix": ""
+              },
+              {
+                "family": "Skriver",
+                "given": "Kasper",
+                "suffix": ""
+              },
+              {
+                "family": "Lundbye-Jensen",
+                "given": "Jesper",
+                "suffix": ""
+              },
+              {
+                "family": "Kiens",
+                "given": "Bente",
+                "suffix": ""
+              },
+              {
+                "family": "Nielsen",
+                "given": "Jens Bo",
+                "suffix": ""
+              }
+            ],
+            "container-title": [
+              "PLoS ONE",
+              "PLoS One"
+            ],
+            "issue": "9",
+            "page": "e44594",
+            "published": {
+              "date-parts": [
+                [
+                  2012
+                ]
+              ]
+            },
+            "publisher": "PLOS",
+            "title": [
+              "A Single Bout of Exercise Improves Motor Memory"
+            ],
+            "type": "journal-article",
+            "volume": "7"
+          },
+          "retrieved_at": "2026-09-10T01:49:28.558697+00:00",
+          "source": "pmc-jats",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3433433/fullTextXML",
+          "xml_sha256": "30bdb77524f28e2a0cd40a261687209a00fa7e06c4bf1a1e9ddd5de380ba07d8"
+        }
+      ],
+      "checked_at": "2026-09-16T02:00:46.615065+00:00",
+      "fingerprint": "v2:f00e3c8211f84325e508fb5c03b58a7bbf474343bd7a5b1aa691bba68b137710",
+      "issues": [
+        "No unambiguous, fully supported metadata match"
+      ],
+      "key": "RoigEtal12",
+      "policy": "2",
+      "status": "needs_review"
+    }
+  }
+}

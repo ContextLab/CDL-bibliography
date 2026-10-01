@@ -1,0 +1,119 @@
+{
+ "ReimGure19": {
+  "fields": {
+   "year": "2019",
+   "title": "Sentence-{BERT}: sentence embeddings using {S}iamese {BERT}-networks",
+   "pages": "3982--3992",
+   "doi": "10.18653/v1/D19-1410",
+   "booktitle": "Proceedings of the Conference on Empirical Methods in Natural Language Processing and the International Joint Conference on Natural Language Processing",
+   "author": "N Reimers and I Gurevych",
+   "ENTRYTYPE": "inproceedings",
+   "ID": "ReimGure19"
+  },
+  "raw": {
+   "anthology_id": "D19-1410",
+   "record": {
+    "body": "@inproceedings{reimers-gurevych-2019-sentence,\n    title = \"Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks\",\n    author = \"Reimers, Nils  and\n      Gurevych, Iryna\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1410/\",\n    doi = \"10.18653/v1/D19-1410\",\n    pages = \"3982--3992\"\n}\n\n",
+    "document_sha256": "87982968ae942aacbfea0637807abb8f8fbb4d534f9fd16447eb0b817774c44b",
+    "retrieved_at": "2026-09-25T05:24:45.792192+00:00",
+    "url": "https://aclanthology.org/D19-1410.bib"
+   }
+  }
+ },
+ "MikoEtal13b": {
+  "fields": {
+   "year": "2013",
+   "title": "Linguistic regularities in continuous space word representations",
+   "pages": "746--751",
+   "journal": "Proceedings of the National Association for Computational Linguistics",
+   "author": "T Mikolov and W-T Yih and G Zweig",
+   "ENTRYTYPE": "article",
+   "ID": "MikoEtal13b"
+  },
+  "raw": {
+   "search_title": "Linguistic regularities in continuous space word representations",
+   "search": {
+    "body": "{\"meta\": {\"count\": 1, \"db_response_time_ms\": 16, \"page\": 1, \"per_page\": 25, \"groups_count\": null, \"x_query\": {\"oql\": \"works where title has (Linguistic regularities in continuous space word representations)\", \"oqo\": {\"get_rows\": \"works\", \"filter_rows\": [{\"column_id\": \"display_name.search\", \"value\": \"Linguistic regularities in continuous space word representations\", \"operator\": \"has\"}]}, \"url\": \"/works?filter=display_name.search:Linguistic regularities in continuous space word representations&per_page=25\"}, \"cost_usd\": 0.001}, \"results\": [{\"id\": \"https://openalex.org/W2141599568\", \"title\": \"Linguistic Regularities in Continuous Space Word Representations\", \"locations\": [{\"id\": \"pmh:oai:CiteSeerX.psu:10.1.1.353.6683\", \"is_oa\": false, \"landing_page_url\": \"http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.353.6683\", \"pdf_url\": null, \"source\": null, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"http://aclweb.org/anthology-new/N/N13/N13-1090.pdf\", \"raw_type\": \"text\"}, {\"id\": \"pmh:oai:CiteSeerX.psu:10.1.1.417.722\", \"is_oa\": false, \"landing_page_url\": \"http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.417.722\", \"pdf_url\": null, \"source\": null, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"http://research.microsoft.com/en-us/um/people/gzweig/Pubs/NAACL2013Regularities.pdf\", \"raw_type\": \"text\"}, {\"id\": \"mag:2141599568\", \"is_oa\": false, \"landing_page_url\": \"http://anthology.aclweb.org/N/N13/N13-1090.pdf\", \"pdf_url\": null, \"source\": {\"id\": \"https://openalex.org/S4306420633\", \"display_name\": \"North American Chapter of the Association for Computational Linguistics\", \"issn_l\": null, \"issn\": null, \"is_oa\": false, \"is_in_doaj\": false, \"is_core\": false, \"host_organization\": null, \"host_organization_name\": null, \"host_organization_lineage\": [], \"host_organization_lineage_names\": [], \"type\": \"conference\"}, \"license\": null, \"license_id\": null, \"version\": null, \"is_accepted\": false, \"is_published\": null, \"raw_source_name\": \"North American Chapter of the Association for Computational Linguistics\", \"raw_type\": null}], \"primary_location\": {\"id\": \"pmh:oai:CiteSeerX.psu:10.1.1.353.6683\", \"is_oa\": false, \"landing_page_url\": \"http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.353.6683\", \"pdf_url\": null, \"source\": null, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"http://aclweb.org/anthology-new/N/N13/N13-1090.pdf\", \"raw_type\": \"text\"}}], \"group_by\": []}",
+    "document_sha256": "289be2c44b7fc698e5f4930ddfeca88e567535c3fd06f24376dddd8136fcc315",
+    "retrieved_at": "2026-09-25T05:24:49.172538+00:00",
+    "url": "https://api.openalex.org/works?filter=title.search%3ALinguistic+regularities+in+continuous+space+word+representations&select=id%2Ctitle%2Clocations%2Cprimary_location&per-page=25"
+   },
+   "anthology_id": "N13-1090",
+   "record": {
+    "body": "@inproceedings{mikolov-etal-2013-linguistic,\n    title = \"Linguistic Regularities in Continuous Space Word Representations\",\n    author = \"Mikolov, Tomas  and\n      Yih, Wen-tau  and\n      Zweig, Geoffrey\",\n    editor = \"Vanderwende, Lucy  and\n      Daum{\\'e} III, Hal  and\n      Kirchhoff, Katrin\",\n    booktitle = \"Proceedings of the 2013 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies\",\n    month = jun,\n    year = \"2013\",\n    address = \"Atlanta, Georgia\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/N13-1090/\",\n    pages = \"746--751\"\n}\n\n",
+    "document_sha256": "ad268b2530b55f248064317f86e94b600324825cd0ea28585e7f2f804d4b5e6c",
+    "retrieved_at": "2026-09-25T05:24:52.438201+00:00",
+    "url": "https://aclanthology.org/N13-1090.bib"
+   }
+  }
+ },
+ "Etha19": {
+  "fields": {
+   "year": "2019",
+   "title": "How contextual are contextualized word representations? {C}omparing the geometry of {BERT}, {ELMo}, and {GPT-2} embeddings",
+   "pages": "55--65",
+   "booktitle": "Proceedings of the Conference on Empirical Methods in Natural Language Processing",
+   "author": "K Ethayarajh",
+   "ENTRYTYPE": "conference",
+   "ID": "Etha19"
+  },
+  "raw": {
+   "search_title": "How contextual are contextualized word representations? {C}omparing the geometry of {BERT}, {ELMo}, and {GPT-2} embeddings",
+   "search": {
+    "body": "{\"meta\": {\"count\": 2, \"db_response_time_ms\": 46, \"page\": 1, \"per_page\": 25, \"groups_count\": null, \"x_query\": {\"oql\": \"works where title has (How contextual are contextualized word representations Comparing the geometry of BERT ELMo \\\"and\\\" GPT-2 embeddings)\", \"oqo\": {\"get_rows\": \"works\", \"filter_rows\": [{\"column_id\": \"display_name.search\", \"value\": \"How contextual are contextualized word representations Comparing the geometry of BERT ELMo and GPT-2 embeddings\", \"operator\": \"has\"}]}, \"url\": \"/works?filter=display_name.search:How contextual are contextualized word representations Comparing the geometry of BERT ELMo and GPT-2 embeddings&per_page=25\"}, \"cost_usd\": 0.001}, \"results\": [{\"id\": \"https://openalex.org/W2971569798\", \"title\": \"How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings\", \"locations\": [{\"id\": \"doi:10.18653/v1/d19-1006\", \"is_oa\": true, \"landing_page_url\": \"https://doi.org/10.18653/v1/d19-1006\", \"pdf_url\": \"https://www.aclweb.org/anthology/D19-1006.pdf\", \"source\": null, \"license\": \"cc-by\", \"license_id\": \"https://openalex.org/licenses/cc-by\", \"version\": \"publishedVersion\", \"is_accepted\": true, \"is_published\": true, \"raw_source_name\": \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\", \"raw_type\": \"proceedings-article\"}, {\"id\": \"pmh:oai:arXiv.org:1909.00512\", \"is_oa\": true, \"landing_page_url\": \"http://arxiv.org/abs/1909.00512\", \"pdf_url\": \"https://arxiv.org/pdf/1909.00512\", \"source\": {\"id\": \"https://openalex.org/S4306400194\", \"display_name\": \"arXiv (Cornell University)\", \"issn_l\": \"2331-8422\", \"issn\": [\"2331-8422\"], \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"listed_in\": [], \"host_organization\": \"https://openalex.org/I205783295\", \"host_organization_name\": \"Cornell University\", \"host_organization_lineage\": [\"https://openalex.org/I205783295\"], \"host_organization_lineage_names\": [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": null, \"raw_type\": \"text\"}, {\"id\": \"mag:2971569798\", \"is_oa\": true, \"landing_page_url\": \"https://arxiv.org/pdf/1909.00512\", \"pdf_url\": null, \"source\": {\"id\": \"https://openalex.org/S4306400194\", \"display_name\": \"arXiv (Cornell University)\", \"issn_l\": \"2331-8422\", \"issn\": [\"2331-8422\"], \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"listed_in\": [], \"host_organization\": \"https://openalex.org/I205783295\", \"host_organization_name\": \"Cornell University\", \"host_organization_lineage\": [\"https://openalex.org/I205783295\"], \"host_organization_lineage_names\": [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"arXiv (Cornell University)\", \"raw_type\": null}, {\"id\": \"doi:10.48550/arxiv.1909.00512\", \"is_oa\": true, \"landing_page_url\": \"https://doi.org/10.48550/arxiv.1909.00512\", \"pdf_url\": null, \"source\": {\"id\": \"https://openalex.org/S4306400194\", \"display_name\": \"arXiv (Cornell University)\", \"issn_l\": \"2331-8422\", \"issn\": [\"2331-8422\"], \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"listed_in\": [], \"host_organization\": \"https://openalex.org/I205783295\", \"host_organization_name\": \"Cornell University\", \"host_organization_lineage\": [\"https://openalex.org/I205783295\"], \"host_organization_lineage_names\": [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null, \"version\": null, \"is_accepted\": false, \"is_published\": null, \"raw_source_name\": null, \"raw_type\": \"Preprint\"}], \"primary_location\": {\"id\": \"doi:10.18653/v1/d19-1006\", \"is_oa\": true, \"landing_page_url\": \"https://doi.org/10.18653/v1/d19-1006\", \"pdf_url\": \"https://www.aclweb.org/anthology/D19-1006.pdf\", \"source\": null, \"license\": \"cc-by\", \"license_id\": \"https://openalex.org/licenses/cc-by\", \"version\": \"publishedVersion\", \"is_accepted\": true, \"is_published\": true, \"raw_source_name\": \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\", \"raw_type\": \"proceedings-article\"}}, {\"id\": \"https://openalex.org/W4288235115\", \"title\": \"How Contextual are Contextualized Word Representations? Comparing the\\\\n Geometry of BERT, ELMo, and GPT-2 Embeddings\", \"locations\": [{\"id\": \"pmh:oai:arXiv.org:1909.00512\", \"is_oa\": true, \"landing_page_url\": \"http://arxiv.org/abs/1909.00512\", \"pdf_url\": \"https://arxiv.org/pdf/1909.00512\", \"source\": {\"id\": \"https://openalex.org/S4306400194\", \"display_name\": \"arXiv (Cornell University)\", \"issn_l\": \"2331-8422\", \"issn\": [\"2331-8422\"], \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"host_organization\": \"https://openalex.org/I205783295\", \"host_organization_name\": \"Cornell University\", \"host_organization_lineage\": [\"https://openalex.org/I205783295\"], \"host_organization_lineage_names\": [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"\", \"raw_type\": \"text\"}], \"primary_location\": {\"id\": \"pmh:oai:arXiv.org:1909.00512\", \"is_oa\": true, \"landing_page_url\": \"http://arxiv.org/abs/1909.00512\", \"pdf_url\": \"https://arxiv.org/pdf/1909.00512\", \"source\": {\"id\": \"https://openalex.org/S4306400194\", \"display_name\": \"arXiv (Cornell University)\", \"issn_l\": \"2331-8422\", \"issn\": [\"2331-8422\"], \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"host_organization\": \"https://openalex.org/I205783295\", \"host_organization_name\": \"Cornell University\", \"host_organization_lineage\": [\"https://openalex.org/I205783295\"], \"host_organization_lineage_names\": [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null, \"version\": \"submittedVersion\", \"is_accepted\": false, \"is_published\": false, \"raw_source_name\": \"\", \"raw_type\": \"text\"}}], \"group_by\": []}",
+    "document_sha256": "3b956d615c72018d91e4b5c8f66fd64a3c5078536e658e66da21995f9f11d4fc",
+    "retrieved_at": "2026-09-25T05:26:37.015552+00:00",
+    "url": "https://api.openalex.org/works?filter=title.search%3AHow+contextual+are+contextualized+word+representations+Comparing+the+geometry+of+BERT+ELMo+and+GPT-2+embeddings&select=id%2Ctitle%2Clocations%2Cprimary_location&per-page=25"
+   },
+   "anthology_id": "D19-1006",
+   "record": {
+    "body": "@inproceedings{ethayarajh-2019-contextual,\n    title = \"How Contextual are Contextualized Word Representations? {C}omparing the Geometry of {BERT}, {ELM}o, and {GPT}-2 Embeddings\",\n    author = \"Ethayarajh, Kawin\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1006/\",\n    doi = \"10.18653/v1/D19-1006\",\n    pages = \"55--65\"\n}\n\n",
+    "document_sha256": "b1d2d7248325a20ff7403604da14b044288dc1906430f7c844b031b320f49fec",
+    "retrieved_at": "2026-09-25T05:27:39.259413+00:00",
+    "url": "https://aclanthology.org/D19-1006.bib"
+   }
+  }
+ },
+ "ControlAclCrossrefPages": {
+  "fields": {
+   "year": "2019",
+   "title": "Sentence-{BERT}: sentence embeddings using {S}iamese {BERT}-networks",
+   "pages": "3980--3990",
+   "doi": "10.18653/v1/D19-1410",
+   "booktitle": "Proceedings of the Conference on Empirical Methods in Natural Language Processing and the International Joint Conference on Natural Language Processing",
+   "author": "N Reimers and I Gurevych",
+   "ENTRYTYPE": "inproceedings",
+   "ID": "ControlAclCrossrefPages"
+  },
+  "raw": {
+   "anthology_id": "D19-1410",
+   "record": {
+    "body": "@inproceedings{reimers-gurevych-2019-sentence,\n    title = \"Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks\",\n    author = \"Reimers, Nils  and\n      Gurevych, Iryna\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1410/\",\n    doi = \"10.18653/v1/D19-1410\",\n    pages = \"3982--3992\"\n}\n\n",
+    "document_sha256": "87982968ae942aacbfea0637807abb8f8fbb4d534f9fd16447eb0b817774c44b",
+    "retrieved_at": "2026-09-25T05:24:45.792192+00:00",
+    "url": "https://aclanthology.org/D19-1410.bib"
+   }
+  }
+ },
+ "ControlAclOtherWork": {
+  "fields": {
+   "year": "2019",
+   "title": "How contextual are contextualized word representations? {C}omparing the geometry of {BERT}, {ELMo}, and {GPT-2} embeddings",
+   "pages": "3982--3992",
+   "doi": "10.18653/v1/D19-1410",
+   "booktitle": "Proceedings of the Conference on Empirical Methods in Natural Language Processing and the International Joint Conference on Natural Language Processing",
+   "author": "N Reimers and I Gurevych",
+   "ENTRYTYPE": "inproceedings",
+   "ID": "ControlAclOtherWork"
+  },
+  "raw": {
+   "anthology_id": "D19-1410",
+   "record": {
+    "body": "@inproceedings{reimers-gurevych-2019-sentence,\n    title = \"Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks\",\n    author = \"Reimers, Nils  and\n      Gurevych, Iryna\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1410/\",\n    doi = \"10.18653/v1/D19-1410\",\n    pages = \"3982--3992\"\n}\n\n",
+    "document_sha256": "87982968ae942aacbfea0637807abb8f8fbb4d534f9fd16447eb0b817774c44b",
+    "retrieved_at": "2026-09-25T05:24:45.792192+00:00",
+    "url": "https://aclanthology.org/D19-1410.bib"
+   }
+  }
+ }
+}

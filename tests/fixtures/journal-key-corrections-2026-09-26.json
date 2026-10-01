@@ -1,0 +1,405 @@
+{
+ "_doc": "Frozen copy (2026-10-01) of the 40 corrections that bibcheck/journal_key_overrides.json applied to journal_key.xls at load time until they were written into the spreadsheet itself. Evidence for each row: docs/decision-log.md, 'Journal alias table corrections'.",
+ "corrections": [
+  {
+   "source": "j comp neurol",
+   "xls_rows": [
+    342
+   ],
+   "old_target": "journal of computational neuroscience",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journal of comparative neurology"
+  },
+  {
+   "source": "j comp physiol",
+   "xls_rows": [
+    343
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology"
+  },
+  {
+   "source": "j. comp. physiol.",
+   "xls_rows": [
+    353
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology"
+  },
+  {
+   "source": "j comp physiol a",
+   "xls_rows": [
+    344
+   ],
+   "old_target": "journal of computational physiology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of comparative physiology a"
+  },
+  {
+   "source": "j exp psychol",
+   "xls_rows": [
+    346
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology"
+  },
+  {
+   "source": "journal of experimental pyschology",
+   "xls_rows": [
+    422
+   ],
+   "old_target": "journal of experimental psychology: general",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology"
+  },
+  {
+   "source": "psychonomic science",
+   "xls_rows": [
+    733
+   ],
+   "old_target": "psychological science",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "psychometric monographs",
+   "xls_rows": [
+    726
+   ],
+   "old_target": "psychometrika",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "journal of the royal statistical society. series c (applied statistics)",
+   "xls_rows": [
+    490
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the royal statistical society series c: applied statistics"
+  },
+  {
+   "source": "journal of the optical society of america [a]",
+   "xls_rows": [
+    489
+   ],
+   "old_target": "journal of the optical society of america",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "journal of the optical society of america a"
+  },
+  {
+   "source": "journals of gerontology",
+   "xls_rows": [
+    500
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology"
+  },
+  {
+   "source": "journals of gerontology: series b: psychological sciences \\& social sciences",
+   "xls_rows": [
+    501
+   ],
+   "old_target": "journal of gerontology",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "the journals of gerontology series b"
+  },
+  {
+   "source": "journal of neural transmission supplement",
+   "xls_rows": [
+    450
+   ],
+   "old_target": "journal of neural transmission",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "psychological review monographs supplement",
+   "xls_rows": [
+    716
+   ],
+   "old_target": "psychological review",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "psychological review: monograph supplements"
+  },
+  {
+   "source": "proceedings of the royal society of london a",
+   "xls_rows": [
+    686
+   ],
+   "old_target": "proceedings of the royal society of london",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the royal society of london series a"
+  },
+  {
+   "source": "proc. intl. soc. mag. reson. med.",
+   "xls_rows": [
+    666
+   ],
+   "old_target": "proceedings of the society for magnetic resonance in medicine",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international society for magnetic resonance in medicine"
+  },
+  {
+   "source": "proceedings of the naacl-hlt",
+   "xls_rows": [
+    678
+   ],
+   "old_target": "proceedings of the national association for computational linguistics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the conference of the north american chapter of the association for computational linguistics: human language technologies"
+  },
+  {
+   "source": "proc. {ieee}",
+   "xls_rows": [
+    668
+   ],
+   "old_target": "ieee proceedings",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the ieee"
+  },
+  {
+   "source": "proceedings of the {aaai} 2008 workshop on wikipedia and artificial intelligence",
+   "xls_rows": [
+    688
+   ],
+   "old_target": "proceedings of the association for the advancement of artificial intelligence",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "proceedings of the {t}hird {i}nternational {ica} {c}onference",
+   "xls_rows": [
+    1024
+   ],
+   "old_target": "proceedings of the international congress on acoustics",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on independent component analysis and blind signal separation"
+  },
+  {
+   "source": "learning and memory: memory systems",
+   "xls_rows": [
+    514
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie und physiologie der sinnesorgane",
+   "xls_rows": [
+    845
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "zeitschrift f{\\\"u}r psychologie eganzungsband",
+   "xls_rows": [
+    844
+   ],
+   "old_target": "zeitschrift f{\\\"u}r psychologie",
+   "class": "different_journal",
+   "action": "retarget",
+   "new_target": "zeitschrift f{\\\"u}r psychologie erg{\\\"a}nzungsband"
+  },
+  {
+   "source": "physiological reviews",
+   "xls_rows": [
+    653
+   ],
+   "old_target": "physiological review",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "physiological reviews"
+  },
+  {
+   "source": "int j psychophysiol",
+   "xls_rows": [
+    317
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology"
+  },
+  {
+   "source": "int. j. psychophys.",
+   "xls_rows": [
+    319
+   ],
+   "old_target": "international journal of phychophysiology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "international journal of psychophysiology"
+  },
+  {
+   "source": "j clin exp neuropsychol",
+   "xls_rows": [
+    340
+   ],
+   "old_target": "journal of clinical and experimental neuropyschology",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of clinical and experimental neuropsychology"
+  },
+  {
+   "source": "journal of experimental psychlogy: human perception and performance",
+   "xls_rows": [
+    394
+   ],
+   "old_target": "journal of experiment psychology: human perception and performance",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "journal of experimental psychology: human perception and performance"
+  },
+  {
+   "source": "learning, memory",
+   "xls_rows": [
+    517
+   ],
+   "old_target": "learning and memory",
+   "class": "different_journal",
+   "action": "remove",
+   "new_target": null
+  },
+  {
+   "source": "psychol forsch",
+   "xls_rows": [
+    700
+   ],
+   "old_target": "psychologie forschung",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "psychologische forschung"
+  },
+  {
+   "source": "alzheimer disease \\& associated disorders",
+   "xls_rows": [
+    18
+   ],
+   "old_target": "alzheimer's disease and associated disorders",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "alzheimer disease and associated disorders"
+  },
+  {
+   "source": "reliability engineering \\& systems safety",
+   "xls_rows": [
+    743
+   ],
+   "old_target": "reliability engineering and systems safety",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "reliability engineering and system safety"
+  },
+  {
+   "source": "{artificial intelligence and statistics}",
+   "xls_rows": [
+    1084
+   ],
+   "old_target": "artificial intellience and statistics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "artificial intelligence and statistics"
+  },
+  {
+   "source": "{c}omputational and {s}ystems {n}euroscience ({cosyne}) {a}bstracts",
+   "xls_rows": [
+    1086
+   ],
+   "old_target": "computational and systems neuroscience (coysne)",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "computational and systems neuroscience (cosyne)"
+  },
+  {
+   "source": "youman's neurosurgical surgery, 5th edition",
+   "xls_rows": [
+    1081
+   ],
+   "old_target": "youman's neurosurgical surgery",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "youmans neurological surgery"
+  },
+  {
+   "source": "current issues in cognitive processes: the {tulane flowerree} symposium on cognition",
+   "xls_rows": [
+    930
+   ],
+   "old_target": "current issues in cognitive processes: the floweree symposium on cognition",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "current issues in cognitive processes: the tulane flowerree symposium on cognition"
+  },
+  {
+   "source": "engineering in medicine and biology society (embc), 2010 annual international conference of the ieee",
+   "xls_rows": [
+    935
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society"
+  },
+  {
+   "source": "engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee",
+   "xls_rows": [
+    936
+   ],
+   "old_target": "ieee conference on engineering in medicine, biology, and society",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "annual international conference of the ieee engineering in medicine and biology society"
+  },
+  {
+   "source": "proc. intl. conference on learning and development (icdl)",
+   "xls_rows": [
+    1005
+   ],
+   "old_target": "proceedings of the international conference on learning and development",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "proceedings of the international conference on development and learning"
+  },
+  {
+   "source": "mathematics $+$ physics",
+   "xls_rows": [
+    979
+   ],
+   "old_target": "mathematics$+$ physics",
+   "class": "misspelled_target",
+   "action": "retarget",
+   "new_target": "mathematics $+$ physics"
+  }
+ ]
+}

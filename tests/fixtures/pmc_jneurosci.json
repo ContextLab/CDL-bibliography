@@ -1,0 +1,1014 @@
+{
+  "WangBuzs96": {
+    "fields": {
+      "year": "1996",
+      "volume": "16",
+      "title": "Gamma oscillation by synaptic inhibition in a hippocampal interneuronal network model",
+      "publisher": "Society for Neuroscience",
+      "pages": "6402--6413",
+      "number": "20",
+      "journal": "The Journal of Neuroscience",
+      "author": "X J Wang and G Buzsaki",
+      "ENTRYTYPE": "article",
+      "ID": "WangBuzs96"
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1523/jneurosci.16-20-06402.1996",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "X J Wang and G Buzsaki",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Wang",
+              "given": "Xiao-Jing",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Buzs\u00e1ki",
+              "given": "Gy\u00f6rgy",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "number": {
+          "local": "20",
+          "match": true,
+          "source": [
+            "20"
+          ]
+        },
+        "pages": {
+          "local": "6402--6413",
+          "match": true,
+          "source": [
+            "6402-6413"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Gamma oscillation by synaptic inhibition in a hippocampal interneuronal network model",
+          "match": true,
+          "source": [
+            "Gamma Oscillation by Synaptic Inhibition in a Hippocampal Interneuronal Network Model"
+          ]
+        },
+        "volume": {
+          "local": "16",
+          "match": true,
+          "source": [
+            "16"
+          ]
+        },
+        "year": {
+          "local": "1996",
+          "match": true,
+          "source": [
+            "1996"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.16-20-06402.1996",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.16-20-06402.1996",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Wang",
+            "given": "Xiao-Jing",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Buzs\u00e1ki",
+            "given": "Gy\u00f6rgy",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "20",
+        "issued": {
+          "date-parts": [
+            [
+              1996,
+              10,
+              15
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.16-20-06402.1996",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "6402-6413",
+        "published": {
+          "date-parts": [
+            [
+              1996,
+              10,
+              15
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1996,
+              10,
+              15
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1996,
+              10,
+              15
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Gamma Oscillation by Synaptic Inhibition in a Hippocampal Interneuronal Network Model"
+        ],
+        "type": "journal-article",
+        "volume": "16"
+      },
+      "retrieved_at": "2026-09-09T20:23:32.519170+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.16-20-06402.1996"
+    },
+    "medline": {
+      "authorList": {
+        "author": [
+          {
+            "authorAffiliationDetailsList": {
+              "authorAffiliation": [
+                {
+                  "affiliation": "Physics Department, Brandeis University, Waltham, Massachusetts 02254, USA."
+                }
+              ]
+            },
+            "firstName": "X J",
+            "fullName": "Wang XJ",
+            "initials": "XJ",
+            "lastName": "Wang"
+          },
+          {
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0002-3100-4800"
+            },
+            "firstName": "G",
+            "fullName": "Buzs\u00e1ki G",
+            "initials": "G",
+            "lastName": "Buzs\u00e1ki"
+          }
+        ]
+      },
+      "doi": "10.1523/jneurosci.16-20-06402.1996",
+      "firstPublicationDate": "1996-10-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Free after 6 months",
+            "availabilityCode": "F6",
+            "documentStyle": "html",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/content/full/16/20/6402"
+          },
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1523/JNEUROSCI.16-20-06402.1996"
+          },
+          {
+            "availability": "Free after 6 months",
+            "availabilityCode": "F6",
+            "documentStyle": "pdf",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/reprint/16/20/6402.pdf"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "abs",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/content/abstract/16/20/6402"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "html",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6578902"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "pdf",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6578902?pdf=render"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1523/jneurosci.16-20-06402.1996"
+          }
+        ]
+      },
+      "id": "8815919",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1996 Oct",
+        "issue": "20",
+        "journal": {
+          "essn": "1529-2401",
+          "isoabbreviation": "J Neurosci",
+          "issn": "0270-6474",
+          "medlineAbbreviation": "J Neurosci",
+          "nlmid": "8102140",
+          "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+        },
+        "journalIssueId": 975347,
+        "monthOfPublication": 10,
+        "printPublicationDate": "1996-10-01",
+        "volume": "16",
+        "yearOfPublication": 1996
+      },
+      "pageInfo": "6402-6413",
+      "pmcid": "PMC6578902",
+      "pubTypeList": {
+        "pubType": [
+          "other",
+          "Research Support, U.S. Gov't, P.H.S.",
+          "Research Support, U.S. Gov't, Non-P.H.S.",
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1996",
+      "source": "MED",
+      "title": "Gamma oscillation by synaptic inhibition in a hippocampal interneuronal network model."
+    },
+    "raw_oai": "\n\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n    <responseDate>2026-09-17T03:25:36Z</responseDate>\n    <request verb=\"GetRecord\" identifier=\"oai:pubmedcentral.nih.gov:6578902\" metadataPrefix=\"pmc_fm\">https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/</request>\n    \n    <GetRecord>\n        <record>\n    <header>\n    <identifier>oai:pubmedcentral.nih.gov:6578902</identifier>\n    <datestamp>2019-10-28</datestamp>\n    \n        \n        <setSpec>jneurosci</setSpec>\n        \n    \n</header>\n    <metadata>\n        \n        <article xmlns=\"https://jats.nlm.nih.gov/ns/archiving/1.4/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ali=\"http://www.niso.org/schemas/ali/1.0/\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-id journal-id-type=\"publisher-id\">J. Neurosci</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6578902</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6578902.1</article-id><article-id pub-id-type=\"pmcaid\">6578902</article-id><article-id pub-id-type=\"pmcaiid\">6578902</article-id><article-id pub-id-type=\"pmid\">8815919</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.16-20-06402.1996</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Gamma Oscillation by Synaptic Inhibition in a Hippocampal Interneuronal Network Model</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Wang</surname><given-names initials=\"XJ\">Xiao-Jing</given-names></name><xref ref-type=\"aff\" rid=\"tO1\">1</xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Buzs&#225;ki</surname><given-names initials=\"G\">Gy&#246;rgy</given-names></name><xref ref-type=\"aff\" rid=\"tO2\">2</xref></contrib></contrib-group><aff id=\"tO1\">\n<label><sup>1</sup></label>Physics Department and Center for Complex Systems, Brandeis University, Waltham, Massachusetts 02254,&#160;and</aff><aff id=\"tO2\">\n<label><sup>2</sup></label>Center for Molecular and Behavioral Neuroscience, Rutgers University, Newark, New Jersey 07102</aff><pub-date pub-type=\"ppub\"><day>15</day><month>10</month><year>1996</year></pub-date><volume>16</volume><issue>20</issue><issue-id pub-id-type=\"pmc-issue-id\">336613</issue-id><fpage>6402</fpage><lpage>6413</lpage><history><date date-type=\"received\"><day>5</day><month>5</month><year>1996</year></date><date date-type=\"rev-recd\"><day>25</day><month>6</month><year>1996</year></date><date date-type=\"accepted\"><day>31</day><month>7</month><year>1996</year></date></history><pub-history><event event-type=\"pmc-release\"><date><day>15</day><month>04</month><year>1997</year></date></event><event event-type=\"pmc-live\"><date><day>28</day><month>10</month><year>2019</year></date></event><event event-type=\"pmc-last-change\"><date iso-8601-date=\"2019-10-29 00:22:14.190\"><day>29</day><month>10</month><year>2019</year></date></event></pub-history><permissions><copyright-statement>Copyright &#169; 1996 Society for Neuroscience</copyright-statement><copyright-year>1996</copyright-year></permissions><self-uri content-type=\"pmc-pdf\" xlink:href=\"ns006402.pdf\"/><related-article related-article-type=\"correction-forward\" xml:lang=\"en\" xlink:title=\"correction\" vol=\"18\" journal-id=\"J Neurosci\" journal-id-type=\"nlm-ta\" ext-link-type=\"pmc\" xlink:href=\"PMC6792948\"><article-title>Correction for Wang et al., Gamma Oscillation by Snaptic Inhibition in a Hippocampal Intrneuronal Network Model</article-title><volume>18</volume><issue>17</issue><date><day>1</day><month>9</month><year>1998</year></date><fpage seq=\"b\">np</fpage><lpage>np</lpage><source>The Journal of Neuroscience</source><pub-id pub-id-type=\"pmcid\">PMC6792948</pub-id></related-article><abstract><p>Fast neuronal oscillations (gamma, 20&#8211;80 Hz) have been observed in the neocortex and hippocampus during behavioral arousal. Using computer simulations, we investigated the hypothesis that such rhythmic activity can emerge in a random network of interconnected GABAergic fast-spiking interneurons. Specific conditions for the population synchronization, on properties of single cells and the circuit, were identified. These include the following: (1) that the amplitude of spike afterhyperpolarization be above the GABA<sub>A</sub> synaptic reversal potential; (2) that the ratio between the synaptic decay time constant and the oscillation period be sufficiently large; (3) that the effects of heterogeneities be modest because of a steep frequency&#8211;current relationship of fast-spiking neurons. Furthermore, using a <italic toggle=\"yes\">population coherence</italic> measure, based on coincident firings of neural pairs, it is demonstrated that large-scale network synchronization requires a critical (minimal) average number of synaptic contacts per cell, which is not sensitive to the network size.</p><p>By changing the GABA<sub>A</sub> synaptic maximal conductance, synaptic decay time constant, or the mean external excitatory drive to the network, the neuronal firing frequencies were gradually and monotonically varied. By contrast, the network synchronization was found to be high only within a frequency band coinciding with the gamma (20&#8211;80 Hz) range. We conclude that the GABA<sub>A</sub> synaptic transmission provides a suitable mechanism for synchronized gamma oscillations in a sparsely connected network of fast-spiking interneurons. In turn, the interneuronal network can presumably maintain subthreshold oscillations in principal cell populations and serve to synchronize discharges of spatially distributed neurons.</p></abstract><kwd-group><kwd>gamma rhythm</kwd><kwd>hippocampus</kwd><kwd>interneurons</kwd><kwd>GABA<sub>A</sub></kwd><kwd>synchronization</kwd><kwd>computer model</kwd></kwd-group><custom-meta-group><custom-meta><meta-name>pmc-status-qastatus</meta-name><meta-value>0</meta-value></custom-meta><custom-meta><meta-name>pmc-status-live</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-status-embargo</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-status-released</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-open-access</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-legally-suppressed</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-supplement</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-pdf-only</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-suppress-copyright</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-real-version</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-scanned-article</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-in-epmc</meta-name><meta-value>yes</meta-value></custom-meta></custom-meta-group></article-meta></front></article>\n        \n    </metadata>\n</record>\n    </GetRecord>\n\n</OAI-PMH>"
+  },
+  "OMarEtal94": {
+    "fields": {
+      "year": "1994",
+      "volume": "14",
+      "title": "Neurons responding to whole-body motion in the primate hippocampus",
+      "publisher": "Society for Neuroscience",
+      "pages": "6511--6523",
+      "number": "11",
+      "journal": "The Journal of Neuroscience",
+      "author": "S M O'Mara and E T Rolls and A Berthoz and R P Kesner",
+      "ENTRYTYPE": "article",
+      "ID": "OMarEtal94"
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1523/jneurosci.14-11-06511.1994",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "S M O'Mara and E T Rolls and A Berthoz and R P Kesner",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "O'Mara",
+              "given": "SM",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Rolls",
+              "given": "ET",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Berthoz",
+              "given": "A",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "Kesner",
+              "given": "RP",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "number": {
+          "local": "11",
+          "match": true,
+          "source": [
+            "11"
+          ]
+        },
+        "pages": {
+          "local": "6511--6523",
+          "match": true,
+          "source": [
+            "6511-6523"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Neurons responding to whole-body motion in the primate hippocampus",
+          "match": true,
+          "source": [
+            "Neurons responding to whole-body motion in the primate hippocampus"
+          ]
+        },
+        "volume": {
+          "local": "14",
+          "match": true,
+          "source": [
+            "14"
+          ]
+        },
+        "year": {
+          "local": "1994",
+          "match": true,
+          "source": [
+            "1994"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.14-11-06511.1994",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.14-11-06511.1994",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "O'Mara",
+            "given": "SM",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Rolls",
+            "given": "ET",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Berthoz",
+            "given": "A",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Kesner",
+            "given": "RP",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "11",
+        "issued": {
+          "date-parts": [
+            [
+              1994,
+              11,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.14-11-06511.1994",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "6511-6523",
+        "published": {
+          "date-parts": [
+            [
+              1994,
+              11,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1994,
+              11,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1994,
+              11,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Neurons responding to whole-body motion in the primate hippocampus"
+        ],
+        "type": "journal-article",
+        "volume": "14"
+      },
+      "retrieved_at": "2026-09-09T20:42:15.976762+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.14-11-06511.1994"
+    },
+    "medline": {
+      "authorList": {
+        "author": [
+          {
+            "authorAffiliationDetailsList": {
+              "authorAffiliation": [
+                {
+                  "affiliation": "University of Oxford, Department of Experimental Psychology, United Kingdom."
+                }
+              ]
+            },
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0001-8087-8531"
+            },
+            "firstName": "S M",
+            "fullName": "O'Mara SM",
+            "initials": "SM",
+            "lastName": "O'Mara"
+          },
+          {
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0003-3025-1292"
+            },
+            "firstName": "E T",
+            "fullName": "Rolls ET",
+            "initials": "ET",
+            "lastName": "Rolls"
+          },
+          {
+            "firstName": "A",
+            "fullName": "Berthoz A",
+            "initials": "A",
+            "lastName": "Berthoz"
+          },
+          {
+            "firstName": "R P",
+            "fullName": "Kesner RP",
+            "initials": "RP",
+            "lastName": "Kesner"
+          }
+        ]
+      },
+      "doi": "10.1523/jneurosci.14-11-06511.1994",
+      "firstPublicationDate": "1994-11-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "pdf",
+            "site": "Unpaywall",
+            "url": "https://www.jneurosci.org/content/jneuro/14/11/6511.full.pdf"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "abs",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/content/abstract/14/11/6511"
+          },
+          {
+            "availability": "Free after 6 months",
+            "availabilityCode": "F6",
+            "documentStyle": "pdf",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/reprint/14/11/6511.pdf"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "html",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6577245"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "pdf",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6577245?pdf=render"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1523/jneurosci.14-11-06511.1994"
+          }
+        ]
+      },
+      "id": "7965055",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1994 Nov",
+        "issue": "11 Pt 1",
+        "journal": {
+          "essn": "1529-2401",
+          "isoabbreviation": "J Neurosci",
+          "issn": "0270-6474",
+          "medlineAbbreviation": "J Neurosci",
+          "nlmid": "8102140",
+          "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+        },
+        "journalIssueId": 818755,
+        "monthOfPublication": 11,
+        "printPublicationDate": "1994-11-01",
+        "volume": "14",
+        "yearOfPublication": 1994
+      },
+      "pageInfo": "6511-6523",
+      "pmcid": "PMC6577245",
+      "pubTypeList": {
+        "pubType": [
+          "other",
+          "Research Support, Non-U.S. Gov't",
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1994",
+      "source": "MED",
+      "title": "Neurons responding to whole-body motion in the primate hippocampus."
+    },
+    "raw_oai": "\n\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n    <responseDate>2026-09-17T03:25:30Z</responseDate>\n    <request verb=\"GetRecord\" identifier=\"oai:pubmedcentral.nih.gov:6577245\" metadataPrefix=\"pmc_fm\">https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/</request>\n    \n    <GetRecord>\n        <record>\n    <header>\n    <identifier>oai:pubmedcentral.nih.gov:6577245</identifier>\n    <datestamp>2019-10-28</datestamp>\n    \n        \n        <setSpec>jneurosci</setSpec>\n        \n    \n</header>\n    <metadata>\n        \n        <article xmlns=\"https://jats.nlm.nih.gov/ns/archiving/1.4/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ali=\"http://www.niso.org/schemas/ali/1.0/\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6577245</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6577245.1</article-id><article-id pub-id-type=\"pmcaid\">6577245</article-id><article-id pub-id-type=\"pmcaiid\">6577245</article-id><article-id pub-id-type=\"pmid\">7965055</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.14-11-06511.1994</article-id><article-id pub-id-type=\"other\">jneuro;14/11/6511</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Neurons responding to whole-body motion in the primate hippocampus</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>O'Mara</surname><given-names initials=\"SM\">SM</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Rolls</surname><given-names initials=\"ET\">ET</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Berthoz</surname><given-names initials=\"A\">A</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kesner</surname><given-names initials=\"RP\">RP</given-names></name></contrib></contrib-group><aff>University of Oxford, Department of Experimental Psychology, United Kingdom.</aff><pub-date pub-type=\"ppub\"><day>1</day><month>11</month><year>1994</year></pub-date><volume>14</volume><issue>11</issue><issue-id pub-id-type=\"pmc-issue-id\">336584</issue-id><fpage>6511</fpage><lpage>6523</lpage><pub-history><event event-type=\"pmc-release\"><date><day>01</day><month>05</month><year>1995</year></date></event><event event-type=\"pmc-live\"><date><day>28</day><month>10</month><year>2019</year></date></event><event event-type=\"pmc-last-change\"><date iso-8601-date=\"2019-10-29 00:22:14.190\"><day>29</day><month>10</month><year>2019</year></date></event></pub-history><permissions><copyright-statement>&#169; 1994 by Society for Neuroscience</copyright-statement><copyright-year>1994</copyright-year></permissions><self-uri content-type=\"pmc-pdf\" xlink:href=\"jneuro_14_11_6511.pdf\"/><self-uri content-type=\"abstract\" xlink:href=\"file:/content/jneuro/vol14/issue11/abstracts/6511/6511.htslp\"/><self-uri content-type=\"pdf\" xlink:href=\"file:/content/jneuro/vol14/issue11/pdf/ns116511.pdf\"/><abstract><p>We describe here hippocampal cells that respond during whole-body motion when a monkey is moved on a remote-controlled robot-mounted platform in a cue-controlled test chamber (2 x 2 x 2 m). Some of these cells responded to linear motion, and others to axial rotation. Some of these cells responded when the same motion occurred without a view of the visual field. Such cells appeared to be driven by vestibular inputs. Other cells required a view of the visual field for their response, and these cells appeared to be driven by the visual motion relative to the monkey of the test chamber. Further evidence that this was the case was that some of the cells responded to rotation and linear motion of the test chamber while the monkey remained stationary. Other cells responded to combinations of whole-body motion and a view of the environment. These findings show that information about whole- body motion, as well as about where the animal is looking in an environment, is represented in the primate hippocampus. We suggest that this information is important in spatial memory and thus in spatial navigation.</p></abstract><custom-meta-group><custom-meta><meta-name>pmc-status-qastatus</meta-name><meta-value>0</meta-value></custom-meta><custom-meta><meta-name>pmc-status-live</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-status-embargo</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-status-released</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-open-access</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-legally-suppressed</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-supplement</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-pdf-only</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-suppress-copyright</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-real-version</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-scanned-article</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-in-epmc</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>hwp-resource-id</meta-name><meta-value>14/11/6511</meta-value></custom-meta><custom-meta><meta-name>hwp-legacy-fpage</meta-name><meta-value>6511</meta-value></custom-meta></custom-meta-group></article-meta></front></article>\n        \n    </metadata>\n</record>\n    </GetRecord>\n\n</OAI-PMH>"
+  },
+  "KnieEtal95": {
+    "fields": {
+      "year": "1995",
+      "volume": "15",
+      "title": "Place cells, head direction cells, and the learning of landmark stability",
+      "publisher": "Society for Neuroscience",
+      "pages": "1648--1659",
+      "number": "3",
+      "journal": "The Journal of Neuroscience",
+      "author": "J J Knierim and H S Kudrimoti and B L McNaughton",
+      "ENTRYTYPE": "article",
+      "ID": "KnieEtal95"
+    },
+    "primary": {
+      "advisories": [],
+      "doi": "10.1523/jneurosci.15-03-01648.1995",
+      "evidence": {
+        "author": {
+          "detail": "Missing or incomplete given names",
+          "local": "J J Knierim and H S Kudrimoti and B L McNaughton",
+          "match": false,
+          "source": [
+            {
+              "affiliation": [],
+              "family": "Knierim",
+              "given": "JJ",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "first"
+            },
+            {
+              "affiliation": [],
+              "family": "Kudrimoti",
+              "given": "HS",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            },
+            {
+              "affiliation": [],
+              "family": "McNaughton",
+              "given": "BL",
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ],
+              "sequence": "additional"
+            }
+          ]
+        },
+        "journal": {
+          "local": "The Journal of Neuroscience",
+          "match": true,
+          "source": [
+            "The Journal of Neuroscience"
+          ]
+        },
+        "number": {
+          "local": "3",
+          "match": true,
+          "source": [
+            "3"
+          ]
+        },
+        "pages": {
+          "local": "1648--1659",
+          "match": true,
+          "source": [
+            "1648-1659"
+          ]
+        },
+        "publisher": {
+          "local": "Society for Neuroscience",
+          "match": true,
+          "source": [
+            "Society for Neuroscience"
+          ]
+        },
+        "title": {
+          "local": "Place cells, head direction cells, and the learning of landmark stability",
+          "match": true,
+          "source": [
+            "Place cells, head direction cells, and the learning of landmark stability"
+          ]
+        },
+        "volume": {
+          "local": "15",
+          "match": true,
+          "source": [
+            "15"
+          ]
+        },
+        "year": {
+          "local": "1995",
+          "match": true,
+          "source": [
+            "1995"
+          ]
+        }
+      },
+      "issues": [
+        "author: Missing or incomplete given names"
+      ],
+      "record": {
+        "DOI": "10.1523/jneurosci.15-03-01648.1995",
+        "ISSN": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "URL": "https://doi.org/10.1523/jneurosci.15-03-01648.1995",
+        "author": [
+          {
+            "affiliation": [],
+            "family": "Knierim",
+            "given": "JJ",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Kudrimoti",
+            "given": "HS",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "McNaughton",
+            "given": "BL",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ],
+        "container-title": [
+          "The Journal of Neuroscience"
+        ],
+        "issue": "3",
+        "issued": {
+          "date-parts": [
+            [
+              1995,
+              3,
+              1
+            ]
+          ]
+        },
+        "link": [
+          {
+            "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.15-03-01648.1995",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "page": "1648-1659",
+        "published": {
+          "date-parts": [
+            [
+              1995,
+              3,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              1995,
+              3,
+              1
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              1995,
+              3,
+              1
+            ]
+          ]
+        },
+        "publisher": "Society for Neuroscience",
+        "title": [
+          "Place cells, head direction cells, and the learning of landmark stability"
+        ],
+        "type": "journal-article",
+        "volume": "15"
+      },
+      "retrieved_at": "2026-09-09T20:46:43.710075+00:00",
+      "source": "crossref",
+      "url": "https://doi.org/10.1523/jneurosci.15-03-01648.1995"
+    },
+    "medline": {
+      "authorList": {
+        "author": [
+          {
+            "authorAffiliationDetailsList": {
+              "authorAffiliation": [
+                {
+                  "affiliation": "Arizona Research Laboratories, Division of Neural Systems, Memory, and Aging, University of Arizona, Tucson 85724."
+                }
+              ]
+            },
+            "firstName": "J J",
+            "fullName": "Knierim JJ",
+            "initials": "JJ",
+            "lastName": "Knierim"
+          },
+          {
+            "firstName": "H S",
+            "fullName": "Kudrimoti HS",
+            "initials": "HS",
+            "lastName": "Kudrimoti"
+          },
+          {
+            "firstName": "B L",
+            "fullName": "McNaughton BL",
+            "initials": "BL",
+            "lastName": "McNaughton"
+          }
+        ]
+      },
+      "doi": "10.1523/jneurosci.15-03-01648.1995",
+      "firstPublicationDate": "1995-03-01",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "pdf",
+            "site": "Unpaywall",
+            "url": "https://www.jneurosci.org/content/jneuro/15/3/1648.full.pdf"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "abs",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/content/abstract/15/3/1648"
+          },
+          {
+            "availability": "Free after 6 months",
+            "availabilityCode": "F6",
+            "documentStyle": "pdf",
+            "site": "www.jneurosci.org",
+            "url": "http://www.jneurosci.org/cgi/reprint/15/3/1648.pdf"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "html",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6578145"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "pdf",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC6578145?pdf=render"
+          },
+          {
+            "availability": "Free",
+            "availabilityCode": "F",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.1523/jneurosci.15-03-01648.1995"
+          }
+        ]
+      },
+      "id": "7891125",
+      "isOpenAccess": "N",
+      "journalInfo": {
+        "dateOfPublication": "1995 Mar",
+        "issue": "3 Pt 1",
+        "journal": {
+          "essn": "1529-2401",
+          "isoabbreviation": "J Neurosci",
+          "issn": "0270-6474",
+          "medlineAbbreviation": "J Neurosci",
+          "nlmid": "8102140",
+          "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+        },
+        "journalIssueId": 853404,
+        "monthOfPublication": 3,
+        "printPublicationDate": "1995-03-01",
+        "volume": "15",
+        "yearOfPublication": 1995
+      },
+      "pageInfo": "1648-1659",
+      "pmcid": "PMC6578145",
+      "pubTypeList": {
+        "pubType": [
+          "other",
+          "Research Support, U.S. Gov't, P.H.S.",
+          "Research Support, Non-U.S. Gov't",
+          "Research Support, U.S. Gov't, Non-P.H.S.",
+          "Journal Article"
+        ]
+      },
+      "pubYear": "1995",
+      "source": "MED",
+      "title": "Place cells, head direction cells, and the learning of landmark stability."
+    },
+    "raw_oai": "\n\n\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n    <responseDate>2026-09-17T03:25:33Z</responseDate>\n    <request verb=\"GetRecord\" identifier=\"oai:pubmedcentral.nih.gov:6578145\" metadataPrefix=\"pmc_fm\">https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/</request>\n    \n    <GetRecord>\n        <record>\n    <header>\n    <identifier>oai:pubmedcentral.nih.gov:6578145</identifier>\n    <datestamp>2019-10-28</datestamp>\n    \n        \n        <setSpec>jneurosci</setSpec>\n        \n    \n</header>\n    <metadata>\n        \n        <article xmlns=\"https://jats.nlm.nih.gov/ns/archiving/1.4/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:ali=\"http://www.niso.org/schemas/ali/1.0/\" xsi:schemaLocation=\"https://jats.nlm.nih.gov/ns/archiving/1.4/ https://jats.nlm.nih.gov/archiving/1.4/xsd/JATS-archivearticle1-4.xsd\" article-type=\"other\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">J Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">J. Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">2110</journal-id><journal-id journal-id-type=\"pmc-domain\">jneurosci</journal-id><journal-id journal-id-type=\"nlm-id\">8102140</journal-id><journal-title-group><journal-title>The Journal of Neuroscience</journal-title></journal-title-group><issn pub-type=\"ppub\">0270-6474</issn><issn pub-type=\"epub\">1529-2401</issn><publisher><publisher-name>Society for Neuroscience</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC6578145</article-id><article-id pub-id-type=\"pmcid-ver\">PMC6578145.1</article-id><article-id pub-id-type=\"pmcaid\">6578145</article-id><article-id pub-id-type=\"pmcaiid\">6578145</article-id><article-id pub-id-type=\"pmid\">7891125</article-id><article-id pub-id-type=\"doi\">10.1523/JNEUROSCI.15-03-01648.1995</article-id><article-id pub-id-type=\"other\">jneuro;15/3/1648</article-id><article-version article-version-type=\"pmc-version\">1</article-version><article-categories><subj-group subj-group-type=\"heading\"><subject>Articles</subject></subj-group></article-categories><title-group><article-title>Place cells, head direction cells, and the learning of landmark stability</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Knierim</surname><given-names initials=\"JJ\">JJ</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Kudrimoti</surname><given-names initials=\"HS\">HS</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>McNaughton</surname><given-names initials=\"BL\">BL</given-names></name></contrib></contrib-group><aff>Arizona Research Laboratories, Division of Neural Systems, Memory, and Aging, University of Arizona, Tucson 85724.</aff><pub-date pub-type=\"ppub\"><day>1</day><month>3</month><year>1995</year></pub-date><volume>15</volume><issue>3</issue><issue-id pub-id-type=\"pmc-issue-id\">336596</issue-id><fpage>1648</fpage><lpage>1659</lpage><pub-history><event event-type=\"pmc-release\"><date><day>01</day><month>09</month><year>1995</year></date></event><event event-type=\"pmc-live\"><date><day>28</day><month>10</month><year>2019</year></date></event><event event-type=\"pmc-last-change\"><date iso-8601-date=\"2019-10-29 00:22:14.190\"><day>29</day><month>10</month><year>2019</year></date></event></pub-history><permissions><copyright-statement>&#169; 1995 by Society for Neuroscience</copyright-statement><copyright-year>1995</copyright-year></permissions><self-uri content-type=\"pmc-pdf\" xlink:href=\"jneuro_15_3_1648.pdf\"/><self-uri content-type=\"abstract\" xlink:href=\"file:/content/jneuro/vol15/issue3/abstracts/1648/1648.htslp\"/><self-uri content-type=\"pdf\" xlink:href=\"file:/content/jneuro/vol15/issue3/pdf/ns31648.pdf\"/><abstract><p>Previous studies have shown that hippocampal place fields are controlled by the salient sensory cues in the environment, in that rotation of the cues causes an equal rotation of the place fields. We trained rats to forage for food pellets in a gray cylinder with a single salient directional cue, a white card covering 90 degrees of the cylinder wall. Half of the rats were disoriented before being placed in the cylinder, in order to disrupt their internal sense of direction. The other half were not disoriented before being placed in the cylinder; for these rats, there was presumably a consistent relationship between the cue card and their internal direction sense. We subsequently recorded hippocampal place cells and thalamic head direction cells from both groups of rats as they moved in the cylinder; between some sessions the cylinder and cue card were rotated to a new direction. All rats were disoriented before recording. Under these conditions, the cue card had much weaker control over the place fields and head direction cells in the rats that had been disoriented during training than in the rats that had not been disoriented. For the former group, the place fields often rotated relative to the cue card or completely changed their firing properties between sessions. In all recording sessions, the head direction cells and place cells were strongly coupled. It appears that the strength of cue control over place cells and head direction cells depends on the rat's learned perception of the stability of the cues.</p></abstract><custom-meta-group><custom-meta><meta-name>pmc-status-qastatus</meta-name><meta-value>0</meta-value></custom-meta><custom-meta><meta-name>pmc-status-live</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-status-embargo</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-status-released</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-open-access</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-legally-suppressed</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-supplement</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-pdf-only</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-suppress-copyright</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-real-version</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-scanned-article</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-in-epmc</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>hwp-resource-id</meta-name><meta-value>15/3/1648</meta-value></custom-meta><custom-meta><meta-name>hwp-legacy-fpage</meta-name><meta-value>1648</meta-value></custom-meta></custom-meta-group></article-meta></front></article>\n        \n    </metadata>\n</record>\n    </GetRecord>\n\n</OAI-PMH>"
+  }
+}

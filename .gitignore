@@ -5,3 +5,12 @@
 cdl.bib.bak
 cdl.bib.sav.tmp
 .idea/
+# Local working state only: SQLite, HTTP cache, secrets, debug runs, reports and
+# portable checkpoints. Nothing here is tracked; enumerating subpaths previously
+# left `.bibcheck/*.jsonl.gz` checkpoints stageable.
+.bibcheck/
+.venv/
+.pytest_cache/
+
+# Playwright MCP browser logs (agents run the browser from the repo root)
+.playwright-mcp/

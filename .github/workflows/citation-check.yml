@@ -1,0 +1,57 @@
+name: Citation verification
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# All free-provider jobs in this workflow share one serial queue.
+concurrency:
+  group: citation-verification
+  cancel-in-progress: false
+
+jobs:
+  citations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-verification.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: .bibcheck/verification.sqlite3
+          key: citations-v2-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            citations-v2-${{ github.ref }}-
+            citations-v2-refs/heads/master-
+      - name: Verify new and edited citations (manual runs check the full library)
+        env:
+          CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
+          BASE_REVISION: ${{ github.event.pull_request.base.sha || github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: python verification/check_ci.py
+      - name: Save resumable database, including unresolved results
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .bibcheck/verification.sqlite3
+          key: citations-v2-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Preserve portable evidence and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: citation-verification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .bibcheck/report.jsonl
+            .bibcheck/checkpoint.jsonl.gz
+          if-no-files-found: warn

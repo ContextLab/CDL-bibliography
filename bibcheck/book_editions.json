@@ -1,0 +1,42 @@
+[
+  {
+    "book_doi": "10.1007/978-1-4684-1083-9",
+    "booktitle": "Intelligence and Learning",
+    "year": 1981,
+    "registry_publisher": "Springer US",
+    "registry_isbns": [
+      "9781468410853",
+      "9781468410839"
+    ],
+    "catalogue_url": "https://lccn.loc.gov/80028692/marcxml",
+    "lccn": "80028692",
+    "record_id": "4663918",
+    "document_sha256": "712cbbe82e64cd498c6e969c6c28dc038e689ac772417394376ed3f8e222dbb9",
+    "raw_marcxml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><record xmlns=\"http://www.loc.gov/MARC21/slim\" xmlns:zs=\"http://docs.oasis-open.org/ns/search-ws/sruResponse\">\n  <leader>01590cam a2200397 i 4500</leader>\n  <controlfield tag=\"001\">4663918</controlfield>\n  <controlfield tag=\"005\">20250607171637.5</controlfield>\n  <controlfield tag=\"008\">801231s1981    nyua     b    101 0 eng  </controlfield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n    <subfield code=\"a\">4663918</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"906\">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ocip</subfield>\n    <subfield code=\"f\">19</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"955\">\n    <subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-150</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"010\">\n    <subfield code=\"a\">   80028692 </subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n    <subfield code=\"a\">0306406438</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n    <subfield code=\"a\">9780306406430</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n    <subfield code=\"9\">(DLC)   80028692</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield ind1=\"0\" ind2=\"0\" tag=\"050\">\n    <subfield code=\"a\">BF431</subfield>\n    <subfield code=\"b\">.N377 1979</subfield>\n  </datafield>\n  <datafield ind1=\"0\" ind2=\"0\" tag=\"082\">\n    <subfield code=\"a\">153</subfield>\n    <subfield code=\"2\">19</subfield>\n  </datafield>\n  <datafield ind1=\"2\" ind2=\" \" tag=\"111\">\n    <subfield code=\"a\">NATO Conference on Intelligence and Learning</subfield>\n    <subfield code=\"d\">(1979 :</subfield>\n    <subfield code=\"c\">York, England)</subfield>\n  </datafield>\n  <datafield ind1=\"1\" ind2=\"0\" tag=\"245\">\n    <subfield code=\"a\">Intelligence and learning /</subfield>\n    <subfield code=\"c\">edited by Morton P. Friedman, J. P. Das, and Neil O'Connor.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n    <subfield code=\"a\">New York :</subfield>\n    <subfield code=\"b\">Published in cooperation with NATO Scientific Affairs Division by Plenum Press,</subfield>\n    <subfield code=\"c\">c1981.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n    <subfield code=\"a\">xii, 624 p. :</subfield>\n    <subfield code=\"b\">ill. ;</subfield>\n    <subfield code=\"c\">26 cm.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"336\">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"337\">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"338\">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\"0\" tag=\"440\">\n    <subfield code=\"a\">NATO conference series : III, Human factors ;</subfield>\n    <subfield code=\"v\">v. 14</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n    <subfield code=\"a\">\"Proceedings of a NATO Conference on Intelligence and Learning, held July 16-20, 1979, in York, England.\"</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"504\">\n    <subfield code=\"a\">Includes bibliographies and indexes.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n    <subfield code=\"a\">Intellect</subfield>\n    <subfield code=\"x\">Congresses.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n    <subfield code=\"a\">Intelligence levels</subfield>\n    <subfield code=\"x\">Congresses.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n    <subfield code=\"a\">Learning, Psychology of</subfield>\n    <subfield code=\"x\">Congresses.</subfield>\n  </datafield>\n  <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n    <subfield code=\"a\">Friedman, Morton P.</subfield>\n  </datafield>\n  <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n    <subfield code=\"a\">Das, J. P.</subfield>\n    <subfield code=\"q\">(Jagannath Prasad)</subfield>\n  </datafield>\n  <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n    <subfield code=\"a\">O'Connor, Neil.</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"991\">\n    <subfield code=\"b\">c-GenColl</subfield>\n    <subfield code=\"h\">BF431</subfield>\n    <subfield code=\"i\">.N377 1979</subfield>\n    <subfield code=\"t\">Copy 1</subfield>\n    <subfield code=\"w\">BOOKS</subfield>\n  </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"991\">\n    <subfield code=\"b\">c-GenColl</subfield>\n    <subfield code=\"h\">BF431</subfield>\n    <subfield code=\"i\">.N377 1979</subfield>\n    <subfield code=\"p\">00004646691</subfield>\n    <subfield code=\"t\">Copy 2</subfield>\n    <subfield code=\"w\">CCF</subfield>\n  </datafield>\n</record>\n",
+    "retrieved_at": "2026-09-17T04:27:33.590350+00:00",
+    "edition_evidence": [
+      {
+        "file": "intelligence-learning-frontmatter.pdf",
+        "url": "https://education.asu.edu/sites/g/files/litvpz656/files/lcl/intelligencelearning.pdf",
+        "sha256": "e52a6d001ed6b5bad5e8aab60b37ac73b44047e29c4b0cf66f4d261a2ce85e71",
+        "pages": 18,
+        "visually_inspected_pdf_pages_1_based": [
+          2,
+          3
+        ],
+        "audit_recorded_at": "2026-09-17T04:18:35.729214+00:00"
+      },
+      {
+        "file": "ahern-firstpage.pdf",
+        "url": "https://page-one.springer.com/pdf/preview/10.1007/978-1-4684-1083-9_9",
+        "sha256": "3293deaf71ebac670f8b0c402753e04926ff08b808a1d02bf535ca63d1a6f5fa",
+        "pages": 2,
+        "visually_inspected_pdf_pages_1_based": [
+          1
+        ],
+        "audit_recorded_at": "2026-09-17T04:18:35.730120+00:00"
+      }
+    ],
+    "binding_audit": "The original title and imprint pages name Plenum Press, the three editors, original ISBN and 1981 edition. The publisher chapter and parent-book pages identify the same title and editors under the Springer archive DOI. This binding applies only to the 1981 edition and its registered chapter DOI prefix."
+  }
+]

@@ -1,0 +1,490 @@
+{
+  "entry": {
+    "key": "NewmEtal12",
+    "raw": "@article{NewmEtal12,\n\tAuthor = {E L Newman and K Gupta and J R Climer and C K Monaghan and M E Hasselmo},\n\tJournal = {Frontiers in Behavioral Neuroscience},\n\tPublisher = {Frontiers},\n\tTitle = {Cholinergic modulation of cognitive processing: insights drawn from computational models},\n\tVolume = {6},\n\tYear = {2012}}",
+    "fields": {
+      "year": "2012",
+      "volume": "6",
+      "title": "Cholinergic modulation of cognitive processing: insights drawn from computational models",
+      "publisher": "Frontiers",
+      "journal": "Frontiers in Behavioral Neuroscience",
+      "author": "E L Newman and K Gupta and J R Climer and C K Monaghan and M E Hasselmo",
+      "ENTRYTYPE": "article",
+      "ID": "NewmEtal12"
+    },
+    "base_hash": "c59f57babd0c4f5aa750e0216c8506a3ec8a3c18d6377960aa8e004bd08beb20",
+    "legacy_base_hash": "d25090a7bb02e052e47038d2d3b7f9c9e868812aaa5c25c370ddd793ab19dab3",
+    "fingerprint": "v2:4b1ad39dfaa1eb1a9c9eb397274d559ccca785fc178b85e3c3397e75da6c3d4d",
+    "legacy_fingerprint": "8ca1701d40d03d83b5626b9449d4cf6aa2bd0f47c332d92b12e446fc66c2236e"
+  },
+  "primary": {
+    "advisories": [],
+    "doi": "10.3389/fnbeh.2012.00024",
+    "evidence": {
+      "author": {
+        "detail": "Complete author list in order; citation initials agree with source names",
+        "local": "E L Newman and K Gupta and J R Climer and C K Monaghan and M E Hasselmo",
+        "match": true,
+        "source": [
+          {
+            "affiliation": [],
+            "family": "Newman",
+            "given": "Ehren L.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "first"
+          },
+          {
+            "affiliation": [],
+            "family": "Gupta",
+            "given": "Kishan",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Climer",
+            "given": "Jason R.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Monaghan",
+            "given": "Caitlin K.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          },
+          {
+            "affiliation": [],
+            "family": "Hasselmo",
+            "given": "Michael E.",
+            "role": [
+              {
+                "role": "author",
+                "vocabulary": "crossref"
+              }
+            ],
+            "sequence": "additional"
+          }
+        ]
+      },
+      "journal": {
+        "local": "Frontiers in Behavioral Neuroscience",
+        "match": true,
+        "source": [
+          "Frontiers in Behavioral Neuroscience"
+        ]
+      },
+      "publisher": {
+        "local": "Frontiers",
+        "match": false,
+        "source": [
+          "Frontiers Media SA"
+        ]
+      },
+      "title": {
+        "local": "Cholinergic modulation of cognitive processing: insights drawn from computational models",
+        "match": true,
+        "source": [
+          "Cholinergic modulation of cognitive processing: insights drawn from computational models"
+        ]
+      },
+      "volume": {
+        "local": "6",
+        "match": true,
+        "source": [
+          "6"
+        ]
+      },
+      "year": {
+        "local": "2012",
+        "match": true,
+        "source": [
+          "2012"
+        ]
+      }
+    },
+    "issues": [
+      "publisher: missing evidence or mismatch"
+    ],
+    "record": {
+      "DOI": "10.3389/fnbeh.2012.00024",
+      "ISSN": [
+        "1662-5153"
+      ],
+      "URL": "https://doi.org/10.3389/fnbeh.2012.00024",
+      "author": [
+        {
+          "affiliation": [],
+          "family": "Newman",
+          "given": "Ehren L.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "first"
+        },
+        {
+          "affiliation": [],
+          "family": "Gupta",
+          "given": "Kishan",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Climer",
+          "given": "Jason R.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Monaghan",
+          "given": "Caitlin K.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        },
+        {
+          "affiliation": [],
+          "family": "Hasselmo",
+          "given": "Michael E.",
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ],
+          "sequence": "additional"
+        }
+      ],
+      "container-title": [
+        "Frontiers in Behavioral Neuroscience"
+      ],
+      "issued": {
+        "date-parts": [
+          [
+            2012
+          ]
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            2012
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2012
+          ]
+        ]
+      },
+      "publisher": "Frontiers Media SA",
+      "title": [
+        "Cholinergic modulation of cognitive processing: insights drawn from computational models"
+      ],
+      "type": "journal-article",
+      "volume": "6"
+    },
+    "retrieved_at": "2026-09-09T20:06:10.212586+00:00",
+    "source": "crossref",
+    "url": "https://doi.org/10.3389/fnbeh.2012.00024"
+  },
+  "publisher": {
+    "authority": "Publisher article front matter via Europe PMC",
+    "doi": "10.3389/fnbeh.2012.00024",
+    "evidence": {
+      "author": {
+        "detail": "Complete author list in order; citation initials agree with source names",
+        "local": "E L Newman and K Gupta and J R Climer and C K Monaghan and M E Hasselmo",
+        "match": true,
+        "source": [
+          {
+            "family": "Newman",
+            "given": "Ehren L.",
+            "suffix": ""
+          },
+          {
+            "family": "Gupta",
+            "given": "Kishan",
+            "suffix": ""
+          },
+          {
+            "family": "Climer",
+            "given": "Jason R.",
+            "suffix": ""
+          },
+          {
+            "family": "Monaghan",
+            "given": "Caitlin K.",
+            "suffix": ""
+          },
+          {
+            "family": "Hasselmo",
+            "given": "Michael E.",
+            "suffix": ""
+          }
+        ]
+      },
+      "journal": {
+        "local": "Frontiers in Behavioral Neuroscience",
+        "match": true,
+        "source": [
+          "Frontiers in Behavioral Neuroscience",
+          "Frontiers in Behavioral Neuroscience",
+          "Frontiers in behavioral neuroscience",
+          "Front Behav Neurosci",
+          "Front Behav Neurosci"
+        ]
+      },
+      "publisher": {
+        "local": "Frontiers",
+        "match": false,
+        "source": [
+          "Frontiers Media SA"
+        ]
+      },
+      "title": {
+        "local": "Cholinergic modulation of cognitive processing: insights drawn from computational models",
+        "match": true,
+        "source": [
+          "Cholinergic modulation of cognitive processing: insights drawn from computational models"
+        ]
+      },
+      "volume": {
+        "local": "6",
+        "match": true,
+        "source": [
+          "6"
+        ]
+      },
+      "year": {
+        "local": "2012",
+        "match": true,
+        "source": [
+          "2012"
+        ]
+      }
+    },
+    "issues": [
+      "publisher: missing evidence or mismatch",
+      "pages: source supplies an article number absent from the citation"
+    ],
+    "medline_record": {
+      "authorList": {
+        "author": [
+          {
+            "authorAffiliationDetailsList": {
+              "authorAffiliation": [
+                {
+                  "affiliation": "Center for Memory and Brain, Boston University, Boston MA, USA."
+                }
+              ]
+            },
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0001-7006-4112"
+            },
+            "firstName": "Ehren L",
+            "fullName": "Newman EL",
+            "initials": "EL",
+            "lastName": "Newman"
+          },
+          {
+            "firstName": "Kishan",
+            "fullName": "Gupta K",
+            "initials": "K",
+            "lastName": "Gupta"
+          },
+          {
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0002-8066-2981"
+            },
+            "firstName": "Jason R",
+            "fullName": "Climer JR",
+            "initials": "JR",
+            "lastName": "Climer"
+          },
+          {
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0002-7809-396X"
+            },
+            "firstName": "Caitlin K",
+            "fullName": "Monaghan CK",
+            "initials": "CK",
+            "lastName": "Monaghan"
+          },
+          {
+            "authorId": {
+              "type": "ORCID",
+              "value": "0000-0002-9925-6377"
+            },
+            "firstName": "Michael E",
+            "fullName": "Hasselmo ME",
+            "initials": "ME",
+            "lastName": "Hasselmo"
+          }
+        ]
+      },
+      "doi": "10.3389/fnbeh.2012.00024",
+      "firstPublicationDate": "2012-06-13",
+      "fullTextUrlList": {
+        "fullTextUrl": [
+          {
+            "availability": "Subscription required",
+            "availabilityCode": "S",
+            "documentStyle": "doi",
+            "site": "DOI",
+            "url": "https://doi.org/10.3389/fnbeh.2012.00024"
+          },
+          {
+            "availability": "Open access",
+            "availabilityCode": "OA",
+            "documentStyle": "html",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC3374475"
+          },
+          {
+            "availability": "Open access",
+            "availabilityCode": "OA",
+            "documentStyle": "pdf",
+            "site": "Europe_PMC",
+            "url": "https://europepmc.org/articles/PMC3374475?pdf=render"
+          }
+        ]
+      },
+      "id": "22707936",
+      "isOpenAccess": "Y",
+      "journalInfo": {
+        "dateOfPublication": "2012 ",
+        "journal": {
+          "essn": "1662-5153",
+          "isoabbreviation": "Front Behav Neurosci",
+          "issn": "1662-5153",
+          "medlineAbbreviation": "Front Behav Neurosci",
+          "nlmid": "101477952",
+          "title": "Frontiers in behavioral neuroscience"
+        },
+        "journalIssueId": 1907455,
+        "monthOfPublication": 0,
+        "printPublicationDate": "2012-01-01",
+        "volume": "6",
+        "yearOfPublication": 2012
+      },
+      "pageInfo": "24",
+      "pmcid": "PMC3374475",
+      "pubTypeList": {
+        "pubType": [
+          "review-article",
+          "Journal Article"
+        ]
+      },
+      "pubYear": "2012",
+      "source": "MED",
+      "title": "Cholinergic modulation of cognitive processing: insights drawn from computational models."
+    },
+    "raw_xml": "<article article-type=\"review-article\" xml:lang=\"en\" dtd-version=\"1.4\"><front><journal-meta><journal-id journal-id-type=\"nlm-ta\">Front Behav Neurosci</journal-id><journal-id journal-id-type=\"iso-abbrev\">Front Behav Neurosci</journal-id><journal-id journal-id-type=\"pmc-domain-id\">644</journal-id><journal-id journal-id-type=\"pmc-domain\">frontbehavneuro</journal-id><journal-id journal-id-type=\"nlm-id\">101477952</journal-id><journal-id journal-id-type=\"publisher-id\">Front. Behav. Neurosci.</journal-id><journal-title-group><journal-title xml:lang=\"en\">Frontiers in Behavioral Neuroscience</journal-title></journal-title-group><issn pub-type=\"epub\">1662-5153</issn><publisher><publisher-name>Frontiers Media SA</publisher-name></publisher></journal-meta><article-meta><article-id pub-id-type=\"pmcid\">PMC3374475</article-id><article-id pub-id-type=\"pmcid-ver\">PMC3374475.1</article-id><article-id pub-id-type=\"pmcaid\">3374475</article-id><article-id pub-id-type=\"pmcaiid\">3374475</article-id><article-id pub-id-type=\"pmid\">22707936</article-id><article-id pub-id-type=\"doi\">10.3389/fnbeh.2012.00024</article-id><article-version article-version-type=\"pmc-version\">1</article-version><title-group><article-title>Cholinergic modulation of cognitive processing: insights drawn from computational models</article-title></title-group><contrib-group><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Newman</surname><given-names initials=\"EL\">Ehren L.</given-names></name><xref ref-type=\"author-notes\" rid=\"fn001\"><sup>*</sup></xref></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Gupta</surname><given-names initials=\"K\">Kishan</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Climer</surname><given-names initials=\"JR\">Jason R.</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Monaghan</surname><given-names initials=\"CK\">Caitlin K.</given-names></name></contrib><contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Hasselmo</surname><given-names initials=\"ME\">Michael E.</given-names></name></contrib></contrib-group><pub-date pub-type=\"epub\"><day>13</day><month>6</month><year>2012</year></pub-date><pub-date pub-type=\"collection\"><year>2012</year></pub-date><volume>6</volume><elocation-id>24</elocation-id></article-meta></front></article>",
+    "record": {
+      "DOI": "10.3389/fnbeh.2012.00024",
+      "ISSN": [
+        "1662-5153"
+      ],
+      "article-number": "24",
+      "author": [
+        {
+          "family": "Newman",
+          "given": "Ehren L.",
+          "suffix": ""
+        },
+        {
+          "family": "Gupta",
+          "given": "Kishan",
+          "suffix": ""
+        },
+        {
+          "family": "Climer",
+          "given": "Jason R.",
+          "suffix": ""
+        },
+        {
+          "family": "Monaghan",
+          "given": "Caitlin K.",
+          "suffix": ""
+        },
+        {
+          "family": "Hasselmo",
+          "given": "Michael E.",
+          "suffix": ""
+        }
+      ],
+      "container-title": [
+        "Frontiers in Behavioral Neuroscience",
+        "Frontiers in Behavioral Neuroscience",
+        "Frontiers in behavioral neuroscience",
+        "Front Behav Neurosci",
+        "Front Behav Neurosci"
+      ],
+      "issue": null,
+      "page": null,
+      "published": {
+        "date-parts": [
+          [
+            2012
+          ]
+        ]
+      },
+      "publisher": "Frontiers Media SA",
+      "title": [
+        "Cholinergic modulation of cognitive processing: insights drawn from computational models"
+      ],
+      "type": "journal-article",
+      "volume": "6"
+    },
+    "retrieved_at": "2026-09-10T01:50:19.443650+00:00",
+    "source": "pmc-jats",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3374475/fullTextXML",
+    "xml_sha256": "507ab55a1883a140dd7096ce03de4eaf0306e8ebbe860a7cc78eae3f56bcb18c"
+  }
+}
