@@ -3,7 +3,7 @@ research_route uses to re-check saved approvals).
 
 Copied from tests/test_research_validate.py, which tests the whole validator
 (verification/research-pilot-2026-09-24/validate.py, including its HTTP fetching) and lives
-with it on the archive branch verification-records-2026-09; the fetching tests stay there.
+with it in the archive repository ContextLab/CDL-bibliography-stacks; the fetching tests stay there.
 Values and quotes are copied verbatim from the research batch files named on each case
 (frozen here). Each normalisation rule has a positive case that the validator used to
 reject although the quote supports the value, and a negative control where the value

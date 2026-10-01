@@ -16,4 +16,4 @@ python bibcheck.py crossref status cdl.bib
 
 A result applies only to an entry whose text matches exactly; editing an entry sends it back through verification. "Verified" means the entry agrees with the published record, not that the record itself is free of errors.
 
-The rules used to decide each case are in the [decision log](../docs/decision-log.md). The dated working records of the September 2026 check (research, resolution and apply batches, review pages, audits and earlier baselines) are on the [`verification-records-2026-09`](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification) branch, which is never merged.
+The rules used to decide each case are in the [decision log](../docs/decision-log.md). The dated working records of the September 2026 check (research, resolution and apply batches, review pages, audits and earlier baselines) are on the [CDL-bibliography-stacks](https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification) archive repository, which is never merged.

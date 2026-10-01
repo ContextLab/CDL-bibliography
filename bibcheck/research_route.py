@@ -5,9 +5,8 @@ row of verification/baseline.jsonl.gz, and registered below as an approval valid
 with its rejection reason and its notice accounting): each saved approval carries its
 quotes, URLs and body hashes, and is re-derived from them alone. The research folders the
 approvals were built from, the route's design notes, the ``crossref research-approve``
-command that read them and the code and tests of that command are on the archive branch
-``verification-records-2026-09``
-(https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09).
+command that read them and the code and tests of that command are in the archive repository
+https://github.com/ContextLab/CDL-bibliography-stacks.
 
 The rules the saved approvals were made under, and that the re-check applies again:
 

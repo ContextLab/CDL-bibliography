@@ -1,8 +1,8 @@
 """House normalisers for research approvals (used by bibcheck/research_route.py).
 
 These are the normalisers of the research post-check
-(verification/research-2026-09-25/postcheck.py, kept on the archive branch:
-https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/research-2026-09-25), copied unchanged so that
+(verification/research-2026-09-25/postcheck.py, kept in the archive repository:
+https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/research-2026-09-25), copied unchanged so that
 `crossref restore` can re-check a saved research approval without the research
 folders. Nothing here makes a network request.
 """

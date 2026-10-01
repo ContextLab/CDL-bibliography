@@ -1,8 +1,8 @@
 """Quote matching for research approvals (used by bibcheck/research_route.py).
 
 These are the matching functions of the research pilot's validator
-(verification/research-pilot-2026-09-24/validate.py, kept on the archive branch:
-https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/research-pilot-2026-09-24), copied unchanged so that
+(verification/research-pilot-2026-09-24/validate.py, kept in the archive repository:
+https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/research-pilot-2026-09-24), copied unchanged so that
 `crossref restore` can re-check a saved research approval without the research
 folders. Nothing here makes a network request.
 """

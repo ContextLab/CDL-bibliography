@@ -3,8 +3,8 @@
 > This is the lab's decision log, moved here from `verification/resolution-plan-2026-09-22/README.md`.
 > The working folders it names under `verification/` (research, resolution and apply batches,
 > review pages, audits) are on the
-> [`verification-records-2026-09`](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification)
-> branch, except `baseline.jsonl.gz`, `key-renames.json`, `key-deletions.json` and `revocations.jsonl`, which are in `verification/` here.
+> [CDL-bibliography-stacks](https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification)
+> archive repository, except `baseline.jsonl.gz`, `key-renames.json`, `key-deletions.json` and `revocations.jsonl`, which are in `verification/` here.
 
 Baseline: 3,669 metadata_verified / 2,753 needs_review (commit db310f3).
 Five read-only planning agents classified every unresolved entry from cached
@@ -12,11 +12,11 @@ evidence. Detailed plans (per-key tables, pilots, negative controls):
 
 | Group | Entries | Plan |
 |-|-|-|
-| Articles, no unambiguous match | 1,945 | [plan-articles.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-plan-2026-09-22/plan-articles.md) |
-| Books, chapters, theses, reports | 413 | [plan-books.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-plan-2026-09-22/plan-books.md) |
-| Proceedings, preprints, misc | 158 | [plan-proceedings.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-plan-2026-09-22/plan-proceedings.md) |
-| DOI coordinate / suffix conflicts | 136 | [plan-doi-conflicts.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-plan-2026-09-22/plan-doi-conflicts.md) |
-| Correction / retraction notices | 101 | [plan-notices.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/resolution-plan-2026-09-22/plan-notices.md) |
+| Articles, no unambiguous match | 1,945 | [plan-articles.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-plan-2026-09-22/plan-articles.md) |
+| Books, chapters, theses, reports | 413 | [plan-books.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-plan-2026-09-22/plan-books.md) |
+| Proceedings, preprints, misc | 158 | [plan-proceedings.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-plan-2026-09-22/plan-proceedings.md) |
+| DOI coordinate / suffix conflicts | 136 | [plan-doi-conflicts.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-plan-2026-09-22/plan-doi-conflicts.md) |
+| Correction / retraction notices | 101 | [plan-notices.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-plan-2026-09-22/plan-notices.md) |
 
 Classification data is in `data/`. Estimates below are the agents' estimates
 from cached evidence, not measurements.
@@ -195,7 +195,7 @@ All 54 sampled entries decided: 49 correct, 5 wrong. Decisions:
 
 The 2026-09-29 attribution audit found six rules recorded as the user's. Each one was
 Claude's (the model's) own generalization or fix. The user answered
-[verification/2026-09-29-user-review/CONFIRM.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/2026-09-29-user-review/CONFIRM.md) on
+[verification/2026-09-29-user-review/CONFIRM.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/2026-09-29-user-review/CONFIRM.md) on
 2026-09-30 (EDT). Their words, verbatim:
 
 > 1. yes
@@ -259,11 +259,11 @@ where the rule came from.
   surname disagree, the checker neither keeps the cited spelling nor applies the source's on
   its own: the entry stays `needs_review` with an issue that names both spellings and the
   source, and the user decides. Implemented in
-  [apply-2026-09-30-surnames](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30-surnames/README.md): the auto-review rule that
+  [apply-2026-09-30-surnames](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30-surnames/README.md): the auto-review rule that
   let PubMed and library consensus overrule a Crossref surname (`registry-surname-typo`) now names
   the mismatch instead, every surname-changing correction is held (`surname_change_hold`), and the
   research post-check holds every respelling. The open questions are in
-  [verification/2026-09-30-user-review/SURNAMES.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/2026-09-30-user-review/SURNAMES.md).
+  [verification/2026-09-30-user-review/SURNAMES.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/2026-09-30-user-review/SURNAMES.md).
 - The rule it replaces, for the record: **single-source surname changes need corroboration** (a
   second source, or held when other cdl.bib entries spell the same author the cited way).
   Origin: Claude, recorded in commit 9c301a1 (2026-09-24 21:12 EDT) and coded in 0c321c5
@@ -275,7 +275,7 @@ where the rule came from.
 
 - The user's "yes to folder renames" (2026-09-30) confirms the renames of the eight misdated
   `apply-*` folders to their creation dates (commit 856d637; table in
-  [verification/README.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/README.md#renamed-apply-folders-2026-09-29)).
+  [verification/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/README.md#renamed-apply-folders-2026-09-29)).
 
 ### Other corrections from the 2026-09-29 audit
 
@@ -289,7 +289,7 @@ where the rule came from.
 - **Palm78** was not "kept unchanged (user)". The user's page note was "again, add DOI" (verdict
   "wrong", 2026-09-25 00:06 EDT). Keeping it unchanged was Claude's instruction to an agent
   (2026-09-25 11:10 EDT). Its approval was revoked; the DOI question is in
-  [verification/2026-09-29-user-review/REVIEW.md](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/2026-09-29-user-review/REVIEW.md).
+  [verification/2026-09-29-user-review/REVIEW.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/2026-09-29-user-review/REVIEW.md).
 - **Spot-check size.** The "~50 entries" design (verification/spotcheck-2026-09-23) was Claude's.
   The user said "i could maybe do 100 (upper limit)" (2026-09-22 22:04 EDT) and chose "10 per
   class (Recommended)" (22:10 EDT).
@@ -436,12 +436,12 @@ Applied in `verification/apply-2026-09-27b-final/decisions0928/` (batch-41.json,
 
 The user answered the review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM (database
 collection `review0930`; the page, its template, its build script and the notes-audit input are
-in [verification/2026-09-30-user-review/page/](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/2026-09-30-user-review/page)). The answer
+in [verification/2026-09-30-user-review/page/](https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/2026-09-30-user-review/page)). The answer
 documents were read with the ArtifactData tool on 2026-09-30 (15:25 UTC) and are copied in
-[verification/apply-2026-09-30b-answers/answers/](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/apply-2026-09-30b-answers/answers). The
+[verification/apply-2026-09-30b-answers/answers/](https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/apply-2026-09-30b-answers/answers). The
 user's message on sending them: "i've answered all questions". Sections A, B and D are applied
 here (batch `answers0930b`,
-[apply-2026-09-30b-answers](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30b-answers/README.md)); section C (surnames) is
+[apply-2026-09-30b-answers](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30b-answers/README.md)); section C (surnames) is
 still being answered and is not applied. Times are the documents' `updatedAt` (UTC) and EDT
 (UTC-4).
 
@@ -518,7 +518,7 @@ approval text (ScotEtal07's replay was accepted during this batch and then re-re
 a revocation now revokes the approval text it carries as well as its recorded digest. The
 research post-check follows key-renames.json in log order, so the key swap does not send
 KahaEtal08c (the reply) to the chapter. Details:
-[apply-2026-09-30b-answers](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30b-answers/README.md). Library after the batch:
+[apply-2026-09-30b-answers](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30b-answers/README.md). Library after the batch:
 `6384 entries: human_verified=23, metadata_verified=6353, needs_review=8`.
 
 
@@ -528,10 +528,10 @@ The user's rule (2026-09-30): "one source is sufficient; manual entry is the wea
 user if mismatch is found and ask how they want to resolve it". The 137 mismatches were put to
 the user on the review page https://claude.ai/artifact/J9gYrxEMWk4AwQcExiznEM (collection
 `review0930`). The answer documents were read with the ArtifactData tool on 2026-09-30 and are
-copied in [verification/apply-2026-09-30c-surnames/answers/](https://github.com/ContextLab/CDL-bibliography/tree/verification-records-2026-09/verification/apply-2026-09-30c-surnames/answers);
+copied in [verification/apply-2026-09-30c-surnames/answers/](https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/apply-2026-09-30c-surnames/answers);
 every mismatch's decision is in
-[decisions.json](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30c-surnames/decisions.json). Applied as batch
-`surnames0930c` ([apply-2026-09-30c-surnames](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30c-surnames/README.md)). Times
+[decisions.json](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30c-surnames/decisions.json). Applied as batch
+`surnames0930c` ([apply-2026-09-30c-surnames](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30c-surnames/README.md)). Times
 are the documents' `updatedAt` (UTC) and EDT (UTC-4). Sections E and F had no documents: their
 rows were settled by the printed bylines (below) or asked again in section I.
 
@@ -648,7 +648,7 @@ NoldEtal98, SchaEtal11, StJaEtal08, StJaEtal12, StJaScha13.
 Library after the batch (`bibcheck.py crossref status cdl.bib`): `6384 entries: human_verified=35, metadata_verified=6347, needs_review=2`.
 
 **Follow-up (user, 2026-09-30; batch `followup0930d`,
-[apply-2026-09-30d-followup](https://github.com/ContextLab/CDL-bibliography/blob/verification-records-2026-09/verification/apply-2026-09-30d-followup/README.md)).** The orchestrating
+[apply-2026-09-30d-followup](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/apply-2026-09-30d-followup/README.md)).** The orchestrating
 session asked: (1) keep WatkPeyn83 as Peynircio\u{g}lu, since `\dot` is a math-only accent and
 plain i is the dotted i? (2) use "D'Agata" per the erratum 10.1007/s00426-016-0761-6? (3)
 re-approve FreuEtal09, whose erratum concerns only a Methods sentence? The user's answer,
