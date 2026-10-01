@@ -9,8 +9,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import research_forms as pc  # noqa: E402
+from cdlbib import research_forms as pc  # noqa: E402
 
 
 def test_house_names_unchanged_list():

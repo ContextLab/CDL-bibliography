@@ -5,8 +5,8 @@ from copy import deepcopy
 import pytest
 
 import test_auto_review
-from auto_review import assess_epmc, reassess
-from correction_proposals import issue_year_proposal
+from cdlbib.auto_review import assess_epmc, reassess
+from cdlbib.correction_proposals import issue_year_proposal
 from test_auto_review import candidate
 
 sample = test_auto_review.sample

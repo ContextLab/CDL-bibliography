@@ -6,9 +6,8 @@ from types import SimpleNamespace
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from catalogue_discovery import fetch_search, parse_search, search_query
-from verification import Cache, ProviderError
+from cdlbib.catalogue_discovery import fetch_search, parse_search, search_query
+from cdlbib.verification import Cache, ProviderError
 
 FIXTURE = json.loads((Path(__file__).parent / "fixtures/catalogue_search.json").read_text())
 

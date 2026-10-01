@@ -6,11 +6,10 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import reassess, run_auto_review
-from correction_proposals import field_proposal
-from helpers import format_journal_name
-from verification import Cache, current_results, export_snapshot, import_snapshot, load_entries, normalize_journal
+from cdlbib.auto_review import reassess, run_auto_review
+from cdlbib.correction_proposals import field_proposal
+from cdlbib.helpers import format_journal_name
+from cdlbib.verification import Cache, current_results, export_snapshot, import_snapshot, load_entries, normalize_journal
 
 CASES = {r["key"]: r for r in json.loads(
     (Path(__file__).parent / "fixtures/brain_journal_variants.json").read_text())}

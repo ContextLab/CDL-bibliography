@@ -8,8 +8,7 @@ resumable verification and ``status --help`` for the offline accuracy gate.
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent / "bibcheck"))
-from verification_cli import app
+from cdlbib.verification_cli import app
 
 if __name__ == "__main__":
     app()

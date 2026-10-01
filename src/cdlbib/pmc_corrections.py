@@ -3,9 +3,9 @@
 from copy import deepcopy
 import re
 
-from auto_review import epmc_record, expanded_pages, reassess, safe_compare, unique_crossref_primaries
-from fulltext_review import assess_fulltext
-from verification import normalize_doi, normalize_publisher, normalized, split_authors, given_name_tokens, given_token_matches, same_suffix
+from .auto_review import epmc_record, expanded_pages, reassess, safe_compare, unique_crossref_primaries
+from .fulltext_review import assess_fulltext
+from .verification import normalize_doi, normalize_publisher, normalized, split_authors, given_name_tokens, given_token_matches, same_suffix
 
 
 def pmc_publisher_proposal(entry, previous):
@@ -61,7 +61,7 @@ def pmc_publisher_proposal(entry, previous):
 
 def preserves_byline_details(local, people):
     """Permit missing given-name additions, never lose or change supplied names."""
-    from name_parsing import splitname
+    from .name_parsing import splitname
     names = split_authors(local)
     if len(names) != len(people):
         return False
@@ -127,11 +127,11 @@ def pmc_coordinate_proposal(entry, previous, *, include_authors=False):
             if include_authors:
                 if "author" not in changed or not preserves_byline_details(fields.get("author", ""), record["author"]):
                     continue
-                from correction_proposals import source_authors
+                from .correction_proposals import source_authors
                 values["author"] = source_authors(record, fields.get("author"))
             if any(not values[f] or values[f] == fields.get(f) for f in changed):
                 continue
-            from correction_proposals import shortens_pages, surname_change_hold
+            from .correction_proposals import shortens_pages, surname_change_hold
             if "pages" in changed and shortens_pages(fields.get("pages"), values["pages"]):
                 continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; confirmed by the user 2026-09-30)
             if "author" in changed and surname_change_hold(entry["key"], fields.get("author"), values["author"]):
@@ -179,7 +179,7 @@ def pmc_article_number_proposal(entry, previous):
     6. the full proposal passes JATS front-matter comparison with no issue and
        reassessment verifies the same DOI.
     """
-    from source_locators import source_coordinates
+    from .source_locators import source_coordinates
     fields = entry["fields"]
     if (fields.get("ENTRYTYPE") != "article" or previous.get("status") != "needs_review"
             or previous.get("external_evidence")):
@@ -234,7 +234,7 @@ def pmc_article_number_proposal(entry, previous):
                 continue
             if not safe_compare(fields, record)[0].get("title", {}).get("match"):
                 continue
-            from correction_proposals import shortens_pages
+            from .correction_proposals import shortens_pages
             if shortens_pages(fields.get("pages"), page):
                 continue  # a cited range is never shortened (rule Claude adopted 2026-09-24; confirmed by the user 2026-09-30)
             proposed = dict(fields, volume=volume, pages=page)
@@ -264,7 +264,7 @@ def pmc_article_number_proposal(entry, previous):
 
 
 def replace_pmc_coordinates(text, entry, proposal):
-    from correction_proposals import replace_field, replace_pagination, replace_publication
+    from .correction_proposals import replace_field, replace_pagination, replace_publication
     if not 1 <= len(proposal["changes"]) <= 4 or set(proposal["changes"]) - {"year", "volume", "number", "pages"}:
         raise ValueError("Unsupported PMC coordinate edit")
     if len(proposal["changes"]) > 1:
@@ -275,7 +275,7 @@ def replace_pmc_coordinates(text, entry, proposal):
 
 
 def replace_pmc_given_names(text, entry, proposal):
-    from correction_proposals import replace_field, replace_pagination
+    from .correction_proposals import replace_field, replace_pagination
     if not 1 <= len(proposal["changes"]) <= 5 or set(proposal["changes"]) - {"year", "volume", "number", "pages", "author"} or "author" not in proposal["changes"]:
         raise ValueError("Unsupported PMC byline edit")
     if text.count(entry["raw"]) != 1:

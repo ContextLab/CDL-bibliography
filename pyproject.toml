@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cdlbib"
+version = "2.0.0"
+description = "Format and citation-accuracy checker for the CDL bibliography"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = [
+  "bibtexparser==1.4.3",
+  "pylatexenc==2.10",
+  "requests>=2.31,<3",
+  "typer>=0.12,<1",
+  "unidecode==1.1.1",
+  "numpy==1.26.4",
+  "pandas==1.5.3",
+  "xlrd==2.0.1",
+  "tqdm==4.66.3",
+]
+
+[project.optional-dependencies]
+research = ["pypdf>=6.0,<7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cdlbib = ["data/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

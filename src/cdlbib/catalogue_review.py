@@ -6,9 +6,9 @@ import unicodedata
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
-from name_parsing import splitname
-from catalogue_discovery import M, MAX_BYTES, fetch_search, parse_search, search_query
-from verification import (author_evidence, compare_record, current_results,
+from .name_parsing import splitname
+from .catalogue_discovery import M, MAX_BYTES, fetch_search, parse_search, search_query
+from .verification import (author_evidence, compare_record, current_results,
                           export_snapshot, given_name_tokens, given_token_matches,
                           load_entries, normalize_book_publisher, normalize_title, normalized, outcome, run_lock,
                           split_authors, validate_output_path, write_report)
@@ -976,7 +976,7 @@ def propose_corrections(fields, result):
         return {'group': 'catalogue-unparsed-competitor', 'reason': blocking[0]['issues'][0]}
     candidate, changes = options[0]
     if any(c['rule'] == 'byline-surname-spelling' for c in changes):
-        from correction_proposals import surname_change_hold
+        from .correction_proposals import surname_change_hold
         for c in changes:
             if c['rule'] == 'byline-surname-spelling':
                 hold = surname_change_hold(fields.get('ID'), c['before'], c['after'],

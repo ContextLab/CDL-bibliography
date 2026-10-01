@@ -24,9 +24,9 @@ from urllib.parse import urlencode
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 
-from preprint_review import checked_body, fetch_document, people
-from verification import author_evidence, normalize_doi, normalize_title, normalized, outcome, split_authors
-from osf_review import classify, run_route
+from .preprint_review import checked_body, fetch_document, people
+from .verification import author_evidence, normalize_doi, normalize_title, normalized, outcome, split_authors
+from .osf_review import classify, run_route
 
 ACL_POLICY = '1'
 SOURCE = 'acl-anthology'
@@ -157,7 +157,7 @@ def assess_acl(fields, raw):
         ok, _ = author_evidence(fields.get('author', ''), authors)
         fix = None
         if not ok:
-            from correction_proposals import house_byline
+            from .correction_proposals import house_byline
             try:
                 fix = house_byline(authors, fields.get('author'))
             except ValueError as exc:
@@ -279,5 +279,5 @@ def run_acl_review(filename, cache, client, report, limit=None, snapshot=None, k
                      assess=assess_acl, attempt_url=lambda raw: raw.get('record', raw.get('search', {})).get('url'))
 
 
-from verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
+from .verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
 register_approval_validator(valid_acl_approval)

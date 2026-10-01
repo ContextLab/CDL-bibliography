@@ -17,9 +17,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import helpers  # noqa: E402
-from helpers import format_journal_name, journal_key, load_key  # noqa: E402
+from cdlbib import helpers  # noqa: E402
+from cdlbib.helpers import format_journal_name, journal_key, load_key  # noqa: E402
 
 OVERRIDES = json.loads(
     (ROOT / "tests/fixtures/journal-key-corrections-2026-09-26.json").read_text())["corrections"]
@@ -103,6 +102,7 @@ def test_the_spreadsheet_is_used_as_written():
     changed = {s for s in set(raw) | set(journal_key) if target(raw, s) != target(journal_key, s)}
     assert changed == set()
     assert not (ROOT / "bibcheck" / "journal_key_overrides.json").exists()
+    assert not (ROOT / "src" / "cdlbib" / "data" / "journal_key_overrides.json").exists()
     assert not hasattr(helpers, "load_key_overrides")
 
 

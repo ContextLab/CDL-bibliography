@@ -13,7 +13,7 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import unquote
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 # Apostrophe look-alikes (O´Reilly, Oʼ, O′) fold to "'" before NFKC splits U+00B4 into
 # a space and a combining accent; trademark signs are dropped (FitBit® = FitBit).
@@ -252,11 +252,10 @@ def load_journal_key():
     global _JOURNAL_KEY
     if _JOURNAL_KEY is None:
         import os
-        sys.path.insert(0, str(ROOT / "bibcheck"))
         cwd = os.getcwd()
         os.chdir(ROOT)  # helpers reads its tables relative to the repository root
         try:
-            import helpers
+            from . import helpers
             _JOURNAL_KEY = dict(helpers.journal_key)
         finally:
             os.chdir(cwd)

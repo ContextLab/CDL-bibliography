@@ -1,7 +1,7 @@
 """Broaden source discovery without relaxing existing metadata acceptance rules."""
 
-from auto_review import reassess, target_dois
-from verification import (
+from .auto_review import reassess, target_dois
+from .verification import (
     assess_candidates,
     current_results,
     load_entries,

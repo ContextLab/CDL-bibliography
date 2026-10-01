@@ -4,9 +4,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import dartmouth_research_adapter as adapter
-import search_tools
+from cdlbib import dartmouth_research_adapter as adapter
+from cdlbib import search_tools
 
 ENV = {
     "DARTMOUTH_CHAT_API_KEY": "test-secret",

@@ -17,12 +17,11 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import auto_review  # noqa: E402
-import catalogue_review  # noqa: E402
-import correction_proposals as cp  # noqa: E402
-import helpers  # noqa: E402
-import verification as v  # noqa: E402
+from cdlbib import auto_review  # noqa: E402
+from cdlbib import catalogue_review  # noqa: E402
+from cdlbib import correction_proposals as cp  # noqa: E402
+from cdlbib import helpers  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 CASES = json.loads(gzip.open(ROOT / "tests/fixtures/machinery-2026-09-25-cases.json.gz").read())["cases"]
 STAGE1 = json.loads(gzip.open(ROOT / "tests/fixtures/apply-2026-09-25-cases.json.gz").read())
@@ -622,7 +621,7 @@ def recheck(tmp_path, key, fields, approval):
 def route_case(module, fixture, key):
     import importlib
     data = json.loads((ROOT / "tests/fixtures/routes" / fixture).read_text())
-    return importlib.import_module(module), deepcopy(data[key])
+    return importlib.import_module("cdlbib." + module), deepcopy(data[key])
 
 
 def test_recheck_cached_keeps_the_franliu18_osf_approval(tmp_path):
@@ -648,7 +647,7 @@ def test_recheck_cached_still_reopens_an_invalid_route_approval(tmp_path):
 
 
 def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
-    import arxiv_review as a
+    from cdlbib import arxiv_review as a
     c = deepcopy(json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text())["PianHill22"])
     approval = a.assess_arxiv(c["fields"], c["raw"])
     assert approval["status"] == "metadata_verified"
@@ -907,5 +906,5 @@ def test_verify_all_checks_unchanged_entries_too(tmp_path):
     ("É Durkheim", "É Durkheim"),
 ])
 def test_reformat_author_keeps_latex_accented_initials(cited, expected):
-    from helpers import reformat_author
+    from cdlbib.helpers import reformat_author
     assert reformat_author(cited) == expected

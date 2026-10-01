@@ -7,10 +7,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import reassess
-from correction_proposals import field_proposal, replace_field, source_title
-from verification import load_entries
+from cdlbib.auto_review import reassess
+from cdlbib.correction_proposals import field_proposal, replace_field, source_title
+from cdlbib.verification import load_entries
 
 
 def case(field):

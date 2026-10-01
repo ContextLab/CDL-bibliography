@@ -1,10 +1,9 @@
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent / 'bibcheck'))
 
 import typer
 import os
-from verification_cli import app as crossref_app
+from cdlbib.verification_cli import app as crossref_app
 
 app = typer.Typer()
 app.add_typer(crossref_app, name='crossref')
@@ -16,7 +15,7 @@ def run_check(fname, **kwargs):
     A bare ``except`` used to print only 'errors found' and return success,
     which hid e.g. 'page numbers are ambiguous or incorrect: KothEtal25'.
     """
-    from helpers import check_bib
+    from cdlbib.helpers import check_bib
     try:
         return check_bib(fname, **kwargs)
     except Exception as exc:
@@ -58,8 +57,8 @@ def check_library(fname, reference='github', citations=True, all_entries=False, 
         return True
     if not citations:
         return format_ok
-    from verification_cli import citation_gate
-    from verification import ProviderError
+    from cdlbib.verification_cli import citation_gate
+    from cdlbib.verification import ProviderError
     try:
         ok, _, _ = citation_gate(fname, reference=reference, database=database, all_entries=all_entries,
                                  mailto=mailto)
@@ -87,7 +86,7 @@ def verify(fname: str='cdl.bib', autofix: bool=False, outfile: str=None, verbose
 
 @app.command()
 def magic(fname: str='cdl.bib', verbose: bool=True):
-    from helpers import check_bib
+    from cdlbib.helpers import check_bib
     typer.echo('WARNING: potentially unsafe')
     
     outfile = 'cleaned.bib'
@@ -102,7 +101,7 @@ def magic(fname: str='cdl.bib', verbose: bool=True):
     
 @app.command()
 def compare(fname1: str, fname2: str, verbose: bool=False, outfile: str=None):
-    from helpers import compare_bibs
+    from cdlbib.helpers import compare_bibs
     if compare_bibs(fname1, fname2, verbose=verbose, outfile=outfile):
         typer.echo('files match!')
     else:
@@ -117,7 +116,7 @@ def commit(fname=bibfile, reference='github', verbose: bool=False, outfile=None,
            database: str=typer.Option(None, '--database', help='Verification cache (default .bibcheck/verification.sqlite3).'),
            mailto: str=typer.Option(None, '--mailto', envvar='CROSSREF_MAILTO', help='Contact email for Crossref.')):
     """Run the verify gate, then commit only the bibliography file."""
-    from helpers import compare_bibs
+    from cdlbib.helpers import compare_bibs
     import subprocess
 
     if not check_library(fname, reference=reference, verbose=verbose, database=database, mailto=mailto):

@@ -9,8 +9,8 @@ import unicodedata
 import xml.etree.ElementTree as ET
 
 import requests
-from name_parsing import splitname
-from verification import ProviderError, normalized, now, split_authors
+from .name_parsing import splitname
+from .verification import ProviderError, normalized, now, split_authors
 
 ENDPOINT = "https://lx2.loc.gov/sru/lcdb"
 S = "{http://www.loc.gov/zing/srw/}"

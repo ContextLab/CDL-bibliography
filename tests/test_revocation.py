@@ -14,9 +14,8 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import verification as v  # noqa: E402
-from verification_cli import app  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
+from cdlbib.verification_cli import app  # noqa: E402
 
 FIX = Path(__file__).resolve().parent / "fixtures" / "revocation"
 OLD_BIB = FIX / "entries-7f3eead.bib"

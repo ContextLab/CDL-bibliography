@@ -13,16 +13,15 @@ import os
 import sys
 
 
+from .resources import data_path
+
+
 def read(fname):
-    if not os.path.exists(fname):
-        fname = os.path.join("bibcheck", fname)
-    return pd.read_csv(fname, header=None).values.flatten().tolist()
+    return pd.read_csv(data_path(fname), header=None).values.flatten().tolist()
 
 
 def load_key(fname):
-    if not os.path.exists(fname):
-        fname = os.path.join("bibcheck", fname)
-    key = pd.read_excel(fname, header=0, index_col="orig")
+    key = pd.read_excel(data_path(fname), header=0, index_col="orig")
     return key.to_dict()["corrected"]
 
 
@@ -1037,7 +1036,7 @@ def reformat_author(author, fragment=False):
     # BibTeX's explicit ``family, suffix, given`` form must retain the suffix.
     # rearrange() deliberately removes suffixes for citation-key construction;
     # using it here used to silently discard Jr/Sr/III from author bylines.
-    from name_parsing import splitname
+    from .name_parsing import splitname
     try:
         parts = splitname(author, strict_mode=True)
         if parts["jr"] and parts["last"] and parts["first"]:
@@ -1338,7 +1337,7 @@ def duplicate_fields(text):
     silently. Scans entry bodies with the strict verification scanner's
     brace/quote rules.
     """
-    from verification import top_level_parts
+    from .verification import top_level_parts
 
     found, pos = {}, 0
     while True:

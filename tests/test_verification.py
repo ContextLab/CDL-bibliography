@@ -5,8 +5,7 @@ import sys
 import pytest
 from typer.testing import CliRunner
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import (
+from cdlbib.verification import (
     Cache,
     PoliteClient,
     ProviderError,
@@ -19,7 +18,7 @@ from verification import (
     run_verification,
     verify_entry,
 )
-from verification_cli import app
+from cdlbib.verification_cli import app
 
 
 BIB = r"""@article{Test20,
@@ -403,7 +402,7 @@ def test_cached_evidence_can_be_reassessed_without_network(entry, record, tmp_pa
 
 
 def test_recheck_that_reproduces_an_approval_writes_nothing(entry, record, tmp_path):
-    from auto_review import reassess
+    from cdlbib.auto_review import reassess
 
     path, e = entry
     cache = Cache(tmp_path / "cache.sqlite3")

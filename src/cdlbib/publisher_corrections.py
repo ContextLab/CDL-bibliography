@@ -12,13 +12,13 @@ from urllib.parse import quote, unquote, urlparse
 import xml.etree.ElementTree as ET
 
 import requests
-from name_parsing import splitname
+from .name_parsing import splitname
 
-from auto_review import epmc_record, reassess, safe_compare
-from correction_proposals import source_authors, source_title
-from publisher_metadata import PublisherMetadata
-from search_tools import get_source, SourceHTTPError
-from verification import compare_record, normalize_doi, normalize_pages, normalize_title, now, ProviderError
+from .auto_review import epmc_record, reassess, safe_compare
+from .correction_proposals import source_authors, source_title
+from .publisher_metadata import PublisherMetadata
+from .search_tools import get_source, SourceHTTPError
+from .verification import compare_record, normalize_doi, normalize_pages, normalize_title, now, ProviderError
 
 
 PUBLISHERS = {
@@ -307,7 +307,7 @@ ISSUE_HEAD_HOSTS = HOSTS | {"idp.springer.com"}  # Springer sets a cookie throug
 def _summary_matches(summary, doi, record):
     """A PubMed summary is the work when it names this DOI, or, lacking any DOI,
     has the registry title, volume and first page."""
-    from verification import normalized
+    from .verification import normalized
     dois = [a.get("value", "") for a in summary.get("articleids", []) if a.get("idtype") == "doi"]
     if dois:
         try:
@@ -328,7 +328,7 @@ def _summary_matches(summary, doi, record):
 def pubmed_issue_lookup(client, doi, record):
     """PubMed E-utilities: search by DOI, else ecitmatch on journal, year,
     volume, first page and first-author surname; summaries must match the work."""
-    from verification import normalized
+    from .verification import normalized
     # The contact travels in the User-Agent; request identities stay free of it.
     base = {"tool": "bibcheck"}
     out = {"query": None, "pmids": [], "matched": []}

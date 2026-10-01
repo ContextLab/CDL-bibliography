@@ -10,8 +10,8 @@ from copy import deepcopy
 from pathlib import Path
 import re
 
-from auto_review import authors_with_pubmed_suffixes, compatible_authors, epmc_record, expanded_pages, reassess, safe_compare
-from verification import normalize_doi, normalize_journal, normalized, top_level_parts
+from .auto_review import authors_with_pubmed_suffixes, compatible_authors, epmc_record, expanded_pages, reassess, safe_compare
+from .verification import normalize_doi, normalize_journal, normalized, top_level_parts
 
 PAGE_FINDINGS = {
     "pages: missing evidence or mismatch",
@@ -139,7 +139,7 @@ def source_title(source, local):
     if protected:
         pattern = r"(?<!\w)(?:" + "|".join(re.escape(w) for w in sorted(protected, key=len, reverse=True)) + r")(?!\w)"
         source = re.sub(pattern, lambda m: "{" + protected[m[0].lower()] + "}", source, flags=re.I)
-    from helpers import format_title
+    from .helpers import format_title
     # House style: lowercase after a colon. format_title preserves a capital
     # article "A" there because "A" is in caps.txt; never a braced {A}.
     titled = format_title(re.sub(r"([&%#_])", r"\\\1", source))
@@ -260,7 +260,7 @@ def _family_text(source_family, citation_name):
     only by case or braces (surnames, particles and accents are never altered
     here); otherwise write the source surname, braced when it has several
     words and no lower-case particle, so BibTeX parses it as one surname."""
-    from name_parsing import splitname
+    from .name_parsing import splitname
     if citation_name and not citation_name.startswith("{"):
         parts = splitname(citation_name, strict_mode=True)
         cited = " ".join(parts["von"] + parts["last"])
@@ -285,8 +285,8 @@ def house_byline(people, citation=None):
     through the BibTeX name parser: the parsed surname must be the source
     surname and the parsed given names the house initials, or it raises.
     """
-    from name_parsing import splitname
-    from verification import split_authors
+    from .name_parsing import splitname
+    from .verification import split_authors
     cited = [n for n in split_authors(citation)] if citation else []
     cited = [n for n in cited if normalized(n) != "others"]
     names = []
@@ -326,8 +326,8 @@ def source_authors(record, citation=None):
 def _house_marks_text(byline):
     """Surnames plus given-name initials of a byline: the characters a house
     byline keeps. Accents on dropped given-name letters are not a loss."""
-    from name_parsing import splitname
-    from verification import split_authors
+    from .name_parsing import splitname
+    from .verification import split_authors
     out = []
     for name in split_authors(byline or ""):
         if name.startswith("{"):
@@ -349,7 +349,7 @@ def suffix_proposal(entry, previous):
 
 def _retired_suffix_proposal(entry, previous):
     """The pre-2026-09-24 generator, kept for the record; never called."""
-    from verification import split_authors
+    from .verification import split_authors
     fields = entry["fields"]
     if (fields.get("ENTRYTYPE") != "article" or previous.get("status") != "needs_review"
             or previous.get("external_evidence")):
@@ -486,7 +486,7 @@ def field_proposal(entry, previous, field):
                 venues = record.get("container-title", [])
                 if len(venues) != 1 or re.search(r"[<>{}\\$\n\r]", venues[0]):
                     continue
-                from helpers import format_journal_name
+                from .helpers import format_journal_name
                 value = format_journal_name(journal_text(venues[0]))
                 # Historical formatter aliases sometimes erase sections or
                 # replace historical titles. Do not propagate those changes.
@@ -698,7 +698,7 @@ def publication_proposal(entry, previous, *, include_identity_fields=False):
             continue
         try:
             fields, record = entry["fields"], primary["record"]
-            from helpers import format_journal_name
+            from .helpers import format_journal_name
             values = {"volume": str(record.get("volume", "")), "number": str(record.get("issue", "")),
                       "pages": expanded_pages(record.get("page") or record.get("article-number", "")).replace("-", "--")}
             years = primary["evidence"]["year"]["source"]
@@ -857,8 +857,8 @@ def title_small_difference(local, source):
 
 
 def _first_family(value):
-    from name_parsing import splitname
-    from verification import split_authors
+    from .name_parsing import splitname
+    from .verification import split_authors
     name = split_authors(value)[0]
     if name.startswith("{"):
         return _fold(name)
@@ -901,7 +901,7 @@ def single_source_identity(fields, record):
             return None
         if str(fields.get("year", "")) not in _record_years(record):
             return None
-        from auto_review import expanded_pages
+        from .auto_review import expanded_pages
         same_volume = bool(fields.get("volume") and record.get("volume")
                            and normalized(fields["volume"]) == normalized(str(record["volume"])))
         page = record.get("page") or record.get("article-number")
@@ -920,7 +920,7 @@ def single_source_identity(fields, record):
 
 
 def normalize_title_safe(value):
-    from verification import normalize_title
+    from .verification import normalize_title
     try:
         return normalize_title(value)
     except ValueError:
@@ -935,8 +935,8 @@ def byline_adds_information(local, people):
     source token in order; surnames equal up to accents or a two-letter typo
     fix; any citation suffix is kept by the source.
     """
-    from name_parsing import splitname
-    from verification import given_name_tokens, given_token_matches, same_suffix, split_authors
+    from .name_parsing import splitname
+    from .verification import given_name_tokens, given_token_matches, same_suffix, split_authors
     names = split_authors(local)
     if names and normalized(names[-1]) == "others":
         names = names[:-1]
@@ -992,8 +992,8 @@ def byline_loses_detail(local, people):
     garbled or placeholder byline can still be replaced by a complete one.
     A citation with more people than the source always loses detail.
     """
-    from name_parsing import splitname
-    from verification import given_name_tokens, split_authors
+    from .name_parsing import splitname
+    from .verification import given_name_tokens, split_authors
     try:
         names = [n for n in split_authors(local) if normalized(n) != "others"]
         if len(names) > len(people):
@@ -1133,8 +1133,8 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
     statement after a complete lookup the issue is dropped; without a lookup
     the entry is held as ``issue-lookup-required``.
     """
-    from auto_review import unique_crossref_primaries
-    from verification import apa_twin_key
+    from .auto_review import unique_crossref_primaries
+    from .verification import apa_twin_key
     explain = explain if explain is not None else {}
     fields = entry["fields"]
     if fields.get("ENTRYTYPE") != "article":
@@ -1190,7 +1190,7 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
     record = primary["record"]
     explain.update(doi=doi, identity=rule)
     issues = safe_compare(evaluated, record)[1]
-    from verification import YEAR_CONFLICT, print_year_selects_cited
+    from .verification import YEAR_CONFLICT, print_year_selects_cited
     if YEAR_CONFLICT in issues:
         # Resolver 28 print-year route: judged again on the final proposal.
         probe = dict(evaluated, volume=str(record.get("volume") or ""),
@@ -1233,7 +1233,7 @@ def single_source_proposal(entry, previous, explain=None, issue_lookups=None):
             return None
     values, sources = {}, {}
     try:
-        from helpers import format_journal_name
+        from .helpers import format_journal_name
         for field in sorted(changed):
             value, origin = None, "crossref"
             if field == "title":
@@ -1394,8 +1394,8 @@ def change_subclass(field, before, after, year=None, corroborated=False):
                 return "title-typography-only"
             return "title-crossref+pubmed" if corroborated else "title-crossref-only"
         if field == "author":
-            from name_parsing import splitname
-            from verification import split_authors
+            from .name_parsing import splitname
+            from .verification import split_authors
             old = [n for n in split_authors(before) if normalized(n) != "others"]
             new = split_authors(after)
             if len(old) != len(new) or normalized(before).endswith(" others"):
@@ -1424,7 +1424,7 @@ def change_subclass(field, before, after, year=None, corroborated=False):
                 return "journal-section"
             return "journal-other-venue"
         if field == "pages":
-            from auto_review import expanded_pages
+            from .auto_review import expanded_pages
             first = lambda v: expanded_pages(v).split("-")[0] if v else ""
             return "pages-complete-range" if first(before) and first(before) == first(after) else (
                 "pages-added" if not before else "pages-different-start")
@@ -1462,7 +1462,7 @@ def shortens_pages(before, after):
 
 # The bibliography that library-reading helpers use; tests/conftest.py patches it to a
 # frozen fixture so no test reads the live cdl.bib.
-LIBRARY_BIB = Path(__file__).resolve().parents[1] / "cdl.bib"
+LIBRARY_BIB = Path(__file__).resolve().parents[2] / "cdl.bib"
 
 
 def surname_changes(before, after):
@@ -1471,8 +1471,8 @@ def surname_changes(before, after):
     A reordering is not a respelling: a pair is left out when the cited surname is still
     in the proposed byline and the proposed one was already in the cited byline (SfN
     RamaEtal12b, where the planner lists Baltuch before Kahana)."""
-    from name_parsing import splitname
-    from verification import split_authors
+    from .name_parsing import splitname
+    from .verification import split_authors
     try:
         old = [n for n in split_authors(before or "") if normalized(n) != "others"]
         new = [n for n in split_authors(after or "") if normalized(n) != "others"]
@@ -1587,7 +1587,7 @@ def source_records(entry, previous, doi, lookup=None):
         try:
             if normalize_doi(c["doi"]) != doi:
                 continue
-            from fulltext_review import assess_fulltext
+            from .fulltext_review import assess_fulltext
             response = {"body": c["raw_xml"], "url": c["url"], "retrieved_at": c["retrieved_at"],
                         "document_sha256": c.get("xml_sha256")}
             primary = {"source": "crossref", "doi": doi, "record": crossref[0]}
@@ -1605,7 +1605,7 @@ def source_records(entry, previous, doi, lookup=None):
 
 def _stated(field, value, fields, record):
     """Whether one source record states ``value`` for ``field``."""
-    from verification import normalize_pages
+    from .verification import normalize_pages
     if record.get("partial"):
         key = {"number": "issue", "volume": "volume", "pages": "page"}.get(field)
         source = str(record.get(key) or "") if key else ""
@@ -1678,7 +1678,7 @@ def complete_issue(entry, previous, proposal):
     (spot-check SmitHalg89, 2026-09-24: 'add number (1)'). Only Crossref and the
     DOI-linked PubMed record are consulted, they must agree, and the completed
     entry must still verify on the same DOI. Returns a new proposal or None."""
-    from verification import apa_twin_key
+    from .verification import apa_twin_key
     fields = {k: v for k, v in entry["fields"].items() if k != "publisher"}
     change = proposal["changes"].get("number")
     if fields.get("number") or change or not proposal.get("doi"):

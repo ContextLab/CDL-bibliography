@@ -14,14 +14,13 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-from auto_review import (cited_work_dois, reassess, secondary_notice_flags, select_result,  # noqa: E402
+from cdlbib.auto_review import (cited_work_dois, reassess, secondary_notice_flags, select_result,  # noqa: E402
                          unique_crossref_primaries)
-from correction_proposals import (add_doi_proposal, byline_adds_information, byline_loses_detail,  # noqa: E402
+from cdlbib.correction_proposals import (add_doi_proposal, byline_adds_information, byline_loses_detail,  # noqa: E402
                                   drop_publisher_proposal, field_proposal, single_source_identity,
                                   single_source_proposal, title_small_difference)
-from pmc_corrections import pmc_article_number_proposal, pmc_coordinate_proposal  # noqa: E402
-from verification import (apa_twin_key, compare_record, normalize_doi, normalize_journal,  # noqa: E402
+from cdlbib.pmc_corrections import pmc_article_number_proposal, pmc_coordinate_proposal  # noqa: E402
+from cdlbib.verification import (apa_twin_key, compare_record, normalize_doi, normalize_journal,  # noqa: E402
                           print_year_selects_cited)
 
 CASES = json.loads(gzip.open(Path(__file__).parent / "fixtures/phase0_cases.json.gz").read())["cases"]
@@ -155,7 +154,7 @@ def test_print_year_rule_requires_every_condition():
 
 
 def test_print_year_route_blocked_by_contradicting_linked_source():
-    from verification import print_year_route
+    from cdlbib.verification import print_year_route
     entry, result = reviewed("Zoll90")
     primary = next(c for c in result["candidates"] if c.get("source") == "crossref"
                    and normalize_doi(c["doi"]) == "10.1002/tea.3660271011")
@@ -386,7 +385,7 @@ def test_policy_lists():
 
 
 def test_book_or_monograph_rival_still_blocks():
-    from verification import rival_blocks
+    from cdlbib.verification import rival_blocks
     entry, result = reviewed("Gros88")
     selected = next(c for c in result["candidates"] if c.get("source") == "crossref"
                     and normalize_doi(c["doi"]) == "10.1016/0893-6080(88)90021-4")
@@ -401,14 +400,14 @@ def test_proposals_never_drop_accents():
     assert not byline_adds_information("F P{\\'e}rez and B E Granger",
                                        [{"given": "Fernando", "family": "Perez"}, {"given": "Brian E", "family": "Granger"}])
     assert byline_loses_detail("F P{\\'e}rez", [{"given": "Fernando", "family": "Perez"}])
-    from correction_proposals import loses_characters
+    from cdlbib.correction_proposals import loses_characters
     assert loses_characters('Archiv F\\"{u}r Psychiatrie', "Archiv F�r Psychiatrie")
     assert loses_characters("Uber {\\\"U}ber", "Uber Uber")
     assert not loses_characters("G Gron", "Georg Grön")
 
 
 def test_proposals_keep_case_protection_and_decode_entities():
-    from correction_proposals import journal_text, loses_characters
+    from cdlbib.correction_proposals import journal_text, loses_characters
     assert loses_characters("comments on {B}owers's (2009) attempt", "comment on bowers’s (2009) attempt")
     assert loses_characters("on {A}mazons {M}echanical {T}urk", "on amazon’s mechanical turk")
     assert not loses_characters("{Parkinson}'s disease", "{Parkinson}'s disease treatment")
@@ -445,7 +444,7 @@ def test_surname_fix_refuses_a_source_that_only_drops_letters():
 
 def test_print_year_approval_is_a_valid_snapshot_envelope():
     """A restored R1 approval keeps its evidence check (verification/apply-2026-09-23)."""
-    from verification import valid_print_year_approval
+    from cdlbib.verification import valid_print_year_approval
     entry, result = reviewed("Zoll90")
     assert result["status"] == "metadata_verified" and valid_print_year_approval(result)
     doi = "10.1002/tea.3660271011"
@@ -502,7 +501,7 @@ def test_spotcheck_author_after_values_are_house_initials(key, after):
 
 
 def test_spotcheck_smithalg89_gets_the_source_issue():
-    from correction_proposals import after_value_statements, complete_issue
+    from cdlbib.correction_proposals import after_value_statements, complete_issue
     entry, result = fix_case("SmitHalg89")
     proposal = complete_issue(entry, result, single_source_proposal(entry, result))
     assert proposal["changes"]["number"] == {"before": None, "after": "1"}
@@ -557,7 +556,7 @@ def test_split_issue_no_source_states_needs_lookup_then_drops():
 
 @pytest.mark.parametrize("key", ["ScudEtal14", "CohnEtal96"])
 def test_issue_only_in_the_citation_is_dropped_after_real_lookups(key):
-    from correction_proposals import after_value_statements
+    from cdlbib.correction_proposals import after_value_statements
     entry, result = fix_case(key)
     explain = {}
     assert single_source_proposal(entry, result, explain) is None
@@ -580,7 +579,7 @@ def test_nonplain_stated_issue_is_held():
 
 
 def test_house_given_names():
-    from correction_proposals import house_given
+    from cdlbib.correction_proposals import house_given
     # Real registry given names from the fixture records.
     assert house_given("M.-Marsel") == "M-M"            # RebeEtal02 (Mesulam)
     assert house_given("Matthijs A.A.") == "M A A"      # PezzEtal17
@@ -595,7 +594,7 @@ def test_house_given_names():
 
 
 def test_particles_case_and_accents_are_kept():
-    from correction_proposals import house_byline, source_authors
+    from cdlbib.correction_proposals import house_byline, source_authors
     entry, result = fix_case("PezzEtal17")
     assert single_source_proposal(entry, result)["changes"]["author"]["after"] == \
         "G Pezzulo and C Kemere and M A A {van der Meer}"
@@ -613,7 +612,7 @@ def test_particles_case_and_accents_are_kept():
 
 
 def test_corporate_and_brace_led_bylines_are_never_rewritten():
-    from correction_proposals import source_authors
+    from cdlbib.correction_proposals import source_authors
     entry, result = fix_case("VirtEtal20")  # Crossref lists "SciPy 1.0 Contributors"
     with pytest.raises(ValueError):
         source_authors(crossref_record(result, "10.1038/s41592-020-0772-5"))
@@ -634,8 +633,8 @@ def test_all_capital_or_ambiguous_source_names_are_held():
 
 
 def test_accent_commands_are_not_case_protection():
-    from correction_proposals import loses_characters
-    from correction_proposals import source_authors
+    from cdlbib.correction_proposals import loses_characters
+    from cdlbib.correction_proposals import source_authors
     entry, result = fix_case("RacsEtal08")
     record = next(c["record"] for c in result["candidates"] if c.get("source") == "crossref"
                   and c["record"].get("DOI", "").lower() == "10.1080/17470210701728750")
@@ -652,7 +651,7 @@ def test_accent_commands_are_not_case_protection():
 
 
 def test_after_values_must_be_stated_by_a_source():
-    from correction_proposals import after_value_statements
+    from cdlbib.correction_proposals import after_value_statements
     entry, result = fix_case("Hint03")
     proposal = single_source_proposal(entry, result)
     stated_by, violations = after_value_statements(entry, result, proposal)
@@ -674,8 +673,8 @@ def test_after_values_must_be_stated_by_a_source():
 def test_issue_lookup_replays_stored_responses_with_zero_requests(tmp_path):
     """The real lookup code over stored PubMed/publisher responses (no network)."""
     import sqlite3
-    from publisher_corrections import _summary_matches, issue_lookup
-    from verification import Cache, PoliteClient
+    from cdlbib.publisher_corrections import _summary_matches, issue_lookup
+    from cdlbib.verification import Cache, PoliteClient
     cache = Cache(tmp_path / "lookups.sqlite3")
     for request, fetched, body in FIX["replay"]["responses"]:
         cache.db.execute("INSERT INTO responses VALUES (?, ?, ?)", (request, fetched, body))

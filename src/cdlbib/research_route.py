@@ -57,9 +57,9 @@ from pathlib import Path
 import re
 import unicodedata
 
-from verification import normalize_doi, notice_record_identity, outcome
+from .verification import normalize_doi, notice_record_identity, outcome
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SOURCE = 'research-evidence'
 POLICY = '1'
 NAME = 'research_route'
@@ -88,14 +88,14 @@ JUDGMENT = ('url', 'howpublished')
 def validator():
     """The research validator's quote matching (bibcheck/research_quotes.py, copied from
     validate.py; never fetches)."""
-    import research_quotes
+    from . import research_quotes
     return research_quotes
 
 
 def postcheck():
     """The research post-check's house normalisers (bibcheck/research_forms.py, copied
     from postcheck.py)."""
-    import research_forms
+    from . import research_forms
     return research_forms
 
 
@@ -745,8 +745,8 @@ def notice_blocks(candidate, candidates):
 def _table_dois(candidate):
     """The DOIs under which Cache.remember_notices files ``candidate`` (its notice,
     PubMed-suffix and article-locator tables), normalised as retain_notices queries them."""
-    from auto_review import secondary_notice_flags, secondary_suffix_dois
-    from source_locators import locator_dois
+    from .auto_review import secondary_notice_flags, secondary_suffix_dois
+    from .source_locators import locator_dois
     out = set()
     for found in (secondary_notice_flags([candidate]), secondary_suffix_dois([candidate]), locator_dois([candidate])):
         if found:
@@ -805,8 +805,8 @@ def _named_records(rows):
 def _passive_locator(c, fields):
     """A matching article-locator record, which Cache.retain_notices passes over (it is
     no negative evidence): listed in a declaration, but it needs no classification."""
-    from auto_review import secondary_notice_flags, secondary_suffix_dois
-    from source_locators import locator_dois, locator_conflicts
+    from .auto_review import secondary_notice_flags, secondary_suffix_dois
+    from .source_locators import locator_dois, locator_conflicts
     return bool(locator_dois([c]) and not locator_conflicts(fields, [c])
                 and not secondary_notice_flags([c]) and not secondary_suffix_dois([c]))
 
@@ -956,7 +956,7 @@ def valid_research_approval(result):
     if result.get('accepted_source') != SOURCE or result.get('external_evidence'):
         return False
     try:
-        from preprint_review import context_issues
+        from .preprint_review import context_issues
         saved = [c for c in result['candidates'] if c.get('source') == SOURCE]
         if len(saved) != 1:
             return False
@@ -990,7 +990,7 @@ def research_rejection_reason(result):
     if len(saved) != 1:
         return f'{len(saved)} research candidates (exactly one expected)'
     c = saved[0]
-    from preprint_review import context_issues
+    from .preprint_review import context_issues
     if (context_issues(c['checked_fields'], result['candidates'], result.get('accepted_doi'))
             and notice_blocks(c, result['candidates'])):
         return 'DOI-linked evidence (a notice) contradicts the saved research record'
@@ -1018,8 +1018,8 @@ def research_rejection_reason(result):
     return 'the re-assessed research candidate differs from the saved one'
 
 
-from verification import register_approval_validator, register_notice_accounting  # noqa: E402
+from .verification import register_approval_validator, register_notice_accounting  # noqa: E402
 register_approval_validator(valid_research_approval)      # hook contract 2026-09-25
-from verification import register_approval_rejection_reason  # noqa: E402
+from .verification import register_approval_rejection_reason  # noqa: E402
 register_approval_rejection_reason(SOURCE, research_rejection_reason)
 register_notice_accounting(SOURCE, accounts_for_notices)  # hook contract 2026-09-27

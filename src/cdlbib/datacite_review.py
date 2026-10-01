@@ -21,9 +21,9 @@ import json
 import re
 from urllib.parse import quote, urlencode
 
-from preprint_review import checked_body, fetch_document, people
-from verification import author_evidence, normalize_doi, normalize_title, normalized, outcome
-from osf_review import classify, run_route
+from .preprint_review import checked_body, fetch_document, people
+from .verification import author_evidence, normalize_doi, normalize_title, normalized, outcome
+from .osf_review import classify, run_route
 
 DATACITE_POLICY = '1'
 SOURCE = 'datacite-registry'
@@ -112,13 +112,13 @@ def creators(attrs):
 
 
 def byline(authors, citation):
-    from correction_proposals import house_byline
+    from .correction_proposals import house_byline
     names = []
     for i, a in enumerate(authors):
         names.append('{' + a['name'] + '}' if 'name' in a else house_byline([a]))
     text = ' and '.join(names)
     if citation:
-        from verification import split_authors
+        from .verification import split_authors
         cited = split_authors(citation)
         if len(cited) == len(names):  # keep cited surname text equal up to case/braces
             text = ' and '.join(n if 'name' in a else house_byline([a], c)
@@ -157,8 +157,8 @@ def discover(hits, fields):
 
     A concept DOI and its own versions count as one work; the concept DOI
     (which serves the latest version) is returned. Anything else is ambiguous."""
-    from name_parsing import splitname
-    from verification import split_authors
+    from .name_parsing import splitname
+    from .verification import split_authors
     first = splitname(split_authors(fields.get('author', ''))[0], strict_mode=True)
     surname = normalized(' '.join(first['von'] + first['last']))
     found = {}
@@ -307,5 +307,5 @@ def run_datacite_review(filename, cache, client, report, limit=None, snapshot=No
                      assess=assess_datacite, attempt_url=lambda raw: raw.get('record', raw.get('search', {})).get('url'))
 
 
-from verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
+from .verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
 register_approval_validator(valid_datacite_approval)

@@ -11,9 +11,9 @@ import json
 import re
 
 import requests
-from name_parsing import splitname
-from publisher_metadata import PublisherMetadata
-from verification import (ProviderError, author_evidence, current_results, export_snapshot,
+from .name_parsing import splitname
+from .publisher_metadata import PublisherMetadata
+from .verification import (ProviderError, author_evidence, current_results, export_snapshot,
                           load_entries, normalize_doi, normalize_title, normalized, now,
                           outcome, run_lock, validate_output_path, write_report)
 
@@ -207,8 +207,8 @@ def valid_preprint_approval(result):
 
 
 def context_issues(fields, candidates, doi):
-    from auto_review import secondary_notice_flags, secondary_suffix_conflicts
-    from source_locators import locator_conflicts
+    from .auto_review import secondary_notice_flags, secondary_suffix_conflicts
+    from .source_locators import locator_conflicts
     if (doi in secondary_notice_flags(candidates) or doi in secondary_suffix_conflicts(fields, candidates)
             or doi in locator_conflicts(fields, candidates)):
         return ['Known DOI-linked source evidence requires adjudication']

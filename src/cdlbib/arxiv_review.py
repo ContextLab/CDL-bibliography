@@ -12,9 +12,9 @@ import re
 from urllib.parse import quote
 import xml.etree.ElementTree as ET
 
-from publisher_metadata import PublisherMetadata
-from preprint_review import checked_body, fetch_document, people, context_issues
-from verification import (author_evidence, current_results, export_snapshot, load_entries,
+from .publisher_metadata import PublisherMetadata
+from .preprint_review import checked_body, fetch_document, people, context_issues
+from .verification import (author_evidence, current_results, export_snapshot, load_entries,
                           normalize_doi, normalize_title, normalized, outcome, run_lock,
                           validate_output_path, write_report)
 

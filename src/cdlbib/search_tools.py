@@ -9,7 +9,7 @@ from urllib.parse import parse_qs, urljoin, urlparse
 
 import requests
 
-from research import allowed_url
+from .research import allowed_url
 
 CACHE_VERSION = "2"
 

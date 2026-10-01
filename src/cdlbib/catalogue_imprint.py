@@ -11,9 +11,10 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-from verification import compare_record, normalize_doi, normalize_title
+from .verification import compare_record, normalize_doi, normalize_title
 
-EDITIONS = json.loads((Path(__file__).parent / "book_editions.json").read_text())
+from .resources import data_path
+EDITIONS = json.loads(data_path("book_editions.json").read_text())
 M = "{http://www.loc.gov/MARC21/slim}"
 
 

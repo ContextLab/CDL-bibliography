@@ -29,10 +29,9 @@ import sys
 import unicodedata
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "bibcheck"))
 
-import pdf_evidence as P  # noqa: E402
-from verification import load_entries  # noqa: E402
+from cdlbib import pdf_evidence as P  # noqa: E402
+from cdlbib.verification import load_entries  # noqa: E402
 
 DEFAULT_LIBRARY = Path("/Users/jmanning/Library/CloudStorage/Dropbox-DartmouthCollege/Jeremy Manning/Papers")
 CACHE = ROOT / ".bibcheck" / "pdf-benchmark" / "layout"

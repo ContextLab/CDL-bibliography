@@ -5,9 +5,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from pmc_metadata import article_front, fetch_front, JATS, OAI
-from verification import Cache, PoliteClient, ProviderError
+from cdlbib.pmc_metadata import article_front, fetch_front, JATS, OAI
+from cdlbib.verification import Cache, PoliteClient, ProviderError
 from test_fulltext_review import XML, assessment
 import test_auto_review
 

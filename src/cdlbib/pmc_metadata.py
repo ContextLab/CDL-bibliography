@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from verification import normalize_doi, now, ProviderError
+from .verification import normalize_doi, now, ProviderError
 
 OAI = "{http://www.openarchives.org/OAI/2.0/}"
 JATS = "{https://jats.nlm.nih.gov/ns/archiving/1.4/}"
@@ -66,9 +66,9 @@ def run_pmc_metadata_review(filename, cache, client, report, limit=None, snapsho
     Entry checkpoints and the independent HTTP cache both prevent repeat calls.
     A new entry fingerprint must pass the current field checks afresh.
     """
-    from auto_review import select_result
-    from fulltext_review import assess_fulltext
-    from verification import (load_entries, run_lock, validate_output_path,
+    from .auto_review import select_result
+    from .fulltext_review import assess_fulltext
+    from .verification import (load_entries, run_lock, validate_output_path,
                               write_report, export_snapshot)
     validate_output_path(filename, report, cache)
     if snapshot:

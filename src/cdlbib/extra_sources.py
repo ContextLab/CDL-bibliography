@@ -39,7 +39,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from verification import (Cache, PoliteClient, ProviderError, compare_record, dumps, normalize_doi,
+from .verification import (Cache, PoliteClient, ProviderError, compare_record, dumps, normalize_doi,
                           normalized, split_authors)
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
@@ -195,7 +195,7 @@ def words(value):
 
 
 def first_surname(fields):
-    from name_parsing import splitname
+    from .name_parsing import splitname
     try:
         name = split_authors(fields.get("author", ""))[0]
     except (IndexError, ValueError):
@@ -405,7 +405,7 @@ def medline_record(raw, cited_venue=None):
     The venue list is the NLM title variants; when the cited venue equals one
     of them up to case and punctuation (``venue_matches_medline``) the cited
     spelling is included, and the record says so in ``venue_rule``."""
-    from auto_review import expanded_pages
+    from .auto_review import expanded_pages
     people = []
     for person in raw["authors"]:
         if "name" in person:
@@ -468,7 +468,7 @@ def apa_double_slash(doi):
 
 def route_epmc_doi(client, doi):
     """Exact DOI query; returns (MED raw records, response)."""
-    from auto_review import fetch_epmc
+    from .auto_review import fetch_epmc
     indexed, response = fetch_epmc(client, [doi])
     return indexed.get(normalize_doi(doi), []), response
 
@@ -569,11 +569,11 @@ def pubmed_only_assessment(entry, raws, crossref_records=()):
     Crossref records that are themselves identified as the cited work take
     precedence: PubMed-only judgement then holds (sources are not merged).
     """
-    from correction_proposals import (HELD_SUBCLASSES, MAX_SINGLE_SOURCE_FIELDS, _issue_fields, _title_words,
+    from .correction_proposals import (HELD_SUBCLASSES, MAX_SINGLE_SOURCE_FIELDS, _issue_fields, _title_words,
                                       byline_adds_information, change_subclass, loses_characters,
                                       shortens_pages, single_source_identity, source_authors, source_title,
                                       surname_change_hold)
-    from auto_review import expanded_pages
+    from .auto_review import expanded_pages
     fields = entry["fields"]
     evaluated = {k: v for k, v in fields.items() if k != "publisher"}
     identified = {}
@@ -850,7 +850,7 @@ def confirm(client, entry, previous, gathered):
 def record_summary(fields, record, ident):
     """How a found authoritative record compares with the citation (for
     review packets and grouping only; never an identity decision)."""
-    from correction_proposals import single_source_identity
+    from .correction_proposals import single_source_identity
     title = (record.get("title") or [""])[0]
     people = record.get("author") or []
     family = (people[0].get("family") or people[0].get("name") or "") if people else ""
@@ -870,8 +870,8 @@ def record_summary(fields, record, ident):
 def judge(entry, previous, new_candidates, pubmed_only):
     """Re-judge with the committed resolver, then the S1 proposal rule, then
     the PubMed-only rule. Returns a dict with 'outcome'."""
-    from auto_review import reassess
-    from correction_proposals import single_source_proposal
+    from .auto_review import reassess
+    from .correction_proposals import single_source_proposal
     augmented = dict(previous, candidates=list(previous.get("candidates", [])) + new_candidates)
     before = reassess(entry, previous)
     after = reassess(entry, augmented)

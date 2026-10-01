@@ -27,7 +27,7 @@ from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 import xml.etree.ElementTree as ET
 
 import bibtexparser
-from name_parsing import splitname
+from .name_parsing import splitname
 from pylatexenc.latex2text import LatexNodes2Text
 import requests
 
@@ -224,7 +224,7 @@ def load_entries(filename):
 # is committed with the repository, so restoring an older snapshot (even into an
 # empty database) cannot bring a revoked approval back. A later approval with a
 # new review note is a new decision and is not affected. Tests patch this constant.
-REVOCATION_LEDGER = Path(__file__).resolve().parents[1] / "verification" / "revocations.jsonl"
+REVOCATION_LEDGER = Path(__file__).resolve().parents[2] / "verification" / "revocations.jsonl"
 REVOCATION_FIELDS = {"key", "fingerprint", "approval", "approval_digest", "approval_checked_at",
                      "revoked_at", "revoked_by", "reason"}
 
@@ -483,8 +483,8 @@ class Cache:
 
     def remember_notices(self, candidates):
         """Keep DOI-linked negative evidence independently of entry revisions."""
-        from auto_review import secondary_notice_flags, secondary_suffix_dois
-        from source_locators import locator_dois
+        from .auto_review import secondary_notice_flags, secondary_suffix_dois
+        from .source_locators import locator_dois
 
         for candidate in candidates:
             flagged = secondary_notice_flags([candidate])
@@ -572,8 +572,8 @@ class Cache:
             dois.add(entry["fields"]["doi"])
         # Legacy repository citations also put identifiers in volume/pages.
         # Known notices must survive edits before discovery yields candidates.
-        from arxiv_review import identifier as arxiv_identifier, doi_for
-        from preprint_review import identifier as biorxiv_identifier
+        from .arxiv_review import identifier as arxiv_identifier, doi_for
+        from .preprint_review import identifier as biorxiv_identifier
         for identify, canonical in ((arxiv_identifier, doi_for), (biorxiv_identifier, lambda x: x)):
             try:
                 dois.add(canonical(identify(entry['fields'])[0]))
@@ -589,9 +589,9 @@ class Cache:
                 continue
             for (body,) in self.db.execute("SELECT candidate FROM source_notices WHERE doi=? UNION SELECT candidate FROM source_author_suffixes WHERE doi=? UNION SELECT candidate FROM source_article_locators WHERE doi=?", (doi, doi, doi)):
                 candidate = json.loads(body)
-                from source_locators import locator_dois, locator_conflicts
+                from .source_locators import locator_dois, locator_conflicts
                 if locator_dois([candidate]) and not locator_conflicts(entry['fields'], [candidate]):
-                    from auto_review import secondary_notice_flags, secondary_suffix_dois
+                    from .auto_review import secondary_notice_flags, secondary_suffix_dois
                     if not secondary_notice_flags([candidate]) and not secondary_suffix_dois([candidate]):
                         continue  # Matching locators are not transferable positive judgments.
                 known = True
@@ -609,7 +609,7 @@ class Cache:
             # Any record it did not declare (a notice learned later) still reopens it.
             return result
         if result.get("status") == "metadata_verified":
-            from auto_review import select_result
+            from .auto_review import select_result
             checked = select_result(entry["fields"], result["candidates"], result.get("attempts", []))
             if checked["status"] != "metadata_verified":
                 result.update(status="needs_review", issues=checked["issues"])
@@ -879,7 +879,7 @@ class PoliteClient:
                     )
                 if any(not isinstance(r, dict) for r in records):
                     raise ProviderError("Malformed Europe PMC record")
-                from auto_review import EPMC_FIELDS
+                from .auto_review import EPMC_FIELDS
 
                 result["body"] = dict(
                     body,
@@ -2294,9 +2294,9 @@ def register_approval_validator(validator):
 
 
 def builtin_approval_validators():
-    from catalogue_review import valid_catalogue_approval
-    from preprint_review import valid_preprint_approval
-    from arxiv_review import valid_arxiv_approval
+    from .catalogue_review import valid_catalogue_approval
+    from .preprint_review import valid_preprint_approval
+    from .arxiv_review import valid_arxiv_approval
     return [valid_catalogue_approval, valid_preprint_approval, valid_arxiv_approval,
             valid_print_year_approval]
 
@@ -2494,13 +2494,13 @@ def import_snapshot(filename, cache, snapshot):
             )
         seen.add(result["key"])
     notices = header.get("source_notices", [])
-    from auto_review import secondary_notice_flags, secondary_suffix_dois
+    from .auto_review import secondary_notice_flags, secondary_suffix_dois
     if not isinstance(notices, list) or any(not isinstance(c, dict) or not secondary_notice_flags([c]) for c in notices):
         raise ValueError("Invalid snapshot source notice")
     suffixes = header.get("source_author_suffixes", [])
     if not isinstance(suffixes, list) or any(not isinstance(c, dict) or not secondary_suffix_dois([c]) for c in suffixes):
         raise ValueError("Invalid snapshot author suffix evidence")
-    from source_locators import locator_dois
+    from .source_locators import locator_dois
     locators = header.get("source_article_locators", [])
     if not isinstance(locators, list) or any(not isinstance(c, dict) or not locator_dois([c]) for c in locators):
         raise ValueError("Invalid snapshot article locator evidence")
@@ -2620,7 +2620,7 @@ def run_verification(
                     and previous["status"] == "metadata_verified"
                     and recheck_cached
                 ):
-                    from auto_review import reassess
+                    from .auto_review import reassess
 
                     # A recheck that reproduces the saved result is not a new
                     # review: appending it would only restamp checked_at.

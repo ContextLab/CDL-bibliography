@@ -4,10 +4,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import research
-from openai_research_adapter import request_payload, run
-from verification import Cache, load_entries
+from cdlbib import research
+from cdlbib.openai_research_adapter import request_payload, run
+from cdlbib.verification import Cache, load_entries
 
 
 def discovery():

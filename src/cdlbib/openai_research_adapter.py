@@ -10,7 +10,7 @@ import sys
 
 import requests
 
-from research import INSTRUCTIONS
+from .research import INSTRUCTIONS
 
 
 def object_schema(properties):

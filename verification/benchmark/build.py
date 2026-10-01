@@ -9,8 +9,7 @@ import json
 from pathlib import Path
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "bibcheck"))
-from verification import Cache, load_entries
+from cdlbib.verification import Cache, load_entries
 
 CONTROLS = """YeshEtal21 KaraEtal21 ChiEtal08 ShafEtal14 RaccEtal24 MoraGosh14
 ClewEtal19 BoniEtal22 MeinEtal20 ShipAeon19 ParkEtal17 JossTone20 SotoBlan04

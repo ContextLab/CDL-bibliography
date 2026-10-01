@@ -8,8 +8,8 @@ from typing import List
 
 import typer
 
-import verification
-from verification import (
+from . import verification
+from .verification import (
     ACCEPTED,
     Cache,
     approval_digest,
@@ -33,11 +33,11 @@ from verification import (
 # The 2026-09-25 source routes register their approval validators with
 # verification.register_approval_validator when imported, so offline gates
 # (status, restore, snapshot import) recognize their machine approvals.
-import osf_review  # noqa: E402,F401
-import datacite_review  # noqa: E402,F401
-import acl_review  # noqa: E402,F401
-import sfn_abstracts  # noqa: E402,F401
-import research_route  # noqa: E402,F401  (research-evidence approvals, 2026-09-27)
+from . import osf_review  # noqa: E402,F401
+from . import datacite_review  # noqa: E402,F401
+from . import acl_review  # noqa: E402,F401
+from . import sfn_abstracts  # noqa: E402,F401
+from . import research_route  # noqa: E402,F401  (research-evidence approvals, 2026-09-27)
 
 app = typer.Typer(
     help="Check citation accuracy against external evidence. Never edits BibTeX."
@@ -54,7 +54,7 @@ def discover_review(
     keys: Optional[str] = typer.Option(None, "--keys"),
 ):
     """Try twenty title-search candidates; apply the existing strict source checks."""
-    from discovery_review import run_discovery_review
+    from .discovery_review import run_discovery_review
 
     database, report = paths(fname, database, report)
     cache = Cache(database)
@@ -93,7 +93,7 @@ def auto_review(
     snapshot: Optional[str] = typer.Option(None, "--snapshot"),
 ):
     """Automatically review cached findings; batch PubMed lookups through Europe PMC."""
-    from auto_review import run_auto_review
+    from .auto_review import run_auto_review
 
     database, report = paths(fname, database, report)
     cache = Cache(database)
@@ -124,7 +124,7 @@ def fulltext_review(
     snapshot: Optional[str] = typer.Option(None, "--snapshot"),
 ):
     """Review remaining entries using publisher front matter from open-access PMC XML."""
-    from fulltext_review import run_fulltext_review
+    from .fulltext_review import run_fulltext_review
 
     database, report = paths(fname, database, report)
     cache = Cache(database)
@@ -217,13 +217,13 @@ class DeferredClient:
 
 def run_review_layers(fname, cache, client, report, selected, limit=None, snapshot=None):
     """The --auto-review layers for the selected keys, in the production order."""
-    from auto_review import run_auto_review
-    from fulltext_review import run_fulltext_review
-    from pmc_metadata import run_pmc_metadata_review
-    from publisher_year_review import run_publisher_year_review
-    from catalogue_review import run_catalogue_review
-    from preprint_review import run_preprint_review
-    from arxiv_review import run_arxiv_review
+    from .auto_review import run_auto_review
+    from .fulltext_review import run_fulltext_review
+    from .pmc_metadata import run_pmc_metadata_review
+    from .publisher_year_review import run_publisher_year_review
+    from .catalogue_review import run_catalogue_review
+    from .preprint_review import run_preprint_review
+    from .arxiv_review import run_arxiv_review
 
     results = run_auto_review(fname, cache, report, client, limit, snapshot, keys=selected)
     for layer in (run_fulltext_review, run_pmc_metadata_review, run_publisher_year_review,
@@ -244,7 +244,7 @@ def reference_bib(reference, directory):
             raise OSError(f"Reference bibliography not found: {reference}")
         return str(reference)
     from urllib.request import urlopen
-    from helpers import LATEST_BIBFILE
+    from .helpers import LATEST_BIBFILE
     try:
         text = urlopen(LATEST_BIBFILE, timeout=60).read().decode("utf-8")
     except OSError as exc:
@@ -570,7 +570,7 @@ def research(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Run optional LLM web search, download PDF, extract and check quoted evidence."""
-    from research import research_entry
+    from .research import research_entry
 
     database, _ = paths(fname, database)
     cache = Cache(database)
@@ -622,7 +622,7 @@ def research_batch(
     ),
 ):
     """Collect actual PDF evidence in a bounded, resumable batch; never human-approve."""
-    from research import run_research_batch
+    from .research import run_research_batch
 
     database, report = paths(fname, database)
     cache = Cache(database)

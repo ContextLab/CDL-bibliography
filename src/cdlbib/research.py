@@ -15,7 +15,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 
-from verification import dumps, now
+from .verification import dumps, now
 
 
 INSTRUCTIONS = (
@@ -265,7 +265,7 @@ def run_research_batch(
     filename, cache, adapter, hosts, limit=10, retry_failed=False, keys=None
 ):
     """Collect PDF evidence for a bounded queue, checkpointing success and failure."""
-    from verification import load_entries, run_lock, now
+    from .verification import load_entries, run_lock, now
 
     completed, failures = 0, 0
     with run_lock(cache):

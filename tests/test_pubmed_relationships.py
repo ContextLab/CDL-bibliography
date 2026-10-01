@@ -3,8 +3,7 @@ from copy import deepcopy
 from pathlib import Path
 import sys
 import pytest
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import blocking_pubmed_relationships, select_result
+from cdlbib.auto_review import blocking_pubmed_relationships, select_result
 from test_auto_review import sample, secondary
 from test_fulltext_review import assessment
 

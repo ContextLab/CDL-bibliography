@@ -6,9 +6,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import verification as v
-from auto_review import assess_epmc, reassess, run_auto_review
+from cdlbib import verification as v
+from cdlbib.auto_review import assess_epmc, reassess, run_auto_review
 
 CASE = json.loads((Path(__file__).parent / 'fixtures/medline_missing_issue.json').read_text())
 

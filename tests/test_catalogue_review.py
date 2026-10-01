@@ -10,11 +10,10 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import catalogue_review as cr
-from catalogue_discovery import M, S
-import verification as v
-from auto_review import reassess
+from cdlbib import catalogue_review as cr
+from cdlbib.catalogue_discovery import M, S
+from cdlbib import verification as v
+from cdlbib.auto_review import reassess
 
 FIXTURE = json.loads((Path(__file__).parent / 'fixtures/catalogue_books.json').read_text())
 
@@ -229,12 +228,12 @@ def test_snapshot_requires_real_accepted_record_identity(tmp_path):
 
 def test_normal_cli_uses_cached_catalogue_and_repeat_needs_no_credentials(tmp_path):
     from typer.testing import CliRunner
-    from verification_cli import app
+    from cdlbib.verification_cli import app
     entry,response=source()
     bib=tmp_path/'source.bib';bib.write_text(entry['raw']);entry=v.load_entries(bib)['Albe00']
     database=tmp_path/'cache.sqlite3';cache=v.Cache(database)
     cache.put(bib,entry,v.outcome('needs_review',['No registry match'],[]))
-    from catalogue_discovery import search_query
+    from cdlbib.catalogue_discovery import search_query
     cache.save_response('loc-sru-v1:10:'+search_query(entry['fields']),response)
     cache.close()
     args=['verify',str(bib),'--database',str(database),'--report',str(tmp_path/'report'), '--auto-review']

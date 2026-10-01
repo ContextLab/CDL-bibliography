@@ -10,11 +10,11 @@ import re
 from urllib.parse import quote, urlparse
 
 import requests
-from name_parsing import splitname
+from .name_parsing import splitname
 
-from publisher_metadata import PublisherMetadata
-from search_tools import get_source, SourceHTTPError
-from verification import (
+from .publisher_metadata import PublisherMetadata
+from .search_tools import get_source, SourceHTTPError
+from .verification import (
     POLICY,
     ProviderError,
     compare_record,
@@ -209,7 +209,7 @@ def fetch_head(cache, client, doi):
 def run_publisher_year_review(
     filename, cache, client, report, limit=None, snapshot=None, keys=None
 ):
-    from auto_review import select_result
+    from .auto_review import select_result
 
     validate_output_path(filename, report, cache)
     if snapshot:

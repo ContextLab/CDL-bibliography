@@ -43,9 +43,7 @@ import subprocess
 import sys
 import unicodedata
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-
-from verification import normalized, split_authors  # noqa: E402  (stable helpers)
+from .verification import normalized, split_authors  # noqa: E402  (stable helpers)
 
 LAYOUT_POLICY = 1
 VERIFIER_POLICY = 1
@@ -1707,7 +1705,7 @@ def main():
     parser.add_argument("--bibliography", type=Path, default=Path("cdl.bib"))
     parser.add_argument("--cache", type=Path, default=Path(".bibcheck/pdf-benchmark/layout"))
     args = parser.parse_args()
-    from verification import load_entries
+    from .verification import load_entries
     entries = load_entries(args.bibliography)
     known = {e["fields"].get("journal") for e in entries.values() if e["fields"].get("journal")}
     out = verify_pdf_path(entries[args.key]["fields"], args.pdf, args.cache, known)

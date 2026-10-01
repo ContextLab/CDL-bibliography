@@ -14,13 +14,13 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 
-from openai_research_adapter import object_schema
-from research import INSTRUCTIONS, allowed_url
-from search_tools import WebSearch, get_source
-from publisher_metadata import PublisherMetadata
+from .openai_research_adapter import object_schema
+from .research import INSTRUCTIONS, allowed_url
+from .search_tools import WebSearch, get_source
+from .publisher_metadata import PublisherMetadata
 
 BASE = "https://chat.dartmouth.edu/api"
-from dartmouth_models import PREFERRED_TEXT_MODEL
+from .dartmouth_models import PREFERRED_TEXT_MODEL
 
 DEFAULT_MODEL = PREFERRED_TEXT_MODEL
 
@@ -117,7 +117,7 @@ def configuration(environ):
 
 
 def check_model(session=None, environ=None):
-    from dartmouth_models import fetch_models, require_free
+    from .dartmouth_models import fetch_models, require_free
 
     key, model = configuration(os.environ if environ is None else environ)
     require_free(fetch_models(key, session), model)
@@ -331,7 +331,7 @@ def run(payload, session=None, environ=None, searcher=None):
         finally:
             if own_searcher:
                 searcher.close()
-    from source_passages import numbered_passages, extraction_schema, materialize
+    from .source_passages import numbered_passages, extraction_schema, materialize
 
     passages = numbered_passages(payload["pages"])
     finding, trace = complete(

@@ -8,7 +8,7 @@ import hashlib
 import json
 import re
 
-from verification import normalized, normalize_pages, split_authors
+from .verification import normalized, normalize_pages, split_authors
 
 FIELDS = [
     "title",
@@ -62,7 +62,7 @@ def numbered_passages(pages):
 
 
 def extraction_schema():
-    from openai_research_adapter import object_schema
+    from .openai_research_adapter import object_schema
 
     return object_schema(
         {

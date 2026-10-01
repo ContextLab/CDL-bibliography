@@ -136,7 +136,7 @@ def main():
                       'errors': sum(r['status'] != 'indexed' for r in result['files']),
                       'extractions': result['extractions'], 'cache_hits': result['cache_hits']}), flush=True)
     if args.bibliography:
-        from verification import load_entries
+        from .verification import load_entries
         candidates = find_candidates(args.output, load_entries(args.bibliography))
         (args.output / 'candidates.json').write_text(json.dumps(candidates, indent=2) + '\n')
         print(json.dumps({'candidates': len(candidates), 'entries': len({r['key'] for r in candidates})}), flush=True)

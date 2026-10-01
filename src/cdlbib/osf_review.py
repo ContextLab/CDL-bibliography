@@ -24,8 +24,8 @@ import json
 import re
 from urllib.parse import urlencode
 
-from preprint_review import checked_body, context_issues, fetch_document, people
-from verification import (author_evidence, current_results, export_snapshot, load_entries,
+from .preprint_review import checked_body, context_issues, fetch_document, people
+from .verification import (author_evidence, current_results, export_snapshot, load_entries,
                           normalize_title, normalized, outcome, run_lock,
                           validate_output_path, write_report)
 
@@ -170,7 +170,7 @@ def version_doi(base, row, rows):
 
 
 def house_initials_byline(authors, citation):
-    from correction_proposals import house_byline
+    from .correction_proposals import house_byline
     return house_byline(authors, citation)
 
 
@@ -190,11 +190,11 @@ def classify(fields, issues, proposal, title_ok, published=None, discovered=Fals
     if not title_ok or not proposal or {i.split(':')[0] for i in issues} - fixable:
         return 'held', None
     if 'author' in proposal:
-        from correction_proposals import surname_change_hold, surname_changes
+        from .correction_proposals import surname_change_hold, surname_changes
         if discovered and surname_changes(fields.get('author'), proposal['author']):
             issues.append('author: surname change on a title-discovered record')
             return 'held', None
-        from correction_proposals import byline_loses_detail
+        from .correction_proposals import byline_loses_detail
         if authors is not None and byline_loses_detail(fields.get('author', ''), authors):
             issues.append('author: the source byline has less detail than the citation (initials/people/accents)')
             return 'held', None
@@ -393,7 +393,7 @@ def run_osf_review(filename, cache, client, report, limit=None, snapshot=None, k
 
 
 try:
-    from verification import register_approval_validator
+    from .verification import register_approval_validator
 except ImportError as exc:  # pragma: no cover - documented contract, see tests
     raise ImportError('verification.register_approval_validator is required (hook contract 2026-09-25)') from exc
 register_approval_validator(valid_osf_approval)

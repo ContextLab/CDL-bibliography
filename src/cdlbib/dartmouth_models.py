@@ -80,7 +80,7 @@ def require_free(models, model_id):
 
 
 def main():
-    from dartmouth_research_adapter import configuration
+    from .dartmouth_research_adapter import configuration
 
     key, _ = configuration(os.environ)
     models = fetch_models(key)

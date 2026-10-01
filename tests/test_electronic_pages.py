@@ -5,8 +5,7 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from helpers import valid_pages
+from cdlbib.helpers import valid_pages
 
 
 @pytest.mark.parametrize("pages", ["439-452.e5", "439--452.e5"])

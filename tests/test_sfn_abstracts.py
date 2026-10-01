@@ -13,9 +13,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'bibcheck'))
-import sfn_abstracts as s  # noqa: E402
-import verification as v  # noqa: E402
+from cdlbib import sfn_abstracts as s  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 DATA = json.loads((ROOT / 'tests/fixtures/routes/sfn_abstracts.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'
@@ -25,7 +24,7 @@ CONTACT = 'jeremy.r.manning@dartmouth.edu'
 def frozen_library(monkeypatch):
     # No check here reads the library any more (the surname-consensus hold was replaced by
     # the user rule of 2026-09-30); the frozen bibliography stays as a guard for any that does.
-    import correction_proposals as cp
+    from cdlbib import correction_proposals as cp
     monkeypatch.setattr(cp, 'LIBRARY_BIB', ROOT / 'tests/fixtures/cdl-prewave1-2026-09-26.bib')
 
 
@@ -161,7 +160,7 @@ def test_2009_page_layout_and_one_digit_program_number():
 def test_route_merge_accepts_an_approval_without_a_doi():
     # SfN abstracts have no DOI; the shared route merge used to read result['accepted_doi']
     # and raised KeyError for a verified SfN result (stage 2C, RamaEtal12b).
-    from osf_review import merge
+    from cdlbib.osf_review import merge
     c = case('RamaEtal12b')
     cand = assess(c)['candidates'][0]
     after = s.assess_sfn(apply(c['fields'], cand['proposal']), c['raw'])

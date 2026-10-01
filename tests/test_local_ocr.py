@@ -5,9 +5,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from local_library import find_candidates, index_library
-from local_ocr import index_failed_pdfs
+from cdlbib.local_library import find_candidates, index_library
+from cdlbib.local_ocr import index_failed_pdfs
 
 PROFILE = {"ocr_policy": 1, "pages": 3, "tools": {"tesseract": "test-v1"}}
 

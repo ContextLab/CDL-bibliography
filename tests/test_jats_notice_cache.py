@@ -5,8 +5,8 @@ from copy import deepcopy
 import pytest
 
 import test_notice_cache
-from auto_review import reassess, secondary_notice_flags
-import verification as v
+from cdlbib.auto_review import reassess, secondary_notice_flags
+from cdlbib import verification as v
 
 
 def setup(tmp_path):

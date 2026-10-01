@@ -13,13 +13,12 @@ import re
 import sys
 import unicodedata
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 _cwd = os.getcwd()
-sys.path.insert(0, str(ROOT / "bibcheck"))
 os.chdir(ROOT)  # helpers reads its word lists relative to the working directory
 
 try:
-    import helpers as H  # noqa: E402
+    from . import helpers as H  # noqa: E402
 finally:
     os.chdir(_cwd)
 

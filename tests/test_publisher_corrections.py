@@ -7,9 +7,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import reassess
-from publisher_corrections import publisher_title_proposal
+from cdlbib.auto_review import reassess
+from cdlbib.publisher_corrections import publisher_title_proposal
 
 
 def case():
@@ -75,8 +74,8 @@ def test_publisher_route_works_for_records_not_indexed_in_pubmed():
 
 def test_frontiers_route_retries_old_host_failure_and_caches_result(tmp_path, monkeypatch):
     from types import SimpleNamespace
-    from publisher_corrections import fetch_publisher_head
-    from verification import Cache
+    from cdlbib.publisher_corrections import fetch_publisher_head
+    from cdlbib.verification import Cache
     doi = "10.3389/fpsyg.2017.01454"
     cache = Cache(tmp_path / "cache.sqlite3")
     client = SimpleNamespace(refresh=False)
@@ -88,7 +87,7 @@ def test_frontiers_route_retries_old_host_failure_and_caches_result(tmp_path, mo
         assert "journal.frontiersin.org" in kwargs["https_redirect_hosts"]
         return ('<html><head><meta name="citation_doi" content="' + doi + '"></head></html>',
                 "https://www.frontiersin.org/journals/psychology/articles/" + doi + "/full")
-    monkeypatch.setattr("publisher_corrections.get_source", fetch)
+    monkeypatch.setattr("cdlbib.publisher_corrections.get_source", fetch)
     old = {"error": "PDF URL must use HTTPS", "metadata": {}}
     try:
         cache.save_response("publisher-title-head-v2:" + doi, old)
@@ -113,8 +112,8 @@ def test_frontiers_route_retries_old_host_failure_and_caches_result(tmp_path, mo
     ("http://link.springer.com:8080/article/10.1234/test", False),
 ])
 def test_legacy_redirects_never_send_http_or_upgrade_arbitrary_hosts(monkeypatch, target, allowed):
-    from search_tools import get_source
-    monkeypatch.setattr("search_tools.time.sleep", lambda seconds: None)
+    from cdlbib.search_tools import get_source
+    monkeypatch.setattr("cdlbib.search_tools.time.sleep", lambda seconds: None)
     class Response:
         def __init__(self, status, headers):
             self.status_code, self.headers = status, headers
@@ -140,7 +139,7 @@ def test_legacy_redirects_never_send_http_or_upgrade_arbitrary_hosts(monkeypatch
 
 def xml_case():
     from xml.sax.saxutils import escape
-    from publisher_corrections import elsevier_metadata
+    from cdlbib.publisher_corrections import elsevier_metadata
     import hashlib
     entry, previous, response = case()
     metadata = response["metadata"]
@@ -187,7 +186,7 @@ def test_xml_source_identity_and_parsing_fail_closed(broken):
 
 
 def test_xml_ignores_reference_titles_and_normalizes_only_issn_punctuation():
-    from publisher_corrections import elsevier_metadata
+    from cdlbib.publisher_corrections import elsevier_metadata
     _, _, response = xml_case()
     xml = response["raw_xml"].replace("</coredata>", "<prism:issn>00068993</prism:issn></coredata><references><dc:title>Wrong referenced work</dc:title></references>")
     parsed = elsevier_metadata(xml)
@@ -204,7 +203,7 @@ def author_case():
 
 
 def test_publisher_author_repair_is_pure_and_requires_complete_byline():
-    from publisher_corrections import publisher_field_proposal
+    from cdlbib.publisher_corrections import publisher_field_proposal
     entry, previous, response = author_case()
     before = deepcopy((entry, previous, response))
     proposal = publisher_field_proposal(entry, previous, response, 'author')
@@ -216,7 +215,7 @@ def test_publisher_author_repair_is_pure_and_requires_complete_byline():
 
 @pytest.mark.parametrize('broken', ['missing', 'omitted', 'reordered', 'different_given', 'other_title', 'other_doi', 'other_year', 'pubmed', 'duplicate'])
 def test_publisher_author_repair_preserves_identity_and_source_conflicts(broken):
-    from publisher_corrections import publisher_field_proposal
+    from cdlbib.publisher_corrections import publisher_field_proposal
     entry, previous, response = author_case()
     people = response['metadata']['citation_author']
     if broken == 'missing': response['metadata'].pop('citation_author')

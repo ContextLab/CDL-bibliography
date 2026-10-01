@@ -11,9 +11,8 @@ import json
 from pathlib import Path
 import sys
 import pytest
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import verification as v
-from auto_review import epmc_record, pubmed_author_suffix, reassess, select_result
+from cdlbib import verification as v
+from cdlbib.auto_review import epmc_record, pubmed_author_suffix, reassess, select_result
 
 
 @pytest.mark.parametrize('tail', ['Jr', 'Sr', 'II', 'III', 'IV', 'Jr.'])
@@ -164,7 +163,7 @@ def test_sources_that_differ_only_by_suffix_are_compatible(tmp_path):
     ('Murdock, Jr, B.B.','Murdock, Jr, B B'), ('Smith, II, A.','Smith, II, A'),
     ('de la Cruz, III, A. B.','de la Cruz, III, A B')])
 def test_formatter_preserves_explicit_bibtex_suffixes(source,expected):
-    from helpers import reformat_author,last_names_from_str
+    from cdlbib.helpers import reformat_author,last_names_from_str
     from bibtexparser.customization import splitname
     formatted=reformat_author(source)
     assert formatted==expected
@@ -174,7 +173,7 @@ def test_formatter_preserves_explicit_bibtex_suffixes(source,expected):
 
 
 def test_no_suffix_is_ever_proposed_and_the_cited_byline_verifies(tmp_path):
-    from correction_proposals import suffix_proposal
+    from cdlbib.correction_proposals import suffix_proposal
     bib,entry,primary,secondary,clean=setup(tmp_path)
     previous=dict(clean,status='needs_review',candidates=[primary,secondary])
     assert suffix_proposal(entry,previous) is None
@@ -182,7 +181,7 @@ def test_no_suffix_is_ever_proposed_and_the_cited_byline_verifies(tmp_path):
 
 
 def test_suffix_present_in_both_sources_is_still_not_proposed(tmp_path):
-    from correction_proposals import suffix_proposal
+    from cdlbib.correction_proposals import suffix_proposal
     _, entry, primary, secondary, clean = setup(tmp_path)
     primary['record']['author'][0]['suffix'] = 'Jr.'
     primary['issues'] = ['author: Author suffix differs']
@@ -193,7 +192,7 @@ def test_suffix_present_in_both_sources_is_still_not_proposed(tmp_path):
 
 @pytest.mark.parametrize('conflict',['hold','page','given','surname','duplicate'])
 def test_suffix_correction_rejects_ambiguous_or_conflicting_evidence(tmp_path,conflict):
-    from correction_proposals import suffix_proposal
+    from cdlbib.correction_proposals import suffix_proposal
     _,entry,primary,secondary,clean=setup(tmp_path)
     previous=dict(clean,status='needs_review',candidates=[primary,secondary])
     if conflict=='hold':previous['external_evidence']=[{'issue':'unresolved identity'}]
@@ -212,8 +211,8 @@ def test_suffix_correction_rejects_ambiguous_or_conflicting_evidence(tmp_path,co
     ("Jr..", "Jr", False, False), ("Unrecognized.", "Unrecognized", False, False),
 ])
 def test_recognized_suffixes_are_ignored_and_nothing_else_is(left, right, same, ignored):
-    from verification import author_evidence, normalize_author_suffix
-    from auto_review import compatible_authors
+    from cdlbib.verification import author_evidence, normalize_author_suffix
+    from cdlbib.auto_review import compatible_authors
     assert (normalize_author_suffix(left) == normalize_author_suffix(right)) is same
     first = {"author": [{"given": "Alice", "family": "Smith", "suffix": left}]}
     second = {"author": [{"given": "A", "family": "Smith", "suffix": right}]}
@@ -230,7 +229,7 @@ def test_recognized_suffixes_are_ignored_and_nothing_else_is(left, right, same, 
     ("A Smith", {"given": "Alice Jr.", "family": "Smith"}),
 ])
 def test_suffix_on_either_side_or_among_given_names_is_ignored(cited, person):
-    from verification import author_evidence
+    from cdlbib.verification import author_evidence
     assert author_evidence(cited, [person])[0]
     assert not author_evidence(cited.replace("Smith", "Smyth"), [person])[0]
 
@@ -262,7 +261,7 @@ def test_real_bylines_without_the_source_suffix_verify(key, surname, monkeypatch
 
 
 def test_real_source_suffix_is_never_written_into_a_proposal(monkeypatch):
-    from correction_proposals import house_byline, source_authors
+    from cdlbib.correction_proposals import house_byline, source_authors
     monkeypatch.chdir(Path(__file__).resolve().parents[1])
     entry, previous = stage1_case('BrodMurd77')
     record = next(c['record'] for c in previous['candidates'] if c.get('source') == 'crossref'

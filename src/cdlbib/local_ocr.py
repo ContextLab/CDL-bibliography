@@ -13,7 +13,7 @@ import subprocess
 import tempfile
 import time
 
-from local_library import POLICY, file_hash, find_candidates
+from .local_library import POLICY, file_hash, find_candidates
 
 
 def extraction_profile():
@@ -120,7 +120,7 @@ def main():
                       "cache_hits": result["cache_hits"],
                       "errors": sum(r["status"] != "indexed" for r in result["files"])}), flush=True)
     if args.bibliography:
-        from verification import load_entries
+        from .verification import load_entries
         found = find_candidates(args.output, load_entries(args.bibliography))
         (args.output / "candidates.json").write_text(json.dumps(found, indent=2) + "\n")
         print(json.dumps({"candidates": len(found), "entries": len({r["key"] for r in found})}), flush=True)

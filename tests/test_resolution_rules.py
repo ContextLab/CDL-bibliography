@@ -7,9 +7,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import compare_record, normalize_publisher, normalized
-from auto_review import assess_epmc
+from cdlbib.verification import compare_record, normalize_publisher, normalized
+from cdlbib.auto_review import assess_epmc
 
 ROOT = Path(__file__).resolve().parents[1]
 

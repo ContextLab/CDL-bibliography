@@ -7,14 +7,14 @@ from functools import lru_cache
 import json
 import xml.etree.ElementTree as ET
 
-from verification import normalize_doi, normalized
+from .verification import normalize_doi, normalized
 
 
 @lru_cache(maxsize=1024)
 def _coordinates(doi, xml, medline_json):
     try:
-        from auto_review import expanded_pages
-        from fulltext_review import front_record
+        from .auto_review import expanded_pages
+        from .fulltext_review import front_record
         med = json.loads(medline_json)
         if med.get('source') != 'MED' or not med.get('id'):
             return None
@@ -54,7 +54,7 @@ def locator_dois(candidates):
 def locator_conflicts(fields, candidates):
     if fields.get('ENTRYTYPE') != 'article':
         return set()
-    from auto_review import expanded_pages
+    from .auto_review import expanded_pages
     result = set()
     for candidate in candidates:
         coords = source_coordinates(candidate)

@@ -4,8 +4,8 @@ import hashlib
 import re
 import xml.etree.ElementTree as ET
 
-from auto_review import blocking_pubmed_relationships, safe_compare, select_result
-from verification import (
+from .auto_review import blocking_pubmed_relationships, safe_compare, select_result
+from .verification import (
     POLICY,
     normalize_doi,
     normalized,
@@ -208,7 +208,7 @@ def assess_fulltext(fields, primary, medline, response):
         ):
             issues.append("Registry version/update relationship still requires review")
         # Require PubMed's volume and pagination to support the same edition.
-        from auto_review import expanded_pages
+        from .auto_review import expanded_pages
 
         info = medline.get("journalInfo", {})
         if not record.get("volume") or normalized(record["volume"]) != normalized(

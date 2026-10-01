@@ -5,10 +5,9 @@ from pathlib import Path
 import sys
 import pytest
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'bibcheck'))
-from catalogue_imprint import EDITIONS,assess_catalogue_imprint,catalogue_publisher
-from auto_review import reassess
-from verification import Cache,load_entries,export_snapshot,import_snapshot
+from cdlbib.catalogue_imprint import EDITIONS,assess_catalogue_imprint,catalogue_publisher
+from cdlbib.auto_review import reassess
+from cdlbib.verification import Cache,load_entries,export_snapshot,import_snapshot
 
 
 def fixture():
@@ -70,7 +69,7 @@ def test_catalogue_binding_survives_snapshot_restore_and_edit_rechecks(tmp_path)
 def test_catalogue_parser_rejects_ambiguous_publication_roles_and_editions(change):
     import hashlib
     import xml.etree.ElementTree as ET
-    from catalogue_imprint import M
+    from cdlbib.catalogue_imprint import M
     edition=deepcopy(EDITIONS[0]);root=ET.fromstring(edition['raw_marcxml'])
     def field(tag):return next(n for n in root.findall(M+'datafield') if n.get('tag')==tag)
     def sub(tag,code):return next(n for n in field(tag).findall(M+'subfield') if n.get('code')==code)

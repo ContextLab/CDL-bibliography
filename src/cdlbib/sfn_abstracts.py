@@ -30,9 +30,9 @@ from urllib.parse import quote, urlencode, urljoin
 
 import requests
 
-from preprint_review import checked_body
-from verification import ProviderError, author_evidence, normalize_title, normalized, outcome, split_authors
-from osf_review import classify, run_route
+from .preprint_review import checked_body
+from .verification import ProviderError, author_evidence, normalize_title, normalized, outcome, split_authors
+from .osf_review import classify, run_route
 
 SFN_POLICY = '1'
 SOURCE = 'sfn-abstract-planner'
@@ -77,7 +77,7 @@ def cited_year(fields):
 
 
 def first_author(fields):
-    from name_parsing import splitname
+    from .name_parsing import splitname
     names = split_authors(fields.get('author', ''))
     parts = splitname(names[0], strict_mode=True)
     family = ' '.join(parts['von'] + parts['last'])
@@ -317,7 +317,7 @@ def assess_sfn(fields, raw):
         ok, _ = author_evidence(fields.get('author', ''), item['authors'])
         fix = None
         if not ok:
-            from correction_proposals import house_byline
+            from .correction_proposals import house_byline
             try:
                 fix = house_byline(item['authors'], fields.get('author'))
             except ValueError as exc:
@@ -401,5 +401,5 @@ def run_sfn_review(filename, cache, client, report, limit=None, snapshot=None, k
                      assess=assess_sfn, attempt_url=lambda raw: raw.get('view', raw.get('search', {})).get('url'))
 
 
-from verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
+from .verification import register_approval_validator  # noqa: E402  (hook contract 2026-09-25)
 register_approval_validator(valid_sfn_approval)

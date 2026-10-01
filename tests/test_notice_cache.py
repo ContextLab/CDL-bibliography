@@ -8,9 +8,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import verification as v
-from auto_review import reassess
+from cdlbib import verification as v
+from cdlbib.auto_review import reassess
 
 
 def setup(tmp_path):

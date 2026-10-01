@@ -7,7 +7,7 @@ only explicitly supported differences; substantive source conflicts remain open.
 from copy import deepcopy
 import re
 
-from verification import (
+from .verification import (
     ACCEPTED,
     author_evidence,
     assess_candidates,
@@ -37,7 +37,7 @@ from verification import (
     valid_doi_alias,
     write_report,
 )
-from name_parsing import splitname
+from .name_parsing import splitname
 
 EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # Resolver upgrades revisit unresolved saved evidence once. Previously accepted
@@ -78,14 +78,14 @@ def secondary_notice_flags(candidates):
     flagged = set()
     for candidate in candidates:
         if candidate.get('source') == 'arxiv-repository':
-            from arxiv_review import notice_dois
+            from .arxiv_review import notice_dois
             flagged.update(notice_dois(candidate))
         if candidate.get('source') == 'biorxiv-preprint':
-            from preprint_review import notice_dois
+            from .preprint_review import notice_dois
             flagged.update(notice_dois(candidate))
             continue
         if candidate.get("source") == "pmc-jats":
-            from pmc_metadata import notice_dois
+            from .pmc_metadata import notice_dois
             flagged.update(notice_dois(candidate))
             continue
         if candidate.get("source") != "europepmc":
@@ -201,7 +201,7 @@ def select_result(fields, candidates, attempts):
     supplied = aliases.get(supplied, supplied)
     flagged = {aliases.get(doi, doi) for doi in secondary_notice_flags(candidates)}
     suffix_conflicts = {aliases.get(doi, doi) for doi in secondary_suffix_conflicts(fields, candidates)}
-    from source_locators import locator_conflicts
+    from .source_locators import locator_conflicts
     coordinates = {aliases.get(doi, doi) for doi in locator_conflicts(fields, candidates)}
     pubmed_ids = {}
     for c in candidates:
@@ -402,7 +402,7 @@ def reassess(entry, previous):
                     break
     for original in previous.get("candidates", []):
         if original.get("source") == "pmc-jats" and original.get("raw_xml"):
-            from fulltext_review import assess_fulltext
+            from .fulltext_review import assess_fulltext
 
             for primary in list(candidates):
                 if primary.get("source") == "crossref" and primary.get(
@@ -424,7 +424,7 @@ def reassess(entry, previous):
                     break
     for original in previous.get("candidates", []):
         if original.get("source") == "publisher-head" and original.get("raw_metadata"):
-            from publisher_year_review import assess_publisher_year
+            from .publisher_year_review import assess_publisher_year
 
             primary = next(
                 (
@@ -448,7 +448,7 @@ def reassess(entry, previous):
                         },
                     )
                 )
-    from catalogue_imprint import assess_catalogue_imprint, edition_for
+    from .catalogue_imprint import assess_catalogue_imprint, edition_for
     for primary in list(candidates):
         if primary.get("source") != "crossref" or not edition_for(primary):
             continue
@@ -463,19 +463,19 @@ def reassess(entry, previous):
         result = outcome(
             "needs_review", [str(exc)], candidates, previous.get("attempts", [])
         )
-    from catalogue_review import reassess_saved_catalogue
+    from .catalogue_review import reassess_saved_catalogue
     catalogue = reassess_saved_catalogue(entry['fields'], previous)
     if catalogue is not None:
         result = catalogue
     if previous.get('catalogue_review'):
         result['catalogue_review'] = previous['catalogue_review']
-    from preprint_review import reassess_saved_preprint
+    from .preprint_review import reassess_saved_preprint
     preprint = reassess_saved_preprint(entry['fields'], previous)
     if preprint is not None:
         result = preprint
     if previous.get('preprint_review'):
         result['preprint_review'] = previous['preprint_review']
-    from arxiv_review import reassess_saved_arxiv
+    from .arxiv_review import reassess_saved_arxiv
     arxiv = reassess_saved_arxiv(entry['fields'], previous)
     if arxiv is not None:
         result = arxiv
