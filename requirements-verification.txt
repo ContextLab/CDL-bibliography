@@ -1,5 +1,0 @@
-# Standalone accuracy checker: Python 3.9+; independent of legacy formatting deps.
-bibtexparser==1.4.3
-pylatexenc==2.10
-requests>=2.31,<3
-typer>=0.12,<1

@@ -10,15 +10,16 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 dependencies = [
-  "bibtexparser==1.4.3",
-  "pylatexenc==2.10",
+  "bibtexparser>=1.4.3,<2",
+  "pylatexenc>=2.10",
   "requests>=2.31,<3",
   "typer>=0.12,<1",
-  "unidecode==1.1.1",
-  "numpy==1.26.4",
-  "pandas==1.5.3",
-  "xlrd==2.0.1",
-  "tqdm==4.66.3",
+  "unidecode>=1.1.1",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "xlrd>=2.0.1",
+  "tqdm>=4.66.3",
+  "keyring>=24",
 ]
 
 [project.optional-dependencies]

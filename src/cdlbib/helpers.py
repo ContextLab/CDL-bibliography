@@ -753,7 +753,7 @@ AMPERSAND_ACRONYM = re.compile(r"[A-Za-z]{1,3}(?:\\&[A-Za-z]{1,3})+")
 
 
 def compound_acronym(core, force_caps):
-    """The caps form of a compound acronym, or None.
+    r"""The caps form of a compound acronym, or None.
 
     "AT\&T" and "At\&t" -> "AT\&T" (every side of a "\&" is one to three letters);
     "ieee/acm" -> "IEEE/ACM" when every "/"-separated part is a caps.txt word. The
