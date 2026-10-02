@@ -9,6 +9,7 @@ import datetime
 import json
 import os
 import re
+import shlex
 import shutil
 import subprocess
 
@@ -749,6 +750,72 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
         assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == remote_head
     finally:
         clean_up(work, url, branch)
+
+
+def test_after_a_send_the_update_reads_the_pull_request_inside_my_own_fork(tmp_path, monkeypatch):
+    """The state of a real pull request, as publish.pull_request reads it from GitHub, and what
+    the managed library's update does with it: open, then closed. The managed library here is a
+    scratch clone of the tester's fork in a data folder of this test; the pull request is opened
+    inside that fork, on the test base, and closed and deleted at the end. The merged case is not
+    run against GitHub (nothing is ever merged by a test): tests/test_update.py covers it with
+    the state given as an argument.
+
+    The update's own lookup is also run for real, read-only: the library's origin is a fork, so
+    it asks the fork's parent for pull requests from this branch, and there are none."""
+    from cdlbib import library, workspace
+    from cdlbib.errors import UpdateNeedsDecision
+    from test_update import backup_names, whole_clone
+    login, fork = my_fork()
+    if login is None:
+        pytest.skip(fork)
+    home = tmp_path / "home"
+    home.mkdir()
+    root = home / "library"
+    fork_clone(home, monkeypatch, fork).rename(root)                  # the guarded fixture, unchanged
+    monkeypatch.setenv("CDLBIB_HOME", str(home))
+    monkeypatch.setenv("CDLBIB_UPSTREAM", git(root, "remote", "get-url", "origin"))
+    monkeypatch.delenv("CDLBIB_LIBRARY", raising=False)
+    workspace.select_library(None)
+    ws = Workspace(root)
+    branch, url = f"cdlbib/{login}/test-{os.getpid()}-after-send", None
+    head = f"{login}:{branch}"
+    try:
+        assert api.is_managed(ws) and git(root, "rev-parse", "--abbrev-ref", "HEAD") != branch
+        assert publish.pull_request(fork, head) is None and publish.pull_request_state(fork, head) is None
+        ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + "\n% cdlbib test edit\n", encoding="utf-8")
+        tip = publish.commit_to_branch(ws, branch, "cdlbib test: please ignore")
+        publish.push(ws, f"https://github.com/{fork}.git", branch)
+        url = publish.open_or_update_pr(fork, TEST_BASE, branch, "cdlbib test: please ignore", "Automated test; closed immediately.")
+        before = whole_clone(root)
+
+        found = publish.pull_request(fork, head)                      # open
+        assert found == publish.PullRequest(url=url, state="open", head=tip, matching=1)
+        assert publish.pull_request_state(fork, head) == "open" and publish.earlier_pr(fork, head) is None
+        result = library._after_send(ws, found.state, url=found.url, head=found.head)
+        assert (result.action, result.message) == ("left_alone", f"your pull request is still open: {url}; nothing was changed")
+        assert whole_clone(root) == before and backup_names(home) == []
+
+        result = library.update(ws, force=True)                       # the real lookup, in the fork's parent: read-only
+        assert (result.action, result.backup) == ("left_alone", None)
+        assert result.message == (f"the library is on branch {branch}, which has no pull request in {UPSTREAM}; nothing "
+                                  f"was changed. Run `cdlbib send` to send it, or `git -C {shlex.quote(str(root))} switch "
+                                  f"{git(root, 'rev-parse', '--abbrev-ref', 'origin/HEAD').split('/', 1)[1]}` to leave the branch.")
+        assert whole_clone(root) == before and backup_names(home) == []
+
+        subprocess.run(["gh", "pr", "close", url], cwd=root, capture_output=True, check=True)
+        found = publish.pull_request(fork, head)                      # closed, not merged
+        assert found == publish.PullRequest(url=url, state="closed", head=tip, matching=1)
+        assert publish.pull_request_state(fork, head) == "closed" and publish.earlier_pr(fork, head) == (url, "closed")
+        with pytest.raises(UpdateNeedsDecision) as raised:
+            library._after_send(ws, found.state, url=found.url, head=found.head)
+        asked = raised.value
+        assert (asked.branch, asked.pull_request, asked.state, asked.local_commits) == (branch, url, "closed", 1)
+        assert asked.choices == ("keep", "discard") and asked.changed == []
+        assert whole_clone(root) == before and backup_names(home) == []
+        assert open_prs(fork, branch) == []
+    finally:
+        clean_up(root, url, branch)
+        workspace.select_library(None)
 
 
 def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatch):

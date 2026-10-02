@@ -2,6 +2,7 @@
 import json
 import re
 import subprocess
+from dataclasses import dataclass
 
 from .errors import PublishRefused
 from .gitenv import git_env
@@ -19,10 +20,12 @@ NO_SIGN_IN = re.compile(r"terminal prompts disabled|Authentication failed", re.I
 NO_PERMISSION = re.compile(r"Permission to \S+ denied", re.IGNORECASE)
 
 
-def _run(args, cwd=None, check=True):
+def _run(args, cwd=None, check=True, timeout=None):
     try:                                 # git never stops to ask for a password: the api does not prompt
         run = subprocess.run(args, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace",
-                             env=git_env())
+                             env=git_env(), timeout=timeout)
+    except subprocess.TimeoutExpired as exc:     # only with ``timeout``: the command was stopped
+        raise PublishRefused(f"`{' '.join(args[:3])} …` did not answer within {round(timeout)} seconds") from exc
     except OSError as exc:               # git or gh is not installed
         raise PublishRefused(f"`{args[0]}` could not be run ({type(exc).__name__}: {exc})") from exc
     if check and run.returncode != 0:
@@ -30,11 +33,11 @@ def _run(args, cwd=None, check=True):
     return run
 
 
-def _github(path, jq=None):
+def _github(path, jq=None, timeout=None):
     """A GitHub API GET through gh: the parsed answer (the jq output's lines, with ``jq``),
     or None when GitHub says 404. Any other failure is 'GitHub could not be reached': a
     failed call is never read as 'there is no such repository'."""
-    run = _run(["gh", "api", path, *(["--paginate", "--jq", jq] if jq else [])], check=False)
+    run = _run(["gh", "api", path, *(["--paginate", "--jq", jq] if jq else [])], check=False, timeout=timeout)
     if run.returncode == 0:
         return run.stdout.split() if jq else json.loads(run.stdout)
     if "HTTP 404" in run.stderr:
@@ -50,6 +53,16 @@ def upstream_of(ws):
     if not match:
         raise PublishRefused(f"The checkout's origin is not a GitHub repository: {url}")
     return f"{match.group(1)}/{match.group(2)}"
+
+
+def upstream_repository(origin, timeout=None):
+    """'OWNER/NAME' of the repository pull requests go to from a clone of ``origin``
+    ('OWNER/NAME'): ``origin`` itself, or its parent when it is a fork (as resolve). One
+    read-only call, given ``timeout`` seconds when one is named."""
+    data = _github(f"repos/{origin}", timeout=timeout)
+    if data is None:
+        raise PublishRefused(f"GitHub has no repository {origin} (or it is not visible to you).")
+    return data["parent"]["full_name"] if data.get("fork") else data["full_name"]
 
 
 def is_fork(repository):
@@ -265,23 +278,54 @@ def go_back(previous, branch):
     return f" To go back instead: git switch {previous}" if previous != branch else ""
 
 
-def _pull_requests(upstream, head, base=None):
-    """The pull requests into ``upstream`` from ``head`` ('branch' or 'owner:branch'), any state."""
+def _pull_requests(upstream, head, base=None, timeout=None):
+    """The pull requests into ``upstream`` from ``head`` ('branch' or 'owner:branch'), any
+    state, the newest first. Only those whose head repository is owned by the head's owner:
+    a branch of the same name in someone else's fork is not this branch."""
     found = _run(["gh", "pr", "list", "--repo", upstream, "--head", head.split(":")[-1], "--state", "all",
-                  *(["--base", base] if base else []), "--json", "url,state,headRepositoryOwner"]).stdout
+                  *(["--base", base] if base else []), "--json", "url,state,headRepositoryOwner,headRefOid,number"],
+                 timeout=timeout).stdout
     owner = head.split(":")[0] if ":" in head else upstream.split("/")[0]
-    return [p for p in json.loads(found or "[]")
+    mine = [p for p in json.loads(found or "[]")
             if (p.get("headRepositoryOwner") or {}).get("login", "").lower() == owner.lower()]
+    return sorted(mine, key=lambda p: p.get("number") or 0, reverse=True)
+
+
+@dataclass(frozen=True)
+class PullRequest:
+    url: str
+    state: str           # "open" | "merged" | "closed" (closed: without being merged)
+    head: str = ""       # the commit GitHub records as the pull request's head
+    matching: int = 1    # how many pull requests there are from that head (this is one of them)
+
+
+def pull_request(upstream, head, timeout=None):
+    """The pull request into ``upstream`` from ``head`` ('owner:branch'), or None when there
+    has never been one. The one place a pull request's state is looked up. When there are
+    several from that head: an open one; else a merged one; else the closed one; the newest
+    of its kind (``matching`` says how many there are). A call that fails, or does not answer
+    within ``timeout`` seconds when one is given, is a PublishRefused: never 'there is none'."""
+    found = _pull_requests(upstream, head, timeout=timeout)
+    if not found:
+        return None
+    chosen = next((p for p in found if p["state"] == "OPEN"), None) or next(
+        (p for p in found if p["state"] == "MERGED"), found[0])
+    return PullRequest(url=chosen["url"], state=chosen["state"].lower(), head=str(chosen.get("headRefOid") or ""),
+                       matching=len(found))
+
+
+def pull_request_state(upstream, head, timeout=None):
+    """"open" | "merged" | "closed" for the pull request into ``upstream`` from ``head``
+    ('owner:branch'); None when there has never been one. See pull_request."""
+    found = pull_request(upstream, head, timeout=timeout)
+    return found.state if found else None
 
 
 def earlier_pr(upstream, head):
     """(url, 'merged' | 'closed') of a finished pull request from ``head`` when no open one
     exists; None when one is open or there has never been one."""
-    found = _pull_requests(upstream, head)
-    if not found or any(p["state"] == "OPEN" for p in found):
-        return None
-    done = next((p for p in found if p["state"] == "MERGED"), found[0])   # gh lists the newest first
-    return done["url"], done["state"].lower()
+    found = pull_request(upstream, head)
+    return None if found is None or found.state == "open" else (found.url, found.state)
 
 
 def open_or_update_pr(upstream, base, head, title, body, retitle=True):

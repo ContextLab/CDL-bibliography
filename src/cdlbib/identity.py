@@ -20,11 +20,12 @@ class Identity:
         return "@" + self.login
 
 
-def current():
+def current(timeout=60):
+    """The logged-in GitHub user. ``timeout``: the seconds gh is given to answer."""
     if not shutil.which("gh"):
         raise IdentityUnavailable(f"The GitHub CLI (gh) was not found. {HOW}")
     try:
-        run = subprocess.run(["gh", "api", "user"], capture_output=True, text=True, timeout=60, env=git_env())
+        run = subprocess.run(["gh", "api", "user"], capture_output=True, text=True, timeout=timeout, env=git_env())
     except (OSError, subprocess.SubprocessError) as exc:
         raise IdentityUnavailable(f"Could not ask gh who is logged in ({type(exc).__name__}). {HOW}") from exc
     if run.returncode != 0:

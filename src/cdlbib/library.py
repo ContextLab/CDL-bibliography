@@ -13,6 +13,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+import time
 import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -1430,13 +1431,14 @@ class _Untouched(CdlbibError):
     """Raised inside update() when nothing was changed and the backup just taken is not needed."""
 
 
-def _entry_count(root, commit, target):
+def _entry_count(root, commit, target, start=None):
     """How many entries of the working cdl.bib differ from the upstream's version the library
-    started from (the project's own comparison); None when that cannot be told."""
+    started from (the project's own comparison), or from the commit ``start`` when one is
+    named; None when that cannot be told."""
     scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
     try:
         from . import api
-        start = _git(root, "merge-base", commit, target, check=False).stdout.strip()
+        start = start or _git(root, "merge-base", commit, target, check=False).stdout.strip()
         if not start:
             return None
         _blob_into(root, f"{start}:{BIB_NAME}", scratch / BIB_NAME)
@@ -1455,8 +1457,289 @@ def _entry_count(root, commit, target):
 CHOICES = ("keep", "update", "send", "discard")
 
 
-def _update(root, force, now, made, decision=None, seen=None):
-    """update(), with the lock held. ``made`` receives the backup, once one is taken."""
+# --- after a send -----------------------------------------------------------------------------
+#
+# `cdlbib send` leaves the library on a branch cdlbib/<login>/<topic>. At a check, such a
+# branch is handled by what GitHub says about ITS pull request (the one from the logged-in
+# user's branch of that name into the repository the library's origin sends to), and by what
+# the branch holds locally. The branch's commits are the user's work until GitHub says the
+# pull request was merged AND the branch's commit is the pull request's head, an ancestor of
+# it, or already in the upstream's default branch. The branch's name alone decides nothing.
+#
+#   open                  nothing is changed; one line with the pull request's URL
+#   no pull request       nothing is changed; one line
+#   the lookup failed     nothing is changed; one line with the reason; like a failed fetch,
+#                         the next automatic attempt is made after RETRY_AFTER seconds
+#   merged, nothing else on the branch (no changed or untracked file under the two paths,
+#   no commit that was not in the pull request)
+#                         a backup; `git switch --no-overwrite-ignore <default>`; `git merge
+#                         --ff-only --no-overwrite-ignore --no-autostash <upstream>`; `git
+#                         branch -d <branch>` (never -D: git deletes the branch only when its
+#                         commit is in the default branch; after a squash merge it is not,
+#                         and the branch is kept); ``returned_to_main``
+#   closed without being merged, or anything else on the branch
+#                         UpdateNeedsDecision. "keep" changes nothing. "update" and "discard"
+#                         begin with a backup and return to the default branch as above;
+#                         "update" carries the changed files over, merged with the new
+#                         version (worked out on copies first; a collision changes nothing),
+#                         and is not offered when the branch has commits the upstream lacks.
+#
+# No branch is ever moved or deleted by force. The backup records the branch and its commit
+# (and keeps the commit by a private ref, and in a bundle), and the default branch with the
+# commit it was on, so `cdlbib update --undo` puts the library back on the send branch, makes
+# that branch again if git deleted it, and puts the default branch back where it was. A
+# backup that alone keeps a commit is never deleted to make room (_only_copy).
+# The GitHub calls (who is logged in, the repository the origin sends to, the pull requests
+# from the branch) are read-only, are made only for a library whose origin is a GitHub
+# repository and that is on a branch cdlbib/..., only when a check is being made anyway, and
+# together are given the time a fetch is given (AUTO_FETCH_TIMEOUT for the automatic check).
+
+SEND_BRANCHES = "cdlbib/"
+
+
+def _github_origin(root):
+    """'OWNER/NAME' when the library's origin is a GitHub repository, else None. No network."""
+    from . import publish
+    named = publish.GITHUB_URL.match(_git(root, "config", "--get", "remote.origin.url", check=False).stdout.strip())
+    return f"{named.group(1)}/{named.group(2)}" if named else None
+
+
+def _look_up(origin, branch, timeout):
+    """(the repository pull requests go to, this branch's pull request or None), asked of
+    GitHub through gh; None when ``branch`` is not a send branch of the logged-in user's.
+    The calls together are given ``timeout`` seconds. Raises CdlbibError (IdentityUnavailable,
+    PublishRefused) when nobody is logged in or GitHub does not answer."""
+    from . import identity, publish
+    until = time.monotonic() + timeout
+
+    def left():
+        return max(until - time.monotonic(), 1.0)
+
+    me = identity.current(timeout=left())
+    if not branch.startswith(publish.branch_prefix(me.login)):
+        return None
+    upstream_name = publish.upstream_repository(origin, timeout=left())
+    return upstream_name, publish.pull_request(upstream_name, f"{me.login}:{branch}", timeout=left())
+
+
+def _is_ancestor(root, commit, of):
+    return _git(root, "merge-base", "--is-ancestor", commit, of, check=False).returncode == 0
+
+
+def _branch_commit(root, branch):
+    return _git(root, "rev-parse", "--verify", "--quiet", f"refs/heads/{branch}^{{commit}}", check=False).stdout.strip()
+
+
+def _return_to_main(root, decision, branch, commit, default, base, target, backup, edits):
+    """Leave the send branch ``branch`` (at ``commit``) for the default branch (at ``base``),
+    fast-forwarded to the upstream's ``target``, with the lock held and ``backup`` just taken.
+    ``decision`` "update" carries the changed files (``edits``) over; otherwise they stay
+    behind, in the backup. Returns the files carried over. Each step, and what is left when
+    it fails:
+
+    1. The backup must describe the files on disk exactly, or nothing is done (_Untouched).
+    2. "update": the merge of every changed file is worked out on copies (_carry); a collision
+       raises UpdateConflict with the library untouched.
+    3. With edits: they are set aside (_set_edits_aside); the files are then the commit's.
+    4. `git switch --no-overwrite-ignore <default>`, then the fast-forward. git makes a switch
+       whole or not at all. A failure here puts the library back: on the send branch again
+       when the switch was made and the fast-forward was not, and the files from the backup,
+       each one checked. Without edits that is _Untouched (nothing was changed, and the caller
+       drops the backup); with edits a CdlbibError that names the backup.
+    5. "update": each carried file is written (beside its place, then moved in) and checked.
+    A failure that could not be put back names the backup and the command that restores it.
+    The send branch itself is never moved here."""
+    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    try:
+        wrong = _describes(root, backup)
+        if wrong:
+            raise _Untouched(f"these files changed while the backup was being taken: {_some(wrong)}")
+        plan = _carry(root, backup, commit, target, scratch) if decision == "update" else []
+        try:
+            if edits:
+                _set_edits_aside(root, backup, commit)
+            _git(root, "switch", "--quiet", "--no-overwrite-ignore", default)
+            if base != target:
+                status, said = _fast_forward(root, target)
+                if status != 0:
+                    raise CdlbibError(f"git could not fast-forward branch {default} ({said})")
+            if _head(root) != (default, target):
+                raise CdlbibError(f"the library is not on branch {default} at the upstream's commit")
+        except (CdlbibError, OSError) as exc:
+            saved = f"The library as it was is saved in {backup.path}; `{UNDO} {backup.stamp}` puts it back."
+            try:
+                if _head(root) == (default, base) and _branch_commit(root, branch) == commit:
+                    _git(root, "switch", "--quiet", "--no-overwrite-ignore", branch)    # switched, not fast-forwarded
+                if _head(root) != (branch, commit) or _branch_commit(root, default) != base:
+                    raise CdlbibError("the library is no longer on the branch and commit it was on")
+                if _describes(root, backup):           # something was changed:
+                    _put(root, backup, backup)         # put the files back, and check every one of them
+            except (CdlbibError, OSError) as second:
+                raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}), and the library could not "
+                                  f"be put back as it was ({_why(second)}). {saved}") from exc
+            if not edits:                              # checked: on its branch and commit, every file the backup's
+                raise _Untouched(_why(exc)) from exc
+            raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
+                              f"were staged may now be unstaged); a copy of it is backup {backup.stamp}.") from exc
+        try:
+            for rel, source in plan:
+                if source is None:
+                    if os.path.lexists(root / rel):
+                        os.unlink(root / rel)
+                else:
+                    _copy(source, root / rel)
+            bad = [rel for rel, source in plan
+                   if (os.path.lexists(root / rel) if source is None else not _same(source, root / rel))]
+            kept = {_same_name(rel) for rel, _ in plan}
+            bad += [name for _, name in _status(root, *KEPT)[1] if _same_name(name) not in kept]
+            if bad:
+                raise CdlbibError(f"these files are not as they should be: {_some(sorted(set(bad)))}")
+        except (CdlbibError, OSError) as exc:
+            raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
+                              f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        return [rel for rel, _ in plan]
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+def _on_send_branch(root, branch, commit, default, target, new, found, decision, seen, force, timeout, record, notes,
+                    made):
+    """The check, for a library on a branch a send made (see the comment above), with the lock
+    held and the upstream fetched. ``found`` is (the repository's name, the branch's pull
+    request or None) when the caller knows it; None means: ask GitHub. Returns the
+    UpdateResult, or None when the branch is not a send branch of the logged-in user's (the
+    caller then treats it as any other branch). Raises UpdateNeedsDecision, UpdateConflict."""
+    def result(message, checked=True):
+        record(checked)
+        return UpdateResult("left_alone", new_commits=new, notes=notes, message=message)
+
+    if found is None:
+        try:
+            found = _look_up(_github_origin(root), branch, timeout)
+        except CdlbibError as exc:       # nobody logged in, no gh, GitHub out of reach or too slow
+            why = " ".join(str(exc).split())
+            return result(f"the library is on branch {branch}, and its pull request could not be looked up "
+                          f"({why if len(why) <= 300 else why[:300] + ' ...'}); nothing was changed. "
+                          + ("Run `cdlbib update` to try again." if force else
+                             "It will be tried again automatically in about an hour; `cdlbib update` tries now."),
+                          checked=False)
+        if found is None:
+            return None
+    where, pr = found
+    if pr is None:
+        return result(f"the library is on branch {branch}, which has no pull request in {where}; nothing was "
+                      f"changed. Run `cdlbib send` to send it, or `git -C {shlex.quote(str(root))} switch {default}` "
+                      "to leave the branch.")
+    if pr.state == "open":
+        return result(f"your pull request is still open: {pr.url}"
+                      + (f" (one of {pr.matching} from branch {branch})" if pr.matching > 1 else "")
+                      + "; nothing was changed")
+    merged = pr.state == "merged"
+    said = f"your pull request {pr.url} was {'merged' if merged else 'closed without being merged'}"
+
+    def left(why, then, checked=True):
+        return result(f"{said}, but {why}; nothing was changed. {then}", checked)
+
+    # What the branch holds that was not sent. A commit is the pull request's only when it is
+    # the head GitHub records for it or an ancestor of that head; or it is in the upstream's
+    # default branch already.
+    head = pr.head if _COMMIT_NAME.fullmatch(pr.head or "") else ""
+    known = bool(head) and (head == commit or _has_commit(root, head))
+    if _is_ancestor(root, commit, target) or (merged and known and (head == commit or _is_ancestor(root, commit, head))):
+        extra = 0
+    else:
+        since = head if merged and known and _is_ancestor(root, head, commit) else target
+        extra = int(_git(root, "rev-list", "--count", f"{since}..{commit}").stdout)
+    edits = sorted({name for _, name in _status(root, *KEPT)[1]})
+    token = _seen(root, branch, commit, f"{target} {pr.state} {head}", edits)
+    if decision in ("update", "discard") and seen is not None and seen != token:
+        return left("the library or the upstream changed after you were asked what to do",
+                    "Run `cdlbib update` to be asked again.", checked=None)
+
+    # Where the library would return to: the local default branch, which must be the upstream's
+    # own history (it is only ever fast-forwarded).
+    base = _branch_commit(root, default)
+    if not base or not _is_ancestor(root, base, target):
+        return left(f"the library could not be put back on branch {default} ("
+                    + (f"there is no local branch {default}" if not base else
+                       "it has commits that the upstream does not have") + ")",
+                    f"To update, run `git -C {shlex.quote(str(root))} switch {default}`, then `cdlbib update`.")
+    # Files git would write over on the way (to the default branch, then forward): a refusal
+    # before anything is backed up, as in _update.
+    mine = [name for state, name in _status(root, ".", ignored=True)[1] if state == "!!" or not _under_kept(name)]
+    differs = set()
+    for one, other in ((commit, base), (base, target)):
+        differs.update(_listed(_git(root, "diff", "--name-only", "--no-renames", "-z", one, other).stdout))
+    clash = _in_the_way(root, mine, sorted(differs))
+    if clash:
+        return left(f"returning to branch {default} would overwrite your own {_some(clash)}",
+                    f"Move {'that file' if len(clash) == 1 else 'those files'} out of the way, then run `cdlbib update`.")
+
+    if extra or edits:
+        choices = tuple(choice for choice in CHOICES
+                        if not (choice == "update" and (extra or not edits))
+                        and not (choice == "send" and (extra or not edits or not merged)))
+        if decision is None:
+            raise UpdateNeedsDecision(
+                (f"Your pull request {pr.url} was merged, and branch {branch} of the library in {root} has changes "
+                 "that have not been sent. Nothing was changed." if merged else
+                 f"Your pull request {pr.url} was closed without being merged, so the changes on branch {branch} of "
+                 f"the library in {root} are not in the bibliography. Nothing was changed."),
+                changed=edits, new_commits=new, local_commits=extra, choices=choices, seen=token, branch=branch,
+                pull_request=pr.url, state=pr.state, default=default)
+        if decision == "update" and extra:
+            return left(f"branch {branch} has {_count(extra, 'commit')} that the upstream does not have, which cannot "
+                        "be kept on top of the new version", "Run `cdlbib update` and choose again.", checked=None)
+    backup = _backup(root)
+    made.append(backup)
+    try:
+        if base != target:       # the backup records where the default branch was: an undo puts it back there
+            try:
+                _record_moves(root, backup, [(default, base)])
+            except (CdlbibError, OSError) as exc:
+                raise _Untouched(_why(exc)) from exc
+        carried = _return_to_main(root, decision, branch, commit, default, base, target, backup, edits)
+    except (_Untouched, UpdateConflict) as exc:
+        if (_head(root) == (branch, commit) and _branch_commit(root, default) == base
+                and not _describes(root, backup)):
+            _drop(backups_folder(), backup.stamp, root)      # checked: nothing was changed, so the copy is not kept
+            made.clear()
+        if isinstance(exc, UpdateConflict):                  # (its advice to run `cdlbib send` is for the default branch)
+            raise UpdateConflict(str(exc).replace("Run `cdlbib send` to send your changes, or `cdlbib update` to "
+                                                  "choose again.", "Run `cdlbib update` to choose again."),
+                                 entries=exc.entries, files=exc.files) from exc
+        return left(str(exc), "Run `cdlbib update` to try again.", checked=None if decision else False)
+    backup = _read(backup.path) or backup
+    made[:] = [backup]
+    # The library is on the default branch. git deletes the send branch only when its commit
+    # is in that branch; refusing (after a squash merge, or with unsent commits) is not a failure.
+    _git(root, "branch", "--quiet", "-d", branch, check=False)
+    if not _branch_commit(root, branch):
+        note = f"branch {branch} was deleted"
+    elif extra:
+        note = f"branch {branch} was kept: it holds {_count(extra, 'commit')} that the upstream does not have"
+    elif merged and head == commit:
+        note = (f"branch {branch} was kept (git does not count a squash-merged branch as merged); everything on it is "
+                "in the merged pull request, so it is safe to delete")
+    else:
+        note = f"branch {branch} was kept (git did not delete it)"
+    record(True)
+    _prune(backups_folder(), root, notes)          # the return is done; an old backup that stays is a note
+    message = (f"{said}: the library is back on branch {default}, up to date with the upstream"
+               + (f" ({_count(new, 'new commit')})" if new else ""))
+    if edits and decision == "update":
+        message += ", with your changes kept" + (f" ({_some(carried)})" if carried else "")
+    elif edits:
+        message += f"; discarded your changes to {_some(edits)}"
+    return UpdateResult("returned_to_main", new_commits=new, backup=backup, notes=notes,
+                        message=f"{message}; {note} (the library as it was is backup {backup.stamp}; "
+                                f"`{UNDO} {backup.stamp}` puts it back)")
+
+
+def _update(root, force, now, made, decision=None, seen=None, found=None):
+    """update(), with the lock held. ``made`` receives the backup, once one is taken.
+    ``found``: the pull request of the send branch the library is on, when the caller knows
+    it (see _after_send); None means it is looked up."""
     if decision is None and not _wanted(force, now):      # another command checked, or tried, while this one waited
         return UpdateResult("not_due")
     when = _utc(now)
@@ -1520,6 +1803,13 @@ def _update(root, force, now, made, decision=None, seen=None):
                             message=f"the upstream has no branch {default}, so the bibliography in {root} was not "
                                     f"updated; nothing was changed. {again}")
     new = int(_git(root, "rev-list", "--count", f"{commit}..{target}").stdout)
+    if found is not None and not (branch and branch.startswith(SEND_BRANCHES)):
+        raise CdlbibError(f"{root} is not on a branch a send made (it is on {branch or 'no branch'}); nothing was changed.")
+    if branch and branch.startswith(SEND_BRANCHES) and (found is not None or _github_origin(root)):
+        outcome = _on_send_branch(root, branch, commit, default, target, new, found, decision, seen, force, timeout,
+                                  record, notes, made)
+        if outcome is not None:
+            return outcome
     if new == 0:
         record(True)
         return UpdateResult("up_to_date", message=f"the bibliography in {root} is up to date", notes=notes)
@@ -1603,7 +1893,19 @@ def _update(root, force, now, made, decision=None, seen=None):
                                 f"backup {backup.stamp}; `{UNDO}` puts it back)")
 
 
-def update(ws, force=False, decision=None, now=None, progress=None, seen=None):
+def _after_send(ws, state, url="", head="", matching=1, **options):
+    """update(), for a library on a send branch whose pull request is known to the caller:
+    ``state`` is "open", "merged" or "closed" (None: there is no pull request), ``url`` its
+    address, ``head`` the commit GitHub records as its head, ``matching`` how many pull
+    requests there are from the branch. GitHub is not asked. ``options`` are update()'s
+    (``force`` is True unless given: the caller asked for this). A library that is not on a
+    branch cdlbib/... is a CdlbibError, with nothing changed."""
+    from . import publish
+    known = publish.PullRequest(url=url, state=state, head=head or "", matching=matching) if state else None
+    return update(ws, **dict({"force": True}, **options), _found=("the upstream", known))
+
+
+def update(ws, force=False, decision=None, now=None, progress=None, seen=None, _found=None):
     """Bring the managed library up to date.
 
     Without ``force`` this is the automatic check a command makes: nothing is fetched when the
@@ -1645,6 +1947,18 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None):
     state (another branch, no branch, a file of the user's in the way) nothing is changed and
     ``left_alone`` says why and what can be done.
 
+    On a branch a send made (cdlbib/<login>/..., of the logged-in user, in a library whose
+    origin is a GitHub repository) the branch's pull request decides, whether or not the
+    upstream has anything new. Open, or none: ``left_alone``, with one line. Merged, and the
+    branch holds nothing else: a backup, then the library is switched to the default branch,
+    fast-forwarded, and the send branch is deleted when git agrees that it is merged (else it
+    is kept, and the line says so): ``returned_to_main``. Closed without being merged, or
+    changes on the branch that were not in the pull request: UpdateNeedsDecision (its
+    ``branch`` is set); "update" and "discard" then return to the default branch
+    (``returned_to_main``), with or without the changed files. When GitHub cannot be asked
+    (no login, no answer): ``left_alone`` with the reason, and like a failed fetch it is tried
+    again an hour later. ``_found`` is for _after_send only.
+
     ``now`` is the current time (UTC), for callers that fix it; ``progress`` receives one line
     when another command holds the lock and this one waits.
 
@@ -1667,7 +1981,7 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None):
                           "checked for updates.") from exc
     made, asked = [], None
     try:
-        return _update(root, force, now, made, decision, seen)
+        return _update(root, force, now, made, decision, seen, _found)
     except UpdateNeedsDecision as exc:
         asked = exc
     except (OSError, subprocess.SubprocessError) as exc:
@@ -1682,5 +1996,7 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None):
         branch, commit = _head(root)
         target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{_default_branch(root)}^{{commit}}",
                       check=False).stdout.strip()
-        asked.entries_changed = _entry_count(root, commit, target) if target else None
+        # On a send branch with no commits of its own left to send: counted from the branch's commit.
+        start = commit if asked.branch and not asked.local_commits else None
+        asked.entries_changed = _entry_count(root, commit, target, start) if target else None
     raise asked

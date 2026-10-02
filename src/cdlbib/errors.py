@@ -37,13 +37,22 @@ class UpdateNeedsDecision(CdlbibError):
                          ("keep", "update", "send", "discard")
     ``seen``             names the state the question is about; passed back with the decision,
                          so that a decision is never applied to a state the user was not shown
+
+    When the library is on the branch of an earlier send (``branch`` is set), the question is
+    about that branch instead: its pull request (``pull_request``, a URL) is ``state``
+    ("merged", with changes made on the branch since; or "closed", without being merged),
+    ``local_commits`` counts the branch's commits that were not sent or not merged,
+    ``new_commits`` may be 0, and "update" and "discard" put the library back on ``default``
+    (the upstream's default branch).
     """
 
     def __init__(self, message, changed=(), entries_changed=None, new_commits=0, local_commits=0,
-                 choices=("keep", "update", "send", "discard"), seen=None):
+                 choices=("keep", "update", "send", "discard"), seen=None, branch=None, pull_request=None,
+                 state=None, default=None):
         self.changed, self.entries_changed = list(changed), entries_changed
         self.new_commits, self.local_commits = new_commits, local_commits
         self.choices, self.seen = tuple(choices), seen
+        self.branch, self.pull_request, self.state, self.default = branch, pull_request, state, default
         super().__init__(message)
 
 

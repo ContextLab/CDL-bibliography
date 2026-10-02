@@ -153,8 +153,14 @@ def update(ws=None, decision=None, force=False, progress=None, seen=None):
     "keep", "update", "send", "discard") and ``seen`` (the exception's ``seen``). "update" and
     "discard" take a backup first and are undone by ``undo_update``; "update" raises
     errors.UpdateConflict, with nothing changed, when the user's changes and the upstream's
-    collide; "send" only records the choice, and the front end runs ``send``. See
-    library.update. Any other library than the managed one is a CdlbibError, and nothing is
+    collide; "send" only records the choice, and the front end runs ``send``.
+
+    A library that a send left on its branch (cdlbib/<login>/...) is handled by that branch's
+    pull request, which is asked of GitHub (read-only, with the same short time limit): still
+    open, or GitHub cannot be asked: nothing is changed, and the message says so; merged, with
+    nothing else on the branch: after a backup the library goes back to the default branch and
+    is updated (action ``returned_to_main``); closed, or more on the branch than was sent:
+    errors.UpdateNeedsDecision, whose ``branch`` is set. See library.update. Any other library than the managed one is a CdlbibError, and nothing is
     done to it."""
     from . import library
     return library.update(_managed("so there is nothing to update") if ws is None else ws,
@@ -418,7 +424,16 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     gate (check_library) refuses; no GitHub login refuses; a branch whose pull request is
     already merged or closed refuses; no fork refuses (PublishRefused.needs_fork) unless
     ``allow_fork_creation``; only then is git written to. A send refused up to there leaves
-    the checkout as it was. A failure after that (commit, push, pull request) says where
+    the checkout as it was.
+
+    One exception, for the library cdlbib manages only (never for a library the user chose):
+    when the branch's pull request is MERGED, the send does not refuse. The library is first
+    put back on the default branch and updated, after a backup and with the changes that are
+    to be sent kept (library.update's "update": ``progress`` receives its line, and `cdlbib
+    update --undo` reverses it); the gate is run again on the result; and the send goes on,
+    on a new branch. When that cannot be done (the old branch holds commits that were never
+    sent, the changes collide with the new version) it is a PublishRefused or an
+    UpdateConflict that says so, with the library as it was. A failure after that (commit, push, pull request) says where
     things stand and how to resume. A send that succeeds leaves the checkout on
     ``SendResult.branch``; a send made from that branch adds to it and updates the same
     pull request.
@@ -448,23 +463,28 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     if not publish.pending(ws) and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
     publish.require_identity(ws)
-    fmt = check_format(ws, bars=bars)
-    check = gate_after_format(fmt, citations=citations)
-    if report:
-        report(check)
-    if check.citations_due:
-        check = check_citations(ws, fmt, reference=reference, database=database, mailto=mailto,
-                                progress=progress, bars=bars)
-    if not check.ok:
-        raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
-                         "(see `cdlbib verify`).", check=check)
-    if progress:
-        progress("checks passed; generating commit message...")
-    comparison = compare(reference, str(ws.bib), verbose=verbose, outfile=outfile, bars=bars)
-    if progress:
-        for line in comparison.log.splitlines():
-            progress(line)
-    changes = comparison.summary.strip() or "update bibliography"
+
+    def gate():
+        """The gate, then the comparison with ``reference``: what the change is, in words."""
+        fmt = check_format(ws, bars=bars)
+        check = gate_after_format(fmt, citations=citations)
+        if report:
+            report(check)
+        if check.citations_due:
+            check = check_citations(ws, fmt, reference=reference, database=database, mailto=mailto,
+                                    progress=progress, bars=bars)
+        if not check.ok:
+            raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
+                             "(see `cdlbib verify`).", check=check)
+        if progress:
+            progress("checks passed; generating commit message...")
+        comparison = compare(reference, str(ws.bib), verbose=verbose, outfile=outfile, bars=bars)
+        if progress:
+            for line in comparison.log.splitlines():
+                progress(line)
+        return comparison.summary.strip() or "update bibliography"
+
+    changes = gate()
     me = identity.current()
     resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
     if not publish.pending(ws) and not resumed:
@@ -480,22 +500,37 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         found = publish.find_fork(upstream, me.login)
     fork, created = fork or found, False
     not_upstream(fork, upstream)
-    branch = here if resumed else publish.branch_name(me.login, summary or changes.splitlines()[0][:100],
-                                                      datetime.date.today())
+    def fresh():
+        return publish.branch_name(me.login, summary or changes.splitlines()[0][:100], datetime.date.today())
+
+    def finished(name):
+        """The pull request from the fork's branch ``name``, when it is merged or closed."""
+        found = publish.pull_request(upstream, f"{fork.split('/')[0]}:{name}")
+        return found if found and found.state != "open" else None
+
+    branch, returned = here if resumed else fresh(), ""
     if fork:                             # this branch's pull request may be finished already
-        earlier = publish.earlier_pr(upstream, f"{fork.split('/')[0]}:{branch}")
+        earlier = finished(branch)
+        if earlier and resumed and earlier.state == "merged" and is_managed(ws):
+            # The managed library goes back to the default branch by itself, updated, with the
+            # changes kept. They now lie on the new version, so the gate runs again.
+            returned = _back_to_main(ws, earlier, progress)
+            changes = gate()
+            here, resumed = publish.require_branch(ws, base), False
+            branch = fresh()
+            earlier = finished(branch)
         if earlier and resumed:
             raise PublishRefused(
-                f"You are on branch {branch}, whose pull request {earlier[0]} is {earlier[1]}; a new change needs a "
+                f"You are on branch {branch}, whose pull request {earlier.url} is {earlier.state}; a new change needs a "
                 f"new branch. Nothing was changed. Go back to {base}, bring it up to date and send again:\n"
                 f"  git switch {base}\n  git pull https://github.com/{upstream}.git {base}\n  cdlbib send\n"
                 "Your uncommitted edits to cdl.bib and verification/ are carried along by `git switch`; "
                 "nothing is lost.")
         if earlier:
             raise PublishRefused(
-                f"Branch {branch} was already used for pull request {earlier[0]}, which is {earlier[1]}; a new "
-                "change needs a new branch. Nothing was changed. Send again with a different --summary (the branch "
-                "is named after it and today's date).")
+                f"Branch {branch} was already used for pull request {earlier.url}, which is {earlier.state}; a new "
+                f"change needs a new branch. {returned or 'Nothing was changed.'} Send again with a different "
+                "--summary (the branch is named after it and today's date).")
     body = changes + approvals_note(ws, reference=reference, database=database)
     title = (summary or changes.splitlines()[0])[:100]
     if not fork:
@@ -512,6 +547,34 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
             f"opened or updated. Run `cdlbib send` again to resume from there.{publish.go_back(here, branch)}\n{exc}") from exc
     return SendResult(url=url, branch=branch, fork=fork, created_fork=created, files=files,
                       left=publish.unrelated_changes(ws))
+
+
+def _back_to_main(ws, merged, progress=None):
+    """For a send from the managed library's old send branch, whose pull request (``merged``, a
+    publish.PullRequest) GitHub says is merged: put the library back on the default branch,
+    updated, with the changes that are to be sent kept (library.update on a send branch, with
+    the decision "update" when there are changes; a backup is taken first). Returns the
+    sentence saying what was done, which ``progress`` also receives. PublishRefused when the
+    library could not be returned (it is then as it was) or nothing is left to send;
+    UpdateConflict when the changes collide with the new version (nothing changed)."""
+    from . import library, publish
+    from .errors import PublishRefused, UpdateNeedsDecision
+    try:
+        result = library._after_send(ws, merged.state, url=merged.url, head=merged.head, matching=merged.matching,
+                                     decision="update" if publish.pending(ws) else None)
+    except UpdateNeedsDecision as exc:
+        raise PublishRefused(f"not sent: {str(exc)[0].lower()}{str(exc)[1:]} Run `cdlbib update` to choose what "
+                             "to do with them.") from exc
+    if result.action != "returned_to_main":
+        raise PublishRefused(f"not sent: {result.message}")
+    said = result.message[0].upper() + result.message[1:] + "."
+    if progress:
+        for note in result.notes:
+            progress(note)
+        progress(result.message)
+    if not publish.pending(ws):
+        raise PublishRefused(f"{publish.NO_CHANGES} {said}")
+    return said
 
 
 def _message(exc):

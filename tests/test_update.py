@@ -23,7 +23,7 @@ from pathlib import Path
 import pytest
 
 import conftest
-from cdlbib import api, library, workspace
+from cdlbib import api, cli, library, verification_cli, workspace
 from cdlbib.errors import CdlbibError, UpdateConflict, UpdateNeedsDecision
 from cdlbib.workspace import Workspace
 
@@ -2810,3 +2810,571 @@ def test_a_list_of_only_unreadable_backups_does_not_call_them_backups_to_restore
     missing = cdlbib("update", "--undo", "20200101T000000.000000Z", cwd=tmp_path)    # no such folder: still "no backup"
     assert missing.returncode == 1 and missing.stderr.startswith("There is no backup 20200101T000000.000000Z of ")
 
+
+
+# --- after a send -----------------------------------------------------------------------------
+#
+# `cdlbib send` leaves the library on a branch cdlbib/<login>/<topic>. What the update does
+# there depends on that branch's pull request. Here the pull request's state is given to
+# library._after_send as plain arguments (no GitHub call); the branches, the upstream and
+# every git command are real. The upstream "merges" the way GitHub does: by a squash (a new
+# commit with the same content, so the branch's own commit is on no branch of the upstream)
+# or by taking the branch's commit itself.
+
+SENT = "cdlbib/tester/2026-10-02-my-own-entry"
+PR = "https://github.com/an-owner/a-library/pull/7"
+LATER = "\n@article{Later26,\n\tAuthor = {B Person},\n\tJournal = {Journal of Tests},\n\tTitle = {A later entry},\n\tYear = {2026}}\n"
+
+
+def sent(managed, merged="squash"):
+    """The managed library as a send leaves it: on SENT, with one commit of its own (cdl.bib
+    gains an entry). The upstream then merges it ("squash" or "merge"; None: it does not) and
+    gains one more commit. Gives (home, upstream, ws, the branch's commit, the upstream's)."""
+    home, upstream, ws = managed
+    root, work = ws.root, upstream.parent / "upstream-work"
+    conftest._git("switch", "--quiet", "-c", SENT, cwd=root)
+    write(root, "cdl.bib", BASE + MINE)
+    conftest._git("commit", "--quiet", "-m", "My own entry", "--", "cdl.bib", cwd=root)
+    tip = git("rev-parse", "HEAD", cwd=root)
+    if merged == "merge":
+        conftest._git("fetch", "--quiet", str(root), SENT, cwd=work)
+        conftest._git("merge", "--quiet", "--ff-only", "FETCH_HEAD", cwd=work)
+        conftest._git("push", "--quiet", str(upstream), "master", cwd=work)
+    elif merged == "squash":
+        advance(upstream, "My own entry (#7)", **{"cdl.bib": BASE + MINE})
+    new = advance(upstream, "Something else", **{"verification/new.txt": "new\n"})
+    conftest._git("fetch", "--quiet", "origin", cwd=root)       # the refs a test compares do not move with the update's fetch
+    checked(home, 25 * HOUR)
+    return home, upstream, ws, tip, new
+
+
+def after_send(ws, state, head, **options):
+    return library._after_send(ws, state, url=PR, head=head, **options)
+
+
+def back_line(count, note, stamp, middle=""):
+    return (f"your pull request {PR} was merged: the library is back on branch master, up to date with the upstream "
+            f"({count} new commit{'' if count == 1 else 's'}){middle}; {note} (the library as it was is backup {stamp}; "
+            f"`cdlbib update --undo {stamp}` puts it back)")
+
+
+def test_merged_by_a_squash_the_library_returns_to_main_and_the_branch_is_kept(managed, tmp_path, capsys):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root, before, started = ws.root, everything(ws.root), datetime.datetime.now(UTC)
+    old_master = before["snapshot"]["branches"]["master"]
+    result = after_send(ws, "merged", tip)
+    stamp = backup_names(home)[0]
+    assert (result.action, result.new_commits, result.backup.stamp) == ("returned_to_main", 2, stamp)
+    assert result.message == back_line(2, f"branch {SENT} was kept (git does not count a squash-merged branch as "
+                                          "merged); everything on it is in the merged pull request, so it is safe to "
+                                          "delete", stamp)
+    assert capsys.readouterr() == ("", "")
+    after = snapshot(root)
+    assert (after["branch"], after["commit"], after["changed"]) == ("master", new, [])
+    assert after["branches"] == {"master": new, SENT: tip}            # the squash-merged branch is still there, untouched
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE + MINE and (root / "verification/new.txt").is_file()
+    assert (result.backup.branch, result.backup.commit, result.backup.moved) == (SENT, tip, [("master", old_master)])
+    assert git("rev-parse", f"refs/cdlbib/backups/{stamp}", cwd=root) == tip       # the backup keeps the branch's commit
+    assert started <= library.read_state().last_check and git("stash", "list", cwd=root) == ""
+    undone = cdlbib("update", "--undo", cwd=empty_folder(tmp_path))
+    assert undone.returncode == 0, undone.stderr
+    assert everything(root) == before                                 # the branch it was on, master where it was, every byte
+
+
+def test_merged_with_its_own_commit_the_branch_is_deleted_and_undo_brings_it_back(managed, tmp_path):
+    home, upstream, ws, tip, new = sent(managed, "merge")
+    root, before = ws.root, everything(ws.root)
+    result = after_send(ws, "merged", tip)
+    stamp = backup_names(home)[0]
+    assert result.action == "returned_to_main" and result.message == back_line(1, f"branch {SENT} was deleted", stamp)
+    assert snapshot(root)["branches"] == {"master": new} and snapshot(root)["branch"] == "master"
+    assert git("merge-base", "--is-ancestor", tip, "master", cwd=root) == ""      # nothing of the branch is lost
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before                                 # the send branch exists again, on its commit
+
+
+def test_a_branch_behind_the_pull_requests_head_is_returned_too(managed):
+    """Someone pushed a further commit to the pull request before it was merged: the local
+    branch is an ancestor of the pull request's head, so it holds nothing that was not merged."""
+    home, upstream, ws, tip, new = sent(managed, "merge")
+    result = after_send(ws, "merged", git("rev-parse", "origin/master", cwd=ws.root))
+    assert result.action == "returned_to_main" and snapshot(ws.root)["branches"] == {"master": new}
+
+
+def test_an_open_pull_request_changes_nothing_and_says_where_it_is(managed, tmp_path):
+    home, upstream, ws, tip, new = sent(managed, None)
+    before, started = whole_clone(ws.root), datetime.datetime.now(UTC)
+    result = after_send(ws, "open", tip)
+    assert (result.action, result.backup, result.new_commits) == ("left_alone", None, 1)
+    assert result.message == f"your pull request is still open: {PR}; nothing was changed"
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+    assert started <= library.read_state().last_check                # said once a day
+    write(ws.root, "cdl.bib", BASE + MINE + LATER)                    # further edits: still nothing to decide (send adds them)
+    before = whole_clone(ws.root)
+    several = after_send(ws, "open", tip, matching=3)
+    assert several.message == f"your pull request is still open: {PR} (one of 3 from branch {SENT}); nothing was changed"
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+
+
+def test_a_branch_that_was_never_sent_is_left_alone(managed):
+    home, upstream, ws, tip, new = sent(managed, None)
+    before = whole_clone(ws.root)
+    result = library._after_send(ws, None)
+    assert result.action == "left_alone" and result.message == (
+        f"the library is on branch {SENT}, which has no pull request in the upstream; nothing was changed. Run "
+        f"`cdlbib send` to send it, or `git -C {shlex.quote(str(ws.root))} switch master` to leave the branch.")
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+
+
+def test_a_closed_pull_request_asks_and_changes_nothing(managed, tmp_path):
+    home, upstream, ws, tip, new = sent(managed, None)
+    root, before, state = ws.root, whole_clone(ws.root), (home / "state.json").read_bytes()
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        after_send(ws, "closed", tip)
+    asked = raised.value
+    assert (asked.branch, asked.pull_request, asked.state, asked.default) == (SENT, PR, "closed", "master")
+    assert (asked.changed, asked.local_commits, asked.new_commits, asked.entries_changed) == ([], 1, 1, 1)
+    assert asked.choices == ("keep", "discard") and asked.seen
+    assert str(asked) == (f"Your pull request {PR} was closed without being merged, so the changes on branch {SENT} "
+                          f"of the library in {root} are not in the bibliography. Nothing was changed.")
+    assert whole_clone(root) == before and backup_names(home) == []
+    assert (home / "state.json").read_bytes() == state and lock_is_free(home)
+    assert cli.unsent_question(asked) == (
+        f"Your pull request {PR} was closed without being merged, so your changes on branch {SENT} are not in the "
+        "bibliography:\n"
+        "  1 commit that the upstream does not have (1 entry of cdl.bib changed)\n"
+        "What would you like to do?\n"
+        "  [k] Keep working without updating (ask again tomorrow)\n"
+        "  [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)\n"
+        "  (Updating and keeping your changes is not offered: the branch has commits that the upstream does not have.)\n"
+        "  (Sending is not offered: the pull request was closed, and a new change needs a new branch.)\n"
+        "  (Updating or discarding puts the library back on branch master; your changes are saved in a backup first.)")
+    assert verification_cli.unsent_line(asked) == (
+        f"your pull request {PR} was closed without being merged, so the library stays on branch {SENT} (1 commit "
+        "that the upstream does not have); nothing was changed. Run `cdlbib update` in a terminal to choose what to do.")
+
+    kept = after_send(ws, "closed", tip, decision="keep", seen=asked.seen)
+    assert kept.action == "left_alone" and whole_clone(root) == before and backup_names(home) == []
+    assert library.update(ws) == library.UpdateResult("not_due")     # not asked again today
+
+    before = everything(root)
+    done = after_send(ws, "closed", tip, decision="discard", seen=asked.seen)
+    stamp = backup_names(home)[0]
+    assert done.action == "returned_to_main" and done.message == (
+        f"your pull request {PR} was closed without being merged: the library is back on branch master, up to date "
+        f"with the upstream (1 new commit); branch {SENT} was kept: it holds 1 commit that the upstream does not have "
+        f"(the library as it was is backup {stamp}; `cdlbib update --undo {stamp}` puts it back)")
+    assert snapshot(root)["branches"] == {"master": new, SENT: tip} and snapshot(root)["branch"] == "master"
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE     # the upstream's, without the unmerged entry
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+@pytest.mark.parametrize("more", ["an edit", "an untracked file", "a staged edit"])
+def test_merged_with_further_edits_asks_and_update_carries_them_to_main(managed, tmp_path, more):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    if more == "an untracked file":
+        write(root, "verification/notes/my new file.jsonl", '{"key": "Later26"}\n')
+        changed = ["verification/notes/my new file.jsonl"]
+    else:
+        write(root, "cdl.bib", BASE + MINE + LATER)
+        changed = ["cdl.bib"]
+        if more == "a staged edit":
+            conftest._git("add", "cdl.bib", cwd=root)
+    before, clone, state = everything(root), whole_clone(root), (home / "state.json").read_bytes()
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        after_send(ws, "merged", tip)
+    asked = raised.value
+    assert (asked.branch, asked.state, asked.changed, asked.local_commits, asked.new_commits) == (SENT, "merged", changed, 0, 2)
+    assert asked.entries_changed == (None if more == "an untracked file" else 1)     # counted from the branch's commit
+    assert asked.choices == ("keep", "update", "send", "discard")
+    assert whole_clone(root) == clone and backup_names(home) == [] and (home / "state.json").read_bytes() == state
+    listed = "  verification/notes/my new file.jsonl\n" if more == "an untracked file" else "  cdl.bib (1 entry changed)\n"
+    assert cli.unsent_question(asked) == (
+        f"Your pull request {PR} was merged, and you have changes on branch {SENT} that have not been sent:\n" + listed
+        + "What would you like to do?\n"
+        "  [k] Keep working without updating (ask again tomorrow)\n"
+        "  [u] Update and keep my changes\n"
+        "  [s] Send my changes first (runs `cdlbib send`)\n"
+        "  [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)\n"
+        "  (Updating or discarding puts the library back on branch master; your changes are saved in a backup first.)")
+    assert verification_cli.unsent_line(asked) == (
+        f"your pull request {PR} was merged, but branch {SENT} has changes that have not been sent (these files have "
+        f"changes that have not been sent: {listed.strip()}); nothing was changed. Run `cdlbib update` in a terminal "
+        "to choose what to do.")
+
+    done = after_send(ws, "merged", tip, decision="update", seen=asked.seen)
+    stamp = backup_names(home)[0]
+    assert done.action == "returned_to_main" and done.message == back_line(
+        2, f"branch {SENT} was kept (git does not count a squash-merged branch as merged); everything on it is in the "
+           "merged pull request, so it is safe to delete", stamp, middle=f", with your changes kept ({changed[0]})")
+    after = snapshot(root)
+    assert (after["branch"], after["commit"], after["changed"], after["branches"]) == ("master", new, changed, {"master": new, SENT: tip})
+    if more == "an untracked file":
+        assert (root / changed[0]).read_text(encoding="utf-8") == '{"key": "Later26"}\n'
+    else:
+        assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE + MINE + LATER      # the edit, on the new version
+    assert (root / "verification/new.txt").is_file() and markers(root) == [] and git("stash", "list", cwd=root) == ""
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_merged_with_further_edits_discard_returns_without_them_and_undo_brings_them_back(managed, tmp_path):
+    home, upstream, ws, tip, new = sent(managed, "merge")
+    root = ws.root
+    write(root, "cdl.bib", BASE + MINE + LATER)
+    write(root, "verification/notes/my new file.jsonl", '{"key": "Later26"}\n')
+    before = everything(root)
+    done = after_send(ws, "merged", tip, decision="discard")
+    stamp = backup_names(home)[0]
+    assert done.action == "returned_to_main" and done.message == back_line(
+        1, f"branch {SENT} was deleted", stamp,
+        middle="; discarded your changes to cdl.bib, verification/notes/my new file.jsonl")
+    after = snapshot(root)
+    assert (after["branch"], after["commit"], after["changed"], after["branches"]) == ("master", new, [], {"master": new})
+    assert not (root / "verification/notes").exists()
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_a_commit_made_after_the_pull_requests_head_is_never_treated_as_merged(managed, tmp_path):
+    """GitHub says merged, but the branch holds a commit the pull request never had: that is
+    the person's work. Nothing is done without a decision, 'update' is not offered, and a
+    discard keeps the branch (and the backup keeps the commit)."""
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    write(root, "cdl.bib", BASE + MINE + LATER)
+    conftest._git("commit", "--quiet", "-m", "A later entry", "--", "cdl.bib", cwd=root)
+    later = git("rev-parse", "HEAD", cwd=root)
+    conftest._git("fetch", "--quiet", "origin", cwd=root)
+    before, clone = everything(root), whole_clone(root)
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        after_send(ws, "merged", tip)                                 # the pull request's head is the earlier commit
+    asked = raised.value
+    assert (asked.state, asked.changed, asked.local_commits, asked.choices) == ("merged", [], 1, ("keep", "discard"))
+    assert whole_clone(root) == clone and backup_names(home) == []
+    assert "  (Sending is not offered: the branch has commits that the upstream does not have.)" in cli.unsent_question(asked)
+    assert verification_cli.unsent_line(asked) == (
+        f"your pull request {PR} was merged, but branch {SENT} has changes that have not been sent (1 commit that the "
+        "upstream does not have); nothing was changed. Run `cdlbib update` in a terminal to choose what to do.")
+    refused = after_send(ws, "merged", tip, decision="update")
+    assert refused.action == "left_alone" and refused.message == (
+        f"your pull request {PR} was merged, but branch {SENT} has 1 commit that the upstream does not have, which "
+        "cannot be kept on top of the new version; nothing was changed. Run `cdlbib update` and choose again.")
+    assert whole_clone(root) == clone and backup_names(home) == []
+    with pytest.raises(UpdateNeedsDecision):                          # a head that is not a commit at all decides nothing
+        after_send(ws, "merged", "")
+    assert whole_clone(root) == clone and backup_names(home) == []
+
+    done = after_send(ws, "merged", tip, decision="discard", seen=asked.seen)
+    stamp = backup_names(home)[0]
+    assert done.action == "returned_to_main" and f"branch {SENT} was kept: it holds 1 commit that the upstream does not have" in done.message
+    assert snapshot(root)["branches"] == {"master": new, SENT: later}
+    assert git("rev-parse", f"refs/cdlbib/backups/{stamp}", cwd=root) == later
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_an_edit_that_collides_with_the_new_version_changes_nothing(managed):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    advance(upstream, "An edit to the entry", **{"cdl.bib": (BASE + MINE).replace("My own entry", "My own entry, retitled")})
+    conftest._git("fetch", "--quiet", "origin", cwd=root)
+    write(root, "cdl.bib", (BASE + MINE).replace("My own entry", "My entry, renamed by me"))
+    before = whole_clone(root)
+    with pytest.raises(UpdateConflict) as raised:
+        after_send(ws, "merged", tip, decision="update")
+    assert raised.value.entries == ["Mine26"] and str(raised.value) == (
+        "The bibliography was not updated: this entry was changed both by you and in the new version: Mine26. Nothing "
+        "was changed: your files are exactly as they were. Run `cdlbib update` to choose again.")
+    assert whole_clone(root) == before and backup_names(home) == [] and markers(root) == []
+
+
+@pytest.mark.parametrize("change", ["another edit", "the upstream moved again", "a new commit on the branch"])
+def test_a_decision_about_a_send_branch_is_not_applied_to_a_state_the_user_was_not_shown(managed, change):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    write(root, "cdl.bib", BASE + MINE + LATER)
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        after_send(ws, "merged", tip)
+    if change == "another edit":
+        write(root, "cdl.bib", BASE + MINE + LATER + "% one more line\n")
+    elif change == "the upstream moved again":
+        advance(upstream, "Yet another", **{"verification/more.txt": "more\n"})
+    else:
+        conftest._git("commit", "--quiet", "-m", "A later entry", "--", "cdl.bib", cwd=root)
+    before = everything(root)
+    for decision in ("update", "discard"):
+        result = after_send(ws, "merged", tip, decision=decision, seen=raised.value.seen)
+        assert result.action == "left_alone" and result.message == (
+            f"your pull request {PR} was merged, but the library or the upstream changed after you were asked what to "
+            "do; nothing was changed. Run `cdlbib update` to be asked again.")
+        assert everything(root) == before and backup_names(home) == []
+
+
+def test_a_file_of_the_users_in_the_way_of_the_return_is_a_refusal_before_any_backup(managed):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    advance(upstream, "A readme", **{"notes.txt": "the upstream's notes\n"})
+    conftest._git("fetch", "--quiet", "origin", cwd=root)
+    write(root, "notes.txt", "MY NOTES\n")                            # untracked, and the new version has a file there
+    before = whole_clone(root)
+    result = after_send(ws, "merged", tip)
+    assert result.action == "left_alone" and result.message == (
+        f"your pull request {PR} was merged, but returning to branch master would overwrite your own notes.txt; nothing "
+        "was changed. Move that file out of the way, then run `cdlbib update`.")
+    assert whole_clone(root) == before and backup_names(home) == []
+    assert (root / "notes.txt").read_text(encoding="utf-8") == "MY NOTES\n"
+
+
+def test_a_switch_that_git_refuses_changes_nothing_and_keeps_no_backup(managed, tmp_path):
+    """master is checked out in another worktree of the library, so git will not switch to
+    it: the library stays on the send branch, exactly as it was, and the line says why."""
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    conftest._git("worktree", "add", "--quiet", str(tmp_path / "elsewhere"), "master", cwd=root)
+    before = whole_clone(root)
+    result = after_send(ws, "merged", tip)
+    assert result.action == "left_alone" and result.backup is None
+    assert result.message.startswith(f"your pull request {PR} was merged, but git switch failed: ")
+    assert result.message.endswith("; nothing was changed. Run `cdlbib update` to try again.")
+    assert whole_clone(root) == before and backup_names(home) == []   # no backup, and no private ref, is left
+    write(root, "cdl.bib", BASE + MINE + LATER)                       # with edits set aside first: they are put back
+    before = everything(root)
+    with pytest.raises(CdlbibError, match="The bibliography was not updated: git switch failed: .* The library is as it was"):
+        after_send(ws, "merged", tip, decision="update")
+    assert everything(root) == before and (root / "cdl.bib").read_text(encoding="utf-8") == BASE + MINE + LATER
+
+
+@pytest.mark.parametrize("state", ["commits of its own", "no such branch"])
+def test_a_main_branch_that_cannot_be_fast_forwarded_is_left_alone(managed, state):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    if state == "commits of its own":
+        conftest._git("switch", "--quiet", "master", cwd=root)
+        write(root, "verification/mine.txt", "mine\n")
+        conftest._git("add", "verification/mine.txt", cwd=root)
+        conftest._git("commit", "--quiet", "-m", "Mine, on master", cwd=root)
+        conftest._git("switch", "--quiet", SENT, cwd=root)
+        why = "it has commits that the upstream does not have"
+    else:
+        conftest._git("branch", "--quiet", "-m", "master", "kept-aside", cwd=root)
+        why = "there is no local branch master"
+    before = whole_clone(root)
+    result = after_send(ws, "merged", tip)
+    assert result.action == "left_alone" and result.message == (
+        f"your pull request {PR} was merged, but the library could not be put back on branch master ({why}); nothing "
+        f"was changed. To update, run `git -C {shlex.quote(str(root))} switch master`, then `cdlbib update`.")
+    assert whole_clone(root) == before and backup_names(home) == []
+
+
+def test_the_git_commands_of_a_return_to_main_cannot_lose_work(managed, tmp_path, monkeypatch):
+    """Every git command the return runs, as git itself traces them: with edits kept
+    (the most there is to run) on a squash-merged branch."""
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    write(ws.root, "cdl.bib", BASE + MINE + LATER)
+    trace = tmp_path / "trace.txt"
+    monkeypatch.setenv("GIT_TRACE", str(trace))
+    assert after_send(ws, "merged", tip, decision="update").action == "returned_to_main"
+    monkeypatch.delenv("GIT_TRACE")
+    ran = [line.split("built-in: git ", 1)[1] for line in trace.read_text(encoding="utf-8").splitlines()
+           if "built-in: git " in line]
+    verbs = {command.split()[0] for command in ran}
+    assert not verbs & {"reset", "clean", "stash", "pull", "checkout", "rebase", "push", "commit", "gc", "add", "rm"}
+    assert not [c for c in ran if "--force" in c or " -f" in c or " +" in c or " -D" in c or "--hard" in c or " -C" in c
+                or " -M" in c]
+    assert verbs & {"restore", "merge", "switch", "update-ref", "branch", "fetch", "merge-file", "bundle"} == {
+        "branch", "bundle", "fetch", "merge", "restore", "switch", "update-ref"}
+    assert [c for c in ran if c.split()[0] == "switch"] == ["switch --quiet --no-overwrite-ignore master"]
+    assert [c for c in ran if c.split()[0] == "merge"] == [f"merge --ff-only --no-overwrite-ignore --no-autostash --quiet {new}"]
+    assert [c for c in ran if c.split()[0] == "branch"] == [f"branch --quiet -d {SENT}"]
+    assert [c for c in ran if c.split()[0] == "restore"] == [f"restore --source={tip} --staged --worktree -- cdl.bib verification"]
+    assert not [c for c in ran if c.split()[0] == "update-ref" and "refs/heads/" in c]      # only the backup's private refs
+    assert [c for c in ran if c.split()[0] == "fetch"] == ["fetch --quiet origin"]
+
+
+def test_only_the_managed_library_is_returned_and_only_from_a_send_branch(managed, tmp_path):
+    home, upstream, ws = managed
+    other = Workspace(clone_of(upstream, tmp_path / "mine"))
+    conftest._git("switch", "--quiet", "-c", SENT, cwd=other.root)
+    before = whole_clone(other.root)
+    with pytest.raises(CdlbibError, match="Only the library cdlbib manages"):
+        library._after_send(other, "merged", url=PR, head=git("rev-parse", "HEAD", cwd=other.root))
+    assert whole_clone(other.root) == before and backup_names(home) == []
+    advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    with pytest.raises(CdlbibError, match="is not on a branch a send made"):      # on master: nothing of this applies
+        library._after_send(ws, "merged", url=PR, head=git("rev-parse", "HEAD", cwd=ws.root))
+    assert backup_names(home) == [] and snapshot(ws.root)["branch"] == "master"
+
+
+# The lookup itself, as far as it goes without GitHub: the library's origin is named as a
+# GitHub repository that cannot exist (no owner's name has a "_"), and git is told to fetch it
+# from the local upstream instead.
+
+def named_on_github(managed, monkeypatch):
+    home, upstream, ws = managed
+    url = "https://github.com/no_such_owner/x.git"
+    conftest._git("config", f"url.{upstream}.insteadOf", url, cwd=ws.root)
+    conftest._git("remote", "set-url", "origin", url, cwd=ws.root)
+    monkeypatch.setenv("CDLBIB_UPSTREAM", url)
+
+
+def only_git_on_the_path(tmp_path):
+    folder = tmp_path / "only-git"
+    folder.mkdir()
+    (folder / "git").symlink_to(shutil.which("git"))
+    return str(folder)
+
+
+def test_with_no_gh_the_library_is_left_alone_with_the_reason_and_the_command_runs(managed, tmp_path, monkeypatch):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    named_on_github(managed, monkeypatch)
+    root, before = ws.root, whole_clone(ws.root)
+    path = only_git_on_the_path(tmp_path)
+    why = ("the GitHub CLI (gh) was not found. Install the GitHub CLI (https://cli.github.com) and run: gh auth login")
+    line = f"the library is on branch {SENT}, and its pull request could not be looked up (The GitHub CLI (gh) was not " \
+           "found. Install the GitHub CLI (https://cli.github.com) and run: gh auth login); nothing was changed. "
+    out = cdlbib("where", cwd=empty_folder(tmp_path), PATH=path)
+    assert out.returncode == 0 and out.stdout.splitlines()[0] == str(root), out.stderr       # the command ran
+    assert out.stderr == line + "It will be tried again automatically in about an hour; `cdlbib update` tries now.\n"
+    assert whole_clone(root) == before and backup_names(home) == []
+    state = library.read_state()
+    assert state.last_attempt is not None and datetime.datetime.now(UTC) - state.last_check > 24 * HOUR
+    again = cdlbib("where", cwd=empty_folder(tmp_path), PATH=path)     # the existing back-off: not with every command
+    assert (again.returncode, again.stderr) == (0, "")
+    asked = cdlbib("update", cwd=empty_folder(tmp_path), PATH=path)    # asked for: tried now, said again
+    assert (asked.returncode, asked.stdout, asked.stderr) == (0, line + "Run `cdlbib update` to try again.\n", "")
+    assert whole_clone(root) == before and backup_names(home) == [] and why
+
+
+def test_a_cdlbib_branch_of_another_login_or_of_a_library_not_from_github_is_not_looked_up(managed, tmp_path, monkeypatch):
+    """Not from GitHub: no pull request can exist, and no gh is run (there is none on the PATH)."""
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    monkeypatch.setenv("PATH", only_git_on_the_path(tmp_path))
+    before = whole_clone(ws.root)
+    result = library.update(ws, force=True)
+    assert result.action == "left_alone" and result.message == left_alone(
+        2, f"the library is on branch {SENT}, not master",
+        f"To update, run `git -C {shlex.quote(str(ws.root))} switch master`, then `cdlbib update`.")
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+
+
+def test_an_unreachable_github_is_the_offline_case(managed, tmp_path, monkeypatch):
+    """gh cannot connect (its proxy is a closed local port): one line, nothing changed."""
+    if not shutil.which("gh"):
+        pytest.skip("gh is not installed")
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    named_on_github(managed, monkeypatch)
+    for name in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY"):
+        monkeypatch.setenv(name, "http://127.0.0.1:9")
+    monkeypatch.delenv("NO_PROXY", raising=False)
+    monkeypatch.delenv("no_proxy", raising=False)
+    before = whole_clone(ws.root)
+    result = library.update(ws)
+    assert result.action == "left_alone" and result.backup is None
+    assert result.message.startswith(f"the library is on branch {SENT}, and its pull request could not be looked up (")
+    assert result.message.endswith("); nothing was changed. It will be tried again automatically in about an hour; "
+                                   "`cdlbib update` tries now.")
+    assert "\n" not in result.message
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+    assert library.update(ws) == library.UpdateResult("not_due")     # backed off for an hour
+
+
+def test_a_github_that_does_not_answer_costs_a_command_the_short_timeout(managed, tmp_path, monkeypatch):
+    """gh's proxy accepts the connection and never answers: the lookup is given up after the
+    automatic check's timeout, and the library is as it was."""
+    import socket
+    if not shutil.which("gh"):
+        pytest.skip("gh is not installed")
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    named_on_github(managed, monkeypatch)
+    silent = socket.socket()
+    silent.bind(("127.0.0.1", 0))
+    silent.listen(8)
+    try:
+        for name in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY"):
+            monkeypatch.setenv(name, f"http://127.0.0.1:{silent.getsockname()[1]}")
+        monkeypatch.delenv("NO_PROXY", raising=False)
+        monkeypatch.delenv("no_proxy", raising=False)
+        monkeypatch.setattr(library, "AUTO_FETCH_TIMEOUT", 3)
+        before, started = whole_clone(ws.root), time.monotonic()
+        result = library.update(ws)
+        took = time.monotonic() - started
+    finally:
+        silent.close()
+    assert result.action == "left_alone" and "could not be looked up (" in result.message
+    assert 2.5 < took < 20, took
+    assert whole_clone(ws.root) == before and backup_names(home) == []
+
+
+# `cdlbib send` from the managed library's old send branch, once GitHub says its pull request is
+# merged: api.send calls api._back_to_main with the pull request it looked up, then goes on.
+
+def merged_pr(tip):
+    from cdlbib import publish
+    return publish.PullRequest(url=PR, state="merged", head=tip)
+
+
+def test_a_send_after_a_merge_first_returns_the_library_to_main_with_the_changes_kept(managed, tmp_path, capsys):
+    from cdlbib import publish
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    write(root, "cdl.bib", BASE + MINE + LATER)                       # the change that is to be sent next
+    before, lines = everything(root), []
+    said = api._back_to_main(ws, merged_pr(tip), lines.append)
+    stamp = backup_names(home)[0]
+    line = back_line(2, f"branch {SENT} was kept (git does not count a squash-merged branch as merged); everything on "
+                        "it is in the merged pull request, so it is safe to delete", stamp,
+                     middle=", with your changes kept (cdl.bib)")
+    assert lines == [line] and said == "Y" + line[1:] + "." and capsys.readouterr() == ("", "")
+    after = snapshot(root)
+    assert (after["branch"], after["commit"], after["changed"]) == ("master", new, ["cdl.bib"])
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE + MINE + LATER and publish.pending(ws) == ["cdl.bib"]
+    assert publish.require_branch(ws, "master") == "master"           # the send goes on from here, on a new branch
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_a_send_after_a_merge_with_nothing_new_returns_the_library_and_says_so(managed):
+    from cdlbib.errors import PublishRefused
+    home, upstream, ws, tip, new = sent(managed, "merge")
+    with pytest.raises(PublishRefused) as refused:
+        api._back_to_main(ws, merged_pr(tip))
+    stamp = backup_names(home)[0]
+    assert str(refused.value) == ("There are no changes to cdl.bib or verification/ to send. Y"
+                                  + back_line(1, f"branch {SENT} was deleted", stamp)[1:] + ".")
+    assert snapshot(ws.root)["branches"] == {"master": new} and snapshot(ws.root)["changed"] == []
+
+
+@pytest.mark.parametrize("pending", [True, False])
+def test_a_send_after_a_merge_refuses_when_the_branch_holds_commits_that_were_never_sent(managed, pending):
+    from cdlbib.errors import PublishRefused
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    write(root, "cdl.bib", BASE + MINE + LATER)
+    conftest._git("commit", "--quiet", "-m", "A later entry", "--", "cdl.bib", cwd=root)
+    if pending:
+        write(root, "cdl.bib", BASE + MINE + LATER + "% and one more line\n")
+    before = whole_clone(root)
+    with pytest.raises(PublishRefused) as refused:
+        api._back_to_main(ws, merged_pr(tip))
+    assert str(refused.value) == (
+        f"not sent: your pull request {PR} was merged, but branch {SENT} has 1 commit that the upstream does not have, "
+        "which cannot be kept on top of the new version; nothing was changed. Run `cdlbib update` and choose again."
+        if pending else
+        f"not sent: your pull request {PR} was merged, and branch {SENT} of the library in {root} has changes that "
+        "have not been sent. Nothing was changed. Run `cdlbib update` to choose what to do with them.")
+    assert whole_clone(root) == before and backup_names(home) == []
+
+
+def test_a_send_after_a_merge_whose_changes_collide_changes_nothing(managed):
+    home, upstream, ws, tip, new = sent(managed, "squash")
+    root = ws.root
+    advance(upstream, "An edit to the entry", **{"cdl.bib": (BASE + MINE).replace("My own entry", "My own entry, retitled")})
+    conftest._git("fetch", "--quiet", "origin", cwd=root)
+    write(root, "cdl.bib", (BASE + MINE).replace("My own entry", "My entry, renamed by me"))
+    before = whole_clone(root)
+    with pytest.raises(UpdateConflict, match="changed both by you and in the new version: Mine26"):
+        api._back_to_main(ws, merged_pr(tip))
+    assert whole_clone(root) == before and backup_names(home) == []

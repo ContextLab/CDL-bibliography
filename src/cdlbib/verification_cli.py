@@ -189,6 +189,14 @@ def unsent_line(exc):
                    "upstream does not have")
     if files:
         why.append(f"these files have changes that have not been sent: {', '.join(files)}")
+    if exc.branch:       # on the branch of an earlier send
+        held = [f"{exc.local_commits} commit{'' if exc.local_commits == 1 else 's'} that the upstream does not have"
+                ] * bool(exc.local_commits) + why[-1:] * bool(files)
+        return ((f"your pull request {exc.pull_request} was merged, but branch {exc.branch} has changes that have not "
+                 f"been sent ({' and '.join(held)})" if exc.state == "merged" else
+                 f"your pull request {exc.pull_request} was closed without being merged, so the library stays on "
+                 f"branch {exc.branch} ({' and '.join(held)})")
+                + "; nothing was changed. Run `cdlbib update` in a terminal to choose what to do.")
     return (f"a newer version of the bibliography is available ({exc.new_commits} new "
             f"commit{'' if exc.new_commits == 1 else 's'}), but {' and '.join(why)}; nothing was changed. "
             "Run `cdlbib update` in a terminal to choose what to do.")
