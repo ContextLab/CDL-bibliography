@@ -15,6 +15,8 @@ from urllib.parse import urljoin, urlparse
 import requests
 
 from .openai_research_adapter import object_schema
+from . import secrets
+from .errors import SecretNotFound
 from .research import INSTRUCTIONS, allowed_url
 from .search_tools import WebSearch, get_source
 from .publisher_metadata import PublisherMetadata
@@ -99,8 +101,11 @@ def discover_sources(payload, session, results=(), fetched=None):
 
 
 def configuration(environ):
-    key = environ.get("DARTMOUTH_CHAT_API_KEY")
-    if not key:
+    # Order: environment variable, key file, keychain (the keychain only when the
+    # real environment is being read; see cdlbib.secrets).
+    key = None
+    if not environ.get(secrets.KEYS["dartmouth-chat"].env):
+        # The key-file branch is kept for now; its removal is pending the project owner's decision.
         key_path = Path(
             environ.get(
                 "BIBCHECK_DARTMOUTH_KEY_FILE",
@@ -110,7 +115,12 @@ def configuration(environ):
         if key_path.is_file():
             key = key_path.read_text(encoding="utf-8").strip()
     if not key:
-        raise ValueError("Set DARTMOUTH_CHAT_API_KEY or a local Dartmouth key file")
+        try:
+            key = secrets.get("dartmouth-chat", environ)
+        except SecretNotFound as exc:
+            if secrets.reads_real_environment(environ):
+                raise ValueError(str(exc)) from exc
+            raise ValueError("Set DARTMOUTH_CHAT_API_KEY or a local Dartmouth key file") from exc
     if any(char.isspace() for char in key):
         raise ValueError("Dartmouth key must be a single token")
     return key, environ.get("BIBCHECK_RESEARCH_MODEL", DEFAULT_MODEL)

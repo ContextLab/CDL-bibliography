@@ -132,7 +132,9 @@ def test_cli_without_a_login_refuses_cleanly_and_creates_no_database(monkeypatch
         result = CliRunner().invoke(app, args + ["--fname", str(bib), "--database", str(database)])
         assert result.exit_code == 1, result.output
         assert "gh auth login" in result.output
-        assert "Traceback" not in result.output and result.exception is None or isinstance(result.exception, SystemExit)
+        assert "Traceback" not in result.output
+        assert "Traceback" not in (result.stderr if result.stderr_bytes is not None else "")
+        assert result.exception is None or isinstance(result.exception, SystemExit)
     assert not database.exists()
 
 

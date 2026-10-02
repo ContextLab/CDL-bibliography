@@ -10,6 +10,8 @@ import sys
 
 import requests
 
+from . import secrets
+from .errors import SecretNotFound
 from .research import INSTRUCTIONS
 
 
@@ -120,8 +122,16 @@ def request_payload(payload, model):
 
 def run(payload, session=None, environ=None):
     environ = os.environ if environ is None else environ
-    key, model = environ.get("OPENAI_API_KEY"), environ.get("BIBCHECK_RESEARCH_MODEL")
-    if not key or not model:
+    model = environ.get("BIBCHECK_RESEARCH_MODEL")
+    try:
+        key = secrets.get("openai", environ)
+    except SecretNotFound as exc:
+        if not model:
+            raise ValueError(
+                "Set OPENAI_API_KEY and BIBCHECK_RESEARCH_MODEL before research"
+            ) from exc
+        raise ValueError(str(exc)) from exc
+    if not model:
         raise ValueError(
             "Set OPENAI_API_KEY and BIBCHECK_RESEARCH_MODEL before research"
         )
