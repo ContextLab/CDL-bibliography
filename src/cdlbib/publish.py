@@ -10,9 +10,13 @@ ALLOWED = ("cdl.bib", "verification/")
 WORK = ".bibcheck/"                      # the local working folder: never sent, never a stray file
 PROTECTED_UPSTREAM = "ContextLab/CDL-bibliography"
 NO_CHANGES = "There are no changes to cdl.bib or verification/ to send."
-# https://github.com/O/N(.git), git@github.com:O/N(.git), ssh://git@github.com/O/N(.git): github.com only.
-GITHUB_URL = re.compile(r"^(?:https://(?:[^@/\s]+@)?github\.com/|ssh://git@github\.com/|git@github\.com:)"
-                        r"([^/\s]+)/([^/\s]+?)(?:\.git)?/?$")
+# The forms git uses for a GitHub repository, github.com only: https:// and http:// (with an
+# optional user@), git@github.com:O/N, ssh://git@github.com[:port]/O/N, git://github.com/O/N.
+GITHUB_URL = re.compile(r"^(?:https?://(?:[^@/\s]+@)?github\.com/|ssh://git@github\.com(?::\d+)?/|git@github\.com:"
+                        r"|git://github\.com/)([^/\s:]+)/([^/\s]+?)(?:\.git)?/?$")
+SIGN_IN = re.compile(r"terminal prompts disabled|authentication failed|could not read (?:username|password)"
+                     r"|invalid credentials|invalid username or password|permission to \S+ denied|HTTP 40[13]|error: 40[13]",
+                     re.IGNORECASE)
 
 
 def _run(args, cwd=None, check=True):
@@ -112,7 +116,18 @@ def branch_name(login, summary, today):
 
 
 def current_branch(ws):
+    """The branch the checkout is on; 'HEAD' when it is on none (detached)."""
     return _run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=ws.root).stdout.strip()
+
+
+def require_branch(ws, main="master"):
+    """The branch the checkout is on. A checkout on no branch is refused: there would be
+    no branch to come back to."""
+    here = current_branch(ws)
+    if here == "HEAD":
+        raise PublishRefused("The checkout is not on a branch (detached HEAD). Nothing was changed. Switch to a "
+                             f"branch first (your edits are carried along), then run `cdlbib commit` again:\n  git switch {main}")
+    return here
 
 
 def _head(ws, ref="HEAD"):
@@ -166,36 +181,41 @@ def commit_to_branch(ws, branch, message):
     mine = pending(ws)
     if not mine:
         raise PublishRefused(NO_CHANGES)
-    previous, start = current_branch(ws), _head(ws)
+    previous = require_branch(ws)
     exists = bool(_head(ws, f"refs/heads/{branch}"))
-    staged = _run(["git", "diff", "--cached", "--quiet", "--", *mine], cwd=ws.root, check=False).returncode != 0
+    listed = _run(["git", "diff", "--cached", "--name-only", "-z", "--", *mine], cwd=ws.root).stdout
+    ours = [p for p in mine if p not in set(listed.split("\0"))]     # what this call stages, and may unstage
+    tip = None                           # the branch's commit once the checkout is on it
     try:
         if previous != branch:
             _run(["git", "switch", branch] if exists else ["git", "switch", "-c", branch], cwd=ws.root)
+        tip = _head(ws)
         _run(["git", "add", "-A", "--", *mine], cwd=ws.root)
         _run(["git", "commit", "-m", message, "--", *mine], cwd=ws.root)
     except PublishRefused as exc:
-        where = _put_back(ws, previous, branch, start, mine, made=not exists, unstage=not staged)
-        raise PublishRefused(f"The commit could not be made, so nothing was committed and nothing was sent. {where}\n{exc}") from exc
+        raise PublishRefused(f"{_put_back(ws, previous, branch, tip, ours, made=not exists)}\n{exc}") from exc
     return _head(ws)
 
 
-def _put_back(ws, previous, branch, start, mine, made, unstage):
-    """After a failed commit: back to the branch the user was on, without the branch made
-    for nothing. Only moves that lose nothing (no reset, no stash, no clean, no force).
-    Returns the sentence that says where the checkout is now."""
-    if _head(ws) != start:               # a commit exists after all: leave everything in place
-        return f"The checkout is on branch {current_branch(ws)}."
-    if unstage:                          # nothing of ours was staged before; leave the index as it was
-        _run(["git", "restore", "--staged", "--", *mine], cwd=ws.root, check=False)
+def _put_back(ws, previous, branch, tip, ours, made):
+    """After a failed commit: back to the branch the user was on, the index as it was,
+    without a branch made for nothing. Only moves that lose nothing (no reset, no stash, no
+    clean, no force). Returns the sentences that say what happened and where the checkout is."""
+    if tip is not None and _head(ws) != tip:     # git reported a failure, yet the branch has a new commit
+        return (f"The commit step reported a failure, but a commit was made on branch {current_branch(ws)}; "
+                "nothing was sent. Run `cdlbib commit` again to resume from there."
+                + go_back(previous, current_branch(ws)))
+    failed = "The commit could not be made, so nothing was committed and nothing was sent."
+    if tip is not None and ours:         # the add may have run: take our paths out of the index again
+        _run(["git", "restore", "--staged", "--", *ours], cwd=ws.root, check=False)
     if current_branch(ws) != previous:
         _run(["git", "switch", previous], cwd=ws.root, check=False)
     if current_branch(ws) != previous:
-        return (f"The checkout could not be put back: it is on branch {current_branch(ws)}, with your changes "
-                f"in place; go back with: git switch {previous}")
-    if made and previous != branch and _head(ws, f"refs/heads/{branch}") == start:
+        return (f"{failed} The checkout could not be put back: it is on branch {current_branch(ws)}, with your "
+                f"changes in place; go back with: git switch {previous}")
+    if made and previous != branch and tip is not None and _head(ws, f"refs/heads/{branch}") == tip:
         _run(["git", "branch", "-d", branch], cwd=ws.root, check=False)
-    return f"The checkout is back on branch {previous}, with your changes in place."
+    return f"{failed} The checkout is back on branch {previous}, with your changes in place."
 
 
 def push(ws, remote_url, branch):
@@ -206,7 +226,7 @@ def deliver(ws, branch, message, remote_url, target=None):
     """Commit what is pending on ``branch``, then push the branch to ``remote_url``. With
     nothing pending, a checkout already on ``branch`` only pushes (a send that is being
     resumed). Returns the committed paths. A failed push says where things stand."""
-    previous, files = current_branch(ws), pending(ws)
+    previous, files = require_branch(ws), pending(ws)
     if files:
         commit_to_branch(ws, branch, message)
     elif previous != branch:
@@ -214,9 +234,11 @@ def deliver(ws, branch, message, remote_url, target=None):
     try:
         push(ws, remote_url, branch)
     except PublishRefused as exc:
+        sign_in = (" git could not sign in to GitHub: run `gh auth setup-git` (it makes git use gh's login), then "
+                   "`cdlbib commit` again.") if SIGN_IN.search(str(exc)) else ""
         raise PublishRefused(
             f"The change is committed on branch {branch}, but the push to {target or remote_url} failed: nothing was "
-            f"sent and no pull request was opened. Run `cdlbib commit` again to resume from there."
+            f"sent and no pull request was opened.{sign_in} Run `cdlbib commit` again to resume from there."
             f"{go_back(previous, branch)}\n{exc}") from exc
     return files
 

@@ -280,7 +280,7 @@ def approvals_note(ws, reference=None, database=None):
 
 def send(ws, summary=None, reference="github", citations=True, mailto=None, database=None, progress=None,
          bars=None, report=None, upstream=None, base="master", fork=None, allow_fork_creation=False,
-         outfile=None, verbose=False, inside_fork=False):
+         outfile=None, verbose=False, *, _test_inside_own_fork=False):
     """The one way a change leaves this machine: the gate, then a commit of cdl.bib and
     verification/ on a branch, pushed to the user's own fork, and a pull request into the
     upstream repository (the checkout's origin, or its parent when the origin is a fork).
@@ -297,17 +297,20 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     ``report`` receives the LibraryCheck once the format check is done (before the citation
     check); ``progress`` each line of the citation check, then of the comparison with
     ``reference`` (its summary is also written to ``outfile``). ``fork`` names the fork to
-    push to instead of looking it up; it is never the upstream. The one exception is
-    ``inside_fork``: a pull request opened inside the user's own fork (``upstream`` and
-    ``fork`` both name it), which GitHub must confirm is a fork owned by the logged-in user;
-    it exists so that a send can be tried for real without touching a shared repository.
+    push to instead of looking it up; it is never the upstream.
+
+    ``_test_inside_own_fork`` (keyword-only) exists only for the test suite: it lets a send
+    be run for real with the pull request opened inside the tester's own fork (``upstream``
+    and ``fork`` both name it), so that no shared repository is touched. GitHub must confirm
+    that repository is a fork owned by the logged-in user, or the send is refused before
+    git is written to. No front end passes it.
     """
     import datetime
     from . import identity, publish
     from .errors import PublishRefused
 
     def not_upstream(candidate, target):
-        if candidate and target and candidate.lower() == target.lower() and not inside_fork:
+        if candidate and target and candidate.lower() == target.lower() and not _test_inside_own_fork:
             raise PublishRefused(f"{candidate} is the upstream repository, not a fork of it; a change is never "
                                  "pushed to the upstream.")
 
@@ -316,7 +319,7 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     if stray:
         raise PublishRefused("Other files have uncommitted changes; commit, stash or discard them first: "
                              + ", ".join(stray))
-    here = publish.current_branch(ws)
+    here = publish.require_branch(ws, base)
     if not publish.pending(ws) and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
     publish.require_identity(ws)
@@ -341,9 +344,9 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
     if not publish.pending(ws) and not resumed:
         raise PublishRefused(publish.NO_CHANGES)
-    if inside_fork and not (upstream and fork and upstream.lower() == fork.lower()
+    if _test_inside_own_fork and not (upstream and fork and upstream.lower() == fork.lower()
                             and publish.is_own_fork(fork, me.login)):
-        raise PublishRefused(f"inside_fork needs upstream and fork to name one fork owned by {me.handle}; "
+        raise PublishRefused(f"_test_inside_own_fork needs upstream and fork to name one fork owned by {me.handle}; "
                              f"got upstream {upstream}, fork {fork}.")
     found = None
     if upstream is None:
@@ -354,15 +357,20 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     not_upstream(fork, upstream)
     branch = here if resumed else publish.branch_name(me.login, summary or changes.splitlines()[0][:100],
                                                       datetime.date.today())
-    if resumed and fork:
+    if fork:                             # this branch's pull request may be finished already
         earlier = publish.earlier_pr(upstream, f"{fork.split('/')[0]}:{branch}")
-        if earlier:
+        if earlier and resumed:
             raise PublishRefused(
                 f"You are on branch {branch}, whose pull request {earlier[0]} is {earlier[1]}; a new change needs a "
                 f"new branch. Nothing was changed. Go back to {base}, bring it up to date and send again:\n"
-                f"  git switch {base}\n  git pull\n  cdlbib commit\n"
+                f"  git switch {base}\n  git pull https://github.com/{upstream}.git {base}\n  cdlbib commit\n"
                 "Your uncommitted edits to cdl.bib and verification/ are carried along by `git switch`; "
                 "nothing is lost.")
+        if earlier:
+            raise PublishRefused(
+                f"Branch {branch} was already used for pull request {earlier[0]}, which is {earlier[1]}; a new "
+                "change needs a new branch. Nothing was changed. Send again with a different --summary (the branch "
+                "is named after it and today's date).")
     body = changes + approvals_note(ws, reference=reference, database=database)
     title = (summary or changes.splitlines()[0])[:100]
     if not fork:
