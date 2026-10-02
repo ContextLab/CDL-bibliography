@@ -57,15 +57,22 @@ from pathlib import Path
 import re
 import unicodedata
 
+from . import workspace
 from .verification import normalize_doi, notice_record_identity, outcome
 
-ROOT = Path(__file__).resolve().parents[2]
 SOURCE = 'research-evidence'
 POLICY = '1'
 NAME = 'research_route'
 # validate.py's fetched bodies. BIBCHECK_RESEARCH_BODIES points both at another directory
 # (the test suite sets it, so live fetches in tests never write into this clone's cache).
-BODY_DIR = Path(os.environ.get('BIBCHECK_RESEARCH_BODIES') or ROOT / '.bibcheck' / 'research-pilot')
+BODY_DIR = None  # tests patch this; otherwise body_dir() resolves it on use
+
+
+def body_dir():
+    if BODY_DIR is not None:
+        return Path(BODY_DIR)
+    override = os.environ.get('BIBCHECK_RESEARCH_BODIES')
+    return Path(override) if override else workspace.default().research_bodies
 
 NOTICES = 'verification/resolution-2026-09-27/notices-classified.json'
 
@@ -207,7 +214,7 @@ class Bodies:
     """validate.py's saved fetched bodies: ``<dir>/<sha256(url)>.txt``. Never fetches."""
 
     def __init__(self, directory=None):
-        self.directory = Path(BODY_DIR if directory is None else directory)
+        self.directory = Path(body_dir() if directory is None else directory)
 
     def get(self, url):
         """(text, sha256) of the saved body, or (None, None) when validate.py saved none
@@ -904,7 +911,7 @@ def recheck(candidate, bodies=None):
     """Re-derive a saved research candidate: with the saved bodies when this clone has
     validate.py's body cache, else from the quote results the candidate recorded."""
     if bodies is None:
-        bodies = Bodies() if BODY_DIR.is_dir() else SavedBodies(candidate)
+        bodies = Bodies() if body_dir().is_dir() else SavedBodies(candidate)
     return assess_research(candidate['checked_fields'], candidate['raw_record'], bodies, candidate.get('cities'))
 
 
@@ -970,7 +977,7 @@ def valid_research_approval(result):
             validator(), postcheck()
         except ImportError:
             return True
-        checked = recheck(c, CachedOrSavedBodies(c) if BODY_DIR.is_dir() else SavedBodies(c))
+        checked = recheck(c, CachedOrSavedBodies(c) if body_dir().is_dir() else SavedBodies(c))
         return (checked['status'] == 'metadata_verified'
                 and checked['accepted_record_id'] == result['accepted_record_id']
                 and checked.get('accepted_doi') == result.get('accepted_doi')
@@ -1000,16 +1007,16 @@ def research_rejection_reason(result):
         validator(), postcheck()
     except ImportError:
         return None
-    if BODY_DIR.is_dir():
+    if body_dir().is_dir():
         local = Bodies()
         for item in _saved_items(c):
             text, sha = local.get(item['url'])
             if text is not None and sha != item.get('body_sha256'):
-                return (f"the body cache {BODY_DIR} holds a different body for {item['url']} "
+                return (f"the body cache {body_dir()} holds a different body for {item['url']} "
                         f"(sha256 {sha[:12]}, the approval recorded {(item.get('body_sha256') or 'none')[:12]}): "
                         "a refetched or edited page; move that file away (or the cache) to restore from "
                         "the recorded evidence")
-    checked = recheck(c, CachedOrSavedBodies(c) if BODY_DIR.is_dir() else SavedBodies(c))
+    checked = recheck(c, CachedOrSavedBodies(c) if body_dir().is_dir() else SavedBodies(c))
     if checked['status'] != 'metadata_verified':
         return f"re-assessing the saved evidence gives {checked['status']}: {'; '.join(checked.get('issues') or [])[:300]}"
     if (checked['accepted_record_id'] == result['accepted_record_id']

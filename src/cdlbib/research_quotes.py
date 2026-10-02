@@ -8,12 +8,8 @@ folders. Nothing here makes a network request.
 """
 import html
 import re
-import sys
 import unicodedata
-from pathlib import Path
 from urllib.parse import unquote
-
-ROOT = Path(__file__).resolve().parents[2]
 
 # Apostrophe look-alikes (O´Reilly, Oʼ, O′) fold to "'" before NFKC splits U+00B4 into
 # a space and a combining accent; trademark signs are dropped (FitBit® = FitBit).
@@ -251,14 +247,8 @@ _JOURNAL_KEY = None
 def load_journal_key():
     global _JOURNAL_KEY
     if _JOURNAL_KEY is None:
-        import os
-        cwd = os.getcwd()
-        os.chdir(ROOT)  # helpers reads its tables relative to the repository root
-        try:
-            from . import helpers
-            _JOURNAL_KEY = dict(helpers.journal_key)
-        finally:
-            os.chdir(cwd)
+        from . import helpers
+        _JOURNAL_KEY = dict(helpers.journal_key)
     return _JOURNAL_KEY
 
 

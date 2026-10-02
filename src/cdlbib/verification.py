@@ -23,6 +23,8 @@ import time
 import unicodedata
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
+
+from . import workspace
 from urllib.parse import parse_qs, quote, unquote, urljoin, urlparse
 import xml.etree.ElementTree as ET
 
@@ -224,7 +226,7 @@ def load_entries(filename):
 # is committed with the repository, so restoring an older snapshot (even into an
 # empty database) cannot bring a revoked approval back. A later approval with a
 # new review note is a new decision and is not affected. Tests patch this constant.
-REVOCATION_LEDGER = Path(__file__).resolve().parents[2] / "verification" / "revocations.jsonl"
+REVOCATION_LEDGER = None  # resolved from the Workspace on first use; tests patch this
 REVOCATION_FIELDS = {"key", "fingerprint", "approval", "approval_digest", "approval_checked_at",
                      "revoked_at", "revoked_by", "reason"}
 
@@ -242,7 +244,7 @@ def valid_revocation(record):
 
 
 def read_revocation_ledger(path=None):
-    path = Path(path if path is not None else REVOCATION_LEDGER)
+    path = Path(path if path is not None else (REVOCATION_LEDGER or workspace.default().revocations))
     if not path.exists():
         return []
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]

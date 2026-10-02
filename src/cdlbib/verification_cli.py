@@ -9,6 +9,7 @@ from typing import List
 import typer
 
 from . import verification
+from .workspace import Workspace
 from .verification import (
     ACCEPTED,
     Cache,
@@ -143,10 +144,8 @@ def fulltext_review(
 
 
 def paths(fname, database, report=None):
-    parent = Path(fname).resolve().parent / ".bibcheck"
-    return database or str(parent / "verification.sqlite3"), report or str(
-        parent / "report.jsonl"
-    )
+    ws = Workspace.for_bib(fname)
+    return database or str(ws.database), report or str(ws.report)
 
 
 def summary(results, require_human=False):
@@ -730,7 +729,7 @@ def revoke(
     database, _ = paths(fname, database)
     if ledger:
         verification.REVOCATION_LEDGER = Path(ledger)
-    ledger_path = Path(verification.REVOCATION_LEDGER)
+    ledger_path = Path(verification.REVOCATION_LEDGER or Workspace.for_bib(fname).revocations)
     cache = Cache(database)
     try:
         if not reason.strip() or not by.strip():

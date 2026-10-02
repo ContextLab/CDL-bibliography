@@ -7,20 +7,10 @@ https://github.com/ContextLab/CDL-bibliography-stacks/tree/main/verification/res
 folders. Nothing here makes a network request.
 """
 import html
-import os
-from pathlib import Path
 import re
-import sys
 import unicodedata
 
-ROOT = Path(__file__).resolve().parents[2]
-_cwd = os.getcwd()
-os.chdir(ROOT)  # helpers reads its word lists relative to the working directory
-
-try:
-    from . import helpers as H  # noqa: E402
-finally:
-    os.chdir(_cwd)
+from . import helpers as H  # noqa: E402
 
 ORDINAL_FIELDS = ("title", "booktitle", "journal", "edition", "series", "publisher",
                   "organization", "howpublished", "note", "school", "institution")

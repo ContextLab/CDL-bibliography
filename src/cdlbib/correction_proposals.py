@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 
 from .auto_review import authors_with_pubmed_suffixes, compatible_authors, epmc_record, expanded_pages, reassess, safe_compare
+from . import workspace
 from .verification import normalize_doi, normalize_journal, normalized, top_level_parts
 
 PAGE_FINDINGS = {
@@ -1462,7 +1463,11 @@ def shortens_pages(before, after):
 
 # The bibliography that library-reading helpers use; tests/conftest.py patches it to a
 # frozen fixture so no test reads the live cdl.bib.
-LIBRARY_BIB = Path(__file__).resolve().parents[2] / "cdl.bib"
+LIBRARY_BIB = None  # resolved from the Workspace on first use; tests patch this
+
+
+def library_bib():
+    return Path(LIBRARY_BIB) if LIBRARY_BIB else workspace.default().bib
 
 
 def surname_changes(before, after):
