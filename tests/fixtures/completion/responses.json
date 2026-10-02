@@ -1,0 +1,3551 @@
+[
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1002%2Ftea.3660271011",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1002/tea.3660271011",
+     "ISSN": [
+      "0022-4308",
+      "1098-2736"
+     ],
+     "URL": "https://doi.org/10.1002/tea.3660271011",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Zoller",
+       "given": "Uri",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Journal of Research in Science Teaching"
+     ],
+     "issue": "10",
+     "issued": {
+      "date-parts": [
+       [
+        1990,
+        12
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Ftea.3660271011",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/tea.3660271011",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1053-1065",
+     "published": {
+      "date-parts": [
+       [
+        1990,
+        12
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2011,
+        2,
+        3
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1990,
+        12
+       ]
+      ]
+     },
+     "publisher": "Wiley",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)"
+     ],
+     "type": "journal-article",
+     "volume": "27"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:21:53.566503+00:00",
+   "url": "https://api.crossref.org/works/10.1002%2Ftea.3660271011"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1002/tea.3660271011\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1002/tea.3660271011\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:21:55.136011+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1002%2Ftea.3660271011%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "students' misunderstandings and misconceptions in college freshman chemistry (general and organic) Zoller 1990 ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1002/tea.3660271011",
+       "ISSN": [
+        "0022-4308",
+        "1098-2736"
+       ],
+       "URL": "https://doi.org/10.1002/tea.3660271011",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Zoller",
+         "given": "Uri",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Journal of Research in Science Teaching"
+       ],
+       "issue": "10",
+       "issued": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Ftea.3660271011",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/tea.3660271011",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1053-1065",
+       "published": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2011,
+          2,
+          3
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "publisher": "Wiley",
+       "title": [
+        "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)"
+       ],
+       "type": "journal-article",
+       "volume": "27"
+      },
+      {
+       "DOI": "10.1007/bf02356942",
+       "ISSN": [
+        "0157-244X",
+        "1573-1898"
+       ],
+       "URL": "https://doi.org/10.1007/bf02356942",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Zoller",
+         "given": "Uri",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Research in Science Education"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/BF02356942.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "http://link.springer.com/article/10.1007/BF02356942/fulltext.html",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/BF02356942",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "317-326",
+       "published": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "title": [
+        "The use of examinations for revealing and distinguishing between students' misconceptions, misunderstandings and “no conceptions” in college chemistry"
+       ],
+       "type": "journal-article",
+       "volume": "26"
+      },
+      {
+       "DOI": "10.1007/978-3-319-08419-0_1",
+       "ISBN": [
+        "9783319084183",
+        "9783319084190"
+       ],
+       "URL": "https://doi.org/10.1007/978-3-319-08419-0_1",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Kovács",
+         "given": "Lajos",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Csupor",
+         "given": "Dezső",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Lente",
+         "given": "Gábor",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Gunda",
+         "given": "Tamás",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "100 Chemical Myths"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-3-319-08419-0_1",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1-33",
+       "published": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2014,
+          9,
+          27
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "publisher": "Springer International Publishing",
+       "title": [
+        "Misconceptions in General"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.7810/9781927277751_2",
+       "URL": "https://doi.org/10.7810/9781927277751_2",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Boston",
+         "given": "Jonathan",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Chapple",
+         "given": "Simon",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "The Child Poverty Debate: Myths, Misconceptions and Misunderstandings"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "publisher": "Bridget Williams Books",
+       "title": [
+        "Myths, misconceptions and misunderstandings"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.36837/chapman.000434",
+       "URL": "https://doi.org/10.36837/chapman.000434",
+       "author": [
+        {
+         "affiliation": [],
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Dudley",
+         "given": "Lauren",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          null
+         ]
+        ]
+       },
+       "publisher": "Chapman University",
+       "title": [
+        "Understanding the Relationship Between Organic Chemistry Misconceptions and Students’ Chemistry Self-efficacy in Higher Education Organic Chemistry Courses"
+       ],
+       "type": "dissertation"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 528054
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:21:56.537279+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=students%27+misunderstandings+and+misconceptions+in+college+freshman+chemistry+%28general+and+organic%29+Zoller+1990+&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "retmax": 10,
+    "retmode": "json",
+    "term": "students[ti] AND misunderstandings[ti] AND misconceptions[ti] AND college[ti] AND freshman[ti] AND chemistry[ti] AND general[ti] AND organic[ti] AND zoller[au]",
+    "tool": "bibcheck"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "esearchresult": {
+     "count": "0",
+     "idlist": [],
+     "querytranslation": "\"students\"[Title] AND \"misunderstandings\"[Title] AND \"misconceptions\"[Title] AND \"college\"[Title] AND \"freshman\"[Title] AND \"chemistry\"[Title] AND \"general\"[Title] AND \"organic\"[Title] AND zoller[Author]",
+     "retmax": "0",
+     "retstart": "0",
+     "translationset": [],
+     "warninglist": {
+      "outputmessages": [
+       "No items found."
+      ],
+      "phrasesignored": [],
+      "quotedphrasesnotfound": []
+     }
+    },
+    "header": {
+     "type": "esearch",
+     "version": "0.3"
+    }
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:21:57.910441+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=students%5Bti%5D+AND+misunderstandings%5Bti%5D+AND+misconceptions%5Bti%5D+AND+college%5Bti%5D+AND+freshman%5Bti%5D+AND+chemistry%5Bti%5D+AND+general%5Bti%5D+AND+organic%5Bti%5D+AND+zoller%5Bau%5D&retmode=json&retmax=10&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1002%2Ftea.3660271011x",
+   {},
+   false
+  ],
+  "response": {
+   "body": null,
+   "http_status": 404,
+   "retrieved_at": "2026-10-02T19:21:59.007282+00:00",
+   "url": "https://api.crossref.org/works/10.1002%2Ftea.3660271011x"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "id": "13896567",
+    "retmode": "xml",
+    "tool": "bibcheck"
+   },
+   true
+  ],
+  "response": {
+   "body": "<?xml version=\"1.0\" ?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD PubMedArticle, 1st January 2025//EN\" \"https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle><MedlineCitation Status=\"MEDLINE\" Owner=\"NLM\" IndexingMethod=\"Automated\"><PMID Version=\"1\">13896567</PMID><DateCompleted><Year>1998</Year><Month>11</Month><Day>01</Day></DateCompleted><DateRevised><Year>2019</Year><Month>08</Month><Day>23</Day></DateRevised><Article PubModel=\"Print\"><Journal><ISSN IssnType=\"Print\">0022-1015</ISSN><JournalIssue CitedMedium=\"Print\"><Volume>63</Volume><PubDate><Year>1962</Year><Month>Jan</Month></PubDate></JournalIssue><Title>Journal of experimental psychology</Title><ISOAbbreviation>J Exp Psychol</ISOAbbreviation></Journal><ArticleTitle>A factorial analysis of verbal learning tasks.</ArticleTitle><Pagination><StartPage>1</StartPage><EndPage>11</EndPage><MedlinePgn>1-11</MedlinePgn></Pagination><AuthorList CompleteYN=\"Y\"><Author ValidYN=\"Y\"><LastName>GAMES</LastName><ForeName>P A</ForeName><Initials>PA</Initials></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI=\"D016428\">Journal Article</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>J Exp Psychol</MedlineTA><NlmUniqueID>7502586</NlmUniqueID><ISSNLinking>0022-1015</ISSNLinking></MedlineJournalInfo><CitationSubset>OM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI=\"D006801\" MajorTopicYN=\"N\">Humans</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D007858\" MajorTopicYN=\"Y\">Learning</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D014706\" MajorTopicYN=\"Y\">Verbal Learning</DescriptorName></MeshHeading></MeshHeadingList><KeywordList Owner=\"NLM\"><Keyword MajorTopicYN=\"Y\">LEARNING</Keyword></KeywordList></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus=\"pubmed\"><Year>1962</Year><Month>1</Month><Day>1</Day></PubMedPubDate><PubMedPubDate PubStatus=\"medline\"><Year>1962</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>1</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"entrez\"><Year>1962</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType=\"pubmed\">13896567</ArticleId><ArticleId IdType=\"doi\">10.1037/h0041332</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>",
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:28.513373+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13896567&retmode=xml&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1037%2Fh0041332",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1037/h0041332",
+     "ISSN": [
+      "0022-1015"
+     ],
+     "URL": "https://doi.org/10.1037/h0041332",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Games",
+       "given": "Paul A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Journal of Experimental Psychology"
+     ],
+     "issue": "1",
+     "issued": {
+      "date-parts": [
+       [
+        1962,
+        1
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://psycnet.apa.org/journals/xge/63/1/1.pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1-11",
+     "published": {
+      "date-parts": [
+       [
+        1962,
+        1
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        1962,
+        1
+       ]
+      ]
+     },
+     "publisher": "American Psychological Association (APA)",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "A factorial analysis of verbal learning tasks."
+     ],
+     "type": "journal-article",
+     "volume": "63"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:29.709556+00:00",
+   "url": "https://api.crossref.org/works/10.1037%2Fh0041332"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1037/h0041332\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1037/h0041332\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "firstName": "P A",
+          "fullName": "GAMES PA",
+          "initials": "PA",
+          "lastName": "GAMES"
+         }
+        ]
+       },
+       "doi": "10.1037/h0041332",
+       "firstPublicationDate": "1962-01-01",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1037/h0041332"
+         }
+        ]
+       },
+       "id": "13896567",
+       "isOpenAccess": "N",
+       "journalInfo": {
+        "dateOfPublication": "1962 Jan",
+        "journal": {
+         "isoabbreviation": "J Exp Psychol",
+         "issn": "0022-1015",
+         "medlineAbbreviation": "J Exp Psychol",
+         "nlmid": "7502586",
+         "title": "Journal of experimental psychology"
+        },
+        "journalIssueId": 291087,
+        "monthOfPublication": 1,
+        "printPublicationDate": "1962-01-01",
+        "volume": "63",
+        "yearOfPublication": 1962
+       },
+       "pageInfo": "1-11",
+       "pubTypeList": {
+        "pubType": [
+         "Journal Article"
+        ]
+       },
+       "pubYear": "1962",
+       "source": "MED",
+       "title": "A factorial analysis of verbal learning tasks."
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:31.462327+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2Fh0041332%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "strength training and aerobic exercise: comparison and contrast Knuttgen  ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1519/00124278-200708000-00053",
+       "ISSN": [
+        "1064-8011"
+       ],
+       "URL": "https://doi.org/10.1519/00124278-200708000-00053",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "KNUTTGEN",
+         "given": "HOWARD G.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Journal of Strength and Conditioning Research"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          2007,
+          8
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.ovid.com/00124278-200708000-00053",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "973-978",
+       "published": {
+        "date-parts": [
+         [
+          2007,
+          8
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2007,
+          8
+         ]
+        ]
+       },
+       "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+       "subtitle": [
+        "COMPARISON AND CONTRAST"
+       ],
+       "title": [
+        "STRENGTH TRAINING AND AEROBIC EXERCISE"
+       ],
+       "type": "journal-article",
+       "volume": "21"
+      },
+      {
+       "DOI": "10.1519/r-505011.1",
+       "ISSN": [
+        "1064-8011",
+        "1533-4287"
+       ],
+       "URL": "https://doi.org/10.1519/r-505011.1",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Knuttgen",
+         "given": "Howard G.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "The Journal of Strength and Conditioning Research"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          2007
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://journals.lww.com/00124278-200708000-00053",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "973",
+       "published": {
+        "date-parts": [
+         [
+          2007
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2007
+         ]
+        ]
+       },
+       "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+       "title": [
+        "Strength Training and Aerobic Exercise: Comparison and Contrast"
+       ],
+       "type": "journal-article",
+       "volume": "21"
+      },
+      {
+       "DOI": "10.1249/00005768-198704001-00264",
+       "ISSN": [
+        "0195-9131"
+       ],
+       "URL": "https://doi.org/10.1249/00005768-198704001-00264",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Frontera",
+         "given": "W. R.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Meredith",
+         "given": "C. N.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "O??Reilly",
+         "given": "K.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Knuttgen",
+         "given": "H.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Evans",
+         "given": "W. J.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Medicine &amp; Science in Sports &amp; Exercise"
+       ],
+       "issue": "Supplement",
+       "issued": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.ovid.com/00005768-198704001-00264",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "S44",
+       "published": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+       "subtitle": [
+        ""
+       ],
+       "title": [
+        "STRENGTH TRAINING IN OLDER MEN"
+       ],
+       "type": "journal-article",
+       "volume": "19"
+      },
+      {
+       "DOI": "10.1002/14651858.cd003907",
+       "URL": "https://doi.org/10.1002/14651858.cd003907",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "van der Kooi",
+         "given": "EL",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Lindeman",
+         "given": "E",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Riphagen",
+         "given": "I",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Cochrane Database of Systematic Reviews"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2002,
+          10,
+          21
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003907/epdf/full",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          2002,
+          10,
+          21
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2002,
+          10,
+          21
+         ]
+        ]
+       },
+       "publisher": "John Wiley & Sons, Ltd",
+       "title": [
+        "Strength training and aerobic exercise training for muscle disease"
+       ],
+       "type": "reference-entry"
+      },
+      {
+       "DOI": "10.1002/9780470757215.ch1",
+       "ISBN": [
+        "9780632059119",
+        "9780470757215"
+       ],
+       "URL": "https://doi.org/10.1002/9780470757215.ch1",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Knuttgen",
+         "given": "Howard G.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Komi",
+         "given": "Paavo V.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Strength and Power in Sport"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2003,
+          1
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/9780470757215.ch1",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "3-7",
+       "published": {
+        "date-parts": [
+         [
+          2003,
+          1
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2008,
+          1,
+          21
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2003,
+          1
+         ]
+        ]
+       },
+       "publisher": "Wiley",
+       "title": [
+        "Basic Considerations for Exercise"
+       ],
+       "type": "other"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 2666938
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:45.729316+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=strength+training+and+aerobic+exercise%3A+comparison+and+contrast+Knuttgen++&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "retmax": 10,
+    "retmode": "json",
+    "term": "strength[ti] AND training[ti] AND aerobic[ti] AND exercise[ti] AND comparison[ti] AND contrast[ti] AND knuttgen[au]",
+    "tool": "bibcheck"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "esearchresult": {
+     "count": "1",
+     "idlist": [
+      "17685726"
+     ],
+     "querytranslation": "\"strength\"[Title] AND \"training\"[Title] AND \"aerobic\"[Title] AND \"exercise\"[Title] AND \"comparison\"[Title] AND \"contrast\"[Title] AND knuttgen[Author]",
+     "retmax": "1",
+     "retstart": "0",
+     "translationset": []
+    },
+    "header": {
+     "type": "esearch",
+     "version": "0.3"
+    }
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:47.030491+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=strength%5Bti%5D+AND+training%5Bti%5D+AND+aerobic%5Bti%5D+AND+exercise%5Bti%5D+AND+comparison%5Bti%5D+AND+contrast%5Bti%5D+AND+knuttgen%5Bau%5D&retmode=json&retmax=10&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "id": "17685726",
+    "retmode": "xml",
+    "tool": "bibcheck"
+   },
+   true
+  ],
+  "response": {
+   "body": "<?xml version=\"1.0\" ?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD PubMedArticle, 1st January 2025//EN\" \"https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle><MedlineCitation Status=\"MEDLINE\" Owner=\"NLM\" IndexingMethod=\"Manual\"><PMID Version=\"1\">17685726</PMID><DateCompleted><Year>2007</Year><Month>11</Month><Day>08</Day></DateCompleted><DateRevised><Year>2016</Year><Month>10</Month><Day>18</Day></DateRevised><Article PubModel=\"Print\"><Journal><ISSN IssnType=\"Print\">1064-8011</ISSN><JournalIssue CitedMedium=\"Print\"><Volume>21</Volume><Issue>3</Issue><PubDate><Year>2007</Year><Month>Aug</Month></PubDate></JournalIssue><Title>Journal of strength and conditioning research</Title><ISOAbbreviation>J Strength Cond Res</ISOAbbreviation></Journal><ArticleTitle>Strength training and aerobic exercise: comparison and contrast.</ArticleTitle><Pagination><StartPage>973</StartPage><EndPage>978</EndPage><MedlinePgn>973-8</MedlinePgn></Pagination><Abstract><AbstractText>Most exercise programs for conditioning and rehabilitation are oriented to strength development, aerobic (cardiovascular) fitness, or a combination of the 2. Because the 2 types of exercise are located at the opposite extremes of a muscular power continuum, the design of a program must be highly specific with regard to the exercise to be undertaken, as well as the intensity, duration, and frequency, in order to attain optimal results. Strength exercise programs involve weight training or the use of high-resistance machines with exercise that is limited to a few repetitions (generally less than 20) before exhaustion. Aerobic exercise involves exercise performed for extended periods (e.g., 10-40 minutes) with large muscle activity involving hundreds of consecutive repetitions that challenge the delivery of oxygen to the active muscles. The chronic physiological adaptations and the variables in program design are highly specific to the type of exercise performed.</AbstractText></Abstract><AuthorList CompleteYN=\"Y\"><Author ValidYN=\"Y\"><LastName>Knuttgen</LastName><ForeName>Howard G</ForeName><Initials>HG</Initials><AffiliationInfo><Affiliation>Department of Physical Medicine &amp; Rehabilitation, Harvard Medical School, Spaulding Rehabilitation Hospital, Boston, Massachusetts 02114, USA. [address removed]</Affiliation></AffiliationInfo></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI=\"D016428\">Journal Article</PublicationType><PublicationType UI=\"D016454\">Review</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>J Strength Cond Res</MedlineTA><NlmUniqueID>9415084</NlmUniqueID><ISSNLinking>1064-8011</ISSNLinking></MedlineJournalInfo><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI=\"D000222\" MajorTopicYN=\"N\">Adaptation, Physiological</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D004734\" MajorTopicYN=\"N\">Energy Metabolism</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D015444\" MajorTopicYN=\"N\">Exercise</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D006801\" MajorTopicYN=\"N\">Humans</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D053580\" MajorTopicYN=\"N\">Muscle Strength</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D018482\" MajorTopicYN=\"N\">Muscle, Skeletal</DescriptorName><QualifierName UI=\"Q000098\" MajorTopicYN=\"N\">blood supply</QualifierName><QualifierName UI=\"Q000378\" MajorTopicYN=\"N\">metabolism</QualifierName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D010806\" MajorTopicYN=\"N\">Physical Education and Training</DescriptorName><QualifierName UI=\"Q000379\" MajorTopicYN=\"Y\">methods</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D010807\" MajorTopicYN=\"N\">Physical Endurance</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"N\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D010809\" MajorTopicYN=\"N\">Physical Fitness</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D013997\" MajorTopicYN=\"N\">Time Factors</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D014891\" MajorTopicYN=\"N\">Weight Lifting</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"N\">physiology</QualifierName></MeshHeading></MeshHeadingList><NumberOfReferences>6</NumberOfReferences></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus=\"pubmed\"><Year>2007</Year><Month>8</Month><Day>10</Day><Hour>9</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"medline\"><Year>2007</Year><Month>11</Month><Day>9</Day><Hour>9</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"entrez\"><Year>2007</Year><Month>8</Month><Day>10</Day><Hour>9</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType=\"pubmed\">17685726</ArticleId><ArticleId IdType=\"doi\">10.1519/R-505011.1</ArticleId><ArticleId IdType=\"pii\">R-505011</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>",
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:48.243937+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17685726&retmode=xml&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "backward learning in paired associates B B Murdock 1956 ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1037/h0044314",
+       "ISSN": [
+        "0022-1015"
+       ],
+       "URL": "https://doi.org/10.1037/h0044314",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Murdock",
+         "given": "Bennet B.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Journal of Experimental Psychology"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          1956
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://psycnet.apa.org/journals/xge/51/3/213.pdf",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "213-215",
+       "published": {
+        "date-parts": [
+         [
+          1956
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          1956
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "\"Backward\" learning in paired associates."
+       ],
+       "type": "journal-article",
+       "volume": "51"
+      },
+      {
+       "DOI": "10.1037/h0023113",
+       "ISSN": [
+        "0022-1015"
+       ],
+       "URL": "https://doi.org/10.1037/h0023113",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Murdock",
+         "given": "Bennet B.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Journal of Experimental Psychology"
+       ],
+       "issue": "5",
+       "issued": {
+        "date-parts": [
+         [
+          1966
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://psycnet.apa.org/journals/xge/71/5/732.pdf",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "732-737",
+       "published": {
+        "date-parts": [
+         [
+          1966
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          1966
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Forward and backward associations in paired associates."
+       ],
+       "type": "journal-article",
+       "volume": "71"
+      },
+      {
+       "DOI": "10.1016/b978-1-4832-2930-0.50007-5",
+       "ISBN": [
+        "9781483229300"
+       ],
+       "URL": "https://doi.org/10.1016/b978-1-4832-2930-0.50007-5",
+       "container-title": [
+        "Paired-Associates Learning"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:B9781483229300500075?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:B9781483229300500075?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "page": "65-110",
+       "published": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "publisher": "Elsevier",
+       "title": [
+        "Meaningfulness in Paired-Associates Learning"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.1016/s0022-5371(68)80117-3",
+       "ISSN": [
+        "0022-5371"
+       ],
+       "URL": "https://doi.org/10.1016/s0022-5371(68)80117-3",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Bruce",
+         "given": "Darryl",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Murdock",
+         "given": "Bennet B.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional",
+         "suffix": "Jr."
+        }
+       ],
+       "container-title": [
+        "Journal of Verbal Learning and Verbal Behavior"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          1968,
+          6
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:S0022537168801173?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:S0022537168801173?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "page": "627-631",
+       "published": {
+        "date-parts": [
+         [
+          1968,
+          6
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1968,
+          6
+         ]
+        ]
+       },
+       "publisher": "Elsevier BV",
+       "title": [
+        "Acoustic similarity effects on memory for paired associates"
+       ],
+       "type": "journal-article",
+       "volume": "7"
+      },
+      {
+       "DOI": "10.1016/c2013-0-12177-0",
+       "ISBN": [
+        "9781483229300"
+       ],
+       "URL": "https://doi.org/10.1016/c2013-0-12177-0",
+       "issued": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:C20130121770?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:C20130121770?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1965
+         ]
+        ]
+       },
+       "publisher": "Elsevier",
+       "title": [
+        "Paired-Associates Learning"
+       ],
+       "type": "edited-book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 3042413
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:49.513807+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=backward+learning+in+paired+associates+B+B+Murdock+1956+&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "retmax": 10,
+    "retmode": "json",
+    "term": "backward[ti] AND learning[ti] AND paired[ti] AND associates[ti] AND murdock[au]",
+    "tool": "bibcheck"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "esearchresult": {
+     "count": "1",
+     "idlist": [
+      "13306866"
+     ],
+     "querytranslation": "\"backward\"[Title] AND \"learning\"[Title] AND \"paired\"[Title] AND \"associates\"[Title] AND murdock[Author]",
+     "retmax": "1",
+     "retstart": "0",
+     "translationset": []
+    },
+    "header": {
+     "type": "esearch",
+     "version": "0.3"
+    }
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:50.702148+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=backward%5Bti%5D+AND+learning%5Bti%5D+AND+paired%5Bti%5D+AND+associates%5Bti%5D+AND+murdock%5Bau%5D&retmode=json&retmax=10&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "id": "13306866",
+    "retmode": "xml",
+    "tool": "bibcheck"
+   },
+   true
+  ],
+  "response": {
+   "body": "<?xml version=\"1.0\" ?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD PubMedArticle, 1st January 2025//EN\" \"https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle><MedlineCitation Status=\"MEDLINE\" Owner=\"NLM\" IndexingMethod=\"Automated\"><PMID Version=\"1\">13306866</PMID><DateCompleted><Year>2003</Year><Month>05</Month><Day>01</Day></DateCompleted><DateRevised><Year>2019</Year><Month>08</Month><Day>23</Day></DateRevised><Article PubModel=\"Print\"><Journal><ISSN IssnType=\"Print\">0022-1015</ISSN><JournalIssue CitedMedium=\"Print\"><Volume>51</Volume><Issue>3</Issue><PubDate><Year>1956</Year><Month>Mar</Month></PubDate></JournalIssue><Title>Journal of experimental psychology</Title><ISOAbbreviation>J Exp Psychol</ISOAbbreviation></Journal><ArticleTitle>Backward learning in paired associates.</ArticleTitle><Pagination><StartPage>213</StartPage><EndPage>215</EndPage><MedlinePgn>213-5</MedlinePgn></Pagination><AuthorList CompleteYN=\"Y\"><Author ValidYN=\"Y\"><LastName>MURDOCK</LastName><ForeName>B B</ForeName><Initials>BB</Initials><Suffix>Jr</Suffix></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI=\"D016428\">Journal Article</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>J Exp Psychol</MedlineTA><NlmUniqueID>7502586</NlmUniqueID><ISSNLinking>0022-1015</ISSNLinking></MedlineJournalInfo><CitationSubset>OM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI=\"D007858\" MajorTopicYN=\"Y\">Learning</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D012108\" MajorTopicYN=\"Y\">Research Personnel</DescriptorName></MeshHeading></MeshHeadingList><OtherID Source=\"CLML\">5630:15076</OtherID><KeywordList Owner=\"NLM\"><Keyword MajorTopicYN=\"Y\">LEARNING</Keyword></KeywordList></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus=\"pubmed\"><Year>1956</Year><Month>3</Month><Day>1</Day></PubMedPubDate><PubMedPubDate PubStatus=\"medline\"><Year>1956</Year><Month>3</Month><Day>1</Day><Hour>0</Hour><Minute>1</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"entrez\"><Year>1956</Year><Month>3</Month><Day>1</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType=\"pubmed\">13306866</ArticleId><ArticleId IdType=\"doi\">10.1037/h0044314</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>",
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:22:51.912897+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=13306866&retmode=xml&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "acquisition, storage, and retrieval in digital and biological brains J R Manning 2011 ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1016/b978-0-7295-3874-9.50015-8",
+       "ISBN": [
+        "9780729538749"
+       ],
+       "URL": "https://doi.org/10.1016/b978-0-7295-3874-9.50015-8",
+       "container-title": [
+        "Biochemistry for Health Professionals"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2011
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:B9780729538749500158?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:B9780729538749500158?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "page": "101-109",
+       "published": {
+        "date-parts": [
+         [
+          2011
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2011
+         ]
+        ]
+       },
+       "publisher": "Elsevier",
+       "title": [
+        "Nucleic acids: biological molecules for information storage, retrieval and usage"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.1016/s1525-2167(99)80061-4",
+       "ISSN": [
+        "1525-2167"
+       ],
+       "URL": "https://doi.org/10.1016/s1525-2167(99)80061-4",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "BARBIER",
+         "given": "P",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "European Journal of Echocardiography"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "page": "S18-S18",
+       "published": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "publisher": "Oxford University Press (OUP)",
+       "title": [
+        "252 The truly digital echocardiography laboratory: An ultrasound equipment-independent digital image acquisition, storage, and retrieval system"
+       ],
+       "type": "journal-article",
+       "volume": "1"
+      },
+      {
+       "DOI": "10.1016/s1525-2167(99)80153-x",
+       "ISSN": [
+        "1525-2167"
+       ],
+       "URL": "https://doi.org/10.1016/s1525-2167(99)80153-x",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "BARBIER",
+         "given": "P",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "European Journal of Echocardiography"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "page": "S44-S44",
+       "published": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1999,
+          12
+         ]
+        ]
+       },
+       "publisher": "Oxford University Press (OUP)",
+       "title": [
+        "252 The truly digital echocardiography laboratory: An ultrasound equipment-independent digital image acquisition, storage, and retrieval system"
+       ],
+       "type": "journal-article",
+       "volume": "1"
+      },
+      {
+       "DOI": "10.21236/ada172063",
+       "URL": "https://doi.org/10.21236/ada172063",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Huber",
+         "given": "George P.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1986,
+          8,
+          1
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          1986,
+          8,
+          1
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1986,
+          8,
+          1
+         ]
+        ]
+       },
+       "publisher": "Defense Technical Information Center",
+       "subtitle": [
+        ""
+       ],
+       "title": [
+        "A Study of Organizational Information Search, Acquisition, Storage and Retrieval"
+       ],
+       "type": "report"
+      },
+      {
+       "DOI": "10.5772/7042",
+       "ISBN": [
+        "9789533070261"
+       ],
+       "URL": "https://doi.org/10.5772/7042",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Ding",
+         "given": "Hui",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Pan",
+         "given": "Wei",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Gu",
+         "given": "Yong",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Image Processing"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2009,
+          12,
+          1
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.intechopen.com/download/pdf/6667",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          2009,
+          12,
+          1
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2009,
+          12,
+          1
+         ]
+        ]
+       },
+       "publisher": "InTech",
+       "title": [
+        "Image Acquisition, Storage and Retrieval"
+       ],
+       "type": "book-chapter"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 7474894
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:23:30.747032+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=acquisition%2C+storage%2C+and+retrieval+in+digital+and+biological+brains+J+R+Manning+2011+&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "retmax": 10,
+    "retmode": "json",
+    "term": "acquisition[ti] AND storage[ti] AND retrieval[ti] AND digital[ti] AND biological[ti] AND brains[ti] AND manning[au]",
+    "tool": "bibcheck"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "esearchresult": {
+     "count": "0",
+     "idlist": [],
+     "querytranslation": "\"acquisition\"[Title] AND \"storage\"[Title] AND \"retrieval\"[Title] AND \"digital\"[Title] AND \"biological\"[Title] AND \"brains\"[Title] AND manning[Author]",
+     "retmax": "0",
+     "retstart": "0",
+     "translationset": [],
+     "warninglist": {
+      "outputmessages": [
+       "No items found."
+      ],
+      "phrasesignored": [],
+      "quotedphrasesnotfound": []
+     }
+    },
+    "header": {
+     "type": "esearch",
+     "version": "0.3"
+    }
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:23:32.043425+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=acquisition%5Bti%5D+AND+storage%5Bti%5D+AND+retrieval%5Bti%5D+AND+digital%5Bti%5D+AND+biological%5Bti%5D+AND+brains%5Bti%5D+AND+manning%5Bau%5D&retmode=json&retmax=10&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1101%2F2020.01.27.922062",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1101/2020.01.27.922062",
+     "URL": "https://doi.org/10.1101/2020.01.27.922062",
+     "author": [
+      {
+       "ORCID": "https://orcid.org/0000-0001-6143-3633",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Chen",
+       "given": "Hung-Tu",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0001-7613-4732",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Manning",
+       "given": "Jeremy R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-2206-4473",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "van der Meer",
+       "given": "Matthijs A. A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [],
+     "issued": {
+      "date-parts": [
+       [
+        2020,
+        1,
+        28
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://syndication.highwire.org/content/doi/10.1101/2020.01.27.922062",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "published": {
+      "date-parts": [
+       [
+        2020,
+        1,
+        28
+       ]
+      ]
+     },
+     "publisher": "openRxiv",
+     "relation": {},
+     "subtitle": [],
+     "subtype": "preprint",
+     "title": [
+      "Between-subject prediction reveals a shared representational geometry in the rodent hippocampus"
+     ],
+     "type": "posted-content"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:23:33.141712+00:00",
+   "url": "https://api.crossref.org/works/10.1101%2F2020.01.27.922062"
+  }
+ },
+ {
+  "request": "arxiv-source-v1:https://export.arxiv.org/api/query?id_list=2006.10256",
+  "response": {
+   "body": "<?xml version='1.0' encoding='UTF-8'?>\n<feed xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:arxiv=\"http://arxiv.org/schemas/atom\" xmlns=\"http://www.w3.org/2005/Atom\">\n  <id>https://arxiv.org/api/cEaycevz5o/JDsjFIt0tdsFSJCE</id>\n  <title>arXiv Query: search_query=&amp;id_list=2006.10256&amp;start=0&amp;max_results=10</title>\n  <updated>2026-10-02T19:23:34Z</updated>\n  <link href=\"https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2006.10256\" type=\"application/atom+xml\"/>\n  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>\n  <opensearch:totalResults>1</opensearch:totalResults>\n  <opensearch:startIndex>0</opensearch:startIndex>\n  <entry>\n    <id>http://arxiv.org/abs/2006.10256v1</id>\n    <title>Array Programming with NumPy</title>\n    <updated>2020-06-18T03:39:27Z</updated>\n    <link href=\"https://arxiv.org/abs/2006.10256v1\" rel=\"alternate\" type=\"text/html\"/>\n    <link href=\"https://arxiv.org/pdf/2006.10256v1\" rel=\"related\" type=\"application/pdf\" title=\"pdf\"/>\n    <summary>Array programming provides a powerful, compact, expressive syntax for accessing, manipulating, and operating on data in vectors, matrices, and higher-dimensional arrays. NumPy is the primary array programming library for the Python language. It plays an essential role in research analysis pipelines in fields as diverse as physics, chemistry, astronomy, geoscience, biology, psychology, material science, engineering, finance, and economics. For example, in astronomy, NumPy was an important part of the software stack used in the discovery of gravitational waves and the first imaging of a black hole. Here we show how a few fundamental array concepts lead to a simple and powerful programming paradigm for organizing, exploring, and analyzing scientific data. NumPy is the foundation upon which the entire scientific Python universe is constructed. It is so pervasive that several projects, targeting audiences with specialized needs, have developed their own NumPy-like interfaces and array objects. Because of its central position in the ecosystem, NumPy increasingly plays the role of an interoperability layer between these new array computation libraries.</summary>\n    <category term=\"cs.MS\" scheme=\"http://arxiv.org/schemas/atom\"/>\n    <category term=\"stat.CO\" scheme=\"http://arxiv.org/schemas/atom\"/>\n    <published>2020-06-18T03:39:27Z</published>\n    <arxiv:primary_category term=\"cs.MS\"/>\n    <arxiv:journal_ref>Nature 585, 357 (2020)</arxiv:journal_ref>\n    <author>\n      <name>Charles R. Harris</name>\n    </author>\n    <author>\n      <name>K. Jarrod Millman</name>\n    </author>\n    <author>\n      <name>Stéfan J. van der Walt</name>\n    </author>\n    <author>\n      <name>Ralf Gommers</name>\n    </author>\n    <author>\n      <name>Pauli Virtanen</name>\n    </author>\n    <author>\n      <name>David Cournapeau</name>\n    </author>\n    <author>\n      <name>Eric Wieser</name>\n    </author>\n    <author>\n      <name>Julian Taylor</name>\n    </author>\n    <author>\n      <name>Sebastian Berg</name>\n    </author>\n    <author>\n      <name>Nathaniel J. Smith</name>\n    </author>\n    <author>\n      <name>Robert Kern</name>\n    </author>\n    <author>\n      <name>Matti Picus</name>\n    </author>\n    <author>\n      <name>Stephan Hoyer</name>\n    </author>\n    <author>\n      <name>Marten H. van Kerkwijk</name>\n    </author>\n    <author>\n      <name>Matthew Brett</name>\n    </author>\n    <author>\n      <name>Allan Haldane</name>\n    </author>\n    <author>\n      <name>Jaime Fernández del Río</name>\n    </author>\n    <author>\n      <name>Mark Wiebe</name>\n    </author>\n    <author>\n      <name>Pearu Peterson</name>\n    </author>\n    <author>\n      <name>Pierre Gérard-Marchant</name>\n    </author>\n    <author>\n      <name>Kevin Sheppard</name>\n    </author>\n    <author>\n      <name>Tyler Reddy</name>\n    </author>\n    <author>\n      <name>Warren Weckesser</name>\n    </author>\n    <author>\n      <name>Hameer Abbasi</name>\n    </author>\n    <author>\n      <name>Christoph Gohlke</name>\n    </author>\n    <author>\n      <name>Travis E. Oliphant</name>\n    </author>\n    <arxiv:doi>10.1038/s41586-020-2649-2</arxiv:doi>\n    <link rel=\"related\" href=\"https://doi.org/10.1038/s41586-020-2649-2\" title=\"doi\"/>\n  </entry>\n</feed>\n",
+   "document_sha256": "7339a8122478234f25d0c28010e87cb5c371d8c9ce59a5982846d69f77cf0a97",
+   "retrieved_at": "2026-10-02T19:23:34.637756+00:00",
+   "url": "https://export.arxiv.org/api/query?id_list=2006.10256"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1038%2Fs41586-020-2649-2",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1038/s41586-020-2649-2",
+     "ISSN": [
+      "0028-0836",
+      "1476-4687"
+     ],
+     "URL": "https://doi.org/10.1038/s41586-020-2649-2",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Harris",
+       "given": "Charles R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-5263-5070",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Millman",
+       "given": "K. Jarrod",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0001-9276-1891",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "van der Walt",
+       "given": "Stéfan J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-0300-3333",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Gommers",
+       "given": "Ralf",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Virtanen",
+       "given": "Pauli",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Cournapeau",
+       "given": "David",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Wieser",
+       "given": "Eric",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Taylor",
+       "given": "Julian",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Berg",
+       "given": "Sebastian",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Smith",
+       "given": "Nathaniel J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Kern",
+       "given": "Robert",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-1771-9949",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Picus",
+       "given": "Matti",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-5207-0380",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Hoyer",
+       "given": "Stephan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "van Kerkwijk",
+       "given": "Marten H.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Brett",
+       "given": "Matthew",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Haldane",
+       "given": "Allan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "del Río",
+       "given": "Jaime Fernández",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0003-3603-8038",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Wiebe",
+       "given": "Mark",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0001-7328-4305",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Peterson",
+       "given": "Pearu",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Gérard-Marchant",
+       "given": "Pierre",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0001-8700-2292",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Sheppard",
+       "given": "Kevin",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Reddy",
+       "given": "Tyler",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Weckesser",
+       "given": "Warren",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Abbasi",
+       "given": "Hameer",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0001-8108-7707",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Gohlke",
+       "given": "Christoph",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Oliphant",
+       "given": "Travis E.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Nature"
+     ],
+     "issue": "7825",
+     "issued": {
+      "date-parts": [
+       [
+        2020,
+        9,
+        16
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://www.nature.com/articles/s41586-020-2649-2.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41586-020-2649-2",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.nature.com/articles/s41586-020-2649-2.pdf",
+       "content-type": "application/pdf",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "357-362",
+     "published": {
+      "date-parts": [
+       [
+        2020,
+        9,
+        16
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2020,
+        9,
+        16
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2020,
+        9,
+        17
+       ]
+      ]
+     },
+     "publisher": "Springer Science and Business Media LLC",
+     "relation": {
+      "has-part": [
+       {
+        "asserted-by": "object",
+        "id": "10.5194/os-17-997-2021",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/acp-21-18557-2021",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/bg-18-6329-2021",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/amt-17-4891-2024",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/se-14-859-2023",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/amt-18-2481-2025",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.5194/jsss-12-163-2023",
+        "id-type": "doi"
+       }
+      ],
+      "has-review": [
+       {
+        "asserted-by": "object",
+        "id": "10.14293/S2199-1006.1.SOR-UNCAT.A7759461.v1.RAUGFI",
+        "id-type": "doi"
+       },
+       {
+        "asserted-by": "object",
+        "id": "10.3410/f.738677898.793581450",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "subtitle": [],
+     "title": [
+      "Array programming with NumPy"
+     ],
+     "type": "journal-article",
+     "volume": "585"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:23:37.812946+00:00",
+   "url": "https://api.crossref.org/works/10.1038%2Fs41586-020-2649-2"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1038/s41586-020-2649-2\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1038/s41586-020-2649-2\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Independent researcher, Logan, UT, USA."
+            }
+           ]
+          },
+          "firstName": "Charles R",
+          "fullName": "Harris CR",
+          "initials": "CR",
+          "lastName": "Harris"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Brain Imaging Center, University of California, Berkeley, Berkeley, CA, USA. [address removed]."
+            },
+            {
+             "affiliation": "Division of Biostatistics, University of California, Berkeley, Berkeley, CA, USA. [address removed]."
+            },
+            {
+             "affiliation": "Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA. [address removed]."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-5263-5070"
+          },
+          "firstName": "K Jarrod",
+          "fullName": "Millman KJ",
+          "initials": "KJ",
+          "lastName": "Millman"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Brain Imaging Center, University of California, Berkeley, Berkeley, CA, USA. [address removed]."
+            },
+            {
+             "affiliation": "Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA. [address removed]."
+            },
+            {
+             "affiliation": "Applied Mathematics, Stellenbosch University, Stellenbosch, South Africa. [address removed]."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-9276-1891"
+          },
+          "firstName": "Stéfan J",
+          "fullName": "van der Walt SJ",
+          "initials": "SJ",
+          "lastName": "van der Walt"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Quansight, Austin, TX, USA. [address removed]."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-0300-3333"
+          },
+          "firstName": "Ralf",
+          "fullName": "Gommers R",
+          "initials": "R",
+          "lastName": "Gommers"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Physics, University of Jyväskylä, Jyväskylä, Finland."
+            },
+            {
+             "affiliation": "Nanoscience Center, University of Jyväskylä, Jyväskylä, Finland."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-9957-1257"
+          },
+          "firstName": "Pauli",
+          "fullName": "Virtanen P",
+          "initials": "P",
+          "lastName": "Virtanen"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Mercari JP, Tokyo, Japan."
+            }
+           ]
+          },
+          "firstName": "David",
+          "fullName": "Cournapeau D",
+          "initials": "D",
+          "lastName": "Cournapeau"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Engineering, University of Cambridge, Cambridge, UK."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0003-0412-4978"
+          },
+          "firstName": "Eric",
+          "fullName": "Wieser E",
+          "initials": "E",
+          "lastName": "Wieser"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Independent researcher, Karlsruhe, Germany."
+            }
+           ]
+          },
+          "firstName": "Julian",
+          "fullName": "Taylor J",
+          "initials": "J",
+          "lastName": "Taylor"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA."
+            }
+           ]
+          },
+          "firstName": "Sebastian",
+          "fullName": "Berg S",
+          "initials": "S",
+          "lastName": "Berg"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Independent researcher, Berkeley, CA, USA."
+            }
+           ]
+          },
+          "firstName": "Nathaniel J",
+          "fullName": "Smith NJ",
+          "initials": "NJ",
+          "lastName": "Smith"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Enthought, Austin, TX, USA."
+            }
+           ]
+          },
+          "firstName": "Robert",
+          "fullName": "Kern R",
+          "initials": "R",
+          "lastName": "Kern"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-1771-9949"
+          },
+          "firstName": "Matti",
+          "fullName": "Picus M",
+          "initials": "M",
+          "lastName": "Picus"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Google Research, Mountain View, CA, USA."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-5207-0380"
+          },
+          "firstName": "Stephan",
+          "fullName": "Hoyer S",
+          "initials": "S",
+          "lastName": "Hoyer"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Astronomy and Astrophysics, University of Toronto, Toronto, Ontario, Canada."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-5830-8505"
+          },
+          "firstName": "Marten H",
+          "fullName": "van Kerkwijk MH",
+          "initials": "MH",
+          "lastName": "van Kerkwijk"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Brain Imaging Center, University of California, Berkeley, Berkeley, CA, USA."
+            },
+            {
+             "affiliation": "School of Psychology, University of Birmingham, Edgbaston, Birmingham, UK."
+            }
+           ]
+          },
+          "firstName": "Matthew",
+          "fullName": "Brett M",
+          "initials": "M",
+          "lastName": "Brett"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Physics, Temple University, Philadelphia, PA, USA."
+            }
+           ]
+          },
+          "firstName": "Allan",
+          "fullName": "Haldane A",
+          "initials": "A",
+          "lastName": "Haldane"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Google, Zurich, Switzerland."
+            }
+           ]
+          },
+          "firstName": "Jaime Fernández",
+          "fullName": "Del Río JF",
+          "initials": "JF",
+          "lastName": "Del Río"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Physics and Astronomy, The University of British Columbia, Vancouver, British Columbia, Canada."
+            },
+            {
+             "affiliation": "Amazon, Seattle, WA, USA."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0003-3603-8038"
+          },
+          "firstName": "Mark",
+          "fullName": "Wiebe M",
+          "initials": "M",
+          "lastName": "Wiebe"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Quansight, Austin, TX, USA."
+            },
+            {
+             "affiliation": "Independent researcher, Saue, Estonia."
+            },
+            {
+             "affiliation": "Department of Mechanics and Applied Mathematics, Institute of Cybernetics at Tallinn Technical University, Tallinn, Estonia."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-7328-4305"
+          },
+          "firstName": "Pearu",
+          "fullName": "Peterson P",
+          "initials": "P",
+          "lastName": "Peterson"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Biological and Agricultural Engineering, University of Georgia, Athens, GA, USA."
+            },
+            {
+             "affiliation": "France-IX Services, Paris, France."
+            }
+           ]
+          },
+          "firstName": "Pierre",
+          "fullName": "Gérard-Marchant P",
+          "initials": "P",
+          "lastName": "Gérard-Marchant"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Economics, University of Oxford, Oxford, UK."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-8700-2292"
+          },
+          "firstName": "Kevin",
+          "fullName": "Sheppard K",
+          "initials": "K",
+          "lastName": "Sheppard"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "CCS-7, Los Alamos National Laboratory, Los Alamos, NM, USA."
+            }
+           ]
+          },
+          "firstName": "Tyler",
+          "fullName": "Reddy T",
+          "initials": "T",
+          "lastName": "Reddy"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Berkeley Institute for Data Science, University of California, Berkeley, Berkeley, CA, USA."
+            }
+           ]
+          },
+          "firstName": "Warren",
+          "fullName": "Weckesser W",
+          "initials": "W",
+          "lastName": "Weckesser"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Quansight, Austin, TX, USA."
+            }
+           ]
+          },
+          "firstName": "Hameer",
+          "fullName": "Abbasi H",
+          "initials": "H",
+          "lastName": "Abbasi"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Laboratory for Fluorescence Dynamics, Biomedical Engineering Department, University of California, Irvine, Irvine, CA, USA."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-8108-7707"
+          },
+          "firstName": "Christoph",
+          "fullName": "Gohlke C",
+          "initials": "C",
+          "lastName": "Gohlke"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Quansight, Austin, TX, USA."
+            }
+           ]
+          },
+          "firstName": "Travis E",
+          "fullName": "Oliphant TE",
+          "initials": "TE",
+          "lastName": "Oliphant"
+         }
+        ]
+       },
+       "doi": "10.1038/s41586-020-2649-2",
+       "firstPublicationDate": "2020-09-16",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1038/s41586-020-2649-2"
+         },
+         {
+          "availability": "Open access",
+          "availabilityCode": "OA",
+          "documentStyle": "html",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC7759461"
+         },
+         {
+          "availability": "Open access",
+          "availabilityCode": "OA",
+          "documentStyle": "pdf",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC7759461?pdf=render"
+         }
+        ]
+       },
+       "id": "32939066",
+       "isOpenAccess": "Y",
+       "journalInfo": {
+        "dateOfPublication": "2020 Sep",
+        "issue": "7825",
+        "journal": {
+         "essn": "1476-4687",
+         "isoabbreviation": "Nature",
+         "issn": "0028-0836",
+         "medlineAbbreviation": "Nature",
+         "nlmid": "0410462",
+         "title": "Nature"
+        },
+        "journalIssueId": 3010253,
+        "monthOfPublication": 9,
+        "printPublicationDate": "2020-09-01",
+        "volume": "585",
+        "yearOfPublication": 2020
+       },
+       "pageInfo": "357-362",
+       "pmcid": "PMC7759461",
+       "pubTypeList": {
+        "pubType": [
+         "Research Support, Non-U.S. Gov't",
+         "review-article",
+         "Review",
+         "Journal Article"
+        ]
+       },
+       "pubYear": "2020",
+       "source": "MED",
+       "title": "Array programming with NumPy."
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:23:40.397498+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Fs41586-020-2649-2%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1101%2F511782",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1101/511782",
+     "URL": "https://doi.org/10.1101/511782",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Silva",
+       "given": "Marta",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0003-3540-5019",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Baldassano",
+       "given": "Christopher",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-5482-7615",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Fuentemilla",
+       "given": "Lluís",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [],
+     "issued": {
+      "date-parts": [
+       [
+        2019,
+        1,
+        4
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://syndication.highwire.org/content/doi/10.1101/511782",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "published": {
+      "date-parts": [
+       [
+        2019,
+        1,
+        4
+       ]
+      ]
+     },
+     "publisher": "openRxiv",
+     "relation": {
+      "is-preprint-of": [
+       {
+        "asserted-by": "subject",
+        "id": "10.1523/JNEUROSCI.0360-19.2019",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "subtitle": [],
+     "subtype": "preprint",
+     "title": [
+      "Rapid memory reactivation at movie event boundaries promotes episodic encoding"
+     ],
+     "type": "posted-content"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:24:06.155303+00:00",
+   "url": "https://api.crossref.org/works/10.1101%2F511782"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1523%2Fjneurosci.0360-19.2019",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1523/jneurosci.0360-19.2019",
+     "ISSN": [
+      "0270-6474",
+      "1529-2401"
+     ],
+     "URL": "https://doi.org/10.1523/jneurosci.0360-19.2019",
+     "author": [
+      {
+       "ORCID": "https://orcid.org/0000-0003-1745-3316",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Silva",
+       "given": "Marta",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0003-3540-5019",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Baldassano",
+       "given": "Christopher",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "ORCID": "https://orcid.org/0000-0002-5482-7615",
+       "affiliation": [],
+       "authenticated-orcid": false,
+       "family": "Fuentemilla",
+       "given": "Lluís",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "The Journal of Neuroscience"
+     ],
+     "issue": "43",
+     "issued": {
+      "date-parts": [
+       [
+        2019,
+        9,
+        13
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://syndication.highwire.org/content/doi/10.1523/JNEUROSCI.0360-19.2019",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "8538-8548",
+     "published": {
+      "date-parts": [
+       [
+        2019,
+        9,
+        13
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2019,
+        9,
+        13
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2019,
+        10,
+        23
+       ]
+      ]
+     },
+     "publisher": "Society for Neuroscience",
+     "relation": {
+      "has-preprint": [
+       {
+        "asserted-by": "object",
+        "id": "10.1101/511782",
+        "id-type": "doi"
+       }
+      ]
+     },
+     "subtitle": [],
+     "title": [
+      "Rapid Memory Reactivation at Movie Event Boundaries Promotes Episodic Encoding"
+     ],
+     "type": "journal-article",
+     "volume": "39"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:24:07.278769+00:00",
+   "url": "https://api.crossref.org/works/10.1523%2Fjneurosci.0360-19.2019"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1523/jneurosci.0360-19.2019\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1523/jneurosci.0360-19.2019\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Faculdade de Ciências da Universidade de Lisboa, Lisboa 1749-016, Portugal, [address removed]."
+            },
+            {
+             "affiliation": "Cognition and Brain Plasticity Group, Bellvitge Institute for Biomedical Research, Hospitalet de Llobregat 08907, Spain."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0003-1745-3316"
+          },
+          "firstName": "Marta",
+          "fullName": "Silva M",
+          "initials": "M",
+          "lastName": "Silva"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Psychology, Columbia University, New York, New York 10027."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0003-3540-5019"
+          },
+          "firstName": "Christopher",
+          "fullName": "Baldassano C",
+          "initials": "C",
+          "lastName": "Baldassano"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Cognition and Brain Plasticity Group, Bellvitge Institute for Biomedical Research, Hospitalet de Llobregat 08907, Spain."
+            },
+            {
+             "affiliation": "Department of Cognition, Development and Educational Psychology, University of Barcelona, Barcelona 08035, Spain, and."
+            },
+            {
+             "affiliation": "Institute of Neurosciences, University of Barcelona, Barcelona 08035, Spain."
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-5482-7615"
+          },
+          "firstName": "Lluís",
+          "fullName": "Fuentemilla L",
+          "initials": "L",
+          "lastName": "Fuentemilla"
+         }
+        ]
+       },
+       "commentCorrectionList": {
+        "commentCorrection": [
+         {
+          "id": "PPR66427",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10002,
+          "source": "PPR",
+          "type": "Preprint in"
+         }
+        ]
+       },
+       "doi": "10.1523/jneurosci.0360-19.2019",
+       "firstPublicationDate": "2019-09-13",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "pdf",
+          "site": "Unpaywall",
+          "url": "https://www.jneurosci.org/content/jneuro/39/43/8538.full.pdf"
+         },
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1523/JNEUROSCI.0360-19.2019"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "html",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC6807272"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "pdf",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC6807272?pdf=render"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1523/jneurosci.0360-19.2019"
+         }
+        ]
+       },
+       "id": "31519818",
+       "isOpenAccess": "N",
+       "journalInfo": {
+        "dateOfPublication": "2019 Oct",
+        "issue": "43",
+        "journal": {
+         "essn": "1529-2401",
+         "isoabbreviation": "J Neurosci",
+         "issn": "0270-6474",
+         "medlineAbbreviation": "J Neurosci",
+         "nlmid": "8102140",
+         "title": "The Journal of neuroscience : the official journal of the Society for Neuroscience"
+        },
+        "journalIssueId": 2873627,
+        "monthOfPublication": 10,
+        "printPublicationDate": "2019-10-01",
+        "volume": "39",
+        "yearOfPublication": 2019
+       },
+       "pageInfo": "8538-8548",
+       "pmcid": "PMC6807272",
+       "pubTypeList": {
+        "pubType": [
+         "Research Support, Non-U.S. Gov't",
+         "research-article",
+         "Journal Article"
+        ]
+       },
+       "pubYear": "2019",
+       "source": "MED",
+       "title": "Rapid Memory Reactivation at Movie Event Boundaries Promotes Episodic Encoding."
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T19:24:08.889986+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523%2Fjneurosci.0360-19.2019%22&format=json&resultType=core&pageSize=100"
+  }
+ }
+]

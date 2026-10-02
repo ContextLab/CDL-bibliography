@@ -56,3 +56,63 @@ correction and a retraction. The response body is saved as returned, with the re
 (`https://api.crossref.org/works/10.1016/S0140-6736(97)11096-0`, without the contact address
 parameter) and the retrieval time (`2026-10-02T18:38:45.960152+00:00`). It was requested once, through
 `cdlbib.verification.PoliteClient`.
+
+## `responses.json`
+
+The lookups of `tests/test_complete_identify.py`: 23 responses, each requested once on
+2026-10-02 through `cdlbib.verification.PoliteClient` (one request per second or slower) by
+running `cdlbib.complete.propose` on the queries below. Each item has the `request` (the
+client's cache key: the URL, the parameters and whether the body is XML; for the arXiv
+document, the arXiv check's key) and the `response` exactly as the client cached it: `url`,
+`retrieved_at`, `http_status` and `body`.
+
+The body is what the client keeps, not the raw HTTP body: the client drops the fields of a
+Crossref record it does not use (abstracts, reference lists; `verification.RECORD_FIELDS`)
+and of a Europe PMC result (`auto_review.EPMC_FIELDS`) before it caches a response. PubMed
+and arXiv bodies are the XML as sent.
+
+Three alterations, and no other:
+
+- the contact address is removed from each saved URL (`mailto=` at Crossref, `email=` at
+  PubMed);
+- in the cache key of a PubMed request the address is replaced by the word `CONTACT` (the
+  test puts its own client's address there);
+- an e-mail address inside a body is replaced by `[address removed]`, as in `records.json`
+  (nine strings in three bodies: the PubMed record 17685726 and the Europe PMC results for
+  10.1038/s41586-020-2649-2 and 10.1523/jneurosci.0360-19.2019).
+
+The tests replay them by filling a real response cache and running the real client over it
+with a transport that refuses every request (`extra_sources.make_client(..., offline=True)`).
+
+| # | Request (address removed) | Retrieved (UTC) | Work | Why |
+|-|-|-|-|-|
+| 1 | `api.crossref.org/works/10.1002%2Ftea.3660271011` | 19:21:53 | `Zoll90` | a DOI alone |
+| 2 | `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"10.1002/tea.3660271011"` | 19:21:55 | `Zoll90` | PubMed has no record of it (no result) |
+| 3 | `api.crossref.org/works?query.bibliographic=students' misunderstandings … Zoller 1990&rows=5` | 19:21:56 | `Zoll90` | a title, an author and a year: one match |
+| 4 | `eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi` (title words and `zoller[au]`) | 19:21:57 | `Zoll90` | the PubMed side of the same search (no result) |
+| 5 | `api.crossref.org/works/10.1002%2Ftea.3660271011x` | 19:21:59 | none | a DOI Crossref does not have (HTTP 404): the DOI of `Zoll90` with a letter added |
+| 6 | `eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?id=13896567` | 19:22:28 | `Game62` | a PMID |
+| 7 | `api.crossref.org/works/10.1037%2Fh0041332` | 19:22:29 | `Game62` | the DOI PubMed gives for that PMID |
+| 8 | `www.ebi.ac.uk/…/search?query=DOI:"10.1037/h0041332"` | 19:22:31 | `Game62` | the PubMed record for the DOI |
+| 9 | `api.crossref.org/works?query.bibliographic=strength training and aerobic exercise: comparison and contrast Knuttgen&rows=5` | 19:22:45 | `Knut07` | a title and an author: two matching records |
+| 10 | `eutils.ncbi.nlm.nih.gov/…/esearch.fcgi` (title words and `knuttgen[au]`) | 19:22:47 | `Knut07` | the PubMed side of the same search |
+| 11 | `eutils.ncbi.nlm.nih.gov/…/efetch.fcgi?id=17685726` | 19:22:48 | `Knut07` | the record that search found |
+| 12 | `api.crossref.org/works?query.bibliographic=backward learning in paired associates B B Murdock 1956&rows=5` | 19:22:49 | `Murd56` | a title that is only similar to the printed one |
+| 13 | `eutils.ncbi.nlm.nih.gov/…/esearch.fcgi` (title words and `murdock[au]`) | 19:22:50 | `Murd56` | the PubMed side of the same search |
+| 14 | `eutils.ncbi.nlm.nih.gov/…/efetch.fcgi?id=13306866` | 19:22:51 | `Murd56` | the record that search found |
+| 15 | `api.crossref.org/works?query.bibliographic=acquisition, storage, and retrieval in digital and biological brains J R Manning 2011&rows=5` | 19:23:30 | `Mann11` (a thesis) | a title no source has |
+| 16 | `eutils.ncbi.nlm.nih.gov/…/esearch.fcgi` (title words and `manning[au]`) | 19:23:32 | `Mann11` | the PubMed side of the same search (no result) |
+| 17 | `api.crossref.org/works/10.1101%2F2020.01.27.922062` | 19:23:33 | the preprint of `ChenEtal21` | a preprint whose record names no published version |
+| 18 | `export.arxiv.org/api/query?id_list=2006.10256` | 19:23:34 | the preprint of `HarrEtal20` | an arXiv preprint that names its published version |
+| 19 | `api.crossref.org/works/10.1038%2Fs41586-020-2649-2` | 19:23:37 | `HarrEtal20` | that published version |
+| 20 | `www.ebi.ac.uk/…/search?query=DOI:"10.1038/s41586-020-2649-2"` | 19:23:40 | `HarrEtal20` | its PubMed record |
+| 21 | `api.crossref.org/works/10.1101%2F511782` | 19:24:06 | the preprint of `SilvEtal19` | a preprint DOI whose record names the published article |
+| 22 | `api.crossref.org/works/10.1523%2Fjneurosci.0360-19.2019` | 19:24:07 | `SilvEtal19` | that article |
+| 23 | `www.ebi.ac.uk/…/search?query=DOI:"10.1523/jneurosci.0360-19.2019"` | 19:24:08 | `SilvEtal19` | its PubMed record |
+
+The full URL of each request is in the item's `response.url`. The works named are entries of
+the frozen library fixture (`tests/fixtures/cdl-prewave1-2026-09-26.bib`), which gives the
+tests their expected entries.
+
+The arXiv-only preprints of those tests need no response from here: they use the arXiv,
+arXiv-page and DataCite documents of `tests/fixtures/arxiv_preprints.json`.
