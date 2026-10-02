@@ -850,7 +850,7 @@ def test_verify_no_citations_is_offline_and_format_only(tmp_path):
     assert run.returncode == 1 and "Rame72" in run.stderr
 
 
-def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
+def test_send_refuses_an_unresolved_entry_and_sends_only_the_bib(tmp_path, monkeypatch):
     import os
     env = dict(os.environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools")
     repo = tmp_path / "repo"
@@ -871,16 +871,32 @@ def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
     (repo / "notes.txt").write_text("edited, must not be committed\n")
     db = str(tmp_path / "db.sqlite3")
     bib.write_text(ZOLL90 + "\n\n" + RAME72 % "2" + "\n")
-    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
-    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not committed" in run.stdout
+    run = gate(tmp_path, "send", "--fname", str(bib), "--reference", str(base), "--database", db)
+    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not sent" in run.stdout
     assert git("rev-list", "--count", "HEAD").strip() == "1"
+    # With the entry right, the change is sent. `cdlbib send` itself needs a GitHub login and
+    # the user's fork, which CI does not have, so the second half runs the gate (`verify`, the
+    # same check_library gate send runs) and then the step send runs after it,
+    # publish.deliver (commit on a cdlbib/... branch, push), against a local bare repository.
+    from cdlbib import api, publish
+    from cdlbib.workspace import Workspace
     bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n")
-    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
+    run = gate(tmp_path, "verify", "--fname", str(bib), "--reference", str(base), "--database", db)
     assert run.returncode == 0, run.stdout + run.stderr
-    assert git("rev-list", "--count", "HEAD").strip() == "2"
+    monkeypatch.setenv("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
+    remote = tmp_path / "fork.git"
+    subprocess.run(["git", "init", "-q", "--bare", str(remote)], env=env, check=True)
+    start, on = git("rev-parse", "HEAD").strip(), git("rev-parse", "--abbrev-ref", "HEAD").strip()
+    branch = "cdlbib/test/2026-09-25-add-rame72"
+    sent = publish.deliver(Workspace.for_bib(bib), branch, api.compare(str(base), str(bib)).summary.strip(), str(remote))
+    assert sent == ["cdl.bib"]
+    pushed = subprocess.run(["git", "rev-parse", branch], cwd=remote, env=env, capture_output=True, text=True, check=True).stdout
+    assert pushed == git("rev-parse", "HEAD") and git("rev-parse", "--abbrev-ref", "HEAD").strip() == branch
+    assert git("rev-list", "--count", f"{start}..HEAD").strip() == "1" and git("rev-parse", on).strip() == start
     assert git("show", "--name-only", "--format=%s", "HEAD").split() [-1] == "cdl.bib"
     assert "Rame72" in git("log", "-1", "--format=%B")
-    assert "notes.txt" in git("status", "--porcelain")  # the other edit stays uncommitted
+    assert git("status", "--porcelain", "--", "notes.txt") == " M notes.txt\n"  # the other edit stays uncommitted
+    assert (repo / "notes.txt").read_text() == "edited, must not be committed\n"
 
 
 def test_verify_all_checks_unchanged_entries_too(tmp_path):

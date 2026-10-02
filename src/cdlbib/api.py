@@ -69,6 +69,7 @@ class SendResult:
     fork: str
     created_fork: bool = False
     files: list = field(default_factory=list)   # the paths committed by this send ([] when only resuming)
+    left: list = field(default_factory=list)    # other changed files, left exactly as they were
 
 
 @contextlib.contextmanager
@@ -285,7 +286,11 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     verification/ on a branch, pushed to the user's own fork, and a pull request into the
     upstream repository (the checkout's origin, or its parent when the origin is a fork).
 
-    Order: other changed files refuse; nothing to send refuses; no git author refuses; the
+    Only cdl.bib and changed files under verification/ are committed and pushed. Every other
+    modified, staged or untracked file is left exactly as it was (``SendResult.left``), and
+    .bibcheck/ is never sent.
+
+    Order: a checkout on no branch refuses; nothing to send refuses; no git author refuses; the
     gate (check_library) refuses; no GitHub login refuses; a branch whose pull request is
     already merged or closed refuses; no fork refuses (PublishRefused.needs_fork) unless
     ``allow_fork_creation``; only then is git written to. A send refused up to there leaves
@@ -315,10 +320,6 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
                                  "pushed to the upstream.")
 
     not_upstream(fork, upstream)
-    stray = publish.unrelated_changes(ws)
-    if stray:
-        raise PublishRefused("Other files have uncommitted changes; commit, stash or discard them first: "
-                             + ", ".join(stray))
     here = publish.require_branch(ws, base)
     if not publish.pending(ws) and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
@@ -363,7 +364,7 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
             raise PublishRefused(
                 f"You are on branch {branch}, whose pull request {earlier[0]} is {earlier[1]}; a new change needs a "
                 f"new branch. Nothing was changed. Go back to {base}, bring it up to date and send again:\n"
-                f"  git switch {base}\n  git pull https://github.com/{upstream}.git {base}\n  cdlbib commit\n"
+                f"  git switch {base}\n  git pull https://github.com/{upstream}.git {base}\n  cdlbib send\n"
                 "Your uncommitted edits to cdl.bib and verification/ are carried along by `git switch`; "
                 "nothing is lost.")
         if earlier:
@@ -384,8 +385,9 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     except PublishRefused as exc:
         raise PublishRefused(
             f"The change is committed on branch {branch} and pushed to {fork}, but the pull request could not be "
-            f"opened or updated. Run `cdlbib commit` again to resume from there.{publish.go_back(here, branch)}\n{exc}") from exc
-    return SendResult(url=url, branch=branch, fork=fork, created_fork=created, files=files)
+            f"opened or updated. Run `cdlbib send` again to resume from there.{publish.go_back(here, branch)}\n{exc}") from exc
+    return SendResult(url=url, branch=branch, fork=fork, created_fork=created, files=files,
+                      left=publish.unrelated_changes(ws))
 
 
 def _message(exc):

@@ -7,7 +7,7 @@ import subprocess
 from .errors import PublishRefused
 
 ALLOWED = ("cdl.bib", "verification/")
-WORK = ".bibcheck/"                      # the local working folder: never sent, never a stray file
+WORK = ".bibcheck/"                      # the tool's local working folder: never sent, never reported
 PROTECTED_UPSTREAM = "ContextLab/CDL-bibliography"
 NO_CHANGES = "There are no changes to cdl.bib or verification/ to send."
 # The forms git uses for a GitHub repository, github.com only: https:// and http:// (with an
@@ -126,7 +126,7 @@ def require_branch(ws, main=None):
     here = current_branch(ws)
     if here == "HEAD":
         raise PublishRefused("The checkout is not on a branch (detached HEAD). Nothing was changed. Switch to a "
-                             "branch first (your edits are carried along), then run `cdlbib commit` again"
+                             "branch first (your edits are carried along), then run `cdlbib send` again"
                              + (f":\n  git switch {main}" if main else "."))
     return here
 
@@ -155,6 +155,7 @@ def _allowed(path):
 
 
 def unrelated_changes(ws):
+    """Changed or untracked paths a send leaves alone (for reporting; never a refusal)."""
     return [p for p in _changed(ws) if not _allowed(p) and not p.startswith(WORK)]
 
 
@@ -170,15 +171,16 @@ def require_identity(ws):
         if _run(["git", "var", who], cwd=ws.root, check=False).returncode != 0:
             raise PublishRefused(
                 "git does not know your name and email, so it cannot commit. Nothing was changed. "
-                "Set them, then run `cdlbib commit` again:\n"
+                "Set them, then run `cdlbib send` again:\n"
                 '  git config --global user.name "Your Name"\n'
                 '  git config --global user.email "you@example.org"')
 
 
 def commit_to_branch(ws, branch, message):
     """Commit the changes to cdl.bib and verification/ on ``branch`` (made from the current
-    commit when new) and leave the checkout on it. Returns the commit. If the commit cannot
-    be made, the checkout is put back on the branch it was on."""
+    commit when new) and leave the checkout on it. Returns the commit. Every other changed,
+    staged or untracked file is left as it is: only our paths are staged and the commit names
+    them. If the commit cannot be made, the checkout is put back on the branch it was on."""
     mine = pending(ws)
     if not mine:
         raise PublishRefused(NO_CHANGES)
@@ -187,9 +189,16 @@ def commit_to_branch(ws, branch, message):
     listed = _run(["git", "diff", "--cached", "--name-only", "-z", "--", *mine], cwd=ws.root).stdout
     ours = [p for p in mine if p not in set(listed.split("\0"))]     # what this call stages, and may unstage
     tip = None                           # the branch's commit once the checkout is on it
-    try:
-        if previous != branch:
+    if previous != branch:               # the first write; git makes it whole or not at all
+        try:
             _run(["git", "switch", branch] if exists else ["git", "switch", "-c", branch], cwd=ws.root)
+        except PublishRefused as exc:
+            raise PublishRefused(
+                f"git could not switch to branch {branch}"
+                + (", which already exists and differs in files you have changed" if exists else "")
+                + ". Nothing was changed. Commit or set aside the files git names below, or send with a different "
+                f"--summary (the branch is named after it).\n{exc}") from exc
+    try:
         tip = _head(ws)
         _run(["git", "add", "-A", "--", *mine], cwd=ws.root)
         _run(["git", "commit", "-m", message, "--", *mine], cwd=ws.root)
@@ -204,7 +213,7 @@ def _put_back(ws, previous, branch, tip, ours, made):
     clean, no force). Returns the sentences that say what happened and where the checkout is."""
     if tip is not None and _head(ws) != tip:     # git reported a failure, yet the branch has a new commit
         return (f"The commit step reported a failure, but a commit was made on branch {current_branch(ws)}; "
-                "nothing was sent. Run `cdlbib commit` again to resume from there."
+                "nothing was sent. Run `cdlbib send` again to resume from there."
                 + go_back(previous, current_branch(ws)))
     failed = "The commit could not be made, so nothing was committed and nothing was sent."
     if tip is not None and ours:         # the add may have run: take our paths out of the index again
@@ -237,7 +246,7 @@ def deliver(ws, branch, message, remote_url, target=None):
     except PublishRefused as exc:
         raise PublishRefused(
             f"The change is committed on branch {branch}, but the push to {target or remote_url} failed: nothing was "
-            f"sent and no pull request was opened.{push_hint(str(exc), target or remote_url)} Run `cdlbib commit` "
+            f"sent and no pull request was opened.{push_hint(str(exc), target or remote_url)} Run `cdlbib send` "
             f"again to resume from there.{go_back(previous, branch)}\n{exc}") from exc
     return files
 

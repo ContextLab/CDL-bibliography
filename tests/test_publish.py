@@ -1,5 +1,5 @@
 """Sending a change: the user's fork, a branch, a pull request (cdlbib.publish, api.send,
-`cdlbib commit`).
+`cdlbib send`).
 
 Real git against real local bare repositories; the real gh. The pull-request tests work
 only inside the tester's own fork, on the branch cdlbib-test-base, and skip with their
@@ -8,6 +8,7 @@ reason where no user is logged in or the user has no fork. No mocks.
 import datetime
 import json
 import os
+import re
 import shutil
 import subprocess
 
@@ -64,6 +65,23 @@ def checkout(tmp_path, monkeypatch):
     (work / "README.md").write_text("readme\n", encoding="utf-8")
     git(work, "add", "-A"); git(work, "commit", "-q", "-m", "start"); git(work, "push", "-q", "origin", "HEAD:master")
     return Workspace(work), remote
+
+
+def other_edits(root):
+    """Three edits a send must leave alone: a tracked file modified, a new file staged by the
+    user, a file untracked. Returns a function giving their bytes and their git state."""
+    (root / "README.md").write_text("readme\nmy own edit, not for sending\n", encoding="utf-8")
+    (root / "staged.txt").write_text("staged by me\n", encoding="utf-8")
+    git(root, "add", "staged.txt")
+    (root / "loose.txt").write_text("untracked\n", encoding="utf-8")
+    names = ("README.md", "staged.txt", "loose.txt")
+
+    def snapshot():
+        run = subprocess.run(["git", "status", "--porcelain", "--", *names], cwd=root, capture_output=True, text=True,
+                             check=True, env=dict(os.environ, **GIT_ENV))
+        return [(root / name).read_bytes() for name in names], run.stdout
+    assert snapshot()[1] == " M README.md\nA  staged.txt\n?? loose.txt\n"
+    return snapshot
 
 
 # A. cdlbib.publish, local ---------------------------------------------------------------
@@ -148,7 +166,7 @@ def test_a_failed_push_says_where_things_stand_and_the_next_send_resumes(checkou
         publish.deliver(ws, branch, "edit", str(tmp_path / "no-such-remote.git"))
     message = str(refused.value)
     assert f"committed on branch {branch}" in message and "nothing was sent and no pull request was opened" in message
-    assert "Run `cdlbib commit` again to resume" in message and "To go back instead: git switch master" in message
+    assert "Run `cdlbib send` again to resume" in message and "To go back instead: git switch master" in message
     assert git(ws.root, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(ws.root, "status", "--porcelain") == ""
     sha = git(ws.root, "rev-parse", "HEAD")
     assert git(ws.root, "rev-list", "--count", "master..HEAD") == "1"
@@ -231,7 +249,7 @@ def test_a_checkout_on_no_branch_is_refused_up_front(checkout):
         api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
     with pytest.raises(PublishRefused) as refused:                   # called directly: no branch is known, none is named
         publish.commit_to_branch(ws, "cdlbib/test/2026-10-01-edit", "edit")
-    assert str(refused.value).endswith("then run `cdlbib commit` again.")
+    assert str(refused.value).endswith("then run `cdlbib send` again.")
 
 
 def test_push_hints_for_the_two_recognised_failures():
@@ -289,6 +307,51 @@ def test_commit_and_push_only_the_library_files(checkout):
     assert git(ws.root, "status", "--porcelain") == ""
 
 
+def test_other_edits_are_left_exactly_as_they_were(checkout):
+    """Only cdl.bib and verification/ are committed and pushed. A modified file, a file the
+    user staged and an untracked file are byte-identical and in the same git state afterwards,
+    and none of them is in the pushed commit."""
+    ws, remote = checkout
+    branch = "cdlbib/test/2026-10-01-edit"
+    snapshot = other_edits(ws.root)
+    before = snapshot()
+    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
+    (ws.root / "verification" / "new.json").write_text("{}\n", encoding="utf-8")
+    (ws.root / ".bibcheck").mkdir()
+    (ws.root / ".bibcheck" / "report.jsonl").write_text("{}\n", encoding="utf-8")
+    assert publish.deliver(ws, branch, "edit", str(remote)) == ["cdl.bib", "verification/new.json"]
+    assert snapshot() == before
+    sha = git(remote, "rev-parse", branch)
+    assert sorted(git(remote, "show", "--name-only", "--format=", sha).splitlines()) == ["cdl.bib", "verification/new.json"]
+    assert git(ws.root, "status", "--porcelain", "--", "cdl.bib", "verification") == ""
+    assert publish.unrelated_changes(ws) == ["README.md", "loose.txt", "staged.txt"]     # reported, .bibcheck/ never
+    # A second change from the same branch: the same holds.
+    (ws.root / "cdl.bib").write_text("% library\n% edit two\n", encoding="utf-8")
+    assert publish.deliver(ws, branch, "edit two", str(remote)) == ["cdl.bib"]
+    assert snapshot() == before
+    assert git(remote, "show", "--name-only", "--format=", git(remote, "rev-parse", branch)) == "cdl.bib"
+
+
+def test_a_branch_that_conflicts_with_my_other_edits_is_refused_whole(checkout):
+    """The send branch already exists and differs in a file the user has changed: git cannot
+    switch to it. That is the first write, and it is refused with nothing changed."""
+    ws, remote = checkout
+    branch = "cdlbib/test/2026-10-01-edit"
+    git(ws.root, "switch", "-q", "-c", branch)
+    (ws.root / "README.md").write_text("another readme on the send branch\n", encoding="utf-8")
+    git(ws.root, "commit", "-q", "-m", "readme on the branch", "--", "README.md")
+    git(ws.root, "switch", "-q", "master")
+    snapshot = other_edits(ws.root)
+    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
+    before, edits = state(ws.root), snapshot()
+    with pytest.raises(PublishRefused) as refused:
+        publish.deliver(ws, branch, "edit", str(remote))
+    message = str(refused.value)
+    assert message.startswith(f"git could not switch to branch {branch}, which already exists and differs in files you have changed. Nothing was changed.")
+    assert "README.md" in message and "different --summary" in message
+    assert state(ws.root) == before and snapshot() == edits
+
+
 def test_second_commit_reuses_the_branch(checkout):
     ws, remote = checkout
     branch = "cdlbib/test/2026-10-01-edit"
@@ -337,16 +400,6 @@ def test_approvals_note_lists_logins_and_keys(tmp_path):
 
 
 # B. api.send refusals, local ------------------------------------------------------------
-
-def test_send_refuses_on_unrelated_changes_and_leaves_the_tree_alone(checkout):
-    ws, _ = checkout
-    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
-    (ws.root / "README.md").write_text("changed\n", encoding="utf-8")
-    before = state(ws.root)
-    with pytest.raises(PublishRefused, match="README.md"):
-        api.send(ws, summary="edit", reference=str(ws.bib), upstream=NOWHERE, base=TEST_BASE)
-    assert state(ws.root) == before
-
 
 def test_send_refuses_on_a_failed_gate_before_touching_git(checkout):
     ws, _ = checkout
@@ -437,47 +490,66 @@ def library_checkout(checkout, text):
     return ws
 
 
-def test_commit_command_reports_a_failed_gate_and_changes_nothing(checkout, tmp_path):
+def test_send_command_reports_a_failed_gate_and_changes_nothing(checkout, tmp_path):
     ws = library_checkout(checkout, ZOLL90 + "\n")
     ws.bib.write_text(ZOLL90.replace("1053--1065", "1053--105") + "\n", encoding="utf-8")
     before = state(ws.root)
-    run = cdlbib(ws.root, "commit", "--reference", str(ws.bib), "--database", str(tmp_path / "db.sqlite3"))
+    run = cdlbib(ws.root, "send", "--reference", str(ws.bib), "--database", str(tmp_path / "db.sqlite3"))
     assert run.returncode == 1, run.stdout + run.stderr
-    assert run.stdout.endswith("not committed: fix the format errors and resolve every new/edited entry first "
+    assert run.stdout.endswith("not sent: fix the format errors and resolve every new/edited entry first "
                                "(see `cdlbib verify`).\n")
     assert "pull request" not in run.stdout and state(ws.root) == before
 
 
-def test_commit_command_refuses_stray_files_on_stderr(checkout, tmp_path):
+def test_send_command_does_not_refuse_for_other_edits(checkout, tmp_path):
+    """Other edited files are no reason to refuse: the gate runs and passes. (The send then
+    stops because this scratch checkout's origin is a local folder, or nobody is logged in;
+    the other edits are as they were.)"""
     ws = library_checkout(checkout, ZOLL90 + "\n")
-    (ws.root / "README.md").write_text("changed\n", encoding="utf-8")
-    before = state(ws.root)
-    run = cdlbib(ws.root, "commit", "--reference", str(ws.bib), "--database", str(tmp_path / "db.sqlite3"))
-    assert run.returncode == 1 and "README.md" in run.stderr and "Traceback" not in run.stderr, run.stdout + run.stderr
-    assert state(ws.root) == before
+    snapshot = other_edits(ws.root)
+    ws.bib.write_text(ZOLL90 + "\n\n% a note\n", encoding="utf-8")
+    before, edits = state(ws.root), snapshot()
+    run = cdlbib(ws.root, "send", "--reference", str(ws.bib), "--database", str(tmp_path / "db.sqlite3"))
+    assert "checks passed; generating commit message..." in run.stdout, run.stdout + run.stderr
+    assert run.returncode == 1 and "Traceback" not in run.stderr and "README.md" not in run.stderr
+    assert state(ws.root) == before and snapshot() == edits
 
 
-def test_commit_command_refuses_an_unresolved_entry(checkout, tmp_path):
-    """The gate reached through `commit`: a real Crossref check of a new entry whose volume is
+def test_send_command_refuses_an_unresolved_entry(checkout, tmp_path):
+    """The gate reached through `send`: a real Crossref check of a new entry whose volume is
     wrong (Crossref: 1). The entry is named, nothing is sent, the checkout is untouched."""
     ws = library_checkout(checkout, ZOLL90 + "\n")
     base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
     ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "2" + "\n", encoding="utf-8")
     before = state(ws.root)
-    run = cdlbib(ws.root, "commit", "--reference", str(base), "--database", str(tmp_path / "db.sqlite3"),
+    run = cdlbib(ws.root, "send", "--reference", str(base), "--database", str(tmp_path / "db.sqlite3"),
                  CROSSREF_MAILTO=crossref_contact())
-    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not committed" in run.stdout, run.stdout + run.stderr
+    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not sent" in run.stdout, run.stdout + run.stderr
     assert "pull request" not in run.stdout and state(ws.root) == before
 
 
 def test_magic_goes_through_the_same_send(checkout):
+    """magic autofixes cdl.bib in place and then sends; here the send is refused at its first
+    check (the checkout is on no branch), which needs no network."""
     ws = library_checkout(checkout, ZOLL90 + "\n")
-    (ws.root / "README.md").write_text("changed\n", encoding="utf-8")
+    git(ws.root, "switch", "-q", "--detach")
     before = state(ws.root)
     run = cdlbib(ws.root, "magic")
     assert run.returncode == 1 and "WARNING: potentially unsafe" in run.stdout, run.stdout + run.stderr
-    assert "README.md" in run.stderr and "Traceback" not in run.stderr and not (ws.root / "cleaned.bib").exists()
+    assert "not on a branch (detached HEAD)" in run.stderr and "git switch master" in run.stderr
+    assert "Traceback" not in run.stderr and not (ws.root / "cleaned.bib").exists()
     assert state(ws.root)[1:] == before[1:]             # magic rewrites cdl.bib in place; git is untouched
+
+
+def test_the_command_is_send_and_commit_is_gone(tmp_path):
+    listing = cdlbib(tmp_path, "--help", COLUMNS="200")
+    assert listing.returncode == 0 and re.search(r"^.\s+send\s", listing.stdout, re.M), listing.stdout
+    assert not re.search(r"^.\s+commit\s", listing.stdout, re.M)
+    gone = cdlbib(tmp_path, "commit", "--help")
+    assert gone.returncode == 2 and "No such command" in gone.stderr
+    options = cdlbib(tmp_path, "send", "--help", COLUMNS="200").stdout
+    for name in ("--fname", "--reference", "--verbose", "--outfile", "--summary", "--database", "--mailto"):
+        assert name in options, name
 
 
 def gh_login():
@@ -528,15 +600,15 @@ def test_no_fork_is_reported_and_never_created_unasked(checkout, tmp_path):
         assert newest_repositories() == had                 # the account gained no repository
 
 
-def test_commit_keeps_outfile_and_its_messages(checkout, tmp_path):
+def test_send_keeps_outfile_and_its_messages(checkout, tmp_path):
     ws = library_checkout(checkout, ZOLL90 + "\n")
-    help_text = cdlbib(ws.root, "commit", "--help", COLUMNS="200").stdout
+    help_text = cdlbib(ws.root, "send", "--help", COLUMNS="200").stdout
     assert "--outfile" in help_text and "--summary" in help_text
     ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
     base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
     out = tmp_path / "changes.txt"
     before = state(ws.root)
-    run = cdlbib(ws.root, "commit", "--reference", str(base), "--database", str(tmp_path / "db.sqlite3"),
+    run = cdlbib(ws.root, "send", "--reference", str(base), "--database", str(tmp_path / "db.sqlite3"),
                  "--outfile", str(out), CROSSREF_MAILTO=crossref_contact())
     # The gate passes and the comparison is written; the send then stops (this checkout's
     # origin is a local folder, or nobody is logged in), with nothing changed.
@@ -554,7 +626,7 @@ def my_fork():
     if login is None:
         return None, reason
     fork = publish.find_fork(UPSTREAM, login)
-    return (login, fork) if fork else (None, f"@{login} has no fork of {UPSTREAM}; run `cdlbib commit` once or `gh repo fork`")
+    return (login, fork) if fork else (None, f"@{login} has no fork of {UPSTREAM}; run `cdlbib send` once or `gh repo fork`")
 
 
 def fork_clone(tmp_path, monkeypatch, fork):
@@ -619,6 +691,8 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
     branch = publish.branch_name(login, summary, datetime.date.today())
     url, start = None, git(work, "rev-parse", "HEAD")
     try:
+        snapshot = other_edits(work)                                 # three edits of my own, not for sending
+        edits = snapshot()
         ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
         # A push that fails for real (a local path where there is no repository; no host is
         # contacted): the change is committed on the branch and not sent.
@@ -635,7 +709,9 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
         assert first.files == [] and git(work, "rev-list", "--count", f"{start}..HEAD") == "1"
         assert url.startswith(f"https://github.com/{fork}/pull/")
         assert (first.branch, first.fork, first.created_fork) == (branch, fork, False)
-        assert git(work, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(work, "status", "--porcelain") == ""
+        assert git(work, "rev-parse", "--abbrev-ref", "HEAD") == branch
+        assert git(work, "status", "--porcelain", "--", "cdl.bib", "verification") == "" and snapshot() == edits
+        assert first.left == ["README.md", "loose.txt", "staged.txt"]
         found = open_prs(fork, branch)
         assert [p["url"] for p in found] == [url]
         assert found[0]["title"] == summary and found[0]["body"] == "added the following entries: Rame72"
@@ -652,6 +728,8 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
 
         third = api.send(ws, **options)                              # nothing new: the same pull request again
         assert third.url == url and git(work, "rev-list", "--count", f"{start}..HEAD") == "2"
+        assert snapshot() == edits                                   # my other edits: same bytes, same git state
+        assert set(git(work, "log", "--name-only", "--format=", f"{start}..HEAD").split()) == {"cdl.bib"}   # all that was sent
         assert second.files == ["cdl.bib"] and publish.earlier_pr(fork, f"{login}:{branch}") is None   # it is open
 
         # The pull request is closed; a further send from its branch is refused before git is written to.
@@ -663,7 +741,7 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
             api.send(ws, **options)
         message = str(refused.value)
         assert f"pull request {url} is closed" in message
-        assert f"  git switch {TEST_BASE}\n  git pull https://github.com/{fork}.git {TEST_BASE}\n  cdlbib commit\n" in message
+        assert f"  git switch {TEST_BASE}\n  git pull https://github.com/{fork}.git {TEST_BASE}\n  cdlbib send\n" in message
         assert "carried along by `git switch`" in message
         assert state(work) == before
         assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == remote_head
@@ -709,8 +787,8 @@ def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatc
                 publish.deliver(ws, branch, "cdlbib test: please ignore", f"https://github.com/{fork}.git", target=fork)
         message = str(refused.value)
         assert f"committed on branch {branch}" in message
-        assert "run `gh auth setup-git` (it makes git use gh's login). Run `cdlbib commit` again to resume" in message
-        assert message.count("`cdlbib commit` again") == 1
+        assert "run `gh auth setup-git` (it makes git use gh's login). Run `cdlbib send` again to resume" in message
+        assert message.count("`cdlbib send` again") == 1
         assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == ""   # nothing arrived
     finally:
         clean_up(work, None, branch)
