@@ -14,9 +14,9 @@ NO_CHANGES = "There are no changes to cdl.bib or verification/ to send."
 # optional user@), git@github.com:O/N, ssh://git@github.com[:port]/O/N, git://github.com/O/N.
 GITHUB_URL = re.compile(r"^(?:https?://(?:[^@/\s]+@)?github\.com/|ssh://git@github\.com(?::\d+)?/|git@github\.com:"
                         r"|git://github\.com/)([^/\s:]+)/([^/\s]+?)(?:\.git)?/?$")
-SIGN_IN = re.compile(r"terminal prompts disabled|authentication failed|could not read (?:username|password)"
-                     r"|invalid credentials|invalid username or password|permission to \S+ denied|HTTP 40[13]|error: 40[13]",
-                     re.IGNORECASE)
+# The two push failures that are recognised; any other wording gets no hint.
+NO_SIGN_IN = re.compile(r"terminal prompts disabled|Authentication failed", re.IGNORECASE)
+NO_PERMISSION = re.compile(r"Permission to \S+ denied", re.IGNORECASE)
 
 
 def _run(args, cwd=None, check=True):
@@ -120,13 +120,14 @@ def current_branch(ws):
     return _run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=ws.root).stdout.strip()
 
 
-def require_branch(ws, main="master"):
+def require_branch(ws, main=None):
     """The branch the checkout is on. A checkout on no branch is refused: there would be
-    no branch to come back to."""
+    no branch to come back to. ``main`` is the branch to suggest, when the caller knows it."""
     here = current_branch(ws)
     if here == "HEAD":
         raise PublishRefused("The checkout is not on a branch (detached HEAD). Nothing was changed. Switch to a "
-                             f"branch first (your edits are carried along), then run `cdlbib commit` again:\n  git switch {main}")
+                             "branch first (your edits are carried along), then run `cdlbib commit` again"
+                             + (f":\n  git switch {main}" if main else "."))
     return here
 
 
@@ -234,13 +235,21 @@ def deliver(ws, branch, message, remote_url, target=None):
     try:
         push(ws, remote_url, branch)
     except PublishRefused as exc:
-        sign_in = (" git could not sign in to GitHub: run `gh auth setup-git` (it makes git use gh's login), then "
-                   "`cdlbib commit` again.") if SIGN_IN.search(str(exc)) else ""
         raise PublishRefused(
             f"The change is committed on branch {branch}, but the push to {target or remote_url} failed: nothing was "
-            f"sent and no pull request was opened.{sign_in} Run `cdlbib commit` again to resume from there."
-            f"{go_back(previous, branch)}\n{exc}") from exc
+            f"sent and no pull request was opened.{push_hint(str(exc), target or remote_url)} Run `cdlbib commit` "
+            f"again to resume from there.{go_back(previous, branch)}\n{exc}") from exc
     return files
+
+
+def push_hint(error, target):
+    """What to do about a failed push, for the two failures git words recognisably; else ''."""
+    if NO_PERMISSION.search(error):
+        return (f" The GitHub account git is signed in with lacks permission to push to {target}; check which "
+                "account is logged in with `gh auth status`.")
+    if NO_SIGN_IN.search(error):
+        return " git could not sign in to GitHub: run `gh auth setup-git` (it makes git use gh's login)."
+    return ""
 
 
 def go_back(previous, branch):

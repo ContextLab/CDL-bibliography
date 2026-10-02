@@ -26,9 +26,6 @@ TEST_BASE = "cdlbib-test-base"
 # An upstream name that cannot exist: GitHub allows no "_" in an owner's name. A local test
 # that got past its refusal would find no repository and no fork there, whatever the code.
 NOWHERE = "no_such_owner/x"
-# A public repository that is itself a fork, standing in for an upstream the tester has no
-# fork of. cdlbib never forks a fork (publish.create_fork refuses before `gh repo fork`).
-A_FORK = "dwgit12/scoop-gh"
 
 
 @pytest.fixture(autouse=True)
@@ -130,16 +127,17 @@ def test_an_unreachable_github_is_not_read_as_no_fork(monkeypatch, tmp_path):
     for name in ("GH_TOKEN", "GITHUB_TOKEN"):
         monkeypatch.delenv(name, raising=False)
     with pytest.raises(PublishRefused, match="GitHub could not be reached"):
-        publish.find_fork(UPSTREAM, "octocat")
+        publish.find_fork(UPSTREAM, "no_such_owner")
     with pytest.raises(PublishRefused, match="GitHub could not be reached"):
-        publish.resolve(origin_at(tmp_path, "r", UPSTREAM), "octocat")
+        publish.resolve(origin_at(tmp_path, "r", UPSTREAM), "no_such_owner")
 
 
 def test_a_missing_repository_is_a_plain_no(tmp_path):
     login, reason = gh_login()
     if login is None:
         pytest.skip(reason)
-    assert publish.find_fork("cli/scoop-gh", "cdlbib-no-such-user-0") is None    # a real 404, then an empty list
+    # A login GitHub cannot have ("_"): a real 404 for its repository, then no fork of the upstream in its name.
+    assert publish.find_fork(UPSTREAM, "no_such_owner") is None
 
 
 def test_a_failed_push_says_where_things_stand_and_the_next_send_resumes(checkout, tmp_path):
@@ -226,11 +224,26 @@ def test_a_checkout_on_no_branch_is_refused_up_front(checkout):
                     lambda: publish.deliver(ws, "cdlbib/test/2026-10-01-edit", "edit", str(ws.root / "nowhere.git"))):
         with pytest.raises(PublishRefused) as refused:
             attempt()
-        assert "not on a branch (detached HEAD)" in str(refused.value) and "git switch" in str(refused.value)
-        assert "git switch HEAD" not in str(refused.value)
+        assert "not on a branch (detached HEAD)" in str(refused.value) and "git switch HEAD" not in str(refused.value)
+        assert "git switch master" not in str(refused.value)         # no branch is suggested that nobody named
         assert state(ws.root) == before
     with pytest.raises(PublishRefused, match="git switch cdlbib-test-base"):     # send names the main branch it was given
         api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
+    with pytest.raises(PublishRefused) as refused:                   # called directly: no branch is known, none is named
+        publish.commit_to_branch(ws, "cdlbib/test/2026-10-01-edit", "edit")
+    assert str(refused.value).endswith("then run `cdlbib commit` again.")
+
+
+def test_push_hints_for_the_two_recognised_failures():
+    """The wording git prints, as text: a push refused for want of permission cannot be
+    produced here without pushing to someone else's repository."""
+    denied = "remote: Permission to no_such_owner/CDL-bibliography.git denied to someone.\nfatal: unable to access: The requested URL returned error: 403"
+    assert publish.push_hint(denied, "no_such_owner/CDL-bibliography") == (
+        " The GitHub account git is signed in with lacks permission to push to no_such_owner/CDL-bibliography; check which "
+        "account is logged in with `gh auth status`.")
+    assert "gh auth setup-git" in publish.push_hint("fatal: could not read Username for 'https://github.com': terminal prompts disabled", "x")
+    assert "gh auth setup-git" in publish.push_hint("fatal: Authentication failed for 'https://github.com/a/b.git/'", "x")
+    assert publish.push_hint("fatal: '/tmp/none.git' does not appear to be a git repository", "x") == ""
 
 
 def test_branch_name():
@@ -363,15 +376,10 @@ def test_send_with_nothing_to_send_refuses_before_anything_outward(checkout):
     (and fail this test) long before any fork could be looked up or created."""
     ws = library_checkout(checkout, "@article{Bad,\n\tPages = {10--1}}\n")
     assert publish.pending(ws) == []
-    other = A_FORK                                      # and it is a fork: one could not be made of it anyway
-    login, _ = gh_login()
-    had = publish.find_fork(other, login) if login else None
     before = state(ws.root)
     with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
-        api.send(ws, reference=str(ws.bib), upstream=other, base=TEST_BASE, allow_fork_creation=True)
+        api.send(ws, reference=str(ws.bib), upstream=NOWHERE, base=TEST_BASE, allow_fork_creation=True)
     assert state(ws.root) == before
-    if login:
-        assert publish.find_fork(other, login) == had   # nothing was created
 
 
 def test_send_never_pushes_to_the_upstream(checkout):
@@ -481,35 +489,43 @@ def gh_login():
     return who.stdout.strip(), ""
 
 
+def newest_repositories():
+    """The names of the tester's five most recently created repositories (a read-only call)."""
+    run = subprocess.run(["gh", "api", "user/repos?affiliation=owner&sort=created&direction=desc&per_page=5",
+                          "--jq", ".[].full_name"], capture_output=True, text=True, check=True)
+    return run.stdout.split()
+
+
 def test_no_fork_is_reported_and_never_created_unasked(checkout, tmp_path):
     """The gate passes and the user has no fork of the upstream: with fork creation off (the
     default) the api only reports it, for the front end to ask.
 
-    Why this test cannot create anything, whatever the code does: (1) fork creation is off;
-    (2) the upstream named is itself a fork, and create_fork refuses a fork before it runs
-    `gh repo fork` (asserted here first, by a read-only call); (3) a push needs a fork to push
-    to, and there is none; (4) the pull request base is the test base, never master."""
-    login, reason = gh_login()
+    The upstream here is the tester's own fork: nobody has a fork of it, and nothing outside
+    the tester's account is named. Why the test cannot create anything, whatever the code
+    does: (1) fork creation is off; (2) the upstream is itself a fork, and create_fork refuses
+    a fork before it runs `gh repo fork`; (3) a push needs a fork to push to, and there is
+    none; (4) the pull request base is the test base, never master. The tester's newest
+    repositories are compared before and after."""
+    login, fork = my_fork()
     if login is None:
-        pytest.skip(reason)
-    other = A_FORK
+        pytest.skip(fork)
+    upstream = fork
+    publish.assert_safe_test_target(upstream, TEST_BASE)
+    assert publish.is_fork(upstream) and publish.find_fork(upstream, login) is None
+    had = newest_repositories()
     try:
-        usable = publish.is_fork(other) and publish.find_fork(other, login) is None
-    except PublishRefused as exc:
-        pytest.skip(f"{other} is not available as a stand-in: {exc}")
-    if not usable:
-        pytest.skip(f"{other} is no longer a fork, or @{login} has a fork of it; the no-fork refusal cannot be shown safely")
-    publish.assert_safe_test_target(other, TEST_BASE)
-    ws = library_checkout(checkout, ZOLL90 + "\n")
-    ws.bib.write_text(ZOLL90 + "\n\n% a note\n", encoding="utf-8")
-    base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
-    before = state(ws.root)
-    with pytest.raises(PublishRefused) as refused:
-        api.send(ws, reference=str(base), citations=False, upstream=other, base=TEST_BASE, allow_fork_creation=False)
-    assert refused.value.needs_fork and refused.value.upstream == other
-    assert str(refused.value) == f"@{login} has no fork of {other}."
-    assert publish.find_fork(other, login) is None      # still none
-    assert state(ws.root) == before
+        ws = library_checkout(checkout, ZOLL90 + "\n")
+        ws.bib.write_text(ZOLL90 + "\n\n% a note\n", encoding="utf-8")
+        base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
+        before = state(ws.root)
+        with pytest.raises(PublishRefused) as refused:
+            api.send(ws, reference=str(base), citations=False, upstream=upstream, base=TEST_BASE, allow_fork_creation=False)
+        assert refused.value.needs_fork and refused.value.upstream == upstream
+        assert str(refused.value) == f"@{login} has no fork of {upstream}."
+        assert publish.find_fork(upstream, login) is None   # still none
+        assert state(ws.root) == before
+    finally:
+        assert newest_repositories() == had                 # the account gained no repository
 
 
 def test_commit_keeps_outfile_and_its_messages(checkout, tmp_path):
@@ -693,7 +709,8 @@ def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatc
                 publish.deliver(ws, branch, "cdlbib test: please ignore", f"https://github.com/{fork}.git", target=fork)
         message = str(refused.value)
         assert f"committed on branch {branch}" in message
-        assert "run `gh auth setup-git` (it makes git use gh's login), then `cdlbib commit` again" in message
+        assert "run `gh auth setup-git` (it makes git use gh's login). Run `cdlbib commit` again to resume" in message
+        assert message.count("`cdlbib commit` again") == 1
         assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == ""   # nothing arrived
     finally:
         clean_up(work, None, branch)
