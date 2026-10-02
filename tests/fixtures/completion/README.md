@@ -59,7 +59,8 @@ parameter) and the retrieval time (`2026-10-02T18:38:45.960152+00:00`). It was r
 
 ## `responses.json`
 
-The lookups of `tests/test_complete_identify.py`: 23 responses, each requested once on
+The lookups of `tests/test_complete_identify.py`: 36 responses (23 at first, 13 more for the
+first round of fixes, rows 24 to 36), each requested once on
 2026-10-02 through `cdlbib.verification.PoliteClient` (one request per second or slower) by
 running `cdlbib.complete.propose` on the queries below. Each item has the `request` (the
 client's cache key: the URL, the parameters and whether the body is XML; for the arXiv
@@ -109,6 +110,24 @@ with a transport that refuses every request (`extra_sources.make_client(..., off
 | 21 | `api.crossref.org/works/10.1101%2F511782` | 19:24:06 | the preprint of `SilvEtal19` | a preprint DOI whose record names the published article |
 | 22 | `api.crossref.org/works/10.1523%2Fjneurosci.0360-19.2019` | 19:24:07 | `SilvEtal19` | that article |
 | 23 | `www.ebi.ac.uk/…/search?query=DOI:"10.1523/jneurosci.0360-19.2019"` | 19:24:08 | `SilvEtal19` | its PubMed record |
+| 24 | `api.crossref.org/works/10.1167%2F15.12.782` | 20:40:01 | `MartJohn15` | an abstract of the Vision Sciences Society meeting, deposited as a journal article (the abstract rule does not see it) |
+| 25 | `www.ebi.ac.uk/…/search?query=DOI:"10.1167/15.12.782"` | 20:40:03 | `MartJohn15` | its PubMed lookup (no result) |
+| 26 | `eutils.ncbi.nlm.nih.gov/…/efetch.fcgi?id=12049324` | 20:40:04 | `BerrEtal02` | a PMID whose PubMed record has no DOI |
+| 27 | `api.crossref.org/works?query.bibliographic=reversible septal inactivation … Y Asaka 2002 Behavioral Neuroscience&rows=5` | 20:40:06 | `BerrEtal02` | the verifier's search for the entry built from PubMed |
+| 28 | `www.ebi.ac.uk/…/search?query=DOI:"10.1037//0735-7044.116.3.434"` | 20:40:07 | `BerrEtal02` | the verifier's PubMed lookup for a DOI that search found |
+| 29 | `www.ebi.ac.uk/…/search?query=DOI:"10.1037/0735-7044.116.3.434"` | 20:40:08 | `BerrEtal02` | the same, for the other form of that DOI |
+| 30 | `api.crossref.org/works?query.bibliographic=students' misunderstandings … Zoller 1991&rows=5` | 20:40:10 | `Zoll90` | the year one off |
+| 31 | `api.crossref.org/works/10.1249%2F00005768-198704001-00264` | 20:40:37 | none (an abstract of the 1987 ACSM meeting, in a supplement issue) | a conference abstract given by DOI |
+| 32 | `www.ebi.ac.uk/…/search?query=DOI:"10.1249/00005768-198704001-00264"` | 20:40:39 | the same abstract | its PubMed lookup (no result) |
+| 33 | `api.crossref.org/works?query.bibliographic=strength training in older men Frontera 1987&rows=5` | 20:40:41 | the same abstract | a conference abstract found by title |
+| 34 | `eutils.ncbi.nlm.nih.gov/…/esearch.fcgi` (title words and `frontera[au]`) | 20:40:42 | the same abstract | the PubMed side of that search |
+| 35 | `eutils.ncbi.nlm.nih.gov/…/efetch.fcgi?id=2312474` | 20:40:43 | a later article by the same authors | the record that search found (not a match) |
+| 36 | `www.ebi.ac.uk/…/search?query=DOI:"10.1101/511782"` | 20:42:33 | the preprint of `SilvEtal19` | the verifier's PubMed lookup when a typed entry keeps the preprint's DOI |
+
+One test pairs two of these on purpose: it answers the DOI that PubMed gives for PMID
+13896567 (10.1037/h0041332, row 7) with the response saved for another work (row 1), to
+stand for a DOI that PubMed links to the wrong record. Both responses are real; the pairing
+is the test's construction and is made in the test's own cache, not in this file.
 
 The full URL of each request is in the item's `response.url`. The works named are entries of
 the frozen library fixture (`tests/fixtures/cdl-prewave1-2026-09-26.bib`), which gives the

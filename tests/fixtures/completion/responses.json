@@ -3547,5 +3547,1872 @@
    "retrieved_at": "2026-10-02T19:24:08.889986+00:00",
    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523%2Fjneurosci.0360-19.2019%22&format=json&resultType=core&pageSize=100"
   }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1167%2F15.12.782",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1167/15.12.782",
+     "ISSN": [
+      "1534-7362"
+     ],
+     "URL": "https://doi.org/10.1167/15.12.782",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Martin",
+       "given": "Joel",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Johnston",
+       "given": "Stephen",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Journal of Vision"
+     ],
+     "issue": "12",
+     "issued": {
+      "date-parts": [
+       [
+        2015,
+        9,
+        1
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://jov.arvojournals.org/article.aspx?doi=10.1167/15.12.782",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "782",
+     "published": {
+      "date-parts": [
+       [
+        2015,
+        9,
+        1
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2015,
+        9,
+        1
+       ]
+      ]
+     },
+     "publisher": "Association for Research in Vision and Ophthalmology (ARVO)",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Target Detection in Visual Search: Unravelling the Pupillary Response"
+     ],
+     "type": "journal-article",
+     "volume": "15"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:01.763709+00:00",
+   "url": "https://api.crossref.org/works/10.1167%2F15.12.782"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1167/15.12.782\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1167/15.12.782\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:03.340129+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1167%2F15.12.782%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "id": "12049324",
+    "retmode": "xml",
+    "tool": "bibcheck"
+   },
+   true
+  ],
+  "response": {
+   "body": "<?xml version=\"1.0\" ?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD PubMedArticle, 1st January 2025//EN\" \"https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle><MedlineCitation Status=\"MEDLINE\" Owner=\"NLM\" IndexingMethod=\"Manual\"><PMID Version=\"1\">12049324</PMID><DateCompleted><Year>2002</Year><Month>11</Month><Day>19</Day></DateCompleted><DateRevised><Year>2019</Year><Month>12</Month><Day>10</Day></DateRevised><Article PubModel=\"Print\"><Journal><ISSN IssnType=\"Print\">0735-7044</ISSN><JournalIssue CitedMedium=\"Print\"><Volume>116</Volume><Issue>3</Issue><PubDate><Year>2002</Year><Month>Jun</Month></PubDate></JournalIssue><Title>Behavioral neuroscience</Title><ISOAbbreviation>Behav Neurosci</ISOAbbreviation></Journal><ArticleTitle>Reversible septal inactivation disrupts hippocampal slow-wave and unit activity and impairs trace conditioning in rabbits (Oryctolagus cuniculus).</ArticleTitle><Pagination><StartPage>434</StartPage><EndPage>442</EndPage><MedlinePgn>434-42</MedlinePgn></Pagination><Abstract><AbstractText>This study investigated the effects of medial septal microinfusion of the local anesthetic, procaine (MS Pro), on hippocampal neurophysiology and learning of the rabbit (Oryctolagus cuniculus) classically conditioned jaw movement (CJM) response. Both the percentage and the amplitude of hippocampal theta decreased after procaine administration, and unit recordings from the MS Pro group showed significantly smaller conditioning-related hippocampal neural responses than those from controls. The MS Pro group took significantly longer to reach learning criterion than did the control group. Interpreted in the context of previous studies, the present result suggests that nonselective blocking of all septal projection systems, as well as fibers of passage, using procaine can be less detrimental to learning than an imbalance between GABAergic and cholinergic septohippocampal projections, as produced by septal infusion of anticholinergics.</AbstractText></Abstract><AuthorList CompleteYN=\"Y\"><Author ValidYN=\"Y\"><LastName>Asaka</LastName><ForeName>Yukiko</ForeName><Initials>Y</Initials><AffiliationInfo><Affiliation>Department of Psychology, Miami University, Oxford, Ohio 45056, USA.</Affiliation></AffiliationInfo></Author><Author ValidYN=\"Y\"><LastName>Griffin</LastName><ForeName>Amy L</ForeName><Initials>AL</Initials></Author><Author ValidYN=\"Y\"><LastName>Berry</LastName><ForeName>Stephen D</ForeName><Initials>SD</Initials></Author></AuthorList><Language>eng</Language><GrantList CompleteYN=\"Y\"><Grant><GrantID>R15DE12248-01</GrantID><Acronym>DE</Acronym><Agency>NIDCR NIH HHS</Agency><Country>United States</Country></Grant></GrantList><PublicationTypeList><PublicationType UI=\"D016428\">Journal Article</PublicationType><PublicationType UI=\"D013487\">Research Support, U.S. Gov't, P.H.S.</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>Behav Neurosci</MedlineTA><NlmUniqueID>8302411</NlmUniqueID><ISSNLinking>0735-7044</ISSNLinking></MedlineJournalInfo><ChemicalList><Chemical><RegistryNumber>4Z8Y51M438</RegistryNumber><NameOfSubstance UI=\"D011343\">Procaine</NameOfSubstance></Chemical></ChemicalList><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI=\"D000818\" MajorTopicYN=\"N\">Animals</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D003213\" MajorTopicYN=\"N\">Conditioning, Psychological</DescriptorName><QualifierName UI=\"Q000187\" MajorTopicYN=\"N\">drug effects</QualifierName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D006624\" MajorTopicYN=\"N\">Hippocampus</DescriptorName><QualifierName UI=\"Q000187\" MajorTopicYN=\"N\">drug effects</QualifierName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D009434\" MajorTopicYN=\"N\">Neural Pathways</DescriptorName><QualifierName UI=\"Q000187\" MajorTopicYN=\"N\">drug effects</QualifierName><QualifierName UI=\"Q000502\" MajorTopicYN=\"N\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D011343\" MajorTopicYN=\"N\">Procaine</DescriptorName><QualifierName UI=\"Q000494\" MajorTopicYN=\"N\">pharmacology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D011817\" MajorTopicYN=\"N\">Rabbits</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D020665\" MajorTopicYN=\"N\">Septum of Brain</DescriptorName><QualifierName UI=\"Q000187\" MajorTopicYN=\"N\">drug effects</QualifierName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D013826\" MajorTopicYN=\"Y\">Theta Rhythm</DescriptorName><QualifierName UI=\"Q000187\" MajorTopicYN=\"N\">drug effects</QualifierName></MeshHeading></MeshHeadingList></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus=\"pubmed\"><Year>2002</Year><Month>6</Month><Day>7</Day><Hour>10</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"medline\"><Year>2002</Year><Month>11</Month><Day>26</Day><Hour>4</Hour><Minute>0</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"entrez\"><Year>2002</Year><Month>6</Month><Day>7</Day><Hour>10</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType=\"pubmed\">12049324</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>",
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:04.783658+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=12049324&retmode=xml&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "reversible septal inactivation disrupts hippocampal slow-wave and unit activity and impairs trace conditioning in rabbits (oryctolagus cuniculus) Y Asaka 2002 Behavioral Neuroscience",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1037//0735-7044.116.3.434",
+       "ISSN": [
+        "0735-7044"
+       ],
+       "URL": "https://doi.org/10.1037//0735-7044.116.3.434",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Asaka",
+         "given": "Yukiko",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Griffin",
+         "given": "Amy L.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Berry",
+         "given": "Stephen D.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Behavioral Neuroscience"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "page": "434-442",
+       "published": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Reversible septal inactivitation disrupts hippocampal slow-wave and unit activity and impairs trace conditioning in rabbits (Oryctolagus cuniculus)."
+       ],
+       "type": "journal-article",
+       "volume": "116"
+      },
+      {
+       "DOI": "10.1037/0735-7044.116.3.434",
+       "ISSN": [
+        "1939-0084",
+        "0735-7044"
+       ],
+       "URL": "https://doi.org/10.1037/0735-7044.116.3.434",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Asaka",
+         "given": "Yukiko",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Griffin",
+         "given": "Amy L.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Berry",
+         "given": "Stephen D.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Behavioral Neuroscience"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://psycnet.apa.org/journals/bne/116/3/434.pdf",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "434-442",
+       "published": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Reversible septal inactivitation disrupts hippocampal slow-wave and unit activity and impairs trace conditioning in rabbits (Oryctolagus cuniculus)."
+       ],
+       "type": "journal-article",
+       "volume": "116"
+      },
+      {
+       "DOI": "10.1037//0735-7044.114.6.1068",
+       "ISSN": [
+        "0735-7044"
+       ],
+       "URL": "https://doi.org/10.1037//0735-7044.114.6.1068",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Asaka",
+         "given": "Yukiko",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Seager",
+         "given": "Matthew A.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Griffin",
+         "given": "Amy L.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Berry",
+         "given": "Stephen D.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Behavioral Neuroscience"
+       ],
+       "issue": "6",
+       "issued": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "page": "1068-1077",
+       "published": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Medial septal microinfusion of scopolamine disrupts hippocampal activity and trace jaw movement conditioning."
+       ],
+       "type": "journal-article",
+       "volume": "114"
+      },
+      {
+       "DOI": "10.1037/0735-7044.114.6.1068",
+       "ISSN": [
+        "1939-0084",
+        "0735-7044"
+       ],
+       "URL": "https://doi.org/10.1037/0735-7044.114.6.1068",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Asaka",
+         "given": "Yukiko",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Seager",
+         "given": "Matthew A.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Griffin",
+         "given": "Amy L.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Berry",
+         "given": "Stephen D.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Behavioral Neuroscience"
+       ],
+       "issue": "6",
+       "issued": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://psycnet.apa.org/journals/bne/114/6/1068.pdf",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1068-1077",
+       "published": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2000
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Medial septal microinfusion of scopolamine disrupts hippocampal activity and trace jaw movement conditioning."
+       ],
+       "type": "journal-article",
+       "volume": "114"
+      },
+      {
+       "DOI": "10.1037//0735-7044.116.4.733",
+       "ISSN": [
+        "0735-7044"
+       ],
+       "URL": "https://doi.org/10.1037//0735-7044.116.4.733",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Allen",
+         "given": "M. Todd",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Padilla",
+         "given": "Yahaira",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Gluck",
+         "given": "Mark A.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Behavioral Neuroscience"
+       ],
+       "issue": "4",
+       "issued": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "page": "733-738",
+       "published": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2002
+         ]
+        ]
+       },
+       "publisher": "American Psychological Association (APA)",
+       "title": [
+        "Ibotenic acid lesions of the medial septum retard delay eyeblink conditioning in rabbits (Oryctolagus cuniculus)."
+       ],
+       "type": "journal-article",
+       "volume": "116"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 9429
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:06.265068+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=reversible+septal+inactivation+disrupts+hippocampal+slow-wave+and+unit+activity+and+impairs+trace+conditioning+in+rabbits+%28oryctolagus+cuniculus%29+Y+Asaka+2002+Behavioral+Neuroscience&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1037//0735-7044.116.3.434\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1037//0735-7044.116.3.434\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:07.416879+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F%2F0735-7044.116.3.434%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1037/0735-7044.116.3.434\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1037/0735-7044.116.3.434\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Psychology, Miami University, Oxford, Ohio 45056, USA."
+            }
+           ]
+          },
+          "firstName": "Yukiko",
+          "fullName": "Asaka Y",
+          "initials": "Y",
+          "lastName": "Asaka"
+         },
+         {
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-4524-2156"
+          },
+          "firstName": "Amy L",
+          "fullName": "Griffin AL",
+          "initials": "AL",
+          "lastName": "Griffin"
+         },
+         {
+          "firstName": "Stephen D",
+          "fullName": "Berry SD",
+          "initials": "SD",
+          "lastName": "Berry"
+         }
+        ]
+       },
+       "doi": "10.1037/0735-7044.116.3.434",
+       "firstPublicationDate": "2002-06-01",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1037/0735-7044.116.3.434"
+         },
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "www.apa.org",
+          "url": "https://doi.org/10.1037//0735-7044.116.3.434"
+         }
+        ]
+       },
+       "id": "12049324",
+       "isOpenAccess": "N",
+       "journalInfo": {
+        "dateOfPublication": "2002 Jun",
+        "issue": "3",
+        "journal": {
+         "essn": "1939-0084",
+         "isoabbreviation": "Behav Neurosci",
+         "issn": "0735-7044",
+         "medlineAbbreviation": "Behav Neurosci",
+         "nlmid": "8302411",
+         "title": "Behavioral neuroscience"
+        },
+        "journalIssueId": 1087858,
+        "monthOfPublication": 6,
+        "printPublicationDate": "2002-06-01",
+        "volume": "116",
+        "yearOfPublication": 2002
+       },
+       "pageInfo": "434-442",
+       "pubTypeList": {
+        "pubType": [
+         "Research Support, U.S. Gov't, P.H.S.",
+         "Journal Article"
+        ]
+       },
+       "pubYear": "2002",
+       "source": "MED",
+       "title": "Reversible septal inactivation disrupts hippocampal slow-wave and unit activity and impairs trace conditioning in rabbits (Oryctolagus cuniculus)."
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:08.550483+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F0735-7044.116.3.434%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "students' misunderstandings and misconceptions in college freshman chemistry (general and organic) Zoller 1991 ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1002/tea.3660271011",
+       "ISSN": [
+        "0022-4308",
+        "1098-2736"
+       ],
+       "URL": "https://doi.org/10.1002/tea.3660271011",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Zoller",
+         "given": "Uri",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Journal of Research in Science Teaching"
+       ],
+       "issue": "10",
+       "issued": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Ftea.3660271011",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/tea.3660271011",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1053-1065",
+       "published": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2011,
+          2,
+          3
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1990,
+          12
+         ]
+        ]
+       },
+       "publisher": "Wiley",
+       "title": [
+        "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)"
+       ],
+       "type": "journal-article",
+       "volume": "27"
+      },
+      {
+       "DOI": "10.1007/bf02356942",
+       "ISSN": [
+        "0157-244X",
+        "1573-1898"
+       ],
+       "URL": "https://doi.org/10.1007/bf02356942",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Zoller",
+         "given": "Uri",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Research in Science Education"
+       ],
+       "issue": "3",
+       "issued": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/BF02356942.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "http://link.springer.com/article/10.1007/BF02356942/fulltext.html",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/BF02356942",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "317-326",
+       "published": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1996,
+          9
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "title": [
+        "The use of examinations for revealing and distinguishing between students' misconceptions, misunderstandings and “no conceptions” in college chemistry"
+       ],
+       "type": "journal-article",
+       "volume": "26"
+      },
+      {
+       "DOI": "10.1007/978-3-319-08419-0_1",
+       "ISBN": [
+        "9783319084183",
+        "9783319084190"
+       ],
+       "URL": "https://doi.org/10.1007/978-3-319-08419-0_1",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Kovács",
+         "given": "Lajos",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Csupor",
+         "given": "Dezső",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Lente",
+         "given": "Gábor",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Gunda",
+         "given": "Tamás",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "100 Chemical Myths"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-3-319-08419-0_1",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1-33",
+       "published": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2014,
+          9,
+          27
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "publisher": "Springer International Publishing",
+       "title": [
+        "Misconceptions in General"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.7810/9781927277751_2",
+       "URL": "https://doi.org/10.7810/9781927277751_2",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Boston",
+         "given": "Jonathan",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Chapple",
+         "given": "Simon",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "The Child Poverty Debate: Myths, Misconceptions and Misunderstandings"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2014
+         ]
+        ]
+       },
+       "publisher": "Bridget Williams Books",
+       "title": [
+        "Myths, misconceptions and misunderstandings"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.36837/chapman.000434",
+       "URL": "https://doi.org/10.36837/chapman.000434",
+       "author": [
+        {
+         "affiliation": [],
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Dudley",
+         "given": "Lauren",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          null
+         ]
+        ]
+       },
+       "publisher": "Chapman University",
+       "title": [
+        "Understanding the Relationship Between Organic Chemistry Misconceptions and Students’ Chemistry Self-efficacy in Higher Education Organic Chemistry Courses"
+       ],
+       "type": "dissertation"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 527541
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:10.407721+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=students%27+misunderstandings+and+misconceptions+in+college+freshman+chemistry+%28general+and+organic%29+Zoller+1991+&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1249%2F00005768-198704001-00264",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1249/00005768-198704001-00264",
+     "ISSN": [
+      "0195-9131"
+     ],
+     "URL": "https://doi.org/10.1249/00005768-198704001-00264",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Frontera",
+       "given": "W. R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Meredith",
+       "given": "C. N.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "O??Reilly",
+       "given": "K.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Knuttgen",
+       "given": "H.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Evans",
+       "given": "W. J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Medicine &amp; Science in Sports &amp; Exercise"
+     ],
+     "issue": "Supplement",
+     "issued": {
+      "date-parts": [
+       [
+        1987,
+        4
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://www.ovid.com/00005768-198704001-00264",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "S44",
+     "published": {
+      "date-parts": [
+       [
+        1987,
+        4
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1987,
+        4
+       ]
+      ]
+     },
+     "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+     "relation": {},
+     "subtitle": [
+      ""
+     ],
+     "title": [
+      "STRENGTH TRAINING IN OLDER MEN"
+     ],
+     "type": "journal-article",
+     "volume": "19"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:37.348221+00:00",
+   "url": "https://api.crossref.org/works/10.1249%2F00005768-198704001-00264"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1249/00005768-198704001-00264\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1249/00005768-198704001-00264\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:39.927847+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1249%2F00005768-198704001-00264%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "strength training in older men Frontera 1987 ",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1249/00005768-198704001-00264",
+       "ISSN": [
+        "0195-9131"
+       ],
+       "URL": "https://doi.org/10.1249/00005768-198704001-00264",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Frontera",
+         "given": "W. R.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Meredith",
+         "given": "C. N.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "O??Reilly",
+         "given": "K.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Knuttgen",
+         "given": "H.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Evans",
+         "given": "W. J.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Medicine &amp; Science in Sports &amp; Exercise"
+       ],
+       "issue": "Supplement",
+       "issued": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.ovid.com/00005768-198704001-00264",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "S44",
+       "published": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1987,
+          4
+         ]
+        ]
+       },
+       "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+       "subtitle": [
+        ""
+       ],
+       "title": [
+        "STRENGTH TRAINING IN OLDER MEN"
+       ],
+       "type": "journal-article",
+       "volume": "19"
+      },
+      {
+       "DOI": "10.1152/jappl.1990.68.1.329",
+       "ISSN": [
+        "8750-7587",
+        "1522-1601"
+       ],
+       "URL": "https://doi.org/10.1152/jappl.1990.68.1.329",
+       "author": [
+        {
+         "affiliation": [
+          {
+           "name": "US Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts 02111."
+          }
+         ],
+         "family": "Frontera",
+         "given": "W. R.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [
+          {
+           "name": "US Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts 02111."
+          }
+         ],
+         "family": "Meredith",
+         "given": "C. N.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [
+          {
+           "name": "US Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts 02111."
+          }
+         ],
+         "family": "O'Reilly",
+         "given": "K. P.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [
+          {
+           "name": "US Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts 02111."
+          }
+         ],
+         "family": "Evans",
+         "given": "W. J.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Journal of Applied Physiology"
+       ],
+       "issue": "1",
+       "issued": {
+        "date-parts": [
+         [
+          1990,
+          1,
+          1
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.physiology.org/doi/pdf/10.1152/jappl.1990.68.1.329",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "329-333",
+       "published": {
+        "date-parts": [
+         [
+          1990,
+          1,
+          1
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1990,
+          1,
+          1
+         ]
+        ]
+       },
+       "publisher": "American Physiological Society",
+       "title": [
+        "Strength training and determinants of VO2max in older men"
+       ],
+       "type": "journal-article",
+       "volume": "68"
+      },
+      {
+       "DOI": "10.17760/d10017318",
+       "URL": "https://doi.org/10.17760/d10017318",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Milton",
+         "given": "Heather Ann",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          null
+         ]
+        ]
+       },
+       "publisher": "Northeastern University Library",
+       "title": [
+        "Effects of the USDA daily recommended intake for protein and strength training on physical function, body composition, and strength in older men"
+       ],
+       "type": "dissertation"
+      },
+      {
+       "DOI": "10.1186/isrctn34271567",
+       "URL": "https://doi.org/10.1186/isrctn34271567",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Portegijs",
+         "given": "Erja",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "http://isrctn.org/&gt;"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2013,
+          1,
+          17
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2013,
+          1,
+          17
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "title": [
+        "The effects of strength training on muscle strength, asymmetry in lower limb muscle strength and mobility in older men and women with a history of hip fracture"
+       ],
+       "type": "dataset"
+      },
+      {
+       "DOI": "10.1186/isrctn12193218",
+       "URL": "https://doi.org/10.1186/isrctn12193218",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0001-9093-2191",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Thomis",
+         "given": "Martine",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "http://isrctn.com/"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2019,
+          12,
+          21
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2019,
+          12,
+          21
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "title": [
+        "Investigating the effects of strength training and de-training in young and older men on changes to DNA that affect which genes are active"
+       ],
+       "type": "dataset"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 2713586
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:41.247654+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=strength+training+in+older+men+Frontera+1987+&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "retmax": 10,
+    "retmode": "json",
+    "term": "strength[ti] AND training[ti] AND older[ti] AND men[ti] AND frontera[au]",
+    "tool": "bibcheck"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "esearchresult": {
+     "count": "1",
+     "idlist": [
+      "2312474"
+     ],
+     "querytranslation": "\"strength\"[Title] AND \"training\"[Title] AND \"older\"[Title] AND \"men\"[Title] AND frontera[Author]",
+     "retmax": "1",
+     "retstart": "0",
+     "translationset": []
+    },
+    "header": {
+     "type": "esearch",
+     "version": "0.3"
+    }
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:42.623746+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=strength%5Bti%5D+AND+training%5Bti%5D+AND+older%5Bti%5D+AND+men%5Bti%5D+AND+frontera%5Bau%5D&retmode=json&retmax=10&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+   {
+    "db": "pubmed",
+    "email": "CONTACT",
+    "id": "2312474",
+    "retmode": "xml",
+    "tool": "bibcheck"
+   },
+   true
+  ],
+  "response": {
+   "body": "<?xml version=\"1.0\" ?>\n<!DOCTYPE PubmedArticleSet PUBLIC \"-//NLM//DTD PubMedArticle, 1st January 2025//EN\" \"https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd\">\n<PubmedArticleSet>\n<PubmedArticle><MedlineCitation Status=\"MEDLINE\" Owner=\"NLM\" IndexingMethod=\"Manual\"><PMID Version=\"1\">2312474</PMID><DateCompleted><Year>1990</Year><Month>04</Month><Day>17</Day></DateCompleted><DateRevised><Year>2017</Year><Month>12</Month><Day>13</Day></DateRevised><Article PubModel=\"Print\"><Journal><ISSN IssnType=\"Print\">8750-7587</ISSN><JournalIssue CitedMedium=\"Print\"><Volume>68</Volume><Issue>1</Issue><PubDate><Year>1990</Year><Month>Jan</Month></PubDate></JournalIssue><Title>Journal of applied physiology (Bethesda, Md. : 1985)</Title><ISOAbbreviation>J Appl Physiol (1985)</ISOAbbreviation></Journal><ArticleTitle>Strength training and determinants of VO2max in older men.</ArticleTitle><Pagination><StartPage>329</StartPage><EndPage>333</EndPage><MedlinePgn>329-33</MedlinePgn></Pagination><Abstract><AbstractText>The effects of strength training on maximal aerobic power (VO2max) and some of its determinants were studied in 12 healthy older men (60-72 yr). They underwent 12 wk of strength conditioning of extensors and flexors of each knee with eight repetitions per set, three sets per session, and three sessions per week at 80% of the one repetition maximum (1 RM). Left knee extensors showed a 107% increase in 1 RM, a 10% increase in isokinetic strength at 60 degrees/s, and a 23% increase in total work performed during 25 contractions on an isokinetic dynamometer. Strength measurements of the untrained left elbow extensors showed no change. Leg cycle ergometer VO2max per unit fat-free mass increased by an average 1.9 ml (P = 0.034) whereas arm cycle VO2max was unchanged. Pulmonary function, hemoglobin concentration, erythrocyte volume, plasma volume, and total blood volume did not change. Biopsies of the vastus lateralis showed a 28% increase in mean fiber area, no change in fiber type distribution, a 15% increase in capillaries per fiber, and a 38% increase in citrate synthase activity. The data suggest that the small increase in leg cycle VO2max in older men may be due to adaptations in oxidative capacity and increased mass of the strength-trained muscles.</AbstractText></Abstract><AuthorList CompleteYN=\"Y\"><Author ValidYN=\"Y\"><LastName>Frontera</LastName><ForeName>W R</ForeName><Initials>WR</Initials><AffiliationInfo><Affiliation>US Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts 02111.</Affiliation></AffiliationInfo></Author><Author ValidYN=\"Y\"><LastName>Meredith</LastName><ForeName>C N</ForeName><Initials>CN</Initials></Author><Author ValidYN=\"Y\"><LastName>O'Reilly</LastName><ForeName>K P</ForeName><Initials>KP</Initials></Author><Author ValidYN=\"Y\"><LastName>Evans</LastName><ForeName>W J</ForeName><Initials>WJ</Initials></Author></AuthorList><Language>eng</Language><PublicationTypeList><PublicationType UI=\"D016428\">Journal Article</PublicationType><PublicationType UI=\"D013485\">Research Support, Non-U.S. Gov't</PublicationType><PublicationType UI=\"D013486\">Research Support, U.S. Gov't, Non-P.H.S.</PublicationType></PublicationTypeList></Article><MedlineJournalInfo><Country>United States</Country><MedlineTA>J Appl Physiol (1985)</MedlineTA><NlmUniqueID>8502536</NlmUniqueID><ISSNLinking>0161-7567</ISSNLinking></MedlineJournalInfo><CitationSubset>IM</CitationSubset><MeshHeadingList><MeshHeading><DescriptorName UI=\"D000368\" MajorTopicYN=\"N\">Aged</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D000375\" MajorTopicYN=\"N\">Aging</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D015444\" MajorTopicYN=\"N\">Exercise</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D006801\" MajorTopicYN=\"N\">Humans</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D008297\" MajorTopicYN=\"N\">Male</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D008875\" MajorTopicYN=\"N\">Middle Aged</DescriptorName></MeshHeading><MeshHeading><DescriptorName UI=\"D009132\" MajorTopicYN=\"N\">Muscles</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D010101\" MajorTopicYN=\"N\">Oxygen Consumption</DescriptorName><QualifierName UI=\"Q000502\" MajorTopicYN=\"Y\">physiology</QualifierName></MeshHeading><MeshHeading><DescriptorName UI=\"D010806\" MajorTopicYN=\"Y\">Physical Education and Training</DescriptorName></MeshHeading></MeshHeadingList><OtherID Source=\"NASA\">90186561</OtherID></MedlineCitation><PubmedData><History><PubMedPubDate PubStatus=\"pubmed\"><Year>1990</Year><Month>1</Month><Day>1</Day></PubMedPubDate><PubMedPubDate PubStatus=\"medline\"><Year>1990</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>1</Minute></PubMedPubDate><PubMedPubDate PubStatus=\"entrez\"><Year>1990</Year><Month>1</Month><Day>1</Day><Hour>0</Hour><Minute>0</Minute></PubMedPubDate></History><PublicationStatus>ppublish</PublicationStatus><ArticleIdList><ArticleId IdType=\"pubmed\">2312474</ArticleId><ArticleId IdType=\"doi\">10.1152/jappl.1990.68.1.329</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>",
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:40:43.868797+00:00",
+   "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=2312474&retmode=xml&tool=bibcheck"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1101/511782\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1101/511782\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "firstName": "Marta",
+          "fullName": "Silva M",
+          "initials": "M",
+          "lastName": "Silva"
+         },
+         {
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0003-3540-5019"
+          },
+          "firstName": "Christopher",
+          "fullName": "Baldassano C",
+          "initials": "C",
+          "lastName": "Baldassano"
+         },
+         {
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-5482-7615"
+          },
+          "firstName": "Lluís",
+          "fullName": "Fuentemilla L",
+          "initials": "L",
+          "lastName": "Fuentemilla"
+         }
+        ]
+       },
+       "commentCorrectionList": {
+        "commentCorrection": [
+         {
+          "id": "31519818",
+          "note": "CrossRef Pre-print loader",
+          "orderIn": 10001,
+          "reference": "The Journal of neuroscience : the official journal of the Society for Neuroscience. 2019 Oct;39(43):8538-8548",
+          "source": "MED",
+          "type": "Preprint of"
+         }
+        ]
+       },
+       "doi": "10.1101/511782",
+       "firstPublicationDate": "2019-01-04",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Open access",
+          "availabilityCode": "OA",
+          "documentStyle": "pdf",
+          "site": "Unpaywall",
+          "url": "https://www.biorxiv.org/content/biorxiv/early/2019/01/04/511782.full.pdf"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1101/511782"
+         }
+        ]
+       },
+       "id": "PPR66427",
+       "isOpenAccess": "N",
+       "pubTypeList": {
+        "pubType": [
+         "Preprint"
+        ]
+       },
+       "pubYear": "2019",
+       "source": "PPR",
+       "title": "Rapid memory reactivation at movie event boundaries promotes episodic encoding"
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-02T20:42:33.748050+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1101%2F511782%22&format=json&resultType=core&pageSize=100"
+  }
  }
 ]

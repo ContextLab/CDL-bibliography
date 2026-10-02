@@ -1004,7 +1004,12 @@ LOOKUP_FAILED = "provider_error"  # the verifier's own status for a source that 
 SHORT_LIST = 5  # how many candidates a person is shown
 
 _PMID_TEXT = re.compile(r"(?:pmid\s*:?\s*|https?://pubmed\.ncbi\.nlm\.nih\.gov/)(\d{1,9})/?", re.I)
-_DOI_PREFIX = re.compile(r"^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)", re.I)
+_DOI_PREFIX = re.compile(r"^(?:(?:https?://)?(?:dx\.|www\.)?doi\.org/|doi\s*:\s*|doi\s+)", re.I)
+_ARXIV_LINK = re.compile(r"^(?:https?://)?(?:www\.)?(arxiv\.org/(?:abs|pdf)/[^?#\s]+?)(?:\.pdf)?(?:[?#]\S*)?$", re.I)
+# The check the first layers of the verifier make is not the whole gate: said on every
+# proposal whose status is not an accepted one.
+FIRST_CHECK = ("This status comes from the first check only; `cdlbib verify` runs the full check and may "
+               "still accept the entry.")
 # DataCite relations by which an arXiv record names its published version.
 _PUBLISHED_RELATIONS = {"IsPreprintOf", "IsVersionOf", "IsIdenticalTo"}
 
@@ -1012,20 +1017,38 @@ _PUBLISHED_RELATIONS = {"IsPreprintOf", "IsVersionOf", "IsIdenticalTo"}
 def _doi_text(text):
     """``text`` as a DOI without its resolver prefix, in the case it was given; None when
     it is not a DOI (``verification.normalize_doi`` is the test)."""
+    return _doi_read(text)[0]
+
+
+def _doi_read(text):
+    """``_doi_text`` and what was cut from the end, if anything: punctuation that cannot
+    end a DOI (``.``, ``,``, ``;``, ``:``, and a closing bracket with no opening one inside
+    the DOI, so ``10.1016/S0140-6736(97)11096-0`` keeps its bracket)."""
     from urllib.parse import unquote
     value = unquote(_DOI_PREFIX.sub("", text.strip()).replace("\\_", "_"))
     try:
         normalize_doi(value)
     except ValueError:
-        return None
-    return value
+        return None, ""
+    kept = value
+    while len(kept) > 1 and (kept[-1] in ".,;:" or (kept[-1] == ")" and kept.count(")") > kept.count("("))
+                             or (kept[-1] == "]" and kept.count("]") > kept.count("["))):
+        kept = kept[:-1]
+    try:
+        normalize_doi(kept)
+    except ValueError:
+        return value, ""
+    return kept, value[len(kept):]
 
 
 def _arxiv_text(text):
     """``text`` as an arXiv identifier (``2208.02957``, with ``v2`` when a version was
     given); None when it is not one (``arxiv_review.parse_id`` is the test)."""
     from .arxiv_review import parse_id
-    value = re.sub(r"\.pdf$", "", text.strip(), flags=re.I)
+    value = text.strip()
+    link = _ARXIV_LINK.match(value)
+    if link:  # with or without the scheme, a final .pdf, a query (?context=...) or a fragment
+        value = "https://" + link[1]
     try:
         base, version = parse_id(value)
     except ValueError:
@@ -1045,6 +1068,7 @@ class Query:
     raw: str | None = None   # the typed entry's text, when the query is a typed entry
     key: str | None = None   # its key
     fields: dict | None = None  # its fields (with ENTRYTYPE and ID), as load_entries gives them
+    notes: list[str] = field(default_factory=list)  # what was done to the text to read it
 
     @classmethod
     def parse(cls, text, author=None, year=None):
@@ -1058,9 +1082,10 @@ class Query:
         arxiv = _arxiv_text(text) if text else None
         if arxiv:
             return cls(arxiv=arxiv, author=author, year=year)
-        doi = _doi_text(text) if text else None
+        doi, cut = _doi_read(text) if text else (None, "")
         if doi:
-            return cls(doi=doi, author=author, year=year)
+            said = [f"The DOI was read as {doi}: the final {cut!r} was taken as punctuation after it."] if cut else []
+            return cls(doi=doi, author=author, year=year, notes=said)
         return cls(title=text or None, author=author, year=year)
 
     @classmethod
@@ -1099,6 +1124,8 @@ class Identified:
     takes. ``candidates``: the records a person chooses from, each with ``authors``,
     ``year``, ``journal``, ``doi``, ``title``, ``type`` and ``source``. ``published_for``:
     the preprint (a DOI or ``arXiv:<id>``) whose published version ``record`` is.
+    ``source`` "pubmed": ``record`` is the PubMed record of a paper PubMed gives no DOI
+    for, in the Crossref shape ``extra_sources.medline_record`` makes.
     """
     record: dict | None = None
     corroborating: dict | None = None
@@ -1106,6 +1133,7 @@ class Identified:
     source: str | None = None
     note: str | None = None
     published_for: str | None = None
+    decision: str | None = None  # why the proposal built from ``record`` needs a decision
 
 
 def _summary(record, source="crossref"):
@@ -1128,6 +1156,48 @@ def _summary(record, source="crossref"):
     if record.get("PMID"):
         out["pmid"] = str(record["PMID"])
     return out
+
+
+def _abstract_signs(record, mapped=None):
+    """Why a record deposited as a journal article may be a conference abstract, or None
+    (house rule: a conference abstract is never the record). The project has no detector
+    for this on a Crossref record (``sfn_abstracts`` works from a typed citation), so the
+    signs are the three the owner named: the venue names abstracts or a meeting; the issue
+    or volume is a supplement; or there is neither a page range nor an article number
+    (the builder's ``_article_number`` says what an article number is). ``mapped``: the
+    PubMed record for the same DOI, whose pages count when Crossref deposits none or only
+    the first."""
+    venues = record.get("container-title") if isinstance(record.get("container-title"), list) else []
+    named = next((_text(v) for v in venues if isinstance(v, str)
+                  and re.search(r"\b(?:abstracts?|meetings?)\b", v, re.I)), None)
+    if named:
+        return f"its venue is \"{named}\""
+    for part in ("issue", "volume"):
+        value = record.get(part)
+        if isinstance(value, str) and re.search(r"suppl", value, re.I):
+            return f"its {part} is a supplement ({_text(value)})"
+    page = record.get("page") if isinstance(record.get("page"), str) else ""
+    number = record.get("article-number") if isinstance(record.get("article-number"), str) else ""
+    second = mapped.get("page") if mapped and isinstance(mapped.get("page"), str) else ""
+    verdict = "it has no pages and no article number"
+    for pages, from_number in ((_text(page or number), bool(number and not page)), (_text(second), False)):
+        if not pages:
+            continue
+        try:
+            stated = expanded_pages(pages)
+        except ValueError:
+            return None
+        first, _, last = stated.partition("-")
+        if (last and first != last) or (not last and _article_number(stated, record, from_number)):
+            return None
+        verdict = f"it has one page ({pages}) and no article number"
+    return verdict
+
+
+def _abstract_note(record, mapped=None):
+    sign = _abstract_signs(record, mapped) if record.get("type") == "journal-article" else None
+    return (f"The record {record.get('DOI')} may be a conference abstract: {sign}. A conference abstract is not "
+            "cited (house rule), so it is not taken without a decision.") if sign else None
 
 
 def _crossref_record(client, doi):
@@ -1205,16 +1275,45 @@ def _from_doi(client, doi, follow=True):
                 return published
     # A correction or retraction notice is refused by the builder: PubMed is not asked about it.
     mapped, _, unused = (None, None, None) if _is_notice(record) else _corroboration(client, record)
+    # The DOI was given, so its record is the record; what looks like an abstract is said.
     return Identified(record=record, corroborating=mapped, source="crossref+pubmed" if mapped else "crossref",
-                      note=_notes(alias, unused))
+                      note=_notes(alias, unused), decision=_abstract_note(record, mapped))
+
+
+class _PubmedClient:
+    """The caller's client as ``extra_sources`` wants it: that module reads the contact
+    address from ``client.contact`` (its own ``make_client`` sets it), and a plain
+    ``PoliteClient`` has it as ``mailto``. Everything else is the caller's client, which
+    is not changed."""
+
+    def __init__(self, client):
+        self._client = client
+        self.contact = client.mailto
+
+    def __getattr__(self, name):
+        return getattr(self._client, name)
 
 
 def _pubmed_client(client):
-    """``extra_sources`` reads the contact address from ``client.contact`` (set by its own
-    ``make_client``); a plain ``PoliteClient`` has it as ``mailto``."""
-    if getattr(client, "contact", None) is None:
-        client.contact = client.mailto
-    return client
+    return client if getattr(client, "contact", None) else _PubmedClient(client)
+
+
+def _same_work(pubmed, record):
+    """What differs between a PubMed record (``medline_record`` shape) and the Crossref
+    record its DOI leads to, or None: the title must be the same by the verifier's
+    comparison or within the identity rule's small difference
+    (``correction_proposals.title_small_difference``), and the first author's surname the
+    same after ``verification.normalized`` (the test ``_different_work`` makes of a typed
+    entry)."""
+    from .auto_review import safe_compare
+    title = (pubmed.get("title") or [""])[0]
+    evidence, _ = safe_compare({"ENTRYTYPE": "article", "title": title}, record)
+    titles = evidence.get("title", {}).get("source") or []
+    same_title = bool(evidence.get("title", {}).get("match")) or any(
+        cp.title_small_difference(title, t) for t in titles)
+    one, two = _record_first_surname(pubmed), _record_first_surname(record)
+    differs = ([] if same_title else ["title"]) + ([] if one and one == two else ["first author"])
+    return " and ".join(differs) or None
 
 
 def _by_pmid(client, pmid):
@@ -1227,13 +1326,26 @@ def _by_pmid(client, pmid):
     if medline_is_notice(raw):
         kinds = ", ".join(raw.get("publication_types") or [])
         return Identified(candidates=[listed], note=f"PMID {pmid} is not an article ({kinds}); nothing was built from it")
-    if len(raw["dois"]) != 1:
-        said = "no DOI" if not raw["dois"] else "several DOIs (" + ", ".join(raw["dois"]) + ")"
-        return Identified(candidates=[listed], note=f"The PubMed record {pmid} has {said}; an entry is built from "
-                                                    "a Crossref record, so nothing was built")
+    if len(raw["dois"]) > 1:
+        return Identified(candidates=[listed], note=f"The PubMed record {pmid} has several DOIs ("
+                          + ", ".join(raw["dois"]) + "); nothing was built from it")
+    if not raw["dois"]:
+        # PubMed gives no DOI: the entry is built from the PubMed record alone, in the
+        # Crossref shape the verifier already reads it in, under PubMed's own journal title.
+        record = medline_record(raw)
+        record["container-title"] = record["container-title"][:1]
+        return Identified(record=record, source="pubmed",
+                          note=f"Built from the PubMed record {pmid} alone: PubMed gives no DOI for it, and no "
+                               "second source was compared.")
     found = _from_doi(client, raw["dois"][0])
     if found.record is None:
         found.candidates = [listed]
+    elif not found.published_for:
+        differs = _same_work(medline_record(raw), found.record)
+        if differs:  # PubMed's DOI leads to another work: neither is taken
+            return Identified(candidates=[listed, _summary(found.record)],
+                              note=f"PubMed gives PMID {pmid} the DOI {raw['dois'][0]}, but the Crossref record of "
+                                   f"that DOI differs from the PubMed record in its {differs}; nothing was built")
     found.note = _notes(f"PMID {pmid} has the DOI {raw['dois'][0]}.", found.note)
     return found
 
@@ -1274,7 +1386,8 @@ def _is_notice(record):
 def _judged(fields, record, source, want_surname, want_year):
     """How a found record stands against the typed title, first author and year.
 
-    ``strict``: the title is the same after ``verification.normalize_title`` (the
+    ``strict``: the record is a journal article that shows no sign of being a conference
+    abstract (``_abstract_signs``), the title is the same after ``verification.normalize_title`` (the
     verifier's comparison: case, accents, LaTeX, punctuation and spacing do not count), the
     first author's surname is the same after ``verification.normalized``, and, when a year
     was given, it is one of the record's publication years. ``plausible``: the same
@@ -1296,8 +1409,16 @@ def _judged(fields, record, source, want_surname, want_year):
         years = set()
     same_year = not want_year or str(want_year).strip() in years
     usable = not _is_notice(record)
-    return {"record": record, "source": source, "doi": record.get("DOI"),
-            "strict": usable and same_title and same_surname and same_year,
+    matches = usable and same_title and same_surname and same_year
+    # Only a journal article that does not look like a conference abstract is taken; any
+    # other match is a candidate, with the reason.
+    demoted = None
+    if matches and record.get("type") != "journal-article":
+        demoted = f"The record {record.get('DOI') or record.get('PMID')} is of type {record.get('type')}, not a journal article."
+    elif matches:
+        demoted = _abstract_note(record)
+    return {"record": record, "source": source, "doi": record.get("DOI"), "demoted": demoted,
+            "match": matches, "strict": matches and not demoted,
             "plausible": usable and ((same_surname and near_title) if want_surname else same_title)}
 
 
@@ -1361,17 +1482,28 @@ def _by_title(client, query):
 
     asked = ["the title"] + (["the first author"] if want_surname else []) + (["the year"] if want_year else [])
     asked = asked[0] if len(asked) == 1 else ", ".join(asked[:-1]) + " and " + asked[-1]
-    strict = _distinct_works([item for item in pool if item["strict"]])
-    if len(strict) == 1 and strict[0]["source"] == "crossref":
-        found = _from_doi(client, strict[0]["doi"])
-        found.note = _notes(f"One record matches {asked}: {strict[0]['doi']}.", found.note)
-        return found
-    if strict:
-        listed = [_summary(item["record"], item["source"]) for item in strict[:SHORT_LIST]]
-        if len(strict) == 1:
+    # Every match counts when asking whether there is exactly one, also a match that is not
+    # taken (another type, or the signs of a conference abstract).
+    matched = _distinct_works([item for item in pool if item["match"]])
+    if len(matched) == 1:
+        item, listed = matched[0], [_summary(matched[0]["record"], matched[0]["source"])]
+        if item["source"] != "crossref":
             return Identified(candidates=listed, note=f"The one record that matches {asked} is in PubMed only, "
                                                       "without a DOI; an entry is built from a Crossref record")
-        return Identified(candidates=listed, note=f"{len(strict)} records match {asked}; one has to be chosen")
+        if item["demoted"] and item["record"].get("type") != "journal-article":
+            return Identified(candidates=listed, note=_notes(f"One record matches {asked}.", item["demoted"]))
+        found = _from_doi(client, item["doi"])
+        if found.record is None or found.decision:
+            # Still with the signs of an abstract once PubMed's pages are known: a candidate.
+            return Identified(candidates=listed, note=_notes(f"One record matches {asked}.", found.decision or found.note))
+        found.note = _notes(f"One record matches {asked}: {item['doi']}.", found.note)
+        return found
+    if matched:
+        listed = [_summary(item["record"], item["source"]) for item in matched[:SHORT_LIST]]
+        demoted = [item["demoted"] for item in matched[:SHORT_LIST] if item["demoted"]]
+        return Identified(candidates=listed,
+                          note=_notes(f"{len(matched)} records match {asked}; one has to be chosen" + ("." if demoted else ""),
+                                      *demoted))
     plausible = _distinct_works([item for item in pool if item["plausible"]])
     if plausible:
         listed = [_summary(item["record"], item["source"]) for item in plausible[:SHORT_LIST]]
@@ -1597,7 +1729,12 @@ def build_arxiv(typed_fields, raw):
     def keep_typed(name, had):
         formed = _house_form(name, had)
         fields[name] = formed
-        if formed == had:
+        asked = _house_question(name, had) if formed == had else None
+        if asked:
+            proposal.changes.append(FieldChange(name, had, had, "typed", "question"))
+            proposal.issues.append(asked)
+            proposal.needs_decision = True
+        elif formed == had:
             proposal.changes.append(FieldChange(name, had, had, "typed", "kept"))
         else:
             proposal.changes.append(FieldChange(name, had, formed, "house format", "changed"))
@@ -1678,6 +1815,43 @@ def build_arxiv(typed_fields, raw):
         proposal.unfilled.append(Unfilled("ID", "a key needs the authors and the year", {}))
     proposal.doi = fields.get("doi") or proposal.doi
     proposal.proposed_raw = render(kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
+    _set_complete(proposal, fields)
+    return proposal
+
+
+def _set_complete(proposal, fields):
+    """``Proposal.complete`` by ``build``'s rule (a key, and every required field there and
+    not a question); an entry that is not complete needs a decision. ``build`` computes it
+    inline, so the rule is repeated here, on the same ``REQUIRED_FIELDS``."""
+    asked = {c.field for c in proposal.changes if c.kind == "question"}
+    proposal.complete = bool((proposal.key_typed or proposal.key_proposed)
+                             and all(fields.get(name) and name not in asked for name in REQUIRED_FIELDS))
+    if not proposal.complete:
+        proposal.needs_decision = True
+
+
+def _written_fields(proposal):
+    """The fields of ``proposal.proposed_raw``, read back from its changes by ``build``'s
+    rule (a question keeps the typed value when there is one); None when rendering them
+    does not give the text again."""
+    fields = {}
+    for change in proposal.changes:
+        if change.kind != "dropped":
+            fields[change.field] = change.typed if change.kind == "question" and change.typed else change.proposed
+    fields = {name: value for name, value in fields.items() if value is not None}
+    key = proposal.key_typed or proposal.key_proposed or NO_KEY
+    return fields if render(proposal.entry_type, key, fields) == proposal.proposed_raw else None
+
+
+def _renamed_pubmed(proposal):
+    """``build`` names its first record ``crossref``; here that record is PubMed's."""
+    def named(text):
+        return text.replace("crossref", "pubmed").replace("Crossref", "PubMed")
+    proposal.record_source = "pubmed"
+    proposal.changes = [FieldChange(c.field, c.typed, c.proposed, named(c.source), c.kind) for c in proposal.changes]
+    proposal.unfilled = [Unfilled(u.field, named(u.reason), {named(k): v for k, v in u.source_values.items()})
+                         for u in proposal.unfilled]
+    proposal.issues = [named(i) for i in proposal.issues]
     return proposal
 
 
@@ -1765,6 +1939,7 @@ def checked(proposal, client, arxiv_raw=None):
         proposal.status = LOOKUP_FAILED
         add(f"The proposed entry could not be verified: a source did not answer ({exc})")
         proposal.needs_decision = True
+        proposal.notes.append(FIRST_CHECK)
         return proposal
     proposal.status = result["status"]
     for issue in result.get("issues") or []:
@@ -1777,6 +1952,7 @@ def checked(proposal, client, arxiv_raw=None):
             if issue not in proposal.issues:
                 add(f"{closest.get('source')} {closest.get('doi') or ''}: {issue}".replace("  ", " "))
         proposal.needs_decision = True
+        proposal.notes.append(FIRST_CHECK)
     return proposal
 
 
@@ -1790,6 +1966,12 @@ def propose(query, client, cache):
       reason, so one failed lookup does not lose the other queries of a batch;
     - otherwise the built entry, with the verifier's ``status`` and ``issues`` for it.
     Nothing here records an approval: ``status`` is only ever what the verifier returned.
+
+    A DOI that was given is never dropped or replaced: when the published version of a
+    typed preprint is offered, the proposed text keeps the typed DOI and the offered one
+    is a ``question``. A PMID whose PubMed record has no DOI is built from that record
+    alone (``record_source`` "pubmed"). A status that is not an accepted one comes with
+    the ``FIRST_CHECK`` note.
     """
     from .verification import ProviderError
     typed = dict(query.fields) if query.fields else ({"doi": query.doi} if query.doi else {})
@@ -1810,29 +1992,51 @@ def propose(query, client, cache):
         return as_typed([f"The lookup failed: a source did not answer ({exc}); the entry is left as typed"],
                         status=LOOKUP_FAILED)
     if found.record is None:
-        return as_typed([found.note], found.candidates)
-    replaced = None
-    if found.published_for and typed.get("doi"):
-        # The typed DOI is the preprint's. The published record is offered, never applied:
-        # the DOI is shown as a question and the typed entry stays until the person decides.
-        replaced = typed.pop("doi")
+        return as_typed([found.note] + query.notes, found.candidates)
+    # A preprint DOI in a typed entry: the published record is offered, never applied. The
+    # entry is built without the DOI (the builder fills nothing under a DOI that is not the
+    # record's) and the typed DOI is then put back into the text, exactly as typed, with the
+    # offered DOI shown as a question. A DOI given as a bare query is not an entry's text:
+    # the offered DOI is then the candidate of a question with nothing typed.
+    given = typed.get("doi") if found.published_for else None
+    if given:
+        typed.pop("doi")
     try:
         if found.source == "arxiv":
             proposal = build_arxiv(typed, found.record)
         else:
             proposal = build(typed, found.record, found.corroborating)
+            if found.source == "pubmed":
+                _renamed_pubmed(proposal)
     except CompletionRefused as exc:
         return as_typed([found.note, str(exc)], found.candidates)
     proposal.typed_raw = query.raw
     proposal.candidates = list(found.candidates)
+    proposal.notes += [n for n in query.notes if n not in proposal.notes]
     if found.note:  # a choice to make is an issue; how the record was found is a note
         (proposal.issues if found.candidates or found.published_for else proposal.notes).insert(0, found.note)
-    if replaced:
-        for index, change in enumerate(proposal.changes):
-            if change.field == "doi":
-                proposal.changes[index] = FieldChange("doi", replaced, change.proposed, change.source, "question")
+    if found.decision:
+        proposal.issues.append(found.decision)
+        proposal.needs_decision = True
     if found.candidates or found.published_for:
         proposal.needs_decision = True
     if proposal.proposed_raw is None:
         return proposal
+    if given:
+        offered = found.record.get("DOI")
+        fields = _written_fields(proposal)
+        if fields is None:  # the text cannot be rebuilt with the typed DOI in it: nothing is proposed
+            return as_typed([found.note, "The proposed entry could not be written with the typed DOI kept"],
+                            found.candidates)
+        in_entry = bool(query.fields)
+        fields["doi"] = given if in_entry else offered
+        order = _field_order()
+        proposal.changes = sorted(
+            [c for c in proposal.changes if c.field != "doi" and c.kind != "dropped"]
+            + [FieldChange("doi", given if in_entry else None, offered, "crossref", "question")],
+            key=lambda c: order.index(c.field)) + [c for c in proposal.changes if c.kind == "dropped"]
+        proposal.doi = fields["doi"]
+        proposal.proposed_raw = render(proposal.entry_type, proposal.key_typed or proposal.key_proposed or NO_KEY,
+                                       fields)
+        _set_complete(proposal, fields)
     return checked(proposal, client, found.record if found.source == "arxiv" else None)
