@@ -105,6 +105,8 @@ Commands:
 
 Run `cdlbib COMMAND --help` for the options of any command.
 
+Step-by-step tutorials are in [docs/tutorials.md](docs/tutorials.md).
+
 # Suggested workflow
 
 After making changes to `cdl.bib` (manually, using
