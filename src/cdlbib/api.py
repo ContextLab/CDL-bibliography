@@ -129,6 +129,41 @@ def where(fname=None):
                  last_check=library.read_state().last_check if managed else None)
 
 
+def _managed():
+    from . import library, workspace
+    if not library.exists():
+        raise CdlbibError(f"cdlbib has not downloaded a library yet (it would be at {library.path()}), "
+                          "so there are no backups and nothing to undo.")
+    return workspace.Workspace(library.path())
+
+
+def managed_root():
+    """The folder of the managed library; CdlbibError when it has not been downloaded."""
+    return _managed().root
+
+
+def backups():
+    """The backups of the managed library (library.Backup), newest first. Whatever library
+    the user is working in, this is about the one cdlbib downloads and manages."""
+    from . import library
+    _managed()
+    return library.backups()
+
+
+def undo_update():
+    """Put the managed library back as it was at the newest backup, and return that Backup.
+    The current state is backed up first (it is then the newest backup), so calling this
+    again undoes the undo. Branch, commit and file bytes are restored exactly; changes that
+    were staged come back unstaged."""
+    from . import library
+    ws = _managed()
+    saved = library.backups()
+    if not saved:
+        raise CdlbibError(f"No backup has been made yet of {ws.root}, so there is nothing to undo.")
+    library.restore(saved[0], ws)      # takes the backup of the current state itself
+    return saved[0]
+
+
 def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):
     from .helpers import check_bib
     with _quiet(bars) as sink:

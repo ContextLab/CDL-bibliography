@@ -13,6 +13,11 @@ class LibraryUnavailable(CdlbibError):
     """The managed library is not there and could not be downloaded."""
 
 
+class UpdateConflict(CdlbibError):
+    """An update of the managed library collided with the user's changes; the backup taken
+    before it was restored."""
+
+
 class MissingDependency(CdlbibError):
     def __init__(self, package, extra, feature):
         self.package, self.extra, self.feature = package, extra, feature

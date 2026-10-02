@@ -167,6 +167,41 @@ def where(ctx: typer.Context, fname: str = BIB_NAME):
         typer.echo("last update check: " + (found.last_check.strftime("%Y-%m-%d %H:%M UTC") if found.last_check else "never"))
 
 
+def _backup_line(backup):
+    changed = len(backup.changed)
+    return (f"{backup.when}: " + (f"branch {backup.branch}" if backup.branch else "no branch")
+            + f" at {backup.commit[:8]}, {changed} changed file{'' if changed == 1 else 's'}"
+            + (", local commits saved" if backup.has_bundle else ""))
+
+
+@app.command()
+def update(show: bool = typer.Option(False, "--list", help="Show the backups of the library cdlbib manages."),
+           undo: bool = typer.Option(False, "--undo",
+                                     help="Put that library back as it was at the newest backup.")):
+    """Backups of the library cdlbib downloads and manages: --list shows them, --undo restores the newest."""
+    if show and undo:
+        raise typer.BadParameter("--list and --undo cannot be used together")
+    if undo:
+        restored = api.undo_update()
+        typer.echo(f"restored the backup of {_backup_line(restored)}")
+        typer.echo(f"the library as it was just before is saved in {api.backups()[0].path}")
+        typer.echo("run `cdlbib update --undo` again to return to it")
+    elif show:
+        saved = api.backups()
+        root = api.managed_root()
+        if not saved:
+            typer.echo(f"no backups of {root} yet")
+            return
+        typer.echo(f"{len(saved)} backup{'' if len(saved) == 1 else 's'} of {root}, newest first "
+                   f"(kept in {saved[0].path.parent}):")
+        for backup in saved:
+            typer.echo("  " + _backup_line(backup).replace(": ", "  ", 1))
+        typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one.")
+    else:
+        typer.echo("updating the library is not available yet; `cdlbib update --list` shows the backups "
+                   "and `cdlbib update --undo` restores the newest")
+
+
 def fork_wanted(exc):
     """Whether to create the user's fork now. By default it is, after saying so; with --ask the
     user is asked first (no terminal means no)."""
