@@ -32,6 +32,7 @@ WANTED = [  # (name in records.json, case file, case key, DOI of the record)
     ("corporate-author", "phase0_cases.json.gz", "HarrEtal20", "10.1038/s41592-019-0686-2"),
     ("book-chapter", "apply-2026-09-25d-cases.json.gz", "AltmSchu02", "10.4324/9781315782379-49"),
     ("preprint", "fixes-2026-09-24-cases.json.gz", "AlyTurk16", "10.1101/511782"),
+    ("sentence-case-proper-noun", "phase0_cases.json.gz", "Pike84", "10.1037/0033-295x.92.1.130"),
 ]
 # The entry as it stood in cdl.bib when the case was saved (the typed side of a test).
 WITH_TYPED_ENTRY = {"CleeMcCl91"}

@@ -5639,5 +5639,81 @@
    "case": "AlyTurk16",
    "file": "tests/fixtures/fixes-2026-09-24-cases.json.gz"
   }
+ },
+ "sentence-case-proper-noun": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1037/0033-295x.92.1.130",
+    "ISSN": [
+     "1939-1471",
+     "0033-295X"
+    ],
+    "URL": "https://doi.org/10.1037/0033-295x.92.1.130",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Murdock",
+      "given": "Bennet B.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "Psychological Review"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       1985,
+       1
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/rev/92/1/130.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "130-132",
+    "published": {
+     "date-parts": [
+      [
+       1985,
+       1
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1985,
+       1
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "title": [
+     "Convolution and matrix systems: A reply to Pike."
+    ],
+    "type": "journal-article",
+    "volume": "92"
+   },
+   "retrieved_at": "2026-09-09T20:07:51.750540+00:00",
+   "url": "https://doi.org/10.1037/0033-295x.92.1.130"
+  },
+  "doi": "10.1037/0033-295x.92.1.130",
+  "origin": {
+   "case": "Pike84",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
  }
 }

@@ -1093,10 +1093,15 @@ def confirm_issue(record=None, mapped=None, lookup=None):
                    "publisher": {k: (lookup.get("publisher") or {}).get(k)
                                  for k in ("url", "doi_confirmed", "citation_issue", "error")}}
     if statements:
-        found = {normalized(v) for _, v in statements}
+        # Issues compare by the project's rule (verification.normalize_issue: "09" = "9"),
+        # and an all-digit issue is written without leading zeros, as the library has them.
+        from .verification import normalize_issue
+        found = {normalize_issue(v) for _, v in statements}
         if len(found) != 1:
             raise ValueError("number: sources disagree on the issue: " + "; ".join(f"{s}={v}" for s, v in statements))
         value = statements[0][1]
+        if re.fullmatch(r"\d+", value):
+            value = normalize_issue(value)
         if not re.fullmatch(r"[1-9]\d*", value):
             raise ValueError("number: stated issue is not a plain number: " + value)
         return {"issue": value, "sources": sorted({s for s, _ in statements}), "lookup": summary}

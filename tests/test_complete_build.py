@@ -19,6 +19,10 @@ from cdlbib.errors import CdlbibError, CompletionRefused
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
+# One record fetched for these tests (see the fixture README): an article that was retracted.
+RETRACTED = json.loads((ROOT / "tests/fixtures/completion/retracted-article.json").read_text(encoding="utf-8"))
+CAPITALS = ("title: capitalisation taken from a title-case source; proper nouns and acronyms cannot be told "
+            "apart from ordinary words")
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
 
 # The exact text of each work's entry in the frozen library fixture.
@@ -269,14 +273,71 @@ def test_changes_of_a_doi_only_entry_name_the_source_of_every_field():
 
 
 def test_without_pubmed_every_value_is_crossrefs():
-    record, _ = sources("MoheEtal14")
-    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    record, _ = sources("Zoll90")
+    proposal = complete.build({"doi": "10.1002/tea.3660271011"}, record)
     assert proposal.record_source == "crossref"
     assert {c.source for c in proposal.changes if c.kind == "filled"} == {"crossref"}
-    # FINDING: Crossref prints this title in Title Case, and the title helper keeps a word with
-    # two capitals in braces; only PubMed's sentence-case text gives the library's title.
-    assert change(proposal, "title").proposed == "Inhibition drives early {Feature-Based} attention"
-    assert proposal.proposed_raw == LIBRARY["MoheEtal14"].replace("feature-based", "{Feature-Based}")
+
+
+# Crossref prints these three titles in Title Case ("Inhibition Drives Early Feature-Based
+# Attention"). With no sentence-case source, which capitals are names cannot be known: the
+# title is built in sentence case and the person is asked to check it.
+@pytest.mark.parametrize("key", ["MoheEtal14", "FiedGloc12", "PigeEtal12"])
+def test_a_title_known_only_in_title_case_is_a_question_about_its_capitals(key):
+    record, _ = sources(key)
+    assert sum(word[0].isupper() for word in record["title"][0].split()) >= 4
+    library = fields_of(LIBRARY[key])
+    proposal = complete.build({"doi": library["doi"]}, record)
+    assert change(proposal, "title") == complete.FieldChange("title", None, library["title"], "crossref", "question")
+    assert CAPITALS in proposal.issues
+    assert proposal.needs_decision is True
+    assert "\tTitle = {" + library["title"] + "},\n" in proposal.proposed_raw
+    assert "{Feature-Based}" not in proposal.proposed_raw and "{Eye-Tracking}" not in proposal.proposed_raw
+    assert "{Meta-Analysis}" not in proposal.proposed_raw
+
+
+def test_a_typed_title_is_not_replaced_by_a_title_case_sources_capitals():
+    record, _ = sources("MoheEtal14")
+    typed = {"doi": "10.1177/0956797613511257", "title": "Inhibition drives feature-based attention"}
+    proposal = complete.build(typed, record)
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", "Inhibition drives feature-based attention",
+        "Inhibition drives early feature-based attention", "crossref", "question")
+    assert "\tTitle = {Inhibition drives feature-based attention},\n" in proposal.proposed_raw
+    assert proposal.needs_decision is True and CAPITALS in proposal.issues
+
+
+def test_a_sentence_case_source_keeps_the_names_it_capitalises():
+    record, mapped = sources("sentence-case-proper-noun")
+    assert record["title"] == ["Convolution and matrix systems: A reply to Pike."] and mapped is None
+    proposal = complete.build({"doi": "10.1037/0033-295X.92.1.130"}, record)
+    # Not in the library. The name is braced as the house style braces a capitalised word.
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", None, "Convolution and matrix systems: a reply to {Pike}", "crossref", "filled")
+    assert proposal.needs_decision is False and proposal.issues == []
+    assert proposal.proposed_raw == (
+        "@article{Murd85,\n"
+        "\tAuthor = {B B Murdock},\n"
+        "\tDoi = {10.1037/0033-295X.92.1.130},\n"
+        "\tJournal = {Psychological Review},\n"
+        "\tNumber = {1},\n"
+        "\tPages = {130--132},\n"
+        "\tTitle = {Convolution and matrix systems: a reply to {Pike}},\n"
+        "\tVolume = {92},\n"
+        "\tYear = {1985}}")
+
+
+def test_a_sentence_case_source_keeps_its_acronym_and_its_product_names():
+    record, _ = sources("KoelEtal16")
+    proposal = complete.build({"doi": "10.1038/srep19741"}, record)
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", None, fields_of(LIBRARY["KoelEtal16"])["title"], "crossref", "filled")
+    assert "a statistical {MMN} reflects" in proposal.proposed_raw
+    assert proposal.proposed_raw == LIBRARY["KoelEtal16"] and proposal.needs_decision is False
+    scipy = deepcopy(RECORDS["corporate-author"]["crossref"]["record"])
+    built = complete.build({"doi": "10.1038/s41592-019-0686-2"}, scipy)
+    assert change(built, "title") == complete.FieldChange(
+        "title", None, fields_of(LIBRARY["VirtEtal20"])["title"], "crossref", "filled")
 
 
 def test_the_print_year_is_chosen_when_the_online_date_is_a_later_digitisation():
@@ -318,12 +379,12 @@ def test_no_issue_is_written_when_no_source_states_one():
 # text is what the house helpers give for the saved records; the comment says which field
 # differs and why.
 DIFFERS = {
-    # author: the source's "Glöckner" is written as the source prints it (Unicode); the
-    # library spells the same letter in LaTeX (Gl{\"{o}}ckner). Pages: the article number
-    # is PubMed's (Crossref has none).
+    # author: the source's "Glöckner" is written in LaTeX in the library's most common form
+    # for an umlaut, {\"o}; this entry of the library uses another form, {\"{o}}. Pages: the
+    # article number is PubMed's (Crossref has none).
     "FiedGloc12": (
         "@article{FiedGloc12,\n"
-        "\tAuthor = {S Fiedler and A Glöckner},\n"
+        "\tAuthor = {S Fiedler and A Gl{\\\"o}ckner},\n"
         "\tDoi = {10.3389/fpsyg.2012.00335},\n"
         "\tJournal = {Frontiers in Psychology},\n"
         "\tPages = {335},\n"
@@ -343,20 +404,20 @@ DIFFERS = {
         "\tVolume = {253},\n"
         "\tYear = {2003}}"
     ),
-    # journal: Crossref's name begins with "The", which the library omits. number: Crossref
-    # says "09" and PubMed "9", which the issue rule reads as a disagreement, so none is written.
+    # journal: Crossref's name begins with "The", which the library omits.
     "PigeEtal12": (
         "@article{PigeEtal12,\n"
         "\tAuthor = {W R Pigeon and M Pinquart and K Conner},\n"
         "\tDoi = {10.4088/jcp.11r07586},\n"
         "\tJournal = {The Journal of Clinical Psychiatry},\n"
+        "\tNumber = {9},\n"
         "\tPages = {e1160--e1167},\n"
         "\tTitle = {Meta-analysis of sleep disturbance and suicidal thoughts and behaviors},\n"
         "\tVolume = {73},\n"
         "\tYear = {2012}}"
     ),
 }
-DIFFERING_FIELDS = {"FiedGloc12": {"author"}, "Schr03": {"journal"}, "PigeEtal12": {"journal", "number"}}
+DIFFERING_FIELDS = {"FiedGloc12": {"author"}, "Schr03": {"journal"}, "PigeEtal12": {"journal"}}
 
 
 @pytest.mark.parametrize("key", sorted(DIFFERS))
@@ -386,7 +447,12 @@ def test_a_corporate_author_leaves_the_byline_unfilled_with_the_helpers_reason()
         "E Tsoy and J Neuhaus and C Fonseca and A Wolf and Y Cobigo and H Rosen and J H Kramer},\n", "")
     assert "Author" not in proposal.proposed_raw
     assert proposal.key_typed == "LindEtal21" and proposal.key_proposed is None
-    assert proposal.needs_decision is False
+    # Crossref and PubMed both print this title in Title Case, so its capitals are a question.
+    assert mapped["title"] == record["title"] == [
+        "Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe "
+        "Trajectories in Older Adults"]
+    assert change(proposal, "title").kind == "question" and proposal.issues == [CAPITALS]
+    assert proposal.needs_decision is True
 
 
 def test_without_an_author_and_without_a_typed_key_there_is_no_key():
@@ -433,45 +499,79 @@ def test_an_all_capitals_title_is_left_unfilled_with_the_helpers_reason():
     assert [u.field for u in proposal.unfilled] == ["title"]
 
 
-def test_pages_that_the_two_sources_give_differently_are_left_unfilled_with_both_values():
+def test_a_first_page_from_one_source_and_the_range_from_the_other_gives_the_range():
     record, mapped = sources("Knut07")
     assert record["page"] == "973" and mapped["page"] == "973-978"
     proposal = complete.build({"doi": "10.1519/r-505011.1"}, record, mapped)
-    assert unfilled(proposal, "pages") == complete.Unfilled(
-        "pages", "pages: sources disagree", {"crossref": "973", "pubmed": "973-978"})
-    assert [c for c in proposal.changes if c.field == "pages"] == []
-    # The library's Knut07 has no DOI, Pages = {973--978} and no "The" in the journal name.
+    assert change(proposal, "pages") == complete.FieldChange(
+        "pages", None, "973--978", "pubmed; crossref gives the first page", "filled")
+    assert [u for u in proposal.unfilled if u.field == "pages"] == []
+    assert proposal.needs_decision is False
+    # The library's Knut07 plus the DOI; the journal name keeps Crossref's "The".
     assert proposal.proposed_raw == (
         "@article{Knut07,\n"
         "\tAuthor = {H G Knuttgen},\n"
         "\tDoi = {10.1519/r-505011.1},\n"
         "\tJournal = {The Journal of Strength and Conditioning Research},\n"
         "\tNumber = {3},\n"
+        "\tPages = {973--978},\n"
         "\tTitle = {Strength training and aerobic exercise: comparison and contrast},\n"
         "\tVolume = {21},\n"
         "\tYear = {2007}}")
+    assert proposal.proposed_raw.replace("\tDoi = {10.1519/r-505011.1},\n", "").replace(
+        "{The Journal", "{Journal") == LIBRARY["Knut07"]
 
 
-def test_typed_pages_are_kept_when_the_sources_disagree():
+def test_a_lone_first_page_from_one_source_is_filled_as_a_question():
+    record, _ = sources("Knut07")  # Crossref alone: page "973"; the article runs to 978
+    proposal = complete.build({"doi": "10.1519/r-505011.1"}, record)
+    assert change(proposal, "pages") == complete.FieldChange("pages", None, "973", "crossref", "question")
+    assert ("pages: the source gives only a first page (973); the last page is not confirmed"
+            in proposal.issues)
+    assert proposal.needs_decision is True
+    assert "\tPages = {973},\n" in proposal.proposed_raw
+
+
+def test_an_article_number_is_not_a_lone_first_page():
+    record, mapped = sources("FiedGloc12")  # PubMed alone gives "335"; the DOI ends in 00335
+    proposal = complete.build({"doi": "10.3389/fpsyg.2012.00335"}, record, mapped)
+    assert change(proposal, "pages") == complete.FieldChange("pages", None, "335", "pubmed", "filled")
+    assert proposal.needs_decision is False
+    record, _ = sources("KoelEtal16")  # Crossref's article-number field
+    assert record["article-number"] == "19741" and "page" not in record
+    proposal = complete.build({"doi": "10.1038/srep19741"}, record)
+    assert change(proposal, "pages") == complete.FieldChange("pages", None, "19741", "crossref", "filled")
+
+
+def test_typed_pages_that_one_source_states_in_full_are_kept():
     record, mapped = sources("Knut07")
     typed = dict(fields_of(LIBRARY["Knut07"]), doi="10.1519/r-505011.1")
     proposal = complete.build(typed, record, mapped)
     assert change(proposal, "pages") == complete.FieldChange("pages", "973--978", "973--978", "typed", "kept")
-    assert unfilled(proposal, "pages").source_values == {"crossref": "973", "pubmed": "973-978"}
-    assert "\tPages = {973--978},\n" in proposal.proposed_raw
+    assert [u for u in proposal.unfilled if u.field == "pages"] == []
     # The typed journal name is the record's up to a leading "The": not contradicted, so kept.
     assert change(proposal, "journal").kind == "kept"
     assert "\tJournal = {Journal of Strength and Conditioning Research},\n" in proposal.proposed_raw
 
 
-def test_an_issue_the_sources_state_differently_is_left_unfilled_with_the_helpers_reason():
+def test_a_field_no_source_states_is_listed():
+    record, _ = sources("AlyTurk16")  # Crossref has no page for this article
+    assert "page" not in record and "article-number" not in record
+    proposal = complete.build({"doi": "10.1073/pnas.1518931113"}, record)
+    assert unfilled(proposal, "pages") == complete.Unfilled("pages", "pages: no source record states it", {})
+    assert "Pages" not in proposal.proposed_raw
+
+
+def test_issue_numbers_are_compared_as_numbers_and_written_without_a_leading_zero():
+    from cdlbib import correction_proposals as cp
     record, mapped = sources("PigeEtal12")
     assert record["issue"] == "09" and mapped["issue"] == "9"
+    assert cp.confirm_issue(record, mapped, None) == {"issue": "9", "sources": ["crossref", "pubmed"], "lookup": None}
+    assert cp.confirm_issue(record, None, None) == {"issue": "9", "sources": ["crossref"], "lookup": None}
     proposal = complete.build({"doi": "10.4088/jcp.11r07586"}, record, mapped)
-    assert unfilled(proposal, "number") == complete.Unfilled(
-        "number", "number: sources disagree on the issue: crossref=09; pubmed=9",
-        {"crossref": "09", "pubmed": "9"})
-    assert "Number" not in proposal.proposed_raw
+    assert change(proposal, "number") == complete.FieldChange("number", None, "9", "crossref+pubmed", "filled")
+    assert "\tNumber = {9},\n" in proposal.proposed_raw  # as the library's PigeEtal12 has it
+    assert [u for u in proposal.unfilled if u.field == "number"] == []
 
 
 def test_a_corrected_article_is_built_and_says_that_a_correction_exists():
@@ -498,7 +598,7 @@ def test_a_corrected_article_is_built_and_says_that_a_correction_exists():
 # --- what the person typed --------------------------------------------------------------------
 
 WITH_DOI = ["MoheEtal14", "Zoll90", "Game62", "KoelEtal16", "AlyTurk16", "ChenEtal21",
-            "FiedGloc12", "Schr03", "PigeEtal12", "LindEtal21"]
+            "FiedGloc12", "PigeEtal12", "LindEtal21"]
 
 
 @pytest.mark.parametrize("key", WITH_DOI)
@@ -596,6 +696,124 @@ def test_a_typed_year_that_is_the_online_year_is_changed_to_the_print_year():
     assert change(proposal, "author").kind == "kept"
     assert unfilled(proposal, "author").reason == "Incomplete or corporate source byline"
     assert proposal.proposed_raw == LIBRARY["LindEtal21"]
+
+
+def test_a_typed_year_is_kept_but_not_confirmed_when_the_sources_leave_the_year_open():
+    record, _ = sources("LindEtal21")  # print 2021, online 2020, and no PubMed record to decide
+    typed = dict(fields_of(LIBRARY["LindEtal21"]), year="2020")
+    proposal = complete.build(typed, record)
+    assert change(proposal, "year") == complete.FieldChange("year", "2020", "2020", "typed", "question")
+    assert unfilled(proposal, "year") == complete.Unfilled(
+        "year", "year: print and online years differ and no rule selects one",
+        {"crossref published-print": "2021", "crossref published-online": "2020",
+         "crossref issued": "2020", "crossref published": "2020"})
+    assert ("year: print and online years differ and no rule selects one; the typed year 2020 is kept "
+            "and is not confirmed") in proposal.issues
+    assert proposal.needs_decision is True
+    assert "\tYear = {2020}}" in proposal.proposed_raw
+    assert proposal.key_proposed == "LindEtal20"  # follows the typed year, which the issue says is open
+
+
+def test_a_typed_value_the_format_checker_would_rewrite_is_shown_in_house_form():
+    record, mapped = sources("MoheEtal14")
+    typed = dict(fields_of(LIBRARY["MoheEtal14"]), title="Inhibition Drives Early Feature-Based Attention",
+                 pages="315-324")
+    proposal = complete.build(typed, record, mapped)
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", "Inhibition Drives Early Feature-Based Attention",
+        "Inhibition drives early feature-based attention", "house format", "changed")
+    assert change(proposal, "pages") == complete.FieldChange("pages", "315-324", "315--324", "house format", "changed")
+    assert proposal.proposed_raw == LIBRARY["MoheEtal14"]
+    assert proposal.needs_decision is False
+
+
+def test_the_librarys_own_entry_is_rewritten_where_the_format_checker_would_rewrite_it():
+    record, mapped = sources("Schr03")  # the frozen entry's journal has stray braces
+    proposal = complete.build(fields_of(LIBRARY["Schr03"]), record, mapped)
+    assert change(proposal, "journal") == complete.FieldChange(
+        "journal", "{European} Archives of Psychiatry and Clinical Neuroscience",
+        "European Archives of Psychiatry and Clinical Neuroscience", "house format", "changed")
+    assert proposal.proposed_raw == DIFFERS["Schr03"]
+
+
+def test_typed_values_the_format_checker_accepts_are_kept_byte_for_byte():
+    record, mapped = sources("MoheEtal14")
+    typed = dict(fields_of(LIBRARY["MoheEtal14"]), doi="https://doi.org/10.1177/0956797613511257",
+                 author="Jeff Moher and B M Lakshmanan and H E Egeth and J B Ewen")
+    proposal = complete.build(typed, record, mapped)
+    assert change(proposal, "doi") == complete.FieldChange(
+        "doi", "https://doi.org/10.1177/0956797613511257", "https://doi.org/10.1177/0956797613511257", "typed", "kept")
+    assert change(proposal, "author") == complete.FieldChange(
+        "author", "Jeff Moher and B M Lakshmanan and H E Egeth and J B Ewen",
+        "Jeff Moher and B M Lakshmanan and H E Egeth and J B Ewen", "typed", "kept")
+
+
+def test_a_doi_filled_from_the_record_is_written_as_the_record_gives_it():
+    record, _ = sources("CleeMcCl91")
+    proposal = complete.build(RECORDS["CleeMcCl91"]["typed"], record)
+    assert change(proposal, "doi").proposed == record["DOI"] == proposal.doi
+
+
+# --- non-ASCII letters are written in the library's LaTeX form ---------------------------------
+
+def _styles(accent):
+    """How often the frozen library writes one symbol accent in each brace style."""
+    counts = {"{\\Xl}": 0, "\\X{l}": 0, "{\\X{l}}": 0, "\\Xl": 0}
+    for outer, inner in re.findall(r"(\{?)\\" + re.escape(accent) + r"(\{?)\\?[A-Za-z]", FROZEN):
+        counts["{\\X{l}}" if outer and inner else "{\\Xl}" if outer else "\\X{l}" if inner else "\\Xl"] += 1
+    return counts
+
+
+def test_the_latex_forms_are_the_librarys_most_common_ones():
+    # The evidence for the table in complete.py: counts in the frozen library.
+    assert _styles('"') == {"{\\Xl}": 85, "\\X{l}": 45, "{\\X{l}}": 39, "\\Xl": 12}
+    assert _styles("'") == {"{\\Xl}": 66, "\\X{l}": 82, "{\\X{l}}": 24, "\\Xl": 23}
+    assert _styles("`") == {"{\\Xl}": 3, "\\X{l}": 0, "{\\X{l}}": 0, "\\Xl": 0}
+    assert _styles("~") == {"{\\Xl}": 7, "\\X{l}": 4, "{\\X{l}}": 0, "\\Xl": 0}
+    assert _styles("^") == {"{\\Xl}": 1, "\\X{l}": 0, "{\\X{l}}": 1, "\\Xl": 1}
+    assert complete.latex_text("Glöckner") == 'Gl{\\"o}ckner'
+    assert complete.latex_text("Hervé") == "Herv\\'{e}"
+    assert complete.latex_text("à ñ ô") == "{\\`a} {\\~n} {\\^o}"
+    # letter accents and letters, as the library has them: {\c{s}}, \v{c}, {\u{g}}, {\H{o}}, {\o}, {\l}, {\ss}
+    for form in ("{\\c{s}}", "\\v{c}", "{\\u{g}}", "{\\H{o}}", "{\\o}", "{\\l}", "{\\ss}", "{\\AA}", "{\\ae}"):
+        assert form in FROZEN
+    assert complete.latex_text("ş č ğ ő ø ł ß Å æ") == "{\\c{s}} \\v{c} {\\u{g}} {\\H{o}} {\\o} {\\l} {\\ss} {\\AA} {\\ae}"
+    # punctuation: the library has --- on 33 title lines and no em dash, `` on 42 and curly quotes on 5
+    assert sum("---" in line for line in FROZEN.split("\n") if line.startswith("\tTitle")) == 33
+    assert "\u2014" not in FROZEN
+    assert complete.latex_text("O\u2019Brien \u2014 a\u2013b \u201cq\u201d x\u00a0y") == "O'Brien --- a--b ``q'' x y"
+    assert complete.latex_text("plain ASCII {B}ayes") == "plain ASCII {B}ayes"
+
+
+def test_every_accented_source_string_in_the_fixtures_survives_the_latex_form():
+    from cdlbib.verification import normalized
+    records = [item["crossref"]["record"] for item in RECORDS.values()] + [RETRACTED["body"]["message"]]
+    strings = sorted({text for record in records for person in record.get("author", [])
+                      for text in (person.get("given"), person.get("family")) if text and not text.isascii()})
+    assert "Glöckner" in strings and "İlhan" in strings and "Slavič" in strings and len(strings) == 14
+    for text in strings:
+        written = complete.latex_text(text)
+        assert written.isascii() and complete.not_in_latex(text) == []
+        assert normalized(written) == normalized(text)  # the verifier reads back the same letters
+
+
+def test_a_character_with_no_latex_form_is_left_and_named():
+    title = "Oscillatory γ-band (30–70 {Hz}) activity induced by a visual search task in humans"
+    assert "\tTitle = {" + title + "},\n" in FROZEN  # a title of the frozen library
+    assert complete.latex_text(title) == title.replace("–", "--")
+    assert complete.not_in_latex(title) == ["γ"]
+
+
+def test_a_typed_accented_letter_is_shown_in_latex_form():
+    record, mapped = sources("FiedGloc12")
+    typed = dict(fields_of(LIBRARY["FiedGloc12"]), author="S Fiedler and A Glöckner")
+    proposal = complete.build(typed, record, mapped)
+    assert change(proposal, "author") == complete.FieldChange(
+        "author", "S Fiedler and A Glöckner", 'S Fiedler and A Gl{\\"o}ckner', "house format", "changed")
+    assert proposal.proposed_raw == DIFFERS["FiedGloc12"]
+    # The library's own spelling of the same letter, typed, is kept as typed.
+    kept = complete.build(fields_of(LIBRARY["FiedGloc12"]), record, mapped)
+    assert change(kept, "author").kind == "kept" and kept.proposed_raw == LIBRARY["FiedGloc12"]
 
 
 # --- Review Focus 1: the DOI is another work's ------------------------------------------------
@@ -698,6 +916,70 @@ def test_an_erratum_record_is_refused_with_the_reason():
     assert isinstance(refused.value, CdlbibError)
     assert str(refused.value) == ("The record 10.1038/s41592-020-0772-5 is a correction of "
                                   "10.1038/s41592-019-0686-2, not the article itself; cite the article")
+
+
+def test_a_retracted_article_is_named_and_needs_a_decision():
+    record = deepcopy(RETRACTED["body"]["message"])
+    assert record["DOI"] == "10.1016/s0140-6736(97)11096-0"
+    assert [(u["type"], u["DOI"]) for u in record["updated-by"]] == [
+        ("correction", "10.1016/s0140-6736(04)15715-2"), ("retraction", "10.1016/s0140-6736(10)60175-4")]
+    proposal = complete.build({"doi": "10.1016/S0140-6736(97)11096-0"}, record)
+    assert proposal.issues[0] == ("The article was retracted (the retraction notice: "
+                                  "10.1016/s0140-6736(10)60175-4); it is not added without a decision")
+    assert "Source flags an update/correction/retraction relationship" in proposal.issues
+    assert proposal.needs_decision is True
+    assert proposal.proposed_raw is not None and "\tJournal = {The Lancet},\n" in proposal.proposed_raw
+    # The record gives initials without periods ("AJ"), which the byline helper refuses.
+    assert unfilled(proposal, "author").reason == "Undotted capital initials are ambiguous: AJ"
+
+
+def test_an_erratum_message_reads_properly():
+    record, _ = sources("erratum")
+    record["update-to"][0]["type"] = "erratum"  # Crossref's other name for the same kind of notice
+    with pytest.raises(CompletionRefused) as refused:
+        complete.build({"doi": "10.1038/s41592-020-0772-5"}, record)
+    assert str(refused.value).startswith("The record 10.1038/s41592-020-0772-5 is an erratum of ")
+
+
+# A record whose parts are not in the form Crossref documents. Each is the saved MoheEtal14
+# record with one part replaced; the builder says which part it could not read.
+@pytest.mark.parametrize("part, value, field, reason", [
+    ("author", "Moher J", "author", "author: the record's author is not in the expected form"),
+    ("author", [{"given": ["Jeff"], "family": "Moher"}], "author", "author: the record's author is not in the expected form"),
+    ("container-title", "Psychological Science", "journal",
+     "journal: the record's container-title is not in the expected form"),
+    ("page", 315, "pages", "pages: the record's page is not in the expected form"),
+    ("volume", 25, "volume", "volume: the record's volume is not in the expected form"),
+    ("title", "Inhibition Drives Early Feature-Based Attention", "title",
+     "title: the record's title is not in the expected form"),
+    ("published-print", {"date-parts": "2014"}, "year", "year: the record's published-print is not in the expected form"),
+])
+def test_a_malformed_part_of_a_record_is_an_unfilled_field_with_the_reason(part, value, field, reason):
+    record, _ = sources("MoheEtal14")
+    record[part] = value
+    if field == "year":
+        for name in ("published-online", "issued", "published"):
+            del record[name]
+    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    assert unfilled(proposal, field).reason == reason
+    assert [c for c in proposal.changes if c.field == field] == []
+    assert field.capitalize() + " = " not in proposal.proposed_raw
+
+
+def test_a_record_with_no_title_or_no_authors_lists_them_as_missing():
+    record, _ = sources("MoheEtal14")
+    del record["title"], record["author"]
+    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    assert unfilled(proposal, "title").reason == "title: no source record states it"
+    assert unfilled(proposal, "author").reason == "author: no source record states it"
+
+
+def test_a_record_with_no_type_is_not_built():
+    record, _ = sources("MoheEtal14")
+    del record["type"]
+    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    assert proposal.unsupported == "unknown"
+    assert proposal.issues == ["A record with no type is not built automatically; the entry is left as typed"]
 
 
 def test_the_builder_prints_nothing(capsys):

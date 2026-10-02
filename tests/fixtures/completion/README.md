@@ -41,8 +41,18 @@ prints the corresponding author's address in the affiliation) is replaced by
 | `erratum` | 10.1038/s41592-020-0772-5 | phase0_cases.json.gz, case `HarrEtal20` | 2026-09-09 | none | a correction notice (update-to) |
 | `book-chapter` | 10.4324/9781315782379-49 | apply-2026-09-25d-cases.json.gz, case `AltmSchu02` | not stored | none | record type book-chapter |
 | `preprint` | 10.1101/511782 | fixes-2026-09-24-cases.json.gz, case `AlyTurk16` | 2026-09-17 | none | record type posted-content |
+| `sentence-case-proper-noun` | 10.1037/0033-295x.92.1.130 | phase0_cases.json.gz, case `Pike84` | 2026-09-09 | none | sentence-case title with a name ("A reply to Pike.") |
 
 The `book-chapter` record comes from a case file that stores the record without its
 retrieval time (its `source` note: `verification/baseline.jsonl.gz at 89c5b70`).
 
 To rebuild `records.json` from the case files: `python tests/fixtures/completion/extract_records.py`.
+
+## `retracted-article.json`
+
+The one record fetched for these tests: no saved case holds an article that was retracted.
+It is the Crossref work record of 10.1016/S0140-6736(97)11096-0, whose `updated-by` lists a
+correction and a retraction. The response body is saved as returned, with the request URL
+(`https://api.crossref.org/works/10.1016/S0140-6736(97)11096-0`, without the contact address
+parameter) and the retrieval time (`2026-10-02T18:38:45.960152+00:00`). It was requested once, through
+`cdlbib.verification.PoliteClient`.
