@@ -2717,7 +2717,7 @@ def record_revocation(cache, fname, key, reason, by, fingerprints=None, ledger=N
     was already revoked. ``ledger`` defaults to the patched REVOCATION_LEDGER, else the
     bibliography's workspace; the module global is never assigned."""
     if not (_text(reason) and _text(by)):
-        raise ValueError("A revocation needs --reason and --by")
+        raise ValueError("A revocation needs a reason (--reason) and a GitHub login (gh auth login)")
     ledger_path = revocation_ledger(fname, ledger)
     with run_lock(cache):
         entry = load_entries(fname)[key]

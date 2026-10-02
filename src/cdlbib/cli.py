@@ -85,7 +85,7 @@ def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, out
            all: bool = typer.Option(False, "--all", help="Verify the citations of every entry, not only changed ones."),
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
-    """Format check, then citation verification of new/edited entries (see check_library)."""
+    """Format check, then citation verification of new/edited entries."""
     check = run_gate(ctx, fname, reference=reference, citations=not no_citations, all_entries=all, autofix=autofix,
                      outfile=outfile, verbose=verbose, database=database, mailto=mailto)
     if not check.ok:

@@ -253,3 +253,19 @@ def test_end_of_input_at_the_prompt_aborts_cleanly(tmp_path):
         os.close(leader)
     assert run.returncode == 1 and "Aborted." in run.stderr and "Traceback" not in run.stderr, run.stdout + run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+
+
+def test_dartmouth_models_without_a_usable_key_is_one_line_not_a_traceback(tmp_path):
+    """`python -m cdlbib.dartmouth_models` with a key that cannot be one (it has a space): the
+    message on stderr, exit 2, nothing fetched. (A malformed key is refused before the
+    keychain or the network is consulted, so the run is the same on every machine.)"""
+    done = subprocess.run([sys.executable, "-m", "cdlbib.dartmouth_models"], cwd=tmp_path, capture_output=True,
+                          text=True, env=dict(os.environ, DARTMOUTH_CHAT_API_KEY="not a key"))
+    assert done.returncode == 2 and done.stdout == ""
+    assert done.stderr == "Dartmouth key must be a single token\n"
+
+
+def test_verify_help_names_no_internal_function(tmp_path):
+    shown = run("verify", "--help", cwd=tmp_path)
+    assert shown.returncode == 0 and "check_library" not in shown.stdout
+    assert "Format check, then citation verification" in shown.stdout

@@ -174,7 +174,7 @@ def test_revoke_refuses_an_entry_without_a_human_approval(library):
     assert v.read_revocation_ledger() == []
     cache = v.Cache(str(database), ledger=v.REVOCATION_LEDGER)
     try:
-        with pytest.raises(ValueError, match="A revocation needs --reason and --by"):
+        with pytest.raises(ValueError, match=r"A revocation needs a reason \(--reason\) and a GitHub login \(gh auth login\)"):
             v.record_revocation(cache, str(bib), "Palm78", " ", BY, ledger=v.REVOCATION_LEDGER)
     finally:
         cache.close()

@@ -109,7 +109,7 @@ def test_record_revocation_refuses_a_non_text_reason_or_by_and_writes_nothing(se
     ledger = tmp_path / "ledger.jsonl"
     cache = v.Cache(database, ledger=ledger)
     try:
-        with pytest.raises(ValueError, match="A revocation needs --reason and --by"):
+        with pytest.raises(ValueError, match=r"A revocation needs a reason \(--reason\) and a GitHub login \(gh auth login\)"):
             v.record_revocation(cache, str(bib), "Palm78", reason, by, ledger=ledger)
         assert cache.revocations() == []
     finally:

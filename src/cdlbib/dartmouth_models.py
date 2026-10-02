@@ -80,6 +80,16 @@ def require_free(models, model_id):
 
 
 def main():
+    """List the models; a missing or malformed key, or a failed lookup, is one line on
+    stderr and exit status 2 (as the adapters report it), never a traceback."""
+    try:
+        _main()
+    except ValueError as exc:  # configuration() turns a missing or malformed key into ValueError
+        print(str(exc), file=sys.stderr)
+        sys.exit(2)
+
+
+def _main():
     from .dartmouth_research_adapter import configuration
 
     key, _ = configuration(os.environ)
