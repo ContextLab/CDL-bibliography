@@ -1,0 +1,5643 @@
+{
+ "AlyTurk16": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1073/pnas.1518931113",
+    "ISSN": [
+     "0027-8424",
+     "1091-6490"
+    ],
+    "URL": "https://doi.org/10.1073/pnas.1518931113",
+    "author": [
+     {
+      "affiliation": [
+       {
+        "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544;"
+       }
+      ],
+      "family": "Aly",
+      "given": "Mariam",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [
+       {
+        "name": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544;"
+       },
+       {
+        "name": "Department of Psychology, Princeton University, Princeton, NJ 08544"
+       }
+      ],
+      "family": "Turk-Browne",
+      "given": "Nicholas B.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Proceedings of the National Academy of Sciences"
+    ],
+    "issue": "4",
+    "issued": {
+     "date-parts": [
+      [
+       2016,
+       1,
+       11
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://www.pnas.org/syndication/doi/10.1073/pnas.1518931113",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "syndication"
+     },
+     {
+      "URL": "https://pnas.org/doi/pdf/10.1073/pnas.1518931113",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "published": {
+     "date-parts": [
+      [
+       2016,
+       1,
+       11
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2016,
+       1,
+       11
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2016,
+       1,
+       26
+      ]
+     ]
+    },
+    "publisher": "National Academy of Sciences",
+    "title": [
+     "Attention promotes episodic encoding by stabilizing hippocampal representations"
+    ],
+    "type": "journal-article",
+    "volume": "113"
+   },
+   "retrieved_at": "2026-09-17T19:20:13.245653+00:00",
+   "url": "https://doi.org/10.1073/pnas.1518931113"
+  },
+  "doi": "10.1073/pnas.1518931113",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; [address removed]."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-4033-6134"
+       },
+       "firstName": "Mariam",
+       "fullName": "Aly M",
+       "initials": "M",
+       "lastName": "Aly"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Princeton Neuroscience Institute, Princeton University, Princeton, NJ 08544; Department of Psychology, Princeton University, Princeton, NJ 08544."
+         }
+        ]
+       },
+       "firstName": "Nicholas B",
+       "fullName": "Turk-Browne NB",
+       "initials": "NB",
+       "lastName": "Turk-Browne"
+      }
+     ]
+    },
+    "doi": "10.1073/pnas.1518931113",
+    "firstPublicationDate": "2016-01-11",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1073/pnas.1518931113"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC4743819"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC4743819?pdf=render"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1073/pnas.1518931113"
+      }
+     ]
+    },
+    "id": "26755611",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2016 Jan",
+     "issue": "4",
+     "journal": {
+      "essn": "1091-6490",
+      "isoabbreviation": "Proc Natl Acad Sci U S A",
+      "issn": "0027-8424",
+      "medlineAbbreviation": "Proc Natl Acad Sci U S A",
+      "nlmid": "7505876",
+      "title": "Proceedings of the National Academy of Sciences of the United States of America"
+     },
+     "journalIssueId": 2367587,
+     "monthOfPublication": 1,
+     "printPublicationDate": "2016-01-01",
+     "volume": "113",
+     "yearOfPublication": 2016
+    },
+    "pageInfo": "E420-9",
+    "pmcid": "PMC4743819",
+    "pubTypeList": {
+     "pubType": [
+      "research-article",
+      "Journal Article",
+      "Research Support, N.I.H., Extramural"
+     ]
+    },
+    "pubYear": "2016",
+    "source": "MED",
+    "title": "Attention promotes episodic encoding by stabilizing hippocampal representations."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2803%2900162-9%22+OR+DOI%3A%2210.3758%2Fs13421-014-0486-y%22+OR+DOI%3A%2210.1016%2Fj.neuron.2007.06.030%22+OR+DOI%3A%2210.1167%2F7.9.782%22+OR+DOI%3A%2210.5334%2Fjoc.70%22+OR+DOI%3A%2210.3758%2Fs13423-020-01790-z%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fpxthv%22+OR+DOI%3A%2210.1162%2Fjocn_a_01748%22+OR+DOI%3A%2210.1101%2F2020.09.14.297341%22+OR+DOI%3A%2210.3758%2Fs13414-022-02557-5%22+OR+DOI%3A%2210.1101%2F2021.01.18.426969%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fnuarq%22+OR+DOI%3A%2210.3758%2Fs13414-022-02593-1%22+OR+DOI%3A%2210.1016%2Fj.cognition.2023.105408%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fj32bn%22+OR+DOI%3A%2210.1111%2Fejn.15264%22+OR+DOI%3A%2210.1101%2F567602%22+OR+DOI%3A%2210.3389%2Ffnhum.2014.00006%22+OR+DOI%3A%2210.1073%2Fpnas.1518931113%22+OR+DOI%3A%2210.1177%2F0956797613511257%22+OR+DOI%3A%2210.1016%2Fj.brainres.2007.07.019%22+OR+DOI%3A%2210.1055%2Fs-2008-1072987%22+OR+DOI%3A%2210.1037%2F%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1037%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960540-x%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:58:51.458968+00:00",
+   "url": "https://europepmc.org/article/MED/26755611"
+  },
+  "origin": {
+   "case": "AlyTurk16",
+   "file": "tests/fixtures/fixes-2026-09-24-cases.json.gz"
+  }
+ },
+ "ChenEtal21": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1016/j.cub.2021.07.061",
+    "ISSN": [
+     "0960-9822"
+    ],
+    "URL": "https://doi.org/10.1016/j.cub.2021.07.061",
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0000-0001-6143-3633",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Chen",
+      "given": "Hung-Tu",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0001-7613-4732",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Manning",
+      "given": "Jeremy R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "van der Meer",
+      "given": "Matthijs A.A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Current Biology"
+    ],
+    "issue": "19",
+    "issued": {
+     "date-parts": [
+      [
+       2021,
+       10
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://api.elsevier.com/content/article/PII:S0960982221010514?httpAccept=text/xml",
+      "content-type": "text/xml",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://api.elsevier.com/content/article/PII:S0960982221010514?httpAccept=text/plain",
+      "content-type": "text/plain",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     }
+    ],
+    "page": "4293-4304.e5",
+    "published": {
+     "date-parts": [
+      [
+       2021,
+       10
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2021,
+       10
+      ]
+     ]
+    },
+    "publisher": "Elsevier BV",
+    "relation": {
+     "has-preprint": [
+      {
+       "asserted-by": "object",
+       "id": "10.1101/2020.01.27.922062",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "subtitle": [],
+    "title": [
+     "Between-subject prediction reveals a shared representational geometry in the rodent hippocampus"
+    ],
+    "type": "journal-article",
+    "volume": "31"
+   },
+   "retrieved_at": "2026-09-25T04:13:51.300766+00:00",
+   "url": "https://doi.org/10.1016/j.cub.2021.07.061"
+  },
+  "doi": "10.1016/j.cub.2021.07.061",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Psychological & Brain Sciences, Dartmouth College, Hanover, NH 03755, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-6143-3633"
+       },
+       "firstName": "Hung-Tu",
+       "fullName": "Chen HT",
+       "initials": "HT",
+       "lastName": "Chen"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Psychological & Brain Sciences, Dartmouth College, Hanover, NH 03755, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-7613-4732"
+       },
+       "firstName": "Jeremy R",
+       "fullName": "Manning JR",
+       "initials": "JR",
+       "lastName": "Manning"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Psychological & Brain Sciences, Dartmouth College, Hanover, NH 03755, USA. Electronic address: [address removed]."
+         }
+        ]
+       },
+       "firstName": "Matthijs A A",
+       "fullName": "van der Meer MAA",
+       "initials": "MAA",
+       "lastName": "van der Meer"
+      }
+     ]
+    },
+    "commentCorrectionList": {
+     "commentCorrection": [
+      {
+       "id": "34637718",
+       "orderIn": 1,
+       "reference": "Curr Biol. 2021 Oct 11;31(19):R1138-R1140. doi: 10.1016/j.cub.2021.08.003",
+       "source": "MED",
+       "type": "Comment in"
+      },
+      {
+       "id": "PPR110423",
+       "note": "CrossRef Pre-print loader",
+       "orderIn": 10002,
+       "source": "PPR",
+       "type": "Preprint in"
+      }
+     ]
+    },
+    "doi": "10.1016/j.cub.2021.07.061",
+    "firstPublicationDate": "2021-08-23",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1016/j.cub.2021.07.061"
+      }
+     ]
+    },
+    "id": "34428470",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2021 Oct",
+     "issue": "19",
+     "journal": {
+      "essn": "1879-0445",
+      "isoabbreviation": "Curr Biol",
+      "issn": "0960-9822",
+      "medlineAbbreviation": "Curr Biol",
+      "nlmid": "9107782",
+      "title": "Current biology : CB"
+     },
+     "journalIssueId": 3248164,
+     "monthOfPublication": 10,
+     "printPublicationDate": "2021-10-01",
+     "volume": "31",
+     "yearOfPublication": 2021
+    },
+    "pageInfo": "4293-4304.e5",
+    "pubTypeList": {
+     "pubType": [
+      "Research Support, Non-U.S. Gov't",
+      "Research Support, U.S. Gov't, Non-P.H.S.",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2021",
+    "source": "MED",
+    "title": "Between-subject prediction reveals a shared representational geometry in the rodent hippocampus."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2F978-3-031-20910-9_48%22+OR+DOI%3A%2210.1093%2Foxfordhb%2F9780190917982.013.38%22+OR+DOI%3A%2210.1016%2Fj.cub.2021.07.061%22+OR+DOI%3A%2210.32470%2Fccn.2018.1267-0%22+OR+DOI%3A%2210.1001%2Fjama.286.5.537%22+OR+DOI%3A%2210.1016%2Fj.cub.2022.09.032%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fmhxtd_v1%22+OR+DOI%3A%2210.4088%2Fjcp.11r07586%22+OR+DOI%3A%2210.1093%2Fsleepadvances%2Fzpaf089%22+OR+DOI%3A%2210.1016%2Fs0887-6185%2802%2900093-2%22+OR+DOI%3A%2210.1001%2Farchinte.166.10.1092%22+OR+DOI%3A%2210.1007%2Fs00406-003-0438-1%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhn155%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-25T04:26:18.323541+00:00",
+   "url": "https://europepmc.org/article/MED/34428470"
+  },
+  "origin": {
+   "case": "ChenEtal21",
+   "file": "tests/fixtures/machinery-2026-09-25-cases.json.gz"
+  }
+ },
+ "CleeMcCl91": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1037/0096-3445.120.3.235",
+    "ISSN": [
+     "1939-2222",
+     "0096-3445"
+    ],
+    "URL": "https://doi.org/10.1037/0096-3445.120.3.235",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Cleeremans",
+      "given": "Axel",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "McClelland",
+      "given": "James L.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Journal of Experimental Psychology: General"
+    ],
+    "issue": "3",
+    "issued": {
+     "date-parts": [
+      [
+       1991
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/xge/120/3/235.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "235-253",
+    "published": {
+     "date-parts": [
+      [
+       1991
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1991
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "title": [
+     "Learning the structure of event sequences."
+    ],
+    "type": "journal-article",
+    "volume": "120"
+   },
+   "retrieved_at": "2026-09-17T20:49:28.645580+00:00",
+   "url": "https://doi.org/10.1037/0096-3445.120.3.235"
+  },
+  "doi": "10.1037/0096-3445.120.3.235",
+  "origin": {
+   "case": "CleeMcCl91",
+   "file": "tests/fixtures/apply-2026-09-25-cases.json.gz"
+  },
+  "typed": {
+   "ENTRYTYPE": "article",
+   "ID": "CleeMcCl91",
+   "author": "A Cleeremans and J L McCleeland",
+   "journal": "Journal of Experimental Psychology: General",
+   "pages": "235--253",
+   "title": "Learning the structure of event sequences",
+   "volume": "120",
+   "year": "1991"
+  }
+ },
+ "FiedGloc12": {
+  "crossref": {
+   "record": {
+    "DOI": "10.3389/fpsyg.2012.00335",
+    "ISSN": [
+     "1664-1078"
+    ],
+    "URL": "https://doi.org/10.3389/fpsyg.2012.00335",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Fiedler",
+      "given": "Susann",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Glöckner",
+      "given": "Andreas",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Frontiers in Psychology"
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "published": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2012
+      ]
+     ]
+    },
+    "publisher": "Frontiers Media SA",
+    "title": [
+     "The Dynamics of Decision Making in Risky Choice: An Eye-Tracking Analysis"
+    ],
+    "type": "journal-article",
+    "volume": "3"
+   },
+   "retrieved_at": "2026-09-17T20:47:15.374650+00:00",
+   "url": "https://doi.org/10.3389/fpsyg.2012.00335"
+  },
+  "doi": "10.3389/fpsyg.2012.00335",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Max Planck Institute for Research on Collective Goods Bonn, Germany."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-9337-2142"
+       },
+       "firstName": "Susann",
+       "fullName": "Fiedler S",
+       "initials": "S",
+       "lastName": "Fiedler"
+      },
+      {
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-7766-4791"
+       },
+       "firstName": "Andreas",
+       "fullName": "Glöckner A",
+       "initials": "A",
+       "lastName": "Glöckner"
+      }
+     ]
+    },
+    "doi": "10.3389/fpsyg.2012.00335",
+    "firstPublicationDate": "2012-10-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "doi",
+       "site": "Unpaywall",
+       "url": "https://doi.org/10.3389/fpsyg.2012.00335"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "pdf",
+       "site": "Unpaywall",
+       "url": "https://www.frontiersin.org/articles/10.3389/fpsyg.2012.00335/pdf"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "pdf",
+       "site": "Unpaywall",
+       "url": "https://www.frontiersin.org/articles/10.3389/fpsyg.2012.00335/pdf"
+      },
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.3389/fpsyg.2012.00335"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC3498888"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC3498888?pdf=render"
+      }
+     ]
+    },
+    "id": "23162481",
+    "isOpenAccess": "Y",
+    "journalInfo": {
+     "dateOfPublication": "2012 ",
+     "journal": {
+      "essn": "1664-1078",
+      "isoabbreviation": "Front Psychol",
+      "issn": "1664-1078",
+      "medlineAbbreviation": "Front Psychol",
+      "nlmid": "101550902",
+      "title": "Frontiers in psychology"
+     },
+     "journalIssueId": 1907408,
+     "monthOfPublication": 0,
+     "printPublicationDate": "2012-01-01",
+     "volume": "3",
+     "yearOfPublication": 2012
+    },
+    "pageInfo": "335",
+    "pmcid": "PMC3498888",
+    "pubTypeList": {
+     "pubType": [
+      "research-article",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2012",
+    "source": "MED",
+    "title": "The dynamics of decision making in risky choice: an eye-tracking analysis."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1080%2F02724980443000223%22+OR+DOI%3A%2210.7551%2Fmitpress%2F9504.003.0061%22+OR+DOI%3A%2210.1007%2F978-1-4684-1083-9_9%22+OR+DOI%3A%2210.1214%2F08-aoas228%22+OR+DOI%3A%2210.1109%2Ftpami.1984.4767596%22+OR+DOI%3A%2210.1016%2Fb978-0-08-051581-6.50057-x%22+OR+DOI%3A%2210.1177%2F2041669519874817%22+OR+DOI%3A%2210.1016%2Fj.neubiorev.2016.05.034%22+OR+DOI%3A%2210.1001%2Fjama.2015.19394%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2012.07.007%22+OR+DOI%3A%2210.1073%2Fpnas.0707727105%22+OR+DOI%3A%2210.3758%2Fcabn.6.2.110%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2005.02.045%22+OR+DOI%3A%2210.3389%2Ffpsyg.2012.00335%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2004.11.053%22+OR+DOI%3A%2210.1038%2Fnrn2920%22+OR+DOI%3A%2210.3758%2Fs13421-012-0215-3%22+OR+DOI%3A%2210.1016%2Fj.biopsycho.2004.04.006%22+OR+DOI%3A%2210.1038%2F35077083%22+OR+DOI%3A%2210.1017%2Fs1355617708080843%22+OR+DOI%3A%2210.2307%2F1422889%22+OR+DOI%3A%2210.1016%2Fs0301-0511%2899%2900044-7%22+OR+DOI%3A%2210.3758%2Fs13428-011-0124-6%22+OR+DOI%3A%2210.3758%2Fs13428-012-0314-x%22+OR+DOI%3A%2210.1101%2Flm.032409.113%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:59:39.458890+00:00",
+   "url": "https://europepmc.org/article/MED/23162481"
+  },
+  "origin": {
+   "case": "FiedGloc12",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "Game62": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1037/h0041332",
+    "ISSN": [
+     "0022-1015"
+    ],
+    "URL": "https://doi.org/10.1037/h0041332",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Games",
+      "given": "Paul A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "Journal of Experimental Psychology"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       1962,
+       1
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/xge/63/1/1.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "1-11",
+    "published": {
+     "date-parts": [
+      [
+       1962,
+       1
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1962,
+       1
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "title": [
+     "A factorial analysis of verbal learning tasks."
+    ],
+    "type": "journal-article",
+    "volume": "63"
+   },
+   "retrieved_at": "2026-09-17T20:43:44.219614+00:00",
+   "url": "https://doi.org/10.1037/h0041332"
+  },
+  "doi": "10.1037/h0041332",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "firstName": "P A",
+       "fullName": "GAMES PA",
+       "initials": "PA",
+       "lastName": "GAMES"
+      }
+     ]
+    },
+    "doi": "10.1037/h0041332",
+    "firstPublicationDate": "1962-01-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1037/h0041332"
+      }
+     ]
+    },
+    "id": "13896567",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "1962 Jan",
+     "journal": {
+      "isoabbreviation": "J Exp Psychol",
+      "issn": "0022-1015",
+      "medlineAbbreviation": "J Exp Psychol",
+      "nlmid": "7502586",
+      "title": "Journal of experimental psychology"
+     },
+     "journalIssueId": 291087,
+     "monthOfPublication": 1,
+     "printPublicationDate": "1962-01-01",
+     "volume": "63",
+     "yearOfPublication": 1962
+    },
+    "pageInfo": "1-11",
+    "pubTypeList": {
+     "pubType": [
+      "Journal Article"
+     ]
+    },
+    "pubYear": "1962",
+    "source": "MED",
+    "title": "A factorial analysis of verbal learning tasks."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.3758%2Fbf03213471%22+OR+DOI%3A%2210.3758%2Fbf03197065%22+OR+DOI%3A%2210.1037%2F%2F0033-295x.98.2.204%22+OR+DOI%3A%2210.1037%2F0033-295x.98.2.204%22+OR+DOI%3A%2210.1037%2F0033-295x.96.4.523%22+OR+DOI%3A%2210.1037%2F0278-7393.21.1.3%22+OR+DOI%3A%2210.1177%2F0956797611403321%22+OR+DOI%3A%2210.1038%2Fnn.2363%22+OR+DOI%3A%2210.1037%2Fh0041332%22+OR+DOI%3A%2210.1080%2F0022250x.2001.9990249%22+OR+DOI%3A%2210.1037%2F%2F0278-7393.26.1.77%22+OR+DOI%3A%2210.1037%2F0278-7393.26.1.77%22+OR+DOI%3A%2210.1037%2F%2F0033-295x.103.1.165%22+OR+DOI%3A%2210.1037%2F0033-295x.103.1.165%22+OR+DOI%3A%2210.1523%2Fjneurosci.16-05-01936.1996%22+OR+DOI%3A%2210.1038%2Fnrn2357%22+OR+DOI%3A%2210.1523%2Fjneurosci.23-10-04251.2003%22+OR+DOI%3A%2210.1037%2F0033-2909.83.6.1072%22+OR+DOI%3A%2210.1037%2Fa0015728%22+OR+DOI%3A%2210.1109%2Ficassp.1990.115555%22+OR+DOI%3A%2210.1073%2Fpnas.0708418105%22+OR+DOI%3A%2210.1007%2Fbf02478259%22+OR+DOI%3A%2210.1016%2Fs0092-8240%2805%2980006-0%22+OR+DOI%3A%2210.1016%2Fj.tics.2010.09.004%22+OR+DOI%3A%2210.1016%2Fb978-0-12-385948-8.00004-9%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:59:44.413088+00:00",
+   "url": "https://europepmc.org/article/MED/13896567"
+  },
+  "origin": {
+   "case": "Game62",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "Knut07": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1519/r-505011.1",
+    "ISSN": [
+     "1064-8011",
+     "1533-4287"
+    ],
+    "URL": "https://doi.org/10.1519/r-505011.1",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Knuttgen",
+      "given": "Howard G.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "The Journal of Strength and Conditioning Research"
+    ],
+    "issue": "3",
+    "issued": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://journals.lww.com/00124278-200708000-00053",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "973",
+    "published": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2007
+      ]
+     ]
+    },
+    "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+    "title": [
+     "Strength Training and Aerobic Exercise: Comparison and Contrast"
+    ],
+    "type": "journal-article",
+    "volume": "21"
+   },
+   "retrieved_at": "2026-09-21T17:32:04.483338+00:00",
+   "url": "https://doi.org/10.1519/r-505011.1"
+  },
+  "doi": "10.1519/r-505011.1",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Physical Medicine & Rehabilitation, Harvard Medical School, Spaulding Rehabilitation Hospital, Boston, Massachusetts 02114, USA. [address removed]"
+         }
+        ]
+       },
+       "firstName": "Howard G",
+       "fullName": "Knuttgen HG",
+       "initials": "HG",
+       "lastName": "Knuttgen"
+      }
+     ]
+    },
+    "doi": "10.1519/r-505011.1",
+    "firstPublicationDate": "2007-08-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1519/R-505011.1"
+      }
+     ]
+    },
+    "id": "17685726",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2007 Aug",
+     "issue": "3",
+     "journal": {
+      "essn": "1533-4287",
+      "isoabbreviation": "J Strength Cond Res",
+      "issn": "1064-8011",
+      "medlineAbbreviation": "J Strength Cond Res",
+      "nlmid": "9415084",
+      "title": "Journal of strength and conditioning research"
+     },
+     "journalIssueId": 1455840,
+     "monthOfPublication": 8,
+     "printPublicationDate": "2007-08-01",
+     "volume": "21",
+     "yearOfPublication": 2007
+    },
+    "pageInfo": "973-978",
+    "pubTypeList": {
+     "pubType": [
+      "Review",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2007",
+    "source": "MED",
+    "title": "Strength training and aerobic exercise: comparison and contrast."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.3810%2Fpsm.2003.05.367%22+OR+DOI%3A%2210.1016%2Fj.rppnen.2015.11.003%22+OR+DOI%3A%2210.1152%2Fjappl.2000.88.5.1565%22+OR+DOI%3A%2210.1097%2F00008483-200101000-00013%22+OR+DOI%3A%2210.2165%2F00007256-199519020-00003%22+OR+DOI%3A%2210.1519%2F00124278-200708000-00053%22+OR+DOI%3A%2210.1519%2Fr-505011.1%22+OR+DOI%3A%2210.1093%2Fgerona%2Fgls237%22+OR+DOI%3A%2210.1016%2F0003-6870%2881%2990193-9%22+OR+DOI%3A%2210.1249%2F00003677-199301000-00003%22+OR+DOI%3A%2210.1142%2Fs0218654305000761%22+OR+DOI%3A%2210.1080%2F01621459.1976.10480949%22+OR+DOI%3A%2210.1101%2F2021.05.10.443308%22+OR+DOI%3A%2210.1101%2F2021.02.22.432360%22+OR+DOI%3A%2210.3200%2Ftchs.78.5.218-223%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2020.116657%22+OR+DOI%3A%2210.1101%2F704239%22+OR+DOI%3A%2210.7554%2Felife.56601%22+OR+DOI%3A%2210.1080%2F09541440701326154%22+OR+DOI%3A%2210.1017%2Fcbo9780511840975%22+OR+DOI%3A%2210.2307%2F30034818%22+OR+DOI%3A%2210.4135%2F9781412964012%22+OR+DOI%3A%2210.1111%2Fj.1949-8594.2000.tb17325.x%22+OR+DOI%3A%2210.1037%2Fh0062072%22+OR+DOI%3A%2210.1167%2F15.12.782%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:59:02.526509+00:00",
+   "url": "https://europepmc.org/article/MED/17685726"
+  },
+  "origin": {
+   "case": "Knut07",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "KoelEtal16": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1038/srep19741",
+    "ISSN": [
+     "2045-2322"
+    ],
+    "URL": "https://doi.org/10.1038/srep19741",
+    "article-number": "19741",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Koelsch",
+      "given": "Stefan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Busch",
+      "given": "Tobias",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Jentschke",
+      "given": "Sebastian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Rohrmeier",
+      "given": "Martin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Scientific Reports"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       2016,
+       2,
+       2
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://www.nature.com/articles/srep19741.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://www.nature.com/articles/srep19741",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://www.nature.com/articles/srep19741.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "published": {
+     "date-parts": [
+      [
+       2016,
+       2,
+       2
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2016,
+       2,
+       2
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "title": [
+     "Under the hood of statistical learning: A statistical MMN reflects the magnitude of transitional probabilities in auditory sequences"
+    ],
+    "type": "journal-article",
+    "volume": "6"
+   },
+   "retrieved_at": "2026-09-21T17:28:44.152523+00:00",
+   "url": "https://doi.org/10.1038/srep19741"
+  },
+  "doi": "10.1038/srep19741",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "University of Bergen, Department for Biological and Medical Psychology, Bergen, 5009, Norway."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-8714-3404"
+       },
+       "firstName": "Stefan",
+       "fullName": "Koelsch S",
+       "initials": "S",
+       "lastName": "Koelsch"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Freie Universität Berlin, Department for Educational Sciences and Psychology, Berlin, 14195, Germany."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-8390-7892"
+       },
+       "firstName": "Tobias",
+       "fullName": "Busch T",
+       "initials": "T",
+       "lastName": "Busch"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "University of Bergen, Department for Biological and Medical Psychology, Bergen, 5009, Norway."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-2576-5432"
+       },
+       "firstName": "Sebastian",
+       "fullName": "Jentschke S",
+       "initials": "S",
+       "lastName": "Jentschke"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Technische Universität Dresden, Institut für Kunst- und Musikwissenschaft, Dresden, 01219, Germany."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-4323-7257"
+       },
+       "firstName": "Martin",
+       "fullName": "Rohrmeier M",
+       "initials": "M",
+       "lastName": "Rohrmeier"
+      }
+     ]
+    },
+    "doi": "10.1038/srep19741",
+    "firstPublicationDate": "2016-02-02",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1038/srep19741"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC4735647"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC4735647?pdf=render"
+      }
+     ]
+    },
+    "id": "26830652",
+    "isOpenAccess": "Y",
+    "journalInfo": {
+     "dateOfPublication": "2016 Feb",
+     "journal": {
+      "essn": "2045-2322",
+      "isoabbreviation": "Sci Rep",
+      "issn": "2045-2322",
+      "medlineAbbreviation": "Sci Rep",
+      "nlmid": "101563288",
+      "title": "Scientific reports"
+     },
+     "journalIssueId": 2460748,
+     "monthOfPublication": 2,
+     "printPublicationDate": "2016-02-01",
+     "volume": "6",
+     "yearOfPublication": 2016
+    },
+    "pageInfo": "19741",
+    "pmcid": "PMC4735647",
+    "pubTypeList": {
+     "pubType": [
+      "Clinical Trial",
+      "Research Support, Non-U.S. Gov't",
+      "research-article",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2016",
+    "source": "MED",
+    "title": "Under the hood of statistical learning: A statistical MMN reflects the magnitude of transitional probabilities in auditory sequences."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.7554%2Felife.70445%22+OR+DOI%3A%2210.1080%2F23273798.2016.1160135%22+OR+DOI%3A%2210.1142%2F9789812386434_0007%22+OR+DOI%3A%2210.1111%2Fdesc.12474%22+OR+DOI%3A%2210.31234%2Fosf.io%2Faczu9%22+OR+DOI%3A%2210.1093%2Foxfordhb%2F9780190917982.013.2%22+OR+DOI%3A%2210.4159%2F9780674020139%22+OR+DOI%3A%2210.2307%2Fj.ctvjsf57g%22+OR+DOI%3A%2210.1038%2Fsrep19741%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2009.06.069%22+OR+DOI%3A%2210.1016%2Fb978-0-12-397025-1.00276-1%22+OR+DOI%3A%2210.1098%2Frstb.2016.0048%22+OR+DOI%3A%2210.1101%2F449470%22+OR+DOI%3A%2210.1063%2Fpt.3.3399%22+OR+DOI%3A%2210.1016%2Fj.pneurobio.2020.101821%22+OR+DOI%3A%2210.1063%2F1.3397046%22+OR+DOI%3A%2210.5860%2Fchoice.47-6918%22+OR+DOI%3A%2210.1093%2Fbjps%2Faxz038%22+OR+DOI%3A%2210.1038%2Fs41562-021-01259-6%22+OR+DOI%3A%2210.1101%2F2020.02.06.937706%22+OR+DOI%3A%2210.1145%2F363347.363387%22+OR+DOI%3A%2210.1109%2Fmc.1974.6323581%22+OR+DOI%3A%2210.1038%2Fs41586-020-2649-2%22+OR+DOI%3A%2210.1371%2Fjournal.pone.0177459%22+OR+DOI%3A%2210.3389%2Ffninf.2015.00011%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:58:55.562763+00:00",
+   "url": "https://europepmc.org/article/MED/26830652"
+  },
+  "origin": {
+   "case": "KoelEtal16",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "LindEtal21": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1017/s1355617720001009",
+    "ISSN": [
+     "1355-6177",
+     "1469-7661"
+    ],
+    "URL": "https://doi.org/10.1017/s1355617720001009",
+    "author": [
+     {
+      "ORCID": "https://orcid.org/0000-0002-9329-4663",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Lindbergh",
+      "given": "Cutter A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Walker",
+      "given": "Nicole",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-2581-8100",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "La Joie",
+      "given": "Renaud",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Weiner-Light",
+      "given": "Sophia",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Staffaroni",
+      "given": "Adam M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Casaletto",
+      "given": "Kaitlin B.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Elahi",
+      "given": "Fanny",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Walters",
+      "given": "Samantha M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "You",
+      "given": "Michelle",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cotter",
+      "given": "Devyn",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0001-8419-142X",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Asken",
+      "given": "Breton",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Apple",
+      "given": "Alexandra C.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tsoy",
+      "given": "Elena",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Neuhaus",
+      "given": "John",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Fonseca",
+      "given": "Corrina",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Wolf",
+      "given": "Amy",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cobigo",
+      "given": "Yann",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Rosen",
+      "given": "Howie",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kramer",
+      "given": "Joel H.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "name": "the Hillblom Aging Network",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Journal of the International Neuropsychological Society"
+    ],
+    "issue": "4",
+    "issued": {
+     "date-parts": [
+      [
+       2020,
+       10,
+       14
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S1355617720001009",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "382-388",
+    "published": {
+     "date-parts": [
+      [
+       2020,
+       10,
+       14
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2020,
+       10,
+       14
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2021,
+       4
+      ]
+     ]
+    },
+    "publisher": "Cambridge University Press (CUP)",
+    "title": [
+     "Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe Trajectories in Older Adults"
+    ],
+    "type": "journal-article",
+    "volume": "27"
+   },
+   "retrieved_at": "2026-09-21T17:36:15.376171+00:00",
+   "url": "https://doi.org/10.1017/s1355617720001009"
+  },
+  "doi": "10.1017/s1355617720001009",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-9329-4663"
+       },
+       "firstName": "Cutter A",
+       "fullName": "Lindbergh CA",
+       "initials": "CA",
+       "lastName": "Lindbergh"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Nicole",
+       "fullName": "Walker N",
+       "initials": "N",
+       "lastName": "Walker"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-2581-8100"
+       },
+       "firstName": "Renaud",
+       "fullName": "La Joie R",
+       "initials": "R",
+       "lastName": "La Joie"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Sophia",
+       "fullName": "Weiner-Light S",
+       "initials": "S",
+       "lastName": "Weiner-Light"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Adam M",
+       "fullName": "Staffaroni AM",
+       "initials": "AM",
+       "lastName": "Staffaroni"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Kaitlin B",
+       "fullName": "Casaletto KB",
+       "initials": "KB",
+       "lastName": "Casaletto"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-4663-4992"
+       },
+       "firstName": "Fanny",
+       "fullName": "Elahi F",
+       "initials": "F",
+       "lastName": "Elahi"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Samantha M",
+       "fullName": "Walters SM",
+       "initials": "SM",
+       "lastName": "Walters"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Michelle",
+       "fullName": "You M",
+       "initials": "M",
+       "lastName": "You"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Devyn",
+       "fullName": "Cotter D",
+       "initials": "D",
+       "lastName": "Cotter"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-8419-142X"
+       },
+       "firstName": "Breton",
+       "fullName": "Asken B",
+       "initials": "B",
+       "lastName": "Asken"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Alexandra C",
+       "fullName": "Apple AC",
+       "initials": "AC",
+       "lastName": "Apple"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-8786-1791"
+       },
+       "firstName": "Elena",
+       "fullName": "Tsoy E",
+       "initials": "E",
+       "lastName": "Tsoy"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Department of Epidemiology and Biostatistics, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "John",
+       "fullName": "Neuhaus J",
+       "initials": "J",
+       "lastName": "Neuhaus"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-4156-1037"
+       },
+       "firstName": "Corrina",
+       "fullName": "Fonseca C",
+       "initials": "C",
+       "lastName": "Fonseca"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Amy",
+       "fullName": "Wolf A",
+       "initials": "A",
+       "lastName": "Wolf"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Yann",
+       "fullName": "Cobigo Y",
+       "initials": "Y",
+       "lastName": "Cobigo"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Howie",
+       "fullName": "Rosen H",
+       "initials": "H",
+       "lastName": "Rosen"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Memory and Aging Center, Department of Neurology, University of California San Francisco, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Joel H",
+       "fullName": "Kramer JH",
+       "initials": "JH",
+       "lastName": "Kramer"
+      },
+      {
+       "collectiveName": "Hillblom Aging Network"
+      }
+     ]
+    },
+    "doi": "10.1017/s1355617720001009",
+    "firstPublicationDate": "2020-10-14",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "html",
+       "site": "Unpaywall",
+       "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8026481"
+      },
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1017/S1355617720001009"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC8026481"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC8026481?pdf=render"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1017/s1355617720001009"
+      }
+     ]
+    },
+    "id": "33050976",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2021 Apr",
+     "issue": "4",
+     "journal": {
+      "essn": "1469-7661",
+      "isoabbreviation": "J Int Neuropsychol Soc",
+      "issn": "1355-6177",
+      "medlineAbbreviation": "J Int Neuropsychol Soc",
+      "nlmid": "9503760",
+      "title": "Journal of the International Neuropsychological Society : JINS"
+     },
+     "journalIssueId": 3145796,
+     "monthOfPublication": 4,
+     "printPublicationDate": "2021-04-01",
+     "volume": "27",
+     "yearOfPublication": 2021
+    },
+    "pageInfo": "382-388",
+    "pmcid": "PMC8026481",
+    "pubTypeList": {
+     "pubType": [
+      "Research Support, Non-U.S. Gov't",
+      "research-article",
+      "Journal Article",
+      "Research Support, N.I.H., Extramural"
+     ]
+    },
+    "pubYear": "2021",
+    "source": "MED",
+    "title": "Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe Trajectories in Older Adults."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1017%2Fs1355617720001009%22+OR+DOI%3A%2210.1002%2Ftea.3660271011%22+OR+DOI%3A%2210.1037%2F0022-0663.92.1.96%22+OR+DOI%3A%2210.1016%2Fj.learninstruc.2009.10.004%22+OR+DOI%3A%2210.1207%2Fs15516709cog2504_1%22+OR+DOI%3A%2210.1080%2F713755719%22+OR+DOI%3A%2210.1111%2Fcogs.13477%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fbucqx%22+OR+DOI%3A%2210.1101%2F2025.07.25.666835%22+OR+DOI%3A%2210.1016%2Fj.jml.2012.11.001%22+OR+DOI%3A%2210.18637%2Fjss.v067.i01%22+OR+DOI%3A%2210.1609%2Faaai.v32i1.12057%22+OR+DOI%3A%2210.1109%2Ftkde.2020.3028705%22+OR+DOI%3A%2210.1360%2Fssi-2019-0274%22+OR+DOI%3A%2210.1109%2Fiaeac50856.2021.9390863%22+OR+DOI%3A%2210.1145%2F3038912.3052558%22+OR+DOI%3A%2210.1186%2Fs40537-016-0043-6%22+OR+DOI%3A%2210.18653%2Fv1%2Fd19-6607%22+OR+DOI%3A%2210.3390%2Finfo13110526%22+OR+DOI%3A%2210.52202%2F075280-0441%22+OR+DOI%3A%2210.1038%2Fs41593-023-01299-3%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhu239%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhx179%22+OR+DOI%3A%2210.1101%2F135632%22+OR+DOI%3A%2210.3758%2Fs13423-013-0508-y%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:57:51.908403+00:00",
+   "url": "https://europepmc.org/article/MED/33050976"
+  },
+  "origin": {
+   "case": "LindEtal21",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "MoheEtal14": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1177/0956797613511257",
+    "ISSN": [
+     "0956-7976",
+     "1467-9280"
+    ],
+    "URL": "https://doi.org/10.1177/0956797613511257",
+    "author": [
+     {
+      "affiliation": [
+       {
+        "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+       }
+      ],
+      "family": "Moher",
+      "given": "Jeff",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [
+       {
+        "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+       }
+      ],
+      "family": "Lakshmanan",
+      "given": "Balaji M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [
+       {
+        "name": "Department of Psychological and Brain Sciences, Johns Hopkins University"
+       }
+      ],
+      "family": "Egeth",
+      "given": "Howard E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [
+       {
+        "name": "Neurology and Developmental Medicine, Kennedy Krieger Institute"
+       },
+       {
+        "name": "Department of Neurology, Johns Hopkins University School of Medicine"
+       }
+      ],
+      "family": "Ewen",
+      "given": "Joshua B.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Psychological Science"
+    ],
+    "issue": "2",
+    "issued": {
+     "date-parts": [
+      [
+       2014,
+       1,
+       3
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://journals.sagepub.com/doi/pdf/10.1177/0956797613511257",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://journals.sagepub.com/doi/full-xml/10.1177/0956797613511257",
+      "content-type": "application/xml",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://journals.sagepub.com/doi/pdf/10.1177/0956797613511257",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "315-324",
+    "published": {
+     "date-parts": [
+      [
+       2014,
+       1,
+       3
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2014,
+       1,
+       3
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2014,
+       2
+      ]
+     ]
+    },
+    "publisher": "SAGE Publications",
+    "title": [
+     "Inhibition Drives Early Feature-Based Attention"
+    ],
+    "type": "journal-article",
+    "volume": "25"
+   },
+   "retrieved_at": "2026-09-09T19:33:36.365941+00:00",
+   "url": "https://doi.org/10.1177/0956797613511257"
+  },
+  "doi": "10.1177/0956797613511257",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "1Department of Psychological and Brain Sciences, Johns Hopkins University."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-8646-5348"
+       },
+       "firstName": "Jeff",
+       "fullName": "Moher J",
+       "initials": "J",
+       "lastName": "Moher"
+      },
+      {
+       "firstName": "Balaji M",
+       "fullName": "Lakshmanan BM",
+       "initials": "BM",
+       "lastName": "Lakshmanan"
+      },
+      {
+       "firstName": "Howard E",
+       "fullName": "Egeth HE",
+       "initials": "HE",
+       "lastName": "Egeth"
+      },
+      {
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-9203-9564"
+       },
+       "firstName": "Joshua B",
+       "fullName": "Ewen JB",
+       "initials": "JB",
+       "lastName": "Ewen"
+      }
+     ]
+    },
+    "doi": "10.1177/0956797613511257",
+    "firstPublicationDate": "2014-01-03",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1177/0956797613511257"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC3946233"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC3946233?pdf=render"
+      },
+      {
+       "availability": "Free",
+       "availabilityCode": "F",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1177/0956797613511257"
+      }
+     ]
+    },
+    "id": "24390823",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2014 Feb",
+     "issue": "2",
+     "journal": {
+      "essn": "1467-9280",
+      "isoabbreviation": "Psychol Sci",
+      "issn": "0956-7976",
+      "medlineAbbreviation": "Psychol Sci",
+      "nlmid": "9007542",
+      "title": "Psychological science"
+     },
+     "journalIssueId": 2125144,
+     "monthOfPublication": 2,
+     "printPublicationDate": "2014-02-01",
+     "volume": "25",
+     "yearOfPublication": 2014
+    },
+    "pageInfo": "315-324",
+    "pmcid": "PMC3946233",
+    "pubTypeList": {
+     "pubType": [
+      "research-article",
+      "Research Support, U.S. Gov't, Non-P.H.S.",
+      "Journal Article",
+      "Research Support, N.I.H., Extramural"
+     ]
+    },
+    "pubYear": "2014",
+    "source": "MED",
+    "title": "Inhibition drives early feature-based attention."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fs1053-8119%2803%2900162-9%22+OR+DOI%3A%2210.3758%2Fs13421-014-0486-y%22+OR+DOI%3A%2210.1016%2Fj.neuron.2007.06.030%22+OR+DOI%3A%2210.1167%2F7.9.782%22+OR+DOI%3A%2210.5334%2Fjoc.70%22+OR+DOI%3A%2210.3758%2Fs13423-020-01790-z%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fpxthv%22+OR+DOI%3A%2210.1162%2Fjocn_a_01748%22+OR+DOI%3A%2210.1101%2F2020.09.14.297341%22+OR+DOI%3A%2210.3758%2Fs13414-022-02557-5%22+OR+DOI%3A%2210.1101%2F2021.01.18.426969%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fnuarq%22+OR+DOI%3A%2210.3758%2Fs13414-022-02593-1%22+OR+DOI%3A%2210.1016%2Fj.cognition.2023.105408%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fj32bn%22+OR+DOI%3A%2210.1111%2Fejn.15264%22+OR+DOI%3A%2210.1101%2F567602%22+OR+DOI%3A%2210.3389%2Ffnhum.2014.00006%22+OR+DOI%3A%2210.1073%2Fpnas.1518931113%22+OR+DOI%3A%2210.1177%2F0956797613511257%22+OR+DOI%3A%2210.1016%2Fj.brainres.2007.07.019%22+OR+DOI%3A%2210.1055%2Fs-2008-1072987%22+OR+DOI%3A%2210.1037%2F%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1037%2F0003-066x.47.6.802%22+OR+DOI%3A%2210.1016%2Fs0079-7421%2808%2960540-x%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:58:51.458968+00:00",
+   "url": "https://europepmc.org/article/MED/24390823"
+  },
+  "origin": {
+   "case": "MoheEtal14",
+   "file": "tests/fixtures/pagination_corrections.json"
+  }
+ },
+ "PigeEtal12": {
+  "crossref": {
+   "record": {
+    "DOI": "10.4088/jcp.11r07586",
+    "ISSN": [
+     "0160-6689"
+    ],
+    "URL": "https://doi.org/10.4088/jcp.11r07586",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Pigeon",
+      "given": "Wilfred R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Pinquart",
+      "given": "Martin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Conner",
+      "given": "Kenneth",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "The Journal of Clinical Psychiatry"
+    ],
+    "issue": "09",
+    "issued": {
+     "date-parts": [
+      [
+       2012,
+       9,
+       15
+      ]
+     ]
+    },
+    "page": "e1160-e1167",
+    "published": {
+     "date-parts": [
+      [
+       2012,
+       9,
+       15
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2012,
+       9,
+       15
+      ]
+     ]
+    },
+    "publisher": "Physicians Postgraduate Press, Inc",
+    "relation": {
+     "has-review": [
+      {
+       "asserted-by": "object",
+       "id": "10.3410/f.717962040.793465986",
+       "id-type": "doi"
+      },
+      {
+       "asserted-by": "object",
+       "id": "10.3410/f.717962040.793466452",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "subtitle": [],
+    "title": [
+     "Meta-Analysis of Sleep Disturbance and Suicidal Thoughts and Behaviors"
+    ],
+    "type": "journal-article",
+    "volume": "73"
+   },
+   "retrieved_at": "2026-09-25T04:14:07.287717+00:00",
+   "url": "https://doi.org/10.4088/jcp.11r07586"
+  },
+  "doi": "10.4088/jcp.11r07586",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Center of Excellence for Suicide Prevention, Canandaigua VA Medical Center, 400 Fort Hill Ave, Canandaigua, NY 14424, USA. [address removed]"
+         }
+        ]
+       },
+       "firstName": "Wilfred R",
+       "fullName": "Pigeon WR",
+       "initials": "WR",
+       "lastName": "Pigeon"
+      },
+      {
+       "firstName": "Martin",
+       "fullName": "Pinquart M",
+       "initials": "M",
+       "lastName": "Pinquart"
+      },
+      {
+       "firstName": "Kenneth",
+       "fullName": "Conner K",
+       "initials": "K",
+       "lastName": "Conner"
+      }
+     ]
+    },
+    "commentCorrectionList": {
+     "commentCorrection": [
+      {
+       "id": "23473353",
+       "orderIn": 1,
+       "reference": "J Clin Psychiatry. 2013 Feb;74(2):192. doi: 10.4088/JCP.12lr08265",
+       "source": "MED",
+       "type": "Comment in"
+      }
+     ]
+    },
+    "doi": "10.4088/jcp.11r07586",
+    "firstPublicationDate": "2012-09-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.4088/JCP.11r07586"
+      }
+     ]
+    },
+    "id": "23059158",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2012 Sep",
+     "issue": "9",
+     "journal": {
+      "essn": "1555-2101",
+      "isoabbreviation": "J Clin Psychiatry",
+      "issn": "0160-6689",
+      "medlineAbbreviation": "J Clin Psychiatry",
+      "nlmid": "7801243",
+      "title": "The Journal of clinical psychiatry"
+     },
+     "journalIssueId": 1974263,
+     "monthOfPublication": 9,
+     "printPublicationDate": "2012-09-01",
+     "volume": "73",
+     "yearOfPublication": 2012
+    },
+    "pageInfo": "e1160-7",
+    "pubTypeList": {
+     "pubType": [
+      "Meta-Analysis",
+      "Review",
+      "Research Support, U.S. Gov't, Non-P.H.S.",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2012",
+    "source": "MED",
+    "title": "Meta-analysis of sleep disturbance and suicidal thoughts and behaviors."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2F978-3-031-20910-9_48%22+OR+DOI%3A%2210.1093%2Foxfordhb%2F9780190917982.013.38%22+OR+DOI%3A%2210.1016%2Fj.cub.2021.07.061%22+OR+DOI%3A%2210.32470%2Fccn.2018.1267-0%22+OR+DOI%3A%2210.1001%2Fjama.286.5.537%22+OR+DOI%3A%2210.1016%2Fj.cub.2022.09.032%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fmhxtd_v1%22+OR+DOI%3A%2210.4088%2Fjcp.11r07586%22+OR+DOI%3A%2210.1093%2Fsleepadvances%2Fzpaf089%22+OR+DOI%3A%2210.1016%2Fs0887-6185%2802%2900093-2%22+OR+DOI%3A%2210.1001%2Farchinte.166.10.1092%22+OR+DOI%3A%2210.1007%2Fs00406-003-0438-1%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhn155%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-25T04:26:18.323541+00:00",
+   "url": "https://europepmc.org/article/MED/23059158"
+  },
+  "origin": {
+   "case": "PigeEtal12",
+   "file": "tests/fixtures/machinery-2026-09-25-cases.json.gz"
+  }
+ },
+ "Schr03": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1007/s00406-003-0438-1",
+    "ISSN": [
+     "0940-1334",
+     "1433-8491"
+    ],
+    "URL": "https://doi.org/10.1007/s00406-003-0438-1",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Schredl",
+      "given": "Michael",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first",
+      "suffix": "Ph. D."
+     }
+    ],
+    "container-title": [
+     "European Archives of Psychiatry and Clinical Neuroscience"
+    ],
+    "issue": "5",
+    "issued": {
+     "date-parts": [
+      [
+       2003,
+       10
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://link.springer.com/content/pdf/10.1007/s00406-003-0438-1.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://link.springer.com/article/10.1007/s00406-003-0438-1/fulltext.html",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://link.springer.com/content/pdf/10.1007/s00406-003-0438-1",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     },
+     {
+      "URL": "http://link.springer.com/content/pdf/10.1007/s00406-003-0438-1.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "241-247",
+    "published": {
+     "date-parts": [
+      [
+       2003,
+       10
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2003,
+       10
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "relation": {},
+    "subtitle": [],
+    "title": [
+     "Effects of state and trait factors\non nightmare frequency"
+    ],
+    "type": "journal-article",
+    "volume": "253"
+   },
+   "retrieved_at": "2026-09-25T04:14:33.170860+00:00",
+   "url": "https://doi.org/10.1007/s00406-003-0438-1"
+  },
+  "doi": "10.1007/s00406-003-0438-1",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Sleep laboratory, Central Institute of Mental Health, 68072 Mannheim, Germany. [address removed]"
+         }
+        ]
+       },
+       "firstName": "Michael",
+       "fullName": "Schredl M",
+       "initials": "M",
+       "lastName": "Schredl"
+      }
+     ]
+    },
+    "doi": "10.1007/s00406-003-0438-1",
+    "firstPublicationDate": "2003-10-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1007/s00406-003-0438-1"
+      }
+     ]
+    },
+    "id": "14504993",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "2003 Oct",
+     "issue": "5",
+     "journal": {
+      "essn": "1433-8491",
+      "isoabbreviation": "Eur Arch Psychiatry Clin Neurosci",
+      "issn": "0940-1334",
+      "medlineAbbreviation": "Eur Arch Psychiatry Clin Neurosci",
+      "nlmid": "9103030",
+      "title": "European archives of psychiatry and clinical neuroscience"
+     },
+     "journalIssueId": 1156773,
+     "monthOfPublication": 10,
+     "printPublicationDate": "2003-10-01",
+     "volume": "253",
+     "yearOfPublication": 2003
+    },
+    "pageInfo": "241-247",
+    "pubTypeList": {
+     "pubType": [
+      "Comparative Study",
+      "Research Support, Non-U.S. Gov't",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2003",
+    "source": "MED",
+    "title": "Effects of state and trait factors on nightmare frequency."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2F978-3-031-20910-9_48%22+OR+DOI%3A%2210.1093%2Foxfordhb%2F9780190917982.013.38%22+OR+DOI%3A%2210.1016%2Fj.cub.2021.07.061%22+OR+DOI%3A%2210.32470%2Fccn.2018.1267-0%22+OR+DOI%3A%2210.1001%2Fjama.286.5.537%22+OR+DOI%3A%2210.1016%2Fj.cub.2022.09.032%22+OR+DOI%3A%2210.31234%2Fosf.io%2Fmhxtd_v1%22+OR+DOI%3A%2210.4088%2Fjcp.11r07586%22+OR+DOI%3A%2210.1093%2Fsleepadvances%2Fzpaf089%22+OR+DOI%3A%2210.1016%2Fs0887-6185%2802%2900093-2%22+OR+DOI%3A%2210.1001%2Farchinte.166.10.1092%22+OR+DOI%3A%2210.1007%2Fs00406-003-0438-1%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhn155%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-25T04:26:18.323541+00:00",
+   "url": "https://europepmc.org/article/MED/14504993"
+  },
+  "origin": {
+   "case": "Schr03",
+   "file": "tests/fixtures/machinery-2026-09-25-cases.json.gz"
+  }
+ },
+ "Zoll90": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1002/tea.3660271011",
+    "ISSN": [
+     "0022-4308",
+     "1098-2736"
+    ],
+    "URL": "https://doi.org/10.1002/tea.3660271011",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Zoller",
+      "given": "Uri",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     }
+    ],
+    "container-title": [
+     "Journal of Research in Science Teaching"
+    ],
+    "issue": "10",
+    "issued": {
+     "date-parts": [
+      [
+       1990,
+       12
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Ftea.3660271011",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/tea.3660271011",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "1053-1065",
+    "published": {
+     "date-parts": [
+      [
+       1990,
+       12
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2011,
+       2,
+       3
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       1990,
+       12
+      ]
+     ]
+    },
+    "publisher": "Wiley",
+    "title": [
+     "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)"
+    ],
+    "type": "journal-article",
+    "volume": "27"
+   },
+   "retrieved_at": "2026-09-22T00:47:50.862983+00:00",
+   "url": "https://doi.org/10.1002/tea.3660271011"
+  },
+  "doi": "10.1002/tea.3660271011",
+  "origin": {
+   "case": "Zoll90",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "all-capitals-title": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1146/annurev.neuro.29.051605.112819",
+    "ISSN": [
+     "0147-006X",
+     "1545-4126"
+    ],
+    "URL": "https://doi.org/10.1146/annurev.neuro.29.051605.112819",
+    "author": [
+     {
+      "affiliation": [
+       {
+        "name": "Departments of Radiology, Neurology, Neurobiology, Biomedical Engineering and"
+       }
+      ],
+      "family": "Raichle",
+      "given": "Marcus E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [
+       {
+        "name": "Departments of Radiology and Psychiatry, Washington University School of Medicine, St. Louis, Missouri 63110;,"
+       }
+      ],
+      "family": "Mintun",
+      "given": "Mark A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Annual Review of Neuroscience"
+    ],
+    "issue": "1",
+    "issued": {
+     "date-parts": [
+      [
+       2006,
+       7,
+       21
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://www.annualreviews.org/doi/pdf/10.1146/annurev.neuro.29.051605.112819",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "449-476",
+    "published": {
+     "date-parts": [
+      [
+       2006,
+       7,
+       21
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2006,
+       7,
+       21
+      ]
+     ]
+    },
+    "publisher": "Annual Reviews",
+    "title": [
+     "BRAIN WORK AND BRAIN IMAGING"
+    ],
+    "type": "journal-article",
+    "volume": "29"
+   },
+   "retrieved_at": "2026-09-09T19:43:02.430053+00:00",
+   "url": "https://doi.org/10.1146/annurev.neuro.29.051605.112819"
+  },
+  "doi": "10.1146/annurev.neuro.29.051605.112819",
+  "origin": {
+   "case": "Raic06",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "book-chapter": {
+  "crossref": {
+   "record": {
+    "DOI": "10.4324/9781315782379-49",
+    "ISBN": [
+     "9781315782379"
+    ],
+    "URL": "https://doi.org/10.4324/9781315782379-49",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Altmann",
+      "given": "Erik M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Schunn",
+      "given": "Christian D.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Proceedings of the Twenty-Fourth Annual Conference of the Cognitive Science Society"
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019,
+       4,
+       24
+      ]
+     ]
+    },
+    "page": "65-70",
+    "published": {
+     "date-parts": [
+      [
+       2019,
+       4,
+       24
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2019,
+       4,
+       24
+      ]
+     ]
+    },
+    "publisher": "Routledge",
+    "title": [
+     "Integrating Decay and Interference: A New Look at an Old Interaction"
+    ],
+    "type": "book-chapter"
+   },
+   "retrieved_at": null,
+   "url": null
+  },
+  "doi": "10.4324/9781315782379-49",
+  "origin": {
+   "case": "AltmSchu02",
+   "file": "tests/fixtures/apply-2026-09-25d-cases.json.gz",
+   "file_source": "verification/baseline.jsonl.gz at 89c5b70"
+  }
+ },
+ "corporate-author": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1038/s41592-019-0686-2",
+    "ISSN": [
+     "1548-7091",
+     "1548-7105"
+    ],
+    "URL": "https://doi.org/10.1038/s41592-019-0686-2",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Virtanen",
+      "given": "Pauli",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-0300-3333",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Gommers",
+      "given": "Ralf",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Oliphant",
+      "given": "Travis E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-4806-3601",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Haberland",
+      "given": "Matt",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-2364-6157",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Reddy",
+      "given": "Tyler",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cournapeau",
+      "given": "David",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Burovski",
+      "given": "Evgeni",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Peterson",
+      "given": "Pearu",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Weckesser",
+      "given": "Warren",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Bright",
+      "given": "Jonathan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0001-9276-1891",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "van der Walt",
+      "given": "Stéfan J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Brett",
+      "given": "Matthew",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Wilson",
+      "given": "Joshua",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-5263-5070",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Millman",
+      "given": "K. Jarrod",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Mayorov",
+      "given": "Nikolay",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-4548-3558",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Nelson",
+      "given": "Andrew R. J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Jones",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kern",
+      "given": "Robert",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Larson",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Carey",
+      "given": "C J",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Polat",
+      "given": "İlhan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Feng",
+      "given": "Yu",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Moore",
+      "given": "Eric W.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "VanderPlas",
+      "given": "Jake",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-5540-4825",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Laxalde",
+      "given": "Denis",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Perktold",
+      "given": "Josef",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cimrman",
+      "given": "Robert",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Henriksen",
+      "given": "Ian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Quintero",
+      "given": "E. A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Harris",
+      "given": "Charles R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Archibald",
+      "given": "Anne M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-3632-8529",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Ribeiro",
+      "given": "Antônio H.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pedregosa",
+      "given": "Fabian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-2382-8308",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "van Mulbregt",
+      "given": "Paul",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "name": "SciPy 1.0 Contributors",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Vijaykumar",
+      "given": "Aditya",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Bardelli",
+      "given": "Alessandro Pietro",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Rothberg",
+      "given": "Alex",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Hilboll",
+      "given": "Andreas",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kloeckner",
+      "given": "Andreas",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Scopatz",
+      "given": "Anthony",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Lee",
+      "given": "Antony",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Rokem",
+      "given": "Ariel",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Woods",
+      "given": "C. Nathan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Fulton",
+      "given": "Chad",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Masson",
+      "given": "Charles",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Häggström",
+      "given": "Christian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Fitzgerald",
+      "given": "Clark",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Nicholson",
+      "given": "David A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Hagen",
+      "given": "David R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pasechnik",
+      "given": "Dmitrii V.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Olivetti",
+      "given": "Emanuele",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Martin",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Wieser",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Silva",
+      "given": "Fabrice",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Lenders",
+      "given": "Felix",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Wilhelm",
+      "given": "Florian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Young",
+      "given": "G.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Price",
+      "given": "Gavin A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Ingold",
+      "given": "Gert-Ludwig",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Allen",
+      "given": "Gregory E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Lee",
+      "given": "Gregory R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Audren",
+      "given": "Hervé",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Probst",
+      "given": "Irvin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Dietrich",
+      "given": "Jörg P.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Silterra",
+      "given": "Jacob",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Webber",
+      "given": "James T",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Slavič",
+      "given": "Janko",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Nothman",
+      "given": "Joel",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Buchner",
+      "given": "Johannes",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kulick",
+      "given": "Johannes",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Schönberger",
+      "given": "Johannes L.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "de Miranda Cardoso",
+      "given": "José Vinícius",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Reimer",
+      "given": "Joscha",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Harrington",
+      "given": "Joseph",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Rodríguez",
+      "given": "Juan Luis Cano",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Nunez-Iglesias",
+      "given": "Juan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kuczynski",
+      "given": "Justin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tritz",
+      "given": "Kevin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Thoma",
+      "given": "Martin",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Newville",
+      "given": "Matthew",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kümmerer",
+      "given": "Matthias",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Bolingbroke",
+      "given": "Maximilian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tartre",
+      "given": "Michael",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pak",
+      "given": "Mikhail",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Smith",
+      "given": "Nathaniel J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Nowaczyk",
+      "given": "Nikolai",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Shebanov",
+      "given": "Nikolay",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pavlyk",
+      "given": "Oleksandr",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Brodtkorb",
+      "given": "Per A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Lee",
+      "given": "Perry",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "McGibbon",
+      "given": "Robert T.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Feldbauer",
+      "given": "Roman",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Lewis",
+      "given": "Sam",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Tygier",
+      "given": "Sam",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Sievert",
+      "given": "Scott",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Vigna",
+      "given": "Sebastiano",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Peterson",
+      "given": "Stefan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "More",
+      "given": "Surhud",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pudlik",
+      "given": "Tadeusz",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Oshima",
+      "given": "Takuya",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pingel",
+      "given": "Thomas J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Robitaille",
+      "given": "Thomas P.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Spura",
+      "given": "Thomas",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Jones",
+      "given": "Thouis R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cera",
+      "given": "Tim",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Leslie",
+      "given": "Tim",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Zito",
+      "given": "Tiziano",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Krauss",
+      "given": "Tom",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Upadhyay",
+      "given": "Utkarsh",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Halchenko",
+      "given": "Yaroslav O.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Vázquez-Baeza",
+      "given": "Yoshiki",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Nature Methods"
+    ],
+    "issue": "3",
+    "issued": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       3
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://www.nature.com/articles/s41592-019-0686-2.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/s41592-019-0686-2",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/s41592-019-0686-2.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "261-272",
+    "published": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       3
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       3
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2020,
+       3,
+       2
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "relation": {
+     "has-part": [
+      {
+       "asserted-by": "object",
+       "id": "10.5194/hess-26-2181-2022",
+       "id-type": "doi"
+      },
+      {
+       "asserted-by": "object",
+       "id": "10.5194/wcd-6-113-2025",
+       "id-type": "doi"
+      },
+      {
+       "asserted-by": "object",
+       "id": "10.5194/se-14-515-2023",
+       "id-type": "doi"
+      },
+      {
+       "asserted-by": "object",
+       "id": "10.5194/os-17-997-2021",
+       "id-type": "doi"
+      },
+      {
+       "asserted-by": "object",
+       "id": "10.5194/jsss-12-163-2023",
+       "id-type": "doi"
+      }
+     ],
+     "has-review": [
+      {
+       "asserted-by": "object",
+       "id": "10.14293/S2199-1006.1.SOR-LIFE.A7056644.v1.RYSREG",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "title": [
+     "SciPy 1.0: fundamental algorithms for scientific computing in Python"
+    ],
+    "type": "journal-article",
+    "updated-by": [
+     {
+      "DOI": "10.1038/s41592-020-0772-5",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         2020,
+         2,
+         24
+        ]
+       ],
+       "date-time": "2020-02-24T00:00:00Z",
+       "timestamp": 1582502400000
+      }
+     }
+    ],
+    "volume": "17"
+   },
+   "retrieved_at": "2026-09-09T19:35:32.621740+00:00",
+   "url": "https://doi.org/10.1038/s41592-019-0686-2"
+  },
+  "doi": "10.1038/s41592-019-0686-2",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "University of Jyväskylä, Jyväskylä, Finland."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-9957-1257"
+       },
+       "firstName": "Pauli",
+       "fullName": "Virtanen P",
+       "initials": "P",
+       "lastName": "Virtanen"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Quansight LLC, Austin, TX, USA. [address removed]."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-0300-3333"
+       },
+       "firstName": "Ralf",
+       "fullName": "Gommers R",
+       "initials": "R",
+       "lastName": "Gommers"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Quansight LLC, Austin, TX, USA."
+         },
+         {
+          "affiliation": "Ultrasound Imaging, Mayo Clinic, Rochester, MN, USA."
+         },
+         {
+          "affiliation": "Electrical Engineering, Brigham Young University, Provo, UT, USA."
+         },
+         {
+          "affiliation": "Enthought, Inc., Austin, TX, USA."
+         },
+         {
+          "affiliation": "Anaconda Inc., Austin, TX, USA."
+         }
+        ]
+       },
+       "firstName": "Travis E",
+       "fullName": "Oliphant TE",
+       "initials": "TE",
+       "lastName": "Oliphant"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "BioResource and Agricultural Engineering Department, California Polytechnic State University, San Luis Obispo, CA, USA. [address removed]."
+         },
+         {
+          "affiliation": "Department of Mathematics, University of California Los Angeles, Los Angeles, CA, USA. [address removed]."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-4806-3601"
+       },
+       "firstName": "Matt",
+       "fullName": "Haberland M",
+       "initials": "M",
+       "lastName": "Haberland"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Los Alamos National Laboratory, Los Alamos, NM, USA. [address removed]."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-2364-6157"
+       },
+       "firstName": "Tyler",
+       "fullName": "Reddy T",
+       "initials": "T",
+       "lastName": "Reddy"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Tokyo, Japan."
+         }
+        ]
+       },
+       "firstName": "David",
+       "fullName": "Cournapeau D",
+       "initials": "D",
+       "lastName": "Cournapeau"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "National Research University Higher School of Economics, Moscow, Russia."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-8149-0483"
+       },
+       "firstName": "Evgeni",
+       "fullName": "Burovski E",
+       "initials": "E",
+       "lastName": "Burovski"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Saue, Estonia."
+         },
+         {
+          "affiliation": "Department of Mechanics and Applied Mathematics, Institute of Cybernetics at Tallinn Technical University, Tallinn, Estonia."
+         }
+        ]
+       },
+       "firstName": "Pearu",
+       "fullName": "Peterson P",
+       "initials": "P",
+       "lastName": "Peterson"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Berkeley Institute for Data Science, University of California Berkeley, Berkeley, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Warren",
+       "fullName": "Weckesser W",
+       "initials": "W",
+       "lastName": "Weckesser"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, New York, NY, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-5348-3374"
+       },
+       "firstName": "Jonathan",
+       "fullName": "Bright J",
+       "initials": "J",
+       "lastName": "Bright"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Berkeley Institute for Data Science, University of California Berkeley, Berkeley, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0001-9276-1891"
+       },
+       "firstName": "Stéfan J",
+       "fullName": "van der Walt SJ",
+       "initials": "SJ",
+       "lastName": "van der Walt"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "School of Psychology, University of Birmingham, Edgbaston, Birmingham, UK."
+         }
+        ]
+       },
+       "firstName": "Matthew",
+       "fullName": "Brett M",
+       "initials": "M",
+       "lastName": "Brett"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, San Francisco, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Joshua",
+       "fullName": "Wilson J",
+       "initials": "J",
+       "lastName": "Wilson"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Berkeley Institute for Data Science, University of California Berkeley, Berkeley, CA, USA."
+         },
+         {
+          "affiliation": "Division of Biostatistics, University of California Berkeley, Berkeley, CA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-5263-5070"
+       },
+       "firstName": "K Jarrod",
+       "fullName": "Millman KJ",
+       "initials": "KJ",
+       "lastName": "Millman"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "WayRay LLC, Skolkovo Innovation Center, Moscow, Russia."
+         }
+        ]
+       },
+       "firstName": "Nikolay",
+       "fullName": "Mayorov N",
+       "initials": "N",
+       "lastName": "Mayorov"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Australian Nuclear Science and Technology Organisation, Lucas Heights, NSW, Australia."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-4548-3558"
+       },
+       "firstName": "Andrew R J",
+       "fullName": "Nelson ARJ",
+       "initials": "ARJ",
+       "lastName": "Nelson"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Enthought, Inc., Austin, TX, USA."
+         }
+        ]
+       },
+       "firstName": "Eric",
+       "fullName": "Jones E",
+       "initials": "E",
+       "lastName": "Jones"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Enthought, Inc., Austin, TX, USA."
+         }
+        ]
+       },
+       "firstName": "Robert",
+       "fullName": "Kern R",
+       "initials": "R",
+       "lastName": "Kern"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Institute for Learning and Brain Sciences, University of Washington, Seattle, WA, USA."
+         }
+        ]
+       },
+       "firstName": "Eric",
+       "fullName": "Larson E",
+       "initials": "E",
+       "lastName": "Larson"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "College of Information and Computing Sciences, University of Massachusetts Amherst, Amherst, MA, USA."
+         }
+        ]
+       },
+       "firstName": "C J",
+       "fullName": "Carey CJ",
+       "initials": "CJ",
+       "lastName": "Carey"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Amsterdam, the Netherlands."
+         }
+        ]
+       },
+       "firstName": "İlhan",
+       "fullName": "Polat İ",
+       "initials": "İ",
+       "lastName": "Polat"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Berkeley Center for Cosmological Physics, University of California Berkeley, Berkeley, CA, USA."
+         }
+        ]
+       },
+       "firstName": "Yu",
+       "fullName": "Feng Y",
+       "initials": "Y",
+       "lastName": "Feng"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Bruker Biospin Corp., Billerica, MA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0009-0000-9629-0302"
+       },
+       "firstName": "Eric W",
+       "fullName": "Moore EW",
+       "initials": "EW",
+       "lastName": "Moore"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "University of Washington, Seattle, WA, USA."
+         }
+        ]
+       },
+       "firstName": "Jake",
+       "fullName": "VanderPlas J",
+       "initials": "J",
+       "lastName": "VanderPlas"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Toulouse, France."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-5540-4825"
+       },
+       "firstName": "Denis",
+       "fullName": "Laxalde D",
+       "initials": "D",
+       "lastName": "Laxalde"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Montreal, Quebec, Canada."
+         }
+        ]
+       },
+       "firstName": "Josef",
+       "fullName": "Perktold J",
+       "initials": "J",
+       "lastName": "Perktold"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "New Technologies Research Centre, University of West Bohemia, Plzeň, Czech Republic."
+         }
+        ]
+       },
+       "firstName": "Robert",
+       "fullName": "Cimrman R",
+       "initials": "R",
+       "lastName": "Cimrman"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Anaconda Inc., Austin, TX, USA."
+         },
+         {
+          "affiliation": "Department of Mathematics, Brigham Young University, Provo, UT, USA."
+         },
+         {
+          "affiliation": "Oden Institute for Computational Engineering and Sciences, The University of Texas at Austin, Austin, TX, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-2053-7265"
+       },
+       "firstName": "Ian",
+       "fullName": "Henriksen I",
+       "initials": "I",
+       "lastName": "Henriksen"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Independent researcher, Belmont, Massachusetts, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-4269-3445"
+       },
+       "firstName": "E A",
+       "fullName": "Quintero EA",
+       "initials": "EA",
+       "lastName": "Quintero"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Space Dynamics Laboratory, North Logan, UT, USA."
+         },
+         {
+          "affiliation": "Independent researcher, Logan, Utah, USA."
+         }
+        ]
+       },
+       "firstName": "Charles R",
+       "fullName": "Harris CR",
+       "initials": "CR",
+       "lastName": "Harris"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Anton Pannekoek Institute, Amsterdam, The Netherlands."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-0638-3340"
+       },
+       "firstName": "Anne M",
+       "fullName": "Archibald AM",
+       "initials": "AM",
+       "lastName": "Archibald"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Graduate Program in Electrical Engineering, Universidade Federal de Minas Gerais, Belo Horizonte, Brazil."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0003-3632-8529"
+       },
+       "firstName": "Antônio H",
+       "fullName": "Ribeiro AH",
+       "initials": "AH",
+       "lastName": "Ribeiro"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Google LLC, Montreal, Quebec, Canada."
+         }
+        ]
+       },
+       "firstName": "Fabian",
+       "fullName": "Pedregosa F",
+       "initials": "F",
+       "lastName": "Pedregosa"
+      },
+      {
+       "authorAffiliationDetailsList": {
+        "authorAffiliation": [
+         {
+          "affiliation": "Google LLC, Cambridge, MA, USA."
+         }
+        ]
+       },
+       "authorId": {
+        "type": "ORCID",
+        "value": "0000-0002-2382-8308"
+       },
+       "firstName": "Paul",
+       "fullName": "van Mulbregt P",
+       "initials": "P",
+       "lastName": "van Mulbregt"
+      },
+      {
+       "collectiveName": "SciPy 1.0 Contributors"
+      }
+     ]
+    },
+    "commentCorrectionList": {
+     "commentCorrection": [
+      {
+       "id": "32094914",
+       "orderIn": 1,
+       "reference": "Nat Methods. 2020 Mar;17(3):352. doi: 10.1038/s41592-020-0772-5.",
+       "source": "MED",
+       "type": "Erratum in"
+      }
+     ]
+    },
+    "doi": "10.1038/s41592-019-0686-2",
+    "firstPublicationDate": "2020-02-03",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "html",
+       "site": "Unpaywall",
+       "url": "https://escholarship.org/uc/item/8jd5f1bv"
+      },
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1038/s41592-019-0686-2"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "html",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC7056644"
+      },
+      {
+       "availability": "Open access",
+       "availabilityCode": "OA",
+       "documentStyle": "pdf",
+       "site": "Europe_PMC",
+       "url": "https://europepmc.org/articles/PMC7056644?pdf=render"
+      }
+     ]
+    },
+    "id": "32015543",
+    "isOpenAccess": "Y",
+    "journalInfo": {
+     "dateOfPublication": "2020 Mar",
+     "issue": "3",
+     "journal": {
+      "essn": "1548-7105",
+      "isoabbreviation": "Nat Methods",
+      "issn": "1548-7091",
+      "medlineAbbreviation": "Nat Methods",
+      "nlmid": "101215604",
+      "title": "Nature methods"
+     },
+     "journalIssueId": 2920493,
+     "monthOfPublication": 3,
+     "printPublicationDate": "2020-03-01",
+     "volume": "17",
+     "yearOfPublication": 2020
+    },
+    "pageInfo": "261-272",
+    "pmcid": "PMC7056644",
+    "pubTypeList": {
+     "pubType": [
+      "Historical Article",
+      "review-article",
+      "Review",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "2020",
+    "source": "MED",
+    "title": "SciPy 1.0: fundamental algorithms for scientific computing in Python."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.3389%2F978-2-88919-608-1%22+OR+DOI%3A%2210.1109%2Fmcse.2007.53%22+OR+DOI%3A%2210.1038%2Fs41592-019-0686-2%22+OR+DOI%3A%2210.21105%2Fjoss.03021%22+OR+DOI%3A%2210.18653%2Fv1%2F2020.emnlp-demos.6%22+OR+DOI%3A%2210.1016%2Fj.neuron.2021.11.021%22+OR+DOI%3A%2210.2139%2Fssrn.3855733%22+OR+DOI%3A%2210.1007%2Fs13164-022-00621-5%22+OR+DOI%3A%2210.1007%2Fs10955-009-9808-z%22+OR+DOI%3A%2210.3102%2F1076998615606113%22+OR+DOI%3A%2210.1016%2Fj.neuroimage.2018.12.024%22+OR+DOI%3A%2210.1109%2F42.896788%22+OR+DOI%3A%2210.1016%2Fj.jneumeth.2009.10.005%22+OR+DOI%3A%2210.1093%2Fcercor%2Fbhp085%22+OR+DOI%3A%2210.1109%2F72.80269%22+OR+DOI%3A%2210.1007%2F978-0-387-21579-2_9%22+OR+DOI%3A%2210.2307%2F2344614%22+OR+DOI%3A%2210.1613%2Fjair.1.11345%22+OR+DOI%3A%2210.21437%2Feurospeech.2003-463%22+OR+DOI%3A%2210.1007%2Fs11042-016-4281-6%22+OR+DOI%3A%2210.1109%2Fcvpr.2011.5995727%22+OR+DOI%3A%2210.1109%2Fcvprw.2008.4562956%22+OR+DOI%3A%2210.18653%2Fv1%2F2022.acl-long.593%22+OR+DOI%3A%2210.1145%2F3065386%22+OR+DOI%3A%2210.1038%2Fs41467-021-27725-3%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-10T00:58:56.918455+00:00",
+   "url": "https://europepmc.org/article/MED/32015543"
+  },
+  "origin": {
+   "case": "HarrEtal20",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "erratum": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1038/s41592-020-0772-5",
+    "ISSN": [
+     "1548-7091",
+     "1548-7105"
+    ],
+    "URL": "https://doi.org/10.1038/s41592-020-0772-5",
+    "author": [
+     {
+      "affiliation": [],
+      "name": "SciPy 1.0 Contributors",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Virtanen",
+      "given": "Pauli",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-0300-3333",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Gommers",
+      "given": "Ralf",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Oliphant",
+      "given": "Travis E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-4806-3601",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Haberland",
+      "given": "Matt",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-2364-6157",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Reddy",
+      "given": "Tyler",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cournapeau",
+      "given": "David",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Burovski",
+      "given": "Evgeni",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Peterson",
+      "given": "Pearu",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Weckesser",
+      "given": "Warren",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Bright",
+      "given": "Jonathan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0001-9276-1891",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "van der Walt",
+      "given": "Stéfan J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Brett",
+      "given": "Matthew",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Wilson",
+      "given": "Joshua",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-5263-5070",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Millman",
+      "given": "K. Jarrod",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Mayorov",
+      "given": "Nikolay",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-4548-3558",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Nelson",
+      "given": "Andrew R. J.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Jones",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kern",
+      "given": "Robert",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Larson",
+      "given": "Eric",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Carey",
+      "given": "C J",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Polat",
+      "given": "İlhan",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Feng",
+      "given": "Yu",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Moore",
+      "given": "Eric W.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "VanderPlas",
+      "given": "Jake",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-5540-4825",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Laxalde",
+      "given": "Denis",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Perktold",
+      "given": "Josef",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Cimrman",
+      "given": "Robert",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Henriksen",
+      "given": "Ian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Quintero",
+      "given": "E. A.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Harris",
+      "given": "Charles R.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Archibald",
+      "given": "Anne M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-3632-8529",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Ribeiro",
+      "given": "Antônio H.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Pedregosa",
+      "given": "Fabian",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-2382-8308",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "van Mulbregt",
+      "given": "Paul",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Nature Methods"
+    ],
+    "issue": "3",
+    "issued": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       24
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://www.nature.com/articles/s41592-020-0772-5.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/s41592-020-0772-5",
+      "content-type": "text/html",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+     },
+     {
+      "URL": "http://www.nature.com/articles/s41592-020-0772-5.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "352-352",
+    "published": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       24
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       2020,
+       2,
+       24
+      ]
+     ]
+    },
+    "published-print": {
+     "date-parts": [
+      [
+       2020,
+       3
+      ]
+     ]
+    },
+    "publisher": "Springer Science and Business Media LLC",
+    "relation": {
+     "has-part": [
+      {
+       "asserted-by": "object",
+       "id": "10.5194/se-14-859-2023",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "title": [
+     "Author Correction: SciPy 1.0: fundamental algorithms for scientific computing in Python"
+    ],
+    "type": "journal-article",
+    "update-to": [
+     {
+      "DOI": "10.1038/s41592-019-0686-2",
+      "label": "Correction",
+      "source": "publisher",
+      "type": "correction",
+      "updated": {
+       "date-parts": [
+        [
+         2020,
+         2,
+         24
+        ]
+       ],
+       "date-time": "2020-02-24T00:00:00Z",
+       "timestamp": 1582502400000
+      }
+     }
+    ],
+    "volume": "17"
+   },
+   "retrieved_at": "2026-09-09T19:35:32.621740+00:00",
+   "url": "https://doi.org/10.1038/s41592-020-0772-5"
+  },
+  "doi": "10.1038/s41592-020-0772-5",
+  "origin": {
+   "case": "HarrEtal20",
+   "file": "tests/fixtures/phase0_cases.json.gz"
+  }
+ },
+ "preprint": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1101/511782",
+    "URL": "https://doi.org/10.1101/511782",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Silva",
+      "given": "Marta",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0003-3540-5019",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Baldassano",
+      "given": "Christopher",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "ORCID": "https://orcid.org/0000-0002-5482-7615",
+      "affiliation": [],
+      "authenticated-orcid": false,
+      "family": "Fuentemilla",
+      "given": "Lluís",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "issued": {
+     "date-parts": [
+      [
+       2019,
+       1,
+       4
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "https://syndication.highwire.org/content/doi/10.1101/511782",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "published": {
+     "date-parts": [
+      [
+       2019,
+       1,
+       4
+      ]
+     ]
+    },
+    "publisher": "openRxiv",
+    "relation": {
+     "is-preprint-of": [
+      {
+       "asserted-by": "subject",
+       "id": "10.1523/JNEUROSCI.0360-19.2019",
+       "id-type": "doi"
+      }
+     ]
+    },
+    "subtype": "preprint",
+    "title": [
+     "Rapid memory reactivation at movie event boundaries promotes episodic encoding"
+    ],
+    "type": "posted-content"
+   },
+   "retrieved_at": "2026-09-17T19:20:13.245653+00:00",
+   "url": "https://doi.org/10.1101/511782"
+  },
+  "doi": "10.1101/511782",
+  "origin": {
+   "case": "AlyTurk16",
+   "file": "tests/fixtures/fixes-2026-09-24-cases.json.gz"
+  }
+ }
+}

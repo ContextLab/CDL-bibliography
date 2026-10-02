@@ -100,3 +100,8 @@ class PublishRefused(CdlbibError):
         self.needs_fork = needs_fork  # the user has no fork yet; a front end may offer to create it
         self.upstream = upstream      # the repository that would be forked, when needs_fork
         super().__init__(message)
+
+
+class CompletionRefused(CdlbibError):
+    """A source record that cannot be the record of an entry (a correction, erratum or
+    retraction notice); the message says why."""
