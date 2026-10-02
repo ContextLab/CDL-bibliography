@@ -7,8 +7,8 @@ from pathlib import Path
 
 import typer
 
-from . import __version__, api
-from .errors import CdlbibError, GateFailed, WorkspaceNotFound
+from . import __version__, api, deps
+from .errors import CdlbibError, GateFailed, MissingDependency, WorkspaceNotFound
 from . import workspace
 from .verification_cli import app as crossref_app, library
 from .workspace import BIB_NAME
@@ -26,8 +26,10 @@ def _version(value: bool):
 @app.callback()
 def root(library_path: str = typer.Option(None, "--library", help="Folder containing cdl.bib."),
          version: bool = typer.Option(False, "--version", callback=_version, is_eager=True,
-                                      help="Show the version and exit.")):
+                                      help="Show the version and exit."),
+         yes: bool = typer.Option(False, "--yes", help="Install missing packages without asking.")):
     workspace.select_library(library_path)
+    deps.set_assume_yes(yes)
 
 
 def report_format(result, ws, fname):
@@ -138,15 +140,42 @@ def commit(ctx: typer.Context, fname=BIB_NAME, reference="github", verbose: bool
         raise typer.Exit(code=run.returncode)
 
 
-def main():
+def _run_once(argv):
     try:
-        app()
+        app(args=argv)
     except WorkspaceNotFound as exc:
         typer.echo(str(exc), err=True)
         raise SystemExit(2)
     except GateFailed as exc:
         typer.echo(str(exc), err=True)
         raise SystemExit(2)
+    except MissingDependency:
+        raise  # main() offers the install
     except CdlbibError as exc:
         typer.echo(str(exc), err=True)
         raise SystemExit(1)
+
+
+def main(argv=None):
+    """Run the command. A missing optional package is installed after confirmation (or with
+    --yes) and the command is run again once; click keeps reporting its own usage errors."""
+    for attempt in (1, 2):
+        try:
+            _run_once(argv)
+            return
+        except MissingDependency as exc:
+            if attempt == 2 or not (deps.assume_yes() or _confirmed(exc)):
+                typer.echo(str(exc), err=True)
+                raise SystemExit(1)
+            try:
+                deps.install(exc.extra)
+            except CdlbibError as failure:
+                typer.echo(str(failure), err=True)
+                raise SystemExit(1)
+
+
+def _confirmed(exc):
+    """Ask only at a terminal; with none, the caller prints the manual command and exits."""
+    if not sys.stdin.isatty():
+        return False
+    return typer.confirm(f"{exc.feature} needs '{exc.package}'. Install cdlbib[{exc.extra}] now?", default=False)

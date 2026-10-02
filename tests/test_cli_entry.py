@@ -118,3 +118,103 @@ def test_status_and_compare_failures_keep_their_exit_codes(tmp_path):
     assert out.stderr.strip() == "Key list is empty or contains citation keys absent from the bibliography"
     out = run("compare", str(lib), str(tmp_path / "missing.bib"), cwd=tmp_path)
     assert out.returncode == 1 and "missing.bib" in out.stderr and "Traceback" not in out.stderr
+
+
+# --- optional packages installed on demand -------------------------------------------------
+
+DUMMY_PDF = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+
+ADAPTER = '''import json, sys
+payload = json.load(sys.stdin)
+if payload["phase"] == "discover":
+    print(json.dumps({"landing_url": "%s", "pdf_url": "%s"}))
+else:
+    print(json.dumps({"fields": {"title": {"value": "Dummy PDF file", "page": 1, "quote": "Dummy PDF file"}},
+                      "uncertainties": []}))
+''' % (DUMMY_PDF, DUMMY_PDF)
+
+SEED = '''import sys
+from pathlib import Path
+from cdlbib.verification import Cache, load_entries
+bib = Path(sys.argv[1])
+cache = Cache(Path(sys.argv[2]))
+for entry in load_entries(bib).values():
+    cache.put(bib, entry, {"status": "needs_review"})
+'''
+
+
+def core_environment(tmp_path):
+    """A real throwaway environment with cdlbib installed WITHOUT the research extra, a
+    library with one entry awaiting review, and a research adapter. Returns (python, args)."""
+    import pytest
+    if not shutil.which("uv"):
+        pytest.skip("uv is needed to build the scratch environment")
+    root = Path(__file__).resolve().parents[1]
+    env = tmp_path / "core"
+    python = str(env / "bin" / "python")
+    subprocess.run(["uv", "venv", "-q", str(env), "--python", sys.executable], check=True)
+    subprocess.run(["uv", "pip", "install", "-q", "--python", python, str(root)], check=True)
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+    lib = tmp_path / "lib"
+    lib.mkdir()
+    (lib / "cdl.bib").write_text("@book{Test20,\n  Title = {Dummy PDF file},\n  Year = {2020}\n}\n", encoding="utf-8")
+    (tmp_path / "adapter.py").write_text(ADAPTER, encoding="utf-8")
+    (tmp_path / "seed.py").write_text(SEED, encoding="utf-8")
+    database = tmp_path / "cache.sqlite3"
+    subprocess.run([python, str(tmp_path / "seed.py"), str(lib / "cdl.bib"), str(database)], check=True)
+    args = ["research-batch", str(lib / "cdl.bib"), "--adapter", str(tmp_path / "adapter.py"),
+            "--allow-host", "www.w3.org", "--database", str(database), "--limit", "1"]
+    return python, args
+
+
+def cdlbib_in(python, *args, cwd, path=None, **kwargs):
+    env = dict(os.environ, CDLBIB_LIBRARY="")
+    if path is not None:
+        env["PATH"] = path
+    return subprocess.run([str(Path(python).parent / "cdlbib"), *args], cwd=cwd, capture_output=True, text=True,
+                          env=env, **kwargs)
+
+
+def test_missing_extra_without_a_terminal_refuses_with_the_manual_command(tmp_path):
+    """research-batch needs pypdf (extra 'research'); in an environment installed without it and
+    with no terminal and no --yes, nothing is installed and nothing is asked."""
+    python, args = core_environment(tmp_path)
+    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    assert run.returncode == 1, run.stdout + run.stderr
+    assert "pip install 'cdlbib[research]'" in run.stderr and "Reading PDF files" in run.stderr
+    assert "Traceback" not in run.stderr and "[y/N]" not in run.stdout + run.stderr
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+
+
+def test_declining_the_prompt_at_a_terminal_installs_nothing(tmp_path):
+    import pty
+    python, args = core_environment(tmp_path)
+    leader, follower = pty.openpty()
+    os.write(leader, b"n\n")
+    try:
+        run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=follower)
+    finally:
+        os.close(follower)
+        os.close(leader)
+    assert run.returncode == 1 and "Install cdlbib[research] now? [y/N]" in run.stdout + run.stderr, run.stdout + run.stderr
+    assert "pip install 'cdlbib[research]'" in run.stderr and "Traceback" not in run.stderr
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+
+
+def test_yes_installs_the_extra_and_the_command_proceeds_past_the_import(tmp_path):
+    python, args = core_environment(tmp_path)
+    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode == 0, run.stdout + run.stderr
+    assert run.returncode == 0 and "Research 1: Test20: " in run.stdout, run.stdout + run.stderr
+    assert "Traceback" not in run.stderr and "needs the package" not in run.stderr
+
+
+def test_no_installer_is_an_error_with_the_manual_command_and_no_second_try(tmp_path):
+    """--yes, but the environment has no pip and uv is not on PATH: one error, exit 1, no traceback."""
+    python, args = core_environment(tmp_path)
+    nothing = tmp_path / "empty"
+    nothing.mkdir()
+    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL, path=str(nothing))
+    assert run.returncode == 1 and "No installer found" in run.stderr, run.stdout + run.stderr
+    assert "pip install 'cdlbib[research]'" in run.stderr and "Traceback" not in run.stderr
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0

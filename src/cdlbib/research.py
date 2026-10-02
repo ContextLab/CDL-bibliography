@@ -16,6 +16,8 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 
+from . import deps
+from .errors import MissingDependency
 from .verification import dumps, now
 
 
@@ -111,9 +113,8 @@ def download_pdf(url, hosts, directory, session=None):
 
 
 def extract_pages(pdf_path):
-    from pypdf import PdfReader
-
-    reader = PdfReader(pdf_path)
+    pypdf = deps.need("pypdf", "research", "Reading PDF files")
+    reader = pypdf.PdfReader(pdf_path)
     if reader.is_encrypted:
         raise ValueError("Encrypted PDF requires human review")
     pages = []
@@ -309,6 +310,8 @@ def run_research_batch(
                     research_attempt={"status": "evidence_collected", "at": now()},
                 )
                 failures = 0
+            except MissingDependency:
+                raise  # not this entry's failure: the front end may install it and run again
             except Exception as exc:
                 result = dict(
                     previous,
