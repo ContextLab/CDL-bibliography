@@ -764,25 +764,102 @@ def _styles(accent):
     return counts
 
 
-def test_the_latex_forms_are_the_librarys_most_common_ones():
-    # The evidence for the table in complete.py: counts in the frozen library.
-    assert _styles('"') == {"{\\Xl}": 85, "\\X{l}": 45, "{\\X{l}}": 39, "\\Xl": 12}
-    assert _styles("'") == {"{\\Xl}": 66, "\\X{l}": 82, "{\\X{l}}": 24, "\\Xl": 23}
-    assert _styles("`") == {"{\\Xl}": 3, "\\X{l}": 0, "{\\X{l}}": 0, "\\Xl": 0}
-    assert _styles("~") == {"{\\Xl}": 7, "\\X{l}": 4, "{\\X{l}}": 0, "\\Xl": 0}
-    assert _styles("^") == {"{\\Xl}": 1, "\\X{l}": 0, "{\\X{l}}": 1, "\\Xl": 1}
-    assert complete.latex_text("Glöckner") == 'Gl{\\"o}ckner'
-    assert complete.latex_text("Hervé") == "Herv\\'{e}"
-    assert complete.latex_text("à ñ ô") == "{\\`a} {\\~n} {\\^o}"
-    # letter accents and letters, as the library has them: {\c{s}}, \v{c}, {\u{g}}, {\H{o}}, {\o}, {\l}, {\ss}
-    for form in ("{\\c{s}}", "\\v{c}", "{\\u{g}}", "{\\H{o}}", "{\\o}", "{\\l}", "{\\ss}", "{\\AA}", "{\\ae}"):
+def test_one_brace_style_for_every_accent_the_librarys_most_common():
+    # The evidence: counts in the frozen library, by accent and in total.
+    counts = {accent: _styles(accent) for accent in "\"'`~^"}
+    assert counts['"'] == {"{\\Xl}": 85, "\\X{l}": 45, "{\\X{l}}": 39, "\\Xl": 12}
+    assert counts["'"] == {"{\\Xl}": 66, "\\X{l}": 82, "{\\X{l}}": 24, "\\Xl": 23}
+    assert counts["`"] == {"{\\Xl}": 3, "\\X{l}": 0, "{\\X{l}}": 0, "\\Xl": 0}
+    assert counts["~"] == {"{\\Xl}": 7, "\\X{l}": 4, "{\\X{l}}": 0, "\\Xl": 0}
+    assert counts["^"] == {"{\\Xl}": 1, "\\X{l}": 0, "{\\X{l}}": 1, "\\Xl": 1}
+    total = {style: sum(c[style] for c in counts.values()) for style in counts['"']}
+    assert total == {"{\\Xl}": 162, "\\X{l}": 131, "{\\X{l}}": 64, "\\Xl": 36}
+    assert complete._accent('"', "o") == '{\\"o}'  # the one place the style is set
+    assert complete.latex_text("Glöckner Hervé à ñ ô") == 'Gl{\\"o}ckner Herv{\\\'e} {\\`a} {\\~n} {\\^o}'
+    # letter accents and letters as the library has them: {\c{s}}, {\u{g}}, {\H{o}}, {\o}, {\l}, {\ss}
+    for form in ("{\\c{s}}", "{\\v{r}}", "{\\u{g}}", "{\\H{o}}", "{\\o}", "{\\l}", "{\\ss}", "{\\AA}", "{\\ae}"):
         assert form in FROZEN
-    assert complete.latex_text("ş č ğ ő ø ł ß Å æ") == "{\\c{s}} \\v{c} {\\u{g}} {\\H{o}} {\\o} {\\l} {\\ss} {\\AA} {\\ae}"
+    assert complete.latex_text("ş č ğ ő ø ł ß Å æ") == (
+        "{\\c{s}} {\\v{c}} {\\u{g}} {\\H{o}} {\\o} {\\l} {\\ss} {\\AA} {\\ae}")
     # punctuation: the library has --- on 33 title lines and no em dash, `` on 42 and curly quotes on 5
     assert sum("---" in line for line in FROZEN.split("\n") if line.startswith("\tTitle")) == 33
     assert "\u2014" not in FROZEN
     assert complete.latex_text("O\u2019Brien \u2014 a\u2013b \u201cq\u201d x\u00a0y") == "O'Brien --- a--b ``q'' x y"
     assert complete.latex_text("plain ASCII {B}ayes") == "plain ASCII {B}ayes"
+
+
+def _mapped_characters():
+    import unicodedata
+    letters = [unicodedata.normalize("NFC", base + mark) for mark in complete._ACCENTS
+               for base in "aeiounczsgylrtdhAEIOUNCZSGYLRTDH"]
+    return [c for c in letters if len(c) == 1] + list(complete._LETTERS)
+
+
+def test_every_latex_form_survives_the_house_formatters_and_reads_back_the_same():
+    from cdlbib import helpers
+    from cdlbib.verification import normalized
+    characters = _mapped_characters()
+    assert len(characters) > 150 and "ö" in characters and "Š" in characters and "ß" in characters
+    lowered = []
+    for char in characters:
+        word = ("Ab" + char + "cd") if char.islower() else (char + "bcd")
+        written = complete.latex_text(word)
+        assert written.isascii(), char
+        assert normalized(written) == normalized(word), char  # the verifier reads the same letter
+        author = "A B " + written + " and C D Smith"
+        assert helpers.reformat_author(author) == author, char
+        title = "Memory in " + ("{" + written + "}" if char.isupper() else written) + " of rats"
+        assert helpers.format_title(title) == title, char
+        journal = "Journal of " + written + " Studies"
+        if helpers.format_journal_name(journal) != journal:
+            lowered.append(char)
+    # The journal formatter lower-cases an accented capital that begins a word (and the
+    # command \\H); build then keeps the source's own character and asks (the test below).
+    assert "Ö" in lowered and "ö" not in lowered and len(lowered) < len(characters) / 2
+    # A dot above is not in the table: the author formatter drops the period of {\.Z}.
+    assert helpers.reformat_author("A {\\.Z}urek") != "A {\\.Z}urek"
+    assert complete.latex_text("Żurek İlhan") == "Żurek İlhan" and complete.not_in_latex("Żurek İlhan") == ["Ż", "İ"]
+
+
+def test_the_format_checker_accepts_the_latex_forms(tmp_path):
+    from cdlbib.helpers import check_bib
+    names = ["Müller", "Hervé", "Peña", "Çelik", "Šimić", "Güroğlu", "Erdős", "Ørsted", "Łukasz", "Öztürk"]
+    written = [complete.latex_text(name) for name in names]
+    entries = [
+        "@article{" + "".join(c for c in name if c.isascii())[:4] + "20,\n\tAuthor = {A B " + form + "},\n"
+        "\tJournal = {Psychological Science},\n\tTitle = {Memory and the work of {" + form + "}},\n\tYear = {2020}}"
+        for name, form in zip(names, written)]
+    bib = tmp_path / "accents.bib"
+    bib.write_text("\n\n".join(entries) + "\n", encoding="utf-8")
+    errors, _ = check_bib(str(bib), verbose=False)
+    assert {field for found in errors.values() for field in found} <= {"ID"}  # keys aside, nothing is rewritten
+
+
+def test_a_letter_whose_latex_form_the_formatter_would_change_is_kept_and_asked_about():
+    # Game62's saved record with the family name replaced by one that has a dot above.
+    record, mapped = sources("Game62")
+    record["author"][0]["family"] = "Żurek"
+    proposal = complete.build({"doi": record["DOI"]}, record)
+    assert change(proposal, "author") == complete.FieldChange("author", None, "P A Żurek", "crossref", "question")
+    assert proposal.issues == ["author: no LaTeX form is known for 'Ż' (LATIN CAPITAL LETTER Z WITH DOT ABOVE); "
+                               "written as the source has it"]
+    assert proposal.needs_decision is True and "\tAuthor = {P A Żurek},\n" in proposal.proposed_raw
+    # Typed: the value stays as typed (it was "A {\.Z}urek", which the checker turned into "{\Z}urek").
+    typed = dict(fields_of(LIBRARY["Game62"]), author="P A Żurek")
+    kept = complete.build(typed, record)
+    assert change(kept, "author") == complete.FieldChange("author", "P A Żurek", "P A Żurek", "typed", "kept")
+    assert "\tAuthor = {P A Żurek},\n" in kept.proposed_raw
+    # A journal name whose accented capital the journal formatter would lower-case.
+    record, _ = sources("Game62")
+    record["container-title"] = ["Österreichische Zeitschrift für Soziologie"]
+    journal = complete.build({"doi": record["DOI"]}, record)
+    assert change(journal, "journal").kind == "question"
+    # ("Für": the journal formatter capitalises every word that is not on its list.)
+    assert change(journal, "journal").proposed == "Österreichische Zeitschrift Für Soziologie"
+    assert journal.issues == [
+        "journal: the journal formatter does not keep the LaTeX form of 'Ö' (LATIN CAPITAL LETTER O WITH "
+        "DIAERESIS), 'ü' (LATIN SMALL LETTER U WITH DIAERESIS); written as the source has it"]
+    assert journal.needs_decision is True
 
 
 def test_every_accented_source_string_in_the_fixtures_survives_the_latex_form():
@@ -793,8 +870,11 @@ def test_every_accented_source_string_in_the_fixtures_survives_the_latex_form():
     assert "Glöckner" in strings and "İlhan" in strings and "Slavič" in strings and len(strings) == 14
     for text in strings:
         written = complete.latex_text(text)
-        assert written.isascii() and complete.not_in_latex(text) == []
         assert normalized(written) == normalized(text)  # the verifier reads back the same letters
+        if text == "İlhan":  # a dot above has no form that survives the author formatter
+            assert written == text and complete.not_in_latex(text) == ["İ"]
+        else:
+            assert written.isascii() and complete.not_in_latex(text) == []
 
 
 def test_a_character_with_no_latex_form_is_left_and_named():
@@ -814,6 +894,132 @@ def test_a_typed_accented_letter_is_shown_in_latex_form():
     # The library's own spelling of the same letter, typed, is kept as typed.
     kept = complete.build(fields_of(LIBRARY["FiedGloc12"]), record, mapped)
     assert change(kept, "author").kind == "kept" and kept.proposed_raw == LIBRARY["FiedGloc12"]
+
+
+# --- fix round 2 ----------------------------------------------------------------------------------
+
+def test_a_retraction_banner_is_not_part_of_the_title():
+    record = deepcopy(RETRACTED["body"]["message"])
+    assert record["title"] == ["RETRACTED: Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive "
+                               "developmental disorder in children"]
+    title = "Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children"
+    proposal = complete.build({"doi": "10.1016/S0140-6736(97)11096-0"}, record)
+    assert change(proposal, "title") == complete.FieldChange("title", None, title, "crossref", "filled")
+    assert "RETRACTED" not in proposal.proposed_raw
+    assert proposal.issues[0].startswith("The article was retracted") and proposal.needs_decision is True
+    typed = complete.build({"doi": "10.1016/S0140-6736(97)11096-0", "title": title}, record)
+    assert change(typed, "title") == complete.FieldChange("title", title, title, "typed", "kept")
+    assert typed.needs_decision is True
+
+
+def test_complete_says_whether_the_entry_has_its_key_and_required_fields():
+    record, mapped = sources("MoheEtal14")
+    whole = complete.build({"doi": "10.1177/0956797613511257"}, record, mapped)
+    assert whole.complete is True and whole.needs_decision is False
+    # A corporate author: no byline, so no key either.
+    scipy = complete.build({"doi": "10.1038/s41592-019-0686-2"},
+                           deepcopy(RECORDS["corporate-author"]["crossref"]["record"]))
+    assert scipy.proposed_raw.startswith("@article{" + complete.NO_KEY + ",")
+    assert scipy.complete is False and scipy.needs_decision is True
+    # The year left open by the sources.
+    record, _ = sources("LindEtal21")
+    year = complete.build(fields_of(LIBRARY["LindEtal21"]) | {"year": ""}, record)
+    assert "Year" not in year.proposed_raw and year.complete is False and year.needs_decision is True
+    # A required field that is a question.
+    record, _ = sources("MoheEtal14")
+    title = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    assert change(title, "title").kind == "question" and title.complete is False
+    # Pages are not required: an entry without them is complete.
+    record, _ = sources("AlyTurk16")
+    pages = complete.build({"doi": "10.1073/pnas.1518931113"}, record)
+    assert "Pages" not in pages.proposed_raw and pages.complete is True and pages.needs_decision is False
+
+
+def test_page_labels_keep_the_sources_capitals():
+    # The library writes such pages with a capital: CutlGram88 has S82--S90, GapiEtal11 S70--S74.
+    assert "\tPages = {S82--S90},\n" in FROZEN and "\tPages = {S70--S74},\n" in FROZEN
+    assert not re.search(r"(?m)^\tPages = \{s\d", FROZEN)
+    for printed, written in (("S82-S90", "S82--S90"), ("S82-90", "S82--S90"), ("S82-9", "S82--S89"),
+                             ("e1160-e1167", "e1160--e1167"), ("R45-R50", "R45--R50")):
+        record, _ = sources("MoheEtal14")  # the saved record with its page replaced
+        record["page"] = printed
+        proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+        assert change(proposal, "pages").proposed == written, printed
+
+
+def test_a_page_that_is_the_article_number_is_not_a_lone_first_page():
+    record, _ = sources("KoelEtal16")
+    record["page"] = record["article-number"]  # some records carry the number in both
+    proposal = complete.build({"doi": "10.1038/srep19741"}, record)
+    assert change(proposal, "pages") == complete.FieldChange("pages", None, "19741", "crossref", "filled")
+
+
+def test_a_family_name_is_written_whole_as_the_source_gives_it():
+    # The library's own multi-word surnames, given back as a source would give them.
+    for family, written in (("La Joie", "R {La Joie}"), ("Van der Linden", "R {Van der Linden}"),
+                            ("Lopes da Silva", "R {Lopes da Silva}"), ("van der Meer", "R van der Meer"),
+                            ("Fernández del Río", "R {Fern{\\'a}ndez del R{\\'i}o}")):
+        record, _ = sources("Game62")
+        record["author"] = [{"given": "Renaud", "family": family}]
+        proposal = complete.build({"doi": record["DOI"]}, record)
+        assert change(proposal, "author").proposed == written
+    assert "R {La Joie}" in FROZEN and "{Van der Linden}" in FROZEN and "{Lopes da Silva}" in FROZEN
+    assert "M A A van der Meer" in FROZEN
+
+
+def test_a_family_name_the_source_may_have_split_wrongly_is_a_question():
+    # Crossref's record of the NumPy paper (saved for the lookup tests) gives the given names
+    # "Jaime Fernández" and the family name "del Río"; the library has "Fern{\'{a}}ndez del R{\'{i}}o".
+    responses = json.loads((ROOT / "tests/fixtures/completion/responses.json").read_text(encoding="utf-8"))
+    record = next(r["response"]["body"]["message"] for r in responses
+                  if r["request"][0] == "https://api.crossref.org/works/10.1038%2Fs41586-020-2649-2")
+    person = next(p for p in record["author"] if p["family"] == "del Río")
+    assert person["given"] == "Jaime Fernández"
+    proposal = complete.build({"doi": "10.1038/s41586-020-2649-2"}, record)
+    author = change(proposal, "author")
+    assert author.kind == "question" and "J F del R{\\'i}o" in author.proposed
+    assert ("author: the source gives the given names 'Jaime Fernández' and the family name 'del Río'; "
+            "the family name may be 'Fernández del Río'") in proposal.issues
+    assert proposal.needs_decision is True and proposal.complete is False
+    # The other particle names of that record are not asked about.
+    assert sum(issue.startswith("author: the source gives the given names") for issue in proposal.issues) == 1
+    assert "S J van der Walt" in author.proposed and "M H van Kerkwijk" in author.proposed
+
+
+def test_two_sentence_case_sources_that_differ_in_capitals_are_a_question():
+    # Game62's saved records, both in sentence case, with one word given a capital in PubMed's.
+    record, mapped = sources("Game62")
+    mapped["title"] = [mapped["title"][0].replace("factorial", "Factorial")]
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", None, "A factorial analysis of verbal learning tasks", "crossref+pubmed", "question")
+    assert proposal.issues == [
+        'title: the sources differ in capitals: crossref "A factorial analysis of verbal learning tasks.", '
+        'pubmed "A Factorial analysis of verbal learning tasks"']
+    same, mapped = sources("Game62")
+    assert change(complete.build({"doi": same["DOI"]}, same, mapped), "title").kind == "filled"
+
+
+@pytest.mark.parametrize("corroborating", [
+    {}, {"DOI": "10.1177/0956797613511257", "title": ["x"]},
+    {"DOI": "10.1177/0956797613511257", "title": ["x"], "published": {}, "author": []},
+    {"DOI": "10.1177/0956797613511257", "title": ["x"], "published": {"date-parts": [[2014]]}, "author": "J Moher"},
+    {"DOI": "10.1177/0956797613511257", "title": [None], "published": {"date-parts": [[2014]]}, "author": []},
+])
+def test_a_corroborating_record_that_is_not_in_the_expected_form_is_set_aside(corroborating):
+    record, _ = sources("MoheEtal14")
+    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record, corroborating)
+    assert "The PubMed record is not in the expected form and was not used" in proposal.issues
+    assert proposal.record_source == "crossref"
+
+
+def test_reasons_are_plain_words_when_a_part_of_the_record_is_missing():
+    record, _ = sources("MoheEtal14")
+    record["title"] = [None]
+    record["issued"] = None
+    proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
+    assert unfilled(proposal, "title").reason == "title: the record's title is not in the expected form"
+    assert all("NoneType" not in u.reason and "object" not in u.reason for u in proposal.unfilled)
 
 
 # --- Review Focus 1: the DOI is another work's ------------------------------------------------

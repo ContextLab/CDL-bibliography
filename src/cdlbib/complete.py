@@ -30,6 +30,7 @@ in ``issues``, and always needs a decision.
 """
 
 from dataclasses import dataclass, field
+from functools import lru_cache
 import re
 import unicodedata
 
@@ -44,6 +45,8 @@ NO_KEY = "KeyNeeded"
 
 # The fields built from a source record, in the order they are settled (the layout's order).
 BUILT_FIELDS = ("author", "doi", "journal", "number", "pages", "title", "volume", "year")
+# The fields an article must have before it can be accepted without a person's decision.
+REQUIRED_FIELDS = ("author", "title", "journal", "year")
 # The fields an article is expected to have: one that no source states is listed as unfilled.
 EXPECTED_FIELDS = ("author", "journal", "pages", "title", "volume", "year")
 
@@ -59,29 +62,25 @@ CAPITALS_QUESTION = ("title: capitalisation taken from a title-case source; prop
                      "cannot be told apart from ordinary words")
 
 
-# Non-ASCII letters are written in LaTeX, in the form the library itself uses most for each
-# kind of accent (counted in tests/fixtures/cdl-prewave1-2026-09-26.bib, 2026-10-02; the
-# counts are in tests/test_complete_build.py). "{}" stands for the letter.
-_SYMBOL_ACCENTS = {  # combining mark -> (accent command, form)
-    "\u0308": ('"', "braced"),   # {\"o} 85, \"{o} 45, {\"{o}} 39, \"o 12
-    "\u0301": ("'", "argument"),  # \'{e} 82, {\'e} 66, {\'{e}} 24, \'e 23
-    "\u0300": ("`", "braced"),   # {\`a} 3
-    "\u0302": ("^", "braced"),   # {\^o} 1, {\^{o}} 1, \^o 1
-    "\u0303": ("~", "braced"),   # {\~n} 7, \~{n} 4
-    "\u0304": ("=", "braced"),   # none in the library: the commonest form overall
-    "\u0307": (".", "braced"),   # none in the library
+# Non-ASCII letters are written in LaTeX. The library never mixes brace styles inside one
+# name, and the style it uses most is ``{\\"o}`` (counted in the frozen library fixture; the
+# counts are in tests/test_complete_build.py). ``_accent`` is the one place the style is set.
+def _accent(command, letter):
+    """One accented letter: ``{\\"o}``, ``{\\'e}``, ``{\\c{c}}``. To write ``{\\"{o}}`` instead,
+    return ``"{\\\\" + command + "{" + letter + "}}"`` for every command."""
+    if command.isalpha():  # \\c, \\v, \\u, \\H: the letter is an argument
+        return "{\\" + command + "{" + letter + "}}"
+    return "{\\" + command + letter + "}"
+
+
+# combining mark -> accent command. A dot above (\\.) is not here: the author formatter drops
+# the period ({\\.Z}urek -> {\\Z}urek), so such a letter is left as the source has it and asked about.
+_ACCENTS = {
+    "\u0308": '"', "\u0301": "'", "\u0300": "`", "\u0302": "^", "\u0303": "~", "\u0304": "=",
+    "\u0327": "c", "\u030c": "v", "\u0306": "u", "\u030b": "H", "\u030a": "r", "\u0328": "k",
+    "\u0323": "d", "\u0331": "b",
 }
-_LETTER_ACCENTS = {  # combining mark -> (accent command, form)
-    "\u0327": ("c", "braced"),    # {\c{s}} 3, {\c s} 3
-    "\u030c": ("v", "argument"),  # \v{c} 4, {\v{r}} 2, {\v C} 2
-    "\u0306": ("u", "braced"),    # {\u{g}} 3
-    "\u030b": ("H", "braced"),    # {\H{o}} 2, {\H o} 2
-    "\u030a": ("r", "braced"),    # none in the library
-    "\u0328": ("k", "braced"),    # none in the library
-    "\u0323": ("d", "braced"),    # none in the library
-    "\u0331": ("b", "braced"),    # none in the library
-}
-_LETTERS = {  # {\o} 3, {\l} 2, {\ss} 1, {\L} 1, {\AA} 1, {\ae} 1 in the library
+_LETTERS = {  # {\\o} 3, {\\l} 2, {\\ss} 1, {\\L} 1, {\\AA} 1, {\\ae} 1 in the library
     "\u00f8": "{\\o}", "\u00d8": "{\\O}", "\u0142": "{\\l}", "\u0141": "{\\L}", "\u00df": "{\\ss}",
     "\u00e6": "{\\ae}", "\u00c6": "{\\AE}", "\u0153": "{\\oe}", "\u0152": "{\\OE}",
     "\u00e5": "{\\aa}", "\u00c5": "{\\AA}", "\u0131": "{\\i}",
@@ -107,13 +106,8 @@ def latex_text(value):
             continue
         parts = unicodedata.normalize("NFD", char)
         base, marks = parts[0], parts[1:]
-        if len(marks) == 1 and base.isascii() and base.isalpha() and (marks in _SYMBOL_ACCENTS or marks in _LETTER_ACCENTS):
-            symbol = marks in _SYMBOL_ACCENTS
-            command, form = (_SYMBOL_ACCENTS if symbol else _LETTER_ACCENTS)[marks]
-            if form == "argument":
-                out.append("\\" + command + "{" + base + "}")
-            else:
-                out.append("{\\" + command + (base if symbol else "{" + base + "}") + "}")
+        if len(marks) == 1 and base.isascii() and base.isalpha() and marks in _ACCENTS:
+            out.append(_accent(_ACCENTS[marks], base))
             continue
         out.append(char)
     return "".join(out)
@@ -166,12 +160,17 @@ class Proposal:
     renames: dict[str, str] = field(default_factory=dict)
     unsupported: str | None = None
     needs_decision: bool = False  # True: never accepted without the person looking at it
+    # True when the entry has a key and its required fields (author, title, journal, year)
+    # and none of them is a question. ``build`` sets it; an entry that is not complete
+    # always needs a decision.
+    complete: bool = False
     notes: list[str] = field(default_factory=list)  # how the record was found; not a problem
 
 
+@lru_cache(maxsize=1)
 def _field_order():
     from .helpers import read
-    return sorted(read("keep_fields.txt"))  # the order check_bib writes (helpers.check_bib)
+    return tuple(sorted(read("keep_fields.txt")))  # the order check_bib writes (helpers.check_bib)
 
 
 def render(entry_type, key, fields):
@@ -202,6 +201,25 @@ class _Value:
     doubts: list = field(default_factory=list)  # why the value is a question rather than settled
 
 
+def _written(name, value, formatter):
+    """``value`` as it is written into the entry, and the questions that raises.
+
+    The text is put in the library's LaTeX form and must come through the house formatter
+    unchanged. A character with no LaTeX form stays as the source has it and is asked
+    about; so does every non-ASCII character when the formatter would change the LaTeX form
+    (it lowers ``{\\"O}`` at the start of a word in a journal name, for one). If the formatter
+    changes the source's own text too, nothing is written."""
+    written = latex_text(value)
+    if formatter(written) == written:
+        return written, _character_question(name, value)
+    if formatter(value) == value:
+        kept = [c for c in dict.fromkeys(value) if ord(c) >= 128]
+        named = ", ".join(f"{c!r} ({unicodedata.name(c, 'unnamed character')})" for c in kept)
+        return value, [f"{name}: the {name} formatter does not keep the LaTeX form of {named}; "
+                       "written as the source has it"]
+    raise _Hold(f"{name}: the {name} formatter changes the built text", {})
+
+
 def _text(value):
     """A registry string on one line (a deposited line break is white space)."""
     return " ".join(str(value or "").split())
@@ -215,7 +233,8 @@ def _readable(record):
     """The record without the parts that are not in the form Crossref documents, and
     ``{field: reason}`` for each part left out. The helpers are only ever given parts whose
     shape they expect, so an exception from one of them is a defect, not a bad record."""
-    clean, problems = dict(record), {}
+    clean, problems = {k: v for k, v in record.items() if v is not None}, {}
+    record = clean
 
     def leave_out(part, name):
         clean.pop(part, None)
@@ -263,23 +282,68 @@ def _source_titles(record, evidence):
     return [_text(t) for t in record.get("title") or []]
 
 
+# Words that no Title Case convention capitalises (APA, Chicago): they say nothing about
+# how a title is cased.
+_SMALL_WORDS = frozenset(
+    "a an the and but or for nor on at to by of in as via vs per up off from with into onto over between "
+    "through across during within without among after before under about against toward towards versus "
+    "beyond around upon than".split())
+# The banner some publishers put before the title of a retracted or withdrawn article. It
+# is not part of the title (Crossref: the original record's title is changed to carry it).
+_BANNER = re.compile(r"^(?:RETRACTED ARTICLE|Retracted article|RETRACTED|Retracted|WITHDRAWN|Withdrawn)\s*:\s*")
+_DASHES = ("-", "--", "---", "\u2013", "\u2014")
+
+
+def _core(word):
+    """(leading punctuation, the word, trailing punctuation) of one space-separated token."""
+    match = re.match(r"^(\W*)(.*?)(\W*)$", word, flags=re.S)
+    return match[1], match[2], match[3]
+
+
+def _position(words, index):
+    """Where a word stands: "first", after a "colon" (or a dash), after a sentence "end"
+    (``?``, ``!``, ``.``), or in "mid" sentence."""
+    if index == 0:
+        return "first"
+    before = words[index - 1]
+    if before.endswith(":") or before in _DASHES or before.endswith(("---", "\u2014", "\u2013")):
+        return "colon"
+    if before[-1:] in "?!.":
+        return "end"
+    return "mid"
+
+
+def _capital_evidence(text):
+    """(words that could show the casing, how many of them are capitalised).
+
+    Counted: every part of a word (hyphens split it) that is not the start of a sentence, not
+    a small word, not a word the title formatter knows (caps.txt), and has no capital or
+    digit after its first letter (an acronym or ``neoHebbian`` is the same in either casing)."""
+    from .helpers import force_caps, remove_non_letters
+    known = {word.lower() for word in force_caps}
+    words = text.split(" ")
+    informative = capitalised = 0
+    for index, word in enumerate(words):
+        start = _position(words, index) != "mid"
+        for place, part in enumerate(re.split(r"[-\u2010\u2011/]", word)):
+            core = _core(part)[1]
+            if not core or not core[0].isalpha() or (start and place == 0):
+                continue
+            if core.lower() in _SMALL_WORDS or remove_non_letters(core.lower()) in known:
+                continue
+            if any(c.isupper() or c.isdigit() for c in core[1:]):
+                continue
+            informative += 1
+            capitalised += core[0].isupper()
+    return informative, capitalised
+
+
 def _title_case(text):
-    """Whether a title is printed with its ordinary words capitalised (Title Case): more
-    than half of the longer words after the first begin with a capital."""
-    words = re.findall(r"[^\W\d_][\w'’]*", text)[1:]
-    judged = [w for w in words if len(w) >= 5] or words
-    return bool(judged) and sum(w[0].isupper() for w in judged) > len(judged) / 2
-
-
-def _own_capitals(text):
-    """The words a sentence-case title capitalises in mid-sentence: names and acronyms the
-    source itself marks. Given to ``source_title`` as protected words, which keeps them."""
-    words = []
-    for match in re.finditer(r"[^\W\d_][\w'’-]*", text):
-        before = text[:match.start()].rstrip()
-        if match[0][0].isupper() and before and before[-1] not in ":.?!":
-            words.append(match[0])
-    return words
+    """Whether a title's capitals cannot be read as names: every word that could show the
+    casing is capitalised, or half of them or more are, or the title has four words or fewer
+    and one is. (A sentence-case title made only of names looks the same, and is asked about too.)"""
+    informative, capitalised = _capital_evidence(text)
+    return capitalised > 0 and (2 * capitalised >= informative or len(text.split(" ")) <= 4)
 
 
 def _without_compound_capitals(text):
@@ -289,17 +353,91 @@ def _without_compound_capitals(text):
     return re.sub(r"(?<![\w-])[A-Z][a-z]+(?:-[A-Za-z][a-z]+)+(?![\w-])", lambda m: m[0].lower(), text)
 
 
+def _protection(word):
+    """[(character, inside braces)] of one built word, and the word without its braces."""
+    out, depth = [], 0
+    for char in word:
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+        else:
+            out.append((char, depth > 0))
+    return out
+
+
+def _as_the_source_has_it(built, source, position):
+    """One word of a sentence-case title: ``built`` is what the title helper made of it,
+    ``source`` what the source printed. Returns (the word to write, a question or None).
+
+    In a sentence-case title a capital in mid-sentence is the source's own: a name or an
+    acronym. It is kept, in braces, exactly where the source has it; a word is never given a
+    capital because the same word has one elsewhere. The helper's word stands when it has
+    the source's capitals protected, when it lower-cases the ordinary word after a colon or a
+    dash (the house rule), when it is the word "A", or when it writes a word the source has
+    in lower case the way the formatter's own list spells it (fmri -> {fMRI})."""
+    marks = _protection(built)
+    have = [c for c, _ in marks if c.isalpha()]
+    want = [c for c in source if c.isalpha()]
+    if [c.lower() for c in have] != [c.lower() for c in want] or not want:
+        return built, None  # not the same letters (an escape, a removed period): the helper's word
+    core = _core(source)[1]
+    ordinary = core[:1].isupper() and not any(c.isupper() for c in core[1:])
+    if core == "A" or (position == "colon" and ordinary):
+        return built, None
+    if "{" in built and core.isalpha() and core.islower() and len(core) > 1:
+        return built, None  # a one-letter word (k, m) is the source's own symbol, not the list's
+    open_start = position in ("first", "end")  # a sentence's first letter needs no braces
+    letters = [(c, inside) for c, inside in marks if c.isalpha()]
+    kept = have == want and all(
+        inside or not c.isupper() or (at == 0 and open_start) for at, (c, inside) in enumerate(letters))
+    if kept:
+        return built, None
+    plain = iter(want)
+    text = "".join(next(plain) if c.isalpha() else c for c, _ in marks)
+    if position in ("first", "end") and ordinary:
+        return text, None  # the sentence's first word, capitalised as the source has it
+    lead, body, trail = _core(text)
+    asked = None
+    if position == "first" and core.islower() and core.isalpha():
+        asked = f"title: the source begins with the lower-case word {core!r}; it is kept as the source has it"
+    return lead + "{" + body + "}" + trail, asked
+
+
+def _sentence_title(text, typed):
+    """A sentence-case source title in house form, with the source's own capitals kept.
+    Returns (title, questions); ``ValueError`` is the title helper's refusal."""
+    built = cp.source_title(text, typed or "").split(" ")
+    source = text.split(" ")
+    if len(built) != len(source):
+        raise ValueError("title: the built title does not line up with the source's words")
+    words, doubts = [], []
+    for index, (made, printed) in enumerate(zip(built, source)):
+        word, asked = _as_the_source_has_it(made, printed, _position(source, index))
+        words.append(word)
+        doubts += [asked] if asked else []
+    return " ".join(words), doubts
+
+
+def _same_letters(one, two):
+    """Whether two built titles have the same characters with the same capitals protected."""
+    first, second = _protection(one), _protection(two)
+    return ([c for c, _ in first] == [c for c, _ in second]
+            and [inside for c, inside in first if c.isupper()] == [inside for c, inside in second if c.isupper()])
+
+
 def _title(record, mapped, typed, evidence, unsupported):
     from .helpers import format_title
     if "title" not in evidence:
-        raise _Hold(unsupported or "title: the source record has no usable title")
-    titles = _source_titles(record, evidence)
+        raise _Hold("title: the source record's title could not be read")
+    titles = [_BANNER.sub("", t) for t in _source_titles(record, evidence)]
+    titles = [t for t in titles if t]
     if not titles:
         return None
     if len(titles) != 1:
         raise _Hold("title: several source titles", {"crossref": "; ".join(titles)})
     values = {"crossref": titles[0]}
-    second = _text((mapped.get("title") or [""])[0]) if mapped else ""
+    second = _BANNER.sub("", _text((mapped.get("title") or [""])[0])) if mapped else ""
     if second:
         values["pubmed"] = second
         if cp.normalize_title_safe(second) != cp.normalize_title_safe(titles[0]):
@@ -307,23 +445,37 @@ def _title(record, mapped, typed, evidence, unsupported):
     # Capitals are only settled by a source that prints the title in sentence case: there
     # a capital in mid-sentence is a name or an acronym. A Title Case title capitalises
     # every word, so its capitals say nothing; the sentence-case candidate is a question.
-    doubt = None
-    if not _title_case(titles[0]):
-        text = titles[0]
-    elif second and not _title_case(second):
-        text = second
-    else:
-        text, doubt = _without_compound_capitals(titles[0]), CAPITALS_QUESTION
-    protected = "" if doubt else " ".join("{" + word + "}" for word in _own_capitals(text))
+    sentence = [text for text in (titles[0], second) if text and not _title_case(text)]
     try:
-        value = cp.source_title(text, ((typed or "") + " " + protected).strip())
+        if sentence:
+            value, doubts = _sentence_title(sentence[0], typed)
+            if len(sentence) == 2:
+                other = _sentence_title(sentence[1], typed)[0]
+                if not _same_letters(value, other):  # no rule says whose capitals are right
+                    doubts = doubts + [f"title: the sources differ in capitals: crossref \"{titles[0]}\", "
+                                       f"pubmed \"{second}\""]
+        else:
+            value = cp.source_title(_without_compound_capitals(titles[0]), typed or "")
+            doubts = [CAPITALS_QUESTION]
     except ValueError as exc:
         raise _Hold(str(exc), values)
-    doubts = ([doubt] if doubt else []) + _character_question("title", value)
-    value = latex_text(value)
-    if format_title(value) != value:
-        raise _Hold("title: the title formatter changes the built title", values)
-    return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts)
+    value, more = _written("title", value, format_title)
+    return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts + more)
+
+
+def _family_question(people):
+    """A question for each name whose family name may have lost its first word to the given
+    names: the family begins with ``del`` or ``de la/los/las`` and the given names end in a
+    full word (Crossref: given "Jaime Fernández", family "del Río")."""
+    asked = []
+    for person in people:
+        given, family = _text(person.get("given")), _text(person.get("family"))
+        last = given.split(" ")[-1].strip(".") if given else ""
+        if (re.match(r"(?:del|de la|de los|de las) ", family) and len(given.split(" ")) > 1
+                and len(last) > 2 and last[1:].islower()):
+            asked.append(f"author: the source gives the given names {given!r} and the family name {family!r}; "
+                         f"the family name may be {last + ' ' + family!r}")
+    return asked
 
 
 def _author(record, mapped, typed):
@@ -343,11 +495,11 @@ def _author(record, mapped, typed):
         if not compatible_authors({"author": people}, mapped):
             raise _Hold("author: sources disagree", values, disagreement=True)
         source = "crossref+pubmed"
-    doubts = _character_question("author", value)
-    value = latex_text(value)
-    if reformat_author(value) != value:
-        raise _Hold("author: the author formatter changes the built byline", values)
-    return _Value(value, source, values, doubts)
+    try:
+        value, doubts = _written("author", value, reformat_author)
+    except _Hold as hold:
+        raise _Hold(hold.reason, values)
+    return _Value(value, source, values, _family_question(people) + doubts)
 
 
 def _journal(record):
@@ -359,14 +511,15 @@ def _journal(record):
     if len(venues) != 1 or re.search(r"[<>{}\\$]", venues[0]):
         raise _Hold("journal: no single registry venue", values)
     value = format_journal_name(cp.journal_text(venues[0]))  # the publisher's name, "The" included
-    doubts = _character_question("journal", value)
-    value = latex_text(value)
     try:
-        same = normalize_journal(value) == normalize_journal(venues[0]) and format_journal_name(value) == value
-    except ValueError:
-        same = False
-    if not same:
-        raise _Hold("journal: formatter changes the venue", values)
+        if normalize_journal(value) != normalize_journal(venues[0]):
+            raise _Hold("journal: formatter changes the venue", values)
+    except ValueError as exc:
+        raise _Hold("journal: " + str(exc), values)
+    try:
+        value, doubts = _written("journal", value, format_journal_name)
+    except _Hold as hold:
+        raise _Hold(hold.reason, values)
     return _Value(value, "crossref", values, doubts)
 
 
@@ -410,6 +563,16 @@ def _article_number(pages, record, from_article_number):
     return bool(re.search(r"(?<![1-9])0*" + re.escape(pages.lstrip("0") or "0") + r"$", str(record.get("DOI") or "")))
 
 
+def _cased(pages, raw):
+    """``pages`` (as ``expanded_pages`` gives them, in lower case) with the letters of each
+    page label in the case the source prints them: ``S12-9`` -> ``S12-S19``."""
+    labels = re.findall(r"[A-Za-z]+(?=\d)", raw)
+    def label(match):
+        printed = next((x for x in labels if x.lower() == match[0]), None)
+        return printed or match[0]
+    return re.sub(r"[a-z]+(?=\d)", label, pages)
+
+
 def _pages(record, mapped):
     first = _text(record.get("page") or record.get("article-number"))
     second = _text(mapped.get("page")) if mapped else ""
@@ -428,18 +591,19 @@ def _pages(record, mapped):
         # A source that gives only the first page does not contradict the other's range
         # (the reading of correction_proposals.shortens_pages): the range is the value.
         if cp.shortens_pages(two, one):
-            pages, source = two, "pubmed; crossref gives the first page"
+            pages, source, printed = two, "pubmed; crossref gives the first page", second
         elif cp.shortens_pages(one, two):
-            pages, source = one, "crossref; pubmed gives the first page"
+            pages, source, printed = one, "crossref; pubmed gives the first page", first
         else:
             raise _Hold("pages: sources disagree", values, disagreement=True)
     else:
-        pages = one or two
+        pages, printed = one or two, first or second
         source = "crossref+pubmed" if one and two else "crossref" if one else "pubmed"
-        from_number = bool(one and not record.get("page") and record.get("article-number"))
+        number = _text(record.get("article-number"))
+        from_number = bool(one and number and (not record.get("page") or _text(record.get("page")) == number))
         if "+" not in source and "-" not in pages and not _article_number(pages, record, from_number):
             doubts.append(f"pages: the source gives only a first page ({pages}); the last page is not confirmed")
-    return _Value(pages.replace("-", "--"), source, values, doubts)
+    return _Value(_cased(pages, printed).replace("-", "--"), source, values, doubts)
 
 
 def _year(record, mapped, evidence):
@@ -555,19 +719,54 @@ def _as_typed(proposal, typed, kind, questions):
 def _house_form(name, value):
     """A typed value as the format checker would write it (helpers.check_bib rewrites the
     title, the journal, the authors and the pages; it leaves every other field alone), with
-    raw non-ASCII letters in the library's LaTeX form. A DOI is never rewritten."""
+    raw non-ASCII letters in the library's LaTeX form. A DOI is never rewritten. When the
+    formatter would not leave the LaTeX form alone, the typed value is returned unchanged
+    (``_house_question`` then says so)."""
     from . import helpers
+    formatter = {"title": helpers.format_title, "journal": helpers.format_journal_name,
+                 "author": helpers.reformat_author}.get(name)
     if name == "doi":
         return value
     if name == "pages":
         return helpers.valid_pages(value)[1][1]
-    if name == "title":
-        value = helpers.format_title(value)
-    elif name == "journal":
-        value = helpers.format_journal_name(value)
-    elif name == "author":
-        value = helpers.reformat_author(value)
-    return latex_text(value)  # new text is written in the library's LaTeX form
+    formed = formatter(value) if formatter else value
+    written = latex_text(formed)  # new text is written in the library's LaTeX form
+    if formatter and formatter(written) != written:
+        return value
+    return written
+
+
+def _house_question(name, value):
+    """Why a typed value is kept although it is not in the library's LaTeX form, or None."""
+    from . import helpers
+    formatter = {"title": helpers.format_title, "journal": helpers.format_journal_name,
+                 "author": helpers.reformat_author}.get(name)
+    if not formatter:
+        return None
+    written = latex_text(formatter(value))
+    if formatter(written) == written:
+        return None
+    kept = [c for c in dict.fromkeys(value) if ord(c) >= 128]
+    named = ", ".join(f"{c!r} ({unicodedata.name(c, 'unnamed character')})" for c in kept)
+    return (f"{name}: the {name} formatter does not keep the LaTeX form of {named}; "
+            "the typed value is kept as typed")
+
+
+def _usable_corroboration(mapped):
+    """Whether a corroborating record has the shape ``auto_review.epmc_record`` returns."""
+    def texts(value):
+        return isinstance(value, list) and all(isinstance(v, str) for v in value)
+    try:
+        year = mapped["published"]["date-parts"][0][0]
+    except (KeyError, IndexError, TypeError):
+        return False
+    return (isinstance(mapped.get("DOI"), str) and texts(mapped.get("title")) and len(mapped["title"]) == 1
+            and isinstance(year, (int, str))
+            and isinstance(mapped.get("author"), list) and all(
+                isinstance(p, dict) and all(_is_text(p.get(k)) for k in ("given", "family", "suffix"))
+                for p in mapped["author"])
+            and texts(mapped.get("container-title", []))
+            and all(_is_text(mapped.get(k)) for k in ("volume", "issue", "page")))
 
 
 def build(typed_fields, record, corroborating=None):
@@ -608,7 +807,10 @@ def build(typed_fields, record, corroborating=None):
 
     mapped = corroborating
     if mapped is not None:
-        if isinstance(mapped.get("DOI"), str) and same_doi(mapped["DOI"], record_doi):
+        if not isinstance(mapped, dict) or not _usable_corroboration(mapped):
+            mapped = None
+            proposal.issues.append("The PubMed record is not in the expected form and was not used")
+        elif same_doi(mapped["DOI"], record_doi):
             proposal.record_source = "crossref+pubmed"
         else:
             mapped = None
@@ -647,9 +849,13 @@ def build(typed_fields, record, corroborating=None):
         return _as_typed(proposal, typed, kind, questions)
 
     retractions = _retractions(record)
+    banner = next((_BANNER.match(t)[0].strip() for t in _source_titles(record, evidence) if _BANNER.match(t)), None)
     if retractions:  # decision log: retractions are flagged for the person; nothing automatic
         proposal.issues.append("The article was retracted (the retraction notice: " + ", ".join(retractions)
                                + "); it is not added without a decision")
+        proposal.needs_decision = True
+    elif banner:
+        proposal.issues.append(f"The publisher's title begins with \"{banner}\"; it is not added without a decision")
         proposal.needs_decision = True
     if record.get("update-to") or record.get("updated-by"):
         proposal.issues.append(CORRECTION_FLAG)
@@ -669,7 +875,12 @@ def build(typed_fields, record, corroborating=None):
         """The typed value stays; in house form when the format checker would rewrite it."""
         formed = _house_form(name, had)
         fields[name] = formed
-        if formed == had:
+        asked = _house_question(name, had) if formed == had else None
+        if asked:
+            proposal.changes.append(FieldChange(name, had, had, "typed", "question"))
+            proposal.issues.append(asked)
+            proposal.needs_decision = True
+        elif formed == had:
             proposal.changes.append(FieldChange(name, had, had, "typed", "kept"))
         else:
             proposal.changes.append(FieldChange(name, had, formed, "house format", "changed"))
@@ -772,6 +983,11 @@ def build(typed_fields, record, corroborating=None):
         proposal.unfilled.append(Unfilled("ID", "a key needs the authors and the year", {}))
     proposal.doi = fields.get("doi") or proposal.doi
     proposal.proposed_raw = render(kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
+    asked = {c.field for c in proposal.changes if c.kind == "question"}
+    proposal.complete = bool((proposal.key_typed or proposal.key_proposed)
+                             and all(fields.get(name) and name not in asked for name in REQUIRED_FIELDS))
+    if not proposal.complete:
+        proposal.needs_decision = True
     return proposal
 
 

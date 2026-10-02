@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 import re
+import functools
 import itertools
 import os
 import sys
@@ -123,6 +124,7 @@ def remove_curlies(s, join=""):  # only removes *matching* curly braces
     return s
 
 
+@functools.lru_cache(maxsize=65536)  # a pure function of its text; format_title calls it per list word
 def remove_non_letters(s):
     remove_chars = [
         ",",

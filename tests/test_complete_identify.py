@@ -354,7 +354,7 @@ NUMPY = (  # the published version of arXiv:2006.10256, as built
     "@article{HarrEtal20,\n"
     "\tAuthor = {C R Harris and K J Millman and S J van der Walt and R Gommers and P Virtanen and D Cournapeau "
     "and E Wieser and J Taylor and S Berg and N J Smith and R Kern and M Picus and S Hoyer and M H van Kerkwijk "
-    "and M Brett and A Haldane and J F del R\\'{i}o and M Wiebe and P Peterson and P G\\'{e}rard-Marchant and "
+    "and M Brett and A Haldane and J F del R{\\'i}o and M Wiebe and P Peterson and P G{\\'e}rard-Marchant and "
     "K Sheppard and T Reddy and W Weckesser and H Abbasi and C Gohlke and T E Oliphant},\n"
     "\tDoi = {10.1038/s41586-020-2649-2},\n"
     "\tJournal = {Nature},\n"
@@ -380,7 +380,9 @@ def test_an_arxiv_preprint_that_names_its_published_version_offers_the_article(c
         "version, which is proposed here (house rule: cite the published version).")
     # The verifier does not accept it: Crossref lists related works for the article.
     assert proposal.status == "needs_review"
-    assert proposal.issues[1:] == [
+    assert proposal.issues[1] == ("author: the source gives the given names 'Jaime Fernández' and the family name "
+                                  "'del Río'; the family name may be 'Fernández del Río'")
+    assert proposal.issues[2:] == [
         "No unambiguous, fully supported metadata match",
         "crossref 10.1038/s41586-020-2649-2: Source has related versions/works; review publication identity"]
     assert [(c["doi"], c["type"], c["journal"], c["year"], c["source"]) for c in proposal.candidates] == [
@@ -553,7 +555,7 @@ def test_checks_that_cannot_run_are_recorded_and_need_a_decision(client):
     # not among the saved responses, so the source does not answer either.
     record = RECORDS["all-capitals-title"]["crossref"]["record"]
     built = complete.build({"doi": record["DOI"]}, record)
-    assert "Title" not in built.proposed_raw and not built.needs_decision
+    assert "Title" not in built.proposed_raw and built.needs_decision and not built.complete
     proposal = complete.checked(built, client)
     assert proposal is built and proposal.needs_decision and proposal.status == "provider_error"
     assert proposal.issues == [
