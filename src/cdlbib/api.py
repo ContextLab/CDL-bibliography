@@ -72,6 +72,13 @@ class SendResult:
     left: list = field(default_factory=list)    # other changed files, left exactly as they were
 
 
+@dataclass
+class Where:
+    root: Path                     # the library's folder (for a named file: the file itself)
+    origin: str                    # a workspace.Origin value
+    last_check: object = None      # managed library only: when the upstream was last consulted (UTC), or None
+
+
 @contextlib.contextmanager
 def _quiet(bars=None):
     """helpers.py prints its log and draws tqdm bars on stderr; the api stays silent and
@@ -101,6 +108,25 @@ class _Lines(io.TextIOBase):
         if self.pending:
             self.emit(self.pending)
             self.pending = ""
+
+
+def ensure_library(progress=None):
+    """The library a front end works on when the user names no file: --library, CDLBIB_LIBRARY,
+    the nearest cdl.bib from the current folder up, else the managed library, which is
+    downloaded first when it is not there (``progress`` receives the one line saying so).
+    Raises LibraryUnavailable when that download fails."""
+    from . import workspace
+    return workspace.resolve(None, managed=True, progress=progress)
+
+
+def where(fname=None):
+    """Which library a command would work on and how it was chosen. Downloads nothing: for a
+    managed library not yet downloaded, ``root`` is where it will be."""
+    from . import library, workspace
+    ws, origin = workspace.origin_of(fname)
+    managed = origin == workspace.Origin.MANAGED
+    return Where(root=ws.bib if origin == workspace.Origin.NAMED else ws.root, origin=origin,
+                 last_check=library.read_state().last_check if managed else None)
 
 
 def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):

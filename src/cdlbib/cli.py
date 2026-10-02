@@ -6,9 +6,9 @@ from pathlib import Path
 import typer
 
 from . import __version__, api, deps
-from .errors import CdlbibError, GateFailed, MissingDependency, PublishRefused, WorkspaceNotFound
+from .errors import CdlbibError, GateFailed, LibraryUnavailable, MissingDependency, PublishRefused, WorkspaceNotFound
 from . import workspace
-from .verification_cli import app as crossref_app, library
+from .verification_cli import app as crossref_app, library, named
 from .workspace import BIB_NAME
 
 app = typer.Typer()
@@ -147,6 +147,26 @@ def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", v
         typer.echo("left uncommitted: " + ", ".join(result.left))
 
 
+CHOSEN_BY = {
+    workspace.Origin.NAMED: "the file you named",
+    workspace.Origin.OPTION: "--library",
+    workspace.Origin.ENVIRONMENT: "CDLBIB_LIBRARY",
+    workspace.Origin.FOUND: f"{BIB_NAME} found in or above the current folder",
+    workspace.Origin.MANAGED: "no library named or found; this is the copy cdlbib downloads and manages",
+}
+
+
+@app.command()
+def where(ctx: typer.Context, fname: str = BIB_NAME):
+    """Show which library is in use and how it was chosen."""
+    library(ctx, fname)  # as every command: the managed library is downloaded when it is the one in use
+    found = api.where(fname if named(ctx) else None)
+    typer.echo(str(found.root))
+    typer.echo(f"chosen by: {CHOSEN_BY[found.origin]}")
+    if found.origin == workspace.Origin.MANAGED:
+        typer.echo("last update check: " + (found.last_check.strftime("%Y-%m-%d %H:%M UTC") if found.last_check else "never"))
+
+
 def fork_wanted(exc):
     """Whether to create the user's fork now. By default it is, after saying so; with --ask the
     user is asked first (no terminal means no)."""
@@ -170,7 +190,7 @@ def install_wanted(exc):
 def _run_once(argv):
     try:
         app(args=argv)
-    except WorkspaceNotFound as exc:
+    except (WorkspaceNotFound, LibraryUnavailable) as exc:
         typer.echo(str(exc), err=True)
         raise SystemExit(2)
     except GateFailed as exc:

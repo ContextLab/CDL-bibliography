@@ -74,19 +74,63 @@ class Workspace:
             "pass --library PATH, or set CDLBIB_LIBRARY.")
 
 
-_library = None  # the front end's --library choice; the only place it is kept
+class Origin:
+    """How the library of a command was chosen."""
+    NAMED = "named"                    # a file the user named
+    OPTION = "--library"
+    ENVIRONMENT = "CDLBIB_LIBRARY"
+    FOUND = "found"                    # cdl.bib in the current folder or above it
+    MANAGED = "managed"                # none of those: the copy cdlbib downloads and keeps
+
+
+_library = None   # the front end's --library choice, or the managed library once a command fell back to it
+_managed = False  # True when _library was recorded by resolve(managed=True), not given by the user
 
 
 def select_library(path):
     """Record the front end's --library (None clears it)."""
-    global _library
-    _library = path
+    global _library, _managed
+    _library, _managed = path, False
 
 
-def resolve(fname=None):
+def resolve(fname=None, managed=False, progress=None):
     """The one rule for which library a command works on: a file the user named, else
-    --library, else CDLBIB_LIBRARY, else the nearest cdl.bib from the current folder up."""
-    return Workspace.for_bib(fname) if fname is not None else Workspace.find(_library)
+    --library, else CDLBIB_LIBRARY, else the nearest cdl.bib from the current folder up.
+
+    Front ends pass ``managed=True``: when none of those gives a library, the managed one is
+    used, downloaded first if it is not there (``progress`` receives the one line saying so),
+    and recorded, so that default() agrees for the rest of the process. Without it this is a
+    pure lookup that raises WorkspaceNotFound. A library the user chose is never downloaded:
+    --library or CDLBIB_LIBRARY pointing at a folder with no cdl.bib stays an error.
+    """
+    global _library, _managed
+    if fname is not None:
+        return Workspace.for_bib(fname)
+    try:
+        return Workspace.find(_library)
+    except WorkspaceNotFound:
+        if not managed or _library or os.environ.get("CDLBIB_LIBRARY"):
+            raise
+    from . import library
+    root = library.download(progress)
+    _library, _managed = str(root), True
+    return Workspace(root)
+
+
+def origin_of(fname=None):
+    """(workspace, Origin) for what resolve() gives, without downloading anything: when
+    nothing is named or found, the managed library's place, whether or not it is there yet."""
+    if fname is not None:
+        return Workspace.for_bib(fname), Origin.NAMED
+    if _library:
+        return Workspace.find(_library), Origin.MANAGED if _managed else Origin.OPTION
+    if os.environ.get("CDLBIB_LIBRARY"):
+        return Workspace.find(None), Origin.ENVIRONMENT
+    try:
+        return Workspace.find(None), Origin.FOUND
+    except WorkspaceNotFound:
+        from . import library
+        return Workspace(library.path()), Origin.MANAGED
 
 
 def default():

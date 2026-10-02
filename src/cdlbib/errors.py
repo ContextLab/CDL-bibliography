@@ -9,6 +9,10 @@ class WorkspaceNotFound(CdlbibError):
     pass
 
 
+class LibraryUnavailable(CdlbibError):
+    """The managed library is not there and could not be downloaded."""
+
+
 class MissingDependency(CdlbibError):
     def __init__(self, package, extra, feature):
         self.package, self.extra, self.feature = package, extra, feature

@@ -27,6 +27,69 @@ _BODIES = tempfile.mkdtemp(prefix="bibcheck-test-research-bodies-")
 atexit.register(shutil.rmtree, _BODIES, True)
 os.environ["BIBCHECK_RESEARCH_BODIES"] = _BODIES
 
+# The managed library (cdlbib.library) is downloaded on first use into the per-user data
+# folder. No test may reach GitHub for it or write into the real data folder: for the whole
+# run the data folder is a directory of this run and the upstream is a small local bare
+# repository built here. Set in os.environ at import, so subprocesses inherit both.
+ZOLL90 = ("@article{Zoll90,\n\tAuthor = {U Zoller},\n\tDoi = {10.1002/tea.3660271011},\n"
+          "\tJournal = {Journal of Research in Science Teaching},\n\tNumber = {10},\n\tPages = {1053--1065},\n"
+          "\tTitle = {Students' misunderstandings and misconceptions in college freshman chemistry (general and "
+          "organic)},\n\tVolume = {27},\n\tYear = {1990}}")  # the frozen entry of tests/test_machinery_2026_09_25.py
+
+
+def _git(*args, cwd):
+    import subprocess
+    env = dict(os.environ, GIT_AUTHOR_NAME="cdlbib tests", GIT_AUTHOR_EMAIL="tests@cdlbib.invalid",
+               GIT_COMMITTER_NAME="cdlbib tests", GIT_COMMITTER_EMAIL="tests@cdlbib.invalid",
+               GIT_TERMINAL_PROMPT="0")
+    if sys.platform == "darwin":
+        env.setdefault("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
+    subprocess.run(["git", *args], cwd=cwd, env=env, check=True, capture_output=True, text=True)
+
+
+def build_upstream(folder):
+    """A real, tiny upstream at <folder>/upstream.git: one commit on master holding a valid
+    library (cdl.bib with one entry, and verification/). Returns the bare repository's path."""
+    folder = Path(folder)
+    bare, work = folder / "upstream.git", folder / "upstream-work"
+    bare.mkdir(parents=True)
+    _git("init", "--quiet", "--bare", cwd=bare)
+    _git("symbolic-ref", "HEAD", "refs/heads/master", cwd=bare)
+    (work / "verification").mkdir(parents=True)
+    _git("init", "--quiet", cwd=work)
+    _git("symbolic-ref", "HEAD", "refs/heads/master", cwd=work)
+    (work / "cdl.bib").write_text(ZOLL90 + "\n", encoding="utf-8")
+    (work / "verification" / ".gitkeep").write_text("", encoding="utf-8")
+    _git("add", "cdl.bib", "verification/.gitkeep", cwd=work)
+    _git("commit", "--quiet", "-m", "A one-entry library for the tests", cwd=work)
+    _git("push", "--quiet", str(bare), "master", cwd=work)
+    return bare
+
+
+def _real_data_folder():
+    from cdlbib import library
+    return library.home({k: v for k, v in os.environ.items() if k != "CDLBIB_HOME"})
+
+
+_MANAGED = tempfile.mkdtemp(prefix="cdlbib-test-managed-")
+atexit.register(shutil.rmtree, _MANAGED, True)
+os.environ["CDLBIB_HOME"] = str(Path(_MANAGED) / "home")
+os.environ["CDLBIB_UPSTREAM"] = str(build_upstream(_MANAGED))
+_REAL_DATA_FOLDER = _real_data_folder()
+_REAL_DATA_FOLDER_EXISTED = _REAL_DATA_FOLDER.exists()
+
+
+def no_real_library_touched():
+    """The real data folder, if it did not exist before this run, still does not."""
+    assert _REAL_DATA_FOLDER_EXISTED or not _REAL_DATA_FOLDER.exists(), (
+        f"a test created {_REAL_DATA_FOLDER}: the managed library must only be written under CDLBIB_HOME")
+
+
+def pytest_sessionfinish(session, exitstatus):
+    if not _REAL_DATA_FOLDER_EXISTED and _REAL_DATA_FOLDER.exists():
+        sys.stderr.write(f"\nERROR: this run created {_REAL_DATA_FOLDER}; tests must never write there.\n")
+        session.exitstatus = 1
+
 
 @pytest.fixture(autouse=True)
 def _frozen_library(monkeypatch, tmp_path):

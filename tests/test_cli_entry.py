@@ -23,9 +23,14 @@ def test_help_and_version_work_outside_a_library(tmp_path):
     assert out.returncode == 0 and out.stdout.strip() == "cdlbib 2.0.0"
 
 
-def test_library_command_outside_a_library_explains(tmp_path):
+def test_library_command_outside_a_library_uses_the_downloaded_one(tmp_path):
+    """No library named or found: the managed library is downloaded into CDLBIB_HOME (a folder of
+    this test run, from the local upstream of tests/conftest.py) and the command reports on it."""
+    managed = Path(os.environ["CDLBIB_HOME"]).resolve() / "library"
     out = run("verify", "--no-citations", cwd=tmp_path, env={"CDLBIB_LIBRARY": ""})
-    assert out.returncode == 2 and "No library found" in out.stderr and "Traceback" not in out.stderr
+    assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr
+    assert f"loading {managed / 'cdl.bib'}...done" in out.stdout and "Traceback" not in out.stderr
+    assert (managed / ".git").is_dir() and (managed / "cdl.bib").is_file()
 
 
 def test_library_option_and_spaces_in_the_path(tmp_path):
@@ -54,8 +59,11 @@ def test_crossref_commands_find_the_library(tmp_path):
         out = run(*args, cwd=cwd, env={"CDLBIB_LIBRARY": ""})
         assert out.returncode == 1 and "1 entries: pending=1" in out.stdout, out.stdout + out.stderr
     assert (root / ".bibcheck" / "verification.sqlite3").is_file()
+    # outside any library, the crossref commands too fall back to the managed (downloaded) one
+    managed = Path(os.environ["CDLBIB_HOME"]).resolve() / "library"
     out = run("crossref", "status", cwd=elsewhere, env={"CDLBIB_LIBRARY": ""})
-    assert out.returncode == 2 and "No library found" in out.stderr and "Traceback" not in out.stderr
+    assert out.returncode == 1 and "1 entries: pending=1" in out.stdout, out.stdout + out.stderr
+    assert "Traceback" not in out.stderr and (managed / ".bibcheck" / "verification.sqlite3").is_file()
 
 
 def test_adapters_are_commands_found_by_name(tmp_path):
@@ -278,7 +286,7 @@ def test_every_top_level_command_has_a_help_description(tmp_path):
     import re
     out = run("--help", cwd=tmp_path)
     assert out.returncode == 0
-    for name in ("verify", "compare", "send", "crossref"):
+    for name in ("verify", "compare", "send", "where", "crossref"):
         line = next((l for l in out.stdout.splitlines() if re.match(rf"^│ {name}\s", l)), None)
         assert line is not None, f"{name} is not listed in --help"
         description = line.strip("│ \n").removeprefix(name).strip()

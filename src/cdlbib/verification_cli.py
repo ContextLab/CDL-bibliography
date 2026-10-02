@@ -158,8 +158,10 @@ def named(ctx):
 
 
 def library(ctx, fname):
-    """The workspace a command works on, by the one rule in workspace.resolve."""
-    return workspace.resolve(fname if named(ctx) else None)
+    """The workspace a command works on, by the one rule in workspace.resolve; with no library
+    named or found it is the managed one, downloaded first (one line on stderr) when missing."""
+    return workspace.resolve(fname if named(ctx) else None, managed=True,
+                             progress=lambda line: typer.echo(line, err=True))
 
 
 def bib(ctx, fname):
