@@ -9,7 +9,7 @@ Please follow the formatting conventions specified [here](README.md#verify), and
 1. Create a personal fork of the CDL-bibliography repository by pressing the "Fork" button in the upper right of the repository's page (when viewed on GitHub)
 2. Clone the fork to your local machine
 3. Set the ContextLab fork of the repository as a "remote" of your copy: `git remote add upstream https://github.com/ContextLab/CDL-bibliography.git`
-4. Install the checker's dependencies (see [Installation](README.md#installation)), and set `CROSSREF_MAILTO` to your email address
+4. Install the checker (see [Installation](README.md#installation)), and set `CROSSREF_MAILTO` to your email address
 
 ## Modifying the BibTex file
 1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify cdl.bib *after* someone has made changes to the master branch, you'll need to resolve merge conflicts.
@@ -22,12 +22,12 @@ Please follow the formatting conventions specified [here](README.md#verify), and
   - If `<KEYNAME>b` already exists, rename the new entry to `<KEYNAME>c` (and so on).
 5. Verify the formatting of the modified .bib file and the accuracy of your new entry (correct any problems until this passes):
 ```
-python bibcheck.py verify --verbose
+cdlbib verify --verbose
 ```
    If your entry can't be verified automatically, see [Human review](README.md#human-review).
-6. Generate a change log and commit the change(s):
+6. Generate a change log and send the change(s) as a pull request into the main CDL fork:
 ```
-python bibcheck.py commit --verbose
+cdlbib commit --verbose
 ```
-7. Push the change (`git push`).
-8. To incorporate your changes into the main CDL fork, submit a pull request (press the "Pull request" button on your personal fork's GitHub page).  The pull request is checked automatically; once an admin reviews it, it'll be incorporated into the main fork and shared with the world (go science)!
+   `commit` pushes a new branch to your personal fork and opens the pull request; it prints the pull request's address.
+7. The pull request is checked automatically; once an admin reviews it, it'll be incorporated into the main fork and shared with the world (go science)!

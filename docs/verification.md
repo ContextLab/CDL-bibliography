@@ -1,13 +1,13 @@
 # Citation verification design
 
-This is the design reference for `bibcheck.py crossref` and the `verify` gate. The
+This is the design reference for `cdlbib crossref` and the `verify` gate. The
 [README](../README.md) covers everyday use. The dated folders in
 [verification/](../verification/README.md) record how the library was brought to its
 current state; sections below that describe a dated pilot or measurement say so.
 
 ## Current state
 
-As of September 30, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
+As of September 30, 2026, `cdlbib crossref status cdl.bib` (after restoring
 `verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=36,
 metadata_verified=6348`: every entry is verified. The 36 human approvals are the user's own
 answers, recorded with the page or message they came from (see the decision log sections dated
@@ -221,13 +221,14 @@ A human should check the publication's identity and edition, all cited authors a
 
 ### Revoking an approval
 
-`crossref revoke KEY --by WHO --reason WHY [--fingerprint FP ...]` withdraws a human
+`crossref revoke KEY --reason WHY [--fingerprint FP ...]` withdraws a human
 approval that should not stand, for example one recorded in someone's name without their
 decision. By default it revokes every human approval recorded for the key, including ones on
 older text that later edits made lapse; `--fingerprint` restricts it to specific texts. For
 each approval it appends one row to `verification/revocations.jsonl` and to the database's
 `revocations` table. The row records the key, the approved fingerprint, the approval
-(reviewer, source, note, time) and its digest, `revoked_at`, `revoked_by` and the reason. The
+(reviewer, source, note, time) and its digest, `revoked_at`, `revoked_by` (the GitHub login
+of the `gh` CLI) and the reason. The
 entry becomes `needs_review`, and the revoked approval is kept under `revoked_approval`.
 
 A revocation matches an approval on its fingerprint, and on either its exact
@@ -323,7 +324,7 @@ for the measured outcome and its limits.
 
 ## Concrete LLM adapter and batch queue
 
-The included `bibcheck/openai_research_adapter.py` uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), [web search](https://developers.openai.com/api/docs/guides/tools-web-search), and [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs). Set `OPENAI_API_KEY` and `BIBCHECK_RESEARCH_MODEL` explicitly. The model must support these capabilities. Discovery must actually execute a completed web-search call; extraction receives the downloaded PDF page text and has no tools. Refusals, incomplete responses, duplicate fields, or missing page quotes fail closed. Usage and source traces are retained with successful evidence. The key is never printed or written into a report, and API calls use `store=false`.
+The included `src/cdlbib/openai_research_adapter.py` uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), [web search](https://developers.openai.com/api/docs/guides/tools-web-search), and [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs). Set `OPENAI_API_KEY` and `BIBCHECK_RESEARCH_MODEL` explicitly. The model must support these capabilities. Discovery must actually execute a completed web-search call; extraction receives the downloaded PDF page text and has no tools. Refusals, incomplete responses, duplicate fields, or missing page quotes fail closed. Usage and source traces are retained with successful evidence. The key is never printed or written into a report, and API calls use `store=false`.
 
 Python adapters are invoked with the current Python interpreter; other executable adapters retain the original subprocess contract. `research-batch` defaults to ten unresolved entries, caps a single invocation at 100, checkpoints success/failure, skips unchanged prior attempts, and stops after three consecutive failures. `--retry-failed` deliberately revisits failures. Edits invalidate research findings through the same exact-entry fingerprints. Ordinary `verify`, `auto-review`, and `fulltext-review` never invoke a commercial provider.
 
@@ -332,13 +333,13 @@ OpenAI request limits are four web-tool calls per discovery and 4,000 output tok
 
 ## Dartmouth Chat and custom search
 
-`bibcheck/dartmouth_research_adapter.py` uses Dartmouth's documented `/api/chat/completions` endpoint and `DARTMOUTH_CHAT_API_KEY`. `BIBCHECK_RESEARCH_MODEL` defaults to `zai-org.glm-5.3`, live-confirmed on September 14, 2026. `--check-model` and every adapter invocation check `/api/models` for that exact ID and free eligibility; they never substitute another provider. Both **Local** and **Free** tags qualify, but an explicit nonzero or malformed price overrides the tag and rejects inference. Run `python bibcheck/dartmouth_models.py .bibcheck/dartmouth-models.json` to refresh a sanitized catalog without private upstream metadata. See [Dartmouth model tags](https://rc.dartmouth.edu/ai/online-resources/understanding-tags/), [API usage](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/basic_usage/) and [model discovery](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/model_list/).
+`src/cdlbib/dartmouth_research_adapter.py` uses Dartmouth's documented `/api/chat/completions` endpoint and `DARTMOUTH_CHAT_API_KEY`. `BIBCHECK_RESEARCH_MODEL` defaults to `zai-org.glm-5.3`, live-confirmed on September 14, 2026. `--check-model` and every adapter invocation check `/api/models` for that exact ID and free eligibility; they never substitute another provider. Both **Local** and **Free** tags qualify, but an explicit nonzero or malformed price overrides the tag and rejects inference. Run `python -m cdlbib.dartmouth_models .bibcheck/dartmouth-models.json` to refresh a sanitized catalog without private upstream metadata. See [Dartmouth model tags](https://rc.dartmouth.edu/ai/online-resources/understanding-tags/), [API usage](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/basic_usage/) and [model discovery](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/model_list/).
 
 The full GLM 5.3 model is the selected free text model; Flash is a separate faster multimodal option. The [full model card](https://huggingface.co/zai-org/GLM-5.3) describes text-only input despite Dartmouth's reported vision capability. Requests use maximum reasoning, temperature 1, top-p 0.95, clear thinking history, a 16,000-token output cap, and a 240-second read timeout. Model benchmarks informed selection; the repository's representative source audit tests actual extraction behavior separately. The adapter was first built and piloted with `qwen.qwen3.5-122b`, which it still supports with its own settings (below); the live results in this section date from that Qwen configuration, not the GLM default.
 
 The model uses a client-side JSON action loop, so native function calling or hosted search support is not required. It can request `web_search(query)`, see the results, revise its query, select a retrieved PDF source by index, or report that the source remains unresolved. Only these actions are interpreted; no shell commands, arbitrary functions, or model-supplied URLs execute. Tool data is explicitly untrusted. Allowed hosts govern page and PDF retrieval, including redirects. URLs from registry records and publisher `citation_pdf_url` metadata can also supply candidates. A link is a discovery clue, not evidence that the publication/version matches.
 
-`bibcheck/search_tools.py` provides two explicitly selected free backends:
+`src/cdlbib/search_tools.py` provides two explicitly selected free backends:
 
 - `BIBCHECK_SEARCH_BACKEND=europepmc` (default): the [Europe PMC REST API](https://europepmc.org/RestfulWebService), including full-text PDF links when supplied by its records. It covers scholarly literature, not general web content.
 - `BIBCHECK_SEARCH_BACKEND=duckduckgo`: a parser for DuckDuckGo's public HTML search interface. This is experimental, not an official search-results API or the Instant Answer API. Challenges, throttling, and unrecognized pages fail without proxy rotation, challenge bypass, or automatic retry. There is no silent provider fallback.
@@ -356,7 +357,7 @@ Validation (September 2026, Qwen configuration): both search connectors returned
 
 ### Local credentials and live debugging
 
-If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads `.bibcheck/secrets/dartmouth_chat_api_key.txt` (or `BIBCHECK_DARTMOUTH_KEY_FILE`). The local secrets directory is ignored by Git; use directory permissions `700` and file permissions `600`. The environment variable takes precedence. The key must be a single nonempty token. Never include it in source files, command arguments, reports, or prompts.
+If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads the key from the system keychain: the item `dartmouth-chat-api-key`, with your operating-system user name as the account (`keyring set dartmouth-chat-api-key "$USER"` stores it). The OpenAI adapter does the same with `OPENAI_API_KEY` and the item `openai-api-key`. The key file `.bibcheck/secrets/dartmouth_chat_api_key.txt` and `BIBCHECK_DARTMOUTH_KEY_FILE` are no longer read. The keychain read waits at most 60 seconds. On macOS, an item created with the `security` command makes macOS show an access prompt the first time Python reads it; choose "Always Allow". The environment variable takes precedence. The key must be a single nonempty token. Never include it in source files, command arguments, reports, or prompts.
 
 The pilot script `verification/dartmouth_pilot.py` (now on the [archive repository](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/dartmouth_pilot.py)), run as `python verification/dartmouth_pilot.py --key ElSo18 --backend europepmc`, ran a bounded live attempt without altering the bibliography or verification database. Diagnostics and returned model evidence are saved under ignored `.bibcheck/debug/` with restricted permissions; credentials are redacted before diagnostic writes. Diagnostic responses retain content, usage and sanitized errors, excluding request headers and model reasoning text. `--allow-host` adds an exact permitted source host. `--landing-url` starts discovery from a known publisher page, fetching its metadata before model selection. `--source-url` skips discovery to isolate extraction against an already retrieved PDF; its evidence explicitly records that discovery was not exercised in that run. The script checks the model ID, downloads the actual PDF, extracts up to the first five pages (`--pages 1` isolates the front page), and applies the same quote checks as production research. A successful extraction probe is not evidence of a successful end-to-end search run or a citation approval.
 
@@ -423,7 +424,7 @@ English ordinal spellings; a missing or qualified edition is not inferred.
 To index a user-provided paper folder without changing it:
 
 ```sh
-.venv/bin/python bibcheck/local_library.py "/path/to/Papers" --bibliography cdl.bib
+python -m cdlbib.local_library "/path/to/Papers" --bibliography cdl.bib
 ```
 
 The default output is ignored `.bibcheck/local-library/`. Each PDF is hashed;
@@ -443,7 +444,7 @@ For PDFs whose ordinary extraction failed, an optional local OCR pass uses
 Poppler and Tesseract:
 
 ```sh
-.venv/bin/python bibcheck/local_ocr.py --bibliography cdl.bib
+python -m cdlbib.local_ocr --bibliography cdl.bib
 ```
 
 It reads the existing index and writes to ignored `.bibcheck/local-library-ocr/`.
@@ -531,7 +532,7 @@ Provider documentation: [bioRxiv API](https://api.biorxiv.org/) and
 ### arXiv repository verification
 
 `verify --auto-review` also checks explicitly cited arXiv articles through
-`bibcheck/arxiv_review.py`. It compares complete ordered author lists, titles,
+`src/cdlbib/arxiv_review.py`. It compares complete ordered author lists, titles,
 identifiers, dates and version histories across the Atom API, repository HTML
 head/history and DataCite's DOI record. Legacy identifiers in volume/pages and
 split volume/number fields are checked as repository identifiers. Unsupported
@@ -574,7 +575,7 @@ authoritative source (Crossref or PubMed) when identity is established; see
 [phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/phase0-2026-09-22/README.md) in the archive repository. Catalogue policy 7
 widens the Library of Congress record parser
 ([catalogue-phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/catalogue-phase0-2026-09-22/README.md)).
-`bibcheck/pdf_evidence.py` is a position-aware local-PDF verifier with a
+`src/cdlbib/pdf_evidence.py` is a position-aware local-PDF verifier with a
 subtle-error benchmark (`verification/pdf-benchmark/README.md`); it is **not** wired
 into any approval path.
 
@@ -588,10 +589,10 @@ in the archive repository.
 
 |Route|Module|Source|
 |-|-|-|
-|PsyArXiv|`bibcheck/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
-|Software and data|`bibcheck/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
-|ACL Anthology|`bibcheck/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
-|SfN abstracts|`bibcheck/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
+|PsyArXiv|`src/cdlbib/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
+|Software and data|`src/cdlbib/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
+|ACL Anthology|`src/cdlbib/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
+|SfN abstracts|`src/cdlbib/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
 
 A route can verify an entry, propose source-backed field values, flag a published
 version for replacement, or hold the entry. Only PsyArXiv is supported among OSF
@@ -636,7 +637,7 @@ user, who dropped the entry (GrilEtal06b).
 
 ## Research route
 
-`bibcheck/research_route.py` covers the entries that the September 2026 research waves
+`src/cdlbib/research_route.py` covers the entries that the September 2026 research waves
 verified field by field. Their saved results in `verification/baseline.jsonl.gz` have
 status `metadata_verified` and `accepted_source = research-evidence`; each records, for
 every field, the researched value, the quotation, the source URL and the sha256 of the
@@ -645,7 +646,7 @@ fetched page. The research files, the route's design notes and the
 archive repository ([research-route-2026-09-27/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/research-route-2026-09-27/README.md)).
 The command is not on this branch, because it read those research files; neither is
 the code that read them or its tests (tests/fixtures/research_route/). What stays in
-`bibcheck/research_route.py` is the re-check below and everything it calls.
+`src/cdlbib/research_route.py` is the re-check below and everything it calls.
 
 An entry was approved only when:
 
@@ -664,8 +665,8 @@ resolution and manual rows whose notes say so, and are flagged `browser_or_scan`
 `valid_research_approval` is registered as an approval validator, so `crossref restore`
 re-checks every research approval offline from the snapshot alone: the saved record must
 be complete and self-consistent, and it must re-derive to the same approval with the
-research validator's quote matching (`bibcheck/research_quotes.py`) and the post-check's
-house normalisers (`bibcheck/research_forms.py`), both copied unchanged from the research
+research validator's quote matching (`src/cdlbib/research_quotes.py`) and the post-check's
+house normalisers (`src/cdlbib/research_forms.py`), both copied unchanged from the research
 tools. Where a local `.bibcheck/research-pilot/` body cache exists, a quote is searched
 again in its body; otherwise the recorded quote result is used. Editing an entry sends it
 back through ordinary verification. `tests/test_research_route.py` runs the re-check on 14
@@ -706,7 +707,8 @@ Because approvals are trusted only from the base branch, a pull request that add
 `human_verified` approval to `baseline.jsonl.gz` still fails its own check for that
 entry; a maintainer merges it after checking the approval. The job runs the pull
 request's own code, so this guarantee assumes the checker itself is unchanged; review any
-change under `bibcheck/` or `verification/check_ci.py` separately.
+change under `src/cdlbib/` or `verification/check_ci.py` separately.
 
-The separate `autocheck` workflow runs `bibcheck/test.py` (the formatting check of
-`cdl.bib`) and `pytest tests` on Python 3.11.
+The separate `autocheck` workflow runs `cdlbib verify --no-citations` (the formatting
+check of `cdl.bib`) and `pytest tests` on Python 3.11 and 3.13 (job `test`), and builds the
+wheel and installs it into an empty environment (job `build`).

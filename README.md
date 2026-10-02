@@ -15,10 +15,10 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 - [Suggested workflow](#suggested-workflow)
 - [What belongs in `cdl.bib`](#what-belongs-in-cdlbib)
 - [Additional information and usage instructions](#additional-information-and-usage-instructions)
-  - [`bibcheck verify`](#verify)
-  - [`bibcheck compare`](#compare)
-  - [`bibcheck commit`](#commit)
-  - [`bibcheck crossref`: citation verification](#crossref-citation-verification)
+  - [`cdlbib verify`](#verify)
+  - [`cdlbib compare`](#compare)
+  - [`cdlbib commit`](#commit)
+  - [`cdlbib crossref`: citation verification](#crossref-citation-verification)
 - [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
   - [General Unix/Linux Setup (Command Line Compilation)](#general-unixlinux-setup-command-line-compilation)
   - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
@@ -42,16 +42,16 @@ You may find the included bibtex file and/or readme file useful for any of the f
 
 ## Using the bibtex checker tools
 
-The checker (`bibcheck.py`) does two complementary jobs:
+The checker (`cdlbib`) does two complementary jobs:
 
-1. **Formatting** (`bibcheck.py verify`, `compare`, and `commit`) checks that every entry follows the lab's conventions:
+1. **Formatting** (`cdlbib verify`, `compare`, and `commit`) checks that every entry follows the lab's conventions:
    - Checks key naming conventions
    - Validates author/editor name formatting
    - Ensures proper capitalization
    - Verifies page number formatting
    - Detects duplicate entries
 
-2. **Accuracy** (`bibcheck.py crossref`) checks each entry against the published record:
+2. **Accuracy** (`cdlbib crossref`) checks each entry against the published record:
    - Looks up the entry by DOI (or searches by title and authors) in [Crossref](https://www.crossref.org/)
    - Falls back to other sources when Crossref can't settle it: PubMed/Europe PMC, publisher full text, library catalogues (for books), preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite (for software and data), the ACL Anthology, and the Society for Neuroscience abstract archive
    - Requires every field in the entry (title, all authors in order, year, venue, volume, issue, pages, DOI, ...) to agree with the source
@@ -64,19 +64,25 @@ You may find these tools useful for:
 - Automatically generating change logs and commit messages
 - Finding and fixing metadata errors
 
-`python bibverify.py` still works, but it now runs the same accuracy checker as `bibcheck.py crossref`. The older parallel, fuzzy-matching verifier (and its `--workers` option) has been retired.
+`bibcheck.py` and `bibverify.py` have been removed: `python bibcheck.py COMMAND` is now `cdlbib COMMAND`, and `python bibverify.py COMMAND` is now `cdlbib crossref COMMAND`. The older parallel, fuzzy-matching verifier (and its `--workers` option) has been retired.
 
 ### Installation
-The bibtex checker is used on macOS and tested automatically on Linux (Ubuntu), both with Python 3.11. Windows is untested.
+The bibtex checker is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
 
-After cloning this repository, create a virtual environment and install the dependencies:
+After cloning this repository, create a virtual environment and install the checker (the `cdlbib` command) from the clone:
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
-python bibcheck.py --help
+python -m pip install .
+cdlbib --help
 ```
+
+The dependencies are listed in `pyproject.toml`. `python -m pip install ".[research]"` also installs `pypdf`, which `crossref research` and `research-batch` need to read PDFs.
+
+`cdlbib` works on the `cdl.bib` in the current folder or the nearest folder above it. To run it from somewhere else, pass `--library PATH` (the folder containing `cdl.bib`) or set `CDLBIB_LIBRARY`.
+
+`commit`, `crossref approve` and `crossref revoke` take your identity from the [GitHub CLI](https://cli.github.com) (`gh`); install it and run `gh auth login` before using them.
 
 The accuracy checker contacts Crossref and other public services, which ask that you identify yourself. Set a real contact address before running it (or pass `--mailto`):
 
@@ -86,18 +92,18 @@ export CROSSREF_MAILTO='your.name@dartmouth.edu'
 
 ### Overview
 
-`bibcheck.py` has the following commands (a summary; run `python bibcheck.py --help` for the full list):
+`cdlbib` has the following commands (a summary; run `cdlbib --help` for the full list):
 
 ```bash
 Commands:
   verify    Format check, then citation verification of new/edited entries
   compare   Show the differences between two .bib files
-  commit    Run the verify gate, then commit only the bibliography file
+  commit    Run the verify gate, then send the change as a pull request from your fork
   crossref  Check citation accuracy against external evidence (never edits BibTeX)
   magic     Legacy: autofix, overwrite cdl.bib and commit (not recommended)
 ```
 
-Run `python bibcheck.py COMMAND --help` for the options of any command.
+Run `cdlbib COMMAND --help` for the options of any command.
 
 # Suggested workflow
 
@@ -107,24 +113,19 @@ workflow below in order to safely update the shared lab resource:
 
 1. Check the formatting of the modified file *and* the accuracy of every new or edited entry (correct any problems until this passes):
 ```bash
-python bibcheck.py verify --verbose
+cdlbib verify --verbose
 ```
    The formatting check covers the whole file. The accuracy check covers only the entries that are new or changed compared with the `master` branch on GitHub, so it takes seconds rather than hours.
 
 2. If an entry fails the accuracy check, look at the issues printed for it (they are also saved in `.bibcheck/report.jsonl`). Usually the fix is to correct the entry to match the actual paper: a wrong page range, a missing author, a preprint cited where the published version was meant, and so on. Then run step 1 again. If you are certain the entry is right but it can't be checked automatically (e.g., an old book with no online record), see [Human review](#human-review).
 
-3. Generate a change log and commit your changes:
+3. Generate a change log and send your changes as a pull request:
 ```bash
-python bibcheck.py commit --verbose
+cdlbib commit --verbose
 ```
-   `commit` runs the same checks as `verify` and refuses to commit if anything fails. It commits only the bibliography file.
+   `commit` runs the same checks as `verify` and sends nothing if anything fails. It commits your changes to `cdl.bib` and `verification/` on a new branch, pushes that branch to your fork, and opens a pull request for pulling your changes into the ContextLab fork.
 
-4. Push your changes to your fork:
-```bash
-git push
-```
-
-5. Create a pull request for pulling your changes into the ContextLab fork. The pull request is checked automatically: formatting and tests (`autocheck`), and the accuracy of every new or edited entry (`Citation verification`).
+4. The pull request is checked automatically: formatting and tests (`autocheck`), and the accuracy of every new or edited entry (`Citation verification`).
 
 # What belongs in `cdl.bib`
 
@@ -141,12 +142,12 @@ These are the lab's rules for what an entry must look like and when an entry is 
 
 You can run the `verify` command using:
 ```bash
-python bibcheck.py verify --fname <fname>
+cdlbib verify --fname <fname>
 ```
 where `<fname>` is the name of the .bib file whose integrity you want to check (the default is `cdl.bib`).
 For help, run:
 ```bash
-python bibcheck.py verify --help
+cdlbib verify --help
 ```
 
 `verify` runs three checks in order:
@@ -194,7 +195,7 @@ The formatting check verifies the following:
   - City names should be written out in full (e.g., "New York, {NY}", not "NY, NY").  The checker doesn't catch this one, or a spelled-out state it doesn't recognize, so please write these carefully.
   - The checker never adds a country the source doesn't print.  It does drop the country after some well-known cities (e.g., "Berlin, Germany" becomes "Berlin").
   - Abbreviations should not contain periods (".")
-- Only the following fields are allowed (see [keep_fields.txt](bibcheck/keep_fields.txt)): author, title, year, journal, booktitle, volume, number, pages, doi, publisher, editor, edition, series, chapter, school, institution, organization, address, type, howpublished, and force
+- Only the following fields are allowed (see [keep_fields.txt](src/cdlbib/data/keep_fields.txt)): author, title, year, journal, booktitle, volume, number, pages, doi, publisher, editor, edition, series, chapter, school, institution, organization, address, type, howpublished, and force
 - To override autoformatting or checks for a given entry, add an additional field, "force", to that bibtex entry and set its value to "True".  Most formatting checks are skipped for that entry (duplicate detection and malformed page ranges are still checked).  This is useful if the above rules cannot be properly applied to a given entry.  `force` does **not** skip the accuracy check.  The library itself uses none: no entry in `cdl.bib` carries a `force` field.
 
 If errors are found, they are printed to the terminal along with suggested corrections (if available).
@@ -203,25 +204,25 @@ If errors are found, they are printed to the terminal along with suggested corre
 
 The bibtex checker can attempt to automatically correct formatting issues using the `--autofix` and `--outfile` flags.  The `--verbose` flag is also strongly encouraged when the `--autofix` flag is used.  Autocorrect mode may be used as follows:
 ```bash
-python bibcheck.py verify --autofix --verbose --no-citations --outfile=cleaned.bib
+cdlbib verify --autofix --verbose --no-citations --outfile=cleaned.bib
 ```
 This will create a new .bib file, cleaned.bib, based on cdl.bib-- but with all fields and entries autocorrected where possible.  After manually checking the new "autocorrected" .bib file, cdl.bib may be overwritten with `cleaned.bib`:
 ```bash
 mv cleaned.bib cdl.bib
 ```
 
-This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.  (The legacy `magic` command does all of this in one step, without giving you a chance to check the result, and then commits it.  Please don't use it.)
+This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.  (The legacy `magic` command does all of this in one step, without giving you a chance to check the result, and then runs `commit`.  Please don't use it.)
 
 ## `compare`
 You can run the `compare` command using:
 ```bash
-python bibcheck.py compare <fname1> <fname2>
+cdlbib compare <fname1> <fname2>
 ```
 where `<fname1>` is the name of the "original" .bib file and `<fname2>` is the
 name of the "new" .bib file.  The `compare` function will run a check to
 determine if there are any differences between fname2 and fname1.  For help, run:
 ```bash
-python bibcheck.py compare --help
+cdlbib compare --help
 ```
 
 Given two .bib files, any *differences* between the files are detected and printed.  Differences can include:
@@ -231,42 +232,46 @@ Given two .bib files, any *differences* between the files are detected and print
 ## `commit`
 You can run the `commit` command using:
 ```bash
-python bibcheck.py commit
+cdlbib commit
 ```
 For help, run:
 ```bash
-python bibcheck.py commit --help
+cdlbib commit --help
 ```
 
 The `commit` command first runs the same checks as `verify` (formatting, plus the
-accuracy of new and edited entries), and refuses to commit if any of them fail.
+accuracy of new and edited entries), and sends nothing if any of them fail.
 If the checks pass, the `compare` command is used to compare the local cdl.bib
 file to the version stored in the `master` branch of the `ContextLab` fork.
-Only the bibliography file is then committed to the local repository (using
-`git commit`), with a commit message describing what was added, removed, and
-changed.
+The changes to `cdl.bib` and `verification/` are then committed on a new branch
+named `cdlbib/<your GitHub login>/<date>-<summary>`, with a commit message
+describing what was added, removed, and changed.
 
-In order for the commits to be pushed, the `git push` command must still be
-called, and a pull request must be submitted in order to integrate the changes
-into the main ContextLab fork.
+The branch is pushed to your own fork of the repository, and a pull request is
+opened from it into the repository your checkout was cloned from (or into its
+parent, if you cloned a fork). If you have no fork yet, `commit` asks before
+creating one (`cdlbib --yes commit` skips the question). `--summary` sets the
+pull request's title. When it finishes, `commit` prints the pull request's
+address and leaves your checkout on the new branch; running `commit` again from
+that branch adds to the same pull request.
 
 ## `crossref`: citation verification
 
-`python bibcheck.py crossref` is the accuracy checker on its own, with more control than `verify` gives you. It never edits `cdl.bib`; it only reports.
+`cdlbib crossref` is the accuracy checker on its own, with more control than `verify` gives you. It never edits `cdl.bib`; it only reports.
 
 ```bash
 # Check new and edited entries (and retry any that hit a network error)
-python bibcheck.py crossref verify cdl.bib --auto-review
+cdlbib crossref verify cdl.bib --auto-review
 
 # Check the whole library, starting from the lab's saved results
-python bibcheck.py crossref restore verification/baseline.jsonl.gz
-python bibcheck.py crossref verify cdl.bib --auto-review
+cdlbib crossref restore verification/baseline.jsonl.gz
+cdlbib crossref verify cdl.bib --auto-review
 
 # Offline: how many entries are verified right now?
-python bibcheck.py crossref status cdl.bib
+cdlbib crossref status cdl.bib
 
 # Only the references in your manuscript (one citation key per line)
-python bibcheck.py crossref status cdl.bib --keys manuscript-keys.txt
+cdlbib crossref status cdl.bib --keys manuscript-keys.txt
 ```
 
 ### How an entry is checked
@@ -307,17 +312,17 @@ Some entries can't be verified automatically: an old book with no online record,
 
 ```bash
 # 1. Export the entry, its fingerprint, and what the checker found
-python bibcheck.py crossref review-packet CiteKey --output review-packet.json
+cdlbib crossref review-packet CiteKey --output review-packet.json
 
 # 2. After checking the source, record your approval
-python bibcheck.py crossref approve CiteKey \
+#    (the reviewer is recorded from the GitHub login of the gh CLI)
+cdlbib crossref approve CiteKey \
   --fingerprint HASH_FROM_REVIEW_PACKET \
-  --reviewer 'Your name' \
   --source 'URL or physical edition you checked' \
   --note 'Which fields you checked, and why the automatic check failed'
 ```
 
-The approval is tied to the entry's exact text: if the entry is edited later, it has to be approved again. An approval recorded in error can be withdrawn with `python bibcheck.py crossref revoke CiteKey --by 'Who decided' --reason 'Why'`. The revocation is logged in `verification/revocations.jsonl` and the entry goes back to `needs_review`. Restoring an older snapshot can't bring the approval back, but a new `approve` with a new note can. To share it, export the updated results (`python bibcheck.py crossref snapshot verification/baseline.jsonl.gz`) and commit them with your change. Because the pull request check trusts only the results already on `master`, it will still fail for that entry on your pull request. Say so in the pull request; a maintainer who has checked your approval can merge it, and from then on the entry counts as verified.
+The approval is tied to the entry's exact text: if the entry is edited later, it has to be approved again. An approval recorded in error can be withdrawn with `cdlbib crossref revoke CiteKey --reason 'Why'` (who revokes is recorded from the GitHub login of the `gh` CLI). The revocation is logged in `verification/revocations.jsonl` and the entry goes back to `needs_review`. Restoring an older snapshot can't bring the approval back, but a new `approve` with a new note can. To share it, export the updated results (`cdlbib crossref snapshot verification/baseline.jsonl.gz`) and commit them with your change. Because the pull request check trusts only the results already on `master`, it will still fail for that entry on your pull request. Say so in the pull request; a maintainer who has checked your approval can merge it, and from then on the entry counts as verified.
 
 ### Research evidence
 
@@ -399,13 +404,13 @@ Whichever setup you use, it's a good idea to keep a copy of the bibliography wit
 
 To run the full test suite:
 ```bash
-python -m pip install -r requirements-research.txt pytest
+python -m pip install ".[research]" pytest
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
 python -m pytest tests
-python bibcheck/test.py
+cdlbib verify --no-citations
 ```
 
-Almost all tests use saved copies of real source records, so they run offline. Five tests run `bibcheck.py verify` or `commit` and need `CROSSREF_MAILTO`; four of them call the live Crossref API, so they need a network connection and can fail temporarily if Crossref is down. Without it (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. Eight tests read PDFs from a local paper library and are skipped when it isn't available. `bibcheck/test.py` runs the formatting check on `cdl.bib`.
+Almost all tests use saved copies of real source records, so they run offline. Five tests run `cdlbib verify` or `commit` and need `CROSSREF_MAILTO`; four of them call the live Crossref API, so they need a network connection and can fail temporarily if Crossref is down. Without it (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. Eight tests read PDFs from a local paper library and are skipped when it isn't available. `cdlbib verify --no-citations` runs the formatting check on `cdl.bib`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a citation, and [docs/verification.md](docs/verification.md) for how verification works.
 

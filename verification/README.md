@@ -2,7 +2,7 @@
 
 This folder holds the lab's saved verification results for `cdl.bib` and the logs that go with them.
 
-- [baseline.jsonl.gz](baseline.jsonl.gz): the saved result for every entry, with its evidence. Entries verified from quoted evidence carry the quotation and source URL for each field. `python bibcheck.py crossref restore verification/baseline.jsonl.gz` loads it into a local database, and the pull request check reads it from the base branch.
+- [baseline.jsonl.gz](baseline.jsonl.gz): the saved result for every entry, with its evidence. Entries verified from quoted evidence carry the quotation and source URL for each field. `cdlbib crossref restore verification/baseline.jsonl.gz` loads it into a local database, and the pull request check reads it from the base branch.
 - [check_ci.py](check_ci.py): the script the `Citation verification` workflow runs.
 - [key-renames.json](key-renames.json) and [key-deletions.json](key-deletions.json): every citation key that was renamed or removed, with the reason. Check these if a paper's `\cite` key stops resolving. Every key follows the key rule in the [README](../README.md#verify), with no exceptions.
 - [revocations.jsonl](revocations.jsonl): every human approval withdrawn with `crossref revoke`. Restoring any snapshot keeps them revoked.
@@ -10,8 +10,8 @@ This folder holds the lab's saved verification results for `cdl.bib` and the log
 
 ```bash
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
-python bibcheck.py crossref restore verification/baseline.jsonl.gz
-python bibcheck.py crossref status cdl.bib
+cdlbib crossref restore verification/baseline.jsonl.gz
+cdlbib crossref status cdl.bib
 ```
 
 A result applies only to an entry whose text matches exactly; editing an entry sends it back through verification. "Verified" means the entry agrees with the published record, not that the record itself is free of errors.

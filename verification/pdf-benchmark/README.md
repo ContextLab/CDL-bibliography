@@ -1,6 +1,6 @@
 # PDF-evidence verifier and hard benchmark (2026-09-22)
 
-`bibcheck/pdf_evidence.py` decides, field by field, whether a local PDF of the
+`src/cdlbib/pdf_evidence.py` decides, field by field, whether a local PDF of the
 cited version supports a `cdl.bib` entry. The decision is deterministic code over
 `pdftotext -bbox-layout` text with word positions. No model is called. A model
 could later suggest candidate lines, but nothing it says would be read by this
