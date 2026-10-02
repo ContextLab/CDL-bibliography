@@ -23,6 +23,10 @@ class SecretNotFound(CdlbibError):
     pass
 
 
+class SecretMalformed(SecretNotFound):
+    """A key is present but contains whitespace (it must be a single token)."""
+
+
 class GateFailed(CdlbibError):
     pass
 

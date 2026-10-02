@@ -11,7 +11,7 @@ import sys
 import requests
 
 from . import secrets
-from .errors import SecretNotFound
+from .errors import SecretMalformed, SecretNotFound
 from .research import INSTRUCTIONS
 
 
@@ -126,7 +126,7 @@ def run(payload, session=None, environ=None):
     try:
         key = secrets.get("openai", environ)
     except SecretNotFound as exc:
-        if not model:
+        if not model and not isinstance(exc, SecretMalformed):
             raise ValueError(
                 "Set OPENAI_API_KEY and BIBCHECK_RESEARCH_MODEL before research"
             ) from exc

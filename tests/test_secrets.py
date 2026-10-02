@@ -94,3 +94,127 @@ def test_an_item_made_the_way_dartmouths_page_says_is_found(monkeypatch):
         assert secrets.get("scratch") == "made-by-security"
     finally:
         subprocess.run(["security", "delete-generic-password", "-s", item, "-a", getpass.getuser()], check=True, capture_output=True)
+
+
+# ---- fix round 1: whitespace, bounded keychain wait, unreadable keychain ----
+
+import threading
+import time
+
+import keyring.backend
+import keyring.backends.fail
+
+from cdlbib import dartmouth_research_adapter as dra
+
+
+@pytest.mark.parametrize("value", ["two words", "abc\n", " abc", "a\tb"])
+def test_dartmouth_variable_with_whitespace_is_a_single_token_error(value):
+    with pytest.raises(ValueError, match="single token"):
+        dra.configuration({"DARTMOUTH_CHAT_API_KEY": value})
+
+
+@pytest.mark.parametrize("env", [{}, {"DARTMOUTH_CHAT_API_KEY": ""}])
+def test_dartmouth_missing_variable_keeps_its_message(env, tmp_path):
+    env = dict(env, BIBCHECK_DARTMOUTH_KEY_FILE=str(tmp_path / "absent.txt"))
+    with pytest.raises(ValueError, match="Set DARTMOUTH_CHAT_API_KEY or a local Dartmouth key file"):
+        dra.configuration(env)
+
+
+def test_dartmouth_key_file_is_stripped_before_the_check(tmp_path):
+    path = tmp_path / "key.txt"
+    path.write_text("filekey\n", encoding="utf-8")
+    assert dra.configuration({"BIBCHECK_DARTMOUTH_KEY_FILE": str(path)})[0] == "filekey"
+    path.write_text("two words\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="single token"):
+        dra.configuration({"BIBCHECK_DARTMOUTH_KEY_FILE": str(path)})
+
+
+@pytest.mark.parametrize("value", ["two words", "abc\n", " abc"])
+def test_secrets_get_rejects_whitespace_without_stripping(value):
+    with pytest.raises(SecretNotFound, match="single token"):
+        secrets.get("openai", {"OPENAI_API_KEY": value})
+
+
+@pytest.mark.parametrize("env", [{}, {"OPENAI_API_KEY": ""}])
+def test_secrets_get_missing_or_empty_is_not_found(env):
+    with pytest.raises(SecretNotFound, match="No API key found"):
+        secrets.get("openai", env)
+
+
+def test_within_returns_a_value_in_time():
+    assert secrets._within(5, lambda: "ok") == "ok"
+
+
+def test_within_times_out_on_a_slow_function():
+    started = time.monotonic()
+    with pytest.raises(secrets.KeychainTimeout):
+        secrets._within(0.2, lambda: time.sleep(3))
+    assert time.monotonic() - started < 2
+
+
+def test_within_surfaces_an_exception():
+    def boom():
+        raise KeyError("x")
+    with pytest.raises(KeyError):
+        secrets._within(5, boom)
+
+
+@pytest.fixture
+def backend(monkeypatch):
+    """Install a real keyring backend for a test, restoring the previous one afterwards."""
+    previous = keyring.get_keyring()
+    monkeypatch.setitem(secrets.KEYS, "scratch", secrets.Key(env="CDLBIB_TEST_SCRATCH_KEY", item="cdlbib-test-unused"))
+    monkeypatch.delenv("CDLBIB_TEST_SCRATCH_KEY", raising=False)
+    yield keyring.set_keyring
+    keyring.set_keyring(previous)
+
+
+class SlowBackend(keyring.backend.KeyringBackend):
+    priority = 1
+
+    def get_password(self, service, username):
+        time.sleep(3)
+
+    def set_password(self, service, username, password):
+        pass
+
+    def delete_password(self, service, username):
+        pass
+
+
+class EmptyBackend(SlowBackend):
+    def get_password(self, service, username):
+        return None
+
+
+def test_a_slow_keychain_becomes_a_timeout_message(backend, monkeypatch):
+    backend(SlowBackend())
+    monkeypatch.setattr(secrets, "KEYCHAIN_TIMEOUT", 0.2)
+    with pytest.raises(SecretNotFound, match="did not answer") as err:
+        secrets.get("scratch")
+    assert "Always Allow" in str(err.value) and "CDLBIB_TEST_SCRATCH_KEY" in str(err.value)
+
+
+def test_no_keyring_backend_says_the_keychain_could_not_be_read(backend):
+    backend(keyring.backends.fail.Keyring())
+    with pytest.raises(SecretNotFound) as err:
+        secrets.get("scratch")
+    assert "the keychain could not be read: NoKeyringError" in str(err.value)
+    assert "cdlbib-test-unused" in str(err.value)
+
+
+def test_an_absent_item_keeps_the_plain_message(backend):
+    backend(EmptyBackend())
+    with pytest.raises(SecretNotFound) as err:
+        secrets.get("scratch")
+    assert "could not be read" not in str(err.value) and "No API key found" in str(err.value)
+
+
+def test_a_copy_of_the_environment_never_reaches_the_keychain(backend, monkeypatch):
+    class Loud(EmptyBackend):
+        def get_password(self, service, username):
+            return "from-keychain"
+    backend(Loud())
+    assert secrets.get("scratch") == "from-keychain"
+    with pytest.raises(SecretNotFound):
+        secrets.get("scratch", dict(os.environ))

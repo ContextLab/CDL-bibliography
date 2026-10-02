@@ -16,7 +16,7 @@ import requests
 
 from .openai_research_adapter import object_schema
 from . import secrets
-from .errors import SecretNotFound
+from .errors import SecretMalformed, SecretNotFound
 from .research import INSTRUCTIONS, allowed_url
 from .search_tools import WebSearch, get_source
 from .publisher_metadata import PublisherMetadata
@@ -117,6 +117,8 @@ def configuration(environ):
     if not key:
         try:
             key = secrets.get("dartmouth-chat", environ)
+        except SecretMalformed as exc:
+            raise ValueError("Dartmouth key must be a single token") from exc
         except SecretNotFound as exc:
             if secrets.reads_real_environment(environ):
                 raise ValueError(str(exc)) from exc
