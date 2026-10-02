@@ -63,7 +63,7 @@ def test_validator_registered_and_cli_imports_route():
     from cdlbib import verification_cli
     assert verification_cli.research_route is R
     assert 'research-approve' not in [c.name for c in verification_cli.app.registered_commands]
-    assert R.validator().__name__ == 'research_quotes' and R.postcheck().__name__ == 'research_forms'
+    assert R.validator().__name__ == 'cdlbib.research_quotes' and R.postcheck().__name__ == 'cdlbib.research_forms'
     # the code that read the archived research folders is gone
     for name in ('load_evidence', 'run_research_approve', 'evidence_files', 'uncommitted_evidence',
                  'merge', 'reason_class', 'rename_walk', 'renames_when_committed'):
