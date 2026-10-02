@@ -129,6 +129,10 @@ One test pairs two of these on purpose: it answers the DOI that PubMed gives for
 stand for a DOI that PubMed links to the wrong record. Both responses are real; the pairing
 is the test's construction and is made in the test's own cache, not in this file.
 
+Two tests take the DOI out of a saved PubMed record (rows 11 and 35) to stand for a paper
+PubMed gives no DOI for, so that the journal name PubMed's catalogue has is what gets built.
+The records are real; the removal is the tests' construction, made in the test's own cache.
+
 The full URL of each request is in the item's `response.url`. The works named are entries of
 the frozen library fixture (`tests/fixtures/cdl-prewave1-2026-09-26.bib`), which gives the
 tests their expected entries.

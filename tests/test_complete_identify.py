@@ -256,11 +256,12 @@ def test_several_matching_records_are_listed_for_a_choice(client):
     # Crossref has this article under two DOIs (one deposit in capitals with the subtitle apart).
     proposal = propose(client, "Strength training and aerobic exercise: comparison and contrast", author="Knuttgen")
     assert proposal.proposed_raw is None and proposal.status is None and proposal.needs_decision
-    # The second deposit has only the first page at Crossref, which is one of the signs of an abstract.
+    # The second deposit has only the first page at Crossref. With several matches no
+    # further lookup is made, so the note says what Crossref states and no more: this is a
+    # real article, whose PubMed record has the whole range.
     assert proposal.issues == [
-        "2 records match the title and the first author; one has to be chosen. The record 10.1519/r-505011.1 may be "
-        "a conference abstract: it has one page (973) and no article number. A conference abstract is not cited "
-        "(house rule), so it is not taken without a decision."]
+        "2 records match the title and the first author; one has to be chosen. Crossref gives the record "
+        "10.1519/r-505011.1 a single page (973) and no page range."]
     assert proposal.candidates == [
         {"authors": "HOWARD G. KNUTTGEN", "year": "2007", "journal": "Journal of Strength and Conditioning Research",
          "doi": "10.1519/00124278-200708000-00053",
@@ -372,10 +373,10 @@ def test_a_preprint_doi_whose_record_names_the_published_article_offers_the_arti
         "The DOI 10.1101/511782 is a preprint; its record names 10.1523/jneurosci.0360-19.2019 as the published "
         "version, which is proposed here (house rule: cite the published version).", CAPITALS]
     assert proposal.needs_decision and proposal.status == "metadata_verified"
-    # The DOI was a bare query, not an entry's text: the offered DOI is a question with
-    # nothing typed, and the note above names the DOI that was given.
+    # The DOI the person gave is the given value of a question; a bare query has no entry
+    # text to keep it in, so the text offers the published DOI.
     doi = next(c for c in proposal.changes if c.field == "doi")
-    assert doi == complete.FieldChange("doi", None, "10.1523/jneurosci.0360-19.2019", "crossref", "question")
+    assert doi == complete.FieldChange("doi", "10.1101/511782", "10.1523/jneurosci.0360-19.2019", "crossref", "question")
     assert [(c["doi"], c["type"], c["journal"]) for c in proposal.candidates] == [
         ("10.1523/jneurosci.0360-19.2019", "journal-article", "The Journal of Neuroscience"),
         ("10.1101/511782", "posted-content", "")]
@@ -632,8 +633,7 @@ def test_nothing_is_printed(client, capsys):
 
 SILVA_PREPRINT = ("@article{Silv19,\n\tDoi = {10.1101/511782},\n\tJournal = {bioRxiv},\n\tTitle = {x},\n"
                   "\tYear = {2019}}")
-FIRST_CHECK = ("This status comes from the first check only; `cdlbib verify` runs the full check and may still "
-               "accept the entry.")
+FIRST_CHECK = "This status comes from the first check only; `cdlbib verify` runs the full check."
 
 
 def test_a_typed_preprint_doi_stays_in_the_text_when_the_typed_title_is_another_work(client, tmp_path):
@@ -782,11 +782,6 @@ def test_the_signs_of_an_abstract_on_real_records():
         record = RECORDS[key]["crossref"]["record"]
         assert signs(record) == alone
         assert signs(record, epmc_record(RECORDS[key]["europepmc"]["raw_record"], record)) is None
-    # What the rule does not see: an abstract of the Vision Sciences Society meeting printed
-    # in Journal of Vision has a volume, an issue and a page that is also the end of its DOI,
-    # exactly as an article of that journal has (the library's MartJohn15).
-    vss = saved_record("10.1167/15.12.782")
-    assert signs(vss) is None and vss["container-title"] == ["Journal of Vision"] and vss["page"] == "782"
     # A record of another type that matches is a candidate too.
     chapter = RECORDS["book-chapter"]["crossref"]["record"]
     judged = complete._judged({"ENTRYTYPE": "article", "title": chapter["title"][0]}, chapter, "crossref",
@@ -882,6 +877,115 @@ def test_an_arxiv_proposal_says_whether_it_is_complete(client):
     assert propose(client, "2208.02957").complete
     questioned = propose(client, "https://arxiv.org/abs/1901.10444")  # the title is a question
     assert not questioned.complete and questioned.needs_decision
+
+
+# --- fix round 2 --------------------------------------------------------------------------------
+
+def test_known_gap_a_journal_of_vision_meeting_abstract_is_built_as_an_article(client):
+    """KNOWN GAP, not the wanted behaviour: an abstract of the Vision Sciences Society
+    meeting printed in Journal of Vision has a volume, an issue and a page that is also the
+    end of its DOI, exactly as an article of that journal has. Its Crossref record shows no
+    sign of an abstract, so it is built as an article (the library's MartJohn15)."""
+    vss = saved_record("10.1167/15.12.782")
+    assert complete._abstract_sign(vss) is None
+    assert vss["container-title"] == ["Journal of Vision"] and vss["page"] == "782"
+    proposal = propose(client, "10.1167/15.12.782")
+    assert proposal.proposed_raw == library_entry("MartJohn15")
+    assert proposal.status == "metadata_verified" and proposal.issues == [CAPITALS]
+    assert not any("abstract" in issue for issue in proposal.issues)
+
+
+def test_in_a_list_of_several_matches_the_note_says_what_crossref_states():
+    states = complete._crossref_states
+    knuttgen = next(r for r in search_items("strength training and aerobic") if r["DOI"] == "10.1519/r-505011.1")
+    assert states(knuttgen) == "Crossref gives the record 10.1519/r-505011.1 a single page (973) and no page range."
+    assert states(RECORDS["AlyTurk16"]["crossref"]["record"]) == (
+        "Crossref gives the record 10.1073/pnas.1518931113 no pages and no article number.")
+    assert states(saved_record("10.1249/00005768-198704001-00264")) == (
+        "Crossref places the record 10.1249/00005768-198704001-00264 in a supplement (issue Supplement).")
+    assert states(saved_record("10.1002/tea.3660271011")) is None
+    judged = complete._judged({"ENTRYTYPE": "article", "title": "Strength training and aerobic exercise: "
+                               "comparison and contrast"}, knuttgen, "crossref", "knuttgen", None)
+    assert judged["states"] == states(knuttgen) and "may be a conference abstract" in judged["demoted"]
+
+
+def without_doi(xml):
+    """A saved PubMed record with its DOI taken out: this is the test's construction (the
+    record is real, the removal is not), to stand for a paper PubMed gives no DOI."""
+    import re
+    xml = re.sub(r'<ELocationID EIdType="doi"[^>]*>[^<]*</ELocationID>', "", xml)
+    return re.sub(r'<ArticleId IdType="doi">[^<]*</ArticleId>', "", xml)
+
+
+def reseeded_without_doi(client, pmid):
+    for item in SAVED:
+        request = item["request"]
+        if isinstance(request, list) and "efetch" in request[0] and request[1].get("id") == pmid:
+            key = dumps([request[0], {k: CONTACT if v == "CONTACT" else v for k, v in request[1].items()}, request[2]])
+            body = without_doi(item["response"]["body"])
+            assert body != item["response"]["body"]
+            client.cache.save_response(key, dict(item["response"], body=body))
+            return
+    raise KeyError(pmid)
+
+
+def test_pubmeds_catalogue_qualifier_is_not_written_into_the_journal(client):
+    # PubMed's catalogue calls this journal "Journal of applied physiology (Bethesda, Md. : 1985)".
+    reseeded_without_doi(client, "2312474")
+    found = complete.identify(complete.Query.parse("PMID:2312474"), client)
+    assert found.source == "pubmed" and found.record["container-title"] == ["Journal of applied physiology"]
+    assert found.questions == {} and not found.decision  # the library already uses that name
+    built = complete.build({}, found.record)
+    assert "\tJournal = {Journal of Applied Physiology},\n" in built.proposed_raw
+    assert complete._known_journal("Journal of applied physiology")
+    assert not complete._known_journal("Journal of applied physiology (Bethesda, Md. : 1985)")
+
+
+def test_a_catalogue_journal_name_the_library_does_not_have_is_a_question(client, tmp_path, monkeypatch):
+    from cdlbib import correction_proposals as cp
+    library = tmp_path / "small.bib"
+    library.write_text(ZOLL90 + "\n", encoding="utf-8")  # a library that has never cited this journal
+    monkeypatch.setattr(cp, "LIBRARY_BIB", library)
+    reseeded_without_doi(client, "17685726")
+    found = complete.identify(complete.Query.parse("PMID:17685726"), client)
+    reason = ("journal: the name is the title in PubMed's catalogue (\"Journal of strength and conditioning "
+              "research\"), which is not a journal name the library or the house journal list has; it may not be "
+              "the name the journal prints")
+    assert found.questions == {"journal": reason} and found.needs_a_decision
+    proposal = propose(client, "PMID:17685726")
+    journal = next(c for c in proposal.changes if c.field == "journal")
+    assert journal == complete.FieldChange("journal", None, "Journal of Strength and Conditioning Research",
+                                           "pubmed", "question")
+    assert reason in proposal.issues and proposal.needs_decision and not proposal.complete
+    assert "\tJournal = {Journal of Strength and Conditioning Research},\n" in proposal.proposed_raw
+    # With the frozen library, which cites this journal, the same name is not a question.
+    monkeypatch.setattr(cp, "LIBRARY_BIB", ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib")
+    assert complete.identify(complete.Query.parse("PMID:17685726"), client).questions == {}
+
+
+def test_one_rule_says_whether_an_entry_is_complete():
+    import inspect
+    assert "_set_complete(proposal, fields)" in inspect.getsource(complete.build)
+    assert "_set_complete(proposal, fields)" in inspect.getsource(complete.build_arxiv)
+    assert inspect.getsource(complete).count("for name in REQUIRED_FIELDS") == 1
+
+
+def test_a_typed_doi_with_punctuation_after_it_is_looked_up_without_and_kept_as_typed(client, tmp_path):
+    typed = "@article{Zoll90,\n\tDoi = {10.1002/tea.3660271011.}}"
+    entry = typed_entry(tmp_path, typed)
+    query = complete.Query.from_entry(entry)
+    assert query.doi == "10.1002/tea.3660271011" and query.fields["doi"] == "10.1002/tea.3660271011."
+    proposal = complete.propose(query, client, client.cache)
+    assert proposal.proposed_raw == ZOLL90.replace("{10.1002/tea.3660271011}", "{10.1002/tea.3660271011.}")
+    assert next(c for c in proposal.changes if c.field == "doi") == complete.FieldChange(
+        "doi", "10.1002/tea.3660271011.", "10.1002/tea.3660271011", "typed", "question")
+    assert proposal.issues[0] == ("doi: the typed DOI ends in '.', which was taken as punctuation after it; "
+                                  "10.1002/tea.3660271011 was looked up, and the typed value is kept until this is "
+                                  "decided")
+    assert proposal.needs_decision and proposal.typed_raw == typed
+    # The verifier checks the text as it stands, typed DOI and all; that DOI's own lookup is
+    # not among the saved responses (at Crossref it is a 404), so here the source does not answer.
+    assert proposal.status == "provider_error"
 
 
 # --- live: real requests into a fresh cache, as the gate tests make -----------------------------
