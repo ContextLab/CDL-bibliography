@@ -7,7 +7,6 @@ Model findings are evidence proposals, never citation approvals.
 
 import json
 import os
-from pathlib import Path
 import sys
 import time
 from urllib.parse import urljoin, urlparse
@@ -101,30 +100,13 @@ def discover_sources(payload, session, results=(), fetched=None):
 
 
 def configuration(environ):
-    # Order: environment variable, key file, keychain (the keychain only when the
-    # real environment is being read; see cdlbib.secrets).
-    key = None
-    if not environ.get(secrets.KEYS["dartmouth-chat"].env):
-        # The key-file branch is kept for now; its removal is pending the project owner's decision.
-        key_path = Path(
-            environ.get(
-                "BIBCHECK_DARTMOUTH_KEY_FILE",
-                ".bibcheck/secrets/dartmouth_chat_api_key.txt",
-            )
-        )
-        if key_path.is_file():
-            key = key_path.read_text(encoding="utf-8").strip()
-    if not key:
-        try:
-            key = secrets.get("dartmouth-chat", environ)
-        except SecretMalformed as exc:
-            raise ValueError("Dartmouth key must be a single token") from exc
-        except SecretNotFound as exc:
-            if secrets.reads_real_environment(environ):
-                raise ValueError(str(exc)) from exc
-            raise ValueError("Set DARTMOUTH_CHAT_API_KEY or a local Dartmouth key file") from exc
-    if any(char.isspace() for char in key):
-        raise ValueError("Dartmouth key must be a single token")
+    # The key: environment variable, then (real environment only) the keychain; see cdlbib.secrets.
+    try:
+        key = secrets.get("dartmouth-chat", environ)
+    except SecretMalformed as exc:
+        raise ValueError("Dartmouth key must be a single token") from exc
+    except SecretNotFound as exc:
+        raise ValueError(str(exc)) from exc
     return key, environ.get("BIBCHECK_RESEARCH_MODEL", DEFAULT_MODEL)
 
 

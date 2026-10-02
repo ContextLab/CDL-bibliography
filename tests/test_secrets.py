@@ -114,19 +114,10 @@ def test_dartmouth_variable_with_whitespace_is_a_single_token_error(value):
 
 
 @pytest.mark.parametrize("env", [{}, {"DARTMOUTH_CHAT_API_KEY": ""}])
-def test_dartmouth_missing_variable_keeps_its_message(env, tmp_path):
-    env = dict(env, BIBCHECK_DARTMOUTH_KEY_FILE=str(tmp_path / "absent.txt"))
-    with pytest.raises(ValueError, match="Set DARTMOUTH_CHAT_API_KEY or a local Dartmouth key file"):
+def test_dartmouth_missing_variable_names_both_places(env):
+    with pytest.raises(ValueError) as err:
         dra.configuration(env)
-
-
-def test_dartmouth_key_file_is_stripped_before_the_check(tmp_path):
-    path = tmp_path / "key.txt"
-    path.write_text("filekey\n", encoding="utf-8")
-    assert dra.configuration({"BIBCHECK_DARTMOUTH_KEY_FILE": str(path)})[0] == "filekey"
-    path.write_text("two words\n", encoding="utf-8")
-    with pytest.raises(ValueError, match="single token"):
-        dra.configuration({"BIBCHECK_DARTMOUTH_KEY_FILE": str(path)})
+    assert "DARTMOUTH_CHAT_API_KEY" in str(err.value) and "dartmouth-chat-api-key" in str(err.value)
 
 
 @pytest.mark.parametrize("value", ["two words", "abc\n", " abc"])
