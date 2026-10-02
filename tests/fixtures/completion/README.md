@@ -135,3 +135,13 @@ tests their expected entries.
 
 The arXiv-only preprints of those tests need no response from here: they use the arXiv,
 arXiv-page and DataCite documents of `tests/fixtures/arxiv_preprints.json`.
+
+## `more_records.json`
+
+Records added after `records.json` was first written, in the same form and copied the same
+way by `extract_records.py`. They are kept apart so that tests which count the items of
+`records.json` are not disturbed.
+
+| Item | DOI | Copied from | Crossref retrieved | Europe PMC | What it exercises |
+|-|-|-|-|-|-|
+| `MeyeEtal88` | 10.1037/0033-295x.95.2.183 | apply-2026-09-25-cases.json.gz, case `MeyeEtal88` | 2026-09-25 | PMID 3375399 | a capital after a colon at Crossref, lower case at PubMed; the last author spelled differently by the two sources |

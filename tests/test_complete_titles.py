@@ -7,20 +7,20 @@ built title must be the library's title, or the proposal must be a question for 
 (``needs_decision``). A built title that differs from the library's and is not a question is
 an unflagged error; there must be none.
 
-"The library's title" means the same characters with the same capitals and the same capitals
-protected by braces. These do not count as differences (``same`` below):
-  - brace style: ``{Bayesian}`` or ``{B}ayesian``, and how an accent is written;
-  - whether the capital that begins a sentence (the title's first letter, or the letter after
-    ``?``, ``!`` or ``.``) is in braces;
-  - the word ``A``, which the title formatter leaves as it finds it;
-and one is counted on its own (``colon rule``): the house rule writes the word after a colon
-or a dash in lower case (correction_proposals.source_title, helpers.format_title), while the
-frozen library keeps a capital there in some titles (``…: {E}vidence from``, ``…: {A} review``).
-The builder follows the house rule; a title that differs from the library's only in that
-letter is counted under ``colon rule`` and listed in the task report, not as an error.
-Another is counted on its own (``library unprotected``): a capital in mid-sentence that the
-library's title leaves outside braces (``{EEG}-Informed``, ``Go/{No-Go}``), which BibTeX
-styles would lower-case; the builder protects it.
+"The library's title" means the same characters, the same capitals, and the same capitals
+protected by braces. Only brace style is ignored: which characters share a pair of braces
+(``{Bayesian}`` or ``{B}ayesian``), how an accent is written, and how the library writes a
+punctuation mark (``'`` for a curly apostrophe, ``--`` for an en dash).
+
+Three kinds of difference are counted on their own and listed by key, not passed as equal:
+  - ``first letter``: the library puts the title's very first capital in braces
+    (``{N}eural correlates of…``); the builder does not, and no style changes that letter;
+  - ``small word``: after a colon, a dash or a sentence end the library keeps a braced
+    capital on a small word (``…: {A} review``, ``…? {T}he case``); the builder writes it as
+    the title formatter does (lower case after a colon or dash, the house rule);
+  - ``library unprotected``: a capital that the library's title leaves outside braces
+    (``{EEG}-Informed``, ``Go/{No-Go}``), which BibTeX styles would lower-case; the builder
+    protects it.
 
 No network; no test reads the live cdl.bib.
 """
@@ -86,31 +86,40 @@ def _word_bounds(chars, index):
     return start, end
 
 
+def _small():
+    from cdlbib import helpers
+    return complete._SMALL_WORDS | {word.lower() for word in helpers.uncaps}
+
+
 def same(built, library):
-    """"same", "colon rule", "library unprotected" or "differs" (see the module's text)."""
+    """"same", "first letter", "small word", "library unprotected" or "differs" (see the
+    module's text). A title with several kinds is counted under the last that applies."""
     one, two = marked(built), marked(library)
     if len(one) != len(two):
         return "differs"
     text = "".join(c for c, _ in two)
-    colon = unprotected = False
+    words = text.split(" ")
+    small_word = unprotected = first = False
     for index, ((a, pa), (b, pb)) in enumerate(zip(one, two)):
         if a == b and (pa == pb or not a.isupper()):
             continue
         start, end = _word_bounds(text, index)
         word = text[start:end]
-        before = text[:start].rstrip()
+        place = complete._position(words, text[:start].count(" "))
         first_letter = index == next((i for i in range(start, end) if text[i].isalpha()), -1)
-        if a == b and (word.strip("\"'`(),.;:?!") == "A" or (first_letter and (not before or before[-1] in "?!."))):
-            continue  # the word "A"; a sentence's first capital, in braces or not
-        if (first_letter and a.lower() == b.lower() and before and (before[-1] == ":" or before.endswith("-"))
-                and not any(c.isupper() for c in text[index + 1:end])):
-            colon = True  # the house rule: lower case after a colon or a dash
+        if a == b and first_letter and start == 0 and pb and not pa:
+            first = True
+            continue
+        if (first_letter and a.lower() == b.lower() and place in ("colon", "end")
+                and word.strip("\"'`(),.;:?!").lower() in _small()):
+            small_word = True
             continue
         if a == b and pa and not pb:
-            unprotected = True  # a mid-sentence capital the library leaves outside braces
+            unprotected = True
             continue
         return "differs"
-    return "colon rule" if colon else "library unprotected" if unprotected else "same"
+    return ("library unprotected" if unprotected else "small word" if small_word
+            else "first letter" if first else "same")
 
 
 ARTICLE_TITLES = [(key, re.search(r"(?m)^\tTitle = \{(.*)\}[,}]?$", body))
@@ -154,8 +163,10 @@ FEEDS = {
 
 
 def run(feed):
-    """{"same": n, "colon rule": [...], "question": n, "unfilled": n, "errors": [...]} for one feed."""
-    result = {"same": 0, "colon rule": [], "library unprotected": [], "question": 0, "unfilled": 0, "errors": []}
+    """{"same": n, "small word": [...], "library unprotected": [...], "question": n, "unfilled": n,
+    "first letter": [...], "errors": [...]} for one feed."""
+    result = {"same": 0, "first letter": [], "small word": [], "library unprotected": [], "question": 0,
+              "unfilled": 0, "errors": []}
     for key, title in FED:
         record = {"type": "journal-article", "DOI": "10.1000/corpus", "title": [FEEDS[feed](title)]}
         proposal = complete.build({"doi": "10.1000/corpus"}, record)
@@ -169,7 +180,7 @@ def run(feed):
             result["question"] += 1
         elif verdict == "same":
             result["same"] += 1
-        elif verdict in ("colon rule", "library unprotected"):
+        elif verdict in ("first letter", "small word", "library unprotected"):
             result[verdict].append(key)
         else:
             result["errors"].append((key, title, change[0].proposed))
@@ -184,21 +195,37 @@ def test_the_corpus_is_every_article_title_of_the_frozen_library():
 def test_the_comparison_tells_brace_style_from_a_real_difference():
     assert same("A hierarchical {Bayesian} model", "A hierarchical {B}ayesian model") == "same"
     assert same('Gl{\\"o}ckner and Gl\\"{o}ckner', 'Gl{\\"{o}}ckner and Gl{\\"o}ckner') == "same"
-    assert same("Is it so? Maybe", "Is it so? {M}aybe") == "same"
-    assert same("Memory: evidence from sleep", "Memory: {E}vidence from sleep") == "colon rule"
-    assert same("Memory: a review", "Memory: {A} review") == "colon rule"
+    assert same("Neural correlates of memory", "{N}eural correlates of memory") == "first letter"
+    assert same("Memory: a review", "Memory: {A} review") == "small word"
+    assert same("Is it so? The case", "Is it so? {T}he case") == "small word"
+    assert same("{EEG-Informed} {fMRI} reveals", "{EEG}-Informed {fMRI} reveals") == "library unprotected"
+    # Whether a capital is protected is never brace style.
+    assert same("Is it so? Maybe", "Is it so? {M}aybe") == "differs"
+    assert same("Memory: evidence from sleep", "Memory: {E}vidence from sleep") == "differs"
+    assert same("Comment on {N}. Burgess", "Comment on {N. Burgess}") == "differs"
+    assert same("{EEG}-Informed {fMRI} reveals", "{EEG-Informed} {fMRI} reveals") == "differs"
     assert same("A hierarchical bayesian model", "A hierarchical {B}ayesian model") == "differs"
     assert same("A hierarchical {Bayesian} {M}odel", "A hierarchical {B}ayesian model") == "differs"
     assert same("Cognitive {Maps} beyond", "Cognitive maps beyond") == "differs"
-    assert same("{EEG-Informed} {fMRI} reveals", "{EEG}-Informed {fMRI} reveals") == "library unprotected"
-    assert same("{EEG}-Informed {fMRI} reveals", "{EEG-Informed} {fMRI} reveals") == "differs"
     assert same("Seaborn: statistics", "{s}eaborn: statistics") == "differs"
+
+
+def test_library_titles_with_a_name_after_an_initial_or_a_question_mark():
+    """KahaEtal99b (``{J. O'Keefe} and {N. Burgess}``) and Boro01 (``? {M}andarin``): a period
+    after an initial does not end the sentence, and a capital after ``?`` is asked about."""
+    titles = dict(FED)
+    for key in ("KahaEtal99b", "Boro01"):
+        record = {"type": "journal-article", "DOI": "10.1000/corpus", "title": [sentence_case(titles[key])]}
+        proposal = complete.build({"doi": "10.1000/corpus"}, record)
+        change = next(c for c in proposal.changes if c.field == "title")
+        assert same(change.proposed, titles[key]) == "same", (key, change.proposed)
+    assert "{N. Burgess}" in titles["KahaEtal99b"] and "? {M}andarin" in titles["Boro01"]
 
 
 # Measured on 2026-10-02 (the task report has the table). "question" is the noise: titles a
 # person is asked about. The limits keep it from growing unnoticed.
 @pytest.mark.parametrize("feed, most_questions", [
-    ("sentence case", 40),
+    ("sentence case", 292),  # under 5% of the titles
     ("Title Case, APA", len(FED)),
     ("Title Case, Chicago", len(FED)),
 ])

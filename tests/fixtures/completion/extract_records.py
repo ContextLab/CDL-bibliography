@@ -34,6 +34,11 @@ WANTED = [  # (name in records.json, case file, case key, DOI of the record)
     ("preprint", "fixes-2026-09-24-cases.json.gz", "AlyTurk16", "10.1101/511782"),
     ("sentence-case-proper-noun", "phase0_cases.json.gz", "Pike84", "10.1037/0033-295x.92.1.130"),
 ]
+# Records added later go to a second file, more_records.json, so that tests counting the
+# items of records.json are not disturbed.
+MORE = [
+    ("MeyeEtal88", "apply-2026-09-25-cases.json.gz", "MeyeEtal88", "10.1037/0033-295x.95.2.183"),
+]
 # The entry as it stood in cdl.bib when the case was saved (the typed side of a test).
 WITH_TYPED_ENTRY = {"CleeMcCl91"}
 ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
@@ -55,8 +60,13 @@ def load(name):
 
 
 def main():
+    write(WANTED, "records.json")
+    write(MORE, "more_records.json")
+
+
+def write(wanted, target):
     out = {}
-    for name, filename, key, doi in WANTED:
+    for name, filename, key, doi in wanted:
         data = load(filename)
         case = data.get("cases", data)[key]
         item = {"doi": doi, "origin": {"file": "tests/fixtures/" + filename, "case": key}}
@@ -83,7 +93,7 @@ def main():
         out[name] = item
     text = json.dumps(without_addresses(out), indent=1, ensure_ascii=False, sort_keys=True) + "\n"
     assert "mailto" not in text and "�" not in text and not ADDRESS.search(text)
-    (Path(__file__).parent / "records.json").write_text(text, encoding="utf-8")
+    (Path(__file__).parent / target).write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":

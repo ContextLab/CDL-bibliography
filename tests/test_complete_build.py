@@ -19,6 +19,7 @@ from cdlbib.errors import CdlbibError, CompletionRefused
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
+RECORDS.update(json.loads((ROOT / "tests/fixtures/completion/more_records.json").read_text(encoding="utf-8")))
 # One record fetched for these tests (see the fixture README): an article that was retracted.
 RETRACTED = json.loads((ROOT / "tests/fixtures/completion/retracted-article.json").read_text(encoding="utf-8"))
 CAPITALS = ("title: capitalisation taken from a title-case source; proper nouns and acronyms cannot be told "
@@ -37,6 +38,17 @@ LIBRARY = {
         "\tTitle = {Inhibition drives early feature-based attention},\n"
         "\tVolume = {25},\n"
         "\tYear = {2014}}"
+    ),
+    "MeyeEtal88": (
+        "@article{MeyeEtal88,\n"
+        "\tAuthor = {D E Meyer and D E Irwin and A M Osman and J Kounios},\n"
+        "\tDoi = {10.1037/0033-295x.95.2.183},\n"
+        "\tJournal = {Psychological Review},\n"
+        "\tNumber = {2},\n"
+        "\tPages = {183--237},\n"
+        "\tTitle = {The dynamics of cognition and action: mental processes inferred from speed-accuracy decomposition},\n"
+        "\tVolume = {95},\n"
+        "\tYear = {1988}}"
     ),
     "Zoll90": (
         "@article{Zoll90,\n"
@@ -1020,6 +1032,194 @@ def test_reasons_are_plain_words_when_a_part_of_the_record_is_missing():
     proposal = complete.build({"doi": "10.1177/0956797613511257"}, record)
     assert unfilled(proposal, "title").reason == "title: the record's title is not in the expected form"
     assert all("NoneType" not in u.reason and "object" not in u.reason for u in proposal.unfilled)
+
+
+# --- fix round 3 ----------------------------------------------------------------------------------
+
+AFTER = "title: {0!r} follows a colon, a dash or a sentence end; a name keeps its capital ({{{0}}}), an ordinary word is written {1!r}"
+
+
+def test_a_capital_after_a_colon_is_asked_about_unless_a_second_source_shows_an_ordinary_word():
+    # MeyeEtal88: Crossref prints "…action: Mental processes…", PubMed "…action: mental processes…".
+    record, mapped = sources("MeyeEtal88")
+    assert record["title"] == ["The dynamics of cognition and action: Mental processes inferred from "
+                               "speed-accuracy decomposition."]
+    assert mapped["title"] == ["The dynamics of cognition and action: mental processes inferred from "
+                               "speed-accuracy decomposition"]
+    library = fields_of(LIBRARY["MeyeEtal88"])
+    both = complete.build({"doi": library["doi"]}, record, mapped)
+    assert change(both, "title") == complete.FieldChange("title", None, library["title"], "crossref+pubmed", "filled")
+    alone = complete.build({"doi": library["doi"]}, record)
+    assert change(alone, "title") == complete.FieldChange(
+        "title", None, library["title"].replace(": mental", ": {Mental}"), "crossref", "question")
+    assert AFTER.format("Mental", "mental") in alone.issues
+    assert alone.needs_decision is True and alone.complete is False
+
+
+@pytest.mark.parametrize("title, built, word", [
+    ("Speech perception in tonal languages: Mandarin speakers' categorical perception of pitch contours",
+     "Speech perception in tonal languages: {Mandarin} speakers' categorical perception of pitch contours", "Mandarin"),
+    ("Word frequency: Zipf's law revisited", "Word frequency: {Zipf's} law revisited", "Zipf's"),
+    ("Number sense \u2014 Weber and beyond", "Number sense --- {Weber} and beyond", "Weber"),
+    ("Does language shape thought? Mandarin and English speakers' conceptions of time",
+     "Does language shape thought? {Mandarin} and {English} speakers' conceptions of time", "Mandarin"),
+])
+def test_a_name_after_a_colon_a_dash_or_a_question_mark_is_never_lowered_without_a_question(title, built, word):
+    # The saved MoheEtal14 records with the title replaced, in both sources (the reviewer's cases;
+    # the last is the library's Boro01).
+    record, mapped = sources("MoheEtal14")
+    record["title"], mapped["title"] = [title], [title]
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert change(proposal, "title") == complete.FieldChange("title", None, built, "crossref+pubmed", "question")
+    assert AFTER.format(word, word.lower()) in proposal.issues
+    assert proposal.complete is False and proposal.needs_decision is True
+
+
+def test_small_words_and_listed_names_after_a_colon_or_dash_are_not_asked_about():
+    for title, built in (
+            ("Sleep and memory: A review", "Sleep and memory: a review"),
+            ("Sleep and memory \u2014 A review", "Sleep and memory --- a review"),
+            ("Sleep and memory: The case of rats", "Sleep and memory: the case of rats"),
+            ("Decision making: Bayesian approaches", "Decision making: {Bayesian} approaches"),
+            ("Free recall: fMRI evidence", "Free recall: {fMRI} evidence")):
+        record, _ = sources("Game62")
+        record["title"] = [title]
+        proposal = complete.build({"doi": record["DOI"]}, record)
+        assert change(proposal, "title") == complete.FieldChange("title", None, built, "crossref", "filled"), title
+
+
+def test_a_period_after_an_initial_or_an_abbreviation_does_not_end_the_sentence():
+    record, _ = sources("Game62")
+    record["title"] = ["A comment on the model of J. O'Keefe and N. Burgess in the view from St. Louis"]
+    proposal = complete.build({"doi": record["DOI"]}, record)
+    assert change(proposal, "title") == complete.FieldChange(
+        "title", None, "A comment on the model of {J}. {O'Keefe} and {N}. {Burgess} in the view from {St}. {Louis}",
+        "crossref", "filled")
+    assert complete._position("Memory in H.M. Lessons".split(" "), 3) == "end"  # may be a sentence end: asked
+    assert complete._position("reply to Dr. Smith".split(" "), 3) == "mid"
+    assert complete._position("Recall vs. Recognition".split(" "), 2) == "mid"
+    assert complete._position("Is it so? Maybe".split(" "), 3) == "end"
+
+
+@pytest.mark.parametrize("crossref, pubmed", [
+    ("Recall in boston schoolchildren", "Recall in Boston schoolchildren"),
+    ("Recall in Boston schoolchildren", "Recall in boston schoolchildren"),
+])
+def test_a_capital_only_one_source_has_is_never_dropped_without_a_question(crossref, pubmed):
+    # Game62's saved records with the title replaced: the one with the capital is judged
+    # Title Case (four words) and set aside.
+    record, mapped = sources("Game62")
+    record["title"], mapped["title"] = [crossref], [pubmed]
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert change(proposal, "title").kind == "question"
+    assert proposal.issues == [f"title: one source capitalises 'Boston' and the other does not: crossref "
+                               f"\"{crossref}\", pubmed \"{pubmed}\""]
+    assert proposal.needs_decision is True
+    # A source capitalised throughout says nothing about names: the sentence-case one is used.
+    record["title"], mapped["title"] = ["Recall In Boston Schoolchildren Today"], ["Recall in Boston schoolchildren today"]
+    settled = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert change(settled, "title") == complete.FieldChange(
+        "title", None, "Recall in {Boston} schoolchildren today", "crossref+pubmed", "filled")
+
+
+def test_sources_that_disagree_are_an_issue_and_need_a_decision():
+    # Real: Crossref spells the last author of MeyeEtal88 "Kounois", PubMed "Kounios".
+    record, mapped = sources("MeyeEtal88")
+    assert record["author"][-1]["family"] == "Kounois" and mapped["author"][-1]["family"] == "Kounios"
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert unfilled(proposal, "author").reason == "author: sources disagree"
+    assert proposal.issues == ["author: sources disagree (crossref: David E. Meyer; David E. Irwin; Allen M. Osman; "
+                               "John Kounois; pubmed: D E Meyer; D E Irwin; A M Osman; J Kounios)"]
+    assert proposal.needs_decision is True
+    # Pages (not a required field): the saved MoheEtal14 records with PubMed's pages replaced.
+    record, mapped = sources("MoheEtal14")
+    mapped["page"] = "100-110"
+    pages = complete.build({"doi": record["DOI"]}, record, mapped)
+    assert unfilled(pages, "pages").source_values == {"crossref": "315-324", "pubmed": "100-110"}
+    assert pages.issues == ["pages: sources disagree (crossref: 315-324; pubmed: 100-110)"]
+    assert pages.complete is True and pages.needs_decision is True
+
+
+def test_a_name_damaged_at_the_source_is_kept_and_asked_about():
+    # Crossref's record 10.1249/00005768-198704001-00264 (saved for the lookup tests) has the
+    # family name "O??Reilly": the apostrophe was lost at the publisher.
+    responses = json.loads((ROOT / "tests/fixtures/completion/responses.json").read_text(encoding="utf-8"))
+    record = next(r["response"]["body"]["message"] for r in responses
+                  if r["request"][0] == "https://api.crossref.org/works/10.1249%2F00005768-198704001-00264")
+    assert [p["family"] for p in record["author"]][2] == "O??Reilly"
+    proposal = complete.build({"doi": record["DOI"]}, deepcopy(record))
+    assert change(proposal, "author") == complete.FieldChange(
+        "author", None, "W R Frontera and C N Meredith and K O??Reilly and H Knuttgen and W J Evans", "crossref",
+        "question")
+    assert proposal.issues == ["author: the source text looks damaged ('O??Reilly'); written as the source has it"]
+    assert proposal.needs_decision is True and proposal.complete is False
+
+
+def test_more_retraction_banners_and_a_notices_title():
+    for banner in ("Retracted Article: ", "[RETRACTED] ", "REMOVED: ", "RETRACTED: RETRACTED: ", "WITHDRAWN: "):
+        record = deepcopy(RETRACTED["body"]["message"])
+        del record["updated-by"]
+        record["title"] = [banner + record["title"][0].removeprefix("RETRACTED: ")]
+        proposal = complete.build({"doi": "10.1016/S0140-6736(97)11096-0"}, record)
+        assert change(proposal, "title").proposed.startswith("Ileal-lymphoid-nodular hyperplasia"), banner
+        assert proposal.issues[0] == (f"The publisher's title begins with \"{banner.strip()}\"; it is not added "
+                                      "without a decision") and proposal.needs_decision is True
+    record = deepcopy(RETRACTED["body"]["message"])
+    del record["updated-by"]
+    record["title"] = ["Retraction: " + record["title"][0].removeprefix("RETRACTED: ")]
+    notice = complete.build({"doi": "10.1016/S0140-6736(97)11096-0"}, record)
+    assert notice.issues[0] == ("The record's title reads as a retraction or removal notice; it is not added "
+                                "without a decision") and notice.needs_decision is True
+    # Not banners: a title that only begins with the word.
+    for title in ("Withdrawn but not forgotten: memory for retracted articles", "Retracted articles and their afterlife"):
+        assert complete._BANNER.match(title) is None and complete._NOTICE_TITLE.match(title) is None
+
+
+def test_the_placeholder_typed_as_a_key_is_not_a_key():
+    record, mapped = sources("LindEtal21")  # no byline, so no key can be made
+    proposal = complete.build({"ID": complete.NO_KEY, "doi": "10.1017/S1355617720001009"}, record, mapped)
+    assert proposal.key_typed is None and proposal.complete is False and proposal.needs_decision is True
+    record, mapped = sources("MoheEtal14")
+    made = complete.build({"ID": complete.NO_KEY, "doi": "10.1177/0956797613511257"}, record, mapped)
+    assert made.key_typed is None and made.key_proposed == "MoheEtal14" and made.proposed_raw == LIBRARY["MoheEtal14"]
+
+
+def test_a_given_name_that_may_hold_part_of_the_family_name_is_a_question_for_the_librarys_particles():
+    # The library's bylines have family names beginning da, de, del, van, van der, von, …
+    for form in ("F H {Lopes da Silva}", "{van der Walt}", "{de Haan}", "{von Stein}"):
+        assert form in FROZEN
+    for given, family, kind in (("Fernando Lopes", "da Silva", "question"), ("Fernando", "Lopes da Silva", "filled"),
+                                ("Jan Willem", "de Vries", "question"), ("Stéfan J.", "van der Walt", "filled"),
+                                ("Matthijs A. A.", "van der Meer", "filled"), ("Astrid", "von Stein", "filled")):
+        record, _ = sources("Game62")
+        record["author"] = [{"given": given, "family": family}]
+        proposal = complete.build({"doi": record["DOI"]}, record)
+        assert change(proposal, "author").kind == kind, (given, family)
+
+
+def test_page_forms_the_pagination_rule_does_not_know_are_left_unfilled():
+    # A roman-numeral range and a range with letter suffixes: the library has one roman page
+    # value and no suffix-letter range, and the pagination rule accepts neither.
+    assert len(re.findall(r"(?m)^\tPages = \{[ivxlcdm]+(?:--|\})", FROZEN)) == 1
+    assert not re.search(r"(?m)^\tPages = \{\d+[A-Za-z]", FROZEN)
+    for printed in ("iii-xii", "12S-19S"):
+        record, _ = sources("MoheEtal14")
+        record["page"] = printed
+        proposal = complete.build({"doi": record["DOI"]}, record)
+        assert unfilled(proposal, "pages") == complete.Unfilled(
+            "pages", "pages: unsupported source locator", {"crossref": printed})
+
+
+def test_house_question_says_when_a_typed_value_was_kept_because_the_formatter_would_change_it():
+    # For every caller of _house_form (build, and the arXiv builder): when it returns the typed
+    # value unchanged, _house_question gives the reason to raise, or None.
+    typed = "Österreichische Zeitschrift Für Soziologie"
+    assert complete._house_form("journal", typed) == typed
+    assert complete._house_question("journal", typed) == (
+        "journal: the journal formatter does not keep the LaTeX form of 'Ö' (LATIN CAPITAL LETTER O WITH "
+        "DIAERESIS), 'ü' (LATIN SMALL LETTER U WITH DIAERESIS); the typed value is kept as typed")
+    assert complete._house_question("journal", "Psychological Science") is None
+    assert complete._house_question("author", 'S Fiedler and A Gl{\\"o}ckner') is None
 
 
 # --- Review Focus 1: the DOI is another work's ------------------------------------------------
