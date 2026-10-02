@@ -83,6 +83,99 @@ def test_upstream_refuses_a_checkout_that_is_not_from_github(checkout, tmp_path)
         publish.upstream_of(Workspace(tmp_path))
 
 
+def test_only_github_hosts_are_parsed(tmp_path):
+    for number, url in enumerate(("https://notgithub.com/ContextLab/CDL-bibliography.git",
+                                  "https://github.com.example.org/ContextLab/CDL-bibliography.git",
+                                  "git@notgithub.com:ContextLab/CDL-bibliography.git",
+                                  "https://example.org/github.com/ContextLab/CDL-bibliography")):
+        repo = tmp_path / str(number)
+        git(tmp_path, "init", "-q", str(repo)); git(repo, "remote", "add", "origin", url)
+        with pytest.raises(PublishRefused, match="not a GitHub repository"):
+            publish.upstream_of(Workspace(repo))
+
+
+def origin_at(tmp_path, name, repository):
+    repo = tmp_path / name
+    git(tmp_path, "init", "-q", str(repo)); git(repo, "remote", "add", "origin", f"https://github.com/{repository}.git")
+    return Workspace(repo)
+
+
+def test_a_checkout_of_my_own_fork_sends_to_its_parent(tmp_path):
+    """Read-only calls to GitHub: origin = the user's fork resolves to (parent, that fork);
+    origin = the upstream resolves to (upstream, the user's fork)."""
+    login, fork = my_fork()
+    if login is None:
+        pytest.skip(fork)
+    assert publish.resolve(origin_at(tmp_path, "mine", fork), login) == (UPSTREAM, fork)
+    assert publish.resolve(origin_at(tmp_path, "theirs", UPSTREAM), login) == (UPSTREAM, fork)
+    assert publish.is_fork(fork) is True and publish.is_fork(UPSTREAM) is False
+    with pytest.raises(PublishRefused, match="itself a fork"):       # refused before `gh repo fork` is run
+        publish.create_fork(fork)
+
+
+def test_an_unreachable_github_is_not_read_as_no_fork(monkeypatch, tmp_path):
+    if not shutil.which("gh"):
+        pytest.skip("gh is not installed")
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))  # nobody logged in: every call fails, none is a 404
+    for name in ("GH_TOKEN", "GITHUB_TOKEN"):
+        monkeypatch.delenv(name, raising=False)
+    with pytest.raises(PublishRefused, match="GitHub could not be reached"):
+        publish.find_fork(UPSTREAM, "octocat")
+    with pytest.raises(PublishRefused, match="GitHub could not be reached"):
+        publish.resolve(origin_at(tmp_path, "r", UPSTREAM), "octocat")
+
+
+def test_a_missing_repository_is_a_plain_no(tmp_path):
+    login, reason = gh_login()
+    if login is None:
+        pytest.skip(reason)
+    assert publish.find_fork("cli/scoop-gh", "cdlbib-no-such-user-0") is None    # a real 404, then an empty list
+
+
+def test_a_failed_push_says_where_things_stand_and_the_next_send_resumes(checkout, tmp_path):
+    ws, remote = checkout
+    branch = "cdlbib/test/2026-10-01-edit"
+    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
+    with pytest.raises(PublishRefused) as refused:
+        publish.deliver(ws, branch, "edit", str(tmp_path / "no-such-remote.git"))
+    message = str(refused.value)
+    assert f"committed on branch {branch}" in message and "nothing was sent and no pull request was opened" in message
+    assert "Run `cdlbib commit` again to resume" in message and "To go back instead: git switch master" in message
+    assert git(ws.root, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(ws.root, "status", "--porcelain") == ""
+    sha = git(ws.root, "rev-parse", "HEAD")
+    assert git(ws.root, "rev-list", "--count", "master..HEAD") == "1"
+    assert publish.deliver(ws, branch, "edit", str(remote)) == []    # nothing new to commit: the push alone
+    assert git(remote, "rev-parse", branch) == sha and git(ws.root, "rev-parse", "HEAD") == sha
+
+
+def test_nothing_pending_on_another_branch_is_refused_by_deliver(checkout):
+    ws, remote = checkout
+    before = state(ws.root)
+    with pytest.raises(PublishRefused, match="no changes"):
+        publish.deliver(ws, "cdlbib/test/2026-10-01-none", "none", str(remote))
+    assert state(ws.root) == before
+
+
+def test_a_commit_that_fails_puts_the_checkout_back(checkout):
+    """A real failing commit (the repository's pre-commit hook says no): back on the branch
+    the user was on, the same changes unstaged as before, no branch left behind."""
+    ws, _ = checkout
+    hook = ws.root / ".git" / "hooks" / "pre-commit"
+    hook.parent.mkdir(exist_ok=True)
+    hook.write_text("#!/bin/sh\necho 'hook says no' >&2\nexit 1\n", encoding="utf-8")
+    hook.chmod(0o755)
+    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
+    (ws.root / "verification" / "new.json").write_text("{}\n", encoding="utf-8")
+    before = state(ws.root)
+    with pytest.raises(PublishRefused) as refused:
+        publish.commit_to_branch(ws, "cdlbib/test/2026-10-01-edit", "edit")
+    message = str(refused.value)
+    assert "nothing was committed and nothing was sent" in message and "back on branch master" in message
+    assert "hook says no" in message
+    assert state(ws.root) == before and "cdlbib/test" not in before[3]
+    assert (ws.root / "cdl.bib").read_text(encoding="utf-8") == "% library\n% edit\n"
+
+
 def test_branch_name():
     name = publish.branch_name("octocat", "Add Smith & Jones (2024): fix pages!", datetime.date(2026, 10, 1))
     assert name == "cdlbib/octocat/2026-10-01-add-smith-jones-2024-fix-pages"
@@ -207,6 +300,55 @@ def test_send_without_a_login_refuses(checkout, monkeypatch, tmp_path):
     assert state(ws.root) == before
 
 
+def test_send_with_nothing_to_send_refuses_before_anything_outward(checkout):
+    """No changes and allow_fork_creation=True: the refusal comes first. The committed library
+    also fails the format check, so a send that skipped the refusal would stop at the gate
+    (and fail this test) long before any fork could be looked up or created."""
+    ws = library_checkout(checkout, "@article{Bad,\n\tPages = {10--1}}\n")
+    assert publish.pending(ws) == []
+    other = "cli/scoop-gh"                              # a small public repository standing in for an upstream
+    login, _ = gh_login()
+    had = publish.find_fork(other, login) if login else None
+    before = state(ws.root)
+    with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
+        api.send(ws, reference=str(ws.bib), upstream=other, base=TEST_BASE, allow_fork_creation=True)
+    assert state(ws.root) == before
+    if login:
+        assert publish.find_fork(other, login) == had   # nothing was created
+
+
+def test_send_never_pushes_to_the_upstream(checkout):
+    """The change also fails the format check, so a send that missed this refusal stops at
+    the gate (and fails this test) instead of going anywhere."""
+    ws, _ = checkout
+    (ws.root / "cdl.bib").write_text("@article{Bad,\n\tPages = {10--1}}\n", encoding="utf-8")
+    before = state(ws.root)
+    with pytest.raises(PublishRefused, match="never pushed to the upstream"):
+        api.send(ws, reference=str(ws.bib), citations=False, upstream="someone/Library", fork="Someone/library", base=TEST_BASE)
+    assert state(ws.root) == before
+
+
+def test_send_without_a_git_identity_refuses_and_changes_nothing(checkout, monkeypatch, tmp_path):
+    """git cannot name the author: no global or system configuration, no name in the
+    repository, none in the environment. (user.useConfigOnly makes that hold on machines
+    where git would otherwise make up an address from the host name.)"""
+    ws, _ = checkout
+    (ws.root / "cdl.bib").write_text("% library\n% edit\n", encoding="utf-8")
+    git(ws.root, "config", "user.useConfigOnly", "true")
+    before = state(ws.root)
+    home = tmp_path / "empty-home"; home.mkdir()
+    for name in GIT_ENV:
+        monkeypatch.delenv(name)
+    monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", "/dev/null")
+    monkeypatch.setenv("GIT_CONFIG_NOSYSTEM", "1")
+    with pytest.raises(PublishRefused) as refused:
+        api.send(ws, summary="edit", reference=str(ws.bib), citations=False, upstream="someone/x", base=TEST_BASE)
+    assert 'git config --global user.name "Your Name"' in str(refused.value)
+    assert 'git config --global user.email "you@example.org"' in str(refused.value)
+    assert state(ws.root) == before
+
+
 def test_send_outside_a_git_checkout_refuses(tmp_path):
     bib = tmp_path / "plain" / "cdl.bib"
     bib.parent.mkdir()
@@ -282,23 +424,43 @@ def gh_login():
     return who.stdout.strip(), ""
 
 
-def test_commit_command_never_creates_a_fork_unasked(checkout, tmp_path):
-    """The gate passes, the user has no fork of the checkout's upstream, there is no terminal
-    and no --yes: nothing is forked; the manual command is printed; exit 1."""
+def test_no_fork_is_reported_and_never_created_unasked(checkout, tmp_path):
+    """The gate passes and the user has no fork of the checkout's upstream: with fork
+    creation off (the default) the api only reports it, for the front end to ask."""
     login, reason = gh_login()
     if login is None:
         pytest.skip(reason)
     other = "cli/scoop-gh"                              # a small public repository standing in for an upstream
     if publish.find_fork(other, login):
         pytest.skip(f"@{login} has a fork of {other}, so the no-fork refusal cannot be shown")
-    ws = library_checkout(checkout, ZOLL90 + "\n")      # nothing is changed: even a fork could send nothing
+    ws = library_checkout(checkout, ZOLL90 + "\n")
+    ws.bib.write_text(ZOLL90 + "\n\n% a note\n", encoding="utf-8")
+    base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
     git(ws.root, "remote", "set-url", "origin", f"https://github.com/{other}.git")
     before = state(ws.root)
-    run = cdlbib(ws.root, "commit", "--reference", str(ws.bib), "--database", str(tmp_path / "db.sqlite3"))
-    assert run.returncode == 1, run.stdout + run.stderr
-    assert f"@{login} has no fork of {other}" in run.stderr
-    assert f"gh repo fork {other} --clone=false" in run.stderr
+    with pytest.raises(PublishRefused) as refused:
+        api.send(ws, reference=str(base), citations=False, allow_fork_creation=False)
+    assert refused.value.needs_fork and refused.value.upstream == other
+    assert str(refused.value) == f"@{login} has no fork of {other}."
     assert publish.find_fork(other, login) is None      # still none
+    assert state(ws.root) == before
+
+
+def test_commit_keeps_outfile_and_its_messages(checkout, tmp_path):
+    ws = library_checkout(checkout, ZOLL90 + "\n")
+    help_text = cdlbib(ws.root, "commit", "--help", COLUMNS="200").stdout
+    assert "--outfile" in help_text and "--summary" in help_text
+    ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
+    base = tmp_path / "base.bib"; base.write_text(ZOLL90 + "\n", encoding="utf-8")
+    out = tmp_path / "changes.txt"
+    before = state(ws.root)
+    run = cdlbib(ws.root, "commit", "--reference", str(base), "--database", str(tmp_path / "db.sqlite3"),
+                 "--outfile", str(out), CROSSREF_MAILTO=crossref_contact())
+    # The gate passes and the comparison is written; the send then stops (this checkout's
+    # origin is a local folder, or nobody is logged in), with nothing changed.
+    assert run.returncode == 1 and "Traceback" not in run.stderr, run.stdout + run.stderr
+    assert "checks passed; generating commit message..." in run.stdout
+    assert out.read_text(encoding="utf-8").strip() == "added the following entries: Rame72"
     assert state(ws.root) == before
 
 
@@ -333,7 +495,7 @@ def open_prs(fork, branch):
 
 def clean_up(work, url, branch):
     if url:
-        subprocess.run(["gh", "pr", "close", url, "--delete-branch"], capture_output=True)
+        subprocess.run(["gh", "pr", "close", url, "--delete-branch"], cwd=work, capture_output=True)
     subprocess.run(["git", "push", "-q", "origin", "--delete", branch], cwd=work, capture_output=True)
 
 
@@ -370,14 +532,29 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
     ws = Workspace(work)
     base_bib = tmp_path / "base.bib"; base_bib.write_text(ZOLL90 + "\n", encoding="utf-8")
     options = dict(reference=str(base_bib), mailto=crossref_contact(), database=str(tmp_path / "db.sqlite3"),
-                   upstream=fork, base=TEST_BASE, fork=fork)
+                   upstream=fork, base=TEST_BASE, fork=fork, inside_fork=True)
     summary = f"cdlbib test {os.getpid()}: please ignore"
     branch = publish.branch_name(login, summary, datetime.date.today())
     url, start = None, git(work, "rev-parse", "HEAD")
     try:
         ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
-        first = api.send(ws, summary=summary, **options)
+        # A push that fails for real (no such repository): committed, not sent, and said so.
+        nowhere = dict(options, fork=f"{login}/cdlbib-test-no-such-repository", inside_fork=False)
+        with pytest.raises(PublishRefused) as refused:
+            api.send(ws, summary=summary, **nowhere)
+        assert f"committed on branch {branch}" in str(refused.value) and "Run `cdlbib commit` again" in str(refused.value)
+        assert git(work, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(work, "rev-list", "--count", f"{start}..HEAD") == "1"
+        assert open_prs(fork, branch) == [] and publish.earlier_pr(fork, f"{login}:{branch}") is None
+
+        first = api.send(ws, summary=summary, **options)             # resumes: pushes the commit, opens the pull request
         url = first.url
+        with pytest.raises(PublishRefused, match="never pushed to the upstream"):   # without inside_fork: refused
+            api.send(ws, summary=summary, **dict(options, inside_fork=False))
+        missing = f"{login}/cdlbib-test-no-such-repository"                         # nor for anything but my own fork
+        with pytest.raises(PublishRefused, match="inside_fork needs"):
+            api.send(ws, summary=summary, **dict(options, upstream=missing, fork=missing))
+        assert publish.is_own_fork(fork, login) and not publish.is_own_fork(UPSTREAM, login)   # read-only
+        assert first.files == [] and git(work, "rev-list", "--count", f"{start}..HEAD") == "1"
         assert url.startswith(f"https://github.com/{fork}/pull/")
         assert (first.branch, first.fork, first.created_fork) == (branch, fork, False)
         assert git(work, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(work, "status", "--porcelain") == ""
@@ -397,5 +574,20 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
 
         third = api.send(ws, **options)                              # nothing new: the same pull request again
         assert third.url == url and git(work, "rev-list", "--count", f"{start}..HEAD") == "2"
+        assert second.files == ["cdl.bib"] and publish.earlier_pr(fork, f"{login}:{branch}") is None   # it is open
+
+        # The pull request is closed; a further send from its branch is refused before git is written to.
+        subprocess.run(["gh", "pr", "close", url], cwd=work, capture_output=True, check=True)
+        assert publish.earlier_pr(fork, f"{login}:{branch}") == (url, "closed")
+        ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n\n% a third edit\n", encoding="utf-8")
+        before, remote_head = state(work), git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}")
+        with pytest.raises(PublishRefused) as refused:
+            api.send(ws, **options)
+        message = str(refused.value)
+        assert f"pull request {url} is closed" in message and f"git switch {TEST_BASE}" in message
+        assert "carried along by `git switch`" in message
+        assert state(work) == before
+        assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == remote_head
+        assert open_prs(fork, branch) == []
     finally:
         clean_up(work, url, branch)

@@ -102,7 +102,7 @@ def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
     report_format(api.check_format(ws, autofix=True, outfile=str(cleaned), verbose=verbose, bars=sys.stderr),
                   ws, fname)
     shutil.move(str(cleaned), str(ws.bib))
-    commit(ctx, fname=fname, reference="github", verbose=False, summary=None, database=None,
+    commit(ctx, fname=fname, reference="github", verbose=False, outfile=None, summary=None, database=None,
            mailto=os.environ.get("CROSSREF_MAILTO"))
 
 
@@ -119,6 +119,7 @@ def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None
 
 @app.command()
 def commit(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", verbose: bool = False,
+           outfile: str = None,
            summary: str = typer.Option(None, "--summary", help="One line describing the change."),
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
@@ -131,7 +132,8 @@ def commit(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github",
 
     def send(report=None, progress=None, allow_fork_creation=False):
         return api.send(ws, summary=summary, reference=reference, mailto=mailto, database=database,
-                        progress=progress, bars=sys.stderr, report=report, allow_fork_creation=allow_fork_creation)
+                        progress=progress, bars=sys.stderr, report=report, allow_fork_creation=allow_fork_creation,
+                        outfile=outfile, verbose=verbose)
 
     try:
         try:
@@ -151,6 +153,8 @@ def commit(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github",
         raise typer.Exit(code=1)
     if result.created_fork:
         typer.echo(f"created fork {result.fork}")
+    if result.files:
+        typer.echo("committed: " + ", ".join(result.files))
     typer.echo(f"pull request: {result.url}")
     typer.echo(f"you are now on branch {result.branch}")
 

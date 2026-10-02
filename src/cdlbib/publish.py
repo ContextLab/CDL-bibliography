@@ -1,5 +1,6 @@
 """Send a change: the user's fork, a branch, a pull request. One route for everyone."""
 import json
+import os
 import re
 import subprocess
 
@@ -8,11 +9,16 @@ from .errors import PublishRefused
 ALLOWED = ("cdl.bib", "verification/")
 WORK = ".bibcheck/"                      # the local working folder: never sent, never a stray file
 PROTECTED_UPSTREAM = "ContextLab/CDL-bibliography"
+NO_CHANGES = "There are no changes to cdl.bib or verification/ to send."
+# https://github.com/O/N(.git), git@github.com:O/N(.git), ssh://git@github.com/O/N(.git): github.com only.
+GITHUB_URL = re.compile(r"^(?:https://(?:[^@/\s]+@)?github\.com/|ssh://git@github\.com/|git@github\.com:)"
+                        r"([^/\s]+)/([^/\s]+?)(?:\.git)?/?$")
 
 
 def _run(args, cwd=None, check=True):
-    try:
-        run = subprocess.run(args, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    try:                                 # git never stops to ask for a password: the api does not prompt
+        run = subprocess.run(args, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace",
+                             env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
     except OSError as exc:               # git or gh is not installed
         raise PublishRefused(f"`{args[0]}` could not be run ({type(exc).__name__}: {exc})") from exc
     if check and run.returncode != 0:
@@ -20,32 +26,74 @@ def _run(args, cwd=None, check=True):
     return run
 
 
+def _github(path, jq=None):
+    """A GitHub API GET through gh: the parsed answer (the jq output's lines, with ``jq``),
+    or None when GitHub says 404. Any other failure is 'GitHub could not be reached': a
+    failed call is never read as 'there is no such repository'."""
+    run = _run(["gh", "api", path, *(["--paginate", "--jq", jq] if jq else [])], check=False)
+    if run.returncode == 0:
+        return run.stdout.split() if jq else json.loads(run.stdout)
+    if "HTTP 404" in run.stderr:
+        return None
+    raise PublishRefused(f"GitHub could not be reached (gh api {path}):\n{(run.stderr or run.stdout).strip()[-2000:]}")
+
+
 def upstream_of(ws):
-    """'OWNER/NAME' of the GitHub repository the checkout was cloned from (its origin)."""
+    """'OWNER/NAME' of the GitHub repository the checkout's origin points to. It is the
+    upstream unless it is itself a fork (see resolve)."""
     url = _run(["git", "remote", "get-url", "origin"], cwd=ws.root).stdout.strip()
-    match = re.search(r"github\.com[:/]+([^/\s]+)/([^/\s]+?)(?:\.git)?/?$", url)
+    match = GITHUB_URL.match(url)
     if not match:
         raise PublishRefused(f"The checkout's origin is not a GitHub repository: {url}")
     return f"{match.group(1)}/{match.group(2)}"
 
 
+def is_fork(repository):
+    data = _github(f"repos/{repository}")
+    if data is None:
+        raise PublishRefused(f"GitHub has no repository {repository} (or it is not visible to you).")
+    return bool(data.get("fork"))
+
+
+def is_own_fork(repository, login):
+    """Does GitHub say ``repository`` is a fork owned by ``login``?"""
+    data = _github(f"repos/{repository}")
+    return bool(data and data.get("fork") and data["owner"]["login"].lower() == login.lower())
+
+
+def resolve(ws, login):
+    """(upstream, fork) for a checkout: where pull requests go, and the user's fork of it
+    ('login/NAME') or None. A checkout cloned from a fork sends to the fork's parent; when
+    that fork is the user's own, it is the fork (nothing is looked up or created)."""
+    origin = upstream_of(ws)
+    data = _github(f"repos/{origin}")
+    if data is None:
+        raise PublishRefused(f"GitHub has no repository {origin} (or it is not visible to you).")
+    if not data.get("fork"):
+        return data["full_name"], find_fork(data["full_name"], login)
+    upstream = data["parent"]["full_name"]
+    if data["owner"]["login"].lower() == login.lower():
+        return upstream, data["full_name"]
+    return upstream, find_fork(upstream, login)
+
+
 def find_fork(upstream, login):
     """The fork of ``upstream`` owned by ``login`` ('login/NAME'), or None. Read-only."""
     name = upstream.split("/", 1)[1]
-    run = _run(["gh", "api", f"repos/{login}/{name}"], check=False)
-    if run.returncode == 0:
-        data = json.loads(run.stdout)
-        if data.get("fork") and (data.get("parent") or {}).get("full_name", "").lower() == upstream.lower():
-            return data["full_name"]
+    data = _github(f"repos/{login}/{name}")
+    if data and data.get("fork") and (data.get("parent") or {}).get("full_name", "").lower() == upstream.lower():
+        return data["full_name"]
     # A fork may have been renamed: ask the upstream for forks owned by this login.
-    run = _run(["gh", "api", f"repos/{upstream}/forks", "--paginate", "--jq",
-                f'.[] | select(.owner.login == "{login}") | .full_name'], check=False)
-    names = run.stdout.split() if run.returncode == 0 else []
+    names = _github(f"repos/{upstream}/forks", jq=f'.[] | select(.owner.login == "{login}") | .full_name')
+    if names is None:
+        raise PublishRefused(f"GitHub has no repository {upstream} (or it is not visible to you).")
     return names[0] if names else None
 
 
 def create_fork(upstream):
     """Fork ``upstream`` into the logged-in user's account. Called only after the user agreed."""
+    if is_fork(upstream):
+        raise PublishRefused(f"{upstream} is itself a fork; a fork of a fork is never created.")
     _run(["gh", "repo", "fork", upstream, "--clone=false"])
     login = _run(["gh", "api", "user", "--jq", ".login"]).stdout.strip()
     fork = find_fork(upstream, login)
@@ -65,6 +113,10 @@ def branch_name(login, summary, today):
 
 def current_branch(ws):
     return _run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=ws.root).stdout.strip()
+
+
+def _head(ws, ref="HEAD"):
+    return _run(["git", "rev-parse", "--verify", "--quiet", ref], cwd=ws.root, check=False).stdout.strip()
 
 
 def _changed(ws):
@@ -95,33 +147,108 @@ def pending(ws):
     return [p for p in _changed(ws) if _allowed(p)]
 
 
+def require_identity(ws):
+    """git must know the author before anything is written: a commit that fails for want
+    of a name would leave a half-made branch."""
+    for who in ("GIT_AUTHOR_IDENT", "GIT_COMMITTER_IDENT"):
+        if _run(["git", "var", who], cwd=ws.root, check=False).returncode != 0:
+            raise PublishRefused(
+                "git does not know your name and email, so it cannot commit. Nothing was changed. "
+                "Set them, then run `cdlbib commit` again:\n"
+                '  git config --global user.name "Your Name"\n'
+                '  git config --global user.email "you@example.org"')
+
+
 def commit_to_branch(ws, branch, message):
     """Commit the changes to cdl.bib and verification/ on ``branch`` (made from the current
-    commit when new) and leave the checkout on it. Returns the commit."""
+    commit when new) and leave the checkout on it. Returns the commit. If the commit cannot
+    be made, the checkout is put back on the branch it was on."""
     mine = pending(ws)
     if not mine:
-        raise PublishRefused("There are no changes to cdl.bib or verification/ to send.")
-    if current_branch(ws) != branch:
-        exists = _run(["git", "rev-parse", "--verify", "--quiet", f"refs/heads/{branch}"], cwd=ws.root, check=False).returncode == 0
-        _run(["git", "switch", branch] if exists else ["git", "switch", "-c", branch], cwd=ws.root)
-    _run(["git", "add", "-A", "--", *mine], cwd=ws.root)
-    _run(["git", "commit", "-m", message, "--", *mine], cwd=ws.root)
-    return _run(["git", "rev-parse", "HEAD"], cwd=ws.root).stdout.strip()
+        raise PublishRefused(NO_CHANGES)
+    previous, start = current_branch(ws), _head(ws)
+    exists = bool(_head(ws, f"refs/heads/{branch}"))
+    staged = _run(["git", "diff", "--cached", "--quiet", "--", *mine], cwd=ws.root, check=False).returncode != 0
+    try:
+        if previous != branch:
+            _run(["git", "switch", branch] if exists else ["git", "switch", "-c", branch], cwd=ws.root)
+        _run(["git", "add", "-A", "--", *mine], cwd=ws.root)
+        _run(["git", "commit", "-m", message, "--", *mine], cwd=ws.root)
+    except PublishRefused as exc:
+        where = _put_back(ws, previous, branch, start, mine, made=not exists, unstage=not staged)
+        raise PublishRefused(f"The commit could not be made, so nothing was committed and nothing was sent. {where}\n{exc}") from exc
+    return _head(ws)
+
+
+def _put_back(ws, previous, branch, start, mine, made, unstage):
+    """After a failed commit: back to the branch the user was on, without the branch made
+    for nothing. Only moves that lose nothing (no reset, no stash, no clean, no force).
+    Returns the sentence that says where the checkout is now."""
+    if _head(ws) != start:               # a commit exists after all: leave everything in place
+        return f"The checkout is on branch {current_branch(ws)}."
+    if unstage:                          # nothing of ours was staged before; leave the index as it was
+        _run(["git", "restore", "--staged", "--", *mine], cwd=ws.root, check=False)
+    if current_branch(ws) != previous:
+        _run(["git", "switch", previous], cwd=ws.root, check=False)
+    if current_branch(ws) != previous:
+        return (f"The checkout could not be put back: it is on branch {current_branch(ws)}, with your changes "
+                f"in place; go back with: git switch {previous}")
+    if made and previous != branch and _head(ws, f"refs/heads/{branch}") == start:
+        _run(["git", "branch", "-d", branch], cwd=ws.root, check=False)
+    return f"The checkout is back on branch {previous}, with your changes in place."
 
 
 def push(ws, remote_url, branch):
     _run(["git", "push", remote_url, f"refs/heads/{branch}:refs/heads/{branch}"], cwd=ws.root)
 
 
+def deliver(ws, branch, message, remote_url, target=None):
+    """Commit what is pending on ``branch``, then push the branch to ``remote_url``. With
+    nothing pending, a checkout already on ``branch`` only pushes (a send that is being
+    resumed). Returns the committed paths. A failed push says where things stand."""
+    previous, files = current_branch(ws), pending(ws)
+    if files:
+        commit_to_branch(ws, branch, message)
+    elif previous != branch:
+        raise PublishRefused(NO_CHANGES)
+    try:
+        push(ws, remote_url, branch)
+    except PublishRefused as exc:
+        raise PublishRefused(
+            f"The change is committed on branch {branch}, but the push to {target or remote_url} failed: nothing was "
+            f"sent and no pull request was opened. Run `cdlbib commit` again to resume from there."
+            f"{go_back(previous, branch)}\n{exc}") from exc
+    return files
+
+
+def go_back(previous, branch):
+    return f" To go back instead: git switch {previous}" if previous != branch else ""
+
+
+def _pull_requests(upstream, head, base=None):
+    """The pull requests into ``upstream`` from ``head`` ('branch' or 'owner:branch'), any state."""
+    found = _run(["gh", "pr", "list", "--repo", upstream, "--head", head.split(":")[-1], "--state", "all",
+                  *(["--base", base] if base else []), "--json", "url,state,headRepositoryOwner"]).stdout
+    owner = head.split(":")[0] if ":" in head else upstream.split("/")[0]
+    return [p for p in json.loads(found or "[]")
+            if (p.get("headRepositoryOwner") or {}).get("login", "").lower() == owner.lower()]
+
+
+def earlier_pr(upstream, head):
+    """(url, 'merged' | 'closed') of a finished pull request from ``head`` when no open one
+    exists; None when one is open or there has never been one."""
+    found = _pull_requests(upstream, head)
+    if not found or any(p["state"] == "OPEN" for p in found):
+        return None
+    done = next((p for p in found if p["state"] == "MERGED"), found[0])   # gh lists the newest first
+    return done["url"], done["state"].lower()
+
+
 def open_or_update_pr(upstream, base, head, title, body, retitle=True):
     """The URL of the open pull request from ``head`` ('branch' or 'owner:branch') into
     ``upstream``'s ``base``: the existing one with its body replaced (and its title, unless
     ``retitle`` is False), or a new one."""
-    found = _run(["gh", "pr", "list", "--repo", upstream, "--head", head.split(":")[-1], "--base", base,
-                  "--state", "open", "--json", "url,headRepositoryOwner"]).stdout
-    owner = head.split(":")[0] if ":" in head else upstream.split("/")[0]
-    urls = [p["url"] for p in json.loads(found or "[]")
-            if (p.get("headRepositoryOwner") or {}).get("login", "").lower() == owner.lower()]
+    urls = [p["url"] for p in _pull_requests(upstream, head, base) if p["state"] == "OPEN"]
     if urls:
         _run(["gh", "pr", "edit", urls[0], "--body", body, *(["--title", title] if retitle else [])])
         return urls[0]

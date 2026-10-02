@@ -68,6 +68,7 @@ class SendResult:
     branch: str          # the branch the change was committed on; the checkout is left on it
     fork: str
     created_fork: bool = False
+    files: list = field(default_factory=list)   # the paths committed by this send ([] when only resuming)
 
 
 @contextlib.contextmanager
@@ -278,28 +279,47 @@ def approvals_note(ws, reference=None, database=None):
 
 
 def send(ws, summary=None, reference="github", citations=True, mailto=None, database=None, progress=None,
-         bars=None, report=None, upstream=None, base="master", fork=None, allow_fork_creation=False):
+         bars=None, report=None, upstream=None, base="master", fork=None, allow_fork_creation=False,
+         outfile=None, verbose=False, inside_fork=False):
     """The one way a change leaves this machine: the gate, then a commit of cdl.bib and
-    verification/ on a branch, pushed to the user's own fork, and a pull request into
-    ``upstream`` (the checkout's origin by default).
+    verification/ on a branch, pushed to the user's own fork, and a pull request into the
+    upstream repository (the checkout's origin, or its parent when the origin is a fork).
 
-    Order: other changed files refuse; the gate (check_library) refuses; no GitHub login
-    refuses; no fork refuses (PublishRefused.needs_fork) unless ``allow_fork_creation``;
-    only then is git touched. A refused send leaves the checkout as it was. A send that
-    succeeds leaves the checkout on ``SendResult.branch``; a send made from that branch
-    adds to it and updates the same pull request.
+    Order: other changed files refuse; nothing to send refuses; no git author refuses; the
+    gate (check_library) refuses; no GitHub login refuses; a branch whose pull request is
+    already merged or closed refuses; no fork refuses (PublishRefused.needs_fork) unless
+    ``allow_fork_creation``; only then is git written to. A send refused up to there leaves
+    the checkout as it was. A failure after that (commit, push, pull request) says where
+    things stand and how to resume. A send that succeeds leaves the checkout on
+    ``SendResult.branch``; a send made from that branch adds to it and updates the same
+    pull request.
 
     ``report`` receives the LibraryCheck once the format check is done (before the citation
-    check), ``progress`` each line of the citation check. ``fork`` names the fork to push to
-    instead of looking it up.
+    check); ``progress`` each line of the citation check, then of the comparison with
+    ``reference`` (its summary is also written to ``outfile``). ``fork`` names the fork to
+    push to instead of looking it up; it is never the upstream. The one exception is
+    ``inside_fork``: a pull request opened inside the user's own fork (``upstream`` and
+    ``fork`` both name it), which GitHub must confirm is a fork owned by the logged-in user;
+    it exists so that a send can be tried for real without touching a shared repository.
     """
     import datetime
     from . import identity, publish
     from .errors import PublishRefused
+
+    def not_upstream(candidate, target):
+        if candidate and target and candidate.lower() == target.lower() and not inside_fork:
+            raise PublishRefused(f"{candidate} is the upstream repository, not a fork of it; a change is never "
+                                 "pushed to the upstream.")
+
+    not_upstream(fork, upstream)
     stray = publish.unrelated_changes(ws)
     if stray:
         raise PublishRefused("Other files have uncommitted changes; commit, stash or discard them first: "
                              + ", ".join(stray))
+    here = publish.current_branch(ws)
+    if not publish.pending(ws) and not here.startswith("cdlbib/"):
+        raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
+    publish.require_identity(ws)
     fmt = check_format(ws, bars=bars)
     check = gate_after_format(fmt, citations=citations)
     if report:
@@ -310,26 +330,54 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     if not check.ok:
         raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
                          "(see `cdlbib verify`).", check=check)
+    if progress:
+        progress("checks passed; generating commit message...")
+    comparison = compare(reference, str(ws.bib), verbose=verbose, outfile=outfile, bars=bars)
+    if progress:
+        for line in comparison.log.splitlines():
+            progress(line)
+    changes = comparison.summary.strip() or "update bibliography"
     me = identity.current()
-    upstream = upstream or publish.upstream_of(ws)
-    created = False
-    fork = fork or publish.find_fork(upstream, me.login)
+    resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
+    if not publish.pending(ws) and not resumed:
+        raise PublishRefused(publish.NO_CHANGES)
+    if inside_fork and not (upstream and fork and upstream.lower() == fork.lower()
+                            and publish.is_own_fork(fork, me.login)):
+        raise PublishRefused(f"inside_fork needs upstream and fork to name one fork owned by {me.handle}; "
+                             f"got upstream {upstream}, fork {fork}.")
+    found = None
+    if upstream is None:
+        upstream, found = publish.resolve(ws, me.login)
+    elif not fork:
+        found = publish.find_fork(upstream, me.login)
+    fork, created = fork or found, False
+    not_upstream(fork, upstream)
+    branch = here if resumed else publish.branch_name(me.login, summary or changes.splitlines()[0][:100],
+                                                      datetime.date.today())
+    if resumed and fork:
+        earlier = publish.earlier_pr(upstream, f"{fork.split('/')[0]}:{branch}")
+        if earlier:
+            raise PublishRefused(
+                f"You are on branch {branch}, whose pull request {earlier[0]} is {earlier[1]}; a new change needs a "
+                f"new branch. Nothing was changed. Go back to {base}, bring it up to date and send again:\n"
+                f"  git switch {base}\n  git pull\n  cdlbib commit\n"
+                "Your uncommitted edits to cdl.bib and verification/ are carried along by `git switch`; "
+                "nothing is lost.")
+    body = changes + approvals_note(ws, reference=reference, database=database)
+    title = (summary or changes.splitlines()[0])[:100]
     if not fork:
         if not allow_fork_creation:
             raise PublishRefused(f"{me.handle} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
         fork, created = publish.create_fork(upstream), True
-    changes = compare(reference, str(ws.bib), bars=bars).summary.strip() or "update bibliography"
-    body = changes + approvals_note(ws, reference=reference, database=database)
-    title = (summary or changes.splitlines()[0])[:100]
-    here = publish.current_branch(ws)
-    resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
-    branch = here if resumed else publish.branch_name(me.login, summary or title, datetime.date.today())
-    if publish.pending(ws) or not resumed:
-        publish.commit_to_branch(ws, branch, changes)
-    publish.push(ws, f"https://github.com/{fork}.git", branch)
-    url = publish.open_or_update_pr(upstream, base, f"{fork.split('/')[0]}:{branch}", title, body,
-                                    retitle=bool(summary))   # an open pull request keeps its title unless one is given
-    return SendResult(url=url, branch=branch, fork=fork, created_fork=created)
+    files = publish.deliver(ws, branch, changes, f"https://github.com/{fork}.git", target=fork)
+    try:
+        url = publish.open_or_update_pr(upstream, base, f"{fork.split('/')[0]}:{branch}", title, body,
+                                        retitle=bool(summary))   # an open pull request keeps its title unless one is given
+    except PublishRefused as exc:
+        raise PublishRefused(
+            f"The change is committed on branch {branch} and pushed to {fork}, but the pull request could not be "
+            f"opened or updated. Run `cdlbib commit` again to resume from there.{publish.go_back(here, branch)}\n{exc}") from exc
+    return SendResult(url=url, branch=branch, fork=fork, created_fork=created, files=files)
 
 
 def _message(exc):
