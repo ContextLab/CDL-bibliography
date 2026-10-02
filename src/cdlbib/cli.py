@@ -95,7 +95,7 @@ def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, out
 
 @app.command()
 def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
-    # Autofix the format in place, then send. Potentially unsafe.
+    """Legacy: autofix the .bib file in place (overwriting it), then run send."""
     typer.echo("WARNING: potentially unsafe")
     ws = library(ctx, fname)
     cleaned = ws.bib.with_name("cleaned.bib")
@@ -108,6 +108,7 @@ def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
 
 @app.command()
 def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None):
+    """Show the differences between two .bib files."""
     result = api.compare(fname1, fname2, verbose=verbose, outfile=outfile, bars=sys.stderr)
     typer.echo(result.log, nl=False)
     if result.match:

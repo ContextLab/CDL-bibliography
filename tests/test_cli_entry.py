@@ -269,3 +269,14 @@ def test_verify_help_names_no_internal_function(tmp_path):
     shown = run("verify", "--help", cwd=tmp_path)
     assert shown.returncode == 0 and "check_library" not in shown.stdout
     assert "Format check, then citation verification" in shown.stdout
+
+
+def test_every_top_level_command_has_a_help_description(tmp_path):
+    import re
+    out = run("--help", cwd=tmp_path)
+    assert out.returncode == 0
+    for name in ("verify", "compare", "send", "magic", "crossref"):
+        line = next((l for l in out.stdout.splitlines() if re.match(rf"^│ {name}\s", l)), None)
+        assert line is not None, f"{name} is not listed in --help"
+        description = line.strip("│ \n").removeprefix(name).strip()
+        assert description, f"{name} has no description in --help"
