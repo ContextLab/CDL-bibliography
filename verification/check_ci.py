@@ -12,6 +12,7 @@ every entry must have an accepted result for its exact current text.
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -41,7 +42,8 @@ def main():
     work.mkdir(exist_ok=True)
     base = os.environ.get("BASE_REVISION", "")
     event = os.environ.get("EVENT_NAME", "")
-    command = [sys.executable, "bibcheck.py", "crossref"]
+    # The installed command; beside this interpreter when its folder is not on PATH.
+    command = [shutil.which("cdlbib") or str(Path(sys.executable).parent / "cdlbib"), "crossref"]
     snapshot = Path("verification/baseline.jsonl.gz")
     if event == "push" and not commit_exists(base):
         print(f"Base revision {base or '(none)'} is not in the history (force-push or new branch); "

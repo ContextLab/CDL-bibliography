@@ -12,10 +12,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # The format check and the test suite, on each supported Python
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.13']
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,16 +27,30 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install -r requirements-research.txt
-          pip install pytest
+          pip install ".[research]" pytest
       - name: run pytest
         env:
           CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
         run : |
-          python bibcheck/test.py
+          cdlbib verify --no-citations
           python -m pytest -q tests
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: build the wheel and install it into an empty environment
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build --wheel
+          python -m venv /tmp/wheelenv
+          /tmp/wheelenv/bin/pip install dist/*.whl
+          cd /tmp && /tmp/wheelenv/bin/cdlbib --version
+          /tmp/wheelenv/bin/cdlbib --library "$GITHUB_WORKSPACE" verify --no-citations

@@ -43,7 +43,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pip install -r requirements-research.txt
+      - run: python -m pip install ".[research]"
       - uses: actions/cache/restore@v4
         with:
           path: .bibcheck
@@ -51,12 +51,12 @@ jobs:
           restore-keys: |
             dartmouth-research-v1-${{ github.ref_name }}-
       - name: Restore matching baseline reviews
-        run: python bibcheck.py crossref restore verification/baseline.jsonl.gz
+        run: cdlbib crossref restore verification/baseline.jsonl.gz
       - name: Check Dartmouth model availability
         env:
           DARTMOUTH_CHAT_API_KEY: ${{ secrets.DARTMOUTH_CHAT_API_KEY }}
           BIBCHECK_RESEARCH_MODEL: ${{ inputs.model }}
-        run: python bibcheck/dartmouth_research_adapter.py --check-model
+        run: cdlbib-adapter-dartmouth --check-model
       - name: Collect bounded evidence
         env:
           DARTMOUTH_CHAT_API_KEY: ${{ secrets.DARTMOUTH_CHAT_API_KEY }}
@@ -71,12 +71,11 @@ jobs:
           import os
           from pathlib import Path
           import subprocess
-          import sys
           limit = int(os.environ['PILOT_LIMIT'])
           if not 1 <= limit <= 10:
               raise SystemExit('Pilot limit must be between 1 and 10')
-          command = [sys.executable, 'bibcheck.py', 'crossref', 'research-batch',
-                     'cdl.bib', '--adapter', 'bibcheck/dartmouth_research_adapter.py',
+          command = ['cdlbib', 'crossref', 'research-batch',
+                     'cdl.bib', '--adapter', 'cdlbib-adapter-dartmouth',
                      '--limit', str(limit)]
           hosts = [h.strip() for h in os.environ['PILOT_HOSTS'].split(',') if h.strip()]
           if not hosts:
@@ -93,7 +92,7 @@ jobs:
           PY
       - name: Export checkpoint, including failures
         if: always()
-        run: python bibcheck.py crossref snapshot verification/dartmouth-pilot.jsonl.gz
+        run: cdlbib crossref snapshot verification/dartmouth-pilot.jsonl.gz
       - uses: actions/cache/save@v4
         if: always()
         with:

@@ -9,7 +9,7 @@ from typing import List
 import typer
 
 from . import verification
-from .workspace import Workspace
+from .workspace import BIB_NAME, Workspace
 
 from .verification import (
     ACCEPTED,
@@ -58,6 +58,7 @@ def discover_review(
     """Try twenty title-search candidates; apply the existing strict source checks."""
     from .discovery_review import run_discovery_review
 
+    fname = bib(fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -97,6 +98,7 @@ def auto_review(
     """Automatically review cached findings; batch PubMed lookups through Europe PMC."""
     from .auto_review import run_auto_review
 
+    fname = bib(fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -128,6 +130,7 @@ def fulltext_review(
     """Review remaining entries using publisher front matter from open-access PMC XML."""
     from .fulltext_review import run_fulltext_review
 
+    fname = bib(fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -142,6 +145,19 @@ def fulltext_review(
         raise typer.Exit(2)
     finally:
         cache.close()
+
+
+LIBRARY = None  # the cdlbib command's --library option, set by cdlbib.cli
+
+
+def bib(fname):
+    """The bibliography a command works on. An explicit path is used as given, and so is a
+    cdl.bib in this folder unless --library names another; otherwise the default name is
+    looked up through the workspace, so the commands also work from a subfolder of the
+    library or with CDLBIB_LIBRARY."""
+    if fname != BIB_NAME or (not LIBRARY and Path(fname).exists()):
+        return fname
+    return str(Workspace.find(LIBRARY).bib)
 
 
 def revocation_ledger(fname, explicit=None):
@@ -308,8 +324,8 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
                 echo(f"    closest source {closest.get('source')} {closest.get('doi') or ''}: "
                      + "; ".join(closest.get("issues") or []))
         if unresolved:
-            echo("  Inspect with `bibcheck.py crossref review-packet KEY`; after checking the source, record "
-                 "a decision with `bibcheck.py crossref approve`.")
+            echo("  Inspect with `cdlbib crossref review-packet KEY`; after checking the source, record "
+                 "a decision with `cdlbib crossref approve`.")
         echo(f"library: {len(results)} entries: "
              + ", ".join(f"{k}={v}" for k, v in sorted(library.items())))
         return not unresolved, unresolved, dict(library)
@@ -357,6 +373,7 @@ def verify(
     ),
 ):
     """Verify new/modified entries; save every result so interrupted runs resume."""
+    fname = bib(fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -416,6 +433,7 @@ def status(
     ),
 ):
     """Offline check: recompute fingerprints and fail on every unresolved entry."""
+    fname = bib(fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -442,6 +460,7 @@ def snapshot(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Export a portable compressed JSONL audit snapshot for backup or sharing."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -461,6 +480,7 @@ def restore(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Restore matching reviews from a trusted snapshot; changed entries stay pending."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -482,6 +502,7 @@ def review_packet(
     output: str = typer.Option("review-packet.json", "--output"),
 ):
     """Export source evidence and exact fingerprint for PDF/LLM/human review."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -529,6 +550,7 @@ def attach_evidence(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Attach optional external research findings; human review remains required."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -579,6 +601,7 @@ def research(
     """Run optional LLM web search, download PDF, extract and check quoted evidence."""
     from .research import research_entry
 
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -631,6 +654,7 @@ def research_batch(
     """Collect actual PDF evidence in a bounded, resumable batch; never human-approve."""
     from .research import run_research_batch
 
+    fname = bib(fname)
     database, report = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -672,6 +696,7 @@ def approve(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Record an explicit human decision, bound to the exact reviewed entry."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -734,6 +759,7 @@ def revoke(
     source, note and time) to the database and to the committed ledger, and records the
     entry as needs_review. Restoring any snapshot, however old, keeps it revoked; a later
     approval with a new review note is a new decision."""
+    fname = bib(fname)
     database, _ = paths(fname, database)
     ledger_path = revocation_ledger(fname, ledger)  # resolved once; every reader and writer below uses it
     cache = Cache(database, ledger=ledger_path)

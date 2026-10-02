@@ -25,6 +25,11 @@ dependencies = [
 [project.optional-dependencies]
 research = ["pypdf>=6.0,<7"]
 
+[project.scripts]
+cdlbib = "cdlbib.cli:main"
+cdlbib-adapter-dartmouth = "cdlbib.dartmouth_research_adapter:main"
+cdlbib-adapter-openai = "cdlbib.openai_research_adapter:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

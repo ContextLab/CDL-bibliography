@@ -178,10 +178,14 @@ def run(payload, session=None, environ=None):
     return finding
 
 
-if __name__ == "__main__":
+def main():
     try:
         print(json.dumps(run(json.load(sys.stdin)), ensure_ascii=False))
     except Exception as exc:
         # Never print request headers, credentials, or raw provider errors.
         print(f"Research adapter failed: {type(exc).__name__}", file=sys.stderr)
         sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()

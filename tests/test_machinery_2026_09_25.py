@@ -11,12 +11,14 @@ from copy import deepcopy
 import gzip
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+CDLBIB = shutil.which("cdlbib") or str(Path(sys.executable).parent / "cdlbib")
 from cdlbib import auto_review  # noqa: E402
 from cdlbib import catalogue_review  # noqa: E402
 from cdlbib import correction_proposals as cp  # noqa: E402
@@ -90,13 +92,13 @@ def test_duplicate_fields_are_an_error(tmp_path, monkeypatch):
 def test_bibcheck_verify_surfaces_errors_and_exits_nonzero(tmp_path):
     entry, _ = case("KothEtal25")
     bad = write_bib(tmp_path / "bad.bib", entry["raw"].replace("IMAG.a.136", "IMAG.a.136--IMAG.a.1"))
-    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(bad)], cwd=ROOT,
+    run = subprocess.run([CDLBIB, "verify", "--fname", str(bad)], cwd=ROOT,
                          capture_output=True, text=True)
     assert run.returncode == 1
     assert "page numbers are ambiguous or incorrect" in run.stderr and "KothEtal25" in run.stderr
     good = write_bib(tmp_path / "good.bib", entry["raw"])
     # Format only: the citation part of the gate is tested in section 16.
-    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(good), "--no-citations"], cwd=ROOT,
+    run = subprocess.run([CDLBIB, "verify", "--fname", str(good), "--no-citations"], cwd=ROOT,
                          capture_output=True, text=True)
     assert run.returncode == 0 and "looks good!" in run.stdout
 
@@ -808,7 +810,7 @@ def crossref_contact():
 def gate(tmp_path, *args):
     env = dict(__import__("os").environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools",
                CROSSREF_MAILTO=crossref_contact())
-    return subprocess.run([sys.executable, str(ROOT / "bibcheck.py"), *args], cwd=ROOT, env=env,
+    return subprocess.run([CDLBIB, *args], cwd=ROOT, env=env,
                           capture_output=True, text=True, timeout=1800)
 
 

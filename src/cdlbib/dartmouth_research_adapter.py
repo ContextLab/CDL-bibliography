@@ -359,7 +359,7 @@ def run(payload, session=None, environ=None, searcher=None):
     return result
 
 
-if __name__ == "__main__":
+def main():
     try:
         if sys.argv[1:] == ["--check-model"]:
             print("Dartmouth model available: " + check_model())
@@ -372,3 +372,7 @@ if __name__ == "__main__":
         else:
             print(f"Dartmouth adapter failed: {type(exc).__name__}", file=sys.stderr)
         sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()

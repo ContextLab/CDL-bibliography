@@ -8,6 +8,7 @@ from the downloaded PDF's text. Neither phase can change verification status.
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
@@ -26,8 +27,15 @@ INSTRUCTIONS = (
 )
 
 
+def locate_adapter(executable, strict=True):
+    """An adapter is an executable: a path, or a command name found on PATH
+    (e.g. cdlbib-adapter-dartmouth)."""
+    located = shutil.which(str(executable)) if not Path(executable).exists() else None
+    return Path(located or executable).resolve(strict=strict)
+
+
 def invoke_adapter(executable, payload):
-    executable = Path(executable).resolve(strict=True)
+    executable = locate_adapter(executable)  # a .py path is run with this interpreter
     try:
         result = subprocess.run(
             [sys.executable, str(executable)]
@@ -244,7 +252,7 @@ def research_entry(entry, previous, executable, hosts, directory):
         "pdf_path": str(path),
         "pages_path": str(text_path),
         "retrieved_at": now(),
-        "reviewer": "research-adapter:" + str(Path(executable).resolve()),
+        "reviewer": "research-adapter:" + str(locate_adapter(executable, strict=False)),
         "fields": fields,
         "extraction_policy": extracted.get("extraction_policy"),
         "unsupported_fields": extracted.get("unsupported_fields", []),
