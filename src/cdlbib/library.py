@@ -236,10 +236,15 @@ def download(progress=None):
 #                   recorded commit: modified tracked files, untracked files, ignored files
 #   ref.json        the branch, the commit, what `git status` said about those two paths (per
 #                   path and as the original text), the tracked files that were deleted in
-#                   the working tree, and the folders that were there
+#                   the working tree, the folders that were there, and (in a backup taken
+#                   just before an undo) every branch that undo moved, with the commit it
+#                   was on, so that undoing the undo puts each branch back
 #   changes.bundle  the commits that are on no branch of the upstream, when there are any
-# and, in the library itself, the private ref refs/cdlbib/backups/<UTC time> on the recorded
-# commit, so that git never discards it while the backup exists.
+#   moved-<n>.bundle  the commits of the n-th moved branch that are on no branch of the upstream
+# and, in the library itself, the private refs refs/cdlbib/backups/<UTC time> on the recorded
+# commit and refs/cdlbib/backups/<UTC time>-moved-<n> on each moved branch's commit, so that
+# git never discards them while the backup exists. They are deleted with the backup, and
+# only then: a commit is kept for as long as a listed backup records it, and no longer.
 #
 # What restore() guarantees: afterwards the branch, the commit, and the bytes of every file
 # under cdl.bib and verification/ are what they were when the backup was taken, and the same
@@ -276,6 +281,7 @@ class Backup:
     has_bundle: bool               # local commits were saved in changes.bundle
     deleted: list = field(default_factory=list)   # tracked files that were not on disk
     folders: list = field(default_factory=list)   # the folders that were on disk under the two paths
+    moved: list = field(default_factory=list)     # (branch, commit) of each branch the undo this backup preceded moved
 
     @property
     def stamp(self):
@@ -452,11 +458,23 @@ def _read(folder):
     """The Backup in ``folder``, or None when it is not a complete backup."""
     try:
         ref = json.loads((folder / "ref.json").read_text(encoding="utf-8"))
-        taken = datetime.datetime.strptime(folder.name, _STAMP).replace(tzinfo=datetime.timezone.utc)
+        taken = _stamp_time(folder.name)
+        if taken is None or not (ref["branch"] is None or isinstance(ref["branch"], str)):
+            return None
         return Backup(path=folder, taken_at=taken, branch=ref["branch"], commit=str(ref["commit"]),
                       changed=list(ref["changed"]), has_bundle=(folder / "changes.bundle").is_file(),
-                      deleted=list(ref["deleted"]), folders=list(ref["folders"]))
-    except (OSError, ValueError, TypeError, KeyError):
+                      deleted=list(ref["deleted"]), folders=list(ref["folders"]),
+                      moved=[(str(entry["branch"]), str(entry["commit"])) for entry in ref.get("moved", [])])
+    except (OSError, ValueError, TypeError, KeyError, AttributeError):
+        return None
+
+
+def _stamp_time(name):
+    """The UTC time a backup folder's name states, or None when the name is not a real time
+    (99999999T999999.999999Z fits the pattern and is no time: such a folder is not ours)."""
+    try:
+        return datetime.datetime.strptime(name, _STAMP).replace(tzinfo=datetime.timezone.utc)
+    except ValueError:
         return None
 
 
@@ -466,7 +484,7 @@ def _backup_names(folder):
         names = os.listdir(folder)
     except OSError:
         return []
-    return sorted(name for name in names if _STAMP_NAME.fullmatch(name)
+    return sorted(name for name in names if _STAMP_NAME.fullmatch(name) and _stamp_time(name) is not None
                   and (folder / name).is_dir() and not (folder / name).is_symlink())
 
 
@@ -482,8 +500,10 @@ def _drop(folder, name, root):
     code wrote, and the private refs that go with it."""
     if name in _backup_names(folder):
         shutil.rmtree(folder / name)
-        for pin in (_PINS + name, _PINS + name + "-moved"):
-            _git(root, "update-ref", "-d", pin, check=False)
+        pins = _git(root, "for-each-ref", "--format=%(refname)", _PINS, check=False).stdout.splitlines()
+        for pin in pins:       # its own ref, and those of the branches recorded in it
+            if pin == _PINS + name or pin.startswith(_PINS + name + "-moved-"):
+                _git(root, "update-ref", "-d", pin, check=False)
 
 
 def _prune(folder, root):
@@ -504,8 +524,8 @@ def _sweep(folder, root, now):
         named = _PARTIAL_NAME.fullmatch(name)
         if not named or not (folder / name).is_dir() or (folder / name).is_symlink():
             continue
-        started = datetime.datetime.strptime(named.group(1), _STAMP).replace(tzinfo=datetime.timezone.utc)
-        if now - started > _STALE:
+        started = _stamp_time(named.group(1))
+        if started is not None and now - started > _STALE:
             shutil.rmtree(folder / name)
             if not os.path.lexists(folder / named.group(1)):
                 _git(root, "update-ref", "-d", _PINS + named.group(1), check=False)
@@ -665,6 +685,12 @@ def _put(root, backup, into):
         if key not in recorded:
             with contextlib.suppress(OSError):
                 os.rmdir(root / folders[key])
+    for rel in list(backup.folders) + list(saved.values()):
+        _inside(rel)
+        above = [root.joinpath(*rel.split("/")[:count]) for count in range(1, len(rel.split("/")))]
+        linked = [str(one) for one in above if one.is_symlink()]
+        if linked:      # never write through a link: it may lead out of the library
+            raise CdlbibError(f"{linked[0]} is a link, and {rel} lies beneath it")
     for rel in backup.folders:
         (root / rel).mkdir(parents=True, exist_ok=True)
     for rel in saved.values():
@@ -673,6 +699,83 @@ def _put(root, backup, into):
     if wrong:
         raise CdlbibError(f"these files are not as the backup recorded them: {', '.join(wrong[:5])}"
                           + (", ..." if len(wrong) > 5 else ""))
+
+
+_COMMIT_NAME = re.compile(r"[0-9a-f]{40}(?:[0-9a-f]{24})?")
+
+
+def _inside(rel):
+    """``rel`` when it is a plain relative path under cdl.bib or verification/; CdlbibError
+    for anything else (absolute, a '..' or empty part, another top folder)."""
+    parts = rel.split("/") if isinstance(rel, str) else []
+    if (not parts or parts[0] not in KEPT or any(part in ("", ".", "..") for part in parts) or "\0" in rel
+            or os.path.isabs(rel) or (os.name == "nt" and ("\\" in rel or ":" in rel))):
+        raise CdlbibError(f"the path {rel!r} is not under {' or '.join(KEPT)}")
+    return rel
+
+
+def _trusted(root, backup, tree=False):
+    """Refuse a backup whose recorded names could lead a restore outside the library's two
+    paths or to something that is not a branch or a commit: every path read from it must be a
+    plain path under cdl.bib or verification/, every branch a valid branch name, every commit
+    a full hash. With ``tree`` (the commit must be in the library), also: no file or folder
+    of the backup lies beneath a file or link of the backup or of its commit."""
+    try:
+        if not tree:
+            for rel in list(backup.folders) + list(backup.deleted):
+                _inside(rel)
+            for branch, commit in [(backup.branch, backup.commit)] + list(backup.moved):
+                if not _COMMIT_NAME.fullmatch(commit):
+                    raise CdlbibError(f"{commit!r} is not a commit")
+                if branch is not None and (branch.startswith("-") or _git(
+                        root, "check-ref-format", "refs/heads/" + branch, check=False).returncode != 0):
+                    raise CdlbibError(f"{branch!r} is not a branch name")
+            return
+        tracked, saved = _commit_files(root, backup.commit), _saved(backup)
+        deleted = {_same_name(name) for name in backup.deleted}
+        holders = set(saved) | {key for key in tracked if key not in deleted}
+        for rel in list(saved.values()) + list(backup.folders):
+            parts = _inside(rel).split("/")
+            above = [_same_name("/".join(parts[:count])) for count in range(1, len(parts) + (rel in backup.folders))]
+            beneath = [name for name in above if name in holders]
+            if beneath:
+                raise CdlbibError(f"{rel} lies beneath or in place of the file {beneath[0]}")
+    except CdlbibError as exc:
+        raise CdlbibError(f"{backup.path} is not a backup cdlbib wrote ({exc}), so it was not restored. "
+                          "Nothing was changed.") from exc
+
+
+def _record_moves(root, into, displaced):
+    """Record in the backup ``into`` each (branch, commit) an undo is about to move a branch
+    off, and keep each commit for as long as that backup exists: a private ref, and a bundle
+    when the commit is on no branch of the upstream. Restoring ``into`` puts each back."""
+    file = into.path / "ref.json"
+    ref = json.loads(file.read_text(encoding="utf-8"))
+    moved = list(ref.get("moved", []))
+    for branch, commit in displaced:
+        if any(entry["branch"] == branch for entry in moved):
+            if any(entry["branch"] == branch and entry["commit"] == commit for entry in moved):
+                continue
+            raise CdlbibError(f"{into.path} already records another commit for branch {branch}")
+        number = len(moved)
+        pin = f"{_PINS}{into.stamp}-moved-{number}"
+        _git(root, "update-ref", "-m", "cdlbib undo", pin, commit, "")       # a new ref: fails if it exists
+        bundle = None
+        if int(_git(root, "rev-list", "--count", commit, "--not", "--remotes=origin").stdout) > 0:
+            bundle = f"moved-{number}.bundle"
+            _git(root, "bundle", "create", "--quiet", str(into.path / bundle), "refs/heads/" + branch,
+                 "--not", "--remotes=origin")
+        moved.append({"branch": branch, "commit": commit, "pin": pin, "bundle": bundle})
+    ref["moved"] = moved
+    handle, temporary = tempfile.mkstemp(dir=into.path, prefix="ref.", suffix=".tmp")
+    try:
+        with os.fdopen(handle, "w", encoding="utf-8") as out:
+            json.dump(ref, out, indent=1)
+        os.replace(temporary, file)
+    except BaseException:
+        with contextlib.suppress(OSError):
+            os.unlink(temporary)
+        raise
 
 
 def _has_commit(root, commit):
@@ -700,6 +803,7 @@ def _restore(root, backup, into):
     if backup is None or _read(Path(backup.path)) is None or Path(backup.path).parent != folder:
         raise CdlbibError(f"No backup has been made yet of {root}, so there is nothing to undo." if backup is None
                           else f"{backup.path} is not a backup in {folder}; nothing was changed.")
+    _trusted(root, backup)
     own = into is None
     if own:
         into = _backup(root)
@@ -717,12 +821,24 @@ def _restore(root, backup, into):
                 raise CdlbibError(f"{what} cannot be restored: its commit {target[:8]} is no longer in the library"
                                   + (" and could not be read from the backup's bundle" if bundle.is_file() else
                                      ", and the backup holds no bundle of it") + ". Nothing was changed.")
+        for number, (branch, commit) in enumerate(backup.moved):     # the branches a restore of this backup puts back
+            if not _has_commit(root, commit):
+                bundle = backup.path / f"moved-{number}.bundle"
+                if bundle.is_file() and _git(root, "bundle", "verify", "--quiet", str(bundle), check=False).returncode == 0:
+                    _git(root, "fetch", "--quiet", "--no-tags", str(bundle),
+                         f"refs/heads/{branch}:{_PINS}{backup.stamp}-moved-{number}", check=False)
+                if not _has_commit(root, commit):
+                    raise CdlbibError(f"{what} cannot be restored: commit {commit[:8]} of branch {branch} is no "
+                                      "longer in the library and could not be read from the backup. Nothing was changed.")
+        _trusted(root, backup, tree=True)
         current, head = _head(root)
         in_place = current == backup.branch and head == target
-        moved = None            # where the backup's branch is now, when it exists
-        if backup.branch:
-            moved = _git(root, "rev-parse", "--verify", "--quiet", f"refs/heads/{backup.branch}^{{commit}}",
-                         check=False).stdout.strip() or None
+        # Every branch this restore puts on a commit: the backup's own, then those an undo had
+        # moved (recorded in the backup). (branch, where it is now or None, where it goes)
+        plan = ([(backup.branch, target)] if backup.branch else []) + [
+            (branch, commit) for branch, commit in backup.moved if branch != backup.branch]
+        moves = [(branch, _git(root, "rev-parse", "--verify", "--quiet", f"refs/heads/{branch}^{{commit}}",
+                               check=False).stdout.strip() or None, commit) for branch, commit in plan]
         elsewhere = _status(root, *_ELSEWHERE)[0]
         if head != target:
             # git moves the clean tracked files outside the two paths with the commit. Anything
@@ -740,9 +856,18 @@ def _restore(root, backup, into):
         if wrong:
             raise CdlbibError(f"The library changed after its backup was taken ({', '.join(wrong[:5])}"
                               f"{', ...' if len(wrong) > 5 else ''}), so nothing was restored. Nothing was changed.")
-    except CdlbibError:
+        # A branch that is about to leave a commit is recorded in `into` first, with that commit
+        # kept by it, so that restoring `into` puts the branch back. (The branch the library is
+        # on needs no entry: `into` records it as its own branch and commit.)
+        displaced = [(branch, now) for branch, now, to in moves if now and now != to and branch != current]
+        if displaced:
+            _record_moves(root, into, displaced)
+    except (CdlbibError, OSError) as exc:
         if own:      # nothing was changed: the copy just taken is not kept, so the newest backup stays the newest
             _drop(folder, into.stamp, root)
+        if isinstance(exc, OSError):
+            raise CdlbibError(f"{what} could not be checked ({exc.strerror or exc}"
+                              f"{': ' + str(exc.filename) if exc.filename else ''}). Nothing was changed.") from exc
         raise
     saved = f"Your files as they were are saved in {into.path}; `{UNDO} {into.stamp}` puts them back."
 
@@ -768,22 +893,15 @@ def _restore(root, backup, into):
 
     # d, e. Put the branch on that commit, then the saved files.
     try:
-        if not in_place and backup.branch:
-            if moved is None:
-                _git(root, "branch", "--quiet", backup.branch, target)
-            elif moved != target:
-                if moved != head:
-                    # The branch leaves a commit that is not the one `into` recorded: keep it
-                    # under a private ref of `into`, so that no commit is ever lost by an undo.
-                    keep = _PINS + into.stamp + "-moved"
-                    _git(root, "update-ref", "-m", "cdlbib undo", keep, moved, "", check=False)
-                    if _git(root, "rev-parse", "--verify", "--quiet", keep, check=False).stdout.strip() != moved:
-                        raise CdlbibError(f"commit {moved[:8]} of branch {backup.branch} could not be kept")
-                swap = _git(root, "update-ref", "-m", "cdlbib undo", f"refs/heads/{backup.branch}", target, moved,
-                            check=False)
+        for branch, now, to in moves:
+            if now is None:
+                _git(root, "branch", "--quiet", branch, to)
+            elif now != to:
+                swap = _git(root, "update-ref", "-m", "cdlbib undo", f"refs/heads/{branch}", to, now, check=False)
                 if swap.returncode != 0:
-                    raise CdlbibError(f"branch {backup.branch} is no longer at {moved[:8]}, where it was a moment "
-                                      "ago, so it was not moved")
+                    raise CdlbibError(f"branch {branch} is no longer at {now[:8]}, where it was a moment ago, "
+                                      f"so it was not moved to {to[:8]}")
+        if not in_place and backup.branch:
             _git(root, "switch", "--quiet", "--no-overwrite-ignore", backup.branch)
         _put(root, backup, into)
         if _head(root) != (backup.branch, target):
@@ -803,7 +921,9 @@ def restore(backup, ws, into=None):
     ``into`` is a backup of the current state, taken just before; without one, restore takes
     it itself, and removes it again when nothing was changed (a refusal, or a failure after
     which the library was put back and checked). A file under the two paths that is not in
-    ``backup`` is moved into ``into``, never deleted. Clean tracked files elsewhere follow the
+    ``backup`` is moved into ``into``, never deleted. A branch the restore moves off a commit
+    is recorded in ``into`` with that commit, which ``into`` keeps; restoring ``into`` puts every
+    such branch back, so undo followed by undo leaves every local branch where it was. Clean tracked files elsewhere follow the
     commit, as git moves them; any file elsewhere that this would overwrite (changed,
     untracked or ignored) is a refusal, before anything changes. Old backups are pruned only
     after a restore that succeeded. Raises CdlbibError; when the user's files are then only

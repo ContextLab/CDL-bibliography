@@ -79,7 +79,13 @@ def snapshot(root):
     guarantee leaves that out); the paths that are changed, and every byte, are."""
     branch = subprocess.run(["git", "symbolic-ref", "--quiet", "--short", "HEAD"], cwd=root, capture_output=True, text=True)
     return {"branch": branch.stdout.strip() or None, "commit": git("rev-parse", "HEAD", cwd=root),
+            "branches": local_branches(root),          # every local branch, not only the one the library is on
             "changed": sorted(changed_paths(root, *KEPT)), "files": hashes(root, KEPT)}
+
+
+def local_branches(root):
+    lines = git("for-each-ref", "--format=%(refname:short) %(objectname)", "refs/heads", cwd=root).splitlines()
+    return dict(line.rsplit(" ", 1) for line in lines)
 
 
 def outside(root):
@@ -425,9 +431,10 @@ def test_a_detached_head_is_restored_detached(managed):
     conftest._git("switch", "--quiet", "master", cwd=root)
     advance(upstream, "An update", **{"cdl.bib": conftest.ZOLL90 + "\n% upstream\n"})
     fast_forward(root)
+    updated = git("rev-parse", "master", cwd=root)
     library.restore(made, ws)
-    assert snapshot(root) == before
-    assert git("rev-parse", "master", cwd=root) != before["commit"]    # master was not the backup's branch: left alone
+    # master was not the backup's branch and no undo had moved it: it stays where the update put it
+    assert snapshot(root) == dict(before, branches={"master": updated}) and updated != before["commit"]
 
 
 # --- files outside cdl.bib and verification/ -------------------------------------------------
@@ -868,8 +875,8 @@ def test_a_library_on_a_send_branch_is_restored_to_that_branch(managed):
     on_master = snapshot(root)
 
     assert api.undo_update() == made
-    assert snapshot(root) == before
-    assert git("rev-parse", "master", cwd=root) == on_master["commit"]  # master is not the backup's branch: left alone
+    # master is not the backup's branch and no undo had moved it: it stays where the update put it
+    assert snapshot(root) == dict(before, branches=dict(before["branches"], master=on_master["commit"]))
     api.undo_update()
     assert snapshot(root) == on_master
 
@@ -1425,3 +1432,324 @@ def test_the_git_commands_of_an_update_are_the_ones_that_cannot_lose_work(manage
     merges = [command for command in ran if command.split()[0] == "merge"]
     assert len(merges) == 1 and merges[0].startswith("merge --ff-only --no-overwrite-ignore --no-autostash --quiet ")
     assert [command for command in ran if command.split()[0] == "fetch"] == ["fetch --quiet origin"]
+
+
+# --- fix round 2 -----------------------------------------------------------------------------
+
+def moved_branch_scenario(root, ws):
+    """The reviewer's scenario: the newest backup has master at X; master then gains a local
+    commit Z that no backup records; the user works on another branch. Gives (the backup,
+    X, Z, the snapshot before any undo)."""
+    made = library.backup(ws)
+    x = git("rev-parse", "HEAD", cwd=root)
+    write(root, "cdl.bib", "% local commit Z on master, recorded in no backup\n")
+    conftest._git("commit", "--quiet", "-m", "Z", "--", "cdl.bib", cwd=root)
+    z = git("rev-parse", "HEAD", cwd=root)
+    conftest._git("switch", "--quiet", "-c", "cdlbib/me/topic", "origin/master", cwd=root)
+    write(root, "verification/topic.txt", "topic work\n")
+    return made, x, z, snapshot(root)
+
+
+def expire_and_collect(root):
+    conftest._git("reflog", "expire", "--expire=now", "--all", cwd=root)
+    conftest._git("gc", "--quiet", "--prune=now", cwd=root)
+
+
+def test_a_branch_an_undo_moves_is_put_back_by_undoing_the_undo(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    made, x, z, before = moved_branch_scenario(root, ws)
+    refs = git("for-each-ref", "refs/heads", "refs/remotes", cwd=root)
+    assert before["branches"] == {"master": z, "cdlbib/me/topic": x}
+
+    assert api.undo_update() == made
+    pre = library.backups()[0]
+    assert snapshot(root)["branches"] == {"master": x, "cdlbib/me/topic": x} and snapshot(root)["branch"] == "master"
+    expire_and_collect(root)                                           # nothing but the backup keeps Z now
+
+    assert api.undo_update() == pre
+    assert snapshot(root) == before                                    # master is back on Z
+    assert git("for-each-ref", "refs/heads", "refs/remotes", cwd=root) == refs
+    ref = json.loads((pre.path / "ref.json").read_text(encoding="utf-8"))
+    assert [(m["branch"], m["commit"]) for m in ref["moved"]] == [("master", z)]       # recorded in the pre-undo backup
+    assert pre.moved == [("master", z)]
+    assert git("rev-parse", ref["moved"][0]["pin"], cwd=root) == z and ref["moved"][0]["pin"].startswith(
+        "refs/cdlbib/backups/" + pre.stamp)
+
+
+def test_the_moved_branch_is_restorable_for_as_long_as_its_backup_is_listed(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    made, x, z, before = moved_branch_scenario(root, ws)
+    api.undo_update()
+    pre = library.backups()[0]
+    after_first = snapshot(root)
+    for _ in range(8):
+        library.backup(ws)
+    assert len(library.backups()) == 10 and pre.stamp in [b.stamp for b in library.backups()]
+    expire_and_collect(root)
+    for name in ("changes.bundle", "moved-0.bundle"):                  # the private refs alone must be enough
+        if (pre.path / name).exists():
+            os.unlink(pre.path / name)
+    expire_and_collect(root)
+    assert api.undo_update(pre.stamp) == pre
+    assert snapshot(root) == before
+
+
+def test_when_the_pre_undo_backup_is_pruned_the_commit_it_kept_is_no_longer_kept(managed):
+    """The documented limit: a commit is kept for as long as a listed backup records it, and
+    for no longer. Ten backups after an undo, that undo can no longer be undone, and a commit
+    it moved a branch off, which nothing else holds, goes when git next prunes."""
+    home, upstream, ws = managed
+    root = ws.root
+    made, x, z, before = moved_branch_scenario(root, ws)
+    api.undo_update()
+    pre = library.backups()[0]
+    assert pre.moved == [("master", z)] and snapshot(root)["branches"]["master"] == x
+    for _ in range(10):
+        library.backup(ws)
+    listed = library.backups()
+    assert len(listed) == 10 and pre.stamp not in [b.stamp for b in listed]
+    with pytest.raises(CdlbibError, match="There is no backup"):
+        api.undo_update(pre.stamp)
+    pins = git("for-each-ref", "--format=%(refname)", "refs/cdlbib", cwd=root).splitlines()
+    assert sorted(pins) == sorted("refs/cdlbib/backups/" + b.stamp for b in listed)      # no pin outlives its backup
+    expire_and_collect(root)
+    for one in listed:                                                  # every listed backup can still be restored
+        assert git("cat-file", "-t", one.commit, cwd=root) == "commit"
+    assert subprocess.run(["git", "cat-file", "-e", z], cwd=root, capture_output=True).returncode != 0
+
+
+def test_a_moved_branch_that_cannot_be_put_back_stops_the_undo_and_keeps_everything(managed, tmp_path):
+    home, upstream, ws = managed
+    root = ws.root
+    made, x, z, before = moved_branch_scenario(root, ws)
+    conftest._git("switch", "--quiet", "--detach", cwd=root)           # a commit on no branch, for the hook to use
+    write(root, "cdl.bib", "% stray\n")
+    conftest._git("commit", "--quiet", "-m", "Stray", "--", "cdl.bib", cwd=root)
+    stray = git("rev-parse", "HEAD", cwd=root)
+    conftest._git("switch", "--quiet", "cdlbib/me/topic", cwd=root)
+    before = snapshot(root)
+    api.undo_update()
+    pre = library.backups()[0]
+    after_first = snapshot(root)
+
+    hook = root / ".git" / "hooks" / "post-checkout"
+    hook.parent.mkdir(exist_ok=True)
+    hook.write_text(f'#!/bin/sh\nif [ "$3" = 1 ]; then git update-ref refs/heads/master {stray}; fi\n', encoding="utf-8")
+    os.chmod(hook, 0o755)
+    with pytest.raises(CdlbibError) as err:
+        api.undo_update()
+    os.unlink(hook)
+    message, second = str(err.value), library.backups()[0]
+    assert f"branch master is no longer at {x[:8]}" in message and f"so it was not moved to {z[:8]}" in message
+    assert f"`cdlbib update --undo {second.stamp}` puts them back" in message
+    assert git("rev-parse", "refs/cdlbib/backups/" + pre.stamp + "-moved-0", cwd=root) == z      # the pin is not dropped
+    assert [b.stamp for b in library.backups()][:2] == [second.stamp, pre.stamp]
+
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    assert cdlbib("update", "--undo", second.stamp, cwd=empty).returncode == 0     # the command the message gives
+    assert snapshot(root) == after_first
+    expire_and_collect(root)
+    assert git("cat-file", "-t", stray, cwd=root) == "commit"          # where the hook had put master: kept too
+    assert cdlbib("update", "--undo", pre.stamp, cwd=empty).returncode == 0
+    assert snapshot(root) == before
+
+
+def test_a_folder_named_like_an_impossible_time_is_left_alone(managed):
+    home, _, ws = managed
+    folder = home / "backups"
+    folder.mkdir()
+    odd = [folder / "99999999T999999.999999Z.partial", folder / "99999999T999999.999999Z"]
+    for one in odd:
+        (one / "files").mkdir(parents=True)
+    made = library.backup(ws)
+    for _ in range(11):
+        library.backup(ws)
+    assert all((one / "files").is_dir() for one in odd)                # never deleted, never counted
+    assert len(library.backups()) == 10 and made.stamp not in [b.stamp for b in library.backups()]
+    write(ws.root, "cdl.bib", "% edit\n")
+    api.undo_update()
+    assert all((one / "files").is_dir() for one in odd)
+
+
+def crafted(made, **changes):
+    ref = json.loads((made.path / "ref.json").read_text(encoding="utf-8"))
+    ref.update(changes)
+    (made.path / "ref.json").write_text(json.dumps(ref), encoding="utf-8")
+
+
+@pytest.mark.parametrize("field, value", [
+    ("folders", ["verification", "../../made-outside"]),
+    ("folders", ["verification/../../made-outside"]),
+    ("folders", ["ABSOLUTE"]),
+    ("folders", ["docs/made-outside-the-two-paths"]),
+    ("folders", ["verification/a\\..\\b/../../../made-outside"]),
+    ("deleted", ["../../victim.txt"]),
+    ("deleted", ["README"]),
+    ("deleted", ["ABSOLUTE"]),
+    ("branch", "master..oops"),
+    ("branch", "-D"),
+    ("branch", "refs/heads/../../config"),
+    ("commit", "HEAD~1"),
+    ("commit", "--help"),
+    ("moved", [{"branch": "-f", "commit": "0" * 40}]),
+    ("moved", [{"branch": "master", "commit": "master"}]),
+    ("moved", "not a list"),
+])
+def test_a_backup_whose_recorded_paths_or_names_escape_is_refused_before_anything_changes(managed, tmp_path, field, value):
+    home, upstream, ws = managed
+    root = ws.root
+    victim = home.parent / "victim.txt"
+    victim.write_text("not cdlbib's", encoding="utf-8")
+    write(root, "README", "mine\n")
+    made = library.backup(ws)
+    absolute = tmp_path / "made-absolute"
+    if value == ["ABSOLUTE"]:
+        value = [str(absolute)]
+    crafted(made, **{field: value})
+    write(root, "cdl.bib", "% unsent\n")
+    before, listed = whole_clone(root), sorted(p.name for p in (home / "backups").iterdir())
+    around = sorted(p.name for p in home.parent.iterdir()), sorted(p.name for p in home.iterdir())
+    hand_made = library.backups()
+    if hand_made:                                                       # still readable as a backup: restoring it is refused
+        with pytest.raises(CdlbibError) as err:
+            library.restore(hand_made[0], ws)
+        assert "is not a backup cdlbib wrote" in str(err.value) and "Nothing was changed" in str(err.value)
+    with pytest.raises(CdlbibError):                                    # unreadable ones are simply not backups
+        api.undo_update()
+    assert whole_clone(root) == before and victim.read_text(encoding="utf-8") == "not cdlbib's"
+    assert sorted(p.name for p in (home / "backups").iterdir()) == listed
+    assert (sorted(p.name for p in home.parent.iterdir()), sorted(p.name for p in home.iterdir())) == around
+    assert not absolute.exists() and not (home / "made-outside").exists() and not (root / "docs").exists()
+
+
+def test_a_backup_that_would_write_through_a_link_out_of_the_library_is_refused(managed, tmp_path):
+    home, upstream, ws = managed
+    root = ws.root
+    elsewhere = tmp_path / "elsewhere"
+    elsewhere.mkdir()
+    os.symlink(elsewhere, root / "verification/out")
+    conftest._git("add", "--", "verification/out", cwd=root)
+    conftest._git("commit", "--quiet", "-m", "A link out of the library", cwd=root)
+    made = library.backup(ws)
+    (made.path / "files/verification/out").mkdir(parents=True)          # hand-made: a file beneath the link
+    (made.path / "files/verification/out/planted.txt").write_text("planted", encoding="utf-8")
+    before, listed = whole_clone(root), [b.stamp for b in library.backups()]
+    with pytest.raises(CdlbibError) as err:
+        api.undo_update()
+    assert "is not a backup cdlbib wrote" in str(err.value) and "verification/out" in str(err.value)
+    assert list(elsewhere.iterdir()) == [] and whole_clone(root) == before
+    assert [b.stamp for b in library.backups()] == listed
+
+
+@pytest.mark.skipif(os.name == "nt" or (hasattr(os, "geteuid") and os.geteuid() == 0), reason="needs file permissions that bind")
+def test_a_file_error_while_checking_is_a_refusal_that_leaves_no_backup_behind(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    write(root, "verification/mine.txt", "mine\n")
+    made = library.backup(ws)
+    write(root, "cdl.bib", "% unsent\n")
+    before, listed = whole_clone(root), [b.stamp for b in library.backups()]
+    os.chmod(made.path / "files/verification", 0)                       # the backup's files cannot be listed
+    try:
+        with pytest.raises(CdlbibError) as err:
+            api.undo_update()
+    finally:
+        os.chmod(made.path / "files/verification", 0o755)
+    assert isinstance(err.value.__cause__, OSError) and "Nothing was changed" in str(err.value)
+    assert whole_clone(root) == before and [b.stamp for b in library.backups()] == listed
+
+
+# --- rows of the reviewer's matrix that had no test ------------------------------------------
+
+def test_a_tracked_file_edited_locally_and_deleted_by_the_update_comes_back_edited(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "A tracked file", **{"verification/old.txt": "old\n"})
+    fast_forward(root)
+    write(root, "verification/old.txt", "old, but MODIFIED by me\n")
+    before = snapshot(root)
+    library.backup(ws)
+    conftest._git("restore", "--", "verification/old.txt", cwd=root)    # as an update that discards, then fast-forwards
+    advance(upstream, "The file is deleted upstream", **{"verification/old.txt": None})
+    fast_forward(root)
+    assert not (root / "verification/old.txt").exists()
+    after = snapshot(root)
+    api.undo_update()
+    assert snapshot(root) == before and (root / "verification/old.txt").read_text(encoding="utf-8") == "old, but MODIFIED by me\n"
+    api.undo_update()
+    assert snapshot(root) == after
+
+
+def test_edits_made_after_the_backup_to_a_file_it_did_not_save_survive_two_undos(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "A tracked file", **{"verification/keep.txt": "as committed\n"})
+    fast_forward(root)
+    first = snapshot(root)
+    made = library.backup(ws)
+    assert not (made.path / "files/verification/keep.txt").exists()     # clean: left to git
+    advance(upstream, "An update", **{"verification/keep.txt": "as updated\n"})
+    fast_forward(root)
+    write(root, "verification/keep.txt", "as updated\nLATER EDITS\n")
+    second = snapshot(root)
+    api.undo_update()
+    assert snapshot(root) == first and (root / "verification/keep.txt").read_text(encoding="utf-8") == "as committed\n"
+    held = library.backups()[0].path / "files/verification/keep.txt"
+    assert held.read_text(encoding="utf-8") == "as updated\nLATER EDITS\n"
+    api.undo_update()
+    assert snapshot(root) == second
+    api.undo_update()
+    assert snapshot(root) == first
+
+
+def test_an_untracked_file_where_the_recorded_commit_has_one_is_a_refusal(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "A plain tracked file", **{"plain.txt": "tracked at first\n"})
+    fast_forward(root)
+    library.backup(ws)
+    advance(upstream, "No longer tracked", **{"plain.txt": None})
+    fast_forward(root)
+    write(root, "plain.txt", "my own untracked file\n")
+    write(root, "cdl.bib", "% unsent\n")
+    before, listed = whole_clone(root), [b.stamp for b in library.backups()]
+    with pytest.raises(CdlbibError, match="would overwrite plain.txt"):
+        api.undo_update()
+    assert whole_clone(root) == before and [b.stamp for b in library.backups()] == listed
+    assert (root / "plain.txt").read_text(encoding="utf-8") == "my own untracked file\n"
+
+
+def test_a_file_replaced_by_a_folder_a_folder_by_a_file_and_an_empty_folder(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "A file and a folder", **{"verification/was-file": "a file\n", "verification/was-folder/inner.txt": "inner\n"})
+    fast_forward(root)
+    os.unlink(root / "verification/was-file")                           # the tracked file becomes a folder
+    write(root, "verification/was-file/now inside.txt", "inside\n")
+    shutil.rmtree(root / "verification/was-folder")                     # the tracked folder becomes a file
+    write(root, "verification/was-folder", "now a file\n")
+    (root / "verification/empty/nested").mkdir(parents=True)            # and folders with nothing in them
+    first = snapshot(root)
+    made = library.backup(ws)
+    assert sorted(made.deleted) == ["verification/was-file", "verification/was-folder/inner.txt"]
+
+    shutil.rmtree(root / "verification/was-file")
+    os.unlink(root / "verification/was-folder")
+    shutil.rmtree(root / "verification/empty")
+    conftest._git("restore", "--", "verification", cwd=root)
+    advance(upstream, "An update", **{"verification/new.txt": "new\n"})
+    fast_forward(root)
+    (root / "verification/another empty").mkdir()
+    second = snapshot(root)
+
+    api.undo_update()
+    assert snapshot(root) == first
+    assert (root / "verification/was-file/now inside.txt").read_text(encoding="utf-8") == "inside\n"
+    assert (root / "verification/was-folder").read_text(encoding="utf-8") == "now a file\n"
+    assert (root / "verification/empty/nested").is_dir() and not (root / "verification/another empty").exists()
+    api.undo_update()
+    assert snapshot(root) == second
+    assert (root / "verification/another empty").is_dir() and not (root / "verification/empty").exists()
