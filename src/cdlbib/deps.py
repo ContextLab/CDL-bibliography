@@ -1,5 +1,5 @@
 """Install an optional extra on demand. Core code never prompts and never installs: it
-raises MissingDependency. A front end asks the user, then calls install() once."""
+raises MissingDependency. A front end tells the user (or asks, with --ask), then calls install() once."""
 import importlib
 import importlib.metadata
 import re
@@ -9,17 +9,17 @@ import sys
 
 from .errors import CdlbibError, MissingDependency
 
-_assume_yes = False  # the front end's --yes; the only place it is kept
+_ask = False  # the front end's --ask; the only place it is kept
 
 
-def set_assume_yes(value):
-    """Record the front end's --yes (install without asking)."""
-    global _assume_yes
-    _assume_yes = bool(value)
+def set_ask(value):
+    """Record the front end's --ask (ask before installing; the default is to install)."""
+    global _ask
+    _ask = bool(value)
 
 
-def assume_yes():
-    return _assume_yes
+def ask():
+    return _ask
 
 
 def need(module, extra, feature):

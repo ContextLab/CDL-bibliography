@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 import shutil
 
+from cdlbib import deps
+
 # The command of the environment running the tests, not another one that is on PATH.
 _SIBLING = Path(sys.executable).parent / "cdlbib"
 CDLBIB = str(_SIBLING) if _SIBLING.exists() else shutil.which("cdlbib")
@@ -176,11 +178,11 @@ def cdlbib_in(python, *args, cwd, path=None, **kwargs):
                           env=env, **kwargs)
 
 
-def test_missing_extra_without_a_terminal_refuses_with_the_manual_command(tmp_path):
-    """research-batch needs pypdf (extra 'research'); in an environment installed without it and
-    with no terminal and no --yes, nothing is installed and nothing is asked."""
+def test_ask_without_a_terminal_refuses_with_the_manual_command(tmp_path):
+    """research-batch needs pypdf (extra 'research'); in an environment installed without it, with
+    --ask and no terminal, nothing is installed and nothing is asked."""
     python, args = core_environment(tmp_path)
-    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    run = cdlbib_in(python, "--ask", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
     assert run.returncode == 1, run.stdout + run.stderr
     assert MANUAL in run.stderr and "Reading PDF files" in run.stderr
     assert "Traceback" not in run.stderr and "[y/N]" not in run.stdout + run.stderr
@@ -193,7 +195,7 @@ def test_declining_the_prompt_at_a_terminal_installs_nothing(tmp_path):
     leader, follower = pty.openpty()
     os.write(leader, b"n\n")
     try:
-        run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=follower)
+        run = cdlbib_in(python, "--ask", "crossref", *args, cwd=tmp_path, stdin=follower)
     finally:
         os.close(follower)
         os.close(leader)
@@ -202,20 +204,21 @@ def test_declining_the_prompt_at_a_terminal_installs_nothing(tmp_path):
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
 
 
-def test_yes_installs_the_extra_and_the_command_proceeds_past_the_import(tmp_path):
+def test_by_default_the_extra_is_installed_without_asking_and_the_command_proceeds(tmp_path):
     python, args = core_environment(tmp_path)
-    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode == 0, run.stdout + run.stderr
+    assert "installing pypdf (needed for: Reading PDF files) ..." in run.stdout and "[y/N]" not in run.stdout + run.stderr
     assert run.returncode == 0 and "Research 1: Test20: " in run.stdout, run.stdout + run.stderr
     assert "Traceback" not in run.stderr and "needs the package" not in run.stderr
 
 
 def test_no_installer_is_an_error_with_the_manual_command_and_no_second_try(tmp_path):
-    """--yes, but the environment has no pip and uv is not on PATH: one error, exit 1, no traceback."""
+    """The environment has no pip and uv is not on PATH: one error, exit 1, no traceback."""
     python, args = core_environment(tmp_path)
     nothing = tmp_path / "empty"
     nothing.mkdir()
-    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL, path=str(nothing))
+    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL, path=str(nothing))
     assert run.returncode == 1 and "No installer found" in run.stderr, run.stdout + run.stderr
     assert MANUAL in run.stderr and "Traceback" not in run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
@@ -226,15 +229,15 @@ def single_entry_args(tmp_path):
             "--fname", str(tmp_path / "lib" / "cdl.bib"), "--database", str(tmp_path / "cache.sqlite3")]
 
 
-def test_single_entry_research_offers_the_install_too(tmp_path):
+def test_single_entry_research_installs_too(tmp_path):
     """`crossref research KEY` used to swallow the missing package as 'Research unresolved'."""
     python, _ = core_environment(tmp_path)
     args = single_entry_args(tmp_path)
-    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    run = cdlbib_in(python, "--ask", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
     assert run.returncode == 1 and MANUAL in run.stderr, run.stdout + run.stderr
     assert "Traceback" not in run.stderr and "Research unresolved" not in run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
-    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode == 0, run.stdout + run.stderr
     assert run.returncode == 0 and "PDF evidence saved" in run.stdout, run.stdout + run.stderr
 
@@ -247,7 +250,7 @@ def test_end_of_input_at_the_prompt_aborts_cleanly(tmp_path):
     leader, follower = pty.openpty()
     os.write(leader, b"\x04")
     try:
-        run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=follower)
+        run = cdlbib_in(python, "--ask", "crossref", *args, cwd=tmp_path, stdin=follower)
     finally:
         os.close(follower)
         os.close(leader)
@@ -275,8 +278,44 @@ def test_every_top_level_command_has_a_help_description(tmp_path):
     import re
     out = run("--help", cwd=tmp_path)
     assert out.returncode == 0
-    for name in ("verify", "compare", "send", "magic", "crossref"):
+    for name in ("verify", "compare", "send", "crossref"):
         line = next((l for l in out.stdout.splitlines() if re.match(rf"^│ {name}\s", l)), None)
         assert line is not None, f"{name} is not listed in --help"
         description = line.strip("│ \n").removeprefix(name).strip()
         assert description, f"{name} has no description in --help"
+
+
+def test_ask_is_listed_in_help_and_yes_and_magic_are_gone(tmp_path):
+    out = run("--help", cwd=tmp_path, env={"COLUMNS": "200"})
+    assert out.returncode == 0
+    assert "--ask" in out.stdout and "Ask before installing a missing package or creating your fork." in out.stdout
+    assert "--yes" not in out.stdout and "magic" not in out.stdout
+    refused = run("--yes", "verify", "--no-citations", cwd=tmp_path)
+    assert refused.returncode == 2 and "No such option" in refused.stderr and "--yes" in refused.stderr
+    gone = run("magic", cwd=tmp_path)
+    assert gone.returncode == 2 and "No such command" in gone.stderr
+
+
+def refusal(login="someone", upstream="no_such_owner/x"):
+    from cdlbib.errors import PublishRefused
+    return PublishRefused(f"@{login} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
+
+
+def test_by_default_the_fork_is_to_be_created_and_the_line_says_so(capsys):
+    """The decision only: the function returns True and prints; it never runs `gh repo fork`
+    (that is api.send's job, reached only with allow_fork_creation=True)."""
+    from cdlbib import cli
+    assert deps.ask() is False
+    assert cli.fork_wanted(refusal("someone", "no_such_owner/library")) is True
+    assert capsys.readouterr().out == "creating your fork someone/library ...\n"
+
+
+def test_with_ask_and_no_terminal_no_fork_is_wanted_and_nothing_is_printed(capsys, monkeypatch):
+    from cdlbib import cli
+    monkeypatch.setattr(sys, "stdin", open(os.devnull))     # no terminal
+    deps.set_ask(True)
+    try:
+        assert cli.fork_wanted(refusal()) is False
+    finally:
+        deps.set_ask(False)
+    assert capsys.readouterr().out == ""

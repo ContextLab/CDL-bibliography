@@ -528,19 +528,6 @@ def test_send_command_refuses_an_unresolved_entry(checkout, tmp_path):
     assert "pull request" not in run.stdout and state(ws.root) == before
 
 
-def test_magic_goes_through_the_same_send(checkout):
-    """magic autofixes cdl.bib in place and then sends; here the send is refused at its first
-    check (the checkout is on no branch), which needs no network."""
-    ws = library_checkout(checkout, ZOLL90 + "\n")
-    git(ws.root, "switch", "-q", "--detach")
-    before = state(ws.root)
-    run = cdlbib(ws.root, "magic")
-    assert run.returncode == 1 and "WARNING: potentially unsafe" in run.stdout, run.stdout + run.stderr
-    assert "not on a branch (detached HEAD)" in run.stderr and "git switch master" in run.stderr
-    assert "Traceback" not in run.stderr and not (ws.root / "cleaned.bib").exists()
-    assert state(ws.root)[1:] == before[1:]             # magic rewrites cdl.bib in place; git is untouched
-
-
 def test_the_command_is_send_and_commit_is_gone(tmp_path):
     listing = cdlbib(tmp_path, "--help", COLUMNS="200")
     assert listing.returncode == 0 and re.search(r"^.\s+send\s", listing.stdout, re.M), listing.stdout
@@ -569,8 +556,9 @@ def newest_repositories():
 
 
 def test_no_fork_is_reported_and_never_created_unasked(checkout, tmp_path):
-    """The gate passes and the user has no fork of the upstream: with fork creation off (the
-    default) the api only reports it, for the front end to ask.
+    """The gate passes and the user has no fork of the upstream: the api, called without
+    allow_fork_creation (its default; the command asks for creation itself, unless --ask), only
+    reports it. The command's decision is tested in test_cli_entry.py without any call to GitHub.
 
     The upstream here is the tester's own fork: nobody has a fork of it, and nothing outside
     the tester's account is named. Why the test cannot create anything, whatever the code

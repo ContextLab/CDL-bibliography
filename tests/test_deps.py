@@ -61,13 +61,14 @@ def test_failed_install_is_an_error_not_a_silent_pass(tmp_path):
         deps.install("research", python=python, requirement="a-package-that-does-not-exist-xyz-12345")
 
 
-def test_assume_yes_is_one_store_and_defaults_to_false():
-    assert deps.assume_yes() is False
-    deps.set_assume_yes(True)
+def test_ask_is_one_store_and_defaults_to_false():
+    """Off by default: a missing package is installed without a question."""
+    assert deps.ask() is False
+    deps.set_ask(True)
     try:
-        assert deps.assume_yes() is True
+        assert deps.ask() is True
     finally:
-        deps.set_assume_yes(False)
+        deps.set_ask(False)
 
 
 def test_requirements_come_from_the_installed_metadata():

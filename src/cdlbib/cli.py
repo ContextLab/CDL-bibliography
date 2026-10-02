@@ -1,6 +1,5 @@
 """The cdlbib command. Parsing and formatting only; the work is in cdlbib.api."""
-import os
-import shutil
+import re
 import sys
 from pathlib import Path
 
@@ -26,9 +25,9 @@ def _version(value: bool):
 def root(library_path: str = typer.Option(None, "--library", help="Folder containing cdl.bib."),
          version: bool = typer.Option(False, "--version", callback=_version, is_eager=True,
                                       help="Show the version and exit."),
-         yes: bool = typer.Option(False, "--yes", help="Answer yes to confirmations: install a missing package, create your fork.")):
+         ask: bool = typer.Option(False, "--ask", help="Ask before installing a missing package or creating your fork.")):
     workspace.select_library(library_path)
-    deps.set_assume_yes(yes)
+    deps.set_ask(ask)
 
 
 def report_format(result, ws, fname):
@@ -94,19 +93,6 @@ def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, out
 
 
 @app.command()
-def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
-    """Legacy: autofix the .bib file in place (overwriting it), then run send."""
-    typer.echo("WARNING: potentially unsafe")
-    ws = library(ctx, fname)
-    cleaned = ws.bib.with_name("cleaned.bib")
-    report_format(api.check_format(ws, autofix=True, outfile=str(cleaned), verbose=verbose, bars=sys.stderr),
-                  ws, fname)
-    shutil.move(str(cleaned), str(ws.bib))
-    send(ctx, fname=fname, reference="github", verbose=False, outfile=None, summary=None, database=None,
-           mailto=os.environ.get("CROSSREF_MAILTO"))
-
-
-@app.command()
 def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None):
     """Show the differences between two .bib files."""
     result = api.compare(fname1, fname2, verbose=verbose, outfile=outfile, bars=sys.stderr)
@@ -142,7 +128,7 @@ def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", v
         except PublishRefused as exc:
             if not exc.needs_fork:
                 raise
-            if not (deps.assume_yes() or _confirmed(f"{exc} Create one now?")):
+            if not fork_wanted(exc):
                 typer.echo(f"{exc} Create one with: gh repo fork {exc.upstream} --clone=false", err=True)
                 raise typer.Exit(code=1)
             result = attempt(allow_fork_creation=True)  # the gate runs again, from its cache, unreported
@@ -159,6 +145,26 @@ def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", v
     typer.echo(f"you are now on branch {result.branch}")
     if result.left:
         typer.echo("left uncommitted: " + ", ".join(result.left))
+
+
+def fork_wanted(exc):
+    """Whether to create the user's fork now. By default it is, after saying so; with --ask the
+    user is asked first (no terminal means no)."""
+    if deps.ask():
+        return _confirmed(f"{exc} Create one now?")
+    login = re.match(r"@(\S+) has no fork of ", str(exc))
+    name = exc.upstream.split("/", 1)[1] if exc.upstream and "/" in exc.upstream else "the upstream repository"
+    typer.echo(f"creating your fork {login.group(1)}/{name} ..." if login else f"creating your fork of {exc.upstream} ...")
+    return True
+
+
+def install_wanted(exc):
+    """Whether to install the missing package now: by default yes, after saying so; with --ask
+    the user is asked first (no terminal means no)."""
+    if deps.ask():
+        return _confirmed(f"{exc.feature} needs '{exc.package}'. Install it now?")
+    typer.echo(f"installing {exc.package} (needed for: {exc.feature}) ...")
+    return True
 
 
 def _run_once(argv):
@@ -178,15 +184,14 @@ def _run_once(argv):
 
 
 def main(argv=None):
-    """Run the command. A missing optional package is installed after confirmation (or with
-    --yes) and the command is run again once; click keeps reporting its own usage errors."""
+    """Run the command. A missing optional package is installed (after a question with --ask)
+    and the command is run again once; click keeps reporting its own usage errors."""
     for attempt in (1, 2):
         try:
             _run_once(argv)
             return
         except MissingDependency as exc:
-            if attempt == 2 or not (deps.assume_yes()
-                                    or _confirmed(f"{exc.feature} needs '{exc.package}'. Install it now?")):
+            if attempt == 2 or not install_wanted(exc):
                 typer.echo(str(exc), err=True)
                 raise SystemExit(1)
             try:
