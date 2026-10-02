@@ -228,13 +228,17 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         try:
             result = api.update(force=True, progress=say)
         except UpdateNeedsDecision as exc:
-            result = settle_unsent(workspace.Workspace(api.managed_root()), exc, True, say)
+            try:
+                result = settle_unsent(workspace.Workspace(api.managed_root()), exc, True, say)
+            except verification_cli.SendFirst as first:
+                first.run()
+                raise typer.Exit()       # the send was the command
             if result is None:      # asked for, and nobody can be asked what to do with the unsent changes
                 say(verification_cli.unsent_line(exc))
                 raise typer.Exit(code=1)
         for note in result.notes:
             typer.echo(note, err=True)
-        if result.action == "skipped_offline":      # asked for, and it could not be done
+        if result.action in ("skipped_offline", "interrupted"):      # asked for, and it could not be done
             typer.echo(result.message, err=True)
             raise typer.Exit(code=1)
         typer.echo(result.message)
@@ -246,8 +250,21 @@ ANSWERS = {"keep": ("k", "Keep working without updating (ask again tomorrow)"),
            "discard": ("d", "Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)")}
 
 
+MOVED = {"keep": ("k", "Keep working with the copy here (ask again tomorrow)"),
+         "discard": ("m", "Move to the new version (the copy here is saved first; `cdlbib update --undo` brings it back)")}
+
+
+def answers(exc):
+    """{choice: (letter, what it does)} for the question ``exc`` asks."""
+    return MOVED if exc.rewritten else ANSWERS
+
+
 def unsent_question(exc):
     """The question about unsent changes, as it is printed (errors.UpdateNeedsDecision)."""
+    if exc.rewritten:       # no changes of the user's: the upstream replaced its own history
+        return "\n".join(["The history of the bibliography's upstream was changed, and the copy here matches an older "
+                          "version of it (it holds no changes of yours).", "What would you like to do?"]
+                         + [f"  [{MOVED[choice][0]}] {MOVED[choice][1]}" for choice in exc.choices])
     count, commits, new = exc.entries_changed, exc.local_commits, exc.new_commits
     counted = f" ({count} {'entry' if count == 1 else 'entries'} changed)" if count else ""
     lines = [f"A newer version of the bibliography is available ({new} new commit{'' if new == 1 else 's'}), "
@@ -290,8 +307,8 @@ def settle_unsent(ws, exc, force, say, sending=False):
     terminal), and then nothing was changed. No option answers this question. "Send my
     changes first" runs the send command and ends there; when the command being run is
     `send` itself (``sending``), it just goes on."""
-    letters = [ANSWERS[choice][0] for choice in exc.choices]
-    letter = _chosen(unsent_question(exc), letters)
+    letters = [answers(exc)[choice][0] for choice in exc.choices]
+    letter = _chosen(unsent_question(exc), letters, words=exc.choices)
     if letter is None:
         return None
     decision = exc.choices[letters.index(letter)]
@@ -300,8 +317,11 @@ def settle_unsent(ws, exc, force, say, sending=False):
         for note in result.notes:
             say(note)
         say(result.message)
-        _send(ws, mailto=os.environ.get("CROSSREF_MAILTO"))
-        raise typer.Exit()       # the send was the command
+        # The send is the command from here on, exactly as if `cdlbib send` had been typed: the
+        # caller runs it outside its own error handling, so its failures end the command with
+        # the send's message and exit code, and a missing package is offered as it is there.
+        raise verification_cli.SendFirst(lambda: _installing(
+            lambda: _send(ws, mailto=os.environ.get("CROSSREF_MAILTO"))))
     return result
 
 
@@ -347,9 +367,15 @@ def _run_once(argv):
 def main(argv=None):
     """Run the command. A missing optional package is installed (after a question with --ask)
     and the command is run again once; click keeps reporting its own usage errors."""
+    _installing(lambda: _run_once(argv))
+
+
+def _installing(run):
+    """Call ``run``; when it stops for a missing optional package, install the package (after
+    a question with --ask) and call it again, once."""
     for attempt in (1, 2):
         try:
-            _run_once(argv)
+            run()
             return
         except MissingDependency as exc:
             if attempt == 2 or not install_wanted(exc):
@@ -373,9 +399,10 @@ def _confirmed(question):
         raise SystemExit(1)
 
 
-def _chosen(question, letters):
-    """Ask ``question`` (on stderr) until one of ``letters`` is answered. Only at a terminal:
-    with none, None, and nothing is printed."""
+def _chosen(question, letters, words=()):
+    """Ask ``question`` (on stderr) until one of ``letters`` is answered, or the whole word
+    for one (``words``, in the letters' order). Returns the letter. Only at a terminal: with
+    none, None, and nothing is printed."""
     if not (sys.stdin.isatty() and sys.stderr.isatty()):
         return None
     typer.echo(question, err=True)
@@ -390,4 +417,6 @@ def _chosen(question, letters):
             raise SystemExit(1)
         if answer.strip().lower() in letters:
             return answer.strip().lower()
+        if answer.strip().lower() in words:
+            return letters[list(words).index(answer.strip().lower())]
         typer.echo(f"Please answer {', '.join(letters[:-1])} or {letters[-1]}.", err=True)

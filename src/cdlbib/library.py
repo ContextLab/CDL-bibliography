@@ -454,7 +454,16 @@ def _copy(source, target):
     target.parent.mkdir(parents=True, exist_ok=True)
     if _same(source, target):
         return
-    handle, temporary = tempfile.mkstemp(dir=target.parent, prefix=".cdlbib-", suffix=".tmp")
+    # The copy is written in <home>/work and moved into place, so that a command that is killed
+    # leaves nothing half-written in the library; beside the target only when that folder is
+    # on another file system (a move from there would not be one step).
+    try:
+        beside = _work()
+        if os.stat(beside).st_dev != os.stat(target.parent).st_dev:
+            beside = target.parent
+    except OSError:
+        beside = target.parent
+    handle, temporary = tempfile.mkstemp(dir=beside, prefix=".cdlbib-", suffix=".tmp")
     os.close(handle)
     try:
         if os.path.islink(source):
@@ -467,6 +476,85 @@ def _copy(source, target):
         with contextlib.suppress(OSError):
             os.unlink(temporary)
         raise
+
+
+# --- an update that did not finish ------------------------------------------------------------
+#
+# An update that sets the user's edits aside (the decisions "update" and "discard", and the
+# return from a send branch) takes several steps. Before the first of them it writes
+# <home>/update-in-progress.json, naming the backup it took and the operation, flushed to the
+# disk; the file is removed as the last step (or once the library was put back and checked).
+# A command that finds the file, with the lock held (so the update is not still running in
+# another process), was preceded by an update that was killed part-way: the library may be on
+# the new version without the user's edits. Nothing is then updated and no backup is deleted;
+# the command says so and names the backup, and `cdlbib update --undo` restores that backup
+# and removes the file. The copies an update works on are in <home>/work, and are removed
+# with the file.
+
+MARKER = "update-in-progress.json"
+
+
+def _work():
+    """<home>/work: where an update's working copies are made (never in the library)."""
+    folder = home() / "work"
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder
+
+
+def _marked():
+    """(is an unfinished update recorded, the stamp of the backup it took or None when the
+    record cannot be read)."""
+    file = home() / MARKER
+    try:
+        stamp = json.loads(file.read_text(encoding="utf-8"))["backup"]
+    except FileNotFoundError:
+        return False, None
+    except (OSError, ValueError, KeyError, TypeError):
+        return True, None
+    return True, stamp if isinstance(stamp, str) and _STAMP_NAME.fullmatch(stamp) else None
+
+
+def interrupted():
+    """The stamp of the backup taken before an update that did not finish ('' when the record
+    of it cannot be read); None when no update is unfinished."""
+    standing, stamp = _marked()
+    return (stamp or "") if standing else None
+
+
+def _mark(backup, operation):
+    """Record, durably, that an update is changing the library and which backup precedes it."""
+    _write_json(home() / MARKER, {"backup": backup.stamp, "operation": operation,
+                                  "started": datetime.datetime.now(datetime.timezone.utc).isoformat()})
+    with contextlib.suppress(OSError, AttributeError):       # the folder's entry too
+        folder = os.open(home(), os.O_RDONLY)
+        try:
+            os.fsync(folder)
+        finally:
+            os.close(folder)
+
+
+def _unmark():
+    """The update is over (finished, or put back and checked): remove the record, and the
+    working copies any update left in <home>/work."""
+    with contextlib.suppress(FileNotFoundError):
+        os.unlink(home() / MARKER)
+    work = home() / "work"
+    with contextlib.suppress(OSError):
+        for name in os.listdir(work):
+            if os.path.isdir(work / name) and not os.path.islink(work / name):
+                shutil.rmtree(work / name, ignore_errors=True)
+            else:
+                with contextlib.suppress(OSError):
+                    os.unlink(work / name)
+
+
+def _interrupted_line(root, stamp):
+    return (f"an earlier update of the bibliography in {root} was interrupted before it finished, so the library may "
+            "be missing your changes; nothing was changed now. "
+            + (f"Run `{UNDO} {stamp}` to put the library back as it was before that update (backup {stamp})."
+               if stamp else
+               f"Run `cdlbib update --list` to see the backups, and `{UNDO} STAMP` to put the library back as it was "
+               "at the one taken before that update."))
 
 
 def _read(folder):
@@ -603,6 +691,8 @@ def _prune(folder, root, notes=None):
     never undoes or fails it: an old backup that cannot be removed stays, and ``notes`` (a
     list, when given) receives one line naming its folder."""
     notes = [] if notes is None else notes
+    if _marked()[0]:       # an update did not finish: until it is undone, no backup is deleted
+        return
     try:
         ordinary = []
         for name in _backup_names(folder):
@@ -1047,6 +1137,12 @@ def undo(ws, stamp=None, notes=None):
     root = _managed_root(ws)
     with _locked(home()):
         saved = backups()
+        standing, marked = _marked()
+        if stamp is None and marked and any(one.stamp == marked for one in saved):
+            stamp = marked       # an update did not finish: the backup to restore is the one it took
+            if notes is not None:
+                notes.append(f"note: backup {marked} is the one taken before the update that was interrupted; "
+                             "it is the one restored")
         if stamp is None:
             names = _backup_names(backups_folder())
             if names and _read(backups_folder() / names[-1]) is None:
@@ -1068,7 +1164,11 @@ def undo(ws, stamp=None, notes=None):
                 raise CdlbibError(f"There is no backup {stamp.strip()} of {root}; `cdlbib update --list` shows "
                                   "the backups there are. Nothing was changed.")
             chosen = named[0]
-        return chosen, _restore(root, chosen, None, notes)
+        before = _restore(root, chosen, None, notes)
+        if standing and chosen.stamp == marked:      # restored exactly (checked by _restore): that update is undone
+            _unmark()
+            _prune(backups_folder(), root, notes)
+        return chosen, before
 
 
 # --- staying current: at most once a day, when a command runs ---------------------------------
@@ -1119,6 +1219,7 @@ _ORIGIN = "refs/remotes/origin/"
 @dataclass
 class UpdateResult:
     action: str                    # not_due | skipped_offline | up_to_date | updated | left_alone | returned_to_main
+                                   # | interrupted (an earlier update did not finish; nothing is done until it is undone)
     new_commits: int = 0           # commits the upstream has that the library did not
     backup: Backup | None = None   # taken before the library was changed
     message: str = ""              # one line for the user ("" for not_due)
@@ -1274,7 +1375,7 @@ def _carry(root, backup, commit, target, scratch):
     cannot be merged, or a file one deleted or replaced and the other changed."""
     base, theirs, saved = _commit_files(root, commit), _commit_files(root, target), _saved(backup)
     deleted = {_same_name(name) for name in backup.deleted}
-    plan, files, keys = [], [], []
+    plan, files, keys, twice, binary = [], [], [], [], []
     for number, name in enumerate(backup.changed):
         key = _same_name(name)
         was, new = base.get(key), theirs.get(key)
@@ -1304,24 +1405,41 @@ def _carry(root, backup, commit, target, scratch):
                 if keys:
                     files.append(rel)
                     continue
+            if any(b"\0" in (folder / name).read_bytes() for name in ("base", "merged", "theirs")):
+                binary.append(rel)                # git does not merge such a file line by line
+                files.append(rel)
+                continue
+            mine_was = (folder / "merged").read_bytes()
             merged = _git(root, "merge-file", "--quiet", str(folder / "merged"), str(folder / "base"),
                           str(folder / "theirs"), check=False)
             if merged.returncode != 0:            # > 0: that many conflicts; 255: not mergeable (binary)
                 files.append(rel)
-            else:
-                plan.append((rel, folder / "merged"))
+                continue
+            if rel == BIB_NAME:                   # lines that merge can still give an entry twice
+                here, there = _entries(mine_was), _entries((folder / "theirs").read_bytes())
+                twice = sorted(key for key, texts in _entries((folder / "merged").read_bytes()).items()
+                               if len(texts) > max(len(here.get(key, [])), len(there.get(key, []))))
+                if twice:
+                    files.append(rel)
+                    continue
+            plan.append((rel, folder / "merged"))
     if files:
+        said = []
         if keys:
-            what = (f"{'this entry was' if len(keys) == 1 else 'these entries were'} changed both by you and in the "
-                    f"new version: {', '.join(keys[:20])}{', ...' if len(keys) > 20 else ''}")
-            others = [name for name in files if name != BIB_NAME]
-            if others:
-                what += f"; and your changes to {_some(others)} collide with the new version's"
-        else:
-            what = f"your changes to {_some(files)} collide with the new version's"
-        raise UpdateConflict(f"The bibliography was not updated: {what}. Nothing was changed: your files are exactly "
-                             "as they were. Run `cdlbib send` to send your changes, or `cdlbib update` to choose again.",
-                             entries=keys, files=files)
+            said.append(f"{'this entry was' if len(keys) == 1 else 'these entries were'} changed both by you and in the "
+                        f"new version: {', '.join(keys[:20])}{', ...' if len(keys) > 20 else ''}")
+        if twice:
+            said.append(f"{'this entry' if len(twice) == 1 else 'these entries'} would be in {BIB_NAME} twice, added "
+                        f"both by you and in the new version: {', '.join(twice[:20])}{', ...' if len(twice) > 20 else ''}")
+        others = [name for name in files if name not in binary and not (name == BIB_NAME and (keys or twice))]
+        if others:
+            said.append(f"your changes to {_some(others)} collide with the new version's")
+        if binary:
+            said.append(f"{_some(binary)} cannot be merged automatically because "
+                        f"{'it contains' if len(binary) == 1 else 'they contain'} binary data")
+        raise UpdateConflict(f"The bibliography was not updated: {'; and '.join(said)}. Nothing was changed: your "
+                             "files are exactly as they were. Run `cdlbib send` to send your changes, or `cdlbib "
+                             "update` to choose again.", entries=keys + twice, files=files)
     return plan
 
 
@@ -1371,12 +1489,13 @@ def _with_edits(root, decision, branch, commit, target, ahead, backup):
     A failure in 3 or 4 that leaves the library on its commit is undone from the backup and
     checked (_put; nothing is done when the files are still exactly the backup's); any other
     failure names the backup and the command that restores it."""
-    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    scratch = Path(tempfile.mkdtemp(prefix="update-", dir=_work()))
     try:
         wrong = _describes(root, backup)
         if wrong:
             raise _Untouched(f"these files changed while the backup was being taken: {_some(wrong)}")
         plan = _carry(root, backup, commit, target, scratch) if decision == "update" else []
+        _mark(backup, decision)                    # from here until _unmark(), a kill is announced by the next command
         try:
             _set_edits_aside(root, backup, commit)
             if ahead:
@@ -1404,6 +1523,7 @@ def _with_edits(root, decision, branch, commit, target, ahead, backup):
             except (CdlbibError, OSError) as second:
                 raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}), and the library could not "
                                   f"be put back as it was ({_why(second)}). {saved}") from exc
+            _unmark()                                  # put back, and checked
             raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
                               f"were staged may now be unstaged); a copy of it is backup {backup.stamp}.") from exc
         try:
@@ -1422,6 +1542,7 @@ def _with_edits(root, decision, branch, commit, target, ahead, backup):
         except (CdlbibError, OSError) as exc:
             raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
                               f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        _unmark()                                      # the last step: the update is whole
         return [rel for rel, _ in plan]
     finally:
         shutil.rmtree(scratch, ignore_errors=True)
@@ -1433,25 +1554,38 @@ class _Untouched(CdlbibError):
 
 def _entry_count(root, commit, target, start=None):
     """How many entries of the working cdl.bib differ from the upstream's version the library
-    started from (the project's own comparison), or from the commit ``start`` when one is
-    named; None when that cannot be told."""
-    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    started from, or from the commit ``start`` when one is named; None when that cannot be
+    told (no such version, or a file that is not text). The entries are compared as text, key
+    by key (_entries): no file is parsed, so this takes a fraction of a second on the whole
+    bibliography."""
     try:
-        from . import api
         start = start or _git(root, "merge-base", commit, target, check=False).stdout.strip()
         if not start:
             return None
-        _blob_into(root, f"{start}:{BIB_NAME}", scratch / BIB_NAME)
-        summary = api.compare(str(scratch / BIB_NAME), str(root / BIB_NAME)).summary
-        keys = set()
-        for line in summary.splitlines():
-            if ": " in line:
-                keys.update(key for key in line.split(": ", 1)[1].split(", ") if key)
-        return len(keys)
-    except Exception:      # a file that is not valid BibTeX yet, no such file, no git: the files are listed without a count
+        was = subprocess.run(["git", "-C", str(root), "cat-file", "blob", f"{start}:{BIB_NAME}"], capture_output=True,
+                             stdin=subprocess.DEVNULL, env=git_env())
+        now = (root / BIB_NAME).read_bytes()
+        if was.returncode != 0 or b"\0" in now:
+            return None
+        now.decode("utf-8")
+        before, after = _entries(was.stdout), _entries(now)
+        return sum(1 for key in set(before) | set(after) if before.get(key) != after.get(key))
+    except (OSError, ValueError, CdlbibError):      # no such file, not text, no git: the files are listed without a count
         return None
-    finally:
-        shutil.rmtree(scratch, ignore_errors=True)
+
+
+def _was_upstream(root, default, commit, earlier=""):
+    """Is ``commit`` in a history the upstream's default branch once had: an ancestor of a
+    value git recorded for origin/<default> (its reflog), or of ``earlier`` (its value before
+    this fetch)? Then the library holds no commit of the user's. False when git cannot say."""
+    listed = _git(root, "reflog", "show", "--format=%H", f"{_ORIGIN}{default}", check=False).stdout.split()[:200]
+    if listed:       # and the value the oldest entry replaced (a clone records none for its first value)
+        listed.append(_git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{default}@{{{len(listed)}}}",
+                           check=False).stdout.strip())
+    for value in dict.fromkeys([earlier] * bool(earlier) + listed):
+        if _COMMIT_NAME.fullmatch(value) and _has_commit(root, value) and _is_ancestor(root, commit, value):
+            return True
+    return False
 
 
 CHOICES = ("keep", "update", "send", "discard")
@@ -1549,12 +1683,13 @@ def _return_to_main(root, decision, branch, commit, default, base, target, backu
     5. "update": each carried file is written (beside its place, then moved in) and checked.
     A failure that could not be put back names the backup and the command that restores it.
     The send branch itself is never moved here."""
-    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    scratch = Path(tempfile.mkdtemp(prefix="update-", dir=_work()))
     try:
         wrong = _describes(root, backup)
         if wrong:
             raise _Untouched(f"these files changed while the backup was being taken: {_some(wrong)}")
         plan = _carry(root, backup, commit, target, scratch) if decision == "update" else []
+        _mark(backup, f"return to {default}")      # from here until _unmark(), a kill is announced by the next command
         try:
             if edits:
                 _set_edits_aside(root, backup, commit)
@@ -1577,6 +1712,7 @@ def _return_to_main(root, decision, branch, commit, default, base, target, backu
             except (CdlbibError, OSError) as second:
                 raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}), and the library could not "
                                   f"be put back as it was ({_why(second)}). {saved}") from exc
+            _unmark()                                  # put back, and checked
             if not edits:                              # checked: on its branch and commit, every file the backup's
                 raise _Untouched(_why(exc)) from exc
             raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
@@ -1597,6 +1733,7 @@ def _return_to_main(root, decision, branch, commit, default, base, target, backu
         except (CdlbibError, OSError) as exc:
             raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
                               f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        _unmark()                                      # the library is whole, on the default branch
         return [rel for rel, _ in plan]
     finally:
         shutil.rmtree(scratch, ignore_errors=True)
@@ -1740,6 +1877,9 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
     """update(), with the lock held. ``made`` receives the backup, once one is taken.
     ``found``: the pull request of the send branch the library is on, when the caller knows
     it (see _after_send); None means it is looked up."""
+    standing, stamp = _marked()
+    if standing:          # an earlier update was killed part-way (it is not running: the lock is held here)
+        return UpdateResult("interrupted", message=_interrupted_line(root, stamp))
     if decision is None and not _wanted(force, now):      # another command checked, or tried, while this one waited
         return UpdateResult("not_due")
     when = _utc(now)
@@ -1779,6 +1919,8 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
             "You will be asked again tomorrow; `cdlbib update` asks now." if decision == "keep" else
             "the bibliography was not updated: your changes are sent first (`cdlbib send`)"))
 
+    earlier = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{_default_branch(root)}^{{commit}}",
+                   check=False).stdout.strip()       # where the upstream was when this library last heard from it
     try:
         status, errors = _fetch(root, timeout)
     except subprocess.TimeoutExpired:
@@ -1811,6 +1953,10 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
         if outcome is not None:
             return outcome
     if new == 0:
+        if decision in ("update", "discard") and seen is not None:      # the question was about a newer version
+            return UpdateResult("left_alone", notes=notes,
+                                message="the library or the upstream changed after you were asked what to do; nothing "
+                                        "was changed. Run `cdlbib update` to be asked again.")
         record(True)
         return UpdateResult("up_to_date", message=f"the bibliography in {root} is up to date", notes=notes)
 
@@ -1838,9 +1984,17 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
     if clash:
         return left(f"updating would overwrite your own {_some(clash)}",
                     f"Move {'that file' if len(clash) == 1 else 'those files'} out of the way, then run `cdlbib update`.")
+    # Commits the upstream does not have, and yet no work of the user's: the upstream's history
+    # was rewritten, and the library's commit is one the upstream itself once had.
+    rewritten = bool(ahead) and not edits and _was_upstream(root, default, commit, earlier)
     if ahead or edits:
         choices = tuple(choice for choice in CHOICES
                         if not (choice == "update" and ahead) and not (choice == "send" and not edits))
+        if decision is None and rewritten:
+            raise UpdateNeedsDecision(
+                f"The history of the bibliography's upstream was changed, and the library in {root} matches an older "
+                "version of it. Nothing was changed.",
+                changed=[], new_commits=new, local_commits=ahead, choices=choices, seen=token, rewritten=True)
         if decision is None:
             raise UpdateNeedsDecision(
                 f"A newer version of the bibliography is available ({_count(new, 'new commit')}), and the library in "
@@ -1866,6 +2020,9 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
             message = (f"updated the bibliography: {_count(new, 'new commit')}, with your changes kept"
                        + (f" ({_some(carried)})" if carried else "")
                        + f" (the library as it was is backup {backup.stamp}; `{UNDO} {backup.stamp}` puts it back)")
+        elif rewritten:
+            message = (f"moved the bibliography to the upstream's new history ({_count(new, 'new commit')}; the library "
+                       f"as it was is backup {backup.stamp}; `{UNDO} {backup.stamp}` puts it back)")
         else:
             gone = ([_count(ahead, "commit")] if ahead else []) + ([f"your changes to {_some(edits)}"] if edits else [])
             message = (f"updated the bibliography: {_count(new, 'new commit')}; discarded {' and '.join(gone)} "
@@ -1971,7 +2128,7 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None, _
         raise CdlbibError(f"Only the library cdlbib manages ({path()}) is updated; {ws.root} is not it.")
     if decision is not None and decision not in CHOICES:
         raise CdlbibError(f"{decision!r} is not a decision an update takes ({', '.join(CHOICES)}).")
-    if decision is None and not _wanted(force, now):
+    if decision is None and not _wanted(force, now) and not _marked()[0]:
         return UpdateResult("not_due")
     try:
         lock = _locked(home(), progress, WAITING)
@@ -1992,7 +2149,7 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None, _
         lock.__exit__(None, None, None)
     # The lock is released: the count for the question is made (it reads files only), and the
     # front end asks. Nothing was changed, and no time was recorded.
-    if BIB_NAME in asked.changed or asked.local_commits:
+    if (BIB_NAME in asked.changed or asked.local_commits) and not asked.rewritten:
         branch, commit = _head(root)
         target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{_default_branch(root)}^{{commit}}",
                       check=False).stdout.strip()

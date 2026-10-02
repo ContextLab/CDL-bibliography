@@ -171,7 +171,17 @@ def library(ctx, fname):
     return ws
 
 
-SHOWN = ("updated", "skipped_offline", "left_alone", "returned_to_main")   # the outcomes a command mentions
+SHOWN = ("updated", "skipped_offline", "left_alone", "returned_to_main", "interrupted")   # the outcomes a command mentions
+
+
+class SendFirst(Exception):
+    """Not a failure: the answer to the question about unsent changes was "send my changes
+    first". ``run`` is the send, exactly as `cdlbib send` typed by hand; the command that asked
+    runs it outside its own error handling, and does nothing else."""
+
+    def __init__(self, run):
+        self.run = run
+        super().__init__("send my changes first")
 
 
 settle_unsent = None   # set by cdlbib.cli: asks what to do about unsent changes; None when it could not ask
@@ -180,6 +190,9 @@ settle_unsent = None   # set by cdlbib.cli: asks what to do about unsent changes
 def unsent_line(exc):
     """The one line for an update that waits on the user's decision (errors.UpdateNeedsDecision)
     when no question can be asked."""
+    if exc.rewritten:
+        return ("the history of the bibliography's upstream was changed, and the copy here matches an older version "
+                "of it; nothing was changed. Run `cdlbib update` in a terminal to choose what to do.")
     count = exc.entries_changed
     files = [f"{name} ({count} {'entry' if count == 1 else 'entries'} changed)" if name == "cdl.bib" and count else name
              for name in exc.changed[:5]] + (["..."] if len(exc.changed) > 5 else [])
@@ -215,6 +228,7 @@ def keep_current(ws, chosen, say, sending=False):
     ``sending``: the command is `send` itself (the answer "send first" then just lets it run)."""
     if workspace.origin_of(chosen)[1] != workspace.Origin.MANAGED and not api.is_managed(ws):
         return
+    send = None
     try:
         try:
             result = api.update(ws, progress=say)
@@ -225,12 +239,17 @@ def keep_current(ws, chosen, say, sending=False):
                     say(note)
                 say(unsent_line(exc))
                 return
+    except SendFirst as first:
+        send = first.run
     except UpdateConflict as exc:
         say(str(exc))
         return
     except CdlbibError as exc:
         say(f"the bibliography was not updated: {exc}")
         return
+    if send:        # outside the handlers above: a send that fails ends the command, as `cdlbib send` does
+        send()
+        raise typer.Exit()
     for note in result.notes:
         say(note)
     if result.action in SHOWN:

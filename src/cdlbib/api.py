@@ -160,7 +160,12 @@ def update(ws=None, decision=None, force=False, progress=None, seen=None):
     open, or GitHub cannot be asked: nothing is changed, and the message says so; merged, with
     nothing else on the branch: after a backup the library goes back to the default branch and
     is updated (action ``returned_to_main``); closed, or more on the branch than was sent:
-    errors.UpdateNeedsDecision, whose ``branch`` is set. See library.update. Any other library than the managed one is a CdlbibError, and nothing is
+    errors.UpdateNeedsDecision, whose ``branch`` is set.
+
+    When an earlier update was killed before it finished, nothing is updated and no backup is
+    deleted until it is undone: the action is ``interrupted``, and the message names the
+    backup and the command that restores it (``undo`` with no stamp then restores that
+    backup). See library.update. Any other library than the managed one is a CdlbibError, and nothing is
     done to it."""
     from . import library
     return library.update(_managed("so there is nothing to update") if ws is None else ws,

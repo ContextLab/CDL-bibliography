@@ -44,15 +44,21 @@ class UpdateNeedsDecision(CdlbibError):
     ``local_commits`` counts the branch's commits that were not sent or not merged,
     ``new_commits`` may be 0, and "update" and "discard" put the library back on ``default``
     (the upstream's default branch).
+
+    ``rewritten``: the upstream's history was changed and the library holds no work of the
+    user's (its commit is one the upstream once had): ``local_commits`` are the upstream's own
+    earlier commits, the choices are "keep" and "discard", and "discard" moves the library to
+    the new history, after a backup.
     """
 
     def __init__(self, message, changed=(), entries_changed=None, new_commits=0, local_commits=0,
                  choices=("keep", "update", "send", "discard"), seen=None, branch=None, pull_request=None,
-                 state=None, default=None):
+                 state=None, default=None, rewritten=False):
         self.changed, self.entries_changed = list(changed), entries_changed
         self.new_commits, self.local_commits = new_commits, local_commits
         self.choices, self.seen = tuple(choices), seen
         self.branch, self.pull_request, self.state, self.default = branch, pull_request, state, default
+        self.rewritten = rewritten
         super().__init__(message)
 
 
