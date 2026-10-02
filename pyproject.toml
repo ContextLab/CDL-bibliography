@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "cdlbib"
 version = "2.0.0"
 description = "Format and citation-accuracy checker for the CDL bibliography"
-readme = "README.md"
+readme = "docs/pypi.md"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
