@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import re
+import shlex
 import shutil
 import stat
 import subprocess
@@ -16,7 +17,7 @@ import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .errors import CdlbibError, LibraryUnavailable
+from .errors import CdlbibError, LibraryUnavailable, UpdateConflict, UpdateNeedsDecision
 from .gitenv import git_env
 
 UPSTREAM = "https://github.com/ContextLab/CDL-bibliography.git"
@@ -1055,18 +1056,35 @@ def undo(ws, stamp=None):
 # check: it fetches when the last successful check is a day old, gives the upstream
 # AUTO_FETCH_TIMEOUT seconds, and after an attempt that failed makes no other for RETRY_AFTER
 # seconds. `cdlbib update` (``force``) ignores both rules and waits FETCH_TIMEOUT seconds.
-# The library is changed in one case only: it is on the upstream's default branch, has no
-# commits of its own and no changes under cdl.bib or verification/, and the upstream has new
-# commits. Then a backup is taken and the branch is fast-forwarded. The git commands it
-# runs, and why none of them can lose work:
+# Without a decision the library is changed in one case only: it is on the upstream's default
+# branch, has no commits of its own and no changes under cdl.bib or verification/, and the
+# upstream has new commits. Then a backup is taken and the branch is fast-forwarded. The git
+# commands that runs, and why none of them can lose work:
 #   git fetch --quiet origin        writes remote-tracking refs and objects only
 #   git merge --ff-only --no-overwrite-ignore --no-autostash --quiet <commit>
 #                                   moves the branch forward along the upstream's own history
 #                                   or does nothing; it refuses (changing nothing) when a
 #                                   changed, untracked or ignored file would be written over
 # and, read-only: config --get, rev-parse, symbolic-ref, rev-list --count, status, diff
-# --name-only, for-each-ref (plus what _backup() and _prune() run). Every other state is
-# reported and left alone.
+# --name-only, for-each-ref (plus what _backup() and _prune() run).
+#
+# A library on the default branch that holds unsent work (changed or untracked files under the
+# two paths, or commits the upstream does not have) is never updated without the user's
+# decision: update() raises UpdateNeedsDecision and changes nothing. The front end asks, with
+# the lock released, and calls update() again with the decision; everything is then checked
+# afresh under the lock. "update" (keep my changes) and "discard" both begin with a backup,
+# and what they run in addition to the above is:
+#   git restore --source=<commit> --staged --worktree -- cdl.bib verification
+#                                   only after the backup holds every changed file (checked)
+#   moving an untracked file into the backup (never deleting one)
+#   git cat-file blob, git merge-file on copies outside the library ("update": the merge is
+#                                   worked out before the library is touched, and a collision
+#                                   stops there, with nothing changed)
+#   git switch --no-overwrite-ignore [--detach], git update-ref <branch> <new> <old>
+#                                   ("discard" of local commits, which the backup has pinned
+#                                   and bundled; the ref moves only if it is still at <old>)
+# No stash is ever made, so none can be left behind. Every other state is reported and left
+# alone.
 
 FETCH_TIMEOUT = 120       # seconds `cdlbib update` gives a fetch (the lock is held meanwhile)
 AUTO_FETCH_TIMEOUT = 15   # seconds the automatic check gives it: a command is waiting
@@ -1160,9 +1178,265 @@ def _in_the_way(root, mine, differs):
     return sorted(folded[name] for name in _clashes(list(folded), [_same_name(name).casefold() for name in differs]))
 
 
-def _update(root, force, now, made):
+def _under_kept(name):
+    return any(name == top or name.startswith(top + "/") for top in KEPT)
+
+
+def _seen(root, branch, commit, target, edits):
+    """A name for the state a decision is about: the branch, the commit, the upstream's commit,
+    and the bytes of every changed file. A decision is applied only to the state it names."""
+    digest = hashlib.sha256()
+    for part in (branch or "", commit, target):
+        digest.update(part.encode() + b"\0")
+    for name in edits:
+        file = root / name
+        digest.update(os.fsencode(name) + b"\0")
+        try:
+            status = os.lstat(file)
+        except OSError:
+            digest.update(b"absent\0")
+            continue
+        if stat.S_ISLNK(status.st_mode):
+            digest.update(b"link" + os.fsencode(os.readlink(file)))
+        elif stat.S_ISREG(status.st_mode):
+            digest.update(b"file%d:" % (status.st_mode & 0o111))
+            with open(file, "rb") as handle:
+                for chunk in iter(lambda: handle.read(1 << 20), b""):
+                    digest.update(chunk)
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def _blob_into(root, blob, file):
+    """Write a blob of the library's repository to ``file``, byte for byte."""
+    Path(file).parent.mkdir(parents=True, exist_ok=True)
+    with open(file, "wb") as out:
+        done = subprocess.run(["git", "-C", str(root), "cat-file", "blob", blob], stdout=out, stderr=subprocess.PIPE,
+                              stdin=subprocess.DEVNULL, env=git_env())
+    if done.returncode != 0:
+        raise CdlbibError(f"git cat-file failed: {done.stderr.decode(errors='replace').strip() or done.returncode}")
+
+
+_ENTRY = re.compile(rb"(?m)^[ \t]*@[ \t]*(\w+)[ \t]*[{(][ \t]*([^,\s{}()]+)[ \t]*,")
+
+
+def _entries(data):
+    """{citation key: [the text of each entry with that key]} of a BibTeX file, by its text
+    alone (it need not be valid): an entry runs from its '@' to the last closing brace before
+    the next entry."""
+    found, starts = {}, list(_ENTRY.finditer(data))
+    for at, match in enumerate(starts):
+        if match.group(1).lower() in (b"comment", b"string", b"preamble"):
+            continue
+        chunk = data[match.start():starts[at + 1].start() if at + 1 < len(starts) else len(data)]
+        end = chunk.rfind(b"}")
+        found.setdefault(match.group(2).decode("utf-8", "replace"), []).append(chunk[:end + 1] if end >= 0 else chunk)
+    return found
+
+
+def _collisions(base, mine, theirs):
+    """The citation keys whose entry the user changed and the upstream changed, differently."""
+    was, here, there = _entries(base), _entries(mine), _entries(theirs)
+    return sorted(key for key in set(was) | set(here) | set(there)
+                  if was.get(key) != here.get(key) != there.get(key) != was.get(key))
+
+
+def _carry(root, backup, commit, target, scratch):
+    """Work out, without touching the library, what each file the user changed must hold once
+    the library is on ``target`` for the user's changes to be kept on top of it. Returns
+    [(path, file holding the content, or None for a file the user deleted)]. The user's
+    files are read from ``backup`` (which holds them: checked by the caller); merges are made
+    on copies in ``scratch``. Raises UpdateConflict when a change of the user's and a change of
+    the upstream's collide: the same entry of cdl.bib changed differently by both (even where
+    the lines would merge: no entry is ever made that neither wrote), or lines of a file that
+    cannot be merged, or a file one deleted or replaced and the other changed."""
+    base, theirs, saved = _commit_files(root, commit), _commit_files(root, target), _saved(backup)
+    deleted = {_same_name(name) for name in backup.deleted}
+    plan, files, keys = [], [], []
+    for number, name in enumerate(backup.changed):
+        key = _same_name(name)
+        was, new = base.get(key), theirs.get(key)
+        mine = backup.path / "files" / saved[key] if key in saved else None
+        if mine is None and key not in deleted:
+            continue                              # reported by git, yet the bytes are the commit's: no change to keep
+        rel = saved[key] if key in saved else base[key][0]
+        if mine is not None and any(other.startswith(key + "/") or key.startswith(other + "/") for other in theirs):
+            files.append(rel)                     # a file here where the new version has a folder, or the reverse
+        elif (was and was[1:]) == (new and new[1:]):
+            plan.append((rel, mine))              # the upstream did not touch it
+        elif mine is None:
+            if new is not None:                   # deleted here, changed there
+                files.append(rel)
+        elif new is not None and not _unlike(mine, new):
+            continue                              # the same change on both sides: the upstream's file is the user's
+        elif was is None or new is None or "l" in (was[1], new[1]) or os.path.islink(mine):
+            files.append(rel)                     # added by both, or changed here and deleted there, or a link
+        else:
+            folder = scratch / str(number)
+            _blob_into(root, was[2], folder / "base")
+            _blob_into(root, new[2], folder / "theirs")
+            shutil.copy2(mine, folder / "merged")
+            if rel == BIB_NAME:
+                keys = _collisions((folder / "base").read_bytes(), (folder / "merged").read_bytes(),
+                                   (folder / "theirs").read_bytes())
+                if keys:
+                    files.append(rel)
+                    continue
+            merged = _git(root, "merge-file", "--quiet", str(folder / "merged"), str(folder / "base"),
+                          str(folder / "theirs"), check=False)
+            if merged.returncode != 0:            # > 0: that many conflicts; 255: not mergeable (binary)
+                files.append(rel)
+            else:
+                plan.append((rel, folder / "merged"))
+    if files:
+        if keys:
+            what = (f"{'this entry was' if len(keys) == 1 else 'these entries were'} changed both by you and in the "
+                    f"new version: {', '.join(keys[:20])}{', ...' if len(keys) > 20 else ''}")
+            others = [name for name in files if name != BIB_NAME]
+            if others:
+                what += f"; and your changes to {_some(others)} collide with the new version's"
+        else:
+            what = f"your changes to {_some(files)} collide with the new version's"
+        raise UpdateConflict(f"The bibliography was not updated: {what}. Nothing was changed: your files are exactly "
+                             "as they were. Run `cdlbib send` to send your changes, or `cdlbib update` to choose again.",
+                             entries=keys, files=files)
+    return plan
+
+
+def _untracked(backup):
+    """The untracked files a backup recorded (they are in it)."""
+    listed = json.loads((backup.path / "ref.json").read_text(encoding="utf-8")).get("untracked", [])
+    return [_inside(name) for name in listed]
+
+
+def _set_edits_aside(root, backup, commit):
+    """Leave the tracked files under the two paths as ``commit`` has them and no untracked file
+    there: `git restore` from the commit, then each untracked file is moved into ``backup``
+    (which already holds a copy of it), and the folders that leaves empty are removed.
+    Ignored files are not touched."""
+    _git_restore(root, commit)
+    for rel in _untracked(backup):
+        if os.path.lexists(root / rel):
+            _set_aside(root, rel, backup)
+            for above in list(Path(rel).parents)[:-2]:     # the folders below cdl.bib / verification
+                with contextlib.suppress(OSError):
+                    os.rmdir(root / above)                 # only an empty folder goes
+    left = sorted({name for _, name in _status(root, *KEPT)[1]})
+    if left:
+        raise CdlbibError(f"these files still have changes: {_some(left)}")
+
+
+def _fast_forward(root, target):
+    merged = _git(root, "merge", "--ff-only", "--no-overwrite-ignore", "--no-autostash", "--quiet", target, check=False)
+    lines = [line.strip() for line in merged.stderr.splitlines() if line.strip()]
+    return merged.returncode, " ".join(lines) if lines else f"git merge exited with status {merged.returncode}"
+
+
+def _with_edits(root, decision, branch, commit, target, ahead, backup):
+    """The decisions "update" (keep my changes on top of the new version) and "discard", with
+    the lock held and ``backup`` just taken. Returns the files whose changes were carried over
+    ("update") or [] ("discard"). Each step, and what is left if it fails:
+
+    1. The backup must describe the files on disk exactly, or nothing is done (UpdateConflict
+       and CdlbibError from here on mean: nothing was changed, unless they say otherwise).
+    2. "update": the merge of every changed file is worked out on copies (_carry); a collision
+       raises UpdateConflict with the library untouched.
+    3. The edits are set aside (_set_edits_aside): the library's files are then the commit's.
+    4. The branch is moved to the upstream's commit: a fast-forward, or for a library with
+       commits of its own (discard only) `switch --detach`, a compare-and-swap of the branch,
+       `switch` back.
+    5. "update": each carried file is written (beside its place, then moved in) and checked.
+    A failure in 3 or 4 that leaves the library on its commit is undone from the backup and
+    checked (_put; nothing is done when the files are still exactly the backup's); any other
+    failure names the backup and the command that restores it."""
+    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    try:
+        wrong = _describes(root, backup)
+        if wrong:
+            raise _Untouched(f"these files changed while the backup was being taken: {_some(wrong)}")
+        plan = _carry(root, backup, commit, target, scratch) if decision == "update" else []
+        try:
+            _set_edits_aside(root, backup, commit)
+            if ahead:
+                _git(root, "switch", "--quiet", "--no-overwrite-ignore", "--detach", target)
+                swap = _git(root, "update-ref", "-m", "cdlbib update", f"refs/heads/{branch}", target, commit, check=False)
+                if swap.returncode != 0:
+                    raise CdlbibError(f"branch {branch} is no longer at {commit[:8]}, where it was a moment ago")
+                _git(root, "switch", "--quiet", "--no-overwrite-ignore", branch)
+            else:
+                status, said = _fast_forward(root, target)
+                if status != 0:
+                    raise CdlbibError(f"git could not fast-forward the library ({said})")
+            if _head(root) != (branch, target):
+                raise CdlbibError("the library is not on the upstream's commit")
+        except (CdlbibError, OSError) as exc:
+            saved = f"The library as it was is saved in {backup.path}; `{UNDO} {backup.stamp}` puts it back."
+            try:
+                if _head(root) == (None, target) and _git(root, "rev-parse", "--verify", "--quiet",
+                                                          f"refs/heads/{branch}", check=False).stdout.strip() == commit:
+                    _git(root, "switch", "--quiet", "--no-overwrite-ignore", branch)     # step 4 stopped before the swap
+                if _head(root) != (branch, commit):
+                    raise CdlbibError("the library is no longer on the commit it was on")
+                if _describes(root, backup):           # something was changed:
+                    _put(root, backup, backup)         # put the files back, and check every one of them
+            except (CdlbibError, OSError) as second:
+                raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}), and the library could not "
+                                  f"be put back as it was ({_why(second)}). {saved}") from exc
+            raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
+                              f"were staged may now be unstaged); a copy of it is backup {backup.stamp}.") from exc
+        try:
+            for rel, source in plan:
+                if source is None:
+                    if os.path.lexists(root / rel):
+                        os.unlink(root / rel)
+                else:
+                    _copy(source, root / rel)
+            bad = [rel for rel, source in plan
+                   if (os.path.lexists(root / rel) if source is None else not _same(source, root / rel))]
+            kept = {_same_name(rel) for rel, _ in plan}
+            bad += [name for _, name in _status(root, *KEPT)[1] if _same_name(name) not in kept]
+            if bad:
+                raise CdlbibError(f"these files are not as they should be: {_some(sorted(set(bad)))}")
+        except (CdlbibError, OSError) as exc:
+            raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
+                              f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        return [rel for rel, _ in plan]
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+class _Untouched(CdlbibError):
+    """Raised inside update() when nothing was changed and the backup just taken is not needed."""
+
+
+def _entry_count(root, commit, target):
+    """How many entries of the working cdl.bib differ from the upstream's version the library
+    started from (the project's own comparison); None when that cannot be told."""
+    scratch = Path(tempfile.mkdtemp(prefix="cdlbib-update-"))
+    try:
+        from . import api
+        start = _git(root, "merge-base", commit, target, check=False).stdout.strip()
+        if not start:
+            return None
+        _blob_into(root, f"{start}:{BIB_NAME}", scratch / BIB_NAME)
+        summary = api.compare(str(scratch / BIB_NAME), str(root / BIB_NAME)).summary
+        keys = set()
+        for line in summary.splitlines():
+            if ": " in line:
+                keys.update(key for key in line.split(": ", 1)[1].split(", ") if key)
+        return len(keys)
+    except Exception:      # a file that is not valid BibTeX yet, no such file, no git: the files are listed without a count
+        return None
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+CHOICES = ("keep", "update", "send", "discard")
+
+
+def _update(root, force, now, made, decision=None, seen=None):
     """update(), with the lock held. ``made`` receives the backup, once one is taken."""
-    if not _wanted(force, now):      # another command checked, or tried, while this one waited
+    if decision is None and not _wanted(force, now):      # another command checked, or tried, while this one waited
         return UpdateResult("not_due")
     when = _utc(now)
     if Path(_git(root, "rev-parse", "--show-toplevel").stdout.strip()).resolve() != root:
@@ -1174,8 +1448,8 @@ def _update(root, force, now, made):
 
     def record(checked):
         """A completed check sets last_check. A failed automatic attempt sets last_attempt and
-        leaves last_check; a failed `cdlbib update` records nothing."""
-        if not checked and force:
+        leaves last_check; a failed `cdlbib update` records nothing, and None records nothing."""
+        if checked is None or (not checked and force):
             return
         before = read_state()
         state = State(when, upstream()) if checked else State(before.last_check, before.upstream, when)
@@ -1189,6 +1463,15 @@ def _update(root, force, now, made):
         record(False)
         return UpdateResult("skipped_offline", notes=notes,
                             message=f"update check skipped: {reason}; working with the copy in {root}")
+
+    if decision in ("keep", "send"):
+        # Nothing is changed and nothing need be fetched: the time is recorded, so the question
+        # is not asked again until the next day's check. ("send": the front end runs the send.)
+        record(True)
+        return UpdateResult("left_alone", notes=notes, message=(
+            "the bibliography was not updated and your changes are as they were; nothing was changed. "
+            "You will be asked again tomorrow; `cdlbib update` asks now." if decision == "keep" else
+            "the bibliography was not updated: your changes are sent first (`cdlbib send`)"))
 
     try:
         status, errors = _fetch(root, timeout)
@@ -1226,23 +1509,58 @@ def _update(root, force, now, made):
 
     if branch != default:
         return left(f"the library is on branch {branch}, not {default}" if branch else "the library is not on a branch",
-                    f"To update, run `git switch {default}` in {root}, then `cdlbib update`.")
+                    f"To update, run `git -C {shlex.quote(str(root))} switch {default}`, then `cdlbib update`.")
     ahead = int(_git(root, "rev-list", "--count", f"{target}..{commit}").stdout)
-    if ahead:
-        return left(f"the library has {_count(ahead, 'commit')} that the upstream does not have",
-                    f"To update, merge origin/{default} with git in {root}.")
     edits = sorted({name for _, name in _status(root, *KEPT)[1]})
-    if edits:
-        return left(f"these files have changes that have not been sent: {_some(edits)}",
-                    "Run `cdlbib send` to send your changes.")
+    token = _seen(root, branch, commit, target, edits)
+    if decision in ("update", "discard") and seen is not None and seen != token:
+        return left("the library or the upstream changed after you were asked what to do",
+                    "Run `cdlbib update` to be asked again.", checked=None)
     # Files git would write over without asking are a refusal before anything is backed up:
-    # the user's changed, untracked and ignored files that the new commits touch.
-    mine = [name for _, name in _status(root, ".", ignored=True)[1]]
+    # the user's changed, untracked and ignored files that the new commits touch. (Changed and
+    # untracked files under the two paths are the unsent work a decision is asked about.)
+    mine = [name for state, name in _status(root, ".", ignored=True)[1] if state == "!!" or not _under_kept(name)]
     differs = _listed(_git(root, "diff", "--name-only", "--no-renames", "-z", commit, target).stdout)
     clash = _in_the_way(root, mine, differs)
     if clash:
         return left(f"updating would overwrite your own {_some(clash)}",
                     f"Move {'that file' if len(clash) == 1 else 'those files'} out of the way, then run `cdlbib update`.")
+    if ahead or edits:
+        choices = tuple(choice for choice in CHOICES
+                        if not (choice == "update" and ahead) and not (choice == "send" and not edits))
+        if decision is None:
+            raise UpdateNeedsDecision(
+                f"A newer version of the bibliography is available ({_count(new, 'new commit')}), and the library in "
+                f"{root} has changes that have not been sent. Nothing was changed.",
+                changed=edits, new_commits=new, local_commits=ahead, choices=choices, seen=token)
+        if decision == "update" and ahead:
+            return left(f"the library has {_count(ahead, 'commit')} that the upstream does not have, which cannot be "
+                        "kept on top of the new version", "Run `cdlbib update` and choose again.", checked=None)
+        backup = _backup(root)
+        made.append(backup)
+        try:
+            carried = _with_edits(root, decision, branch, commit, target, ahead, backup)
+        except (_Untouched, UpdateConflict) as exc:
+            if _head(root) == (branch, commit) and not _describes(root, backup):
+                _drop(backups_folder(), backup.stamp, root)      # checked: nothing was changed, so the copy is not kept
+                made.clear()
+            if isinstance(exc, UpdateConflict):
+                raise
+            return left(str(exc), "Run `cdlbib update` to try again.", checked=None)
+        record(True)
+        try:
+            _prune(backups_folder(), root)
+        except (OSError, CdlbibError) as exc:
+            notes.append(f"note: an old backup could not be removed: {_why(exc)}")
+        if decision == "update":
+            message = (f"updated the bibliography: {_count(new, 'new commit')}, with your changes kept"
+                       + (f" ({_some(carried)})" if carried else "")
+                       + f" (the library as it was is backup {backup.stamp}; `{UNDO} {backup.stamp}` puts it back)")
+        else:
+            gone = ([_count(ahead, "commit")] if ahead else []) + ([f"your changes to {_some(edits)}"] if edits else [])
+            message = (f"updated the bibliography: {_count(new, 'new commit')}; discarded {' and '.join(gone)} "
+                       f"(saved in backup {backup.stamp}; `{UNDO} {backup.stamp}` brings them back)")
+        return UpdateResult("updated", new_commits=new, backup=backup, notes=notes, message=message)
 
     backup = _backup(root)
     made.append(backup)
@@ -1268,7 +1586,7 @@ def _update(root, force, now, made):
                                 f"backup {backup.stamp}; `{UNDO}` puts it back)")
 
 
-def update(ws, force=False, decision=None, now=None, progress=None):
+def update(ws, force=False, decision=None, now=None, progress=None, seen=None):
     """Bring the managed library up to date.
 
     Without ``force`` this is the automatic check a command makes: nothing is fetched when the
@@ -1282,13 +1600,36 @@ def update(ws, force=False, decision=None, now=None, progress=None):
     After a fetch the time is recorded as the last check. Nothing new: ``up_to_date``. New
     commits, and the library is on the default branch with no commits of its own and no
     changes under cdl.bib or verification/: a backup is taken, the branch is fast-forwarded,
-    ``updated``. In every other state nothing is changed and ``left_alone`` says why and what
-    can be done. A fast-forward that git refuses also changes nothing, keeps no backup, and
-    counts as a failed attempt. ``result.notes`` holds non-fatal remarks.
+    ``updated``. A fast-forward that git refuses changes nothing, keeps no backup, and counts
+    as a failed attempt. ``result.notes`` holds non-fatal remarks.
+
+    New commits, and the library is on the default branch with unsent work (changed or
+    untracked files under the two paths, or commits the upstream does not have): nothing is
+    changed, no time is recorded, and UpdateNeedsDecision is raised once the lock has been
+    released. It carries what changed, the decisions this state takes (``choices``) and a name
+    for the state (``seen``). The front end asks and calls update() again with ``decision``
+    and ``seen``; the state is then read afresh under the lock, and a decision whose ``seen``
+    no longer names it changes nothing (``left_alone``). Without ``seen`` a decision is
+    applied to the state that is found. The decisions:
+
+    ``"keep"``     nothing is changed; the time is recorded, so the question is not asked again
+                   until the next day's check. (A front end that cannot ask passes this too.)
+    ``"send"``     as "keep": the front end then runs the send.
+    ``"update"``   a backup is taken; the new version is brought in underneath the user's
+                   changes, which are kept as they are (a file both changed is merged). When
+                   a change of the user's collides with one of the upstream's, UpdateConflict
+                   names the entries and NOTHING is changed: the merge is worked out on
+                   copies before the library is touched. Not taken by a library with commits
+                   of its own (``left_alone``).
+    ``"discard"``  a backup is taken; the library is made equal to the upstream; ``updated``,
+                   and the message names the backup and the command that brings the changes
+                   back (changed and untracked files, and local commits).
+    Changes that were staged are unstaged by "update" (as by a restore). In every other
+    state (another branch, no branch, a file of the user's in the way) nothing is changed and
+    ``left_alone`` says why and what can be done.
 
     ``now`` is the current time (UTC), for callers that fix it; ``progress`` receives one line
-    when another command holds the lock and this one waits; ``decision`` is the answer to the
-    question a later version asks about unsent changes.
+    when another command holds the lock and this one waits.
 
     Only the managed library is ever updated: any other ``ws`` is a CdlbibError. Everything
     runs under the lock of the data folder, so of two commands starting together one fetches
@@ -1297,7 +1638,9 @@ def update(ws, force=False, decision=None, now=None, progress=None):
     root = Path(ws.root).resolve()
     if root != path().resolve() or not exists():
         raise CdlbibError(f"Only the library cdlbib manages ({path()}) is updated; {ws.root} is not it.")
-    if not _wanted(force, now):
+    if decision is not None and decision not in CHOICES:
+        raise CdlbibError(f"{decision!r} is not a decision an update takes ({', '.join(CHOICES)}).")
+    if decision is None and not _wanted(force, now):
         return UpdateResult("not_due")
     try:
         lock = _locked(home(), progress, WAITING)
@@ -1305,12 +1648,22 @@ def update(ws, force=False, decision=None, now=None, progress=None):
     except OSError as exc:
         raise CdlbibError(f"{home()} cannot be written ({exc.strerror or exc}), so the library was not "
                           "checked for updates.") from exc
-    made = []
+    made, asked = [], None
     try:
-        return _update(root, force, now, made)
+        return _update(root, force, now, made, decision, seen)
+    except UpdateNeedsDecision as exc:
+        asked = exc
     except (OSError, subprocess.SubprocessError) as exc:
         raise CdlbibError(f"The update check of {root} failed ({_why(exc)}). " + (
             f"A backup was taken first, in {made[0].path}; `{UNDO} {made[0].stamp}` puts the library back as it was."
             if made else "The library's files were not changed.")) from exc
     finally:
         lock.__exit__(None, None, None)
+    # The lock is released: the count for the question is made (it reads files only), and the
+    # front end asks. Nothing was changed, and no time was recorded.
+    if BIB_NAME in asked.changed or asked.local_commits:
+        branch, commit = _head(root)
+        target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{_default_branch(root)}^{{commit}}",
+                      check=False).stdout.strip()
+        asked.entries_changed = _entry_count(root, commit, target) if target else None
+    raise asked

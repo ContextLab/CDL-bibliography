@@ -1,12 +1,14 @@
 """The cdlbib command. Parsing and formatting only; the work is in cdlbib.api."""
+import os
 import re
 import sys
 from pathlib import Path
 
 import typer
 
-from . import __version__, api, deps
+from . import __version__, api, deps, verification_cli
 from .errors import CdlbibError, GateFailed, LibraryUnavailable, MissingDependency, PublishRefused, WorkspaceNotFound
+from .errors import UpdateNeedsDecision
 from . import workspace
 from .verification_cli import app as crossref_app, library, named
 from .workspace import BIB_NAME
@@ -111,7 +113,12 @@ def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", v
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
     """Run the verify gate, then send the change as a pull request from your fork."""
-    ws = library(ctx, fname)
+    _send(library(ctx, fname), fname, reference=reference, verbose=verbose, outfile=outfile, summary=summary,
+          database=database, mailto=mailto)
+
+
+def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, summary=None, database=None, mailto=None):
+    """The send command, for the library ``ws`` (also run by the answer "send my changes first")."""
 
     def shown(check):
         report_format(check.format, ws, fname)
@@ -211,13 +218,74 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
                    "`cdlbib update --undo STAMP` at the one named.")
     else:
-        result = api.update(force=True, progress=lambda line: typer.echo(line, err=True))
+        def say(line):
+            typer.echo(line, err=True)
+
+        try:
+            result = api.update(force=True, progress=say)
+        except UpdateNeedsDecision as exc:
+            result = settle_unsent(workspace.Workspace(api.managed_root()), exc, True, say)
+            if result is None:      # asked for, and nobody can be asked what to do with the unsent changes
+                say(verification_cli.unsent_line(exc))
+                raise typer.Exit(code=1)
         for note in result.notes:
             typer.echo(note, err=True)
         if result.action == "skipped_offline":      # asked for, and it could not be done
             typer.echo(result.message, err=True)
             raise typer.Exit(code=1)
         typer.echo(result.message)
+
+
+ANSWERS = {"keep": ("k", "Keep working without updating (ask again tomorrow)"),
+           "update": ("u", "Update and keep my changes"),
+           "send": ("s", "Send my changes first (runs `cdlbib send`)"),
+           "discard": ("d", "Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)")}
+
+
+def unsent_question(exc):
+    """The question about unsent changes, as it is printed (errors.UpdateNeedsDecision)."""
+    count, commits, new = exc.entries_changed, exc.local_commits, exc.new_commits
+    counted = f" ({count} {'entry' if count == 1 else 'entries'} changed)" if count else ""
+    lines = [f"A newer version of the bibliography is available ({new} new commit{'' if new == 1 else 's'}), "
+             "and you have changes that have not been sent:"]
+    if commits:
+        lines.append(f"  {commits} commit{'' if commits == 1 else 's'} that the upstream does not have"
+                     + ("" if BIB_NAME in exc.changed else counted.replace(" changed)", f" of {BIB_NAME} changed)")))
+    lines += [f"  {name}{counted if name == BIB_NAME else ''}" for name in exc.changed[:10]]
+    if len(exc.changed) > 10:
+        lines.append(f"  ... and {len(exc.changed) - 10} more")
+    lines.append("What would you like to do?")
+    lines += [f"  [{ANSWERS[choice][0]}] {ANSWERS[choice][1]}" for choice in exc.choices]
+    if "update" not in exc.choices:
+        lines.append("  (Updating and keeping your changes is not offered: the library has commits that the upstream "
+                     "does not have.)")
+    if "send" not in exc.choices:
+        lines.append("  (Sending is not offered: there are no uncommitted changes to send.)")
+    return "\n".join(lines)
+
+
+def settle_unsent(ws, exc, force, say, sending=False):
+    """An update is available and the managed library ``ws`` has unsent changes: ask what to
+    do, and do it. Returns the update's result; None when no question can be asked (no
+    terminal), and then nothing was changed. No option answers this question. "Send my
+    changes first" runs the send command and ends there; when the command being run is
+    `send` itself (``sending``), it just goes on."""
+    letters = [ANSWERS[choice][0] for choice in exc.choices]
+    letter = _chosen(unsent_question(exc), letters)
+    if letter is None:
+        return None
+    decision = exc.choices[letters.index(letter)]
+    result = api.update(ws, decision=decision, force=force, progress=say, seen=exc.seen)
+    if decision == "send" and not sending:
+        for note in result.notes:
+            say(note)
+        say(result.message)
+        _send(ws, mailto=os.environ.get("CROSSREF_MAILTO"))
+        raise typer.Exit()       # the send was the command
+    return result
+
+
+verification_cli.settle_unsent = settle_unsent
 
 
 def fork_wanted(exc):
@@ -283,3 +351,23 @@ def _confirmed(question):
     except typer.Abort:  # Ctrl-C or end of input at the prompt
         typer.echo("Aborted.", err=True)
         raise SystemExit(1)
+
+
+def _chosen(question, letters):
+    """Ask ``question`` (on stderr) until one of ``letters`` is answered. Only at a terminal:
+    with none, None, and nothing is printed."""
+    if not (sys.stdin.isatty() and sys.stderr.isatty()):
+        return None
+    typer.echo(question, err=True)
+    while True:
+        typer.echo(f"Your choice [{'/'.join(letters)}]: ", nl=False, err=True)     # nothing of it on stdout
+        try:
+            answer = sys.stdin.readline()
+        except KeyboardInterrupt:
+            answer = ""
+        if not answer:  # Ctrl-C or end of input at the prompt
+            typer.echo("\nAborted.", err=True)
+            raise SystemExit(1)
+        if answer.strip().lower() in letters:
+            return answer.strip().lower()
+        typer.echo(f"Please answer {', '.join(letters[:-1])} or {letters[-1]}.", err=True)

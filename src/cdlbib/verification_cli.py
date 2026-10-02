@@ -12,6 +12,7 @@ from . import api
 from . import verification
 from . import workspace
 from .errors import ApprovalRefused, CdlbibError, GateFailed, IdentityUnavailable, MissingDependency
+from .errors import UpdateConflict, UpdateNeedsDecision
 from .workspace import Workspace
 
 from .verification import (
@@ -166,23 +167,59 @@ def library(ctx, fname):
         typer.echo(line, err=True)
 
     ws = workspace.resolve(chosen, managed=True, progress=say)
-    keep_current(ws, chosen, say)
+    keep_current(ws, chosen, say, sending=ctx is not None and ctx.command is not None and ctx.command.name == "send")
     return ws
 
 
 SHOWN = ("updated", "skipped_offline", "left_alone", "returned_to_main")   # the outcomes a command mentions
 
 
-def keep_current(ws, chosen, say):
+settle_unsent = None   # set by cdlbib.cli: asks what to do about unsent changes; None when it could not ask
+
+
+def unsent_line(exc):
+    """The one line for an update that waits on the user's decision (errors.UpdateNeedsDecision)
+    when no question can be asked."""
+    count = exc.entries_changed
+    files = [f"{name} ({count} {'entry' if count == 1 else 'entries'} changed)" if name == "cdl.bib" and count else name
+             for name in exc.changed[:5]] + (["..."] if len(exc.changed) > 5 else [])
+    why = []
+    if exc.local_commits:
+        why.append(f"the library has {exc.local_commits} commit{'' if exc.local_commits == 1 else 's'} that the "
+                   "upstream does not have")
+    if files:
+        why.append(f"these files have changes that have not been sent: {', '.join(files)}")
+    return (f"a newer version of the bibliography is available ({exc.new_commits} new "
+            f"commit{'' if exc.new_commits == 1 else 's'}), but {' and '.join(why)}; nothing was changed. "
+            "Run `cdlbib update` in a terminal to choose what to do.")
+
+
+def keep_current(ws, chosen, say, sending=False):
     """The daily check, before a command's own work: when the library in use is the managed
     one (also when it was reached from inside its own folder) and it was last checked a day
     ago or more, it is brought up to date. The user's own library (a named file, --library,
     CDLBIB_LIBRARY, a cdl.bib in or above the current folder) is never checked. Nothing here stops the command: it carries on with the copy on
-    disk, and ``say`` receives one line when something happened or could not be done."""
+    disk, and ``say`` receives one line when something happened or could not be done.
+
+    A library with unsent changes is never updated without the user's answer: at a terminal
+    the question is asked; with none, nothing is changed, one line says an update is available,
+    and the time is recorded so that the line is said once a day, not with every command.
+    ``sending``: the command is `send` itself (the answer "send first" then just lets it run)."""
     if workspace.origin_of(chosen)[1] != workspace.Origin.MANAGED and not api.is_managed(ws):
         return
     try:
-        result = api.update(ws, progress=say)
+        try:
+            result = api.update(ws, progress=say)
+        except UpdateNeedsDecision as exc:
+            result = settle_unsent(ws, exc, False, say, sending) if settle_unsent else None
+            if result is None:
+                for note in api.update(ws, decision="keep").notes:
+                    say(note)
+                say(unsent_line(exc))
+                return
+    except UpdateConflict as exc:
+        say(str(exc))
+        return
     except CdlbibError as exc:
         say(f"the bibliography was not updated: {exc}")
         return

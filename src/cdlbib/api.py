@@ -136,7 +136,7 @@ def _managed(so="so there are no backups and nothing to undo"):
     return workspace.Workspace(library.path())
 
 
-def update(ws=None, decision=None, force=False, progress=None):
+def update(ws=None, decision=None, force=False, progress=None, seen=None):
     """Bring the managed library up to date and return a library.UpdateResult. Without
     ``force`` this is the daily check: nothing is fetched when the last check is under 24
     hours old, nor within an hour of an automatic attempt that failed, and the upstream is
@@ -144,12 +144,21 @@ def update(ws=None, decision=None, force=False, progress=None):
     library in use is the managed one (``is_managed``); ``ws`` None means the managed library
     whatever library is in use (CdlbibError when it has not been downloaded). ``progress``
     receives one line when another command holds the lock and this one has to wait.
-    The library is changed only by a fast-forward, after a backup (``result.backup``);
-    ``result.message`` is the line to show and ``result.notes`` are non-fatal remarks. Any
-    other library than the managed one is a CdlbibError, and nothing is done to it."""
+
+    A library without unsent work is changed only by a fast-forward, after a backup
+    (``result.backup``); ``result.message`` is the line to show and ``result.notes`` are
+    non-fatal remarks. When an update is available and the library holds unsent work,
+    nothing is changed and errors.UpdateNeedsDecision is raised (it never asks): the front end
+    asks the user and calls again with ``decision`` (one of the exception's ``choices``:
+    "keep", "update", "send", "discard") and ``seen`` (the exception's ``seen``). "update" and
+    "discard" take a backup first and are undone by ``undo_update``; "update" raises
+    errors.UpdateConflict, with nothing changed, when the user's changes and the upstream's
+    collide; "send" only records the choice, and the front end runs ``send``. See
+    library.update. Any other library than the managed one is a CdlbibError, and nothing is
+    done to it."""
     from . import library
     return library.update(_managed("so there is nothing to update") if ws is None else ws,
-                          force=force, decision=decision, progress=progress)
+                          force=force, decision=decision, progress=progress, seen=seen)
 
 
 def is_managed(ws):

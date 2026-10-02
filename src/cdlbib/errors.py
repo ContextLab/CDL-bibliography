@@ -14,8 +14,37 @@ class LibraryUnavailable(CdlbibError):
 
 
 class UpdateConflict(CdlbibError):
-    """An update of the managed library collided with the user's changes; the backup taken
-    before it was restored."""
+    """An update of the managed library collided with the user's changes, and the library is
+    exactly as it was. ``entries`` are the citation keys changed both by the user and by the
+    upstream (differently); ``files`` the files whose changes collide."""
+
+    def __init__(self, message="", entries=(), files=()):
+        self.entries, self.files = list(entries), list(files)
+        super().__init__(message)
+
+
+class UpdateNeedsDecision(CdlbibError):
+    """A newer version of the managed library is available and the library holds work that
+    has not been sent. Nothing was changed; the user decides (the core never asks).
+
+    ``changed``          the changed and untracked files under cdl.bib and verification/
+    ``entries_changed``  how many entries of cdl.bib differ from the upstream's version the
+                         library started from (None when cdl.bib is unchanged or the count
+                         could not be made)
+    ``new_commits``      commits the upstream has that the library does not
+    ``local_commits``    commits the library has that the upstream does not
+    ``choices``          the decisions library.update() takes in this state, from
+                         ("keep", "update", "send", "discard")
+    ``seen``             names the state the question is about; passed back with the decision,
+                         so that a decision is never applied to a state the user was not shown
+    """
+
+    def __init__(self, message, changed=(), entries_changed=None, new_commits=0, local_commits=0,
+                 choices=("keep", "update", "send", "discard"), seen=None):
+        self.changed, self.entries_changed = list(changed), entries_changed
+        self.new_commits, self.local_commits = new_commits, local_commits
+        self.choices, self.seen = tuple(choices), seen
+        super().__init__(message)
 
 
 class MissingDependency(CdlbibError):

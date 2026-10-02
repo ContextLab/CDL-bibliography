@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import re
+import shlex
 import shutil
 import stat
 import subprocess
@@ -22,7 +23,7 @@ import pytest
 
 import conftest
 from cdlbib import api, library, workspace
-from cdlbib.errors import CdlbibError, UpdateConflict
+from cdlbib.errors import CdlbibError, UpdateConflict, UpdateNeedsDecision
 from cdlbib.workspace import Workspace
 
 _SIBLING = Path(sys.executable).parent / "cdlbib"
@@ -121,7 +122,9 @@ def write(root, name, text):
 
 
 def cdlbib(*args, cwd, **env):
-    return subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True, env=dict(os.environ, **env))
+    """Run the command with no terminal (stdin is /dev/null, whatever pytest itself runs in)."""
+    return subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True, env=dict(os.environ, **env),
+                          stdin=subprocess.DEVNULL)
 
 
 @pytest.fixture
@@ -1307,7 +1310,8 @@ def test_anything_but_a_clean_default_branch_is_left_alone_with_a_line(managed, 
     (root / ".git" / "info" / "exclude").write_text("notes.txt\nverification/local.txt\n", encoding="utf-8")
     advance(upstream, "Four files", **{"verification/new.txt": "new\n", "notes.txt": "upstream's notes\n",
                                        "README.md": "upstream's readme\n", "verification/local.txt": "upstream's\n"})
-    send, switch = "Run `cdlbib send` to send your changes.", f"To update, run `git switch master` in {root}, then `cdlbib update`."
+    send, switch = "Run `cdlbib update` in a terminal to choose what to do.", f"To update, run `git -C {shlex.quote(str(root))} switch master`, then `cdlbib update`."
+    asks = state in ("an edit", "an untracked file", "a staged edit", "a local commit")     # unsent work: the user decides
     move = "Move that file out of the way, then run `cdlbib update`."
     count = 1
     if state == "an edit":
@@ -1323,7 +1327,7 @@ def test_anything_but_a_clean_default_branch_is_left_alone_with_a_line(managed, 
     elif state == "a local commit":
         write(root, "cdl.bib", conftest.ZOLL90 + "\n% mine\n")
         conftest._git("commit", "--quiet", "-am", "Mine", cwd=root)
-        why, then = "the library has 1 commit that the upstream does not have", f"To update, merge origin/master with git in {root}."
+        why, then = "the library has 1 commit that the upstream does not have", send
     elif state == "a send branch":
         conftest._git("switch", "--quiet", "-c", "cdlbib/someone/a-change", cwd=root)
         why, then = "the library is on branch cdlbib/someone/a-change, not master", switch
@@ -1352,9 +1356,14 @@ def test_anything_but_a_clean_default_branch_is_left_alone_with_a_line(managed, 
     assert cdlbib("where", cwd=empty_folder(tmp_path)).stderr == ""
 
     asked = cdlbib("update", cwd=empty_folder(tmp_path))               # asked for: said again, still nothing changed
-    assert (asked.returncode, asked.stdout, asked.stderr) == (0, left_alone(count, why, then) + "\n", "")
-    result = library.update(ws, force=True)
-    assert (result.action, result.new_commits, result.backup, result.message) == ("left_alone", 1, None, left_alone(1, why, then))
+    if asks:                                                          # and nobody can be asked what to do: exit 1
+        assert (asked.returncode, asked.stdout, asked.stderr) == (1, "", left_alone(count, why, then) + "\n")
+        with pytest.raises(UpdateNeedsDecision):
+            library.update(ws, force=True)
+    else:
+        assert (asked.returncode, asked.stdout, asked.stderr) == (0, left_alone(count, why, then) + "\n", "")
+        result = library.update(ws, force=True)
+        assert (result.action, result.new_commits, result.backup, result.message) == ("left_alone", 1, None, left_alone(1, why, then))
     assert everything() == before and backup_names(home) == []
 
 
@@ -2005,7 +2014,8 @@ def test_a_rewritten_upstream_is_left_alone(managed, tmp_path):
     checked(home, 25 * HOUR)
     out = cdlbib("where", cwd=empty_folder(tmp_path))
     assert out.returncode == 0 and out.stderr == left_alone(
-        1, "the library has 1 commit that the upstream does not have", f"To update, merge origin/master with git in {root}.") + "\n"
+        1, "the library has 1 commit that the upstream does not have",
+        "Run `cdlbib update` in a terminal to choose what to do.") + "\n"
     assert (snapshot(root), outside(root)) == before and backup_names(home) == []
     assert git("rev-parse", "origin/master", cwd=root) == git("rev-parse", "master", cwd=upstream) != before[0]["commit"]
 
@@ -2044,3 +2054,653 @@ def test_a_command_run_inside_the_managed_library_keeps_it_current_too(managed, 
     assert out.returncode == 0 and out.stderr == updated_line(1, home) + "\n", out.stderr
     assert out.stdout.splitlines() == [str(ws.root), "chosen by: cdl.bib found in or above the current folder"]
     assert git("rev-parse", "HEAD", cwd=ws.root) == new
+
+
+# --- unsent edits: the user decides ------------------------------------------------------------
+#
+# An update is available and the managed library holds work that has not been sent. The core
+# raises UpdateNeedsDecision and changes nothing; the command line asks. Every test compares
+# everything() before and after: the snapshot (every local branch, HEAD, the changed paths, a
+# hash of every file under the two paths), every other file, the stash list, and the files
+# that hold a conflict marker.
+
+MINE = ("\n@article{Mine26,\n\tAuthor = {A Person},\n\tJournal = {Journal of Tests},\n\tTitle = {My own entry},\n"
+        "\tYear = {2026}}\n")
+BASE = conftest.ZOLL90 + "\n"
+THEIRS = BASE.replace("U Zoller", "Uri Zoller")                       # the upstream edits line 2 of the entry
+IDENTITY = dict(GIT_AUTHOR_NAME="cdlbib tests", GIT_AUTHOR_EMAIL="tests@cdlbib.invalid",
+                GIT_COMMITTER_NAME="cdlbib tests", GIT_COMMITTER_EMAIL="tests@cdlbib.invalid")
+
+
+def markers(root):
+    found = []
+    for name in hashes(root, KEPT):
+        file = Path(root) / name
+        if not file.is_symlink() and any(mark in file.read_bytes() for mark in (b"<<<<<<<", b">>>>>>>", b"|||||||")):
+            found.append(name)
+    return found
+
+
+def everything(root):
+    return {"snapshot": snapshot(root), "outside": outside(root), "stash": git("stash", "list", cwd=root),
+            "markers": markers(root), "refs": git("for-each-ref", "refs/heads", "refs/stash", cwd=root)}
+
+
+def unsent(managed, mine=BASE + MINE, theirs=THEIRS):
+    """The managed library with an edited cdl.bib, an edited tracked file and an untracked one,
+    and an upstream that has moved on (two commits). Gives (home, upstream, ws, the upstream's
+    new commit)."""
+    home, upstream, ws = managed
+    advance(upstream, "A tracked file", **{"verification/tracked.txt": "as the upstream has it\n"})
+    fast_forward(ws.root)
+    write(ws.root, "cdl.bib", mine)
+    write(ws.root, "verification/tracked.txt", "as the upstream has it\nand a line of mine – é\n")
+    write(ws.root, "verification/notes/my new file.jsonl", '{"key": "Mine26"}\n')
+    advance(upstream, "A new file", **{"verification/new.txt": "new\n"})
+    new = advance(upstream, "An edit to the entry", **{"cdl.bib": theirs})
+    checked(home, 25 * HOUR)
+    return home, upstream, ws, new
+
+
+def lock_is_free(home):
+    import fcntl
+    with open(home / "lock", "a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)             # raises when another holder has it
+        fcntl.flock(lock, fcntl.LOCK_UN)
+    return True
+
+
+def test_with_unsent_edits_the_core_asks_and_changes_nothing(managed, capsys):
+    home, upstream, ws, new = unsent(managed)
+    before, state = everything(ws.root), (home / "state.json").read_bytes()
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        library.update(ws)
+    asked = raised.value
+    assert isinstance(asked, CdlbibError)
+    assert asked.changed == ["cdl.bib", "verification/notes/my new file.jsonl", "verification/tracked.txt"]
+    assert (asked.entries_changed, asked.new_commits, asked.local_commits) == (1, 2, 0)
+    assert asked.choices == ("keep", "update", "send", "discard") and asked.seen
+    assert str(asked) == (f"A newer version of the bibliography is available (2 new commits), and the library in "
+                          f"{ws.root} has changes that have not been sent. Nothing was changed.")
+    assert everything(ws.root) == before and backup_names(home) == []
+    assert (home / "state.json").read_bytes() == state               # no time recorded: asked again after a crash
+    assert lock_is_free(home)                                         # and the lock is not held while the user thinks
+    with pytest.raises(UpdateNeedsDecision) as again:
+        api.update(ws)
+    assert again.value.seen == asked.seen                             # the same state has the same name
+    assert capsys.readouterr() == ("", "")                            # the core never prints or asks
+    with pytest.raises(CdlbibError, match="'yes' is not a decision an update takes"):
+        library.update(ws, decision="yes")
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+def test_an_entry_count_that_cannot_be_made_is_none_and_the_files_are_still_listed(managed):
+    home, upstream, ws, new = unsent(managed)
+    (ws.root / "cdl.bib").write_bytes(b"\xff\xfe not text that can be read as a bibliography \xff")
+    before = everything(ws.root)
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        library.update(ws)
+    assert raised.value.entries_changed is None and raised.value.changed[0] == "cdl.bib"
+    assert everything(ws.root) == before
+    out = cdlbib("update", cwd=ws.root.parent)
+    assert out.returncode == 1 and out.stderr == NOTICE.replace("cdl.bib (1 entry changed)", "cdl.bib")
+    assert everything(ws.root) == before
+
+
+def test_keep_changes_nothing_and_is_not_asked_again_for_a_day(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before, started = everything(ws.root), datetime.datetime.now(UTC)
+    result = library.update(ws, decision="keep")
+    assert (result.action, result.backup) == ("left_alone", None)
+    assert result.message == ("the bibliography was not updated and your changes are as they were; nothing was "
+                              "changed. You will be asked again tomorrow; `cdlbib update` asks now.")
+    assert everything(ws.root) == before and backup_names(home) == []
+    assert started <= library.read_state().last_check <= datetime.datetime.now(UTC)
+    assert library.update(ws) == library.UpdateResult("not_due")     # no question for the next 24 hours
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert (out.returncode, out.stderr) == (0, "")
+    tomorrow = datetime.datetime.now(UTC) + 24 * HOUR + MINUTE
+    with pytest.raises(UpdateNeedsDecision):                          # the next day's check asks again
+        library.update(ws, now=tomorrow)
+    assert everything(ws.root) == before
+
+
+def test_update_and_keep_brings_the_new_version_in_under_the_edits(managed):
+    home, upstream, ws, new = unsent(managed)
+    root, old = ws.root, git("rev-parse", "HEAD", cwd=ws.root)
+    conftest._git("add", "cdl.bib", cwd=root)                         # a staged change is a change like any other
+    before = everything(root)
+    seen = pytest.raises(UpdateNeedsDecision, library.update, ws).value.seen
+    result = library.update(ws, decision="update", seen=seen)
+    assert result.action == "updated" and result.new_commits == 2
+    stamp = result.backup.stamp
+    assert result.message == (
+        "updated the bibliography: 2 new commits, with your changes kept (cdl.bib, verification/notes/my new "
+        f"file.jsonl, verification/tracked.txt) (the library as it was is backup {stamp}; `cdlbib update --undo "
+        f"{stamp}` puts it back)")
+    assert git("rev-parse", "HEAD", cwd=root) == new and git("symbolic-ref", "--short", "HEAD", cwd=root) == "master"
+    # The edits, byte for byte, on top of the new version: the upstream's change to the entry AND my new entry.
+    assert (root / "cdl.bib").read_bytes() == (THEIRS + MINE).encode()
+    assert (root / "verification/tracked.txt").read_bytes() == "as the upstream has it\nand a line of mine – é\n".encode()
+    assert (root / "verification/notes/my new file.jsonl").read_bytes() == b'{"key": "Mine26"}\n'
+    assert (root / "verification/new.txt").read_text() == "new\n"     # and what the upstream added
+    assert sorted(changed_paths(root, ".")) == ["cdl.bib", "verification/notes/my new file.jsonl", "verification/tracked.txt"]
+    now = everything(root)
+    assert (now["stash"], now["markers"], now["outside"]) == ("", [], before["outside"])
+    assert (result.backup.branch, result.backup.commit) == ("master", old) and backup_names(home) == [stamp]
+    assert library.read_state().last_check > datetime.datetime.now(UTC) - HOUR
+    api.undo_update(stamp)                                            # reversible: exactly the state before
+    assert everything(root) == before
+
+
+def test_update_and_keep_carries_a_deleted_file_and_an_edit_the_upstream_also_made(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "Two files", **{"verification/gone.txt": "to be deleted here\n", "verification/both.txt": "old\n"})
+    fast_forward(root)
+    os.unlink(root / "verification/gone.txt")                         # deleted here, untouched there: stays deleted
+    write(root, "verification/both.txt", "new\n")                     # the same edit on both sides: no change left
+    write(root, "verification/same.txt", "added by both\n")           # added by both with the same bytes
+    new = advance(upstream, "The same edits", **{"verification/both.txt": "new\n", "verification/same.txt": "added by both\n"})
+    checked(home, 25 * HOUR)
+    before = everything(root)
+    result = library.update(ws, decision="update")
+    assert result.action == "updated" and git("rev-parse", "HEAD", cwd=root) == new
+    assert changed_paths(root, ".") == {"verification/gone.txt": " D"}
+    assert (root / "verification/both.txt").read_text() == "new\n" and not (root / "verification/gone.txt").exists()
+    assert (everything(root)["stash"], everything(root)["markers"]) == ("", [])
+    api.undo_update()
+    assert everything(root) == before
+
+
+@pytest.mark.parametrize("case", ["the same lines", "the same entry, lines that would merge", "an entry added by both",
+                                  "a verification file", "edited here and deleted there", "a binary file",
+                                  "a file where the new version has a folder"])
+def test_update_and_keep_with_a_collision_changes_nothing_and_names_the_entries(managed, case):
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "Files", **{"verification/list.txt": "one\n", "verification/blob.bin": "\0base\0"})
+    fast_forward(root)
+    entries, files = [], []
+    if case == "the same lines":
+        write(root, "cdl.bib", BASE.replace("{1990}", "{1991}"))
+        theirs, entries, files = {"cdl.bib": BASE.replace("{1990}", "{1989}")}, ["Zoll90"], ["cdl.bib"]
+    elif case == "the same entry, lines that would merge":
+        write(root, "cdl.bib", BASE.replace("{1990}", "{1991}") + MINE)       # line 9 here, line 2 there
+        theirs, entries, files = {"cdl.bib": THEIRS}, ["Zoll90"], ["cdl.bib"]
+    elif case == "an entry added by both":
+        write(root, "cdl.bib", BASE + MINE)
+        theirs, entries, files = {"cdl.bib": BASE + MINE.replace("A Person", "Another Person")}, ["Mine26"], ["cdl.bib"]
+    elif case == "a verification file":
+        write(root, "verification/list.txt", "one, mine\n")
+        theirs, files = {"verification/list.txt": "one, theirs\n"}, ["verification/list.txt"]
+    elif case == "edited here and deleted there":
+        write(root, "verification/list.txt", "one\ntwo of mine\n")
+        theirs, files = {"verification/list.txt": None, "verification/other.txt": "x\n"}, ["verification/list.txt"]
+    elif case == "a binary file":
+        write(root, "verification/blob.bin", "\0mine\0")
+        theirs, files = {"verification/blob.bin": "\0theirs\0"}, ["verification/blob.bin"]
+    else:
+        write(root, "verification/place", "my file\n")
+        theirs, files = {"verification/place/inside.txt": "their folder\n"}, ["verification/place"]
+    write(root, "verification/untracked.txt", "mine\n")
+    advance(upstream, "The upstream's change", **theirs)
+    state = checked(home, 25 * HOUR)
+    before = everything(root)
+    seen = pytest.raises(UpdateNeedsDecision, library.update, ws).value.seen
+    with pytest.raises(UpdateConflict) as raised:
+        library.update(ws, decision="update", seen=seen)
+    assert (raised.value.entries, raised.value.files) == (entries, files)
+    what = (f"this entry was changed both by you and in the new version: {entries[0]}" if entries
+            else f"your changes to {files[0]} collide with the new version's")
+    assert str(raised.value) == (f"The bibliography was not updated: {what}. Nothing was changed: your files are "
+                                 "exactly as they were. Run `cdlbib send` to send your changes, or `cdlbib update` "
+                                 "to choose again.")
+    after = everything(root)
+    assert after == before                                            # byte for byte the state before
+    assert (after["stash"], after["markers"]) == ("", [])             # no stash left, no conflict marker anywhere
+    assert backup_names(home) == [] and git("for-each-ref", "refs/cdlbib", cwd=root) == ""
+    assert (home / "state.json").read_bytes() == state and lock_is_free(home)
+    assert not [p for p in Path(os.environ.get("TMPDIR", "/tmp")).glob("cdlbib-update-*")]   # the copies are gone
+
+
+def test_discard_makes_the_library_the_upstreams_and_undo_brings_every_edit_back(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    root, old = ws.root, git("rev-parse", "HEAD", cwd=ws.root)
+    write(root, ".bibcheck/verification.sqlite3", "a cache")           # not part of the library: untouched
+    before = everything(root)
+    seen = pytest.raises(UpdateNeedsDecision, library.update, ws).value.seen
+    result = library.update(ws, decision="discard", seen=seen)
+    stamp = result.backup.stamp
+    assert result.action == "updated" and result.new_commits == 2
+    assert result.message == (
+        "updated the bibliography: 2 new commits; discarded your changes to cdl.bib, verification/notes/my new "
+        f"file.jsonl, verification/tracked.txt (saved in backup {stamp}; `cdlbib update --undo {stamp}` brings them back)")
+    assert git("rev-parse", "HEAD", cwd=root) == new and git("symbolic-ref", "--short", "HEAD", cwd=root) == "master"
+    assert changed_paths(root, "cdl.bib", "verification") == {}       # the library equals the upstream
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == THEIRS
+    assert sorted(hashes(root, KEPT)) == ["cdl.bib", "verification/.gitkeep", "verification/new.txt", "verification/tracked.txt"]
+    assert not (root / "verification/notes").exists()                 # the folder the untracked file was alone in
+    now = everything(root)
+    assert (now["stash"], now["markers"], now["outside"]) == ("", [], before["outside"])
+    saved = result.backup.path / "files"                              # nothing was deleted: every edit is in the backup
+    assert (saved / "verification/notes/my new file.jsonl").read_bytes() == b'{"key": "Mine26"}\n'
+    assert (saved / "cdl.bib").read_bytes() == (BASE + MINE).encode()
+    assert (result.backup.branch, result.backup.commit) == ("master", old)
+
+    undone = cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path))     # the command the message names
+    assert undone.returncode == 0, undone.stderr
+    assert everything(root) == before
+
+
+def test_discard_of_local_commits_moves_the_branch_and_undo_puts_them_back(managed):
+    home, upstream, ws = managed
+    root = ws.root
+    unsent_work(root)                                                 # a local commit, an edit on top, an untracked file
+    mine = git("rev-parse", "HEAD", cwd=root)
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    checked(home, 25 * HOUR)
+    before = everything(root)
+    asked = pytest.raises(UpdateNeedsDecision, library.update, ws).value
+    assert asked.local_commits == 1 and asked.choices == ("keep", "send", "discard")     # no "update and keep"
+    assert asked.changed == ["cdl.bib", "verification/notes/new entry.jsonl"]
+
+    refused = library.update(ws, decision="update", seen=asked.seen)   # asked for anyway: nothing is changed
+    assert refused.action == "left_alone" and refused.backup is None and refused.message == (
+        "a newer version of the bibliography is available (1 new commit), but the library has 1 commit that the "
+        "upstream does not have, which cannot be kept on top of the new version; nothing was changed. "
+        "Run `cdlbib update` and choose again.")
+    assert everything(root) == before and backup_names(home) == []
+
+    result = library.update(ws, decision="discard", seen=asked.seen)
+    stamp = result.backup.stamp
+    assert result.message == (
+        "updated the bibliography: 1 new commit; discarded 1 commit and your changes to cdl.bib, "
+        f"verification/notes/new entry.jsonl (saved in backup {stamp}; `cdlbib update --undo {stamp}` brings them back)")
+    assert git("rev-parse", "HEAD", cwd=root) == new == git("rev-parse", "master", cwd=root)
+    assert git("symbolic-ref", "--short", "HEAD", cwd=root) == "master" and changed_paths(root, *KEPT) == {}
+    assert result.backup.has_bundle and git("rev-parse", f"refs/cdlbib/backups/{stamp}", cwd=root) == mine
+    assert library.holds_only_copy(result.backup)                     # the backup is what keeps the commit: never pruned
+    assert everything(root)["stash"] == ""
+    api.undo_update(stamp)
+    assert everything(root) == before and git("rev-parse", "HEAD", cwd=root) == mine
+
+
+def test_only_local_commits_offer_no_send_and_a_rewritten_upstream_can_be_discarded(managed):
+    """The upstream's history was replaced: the library's commit is not in it. Nothing is
+    changed without a decision, and discard leaves the library on the upstream's commit."""
+    home, upstream, ws = managed
+    root, work = ws.root, upstream.parent / "upstream-work"
+    conftest._git("commit", "--quiet", "--amend", "-m", "The same library, rewritten", cwd=work)
+    conftest._git("push", "--quiet", "--force", str(upstream), "master", cwd=work)
+    new = git("rev-parse", "master", cwd=upstream)
+    checked(home, 25 * HOUR)
+    before = everything(root)
+    asked = pytest.raises(UpdateNeedsDecision, library.update, ws).value
+    assert (asked.changed, asked.local_commits, asked.choices) == ([], 1, ("keep", "discard"))
+    assert everything(root) == before
+    result = library.update(ws, decision="discard", seen=asked.seen)
+    assert result.message.startswith("updated the bibliography: 1 new commit; discarded 1 commit (saved in backup ")
+    assert git("rev-parse", "HEAD", cwd=root) == new and changed_paths(root, ".") == {}
+    api.undo_update()
+    assert everything(root) == before
+
+
+@pytest.mark.parametrize("change", ["another edit", "the upstream moved again", "the edits are gone"])
+@pytest.mark.parametrize("decision", ["update", "discard"])
+def test_a_decision_is_not_applied_to_a_state_the_user_was_not_shown(managed, decision, change):
+    home, upstream, ws, new = unsent(managed)
+    root = ws.root
+    asked = pytest.raises(UpdateNeedsDecision, library.update, ws).value
+    if change == "another edit":                                      # while the question was open
+        write(root, "verification/tracked.txt", "edited again, after the question\n")
+    elif change == "the upstream moved again":
+        advance(upstream, "One more", **{"verification/more.txt": "more\n"})
+    else:
+        conftest._git("restore", "--", "cdl.bib", "verification/tracked.txt", cwd=root)
+        shutil.rmtree(root / "verification/notes")
+    before, state = everything(root), (home / "state.json").read_bytes()
+    result = library.update(ws, decision=decision, seen=asked.seen)
+    assert result.action == "left_alone" and result.backup is None
+    count = "3 new commits" if change == "the upstream moved again" else "2 new commits"
+    assert result.message == (f"a newer version of the bibliography is available ({count}), but the library or the "
+                              "upstream changed after you were asked what to do; nothing was changed. Run `cdlbib "
+                              "update` to be asked again.")
+    assert everything(root) == before and backup_names(home) == []
+    assert (home / "state.json").read_bytes() == state               # nothing recorded: the next command asks
+
+
+@pytest.mark.parametrize("decision", ["update", "discard"])
+def test_a_git_command_that_cannot_start_changes_nothing(managed, decision):
+    """Another git command holds the index: git refuses before it changes anything. The
+    library is checked to be as it was; the backup stays and is named."""
+    home, upstream, ws, new = unsent(managed)
+    root, before = ws.root, everything(ws.root)
+    (root / ".git" / "index.lock").write_text("", encoding="utf-8")
+    with pytest.raises(CdlbibError) as raised:
+        library.update(ws, decision=decision)
+    (root / ".git" / "index.lock").unlink()
+    stamp = backup_names(home)[-1]
+    assert not isinstance(raised.value, UpdateConflict)
+    assert str(raised.value).startswith("The bibliography was not updated: git restore failed: ")
+    assert str(raised.value).endswith("The library is as it was (changes that were staged may now be unstaged); "
+                                      f"a copy of it is backup {stamp}.")
+    assert everything(root) == before and lock_is_free(home)
+
+
+REFUSE_MASTER = ('#!/bin/sh\n[ "$1" = prepared ] || exit 0\nwhile read old new ref; do\n'
+                 '  [ "$ref" = refs/heads/master ] && exit 1\ndone\nexit 0\n')
+
+
+@pytest.mark.parametrize("decision, local_commit", [("update", False), ("discard", False), ("discard", True)])
+def test_a_failure_after_the_edits_were_set_aside_puts_every_one_back(managed, decision, local_commit):
+    """git itself refuses to move the branch (a hook of the repository says no) after the edits
+    were set aside and, for a fast-forward, after the files were already the new version's.
+    Every file is put back from the backup and checked."""
+    home, upstream, ws, new = unsent(managed)
+    root = ws.root
+    if local_commit:
+        conftest._git("commit", "--quiet", "-m", "Mine", "--", "cdl.bib", cwd=root)
+    before = everything(root)
+    hook = root / ".git" / "hooks" / "reference-transaction"
+    hook.parent.mkdir(exist_ok=True)
+    hook.write_text(REFUSE_MASTER, encoding="utf-8")
+    hook.chmod(0o755)
+    with pytest.raises(CdlbibError) as raised:
+        library.update(ws, decision=decision)
+    hook.unlink()
+    stamp = backup_names(home)[-1]
+    assert str(raised.value).startswith("The bibliography was not updated: ")
+    assert str(raised.value).endswith("The library is as it was (changes that were staged may now be unstaged); "
+                                      f"a copy of it is backup {stamp}.")
+    assert everything(root) == before and lock_is_free(home)
+    assert library.update(ws, decision=decision).action == "updated"   # and without the hook it goes through
+    api.undo_update()
+    assert everything(root) == before
+
+
+@pytest.mark.skipif(os.name == "nt" or (hasattr(os, "geteuid") and os.geteuid() == 0), reason="needs file permissions that bind")
+@pytest.mark.parametrize("decision", ["update", "discard"])
+def test_a_failure_that_cannot_be_put_back_names_the_backup_and_its_undo_works(managed, tmp_path, decision):
+    """verification/ cannot be written: git puts cdl.bib back to the commit and then fails, and
+    the put-back fails the same way. The message names the backup; once the folder can be
+    written again, the command it names returns every byte."""
+    home, upstream, ws, new = unsent(managed)
+    root, before = ws.root, everything(ws.root)
+    os.chmod(root / "verification", 0o555)
+    try:
+        with pytest.raises(CdlbibError) as raised:
+            library.update(ws, decision=decision)
+    finally:
+        os.chmod(root / "verification", 0o755)
+    stamp = backup_names(home)[0]
+    assert f"`cdlbib update --undo {stamp}` puts it back." in str(raised.value)
+    assert "could not be put back as it was" in str(raised.value)
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE     # this is the state the message is about
+    undone = cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path))
+    assert undone.returncode == 0, undone.stderr
+    assert everything(root) == before
+
+
+@pytest.mark.parametrize("decision, local_commit", [("update", False), ("discard", False), ("discard", True)])
+def test_the_git_commands_of_update_and_keep_and_of_discard_cannot_lose_work(managed, tmp_path, monkeypatch,
+                                                                             decision, local_commit):
+    """Every git command the two decisions run, as git itself traces them."""
+    home, upstream, ws, new = unsent(managed)
+    if local_commit:
+        conftest._git("commit", "--quiet", "-m", "Mine", "--", "cdl.bib", cwd=ws.root)
+    old = git("rev-parse", "HEAD", cwd=ws.root)
+    trace = tmp_path / "trace.txt"
+    monkeypatch.setenv("GIT_TRACE", str(trace))
+    assert library.update(ws, decision=decision).action == "updated"
+    monkeypatch.delenv("GIT_TRACE")
+    ran = [line.split("built-in: git ", 1)[1] for line in trace.read_text(encoding="utf-8").splitlines()
+           if "built-in: git " in line]
+    verbs = {command.split()[0] for command in ran}
+    assert not verbs & {"reset", "clean", "stash", "pull", "checkout", "rebase", "push", "commit", "gc", "add", "rm"}
+    assert not [c for c in ran if "--force" in c or " -f" in c or " +" in c or " -D" in c or "--hard" in c]
+    changing = verbs & {"restore", "merge", "switch", "update-ref", "branch", "fetch", "merge-file", "bundle"}
+    if local_commit:
+        assert changing == {"bundle", "fetch", "restore", "switch", "update-ref"}
+    else:
+        assert changing == {"fetch", "merge", "restore", "update-ref"} | ({"merge-file"} if decision == "update" else set())
+    assert [c for c in ran if c.split()[0] == "restore"] == [
+        f"restore --source={old} --staged --worktree -- cdl.bib verification"]
+    for command in ran:
+        if command.split()[0] == "merge":
+            assert command.startswith("merge --ff-only --no-overwrite-ignore --no-autostash --quiet ")
+        if command.split()[0] == "switch":
+            assert command.startswith("switch --quiet --no-overwrite-ignore ")
+        if command.split()[0] == "update-ref" and "refs/heads/" in command:      # a compare-and-swap: new, then old
+            assert command == f"update-ref -m 'cdlbib update' refs/heads/master {new} {old}"
+    assert git("stash", "list", cwd=ws.root) == ""
+
+
+# --- the question, on the command line -------------------------------------------------------
+
+LISTED = "  cdl.bib (1 entry changed)\n  verification/notes/my new file.jsonl\n  verification/tracked.txt\n"
+QUESTION = ("A newer version of the bibliography is available (2 new commits), and you have changes that have not "
+            "been sent:\n" + LISTED + "What would you like to do?\n"
+            "  [k] Keep working without updating (ask again tomorrow)\n"
+            "  [u] Update and keep my changes\n"
+            "  [s] Send my changes first (runs `cdlbib send`)\n"
+            "  [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)\n"
+            "Your choice [k/u/s/d]: ")
+NOTICE = ("a newer version of the bibliography is available (2 new commits), but these files have changes that have "
+          "not been sent: cdl.bib (1 entry changed), verification/notes/my new file.jsonl, verification/tracked.txt; "
+          "nothing was changed. Run `cdlbib update` in a terminal to choose what to do.\n")
+
+
+def at_a_terminal(*args, cwd, answers, during=None, **env):
+    """Run the command with a real pseudo-terminal as its stdin and stderr. ``answers`` are
+    typed once the question is on the screen (after ``during()``, when given). Returns (exit
+    code, stdout, everything the terminal showed)."""
+    import pty
+    import threading
+    leader, follower = pty.openpty()
+    shown = bytearray()
+
+    def read():
+        while True:
+            try:
+                data = os.read(leader, 4096)
+            except OSError:                                           # the terminal was closed (Linux says so this way)
+                return
+            if not data:
+                return
+            shown.extend(data)
+
+    run = subprocess.Popen([CDLBIB, *args], cwd=cwd, stdin=follower, stderr=follower, stdout=subprocess.PIPE,
+                           env=dict(os.environ, **env))
+    os.close(follower)
+    reader = threading.Thread(target=read, daemon=True)
+    reader.start()
+    try:
+        deadline = time.monotonic() + 120
+        while b"Your choice" not in shown and run.poll() is None and time.monotonic() < deadline:
+            time.sleep(0.05)
+        assert b"Your choice" in shown, f"no question was asked: {bytes(shown)!r}"
+        if during:
+            during()
+        os.write(leader, answers)
+        out = run.communicate(timeout=300)[0]
+    finally:
+        if run.poll() is None:
+            run.kill()
+            run.wait()
+        reader.join(timeout=30)
+        os.close(leader)
+    return run.returncode, out.decode(), bytes(shown).decode().replace("\r\n", "\n")
+
+
+def test_no_terminal_nothing_is_asked_or_changed_and_the_command_runs(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed, mine=BASE + "% a note of mine\n")
+    before, started = everything(ws.root), datetime.datetime.now(UTC)
+    notice = NOTICE.replace("cdl.bib (1 entry changed)", "cdl.bib")       # a comment line: no entry changed
+    out = cdlbib("verify", "--no-citations", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr       # the exit code is the command's
+    assert out.stderr.splitlines(keepends=True)[0] == notice and "What would you like" not in out.stdout + out.stderr
+    assert everything(ws.root) == before and backup_names(home) == []
+    assert started <= library.read_state().last_check                # said once a day, not with every command
+    again = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert (again.returncode, again.stderr) == (0, "")
+    checked(home, 25 * HOUR)                                          # the next day: said again, still nothing changed
+    assert cdlbib("where", cwd=empty_folder(tmp_path)).stderr == notice
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+def test_no_option_answers_the_question(managed, tmp_path):
+    """--ask is about installs and the fork; --yes does not exist. Neither chooses what
+    happens to someone's edits."""
+    home, upstream, ws, new = unsent(managed)
+    before = everything(ws.root)
+    out = cdlbib("--ask", "where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and out.stderr == NOTICE
+    checked(home, 25 * HOUR)
+    out = cdlbib("--yes", "where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 2 and "No such option" in out.stderr
+    out = cdlbib("update", "--yes", cwd=empty_folder(tmp_path))
+    assert out.returncode == 2 and "No such option" in out.stderr
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+def test_cdlbib_update_with_no_terminal_changes_nothing_and_exits_1(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before, state = everything(ws.root), (home / "state.json").read_bytes()
+    out = cdlbib("update", cwd=empty_folder(tmp_path))
+    assert (out.returncode, out.stdout, out.stderr) == (1, "", NOTICE)   # asked to update, and it could not
+    assert everything(ws.root) == before and backup_names(home) == []
+    assert (home / "state.json").read_bytes() == state               # a `cdlbib update` that did nothing records nothing
+
+
+def test_at_a_terminal_k_keeps_working(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before = everything(ws.root)
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"k\n")
+    assert code == 0 and out.splitlines()[0] == str(ws.root)          # the command ran, on the copy on disk
+    assert shown == (QUESTION + "k\nthe bibliography was not updated and your changes are as they were; nothing was "
+                     "changed. You will be asked again tomorrow; `cdlbib update` asks now.\n")
+    assert everything(ws.root) == before and backup_names(home) == []
+    again = cdlbib("where", cwd=empty_folder(tmp_path))                # not asked again today
+    assert (again.returncode, again.stderr) == (0, "")
+    code, out, shown = at_a_terminal("update", cwd=empty_folder(tmp_path), answers=b"K\n")   # `cdlbib update` asks now
+    assert code == 0 and shown.startswith(QUESTION) and "nothing was changed" in out
+    assert everything(ws.root) == before
+
+
+def test_at_a_terminal_u_updates_and_keeps_the_changes(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    root, before = ws.root, everything(ws.root)
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"u\n")
+    stamp = backup_names(home)[0]
+    assert code == 0 and shown == (
+        QUESTION + "u\nupdated the bibliography: 2 new commits, with your changes kept (cdl.bib, verification/notes/my "
+        f"new file.jsonl, verification/tracked.txt) (the library as it was is backup {stamp}; `cdlbib update --undo "
+        f"{stamp}` puts it back)\n")
+    assert git("rev-parse", "HEAD", cwd=root) == new and (root / "cdl.bib").read_bytes() == (THEIRS + MINE).encode()
+    assert (everything(root)["stash"], everything(root)["markers"]) == ("", [])
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_at_a_terminal_u_with_a_collision_says_which_entry_and_the_command_carries_on(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed, mine=BASE.replace("{1990}", "{1991}"))
+    before = everything(ws.root)
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"u\n")
+    assert code == 0 and out.splitlines()[0] == str(ws.root)
+    assert shown.endswith(
+        "Your choice [k/u/s/d]: u\nThe bibliography was not updated: this entry was changed both by you and in the "
+        "new version: Zoll90. Nothing was changed: your files are exactly as they were. Run `cdlbib send` to send "
+        "your changes, or `cdlbib update` to choose again.\n")
+    assert everything(ws.root) == before and backup_names(home) == []
+    code, out, shown = at_a_terminal("update", cwd=empty_folder(tmp_path), answers=b"u\n")   # asked for: exit 1
+    assert code == 1 and out == "" and "changed both by you and in the new version: Zoll90" in shown
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+def test_at_a_terminal_d_discards_and_names_the_backup_and_the_undo_command(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    root, before = ws.root, everything(ws.root)
+    code, out, shown = at_a_terminal("update", cwd=empty_folder(tmp_path), answers=b"d\n")
+    stamp = backup_names(home)[0]
+    assert code == 0 and shown == QUESTION + "d\n"
+    assert out == ("updated the bibliography: 2 new commits; discarded your changes to cdl.bib, verification/notes/my "
+                   f"new file.jsonl, verification/tracked.txt (saved in backup {stamp}; `cdlbib update --undo {stamp}` "
+                   "brings them back)\n")
+    assert git("rev-parse", "HEAD", cwd=root) == new and changed_paths(root, ".") == {}
+    assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
+    assert everything(root) == before
+
+
+def test_an_unknown_answer_asks_again(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before = everything(ws.root)
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"yes\n\nx\nk\n")
+    assert code == 0
+    assert shown.count("What would you like to do?") == 1 and shown.count("Please answer k, u, s or d.\n") == 3
+    assert shown.count("Your choice [k/u/s/d]: ") == 4
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+def test_end_of_input_at_the_question_aborts_with_nothing_changed(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before, state = everything(ws.root), (home / "state.json").read_bytes()
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"\x04")
+    assert code == 1 and out == "" and shown.endswith("Aborted.\n") and "Traceback" not in shown
+    assert everything(ws.root) == before and backup_names(home) == []
+    assert (home / "state.json").read_bytes() == state               # no answer was given: the next command asks again
+
+
+def test_while_the_question_is_open_other_commands_are_not_blocked(managed, tmp_path):
+    home, upstream, ws, new = unsent(managed)
+    before, took = everything(ws.root), []
+
+    def meanwhile():
+        started = time.monotonic()
+        assert lock_is_free(home)
+        listed = cdlbib("update", "--list", cwd=empty_folder(tmp_path))       # another cdlbib command runs at once
+        took.append((time.monotonic() - started, listed.returncode))
+
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"k\n", during=meanwhile)
+    assert code == 0 and took[0][1] == 0 and took[0][0] < 30
+    assert everything(ws.root) == before
+
+
+def test_at_a_terminal_s_runs_the_send_and_updates_nothing(managed, tmp_path):
+    """The send is the existing `cdlbib send`. Here it stops at its own gate (the new entry does
+    not pass the format check), before any login, fork or push: the library's origin is a
+    local folder, so no part of this test can reach GitHub."""
+    home, upstream, ws, new = unsent(managed)
+    root, before = ws.root, everything(ws.root)
+    assert git("config", "--get", "remote.origin.url", cwd=root) == str(upstream)        # a local path, not GitHub
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"s\n", **IDENTITY)
+    assert code == 1, out + shown
+    assert shown.startswith(QUESTION + "s\nthe bibliography was not updated: your changes are sent first (`cdlbib send`)\n")
+    assert "errors found" in out and "not sent: fix the format errors" in out
+    assert str(ws.root) not in out.splitlines()[:1]                   # the send was the command: `where` did not run
+    assert "pull request" not in out + shown and "fork" not in out + shown
+    assert everything(root) == before and backup_names(home) == []    # not updated, every edit intact, on master
+    again = cdlbib("where", cwd=empty_folder(tmp_path))                # the choice was recorded: not asked again today
+    assert (again.returncode, again.stderr) == (0, "")
+
+
+def test_the_question_for_local_commits_offers_what_can_be_done(managed, tmp_path):
+    home, upstream, ws = managed
+    unsent_work(ws.root)
+    advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    checked(home, 25 * HOUR)
+    before = everything(ws.root)
+    code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"u\nk\n")
+    assert code == 0 and shown.startswith(
+        "A newer version of the bibliography is available (1 new commit), and you have changes that have not been sent:\n"
+        "  1 commit that the upstream does not have\n"
+        "  cdl.bib\n"
+        "  verification/notes/new entry.jsonl\n"
+        "What would you like to do?\n"
+        "  [k] Keep working without updating (ask again tomorrow)\n"
+        "  [s] Send my changes first (runs `cdlbib send`)\n"
+        "  [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)\n"
+        "  (Updating and keeping your changes is not offered: the library has commits that the upstream does not have.)\n"
+        "Your choice [k/s/d]: ")
+    assert shown.count("Please answer k, s or d.\n") == 1             # "u" is not an answer here
+    assert everything(ws.root) == before and backup_names(home) == []
