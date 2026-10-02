@@ -6,7 +6,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .errors import CdlbibError, GateFailed
+from .errors import ApprovalRefused, CdlbibError, GateFailed
 
 
 @dataclass
@@ -54,6 +54,12 @@ class Status:
     @property
     def total(self):
         return sum(self.counts.values())
+
+
+@dataclass
+class RevokeResult:
+    records: list
+    status: str
 
 
 @contextlib.contextmanager
@@ -195,3 +201,46 @@ def status(ws, database=None, report=None, require_human=False, keys=None, again
     counts = dict(Counter(r["status"] for r in results.values()))
     accepted = {"human_verified"} if require_human else ACCEPTED
     return Status(counts=counts, ok=all(r["status"] in accepted for r in results.values()))
+
+
+def approve(ws, key, fingerprint, source, note, database=None):
+    """Record a human approval under the GitHub login of the gh CLI (the only source of the
+    reviewer's name). Raises IdentityUnavailable before anything is opened or written."""
+    from . import identity
+    from .verification import Cache, record_approval
+    from .verification_cli import revocation_ledger
+    me = identity.current()
+    review = {"reviewer": me.handle, "source": source, "note": note,
+              "github_login": me.login, "github_id": me.id}
+    try:
+        cache = Cache(database or str(ws.database), ledger=revocation_ledger(str(ws.bib), None))
+        try:
+            return record_approval(cache, str(ws.bib), key, fingerprint, review)
+        finally:
+            cache.close()
+    except (ValueError, KeyError, OSError) as exc:
+        raise ApprovalRefused(_message(exc)) from exc
+
+
+def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None):
+    """Withdraw a human approval, recorded under the GitHub login of the gh CLI."""
+    from . import identity
+    from .verification import Cache, record_revocation
+    from .verification_cli import revocation_ledger
+    me = identity.current()
+    ledger_path = revocation_ledger(str(ws.bib), ledger)  # resolved once for the cache and the writer
+    try:
+        cache = Cache(database or str(ws.database), ledger=ledger_path)
+        try:
+            records, state = record_revocation(cache, str(ws.bib), key, reason, me.handle,
+                                               fingerprints=fingerprints, ledger=ledger_path)
+        finally:
+            cache.close()
+    except (ValueError, KeyError, OSError) as exc:
+        raise ApprovalRefused(_message(exc)) from exc
+    return RevokeResult(records=records, status=state)
+
+
+def _message(exc):
+    # str(KeyError('Nope')) is "'Nope'"; the CLI printed exactly that, so the text is kept as is.
+    return str(exc)

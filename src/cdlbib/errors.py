@@ -27,6 +27,11 @@ class GateFailed(CdlbibError):
     pass
 
 
+class ApprovalRefused(CdlbibError):
+    """An approval or revocation the library's records do not allow (stale fingerprint,
+    blank field, revoked text replayed, nothing to revoke, unreadable storage)."""
+
+
 class PublishRefused(CdlbibError):
     def __init__(self, message, needs_fork=False):
         self.needs_fork = needs_fork

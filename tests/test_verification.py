@@ -7,6 +7,7 @@ from typer.testing import CliRunner
 
 from cdlbib.verification import (
     Cache,
+    record_approval,
     PoliteClient,
     ProviderError,
     author_evidence,
@@ -311,26 +312,18 @@ def test_stale_human_approval_and_offline_exit(entry, tmp_path):
     path, e = entry
     database = str(tmp_path / "cache.sqlite3")
     runner = CliRunner()
-    result = runner.invoke(
-        app,
-        [
-            "approve",
-            "Test20",
-            "--fname",
-            str(path),
-            "--database",
-            database,
-            "--fingerprint",
-            "stale",
-            "--reviewer",
-            "Human",
-            "--source",
-            "Book",
-            "--note",
-            "Checked all fields",
-        ],
-    )
-    assert result.exit_code == 2
+    cache = Cache(database)
+    try:
+        with pytest.raises(ValueError, match="Entry changed since review; approval rejected"):
+            record_approval(
+                cache,
+                str(path),
+                "Test20",
+                "stale",
+                {"reviewer": "Human", "source": "Book", "note": "Checked all fields"},
+            )
+    finally:
+        cache.close()
     assert (
         runner.invoke(app, ["status", str(path), "--database", database]).exit_code == 1
     )

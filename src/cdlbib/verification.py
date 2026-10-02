@@ -2672,3 +2672,84 @@ def run_verification(
             if snapshot:
                 export_snapshot(filename, cache, snapshot)
     return results
+
+
+def record_approval(cache, fname, key, fingerprint, human_review):
+    """Store an explicit human decision bound to the exact reviewed entry; returns what was stored.
+    Raises ValueError (stale fingerprint, blank fields, a revoked approval replayed) or KeyError."""
+    with run_lock(cache):
+        entry = load_entries(fname)[key]
+        if entry["fingerprint"] != fingerprint:
+            raise ValueError("Entry changed since review; approval rejected")
+        if not all(str(human_review.get(x, "")).strip() for x in ("reviewer", "source", "note")):
+            raise ValueError("Human reviewer, source, and review notes are required")
+        for revocation in cache.revocations():
+            if (revocation["fingerprint"] == fingerprint
+                    and approval_digest(human_review) in revoked_digests(revocation)):
+                raise ValueError(
+                    f"This exact approval was revoked {revocation['revoked_at']} "
+                    f"({revocation['reason']}); record the new review in a new note")
+        previous = cache.get(fname, entry) or outcome("pending", [])
+        if previous.get("revoked_approval"):
+            # The revocation notice describes the withdrawn approval, not this one.
+            previous = dict(previous, issues=[
+                i for i in previous.get("issues", [])
+                if not (isinstance(i, str) and i.startswith("Human approval revoked "))])
+        previous = {k: v for k, v in previous.items() if k != "revoked_approval"}
+        stored = dict(previous, status="human_verified", human_review=human_review)
+        cache.put(fname, entry, stored)
+    return stored
+
+
+def record_revocation(cache, fname, key, reason, by, fingerprints=None, ledger=None):
+    """Withdraw human approvals of KEY: one audit row each, appended to the database and the
+    ledger. Returns (records written, entry status); ([], status) when every matching approval
+    was already revoked. ``ledger`` defaults to the patched REVOCATION_LEDGER, else the
+    bibliography's workspace; the module global is never assigned."""
+    ledger_path = Path(ledger or REVOCATION_LEDGER or workspace.Workspace.for_bib(fname).revocations)
+    if not reason.strip() or not by.strip():
+        raise ValueError("A revocation needs --reason and --by")
+    with run_lock(cache):
+        entry = load_entries(fname)[key]
+        current = cache.get(fname, entry)
+        rows = cache.db.execute(
+            "SELECT fingerprint,result FROM reviews WHERE bibliography=? AND key=? ORDER BY id",
+            (str(Path(fname).resolve()), key)).fetchall()
+        approvals = {}
+        for row_fingerprint, text in rows:
+            result = json.loads(text)
+            if result.get("status") != "human_verified":
+                continue
+            if fingerprints and row_fingerprint not in fingerprints:
+                continue
+            approvals[(row_fingerprint, approval_digest(result.get("human_review")))] = result
+        if not approvals:
+            raise ValueError(f"No human approval recorded for {key}"
+                             + (" with that fingerprint" if fingerprints else ""))
+        known = {(r["fingerprint"], r["approval_digest"]) for r in cache.revocations()}
+        stamp = now()
+        records = [
+            {
+                "key": key,
+                "fingerprint": fp,
+                "approval": result.get("human_review") or {},
+                "approval_digest": dig,
+                "approval_checked_at": result.get("checked_at") or "",
+                "revoked_at": stamp,
+                "revoked_by": by,
+                "reason": reason,
+            }
+            for (fp, dig), result in approvals.items() if (fp, dig) not in known
+        ]
+        if not records:
+            return [], (cache.get(fname, entry) or {"status": "pending"})["status"]
+        ledger_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(ledger_path, "a", encoding="utf-8") as stream:
+            for record in records:
+                stream.write(dumps(record) + "\n")
+        cache.remember_revocations(records)
+        revoked_now = next((r for r in records if r["fingerprint"] == entry["fingerprint"]), None)
+        if revoked_now and current and current.get("status") == "human_verified":
+            cache.put(fname, entry, revoked_view(current, revoked_now))
+        status = (cache.get(fname, entry) or {"status": "pending"})["status"]
+    return records, status
