@@ -24,21 +24,15 @@ recording reviews and for sending changes.
 
 ## Install
 
-The package does not contain `cdl.bib`, so it is used inside a clone of the repository.
-Install it from the clone:
+```bash
+python -m pip install cdlbib
+```
+
+The package does not contain `cdl.bib`, so it is used inside a clone of the repository:
 
 ```bash
 git clone https://github.com/ContextLab/CDL-bibliography.git
 cd CDL-bibliography
-python -m pip install .
-```
-
-**`cdlbib` may not be published on PyPI yet.** Only if a release is listed at
-<https://pypi.org/project/cdlbib/> does the following command work; the clone is still
-needed for `cdl.bib`:
-
-```bash
-python -m pip install cdlbib
 ```
 
 ## Documentation
