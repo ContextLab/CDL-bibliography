@@ -308,7 +308,10 @@ def revoked_view(result, revocation):
 class Cache:
     """Indexed SQLite with atomic per-entry checkpoints and immutable history."""
 
-    def __init__(self, filename):
+    def __init__(self, filename, ledger=None):
+        # ledger: the revocation ledger this cache reads; None resolves REVOCATION_LEDGER or
+        # the cwd workspace on use.
+        self.ledger = ledger
         self.path = Path(filename)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(self.path, timeout=30)
@@ -360,7 +363,7 @@ class Cache:
         for (row,) in self.db.execute("SELECT record FROM revocations"):
             record = json.loads(row)
             known[dumps(record)] = record
-        for record in read_revocation_ledger():
+        for record in read_revocation_ledger(self.ledger):
             known.setdefault(dumps(record), record)
         return list(known.values())
 

@@ -10,6 +10,7 @@ import typer
 
 from . import verification
 from .workspace import Workspace
+
 from .verification import (
     ACCEPTED,
     Cache,
@@ -58,7 +59,7 @@ def discover_review(
     from .discovery_review import run_discovery_review
 
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         selected = (
             None
@@ -97,7 +98,7 @@ def auto_review(
     from .auto_review import run_auto_review
 
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         client = None if offline else PoliteClient(cache, mailto, interval=interval)
         results = run_auto_review(fname, cache, report, client, limit, snapshot)
@@ -128,7 +129,7 @@ def fulltext_review(
     from .fulltext_review import run_fulltext_review
 
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         client = PoliteClient(cache, mailto, interval=interval)
         results = run_fulltext_review(fname, cache, client, report, limit, snapshot)
@@ -141,6 +142,13 @@ def fulltext_review(
         raise typer.Exit(2)
     finally:
         cache.close()
+
+
+def revocation_ledger(fname, explicit=None):
+    """One ledger per command run: --ledger, else a patched verification.REVOCATION_LEDGER,
+    else the workspace of the bibliography being worked on."""
+    chosen = explicit or verification.REVOCATION_LEDGER or Workspace.for_bib(fname).revocations
+    return Path(chosen)
 
 
 def paths(fname, database, report=None):
@@ -276,7 +284,7 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
     does not make ``ok`` False unless ``all_entries`` is set.
     """
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         against = None if all_entries else reference_bib(reference, Path(database).parent)
         selected = select_keys(fname, None, against)
@@ -350,7 +358,7 @@ def verify(
 ):
     """Verify new/modified entries; save every result so interrupted runs resume."""
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         for selection_input in (keys, against):
             if selection_input:
@@ -409,7 +417,7 @@ def status(
 ):
     """Offline check: recompute fingerprints and fail on every unresolved entry."""
     database, report = paths(fname, database, report)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         for selection_input in (keys, against):
             if selection_input:
@@ -435,7 +443,7 @@ def snapshot(
 ):
     """Export a portable compressed JSONL audit snapshot for backup or sharing."""
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         summary(export_snapshot(fname, cache, output))
         typer.echo(output)
@@ -454,7 +462,7 @@ def restore(
 ):
     """Restore matching reviews from a trusted snapshot; changed entries stay pending."""
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         with run_lock(cache):
             count = import_snapshot(fname, cache, snapshot)
@@ -475,7 +483,7 @@ def review_packet(
 ):
     """Export source evidence and exact fingerprint for PDF/LLM/human review."""
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         entries = load_entries(fname)
         entry = entries[key]
@@ -522,7 +530,7 @@ def attach_evidence(
 ):
     """Attach optional external research findings; human review remains required."""
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         with run_lock(cache):
             entry = load_entries(fname)[key]
@@ -572,7 +580,7 @@ def research(
     from .research import research_entry
 
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         with run_lock(cache):
             entry = load_entries(fname)[key]
@@ -624,7 +632,7 @@ def research_batch(
     from .research import run_research_batch
 
     database, report = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         selected = (
             None
@@ -665,7 +673,7 @@ def approve(
 ):
     """Record an explicit human decision, bound to the exact reviewed entry."""
     database, _ = paths(fname, database)
-    cache = Cache(database)
+    cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         with run_lock(cache):
             entry = load_entries(fname)[key]
@@ -727,10 +735,8 @@ def revoke(
     entry as needs_review. Restoring any snapshot, however old, keeps it revoked; a later
     approval with a new review note is a new decision."""
     database, _ = paths(fname, database)
-    if ledger:
-        verification.REVOCATION_LEDGER = Path(ledger)
-    ledger_path = Path(verification.REVOCATION_LEDGER or Workspace.for_bib(fname).revocations)
-    cache = Cache(database)
+    ledger_path = revocation_ledger(fname, ledger)  # resolved once; every reader and writer below uses it
+    cache = Cache(database, ledger=ledger_path)
     try:
         if not reason.strip() or not by.strip():
             raise ValueError("A revocation needs --reason and --by")

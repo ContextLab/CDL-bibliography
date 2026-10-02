@@ -58,6 +58,7 @@ import re
 import unicodedata
 
 from . import workspace
+from .errors import WorkspaceNotFound
 from .verification import normalize_doi, notice_record_identity, outcome
 
 SOURCE = 'research-evidence'
@@ -69,10 +70,23 @@ BODY_DIR = None  # tests patch this; otherwise body_dir() resolves it on use
 
 
 def body_dir():
+    """The saved-bodies directory, or None when there is none to look in: no patched BODY_DIR,
+    no BIBCHECK_RESEARCH_BODIES, and no library around the working directory (a standalone
+    .bib elsewhere). Callers treat None like a directory that does not exist."""
     if BODY_DIR is not None:
         return Path(BODY_DIR)
     override = os.environ.get('BIBCHECK_RESEARCH_BODIES')
-    return Path(override) if override else workspace.default().research_bodies
+    if override:
+        return Path(override)
+    try:
+        return workspace.default().research_bodies
+    except WorkspaceNotFound:
+        return None
+
+
+def body_dir_exists():
+    directory = body_dir()
+    return directory is not None and directory.is_dir()
 
 NOTICES = 'verification/resolution-2026-09-27/notices-classified.json'
 
@@ -214,11 +228,15 @@ class Bodies:
     """validate.py's saved fetched bodies: ``<dir>/<sha256(url)>.txt``. Never fetches."""
 
     def __init__(self, directory=None):
-        self.directory = Path(body_dir() if directory is None else directory)
+        directory = body_dir() if directory is None else directory
+        # None: no bodies directory exists (no library, no env var); every lookup finds nothing.
+        self.directory = None if directory is None else Path(directory)
 
     def get(self, url):
         """(text, sha256) of the saved body, or (None, None) when validate.py saved none
         (or saved a transient server error reply, which it never trusts either)."""
+        if self.directory is None:
+            return None, None
         path = self.directory / (hashlib.sha256(url.encode()).hexdigest() + '.txt')
         text = path.read_text() if path.exists() else None
         if text is None or validator().transient_error(text):
@@ -911,7 +929,7 @@ def recheck(candidate, bodies=None):
     """Re-derive a saved research candidate: with the saved bodies when this clone has
     validate.py's body cache, else from the quote results the candidate recorded."""
     if bodies is None:
-        bodies = Bodies() if body_dir().is_dir() else SavedBodies(candidate)
+        bodies = Bodies() if body_dir_exists() else SavedBodies(candidate)
     return assess_research(candidate['checked_fields'], candidate['raw_record'], bodies, candidate.get('cities'))
 
 
@@ -977,7 +995,7 @@ def valid_research_approval(result):
             validator(), postcheck()
         except ImportError:
             return True
-        checked = recheck(c, CachedOrSavedBodies(c) if body_dir().is_dir() else SavedBodies(c))
+        checked = recheck(c, CachedOrSavedBodies(c) if body_dir_exists() else SavedBodies(c))
         return (checked['status'] == 'metadata_verified'
                 and checked['accepted_record_id'] == result['accepted_record_id']
                 and checked.get('accepted_doi') == result.get('accepted_doi')
@@ -1007,7 +1025,7 @@ def research_rejection_reason(result):
         validator(), postcheck()
     except ImportError:
         return None
-    if body_dir().is_dir():
+    if body_dir_exists():
         local = Bodies()
         for item in _saved_items(c):
             text, sha = local.get(item['url'])
@@ -1016,7 +1034,7 @@ def research_rejection_reason(result):
                         f"(sha256 {sha[:12]}, the approval recorded {(item.get('body_sha256') or 'none')[:12]}): "
                         "a refetched or edited page; move that file away (or the cache) to restore from "
                         "the recorded evidence")
-    checked = recheck(c, CachedOrSavedBodies(c) if body_dir().is_dir() else SavedBodies(c))
+    checked = recheck(c, CachedOrSavedBodies(c) if body_dir_exists() else SavedBodies(c))
     if checked['status'] != 'metadata_verified':
         return f"re-assessing the saved evidence gives {checked['status']}: {'; '.join(checked.get('issues') or [])[:300]}"
     if (checked['accepted_record_id'] == result['accepted_record_id']
