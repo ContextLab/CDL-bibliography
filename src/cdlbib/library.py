@@ -3,6 +3,7 @@ user who has named no library of their own. Nothing here prints or prompts."""
 import contextlib
 import datetime
 import filecmp
+import hashlib
 import json
 import os
 import re
@@ -12,7 +13,7 @@ import subprocess
 import sys
 import tempfile
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .errors import CdlbibError, LibraryUnavailable
@@ -230,10 +231,15 @@ def download(progress=None):
 
 # --- backups: every change cdlbib makes to the managed library is reversible ------------------
 #
-# A backup is the folder <home>/backups/<UTC time>/ holding
-#   files/        cdl.bib and the whole verification/ folder, exactly as on disk
-#   ref.json      the branch, the commit, and what `git status` said about those two paths
-#   changes.bundle  the commits that are not on the upstream's default branch, when there are any
+# A backup is the folder <home>/backups/<UTC time>/ holding only what git cannot reproduce:
+#   files/          the files under cdl.bib and verification/ whose bytes differ from the
+#                   recorded commit: modified tracked files, untracked files, ignored files
+#   ref.json        the branch, the commit, what `git status` said about those two paths (per
+#                   path and as the original text), the tracked files that were deleted in
+#                   the working tree, and the folders that were there
+#   changes.bundle  the commits that are on no branch of the upstream, when there are any
+# and, in the library itself, the private ref refs/cdlbib/backups/<UTC time> on the recorded
+# commit, so that git never discards it while the backup exists.
 #
 # What restore() guarantees: afterwards the branch, the commit, and the bytes of every file
 # under cdl.bib and verification/ are what they were when the backup was taken, and the same
@@ -242,18 +248,22 @@ def download(progress=None):
 # keeps the original `git status --porcelain` text, so that information is not lost.
 #
 # Backup and restore themselves never copy, overwrite or delete a file outside those two
-# paths, and never discard a local change to one. `.bibcheck/` is a rebuildable cache and is
-# never backed up. The only git commands that change anything are: `git restore --source=<commit>
-# --staged --worktree -- cdl.bib verification`, `git switch` (never forced), `git branch <name>
-# <commit>` for a branch that no longer exists, `git update-ref <branch> <new> <old>` (which
-# fails unless the branch is still at <old>), and `git fetch` from the backup's own bundle
-# into a new private ref.
+# paths, and never discard a local change to one, ignored files included. `.bibcheck/` is a
+# rebuildable cache and is never backed up. The only git commands that change anything are:
+# `git restore --source=<commit> --staged --worktree -- cdl.bib verification`, `git switch
+# --no-overwrite-ignore` (never forced), `git branch <name> <commit>` for a branch that no
+# longer exists, `git update-ref <ref> <new> <old>` (which fails unless the ref is still at
+# <old>), `git update-ref -d` of a private ref of a backup being removed, and `git fetch`
+# from the backup's own bundle into its private ref.
 
 KEPT = ("cdl.bib", "verification")    # the only paths a backup holds and a restore writes
-KEEP = 10                             # backups kept; older ones are deleted when one is made
+KEEP = 10                             # backups kept; older ones are deleted after one is made
 UNDO = "cdlbib update --undo"
 _STAMP = "%Y%m%dT%H%M%S.%fZ"
 _STAMP_NAME = re.compile(r"\d{8}T\d{6}\.\d{6}Z")
+_PARTIAL_NAME = re.compile(r"(\d{8}T\d{6}\.\d{6}Z)\.partial")
+_STALE = datetime.timedelta(hours=1)  # a .partial folder older than this was left by a crash
+_PINS = "refs/cdlbib/backups/"
 
 
 @dataclass
@@ -264,6 +274,13 @@ class Backup:
     commit: str
     changed: list                  # paths under cdl.bib and verification/ that git reported as changed or untracked
     has_bundle: bool               # local commits were saved in changes.bundle
+    deleted: list = field(default_factory=list)   # tracked files that were not on disk
+    folders: list = field(default_factory=list)   # the folders that were on disk under the two paths
+
+    @property
+    def stamp(self):
+        """The backup's name, as `cdlbib update --list` shows it and `--undo STAMP` takes it."""
+        return self.path.name
 
     @property
     def when(self):
@@ -317,9 +334,11 @@ def _head(root):
     return branch, _git(root, "rev-parse", "--verify", "HEAD^{commit}").stdout.strip()
 
 
-def _status(root, *pathspec):
-    """(the porcelain text, [(XY, path)]) of `git status` limited to ``pathspec``."""
-    raw = _git(root, "status", "--porcelain", "-z", "--untracked-files=all", "--", *pathspec).stdout
+def _status(root, *pathspec, ignored=False):
+    """(the porcelain text, [(XY, path)]) of `git status` limited to ``pathspec``; with
+    ``ignored``, the files git ignores are listed too (as '!!')."""
+    raw = _git(root, "status", "--porcelain", "-z", "--untracked-files=all", *(["--ignored"] if ignored else []),
+               "--", *pathspec).stdout
     parts, entries, at = raw.split("\0"), [], 0
     while at < len(parts):
         item = parts[at]
@@ -332,6 +351,9 @@ def _status(root, *pathspec):
                 entries.append((item[:2], parts[at]))
             at += 1
     return raw, entries
+
+
+_ELSEWHERE = (".", *(f":(exclude){top}" for top in KEPT))   # every path but the two
 
 
 def _tree(base):
@@ -356,6 +378,40 @@ def _tree(base):
         if os.path.lexists(base / top):
             walk(top)
     return files, folders
+
+
+def _commit_files(root, commit):
+    """{name: (path, kind, blob id)} of the files of ``commit`` under the two paths; kind is
+    'l' for a symbolic link, 'x' for an executable file, '-' for any other file."""
+    found = {}
+    for entry in _listed(_git(root, "ls-tree", "-r", "-z", commit, "--", *KEPT).stdout):
+        described, _, name = entry.partition("\t")
+        mode, kind, blob = described.split()
+        if kind == "blob":
+            found[_same_name(name)] = (name, {"120000": "l", "100755": "x"}.get(mode, "-"), blob)
+    return found
+
+
+def _unlike(file, entry):
+    """Does the file on disk differ from the commit's ``entry`` for it (a value of
+    _commit_files, or None when the commit has no such file)? Compared as git stores it: the
+    raw bytes (or the link's target), and whether it is executable."""
+    if entry is None:
+        return True
+    _, kind, blob = entry
+    status = os.lstat(file)
+    digest = hashlib.new("sha1" if len(blob) == 40 else "sha256")
+    if stat.S_ISLNK(status.st_mode):
+        target = os.fsencode(os.readlink(file))
+        digest.update(b"blob %d\0" % len(target) + target)
+        return (kind, blob) != ("l", digest.hexdigest())
+    if kind != ("x" if status.st_mode & 0o100 else "-"):
+        return True
+    with open(file, "rb") as handle:
+        digest.update(b"blob %d\0" % os.fstat(handle.fileno()).st_size)
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest() != blob
 
 
 def _same(one, other):
@@ -398,7 +454,8 @@ def _read(folder):
         ref = json.loads((folder / "ref.json").read_text(encoding="utf-8"))
         taken = datetime.datetime.strptime(folder.name, _STAMP).replace(tzinfo=datetime.timezone.utc)
         return Backup(path=folder, taken_at=taken, branch=ref["branch"], commit=str(ref["commit"]),
-                      changed=list(ref["changed"]), has_bundle=(folder / "changes.bundle").is_file())
+                      changed=list(ref["changed"]), has_bundle=(folder / "changes.bundle").is_file(),
+                      deleted=list(ref["deleted"]), folders=list(ref["folders"]))
     except (OSError, ValueError, TypeError, KeyError):
         return None
 
@@ -420,34 +477,53 @@ def backups():
     return [backup for backup in found if backup is not None]
 
 
-def _prune(folder, protect=None):
-    """Delete all but the KEEP newest backups: only folders directly inside <home>/backups
-    whose names are the timestamps this code writes, and never ``protect``."""
+def _drop(folder, name, root):
+    """Delete one backup: the folder <home>/backups/<name>, whose name is a timestamp this
+    code wrote, and the private refs that go with it."""
+    if name in _backup_names(folder):
+        shutil.rmtree(folder / name)
+        for pin in (_PINS + name, _PINS + name + "-moved"):
+            _git(root, "update-ref", "-d", pin, check=False)
+
+
+def _prune(folder, root):
+    """Delete all but the KEEP newest backups. Called only after an operation has succeeded."""
     for name in _backup_names(folder)[:-KEEP]:
-        if protect is None or folder / name != protect.path:
+        _drop(folder, name, root)
+
+
+def _sweep(folder, root, now):
+    """Remove what a crashed backup left: folders directly in <home>/backups named
+    <timestamp>.partial whose timestamp is over an hour old (a backup being made right now
+    is never that old), and the private ref of each when no finished backup has that name."""
+    try:
+        names = os.listdir(folder)
+    except OSError:
+        return
+    for name in names:
+        named = _PARTIAL_NAME.fullmatch(name)
+        if not named or not (folder / name).is_dir() or (folder / name).is_symlink():
+            continue
+        started = datetime.datetime.strptime(named.group(1), _STAMP).replace(tzinfo=datetime.timezone.utc)
+        if now - started > _STALE:
             shutil.rmtree(folder / name)
+            if not os.path.lexists(folder / named.group(1)):
+                _git(root, "update-ref", "-d", _PINS + named.group(1), check=False)
 
 
-def _discard(backup):
-    """Delete a backup this call has just made and not used (a timestamp folder in <home>/backups)."""
-    folder = backups_folder()
-    if backup.path.parent == folder and backup.path.name in _backup_names(folder):
-        shutil.rmtree(backup.path)
-
-
-def _backup(root, protect=None):
+def _backup(root):
+    """Make a backup and return it. Nothing is pruned here: the caller prunes once its own
+    operation has succeeded."""
     folder = backups_folder()
     branch, commit = _head(root)
     raw, entries = _status(root, *KEPT)
-    default = _git(root, "symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD", check=False).stdout.strip()
-    if default and _git(root, "rev-parse", "--verify", "--quiet", default + "^{commit}", check=False).returncode != 0:
-        default = ""
     try:
         folder.mkdir(parents=True, exist_ok=True)
+        _sweep(folder, root, datetime.datetime.now(datetime.timezone.utc))
         while True:
             taken = datetime.datetime.now(datetime.timezone.utc)
             final, partial = folder / taken.strftime(_STAMP), folder / (taken.strftime(_STAMP) + ".partial")
-            if final.exists():
+            if os.path.lexists(final):
                 continue
             try:
                 partial.mkdir()
@@ -456,65 +532,88 @@ def _backup(root, protect=None):
             break
     except OSError as exc:
         raise CdlbibError(f"No backup could be made in {folder} ({exc.strerror or exc}); nothing was changed.") from exc
+    pin, pinned = _PINS + final.name, False
     try:
         files, folders = _tree(root)
+        tracked = _commit_files(root, commit)
         (partial / "files").mkdir()
-        for rel in folders.values():
-            (partial / "files" / rel).mkdir(parents=True, exist_ok=True)
-        for rel in files.values():
-            _copy(root / rel, partial / "files" / rel)
-        # Local commits: everything on HEAD that the upstream's default branch does not have
-        # (the whole history when that branch is not known).
-        span = f"{default}..HEAD" if default else "HEAD"
-        bundled = int(_git(root, "rev-list", "--count", span).stdout) > 0
+        for key, rel in files.items():          # only what the commit cannot give back
+            if _unlike(root / rel, tracked.get(key)):
+                _copy(root / rel, partial / "files" / rel)
+        # Local commits: everything on HEAD that no branch of the upstream has.
+        span = ("HEAD", "--not", "--remotes=origin")
+        bundled = int(_git(root, "rev-list", "--count", *span).stdout) > 0
         if bundled:
-            _git(root, "bundle", "create", "--quiet", str(partial / "changes.bundle"), span)
+            _git(root, "bundle", "create", "--quiet", str(partial / "changes.bundle"), *span)
         ref = {"taken_at": taken.isoformat(), "branch": branch, "commit": commit,
                "changed": sorted({name for _, name in entries}),
                "untracked": sorted(name for state, name in entries if state == "??"),
-               "status": raw, "upstream_branch": default or None, "bundle_ref": "HEAD" if bundled else None}
+               "paths": {name: state for state, name in entries}, "status": raw,
+               "deleted": sorted(rel for key, (rel, _, _) in tracked.items() if key not in files),
+               "folders": sorted(folders.values()), "pin": pin, "bundle_ref": "HEAD" if bundled else None}
         (partial / "ref.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
+        _git(root, "update-ref", "-m", "cdlbib backup", pin, commit, "")     # a new ref: fails if it exists
+        pinned = True
         os.rename(partial, final)
     except BaseException as exc:
         shutil.rmtree(partial, ignore_errors=True)      # the folder this call made, and only that
+        if pinned:
+            _git(root, "update-ref", "-d", pin, check=False)
         if isinstance(exc, OSError):
             raise CdlbibError(f"No backup could be made in {folder} ({exc.strerror or exc}); nothing was changed.") from exc
         raise
-    _prune(folder, protect)
     made = _read(final)
     if made is None:
         raise CdlbibError(f"The backup just written to {final} cannot be read back; nothing was changed.")
     return made
 
 
-def backup(ws, protect=None):
-    """Save the managed library as it is on disk and return the Backup: cdl.bib and all of
-    verification/ (uncommitted, untracked and ignored files included), the branch and commit,
-    what git reported as changed, and a bundle of the commits the upstream does not have.
-    Nothing in the library is changed. The KEEP newest backups are kept; ``protect`` (a
-    Backup) is never deleted."""
+def backup(ws):
+    """Save the state of the managed library and return the Backup: the files under cdl.bib
+    and verification/ that differ from the commit it is on (modified, untracked and ignored
+    files), the tracked files that are deleted, the branch and commit, what git reported as
+    changed, a private ref that keeps the commit, and a bundle of the commits the upstream
+    does not have. No file of the library is changed. Afterwards the KEEP newest backups
+    are kept."""
     root = _managed_root(ws)
     with _locked(home()):
-        return _backup(root, protect)
+        made = _backup(root)
+        _prune(backups_folder(), root)
+        return made
 
 
-def _pathspecs(root, commit):
-    """Those of cdl.bib and verification that git knows, in the index or in ``commit``
-    (git refuses a path it has never heard of)."""
-    return [top for top in KEPT
-            if _git(root, "ls-files", "-z", "--", top).stdout
-            or _git(root, "ls-tree", "-r", "-z", "--name-only", commit, "--", top).stdout]
+def _saved(backup):
+    """{name: path} of the files a backup holds."""
+    return _tree(backup.path / "files")[0]
+
+
+def _describes(root, backup):
+    """The paths under cdl.bib and verification/ that are NOT as ``backup`` recorded them
+    ([] when the files on disk are exactly the backup's: its saved files byte for byte,
+    every other file as in its commit, its deleted files absent, and nothing else)."""
+    tracked, saved, files = _commit_files(root, backup.commit), _saved(backup), _tree(root)[0]
+    deleted = {_same_name(name) for name in backup.deleted}
+    wrong = []
+    for key, rel in files.items():
+        if key in saved:
+            good = _same(root / rel, backup.path / "files" / saved[key])
+        else:
+            good = key in tracked and key not in deleted and not _unlike(root / rel, tracked[key])
+        if not good:
+            wrong.append(rel)
+    wrong += [rel for key, rel in saved.items() if key not in files]
+    wrong += [rel for key, (rel, _, _) in tracked.items() if key not in files and key not in deleted and key not in saved]
+    return sorted(wrong)
 
 
 def _git_restore(root, commit):
-    """Make the index and the tracked files under the two paths match ``commit``."""
-    specs = _pathspecs(root, commit)
+    """Make the index and the tracked files under the two paths match ``commit``. Only the
+    paths git knows, in the index or in the commit, are named (it refuses any other)."""
+    specs = [top for top in KEPT
+             if _git(root, "ls-files", "-z", "--", top).stdout
+             or _git(root, "ls-tree", "-r", "-z", "--name-only", commit, "--", top).stdout]
     if specs:
         _git(root, "restore", f"--source={commit}", "--staged", "--worktree", "--", *specs)
-
-
-def _tracked(root):
-    return {_same_name(name) for name in _listed(_git(root, "ls-files", "-z", "--", *KEPT).stdout)}
 
 
 def _set_aside(root, rel, into):
@@ -534,25 +633,12 @@ def _set_aside(root, rel, into):
         shutil.move(str(source), str(target))
 
 
-def _check_saved(root, into):
-    """Refuse unless ``into`` holds every file now on disk under the two paths, byte for
-    byte: only then may those files be replaced."""
-    files, _ = _tree(root)
-    saved, _ = _tree(into.path / "files")
-    differ = sorted(rel for key, rel in files.items()
-                    if key not in saved or not _same(root / rel, into.path / "files" / saved[key]))
-    differ += sorted(rel for key, rel in saved.items() if key not in files)
-    if differ:
-        raise CdlbibError(f"The library changed after its backup was taken ({', '.join(differ[:5])}"
-                          f"{', ...' if len(differ) > 5 else ''}), so nothing was restored. Nothing was changed.")
-
-
-def _clear(root, into):
+def _clear(root, into, commit):
     """Step b: leave under the two paths only the files of the current commit, unmodified.
-    Changes to tracked files are in ``into`` already (checked by the caller); files git does
-    not track are moved into it."""
-    _git_restore(root, "HEAD")
-    tracked = _tracked(root)
+    Changes to tracked files are in ``into`` already (checked by the caller); files the
+    commit does not have are moved into it."""
+    _git_restore(root, commit)
+    tracked = _commit_files(root, commit)
     for key, rel in _tree(root)[0].items():
         if key not in tracked:
             _set_aside(root, rel, into)
@@ -560,42 +646,63 @@ def _clear(root, into):
 
 def _put(root, backup, into):
     """Step e: with the library on the backup's commit, make the files under the two paths
-    exactly the backup's. A file that is not in the backup is removed when it is a tracked
-    file of that commit (it was deleted when the backup was taken, and the commit holds
-    it); any other is moved into ``into``."""
+    exactly what the backup recorded, and check that they are. A file the backup recorded as
+    deleted is removed once git has made it the commit's own content (the commit keeps it);
+    any other file that is not the backup's is moved into ``into``."""
     _git_restore(root, backup.commit)
-    saved, saved_folders = _tree(backup.path / "files")
-    tracked = _tracked(root)
+    tracked, saved = _commit_files(root, backup.commit), _saved(backup)
+    deleted = {_same_name(name) for name in backup.deleted}
+    recorded = {_same_name(name) for name in backup.folders}
     files, folders = _tree(root)
     for key, rel in files.items():
-        if key in saved:
+        if key in saved or (key in tracked and key not in deleted):
             continue
-        if key in tracked:
+        if key in tracked and not _unlike(root / rel, tracked[key]):
             os.unlink(root / rel)
         else:
             _set_aside(root, rel, into)
     for key in sorted(folders, key=len, reverse=True):           # deepest first; only empty folders go
-        if key not in saved_folders:
+        if key not in recorded:
             with contextlib.suppress(OSError):
                 os.rmdir(root / folders[key])
-    for rel in saved_folders.values():
+    for rel in backup.folders:
         (root / rel).mkdir(parents=True, exist_ok=True)
     for rel in saved.values():
         _copy(backup.path / "files" / rel, root / rel)
+    wrong = _describes(root, backup)
+    if wrong:
+        raise CdlbibError(f"these files are not as the backup recorded them: {', '.join(wrong[:5])}"
+                          + (", ..." if len(wrong) > 5 else ""))
 
 
 def _has_commit(root, commit):
     return _git(root, "cat-file", "-e", commit + "^{commit}", check=False).returncode == 0
 
 
+def _clashes(mine, differs):
+    """The paths in ``mine`` (the user's changed, untracked and ignored files outside the
+    two paths; a folder ends in '/') that a move between two commits would write over:
+    one of the paths the commits differ in, or a folder of one, or inside one."""
+    found = set()
+    for own in mine:
+        bare = _same_name(own.rstrip("/"))
+        for path_ in differs:
+            other = _same_name(path_)
+            if other == bare or bare.startswith(other + "/") or other.startswith(bare + "/"):
+                found.add(own)
+                break
+    return sorted(found)
+
+
 def _restore(root, backup, into):
+    """restore(), with the lock held. Returns the backup of the state before it."""
     folder = backups_folder()
     if backup is None or _read(Path(backup.path)) is None or Path(backup.path).parent != folder:
         raise CdlbibError(f"No backup has been made yet of {root}, so there is nothing to undo." if backup is None
                           else f"{backup.path} is not a backup in {folder}; nothing was changed.")
     own = into is None
     if own:
-        into = _backup(root, protect=backup)
+        into = _backup(root)
     elif _read(Path(into.path)) is None or Path(into.path).parent != folder or into.path == backup.path:
         raise CdlbibError(f"{into.path} is not a backup of the current state in {folder}; nothing was changed.")
     what = f"The backup of {backup.when}"
@@ -605,8 +712,7 @@ def _restore(root, backup, into):
         if not _has_commit(root, target):
             bundle = backup.path / "changes.bundle"
             if bundle.is_file() and _git(root, "bundle", "verify", "--quiet", str(bundle), check=False).returncode == 0:
-                _git(root, "fetch", "--quiet", "--no-tags", str(bundle),
-                     f"HEAD:refs/cdlbib/backups/{backup.path.name}", check=False)
+                _git(root, "fetch", "--quiet", "--no-tags", str(bundle), f"HEAD:{_PINS}{backup.stamp}", check=False)
             if not _has_commit(root, target):
                 raise CdlbibError(f"{what} cannot be restored: its commit {target[:8]} is no longer in the library"
                                   + (" and could not be read from the backup's bundle" if bundle.is_file() else
@@ -617,42 +723,46 @@ def _restore(root, backup, into):
         if backup.branch:
             moved = _git(root, "rev-parse", "--verify", "--quiet", f"refs/heads/{backup.branch}^{{commit}}",
                          check=False).stdout.strip() or None
+        elsewhere = _status(root, *_ELSEWHERE)[0]
         if head != target:
-            mine = {_same_name(name) for _, name in _status(root, ".", *(f":(exclude){top}" for top in KEPT))[1]}
+            # git moves the clean tracked files outside the two paths with the commit. Anything
+            # of the user's that this would write over is a refusal: changed and untracked
+            # files, and ignored ones (git does not protect those unless told to).
+            mine = [name for _, name in _status(root, *_ELSEWHERE, ignored=True)[1]]
             differs = _listed(_git(root, "diff", "--name-only", "--no-renames", "-z", head, target).stdout)
-            clash = sorted(name for name in differs if _same_name(name) in mine)
+            clash = _clashes(mine, differs)
             if clash:
-                raise CdlbibError(f"{what} cannot be restored: it would overwrite your changes to {', '.join(clash)}, "
-                                  "which cdlbib does not back up. Commit, move or remove those changes and try again. "
+                raise CdlbibError(f"{what} cannot be restored: it would overwrite {', '.join(clash)}, which "
+                                  "cdlbib does not back up. Commit, move or remove "
+                                  f"{'that file' if len(clash) == 1 else 'those files'} and try again. "
                                   "Nothing was changed.")
-        if moved and moved != target and current != backup.branch:
-            # The branch would be moved while another is checked out: only if its commit stays reachable.
-            kept = any(_git(root, "merge-base", "--is-ancestor", moved, other, check=False).returncode == 0
-                       for other in (head, target))
-            if not kept and not _git(root, "branch", "--remotes", "--contains", moved, check=False).stdout.strip():
-                raise CdlbibError(f"{what} cannot be restored: branch {backup.branch} has commits ({moved[:8]}) that are "
-                                  "in no backup and not on the upstream. Switch to that branch and try again. "
-                                  "Nothing was changed.")
-        _check_saved(root, into)
+        wrong = _describes(root, into) if into.commit == head else ["the commit"]
+        if wrong:
+            raise CdlbibError(f"The library changed after its backup was taken ({', '.join(wrong[:5])}"
+                              f"{', ...' if len(wrong) > 5 else ''}), so nothing was restored. Nothing was changed.")
     except CdlbibError:
         if own:      # nothing was changed: the copy just taken is not kept, so the newest backup stays the newest
-            _discard(into)
+            _drop(folder, into.stamp, root)
         raise
-    saved = f"Your files as they were are saved in {into.path}; `{UNDO}` puts them back."
+    saved = f"Your files as they were are saved in {into.path}; `{UNDO} {into.stamp}` puts them back."
 
     # b, c. Set the current files aside (they are in `into`) and move to the recorded commit.
     try:
-        _clear(root, into)
+        _clear(root, into, head)
         if not in_place:
-            _git(root, "switch", "--quiet", "--detach", target)
+            _git(root, "switch", "--quiet", "--no-overwrite-ignore", "--detach", target)
     except (CdlbibError, OSError) as exc:
-        if _head(root) != (current, head):     # git moved although it reported a failure
-            raise CdlbibError(f"{what} was only partly restored: {exc}. {saved}") from exc
         try:
-            _put(root, into, into)
+            if _head(root) != (current, head):     # git moved although it reported a failure
+                raise CdlbibError("the library is no longer on the commit it was on")
+            _put(root, into, into)                 # puts the files back and checks every one of them
+            if _status(root, *_ELSEWHERE)[0] != elsewhere:
+                raise CdlbibError("files outside cdl.bib and verification/ are not as they were")
         except (CdlbibError, OSError) as second:
             raise CdlbibError(f"{what} could not be restored ({exc}), and the library could not be put back "
-                              f"({second}). {saved}") from exc
+                              f"as it was ({second}). {saved}") from exc
+        if own:      # checked: the library is as it was, so this copy of it is not kept either
+            _drop(folder, into.stamp, root)
         raise CdlbibError(f"{what} could not be restored: {exc}. The library is as it was "
                           "(changes that were staged are now unstaged).") from exc
 
@@ -662,15 +772,26 @@ def _restore(root, backup, into):
             if moved is None:
                 _git(root, "branch", "--quiet", backup.branch, target)
             elif moved != target:
+                if moved != head:
+                    # The branch leaves a commit that is not the one `into` recorded: keep it
+                    # under a private ref of `into`, so that no commit is ever lost by an undo.
+                    keep = _PINS + into.stamp + "-moved"
+                    _git(root, "update-ref", "-m", "cdlbib undo", keep, moved, "", check=False)
+                    if _git(root, "rev-parse", "--verify", "--quiet", keep, check=False).stdout.strip() != moved:
+                        raise CdlbibError(f"commit {moved[:8]} of branch {backup.branch} could not be kept")
                 swap = _git(root, "update-ref", "-m", "cdlbib undo", f"refs/heads/{backup.branch}", target, moved,
                             check=False)
                 if swap.returncode != 0:
                     raise CdlbibError(f"branch {backup.branch} is no longer at {moved[:8]}, where it was a moment "
                                       "ago, so it was not moved")
-            _git(root, "switch", "--quiet", backup.branch)
+            _git(root, "switch", "--quiet", "--no-overwrite-ignore", backup.branch)
         _put(root, backup, into)
+        if _head(root) != (backup.branch, target):
+            raise CdlbibError("the library is not on the recorded branch and commit")
     except (CdlbibError, OSError) as exc:
         raise CdlbibError(f"{what} was only partly restored: {exc}. {saved}") from exc
+    _prune(folder, root)
+    return into
 
 
 def restore(backup, ws, into=None):
@@ -680,10 +801,33 @@ def restore(backup, ws, into=None):
     a change was staged is not preserved: changes come back unstaged.
 
     ``into`` is a backup of the current state, taken just before; without one, restore takes
-    it itself (and removes it again when it refuses before changing anything). A file under the two paths that is not in ``backup`` is moved into ``into``,
-    never deleted. Clean tracked files elsewhere follow the commit, as git moves them; a
-    local change elsewhere that this would overwrite is a refusal, before anything changes.
-    Raises CdlbibError; when the user's files are then only in ``into``, the message names it."""
+    it itself, and removes it again when nothing was changed (a refusal, or a failure after
+    which the library was put back and checked). A file under the two paths that is not in
+    ``backup`` is moved into ``into``, never deleted. Clean tracked files elsewhere follow the
+    commit, as git moves them; any file elsewhere that this would overwrite (changed,
+    untracked or ignored) is a refusal, before anything changes. Old backups are pruned only
+    after a restore that succeeded. Raises CdlbibError; when the user's files are then only
+    in ``into``, the message names it and the command that restores it. Returns ``into``."""
     root = _managed_root(ws)
     with _locked(home()):
-        _restore(root, backup, into)
+        return _restore(root, backup, into)
+
+
+def undo(ws, stamp=None):
+    """Restore the newest backup, or the one named ``stamp`` (Backup.stamp). The list of
+    backups is read with the lock held. Returns (the backup restored, the backup of the
+    state before it)."""
+    root = _managed_root(ws)
+    with _locked(home()):
+        saved = backups()
+        if stamp is None:
+            if not saved:
+                raise CdlbibError(f"No backup has been made yet of {root}, so there is nothing to undo.")
+            chosen = saved[0]
+        else:
+            named = [one for one in saved if one.stamp == stamp.strip()]
+            if not named:
+                raise CdlbibError(f"There is no backup {stamp.strip()} of {root}; `cdlbib update --list` shows "
+                                  "the backups there are. Nothing was changed.")
+            chosen = named[0]
+        return chosen, _restore(root, chosen, None)

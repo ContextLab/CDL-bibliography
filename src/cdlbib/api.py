@@ -150,18 +150,14 @@ def backups():
     return library.backups()
 
 
-def undo_update():
-    """Put the managed library back as it was at the newest backup, and return that Backup.
-    The current state is backed up first (it is then the newest backup), so calling this
-    again undoes the undo. Branch, commit and file bytes are restored exactly; changes that
-    were staged come back unstaged."""
+def undo_update(stamp=None):
+    """Put the managed library back as it was at the newest backup, or at the one named
+    ``stamp`` (Backup.stamp, as --list shows it), and return that Backup. The current state
+    is backed up first (it is then the newest backup), so calling this again undoes the undo.
+    Branch, commit and file bytes are restored exactly; changes that were staged come back
+    unstaged. CdlbibError when there is no such backup or the restore is refused."""
     from . import library
-    ws = _managed()
-    saved = library.backups()
-    if not saved:
-        raise CdlbibError(f"No backup has been made yet of {ws.root}, so there is nothing to undo.")
-    library.restore(saved[0], ws)      # takes the backup of the current state itself
-    return saved[0]
+    return library.undo(_managed(), stamp)[0]
 
 
 def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):
