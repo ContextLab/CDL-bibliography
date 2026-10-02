@@ -595,17 +595,27 @@ def holds_only_copy(backup):
     return exists() and _only_copy(path().resolve(), backup)
 
 
-def _prune(folder, root):
+def _prune(folder, root, notes=None):
     """Delete all but the KEEP newest backups. A backup that alone keeps a commit, and a
     folder that cannot be read as a backup (it may hold the only copy of something), are
-    never deleted and are not counted. Called only after an operation has succeeded."""
-    ordinary = []
-    for name in _backup_names(folder):
-        made = _read(folder / name)
-        if made is not None and not _only_copy(root, made):
-            ordinary.append(name)
+    never deleted and are not counted. Called only after an operation has succeeded, and
+    never undoes or fails it: an old backup that cannot be removed stays, and ``notes`` (a
+    list, when given) receives one line naming its folder."""
+    notes = [] if notes is None else notes
+    try:
+        ordinary = []
+        for name in _backup_names(folder):
+            made = _read(folder / name)
+            if made is not None and not _only_copy(root, made):
+                ordinary.append(name)
+    except (OSError, CdlbibError) as exc:
+        notes.append(f"note: the old backups in {folder} could not be looked through ({_why(exc)}); none was removed")
+        return
     for name in ordinary[:-KEEP]:
-        _drop(folder, name, root)
+        try:
+            _drop(folder, name, root)
+        except (OSError, CdlbibError) as exc:
+            notes.append(f"note: the old backup {folder / name} could not be removed ({_why(exc)}); it was left there")
 
 
 def _sweep(folder, root, now):
@@ -684,17 +694,18 @@ def _backup(root):
     return made
 
 
-def backup(ws):
+def backup(ws, notes=None):
     """Save the state of the managed library and return the Backup: the files under cdl.bib
     and verification/ that differ from the commit it is on (modified, untracked and ignored
     files), the tracked files that are deleted, the branch and commit, what git reported as
     changed, a private ref that keeps the commit, and a bundle of the commits the upstream
     does not have. No file of the library is changed. Afterwards the KEEP newest backups
-    are kept."""
+    are kept; an older one that cannot be removed is not a failure (``notes``, a list,
+    receives a line naming it)."""
     root = _managed_root(ws)
     with _locked(home()):
         made = _backup(root)
-        _prune(backups_folder(), root)
+        _prune(backups_folder(), root, notes)
         return made
 
 
@@ -798,6 +809,9 @@ def _put(root, backup, into):
 
 
 _COMMIT_NAME = re.compile(r"[0-9a-f]{40}(?:[0-9a-f]{24})?")
+# Names that git reads as HEAD or as one of its own pseudo-refs (FETCH_HEAD, ORIG_HEAD, ...)
+# before it reads them as a branch: a backup naming one as its branch was not written here.
+_PSEUDO_REF = re.compile(r"@|HEAD|AUTO_MERGE|[A-Z_]+_HEAD")
 
 
 def _inside(rel):
@@ -824,7 +838,7 @@ def _trusted(root, backup, tree=False):
                 if not _COMMIT_NAME.fullmatch(commit):
                     raise CdlbibError(f"{commit!r} is not a commit")
                 if branch is not None and (
-                        branch.startswith("-")
+                        branch.startswith("-") or _PSEUDO_REF.fullmatch(branch)
                         or _git(root, "check-ref-format", "refs/heads/" + branch, check=False).returncode != 0
                         or _git(root, "check-ref-format", "--branch", branch, check=False).stdout.strip() != branch):
                     raise CdlbibError(f"{branch!r} is not a branch name")
@@ -887,7 +901,7 @@ def _clashes(mine, differs):
     return sorted(found)
 
 
-def _restore(root, backup, into):
+def _restore(root, backup, into, notes=None):
     """restore(), with the lock held. Returns the backup of the state before it."""
     folder = backups_folder()
     if backup is None or _read(Path(backup.path)) is None or Path(backup.path).parent != folder:
@@ -998,11 +1012,11 @@ def _restore(root, backup, into):
             raise CdlbibError("the library is not on the recorded branch and commit")
     except (CdlbibError, OSError) as exc:
         raise CdlbibError(f"{what} was only partly restored: {exc}. {saved}") from exc
-    _prune(folder, root)
+    _prune(folder, root, notes)        # the restore is done: an old backup that stays is a note
     return into
 
 
-def restore(backup, ws, into=None):
+def restore(backup, ws, into=None, notes=None):
     """Put the managed library back as it was when ``backup`` was taken: the branch (made
     again if it no longer exists), the commit (read from the backup's bundle if the library
     no longer has it), and the bytes of every file under cdl.bib and verification/. Whether
@@ -1016,17 +1030,19 @@ def restore(backup, ws, into=None):
     such branch back, so undo followed by undo leaves every local branch where it was. Clean tracked files elsewhere follow the
     commit, as git moves them; any file elsewhere that this would overwrite (changed,
     untracked or ignored) is a refusal, before anything changes. Old backups are pruned only
-    after a restore that succeeded. Raises CdlbibError; when the user's files are then only
-    in ``into``, the message names it and the command that restores it. Returns ``into``."""
+    after a restore that succeeded, and one that cannot be removed does not fail it
+    (``notes``, a list, receives a line naming it). Raises CdlbibError; when the user's files
+    are then only in ``into``, the message names it and the command that restores it.
+    Returns ``into``."""
     root = _managed_root(ws)
     with _locked(home()):
-        return _restore(root, backup, into)
+        return _restore(root, backup, into, notes)
 
 
-def undo(ws, stamp=None):
+def undo(ws, stamp=None, notes=None):
     """Restore the newest backup, or the one named ``stamp`` (Backup.stamp). The list of
     backups is read with the lock held. Returns (the backup restored, the backup of the
-    state before it)."""
+    state before it). ``notes`` (a list) receives non-fatal lines."""
     root = _managed_root(ws)
     with _locked(home()):
         saved = backups()
@@ -1042,11 +1058,16 @@ def undo(ws, stamp=None):
             chosen = saved[0]
         else:
             named = [one for one in saved if one.stamp == stamp.strip()]
+            if not named and stamp.strip() in _backup_names(backups_folder()):
+                there = backups_folder() / stamp.strip()
+                raise CdlbibError(f"The backup {stamp.strip()} is there ({there}) but cannot be read "
+                                  f"({_unreadable(there)}), so it was not restored. Nothing was changed. "
+                                  f"`cdlbib update --list` shows the backups; `{UNDO} STAMP` restores another one.")
             if not named:
                 raise CdlbibError(f"There is no backup {stamp.strip()} of {root}; `cdlbib update --list` shows "
                                   "the backups there are. Nothing was changed.")
             chosen = named[0]
-        return chosen, _restore(root, chosen, None)
+        return chosen, _restore(root, chosen, None, notes)
 
 
 # --- staying current: at most once a day, when a command runs ---------------------------------
@@ -1461,8 +1482,10 @@ def _update(root, force, now, made, decision=None, seen=None):
 
     def skipped(reason):
         record(False)
+        then = ("Run `cdlbib update` to try again." if force else
+                "It will be tried again automatically in about an hour; `cdlbib update` tries now.")
         return UpdateResult("skipped_offline", notes=notes,
-                            message=f"update check skipped: {reason}; working with the copy in {root}")
+                            message=f"update check skipped: {reason}; working with the copy in {root}. {then}")
 
     if decision in ("keep", "send"):
         # Nothing is changed and nothing need be fetched: the time is recorded, so the question
@@ -1548,10 +1571,7 @@ def _update(root, force, now, made, decision=None, seen=None):
                 raise
             return left(str(exc), "Run `cdlbib update` to try again.", checked=None)
         record(True)
-        try:
-            _prune(backups_folder(), root)
-        except (OSError, CdlbibError) as exc:
-            notes.append(f"note: an old backup could not be removed: {_why(exc)}")
+        _prune(backups_folder(), root, notes)      # the update is done; an old backup that stays is a note
         if decision == "update":
             message = (f"updated the bibliography: {_count(new, 'new commit')}, with your changes kept"
                        + (f" ({_some(carried)})" if carried else "")
@@ -1577,10 +1597,7 @@ def _update(root, force, now, made, decision=None, seen=None):
         raise CdlbibError(f"The update of {root} stopped part-way ({said}). The library as it was is saved in "
                           f"{backup.path}; `{UNDO} {backup.stamp}` puts it back.")
     record(True)
-    try:
-        _prune(backups_folder(), root)
-    except (OSError, CdlbibError) as exc:      # the update is done; an old backup that stays is not a failure
-        notes.append(f"note: an old backup could not be removed: {_why(exc)}")
+    _prune(backups_folder(), root, notes)          # the update is done; an old backup that stays is a note
     return UpdateResult("updated", new_commits=new, backup=backup, notes=notes,
                         message=f"updated the bibliography: {_count(new, 'new commit')} (the library as it was is "
                                 f"backup {backup.stamp}; `{UNDO}` puts it back)")

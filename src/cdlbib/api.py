@@ -192,6 +192,7 @@ class UndoResult:
     restored: object               # the library.Backup the library was put back to
     before: object                 # the backup of the state just before (restoring it undoes the undo)
     taken_off: list = field(default_factory=list)   # (branch, commit): branches now off a commit only ``before`` keeps
+    notes: list = field(default_factory=list)       # non-fatal lines (an old backup that could not be removed)
 
 
 def undo(stamp=None):
@@ -199,8 +200,9 @@ def undo(stamp=None):
     branches the undo took off commits that no local branch and no branch of the upstream
     leads to (``before`` keeps those commits and is never deleted while it alone does)."""
     from . import library
-    restored, before = library.undo(_managed(), stamp)
-    return UndoResult(restored=restored, before=before, taken_off=library.taken_off(before))
+    notes = []
+    restored, before = library.undo(_managed(), stamp, notes)
+    return UndoResult(restored=restored, before=before, taken_off=library.taken_off(before), notes=notes)
 
 
 def backups_folder():

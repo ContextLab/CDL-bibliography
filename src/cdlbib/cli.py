@@ -202,6 +202,8 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
             typer.echo(f"branch {branch} was on commit {commit[:8]}, which is on no other branch and not in the "
                        f"upstream; backup {done.before.stamp} keeps it, and `cdlbib update --undo {done.before.stamp}` "
                        "puts the branch back on it")
+        for note in done.notes:
+            typer.echo(note, err=True)
     elif show:
         saved = api.backups()
         unreadable = api.unreadable_backups()
@@ -209,14 +211,16 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         if not saved and not unreadable:
             typer.echo(f"no backups of {root} yet")
             return
-        typer.echo(f"{len(saved)} backup{'' if len(saved) == 1 else 's'} of {root}, newest first "
-                   f"(kept in {api.backups_folder()}):")
+        typer.echo(f"{len(saved)} {'readable ' if unreadable else ''}backup{'' if len(saved) == 1 else 's'} of {root}"
+                   + (f" and {len(unreadable)} unreadable" if unreadable else "")
+                   + f", newest first (kept in {api.backups_folder()}):")
         lines = {backup.stamp: f"  {backup.stamp}  {backup.when}  {_backup_line(backup)}" for backup in saved}
         lines.update({stamp: f"  {stamp}: unreadable ({reason})" for stamp, reason in unreadable})
         for stamp in sorted(lines, reverse=True):
             typer.echo(lines[stamp])
-        typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
-                   "`cdlbib update --undo STAMP` at the one named.")
+        if saved:
+            typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
+                       "`cdlbib update --undo STAMP` at the one named.")
     else:
         def say(line):
             typer.echo(line, err=True)

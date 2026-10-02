@@ -147,3 +147,30 @@ def test_a_send_commits_and_pushes_from_the_checkout_it_was_given(tmp_path, monk
     assert git("rev-parse", branch, cwd=remote) == sent and git("rev-parse", "master", cwd=remote) == start
     assert everything(elsewhere) == before
     assert branch not in git("for-each-ref", cwd=elsewhere)
+
+
+def test_every_git_and_gh_subprocess_of_the_package_is_given_the_scrubbed_environment():
+    """The rule itself, read from the source: each subprocess call in the modules that run git
+    or gh (library, publish, identity), and any call anywhere whose command starts with "git"
+    or "gh", passes env=git_env(). (`gh api user` needs no repository, so no run of it could
+    show the difference; the rule is what is checked.)"""
+    import ast
+    from pathlib import Path
+    source = Path(gitenv.__file__).parent
+    always, missing, counted = {"library.py", "publish.py", "identity.py"}, [], 0
+    for file in sorted(source.glob("*.py")):
+        for node in ast.walk(ast.parse(file.read_text(encoding="utf-8"))):
+            if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+                    and isinstance(node.func.value, ast.Name) and node.func.value.id == "subprocess"
+                    and node.func.attr in ("run", "Popen", "call", "check_call", "check_output")):
+                continue
+            first = node.args[0] if node.args else None
+            names_git = (isinstance(first, ast.List) and first.elts and isinstance(first.elts[0], ast.Constant)
+                         and first.elts[0].value in ("git", "gh"))
+            if not (names_git or file.name in always):
+                continue
+            counted += 1
+            env = next((keyword.value for keyword in node.keywords if keyword.arg == "env"), None)
+            if not (isinstance(env, ast.Call) and getattr(env.func, "id", "") == "git_env" and not env.args):
+                missing.append(f"{file.name}:{node.lineno}")
+    assert missing == [] and counted >= 7, (missing, counted)

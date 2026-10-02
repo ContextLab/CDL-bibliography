@@ -6,6 +6,7 @@ is data-safety code, so each restore test compares a snapshot taken before the b
 one taken after the restore: the branch, the commit, the set of changed paths under cdl.bib
 and verification/, and a hash of every file under them.
 """
+import contextlib
 import datetime
 import hashlib
 import json
@@ -119,6 +120,41 @@ def write(root, name, text):
     target = Path(root) / name
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text, encoding="utf-8")
+
+
+@contextlib.contextmanager
+def helpers_seen(pattern):
+    """While the block runs, collect the PID of every process whose command line matches
+    ``pattern`` (pgrep -f): the stalled transport and the git processes that started it."""
+    import threading
+    seen, stop = set(), threading.Event()
+
+    def poll():
+        while not stop.is_set():
+            found = subprocess.run(["pgrep", "-f", pattern], capture_output=True, text=True).stdout.split()
+            seen.update(int(pid) for pid in found)
+            stop.wait(0.2)
+
+    thread = threading.Thread(target=poll, daemon=True)
+    thread.start()
+    try:
+        yield seen
+    finally:
+        stop.set()
+        thread.join()
+
+
+def still_running(pids):
+    alive = []
+    for pid in pids:
+        try:
+            os.kill(pid, 0)
+            alive.append(pid)
+        except ProcessLookupError:
+            pass
+        except PermissionError:
+            alive.append(pid)
+    return alive
 
 
 def cdlbib(*args, cwd, **env):
@@ -1094,8 +1130,9 @@ def test_offline_the_check_is_skipped_once_then_left_for_an_hour(managed, tmp_pa
     last, before = library.read_state().last_check, snapshot(ws.root)
     gone = upstream.with_name("gone.git")
     upstream.rename(gone)
-    skipped = (f"update check skipped: git fetch from {upstream} failed ('{upstream}' does not appear to be a git "
-               f"repository); working with the copy in {ws.root}")
+    failed = (f"update check skipped: git fetch from {upstream} failed ('{upstream}' does not appear to be a git "
+              f"repository); working with the copy in {ws.root}.")
+    skipped = failed + " It will be tried again automatically in about an hour; `cdlbib update` tries now."
 
     started = datetime.datetime.now(UTC)
     out = cdlbib("verify", "--no-citations", cwd=empty_folder(tmp_path))
@@ -1115,7 +1152,7 @@ def test_offline_the_check_is_skipped_once_then_left_for_an_hour(managed, tmp_pa
     assert snapshot(ws.root) == before and backup_names(home) == []
 
     asked = cdlbib("update", cwd=empty_folder(tmp_path))               # asked for: tried whatever the hour says
-    assert (asked.returncode, asked.stdout, asked.stderr) == (1, "", skipped + "\n")
+    assert (asked.returncode, asked.stdout, asked.stderr) == (1, "", failed + " Run `cdlbib update` to try again.\n")
     assert (home / "state.json").read_bytes() == recorded            # a failed `cdlbib update` records nothing
 
     checked(home, 25 * HOUR, tried=61 * MINUTE)                      # an hour and a minute after the failed attempt
@@ -1162,10 +1199,12 @@ def test_a_stalling_upstream_costs_a_command_the_short_timeout_once(managed, tmp
     env = {"GIT_ALLOW_PROTOCOL": "ext", "CDLBIB_UPSTREAM": "ext::sleep 62"}
     assert library.AUTO_FETCH_TIMEOUT == 15 and library.RETRY_AFTER == 3600 and library.FETCH_TIMEOUT == 120
     started = time.monotonic()
-    out = cdlbib("where", cwd=empty_folder(tmp_path), **env)
+    with helpers_seen("sleep 62$") as helpers:
+        out = cdlbib("where", cwd=empty_folder(tmp_path), **env)
     took = time.monotonic() - started
     assert out.returncode == 0 and out.stderr == (
-        f"update check skipped: ext::sleep 62 did not answer within 15 seconds; working with the copy in {ws.root}\n")
+        f"update check skipped: ext::sleep 62 did not answer within 15 seconds; working with the copy in {ws.root}. "
+        "It will be tried again automatically in about an hour; `cdlbib update` tries now.\n")
     assert 15 <= took < 40, took
     recorded = (home / "state.json").read_bytes()
     started = time.monotonic()
@@ -1173,7 +1212,8 @@ def test_a_stalling_upstream_costs_a_command_the_short_timeout_once(managed, tmp
     assert (out.returncode, out.stderr) == (0, "") and time.monotonic() - started < 10
     assert (home / "state.json").read_bytes() == recorded
     time.sleep(0.5)
-    assert subprocess.run(["pgrep", "-f", "^sleep 62$"], capture_output=True, text=True).stdout.split() == []
+    assert helpers, "the stalled transport was never seen running: this guard would prove nothing"
+    assert still_running(helpers) == [], "the stalled transport was left running"
 
 
 def test_a_corrupt_state_file_is_never_checked_so_the_command_checks(managed, tmp_path):
@@ -1431,7 +1471,7 @@ def test_cdlbib_update_checks_now_and_always_says_what_happened(managed, tmp_pat
     out = cdlbib("update", cwd=own)                                   # asked for and not possible: exit 1
     assert (out.returncode, out.stdout) == (1, "")
     assert out.stderr == (f"update check skipped: git fetch from {upstream} failed ('{upstream}' does not appear to "
-                          f"be a git repository); working with the copy in {root}\n")
+                          f"be a git repository); working with the copy in {root}. Run `cdlbib update` to try again.\n")
     assert (home / "state.json").read_bytes() == state and len(backup_names(home)) == 1
     gone.rename(upstream)
 
@@ -1475,20 +1515,26 @@ def test_a_stalled_fetch_times_out_and_the_check_is_skipped(managed, monkeypatch
     monkeypatch.setattr(library, "AUTO_FETCH_TIMEOUT", 2)
     monkeypatch.setattr(library, "FETCH_TIMEOUT", 4)
     started = time.monotonic()
-    result = library.update(ws)
+    with helpers_seen("sleep 61$") as helpers:
+        result = library.update(ws)
     assert time.monotonic() - started < 30
     assert result.action == "skipped_offline" and result.message == (
-        f"update check skipped: ext::sleep 61 did not answer within 2 seconds; working with the copy in {ws.root}")
+        f"update check skipped: ext::sleep 61 did not answer within 2 seconds; working with the copy in {ws.root}. "
+        "It will be tried again automatically in about an hour; `cdlbib update` tries now.")
     state = library.read_state()
     assert state.last_check == last and state.last_attempt is not None
     recorded = (home / "state.json").read_bytes()
-    forced = library.update(ws, force=True)
-    assert forced.action == "skipped_offline" and "did not answer within 4 seconds" in forced.message
+    with helpers_seen("sleep 61$") as more:
+        forced = library.update(ws, force=True)
+    helpers |= more
+    assert forced.action == "skipped_offline" and forced.message == (
+        f"update check skipped: ext::sleep 61 did not answer within 4 seconds; working with the copy in {ws.root}. "
+        "Run `cdlbib update` to try again.")
     assert (home / "state.json").read_bytes() == recorded
     assert snapshot(ws.root) == before and backup_names(home) == []
     time.sleep(0.5)
-    left = subprocess.run(["pgrep", "-f", "^sleep 61$"], capture_output=True, text=True).stdout.split()
-    assert left == [], "the stalled transport was left running"
+    assert helpers, "the stalled transport was never seen running: this guard would prove nothing"
+    assert still_running(helpers) == [], "the stalled transport was left running"
     with open(home / "lock", "a") as lock:                           # and the lock is free again
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
 
@@ -1659,7 +1705,7 @@ def test_an_unreadable_backup_is_named_never_skipped_and_never_pruned(managed, t
     listed = cdlbib("update", "--list", cwd=tmp_path)
     assert listed.returncode == 0 and listed.stderr == ""
     assert listed.stdout.splitlines()[:3] == [
-        f"1 backup of {root}, newest first (kept in {home.resolve() / 'backups'}):",
+        f"1 readable backup of {root} and 1 unreadable, newest first (kept in {home.resolve() / 'backups'}):",
         f"  {newest.stamp}: unreadable ({reason})",
         f"  {older.stamp}  {older.when}  branch master at {older.commit[:8]}, 0 changed files"]
     assert library.unreadable_backups() == api.unreadable_backups() == [(newest.stamp, reason)]
@@ -1669,6 +1715,13 @@ def test_an_unreadable_backup_is_named_never_skipped_and_never_pruned(managed, t
     assert bare.stderr == (f"The newest backup, {home.resolve() / 'backups' / newest.stamp}, cannot be read ({reason}), so "
                            "nothing was restored. Nothing was changed. `cdlbib update --undo STAMP` restores a specific "
                            "older backup; `cdlbib update --list` shows them.\n")
+    assert whole_clone(root) == before and sorted(p.name for p in (home / "backups").iterdir()) == held
+
+    by_name = cdlbib("update", "--undo", newest.stamp, cwd=tmp_path)   # named: it is there, and it cannot be read
+    assert (by_name.returncode, by_name.stdout) == (1, "")
+    assert by_name.stderr == (f"The backup {newest.stamp} is there ({home.resolve() / 'backups' / newest.stamp}) but "
+                              f"cannot be read ({reason}), so it was not restored. Nothing was changed. `cdlbib update "
+                              "--list` shows the backups; `cdlbib update --undo STAMP` restores another one.\n")
     assert whole_clone(root) == before and sorted(p.name for p in (home / "backups").iterdir()) == held
 
     for _ in range(library.KEEP + 1):                                 # pruning leaves it alone and does not count it
@@ -1691,7 +1744,9 @@ def test_ref_json_is_written_whole_with_no_temporary_file_left(managed):
     assert json.loads((made.path / "ref.json").read_text(encoding="utf-8"))["commit"] == made.commit
 
 
-@pytest.mark.parametrize("name", ["HEAD", "@{-1}", "-x", "a..b", "refs/heads/master/"])
+@pytest.mark.parametrize("name", ["HEAD", "@{-1}", "-x", "a..b", "refs/heads/master/", "@", "FETCH_HEAD", "ORIG_HEAD",
+                                  "MERGE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD", "BISECT_HEAD", "AUTO_MERGE",
+                                  "SOME_OTHER_HEAD"])
 def test_a_backup_naming_something_that_is_not_a_branch_is_refused_with_nothing_changed(managed, name):
     home, upstream, ws = managed
     root = ws.root
@@ -1707,6 +1762,10 @@ def test_a_backup_naming_something_that_is_not_a_branch_is_refused_with_nothing_
     assert "is not a branch name" in str(err.value) and "Nothing was changed" in str(err.value)
     assert whole_clone(root) == before and backup_names(home) == held
     assert git("symbolic-ref", "--short", "HEAD", cwd=root) == "master"
+    assert sorted(local_branches(root)) == ["master"]                 # no stray branch of that name was made
+    out = cdlbib("update", "--undo", cwd=root.parent)                  # and the command says the same, with no traceback
+    assert out.returncode == 1 and "is not a branch name" in out.stderr and "Traceback" not in out.stderr
+    assert whole_clone(root) == before and backup_names(home) == held
 
 
 def test_a_moved_branch_that_cannot_be_put_back_stops_the_undo_and_keeps_everything(managed, tmp_path):
@@ -1960,7 +2019,8 @@ def test_an_old_backup_that_cannot_be_removed_is_a_note_and_the_update_stands(ma
         oldest.chmod(0o700)
     assert out.returncode == 0 and "looks good!" in out.stdout and "Traceback" not in out.stderr, out.stdout + out.stderr
     lines = out.stderr.splitlines()[:2]
-    assert lines[0].startswith("note: an old backup could not be removed: Permission denied") and "Traceback" not in out.stderr
+    assert lines[0].startswith(f"note: the old backup {oldest} could not be removed (Permission denied")
+    assert lines[0].endswith("); it was left there") and "Traceback" not in out.stderr
     assert lines[1] == updated_line(1, home)
     assert git("rev-parse", "HEAD", cwd=ws.root) == new
     assert len(library.backups()) == library.KEEP + 1 and library.backups()[-1].stamp == oldest.name   # still whole
@@ -2704,3 +2764,49 @@ def test_the_question_for_local_commits_offers_what_can_be_done(managed, tmp_pat
         "Your choice [k/s/d]: ")
     assert shown.count("Please answer k, s or d.\n") == 1             # "u" is not an answer here
     assert everything(ws.root) == before and backup_names(home) == []
+
+
+# --- follow-ups from the re-review of the daily check ----------------------------------------
+
+@pytest.mark.skipif(os.name == "nt" or (hasattr(os, "geteuid") and os.geteuid() == 0), reason="needs file permissions that bind")
+def test_an_old_backup_that_cannot_be_removed_is_a_note_and_the_undo_stands(managed, tmp_path):
+    """The restore is done before old backups are pruned: a backup that cannot be deleted must
+    not turn a completed restore into a traceback."""
+    home, upstream, ws = managed
+    root = ws.root
+    clean = snapshot(root)
+    for _ in range(library.KEEP):
+        library.backup(ws)
+    oldest, newest = home / "backups" / backup_names(home)[0], backup_names(home)[-1]
+    write(root, "cdl.bib", conftest.ZOLL90 + "\n% work since the backup\n")
+    oldest.chmod(0o500)                                               # nothing in it can be deleted
+    try:
+        out = cdlbib("update", "--undo", cwd=empty_folder(tmp_path))
+        notes = []
+        made = library.backup(ws, notes)                              # a plain backup: made, and the same note
+    finally:
+        oldest.chmod(0o700)
+    note = f"note: the old backup {oldest} could not be removed (Permission denied"
+    assert out.returncode == 0 and "Traceback" not in out.stderr, out.stdout + out.stderr
+    assert out.stdout.splitlines()[0].startswith(f"restored backup {newest} (")
+    assert out.stdout.splitlines()[2] == "run `cdlbib update --undo` again to return to it"
+    assert out.stderr.startswith(note) and out.stderr.endswith("); it was left there\n") and out.stderr.count("\n") == 1
+    assert snapshot(root) == clean                                    # the restore completed: the backup's state
+    assert made.stamp == backup_names(home)[-1] and len(notes) == 1 and notes[0].startswith(note)
+    assert oldest.name in backup_names(home) and (oldest / "ref.json").is_file()   # still whole
+    api.undo(backup_names(home)[-2])                                  # with the folder deletable again: no note
+    assert api.undo(backup_names(home)[-2]).notes == []
+
+
+def test_a_list_of_only_unreadable_backups_does_not_call_them_backups_to_restore(managed, tmp_path):
+    home, upstream, ws = managed
+    only = library.backup(ws)
+    (only.path / "ref.json").unlink()
+    listed = cdlbib("update", "--list", cwd=tmp_path)
+    assert (listed.returncode, listed.stderr) == (0, "")
+    assert listed.stdout.splitlines() == [
+        f"0 readable backups of {ws.root} and 1 unreadable, newest first (kept in {home.resolve() / 'backups'}):",
+        f"  {only.stamp}: unreadable (it has no ref.json)"]
+    missing = cdlbib("update", "--undo", "20200101T000000.000000Z", cwd=tmp_path)    # no such folder: still "no backup"
+    assert missing.returncode == 1 and missing.stderr.startswith("There is no backup 20200101T000000.000000Z of ")
+

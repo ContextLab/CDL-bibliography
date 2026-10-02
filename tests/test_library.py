@@ -1,5 +1,6 @@
 """The managed library: where it lives, downloading it on first use, and the lookup that
 falls back to it. Real git against local bare repositories; nothing here reaches GitHub."""
+import contextlib
 import datetime
 import fcntl
 import os
@@ -465,6 +466,41 @@ def test_an_upstream_beginning_with_a_dash_is_not_a_git_option(managed, tmp_path
     assert not (tmp_path / "pwned").exists() and sorted(p.name for p in home.iterdir()) == ["lock"]
 
 
+@contextlib.contextmanager
+def helpers_seen(pattern):
+    """While the block runs, collect the PID of every process whose command line matches
+    ``pattern`` (pgrep -f): the stalled transport and the git processes that started it."""
+    import threading
+    seen, stop = set(), threading.Event()
+
+    def poll():
+        while not stop.is_set():
+            found = subprocess.run(["pgrep", "-f", pattern], capture_output=True, text=True).stdout.split()
+            seen.update(int(pid) for pid in found)
+            stop.wait(0.2)
+
+    thread = threading.Thread(target=poll, daemon=True)
+    thread.start()
+    try:
+        yield seen
+    finally:
+        stop.set()
+        thread.join()
+
+
+def still_running(pids):
+    alive = []
+    for pid in pids:
+        try:
+            os.kill(pid, 0)
+            alive.append(pid)
+        except ProcessLookupError:
+            pass
+        except PermissionError:
+            alive.append(pid)
+    return alive
+
+
 def test_a_stalled_download_times_out_and_leaves_nothing(managed, tmp_path, monkeypatch):
     """A real stall: git's ext transport runs `sleep` as the remote, which never answers.
     Only the time allowed is changed (a module constant)."""
@@ -473,14 +509,14 @@ def test_a_stalled_download_times_out_and_leaves_nothing(managed, tmp_path, monk
     monkeypatch.setenv("CDLBIB_UPSTREAM", "ext::sleep 60")
     monkeypatch.setattr(library, "CLONE_TIMEOUT", 2)
     started = time.monotonic()
-    with pytest.raises(LibraryUnavailable) as err:
+    with helpers_seen("sleep 60$") as helpers, pytest.raises(LibraryUnavailable) as err:
         library.download()
     assert time.monotonic() - started < 30
     assert "the download timed out (it did not finish within 2 seconds)" in str(err.value)
     assert not (home / "library").exists() and not (home / "library.partial").exists()
     time.sleep(0.5)
-    left = subprocess.run(["pgrep", "-f", "^sleep 60$"], capture_output=True, text=True).stdout.split()
-    assert left == [], "the stalled transport was left running"
+    assert helpers, "the stalled transport was never seen running: this guard would prove nothing"
+    assert still_running(helpers) == [], "the stalled transport was left running"
     with open(home / "lock", "a") as lock:                       # and the lock is free again
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
 
