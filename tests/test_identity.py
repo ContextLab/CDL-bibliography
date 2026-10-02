@@ -1,4 +1,3 @@
-import os
 import shutil
 import subprocess
 
@@ -59,7 +58,7 @@ def test_approve_records_the_github_login(tmp_path):
     login = gh_user()
     if login is None:
         pytest.skip("no GitHub user is logged in (expected in CI); approval needs a real login")
-    from cdlbib.verification import Cache, load_entries
+    from cdlbib.verification import load_entries
     bib = tmp_path / "lib.bib"
     bib.write_text(ZOLL90 + "\n", encoding="utf-8")
     ws = Workspace.for_bib(bib)
@@ -85,3 +84,65 @@ def test_new_style_review_survives_snapshot_round_trip(tmp_path):
     cache = Cache(str(ws.database)); export_snapshot(str(bib), cache, str(snap)); cache.close()
     fresh = Cache(str(tmp_path / "fresh.sqlite3")); import_snapshot(str(bib), fresh, str(snap)); fresh.close()
     assert api.status(ws, database=str(tmp_path / "fresh.sqlite3"), require_human=True).ok
+
+
+def fresh_library(tmp_path):
+    from cdlbib.verification import load_entries
+    bib = tmp_path / "lib.bib"
+    bib.write_text(ZOLL90 + "\n", encoding="utf-8")
+    return bib, load_entries(str(bib))["Zoll90"]["fingerprint"]
+
+
+GOOD = {"reviewer": "@someone", "source": "https://doi.org/10.1002/tea.3660271011", "note": "checked"}
+
+
+@pytest.mark.parametrize("field, value", [("source", None), ("note", None), ("note", 5), ("reviewer", None),
+                                          ("source", "  "), ("note", ""), ("reviewer", "\t")])
+def test_record_approval_refuses_a_missing_or_non_text_field_and_stores_nothing(tmp_path, field, value):
+    from cdlbib.verification import Cache, current_results, record_approval
+    bib, fp = fresh_library(tmp_path)
+    cache = Cache(str(tmp_path / "db.sqlite3"))
+    try:
+        with pytest.raises(ValueError, match="Human reviewer, source, and review notes are required"):
+            record_approval(cache, str(bib), "Zoll90", fp, dict(GOOD, **{field: value}))
+        assert cache.db.execute("SELECT COUNT(*) FROM reviews").fetchone()[0] == 0
+        assert current_results(str(bib), cache)["Zoll90"]["status"] != "human_verified"
+    finally:
+        cache.close()
+
+
+def test_api_approve_with_no_source_is_a_cdlbib_error(tmp_path):
+    from cdlbib.errors import ApprovalRefused
+    if gh_user() is None:
+        pytest.skip("no GitHub user is logged in (expected in CI); approval needs a real login")
+    bib, fp = fresh_library(tmp_path)
+    ws = Workspace.for_bib(bib)
+    with pytest.raises(ApprovalRefused, match="required"):
+        api.approve(ws, "Zoll90", fingerprint=fp, source=None, note="n")
+
+
+def test_cli_without_a_login_refuses_cleanly_and_creates_no_database(monkeypatch, tmp_path):
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    bib, fp = fresh_library(tmp_path)
+    database = tmp_path / "db.sqlite3"
+    monkeypatch.setenv("PATH", str(tmp_path))  # a real, empty PATH: gh cannot be found
+    for args in (["approve", "Zoll90", "--fingerprint", fp, "--source", "s", "--note", "n"],
+                 ["revoke", "Zoll90", "--reason", "r"]):
+        result = CliRunner().invoke(app, args + ["--fname", str(bib), "--database", str(database)])
+        assert result.exit_code == 1, result.output
+        assert "gh auth login" in result.output
+        assert "Traceback" not in result.output and result.exception is None or isinstance(result.exception, SystemExit)
+    assert not database.exists()
+
+
+def test_cli_approve_with_a_stale_fingerprint_exits_2(tmp_path):
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    if gh_user() is None:
+        pytest.skip("no GitHub user is logged in (expected in CI); approval needs a real login")
+    bib, _ = fresh_library(tmp_path)
+    result = CliRunner().invoke(app, ["approve", "Zoll90", "--fingerprint", "stale", "--source", "s", "--note", "n",
+                                      "--fname", str(bib), "--database", str(tmp_path / "db.sqlite3")])
+    assert result.exit_code == 2
+    assert "Entry changed since review; approval rejected" in result.output

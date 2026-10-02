@@ -2674,6 +2674,16 @@ def run_verification(
     return results
 
 
+def _text(value):
+    return isinstance(value, str) and bool(value.strip())
+
+
+def revocation_ledger(fname, explicit=None):
+    """The one ledger rule: an explicit path, else a patched REVOCATION_LEDGER, else the
+    workspace of the bibliography being worked on."""
+    return Path(explicit or REVOCATION_LEDGER or workspace.Workspace.for_bib(fname).revocations)
+
+
 def record_approval(cache, fname, key, fingerprint, human_review):
     """Store an explicit human decision bound to the exact reviewed entry; returns what was stored.
     Raises ValueError (stale fingerprint, blank fields, a revoked approval replayed) or KeyError."""
@@ -2681,7 +2691,7 @@ def record_approval(cache, fname, key, fingerprint, human_review):
         entry = load_entries(fname)[key]
         if entry["fingerprint"] != fingerprint:
             raise ValueError("Entry changed since review; approval rejected")
-        if not all(str(human_review.get(x, "")).strip() for x in ("reviewer", "source", "note")):
+        if not all(_text(human_review.get(x)) for x in ("reviewer", "source", "note")):
             raise ValueError("Human reviewer, source, and review notes are required")
         for revocation in cache.revocations():
             if (revocation["fingerprint"] == fingerprint
@@ -2706,9 +2716,9 @@ def record_revocation(cache, fname, key, reason, by, fingerprints=None, ledger=N
     ledger. Returns (records written, entry status); ([], status) when every matching approval
     was already revoked. ``ledger`` defaults to the patched REVOCATION_LEDGER, else the
     bibliography's workspace; the module global is never assigned."""
-    ledger_path = Path(ledger or REVOCATION_LEDGER or workspace.Workspace.for_bib(fname).revocations)
-    if not reason.strip() or not by.strip():
+    if not (_text(reason) and _text(by)):
         raise ValueError("A revocation needs --reason and --by")
+    ledger_path = revocation_ledger(fname, ledger)
     with run_lock(cache):
         entry = load_entries(fname)[key]
         current = cache.get(fname, entry)

@@ -182,7 +182,8 @@ def compare(a, b, verbose=False, outfile=None, bars=None):
 
 def status(ws, database=None, report=None, require_human=False, keys=None, against=None):
     from .verification import ACCEPTED, Cache, ProviderError, validate_output_path, write_report
-    from .verification_cli import revocation_ledger, select_keys
+    from .verification import revocation_ledger
+    from .verification_cli import select_keys
     database = database or str(ws.database)
     report = report or str(ws.report)
     try:
@@ -208,7 +209,7 @@ def approve(ws, key, fingerprint, source, note, database=None):
     reviewer's name). Raises IdentityUnavailable before anything is opened or written."""
     from . import identity
     from .verification import Cache, record_approval
-    from .verification_cli import revocation_ledger
+    from .verification import revocation_ledger
     me = identity.current()
     review = {"reviewer": me.handle, "source": source, "note": note,
               "github_login": me.login, "github_id": me.id}
@@ -226,7 +227,7 @@ def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None):
     """Withdraw a human approval, recorded under the GitHub login of the gh CLI."""
     from . import identity
     from .verification import Cache, record_revocation
-    from .verification_cli import revocation_ledger
+    from .verification import revocation_ledger
     me = identity.current()
     ledger_path = revocation_ledger(str(ws.bib), ledger)  # resolved once for the cache and the writer
     try:

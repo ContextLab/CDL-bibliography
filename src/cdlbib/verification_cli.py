@@ -24,6 +24,7 @@ from .verification import (
     import_snapshot,
     load_entries,
     outcome,
+    revocation_ledger,  # one rule, defined in verification; re-exported for callers of this module
     run_lock,
     run_verification,
     validate_output_path,
@@ -165,13 +166,6 @@ def bib(ctx, fname):
     """The bibliography a command works on: the path as the user gave it, else the
     library's cdl.bib (--library, CDLBIB_LIBRARY, then this folder and its parents)."""
     return fname if named(ctx) else str(library(ctx, fname).bib)
-
-
-def revocation_ledger(fname, explicit=None):
-    """One ledger per command run: --ledger, else a patched verification.REVOCATION_LEDGER,
-    else the workspace of the bibliography being worked on."""
-    chosen = explicit or verification.REVOCATION_LEDGER or Workspace.for_bib(fname).revocations
-    return Path(chosen)
 
 
 def paths(fname, database, report=None):
