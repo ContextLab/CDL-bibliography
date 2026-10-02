@@ -24,6 +24,7 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
   - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
 - [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
 - [Using the bibtex file as a submodule of a paper's repository](#using-the-bibtex-file-as-a-submodule-of-a-papers-repository)
+- [Using it from Python](#using-it-from-python)
 - [Running the tests](#running-the-tests)
 - [Acknowledgements](#acknowledgements)
 
@@ -80,7 +81,12 @@ cdlbib --help
 
 The dependencies are listed in `pyproject.toml`. `python -m pip install ".[research]"` also installs `pypdf`, which `crossref research` and `research-batch` need to read PDFs.
 
-`cdlbib` works on the `cdl.bib` in the current folder or the nearest folder above it. To run it from somewhere else, pass `--library PATH` (the folder containing `cdl.bib`) or set `CDLBIB_LIBRARY`.
+`cdlbib` works on the `cdl.bib` in the current folder or the nearest folder above it. To run it from somewhere else, pass `--library PATH` (the folder containing `cdl.bib`) or set `CDLBIB_LIBRARY`. If no `cdl.bib` is found, `cdlbib` prints the first line below and exits with `2`. If `--library` or `CDLBIB_LIBRARY` names a folder that has no `cdl.bib`, it prints the second line (beginning with whichever of the two was used) and also exits with `2`.
+
+```
+No library found. Run inside a checkout that contains cdl.bib, pass --library PATH, or set CDLBIB_LIBRARY.
+--library points to FOLDER, which has no cdl.bib
+```
 
 `send`, `crossref approve` and `crossref revoke` take your identity from the [GitHub CLI](https://cli.github.com) (`gh`); install it and run `gh auth login` before using them.
 
@@ -215,6 +221,8 @@ mv cleaned.bib cdl.bib
 
 This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.  (The legacy `magic` command does all of this in one step, without giving you a chance to check the result, and then runs `send`.  Please don't use it.)
 
+`magic` prints `WARNING: potentially unsafe` when it starts.
+
 ## `compare`
 You can run the `compare` command using:
 ```bash
@@ -254,10 +262,20 @@ uncommitted changes are neither committed nor pushed; they are left as they are,
 The branch is pushed to your own fork of the repository, and a pull request is
 opened from it into the repository your checkout was cloned from (or into its
 parent, if you cloned a fork). If you have no fork yet, `send` asks before
-creating one (`cdlbib --yes send` skips the question). `--summary` sets the
-pull request's title. When it finishes, `send` prints the pull request's
+creating one (`cdlbib --yes send` skips the question). The pull request's
+title is the `--summary` text when `--summary` is given, and otherwise the first
+line of the change summary; either is cut to 100 characters. When it finishes, `send` prints the pull request's
 address and leaves your checkout on the new branch; running `send` again from
 that branch adds to the same pull request.
+
+The question about creating a fork is asked only at a terminal. Without a
+terminal (for example in a script) and without `--yes`, or when the answer is no,
+`send` prints the line below with your login and the repository's name, exits
+with `1`, and sends nothing.
+
+```
+@LOGIN has no fork of OWNER/NAME. Create one with: gh repo fork OWNER/NAME --clone=false
+```
 
 ## `crossref`: citation verification
 
@@ -277,6 +295,24 @@ cdlbib crossref status cdl.bib
 # Only the references in your manuscript (one citation key per line)
 cdlbib crossref status cdl.bib --keys manuscript-keys.txt
 ```
+
+`cdlbib crossref --help` lists the subcommands:
+
+|Subcommand|What it does|
+|-|-|
+|`discover-review`|Try twenty title-search candidates; apply the existing strict source checks.|
+|`auto-review`|Automatically review cached findings; batch PubMed lookups through Europe PMC.|
+|`fulltext-review`|Review remaining entries using publisher front matter from open-access PMC XML.|
+|`verify`|Verify new/modified entries; save every result so interrupted runs resume.|
+|`status`|Offline check: recompute fingerprints and fail on every unresolved entry.|
+|`snapshot`|Export a portable compressed JSONL audit snapshot for backup or sharing.|
+|`restore`|Restore matching reviews from a trusted snapshot; changed entries stay pending.|
+|`review-packet`|Export source evidence and exact fingerprint for PDF/LLM/human review.|
+|`attach-evidence`|Attach optional external research findings; human review remains required.|
+|`research`|Run optional LLM web search, download PDF, extract and check quoted evidence.|
+|`research-batch`|Collect actual PDF evidence in a bounded, resumable batch; never human-approve.|
+|`approve`|Record an explicit human decision, bound to the exact reviewed entry.|
+|`revoke`|Withdraw a human approval: audited, bound to its fingerprint, never restored.|
 
 ### How an entry is checked
 
@@ -333,6 +369,15 @@ The approval is tied to the entry's exact text: if the entry is edited later, it
 When the library was checked in September 2026, 1,221 entries that no automatic source could settle were verified from quoted evidence: each field was matched to a quotation from an official source (a publisher's page, a scanned table of contents, a library catalogue record, and so on). Each entry's saved result in [verification/baseline.jsonl.gz](verification/baseline.jsonl.gz) holds the quotation and source URL for every field, and `crossref restore` checks them again when it loads the results. These entries have status `metadata_verified` and count as verified like any other. The working records of that check are kept on the [CDL-bibliography-stacks](https://github.com/ContextLab/CDL-bibliography-stacks) archive repository.
 
 There is also an optional tool that uses a language model to find a paper's PDF and quote the relevant passages (`crossref research` and `research-batch`). Its findings are evidence for a person to review; it never approves an entry by itself. See [docs/verification.md](docs/verification.md).
+
+Both commands reach the language model through an adapter: an executable, named with `--adapter`, that reads one JSON request on its standard input and prints one JSON object. Two adapters are installed with the package as commands, `cdlbib-adapter-dartmouth` (Dartmouth Chat) and `cdlbib-adapter-openai` (OpenAI):
+
+```bash
+cdlbib crossref research CiteKey --adapter cdlbib-adapter-dartmouth --allow-host HOST
+cdlbib crossref research-batch cdl.bib --adapter cdlbib-adapter-dartmouth --allow-host HOST
+```
+
+`--allow-host` gives an exact host that PDFs may be downloaded from; repeat it for redirects. `cdlbib-adapter-dartmouth --check-model` checks that the model is available. Each adapter needs its service's API key ([Setting an API key](docs/tutorials.md#setting-an-api-key)); without one, `cdlbib-adapter-dartmouth --check-model` prints where to put the key and exits with `2`.
 
 ### Being polite to Crossref
 
@@ -403,6 +448,28 @@ git submodule update
 ```
 
 Whichever setup you use, it's a good idea to keep a copy of the bibliography with each submitted manuscript, so that later edits to the shared file don't change that submission's references.
+
+# Using it from Python
+
+The functions behind the commands are in the module `cdlbib.api`. They return result objects and raise subclasses of `cdlbib.errors.CdlbibError`. They do not print or prompt. `api.status` writes `.bibcheck/verification.sqlite3` and `.bibcheck/report.jsonl` in the library folder.
+
+```python
+from cdlbib import api, workspace
+
+ws = workspace.Workspace("/path/to/CDL-bibliography")
+print(api.check_format(ws).errors)
+status = api.status(ws)
+print(status.counts, status.ok)
+```
+
+In a clone where `cdlbib crossref restore verification/baseline.jsonl.gz` had been run, this printed (October 2, 2026):
+
+```
+[]
+{'metadata_verified': 6348, 'human_verified': 36} True
+```
+
+Before the restore, the second line was `{'pending': 6384} False`.
 
 # Running the tests
 
