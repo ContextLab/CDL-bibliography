@@ -122,6 +122,7 @@ def test_status_and_compare_failures_keep_their_exit_codes(tmp_path):
 
 # --- optional packages installed on demand -------------------------------------------------
 
+MANUAL = "pip install 'pypdf<7,>=6.0'"  # what the installed metadata lists for the research extra
 DUMMY_PDF = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
 
 ADAPTER = '''import json, sys
@@ -181,7 +182,7 @@ def test_missing_extra_without_a_terminal_refuses_with_the_manual_command(tmp_pa
     python, args = core_environment(tmp_path)
     run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
     assert run.returncode == 1, run.stdout + run.stderr
-    assert "pip install 'cdlbib[research]'" in run.stderr and "Reading PDF files" in run.stderr
+    assert MANUAL in run.stderr and "Reading PDF files" in run.stderr
     assert "Traceback" not in run.stderr and "[y/N]" not in run.stdout + run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
 
@@ -196,8 +197,8 @@ def test_declining_the_prompt_at_a_terminal_installs_nothing(tmp_path):
     finally:
         os.close(follower)
         os.close(leader)
-    assert run.returncode == 1 and "Install cdlbib[research] now? [y/N]" in run.stdout + run.stderr, run.stdout + run.stderr
-    assert "pip install 'cdlbib[research]'" in run.stderr and "Traceback" not in run.stderr
+    assert run.returncode == 1 and "Install it now? [y/N]" in run.stdout + run.stderr, run.stdout + run.stderr
+    assert MANUAL in run.stderr and "Traceback" not in run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
 
 
@@ -216,5 +217,39 @@ def test_no_installer_is_an_error_with_the_manual_command_and_no_second_try(tmp_
     nothing.mkdir()
     run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL, path=str(nothing))
     assert run.returncode == 1 and "No installer found" in run.stderr, run.stdout + run.stderr
-    assert "pip install 'cdlbib[research]'" in run.stderr and "Traceback" not in run.stderr
+    assert MANUAL in run.stderr and "Traceback" not in run.stderr
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+
+
+def single_entry_args(tmp_path):
+    return ["research", "Test20", "--adapter", str(tmp_path / "adapter.py"), "--allow-host", "www.w3.org",
+            "--fname", str(tmp_path / "lib" / "cdl.bib"), "--database", str(tmp_path / "cache.sqlite3")]
+
+
+def test_single_entry_research_offers_the_install_too(tmp_path):
+    """`crossref research KEY` used to swallow the missing package as 'Research unresolved'."""
+    python, _ = core_environment(tmp_path)
+    args = single_entry_args(tmp_path)
+    run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    assert run.returncode == 1 and MANUAL in run.stderr, run.stdout + run.stderr
+    assert "Traceback" not in run.stderr and "Research unresolved" not in run.stderr
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0
+    run = cdlbib_in(python, "--yes", "crossref", *args, cwd=tmp_path, stdin=subprocess.DEVNULL)
+    assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode == 0, run.stdout + run.stderr
+    assert run.returncode == 0 and "PDF evidence saved" in run.stdout, run.stdout + run.stderr
+
+
+def test_end_of_input_at_the_prompt_aborts_cleanly(tmp_path):
+    """EOF (Ctrl-D) at the prompt, on a real pty. A real Ctrl-C cannot be delivered to a child from
+    a test without a controlling terminal, so it is not tested; click turns both into the same Abort."""
+    import pty
+    python, args = core_environment(tmp_path)
+    leader, follower = pty.openpty()
+    os.write(leader, b"\x04")
+    try:
+        run = cdlbib_in(python, "crossref", *args, cwd=tmp_path, stdin=follower)
+    finally:
+        os.close(follower)
+        os.close(leader)
+    assert run.returncode == 1 and "Aborted." in run.stderr and "Traceback" not in run.stderr, run.stdout + run.stderr
     assert subprocess.run([python, "-c", "import pypdf"], capture_output=True).returncode != 0

@@ -168,7 +168,7 @@ def main(argv=None):
                 typer.echo(str(exc), err=True)
                 raise SystemExit(1)
             try:
-                deps.install(exc.extra)
+                deps.install(exc.extra, package=exc.package)
             except CdlbibError as failure:
                 typer.echo(str(failure), err=True)
                 raise SystemExit(1)
@@ -178,4 +178,8 @@ def _confirmed(exc):
     """Ask only at a terminal; with none, the caller prints the manual command and exits."""
     if not sys.stdin.isatty():
         return False
-    return typer.confirm(f"{exc.feature} needs '{exc.package}'. Install cdlbib[{exc.extra}] now?", default=False)
+    try:
+        return typer.confirm(f"{exc.feature} needs '{exc.package}'. Install it now?", default=False)
+    except typer.Abort:  # Ctrl-C or end of input at the prompt
+        typer.echo("Aborted.", err=True)
+        raise SystemExit(1)

@@ -11,7 +11,7 @@ import typer
 from . import api
 from . import verification
 from . import workspace
-from .errors import ApprovalRefused, GateFailed, IdentityUnavailable
+from .errors import ApprovalRefused, GateFailed, IdentityUnavailable, MissingDependency
 from .workspace import Workspace
 
 from .verification import (
@@ -631,6 +631,8 @@ def research(
         typer.echo(
             "PDF evidence saved. A human must confirm publication identity and all citation fields."
         )
+    except MissingDependency:
+        raise  # nothing recorded; the front end may install it and run again
     except Exception as exc:
         typer.echo(f"Research unresolved; human review required: {exc}", err=True)
         raise typer.Exit(2)

@@ -1,6 +1,8 @@
 """Install an optional extra on demand. Core code never prompts and never installs: it
 raises MissingDependency. A front end asks the user, then calls install() once."""
 import importlib
+import importlib.metadata
+import re
 import shutil
 import subprocess
 import sys
@@ -37,14 +39,45 @@ def installer(python=sys.executable):
     return []
 
 
-def install(extra, python=sys.executable, requirement=None):
-    """Install cdlbib[extra] (or `requirement`, for tests) into python's environment.
-    Version ranges come only from pyproject.toml, through the extra."""
-    target = requirement or f"cdlbib[{extra}]"
+def requirements_for(extra, package=None):
+    """The requirement strings the installed cdlbib's metadata lists for `extra`, marker
+    removed (e.g. ['pypdf<7,>=6.0']). The metadata is generated from pyproject.toml, so
+    version ranges have one source and the install never asks an index for cdlbib itself."""
+    hand = f" Install by hand: pip install '{package}'" if package else ""
+    try:
+        listed = importlib.metadata.requires("cdlbib")
+    except importlib.metadata.PackageNotFoundError:
+        raise CdlbibError("cdlbib is not installed as a package, so its optional requirements are unknown." + hand)
+    found = []
+    clause = re.compile(r"""\s*(?:and\s+)?extra\s*==\s*(["'])(.+?)\1\s*(?:and\s+)?""")
+    for line in listed or []:
+        requirement, _, marker = line.partition(";")
+        names = [m.group(2) for m in clause.finditer(marker)]
+        if extra in [n.replace("_", "-").lower() for n in names] + names:
+            rest = clause.sub(" ", marker).strip()
+            found.append(requirement.strip() + (f"; {rest}" if rest else ""))
+    if not found:
+        raise CdlbibError(f"cdlbib lists no requirements for the extra '{extra}'." + hand)
+    return found
+
+
+def manual_command(extra, package=None):
+    """The one text that tells a person what to install by hand."""
+    try:
+        wanted = requirements_for(extra)
+    except CdlbibError:
+        wanted = [package] if package else [f"cdlbib[{extra}]"]
+    return "pip install " + " ".join(f"'{w}'" for w in wanted)
+
+
+def install(extra, python=sys.executable, requirement=None, package=None):
+    """Install what cdlbib's metadata lists for `extra` (or `requirement`, for tests) into
+    python's environment."""
+    targets = [requirement] if requirement else requirements_for(extra, package)
     command = installer(python)
     if not command:
-        raise CdlbibError(f"No installer found for this environment. Install by hand: pip install 'cdlbib[{extra}]'")
-    run = subprocess.run([*command, target], capture_output=True, text=True)
+        raise CdlbibError(f"No installer found for this environment. Install by hand: {manual_command(extra, package)}")
+    run = subprocess.run([*command, *targets], capture_output=True, text=True)
     if run.returncode != 0:
-        raise CdlbibError(f"install failed ({' '.join(command)} {target}):\n{run.stderr.strip()[-2000:]}")
+        raise CdlbibError(f"install failed ({' '.join([*command, *targets])}):\n{run.stderr.strip()[-2000:]}")
     importlib.invalidate_caches()

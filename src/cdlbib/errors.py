@@ -12,7 +12,8 @@ class WorkspaceNotFound(CdlbibError):
 class MissingDependency(CdlbibError):
     def __init__(self, package, extra, feature):
         self.package, self.extra, self.feature = package, extra, feature
-        super().__init__(f"{feature} needs the package '{package}' (install: pip install 'cdlbib[{extra}]')")
+        from .deps import manual_command  # deferred: deps imports this module
+        super().__init__(f"{feature} needs the package '{package}' (install: {manual_command(extra, package)})")
 
 
 class IdentityUnavailable(CdlbibError):
