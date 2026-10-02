@@ -175,14 +175,14 @@ SHOWN = ("updated", "skipped_offline", "left_alone", "returned_to_main")   # the
 
 def keep_current(ws, chosen, say):
     """The daily check, before a command's own work: when the library in use is the managed
-    one and it was last checked a day ago or more, it is brought up to date. The user's own
-    library (a named file, --library, CDLBIB_LIBRARY, a cdl.bib in or above the current
-    folder) is never checked. Nothing here stops the command: it carries on with the copy on
+    one (also when it was reached from inside its own folder) and it was last checked a day
+    ago or more, it is brought up to date. The user's own library (a named file, --library,
+    CDLBIB_LIBRARY, a cdl.bib in or above the current folder) is never checked. Nothing here stops the command: it carries on with the copy on
     disk, and ``say`` receives one line when something happened or could not be done."""
-    if workspace.origin_of(chosen)[1] != workspace.Origin.MANAGED:
+    if workspace.origin_of(chosen)[1] != workspace.Origin.MANAGED and not api.is_managed(ws):
         return
     try:
-        result = api.update(ws)
+        result = api.update(ws, progress=say)
     except CdlbibError as exc:
         say(f"the bibliography was not updated: {exc}")
         return

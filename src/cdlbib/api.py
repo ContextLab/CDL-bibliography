@@ -136,18 +136,33 @@ def _managed(so="so there are no backups and nothing to undo"):
     return workspace.Workspace(library.path())
 
 
-def update(ws=None, decision=None, force=False):
+def update(ws=None, decision=None, force=False, progress=None):
     """Bring the managed library up to date and return a library.UpdateResult. Without
     ``force`` this is the daily check: nothing is fetched when the last check is under 24
-    hours old. A front end calls it, before a command's own work, only when
-    ``workspace.origin_of`` says the library in use is the managed one; ``ws`` None means the
-    managed library whatever library is in use (CdlbibError when it has not been downloaded).
+    hours old, nor within an hour of an automatic attempt that failed, and the upstream is
+    given 15 seconds. A front end calls it, before a command's own work, only when the
+    library in use is the managed one (``is_managed``); ``ws`` None means the managed library
+    whatever library is in use (CdlbibError when it has not been downloaded). ``progress``
+    receives one line when another command holds the lock and this one has to wait.
     The library is changed only by a fast-forward, after a backup (``result.backup``);
     ``result.message`` is the line to show and ``result.notes`` are non-fatal remarks. Any
     other library than the managed one is a CdlbibError, and nothing is done to it."""
     from . import library
     return library.update(_managed("so there is nothing to update") if ws is None else ws,
-                          force=force, decision=decision)
+                          force=force, decision=decision, progress=progress)
+
+
+def is_managed(ws):
+    """Is ``ws`` the library cdlbib downloads and manages (its folder, however it was reached)?"""
+    from . import library
+    return library.exists() and Path(ws.root).resolve() == library.path().resolve()
+
+
+def holds_only_copy(backup):
+    """Does this backup alone keep a commit (one no local branch and no branch of the upstream
+    leads to)? Such a backup is never deleted to make room for newer ones."""
+    from . import library
+    return library.holds_only_copy(backup)
 
 
 def managed_root():
@@ -163,14 +178,42 @@ def backups():
     return library.backups()
 
 
+@dataclass
+class UndoResult:
+    restored: object               # the library.Backup the library was put back to
+    before: object                 # the backup of the state just before (restoring it undoes the undo)
+    taken_off: list = field(default_factory=list)   # (branch, commit): branches now off a commit only ``before`` keeps
+
+
+def undo(stamp=None):
+    """undo_update(), returning an UndoResult: also the backup taken just before, and the
+    branches the undo took off commits that no local branch and no branch of the upstream
+    leads to (``before`` keeps those commits and is never deleted while it alone does)."""
+    from . import library
+    restored, before = library.undo(_managed(), stamp)
+    return UndoResult(restored=restored, before=before, taken_off=library.taken_off(before))
+
+
+def backups_folder():
+    """The folder the backups of the managed library are kept in."""
+    from . import library
+    return library.backups_folder()
+
+
+def unreadable_backups():
+    """[(stamp, reason)] of the folders among the backups that cannot be read as one."""
+    from . import library
+    _managed()
+    return library.unreadable_backups()
+
+
 def undo_update(stamp=None):
     """Put the managed library back as it was at the newest backup, or at the one named
     ``stamp`` (Backup.stamp, as --list shows it), and return that Backup. The current state
     is backed up first (it is then the newest backup), so calling this again undoes the undo.
     Branch, commit and file bytes are restored exactly; changes that were staged come back
     unstaged. CdlbibError when there is no such backup or the restore is refused."""
-    from . import library
-    return library.undo(_managed(), stamp)[0]
+    return undo(stamp).restored
 
 
 def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):

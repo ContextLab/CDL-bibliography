@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from .errors import CdlbibError, LibraryUnavailable
+from .gitenv import git_env
 
 UPSTREAM = "https://github.com/ContextLab/CDL-bibliography.git"
 BIB_NAME = "cdl.bib"
@@ -46,8 +47,9 @@ def upstream(environ=None):
 
 @dataclass
 class State:
-    last_check: datetime.datetime | None   # when the upstream was last consulted (UTC)
+    last_check: datetime.datetime | None   # when the upstream was last consulted successfully (UTC)
     upstream: str
+    last_attempt: datetime.datetime | None = None   # when an automatic check last failed, if none succeeded since
 
 
 def read_state():
@@ -57,15 +59,25 @@ def read_state():
         when = datetime.datetime.fromisoformat(data["last_check"]) if data.get("last_check") else None
         if when is not None and when.tzinfo is None:
             when = when.replace(tzinfo=datetime.timezone.utc)
-        return State(when, str(data["upstream"]))
+        state = State(when, str(data["upstream"]))
     except (OSError, ValueError, TypeError, KeyError, AttributeError):
         return State(None, upstream())
+    try:       # a file written before this field existed, or an unreadable value: no failed attempt
+        tried = datetime.datetime.fromisoformat(data["last_attempt"]) if data.get("last_attempt") else None
+        if tried is not None and tried.tzinfo is None:
+            tried = tried.replace(tzinfo=datetime.timezone.utc)
+        state.last_attempt = tried
+    except (ValueError, TypeError, AttributeError):
+        pass
+    return state
 
 
 def write_state(state):
     folder = home()
     folder.mkdir(parents=True, exist_ok=True)
     data = {"last_check": state.last_check.isoformat() if state.last_check else None, "upstream": state.upstream}
+    if state.last_attempt:       # present only after an automatic check that failed
+        data["last_attempt"] = state.last_attempt.isoformat()
     handle, temporary = tempfile.mkstemp(dir=folder, prefix="state.", suffix=".tmp")
     try:
         with os.fdopen(handle, "w", encoding="utf-8") as out:
@@ -101,7 +113,7 @@ def _require_upstream(root, source):
     used nor replaced: the user is told, and decides."""
     try:
         asked = subprocess.run(["git", "config", "--get", "remote.origin.url"], cwd=root, capture_output=True,
-                               text=True, stdin=subprocess.DEVNULL)
+                               text=True, stdin=subprocess.DEVNULL, env=git_env())
     except OSError:       # no git: nothing can be asked; the commands that need git say so themselves
         return
     origin = asked.stdout.strip()
@@ -114,9 +126,10 @@ def _require_upstream(root, source):
 
 
 @contextlib.contextmanager
-def _locked(folder, progress=None):
+def _locked(folder, progress=None, waiting="waiting for another cdlbib to finish downloading the bibliography ..."):
     """Hold <folder>/lock, so that two commands starting together do not both download.
-    ``progress`` receives one line when the lock is held by another command and this one waits."""
+    ``progress`` receives one line (``waiting``) when the lock is held by another command and
+    this one waits."""
     folder.mkdir(parents=True, exist_ok=True)
     with open(folder / "lock", "a") as handle:
         try:
@@ -128,7 +141,7 @@ def _locked(folder, progress=None):
             fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:       # held by another command
             if progress:
-                progress("waiting for another cdlbib to finish downloading the bibliography ...")
+                progress(waiting)
             fcntl.flock(handle, fcntl.LOCK_EX)
         try:
             yield
@@ -142,7 +155,7 @@ def _clone(source, partial, timeout):
     that a stalled transport helper can be stopped with it."""
     clone = subprocess.Popen(["git", "clone", "--quiet", "--", source, str(partial)], stdout=subprocess.DEVNULL,
                              stderr=subprocess.PIPE, stdin=subprocess.DEVNULL, text=True,
-                             env=dict(os.environ, GIT_TERMINAL_PROMPT="0"), start_new_session=True)
+                             env=git_env(), start_new_session=True)
     try:
         _, errors = clone.communicate(timeout=timeout)
     except BaseException:
@@ -306,7 +319,7 @@ def _git(root, *args, check=True):
     try:
         done = subprocess.run(["git", "-C", str(root), *args], capture_output=True, text=True, encoding="utf-8",
                               errors="surrogateescape", stdin=subprocess.DEVNULL,
-                              env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
+                              env=git_env())
     except FileNotFoundError as exc:
         raise CdlbibError("git is required and was not found") from exc
     if check and done.returncode != 0:
@@ -469,6 +482,46 @@ def _read(folder):
         return None
 
 
+def _write_json(file, data):
+    """Write ``data`` to ``file`` whole or not at all: a temporary file beside it, flushed to
+    the disk, then moved into place. A crash leaves the old file or the new one, never a
+    torn one."""
+    handle, temporary = tempfile.mkstemp(dir=Path(file).parent, prefix="ref.", suffix=".tmp")
+    try:
+        with os.fdopen(handle, "w", encoding="utf-8") as out:
+            json.dump(data, out, indent=1)
+            out.flush()
+            os.fsync(out.fileno())
+        os.replace(temporary, file)
+    except BaseException:
+        with contextlib.suppress(OSError):
+            os.unlink(temporary)
+        raise
+
+
+def _unreadable(folder):
+    """Why the folder of a backup cannot be read as one ('' when it can)."""
+    if _read(folder) is not None:
+        return ""
+    try:
+        ref = json.loads((folder / "ref.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return "it has no ref.json"
+    except OSError as exc:
+        return f"ref.json cannot be read: {exc.strerror or exc}"
+    except ValueError:
+        return "ref.json is empty" if not (folder / "ref.json").stat().st_size else "ref.json is not complete"
+    return "ref.json does not describe a backup" if isinstance(ref, dict) else "ref.json is not a backup's"
+
+
+def unreadable_backups():
+    """[(stamp, reason)] of the folders in <home>/backups that are named as backups are and
+    cannot be read as one, newest first. They are never restored and never deleted."""
+    folder = backups_folder()
+    found = ((name, _unreadable(folder / name)) for name in reversed(_backup_names(folder)))
+    return [(name, reason) for name, reason in found if reason]
+
+
 def _stamp_time(name):
     """The UTC time a backup folder's name states, or None when the name is not a real time
     (99999999T999999.999999Z fits the pattern and is no time: such a folder is not ours)."""
@@ -506,9 +559,51 @@ def _drop(folder, name, root):
                 _git(root, "update-ref", "-d", pin, check=False)
 
 
+def _kept_nowhere(root, commit):
+    """Does no local branch and no branch of the upstream lead to ``commit``? When git cannot
+    say, the answer is yes."""
+    if not re.fullmatch(r"[0-9a-f]{40}(?:[0-9a-f]{24})?", commit):
+        return True
+    held = _git(root, "for-each-ref", "--count=1", "--format=%(refname)", "--contains", commit,
+                "refs/heads", "refs/remotes/origin", check=False)
+    return held.returncode != 0 or not held.stdout.strip()
+
+
+def _only_copy(root, backup):
+    """Does ``backup`` record a commit (its own, or that of a branch an undo moved) that no
+    local branch and no branch of the upstream leads to? Then the backup is what keeps that
+    commit."""
+    return any(_kept_nowhere(root, commit) for commit in [backup.commit] + [commit for _, commit in backup.moved])
+
+
+def taken_off(backup):
+    """[(branch, commit)] of the branches that the undo ``backup`` preceded took off a commit
+    which no local branch and no branch of the upstream leads to now: the branch the library
+    was on, and the others that undo moved. The backup keeps each commit, and restoring it
+    puts each branch back."""
+    if not exists():
+        return []
+    root, backup = path().resolve(), _read(Path(backup.path)) or backup
+    recorded = ([(backup.branch, backup.commit)] if backup.branch else []) + list(backup.moved)
+    return [(branch, commit) for branch, commit in recorded if _kept_nowhere(root, commit)]
+
+
+def holds_only_copy(backup):
+    """Is ``backup`` the only thing keeping a commit (see _only_copy)? Such a backup is never
+    deleted to make room and does not count toward the KEEP that are kept."""
+    return exists() and _only_copy(path().resolve(), backup)
+
+
 def _prune(folder, root):
-    """Delete all but the KEEP newest backups. Called only after an operation has succeeded."""
-    for name in _backup_names(folder)[:-KEEP]:
+    """Delete all but the KEEP newest backups. A backup that alone keeps a commit, and a
+    folder that cannot be read as a backup (it may hold the only copy of something), are
+    never deleted and are not counted. Called only after an operation has succeeded."""
+    ordinary = []
+    for name in _backup_names(folder):
+        made = _read(folder / name)
+        if made is not None and not _only_copy(root, made):
+            ordinary.append(name)
+    for name in ordinary[:-KEEP]:
         _drop(folder, name, root)
 
 
@@ -571,7 +666,7 @@ def _backup(root):
                "paths": {name: state for state, name in entries}, "status": raw,
                "deleted": sorted(rel for key, (rel, _, _) in tracked.items() if key not in files),
                "folders": sorted(folders.values()), "pin": pin, "bundle_ref": "HEAD" if bundled else None}
-        (partial / "ref.json").write_text(json.dumps(ref, indent=1), encoding="utf-8")
+        _write_json(partial / "ref.json", ref)
         _git(root, "update-ref", "-m", "cdlbib backup", pin, commit, "")     # a new ref: fails if it exists
         pinned = True
         os.rename(partial, final)
@@ -727,8 +822,10 @@ def _trusted(root, backup, tree=False):
             for branch, commit in [(backup.branch, backup.commit)] + list(backup.moved):
                 if not _COMMIT_NAME.fullmatch(commit):
                     raise CdlbibError(f"{commit!r} is not a commit")
-                if branch is not None and (branch.startswith("-") or _git(
-                        root, "check-ref-format", "refs/heads/" + branch, check=False).returncode != 0):
+                if branch is not None and (
+                        branch.startswith("-")
+                        or _git(root, "check-ref-format", "refs/heads/" + branch, check=False).returncode != 0
+                        or _git(root, "check-ref-format", "--branch", branch, check=False).stdout.strip() != branch):
                     raise CdlbibError(f"{branch!r} is not a branch name")
             return
         tracked, saved = _commit_files(root, backup.commit), _saved(backup)
@@ -767,15 +864,7 @@ def _record_moves(root, into, displaced):
                  "--not", "--remotes=origin")
         moved.append({"branch": branch, "commit": commit, "pin": pin, "bundle": bundle})
     ref["moved"] = moved
-    handle, temporary = tempfile.mkstemp(dir=into.path, prefix="ref.", suffix=".tmp")
-    try:
-        with os.fdopen(handle, "w", encoding="utf-8") as out:
-            json.dump(ref, out, indent=1)
-        os.replace(temporary, file)
-    except BaseException:
-        with contextlib.suppress(OSError):
-            os.unlink(temporary)
-        raise
+    _write_json(file, ref)
 
 
 def _has_commit(root, commit):
@@ -941,6 +1030,12 @@ def undo(ws, stamp=None):
     with _locked(home()):
         saved = backups()
         if stamp is None:
+            names = _backup_names(backups_folder())
+            if names and _read(backups_folder() / names[-1]) is None:
+                raise CdlbibError(
+                    f"The newest backup, {backups_folder() / names[-1]}, cannot be read "
+                    f"({_unreadable(backups_folder() / names[-1])}), so nothing was restored. Nothing was changed. "
+                    f"`{UNDO} STAMP` restores a specific older backup; `cdlbib update --list` shows them.")
             if not saved:
                 raise CdlbibError(f"No backup has been made yet of {root}, so there is nothing to undo.")
             chosen = saved[0]
@@ -956,20 +1051,27 @@ def undo(ws, stamp=None):
 # --- staying current: at most once a day, when a command runs ---------------------------------
 #
 # There is no scheduler. update() is called by a front end before a command's own work, and
-# only for the managed library. It fetches when the last check is a day old (or `force`),
-# and changes the library in one case only: the library is on the upstream's default branch,
-# has no commits of its own and no changes under cdl.bib or verification/, and the upstream
-# has new commits. Then a backup is taken and the branch is fast-forwarded. The git commands
-# it runs, and why none of them can lose work:
+# only for the managed library. Called by a command (not ``force``) it is the automatic
+# check: it fetches when the last successful check is a day old, gives the upstream
+# AUTO_FETCH_TIMEOUT seconds, and after an attempt that failed makes no other for RETRY_AFTER
+# seconds. `cdlbib update` (``force``) ignores both rules and waits FETCH_TIMEOUT seconds.
+# The library is changed in one case only: it is on the upstream's default branch, has no
+# commits of its own and no changes under cdl.bib or verification/, and the upstream has new
+# commits. Then a backup is taken and the branch is fast-forwarded. The git commands it
+# runs, and why none of them can lose work:
 #   git fetch --quiet origin        writes remote-tracking refs and objects only
-#   git merge --ff-only --no-overwrite-ignore --no-autostash <commit>
+#   git merge --ff-only --no-overwrite-ignore --no-autostash --quiet <commit>
 #                                   moves the branch forward along the upstream's own history
 #                                   or does nothing; it refuses (changing nothing) when a
 #                                   changed, untracked or ignored file would be written over
 # and, read-only: config --get, rev-parse, symbolic-ref, rev-list --count, status, diff
-# --name-only (plus what _backup() runs). Every other state is reported and left alone.
+# --name-only, for-each-ref (plus what _backup() and _prune() run). Every other state is
+# reported and left alone.
 
-FETCH_TIMEOUT = 120   # seconds a fetch may take before the check is skipped (the lock is held meanwhile)
+FETCH_TIMEOUT = 120       # seconds `cdlbib update` gives a fetch (the lock is held meanwhile)
+AUTO_FETCH_TIMEOUT = 15   # seconds the automatic check gives it: a command is waiting
+RETRY_AFTER = 3600        # seconds after a failed automatic check before the next automatic one
+WAITING = "waiting for another cdlbib to finish checking the bibliography for updates ..."
 _DAY = datetime.timedelta(hours=24)
 _ORIGIN = "refs/remotes/origin/"
 
@@ -980,7 +1082,7 @@ class UpdateResult:
     new_commits: int = 0           # commits the upstream has that the library did not
     backup: Backup | None = None   # taken before the library was changed
     message: str = ""              # one line for the user ("" for not_due)
-    notes: list = field(default_factory=list)   # non-fatal lines (the time could not be recorded)
+    notes: list = field(default_factory=list)   # non-fatal lines (a time not recorded, an old backup not removed)
 
 
 def _utc(now):
@@ -996,12 +1098,23 @@ def check_due(now=None):
     return last is None or last > now or now - last >= _DAY
 
 
+def _wanted(force, now):
+    """Is a check to be made now: always when forced; else when the daily check is due and no
+    automatic attempt failed within the last RETRY_AFTER seconds."""
+    if force:
+        return True
+    if not check_due(now):
+        return False
+    tried = read_state().last_attempt
+    return tried is None or not datetime.timedelta(0) <= _utc(now) - tried < datetime.timedelta(seconds=RETRY_AFTER)
+
+
 def _fetch(root, timeout):
     """git fetch origin; (exit status, stderr). As _clone: a process group of its own, stopped
     with its helpers on a timeout or an interruption."""
     fetch = subprocess.Popen(["git", "-C", str(root), "fetch", "--quiet", "origin"], stdout=subprocess.DEVNULL,
                              stderr=subprocess.PIPE, stdin=subprocess.DEVNULL, text=True, errors="replace",
-                             env=dict(os.environ, GIT_TERMINAL_PROMPT="0"), start_new_session=True)
+                             env=git_env(), start_new_session=True)
     try:
         _, errors = fetch.communicate(timeout=timeout)
     except BaseException:
@@ -1029,116 +1142,175 @@ def _some(names):
     return ", ".join(names[:5]) + (", ..." if len(names) > 5 else "")
 
 
-def _update(root, force, now):
-    """update(), with the lock held."""
-    if not force and not check_due(now):      # another command checked while this one waited
+def _why(exc):
+    if isinstance(exc, OSError):
+        return f"{exc.strerror or exc}" + (f": {exc.filename}" if exc.filename else "")
+    return str(exc)
+
+
+def _in_the_way(root, mine, differs):
+    """The paths in ``mine`` that a move across ``differs`` would write over (see _clashes).
+    Where the file system does not tell upper case from lower (git's core.ignorecase), names
+    that differ only in case are the same file."""
+    if _git(root, "config", "--type=bool", "--get", "core.ignorecase", check=False).stdout.strip() != "true":
+        return _clashes(mine, differs)
+    folded = {}
+    for own in mine:
+        folded.setdefault(_same_name(own).casefold(), own)
+    return sorted(folded[name] for name in _clashes(list(folded), [_same_name(name).casefold() for name in differs]))
+
+
+def _update(root, force, now, made):
+    """update(), with the lock held. ``made`` receives the backup, once one is taken."""
+    if not _wanted(force, now):      # another command checked, or tried, while this one waited
         return UpdateResult("not_due")
+    when = _utc(now)
     if Path(_git(root, "rev-parse", "--show-toplevel").stdout.strip()).resolve() != root:
         raise CdlbibError(f"{root} is not a git clone of its own, so it cannot be updated.")
     _require_upstream(root, upstream())
     origin = _git(root, "config", "--get", "remote.origin.url", check=False).stdout.strip() or "origin"
+    timeout = FETCH_TIMEOUT if force else AUTO_FETCH_TIMEOUT
+    notes = []
+
+    def record(checked):
+        """A completed check sets last_check. A failed automatic attempt sets last_attempt and
+        leaves last_check; a failed `cdlbib update` records nothing."""
+        if not checked and force:
+            return
+        before = read_state()
+        state = State(when, upstream()) if checked else State(before.last_check, before.upstream, when)
+        try:
+            write_state(state)
+        except OSError as exc:      # not fatal: the check then runs again with the next command
+            notes.append(f"note: the time of the update check could not be recorded in {home() / 'state.json'} "
+                         f"({exc.strerror or exc}); the check will run again with the next command")
 
     def skipped(reason):
-        return UpdateResult("skipped_offline",
+        record(False)
+        return UpdateResult("skipped_offline", notes=notes,
                             message=f"update check skipped: {reason}; working with the copy in {root}")
 
     try:
-        status, errors = _fetch(root, FETCH_TIMEOUT)
+        status, errors = _fetch(root, timeout)
     except subprocess.TimeoutExpired:
-        return skipped(f"{origin} did not answer within {FETCH_TIMEOUT} seconds")
+        return skipped(f"{origin} did not answer within {timeout} seconds")
     except FileNotFoundError:
         return skipped("git is required and was not found")
     except OSError as exc:
-        return skipped(str(exc))
+        return skipped(_why(exc))
     if status != 0:
         lines = [line.strip() for line in errors.splitlines() if line.strip()]
         fatal = [line for line in lines if line.startswith("fatal:")]
         said = (fatal[0][len("fatal:"):].strip() if fatal else lines[-1] if lines else f"status {status}").rstrip(".")
         return skipped(f"git fetch from {origin} failed ({said})")
 
-    notes = []
-    try:
-        write_state(State(_utc(now), upstream()))
-    except OSError as exc:      # not fatal: the check then runs again with the next command
-        notes.append(f"note: the time of the update check could not be recorded in {home() / 'state.json'} "
-                     f"({exc.strerror or exc}); the check will run again with the next command")
-
     branch, commit = _head(root)
     default = _default_branch(root)
+    again = "Run `cdlbib update` to check again."
     target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{default}^{{commit}}", check=False).stdout.strip()
     if not target:
+        record(True)
         return UpdateResult("left_alone", notes=notes,
                             message=f"the upstream has no branch {default}, so the bibliography in {root} was not "
-                                    "updated; nothing was changed")
+                                    f"updated; nothing was changed. {again}")
     new = int(_git(root, "rev-list", "--count", f"{commit}..{target}").stdout)
     if new == 0:
+        record(True)
         return UpdateResult("up_to_date", message=f"the bibliography in {root} is up to date", notes=notes)
 
-    def left(why):
+    def left(why, then, checked=True):
+        record(checked)
         return UpdateResult("left_alone", new_commits=new, notes=notes,
                             message=f"a newer version of the bibliography is available ({_count(new, 'new commit')}), "
-                                    f"but {why}; nothing was changed")
+                                    f"but {why}; nothing was changed. {then}")
 
     if branch != default:
-        return left(f"the library is on branch {branch}, not {default}" if branch else "the library is not on a branch")
+        return left(f"the library is on branch {branch}, not {default}" if branch else "the library is not on a branch",
+                    f"To update, run `git switch {default}` in {root}, then `cdlbib update`.")
     ahead = int(_git(root, "rev-list", "--count", f"{target}..{commit}").stdout)
     if ahead:
-        return left(f"the library has {_count(ahead, 'commit')} that the upstream does not have")
+        return left(f"the library has {_count(ahead, 'commit')} that the upstream does not have",
+                    f"To update, merge origin/{default} with git in {root}.")
     edits = sorted({name for _, name in _status(root, *KEPT)[1]})
     if edits:
-        return left(f"these files have changes that have not been sent: {_some(edits)}")
+        return left(f"these files have changes that have not been sent: {_some(edits)}",
+                    "Run `cdlbib send` to send your changes.")
     # Files git would write over without asking are a refusal before anything is backed up:
     # the user's changed, untracked and ignored files that the new commits touch.
     mine = [name for _, name in _status(root, ".", ignored=True)[1]]
     differs = _listed(_git(root, "diff", "--name-only", "--no-renames", "-z", commit, target).stdout)
-    clash = _clashes(mine, differs)
+    clash = _in_the_way(root, mine, differs)
     if clash:
-        return left(f"updating would overwrite {_some(clash)}, which cdlbib does not back up")
+        return left(f"updating would overwrite your own {_some(clash)}",
+                    f"Move {'that file' if len(clash) == 1 else 'those files'} out of the way, then run `cdlbib update`.")
 
-    made = _backup(root)
+    backup = _backup(root)
+    made.append(backup)
     merged = _git(root, "merge", "--ff-only", "--no-overwrite-ignore", "--no-autostash", "--quiet", target, check=False)
     if merged.returncode != 0 or _head(root) != (branch, target):
         lines = [line.strip() for line in merged.stderr.splitlines() if line.strip()]
         said = " ".join(lines) if lines else f"git merge exited with status {merged.returncode}"
-        if _head(root) == (branch, commit) and not _describes(root, made):
-            _drop(backups_folder(), made.stamp, root)      # checked: nothing was changed, so the copy is not kept
-            return left(f"git could not fast-forward the library ({said})")
+        if _head(root) == (branch, commit) and not _describes(root, backup):
+            _drop(backups_folder(), backup.stamp, root)      # checked: nothing was changed, so the copy is not kept
+            made.clear()
+            # Not a completed check: it is tried again after RETRY_AFTER, not after a day.
+            return left(f"git could not fast-forward the library ({said})", "Run `cdlbib update` to try again.",
+                        checked=False)
         raise CdlbibError(f"The update of {root} stopped part-way ({said}). The library as it was is saved in "
-                          f"{made.path}; `{UNDO} {made.stamp}` puts it back.")
-    _prune(backups_folder(), root)
-    return UpdateResult("updated", new_commits=new, backup=made, notes=notes,
+                          f"{backup.path}; `{UNDO} {backup.stamp}` puts it back.")
+    record(True)
+    try:
+        _prune(backups_folder(), root)
+    except (OSError, CdlbibError) as exc:      # the update is done; an old backup that stays is not a failure
+        notes.append(f"note: an old backup could not be removed: {_why(exc)}")
+    return UpdateResult("updated", new_commits=new, backup=backup, notes=notes,
                         message=f"updated the bibliography: {_count(new, 'new commit')} (the library as it was is "
-                                f"backup {made.stamp}; `{UNDO}` puts it back)")
+                                f"backup {backup.stamp}; `{UNDO}` puts it back)")
 
 
-def update(ws, force=False, decision=None, now=None):
-    """Bring the managed library up to date, at most once a day unless ``force``.
+def update(ws, force=False, decision=None, now=None, progress=None):
+    """Bring the managed library up to date.
 
-    Nothing is fetched when the last check is under 24 hours old (``not_due``). Otherwise the
-    upstream is fetched: a fetch that fails or times out changes nothing and records nothing
-    (``skipped_offline``), so the check is tried again with the next command. After a fetch
-    the time is recorded. Nothing new: ``up_to_date``. New commits, and the library is on the
-    default branch with no commits of its own and no changes under cdl.bib or verification/:
-    a backup is taken, the branch is fast-forwarded, ``updated``. In every other state
-    (changes not sent, another branch, a file of the user's in the way) nothing is changed
-    and ``left_alone`` says why. ``now`` is the current time (UTC), for callers that fix it;
-    ``decision`` is the answer to the question a later version asks about unsent changes.
+    Without ``force`` this is the automatic check a command makes: nothing is fetched when the
+    last successful check is under 24 hours old, or when an automatic attempt failed within
+    the last RETRY_AFTER seconds (``not_due``; the lock is not even taken). Otherwise the
+    upstream is fetched, with AUTO_FETCH_TIMEOUT seconds to answer. A fetch that fails or
+    times out changes nothing (``skipped_offline``); the time of the attempt is recorded, so
+    the next automatic attempt is made an hour later. With ``force`` (`cdlbib update`) both
+    rules are ignored, the fetch has FETCH_TIMEOUT seconds, and a failure records nothing.
+
+    After a fetch the time is recorded as the last check. Nothing new: ``up_to_date``. New
+    commits, and the library is on the default branch with no commits of its own and no
+    changes under cdl.bib or verification/: a backup is taken, the branch is fast-forwarded,
+    ``updated``. In every other state nothing is changed and ``left_alone`` says why and what
+    can be done. A fast-forward that git refuses also changes nothing, keeps no backup, and
+    counts as a failed attempt. ``result.notes`` holds non-fatal remarks.
+
+    ``now`` is the current time (UTC), for callers that fix it; ``progress`` receives one line
+    when another command holds the lock and this one waits; ``decision`` is the answer to the
+    question a later version asks about unsent changes.
 
     Only the managed library is ever updated: any other ``ws`` is a CdlbibError. Everything
-    runs under the lock of the data folder, so of two commands starting together one
-    fetches and the other finds the check done."""
+    runs under the lock of the data folder, so of two commands starting together one fetches
+    and the other finds the check done. Every failure is a CdlbibError; one after a backup
+    was taken names the backup and the command that restores it."""
     root = Path(ws.root).resolve()
     if root != path().resolve() or not exists():
         raise CdlbibError(f"Only the library cdlbib manages ({path()}) is updated; {ws.root} is not it.")
-    if not force and not check_due(now):
+    if not _wanted(force, now):
         return UpdateResult("not_due")
     try:
-        lock = _locked(home())
+        lock = _locked(home(), progress, WAITING)
         lock.__enter__()
     except OSError as exc:
         raise CdlbibError(f"{home()} cannot be written ({exc.strerror or exc}), so the library was not "
                           "checked for updates.") from exc
+    made = []
     try:
-        return _update(root, force, now)
+        return _update(root, force, now, made)
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise CdlbibError(f"The update check of {root} failed ({_why(exc)}). " + (
+            f"A backup was taken first, in {made[0].path}; `{UNDO} {made[0].stamp}` puts the library back as it was."
+            if made else "The library's files were not changed.")) from exc
     finally:
         lock.__exit__(None, None, None)

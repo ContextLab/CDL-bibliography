@@ -171,7 +171,8 @@ def _backup_line(backup):
     changed = len(backup.changed)
     return ((f"branch {backup.branch}" if backup.branch else "no branch")
             + f" at {backup.commit[:8]}, {changed} changed file{'' if changed == 1 else 's'}"
-            + (", local commits saved" if backup.has_bundle else ""))
+            + (", local commits saved" if backup.has_bundle else "")
+            + (", holds commits kept nowhere else" if api.holds_only_copy(backup) else ""))
 
 
 @app.command()
@@ -185,24 +186,32 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
     if stamp and not undo:
         raise typer.BadParameter("a backup is named only with --undo: cdlbib update --undo STAMP")
     if undo:
-        restored = api.undo_update(stamp)
+        done = api.undo(stamp)
+        restored = done.restored
         typer.echo(f"restored backup {restored.stamp} ({restored.when}): {_backup_line(restored)}")
-        typer.echo(f"the library as it was just before is backup {api.backups()[0].stamp}")
+        typer.echo(f"the library as it was just before is backup {done.before.stamp}")
         typer.echo("run `cdlbib update --undo` again to return to it")
+        for branch, commit in done.taken_off:
+            typer.echo(f"branch {branch} was on commit {commit[:8]}, which is on no other branch and not in the "
+                       f"upstream; backup {done.before.stamp} keeps it, and `cdlbib update --undo {done.before.stamp}` "
+                       "puts the branch back on it")
     elif show:
         saved = api.backups()
+        unreadable = api.unreadable_backups()
         root = api.managed_root()
-        if not saved:
+        if not saved and not unreadable:
             typer.echo(f"no backups of {root} yet")
             return
         typer.echo(f"{len(saved)} backup{'' if len(saved) == 1 else 's'} of {root}, newest first "
-                   f"(kept in {saved[0].path.parent}):")
-        for backup in saved:
-            typer.echo(f"  {backup.stamp}  {backup.when}  {_backup_line(backup)}")
+                   f"(kept in {api.backups_folder()}):")
+        lines = {backup.stamp: f"  {backup.stamp}  {backup.when}  {_backup_line(backup)}" for backup in saved}
+        lines.update({stamp: f"  {stamp}: unreadable ({reason})" for stamp, reason in unreadable})
+        for stamp in sorted(lines, reverse=True):
+            typer.echo(lines[stamp])
         typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
                    "`cdlbib update --undo STAMP` at the one named.")
     else:
-        result = api.update(force=True)
+        result = api.update(force=True, progress=lambda line: typer.echo(line, err=True))
         for note in result.notes:
             typer.echo(note, err=True)
         if result.action == "skipped_offline":      # asked for, and it could not be done

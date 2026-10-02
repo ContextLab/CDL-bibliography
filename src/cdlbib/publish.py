@@ -1,10 +1,10 @@
 """Send a change: the user's fork, a branch, a pull request. One route for everyone."""
 import json
-import os
 import re
 import subprocess
 
 from .errors import PublishRefused
+from .gitenv import git_env
 
 ALLOWED = ("cdl.bib", "verification/")
 WORK = ".bibcheck/"                      # the tool's local working folder: never sent, never reported
@@ -22,7 +22,7 @@ NO_PERMISSION = re.compile(r"Permission to \S+ denied", re.IGNORECASE)
 def _run(args, cwd=None, check=True):
     try:                                 # git never stops to ask for a password: the api does not prompt
         run = subprocess.run(args, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace",
-                             env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
+                             env=git_env())
     except OSError as exc:               # git or gh is not installed
         raise PublishRefused(f"`{args[0]}` could not be run ({type(exc).__name__}: {exc})") from exc
     if check and run.returncode != 0:
