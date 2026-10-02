@@ -211,7 +211,7 @@ def test_model_preflight_no_silent_substitution(tmp_path, monkeypatch):
         adapter.run(payload(), ModelSession([]), {})
 
 
-def test_keychain_and_environment_precedence(monkeypatch):
+def test_keychain_and_environment_precedence(monkeypatch, usable_keychain):
     import getpass
     import os
     import uuid

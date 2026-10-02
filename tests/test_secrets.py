@@ -27,7 +27,7 @@ def test_whitespace_in_a_key_is_rejected():
 
 
 @pytest.fixture
-def scratch_key(monkeypatch):
+def scratch_key(monkeypatch, usable_keychain):
     """A real keychain item under a throwaway name, removed afterwards."""
     item = "cdlbib-test-" + uuid.uuid4().hex
     try:
@@ -84,7 +84,7 @@ def test_missing_key_with_an_explicit_mapping_names_both_places():
     reason="an item made by the security tool makes macOS show a GUI 'allow access' prompt to the "
     "Python process, which hangs an unattended run; set CDLBIB_TEST_KEYCHAIN_PROMPT=1 and click Always Allow",
 )
-def test_an_item_made_the_way_dartmouths_page_says_is_found(monkeypatch):
+def test_an_item_made_the_way_dartmouths_page_says_is_found(monkeypatch, usable_keychain):
     import subprocess
     item = "cdlbib-test-" + uuid.uuid4().hex
     subprocess.run(["security", "add-generic-password", "-s", item, "-a", getpass.getuser(), "-w", "made-by-security"], check=True)
