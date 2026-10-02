@@ -62,6 +62,14 @@ class RevokeResult:
     status: str
 
 
+@dataclass
+class SendResult:
+    url: str             # the pull request
+    branch: str          # the branch the change was committed on; the checkout is left on it
+    fork: str
+    created_fork: bool = False
+
+
 @contextlib.contextmanager
 def _quiet(bars=None):
     """helpers.py prints its log and draws tqdm bars on stderr; the api stays silent and
@@ -240,6 +248,88 @@ def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None):
     except (ValueError, KeyError, OSError) as exc:
         raise ApprovalRefused(_message(exc)) from exc
     return RevokeResult(records=records, status=state)
+
+
+def approvals_note(ws, reference=None, database=None):
+    """The pull request's record of human approvals: '\n\nApproved by @login: KEY, KEY' per
+    reviewer, for entries whose stored status is human_verified under a GitHub login (only
+    the entries that differ from ``reference``, when one is given); '' when there are none."""
+    from .verification import Cache, ProviderError, current_results, revocation_ledger
+    from .verification_cli import reference_bib, select_keys
+    database = Path(database or ws.database)
+    if not database.is_file():
+        return ""
+    try:
+        cache = Cache(str(database), ledger=revocation_ledger(str(ws.bib), None))
+        try:
+            results = current_results(str(ws.bib), cache)
+        finally:
+            cache.close()
+        against = reference_bib(reference, database.parent) if reference else None
+        selected = select_keys(str(ws.bib), None, against, entries=results)
+    except (ValueError, OSError, ProviderError) as exc:
+        raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+    by_login = {}
+    for key in sorted(selected):
+        review = results[key].get("human_review") or {}
+        if results[key]["status"] == "human_verified" and review.get("github_login"):
+            by_login.setdefault(str(review["github_login"]), []).append(key)
+    return "".join(f"\n\nApproved by @{login}: {', '.join(keys)}" for login, keys in sorted(by_login.items()))
+
+
+def send(ws, summary=None, reference="github", citations=True, mailto=None, database=None, progress=None,
+         bars=None, report=None, upstream=None, base="master", fork=None, allow_fork_creation=False):
+    """The one way a change leaves this machine: the gate, then a commit of cdl.bib and
+    verification/ on a branch, pushed to the user's own fork, and a pull request into
+    ``upstream`` (the checkout's origin by default).
+
+    Order: other changed files refuse; the gate (check_library) refuses; no GitHub login
+    refuses; no fork refuses (PublishRefused.needs_fork) unless ``allow_fork_creation``;
+    only then is git touched. A refused send leaves the checkout as it was. A send that
+    succeeds leaves the checkout on ``SendResult.branch``; a send made from that branch
+    adds to it and updates the same pull request.
+
+    ``report`` receives the LibraryCheck once the format check is done (before the citation
+    check), ``progress`` each line of the citation check. ``fork`` names the fork to push to
+    instead of looking it up.
+    """
+    import datetime
+    from . import identity, publish
+    from .errors import PublishRefused
+    stray = publish.unrelated_changes(ws)
+    if stray:
+        raise PublishRefused("Other files have uncommitted changes; commit, stash or discard them first: "
+                             + ", ".join(stray))
+    fmt = check_format(ws, bars=bars)
+    check = gate_after_format(fmt, citations=citations)
+    if report:
+        report(check)
+    if check.citations_due:
+        check = check_citations(ws, fmt, reference=reference, database=database, mailto=mailto,
+                                progress=progress, bars=bars)
+    if not check.ok:
+        raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
+                         "(see `cdlbib verify`).", check=check)
+    me = identity.current()
+    upstream = upstream or publish.upstream_of(ws)
+    created = False
+    fork = fork or publish.find_fork(upstream, me.login)
+    if not fork:
+        if not allow_fork_creation:
+            raise PublishRefused(f"{me.handle} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
+        fork, created = publish.create_fork(upstream), True
+    changes = compare(reference, str(ws.bib), bars=bars).summary.strip() or "update bibliography"
+    body = changes + approvals_note(ws, reference=reference, database=database)
+    title = (summary or changes.splitlines()[0])[:100]
+    here = publish.current_branch(ws)
+    resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
+    branch = here if resumed else publish.branch_name(me.login, summary or title, datetime.date.today())
+    if publish.pending(ws) or not resumed:
+        publish.commit_to_branch(ws, branch, changes)
+    publish.push(ws, f"https://github.com/{fork}.git", branch)
+    url = publish.open_or_update_pr(upstream, base, f"{fork.split('/')[0]}:{branch}", title, body,
+                                    retitle=bool(summary))   # an open pull request keeps its title unless one is given
+    return SendResult(url=url, branch=branch, fork=fork, created_fork=created)
 
 
 def _message(exc):

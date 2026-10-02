@@ -1,14 +1,13 @@
 """The cdlbib command. Parsing and formatting only; the work is in cdlbib.api."""
 import os
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
 import typer
 
 from . import __version__, api, deps
-from .errors import CdlbibError, GateFailed, MissingDependency, WorkspaceNotFound
+from .errors import CdlbibError, GateFailed, MissingDependency, PublishRefused, WorkspaceNotFound
 from . import workspace
 from .verification_cli import app as crossref_app, library
 from .workspace import BIB_NAME
@@ -27,7 +26,7 @@ def _version(value: bool):
 def root(library_path: str = typer.Option(None, "--library", help="Folder containing cdl.bib."),
          version: bool = typer.Option(False, "--version", callback=_version, is_eager=True,
                                       help="Show the version and exit."),
-         yes: bool = typer.Option(False, "--yes", help="Install missing packages without asking.")):
+         yes: bool = typer.Option(False, "--yes", help="Answer yes to confirmations: install a missing package, create your fork.")):
     workspace.select_library(library_path)
     deps.set_assume_yes(yes)
 
@@ -96,14 +95,15 @@ def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, out
 
 @app.command()
 def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
-    # Autofix the format in place, then commit. Potentially unsafe.
+    # Autofix the format in place, then send (see commit). Potentially unsafe.
     typer.echo("WARNING: potentially unsafe")
     ws = library(ctx, fname)
     cleaned = ws.bib.with_name("cleaned.bib")
     report_format(api.check_format(ws, autofix=True, outfile=str(cleaned), verbose=verbose, bars=sys.stderr),
                   ws, fname)
     shutil.move(str(cleaned), str(ws.bib))
-    commit(ctx, fname=fname, database=None, mailto=os.environ.get("CROSSREF_MAILTO"))
+    commit(ctx, fname=fname, reference="github", verbose=False, summary=None, database=None,
+           mailto=os.environ.get("CROSSREF_MAILTO"))
 
 
 @app.command()
@@ -118,26 +118,41 @@ def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None
 
 
 @app.command()
-def commit(ctx: typer.Context, fname=BIB_NAME, reference="github", verbose: bool = False, outfile=None,
+def commit(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", verbose: bool = False,
+           summary: str = typer.Option(None, "--summary", help="One line describing the change."),
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
-    """Run the verify gate, then commit only the bibliography file."""
+    """Run the verify gate, then send the change as a pull request from your fork."""
     ws = library(ctx, fname)
-    if not run_gate(ctx, fname, reference=reference, verbose=verbose, database=database, mailto=mailto).ok:
+
+    def shown(check):
+        report_format(check.format, ws, fname)
+        report_check(check, verbose, False, None)
+
+    def send(report=None, progress=None, allow_fork_creation=False):
+        return api.send(ws, summary=summary, reference=reference, mailto=mailto, database=database,
+                        progress=progress, bars=sys.stderr, report=report, allow_fork_creation=allow_fork_creation)
+
+    try:
+        try:
+            result = send(report=shown, progress=typer.echo)
+        except PublishRefused as exc:
+            if not exc.needs_fork:
+                raise
+            if not (deps.assume_yes() or _confirmed(f"{exc} Create one now?")):
+                typer.echo(f"{exc} Create one with: gh repo fork {exc.upstream} --clone=false", err=True)
+                raise typer.Exit(code=1)
+            result = send(allow_fork_creation=True)  # the gate runs again, from its cache, unreported
+    except GateFailed as exc:
+        if exc.check is None:  # the check could not be done; main() reports it
+            raise
         typer.echo("not committed: fix the format errors and resolve every new/edited entry first "
                    "(see `cdlbib verify`).")
         raise typer.Exit(code=1)
-    typer.echo("checks passed; generating commit message...")
-
-    comparison = api.compare(reference, str(ws.bib), outfile=outfile, verbose=verbose, bars=sys.stderr)
-    typer.echo(comparison.log, nl=False)
-
-    # Commit only the bibliography (no shell, no quoting hazards, nothing else staged).
-    run = subprocess.run(["git", "commit", "-m", comparison.summary or "update bibliography", "--", str(ws.bib)],
-                         cwd=ws.bib.parent, capture_output=True, text=True)
-    typer.echo(run.stdout + run.stderr)
-    if run.returncode != 0:
-        raise typer.Exit(code=run.returncode)
+    if result.created_fork:
+        typer.echo(f"created fork {result.fork}")
+    typer.echo(f"pull request: {result.url}")
+    typer.echo(f"you are now on branch {result.branch}")
 
 
 def _run_once(argv):
@@ -164,7 +179,8 @@ def main(argv=None):
             _run_once(argv)
             return
         except MissingDependency as exc:
-            if attempt == 2 or not (deps.assume_yes() or _confirmed(exc)):
+            if attempt == 2 or not (deps.assume_yes()
+                                    or _confirmed(f"{exc.feature} needs '{exc.package}'. Install it now?")):
                 typer.echo(str(exc), err=True)
                 raise SystemExit(1)
             try:
@@ -174,12 +190,12 @@ def main(argv=None):
                 raise SystemExit(1)
 
 
-def _confirmed(exc):
+def _confirmed(question):
     """Ask only at a terminal; with none, the caller prints the manual command and exits."""
     if not sys.stdin.isatty():
         return False
     try:
-        return typer.confirm(f"{exc.feature} needs '{exc.package}'. Install it now?", default=False)
+        return typer.confirm(question, default=False)
     except typer.Abort:  # Ctrl-C or end of input at the prompt
         typer.echo("Aborted.", err=True)
         raise SystemExit(1)

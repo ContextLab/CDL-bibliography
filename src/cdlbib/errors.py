@@ -29,7 +29,12 @@ class SecretMalformed(SecretNotFound):
 
 
 class GateFailed(CdlbibError):
-    pass
+    """The gate did not pass. ``check`` is the gate's result (an api.LibraryCheck) when the
+    gate ran to its verdict and said no; None when the check itself could not be done."""
+
+    def __init__(self, message, check=None):
+        self.check = check
+        super().__init__(message)
 
 
 class ApprovalRefused(CdlbibError):
@@ -38,6 +43,7 @@ class ApprovalRefused(CdlbibError):
 
 
 class PublishRefused(CdlbibError):
-    def __init__(self, message, needs_fork=False):
-        self.needs_fork = needs_fork
+    def __init__(self, message, needs_fork=False, upstream=None):
+        self.needs_fork = needs_fork  # the user has no fork yet; a front end may offer to create it
+        self.upstream = upstream      # the repository that would be forked, when needs_fork
         super().__init__(message)
