@@ -11,7 +11,7 @@ import typer
 from . import api
 from . import verification
 from . import workspace
-from .errors import ApprovalRefused, GateFailed, IdentityUnavailable, MissingDependency
+from .errors import ApprovalRefused, CdlbibError, GateFailed, IdentityUnavailable, MissingDependency
 from .workspace import Workspace
 
 from .verification import (
@@ -160,8 +160,36 @@ def named(ctx):
 def library(ctx, fname):
     """The workspace a command works on, by the one rule in workspace.resolve; with no library
     named or found it is the managed one, downloaded first (one line on stderr) when missing."""
-    return workspace.resolve(fname if named(ctx) else None, managed=True,
-                             progress=lambda line: typer.echo(line, err=True))
+    chosen = fname if named(ctx) else None
+
+    def say(line):
+        typer.echo(line, err=True)
+
+    ws = workspace.resolve(chosen, managed=True, progress=say)
+    keep_current(ws, chosen, say)
+    return ws
+
+
+SHOWN = ("updated", "skipped_offline", "left_alone", "returned_to_main")   # the outcomes a command mentions
+
+
+def keep_current(ws, chosen, say):
+    """The daily check, before a command's own work: when the library in use is the managed
+    one and it was last checked a day ago or more, it is brought up to date. The user's own
+    library (a named file, --library, CDLBIB_LIBRARY, a cdl.bib in or above the current
+    folder) is never checked. Nothing here stops the command: it carries on with the copy on
+    disk, and ``say`` receives one line when something happened or could not be done."""
+    if workspace.origin_of(chosen)[1] != workspace.Origin.MANAGED:
+        return
+    try:
+        result = api.update(ws)
+    except CdlbibError as exc:
+        say(f"the bibliography was not updated: {exc}")
+        return
+    for note in result.notes:
+        say(note)
+    if result.action in SHOWN:
+        say(result.message)
 
 
 def bib(ctx, fname):

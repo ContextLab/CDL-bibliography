@@ -1,4 +1,5 @@
-"""Backups of the managed library, restoring one, and `cdlbib update --list` / `--undo`.
+"""Backups of the managed library, restoring one, `cdlbib update --list` / `--undo`, and the
+daily check that brings the library up to date when a command runs.
 
 Real git against a local bare upstream; every test has a data folder of its own. A restore
 is data-safety code, so each restore test compares a snapshot taken before the backup with
@@ -14,6 +15,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import pytest
@@ -670,10 +672,9 @@ def test_update_undo_and_list_on_the_command_line(managed, tmp_path):
     assert stray.returncode == 2 and "a backup is named only with --undo" in stray.stderr
     assert snapshot(root) == after and [b.stamp for b in library.backups()] == kept
 
-    bare = cdlbib("update", cwd=own)
+    bare = cdlbib("update", cwd=own)                                    # nothing new upstream: nothing changes
     assert (bare.returncode, bare.stderr) == (0, "")
-    assert bare.stdout == ("updating the library is not available yet; `cdlbib update --list` shows the backups "
-                           "and `cdlbib update --undo` restores the newest\n")
+    assert bare.stdout == f"the bibliography in {root} is up to date\n"
     assert snapshot(root) == after and [b.stamp for b in library.backups()] == kept
 
 
@@ -691,7 +692,11 @@ def test_update_with_no_managed_library_says_so_and_creates_nothing(tmp_path, mo
         assert out.stderr == (f"cdlbib has not downloaded a library yet (it would be at {home / 'library'}), "
                               "so there are no backups and nothing to undo.\n")
     bare = cdlbib("update", cwd=empty)
-    assert bare.returncode == 0 and "not available yet" in bare.stdout
+    assert (bare.returncode, bare.stdout) == (1, ""), bare.stdout + bare.stderr
+    assert bare.stderr == (f"cdlbib has not downloaded a library yet (it would be at {home / 'library'}), "
+                           "so there is nothing to update.\n")
+    with pytest.raises(CdlbibError, match="so there is nothing to update"):
+        api.update(force=True)
     for call in (api.backups, api.undo_update):
         with pytest.raises(CdlbibError, match="has not downloaded a library yet"):
             call()
@@ -928,3 +933,495 @@ def test_a_backup_of_a_clean_library_is_tiny_and_still_restores_the_exact_commit
     assert snapshot(root) == before and (root / "cdl.bib").read_text(encoding="utf-8") == big
     edited = library.backups()[0]                                       # the pre-undo backup holds just the edited file
     assert folder_size(edited.path / "files") == len("% and an edit after the update\n")
+
+
+# --- the daily check and the clean fast-forward ----------------------------------------------
+#
+# The time of the last check is written by the test (state.json); the clock is never replaced.
+# "No fetch happened" is proved by an upstream that is not there: the bare repository is
+# renamed away, the command must still succeed, and state.json must be byte-for-byte unchanged.
+
+UTC = datetime.timezone.utc
+HOUR = datetime.timedelta(hours=1)
+CHOSEN = "chosen by: no library named or found; this is the copy cdlbib downloads and manages"
+
+
+def checked(home, ago):
+    """Record that the upstream was last consulted ``ago`` before now; returns state.json's bytes."""
+    library.write_state(library.State(datetime.datetime.now(UTC) - ago, os.environ["CDLBIB_UPSTREAM"]))
+    return (home / "state.json").read_bytes()
+
+
+def backup_names(home):
+    return sorted(p.name for p in (home / "backups").iterdir()) if (home / "backups").exists() else []
+
+
+def refs(root):
+    return git("for-each-ref", "--format=%(refname) %(objectname)", cwd=root)
+
+
+def empty_folder(tmp_path):
+    folder = tmp_path / "empty"
+    folder.mkdir(exist_ok=True)
+    return folder
+
+
+def updated_line(count, home):
+    stamp = backup_names(home)[-1]
+    return (f"updated the bibliography: {count} new commit{'' if count == 1 else 's'} (the library as it was is "
+            f"backup {stamp}; `cdlbib update --undo` puts it back)")
+
+
+def test_check_due_is_never_checked_a_day_or_more_or_a_time_in_the_future(managed):
+    home, upstream, ws = managed
+    now = datetime.datetime(2026, 10, 2, 12, 0, tzinfo=UTC)
+
+    def due(last):
+        library.write_state(library.State(last, str(upstream)))
+        return library.check_due(now)
+
+    assert due(None) is True
+    assert due(now - datetime.timedelta(hours=23, minutes=59)) is False
+    assert due(now - datetime.timedelta(hours=24)) is True
+    assert due(now - datetime.timedelta(days=30)) is True
+    assert due(now + datetime.timedelta(minutes=5)) is True          # a clock that was wrong: check again
+    assert due(now) is False
+    (home / "state.json").write_text("{not json", encoding="utf-8")
+    assert library.check_due(now) is True                            # corrupt: as never checked
+    (home / "state.json").unlink()
+    assert library.check_due(now) is True
+    assert library.check_due() is True                               # the real clock, by default
+    library.write_state(library.State(datetime.datetime.now(UTC), str(upstream)))
+    assert library.check_due() is False
+
+
+def test_checked_an_hour_ago_a_command_does_not_fetch(managed, tmp_path):
+    home, upstream, ws = managed
+    advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    state, before, known = checked(home, HOUR), snapshot(ws.root), refs(ws.root)
+    upstream.rename(upstream.with_name("gone.git"))                  # contacting the upstream would fail
+    for args in (("verify", "--no-citations"), ("where",), ("crossref", "status")):
+        out = cdlbib(*args, cwd=empty_folder(tmp_path))
+        assert "Traceback" not in out.stderr and "update" not in out.stderr, out.stderr
+        assert out.returncode == (1 if args[0] == "crossref" else 0), out.stdout + out.stderr
+    assert (home / "state.json").read_bytes() == state
+    assert snapshot(ws.root) == before and refs(ws.root) == known and backup_names(home) == []
+    assert library.update(ws) == library.UpdateResult("not_due")
+    assert (home / "state.json").read_bytes() == state
+
+
+def test_checked_25_hours_ago_a_command_fast_forwards_after_a_backup(managed, tmp_path):
+    home, upstream, ws = managed
+    root, old = ws.root, git("rev-parse", "HEAD", cwd=ws.root)
+    advance(upstream, "First", **{"verification/new.txt": "new\n"})
+    new = advance(upstream, "Second", **{"cdl.bib": conftest.ZOLL90 + "\n% from upstream\n"})
+    before, started = snapshot(root), datetime.datetime.now(UTC)
+    checked(home, 25 * HOUR)
+
+    out = cdlbib("verify", "--no-citations", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr
+    assert out.stderr.splitlines()[0] == updated_line(2, home)       # said before the command's own work
+    assert "update" not in out.stdout
+    assert git("rev-parse", "HEAD", cwd=root) == new and git("symbolic-ref", "--short", "HEAD", cwd=root) == "master"
+    assert (root / "cdl.bib").read_text(encoding="utf-8").endswith("% from upstream\n")
+    assert changed_paths(root, ".") == {}                            # a clean fast-forward
+    saved = library.backups()
+    assert len(saved) == 1 and (saved[0].branch, saved[0].commit, saved[0].changed) == ("master", old, [])
+    assert started <= library.read_state().last_check <= datetime.datetime.now(UTC)
+
+    again = cdlbib("where", cwd=empty_folder(tmp_path))                # checked a moment ago: nothing more happens
+    assert (again.returncode, again.stderr) == (0, "") and len(library.backups()) == 1
+
+    undone = cdlbib("update", "--undo", cwd=empty_folder(tmp_path))    # and the update is reversible
+    assert undone.returncode == 0, undone.stderr
+    assert snapshot(root) == before
+
+
+def test_update_returns_what_it_did_and_never_prints(managed, capsys):
+    home, upstream, ws = managed
+    old = git("rev-parse", "HEAD", cwd=ws.root)
+    new = advance(upstream, "One", **{"verification/new.txt": "new\n"})
+    now = datetime.datetime(2031, 5, 6, 7, 8, 9, tzinfo=UTC)         # the time is the caller's
+    checked(home, 25 * HOUR)
+    result = library.update(ws, now=now)
+    assert result.action == "updated" and result.new_commits == 1 and result.notes == []
+    assert result.backup.commit == old and result.backup.stamp == backup_names(home)[0]
+    assert result.message == updated_line(1, home)
+    assert library.read_state() == library.State(now, str(upstream))
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new
+
+    assert library.update(ws, now=now + 23 * HOUR).action == "not_due"
+    nothing = library.update(ws, now=now + 24 * HOUR)
+    assert nothing == library.UpdateResult("up_to_date", message=f"the bibliography in {ws.root} is up to date")
+    assert library.read_state().last_check == now + 24 * HOUR and len(backup_names(home)) == 1
+
+    forced = api.update(ws, force=True)                              # the front-end boundary; force ignores the day
+    assert forced.action == "up_to_date" and len(backup_names(home)) == 1
+    assert api.update(ws).action == "not_due"
+    assert api.update().action == "not_due"                          # no workspace: the managed library
+    assert capsys.readouterr() == ("", "")
+
+
+def test_nothing_new_upstream_records_the_time_and_makes_no_backup(managed, tmp_path):
+    home, upstream, ws = managed
+    before, known, started = snapshot(ws.root), refs(ws.root), datetime.datetime.now(UTC)
+    checked(home, 25 * HOUR)
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    last = library.read_state().last_check
+    assert (out.returncode, out.stderr) == (0, ""), out.stderr      # up to date is not worth a line
+    assert out.stdout.splitlines() == [str(ws.root), CHOSEN, f"last update check: {last.strftime('%Y-%m-%d %H:%M UTC')}"]
+    assert started <= last <= datetime.datetime.now(UTC)             # a fetch happened
+    assert snapshot(ws.root) == before and refs(ws.root) == known and backup_names(home) == []
+
+
+def test_offline_the_check_is_skipped_in_one_line_and_tried_again_next_time(managed, tmp_path):
+    home, upstream, ws = managed
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    state, before = checked(home, 25 * HOUR), snapshot(ws.root)
+    gone = upstream.with_name("gone.git")
+    upstream.rename(gone)
+    for _ in range(2):                                               # nothing recorded, so each command tries
+        out = cdlbib("verify", "--no-citations", cwd=empty_folder(tmp_path))
+        assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr
+        assert out.stderr.splitlines()[0] == (
+            f"update check skipped: git fetch from {upstream} failed ('{upstream}' does not appear to be a git "
+            f"repository); working with the copy in {ws.root}")
+        assert [line for line in out.stderr.splitlines() if "update" in line] == out.stderr.splitlines()[:1]
+        assert (home / "state.json").read_bytes() == state
+        assert snapshot(ws.root) == before and backup_names(home) == []
+    result = library.update(ws)
+    assert (result.action, result.new_commits, result.backup) == ("skipped_offline", 0, None)
+
+    gone.rename(upstream)                                            # back online: the next command updates
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and out.stderr == updated_line(1, home) + "\n"
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new
+
+
+def test_a_corrupt_state_file_is_never_checked_so_the_command_checks(managed, tmp_path):
+    home, upstream, ws = managed
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    (home / "state.json").write_text('{"last_check": "yesterday-ish", "upstream"', encoding="utf-8")
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and out.stderr == updated_line(1, home) + "\n", out.stderr
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new
+    state = json.loads((home / "state.json").read_text(encoding="utf-8"))
+    assert state["upstream"] == str(upstream) and datetime.datetime.fromisoformat(state["last_check"])
+
+
+def test_a_last_check_in_the_future_is_checked_again(managed, tmp_path):
+    home, upstream, ws = managed
+    checked(home, -72 * HOUR)
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert (out.returncode, out.stderr) == (0, "")
+    assert library.read_state().last_check <= datetime.datetime.now(UTC)
+
+
+def test_two_commands_starting_together_make_one_update(managed, tmp_path):
+    home, upstream, ws = managed
+    old = git("rev-parse", "HEAD", cwd=ws.root)
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    checked(home, 25 * HOUR)
+    empty = empty_folder(tmp_path)
+    both = [subprocess.Popen([CDLBIB, "where"], cwd=empty, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            for _ in range(4)]
+    done = [p.communicate(timeout=120) + (p.returncode,) for p in both]
+    for out, err, code in done:
+        assert code == 0 and out.splitlines()[:2] == [str(ws.root), CHOSEN], out + err
+    said = [line for _, err, _ in done for line in err.splitlines()]
+    assert said == [updated_line(1, home)]                           # one command updated; the others said nothing
+    saved = library.backups()
+    assert len(saved) == 1 and saved[0].commit == old                # one backup, of the state before
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new and changed_paths(ws.root, ".") == {}
+    assert git("reflog", "--format=%gs", "HEAD", cwd=ws.root).splitlines()[0].endswith(": Fast-forward")
+    assert sum(line.endswith(": Fast-forward") for line in git("reflog", "--format=%gs", "HEAD", cwd=ws.root).splitlines()) == 1
+    state = json.loads((home / "state.json").read_text(encoding="utf-8"))   # whole, valid, and no temporary file left
+    assert sorted(state) == ["last_check", "upstream"] and datetime.datetime.fromisoformat(state["last_check"])
+    assert sorted(p.name for p in home.iterdir()) == ["backups", "library", "lock", "state.json"]
+
+
+def test_a_command_that_waited_for_the_lock_sees_the_fresh_check_and_does_not_fetch(managed, tmp_path):
+    """The second of two commands: it found the check due, waited for the lock, and by then
+    the first had recorded its check. It must not contact the upstream (which is gone)."""
+    import fcntl
+    home, upstream, ws = managed
+    checked(home, 25 * HOUR)
+    with open(home / "lock", "a") as held:
+        fcntl.flock(held, fcntl.LOCK_EX)
+        other = subprocess.Popen([CDLBIB, "where"], cwd=empty_folder(tmp_path), stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE, text=True)
+        time.sleep(4)
+        waiting = other.poll() is None
+        state = checked(home, 0 * HOUR)                              # what the first command recorded
+        upstream.rename(upstream.with_name("gone.git"))
+        fcntl.flock(held, fcntl.LOCK_UN)
+    out, err = other.communicate(timeout=120)
+    assert waiting, "the command did not wait for the lock"
+    assert (other.returncode, err) == (0, ""), err
+    assert (home / "state.json").read_bytes() == state and backup_names(home) == []
+
+
+def clone_of(upstream, folder):
+    conftest._git("clone", "--quiet", str(upstream), str(folder), cwd=upstream.parent)
+    return folder
+
+
+@pytest.mark.parametrize("how", ["--library", "CDLBIB_LIBRARY", "the current folder", "a folder below it", "a named file"])
+def test_the_users_own_library_is_never_fetched_backed_up_or_recorded(managed, tmp_path, how):
+    """The managed library exists, its check is long overdue and both upstreams have something
+    new; a command on the user's own clone contacts nothing and writes nothing."""
+    home, upstream, ws = managed
+    theirs = conftest.build_upstream(tmp_path / "their upstream")
+    own = clone_of(theirs, tmp_path / "own clone")
+    (own / "sub").mkdir()
+    for bare in (upstream, theirs):
+        advance(bare, "Something new", **{"verification/new.txt": "new\n"})
+    state = checked(home, 30 * 24 * HOUR)
+    before = (snapshot(own), refs(own), snapshot(ws.root), refs(ws.root))
+    for bare in (upstream, theirs):
+        bare.rename(bare.with_name("gone.git"))
+    args, cwd, env = ("where",), empty_folder(tmp_path), {}
+    if how == "--library":
+        args = ("--library", str(own), "where")
+    elif how == "CDLBIB_LIBRARY":
+        env = {"CDLBIB_LIBRARY": str(own)}
+    elif how == "the current folder":
+        cwd = own
+    elif how == "a folder below it":
+        cwd = own / "sub"
+    else:
+        args = ("where", "--fname", str(own / "cdl.bib"))
+    for command in (args, tuple(a if a != "where" else "verify" for a in args) + ("--no-citations",)):
+        out = cdlbib(*command, cwd=cwd, **env)
+        assert out.returncode == 0, out.stdout + out.stderr
+        assert not [word for word in ("update", "skipped", "note:", "Traceback") if word in out.stderr], out.stderr
+        assert str(ws.root) not in out.stdout and (command[-1] == "--no-citations" or str(own.resolve()) in out.stdout)
+    assert (snapshot(own), refs(own), snapshot(ws.root), refs(ws.root)) == before
+    assert (home / "state.json").read_bytes() == state and backup_names(home) == []
+    assert not (own / ".git" / "FETCH_HEAD").exists() and not (ws.root / ".git" / "FETCH_HEAD").exists()
+    with pytest.raises(CdlbibError, match="Only the library cdlbib manages"):
+        api.update(Workspace(own), force=True)
+    assert refs(own) == before[1] and (home / "state.json").read_bytes() == state
+
+
+def test_help_and_version_never_check(managed, tmp_path):
+    home, upstream, ws = managed
+    state, known = checked(home, 25 * HOUR), refs(ws.root)
+    upstream.rename(upstream.with_name("gone.git"))
+    for args in (("--help",), ("--version",), ("verify", "--help"), ("where", "--help"), ("update", "--help"),
+                 ("crossref", "--help"), ("crossref", "status", "--help"), ("update", "--list")):
+        out = cdlbib(*args, cwd=empty_folder(tmp_path))
+        assert (out.returncode, out.stderr) == (0, ""), out.stdout + out.stderr
+    assert (home / "state.json").read_bytes() == state and refs(ws.root) == known and backup_names(home) == []
+    assert not (ws.root / ".git" / "FETCH_HEAD").exists()
+
+
+def left_alone(count, why):
+    return (f"a newer version of the bibliography is available ({count} new commit{'' if count == 1 else 's'}), "
+            f"but {why}; nothing was changed")
+
+
+@pytest.mark.parametrize("state", ["an edit", "an untracked file", "a staged edit", "a local commit", "a send branch",
+                                   "no branch", "an ignored file in the way", "a changed file in the way"])
+def test_anything_but_a_clean_default_branch_is_left_alone_with_a_line(managed, tmp_path, state):
+    home, upstream, ws = managed
+    root = ws.root
+    (root / ".git" / "info" / "exclude").write_text("notes.txt\n", encoding="utf-8")
+    advance(upstream, "Two files", **{"verification/new.txt": "new\n", "notes.txt": "upstream's notes\n",
+                                      "README.md": "upstream's readme\n"})
+    count = 1
+    if state == "an edit":
+        write(root, "cdl.bib", conftest.ZOLL90 + "\n% mine\n")
+        why = "these files have changes that have not been sent: cdl.bib"
+    elif state == "an untracked file":
+        write(root, "verification/mine.txt", "mine\n")
+        why = "these files have changes that have not been sent: verification/mine.txt"
+    elif state == "a staged edit":
+        write(root, "cdl.bib", conftest.ZOLL90 + "\n% mine\n")
+        conftest._git("add", "cdl.bib", cwd=root)
+        why = "these files have changes that have not been sent: cdl.bib"
+    elif state == "a local commit":
+        write(root, "cdl.bib", conftest.ZOLL90 + "\n% mine\n")
+        conftest._git("commit", "--quiet", "-am", "Mine", cwd=root)
+        why = "the library has 1 commit that the upstream does not have"
+    elif state == "a send branch":
+        conftest._git("switch", "--quiet", "-c", "cdlbib/someone/a-change", cwd=root)
+        why = "the library is on branch cdlbib/someone/a-change, not master"
+    elif state == "no branch":
+        conftest._git("switch", "--quiet", "--detach", cwd=root)
+        why = "the library is not on a branch"
+    elif state == "an ignored file in the way":
+        write(root, "notes.txt", "MY NOTES\n")
+        why = "updating would overwrite notes.txt, which cdlbib does not back up"
+    else:
+        write(root, "README.md", "MY README\n")
+        why = "updating would overwrite README.md, which cdlbib does not back up"
+    def everything():       # every file (ignored ones too), what git calls changed, and the refs that are the user's
+        return snapshot(root), outside(root), changed_paths(root, "."), git("for-each-ref", "refs/heads", "refs/cdlbib", cwd=root)
+
+    before, started = everything(), datetime.datetime.now(UTC)
+    checked(home, 25 * HOUR)
+
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and out.stderr == left_alone(count, why) + "\n", out.stderr
+    assert everything() == before and backup_names(home) == []
+    assert started <= library.read_state().last_check                # checked: not asked again until tomorrow
+    assert cdlbib("where", cwd=empty_folder(tmp_path)).stderr == ""
+
+    asked = cdlbib("update", cwd=empty_folder(tmp_path))               # asked for: said again, still nothing changed
+    assert (asked.returncode, asked.stdout, asked.stderr) == (0, left_alone(count, why) + "\n", "")
+    result = library.update(ws, force=True)
+    assert (result.action, result.new_commits, result.backup, result.message) == ("left_alone", 1, None, left_alone(1, why))
+    assert everything() == before and backup_names(home) == []
+
+
+def test_a_fast_forward_that_git_refuses_changes_nothing_and_keeps_no_backup(managed, tmp_path):
+    """git itself says no after the backup was taken (another git command holds the index):
+    the library is checked to be as it was, the backup of it is not kept, and it is said."""
+    home, upstream, ws = managed
+    root = ws.root
+    advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    before = snapshot(root), outside(root), git("for-each-ref", "refs/heads", "refs/cdlbib", cwd=root)
+    checked(home, 25 * HOUR)
+    (root / ".git" / "index.lock").write_text("", encoding="utf-8")
+    result = library.update(ws)
+    (root / ".git" / "index.lock").unlink()
+    assert result.action == "left_alone" and result.backup is None and result.new_commits == 1
+    assert result.message.startswith("a newer version of the bibliography is available (1 new commit), but git could "
+                                     "not fast-forward the library (")
+    assert "index.lock" in result.message and result.message.endswith("; nothing was changed")
+    assert (snapshot(root), outside(root), git("for-each-ref", "refs/heads", "refs/cdlbib", cwd=root)) == before
+    assert backup_names(home) == [] and changed_paths(root, ".") == {}
+    assert library.update(ws, force=True).action == "updated"         # and the next attempt goes through
+
+
+def test_files_of_the_users_that_the_update_does_not_touch_stay_as_they_are(managed, tmp_path):
+    home, upstream, ws = managed
+    root = ws.root
+    (root / ".git" / "info" / "exclude").write_text("notes.txt\n.bibcheck/\n", encoding="utf-8")
+    write(root, "notes.txt", "MY NOTES\n")                            # ignored, outside the two paths
+    write(root, "scratch/todo.txt", "untracked\n")                    # untracked, outside the two paths
+    write(root, ".bibcheck/cache.txt", "cache\n")
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    mine = outside(root)
+    checked(home, 25 * HOUR)
+    out = cdlbib("where", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and out.stderr == updated_line(1, home) + "\n", out.stderr
+    assert git("rev-parse", "HEAD", cwd=root) == new and outside(root) == mine
+
+
+def test_cdlbib_update_checks_now_and_always_says_what_happened(managed, tmp_path):
+    home, upstream, ws = managed
+    root = ws.root
+    own = tmp_path / "own library"                                   # run from the user's own library:
+    (own / "verification").mkdir(parents=True)                        # it is the managed one that is updated
+    (own / "cdl.bib").write_text("% my own library\n", encoding="utf-8")
+    state = checked(home, HOUR)                                      # checked an hour ago: `update` checks anyway
+
+    out = cdlbib("update", cwd=own)
+    assert (out.returncode, out.stdout, out.stderr) == (0, f"the bibliography in {root} is up to date\n", "")
+    assert (home / "state.json").read_bytes() != state and backup_names(home) == []
+
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    before = snapshot(root)
+    out = cdlbib("update", cwd=own)
+    assert (out.returncode, out.stdout, out.stderr) == (0, updated_line(1, home) + "\n", "")
+    assert git("rev-parse", "HEAD", cwd=root) == new and len(backup_names(home)) == 1
+
+    state = (home / "state.json").read_bytes()
+    gone = upstream.with_name("gone.git")
+    upstream.rename(gone)
+    out = cdlbib("update", cwd=own)                                   # asked for and not possible: exit 1
+    assert (out.returncode, out.stdout) == (1, "")
+    assert out.stderr == (f"update check skipped: git fetch from {upstream} failed ('{upstream}' does not appear to "
+                          f"be a git repository); working with the copy in {root}\n")
+    assert (home / "state.json").read_bytes() == state and len(backup_names(home)) == 1
+    gone.rename(upstream)
+
+    assert cdlbib("update", "--undo", cwd=own).returncode == 0
+    assert snapshot(root) == before
+    assert (own / "cdl.bib").read_text(encoding="utf-8") == "% my own library\n" and not (own / ".git").exists()
+
+
+def test_a_state_file_that_cannot_be_written_is_a_note_and_the_check_runs_with_every_command(managed, tmp_path):
+    home, upstream, ws = managed
+    (home / "state.json").unlink()
+    (home / "state.json").mkdir()                                     # a folder where the file belongs
+    note = (f"note: the time of the update check could not be recorded in {home / 'state.json'} (Is a directory); "
+            "the check will run again with the next command")
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    out = cdlbib("verify", "--no-citations", cwd=empty_folder(tmp_path))
+    assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr
+    assert out.stderr.splitlines()[:2] == [note, updated_line(1, home)]
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new
+
+    newer = advance(upstream, "More", **{"verification/more.txt": "more\n"})
+    out = cdlbib("where", cwd=empty_folder(tmp_path))                 # the very next command checks again
+    assert out.returncode == 0 and out.stderr.splitlines() == [note, updated_line(1, home)]
+    assert out.stdout.splitlines()[2] == "last update check: never"
+    assert git("rev-parse", "HEAD", cwd=ws.root) == newer and len(backup_names(home)) == 2
+    out = cdlbib("where", cwd=empty_folder(tmp_path))                 # nothing new: only the note
+    assert out.returncode == 0 and out.stderr.splitlines() == [note]
+    assert sorted(p.name for p in home.iterdir()) == ["backups", "library", "lock", "state.json"]
+
+
+def test_a_stalled_fetch_times_out_and_the_check_is_skipped(managed, monkeypatch):
+    """A real stall: git's ext transport runs `sleep` as the remote, which never answers. Only
+    the time allowed is changed (a module constant)."""
+    import fcntl
+    home, upstream, ws = managed
+    state, before = checked(home, 25 * HOUR), snapshot(ws.root)
+    conftest._git("config", "remote.origin.url", "ext::sleep 61", cwd=ws.root)
+    monkeypatch.setenv("CDLBIB_UPSTREAM", "ext::sleep 61")
+    monkeypatch.setenv("GIT_ALLOW_PROTOCOL", "ext")
+    monkeypatch.setattr(library, "FETCH_TIMEOUT", 2)
+    started = time.monotonic()
+    result = library.update(ws)
+    assert time.monotonic() - started < 30
+    assert result.action == "skipped_offline" and result.message == (
+        f"update check skipped: ext::sleep 61 did not answer within 2 seconds; working with the copy in {ws.root}")
+    assert (home / "state.json").read_bytes() == state and snapshot(ws.root) == before and backup_names(home) == []
+    time.sleep(0.5)
+    left = subprocess.run(["pgrep", "-f", "^sleep 61$"], capture_output=True, text=True).stdout.split()
+    assert left == [], "the stalled transport was left running"
+    with open(home / "lock", "a") as lock:                           # and the lock is free again
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+
+def test_the_update_needs_no_git_identity_and_ignores_the_users_git_settings(managed, tmp_path):
+    """An empty HOME with no git identity, and a global git config that asks for merge
+    commits, autostash and rebasing pulls: the update is still one fast-forward."""
+    home, upstream, ws = managed
+    new = advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    checked(home, 25 * HOUR)
+    bare_home = tmp_path / "bare home"
+    bare_home.mkdir()
+    (bare_home / ".gitconfig").write_text("[merge]\n\tff = false\n\tautoStash = true\n[pull]\n\trebase = true\n"
+                                          "[rebase]\n\tautoStash = true\n[fetch]\n\tprune = true\n", encoding="utf-8")
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_") and k not in ("EMAIL", "XDG_CONFIG_HOME")}
+    env.update(HOME=str(bare_home), GIT_CONFIG_NOSYSTEM="1")
+    out = subprocess.run([CDLBIB, "where"], cwd=empty_folder(tmp_path), capture_output=True, text=True, env=env)
+    assert out.returncode == 0 and out.stderr == updated_line(1, home) + "\n", out.stderr
+    assert git("rev-parse", "HEAD", cwd=ws.root) == new               # the upstream's own commit: no merge commit
+    assert git("reflog", "--format=%gs", "-1", "HEAD", cwd=ws.root).endswith(": Fast-forward")
+    assert git("stash", "list", cwd=ws.root) == ""
+
+
+def test_the_git_commands_of_an_update_are_the_ones_that_cannot_lose_work(managed, tmp_path, monkeypatch):
+    """Every git command an update runs, as git itself traces them."""
+    home, upstream, ws = managed
+    advance(upstream, "Something new", **{"verification/new.txt": "new\n"})
+    checked(home, 25 * HOUR)
+    trace = tmp_path / "trace.txt"
+    monkeypatch.setenv("GIT_TRACE", str(trace))
+    assert library.update(ws).action == "updated"
+    monkeypatch.delenv("GIT_TRACE")
+    ran = [line.split("built-in: git ", 1)[1] for line in trace.read_text(encoding="utf-8").splitlines()
+           if "built-in: git " in line]
+    verbs = {command.split()[0] for command in ran}
+    assert {"fetch", "merge"} <= verbs
+    assert not verbs & {"reset", "clean", "stash", "pull", "checkout", "rebase", "push", "commit", "switch", "restore", "gc"}
+    assert not [command for command in ran if "--force" in command or " -f" in command or " +" in command]
+    merges = [command for command in ran if command.split()[0] == "merge"]
+    assert len(merges) == 1 and merges[0].startswith("merge --ff-only --no-overwrite-ignore --no-autostash --quiet ")
+    assert [command for command in ran if command.split()[0] == "fetch"] == ["fetch --quiet origin"]

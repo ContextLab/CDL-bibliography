@@ -129,12 +129,25 @@ def where(fname=None):
                  last_check=library.read_state().last_check if managed else None)
 
 
-def _managed():
+def _managed(so="so there are no backups and nothing to undo"):
     from . import library, workspace
     if not library.exists():
-        raise CdlbibError(f"cdlbib has not downloaded a library yet (it would be at {library.path()}), "
-                          "so there are no backups and nothing to undo.")
+        raise CdlbibError(f"cdlbib has not downloaded a library yet (it would be at {library.path()}), {so}.")
     return workspace.Workspace(library.path())
+
+
+def update(ws=None, decision=None, force=False):
+    """Bring the managed library up to date and return a library.UpdateResult. Without
+    ``force`` this is the daily check: nothing is fetched when the last check is under 24
+    hours old. A front end calls it, before a command's own work, only when
+    ``workspace.origin_of`` says the library in use is the managed one; ``ws`` None means the
+    managed library whatever library is in use (CdlbibError when it has not been downloaded).
+    The library is changed only by a fast-forward, after a backup (``result.backup``);
+    ``result.message`` is the line to show and ``result.notes`` are non-fatal remarks. Any
+    other library than the managed one is a CdlbibError, and nothing is done to it."""
+    from . import library
+    return library.update(_managed("so there is nothing to update") if ws is None else ws,
+                          force=force, decision=decision)
 
 
 def managed_root():

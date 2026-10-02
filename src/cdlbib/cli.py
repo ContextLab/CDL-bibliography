@@ -179,7 +179,7 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
                                                   "(default: the newest)."),
            show: bool = typer.Option(False, "--list", help="Show the backups of the library cdlbib manages."),
            undo: bool = typer.Option(False, "--undo", help="Put that library back as it was at a backup.")):
-    """Backups of the library cdlbib downloads and manages: --list shows them, --undo restores one."""
+    """Bring the library cdlbib downloads and manages up to date now; --list shows its backups, --undo restores one."""
     if show and undo:
         raise typer.BadParameter("--list and --undo cannot be used together")
     if stamp and not undo:
@@ -202,8 +202,13 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
                    "`cdlbib update --undo STAMP` at the one named.")
     else:
-        typer.echo("updating the library is not available yet; `cdlbib update --list` shows the backups "
-                   "and `cdlbib update --undo` restores the newest")
+        result = api.update(force=True)
+        for note in result.notes:
+            typer.echo(note, err=True)
+        if result.action == "skipped_offline":      # asked for, and it could not be done
+            typer.echo(result.message, err=True)
+            raise typer.Exit(code=1)
+        typer.echo(result.message)
 
 
 def fork_wanted(exc):
