@@ -180,9 +180,11 @@ Revoked MannEtal11 approval 3844e6da2f1b (fingerprint v2:1c1a69dd7e211570f273bd7
 
 ### Screencast
 
-`scripts/make_screencasts.sh` records steps 2 and 3 (`cdlbib verify --no-citations`, then
-`cdlbib crossref status cdl.bib`) as a GIF, using a copy of the library in a folder
-outside the repository.
+![Terminal recording of cdlbib verify --no-citations followed by cdlbib crossref status cdl.bib](media/check.gif)
+
+Steps 2 and 3: `cdlbib verify --no-citations`, then `cdlbib crossref status cdl.bib`.
+`scripts/make_screencasts.sh` records this GIF again into `docs/media/`, working on a
+temporary copy of the library outside the repository.
 
 ## Contribute a pull request from the command line
 

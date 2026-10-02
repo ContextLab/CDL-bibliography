@@ -3,18 +3,17 @@
 #
 #   scripts/make_screencasts.sh [OUTPUT_DIR] [CAST ...]
 #
-# OUTPUT_DIR defaults to a folder outside the repository
-# (${TMPDIR:-/tmp}/cdlbib-screencasts). It may not be empty, /, your home
-# folder, or a folder inside the repository. CAST is "check" (the default) or
-# "send". Needs vhs (https://github.com/charmbracelet/vhs) and an installed
-# cdlbib on PATH.
+# OUTPUT_DIR defaults to docs/media in this repository. It may not be empty,
+# /, your home folder, or any other folder inside the repository. CAST is
+# "check" (the default) or "send". Needs vhs
+# (https://github.com/charmbracelet/vhs) and an installed cdlbib on PATH.
 #
-# check   Copies cdl.bib and verification/ into OUTPUT_DIR/library, restores
-#         the saved results there, and records `cdlbib verify --no-citations`
-#         and `cdlbib crossref status cdl.bib`. The repository is not changed.
-#         The script marks the library/ folder it creates with the file
-#         .cdlbib-screencast-scratch and replaces only a library/ folder that
-#         carries that marker; any other library/ folder stops the script.
+# check   Copies cdl.bib and verification/ into a temporary folder made with
+#         mktemp outside the repository, restores the saved results there, and
+#         records `cdlbib verify --no-citations` and
+#         `cdlbib crossref status cdl.bib` as OUTPUT_DIR/check.gif. The
+#         temporary folder is removed when the script ends. Nothing else is
+#         removed, and cdl.bib and verification/ are not changed.
 #
 # send    Records a real `cdlbib send`: it pushes a branch to a fork and
 #         opens a real pull request from that fork into its parent repository.
@@ -25,9 +24,9 @@
 #         --i-understand-this-opens-a-real-pull-request.
 set -euo pipefail
 
-marker=".cdlbib-screencast-scratch"
 flag="--i-understand-this-opens-a-real-pull-request"
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+media="$repo/docs/media"
 
 understood=no
 args=()
@@ -41,7 +40,7 @@ if [ "$#" -gt 0 ]; then
   shift
   [ -n "$out" ] || { echo "OUTPUT_DIR may not be empty" >&2; exit 1; }
 else
-  out="${TMPDIR:-/tmp}/cdlbib-screencasts"
+  out="$media"
 fi
 if [ "$#" -eq 0 ]; then set -- check; fi
 
@@ -58,37 +57,45 @@ case "$base" in
   ..) out="$(cd "$parent/.." && pwd -P)" ;;
   *) out="${parent%/}/$base" ;;
 esac
+if [ -d "$out" ]; then out="$(cd "$out" && pwd -P)"; fi
 home="$(cd "$HOME" && pwd -P)"
 if [ -z "$out" ] || [ "$out" = "/" ] || [ "$out" = "$home" ]; then
   echo "OUTPUT_DIR may not be / or your home folder: ${out:-/}" >&2
   exit 1
 fi
-case "$out/" in
-  "$repo"/*) echo "OUTPUT_DIR must be outside the repository: $out" >&2; exit 1 ;;
-esac
+if [ "$out" != "$media" ]; then
+  case "$out/" in
+    "$repo"/*) echo "Inside the repository, OUTPUT_DIR may only be $media (got $out)" >&2; exit 1 ;;
+  esac
+fi
 
 for tool in vhs cdlbib; do
   command -v "$tool" >/dev/null || { echo "$tool was not found on PATH" >&2; exit 1; }
 done
 
+scratch=""
+remove_scratch() {
+  if [ -n "$scratch" ] && [ -d "$scratch" ]; then rm -rf "$scratch"; fi
+}
+trap remove_scratch EXIT
+
 for cast in "$@"; do
   case "$cast" in
     check)
-      library="$out/library"
-      if [ -e "$library" ] || [ -L "$library" ]; then
-        if [ -L "$library" ] || [ ! -f "$library/$marker" ]; then
-          echo "check: $library exists and was not made by this script (no $marker file in it)." >&2
-          echo "Nothing was removed. Choose another OUTPUT_DIR, or move that folder away." >&2
-          exit 1
-        fi
-        rm -rf "$library"
-      fi
-      mkdir -p "$library"
-      : > "$library/$marker"
+      scratch="$(mktemp -d "${TMPDIR:-/tmp}/cdlbib-screencast.XXXXXX")"
+      scratch="$(cd "$scratch" && pwd -P)"
+      case "$scratch/" in
+        "$repo"/*) echo "check: the temporary folder $scratch is inside the repository; set TMPDIR to a folder outside it." >&2; exit 1 ;;
+      esac
+      library="$scratch/library"
+      mkdir "$library"
       cp "$repo/cdl.bib" "$library/"
       cp -R "$repo/verification" "$library/verification"
       (cd "$library" && cdlbib crossref restore verification/baseline.jsonl.gz >/dev/null)
+      mkdir -p "$out"
       (cd "$library" && vhs -o "$out/check.gif" "$repo/scripts/check.tape")
+      remove_scratch
+      scratch=""
       ;;
     send)
       checkout="${CDLBIB_SCREENCAST_CHECKOUT:-}"
