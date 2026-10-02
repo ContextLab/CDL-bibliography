@@ -9,13 +9,12 @@ import typer
 
 from . import __version__, api
 from .errors import CdlbibError, GateFailed, WorkspaceNotFound
-from . import verification_cli
-from .verification_cli import app as crossref_app
-from .workspace import BIB_NAME, Workspace
+from . import workspace
+from .verification_cli import app as crossref_app, library
+from .workspace import BIB_NAME
 
 app = typer.Typer()
 app.add_typer(crossref_app, name="crossref")
-state = {"library": None}
 
 
 def _version(value: bool):
@@ -25,16 +24,10 @@ def _version(value: bool):
 
 
 @app.callback()
-def root(library: str = typer.Option(None, "--library", help="Folder containing cdl.bib."),
+def root(library_path: str = typer.Option(None, "--library", help="Folder containing cdl.bib."),
          version: bool = typer.Option(False, "--version", callback=_version, is_eager=True,
                                       help="Show the version and exit.")):
-    state["library"] = verification_cli.LIBRARY = library
-
-
-def workspace(fname=BIB_NAME):
-    """An explicit --fname keeps its historical meaning; the default name is looked up
-    (--library, CDLBIB_LIBRARY, then this folder and its parents)."""
-    return Workspace.for_bib(fname) if fname != BIB_NAME else Workspace.find(state["library"])
+    workspace.select_library(library_path)
 
 
 def report_format(result, ws, fname):
@@ -44,8 +37,8 @@ def report_format(result, ws, fname):
     A bare ``except`` used to print only 'errors found' and return success,
     which hid e.g. 'page numbers are ambiguous or incorrect: KothEtal25'.
     """
-    # The log names the file as the user did, when that name is a path from here.
-    named = fname if Path(fname).exists() else str(ws.bib)
+    # The log names the file as the user would from here, when that is the file checked.
+    named = fname if Path(fname).resolve() == ws.bib else str(ws.bib)
     typer.echo(result.log.replace(f"loading {ws.bib}...", f"loading {named}...", 1), nl=False)
     if result.failure:
         typer.echo(f"errors found: {result.failure}", err=True)
@@ -67,11 +60,11 @@ def report_check(check, verbose, autofix, outfile):
         typer.echo("citations not checked: review the autocorrected file, then run verify on it")
 
 
-def run_gate(fname, reference="github", citations=True, all_entries=False, autofix=False,
+def run_gate(ctx, fname, reference="github", citations=True, all_entries=False, autofix=False,
              outfile=None, verbose=False, database=None, mailto=None):
     """The gate of api.check_library, reported as it runs: the format log and verdict
     first, then each line of the citation check as it is produced."""
-    ws = workspace(fname)
+    ws = library(ctx, fname)
     fmt = api.check_format(ws, autofix=autofix, outfile=outfile, verbose=verbose, bars=sys.stderr)
     report_format(fmt, ws, fname)
     check = api.gate_after_format(fmt, citations=citations, autofix=autofix, outfile=outfile)
@@ -84,7 +77,7 @@ def run_gate(fname, reference="github", citations=True, all_entries=False, autof
 
 
 @app.command()
-def verify(fname: str = BIB_NAME, autofix: bool = False, outfile: str = None, verbose: bool = False,
+def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, outfile: str = None, verbose: bool = False,
            reference: str = "github",
            no_citations: bool = typer.Option(False, "--no-citations",
                                              help="Offline, format-only check (no citation verification)."),
@@ -92,7 +85,7 @@ def verify(fname: str = BIB_NAME, autofix: bool = False, outfile: str = None, ve
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
     """Format check, then citation verification of new/edited entries (see check_library)."""
-    check = run_gate(fname, reference=reference, citations=not no_citations, all_entries=all, autofix=autofix,
+    check = run_gate(ctx, fname, reference=reference, citations=not no_citations, all_entries=all, autofix=autofix,
                      outfile=outfile, verbose=verbose, database=database, mailto=mailto)
     if not check.ok:
         raise typer.Exit(code=1)
@@ -100,15 +93,15 @@ def verify(fname: str = BIB_NAME, autofix: bool = False, outfile: str = None, ve
 
 
 @app.command()
-def magic(fname: str = BIB_NAME, verbose: bool = True):
+def magic(ctx: typer.Context, fname: str = BIB_NAME, verbose: bool = True):
     # Autofix the format in place, then commit. Potentially unsafe.
     typer.echo("WARNING: potentially unsafe")
-    ws = workspace(fname)
+    ws = library(ctx, fname)
     cleaned = ws.bib.with_name("cleaned.bib")
     report_format(api.check_format(ws, autofix=True, outfile=str(cleaned), verbose=verbose, bars=sys.stderr),
                   ws, fname)
     shutil.move(str(cleaned), str(ws.bib))
-    commit(fname=fname, database=None, mailto=os.environ.get("CROSSREF_MAILTO"))
+    commit(ctx, fname=fname, database=None, mailto=os.environ.get("CROSSREF_MAILTO"))
 
 
 @app.command()
@@ -123,12 +116,12 @@ def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None
 
 
 @app.command()
-def commit(fname=BIB_NAME, reference="github", verbose: bool = False, outfile=None,
+def commit(ctx: typer.Context, fname=BIB_NAME, reference="github", verbose: bool = False, outfile=None,
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
     """Run the verify gate, then commit only the bibliography file."""
-    ws = workspace(fname)
-    if not run_gate(fname, reference=reference, verbose=verbose, database=database, mailto=mailto).ok:
+    ws = library(ctx, fname)
+    if not run_gate(ctx, fname, reference=reference, verbose=verbose, database=database, mailto=mailto).ok:
         typer.echo("not committed: fix the format errors and resolve every new/edited entry first "
                    "(see `cdlbib verify`).")
         raise typer.Exit(code=1)

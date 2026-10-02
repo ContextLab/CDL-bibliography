@@ -5,7 +5,9 @@ import sys
 from pathlib import Path
 import shutil
 
-CDLBIB = shutil.which("cdlbib") or str(Path(sys.executable).parent / "cdlbib")
+# The command of the environment running the tests, not another one that is on PATH.
+_SIBLING = Path(sys.executable).parent / "cdlbib"
+CDLBIB = str(_SIBLING) if _SIBLING.exists() else shutil.which("cdlbib")
 
 
 def run(*args, cwd, env=None):
@@ -73,3 +75,46 @@ def test_adapters_are_commands_found_by_name(tmp_path):
             invoke_adapter("cdlbib-adapter-that-does-not-exist", {})
     finally:
         os.environ["PATH"] = saved
+
+
+def test_one_default_library_rule_for_every_command(tmp_path):
+    """CDLBIB_LIBRARY outranks a cdl.bib in the current folder, for `verify` and for
+    `crossref` alike; --library outranks the variable; a file the user names outranks all."""
+    from test_machinery_2026_09_25 import RAME72, ZOLL90
+    a, b = (tmp_path / "A").resolve(), (tmp_path / "B").resolve()
+    for folder, text in ((a, ZOLL90 + "\n\n" + RAME72 % "1" + "\n"), (b, ZOLL90 + "\n")):  # A: 2 entries, B: 1
+        folder.mkdir()
+        (folder / "cdl.bib").write_text(text, encoding="utf-8")
+    env = {"CDLBIB_LIBRARY": str(b)}
+
+    out = run("verify", "--no-citations", cwd=a, env=env)
+    assert out.returncode == 0 and f"loading {b / 'cdl.bib'}...done" in out.stdout, out.stdout + out.stderr
+    out = run("crossref", "status", cwd=a, env=env)
+    assert out.returncode == 1 and "1 entries: pending=1" in out.stdout, out.stdout + out.stderr
+    assert (b / ".bibcheck").is_dir() and not (a / ".bibcheck").exists()
+
+    # --library outranks the variable
+    out = run("--library", str(a), "verify", "--no-citations", cwd=b, env=env)
+    assert out.returncode == 0 and f"loading {a / 'cdl.bib'}...done" in out.stdout, out.stdout + out.stderr
+    out = run("--library", str(a), "crossref", "status", cwd=b, env=env)
+    assert out.returncode == 1 and "2 entries: pending=2" in out.stdout, out.stdout + out.stderr
+
+    # a file the user names outranks both, even when it is named cdl.bib
+    out = run("--library", str(b), "verify", "--fname", "cdl.bib", "--no-citations", cwd=a, env=env)
+    assert out.returncode == 0 and "loading cdl.bib...done" in out.stdout, out.stdout + out.stderr
+    out = run("--library", str(b), "crossref", "status", "cdl.bib", "--database", str(tmp_path / "x.sqlite3"),
+              "--report", str(tmp_path / "x.jsonl"), cwd=a, env=env)
+    assert out.returncode == 1 and "2 entries: pending=2" in out.stdout, out.stdout + out.stderr
+
+
+def test_status_and_compare_failures_keep_their_exit_codes(tmp_path):
+    from test_machinery_2026_09_25 import ZOLL90
+    lib = tmp_path / "lib.bib"
+    lib.write_text(ZOLL90 + "\n", encoding="utf-8")
+    keys = tmp_path / "keys.txt"
+    keys.write_text("NotInTheLibrary99\n", encoding="utf-8")
+    out = run("crossref", "status", str(lib), "--keys", str(keys), cwd=tmp_path)
+    assert out.returncode == 2 and "Traceback" not in out.stderr
+    assert out.stderr.strip() == "Key list is empty or contains citation keys absent from the bibliography"
+    out = run("compare", str(lib), str(tmp_path / "missing.bib"), cwd=tmp_path)
+    assert out.returncode == 1 and "missing.bib" in out.stderr and "Traceback" not in out.stderr

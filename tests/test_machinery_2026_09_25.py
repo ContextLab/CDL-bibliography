@@ -18,7 +18,7 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-CDLBIB = shutil.which("cdlbib") or str(Path(sys.executable).parent / "cdlbib")
+CDLBIB = next((str(p) for p in [Path(sys.executable).parent / "cdlbib"] if p.exists()), None) or shutil.which("cdlbib")
 from cdlbib import auto_review  # noqa: E402
 from cdlbib import catalogue_review  # noqa: E402
 from cdlbib import correction_proposals as cp  # noqa: E402

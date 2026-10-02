@@ -42,8 +42,9 @@ def main():
     work.mkdir(exist_ok=True)
     base = os.environ.get("BASE_REVISION", "")
     event = os.environ.get("EVENT_NAME", "")
-    # The installed command; beside this interpreter when its folder is not on PATH.
-    command = [shutil.which("cdlbib") or str(Path(sys.executable).parent / "cdlbib"), "crossref"]
+    # The command installed beside this interpreter, else the one on PATH.
+    sibling = Path(sys.executable).parent / "cdlbib"
+    command = [str(sibling) if sibling.exists() else shutil.which("cdlbib"), "crossref"]
     snapshot = Path("verification/baseline.jsonl.gz")
     if event == "push" and not commit_exists(base):
         print(f"Base revision {base or '(none)'} is not in the history (force-push or new branch); "

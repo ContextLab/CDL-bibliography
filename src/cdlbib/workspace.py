@@ -74,5 +74,20 @@ class Workspace:
             "pass --library PATH, or set CDLBIB_LIBRARY.")
 
 
+_library = None  # the front end's --library choice; the only place it is kept
+
+
+def select_library(path):
+    """Record the front end's --library (None clears it)."""
+    global _library
+    _library = path
+
+
+def resolve(fname=None):
+    """The one rule for which library a command works on: a file the user named, else
+    --library, else CDLBIB_LIBRARY, else the nearest cdl.bib from the current folder up."""
+    return Workspace.for_bib(fname) if fname is not None else Workspace.find(_library)
+
+
 def default():
-    return Workspace.find()
+    return resolve()

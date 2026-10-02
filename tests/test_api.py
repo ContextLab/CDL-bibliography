@@ -7,7 +7,10 @@ tests/test_machinery_2026_09_25.py section 16 (imported, not retyped). No mocks.
 import io
 import contextlib
 
+import pytest
+
 from cdlbib import api
+from cdlbib.errors import CdlbibError, GateFailed
 from cdlbib.workspace import Workspace
 
 from test_machinery_2026_09_25 import RAME72, ZOLL90, crossref_contact
@@ -79,3 +82,32 @@ def test_compare(tmp_path):
 def test_status_counts_an_unverified_library(tmp_path):
     result = silent(lambda: api.status(bib(tmp_path, ZOLL90)))
     assert sum(result.counts.values()) == 1 and not result.ok
+
+
+def test_status_reports_counts_for_the_selection(tmp_path):
+    ws = bib(tmp_path, ZOLL90 + "\n\n" + RAME72 % "1")
+    keys = tmp_path / "keys.txt"
+    keys.write_text("Rame72\n", encoding="utf-8")
+    result = silent(lambda: api.status(ws, keys=str(keys)))
+    assert result.counts == {"pending": 1} and result.total == 1 and not result.ok
+
+
+def test_status_failures_are_gate_failures(tmp_path):
+    ws = bib(tmp_path, ZOLL90)
+    keys = tmp_path / "keys.txt"
+    keys.write_text("NotInTheLibrary99\n", encoding="utf-8")
+    with pytest.raises(GateFailed, match="citation keys absent from the bibliography") as caught:
+        silent(lambda: api.status(ws, keys=str(keys)))
+    assert isinstance(caught.value.__cause__, ValueError)
+    blocker = tmp_path / "a-file"
+    blocker.write_text("not a folder\n", encoding="utf-8")
+    with pytest.raises(GateFailed) as caught:  # the database's folder cannot be made
+        silent(lambda: api.status(ws, database=str(blocker / "db.sqlite3")))
+    assert isinstance(caught.value.__cause__, OSError)
+
+
+def test_compare_failure_is_a_cdlbib_error(tmp_path):
+    a = tmp_path / "a.bib"; a.write_text(ZOLL90 + "\n", encoding="utf-8")
+    with pytest.raises(CdlbibError, match="missing.bib") as caught:
+        silent(lambda: api.compare(str(a), str(tmp_path / "missing.bib")))
+    assert caught.value.__cause__ is not None

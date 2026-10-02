@@ -51,6 +51,10 @@ class Status:
     counts: dict
     ok: bool
 
+    @property
+    def total(self):
+        return sum(self.counts.values())
+
 
 @contextlib.contextmanager
 def _quiet(bars=None):
@@ -163,25 +167,31 @@ def check_library(ws, reference="github", citations=True, all_entries=False, aut
 def compare(a, b, verbose=False, outfile=None, bars=None):
     from .helpers import compare_bibs
     with _quiet(bars) as sink:
-        match, summary = compare_bibs(a, b, verbose=verbose, outfile=outfile, return_summary=True)
+        try:
+            match, summary = compare_bibs(a, b, verbose=verbose, outfile=outfile, return_summary=True)
+        except (ValueError, OSError) as exc:  # a missing file, or the GitHub copy out of reach
+            raise CdlbibError(f"comparison failed: {type(exc).__name__}: {exc}") from exc
     return Comparison(match=bool(match), summary=summary or "", log=sink.getvalue())
 
 
 def status(ws, database=None, report=None, require_human=False, keys=None, against=None):
-    from .verification import ACCEPTED, Cache, validate_output_path, write_report
+    from .verification import ACCEPTED, Cache, ProviderError, validate_output_path, write_report
     from .verification_cli import revocation_ledger, select_keys
     database = database or str(ws.database)
     report = report or str(ws.report)
-    cache = Cache(database, ledger=revocation_ledger(str(ws.bib), None))
     try:
-        for selection_input in (keys, against):
-            if selection_input:
-                validate_output_path(selection_input, report, cache)
-        results = write_report(str(ws.bib), cache, report)
-        selected = select_keys(str(ws.bib), keys, against, entries=results)
-        results = {key: results[key] for key in selected}
-    finally:
-        cache.close()
+        cache = Cache(database, ledger=revocation_ledger(str(ws.bib), None))
+        try:
+            for selection_input in (keys, against):
+                if selection_input:
+                    validate_output_path(selection_input, report, cache)
+            results = write_report(str(ws.bib), cache, report)
+            selected = select_keys(str(ws.bib), keys, against, entries=results)
+            results = {key: results[key] for key in selected}
+        finally:
+            cache.close()
+    except (ValueError, OSError, ProviderError) as exc:
+        raise GateFailed(str(exc)) from exc
     counts = dict(Counter(r["status"] for r in results.values()))
     accepted = {"human_verified"} if require_human else ACCEPTED
     return Status(counts=counts, ok=all(r["status"] in accepted for r in results.values()))

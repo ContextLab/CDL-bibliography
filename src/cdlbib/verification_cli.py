@@ -9,7 +9,9 @@ from typing import List
 import typer
 
 from . import verification
-from .workspace import BIB_NAME, Workspace
+from . import workspace
+from .errors import GateFailed
+from .workspace import Workspace
 
 from .verification import (
     ACCEPTED,
@@ -48,6 +50,7 @@ app = typer.Typer(
 
 @app.command("discover-review")
 def discover_review(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     database: Optional[str] = typer.Option(None, "--database"),
     report: Optional[str] = typer.Option(None, "--report"),
@@ -58,7 +61,7 @@ def discover_review(
     """Try twenty title-search candidates; apply the existing strict source checks."""
     from .discovery_review import run_discovery_review
 
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -82,6 +85,7 @@ def discover_review(
 
 @app.command("auto-review")
 def auto_review(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     database: Optional[str] = typer.Option(None, "--database"),
     report: Optional[str] = typer.Option(None, "--report"),
@@ -98,7 +102,7 @@ def auto_review(
     """Automatically review cached findings; batch PubMed lookups through Europe PMC."""
     from .auto_review import run_auto_review
 
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -119,6 +123,7 @@ def auto_review(
 
 @app.command("fulltext-review")
 def fulltext_review(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     database: Optional[str] = typer.Option(None, "--database"),
     report: Optional[str] = typer.Option(None, "--report"),
@@ -130,7 +135,7 @@ def fulltext_review(
     """Review remaining entries using publisher front matter from open-access PMC XML."""
     from .fulltext_review import run_fulltext_review
 
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -147,17 +152,23 @@ def fulltext_review(
         cache.close()
 
 
-LIBRARY = None  # the cdlbib command's --library option, set by cdlbib.cli
+def named(ctx):
+    """Did the user name the bibliography on the command line (rather than leave the default)?
+    A command function called directly, without a typer context, is given its file by the caller."""
+    if ctx is None:
+        return True
+    return getattr(ctx.get_parameter_source("fname"), "name", "DEFAULT") != "DEFAULT"
 
 
-def bib(fname):
-    """The bibliography a command works on. An explicit path is used as given, and so is a
-    cdl.bib in this folder unless --library names another; otherwise the default name is
-    looked up through the workspace, so the commands also work from a subfolder of the
-    library or with CDLBIB_LIBRARY."""
-    if fname != BIB_NAME or (not LIBRARY and Path(fname).exists()):
-        return fname
-    return str(Workspace.find(LIBRARY).bib)
+def library(ctx, fname):
+    """The workspace a command works on, by the one rule in workspace.resolve."""
+    return workspace.resolve(fname if named(ctx) else None)
+
+
+def bib(ctx, fname):
+    """The bibliography a command works on: the path as the user gave it, else the
+    library's cdl.bib (--library, CDLBIB_LIBRARY, then this folder and its parents)."""
+    return fname if named(ctx) else str(library(ctx, fname).bib)
 
 
 def revocation_ledger(fname, explicit=None):
@@ -172,12 +183,13 @@ def paths(fname, database, report=None):
     return database or str(ws.database), report or str(ws.report)
 
 
+def counts_line(counts):
+    return (f"{sum(counts.values())} entries: "
+            + ", ".join(f"{k}={v}" for k, v in sorted(counts.items())))
+
+
 def summary(results, require_human=False):
-    counts = Counter(r["status"] for r in results.values())
-    typer.echo(
-        f"{len(results)} entries: "
-        + ", ".join(f"{k}={v}" for k, v in sorted(counts.items()))
-    )
+    typer.echo(counts_line(Counter(r["status"] for r in results.values())))
     accepted = {"human_verified"} if require_human else ACCEPTED
     return all(r["status"] in accepted for r in results.values())
 
@@ -335,6 +347,7 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
 
 @app.command()
 def verify(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     database: Optional[str] = typer.Option(None, "--database"),
     report: Optional[str] = typer.Option(None, "--report"),
@@ -373,7 +386,7 @@ def verify(
     ),
 ):
     """Verify new/modified entries; save every result so interrupted runs resume."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -415,6 +428,7 @@ def verify(
 
 @app.command()
 def status(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     database: Optional[str] = typer.Option(None, "--database"),
     report: Optional[str] = typer.Option(None, "--report"),
@@ -433,34 +447,27 @@ def status(
     ),
 ):
     """Offline check: recompute fingerprints and fail on every unresolved entry."""
-    fname = bib(fname)
-    database, report = paths(fname, database, report)
-    cache = Cache(database, ledger=revocation_ledger(fname))
+    from . import api
     try:
-        for selection_input in (keys, against):
-            if selection_input:
-                validate_output_path(selection_input, report, cache)
-        results = write_report(fname, cache, report)
-        selected = select_keys(fname, keys, against, entries=results)
-        results = {key: results[key] for key in selected}
-        good = summary(results, require_human=require_human)
-        if not good:
-            raise typer.Exit(1)
-    except (ValueError, OSError) as exc:
+        result = api.status(Workspace.for_bib(bib(ctx, fname)), database=database, report=report,
+                            require_human=require_human, keys=keys, against=against)
+    except GateFailed as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)
-    finally:
-        cache.close()
+    typer.echo(counts_line(result.counts))
+    if not result.ok:
+        raise typer.Exit(1)
 
 
 @app.command()
 def snapshot(
+    ctx: typer.Context,
     output: str = typer.Argument("verification/baseline.jsonl.gz"),
     fname: str = typer.Option("cdl.bib", "--fname"),
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Export a portable compressed JSONL audit snapshot for backup or sharing."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -475,12 +482,13 @@ def snapshot(
 
 @app.command()
 def restore(
+    ctx: typer.Context,
     snapshot: str = typer.Argument("verification/baseline.jsonl.gz"),
     fname: str = typer.Option("cdl.bib", "--fname"),
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Restore matching reviews from a trusted snapshot; changed entries stay pending."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -496,13 +504,14 @@ def restore(
 
 @app.command("review-packet")
 def review_packet(
+    ctx: typer.Context,
     key: str,
     fname: str = typer.Option("cdl.bib", "--fname"),
     database: Optional[str] = typer.Option(None, "--database"),
     output: str = typer.Option("review-packet.json", "--output"),
 ):
     """Export source evidence and exact fingerprint for PDF/LLM/human review."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -541,6 +550,7 @@ def review_packet(
 
 @app.command("attach-evidence")
 def attach_evidence(
+    ctx: typer.Context,
     key: str,
     evidence: str = typer.Option(
         ..., "--evidence", help="JSON findings from PDF/LLM review; never approval."
@@ -550,7 +560,7 @@ def attach_evidence(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Attach optional external research findings; human review remains required."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -586,6 +596,7 @@ def attach_evidence(
 
 @app.command()
 def research(
+    ctx: typer.Context,
     key: str,
     adapter: str = typer.Option(
         ...,
@@ -601,7 +612,7 @@ def research(
     """Run optional LLM web search, download PDF, extract and check quoted evidence."""
     from .research import research_entry
 
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -639,6 +650,7 @@ def research(
 
 @app.command("research-batch")
 def research_batch(
+    ctx: typer.Context,
     fname: str = typer.Argument("cdl.bib"),
     adapter: str = typer.Option(..., "--adapter"),
     allow_host: List[str] = typer.Option(..., "--allow-host"),
@@ -654,7 +666,7 @@ def research_batch(
     """Collect actual PDF evidence in a bounded, resumable batch; never human-approve."""
     from .research import run_research_batch
 
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, report = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -681,6 +693,7 @@ def research_batch(
 
 @app.command()
 def approve(
+    ctx: typer.Context,
     key: str,
     fingerprint: str = typer.Option(..., "--fingerprint"),
     reviewer: str = typer.Option(
@@ -696,7 +709,7 @@ def approve(
     database: Optional[str] = typer.Option(None, "--database"),
 ):
     """Record an explicit human decision, bound to the exact reviewed entry."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
@@ -741,6 +754,7 @@ def approve(
 
 @app.command()
 def revoke(
+    ctx: typer.Context,
     key: str,
     reason: str = typer.Option(..., "--reason", help="Why the approval is withdrawn."),
     by: str = typer.Option(..., "--by", help="Who decided the revocation (and who ran it)."),
@@ -759,7 +773,7 @@ def revoke(
     source, note and time) to the database and to the committed ledger, and records the
     entry as needs_review. Restoring any snapshot, however old, keeps it revoked; a later
     approval with a new review note is a new decision."""
-    fname = bib(fname)
+    fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     ledger_path = revocation_ledger(fname, ledger)  # resolved once; every reader and writer below uses it
     cache = Cache(database, ledger=ledger_path)
