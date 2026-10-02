@@ -27,7 +27,7 @@ cdlbib verify --verbose
    If your entry can't be verified automatically, see [Human review](README.md#human-review).
 6. Generate a change log and send the change(s) as a pull request into the main CDL fork:
 ```
-cdlbib commit --verbose
+cdlbib send --verbose
 ```
-   `commit` pushes a new branch to your personal fork and opens the pull request; it prints the pull request's address.
+   `send` pushes a new branch to your personal fork and opens the pull request; it prints the pull request's address.
 7. The pull request is checked automatically; once an admin reviews it, it'll be incorporated into the main fork and shared with the world (go science)!

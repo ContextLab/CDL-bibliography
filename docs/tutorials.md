@@ -186,7 +186,7 @@ outside the repository.
 
 ## Contribute a pull request from the command line
 
-`cdlbib commit` checks your change and sends it as a pull request from your own fork. You
+`cdlbib send` checks your change and sends it as a pull request from your own fork. You
 do not need write access to the repository you cloned.
 
 ### 1. Log in to GitHub
@@ -198,15 +198,14 @@ gh auth login
 gh auth status
 ```
 
-`gh auth status` names the account you are logged in as. `cdlbib commit` uses that
+`gh auth status` names the account you are logged in as. `cdlbib send` uses that
 account for the fork and the pull request.
 
 ### 2. Edit `cdl.bib`
 
 Start inside your clone, with `cdlbib` installed (step 1 of
 [Check the library](#check-the-library)) and `CROSSREF_MAILTO` set (step 4). Add or
-correct entries in `cdl.bib`. Leave only your bibliography changes uncommitted:
-`git status --short` lists what has changed.
+correct entries in `cdl.bib`.
 
 ### 3. Check the change
 
@@ -220,40 +219,43 @@ until it ends with `looks good!`.
 ### 4. Send it
 
 ```bash
-cdlbib commit --summary "Fix the page range of MannEtal11"
+cdlbib send --summary "Fix the page range of MannEtal11"
 ```
 
-`commit` runs the checks of `verify` again and prints the same lines. If a check fails
+`send` runs the checks of `verify` again and prints the same lines. If a check fails
 it prints the line below, exits with `1`, and sends nothing:
 
 ```
-not committed: fix the format errors and resolve every new/edited entry first (see `cdlbib verify`).
+not sent: fix the format errors and resolve every new/edited entry first (see `cdlbib verify`).
 ```
 
 If the checks pass it prints `checks passed; generating commit message...` and the list
 of added, removed and modified entries.
 
-If your GitHub account has no fork of the repository yet, `commit` asks, with your
+If your GitHub account has no fork of the repository yet, `send` asks, with your
 login in place of `you`:
 
 ```
 @you has no fork of ContextLab/CDL-bibliography. Create one now? [y/N]:
 ```
 
-Answer `y` to create the fork. With any other answer nothing is sent, and `commit`
+Answer `y` to create the fork. With any other answer nothing is sent, and `send`
 prints the command that creates the fork by hand
-(`gh repo fork ContextLab/CDL-bibliography --clone=false`). `cdlbib --yes commit ...`
+(`gh repo fork ContextLab/CDL-bibliography --clone=false`). `cdlbib --yes send ...`
 creates the fork without asking.
 
-`commit` then commits your changes to `cdl.bib` and `verification/` on a new branch,
-pushes the branch to your fork, and opens the pull request. It ends with these lines
-(the first only when a fork was created):
+`send` then commits your changes to `cdl.bib` and to files under `verification/` on a
+new branch, pushes the branch to your fork, and opens the pull request. Other files with
+uncommitted changes are neither committed nor pushed; they are left as they are. `send` ends
+with these lines (the first only when a fork was created, the last only when other files
+have uncommitted changes; `notes.txt` stands for such a file):
 
 ```
 created fork you/CDL-bibliography
 committed: cdl.bib
 pull request: <address of the pull request>
 you are now on branch cdlbib/you/2026-10-02-fix-the-page-range-of-mannetal11
+left uncommitted: notes.txt
 ```
 
 ### 5. What the pull request shows
@@ -269,7 +271,7 @@ you are now on branch cdlbib/you/2026-10-02-fix-the-page-range-of-mannetal11
 
 ### 6. Afterwards
 
-Your checkout stays on the new branch. Running `cdlbib commit` again from that branch
+Your checkout stays on the new branch. Running `cdlbib send` again from that branch
 adds the new changes to the same pull request. To return to `master`:
 
 ```bash
