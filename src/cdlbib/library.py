@@ -82,9 +82,40 @@ def exists():
     return (root / ".git").exists() and (root / BIB_NAME).is_file() and not (root / INCOMPLETE).exists()
 
 
+CLONE_TIMEOUT = 600   # seconds a download may take before it is given up (the lock is held meanwhile)
+
+
+def _same_source(recorded, wanted):
+    """Do two upstream addresses name the same repository? (Equal text, or one local folder.)"""
+    if recorded.rstrip("/") == wanted.rstrip("/"):
+        return True
+    try:
+        return os.path.isdir(recorded) and os.path.isdir(wanted) and os.path.samefile(recorded, wanted)
+    except OSError:
+        return False
+
+
+def _require_upstream(root, source):
+    """A managed library cloned from somewhere other than the configured upstream is neither
+    used nor replaced: the user is told, and decides."""
+    try:
+        asked = subprocess.run(["git", "config", "--get", "remote.origin.url"], cwd=root, capture_output=True,
+                               text=True, stdin=subprocess.DEVNULL)
+    except OSError:       # no git: nothing can be asked; the commands that need git say so themselves
+        return
+    origin = asked.stdout.strip()
+    if _same_source(origin, source):
+        return
+    raise LibraryUnavailable(
+        f"{root} is a copy of {origin or 'no upstream at all'}, but cdlbib is set to download from {source}. "
+        "It was left as it is. Move that folder away to download a fresh copy, or pass --library PATH to work "
+        "in the copy you have.")
+
+
 @contextlib.contextmanager
-def _locked(folder):
-    """Hold <folder>/lock, so that two commands starting together do not both download."""
+def _locked(folder, progress=None):
+    """Hold <folder>/lock, so that two commands starting together do not both download.
+    ``progress`` receives one line when the lock is held by another command and this one waits."""
     folder.mkdir(parents=True, exist_ok=True)
     with open(folder / "lock", "a") as handle:
         try:
@@ -92,11 +123,36 @@ def _locked(folder):
         except ImportError:   # no flock on this platform: no lock
             yield
             return
-        fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:       # held by another command
+            if progress:
+                progress("waiting for another cdlbib to finish downloading the bibliography ...")
+            fcntl.flock(handle, fcntl.LOCK_EX)
         try:
             yield
         finally:
             fcntl.flock(handle, fcntl.LOCK_UN)
+
+
+def _clone(source, partial, timeout):
+    """git clone into ``partial``; (exit status, stderr). On a timeout, or when interrupted,
+    git and its helpers are stopped first. The clone runs as a process group of its own so
+    that a stalled transport helper can be stopped with it."""
+    clone = subprocess.Popen(["git", "clone", "--quiet", "--", source, str(partial)], stdout=subprocess.DEVNULL,
+                             stderr=subprocess.PIPE, stdin=subprocess.DEVNULL, text=True,
+                             env=dict(os.environ, GIT_TERMINAL_PROMPT="0"), start_new_session=True)
+    try:
+        _, errors = clone.communicate(timeout=timeout)
+    except BaseException:
+        import signal
+        try:
+            os.killpg(clone.pid, signal.SIGKILL)
+        except (OSError, AttributeError):
+            clone.kill()
+        clone.wait()
+        raise
+    return clone.returncode, errors
 
 
 def download(progress=None):
@@ -104,12 +160,18 @@ def download(progress=None):
 
     The upstream is cloned into <home>/library.partial, which becomes <home>/library by one
     rename, so no other command ever sees a half-made library. Any failure removes the
-    partial folder and raises LibraryUnavailable. ``progress`` receives one line, only when
-    a download starts.
+    partial folder and raises LibraryUnavailable; a clone that takes longer than CLONE_TIMEOUT
+    seconds is such a failure. A library that is there but was cloned from another upstream
+    than the configured one is refused (LibraryUnavailable) and left untouched.
+
+    ``progress`` receives a line when a download starts, a line when this command has to wait
+    for another one's download, and a line when the library was downloaded but the time of
+    the download could not be recorded (that is not a failure: the library is usable).
     """
-    if exists():
-        return path()
     folder, root, source = home(), path(), upstream()
+    if exists():
+        _require_upstream(root, source)
+        return root
     partial = folder / "library.partial"
 
     def unavailable(reason):
@@ -117,12 +179,13 @@ def download(progress=None):
                                   "If you already have a copy, pass --library PATH or set CDLBIB_LIBRARY.")
 
     try:
-        lock = _locked(folder)
+        lock = _locked(folder, progress)
         lock.__enter__()
     except OSError as exc:
         raise unavailable(f"{folder} cannot be written ({exc.strerror or exc})") from exc
     try:
         if exists():          # another command made it while this one waited
+            _require_upstream(root, source)
             return root
         if root.exists():
             raise LibraryUnavailable(
@@ -133,14 +196,16 @@ def download(progress=None):
         try:
             if partial.exists():   # left by an interrupted download
                 shutil.rmtree(partial)
-            done = subprocess.run(["git", "clone", "--quiet", source, str(partial)], capture_output=True, text=True,
-                                  stdin=subprocess.DEVNULL, env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
-            if done.returncode != 0:
-                lines = [line.strip() for line in done.stderr.splitlines() if line.strip()]
-                raise unavailable((lines[-1] if lines else f"git clone exited with status {done.returncode}").rstrip("."))
+            status, errors = _clone(source, partial, CLONE_TIMEOUT)
+            if status != 0:
+                lines = [line.strip() for line in errors.splitlines() if line.strip()]
+                raise unavailable((lines[-1] if lines else f"git clone exited with status {status}").rstrip("."))
             if not (partial / BIB_NAME).is_file():
                 raise unavailable(f"it has no {BIB_NAME}")
             os.rename(partial, root)
+        except subprocess.TimeoutExpired as exc:
+            shutil.rmtree(partial, ignore_errors=True)
+            raise unavailable(f"the download timed out (it did not finish within {CLONE_TIMEOUT} seconds)") from exc
         except FileNotFoundError as exc:
             shutil.rmtree(partial, ignore_errors=True)
             if exc.filename == "git":
@@ -152,7 +217,12 @@ def download(progress=None):
         except BaseException:      # LibraryUnavailable, Ctrl-C: nothing half-made stays behind
             shutil.rmtree(partial, ignore_errors=True)
             raise
-        write_state(State(datetime.datetime.now(datetime.timezone.utc), source))
+        try:
+            write_state(State(datetime.datetime.now(datetime.timezone.utc), source))
+        except OSError as exc:     # the library is in place and usable; read_state() then says 'never checked'
+            if progress:
+                progress(f"note: the bibliography was downloaded, but the time could not be recorded in "
+                         f"{folder / 'state.json'} ({exc.strerror or exc})")
         return root
     finally:
         lock.__exit__(None, None, None)

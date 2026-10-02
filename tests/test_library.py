@@ -214,7 +214,9 @@ def test_a_folder_in_the_way_is_never_deleted(managed):
     assert (root / "notes.txt").read_text(encoding="utf-8") == "mine" and not (home / "library.partial").exists()
 
 
-WAITER = "from cdlbib import library; print(library.download())"
+WAITER = "import sys; from cdlbib import library; print(library.download(progress=lambda line: print(line, file=sys.stderr)))"
+RESOLVER = ("import sys; from cdlbib import workspace; "
+            "print(workspace.resolve(managed=True, progress=lambda line: print(line, file=sys.stderr)).root)")
 
 
 def test_the_lock_makes_a_second_download_wait(managed):
@@ -232,6 +234,8 @@ def test_the_lock_makes_a_second_download_wait(managed):
     out, err = other.communicate(timeout=120)
     assert waiting and untouched
     assert other.returncode == 0 and out.strip() == str(home / "library"), err
+    assert err.splitlines() == ["waiting for another cdlbib to finish downloading the bibliography ...",
+                                f"downloading the bibliography to {home / 'library'} ..."]
     assert library.exists() and not (home / "library.partial").exists()
 
 
@@ -242,6 +246,10 @@ def test_two_commands_starting_together_make_one_library(managed):
     done = [p.communicate(timeout=120) + (p.returncode,) for p in both]
     for out, err, code in done:
         assert code == 0 and out.strip() == str(home / "library"), err
+    said = sorted(line for _, err, _ in done for line in err.splitlines())
+    assert said.count(f"downloading the bibliography to {home / 'library'} ...") == 1    # one download, not two
+    assert set(said) <= {f"downloading the bibliography to {home / 'library'} ...",
+                         "waiting for another cdlbib to finish downloading the bibliography ..."}
     assert library.exists() and not (home / "library.partial").exists()
     assert git("status", "--porcelain", cwd=home / "library") == ""
     assert git("rev-parse", "HEAD", cwd=home / "library") == git("rev-parse", "master", cwd=upstream)
@@ -260,11 +268,10 @@ def test_resolve_managed_downloads_once(managed, tmp_path, monkeypatch):
     assert workspace.default().root == ws.root        # the pure lookup of the same process agrees
     assert workspace.origin_of()[0].root == ws.root and workspace.origin_of()[1] == Origin.MANAGED
     upstream.rename(upstream.with_name("moved away.git"))        # a fetch or clone would now fail
-    for forget in (False, True):
-        if forget:
-            workspace.select_library(None)            # as a new process: nothing remembered
-        again = workspace.resolve(managed=True, progress=said.append)
-        assert again.root == ws.root and len(said) == 1
+    again = workspace.resolve(managed=True, progress=said.append)
+    assert again.root == ws.root and len(said) == 1
+    fresh = subprocess.run([sys.executable, "-c", RESOLVER], cwd=empty, capture_output=True, text=True)   # a new process
+    assert (fresh.returncode, fresh.stdout.strip(), fresh.stderr) == (0, str(ws.root), "")
     assert sorted(p.name for p in home.iterdir()) == ["library", "lock", "state.json"]
 
 
@@ -327,6 +334,191 @@ def test_a_named_library_that_is_missing_is_an_error_not_a_download(managed, tmp
     assert not home.exists()
 
 
+def test_in_one_process_the_users_own_library_wins_again_after_a_fallback(managed, tmp_path, monkeypatch):
+    """A long-lived caller: the lookup is applied afresh on every call. Falling back to the
+    managed library once does not make it the library of the rest of the process."""
+    home, upstream = managed
+    root = (home / "library").resolve()
+    variable, here, option = (own_library(tmp_path / name) for name in ("by variable", "here", "by option"))
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    said = []
+
+    def now(expected, origin):
+        for lookup in (lambda: workspace.resolve(managed=True, progress=said.append), workspace.default,
+                       lambda: workspace.origin_of()[0], api.ensure_library):
+            assert lookup().root == expected
+        assert workspace.origin_of()[1] == origin and api.where().origin == origin
+
+    monkeypatch.chdir(empty)
+    now(root, Origin.MANAGED)
+    assert len(said) == 1 and said[0].startswith("downloading")
+    upstream.rename(upstream.with_name("moved away.git"))        # from here on a download would fail
+
+    monkeypatch.setenv("CDLBIB_LIBRARY", str(variable))
+    now(variable.resolve(), Origin.ENVIRONMENT)
+    monkeypatch.delenv("CDLBIB_LIBRARY")
+    monkeypatch.chdir(here)
+    now(here.resolve(), Origin.FOUND)
+    monkeypatch.chdir(empty)
+    now(root, Origin.MANAGED)                                    # managed again, and not downloaded again
+
+    workspace.select_library(str(option))                        # --library given after the fallback
+    now(option.resolve(), Origin.OPTION)
+    monkeypatch.chdir(here)
+    monkeypatch.setenv("CDLBIB_LIBRARY", str(variable))
+    now(option.resolve(), Origin.OPTION)                         # ... and it outranks the other two
+    workspace.select_library(None)
+    monkeypatch.delenv("CDLBIB_LIBRARY")
+    monkeypatch.chdir(empty)
+    now(root, Origin.MANAGED)
+    assert len(said) == 1
+
+
+def test_a_library_option_given_before_the_fallback_is_never_replaced_by_it(managed, tmp_path, monkeypatch):
+    home, _ = managed
+    option = own_library(tmp_path / "by option")
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    monkeypatch.chdir(empty)
+    workspace.select_library(str(option))
+    assert workspace.resolve(managed=True).root == option.resolve() and not home.exists()
+    workspace.select_library(None)
+    assert workspace.resolve(managed=True).root == (home / "library").resolve()
+    workspace.select_library(str(option))
+    assert workspace.resolve(managed=True).root == workspace.default().root == option.resolve()
+    assert workspace.origin_of()[1] == Origin.OPTION
+
+
+def test_default_finds_the_managed_library_only_after_a_fallback_in_this_process(managed, tmp_path, monkeypatch):
+    home, _ = managed
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    monkeypatch.chdir(empty)
+    library.download()                                           # it is on disk, but no front end fell back to it
+    with pytest.raises(WorkspaceNotFound, match="No library found"):
+        workspace.default()
+    ws = workspace.resolve(managed=True)
+    assert workspace.default().root == ws.root
+    monkeypatch.setenv("CDLBIB_HOME", str(tmp_path / "another data folder"))   # the fallback was to another place
+    with pytest.raises(WorkspaceNotFound, match="No library found"):
+        workspace.default()
+
+
+def test_a_managed_library_that_disappears_mid_process_is_said_truthfully(managed, tmp_path, monkeypatch):
+    home, _ = managed
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    monkeypatch.chdir(empty)
+    ws = workspace.resolve(managed=True)
+    (home / "library").rename(home / "moved by the user")
+    with pytest.raises(WorkspaceNotFound) as err:
+        workspace.default()
+    assert "--library points to" not in str(err.value)
+    assert str(err.value).startswith(f"The library cdlbib downloaded to {home / 'library'} is no longer there.")
+    said = []
+    assert workspace.resolve(managed=True, progress=said.append).root == ws.root and len(said) == 1   # downloaded anew
+    assert workspace.default().root == ws.root
+
+
+# --- failures that are reported, not raised raw --------------------------------------------------
+
+def test_a_state_file_that_cannot_be_written_does_not_fail_the_download(managed, tmp_path, monkeypatch):
+    home, _ = managed
+    (home / "state.json").mkdir(parents=True)                    # a folder where the file belongs: the write fails
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    monkeypatch.chdir(empty)
+    said = []
+    ws = workspace.resolve(managed=True, progress=said.append)
+    assert ws.root == (home / "library").resolve() and library.exists()
+    assert said == [f"downloading the bibliography to {home / 'library'} ...",
+                    f"note: the bibliography was downloaded, but the time could not be recorded in "
+                    f"{home / 'state.json'} (Is a directory)"]
+    assert library.read_state() == library.State(None, os.environ["CDLBIB_UPSTREAM"])
+    assert sorted(p.name for p in home.iterdir()) == ["library", "lock", "state.json"]   # no temporary file left
+
+
+def test_a_command_still_works_when_the_state_file_cannot_be_written(managed, tmp_path):
+    home, _ = managed
+    (home / "state.json").mkdir(parents=True)
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    out = cdlbib("verify", "--no-citations", cwd=empty)
+    assert out.returncode == 0 and "looks good!" in out.stdout, out.stdout + out.stderr
+    assert "Traceback" not in out.stderr and out.stderr.splitlines()[1] == (
+        f"note: the bibliography was downloaded, but the time could not be recorded in {home / 'state.json'} "
+        "(Is a directory)")
+    out = cdlbib("where", cwd=empty)
+    assert out.returncode == 0 and out.stdout.splitlines()[2] == "last update check: never", out.stdout + out.stderr
+
+
+def test_an_upstream_beginning_with_a_dash_is_not_a_git_option(managed, tmp_path, monkeypatch):
+    home, _ = managed
+    monkeypatch.chdir(tmp_path)
+    for value in ("--template=/nonexistent", "-u", "--upload-pack=touch pwned"):
+        monkeypatch.setenv("CDLBIB_UPSTREAM", value)
+        with pytest.raises(LibraryUnavailable, match="could not be downloaded from") as err:
+            library.download()
+        assert f"repository '{value}' does not exist" in str(err.value)      # git took it as a source, not an option
+        assert not (home / "library").exists() and not (home / "library.partial").exists()
+    assert not (tmp_path / "pwned").exists() and sorted(p.name for p in home.iterdir()) == ["lock"]
+
+
+def test_a_stalled_download_times_out_and_leaves_nothing(managed, tmp_path, monkeypatch):
+    """A real stall: git's ext transport runs `sleep` as the remote, which never answers.
+    Only the time allowed is changed (a module constant)."""
+    home, _ = managed
+    monkeypatch.setenv("GIT_ALLOW_PROTOCOL", "ext")
+    monkeypatch.setenv("CDLBIB_UPSTREAM", "ext::sleep 60")
+    monkeypatch.setattr(library, "CLONE_TIMEOUT", 2)
+    started = time.monotonic()
+    with pytest.raises(LibraryUnavailable) as err:
+        library.download()
+    assert time.monotonic() - started < 30
+    assert "the download timed out (it did not finish within 2 seconds)" in str(err.value)
+    assert not (home / "library").exists() and not (home / "library.partial").exists()
+    time.sleep(0.5)
+    left = subprocess.run(["pgrep", "-f", "^sleep 60$"], capture_output=True, text=True).stdout.split()
+    assert left == [], "the stalled transport was left running"
+    with open(home / "lock", "a") as lock:                       # and the lock is free again
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+
+def test_a_library_cloned_from_another_upstream_is_reported_and_left_alone(managed, tmp_path, monkeypatch):
+    home, upstream = managed
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    monkeypatch.chdir(empty)
+    root = library.download()
+    (root / "cdl.bib").write_text("% my edit\n", encoding="utf-8")
+    other = conftest.build_upstream(tmp_path / "other")
+    monkeypatch.setenv("CDLBIB_UPSTREAM", str(other))
+    for attempt in (library.download, lambda: workspace.resolve(managed=True), api.ensure_library):
+        with pytest.raises(LibraryUnavailable) as err:
+            attempt()
+        assert str(err.value) == (
+            f"{root} is a copy of {upstream}, but cdlbib is set to download from {other}. It was left as it is. "
+            "Move that folder away to download a fresh copy, or pass --library PATH to work in the copy you have.")
+    assert (root / "cdl.bib").read_text(encoding="utf-8") == "% my edit\n"
+    assert git("config", "--get", "remote.origin.url", cwd=root) == str(upstream)
+    out = cdlbib("verify", "--no-citations", cwd=empty)
+    assert out.returncode == 2 and "Traceback" not in out.stderr and "is a copy of" in out.stderr
+    assert sorted(p.name for p in home.iterdir()) == ["library", "lock", "state.json"]
+    # the same repository named another way is not 'another upstream'
+    monkeypatch.setenv("CDLBIB_UPSTREAM", str(upstream) + "/")
+    assert library.download() == root
+    link = tmp_path / "link to upstream"
+    link.symlink_to(upstream)
+    monkeypatch.setenv("CDLBIB_UPSTREAM", str(link))
+    assert library.download() == root
+    # moved away, as the message says: a fresh copy of the configured upstream is downloaded
+    monkeypatch.setenv("CDLBIB_UPSTREAM", str(other))
+    root.rename(home / "library kept by me")
+    assert library.download() == root and git("config", "--get", "remote.origin.url", cwd=root) == str(other)
+    assert (home / "library kept by me" / "cdl.bib").read_text(encoding="utf-8") == "% my edit\n"
+
+
 def test_origin_names_are_the_documented_strings():
     assert (Origin.NAMED, Origin.OPTION, Origin.ENVIRONMENT, Origin.FOUND, Origin.MANAGED) == (
         "named", "--library", "CDLBIB_LIBRARY", "found", "managed")
@@ -350,7 +542,6 @@ def test_api_ensure_library_and_where(managed, tmp_path, monkeypatch, capsys):
     assert after.last_check is not None
     own = own_library(tmp_path / "own")
     monkeypatch.setenv("CDLBIB_LIBRARY", str(own))
-    workspace.select_library(None)
     assert api.where() == api.Where(root=own.resolve(), origin="CDLBIB_LIBRARY", last_check=None)
     assert api.ensure_library().root == own.resolve()
     assert capsys.readouterr() == ("", "")                # the api never prints
