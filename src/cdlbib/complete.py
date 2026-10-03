@@ -19,7 +19,7 @@ The kinds of ``FieldChange``:
   - ``question``: the value is not settled and the proposal needs a decision
     (``needs_decision``), with the reason in ``Proposal.issues``. The proposed text holds
     the typed value when there is one, otherwise the candidate. A surname the source spells
-    differently, a title whose capitals come from a Title Case source, a lone first page
+    differently, a lone first page
     and a year the sources leave open are questions;
   - ``dropped``: a field outside the house list, or ``publisher`` on an article.
 
@@ -57,10 +57,6 @@ RETRACTION_WORDS = ("retract", "withdraw", "removal")
 # A page locator the pagination rules accept (correction_proposals.single_source_proposal).
 _PAGES = re.compile(r"[a-z]{0,3}\d+(?:-[a-z]{0,3}\d+(?:\.e\d+)?)?")
 _DATES = ("published-print", "published-online", "issued", "published")
-
-CAPITALS_QUESTION = ("title: capitalisation taken from a title-case source; proper nouns and acronyms "
-                     "cannot be told apart from ordinary words")
-
 
 # Non-ASCII letters are written in LaTeX. The library never mixes brace styles inside one
 # name, and the style it uses most is ``{\\"o}`` (counted in the frozen library fixture; the
@@ -288,12 +284,6 @@ def _source_titles(record, evidence):
     return [_text(t) for t in record.get("title") or []]
 
 
-# Words that no Title Case convention capitalises (APA, Chicago): they say nothing about
-# how a title is cased.
-_SMALL_WORDS = frozenset(
-    "a an the and but or for nor on at to by of in as via vs per up off from with into onto over between "
-    "through across during within without among after before under about against toward towards versus "
-    "beyond around upon than".split())
 # The banner some publishers put before the title of a retracted, withdrawn or removed
 # article, once or twice over. It is not part of the title (Crossref: the original record's
 # title is changed to carry it).
@@ -302,198 +292,6 @@ _BANNER_WORDS = (r"RETRACTED ARTICLE|Retracted Article|Retracted article|RETRACT
 _BANNER = re.compile(r"^(?:(?:\[(?:" + _BANNER_WORDS + r")\]\s*:?|(?:" + _BANNER_WORDS + r")\s*:)\s*)+")
 # A title that announces a retraction rather than carrying a banner.
 _NOTICE_TITLE = re.compile(r"^(?:Retraction|RETRACTION|Removal|Withdrawal)(?: [Nn]otice| NOTICE)?\s*:")
-_DASHES = ("-", "--", "---", "\u2013", "\u2014")
-# Abbreviations whose period does not end a sentence; a name may follow (Dr. Smith, St. Louis).
-_ABBREVIATIONS = frozenset("st dr mr mrs ms prof vs jr sr etc al cf no vol fig ca approx".split())
-
-
-def _small_words():
-    """Words that are never names: the formatter's own list (uncaps.txt), with the words no
-    Title Case convention capitalises (the formatter's list has no "a", "an", "at", "by")."""
-    from .helpers import uncaps
-    return _SMALL_WORDS | {word.lower() for word in uncaps}
-
-
-def _core(word):
-    """(leading punctuation, the word, trailing punctuation) of one space-separated token."""
-    match = re.match(r"^(\W*)(.*?)(\W*)$", word, flags=re.S)
-    return match[1], match[2], match[3]
-
-
-def _position(words, index):
-    """Where a word stands: "first"; after a "colon" (or a dash); after a sentence "end"
-    (``?``, ``!``, or a period that is not an initial's or a known abbreviation's); or in
-    "mid" sentence. After ``N.`` or ``Dr.`` or ``St.`` the sentence goes on (N. Burgess);
-    after ``H.M.`` or ``U.S.`` it may or may not, so that is read as an end."""
-    if index == 0:
-        return "first"
-    before = words[index - 1]
-    if before.endswith(":") or before in _DASHES or before.endswith(("---", "\u2014", "\u2013")):
-        return "colon"
-    if before[-1:] in "?!":
-        return "end"
-    if before[-1:] == ".":
-        token = before.strip("()[]{}\"'`")
-        if re.fullmatch(r"[A-Za-z]\.", token) or token[:-1].lower() in _ABBREVIATIONS:
-            return "mid"
-        return "end"
-    return "mid"
-
-
-def _capital_evidence(text):
-    """(words that could show the casing, how many of them are capitalised).
-
-    Counted: every part of a word (hyphens split it) that is not the start of a sentence, not
-    a small word, not a word the title formatter knows (caps.txt), and has no capital or
-    digit after its first letter (an acronym or ``neoHebbian`` is the same in either casing)."""
-    from .helpers import force_caps, remove_non_letters
-    known = {word.lower() for word in force_caps}
-    words = text.split(" ")
-    informative = capitalised = 0
-    for index, word in enumerate(words):
-        start = _position(words, index) != "mid"
-        for place, part in enumerate(re.split(r"[-\u2010\u2011/]", word)):
-            core = _core(part)[1]
-            if not core or not core[0].isalpha() or (start and place == 0):
-                continue
-            if core.lower() in _SMALL_WORDS or remove_non_letters(core.lower()) in known:
-                continue
-            if any(c.isupper() or c.isdigit() for c in core[1:]):
-                continue
-            if len(core) == 1 or (part.endswith(".") and core.lower() in _ABBREVIATIONS):
-                continue  # an initial (J.) or an abbreviation (St., Dr.): capital in any casing
-            informative += 1
-            capitalised += core[0].isupper()
-    return informative, capitalised
-
-
-def _title_case(text):
-    """Whether a title's capitals cannot be read as names: every word that could show the
-    casing is capitalised, or half of them or more are, or the title has four words or fewer
-    and one is. (A sentence-case title made only of names looks the same, and is asked about too.)"""
-    informative, capitalised = _capital_evidence(text)
-    return capitalised > 0 and (2 * capitalised >= informative or len(text.split(" ")) <= 4)
-
-
-def _without_compound_capitals(text):
-    """A Title Case title with its hyphenated ordinary words in lower case
-    ("Feature-Based" -> "feature-based"), so the title helper does not read their two
-    capitals as an acronym. A compound with an all-capital part (EEG-fMRI) is left alone."""
-    return re.sub(r"(?<![\w-])[A-Z][a-z]+(?:-[A-Za-z][a-z]+)+(?![\w-])", lambda m: m[0].lower(), text)
-
-
-def _protection(word):
-    """[(character, inside braces)] of one built word, and the word without its braces."""
-    out, depth = [], 0
-    for char in word:
-        if char == "{":
-            depth += 1
-        elif char == "}":
-            depth -= 1
-        else:
-            out.append((char, depth > 0))
-    return out
-
-
-def _as_the_source_has_it(built, source, position, elsewhere=None):
-    """One word of a sentence-case title: ``built`` is what the title helper made of it,
-    ``source`` what the source printed, ``elsewhere`` the same word in a second sentence-case
-    source when there is one. Returns (the word to write, a question or None).
-
-    In mid-sentence a capital is the source's own, a name or an acronym: it is kept, in
-    braces, exactly where the source has it, and a word is never given a capital because the
-    same word has one elsewhere. The word "A" and a word the source has in lower case that
-    the formatter's list spells with capitals (fmri -> {fMRI}) are the helper's.
-
-    After a colon, a dash or a sentence end, a capital may be a name or only the start of
-    the phrase. There:
-      - a small word (``_small_words``) is the helper's: lower case after a colon or dash
-        (the house rule), as printed after ``?``, ``!``, ``.``;
-      - a word on the formatter's capitals list, or with a capital or digit inside it, is
-        kept protected;
-      - any other capitalised word is written in lower case when a second sentence-case
-        source prints it in lower case (it is an ordinary word); otherwise it keeps the
-        source's capital, in braces, and is a question that shows both forms."""
-    marks = _protection(built)
-    have = [c for c, _ in marks if c.isalpha()]
-    want = [c for c in source if c.isalpha()]
-    if [c.lower() for c in have] != [c.lower() for c in want] or not want:
-        return built, None  # not the same letters (an escape, a removed period): the helper's word
-    core = _core(source)[1]
-    ordinary = core[:1].isupper() and not any(c.isupper() or c.isdigit() for c in core[1:])
-    listed = "{" in built and have != [c.lower() for c in have]  # the formatter's list knows the word
-    asked = None
-    if core == "A" and position != "colon":
-        return built, None
-    if position in ("colon", "end") and ordinary:
-        small = core.lower() in _small_words()
-        if small and position == "end":
-            return built, None
-        if listed:
-            return built, None
-        if small or (elsewhere is not None and _core(elsewhere)[1] == core.lower()):
-            text = iter(c.lower() for c in want)
-            return "".join(next(text) if c.isalpha() else c for c, _ in marks), None
-        asked = (f"title: {core!r} follows a colon, a dash or a sentence end; a name keeps its capital "
-                 f"({{{core}}}), an ordinary word is written {core.lower()!r}")
-        position = "mid"  # written as the source has it, protected, until the person decides
-    if "{" in built and core.isalpha() and core.islower() and len(core) > 1:
-        return built, None  # a one-letter word (k, m) is the source's own symbol, not the list's
-    open_start = position in ("first", "end")  # a sentence's first letter needs no braces
-    letters = [(c, inside) for c, inside in marks if c.isalpha()]
-    kept = have == want and all(
-        inside or not c.isupper() or (at == 0 and open_start) for at, (c, inside) in enumerate(letters))
-    if kept:
-        return built, asked
-    plain = iter(want)
-    text = "".join(next(plain) if c.isalpha() else c for c, _ in marks)
-    if open_start and ordinary:
-        return text, asked  # the sentence's first word, capitalised as the source has it
-    lead, body, trail = _core(text)
-    if position == "first" and core.islower() and core.isalpha():
-        asked = f"title: the source begins with the lower-case word {core!r}; it is kept as the source has it"
-    return lead + "{" + body + "}" + trail, asked
-
-
-def _sentence_title(text, typed, other=None):
-    """A sentence-case source title in house form, with the source's own capitals kept.
-    ``other`` is a second sentence-case source's text of the same title, when there is one.
-    Returns (title, questions); ``ValueError`` is the title helper's refusal."""
-    built = cp.source_title(text, typed or "").split(" ")
-    source = text.split(" ")
-    if len(built) != len(source):
-        raise ValueError("title: the built title does not line up with the source's words")
-    second = other.split(" ") if other and len(other.split(" ")) == len(source) else None
-    words, doubts = [], []
-    for index, (made, printed) in enumerate(zip(built, source)):
-        word, asked = _as_the_source_has_it(made, printed, _position(source, index),
-                                            second[index] if second else None)
-        words.append(word)
-        doubts += [asked] if asked else []
-    return " ".join(words), doubts
-
-
-def _capitals_set_aside(title_case, sentence):
-    """The words a source set aside as Title Case capitalises and the sentence-case source
-    used instead does not, when the first is not capitalised throughout: its capitals may be
-    names (``Recall in Boston schoolchildren`` beside ``Recall in boston schoolchildren``)."""
-    informative, capitalised = _capital_evidence(title_case)
-    one, two = title_case.split(" "), sentence.split(" ")
-    if len(one) != len(two) or capitalised == informative and len(one) > 4:
-        return []
-    small = _small_words()
-    return [_core(a)[1] for index, (a, b) in enumerate(zip(one, two))
-            if index and a != b and a.lower() == b.lower() and _core(a)[1][:1].isupper()
-            and _core(b)[1][:1].islower() and _core(a)[1].lower() not in small]
-
-
-def _same_letters(one, two):
-    """Whether two built titles have the same characters with the same capitals protected."""
-    first, second = _protection(one), _protection(two)
-    return ([c for c, _ in first] == [c for c, _ in second]
-            and [inside for c, inside in first if c.isupper()] == [inside for c, inside in second if c.isupper()])
-
-
 def _title(record, mapped, typed, evidence, unsupported):
     from .helpers import format_title
     if "title" not in evidence:
@@ -510,33 +308,10 @@ def _title(record, mapped, typed, evidence, unsupported):
         values["pubmed"] = second
         if cp.normalize_title_safe(second) != cp.normalize_title_safe(titles[0]):
             raise _Hold("title: sources disagree", values, disagreement=True)
-    # Capitals are only settled by a source that prints the title in sentence case: there
-    # a capital in mid-sentence is a name or an acronym. A Title Case title capitalises
-    # every word, so its capitals say nothing; the sentence-case candidate is a question.
-    sentence = [text for text in (titles[0], second) if text and not _title_case(text)]
-    try:
-        if sentence:
-            value, doubts = _sentence_title(sentence[0], typed, sentence[1] if len(sentence) == 2 else None)
-            if len(sentence) == 2:
-                other = _sentence_title(sentence[1], typed, sentence[0])[0]
-                if not _same_letters(value, other):  # no rule says whose capitals are right
-                    doubts = doubts + [f"title: the sources differ in capitals: crossref \"{titles[0]}\", "
-                                       f"pubmed \"{second}\""]
-            elif second:
-                # The other source was set aside as Title Case. A capital only it has may
-                # still be a name: asked about, never dropped without a word.
-                aside = second if sentence[0] == titles[0] else titles[0]
-                only = _capitals_set_aside(aside, sentence[0])
-                if only:
-                    doubts = doubts + ["title: one source capitalises " + ", ".join(repr(w) for w in only)
-                                       + f" and the other does not: crossref \"{titles[0]}\", pubmed \"{second}\""]
-        else:
-            value = cp.source_title(_without_compound_capitals(titles[0]), typed or "")
-            doubts = [CAPITALS_QUESTION]
-    except ValueError as exc:
-        raise _Hold(str(exc), values)
-    value, more = _written("title", value, format_title)
-    return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts + more)
+    # Formatting belongs to the same autofix helper used by check_bib.
+    value = format_title(titles[0])
+    value, doubts = _written("title", value, format_title)
+    return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts)
 
 
 # Lower-case particles that begin a family name in the library's own bylines.

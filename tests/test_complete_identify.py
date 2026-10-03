@@ -34,8 +34,7 @@ ARXIV = json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text(enco
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
 CONTACT = "valid@example.org"  # never sent anywhere: the transport refuses every request
-CAPITALS = ("title: capitalisation taken from a title-case source; proper nouns and acronyms cannot be told "
-            "apart from ordinary words")
+
 ZOLLER_TITLE = "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)"
 
 
@@ -371,7 +370,7 @@ def test_a_preprint_doi_whose_record_names_the_published_article_offers_the_arti
     assert proposal.proposed_raw == library_entry("SilvEtal19")
     assert proposal.issues == [
         "The DOI 10.1101/511782 is a preprint; its record names 10.1523/jneurosci.0360-19.2019 as the published "
-        "version, which is proposed here (house rule: cite the published version).", CAPITALS]
+        "version, which is proposed here (house rule: cite the published version)."]
     assert proposal.needs_decision and proposal.status == "metadata_verified"
     # The DOI the person gave is the given value of a question; a bare query has no entry
     # text to keep it in, so the text offers the published DOI.
@@ -472,12 +471,12 @@ def test_the_house_form_is_the_one_most_arxiv_entries_of_the_library_have():
     assert sum("volume" in f for f in arxiv) == 37 and sum("pages" in f for f in arxiv) == 4
 
 
-def test_an_arxiv_title_printed_in_title_case_is_a_question(client):
+def test_an_arxiv_title_uses_existing_autofix(client):
     proposal = propose(client, "https://arxiv.org/abs/1901.10444")
     assert proposal.proposed_raw == library_entry("WietKiel19")
-    assert proposal.issues == [CAPITALS] and proposal.needs_decision and proposal.status == "metadata_verified"
+    assert proposal.issues == [] and not proposal.needs_decision and proposal.status == "metadata_verified"
     title = next(c for c in proposal.changes if c.field == "title")
-    assert (title.kind, title.source) == ("question", "arxiv+datacite")
+    assert (title.kind, title.source) == ("filled", "arxiv+datacite")
 
 
 def test_an_arxiv_version_that_is_named_is_cited_as_that_version(client):
@@ -496,7 +495,7 @@ def test_a_withdrawn_arxiv_preprint_needs_a_decision(client):
     assert proposal.needs_decision and proposal.status == "needs_review"
     assert proposal.issues == [
         "arXiv:1805.02682 carries a withdrawal, retraction or correction notice; it is not added without a decision",
-        CAPITALS, "arXiv unresolved: arXiv withdrawal or notice requires adjudication"]
+        "arXiv unresolved: arXiv withdrawal or notice requires adjudication"]
     assert proposal.proposed_raw.startswith("@article{CannEtal18,\n\tAuthor = {J P Canning and E E Ingram and ")
 
 
@@ -596,16 +595,14 @@ def test_a_record_that_is_a_correction_notice_is_refused_as_a_proposal(client):
 
 
 def test_checks_that_cannot_run_are_recorded_and_need_a_decision(client):
-    # A record whose title is printed in capitals: the builder leaves the title out, and the
-    # format checker raises on an entry without a title. The verifier's lookup of this DOI is
-    # not among the saved responses, so the source does not answer either.
+    # All-capitals text uses existing autofix. The verification source is unavailable
+    # in the saved offline responses, so that check still needs a decision.
     record = RECORDS["all-capitals-title"]["crossref"]["record"]
     built = complete.build({"doi": record["DOI"]}, record)
-    assert "Title" not in built.proposed_raw and built.needs_decision and not built.complete
+    assert "Title" in built.proposed_raw and not built.needs_decision and built.complete
     proposal = complete.checked(built, client)
     assert proposal is built and proposal.needs_decision and proposal.status == "provider_error"
     assert proposal.issues == [
-        "The format check could not run on the proposed entry (IndexError: string index out of range)",
         "The proposed entry could not be verified: a source did not answer (offline: request to api.crossref.org "
         "refused)"]
 
@@ -754,7 +751,7 @@ def test_a_conference_abstract_given_by_doi_is_built_and_needs_a_decision(client
     proposal = propose(client, "10.1249/00005768-198704001-00264")
     assert proposal.proposed_raw.startswith("@article{FronEtal87,\n\tAuthor = {W R Frontera and C N Meredith and ")
     assert proposal.needs_decision and ABSTRACT in proposal.issues
-    assert proposal.status == "needs_review" and proposal.notes == [FIRST_CHECK]
+    assert proposal.status == "metadata_verified" and proposal.notes == []
     found = complete.identify(complete.Query.parse("10.1249/00005768-198704001-00264"), client)
     assert found.record["DOI"] == "10.1249/00005768-198704001-00264" and found.decision == ABSTRACT
     assert client.requests == 0
@@ -875,8 +872,8 @@ def test_the_callers_client_is_not_changed_by_a_pubmed_lookup(tmp_path):
 
 def test_an_arxiv_proposal_says_whether_it_is_complete(client):
     assert propose(client, "2208.02957").complete
-    questioned = propose(client, "https://arxiv.org/abs/1901.10444")  # the title is a question
-    assert not questioned.complete and questioned.needs_decision
+    formatted = propose(client, "https://arxiv.org/abs/1901.10444")
+    assert formatted.complete and not formatted.needs_decision
 
 
 # --- fix round 2 --------------------------------------------------------------------------------
@@ -891,7 +888,7 @@ def test_known_gap_a_journal_of_vision_meeting_abstract_is_built_as_an_article(c
     assert vss["container-title"] == ["Journal of Vision"] and vss["page"] == "782"
     proposal = propose(client, "10.1167/15.12.782")
     assert proposal.proposed_raw == library_entry("MartJohn15")
-    assert proposal.status == "metadata_verified" and proposal.issues == [CAPITALS]
+    assert proposal.status == "metadata_verified" and proposal.issues == []
     assert not any("abstract" in issue for issue in proposal.issues)
 
 

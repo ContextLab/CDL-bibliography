@@ -22,8 +22,7 @@ RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text
 RECORDS.update(json.loads((ROOT / "tests/fixtures/completion/more_records.json").read_text(encoding="utf-8")))
 # One record fetched for these tests (see the fixture README): an article that was retracted.
 RETRACTED = json.loads((ROOT / "tests/fixtures/completion/retracted-article.json").read_text(encoding="utf-8"))
-CAPITALS = ("title: capitalisation taken from a title-case source; proper nouns and acronyms cannot be told "
-            "apart from ordinary words")
+
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
 
 # The exact text of each work's entry in the frozen library fixture.
@@ -248,7 +247,7 @@ def test_render_with_no_fields_is_a_bare_entry():
 # --- a DOI alone ----------------------------------------------------------------------------
 
 # Works whose built entry is the library's entry, byte for byte.
-SAME_AS_LIBRARY = ["MoheEtal14", "Zoll90", "Game62", "KoelEtal16", "AlyTurk16", "ChenEtal21"]
+SAME_AS_LIBRARY = ["MoheEtal14", "Zoll90", "Game62", "AlyTurk16", "ChenEtal21"]
 
 
 @pytest.mark.parametrize("key", SAME_AS_LIBRARY)
@@ -291,65 +290,26 @@ def test_without_pubmed_every_value_is_crossrefs():
     assert {c.source for c in proposal.changes if c.kind == "filled"} == {"crossref"}
 
 
-# Crossref prints these three titles in Title Case ("Inhibition Drives Early Feature-Based
-# Attention"). With no sentence-case source, which capitals are names cannot be known: the
-# title is built in sentence case and the person is asked to check it.
-@pytest.mark.parametrize("key", ["MoheEtal14", "FiedGloc12", "PigeEtal12"])
-def test_a_title_known_only_in_title_case_is_a_question_about_its_capitals(key):
-    record, _ = sources(key)
-    assert sum(word[0].isupper() for word in record["title"][0].split()) >= 4
-    library = fields_of(LIBRARY[key])
-    proposal = complete.build({"doi": library["doi"]}, record)
-    assert change(proposal, "title") == complete.FieldChange("title", None, library["title"], "crossref", "question")
-    assert CAPITALS in proposal.issues
-    assert proposal.needs_decision is True
-    assert "\tTitle = {" + library["title"] + "},\n" in proposal.proposed_raw
-    assert "{Feature-Based}" not in proposal.proposed_raw and "{Eye-Tracking}" not in proposal.proposed_raw
-    assert "{Meta-Analysis}" not in proposal.proposed_raw
+@pytest.mark.parametrize("key", ["MoheEtal14", "FiedGloc12", "PigeEtal12", "sentence-case-proper-noun", "KoelEtal16", "all-capitals-title", "MeyeEtal88"])
+def test_saved_source_titles_use_existing_autofix(key):
+    from cdlbib.helpers import format_title
+    record, mapped = sources(key)
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    expected = format_title(record["title"][0])
+    assert change(proposal, "title").proposed == complete.latex_text(expected)
+    assert change(proposal, "title").kind == "filled"
 
 
-def test_a_typed_title_is_not_replaced_by_a_title_case_sources_capitals():
-    record, _ = sources("MoheEtal14")
-    typed = {"doi": "10.1177/0956797613511257", "title": "Inhibition drives feature-based attention"}
-    proposal = complete.build(typed, record)
-    assert change(proposal, "title") == complete.FieldChange(
-        "title", "Inhibition drives feature-based attention",
-        "Inhibition drives early feature-based attention", "crossref", "question")
-    assert "\tTitle = {Inhibition drives feature-based attention},\n" in proposal.proposed_raw
-    assert proposal.needs_decision is True and CAPITALS in proposal.issues
-
-
-def test_a_sentence_case_source_keeps_the_names_it_capitalises():
-    record, mapped = sources("sentence-case-proper-noun")
-    assert record["title"] == ["Convolution and matrix systems: A reply to Pike."] and mapped is None
-    proposal = complete.build({"doi": "10.1037/0033-295X.92.1.130"}, record)
-    # Not in the library. The name is braced as the house style braces a capitalised word.
-    assert change(proposal, "title") == complete.FieldChange(
-        "title", None, "Convolution and matrix systems: a reply to {Pike}", "crossref", "filled")
-    assert proposal.needs_decision is False and proposal.issues == []
-    assert proposal.proposed_raw == (
-        "@article{Murd85,\n"
-        "\tAuthor = {B B Murdock},\n"
-        "\tDoi = {10.1037/0033-295X.92.1.130},\n"
-        "\tJournal = {Psychological Review},\n"
-        "\tNumber = {1},\n"
-        "\tPages = {130--132},\n"
-        "\tTitle = {Convolution and matrix systems: a reply to {Pike}},\n"
-        "\tVolume = {92},\n"
-        "\tYear = {1985}}")
-
-
-def test_a_sentence_case_source_keeps_its_acronym_and_its_product_names():
-    record, _ = sources("KoelEtal16")
-    proposal = complete.build({"doi": "10.1038/srep19741"}, record)
-    assert change(proposal, "title") == complete.FieldChange(
-        "title", None, fields_of(LIBRARY["KoelEtal16"])["title"], "crossref", "filled")
-    assert "a statistical {MMN} reflects" in proposal.proposed_raw
-    assert proposal.proposed_raw == LIBRARY["KoelEtal16"] and proposal.needs_decision is False
-    scipy = deepcopy(RECORDS["corporate-author"]["crossref"]["record"])
-    built = complete.build({"doi": "10.1038/s41592-019-0686-2"}, scipy)
-    assert change(built, "title") == complete.FieldChange(
-        "title", None, fields_of(LIBRARY["VirtEtal20"])["title"], "crossref", "filled")
+@pytest.mark.parametrize("key", ["MoheEtal14", "Zoll90", "Game62", "FiedGloc12", "Schr03"])
+def test_saved_source_author_and_journal_use_existing_helpers(key):
+    from cdlbib import correction_proposals as cp
+    from cdlbib.helpers import reformat_author, format_journal_name
+    record, mapped = sources(key)
+    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
+    author = complete.latex_text(cp.source_authors(record))
+    assert change(proposal, "author").proposed == reformat_author(author)
+    journal = complete.latex_text(format_journal_name(cp.journal_text(record["container-title"][0])))
+    assert change(proposal, "journal").proposed == format_journal_name(journal)
 
 
 def test_the_print_year_is_chosen_when_the_online_date_is_a_later_digitisation():
@@ -459,11 +419,11 @@ def test_a_corporate_author_leaves_the_byline_unfilled_with_the_helpers_reason()
         "E Tsoy and J Neuhaus and C Fonseca and A Wolf and Y Cobigo and H Rosen and J H Kramer},\n", "")
     assert "Author" not in proposal.proposed_raw
     assert proposal.key_typed == "LindEtal21" and proposal.key_proposed is None
-    # Crossref and PubMed both print this title in Title Case, so its capitals are a question.
+    # Capitalization is handled by the existing formatter.
     assert mapped["title"] == record["title"] == [
         "Worth the Wait: Delayed Recall after 1 Week Predicts Cognitive and Medial Temporal Lobe "
         "Trajectories in Older Adults"]
-    assert change(proposal, "title").kind == "question" and proposal.issues == [CAPITALS]
+    assert change(proposal, "title").kind == "filled" and proposal.issues == []
     assert proposal.needs_decision is True
 
 
@@ -490,25 +450,6 @@ def test_print_year_with_pubmed_agreeing_is_chosen_and_without_it_is_left_open()
          "crossref issued": "2020", "crossref published": "2020"})
     assert "Year" not in alone.proposed_raw
 
-
-def test_an_all_capitals_title_is_left_unfilled_with_the_helpers_reason():
-    record, mapped = sources("all-capitals-title")
-    assert record["title"] == ["BRAIN WORK AND BRAIN IMAGING"]
-    proposal = complete.build({"doi": "10.1146/annurev.neuro.29.051605.112819"}, record, mapped)
-    assert unfilled(proposal, "title") == complete.Unfilled(
-        "title", "Possible numbered heading or all-capital source typography",
-        {"crossref": "BRAIN WORK AND BRAIN IMAGING"})
-    # Not in the library: every other value is the saved Crossref record's, in house form.
-    assert proposal.proposed_raw == (
-        "@article{RaicMint06,\n"
-        "\tAuthor = {M E Raichle and M A Mintun},\n"
-        "\tDoi = {10.1146/annurev.neuro.29.051605.112819},\n"
-        "\tJournal = {Annual Review of Neuroscience},\n"
-        "\tNumber = {1},\n"
-        "\tPages = {449--476},\n"
-        "\tVolume = {29},\n"
-        "\tYear = {2006}}")
-    assert [u.field for u in proposal.unfilled] == ["title"]
 
 
 def test_a_first_page_from_one_source_and_the_range_from_the_other_gives_the_range():
@@ -602,14 +543,14 @@ def test_a_corrected_article_is_built_and_says_that_a_correction_exists():
         "\tJournal = {Nature Methods},\n"
         "\tNumber = {3},\n"
         "\tPages = {261--272},\n"
-        "\tTitle = {{SciPy} 1.0: fundamental algorithms for scientific computing in {Python}},\n"
+        "\tTitle = {Scipy 1.0: fundamental algorithms for scientific computing in {Python}},\n"
         "\tVolume = {17},\n"
         "\tYear = {2020}}")
 
 
 # --- what the person typed --------------------------------------------------------------------
 
-WITH_DOI = ["MoheEtal14", "Zoll90", "Game62", "KoelEtal16", "AlyTurk16", "ChenEtal21",
+WITH_DOI = ["MoheEtal14", "Zoll90", "Game62", "AlyTurk16", "ChenEtal21",
             "FiedGloc12", "PigeEtal12", "LindEtal21"]
 
 
@@ -937,10 +878,10 @@ def test_complete_says_whether_the_entry_has_its_key_and_required_fields():
     record, _ = sources("LindEtal21")
     year = complete.build(fields_of(LIBRARY["LindEtal21"]) | {"year": ""}, record)
     assert "Year" not in year.proposed_raw and year.complete is False and year.needs_decision is True
-    # A required field that is a question.
+    # A single source suffices, including a title printed in Title Case.
     record, _ = sources("MoheEtal14")
     title = complete.build({"doi": "10.1177/0956797613511257"}, record)
-    assert change(title, "title").kind == "question" and title.complete is False
+    assert change(title, "title").kind == "filled" and title.complete is True
     # Pages are not required: an entry without them is complete.
     record, _ = sources("AlyTurk16")
     pages = complete.build({"doi": "10.1073/pnas.1518931113"}, record)
@@ -998,20 +939,6 @@ def test_a_family_name_the_source_may_have_split_wrongly_is_a_question():
     assert "S J van der Walt" in author.proposed and "M H van Kerkwijk" in author.proposed
 
 
-def test_two_sentence_case_sources_that_differ_in_capitals_are_a_question():
-    # Game62's saved records, both in sentence case, with one word given a capital in PubMed's.
-    record, mapped = sources("Game62")
-    mapped["title"] = [mapped["title"][0].replace("factorial", "Factorial")]
-    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
-    assert change(proposal, "title") == complete.FieldChange(
-        "title", None, "A factorial analysis of verbal learning tasks", "crossref+pubmed", "question")
-    assert proposal.issues == [
-        'title: the sources differ in capitals: crossref "A factorial analysis of verbal learning tasks.", '
-        'pubmed "A Factorial analysis of verbal learning tasks"']
-    same, mapped = sources("Game62")
-    assert change(complete.build({"doi": same["DOI"]}, same, mapped), "title").kind == "filled"
-
-
 @pytest.mark.parametrize("corroborating", [
     {}, {"DOI": "10.1177/0956797613511257", "title": ["x"]},
     {"DOI": "10.1177/0956797613511257", "title": ["x"], "published": {}, "author": []},
@@ -1035,92 +962,6 @@ def test_reasons_are_plain_words_when_a_part_of_the_record_is_missing():
 
 
 # --- fix round 3 ----------------------------------------------------------------------------------
-
-AFTER = "title: {0!r} follows a colon, a dash or a sentence end; a name keeps its capital ({{{0}}}), an ordinary word is written {1!r}"
-
-
-def test_a_capital_after_a_colon_is_asked_about_unless_a_second_source_shows_an_ordinary_word():
-    # MeyeEtal88: Crossref prints "…action: Mental processes…", PubMed "…action: mental processes…".
-    record, mapped = sources("MeyeEtal88")
-    assert record["title"] == ["The dynamics of cognition and action: Mental processes inferred from "
-                               "speed-accuracy decomposition."]
-    assert mapped["title"] == ["The dynamics of cognition and action: mental processes inferred from "
-                               "speed-accuracy decomposition"]
-    library = fields_of(LIBRARY["MeyeEtal88"])
-    both = complete.build({"doi": library["doi"]}, record, mapped)
-    assert change(both, "title") == complete.FieldChange("title", None, library["title"], "crossref+pubmed", "filled")
-    alone = complete.build({"doi": library["doi"]}, record)
-    assert change(alone, "title") == complete.FieldChange(
-        "title", None, library["title"].replace(": mental", ": {Mental}"), "crossref", "question")
-    assert AFTER.format("Mental", "mental") in alone.issues
-    assert alone.needs_decision is True and alone.complete is False
-
-
-@pytest.mark.parametrize("title, built, word", [
-    ("Speech perception in tonal languages: Mandarin speakers' categorical perception of pitch contours",
-     "Speech perception in tonal languages: {Mandarin} speakers' categorical perception of pitch contours", "Mandarin"),
-    ("Word frequency: Zipf's law revisited", "Word frequency: {Zipf's} law revisited", "Zipf's"),
-    ("Number sense \u2014 Weber and beyond", "Number sense --- {Weber} and beyond", "Weber"),
-    ("Does language shape thought? Mandarin and English speakers' conceptions of time",
-     "Does language shape thought? {Mandarin} and {English} speakers' conceptions of time", "Mandarin"),
-])
-def test_a_name_after_a_colon_a_dash_or_a_question_mark_is_never_lowered_without_a_question(title, built, word):
-    # The saved MoheEtal14 records with the title replaced, in both sources (the reviewer's cases;
-    # the last is the library's Boro01).
-    record, mapped = sources("MoheEtal14")
-    record["title"], mapped["title"] = [title], [title]
-    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
-    assert change(proposal, "title") == complete.FieldChange("title", None, built, "crossref+pubmed", "question")
-    assert AFTER.format(word, word.lower()) in proposal.issues
-    assert proposal.complete is False and proposal.needs_decision is True
-
-
-def test_small_words_and_listed_names_after_a_colon_or_dash_are_not_asked_about():
-    for title, built in (
-            ("Sleep and memory: A review", "Sleep and memory: a review"),
-            ("Sleep and memory \u2014 A review", "Sleep and memory --- a review"),
-            ("Sleep and memory: The case of rats", "Sleep and memory: the case of rats"),
-            ("Decision making: Bayesian approaches", "Decision making: {Bayesian} approaches"),
-            ("Free recall: fMRI evidence", "Free recall: {fMRI} evidence")):
-        record, _ = sources("Game62")
-        record["title"] = [title]
-        proposal = complete.build({"doi": record["DOI"]}, record)
-        assert change(proposal, "title") == complete.FieldChange("title", None, built, "crossref", "filled"), title
-
-
-def test_a_period_after_an_initial_or_an_abbreviation_does_not_end_the_sentence():
-    record, _ = sources("Game62")
-    record["title"] = ["A comment on the model of J. O'Keefe and N. Burgess in the view from St. Louis"]
-    proposal = complete.build({"doi": record["DOI"]}, record)
-    assert change(proposal, "title") == complete.FieldChange(
-        "title", None, "A comment on the model of {J}. {O'Keefe} and {N}. {Burgess} in the view from {St}. {Louis}",
-        "crossref", "filled")
-    assert complete._position("Memory in H.M. Lessons".split(" "), 3) == "end"  # may be a sentence end: asked
-    assert complete._position("reply to Dr. Smith".split(" "), 3) == "mid"
-    assert complete._position("Recall vs. Recognition".split(" "), 2) == "mid"
-    assert complete._position("Is it so? Maybe".split(" "), 3) == "end"
-
-
-@pytest.mark.parametrize("crossref, pubmed", [
-    ("Recall in boston schoolchildren", "Recall in Boston schoolchildren"),
-    ("Recall in Boston schoolchildren", "Recall in boston schoolchildren"),
-])
-def test_a_capital_only_one_source_has_is_never_dropped_without_a_question(crossref, pubmed):
-    # Game62's saved records with the title replaced: the one with the capital is judged
-    # Title Case (four words) and set aside.
-    record, mapped = sources("Game62")
-    record["title"], mapped["title"] = [crossref], [pubmed]
-    proposal = complete.build({"doi": record["DOI"]}, record, mapped)
-    assert change(proposal, "title").kind == "question"
-    assert proposal.issues == [f"title: one source capitalises 'Boston' and the other does not: crossref "
-                               f"\"{crossref}\", pubmed \"{pubmed}\""]
-    assert proposal.needs_decision is True
-    # A source capitalised throughout says nothing about names: the sentence-case one is used.
-    record["title"], mapped["title"] = ["Recall In Boston Schoolchildren Today"], ["Recall in Boston schoolchildren today"]
-    settled = complete.build({"doi": record["DOI"]}, record, mapped)
-    assert change(settled, "title") == complete.FieldChange(
-        "title", None, "Recall in {Boston} schoolchildren today", "crossref+pubmed", "filled")
-
 
 def test_sources_that_disagree_are_an_issue_and_need_a_decision():
     # Real: Crossref spells the last author of MeyeEtal88 "Kounois", PubMed "Kounios".
