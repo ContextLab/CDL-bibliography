@@ -141,3 +141,15 @@ def test_suffix_beyond_z_and_existing_gap(tmp_path):
     assert complete.plan_key(ws, fields('New paper')).key == 'SmitEtal20aa'
     ws = library(tmp_path, [('SmitEtal20a', fields()), ('SmitEtal20c', fields('Second paper'))])
     assert complete.plan_key(ws, fields('Third paper')).key == 'SmitEtal20b'
+
+@pytest.mark.parametrize('author', [None, ''])
+def test_editor_only_book_shares_article_key_base(tmp_path, author):
+    ws = library(tmp_path)
+    book = {'editor': 'A. Smith', 'title': 'Edited book', 'year': '2020'}
+    if author is not None:
+        book['author'] = author
+    ws.bib.write_text(complete.render('book', 'Smit20', book))
+    before = ws.bib.read_bytes()
+    plan = complete.plan_key(ws, fields(author='A. Smith'))
+    assert (plan.key, plan.renames) == ('Smit20b', {'Smit20': 'Smit20a'})
+    assert ws.bib.read_bytes() == before

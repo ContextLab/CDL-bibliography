@@ -2149,11 +2149,11 @@ def plan_key(ws, fields, batch=()):
 
 
 def _key_plan(fields, entries):
-    from .helpers import authors2key, check_key_suffixes
+    from .helpers import authors2key, check_key_suffixes, key_names
     base = authors2key(fields['author'], fields['year'])
     related = {}
-    for key, data in entries.items():
-        if data.get('author') and data.get('year') and authors2key(data['author'], data['year']) == base:
+    for (key, data), names in zip(entries.items(), key_names(entries)):
+        if names.strip() and data.get('year') and authors2key(names, data['year']) == base:
             related[key] = dict(data, ID=key)
     marker = '__completion_new__'
     while marker in related:
