@@ -5,6 +5,11 @@ This is the design reference for `cdlbib crossref` and the `verify` gate. The
 [verification/](../verification/README.md) record how the library was brought to its
 current state; sections below that describe a dated pilot or measurement say so.
 
+The command downloads a managed library when no bibliography was named or found.
+Run `cdlbib where` to find it; see [Installation](../README.md#installation) for
+locations, lookup order and updates. An existing clone is used without being updated
+by the tool. Explicit bibliography arguments select that file instead.
+
 ## Current state
 
 As of September 30, 2026, `cdlbib crossref status cdl.bib` (after restoring

@@ -28,12 +28,9 @@ recording reviews and for sending changes.
 python -m pip install cdlbib
 ```
 
-The package does not contain `cdl.bib`, so it is used inside a clone of the repository:
-
-```bash
-git clone https://github.com/ContextLab/CDL-bibliography.git
-cd CDL-bibliography
-```
+The tool downloads the bibliography on first use and checks for updates when commands
+run. See the [README](https://github.com/ContextLab/CDL-bibliography/blob/master/README.md#installation)
+for library locations and usage.
 
 ## Documentation
 

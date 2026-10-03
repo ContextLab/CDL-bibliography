@@ -3,6 +3,7 @@
 Step-by-step walks through the `cdlbib` command: what to type and what you will see. The
 [README](../README.md) describes every command; `cdlbib COMMAND --help` lists its options.
 
+- [Add a paper](#add-a-paper)
 - [Check the library](#check-the-library)
 - [Contribute a pull request from the command line](#contribute-a-pull-request-from-the-command-line)
 - [Setting an API key](#setting-an-api-key)
@@ -10,32 +11,84 @@ Step-by-step walks through the `cdlbib` command: what to type and what you will 
 The output shown was recorded with `cdlbib 2.0.0` on October 2, 2026. Progress bars are
 left out. Counts and dates will differ when you run the commands.
 
+## Add a paper
+
+After [installation](../README.md#installation), set your contact address and look
+up a paper:
+
+```bash
+export CROSSREF_MAILTO='you@example.org'
+cdlbib add 10.1002/tea.3660271011
+```
+
+The command proposes Zoller’s 1990 journal article. If it is already in your
+library, the duplicate message gives its key and another copy is not added.
+In a library without it, review the fields, sources and verification result before
+answering `a`. Use `e` to edit first, `s` to skip, or `q` to stop. A capital `A`
+accepts remaining complete proposals that need no decision.
+
+### Recorded add/edit session
+
+The recording uses an empty scratch library and saved source responses. The entry
+is verified against those records, edited to omit the optional issue number,
+checked again, then accepted:
+
+```text
+Verification: metadata_verified
+[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
+Your choice [a/e/s/A/q]: e
+Saved entry.bib with the optional issue number omitted.
+```
+
+After the edit, the field display includes:
+
+```text
+number: 10 -> None (source: user edit)
+Unfilled number: Removed in editor
+Verification: metadata_verified
+[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
+Your choice [a/e/s/A/q]: a
+Added: Zoll90
+```
+
+The [full terminal transcript](media/add-session.txt) includes both entry displays
+and the retained sources of the unchanged fields.
+
+![Recorded cdlbib add session: review, edit, recheck and accept Zoll90](media/add.gif)
+
+To regenerate this recording from a development checkout, run
+`.venv/bin/python scripts/record_add.py --output-dir docs/media`. The recorder
+creates an isolated library and cache from the saved responses.
+
+See [the README](../README.md#add) for input forms, editor settings, supported
+types, name questions and key renames. Accepting an entry writes the bibliography;
+run `cdlbib verify` afterwards, then `cdlbib send` when ready to contribute it.
+
 ## Check the library
 
 ### 1. Install
 
-`cdlbib` needs Python 3.11 or later. Clone the repository and install the command from the
-clone, in a virtual environment:
+`cdlbib` needs Python 3.11 or later:
 
 ```bash
-git clone https://github.com/ContextLab/CDL-bibliography.git
-cd CDL-bibliography
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install .
+python -m pip install cdlbib
 cdlbib --version
 ```
 
-```
+```text
 cdlbib 2.0.0
 ```
 
-The remaining steps are run inside the clone. From another folder, add
-`--library PATH` (the folder containing `cdl.bib`) after `cdlbib`, or set `CDLBIB_LIBRARY`.
+No clone is needed. The first command that needs the library downloads it. Run
+`cdlbib where` to find the copy to edit; [Installation](../README.md#installation)
+lists the locations and lookup order. If you already work in a clone, that copy is
+used and never updated by the tool. For the remaining steps, change your terminal
+directory to the folder printed by `cdlbib where`. This makes the relative paths
+`cdl.bib` and `verification/baseline.jsonl.gz` refer to that library.
 
 ### 2. Check the formatting
 
-This check works offline.
+After the first download, this check can run offline; an update-check failure prints a notice and uses the saved copy.
 
 ```bash
 cdlbib verify --no-citations
@@ -86,6 +139,12 @@ address. Set yours, then run `verify` without `--no-citations`:
 export CROSSREF_MAILTO='you@example.org'
 cdlbib verify
 ```
+
+`verify` offers completion for new or changed entries before checking the final
+file. Use the same accept/edit/skip choices as `add`; `--no-complete` skips the
+offers while retaining the format and citation checks. `verify --no-citations`
+skips offers and works offline after the library has been downloaded. Autofix or
+output-copy mode also skips offers; review the copy, then run normal `verify` on it.
 
 With no new or edited entries:
 
@@ -189,7 +248,7 @@ temporary copy of the library outside the repository.
 ## Contribute a pull request from the command line
 
 `cdlbib send` checks your change and sends it as a pull request from your own fork. You
-do not need write access to the repository you cloned.
+do not need write access to the upstream repository.
 
 ### 1. Log in to GitHub
 
@@ -205,7 +264,7 @@ account for the fork and the pull request.
 
 ### 2. Edit `cdl.bib`
 
-Start inside your clone, with `cdlbib` installed (step 1 of
+Start with `cdlbib` installed (step 1 of
 [Check the library](#check-the-library)) and `CROSSREF_MAILTO` set (step 4). Add or
 correct entries in `cdl.bib`.
 
@@ -234,17 +293,9 @@ not sent: fix the format errors and resolve every new/edited entry first (see `c
 If the checks pass it prints `checks passed; generating commit message...` and the list
 of added, removed and modified entries.
 
-If your GitHub account has no fork of the repository yet, `send` asks, with your
-login in place of `you`:
-
-```
-@you has no fork of ContextLab/CDL-bibliography. Create one now? [y/N]:
-```
-
-Answer `y` to create the fork. With any other answer nothing is sent, and `send`
-prints the command that creates the fork by hand
-(`gh repo fork ContextLab/CDL-bibliography --clone=false`). `cdlbib --yes send ...`
-creates the fork without asking.
+If your GitHub account has no fork of the repository yet, `send` prints a notice
+and creates one. Run `cdlbib --ask send` to be asked first. With `--ask`, an answer
+of `n` or a run without a terminal sends nothing and prints the manual fork command.
 
 `send` then commits your changes to `cdl.bib` and to files under `verification/` on a
 new branch, pushes the branch to your fork, and opens the pull request. Other files with
@@ -320,10 +371,10 @@ No API key found. Store it in the system keychain as 'dartmouth-chat-api-key' (a
 ```
 
 These two commands also read PDFs, which needs the `pypdf` package. Install it with
-`python -m pip install ".[research]"`. If it is missing, the command asks before
-installing it (`cdlbib --yes ...` installs without asking). Without a terminal, it prints
-the command to run by hand:
+`python -m pip install "cdlbib[research]"`. If it is missing, the command prints a
+notice and installs it. Use `cdlbib --ask crossref research ...` to be asked first;
+without a terminal that option leaves the package uninstalled and prints:
 
-```
+```text
 Reading PDF files needs the package 'pypdf' (install: pip install 'pypdf<7,>=6.0')
 ```

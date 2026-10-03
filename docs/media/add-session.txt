@@ -1,0 +1,48 @@
+Entry: Zoll90
+Typed                                                                   | Proposed
+(no typed entry)                                                        | @article{Zoll90,
+                                                                        |     Author = {U Zoller},
+                                                                        |     Doi = {10.1002/tea.3660271011},
+                                                                        |     Journal = {Journal of Research in Science Teaching},
+                                                                        |     Number = {10},
+                                                                        |     Pages = {1053--1065},
+                                                                        |     Title = {Students' misunderstandings and misconceptions in college 
+                                                                        | freshman chemistry (general and organic)},
+                                                                        |     Volume = {27},
+                                                                        |     Year = {1990}}
+author: None -> U Zoller (source: crossref)
+doi: 10.1002/tea.3660271011 -> 10.1002/tea.3660271011 (source: typed)
+journal: None -> Journal of Research in Science Teaching (source: crossref)
+number: None -> 10 (source: crossref)
+pages: None -> 1053--1065 (source: crossref)
+title: None -> Students' misunderstandings and misconceptions in college freshman chemistry (general and organic) (source: crossref)
+volume: None -> 27 (source: crossref)
+year: None -> 1990 (source: crossref)
+Verification: metadata_verified
+[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
+Your choice [a/e/s/A/q]: e
+Saved entry.bib with the optional issue number omitted.
+Entry: Zoll90
+Typed                                                                   | Proposed
+(no typed entry)                                                        | @article{Zoll90,
+                                                                        |     Author = {U Zoller},
+                                                                        |     Doi = {10.1002/tea.3660271011},
+                                                                        |     Journal = {Journal of Research in Science Teaching},
+                                                                        |     Pages = {1053--1065},
+                                                                        |     Title = {Students' misunderstandings and misconceptions in college 
+                                                                        | freshman chemistry (general and organic)},
+                                                                        |     Volume = {27},
+                                                                        |     Year = {1990}}
+author: None -> U Zoller (source: crossref)
+doi: 10.1002/tea.3660271011 -> 10.1002/tea.3660271011 (source: typed)
+journal: None -> Journal of Research in Science Teaching (source: crossref)
+number: 10 -> None (source: user edit)
+pages: None -> 1053--1065 (source: crossref)
+title: None -> Students' misunderstandings and misconceptions in college freshman chemistry (general and organic) (source: crossref)
+volume: None -> 27 (source: crossref)
+year: None -> 1990 (source: crossref)
+Unfilled number: Removed in editor
+Verification: metadata_verified
+[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
+Your choice [a/e/s/A/q]: a
+Added: Zoll90

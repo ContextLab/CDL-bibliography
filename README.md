@@ -15,6 +15,7 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 - [Suggested workflow](#suggested-workflow)
 - [What belongs in `cdl.bib`](#what-belongs-in-cdlbib)
 - [Additional information and usage instructions](#additional-information-and-usage-instructions)
+  - [`cdlbib add`](#add)
   - [`cdlbib verify`](#verify)
   - [`cdlbib compare`](#compare)
   - [`cdlbib send`](#send)
@@ -65,28 +66,73 @@ You may find these tools useful for:
 - Automatically generating change logs and commit messages
 - Finding and fixing metadata errors
 
-`bibcheck.py` and `bibverify.py` have been removed: `python bibcheck.py COMMAND` is now `cdlbib COMMAND`, and `python bibverify.py COMMAND` is now `cdlbib crossref COMMAND`. The former `commit` command is now `cdlbib send`. The older parallel, fuzzy-matching verifier (and its `--workers` option) has been retired.
+`bibcheck.py` and `bibverify.py` have been removed: `python bibcheck.py COMMAND` is now `cdlbib COMMAND`, and `python bibverify.py COMMAND` is now `cdlbib crossref COMMAND`. The former `commit` command is now `cdlbib send`. The `magic` command has been removed. The older parallel, fuzzy-matching verifier (and its `--workers` option) has been retired.
 
 ### Installation
 The bibtex checker is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
 
-After cloning this repository, create a virtual environment and install the checker (the `cdlbib` command) from the clone:
+Install the checker with Python 3.11 or later:
 
 ```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install .
+python -m pip install cdlbib
 cdlbib --help
 ```
 
-The dependencies are listed in `pyproject.toml`. `python -m pip install ".[research]"` also installs `pypdf`, which `crossref research` and `research-batch` need to read PDFs.
+No clone is needed. When a command needs a library and you have not selected one,
+`cdlbib` downloads the bibliography on first use. The managed copy is stored in:
 
-`cdlbib` works on the `cdl.bib` in the current folder or the nearest folder above it. To run it from somewhere else, pass `--library PATH` (the folder containing `cdl.bib`) or set `CDLBIB_LIBRARY`. If no `cdl.bib` is found, `cdlbib` prints the first line below and exits with `2`. If `--library` or `CDLBIB_LIBRARY` names a folder that has no `cdl.bib`, it prints the second line (beginning with whichever of the two was used) and also exits with `2`.
+- macOS: `~/Library/Application Support/cdlbib/library/`
+- Linux: `$XDG_DATA_HOME/cdlbib/library/`, or `~/.local/share/cdlbib/library/` when `XDG_DATA_HOME` is unset.
+- Other platforms currently use the Linux-style location; Windows is untested.
 
-```
-No library found. Run inside a checkout that contains cdl.bib, pass --library PATH, or set CDLBIB_LIBRARY.
+Set `CDLBIB_HOME` to choose a different data folder; the library is its `library/`
+subfolder. Run `cdlbib where` to see which bibliography a command will use.
+
+The lookup order is a named bibliography file (for commands that accept one),
+`--library PATH`, `CDLBIB_LIBRARY`, `cdl.bib` in the current folder or the nearest
+folder above it, then the managed library. If you already work in a clone, the tool
+uses it and never updates it. A named folder without `cdl.bib` remains an error:
+
+```text
 --library points to FOLDER, which has no cdl.bib
 ```
+
+The same error begins with `CDLBIB_LIBRARY` when that variable named the folder.
+The dependencies are listed in `pyproject.toml`. The `research` extra installs
+`pypdf` for reading PDFs: `python -m pip install "cdlbib[research]"`. If an
+optional package is missing when a command needs it, the tool prints a notice and
+installs it. Use `cdlbib --ask COMMAND` to be asked first; without a terminal,
+`--ask` leaves it uninstalled and prints the manual installation command.
+
+### Managed-library updates
+
+When a command uses the managed library, it checks for updates at most once a day
+when the command runs. There is no background updater. `cdlbib update` checks now.
+If the upstream cannot be reached, the command uses the downloaded copy and prints
+a notice. Failed automatic checks retry when a command runs after about an hour.
+A first download needs a connection and Git.
+
+Before an update changes the managed library, it saves a backup. Run
+`cdlbib update --list` to list backups, `cdlbib update --undo` to restore the newest,
+or `cdlbib update --undo STAMP` to restore one named in that list. Backups are kept
+under `backups/` in the data folder.
+
+If a newer version is available and you have unsent edits, the tool asks what to do.
+For one changed entry and two new upstream commits, the question reads:
+
+```text
+A newer version of the bibliography is available (2 new commits), and you have changes that have not been sent:
+  cdl.bib (1 entry changed)
+What would you like to do?
+  [k] Keep working without updating (ask again tomorrow)
+  [u] Update and keep my changes
+  [s] Send my changes first (runs `cdlbib send`)
+  [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)
+```
+
+The files, counts and available choices depend on your changes. Without a terminal,
+no choice is made and your files are left as they were. Keeping your copy postpones
+the question until tomorrow; `cdlbib update` asks again now.
 
 `send`, `crossref approve` and `crossref revoke` take your identity from the [GitHub CLI](https://cli.github.com) (`gh`); install it and run `gh auth login` before using them.
 
@@ -102,11 +148,13 @@ export CROSSREF_MAILTO='your.name@dartmouth.edu'
 
 ```bash
 Commands:
+  add       Look up entries, then accept, edit or skip each proposal
   verify    Format check, then citation verification of new/edited entries
   compare   Show the differences between two .bib files
   send      Run the verify gate, then send the change as a pull request from your fork
   crossref  Check citation accuracy against external evidence (never edits BibTeX)
-  magic     Legacy: autofix, overwrite cdl.bib and send (not recommended)
+  where     Show which bibliography the command will use
+  update    Check the managed library now; list or restore its backups
 ```
 
 Run `cdlbib COMMAND --help` for the options of any command.
@@ -146,6 +194,59 @@ These are the lab's rules for what an entry must look like and when an entry is 
 
 # Additional information and usage instructions
 
+## `add`
+
+Look up a paper by DOI, PMID, arXiv identifier or title:
+
+```bash
+cdlbib add 10.1002/tea.3660271011
+cdlbib add PMID:13896567
+cdlbib add arXiv:2208.02957
+cdlbib add "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)" --author Zoller --year 1990
+```
+
+Use `--from FILE` for a UTF-8 file with one query per line. With no query arguments,
+`add` also reads BibTeX from standard input. Set `CROSSREF_MAILTO` or pass `--mailto`
+so the citation services can identify your requests.
+
+The tool can build journal articles and arXiv preprints from their source records.
+It does not build books, chapters, proceedings papers, software or datasets
+automatically. Enter those yourself and use `verify`. A linked published version
+is offered when the source records identify one. An identifier or close title
+alone does not establish that a proposal is the work you meant.
+
+Before writing, `add` shows the typed and proposed entries, each field's source,
+unfilled fields and their reasons, the verification outcome, and any duplicate
+or key rename. Read these before choosing:
+
+```text
+[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
+```
+
+`a` writes that entry; `s` leaves it out. `q` ends the session and keeps entries
+already accepted. `A` accepts remaining complete proposals that need no decision;
+it still asks about candidates, names or other findings that need your choice.
+Duplicates, unsupported types, missing required fields and format/key conflicts
+must be resolved before an entry can be accepted. Accepting a proposal writes
+BibTeX; it does not record a human approval or send a pull request.
+
+When several works match, choose a numbered candidate or `0` for none. A questioned
+name offers `k` to keep the typed name or `u` to use the source's spelling. If name
+lists cannot be paired, edit the entry yourself.
+
+`e` opens a temporary BibTeX file in `$VISUAL`, then `$EDITOR` if `VISUAL` is unset,
+or `vi` if neither is set. Save exactly one entry and exit. The tool checks the
+saved text again and returns to the choices. A parse error reopens the editor;
+an unchanged file or editor error returns to the choices. The temporary file is
+removed afterwards.
+
+Without a terminal, `add` prints proposals and `nothing was changed`; it writes
+no entries and does not open an editor. Accepted additions in the managed library
+are backed up before writing; [managed-library undo](#managed-library-updates)
+can restore the copy. Your own clone is not backed up by the tool.
+
+A recorded example is in [the add tutorial](docs/tutorials.md#add-a-paper).
+
 ## `verify`
 
 You can run the `verify` command using:
@@ -158,7 +259,20 @@ For help, run:
 cdlbib verify --help
 ```
 
-`verify` runs three checks in order:
+Normal `verify` first offers the same review choices as `add` for new or changed
+entries that lack required fields or have supported source corrections. An entry
+whose exact current text already has an accepted verification result is not
+proposed. Syntactically invalid BibTeX goes to the format check rather than a
+completion proposal. Accepted changes are written before the ordinary checks run;
+accepting a proposal does not bypass those checks. The proposal's displayed status
+comes from its first check, while `verify` runs the full citation gate.
+
+Use `--no-complete` to skip these offers. Without a terminal, proposals are shown
+and the checks continue on the entries as typed. `--no-citations` skips completion
+and runs only the offline format check. `--autofix` or `--outfile` also skips
+completion so you can review the output copy before running normal `verify` on it.
+
+After the completion step, `verify` runs three checks in order:
 1. The **formatting check** described below, on every entry.
 2. The **accuracy check** (`crossref verify --auto-review`) on the entries that are new or edited compared with the GitHub `master` version of `cdl.bib`. An entry whose only change is its key is not re-checked.
 3. A **status line** summarizing how many entries in the whole library are verified.
@@ -219,9 +333,8 @@ This will create a new .bib file, cleaned.bib, based on cdl.bib-- but with all f
 mv cleaned.bib cdl.bib
 ```
 
-This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.  (The legacy `magic` command does all of this in one step, without giving you a chance to check the result, and then runs `send`.  Please don't use it.)
+This mode can easily introduce errors if not checked (manually!) carefully.  It is included for convenience (e.g., to facilitate very large numbers of simple changes), but it should not normally be used.
 
-`magic` prints `WARNING: potentially unsafe` when it starts.
 
 ## `compare`
 You can run the `compare` command using:
@@ -251,6 +364,9 @@ cdlbib send --help
 
 The `send` command first runs the same checks as `verify` (formatting, plus the
 accuracy of new and edited entries), and sends nothing if any of them fail.
+It offers completion before those checks, using the same choices as `add`.
+`cdlbib send --no-complete` skips the offers while keeping the full verify gate.
+Any accepted completion is part of the bibliography that `send` checks and sends.
 If the checks pass, the `compare` command is used to compare the local cdl.bib
 file to the version stored in the `master` branch of the `ContextLab` fork.
 The changes to `cdl.bib` and to files under `verification/` are then committed on
@@ -261,15 +377,15 @@ uncommitted changes are neither committed nor pushed; they are left as they are,
 
 The branch is pushed to your own fork of the repository, and a pull request is
 opened from it into the repository your checkout was cloned from (or into its
-parent, if you cloned a fork). If you have no fork yet, `send` asks before
-creating one (`cdlbib --yes send` skips the question). The pull request's
+parent, if you cloned a fork). If you have no fork yet, `send` prints a notice
+and creates one. Use `cdlbib --ask send` to be asked first. The pull request's
 title is the `--summary` text when `--summary` is given, and otherwise the first
 line of the change summary; either is cut to 100 characters. When it finishes, `send` prints the pull request's
 address and leaves your checkout on the new branch; running `send` again from
 that branch adds to the same pull request.
 
-The question about creating a fork is asked only at a terminal. Without a
-terminal (for example in a script) and without `--yes`, or when the answer is no,
+With `--ask`, the question about creating a fork is asked only at a terminal.
+Without a terminal, or when the answer is no,
 `send` prints the line below with your login and the repository's name, exits
 with `1`, and sends nothing.
 
@@ -279,7 +395,7 @@ with `1`, and sends nothing.
 
 ## `crossref`: citation verification
 
-`cdlbib crossref` is the accuracy checker on its own, with more control than `verify` gives you. It never edits `cdl.bib`; it only reports.
+`cdlbib crossref` is the accuracy checker on its own, with more control than `verify` gives you. It never edits `cdl.bib`; it only reports. Run the relative-path examples below from the library folder printed by `cdlbib where`.
 
 ```bash
 # Check new and edited entries (and retry any that hit a network error)
