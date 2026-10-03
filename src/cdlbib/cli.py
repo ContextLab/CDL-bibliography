@@ -213,6 +213,14 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
     return accepted
 
 
+def proposal_recheck(ws, mailto=None, database=None):
+    """The common editor/name-choice callback for every completion command."""
+    def recheck(item, raw, resolved_fields=()):
+        return api.recheck_proposal(ws, item, raw, mailto=mailto, database=database,
+                                    resolved_fields=resolved_fields)
+    return recheck
+
+
 @app.command()
 def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
         author: str = typer.Option(None, '--author'), year: str = typer.Option(None, '--year'),
@@ -246,8 +254,7 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
             failures = True
             continue
         failures |= bool(results.errors)
-        def recheck(item, raw, resolved_fields=()):
-            return api.recheck_proposal(ws, item, raw, mailto=mailto, database=database, resolved_fields=resolved_fields)
+        recheck = proposal_recheck(ws, mailto=mailto, database=database)
         def candidate(item, selected):
             nonlocal failures
             text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
@@ -277,15 +284,77 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
         raise typer.Exit(code=1)
 
 
+_completion_seen = None
+
+
+def offer_completion(ws, reference="github", database=None, mailto=None):
+    """Decide and persist one entry at a time, before the ordinary gate."""
+    from .complete import Query
+    from .verification import load_entries
+    session = {}
+    if _completion_seen is not None and ('stop', str(ws.bib)) in _completion_seen:
+        return
+    try:
+        load_entries(ws.bib)
+    except (OSError, ValueError):
+        return  # the ordinary format gate reports unreadable/syntactically invalid text
+    try:
+        keys = api.completion_keys(ws, reference=reference, database=database)
+    except CdlbibError as exc:
+        typer.echo(f"Completion unavailable: {exc}")
+        return
+    for key in keys:
+        entries = load_entries(ws.bib)
+        if key not in entries:
+            continue
+        marker = (str(ws.bib), key, entries[key]['fingerprint'])
+        if _completion_seen is not None and marker in _completion_seen:
+            continue
+        accepted, applied = [], None
+        try:
+            results = api.propose(ws, keys=[key], database=database, mailto=mailto)
+            results[:] = [item for item in results if not item.complete or item.candidates
+                          or any(change.typed != change.proposed and change.kind in ('filled', 'changed', 'question')
+                                 and change.source not in ('typed', 'house format')
+                                 for change in item.changes)]
+            recheck = proposal_recheck(ws, mailto=mailto, database=database)
+            def candidate(item, selected):
+                text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
+                query = Query.parse(text)
+                query.raw, query.key = item.typed_raw, item.key_typed
+                query.fields = dict(load_entries(ws.bib)[item.key_typed]['fields'])
+                return api.propose_new(ws, [query], mailto=mailto, database=database)[0]
+            accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
+            if accepted:
+                applied = api.apply_proposals(ws, accepted)
+                for written in applied.written:
+                    typer.echo(f'Completed: {written}')
+                for refused, reason in applied.refused:
+                    typer.echo(f'Not written {refused}: {reason}')
+        except CdlbibError as exc:
+            typer.echo(f'{key}: completion unavailable: {exc}')
+        if _completion_seen is not None:
+            for current_key, entry in load_entries(ws.bib).items():
+                if current_key == key or (applied is not None and current_key in applied.written):
+                    _completion_seen.add((str(ws.bib), current_key, entry['fingerprint']))
+        if session.get('stop'):
+            if _completion_seen is not None:
+                _completion_seen.add(('stop', str(ws.bib)))
+            break
+
+
 @app.command()
 def verify(ctx: typer.Context, fname: str = BIB_NAME, autofix: bool = False, outfile: str = None, verbose: bool = False,
            reference: str = "github",
+           no_complete: bool = typer.Option(False, "--no-complete", help="Skip entry completion proposals."),
            no_citations: bool = typer.Option(False, "--no-citations",
                                              help="Offline, format-only check (no citation verification)."),
            all: bool = typer.Option(False, "--all", help="Verify the citations of every entry, not only changed ones."),
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
     """Format check, then citation verification of new/edited entries."""
+    if not no_complete and not no_citations and not autofix and not outfile:
+        offer_completion(library(ctx, fname), reference=reference, database=database, mailto=mailto)
     check = run_gate(ctx, fname, reference=reference, citations=not no_citations, all_entries=all, autofix=autofix,
                      outfile=outfile, verbose=verbose, database=database, mailto=mailto)
     if not check.ok:
@@ -307,17 +376,21 @@ def compare(fname1: str, fname2: str, verbose: bool = False, outfile: str = None
 
 @app.command()
 def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", verbose: bool = False,
+           no_complete: bool = typer.Option(False, "--no-complete", help="Skip entry completion proposals."),
            outfile: str = None,
            summary: str = typer.Option(None, "--summary", help="One line describing the change."),
            database: str = typer.Option(None, "--database", help="Verification cache (default .bibcheck/verification.sqlite3)."),
            mailto: str = typer.Option(None, "--mailto", envvar="CROSSREF_MAILTO", help="Contact email for Crossref.")):
     """Run the verify gate, then send the change as a pull request from your fork."""
     _send(library(ctx, fname), fname, reference=reference, verbose=verbose, outfile=outfile, summary=summary,
-          database=database, mailto=mailto)
+          database=database, mailto=mailto, no_complete=no_complete)
 
 
-def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, summary=None, database=None, mailto=None):
+def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, summary=None, database=None, mailto=None, no_complete=False):
     """The send command, for the library ``ws`` (also run by the answer "send my changes first")."""
+
+    if not no_complete:
+        offer_completion(ws, reference=reference, database=database, mailto=mailto)
 
     def shown(check):
         report_format(check.format, ws, fname)
@@ -566,7 +639,13 @@ def _run_once(argv):
 def main(argv=None):
     """Run the command. A missing optional package is installed (after a question with --ask)
     and the command is run again once; click keeps reporting its own usage errors."""
-    _installing(lambda: _run_once(argv))
+    global _completion_seen
+    previous = _completion_seen
+    _completion_seen = set()
+    try:
+        _installing(lambda: _run_once(argv))
+    finally:
+        _completion_seen = previous
 
 
 def _installing(run):

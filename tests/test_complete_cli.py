@@ -18,7 +18,7 @@ from test_complete_identify import client, CONTACT
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def terminal(tmp_path, code, answers, editor=None, *, argv=(), columns=80, extra_env=None):
+def terminal(tmp_path, code, answers, editor=None, *, argv=(), columns=80, extra_env=None, timeout=35):
     """Capture stdout and prompts from a real terminal, without mocked streams."""
     master, slave = pty.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 30, columns, 0, 0))
@@ -36,7 +36,7 @@ def terminal(tmp_path, code, answers, editor=None, *, argv=(), columns=80, extra
                                stdin=slave, stderr=slave, stdout=slave)
     os.close(slave)
     chunks = []
-    deadline = time.monotonic() + 35
+    deadline = time.monotonic() + timeout
     try:
         while time.monotonic() < deadline:
             if select.select([master], [], [], 0.1)[0]:
@@ -358,3 +358,226 @@ def test_editor_executable_failure_is_recoverable_at_real_terminal(tmp_path,clie
     assert status==0,out
     assert 'Set EDITOR to an executable.' in out and 'Could not start or read the editor:' in out
     assert out.count('Your choice [a/e/s/A/q]')==2 and not ws.bib.read_text()
+
+
+def verify_command(tmp_path, *extra):
+    return ['verify', '--reference', str(tmp_path/'reference.bib'), '--database',
+            str(tmp_path/'responses.sqlite3'), '--mailto', CONTACT, *extra]
+
+
+@pytest.mark.parametrize('answer,completed', [('a\n', True), ('s\n', False), ('q\n', False)])
+def test_verify_completion_before_missing_field_gate(tmp_path, client, answer, completed):
+    ws, item = setup(tmp_path, client)
+    stub = '@article{Game62, doi={10.1037/h0041332}}\n'
+    ws.bib.write_text(stub)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', answer,
+                           argv=verify_command(tmp_path))
+    assert ('Completed: Game62' in out) is completed, out
+    assert (ws.bib.read_text() != stub) is completed
+    assert 'format:' in out or 'errors found' in out
+    if completed:
+        assert status == 0, out
+        assert 'looks good!' in out
+    else:
+        assert status == 1, out
+
+
+@pytest.mark.parametrize('flag', ['--no-complete', '--no-citations'])
+def test_verify_completion_skip_flags(tmp_path, client, flag):
+    ws, _ = setup(tmp_path, client)
+    stub = '@article{Zoll90, doi={10.1002/tea.3660271011}}\n'
+    ws.bib.write_text(stub)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', '',
+                           argv=verify_command(tmp_path, flag))
+    assert status == 1, out
+    assert 'Entry:' not in out and ws.bib.read_text() == stub
+
+
+def test_verify_completion_without_terminal_preserves_bytes(tmp_path, client):
+    ws, _ = setup(tmp_path, client)
+    original = b'@article{Zoll90, doi={10.1002/tea.3660271011}}\r\n'
+    ws.bib.write_bytes(original)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    result = subprocess.run([sys.executable, '-c', 'from cdlbib.cli import main; main()',
+                             *verify_command(tmp_path)], cwd=tmp_path, input='', text=True,
+                            capture_output=True, env=dict(os.environ, PYTHONPATH=str(ROOT/'src'), **refused_network()))
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert 'Entry:' in result.stdout and 'nothing was changed' in result.stdout
+    assert ws.bib.read_bytes() == original
+
+
+def test_verify_autofix_output_copy_preserves_original(tmp_path, client):
+    ws, item = setup(tmp_path, client)
+    original = item.proposed_raw.replace('1990', '90').encode()
+    ws.bib.write_bytes(original)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    output = tmp_path/'review.bib'
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', '',
+                           argv=verify_command(tmp_path, '--autofix', '--outfile', str(output)))
+    assert status == 1, out
+    assert 'Entry:' not in out and ws.bib.read_bytes() == original
+    assert output.exists() and output.read_bytes() != b''
+
+
+def test_verify_unchanged_entry_has_no_completion_output(tmp_path, client):
+    ws, item = setup(tmp_path, client)
+    ws.bib.write_text(item.proposed_raw)
+    (tmp_path/'reference.bib').write_text(item.proposed_raw)
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', '', argv=verify_command(tmp_path))
+    assert status == 0, out
+    assert 'Entry:' not in out and 'Completed:' not in out
+    assert ws.bib.read_text() == item.proposed_raw
+
+
+def test_completion_stop_and_outage_keep_first_write(tmp_path, client):
+    ws, _ = setup(tmp_path, client)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    ws.bib.write_text('@article{Zoll90, doi={10.1002/tea.3660271011}}\n'
+                      '@article{Fail20, doi={10.5555/unavailable}}\n'
+                      '@article{Last21, doi={10.5555/also-unavailable}}\n')
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', 'a\nq\n', argv=verify_command(tmp_path))
+    assert status == 1, out
+    assert 'Completed: Zoll90' in out and 'unavailable' in out
+    assert 'errors found' in out  # gate still runs against accepted plus untouched entries
+    from cdlbib.verification import load_entries
+    entries = load_entries(ws.bib)
+    assert 'title' in entries['Zoll90']['fields']
+    assert entries['Fail20']['raw'] == '@article{Fail20, doi={10.5555/unavailable}}'
+    assert entries['Last21']['raw'] == '@article{Last21, doi={10.5555/also-unavailable}}'
+
+
+def test_send_completion_gate_runs_before_any_publication(tmp_path, client):
+    ws, _ = setup(tmp_path, client)
+    ws.bib.write_text('@article{Zoll90, doi={10.1002/tea.3660271011}}\n')
+    reference = tmp_path/'reference.bib'
+    reference.write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    subprocess.run(['git','init','-q'],cwd=tmp_path,check=True)
+    subprocess.run(['git','add','cdl.bib'],cwd=tmp_path,check=True)
+    subprocess.run(['git','-c','user.name=Fixture','-c','user.email=fixture@example.org',
+                    'commit','-qm','Local isolated fixture'],cwd=tmp_path,check=True)
+    status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', 'a\n', argv=[
+        'send', '--reference', str(reference), '--database', str(tmp_path/'responses.sqlite3'), '--mailto', CONTACT])
+    assert status == 1, out
+    assert 'Completed: Zoll90' in out and 'not sent:' in out
+    assert 'pull request:' not in out
+    assert 'Title' in ws.bib.read_text()
+
+
+@pytest.mark.parametrize('status', ['human_verified', 'metadata_verified'])
+def test_verify_current_accepted_entry_never_offered(tmp_path, client, status):
+    from cdlbib.verification import load_entries
+    ws, item = setup(tmp_path, client)
+    # Isolated verdict fixture for these exact bytes, never a real-library approval.
+    typed = item.proposed_raw.replace('misunderstandings', 'typed alternative')
+    ws.bib.write_text(typed)
+    (tmp_path/'reference.bib').write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    from cdlbib.verification import Cache
+    cache = Cache(tmp_path/'responses.sqlite3', ledger=ws.revocations)
+    cache.put(ws.bib, load_entries(ws.bib)['Zoll90'], {'status': status})
+    cache.close()
+    status_code, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', '', argv=verify_command(tmp_path))
+    assert 'Entry:' not in out and 'Completed:' not in out, out
+    assert ws.bib.read_text() == typed
+
+
+def test_completion_retry_keeps_handled_unaccepted_fingerprint(tmp_path, client):
+    ws, _ = setup(tmp_path, client)
+    ws.bib.write_text('@article{Zoll90, doi={10.1002/tea.3660271011}}\n')
+    reference = tmp_path/'reference.bib'
+    reference.write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
+    code = f'''
+from pathlib import Path
+from cdlbib import cli
+from cdlbib.workspace import Workspace
+cli._completion_seen = set()
+ws=Workspace(Path.cwd())
+for attempt in range(2):
+    cli.offer_completion(ws, reference={str(reference)!r}, database={str(tmp_path/'responses.sqlite3')!r}, mailto={CONTACT!r})
+'''
+    status, out = terminal(tmp_path, code, 'a\n')
+    assert status == 0, out
+    assert out.count('Your choice [a/e/s/A/q]') == 1
+    assert out.count('Completed: Zoll90') == 1
+
+
+def test_send_completed_entry_inside_guarded_own_fork(tmp_path, client, monkeypatch):
+    """REMOTE MUTATION: controller runs explicitly; only the logged-in user's guarded fork."""
+    import datetime
+    import json
+    from cdlbib import publish
+    from cdlbib.verification import load_entries
+    from test_publish import (my_fork, fork_clone, clean_up, open_prs, git,
+                              TEST_BASE, ZOLL90)
+    login, fork = my_fork()
+    if login is None:
+        pytest.skip(fork)
+    # All remote lifecycle machinery and safety guards are the existing publish fixtures.
+    monkeypatch.setenv('DEVELOPER_DIR', '/Library/Developer/CommandLineTools')
+    work = fork_clone(tmp_path, monkeypatch, fork)
+    ws = Workspace(work)
+    reference = tmp_path/'completion-base.bib'
+    reference.write_text(ZOLL90 + '\n', encoding='utf-8')
+    ws.bib.write_text(ZOLL90 + '\n\n@article{Game62, doi={10.1037/h0041332}}\n', encoding='utf-8')
+    database = tmp_path/'responses.sqlite3'
+    result_path = tmp_path/'send-result.json'
+    summary = f'cdlbib completion test {os.getpid()}: please ignore'
+    branch = publish.branch_name(login, summary, datetime.date.today())
+    publish.assert_safe_test_target(fork, TEST_BASE)
+    publish.assert_safe_test_target(fork, branch)
+    # Only source lookups use the helper's deliberately unavailable proxy. Restore the
+    # caller's original proxy configuration before real guarded GitHub git/gh operations.
+    proxy_names = tuple(refused_network())
+    original_proxies = {name: os.environ.get(name) for name in proxy_names}
+    code = f"""
+import json, os
+from pathlib import Path
+from cdlbib import api, cli
+from cdlbib.workspace import Workspace
+ws=Workspace(Path.cwd())
+cli.offer_completion(ws, reference={str(reference)!r}, database={str(database)!r}, mailto={CONTACT!r})
+for name, value in {original_proxies!r}.items():
+    if value is None:
+        os.environ.pop(name, None)
+    else:
+        os.environ[name] = value
+result=api.send(ws, summary={summary!r}, reference={str(reference)!r},
+                database={str(database)!r}, mailto={CONTACT!r}, upstream={fork!r},
+                fork={fork!r}, base={TEST_BASE!r}, _test_inside_own_fork=True)
+Path({str(result_path)!r}).write_text(json.dumps(dict(url=result.url, branch=result.branch, files=result.files)))
+print('GUARDED_PULL_REQUEST', result.url)
+"""
+    url = None
+    try:
+        status, out = terminal(work, code, 'a\n', timeout=120)
+        if result_path.exists():
+            result = json.loads(result_path.read_text())
+            url = result['url']
+        assert status == 0, out
+        assert out.count('Completed: Game62') == 1, out
+        assert result['branch'] == branch and result['files'] == ['cdl.bib']
+        assert url.startswith(f'https://github.com/{fork}/pull/')
+        found = open_prs(fork, branch)
+        assert [item['url'] for item in found] == [url]
+        assert found[0]['baseRefName'] == TEST_BASE
+        remote_sha = git(work, 'ls-remote', f'https://github.com/{fork}.git', f'refs/heads/{branch}').split()[0]
+        assert remote_sha == git(work, 'rev-parse', 'HEAD')
+        # Fetch the actual pushed SHA, then read its blob, rather than trusting the worktree.
+        git(work, 'fetch', '-q', 'origin', remote_sha)
+        pushed = git(work, 'show', f'{remote_sha}:cdl.bib')
+        pushed_file = tmp_path/'pushed-completion.bib'
+        pushed_file.write_text(pushed + '\n', encoding='utf-8')
+        completed = load_entries(pushed_file)['Game62']
+        assert completed['fields']['doi'] == '10.1037/h0041332'
+        assert all(completed['fields'].get(field) for field in ('author', 'title', 'year', 'journal'))
+        assert pushed == ws.bib.read_text().strip()
+    finally:
+        # A timeout/failure may occur after opening the PR but before saving its URL.
+        # Discover only this test's deterministic owned head, then reuse fixture cleanup.
+        try:
+            owned = open_prs(fork, branch) if url is None else []
+            for item in owned:
+                clean_up(work, item['url'], branch)
+        finally:
+            clean_up(work, url, branch)

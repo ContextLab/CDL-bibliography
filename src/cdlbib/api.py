@@ -638,14 +638,9 @@ def propose_new(ws, queries, mailto=None, database=None, progress=None):
     return _proposals(ws, ((str(query), query) for query in queries), mailto, database, progress)
 
 
-def propose(ws, keys=None, reference='github', mailto=None, database=None, progress=None):
-    """Propose changed entries lacking current accepted verification.
-
-    ``keys`` is an iterable of keys or a UTF-8 key-list path; it overrides reference selection.
-    Per-entry failures are available on the returned list's ``errors`` attribute.
-    """
+def completion_keys(ws, keys=None, reference='github', database=None):
+    """Select changed, currently unaccepted entries without provider lookups or writes."""
     import tempfile
-    from . import complete
     from .verification import ACCEPTED, Cache, current_results, load_entries
     from .verification_cli import reference_bib, select_keys
     try:
@@ -658,9 +653,20 @@ def propose(ws, keys=None, reference='github', mailto=None, database=None, progr
             statuses = current_results(ws.bib, cache, entries=entries)
         finally:
             cache.close()
-        queries = [(key, complete.Query.from_entry(entry)) for key, entry in entries.items()
-                   if key in selected and statuses[key]['status'] not in ACCEPTED]
-        return _proposals(ws, queries, mailto, database, progress)
+        return [key for key in entries if key in selected and statuses[key]['status'] not in ACCEPTED]
+    except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
+        raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc
+
+
+def propose(ws, keys=None, reference='github', mailto=None, database=None, progress=None):
+    """Propose changed entries lacking current accepted verification; never write or prompt."""
+    from . import complete
+    from .verification import load_entries
+    selected = completion_keys(ws, keys=keys, reference=reference, database=database)
+    try:
+        entries = load_entries(ws.bib)
+        return _proposals(ws, ((key, complete.Query.from_entry(entries[key])) for key in selected),
+                          mailto, database, progress)
     except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
         raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc
 
