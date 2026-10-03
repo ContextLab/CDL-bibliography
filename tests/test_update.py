@@ -3352,14 +3352,29 @@ def test_a_github_that_does_not_answer_costs_a_command_the_short_timeout(managed
     silent.bind(("127.0.0.1", 0))
     silent.listen(8)
     try:
-        for name in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY"):
+        for name in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY", "all_proxy"):
             monkeypatch.setenv(name, f"http://127.0.0.1:{silent.getsockname()[1]}")
         monkeypatch.delenv("NO_PROXY", raising=False)
         monkeypatch.delenv("no_proxy", raising=False)
+        # A disposable non-secret token lets gh reach the proxy even with an empty
+        # HOME. No account credentials are read, and the proxy never forwards traffic.
+        config = tmp_path / "empty-gh-config"
+        config.mkdir()
+        monkeypatch.setenv("GH_CONFIG_DIR", str(config))
+        monkeypatch.setenv("GH_HOST", "github.com")
+        monkeypatch.setenv("GH_TOKEN", "cdlbib-loopback-timeout-not-a-secret")
         monkeypatch.setattr(library, "AUTO_FETCH_TIMEOUT", 3)
         before, started = whole_clone(ws.root), time.monotonic()
         result = library.update(ws)
         took = time.monotonic() - started
+        # Collect the queued connection only after gh times out; no reply was sent.
+        silent.settimeout(1)
+        connection, address = silent.accept()
+        with connection:
+            connection.settimeout(1)
+            request = connection.recv(4096)
+        assert address[0] == "127.0.0.1"
+        assert request.startswith(b"CONNECT api.github.com:443 "), request
     finally:
         silent.close()
     assert result.action == "left_alone" and "could not be looked up (" in result.message
