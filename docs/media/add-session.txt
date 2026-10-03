@@ -45,4 +45,5 @@ Unfilled number: Removed in editor
 Verification: metadata_verified
 [a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
 Your choice [a/e/s/A/q]: a
+Batch backup: 20261003T174159.799646Z; cdlbib update --undo restores the state before this command’s accepted changes.
 Added: Zoll90
