@@ -1914,7 +1914,7 @@ def checked(proposal, client, arxiv_raw=None):
     return proposal
 
 
-def propose(query, client, cache):
+def _propose(query, client, cache):
     """Find the work, build the entry, and have it checked. Returns a ``Proposal`` always:
 
     - no record (an unresolved DOI, nothing found, several candidates): the entry is left
@@ -2018,3 +2018,204 @@ def propose(query, client, cache):
                                        fields)
         _set_complete(proposal, fields)
     return checked(proposal, client, found.record if found.source == "arxiv" else None)
+
+
+@dataclass
+class KeyPlan:
+    key: str
+    renames: dict[str, str] = field(default_factory=dict)
+
+
+def _completion_fields(item):
+    if isinstance(item, Proposal):
+        return _written_fields(item) or {}
+    if isinstance(item, Query):
+        return dict(item.fields or {}, **{name: getattr(item, name) for name in
+                    ('doi', 'pmid', 'arxiv', 'title', 'author', 'year')
+                    if getattr(item, name) is not None})
+    raise TypeError('batch reservations must be Proposal objects')
+
+
+def _reservations(ws, batch):
+    """Explicit preview reservations only; callers must pass accepted entries at writing.
+
+    Never mutate a proposal. Apply earlier preview rename maps to the virtual library
+    so a third proposal sees the first two as a/b. This is not permission to write any
+    rename: the final accepted batch must be planned again against the live library.
+    """
+    library = _library_entries(ws)
+    entries = {key: dict(entry['fields']) for key, entry in library.items()}
+    for item in batch:
+        if not isinstance(item, Proposal):
+            raise TypeError('batch reservations must be Proposal objects')
+        if item.duplicate_of or not item.proposed_raw:
+            continue
+        for old, new in item.renames.items():
+            if old in entries:
+                if new in entries:
+                    raise ValueError(f'Key reservation collision: {new}')
+                entries[new] = entries.pop(old)
+                entries[new]['ID'] = new
+        key = item.key_typed or item.key_proposed
+        if not key or key == NO_KEY:
+            continue
+        if key in entries and not (item.key_typed == key and key in library
+                                   and item.typed_raw == library[key]['raw']):
+            raise ValueError(f'Key reservation collision: {key}')
+        entries[key] = dict(_completion_fields(item), ID=key)
+    return entries
+
+
+def _work_ids(fields):
+    ids = set()
+    doi = fields.get('doi')
+    if doi:
+        try:
+            ids.add(('doi', normalize_doi(doi)))
+        except ValueError:
+            pass
+    pmid = str(fields.get('pmid') or '').strip()
+    match = _PMID_TEXT.fullmatch(pmid)
+    if match:
+        ids.add(('pmid', str(int(match[1]))))
+    elif pmid.isdigit():
+        ids.add(('pmid', str(int(pmid))))
+    try:
+        arxiv_journal = normalized(fields.get('journal') or '') == 'arxiv'
+    except ValueError:
+        arxiv_journal = False
+    for value in (fields.get('arxiv'), fields.get('eprint'), doi,
+                  fields.get('volume') if arxiv_journal else None):
+        identifier = _arxiv_text(str(value)) if value else None
+        if identifier:
+            ids.add(('arxiv', re.sub(r'v\d+$', '', identifier)))
+    return ids
+
+
+def _title_byline(fields):
+    from .name_parsing import splitname
+    title, author = fields.get('title'), fields.get('author')
+    if not title or not author:
+        return None
+    try:
+        surnames = []
+        for name in split_authors(author):
+            if name.startswith('{') and name.endswith('}'):
+                surname = normalized(name)
+            else:
+                parts = splitname(name, strict_mode=True)
+                surname = normalized(' '.join(parts['von'] + parts['last']))
+            if not surname:
+                return None
+            surnames.append(surname)
+        return normalized(title), tuple(surnames)
+    except ValueError:
+        return None
+
+
+def duplicates(ws, proposal_or_query, batch=()):
+    """Same identifiers or normalized title and ordered surnames, excluding typed self.
+
+    ``batch`` explicitly selects earlier Proposal preview reservations; omitted proposals
+    have no effect. A typed entry is its own library entry only when its raw bytes match.
+    An edited or newly typed key does not hide the entry it happens to collide with.
+    """
+    fields = _completion_fields(proposal_or_query)
+    ids, title = _work_ids(fields), _title_byline(fields)
+    raw = proposal_or_query.typed_raw if isinstance(proposal_or_query, Proposal) else proposal_or_query.raw
+    key = proposal_or_query.key_typed if isinstance(proposal_or_query, Proposal) else proposal_or_query.key
+    library = _library_entries(ws)
+    batch = tuple(batch)
+    entries = _reservations(ws, batch)
+    self_key = key if raw and key in library and raw == library[key]['raw'] else None
+    for item in batch:
+        if not item.duplicate_of and item.proposed_raw:
+            self_key = item.renames.get(self_key, self_key)
+    for existing, data in entries.items():
+        if self_key == existing:
+            continue
+        if ids & _work_ids(data) or (title is not None and title == _title_byline(data)):
+            return existing
+    return None
+
+
+def plan_key(ws, fields, batch=()):
+    """House helper key/suffix preview. All changes are returned, never written.
+
+    Explicit batch proposals reserve keys for previews only; final writing must recompute
+    with accepted proposals only and ask again if the displayed rename plan changes.
+    """
+    return _key_plan(fields, _reservations(ws, batch))
+
+
+def _key_plan(fields, entries):
+    from .helpers import authors2key, check_key_suffixes
+    base = authors2key(fields['author'], fields['year'])
+    related = {}
+    for key, data in entries.items():
+        if data.get('author') and data.get('year') and authors2key(data['author'], data['year']) == base:
+            related[key] = dict(data, ID=key)
+    marker = '__completion_new__'
+    while marker in related:
+        marker += '_'
+    related[marker] = dict(fields, ID=marker)
+    targets = check_key_suffixes(related)
+    renames = {old: new for old, new in zip(related, targets) if old != marker and old != new}
+    occupied = set(entries) - set(renames)
+    for target in [targets[-1], *renames.values()]:
+        if target in occupied and target not in related:
+            raise ValueError(f'Key already belongs to another work: {target}')
+    return KeyPlan(targets[-1], renames)
+
+
+def _plan_proposal(ws, proposal, query, batch):
+    """Attach local review findings, independently of source verification status."""
+    entries = _library_entries(ws)
+    if query.key in entries and (not query.raw or query.raw != entries[query.key]['raw']):
+        proposal.issues.append(f'The typed key {query.key} already exists in the library; decide which entry it belongs to')
+        proposal.needs_decision = True
+    proposal.duplicate_of = duplicates(ws, proposal if proposal.proposed_raw else query, batch)
+    if proposal.duplicate_of:
+        proposal.issues.append(f'This work is already in the library or batch as {proposal.duplicate_of}')
+        proposal.needs_decision = True
+        return proposal
+    fields = _completion_fields(proposal)
+    if fields.get('author') and fields.get('year'):
+        # Updating an exact typed library entry must not reserve that entry twice.
+        reserved = _reservations(ws, batch)
+        if query.key in entries and query.raw == entries[query.key]['raw']:
+            self_key = query.key
+            for item in batch:
+                if not item.duplicate_of and item.proposed_raw:
+                    self_key = item.renames.get(self_key, self_key)
+            reserved.pop(self_key, None)
+        try:
+            plan = _key_plan(fields, reserved)
+        except ValueError as exc:
+            proposal.issues.append(str(exc))
+            proposal.needs_decision = True
+            return proposal
+        proposal.key_proposed, proposal.renames = plan.key, plan.renames
+        if plan.renames or (proposal.key_typed and proposal.key_typed != plan.key):
+            proposal.needs_decision = True
+        if not proposal.key_typed:
+            proposal.proposed_raw = render(proposal.entry_type, plan.key, fields)
+    return proposal
+
+
+def _library_entries(ws):
+    from .verification import load_entries
+    # The strict scanner deliberately refuses a bibliography with no entries. An empty
+    # file is a valid starting library here; every nonempty file still uses that scanner.
+    return load_entries(ws.bib) if ws.bib.read_text(encoding="utf-8-sig").strip() else {}
+
+
+def propose(query, client, cache, ws=None, batch=()):
+    """Find, build and check (see ``_propose``); optionally attach local key previews.
+
+    ``ws`` is explicit, never discovered/downloaded. ``batch`` explicitly reserves earlier
+    proposals for this preview, not for writing; the writer must replan accepted entries.
+    """
+    batch = tuple(batch)
+    proposal = _propose(query, client, cache)
+    return _plan_proposal(ws, proposal, query, batch) if ws is not None else proposal
