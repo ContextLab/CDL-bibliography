@@ -2954,13 +2954,12 @@ def test_a_closed_pull_request_asks_and_changes_nothing(managed, tmp_path):
     assert (asked.branch, asked.pull_request, asked.state, asked.default) == (SENT, PR, "closed", "master")
     assert (asked.changed, asked.local_commits, asked.new_commits, asked.entries_changed) == ([], 1, 1, 1)
     assert asked.choices == ("keep", "discard") and asked.seen
-    assert str(asked) == (f"Your pull request {PR} was closed without being merged, so the changes on branch {SENT} "
-                          f"of the library in {root} are not in the bibliography. Nothing was changed.")
+    assert str(asked) == (f"Your pull request {PR} was closed without being merged. Branch {SENT} of the library in "
+                          f"{root} is still selected. Nothing was changed.")
     assert whole_clone(root) == before and backup_names(home) == []
     assert (home / "state.json").read_bytes() == state and lock_is_free(home)
     assert cli.unsent_question(asked) == (
-        f"Your pull request {PR} was closed without being merged, so your changes on branch {SENT} are not in the "
-        "bibliography:\n"
+        f"Your pull request {PR} was closed without being merged. Branch {SENT} is still selected.\n"
         "  1 commit that the upstream does not have (1 entry of cdl.bib changed)\n"
         "What would you like to do?\n"
         "  [k] Keep working without updating (ask again tomorrow)\n"
@@ -2987,6 +2986,46 @@ def test_a_closed_pull_request_asks_and_changes_nothing(managed, tmp_path):
     assert (root / "cdl.bib").read_text(encoding="utf-8") == BASE     # the upstream's, without the unmerged entry
     assert cdlbib("update", "--undo", stamp, cwd=empty_folder(tmp_path)).returncode == 0
     assert everything(root) == before
+
+
+def test_a_clean_closed_branch_already_in_upstream_still_requires_a_decision(managed):
+    home, upstream, ws, tip, new = sent(managed, "merge")
+    before = everything(ws.root)
+    with pytest.raises(UpdateNeedsDecision) as raised:
+        after_send(ws, "closed", tip)
+    assert raised.value.local_commits == 0 and raised.value.changed == []
+    assert raised.value.choices == ("keep", "discard")
+    assert str(raised.value) == (f"Your pull request {PR} was closed without being merged. Branch {SENT} of the "
+                                 f"library in {ws.root} is still selected. Nothing was changed.")
+    assert cli.unsent_question(raised.value).startswith(
+        f"Your pull request {PR} was closed without being merged. Branch {SENT} is still selected.\n")
+    assert verification_cli.unsent_line(raised.value) == (
+        f"your pull request {PR} was closed without being merged, so the library stays on branch {SENT}; nothing "
+        "was changed. Run `cdlbib update` in a terminal to choose what to do.")
+    assert everything(ws.root) == before and backup_names(home) == []
+
+
+@pytest.mark.skipif(os.name == "nt" or (hasattr(os, "geteuid") and os.geteuid() == 0), reason="needs file permissions that bind")
+def test_named_undo_clears_an_unreadable_marker_only_after_verified_restore(managed):
+    home, upstream, ws, new = unsent(managed)
+    before = everything(ws.root)
+    result = library.update(ws, decision="update")
+    (home / library.MARKER).write_text("{", encoding="utf-8")
+    with pytest.raises(CdlbibError):
+        library.undo(ws, "not-a-backup")
+    assert library.interrupted() == ""
+    saved_folder = result.backup.path / "files/verification"
+    damaged_state = everything(ws.root)
+    saved_folder.chmod(0)
+    try:
+        with pytest.raises(CdlbibError):
+            library.undo(ws, result.backup.stamp)
+        assert everything(ws.root) == damaged_state and library.interrupted() == ""
+    finally:
+        saved_folder.chmod(0o755)
+    library.undo(ws, result.backup.stamp)
+    assert everything(ws.root) == before and library.interrupted() is None
+    assert library.update(ws, force=True, decision="keep").action != "interrupted"
 
 
 @pytest.mark.parametrize("more", ["an edit", "an untracked file", "a staged edit"])
@@ -3502,9 +3541,8 @@ def test_an_update_that_is_killed_part_way_is_announced_and_undone_exactly(manag
     assert "interrupted" not in cdlbib("where", cwd=empty_folder(tmp_path)).stderr
 
 
-def test_a_marker_whose_update_is_still_running_is_not_taken_for_a_dead_one(managed, tmp_path):
-    """The marker is read with the lock held: while an update runs, another command waits for
-    the lock and then finds the update finished."""
+def test_successful_update_clears_its_marker_and_corrupt_marker_is_announced(managed, tmp_path):
+    """Successful completion clears the marker; a corrupt record still announces interruption."""
     home, upstream, ws, new = unsent(managed)
     assert library.interrupted() is None
     assert library.update(ws, decision="update").action == "updated"

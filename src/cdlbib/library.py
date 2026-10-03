@@ -1138,6 +1138,7 @@ def undo(ws, stamp=None, notes=None):
     with _locked(home()):
         saved = backups()
         standing, marked = _marked()
+        named_recovery = stamp is not None
         if stamp is None and marked and any(one.stamp == marked for one in saved):
             stamp = marked       # an update did not finish: the backup to restore is the one it took
             if notes is not None:
@@ -1165,7 +1166,8 @@ def undo(ws, stamp=None, notes=None):
                                   "the backups there are. Nothing was changed.")
             chosen = named[0]
         before = _restore(root, chosen, None, notes)
-        if standing and chosen.stamp == marked:      # restored exactly (checked by _restore): that update is undone
+        if standing and (chosen.stamp == marked or (marked is None and named_recovery)):
+            # _restore checked every file: a named restore also resolves an unreadable marker.
             _unmark()
             _prune(backups_folder(), root, notes)
         return chosen, before
@@ -1472,6 +1474,26 @@ def _fast_forward(root, target):
     return merged.returncode, " ".join(lines) if lines else f"git merge exited with status {merged.returncode}"
 
 
+def _apply_carried_plan(root, plan, backup):
+    """Apply carried files, verify bytes and dirty paths, and name the backup on failure."""
+    try:
+        for rel, source in plan:
+            if source is None:
+                if os.path.lexists(root / rel):
+                    os.unlink(root / rel)
+            else:
+                _copy(source, root / rel)
+        bad = [rel for rel, source in plan
+               if (os.path.lexists(root / rel) if source is None else not _same(source, root / rel))]
+        kept = {_same_name(rel) for rel, _ in plan}
+        bad += [name for _, name in _status(root, *KEPT)[1] if _same_name(name) not in kept]
+        if bad:
+            raise CdlbibError(f"these files are not as they should be: {_some(sorted(set(bad)))}")
+    except (CdlbibError, OSError) as exc:
+        raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
+                          f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+
+
 def _with_edits(root, decision, branch, commit, target, ahead, backup):
     """The decisions "update" (keep my changes on top of the new version) and "discard", with
     the lock held and ``backup`` just taken. Returns the files whose changes were carried over
@@ -1526,22 +1548,7 @@ def _with_edits(root, decision, branch, commit, target, ahead, backup):
             _unmark()                                  # put back, and checked
             raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
                               f"were staged may now be unstaged); a copy of it is backup {backup.stamp}.") from exc
-        try:
-            for rel, source in plan:
-                if source is None:
-                    if os.path.lexists(root / rel):
-                        os.unlink(root / rel)
-                else:
-                    _copy(source, root / rel)
-            bad = [rel for rel, source in plan
-                   if (os.path.lexists(root / rel) if source is None else not _same(source, root / rel))]
-            kept = {_same_name(rel) for rel, _ in plan}
-            bad += [name for _, name in _status(root, *KEPT)[1] if _same_name(name) not in kept]
-            if bad:
-                raise CdlbibError(f"these files are not as they should be: {_some(sorted(set(bad)))}")
-        except (CdlbibError, OSError) as exc:
-            raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
-                              f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        _apply_carried_plan(root, plan, backup)
         _unmark()                                      # the last step: the update is whole
         return [rel for rel, _ in plan]
     finally:
@@ -1717,22 +1724,7 @@ def _return_to_main(root, decision, branch, commit, default, base, target, backu
                 raise _Untouched(_why(exc)) from exc
             raise CdlbibError(f"The bibliography was not updated: {_why(exc)}. The library is as it was (changes that "
                               f"were staged may now be unstaged); a copy of it is backup {backup.stamp}.") from exc
-        try:
-            for rel, source in plan:
-                if source is None:
-                    if os.path.lexists(root / rel):
-                        os.unlink(root / rel)
-                else:
-                    _copy(source, root / rel)
-            bad = [rel for rel, source in plan
-                   if (os.path.lexists(root / rel) if source is None else not _same(source, root / rel))]
-            kept = {_same_name(rel) for rel, _ in plan}
-            bad += [name for _, name in _status(root, *KEPT)[1] if _same_name(name) not in kept]
-            if bad:
-                raise CdlbibError(f"these files are not as they should be: {_some(sorted(set(bad)))}")
-        except (CdlbibError, OSError) as exc:
-            raise CdlbibError(f"The update of {root} stopped part-way ({_why(exc)}). The library as it was is saved "
-                              f"in {backup.path}; `{UNDO} {backup.stamp}` puts it back.") from exc
+        _apply_carried_plan(root, plan, backup)
         _unmark()                                      # the library is whole, on the default branch
         return [rel for rel, _ in plan]
     finally:
@@ -1812,7 +1804,7 @@ def _on_send_branch(root, branch, commit, default, target, new, found, decision,
         return left(f"returning to branch {default} would overwrite your own {_some(clash)}",
                     f"Move {'that file' if len(clash) == 1 else 'those files'} out of the way, then run `cdlbib update`.")
 
-    if extra or edits:
+    if not merged or extra or edits:
         choices = tuple(choice for choice in CHOICES
                         if not (choice == "update" and (extra or not edits))
                         and not (choice == "send" and (extra or not edits or not merged)))
@@ -1820,8 +1812,8 @@ def _on_send_branch(root, branch, commit, default, target, new, found, decision,
             raise UpdateNeedsDecision(
                 (f"Your pull request {pr.url} was merged, and branch {branch} of the library in {root} has changes "
                  "that have not been sent. Nothing was changed." if merged else
-                 f"Your pull request {pr.url} was closed without being merged, so the changes on branch {branch} of "
-                 f"the library in {root} are not in the bibliography. Nothing was changed."),
+                 f"Your pull request {pr.url} was closed without being merged. Branch {branch} of the library in "
+                 f"{root} is still selected. Nothing was changed."),
                 changed=edits, new_commits=new, local_commits=extra, choices=choices, seen=token, branch=branch,
                 pull_request=pr.url, state=pr.state, default=default)
         if decision == "update" and extra:

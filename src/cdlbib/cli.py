@@ -272,8 +272,8 @@ def unsent_question(exc):
     if exc.branch:       # on the branch of an earlier send: the question is about that branch
         lines = [f"Your pull request {exc.pull_request} was merged, and you have changes on branch {exc.branch} that "
                  "have not been sent:" if exc.state == "merged" else
-                 f"Your pull request {exc.pull_request} was closed without being merged, so your changes on branch "
-                 f"{exc.branch} are not in the bibliography:"]
+                 f"Your pull request {exc.pull_request} was closed without being merged. Branch {exc.branch} is still "
+                 "selected."]
     if commits:
         lines.append(f"  {commits} commit{'' if commits == 1 else 's'} that the upstream does not have"
                      + ("" if BIB_NAME in exc.changed else counted.replace(" changed)", f" of {BIB_NAME} changed)")))

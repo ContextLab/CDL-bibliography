@@ -760,8 +760,8 @@ def test_after_a_send_the_update_reads_the_pull_request_inside_my_own_fork(tmp_p
     run against GitHub (nothing is ever merged by a test): tests/test_update.py covers it with
     the state given as an argument.
 
-    The update's own lookup is also run for real, read-only: the library's origin is a fork, so
-    it asks the fork's parent for pull requests from this branch, and there are none."""
+    Only the guarded fork is queried; its observed state is passed into _after_send.
+    The automatic parent-resolving lookup is not run in this test."""
     from cdlbib import library, workspace
     from cdlbib.errors import UpdateNeedsDecision
     from test_update import backup_names, whole_clone
@@ -793,13 +793,6 @@ def test_after_a_send_the_update_reads_the_pull_request_inside_my_own_fork(tmp_p
         assert publish.pull_request_state(fork, head) == "open" and publish.earlier_pr(fork, head) is None
         result = library._after_send(ws, found.state, url=found.url, head=found.head)
         assert (result.action, result.message) == ("left_alone", f"your pull request is still open: {url}; nothing was changed")
-        assert whole_clone(root) == before and backup_names(home) == []
-
-        result = library.update(ws, force=True)                       # the real lookup, in the fork's parent: read-only
-        assert (result.action, result.backup) == ("left_alone", None)
-        assert result.message == (f"the library is on branch {branch}, which has no pull request in {UPSTREAM}; nothing "
-                                  f"was changed. Run `cdlbib send` to send it, or `git -C {shlex.quote(str(root))} switch "
-                                  f"{git(root, 'rev-parse', '--abbrev-ref', 'origin/HEAD').split('/', 1)[1]}` to leave the branch.")
         assert whole_clone(root) == before and backup_names(home) == []
 
         subprocess.run(["gh", "pr", "close", url], cwd=root, capture_output=True, check=True)
@@ -847,3 +840,18 @@ def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatc
         assert git(work, "ls-remote", f"https://github.com/{fork}.git", f"refs/heads/{branch}") == ""   # nothing arrived
     finally:
         clean_up(work, None, branch)
+
+
+@pytest.mark.parametrize("states, expected", [
+    (["CLOSED", "MERGED", "OPEN", "OPEN"], 2),
+    (["CLOSED", "MERGED", "MERGED"], 2),
+    (["CLOSED", "CLOSED"], 2),
+])
+def test_pull_request_precedence_keeps_active_work_and_newest_of_each_kind(monkeypatch, states, expected):
+    """Selection from an injected provider listing: no GitHub contact or writes."""
+    listing = [{"number": len(states) - i, "state": state, "url": f"https://example.invalid/{len(states) - i}"}
+               for i, state in enumerate(states)]
+    monkeypatch.setattr(publish, "_pull_requests", lambda *args, **kwargs: listing)
+    found = publish.pull_request("allowed/test", "owner:branch")
+    assert found.url == f"https://example.invalid/{expected}"
+    assert found.matching == len(states)

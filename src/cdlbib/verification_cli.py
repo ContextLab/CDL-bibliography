@@ -208,7 +208,7 @@ def unsent_line(exc):
         return ((f"your pull request {exc.pull_request} was merged, but branch {exc.branch} has changes that have not "
                  f"been sent ({' and '.join(held)})" if exc.state == "merged" else
                  f"your pull request {exc.pull_request} was closed without being merged, so the library stays on "
-                 f"branch {exc.branch} ({' and '.join(held)})")
+                 f"branch {exc.branch}" + (f" ({' and '.join(held)})" if held else ""))
                 + "; nothing was changed. Run `cdlbib update` in a terminal to choose what to do.")
     return (f"a newer version of the bibliography is available ({exc.new_commits} new "
             f"commit{'' if exc.new_commits == 1 else 's'}), but {' and '.join(why)}; nothing was changed. "
