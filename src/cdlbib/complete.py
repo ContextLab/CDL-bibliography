@@ -161,6 +161,7 @@ class Proposal:
     # always needs a decision.
     complete: bool = False
     notes: list[str] = field(default_factory=list)  # how the record was found; not a problem
+    edited_fields: dict | None = None  # strict parsed fields of exact user-edited text
 
 
 @lru_cache(maxsize=1)
@@ -2028,7 +2029,7 @@ class KeyPlan:
 
 def _completion_fields(item):
     if isinstance(item, Proposal):
-        return _written_fields(item) or {}
+        return dict(item.edited_fields) if item.edited_fields is not None else (_written_fields(item) or {})
     if isinstance(item, Query):
         return dict(item.fields or {}, **{name: getattr(item, name) for name in
                     ('doi', 'pmid', 'arxiv', 'title', 'author', 'year')

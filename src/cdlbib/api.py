@@ -669,3 +669,45 @@ def apply_proposals(ws, accepted):
     """Write only the explicitly accepted proposals; see complete.apply."""
     from .complete import apply
     return apply(ws, accepted)
+
+
+def recheck_proposal(ws, proposal, raw, mailto=None, database=None):
+    """Check exact edited text, retaining the original replacement identity."""
+    import tempfile
+    from dataclasses import replace
+    from . import complete, extra_sources
+    from .verification import load_entries
+    with tempfile.TemporaryDirectory(prefix='cdlbib-edited-') as folder:
+        path = Path(folder) / 'edited.bib'
+        path.write_text(raw, encoding='utf-8')
+        entries = load_entries(path)
+    if len(entries) != 1:
+        raise ValueError('The edited text must contain exactly one entry')
+    entry = next(iter(entries.values()))
+    if entry['raw'].strip() != raw.strip():
+        raise ValueError('The edited text must contain only one entry')
+    item = replace(proposal, proposed_raw=raw, changes=[], unfilled=[], issues=[], candidates=[],
+                   duplicate_of=None, renames={}, unsupported=None, needs_decision=False,
+                   status=None, entry_type=entry['fields']['ENTRYTYPE'], edited_fields=dict(entry['fields']))
+    query = complete.Query.from_entry(entry)
+    existing = complete._library_entries(ws)
+    if entry['key'] in existing and entry['key'] != proposal.key_typed:
+        item.issues.append(f"The edited key {entry['key']} already exists in the library")
+        item.needs_decision = True
+    if proposal.typed_raw is not None:
+        query.key, query.raw = proposal.key_typed, proposal.typed_raw
+    complete._set_complete(item, entry['fields'])
+    complete._plan_proposal(ws, item, query, ())
+    item.proposed_raw = raw
+    if item.key_proposed and entry['key'] != item.key_proposed:
+        item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
+        item.needs_decision = True
+    if str(entry['fields']['ENTRYTYPE']).lower() != 'article':
+        item.unsupported = entry['fields']['ENTRYTYPE']
+        item.needs_decision = True
+    path = database or ws.database
+    client = extra_sources.make_client(path, contact=mailto or extra_sources.contact_email(path))
+    try:
+        return complete.checked(item, client)
+    finally:
+        client.cache.close()

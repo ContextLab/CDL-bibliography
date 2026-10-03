@@ -2,6 +2,10 @@
 import os
 import re
 import sys
+import shlex
+import shutil
+import subprocess
+import tempfile
 from pathlib import Path
 
 import typer
@@ -76,6 +80,194 @@ def run_gate(ctx, fname, reference="github", citations=True, all_entries=False, 
                                     database=database, mailto=mailto, progress=typer.echo,
                                     bars=sys.stderr)
     return check
+
+
+def show_proposal(item):
+    """Render the two exact texts and every completion finding."""
+    typer.echo(f"Entry: {item.key_typed or item.key_proposed or '(new)'}")
+    left, right = (item.typed_raw or '(no typed entry)').splitlines(), (item.proposed_raw or '(no proposed entry)').splitlines()
+    if shutil.get_terminal_size().columns >= 100:
+        from itertools import zip_longest
+        width = (shutil.get_terminal_size().columns - 3) // 2
+        typer.echo(f"{'Typed':<{width}} | Proposed")
+        for a, b in zip_longest(left, right, fillvalue=''):
+            typer.echo(f"{a:<{width}} | {b}")
+    else:
+        typer.echo('Typed:\n' + '\n'.join(left) + '\nProposed:\n' + '\n'.join(right))
+    for change in item.changes:
+        typer.echo(f"{change.field}: {change.typed} -> {change.proposed} (source: {change.source})")
+    for missing in item.unfilled:
+        typer.echo(f"Unfilled {missing.field}: {missing.reason}")
+    for old, new in item.renames.items():
+        typer.echo(f"Rename: {old} -> {new}")
+    if item.key_typed and item.key_proposed != item.key_typed:
+        typer.echo(f"Key: {item.key_typed} -> {item.key_proposed}")
+    if item.duplicate_of:
+        typer.echo(f"Duplicate: {item.duplicate_of}")
+    if item.unsupported:
+        typer.echo(f"Unsupported: {item.unsupported}")
+    typer.echo(f"Verification: {item.status or 'not checked'}")
+    for line in item.notes + item.issues:
+        typer.echo(line)
+
+
+def _editable(item, recheck):
+    with tempfile.TemporaryDirectory(prefix='cdlbib-editor-') as folder:
+        path = Path(folder) / 'entry.bib'
+        original = item.proposed_raw or item.typed_raw or ''
+        path.write_text(original, encoding='utf-8')
+        while True:
+            try:
+                command = shlex.split(os.environ.get('VISUAL') or os.environ.get('EDITOR') or 'vi')
+                result = subprocess.run([*command, str(path)])
+                if result.returncode:
+                    typer.echo(f'Editor exited with status {result.returncode}; returning to choices.')
+                    return item
+                raw = path.read_text(encoding='utf-8')
+            except (OSError, ValueError) as exc:
+                typer.echo(f'Could not start or read the editor: {exc}. Set EDITOR to an executable.')
+                return item
+            if raw == original:
+                typer.echo('The editor left the entry unchanged.')
+                return item
+            try:
+                return recheck(item, raw)
+            except ValueError as exc:
+                typer.echo(f'Edited entry could not be read: {exc}. Reopening the editor.')
+            except CdlbibError as exc:
+                typer.echo(f'Edited entry could not be checked: {exc}. Returning to choices.')
+                return item
+
+
+def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
+    """Return explicitly accepted proposals; never infer human verification."""
+    session = session if session is not None else {}
+    accepted, all_remaining = [], session.get("all", False)
+    terminal = sys.stdin.isatty() and sys.stderr.isatty()
+    for item in proposals:
+        if terminal and item.candidates and choose_candidate:
+            for number, candidate in enumerate(item.candidates, 1):
+                typer.echo(f"[{number}] {candidate.get('authors', '')} {candidate.get('year', '')}: {candidate.get('title', '')} {candidate.get('doi') or candidate.get('arxiv') or ''}")
+            letters = ['0'] + [str(n) for n in range(1, len(item.candidates) + 1)]
+            choice = _chosen('[0] none of these', letters)
+            if choice == '0':
+                continue
+            item = choose_candidate(item, item.candidates[int(choice)-1])
+        if terminal and recheck and item.proposed_raw:
+            for change in list(item.changes):
+                if change.kind == 'question' and change.field in ('author', 'editor') and change.typed and change.proposed:
+                    typed_names = change.typed.split(' and ')
+                    source_names = change.proposed.split(' and ')
+                    if len(typed_names) != len(source_names):
+                        continue
+                    names = []
+                    for typed_name, source_name in zip(typed_names, source_names):
+                        if typed_name != source_name:
+                            choice = _chosen(f'Name: [k] keep typed {typed_name} / [u] use source {source_name}', ['k', 'u'])
+                            names.append(source_name if choice == 'u' else typed_name)
+                        else:
+                            names.append(typed_name)
+                    from . import complete
+                    fields = complete._completion_fields(item)
+                    fields[change.field] = ' and '.join(names)
+                    item = recheck(item, complete.render(item.entry_type, item.key_typed or item.key_proposed, fields))
+        while True:
+            show_proposal(item)
+            if not terminal:
+                break
+            safe = (item.complete and item.proposed_raw and not item.duplicate_of and not item.unsupported
+                    and not any("already exists in the library" in issue or "does not match the key plan" in issue or issue.startswith("format:")
+                                or "format check could not run" in issue for issue in item.issues))
+            if all_remaining and safe and not item.needs_decision:
+                accepted.append(item)
+                break
+            choice = _chosen('[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop', ['a','e','s','A','q'], case_sensitive=True)
+            if choice == 'q':
+                session['stop'] = True
+                return accepted
+            if choice == 's':
+                break
+            if choice == 'e':
+                if recheck:
+                    item = _editable(item, recheck)
+                else:
+                    typer.echo('Editing needs a workspace recheck.')
+            elif choice == 'A':
+                all_remaining = True
+                session["all"] = True
+                if safe and not item.needs_decision:
+                    accepted.append(item)
+                    break
+            elif safe:
+                accepted.append(item)
+                break
+            else:
+                typer.echo('Cannot accept: complete required fields and resolve duplicate or unsupported entries first.')
+    if not terminal:
+        typer.echo('nothing was changed')
+    return accepted
+
+
+@app.command()
+def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
+        author: str = typer.Option(None, '--author'), year: str = typer.Option(None, '--year'),
+        from_file: Path = typer.Option(None, '--from'),
+        database: str = typer.Option(None, '--database'),
+        mailto: str = typer.Option(None, '--mailto', envvar='CROSSREF_MAILTO')):
+    """Look up entries, then accept, edit or skip each proposal."""
+    from .complete import Query
+    from .verification import load_entries
+    ws = library(ctx, BIB_NAME)
+    inputs = list(queries or [])
+    if from_file:
+        inputs.extend(line.strip() for line in from_file.read_text(encoding='utf-8').splitlines() if line.strip())
+    parsed = [Query.parse(text, author=author, year=year) for text in inputs]
+    if not parsed and not sys.stdin.isatty():
+        raw = sys.stdin.read()
+        if raw.strip():
+            with tempfile.TemporaryDirectory(prefix='cdlbib-input-') as folder:
+                path = Path(folder) / 'stdin.bib'
+                path.write_text(raw, encoding='utf-8')
+                parsed = [Query.from_entry(entry) for entry in load_entries(path).values()]
+    if not parsed:
+        raise typer.BadParameter('Provide a query, --from FILE, or BibTeX on standard input')
+    failures = False
+    session = {}
+    for query in parsed:
+        try:
+            results = api.propose_new(ws, [query], mailto=mailto, database=database)
+        except CdlbibError as exc:
+            typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
+            failures = True
+            continue
+        failures |= bool(results.errors)
+        def recheck(item, raw):
+            return api.recheck_proposal(ws, item, raw, mailto=mailto, database=database)
+        def candidate(item, selected):
+            text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
+            query = Query.parse(text)
+            if item.typed_raw:
+                from . import complete
+                query.raw, query.key = item.typed_raw, item.key_typed
+                with tempfile.TemporaryDirectory(prefix='cdlbib-candidate-') as folder:
+                    path = Path(folder) / 'typed.bib'
+                    path.write_text(item.typed_raw, encoding='utf-8')
+                    entry = next(iter(load_entries(path).values()))
+                query.fields = dict(entry['fields'])
+            chosen = api.propose_new(ws, [query], mailto=mailto, database=database)
+            return chosen[0]
+        accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
+        if accepted:
+            applied = api.apply_proposals(ws, accepted)
+            for key in applied.written:
+                typer.echo(f'Added: {key}')
+            for key, reason in applied.refused:
+                typer.echo(f'Not written {key}: {reason}')
+                failures = True
+        if session.get("stop"):
+            break
+    if failures:
+        raise typer.Exit(code=1)
 
 
 @app.command()
@@ -399,7 +591,7 @@ def _confirmed(question):
         raise SystemExit(1)
 
 
-def _chosen(question, letters, words=()):
+def _chosen(question, letters, words=(), case_sensitive=False):
     """Ask ``question`` (on stderr) until one of ``letters`` is answered, or the whole word
     for one (``words``, in the letters' order). Returns the letter. Only at a terminal: with
     none, None, and nothing is printed."""
@@ -415,8 +607,9 @@ def _chosen(question, letters, words=()):
         if not answer:  # Ctrl-C or end of input at the prompt
             typer.echo("\nAborted.", err=True)
             raise SystemExit(1)
-        if answer.strip().lower() in letters:
-            return answer.strip().lower()
+        value = answer.strip() if case_sensitive else answer.strip().lower()
+        if value in letters:
+            return value
         if answer.strip().lower() in words:
             return letters[list(words).index(answer.strip().lower())]
         typer.echo(f"Please answer {', '.join(letters[:-1])} or {letters[-1]}.", err=True)
