@@ -189,7 +189,59 @@ def require_identity(ws):
                 '  git config --global user.email "you@example.org"')
 
 
-def commit_to_branch(ws, branch, message):
+def require_canonical(ws):
+    canonical = ws.root / "cdl.bib"
+    if ws.bib != canonical or canonical.is_symlink() or not canonical.is_file():
+        raise PublishRefused("Send requires the canonical tracked cdl.bib; named files can be verified or compared separately.")
+    if _run(["git", "ls-files", "--error-unmatch", "--", "cdl.bib"], cwd=ws.root, check=False).returncode:
+        raise PublishRefused("Send requires cdl.bib to be tracked by git.")
+
+
+def candidate(ws):
+    """Bytes of the candidate and all local verification evidence, including ignored files."""
+    require_canonical(ws)
+    paths = [ws.bib]
+    folder = ws.root / "verification"
+    if folder.is_symlink():
+        raise PublishRefused("Send cannot publish a symlinked verification folder.")
+    if folder.exists():
+        paths.extend(p for p in folder.rglob("*") if not p.is_dir() or p.is_symlink())
+    result = {}
+    for path in paths:
+        if path.is_symlink() or not path.is_file():
+            raise PublishRefused(f"Send requires ordinary files: {path}")
+        result[str(path.relative_to(ws.root))] = path.read_bytes()
+    return result
+
+
+def require_candidate(ws, expected, *, committed=False):
+    if candidate(ws) != expected:
+        raise PublishRefused("The bibliography or verification evidence changed after the gate; nothing was pushed. Run send again to check the current candidate.")
+    if committed:
+        names = _run(["git", "ls-tree", "-r", "--name-only", "-z", "HEAD", "--", "cdl.bib", "verification"], cwd=ws.root).stdout.split("\0")
+        for name in filter(None, names):
+            # hash-object is byte-exact and avoids decoding BibTeX or evidence blobs.
+            blob = _run(["git", "rev-parse", f"HEAD:{name}"], cwd=ws.root).stdout.strip()
+            actual = _run(["git", "hash-object", "--no-filters", "--", name], cwd=ws.root).stdout.strip()
+            if name not in expected or blob != actual:
+                raise PublishRefused("The committed bibliography or evidence differs from the checked candidate; nothing was pushed. Inspect the local commit before sending again.")
+
+
+def require_history(ws, base_commit, tip="HEAD"):
+    commits = _run(["git", "rev-list", f"{base_commit}..{tip}"], cwd=ws.root).stdout.splitlines()
+    for commit in commits:
+        paths = _run(["git", "diff-tree", "--root", "-m", "--no-commit-id", "--no-renames", "--name-only", "-r", "-z", commit], cwd=ws.root).stdout.split("\0")
+        unrelated = [name for name in paths if name and not _allowed(name)]
+        if unrelated:
+            raise PublishRefused(f"Outgoing commit {commit[:12]} includes unrelated paths: {', '.join(sorted(set(unrelated)))}. Nothing was pushed. Preserve this branch and prepare a bibliography-only branch from the upstream PR base before sending.")
+
+
+def upstream_base(ws, url, base):
+    _run(["git", "fetch", "--no-tags", url, f"refs/heads/{base}"], cwd=ws.root)
+    return _head(ws, "FETCH_HEAD^{commit}")
+
+
+def commit_to_branch(ws, branch, message, *, expected=None, base_commit=None, revalidate=None):
     """Commit the changes to cdl.bib and verification/ on ``branch`` (made from the current
     commit when new) and leave the checkout on it. Returns the commit. Every other changed,
     staged or untracked file is left as it is: only our paths are staged and the commit names
@@ -213,6 +265,12 @@ def commit_to_branch(ws, branch, message):
                 f"--summary (the branch is named after it).\n{exc}") from exc
     try:
         tip = _head(ws)
+        if revalidate is not None:
+            revalidate()
+        if expected is not None:
+            require_candidate(ws, expected)
+        if base_commit is not None:
+            require_history(ws, base_commit)
         _run(["git", "add", "-A", "--", *mine], cwd=ws.root)
         _run(["git", "commit", "-m", message, "--", *mine], cwd=ws.root)
     except PublishRefused as exc:
@@ -221,7 +279,7 @@ def commit_to_branch(ws, branch, message):
 
 
 def _put_back(ws, previous, branch, tip, ours, made):
-    """After a failed commit: back to the branch the user was on, the index as it was,
+    """After a failed commit: back to the branch the user was on; unrelated index entries survive,
     without a branch made for nothing. Only moves that lose nothing (no reset, no stash, no
     clean, no force). Returns the sentences that say what happened and where the checkout is."""
     if tip is not None and _head(ws) != tip:     # git reported a failure, yet the branch has a new commit
@@ -238,24 +296,45 @@ def _put_back(ws, previous, branch, tip, ours, made):
                 f"changes in place; go back with: git switch {previous}")
     if made and previous != branch and tip is not None and _head(ws, f"refs/heads/{branch}") == tip:
         _run(["git", "branch", "-d", branch], cwd=ws.root, check=False)
-    return f"{failed} The checkout is back on branch {previous}, with your changes in place."
+    return (f"{failed} The checkout is back on branch {previous}, with your changes in place.\n"
+            "Previously staged library paths may now contain their full working-tree contents in the index.")
 
 
-def push(ws, remote_url, branch):
-    _run(["git", "push", remote_url, f"refs/heads/{branch}:refs/heads/{branch}"], cwd=ws.root)
+def push(ws, remote_url, branch, *, commit=None):
+    source = commit or f"refs/heads/{branch}"
+    _run(["git", "push", remote_url, f"{source}:refs/heads/{branch}"], cwd=ws.root)
 
 
-def deliver(ws, branch, message, remote_url, target=None):
+from .library import serialized
+
+
+@serialized
+def deliver(ws, branch, message, remote_url, target=None, *, upstream_url="origin", base="master", expected=None, revalidate=None):
     """Commit what is pending on ``branch``, then push the branch to ``remote_url``. With
     nothing pending, a checkout already on ``branch`` only pushes (a send that is being
     resumed). Returns the committed paths. A failed push says where things stand."""
+    expected = candidate(ws) if expected is None else expected
+    require_candidate(ws, expected)
     previous, files = require_branch(ws), pending(ws)
+    if not files and previous != branch:
+        raise PublishRefused(NO_CHANGES)
+    base_commit = upstream_base(ws, upstream_url, base)
+    require_history(ws, base_commit)
+    if _head(ws, f"refs/heads/{branch}"):
+        require_history(ws, base_commit, f"refs/heads/{branch}")
     if files:
-        commit_to_branch(ws, branch, message)
+        commit_to_branch(ws, branch, message, expected=expected, base_commit=base_commit, revalidate=revalidate)
     elif previous != branch:
         raise PublishRefused(NO_CHANGES)
+    if revalidate is not None:
+        revalidate()
+    require_candidate(ws, expected, committed=True)
+    require_history(ws, base_commit)
+    checked_commit = _head(ws)
+    if current_branch(ws) != branch or _head(ws, f"refs/heads/{branch}") != checked_commit:
+        raise PublishRefused("The send branch moved during publication; nothing was pushed. Inspect the local branch and run send again.")
     try:
-        push(ws, remote_url, branch)
+        push(ws, remote_url, branch, commit=checked_commit)
     except PublishRefused as exc:
         raise PublishRefused(
             f"The change is committed on branch {branch}, but the push to {target or remote_url} failed: nothing was "

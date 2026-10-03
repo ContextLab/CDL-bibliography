@@ -1,6 +1,8 @@
 """The managed library: the copy of the bibliography that cdlbib downloads and keeps for a
 user who has named no library of their own. Nothing here prints or prompts."""
 import contextlib
+import contextvars
+import functools
 import datetime
 import filecmp
 import hashlib
@@ -149,6 +151,100 @@ def _locked(folder, progress=None, waiting="waiting for another cdlbib to finish
             yield
         finally:
             fcntl.flock(handle, fcntl.LOCK_UN)
+
+
+# A transaction can call another managed operation in the same execution context.
+# The PID prevents a forked child from inheriting ownership of its parent's flock.
+_owner = contextvars.ContextVar("cdlbib_write_owner", default=None)
+
+
+@contextlib.contextmanager
+def transaction(ws, *, recovery=False, progress=None):
+    from .api import is_managed
+    if not is_managed(ws):
+        yield
+        return
+    owner = (os.getpid(), str(home().resolve()))
+    if _owner.get() == owner:
+        yield
+        return
+    with _locked(home(), progress, WAITING):
+        if not recovery and _marked()[0]:
+            raise CdlbibError(_interrupted_line(ws.root, _marked()[1]))
+        token = _owner.set(owner)
+        try:
+            yield
+        finally:
+            _owner.reset(token)
+
+
+def serialized(function):
+    @functools.wraps(function)
+    def wrapped(ws, *args, **kwargs):
+        with transaction(ws):
+            return function(ws, *args, **kwargs)
+    return wrapped
+
+
+@dataclass
+class CompletionBatch:
+    checkpoint: object = None
+
+
+_batch_owner = contextvars.ContextVar("cdlbib_completion_batch", default=None)
+
+
+@contextlib.contextmanager
+def completion_batch(ws):
+    owner = (os.getpid(), str(ws.root))
+    active = _batch_owner.get()
+    if active is not None and active[0] == owner:
+        yield active[1]
+        return
+    batch = CompletionBatch()
+    token = _batch_owner.set((owner, batch))
+    try:
+        yield batch
+    finally:
+        _batch_owner.reset(token)
+        if batch.checkpoint is not None:
+            with transaction(ws, recovery=True):
+                (home() / "completion-batches" / batch.checkpoint.stamp).unlink(missing_ok=True)
+
+
+def batch_command(function):
+    @functools.wraps(function)
+    def wrapped(ws, *args, **kwargs):
+        with completion_batch(ws):
+            return function(ws, *args, **kwargs)
+    return wrapped
+
+
+def _completion_target():
+    try:
+        stamp = json.loads((home() / "completion-undo").read_text())
+        if not isinstance(stamp, str) or not _STAMP_NAME.fullmatch(stamp):
+            raise CdlbibError("The completion undo checkpoint cannot be read; use cdlbib update --list and choose an explicit backup stamp.")
+        return stamp
+    except FileNotFoundError:
+        return None
+    except (OSError, ValueError) as exc:
+        raise CdlbibError("The completion undo checkpoint cannot be read; restore the printed batch backup with cdlbib update --undo STAMP.") from exc
+
+
+def completion_checkpoint(ws, batch=None):
+    """Called under transaction; checkpoint once, retain through every acceptance."""
+    root = _managed_root(ws)
+    made = batch.checkpoint if batch is not None else None
+    if made is None:
+        made = _backup(root)
+        if batch is not None:
+            batch.checkpoint = made
+            folder = home() / "completion-batches"
+            folder.mkdir(exist_ok=True)
+            _write_json(folder / made.stamp, made.stamp)
+    _write_json(home() / "completion-undo", made.stamp)
+    return made
 
 
 def _clone(source, partial, timeout):
@@ -548,13 +644,24 @@ def _unmark():
                     os.unlink(work / name)
 
 
+def _interrupted_operation():
+    operation = "update"
+    try:
+        if json.loads((home() / MARKER).read_text())["operation"] == "entry completion":
+            operation = "entry completion"
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    return operation
+
+
 def _interrupted_line(root, stamp):
-    return (f"an earlier update of the bibliography in {root} was interrupted before it finished, so the library may "
+    operation = _interrupted_operation()
+    return (f"an earlier {operation} of the bibliography in {root} was interrupted before it finished, so the library may "
             "be missing your changes; nothing was changed now. "
-            + (f"Run `{UNDO} {stamp}` to put the library back as it was before that update (backup {stamp})."
+            + (f"Run `{UNDO} {stamp}` to put the library back as it was before that {operation} (backup {stamp})."
                if stamp else
                f"Run `cdlbib update --list` to see the backups, and `{UNDO} STAMP` to put the library back as it was "
-               "at the one taken before that update."))
+               f"at the one taken before that {operation}."))
 
 
 def _read(folder):
@@ -697,7 +804,9 @@ def _prune(folder, root, notes=None):
         ordinary = []
         for name in _backup_names(folder):
             made = _read(folder / name)
-            if made is not None and not _only_copy(root, made):
+            if (made is not None and name != _completion_target()
+                    and not (home() / "completion-batches" / name).exists()
+                    and not _only_copy(root, made)):
                 ordinary.append(name)
     except (OSError, CdlbibError) as exc:
         notes.append(f"note: the old backups in {folder} could not be looked through ({_why(exc)}); none was removed")
@@ -779,6 +888,9 @@ def _backup(root):
         if isinstance(exc, OSError):
             raise CdlbibError(f"No backup could be made in {folder} ({exc.strerror or exc}); nothing was changed.") from exc
         raise
+    active = _batch_owner.get()
+    if active is None or active[0][0] != os.getpid() or active[1].checkpoint is None:
+        (home() / "completion-undo").unlink(missing_ok=True)
     made = _read(final)
     if made is None:
         raise CdlbibError(f"The backup just written to {final} cannot be read back; nothing was changed.")
@@ -794,7 +906,7 @@ def backup(ws, notes=None):
     are kept; an older one that cannot be removed is not a failure (``notes``, a list,
     receives a line naming it)."""
     root = _managed_root(ws)
-    with _locked(home()):
+    with transaction(ws, recovery=True):
         made = _backup(root)
         _prune(backups_folder(), root, notes)
         return made
@@ -1126,24 +1238,26 @@ def restore(backup, ws, into=None, notes=None):
     are then only in ``into``, the message names it and the command that restores it.
     Returns ``into``."""
     root = _managed_root(ws)
-    with _locked(home()):
+    with transaction(ws, recovery=True):
         return _restore(root, backup, into, notes)
 
 
 def undo(ws, stamp=None, notes=None):
-    """Restore the newest backup, or the one named ``stamp`` (Backup.stamp). The list of
+    """Restore the command checkpoint (otherwise newest), or ``stamp`` (Backup.stamp). The list of
     backups is read with the lock held. Returns (the backup restored, the backup of the
     state before it). ``notes`` (a list) receives non-fatal lines."""
     root = _managed_root(ws)
-    with _locked(home()):
+    with transaction(ws, recovery=True):
         saved = backups()
         standing, marked = _marked()
         named_recovery = stamp is not None
         if stamp is None and marked and any(one.stamp == marked for one in saved):
             stamp = marked       # an update did not finish: the backup to restore is the one it took
             if notes is not None:
-                notes.append(f"note: backup {marked} is the one taken before the update that was interrupted; "
+                notes.append(f"note: backup {marked} is the one taken before the {_interrupted_operation()} that was interrupted; "
                              "it is the one restored")
+        if stamp is None and _completion_target() is not None:
+            stamp = _completion_target()
         if stamp is None:
             names = _backup_names(backups_folder())
             if names and _read(backups_folder() / names[-1]) is None:
@@ -2123,7 +2237,7 @@ def update(ws, force=False, decision=None, now=None, progress=None, seen=None, _
     if decision is None and not _wanted(force, now) and not _marked()[0]:
         return UpdateResult("not_due")
     try:
-        lock = _locked(home(), progress, WAITING)
+        lock = transaction(ws, recovery=True, progress=progress)
         lock.__enter__()
     except OSError as exc:
         raise CdlbibError(f"{home()} cannot be written ({exc.strerror or exc}), so the library was not "

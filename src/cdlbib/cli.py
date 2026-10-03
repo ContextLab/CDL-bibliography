@@ -145,6 +145,8 @@ def _editable(item, recheck):
 
 def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
     """Return explicitly accepted proposals; never infer human verification."""
+    if not proposals:
+        return []
     session = session if session is not None else {}
     accepted, all_remaining = [], session.get("all", False)
     terminal = sys.stdin.isatty() and sys.stderr.isatty()
@@ -180,6 +182,15 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
             show_proposal(item)
             if not terminal:
                 break
+            if item.duplicate_of and item.duplicate_in_library:
+                choice = _chosen('[r] remove this typed duplicate   [k] keep both for the formatter   [q] stop', ['r', 'k', 'q'])
+                if choice == 'q':
+                    session['stop'] = True
+                    return accepted
+                if choice == 'r':
+                    from dataclasses import replace
+                    accepted.append(replace(item, remove_duplicate=True))
+                break
             safe = (item.complete and item.proposed_raw and not item.duplicate_of and not item.unsupported
                     and not any("already exists in the library" in issue or "does not match the key plan" in issue or issue.startswith("format:")
                                 or "format check could not run" in issue for issue in item.issues))
@@ -213,6 +224,12 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
     return accepted
 
 
+def report_checkpoint(applied, session):
+    if applied.backup is not None and not session.get('checkpoint'):
+        session['checkpoint'] = applied.backup.stamp
+        typer.echo(f'Batch backup: {applied.backup.stamp}; cdlbib update --undo restores the state before this command’s accepted changes.')
+
+
 def proposal_recheck(ws, mailto=None, database=None):
     """The common editor/name-choice callback for every completion command."""
     def recheck(item, raw, resolved_fields=()):
@@ -231,57 +248,65 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
     from .complete import Query
     from .verification import load_entries
     ws = library(ctx, BIB_NAME)
-    inputs = list(queries or [])
-    if from_file:
-        inputs.extend(line.strip() for line in from_file.read_text(encoding='utf-8').splitlines() if line.strip())
-    parsed = [Query.parse(text, author=author, year=year) for text in inputs]
-    if not parsed and not sys.stdin.isatty():
-        raw = sys.stdin.read()
-        if raw.strip():
-            with tempfile.TemporaryDirectory(prefix='cdlbib-input-') as folder:
-                path = Path(folder) / 'stdin.bib'
-                path.write_text(raw, encoding='utf-8')
-                parsed = [Query.from_entry(entry) for entry in load_entries(path).values()]
+    try:
+        inputs = list(queries or [])
+        if from_file:
+            inputs.extend(line.strip() for line in from_file.read_text(encoding='utf-8').splitlines() if line.strip())
+        parsed = [Query.parse(text, author=author, year=year) for text in inputs]
+        if not parsed and not sys.stdin.isatty():
+            raw = sys.stdin.read()
+            if raw.strip():
+                with tempfile.TemporaryDirectory(prefix='cdlbib-input-') as folder:
+                    path = Path(folder) / 'stdin.bib'
+                    path.write_text(raw, encoding='utf-8')
+                    parsed = [Query.from_entry(entry) for entry in load_entries(path).values()]
+    except (OSError, UnicodeError, ValueError, TypeError) as exc:
+        raise typer.BadParameter(f'Could not read entry input: {exc}') from exc
     if not parsed:
         raise typer.BadParameter('Provide a query, --from FILE, or BibTeX on standard input')
     failures = False
-    session = {}
-    for query in parsed:
-        try:
-            results = api.propose_new(ws, [query], mailto=mailto, database=database)
-        except CdlbibError as exc:
-            typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
-            failures = True
-            continue
-        failures |= bool(results.errors)
-        recheck = proposal_recheck(ws, mailto=mailto, database=database)
-        def candidate(item, selected):
-            nonlocal failures
-            text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
-            query = Query.parse(text)
-            if item.typed_raw:
-                from . import complete
-                query.raw, query.key = item.typed_raw, item.key_typed
-                with tempfile.TemporaryDirectory(prefix='cdlbib-candidate-') as folder:
-                    path = Path(folder) / 'typed.bib'
-                    path.write_text(item.typed_raw, encoding='utf-8')
-                    entry = next(iter(load_entries(path).values()))
-                query.fields = dict(entry['fields'])
-            chosen = api.propose_new(ws, [query], mailto=mailto, database=database)
-            failures |= bool(chosen.errors)
-            return chosen[0]
-        accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
-        if accepted:
-            applied = api.apply_proposals(ws, accepted)
-            for key in applied.written:
-                typer.echo(f'Added: {key}')
-            for key, reason in applied.refused:
-                typer.echo(f'Not written {key}: {reason}')
+    from .library import completion_batch
+    with completion_batch(ws) as batch:
+        session = {}
+        for query in parsed:
+            try:
+                results = api.propose_new(ws, [query], mailto=mailto, database=database)
+            except CdlbibError as exc:
+                typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
                 failures = True
-        if session.get("stop"):
-            break
-    if failures:
-        raise typer.Exit(code=1)
+                continue
+            failures |= bool(results.errors)
+            recheck = proposal_recheck(ws, mailto=mailto, database=database)
+            def candidate(item, selected):
+                nonlocal failures
+                text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
+                query = Query.parse(text)
+                if item.typed_raw:
+                    from . import complete
+                    query.raw, query.key = item.typed_raw, item.key_typed
+                    with tempfile.TemporaryDirectory(prefix='cdlbib-candidate-') as folder:
+                        path = Path(folder) / 'typed.bib'
+                        path.write_text(item.typed_raw, encoding='utf-8')
+                        entry = next(iter(load_entries(path).values()))
+                    query.fields = dict(entry['fields'])
+                chosen = api.propose_new(ws, [query], mailto=mailto, database=database)
+                failures |= bool(chosen.errors)
+                return chosen[0]
+            accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
+            if accepted:
+                applied = api.apply_proposals(ws, accepted, batch=batch)
+                report_checkpoint(applied, session)
+                for key in applied.removed:
+                    typer.echo(f'Removed duplicate: {key}')
+                for key in applied.written:
+                    typer.echo(f'Added: {key}')
+                for key, reason in applied.refused:
+                    typer.echo(f'Not written {key}: {reason}')
+                    failures = True
+            if session.get("stop"):
+                break
+        if failures:
+            raise typer.Exit(code=1)
 
 
 _completion_seen = None
@@ -291,56 +316,64 @@ def offer_completion(ws, reference="github", database=None, mailto=None):
     """Decide and persist one entry at a time, before the ordinary gate."""
     from .complete import Query
     from .verification import load_entries
-    session = {}
-    if _completion_seen is not None and ('stop', str(ws.bib)) in _completion_seen:
-        return
-    try:
-        load_entries(ws.bib)
-    except (OSError, ValueError):
-        return  # the ordinary format gate reports unreadable/syntactically invalid text
-    try:
-        keys = api.completion_keys(ws, reference=reference, database=database)
-    except CdlbibError as exc:
-        typer.echo(f"Completion unavailable: {exc}")
-        return
-    for key in keys:
-        entries = load_entries(ws.bib)
-        if key not in entries:
-            continue
-        marker = (str(ws.bib), key, entries[key]['fingerprint'])
-        if _completion_seen is not None and marker in _completion_seen:
-            continue
-        accepted, applied = [], None
+    from .library import completion_batch
+    with completion_batch(ws) as batch:
+        session = {}
+        if _completion_seen is not None and ('stop', str(ws.bib)) in _completion_seen:
+            return
         try:
-            results = api.propose(ws, keys=[key], database=database, mailto=mailto)
-            results[:] = [item for item in results if not item.complete or item.candidates
-                          or any(change.typed != change.proposed and change.kind in ('filled', 'changed', 'question')
-                                 and change.source not in ('typed', 'house format')
-                                 for change in item.changes)]
-            recheck = proposal_recheck(ws, mailto=mailto, database=database)
-            def candidate(item, selected):
-                text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
-                query = Query.parse(text)
-                query.raw, query.key = item.typed_raw, item.key_typed
-                query.fields = dict(load_entries(ws.bib)[item.key_typed]['fields'])
-                return api.propose_new(ws, [query], mailto=mailto, database=database)[0]
-            accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
-            if accepted:
-                applied = api.apply_proposals(ws, accepted)
-                for written in applied.written:
-                    typer.echo(f'Completed: {written}')
-                for refused, reason in applied.refused:
-                    typer.echo(f'Not written {refused}: {reason}')
+            load_entries(ws.bib)
+        except (OSError, ValueError):
+            return  # the ordinary format gate reports unreadable/syntactically invalid text
+        try:
+            keys = api.completion_keys(ws, reference=reference, database=database)
         except CdlbibError as exc:
-            typer.echo(f'{key}: completion unavailable: {exc}')
-        if _completion_seen is not None:
-            for current_key, entry in load_entries(ws.bib).items():
-                if current_key == key or (applied is not None and current_key in applied.written):
-                    _completion_seen.add((str(ws.bib), current_key, entry['fingerprint']))
-        if session.get('stop'):
+            typer.echo(f"Completion unavailable: {exc}")
+            return
+        for key in keys:
+            entries = load_entries(ws.bib)
+            if key not in entries:
+                continue
+            marker = (str(ws.bib), key, entries[key]['fingerprint'])
+            if _completion_seen is not None and marker in _completion_seen:
+                continue
+            accepted, applied = [], None
+            try:
+                results = api.propose(ws, keys=[key], database=database, mailto=mailto)
+                results[:] = [item for item in results if item.duplicate_of or not item.complete or item.candidates
+                              or any(change.typed != change.proposed and change.kind in ('filled', 'changed', 'question')
+                                     and change.source not in ('typed', 'house format')
+                                     for change in item.changes)]
+                recheck = proposal_recheck(ws, mailto=mailto, database=database)
+                def candidate(item, selected):
+                    text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
+                    query = Query.parse(text)
+                    query.raw, query.key = item.typed_raw, item.key_typed
+                    current = load_entries(ws.bib)
+                    if item.key_typed not in current:
+                        raise CdlbibError('The selected entry changed on disk; review a new proposal')
+                    query.fields = dict(current[item.key_typed]['fields'])
+                    return api.propose_new(ws, [query], mailto=mailto, database=database)[0]
+                accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session) if results else []
+                if accepted:
+                    applied = api.apply_proposals(ws, accepted, batch=batch)
+                    report_checkpoint(applied, session)
+                    for removed in applied.removed:
+                        typer.echo(f'Removed duplicate: {removed}')
+                    for written in applied.written:
+                        typer.echo(f'Completed: {written}')
+                    for refused, reason in applied.refused:
+                        typer.echo(f'Not written {refused}: {reason}')
+            except CdlbibError as exc:
+                typer.echo(f'{key}: completion unavailable: {exc}')
             if _completion_seen is not None:
-                _completion_seen.add(('stop', str(ws.bib)))
-            break
+                for current_key, entry in load_entries(ws.bib).items():
+                    if current_key == key or (applied is not None and current_key in applied.written):
+                        _completion_seen.add((str(ws.bib), current_key, entry['fingerprint']))
+            if session.get('stop'):
+                if _completion_seen is not None:
+                    _completion_seen.add(('stop', str(ws.bib)))
+                break
 
 
 @app.command()
@@ -386,9 +419,18 @@ def send(ctx: typer.Context, fname: str = BIB_NAME, reference: str = "github", v
           database=database, mailto=mailto, no_complete=no_complete)
 
 
+from .library import batch_command
+
+
+@batch_command
 def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, summary=None, database=None, mailto=None, no_complete=False):
     """The send command, for the library ``ws`` (also run by the answer "send my changes first")."""
 
+    from . import publish
+    publish.require_canonical(ws)
+    publish.require_branch(ws)
+    publish.require_identity(ws)
+    api.validate_summary_path(outfile, ws=ws, inputs=(reference,), database=database)
     if not no_complete:
         offer_completion(ws, reference=reference, database=database, mailto=mailto)
 
@@ -456,7 +498,7 @@ def _backup_line(backup):
 
 @app.command()
 def update(stamp: str = typer.Argument(None, help="With --undo: the backup to restore, named as --list shows it "
-                                                  "(default: the newest)."),
+                                                  "(default: the command checkpoint, otherwise newest)."),
            show: bool = typer.Option(False, "--list", help="Show the backups of the library cdlbib manages."),
            undo: bool = typer.Option(False, "--undo", help="Put that library back as it was at a backup.")):
     """Bring the library cdlbib downloads and manages up to date now; --list shows its backups, --undo restores one."""
@@ -490,7 +532,11 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         lines.update({stamp: f"  {stamp}: unreadable ({reason})" for stamp, reason in unreadable})
         for stamp in sorted(lines, reverse=True):
             typer.echo(lines[stamp])
-        if saved:
+        checkpoint = api.completion_undo_checkpoint()
+        if checkpoint:
+            typer.echo(f"`cdlbib update --undo` restores command checkpoint {checkpoint}; "
+                       "`cdlbib update --undo STAMP` restores the one named.")
+        elif saved:
             typer.echo("`cdlbib update --undo` puts the library back as it was at the newest one; "
                        "`cdlbib update --undo STAMP` at the one named.")
     else:

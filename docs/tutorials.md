@@ -27,6 +27,11 @@ In a library without it, review the fields, sources and verification result befo
 answering `a`. Use `e` to edit first, `s` to skip, or `q` to stop. A capital `A`
 accepts remaining complete proposals that need no decision.
 
+For a duplicate already typed into the library, choose `r` to remove that typed
+entry or `k` to keep both for the formatter. In the managed library, accepted
+changes in one command share the printed `Batch backup` checkpoint;
+`cdlbib update --undo` restores the state before those changes.
+
 ### Recorded add/edit session
 
 The recording uses an empty scratch library and saved source responses. The entry
@@ -296,6 +301,12 @@ of added, removed and modified entries.
 If your GitHub account has no fork of the repository yet, `send` prints a notice
 and creates one. Run `cdlbib --ask send` to be asked first. With `--ask`, an answer
 of `n` or a run without a terminal sends nothing and prints the manual fork command.
+
+`send` requires the tracked `cdl.bib`; another filename can be checked with
+`verify` or `compare`. It also checks every outgoing commit against the upstream
+pull request base. Unrelated committed files cause a refusal, even if a later
+commit deleted them. Preserve that branch and prepare a bibliography-only branch
+from the upstream base.
 
 `send` then commits your changes to `cdl.bib` and to files under `verification/` on a
 new branch, pushes the branch to your fork, and opens the pull request. Other files with

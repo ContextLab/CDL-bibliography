@@ -151,6 +151,8 @@ class Proposal:
     status: str | None = None  # the verifier's status for proposed_raw; not set by build
     issues: list[str] = field(default_factory=list)
     candidates: list[dict] = field(default_factory=list)
+    remove_duplicate: bool = False  # explicit removal of a typed live duplicate only
+    duplicate_in_library: bool = False
     duplicate_of: str | None = None
     key_proposed: str | None = None
     renames: dict[str, str] = field(default_factory=dict)
@@ -2177,6 +2179,7 @@ def _plan_proposal(ws, proposal, query, batch):
         proposal.needs_decision = True
     proposal.duplicate_of = duplicates(ws, proposal if proposal.proposed_raw else query, batch)
     if proposal.duplicate_of:
+        proposal.duplicate_in_library = bool(query.key in entries and query.raw == entries[query.key]['raw'])
         proposal.issues.append(f'This work is already in the library or batch as {proposal.duplicate_of}')
         proposal.needs_decision = True
         return proposal
@@ -2225,6 +2228,7 @@ def propose(query, client, cache, ws=None, batch=()):
 @dataclass
 class Applied:
     written: list[str] = field(default_factory=list)
+    removed: list[str] = field(default_factory=list)
     renamed: dict[str, str] = field(default_factory=dict)
     refused: list[tuple[str, str]] = field(default_factory=list)
     backup: object = None
@@ -2237,7 +2241,11 @@ def _key_token(raw, key):
     return raw[:match.start(2)] + key + raw[match.end(2):]
 
 
-def apply(ws, accepted):
+from .library import serialized
+
+
+@serialized
+def apply(ws, accepted, *, batch=None):
     """Write explicitly accepted proposals in place, refusing stale spans and previews.
 
     UTF-8 (including BOM), line endings and final-newline presence are retained. No
@@ -2278,7 +2286,7 @@ def apply(ws, accepted):
                     raise CdlbibError('Accepted entries must be Proposal objects')
                 name = proposal.key_typed or proposal.key_proposed or NO_KEY
                 try:
-                    if not proposal.proposed_raw or proposal.unsupported:
+                    if not proposal.remove_duplicate and (not proposal.proposed_raw or proposal.unsupported):
                         raise ValueError('No writable entry was proposed')
                     if proposal.typed_raw is not None:
                         count = text.count(proposal.typed_raw)
@@ -2289,6 +2297,22 @@ def apply(ws, accepted):
                             raise ValueError('changed on disk: the typed text is not a live entry under its original key')
                         if proposal.typed_raw in used_spans:
                             raise ValueError('The typed entry was already accepted in this batch')
+                    if proposal.remove_duplicate:
+                        if not proposal.typed_raw or not proposal.duplicate_of:
+                            raise ValueError('Only a typed live duplicate can be removed')
+                        duplicate_entry = entries.get(proposal.duplicate_of)
+                        duplicate = duplicate_entry['fields'] if duplicate_entry else None
+                        own = entries[proposal.key_typed]['fields']
+                        if duplicate is None or proposal.duplicate_of == proposal.key_typed or not (
+                            _work_ids(own) & _work_ids(duplicate) or
+                            (_title_byline(own) is not None and _title_byline(own) == _title_byline(duplicate))
+                        ):
+                            raise ValueError('The duplicate identity changed; review a new proposal')
+                        text = text.replace(proposal.typed_raw, '', 1)
+                        entries = scan(text)
+                        used_spans.add(proposal.typed_raw)
+                        result.removed.append(proposal.key_typed)
+                        continue
                     fields = _completion_fields(proposal)
                     old = proposal.key_typed
                     reserved = {key: dict(entry['fields']) for key, entry in entries.items()}
@@ -2329,7 +2353,7 @@ def apply(ws, accepted):
                     result.renamed.update(renames)
                 except (ValueError, KeyError, TypeError) as exc:
                     result.refused.append((name, str(exc)))
-            if not result.written:
+            if not result.written and not result.removed:
                 return result
         changed = (b'\xef\xbb\xbf' if bom else b'') + text.encode('utf-8')
         writes = [(ws.bib, changed)]
@@ -2363,7 +2387,8 @@ def apply(ws, accepted):
         if ws.bib.read_bytes() != original:
             raise CdlbibError('The bibliography changed while applying; nothing was written')
         if api.is_managed(ws):
-            result.backup = library.backup(ws)
+            result.backup = library.completion_checkpoint(ws, batch)
+            library._mark(result.backup, "entry completion")
         installed = []
         try:
             for target, temporary, previous in staged:
@@ -2379,6 +2404,9 @@ def apply(ws, accepted):
                         stream.write(previous)
                     os.replace(name, target)
             raise
+        if result.backup is not None:
+            library._unmark()
+            library._prune(library.backups_folder(), ws.root)
         return result
     except (OSError, UnicodeError, ValueError, TypeError) as exc:
         raise CdlbibError(f'Entry completion could not be written: {exc}') from exc

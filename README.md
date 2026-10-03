@@ -113,9 +113,10 @@ a notice. Failed automatic checks retry when a command runs after about an hour.
 A first download needs a connection and Git.
 
 Before an update changes the managed library, it saves a backup. Run
-`cdlbib update --list` to list backups, `cdlbib update --undo` to restore the newest,
-or `cdlbib update --undo STAMP` to restore one named in that list. Backups are kept
-under `backups/` in the data folder.
+`cdlbib update --list` to list backups, or `cdlbib update --undo STAMP` to restore
+one named in that list. Without a stamp, undo restores an interrupted operation’s
+backup first, then the latest completion command’s checkpoint, or otherwise the
+newest backup. Backups are kept under `backups/` in the data folder.
 
 If a newer version is available and you have unsent edits, the tool asks what to do.
 For one changed entry and two new upstream commits, the question reads:
@@ -230,6 +231,11 @@ Duplicates, unsupported types, missing required fields and format/key conflicts
 must be resolved before an entry can be accepted. Accepting a proposal writes
 BibTeX; it does not record a human approval or send a pull request.
 
+A duplicate already typed into the library has separate choices: `r` removes that
+typed entry, and `k` keeps both entries for the formatter to report. Removal checks
+that the typed entry and the matching work are still present. Ordinary `s` never
+deletes an entry; a duplicate found by a new `add` query is never added.
+
 When several works match, choose a numbered candidate or `0` for none. A questioned
 name offers `k` to keep the typed name or `u` to use the source's spelling. If name
 lists cannot be paired, edit the entry yourself.
@@ -242,8 +248,11 @@ removed afterwards.
 
 Without a terminal, `add` prints proposals and `nothing was changed`; it writes
 no entries and does not open an editor. Accepted additions in the managed library
-are backed up before writing; [managed-library undo](#managed-library-updates)
-can restore the copy. Your own clone is not backed up by the tool.
+share one command checkpoint, shown as `Batch backup: STAMP`. Each acceptance is
+saved immediately. [Managed-library undo](#managed-library-updates) restores the
+state before the command’s accepted changes, including after stopping or a later
+lookup failure. The checkpoint survives backup retention while the command runs.
+Your own clone is not backed up by the tool.
 
 A recorded example is in [the add tutorial](docs/tutorials.md#add-a-paper).
 
@@ -362,7 +371,10 @@ For help, run:
 cdlbib send --help
 ```
 
-The `send` command first runs the same checks as `verify` (formatting, plus the
+Sending requires the tracked `cdl.bib` in the selected library. Use `verify` or
+`compare` to check a bibliography with another filename.
+
+The `send` command runs the same checks as `verify` (formatting, plus the
 accuracy of new and edited entries), and sends nothing if any of them fail.
 It offers completion before those checks, using the same choices as `add`.
 `cdlbib send --no-complete` skips the offers while keeping the full verify gate.
@@ -373,7 +385,15 @@ The changes to `cdl.bib` and to files under `verification/` are then committed o
 a new branch named `cdlbib/<your GitHub login>/<date>-<summary>`, with a commit
 message describing what was added, removed, and changed. Other files with
 uncommitted changes are neither committed nor pushed; they are left as they are, and
-`send` lists them on a final line beginning `left uncommitted:`.
+`send` lists them on a final line beginning `left uncommitted:`. Existing local
+commits are also checked against the upstream pull request base. If any outgoing
+commit includes another path, sending stops; deleting the file in a later commit
+does not remove it from that history. Keep the original branch and prepare a
+bibliography-only branch from the upstream base before trying again.
+
+After selecting the send branch, the bibliography and evidence must still match
+the checked files. A changed candidate stops the send. A summary `--outfile` must
+be separate from the bibliography, reference, verification data and Git controls.
 
 The branch is pushed to your own fork of the repository, and a pull request is
 opened from it into the repository your checkout was cloned from (or into its

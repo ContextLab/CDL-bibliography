@@ -91,9 +91,9 @@ for cast in "$@"; do
       mkdir "$library"
       cp "$repo/cdl.bib" "$library/"
       cp -R "$repo/verification" "$library/verification"
-      (cd "$library" && cdlbib crossref restore verification/baseline.jsonl.gz >/dev/null)
+      (cd "$library" && env -u CDLBIB_LIBRARY -u CDLBIB_HOME -u CDLBIB_UPSTREAM cdlbib --library "$library" crossref restore verification/baseline.jsonl.gz >/dev/null)
       mkdir -p "$out"
-      (cd "$library" && vhs -o "$out/check.gif" "$repo/scripts/check.tape")
+      (cd "$library" && env -u CDLBIB_HOME -u CDLBIB_UPSTREAM CDLBIB_LIBRARY="$library" vhs -o "$out/check.gif" "$repo/scripts/check.tape")
       remove_scratch
       scratch=""
       ;;

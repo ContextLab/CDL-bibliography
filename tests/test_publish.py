@@ -334,8 +334,8 @@ def test_other_edits_are_left_exactly_as_they_were(checkout):
 
 
 def test_a_branch_that_conflicts_with_my_other_edits_is_refused_whole(checkout):
-    """The send branch already exists and differs in a file the user has changed: git cannot
-    switch to it. That is the first write, and it is refused with nothing changed."""
+    """An existing send branch with unrelated outgoing history is refused before switching,
+    including when that branch also conflicts with the user’s uncommitted changes."""
     ws, remote = checkout
     branch = "cdlbib/test/2026-10-01-edit"
     git(ws.root, "switch", "-q", "-c", branch)
@@ -348,8 +348,8 @@ def test_a_branch_that_conflicts_with_my_other_edits_is_refused_whole(checkout):
     with pytest.raises(PublishRefused) as refused:
         publish.deliver(ws, branch, "edit", str(remote))
     message = str(refused.value)
-    assert message.startswith(f"git could not switch to branch {branch}, which already exists and differs in files you have changed. Nothing was changed.")
-    assert "README.md" in message and "different --summary" in message
+    assert message.startswith("Outgoing commit ") and "includes unrelated paths: README.md" in message
+    assert "Nothing was pushed" in message and "Preserve this branch" in message
     assert state(ws.root) == before and snapshot() == edits
 
 
@@ -683,10 +683,10 @@ def test_send_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
         snapshot = other_edits(work)                                 # three edits of my own, not for sending
         edits = snapshot()
         ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
-        # A push that fails for real (a local path where there is no repository; no host is
-        # contacted): the change is committed on the branch and not sent.
+        # After fetching this guarded fork’s test base, the push fails against a missing
+        # local repository: the change is committed on the branch and not sent.
         with pytest.raises(PublishRefused, match=f"committed on branch {branch}"):
-            publish.deliver(ws, branch, "added the following entries: Rame72", str(tmp_path / "no-such-remote.git"))
+            publish.deliver(ws, branch, "added the following entries: Rame72", str(tmp_path / "no-such-remote.git"), base=TEST_BASE)
         assert git(work, "rev-parse", "--abbrev-ref", "HEAD") == branch and git(work, "rev-list", "--count", f"{start}..HEAD") == "1"
         assert open_prs(fork, branch) == [] and publish.earlier_pr(fork, f"{login}:{branch}") is None
 
@@ -832,7 +832,7 @@ def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatc
             for name in ("GIT_ASKPASS", "SSH_ASKPASS", "GH_TOKEN", "GITHUB_TOKEN"):
                 patch.delenv(name, raising=False)
             with pytest.raises(PublishRefused) as refused:
-                publish.deliver(ws, branch, "cdlbib test: please ignore", f"https://github.com/{fork}.git", target=fork)
+                publish.deliver(ws, branch, "cdlbib test: please ignore", f"https://github.com/{fork}.git", target=fork, base=TEST_BASE)
         message = str(refused.value)
         assert f"committed on branch {branch}" in message
         assert "run `gh auth setup-git` (it makes git use gh's login). Run `cdlbib send` again to resume" in message

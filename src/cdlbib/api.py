@@ -217,6 +217,12 @@ def undo(stamp=None):
     return UndoResult(restored=restored, before=before, taken_off=library.taken_off(before), notes=notes)
 
 
+def completion_undo_checkpoint():
+    """Stamp of the last managed completion command's undo target, if still current."""
+    from . import library
+    return library._completion_target()
+
+
 def backups_folder():
     """The folder the backups of the managed library are kept in."""
     from . import library
@@ -231,7 +237,7 @@ def unreadable_backups():
 
 
 def undo_update(stamp=None):
-    """Put the managed library back as it was at the newest backup, or at the one named
+    """Put the managed library back at its command checkpoint (otherwise newest backup), or the one named
     ``stamp`` (Backup.stamp, as --list shows it), and return that Backup. The current state
     is backed up first (it is then the newest backup), so calling this again undoes the undo.
     Branch, commit and file bytes are restored exactly; changes that were staged come back
@@ -316,8 +322,38 @@ def check_library(ws, reference="github", citations=True, all_entries=False, aut
                            mailto=mailto, progress=progress, bars=bars)
 
 
+def validate_summary_path(outfile, *, ws=None, inputs=(), database=None):
+    """Refuse aliases of inputs, evidence, cache and git controls before helper writes."""
+    if outfile is None:
+        return
+    output = Path(outfile).resolve()
+    protected = [Path(value) for value in inputs if value and value != "github"]
+    folders = []
+    if ws is not None:
+        db = Path(database or ws.database)
+        protected += [ws.bib, db, Path(str(db) + "-wal"), Path(str(db) + "-shm")]
+        folders += [ws.work, ws.root / "verification", ws.root / ".git", ws.research_bodies]
+        from . import publish
+        for flag in ("--git-dir", "--git-common-dir"):
+            found = publish._run(["git", "rev-parse", flag], cwd=ws.root, check=False)
+            if found.returncode == 0:
+                folders.append((ws.root / found.stdout.strip()).resolve())
+    for folder in folders:
+        resolved = folder.resolve()
+        if output == resolved or resolved in output.parents:
+            raise CdlbibError("Summary output would overwrite library evidence, cache or git controls")
+        if folder.is_dir():
+            protected.extend(path for path in folder.rglob("*") if path.is_file())
+        elif folder.exists():
+            protected.append(folder)
+    for path in protected:
+        if output == path.resolve() or (output.exists() and path.exists() and output.samefile(path)):
+            raise CdlbibError("Summary output would overwrite a bibliography, reference, database or protected library file")
+
+
 def compare(a, b, verbose=False, outfile=None, bars=None):
     from .helpers import compare_bibs
+    validate_summary_path(outfile, inputs=(a, b))
     with _quiet(bars) as sink:
         try:
             match, summary = compare_bibs(a, b, verbose=verbose, outfile=outfile, return_summary=True)
@@ -415,6 +451,10 @@ def approvals_note(ws, reference=None, database=None):
     return "".join(f"\n\nApproved by @{login}: {', '.join(keys)}" for login, keys in sorted(by_login.items()))
 
 
+from .library import serialized
+
+
+@serialized
 def send(ws, summary=None, reference="github", citations=True, mailto=None, database=None, progress=None,
          bars=None, report=None, upstream=None, base="master", fork=None, allow_fork_creation=False,
          outfile=None, verbose=False, *, _test_inside_own_fork=False):
@@ -464,14 +504,26 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
             raise PublishRefused(f"{candidate} is the upstream repository, not a fork of it; a change is never "
                                  "pushed to the upstream.")
 
+    publish.require_canonical(ws)
+    validate_summary_path(outfile, ws=ws, inputs=(reference,), database=database)
     not_upstream(fork, upstream)
     here = publish.require_branch(ws, base)
     if not publish.pending(ws) and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
     publish.require_identity(ws)
 
+    def evidence():
+        import hashlib
+        db = Path(database or ws.database)
+        paths = [db, Path(str(db) + '-wal')]
+        if reference and reference != 'github':
+            paths.append(Path(reference))
+        return {str(path): hashlib.sha256(path.read_bytes()).digest() if path.exists() else None
+                for path in paths}
+
     def gate():
         """The gate, then the comparison with ``reference``: what the change is, in words."""
+        before = publish.candidate(ws)
         fmt = check_format(ws, bars=bars)
         check = gate_after_format(fmt, citations=citations)
         if report:
@@ -482,15 +534,20 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         if not check.ok:
             raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
                              "(see `cdlbib verify`).", check=check)
+        publish.require_candidate(ws, before)
+        accepted_evidence = evidence()
         if progress:
             progress("checks passed; generating commit message...")
         comparison = compare(reference, str(ws.bib), verbose=verbose, outfile=outfile, bars=bars)
         if progress:
             for line in comparison.log.splitlines():
                 progress(line)
-        return comparison.summary.strip() or "update bibliography"
+        publish.require_candidate(ws, before)
+        if evidence() != accepted_evidence:
+            raise PublishRefused("The verification database or reference changed after the gate; nothing was pushed. Run send again to check the current evidence.")
+        return comparison.summary.strip() or "update bibliography", before, accepted_evidence
 
-    changes = gate()
+    changes, checked, checked_evidence = gate()
     me = identity.current()
     resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
     if not publish.pending(ws) and not resumed:
@@ -521,7 +578,7 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
             # The managed library goes back to the default branch by itself, updated, with the
             # changes kept. They now lie on the new version, so the gate runs again.
             returned = _back_to_main(ws, earlier, progress)
-            changes = gate()
+            changes, checked, checked_evidence = gate()
             here, resumed = publish.require_branch(ws, base), False
             branch = fresh()
             earlier = finished(branch)
@@ -537,13 +594,20 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
                 f"Branch {branch} was already used for pull request {earlier.url}, which is {earlier.state}; a new "
                 f"change needs a new branch. {returned or 'Nothing was changed.'} Send again with a different "
                 "--summary (the branch is named after it and today's date).")
+    def revalidate():
+        if evidence() != checked_evidence:
+            raise PublishRefused("The verification database or reference changed after the gate; nothing was pushed. Run send again to check the current evidence.")
+
+    revalidate()
     body = changes + approvals_note(ws, reference=reference, database=database)
+    revalidate()
     title = (summary or changes.splitlines()[0])[:100]
     if not fork:
         if not allow_fork_creation:
             raise PublishRefused(f"{me.handle} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
         fork, created = publish.create_fork(upstream), True
-    files = publish.deliver(ws, branch, changes, f"https://github.com/{fork}.git", target=fork)
+    files = publish.deliver(ws, branch, changes, f"https://github.com/{fork}.git", target=fork,
+                            upstream_url=f"https://github.com/{upstream}.git", base=base, expected=checked, revalidate=revalidate)
     try:
         url = publish.open_or_update_pr(upstream, base, f"{fork.split('/')[0]}:{branch}", title, body,
                                         retitle=bool(summary))   # an open pull request keeps its title unless one is given
@@ -654,7 +718,7 @@ def completion_keys(ws, keys=None, reference='github', database=None):
         finally:
             cache.close()
         return [key for key in entries if key in selected and statuses[key]['status'] not in ACCEPTED]
-    except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
+    except (OSError, ValueError, TypeError, KeyError, sqlite3.Error) as exc:
         raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc
 
 
@@ -667,14 +731,14 @@ def propose(ws, keys=None, reference='github', mailto=None, database=None, progr
         entries = load_entries(ws.bib)
         return _proposals(ws, ((key, complete.Query.from_entry(entries[key])) for key in selected),
                           mailto, database, progress)
-    except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
+    except (OSError, ValueError, TypeError, KeyError, sqlite3.Error) as exc:
         raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc
 
 
-def apply_proposals(ws, accepted):
+def apply_proposals(ws, accepted, *, batch=None):
     """Write only the explicitly accepted proposals; see complete.apply."""
     from .complete import apply
-    return apply(ws, accepted)
+    return apply(ws, accepted, batch=batch)
 
 
 def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fields=()):

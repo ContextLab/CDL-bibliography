@@ -2746,16 +2746,17 @@ def test_while_the_question_is_open_other_commands_are_not_blocked(managed, tmp_
 
 
 def test_at_a_terminal_s_runs_the_send_and_updates_nothing(managed, tmp_path):
-    """The send is the existing `cdlbib send`. Here it stops at its own gate (the new entry does
-    not pass the format check), before any login, fork or push: the library's origin is a
+    """The send is the existing `cdlbib send`. Here it stops at its own gate (the deliberately unparseable entry cannot
+    enter completion and fails the format check), before any login, fork or push: the library's origin is a
     local folder, so no part of this test can reach GitHub."""
-    home, upstream, ws, new = unsent(managed)
+    home, upstream, ws, new = unsent(managed, mine=BASE + "\n@article{Mine26, Title={unfinished\n")
     root, before = ws.root, everything(ws.root)
     assert git("config", "--get", "remote.origin.url", cwd=root) == str(upstream)        # a local path, not GitHub
     code, out, shown = at_a_terminal("where", cwd=empty_folder(tmp_path), answers=b"s\n", **IDENTITY)
     assert code == 1, out + shown
     assert shown.startswith(QUESTION + "s\nthe bibliography was not updated: your changes are sent first (`cdlbib send`)\n")
-    assert "errors found" in out and "not sent: fix the format errors" in out
+    assert "errors found: ValueError: Unbalanced BibTeX field" in out + shown
+    assert "Entry: Mine26" not in out + shown and "Your choice [a/e/s/A/q]" not in out + shown
     assert str(ws.root) not in out.splitlines()[:1]                   # the send was the command: `where` did not run
     assert "pull request" not in out + shown and "fork" not in out + shown
     assert everything(root) == before and backup_names(home) == []    # not updated, every edit intact, on master
