@@ -388,7 +388,7 @@ def closest_candidate(fields, result):
 
 
 def citation_gate(fname, reference="github", database=None, report=None, mailto=None, interval=1.0,
-                  all_entries=False, echo=typer.echo):
+                  all_entries=False, echo=typer.echo, selected_results=None):
     """Verify the citations of new/edited entries (or all, with ``all_entries``).
 
     Runs ``crossref verify --auto-review --against <reference>`` (key-only renames are
@@ -411,6 +411,8 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
         selected = select_keys(fname, None, against, entries=results)
         unresolved = {key: results[key] for key in sorted(selected) if results[key]["status"] not in ACCEPTED}
         library = Counter(r["status"] for r in results.values())
+        if selected_results is not None:
+            selected_results.update({key: results[key] for key in selected})
         scope = "entries" if all_entries else "new/edited entries"
         echo(f"citations: {len(selected) - len(unresolved)} of {len(selected)} {scope} verified; "
              f"network requests: {client.requests}")

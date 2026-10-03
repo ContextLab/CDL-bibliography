@@ -319,3 +319,96 @@ def test_empty_decisions_are_silent(tmp_path):
     run = subprocess.run([sys.executable, '-c', 'from cdlbib.cli import decide; assert decide([])==[]'],
                          cwd=tmp_path, capture_output=True, text=True)
     assert run.returncode == 0 and run.stdout == '' and run.stderr == ''
+
+
+@pytest.fixture
+def verification_cache(tmp_path, client):
+    from cdlbib.verification import Cache
+    cache = Cache(client.cache.path, ledger=Workspace(tmp_path).revocations)
+    try:
+        yield cache
+    finally:
+        cache.close()
+
+
+def test_send_evidence_survives_approval_note_reads_and_sqlite_maintenance(tmp_path, client, verification_cache):
+    from conftest import ZOLL90
+    ws = Workspace(tmp_path)
+    ws.bib.write_text(ZOLL90 + '\n')
+    item = complete.propose(complete.Query.parse('10.1037/h0041332'), client, client.cache, ws=ws)
+    assert api.apply_proposals(ws, [item]).written == ['Game62']
+    reference = tmp_path/'base.bib'; reference.write_text(ZOLL90 + '\n')
+    # The recorded source responses and real writer create the candidate; save its
+    # actual reviewed result under this bibliography just as the verifier does.
+    entry = load_entries(ws.bib)['Game62']
+    result = verification_cache.get(ws.bib, entry)
+    if result is None:
+        from cdlbib.verification import verify_entry
+        # Verify the real proposed entry against the recorded provider response.
+        checked = verify_entry(entry, client)
+        assert checked['status'] == 'metadata_verified'
+        verification_cache.put(ws.bib, entry, checked)
+    before = api._send_evidence(ws, reference=str(reference), database=client.cache.path)
+    raw_before = client.cache.path.read_bytes()
+    assert api.approvals_note(ws, reference=str(reference), database=client.cache.path) == ''
+    assert api._send_evidence(ws, reference=str(reference), database=client.cache.path) == before
+    with verification_cache.db:
+        verification_cache.save_response('unrelated ordinary cache response', {'body': 'cached'})
+    verification_cache.db.execute('VACUUM')
+    assert client.cache.path.read_bytes() != raw_before
+    assert api._send_evidence(ws, reference=str(reference), database=client.cache.path) == before
+
+
+@pytest.mark.parametrize('change', ['review', 'revocation', 'notice'])
+def test_send_evidence_detects_substantive_current_changes(tmp_path, client, verification_cache, change):
+    from conftest import ZOLL90
+    from cdlbib.verification import record_approval, record_revocation
+    ws = Workspace(tmp_path)
+    ws.bib.write_text(ZOLL90 + '\n')
+    entry = load_entries(ws.bib)['Zoll90']
+    review = dict(reviewer='fixture', source='recorded source', note='local fixture approval', github_login='fixture')
+    record_approval(verification_cache, ws.bib, 'Zoll90', entry['fingerprint'], review)
+    before = api._send_evidence(ws, reference=None, database=client.cache.path)
+    if change == 'review':
+        record_approval(verification_cache, ws.bib, 'Zoll90', entry['fingerprint'], dict(review, note='changed local decision'))
+    elif change == 'revocation':
+        record_revocation(verification_cache, ws.bib, 'Zoll90', 'local test revocation', 'fixture', ledger=ws.revocations)
+    else:
+        # A deliberately negative control, never a positive acceptance fixture:
+        # add a DOI-linked retraction through the real notice-storage authority.
+        verification_cache.remember_notices([dict(source='europepmc', doi=entry['fields']['doi'],
+            raw_record=dict(source='MED', id='123456', doi=entry['fields']['doi'], isRetracted='Y'))])
+    assert api._send_evidence(ws, reference=None, database=client.cache.path) != before
+
+
+def test_send_rejects_revocation_during_gate_final_progress(checkout, tmp_path):
+    from conftest import ZOLL90
+    from cdlbib.verification import Cache, record_approval, record_revocation
+    ws, _ = checkout
+    ws.bib.write_text(ZOLL90 + '\n')
+    reference = tmp_path/'base.bib'
+    # An unchanged unresolved backlog entry must not be demanded as accepted.
+    from test_complete_identify import library_entry
+    backlog = library_entry('Game62') + '\n'
+    ws.bib.write_text(backlog + ZOLL90 + '\n')
+    reference.write_text(backlog)
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        entry = load_entries(ws.bib)['Zoll90']
+        record_approval(cache, ws.bib, 'Zoll90', entry['fingerprint'],
+                        dict(reviewer='fixture', source='local regression', note='local decision', github_login='fixture'))
+        ordinary = api.check_citations(ws, api.check_format(ws), reference=str(reference))
+        assert ordinary.ok and set(ordinary.citations.checked) == {'Zoll90'}
+        assert ordinary.citations.library['pending'] == 1
+        reached = []
+        def progress(line):
+            if line.startswith('library:'):
+                reached.append(line)
+                record_revocation(cache, ws.bib, 'Zoll90', 'changed during gate output', 'fixture',
+                                  ledger=tmp_path/'outside-candidate-ledger.jsonl')
+        with pytest.raises(PublishRefused, match='selected verification results changed after the citation gate'):
+            api.send(ws, reference=str(reference), progress=progress)
+        assert reached and 'pending=1' in reached[0]
+        assert publish.current_branch(ws) == 'master'
+    finally:
+        cache.close()

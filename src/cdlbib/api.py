@@ -29,6 +29,7 @@ class CitationResult:
     unresolved: dict
     library: dict
     lines: list = field(default_factory=list)
+    checked: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -277,7 +278,7 @@ def check_citations(ws, fmt, reference="github", all_entries=False, database=Non
     report line as it is produced."""
     from .verification import ProviderError
     from .verification_cli import citation_gate
-    lines = []
+    lines, selected_results = [], {}
     out, err = sys.stdout, sys.stderr
 
     def echo(line, **_):
@@ -293,12 +294,13 @@ def check_citations(ws, fmt, reference="github", all_entries=False, database=Non
         with contextlib.redirect_stdout(printed), contextlib.redirect_stderr(bars or io.StringIO()):
             try:
                 ok, unresolved, library = citation_gate(str(ws.bib), reference=reference, database=database,
-                                                        all_entries=all_entries, mailto=mailto, echo=echo)
+                                                        all_entries=all_entries, mailto=mailto, echo=echo,
+                                                        selected_results=selected_results)
             finally:
                 printed.close_line()
     except (ValueError, OSError, ProviderError) as exc:
         raise GateFailed(f"citation check failed: {type(exc).__name__}: {exc}") from exc
-    result = CitationResult(ok=ok, unresolved=unresolved, library=library, lines=lines)
+    result = CitationResult(ok=ok, unresolved=unresolved, library=library, lines=lines, checked=selected_results)
     return LibraryCheck(format=fmt, citations=result, ok=ok)
 
 
@@ -451,6 +453,40 @@ def approvals_note(ws, reference=None, database=None):
     return "".join(f"\n\nApproved by @{login}: {', '.join(keys)}" for login, keys in sorted(by_login.items()))
 
 
+def _send_evidence(ws, *, reference, database=None):
+    """Acceptance-bearing state, independent of SQLite page/WAL bookkeeping.
+
+    Use the verifier's current-result authority, including retained negative evidence
+    and revocations. Response-cache writes and physical database maintenance are not
+    approvals. Reading results also settles the existing legacy fingerprint migration.
+    """
+    import hashlib
+    from .verification import Cache, current_results
+    from .errors import PublishRefused
+    db = Path(database or ws.database)
+    cache = None
+    try:
+        results, sources = None, None
+        if db.exists():
+            cache = Cache(db, ledger=ws.revocations)
+            cache.index_notices()
+            results = current_results(str(ws.bib), cache)
+            sources = tuple(tuple(cache.db.execute(
+                f"SELECT doi,evidence_hash,candidate FROM {table} ORDER BY doi,evidence_hash"))
+                for table in ("source_notices", "source_author_suffixes", "source_article_locators"))
+        against = None
+        if reference and reference != 'github':
+            against = hashlib.sha256(Path(reference).read_bytes()).digest()
+        return results, sources, against
+    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
+        raise PublishRefused(
+            "The verification database or reference changed after the gate or could not be read; "
+            f"nothing was pushed. Run send again to check the current evidence. ({exc})") from exc
+    finally:
+        if cache is not None:
+            cache.close()
+
+
 from .library import serialized
 
 
@@ -513,13 +549,7 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     publish.require_identity(ws)
 
     def evidence():
-        import hashlib
-        db = Path(database or ws.database)
-        paths = [db, Path(str(db) + '-wal')]
-        if reference and reference != 'github':
-            paths.append(Path(reference))
-        return {str(path): hashlib.sha256(path.read_bytes()).digest() if path.exists() else None
-                for path in paths}
+        return _send_evidence(ws, reference=reference, database=database)
 
     def gate():
         """The gate, then the comparison with ``reference``: what the change is, in words."""
@@ -536,6 +566,11 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
                              "(see `cdlbib verify`).", check=check)
         publish.require_candidate(ws, before)
         accepted_evidence = evidence()
+        if check.citations is not None and any(
+            (accepted_evidence[0] or {}).get(key) != result
+            for key, result in check.citations.checked.items()
+        ):
+            raise PublishRefused("The selected verification results changed after the citation gate; nothing was pushed. Run send again to check the current evidence.")
         if progress:
             progress("checks passed; generating commit message...")
         comparison = compare(reference, str(ws.bib), verbose=verbose, outfile=outfile, bars=bars)
