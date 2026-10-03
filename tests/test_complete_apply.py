@@ -268,3 +268,44 @@ def test_malformed_ledger_refuses_without_write(tmp_path):
         complete.apply(ws,[item])
     assert ws.bib.read_bytes()==raw.encode()
     assert ws.key_renames.read_text()=='{"legacy":"mapping"}'
+
+
+def test_commented_out_typed_entry_refused_and_independent_write_survives(tmp_path):
+    old=complete.render('article','SmitEtal20',fields())
+    ws=ws_at(tmp_path,old)
+    item=update(old,'SmitEtal20',fields('Changed title'))
+    unrelated=complete.render('article','Brow21',fields('Unrelated',author='C Brown',year='2021'))
+    ws.bib.write_text('@comment{'+old+'}\n\n'+unrelated)
+    before=ws.bib.read_bytes()
+    result=complete.apply(ws,[item])
+    assert result.written==[] and result.refused==[('SmitEtal20','changed on disk: the typed text is not a live entry under its original key')]
+    assert ws.bib.read_bytes()==before
+    independent=proposal('Jone22',fields('Independent',author='B Jones',year='2022'))
+    result=complete.apply(ws,[item,independent])
+    assert result.written==['Jone22'] and result.refused[0][0]=='SmitEtal20'
+    assert ws.bib.read_bytes().startswith(before+b'\n\n')
+    assert set(load_entries(ws.bib))=={'Brow21','Jone22'}
+
+
+@pytest.mark.parametrize('status',['metadata_verified','human_verified'])
+@pytest.mark.parametrize('kind,data',[
+    ('book',dict(author='A Smith',title='Book',year='2020')),
+    ('book',dict(editor='A Smith',title='Edited book',year='2020')),
+    ('article',dict(doi='10.1002/tea.3660271011')),
+])
+def test_api_accepted_entries_absolutely_excluded(tmp_path,status,kind,data):
+    from cdlbib.verification import Cache, current_results
+    ws=ws_at(tmp_path,complete.render(kind,'Accepted20',data))
+    # Isolated stored verdict fixtures, never approvals of any real library entry.
+    cache=Cache(ws.database,ledger=ws.revocations)
+    entry=load_entries(ws.bib)['Accepted20']
+    cache.put(ws.bib,entry,dict(status=status))
+    assert current_results(ws.bib,cache)['Accepted20']['status']==status
+    count=cache.db.execute('SELECT count(*) FROM responses').fetchone()[0]
+    cache.close()
+    # Invalid contact would fail if any provider client/lookup were created.
+    results=api.propose(ws,keys=['Accepted20'],mailto='invalid',database=ws.database)
+    assert results==[] and results.errors==[]
+    cache=Cache(ws.database,ledger=ws.revocations)
+    assert cache.db.execute('SELECT count(*) FROM responses').fetchone()[0]==count
+    cache.close()

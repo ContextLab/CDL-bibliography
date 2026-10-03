@@ -639,7 +639,7 @@ def propose_new(ws, queries, mailto=None, database=None, progress=None):
 
 
 def propose(ws, keys=None, reference='github', mailto=None, database=None, progress=None):
-    """Propose changed entries that are incomplete or lack current accepted verification.
+    """Propose changed entries lacking current accepted verification.
 
     ``keys`` is an iterable of keys or a UTF-8 key-list path; it overrides reference selection.
     Per-entry failures are available on the returned list's ``errors`` attribute.
@@ -659,8 +659,7 @@ def propose(ws, keys=None, reference='github', mailto=None, database=None, progr
         finally:
             cache.close()
         queries = [(key, complete.Query.from_entry(entry)) for key, entry in entries.items()
-                   if key in selected and (statuses[key]['status'] not in ACCEPTED or
-                       any(not entry['fields'].get(name) for name in complete.REQUIRED_FIELDS))]
+                   if key in selected and statuses[key]['status'] not in ACCEPTED]
         return _proposals(ws, queries, mailto, database, progress)
     except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
         raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc

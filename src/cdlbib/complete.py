@@ -2283,6 +2283,9 @@ def apply(ws, accepted):
                         count = text.count(proposal.typed_raw)
                         if count != 1:
                             raise ValueError(f'appears {count} times' if count else 'changed on disk')
+                        live = entries.get(proposal.key_typed)
+                        if live is None or live['raw'] != proposal.typed_raw:
+                            raise ValueError('changed on disk: the typed text is not a live entry under its original key')
                         if proposal.typed_raw in used_spans:
                             raise ValueError('The typed entry was already accepted in this batch')
                     fields = _completion_fields(proposal)
