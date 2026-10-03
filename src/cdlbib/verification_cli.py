@@ -279,16 +279,19 @@ def summary(results, require_human=False):
 
 
 def select_keys(fname, keys=None, against=None, entries=None):
-    """Select explicit keys or all content absent from a trusted base bibliography."""
-    if keys and against:
+    """Select a key-list path or iterable of keys, or content absent from a trusted base."""
+    if keys is not None and against:
         raise ValueError("Use either --keys or --against, not both")
     entries = load_entries(fname) if entries is None else entries
-    if keys:
-        selected = {
-            line.strip()
-            for line in Path(keys).read_text(encoding="utf-8").splitlines()
-            if line.strip()
-        }
+    if keys is not None:
+        lines = (Path(keys).read_text(encoding="utf-8").splitlines()
+                 if isinstance(keys, (str, Path)) else keys)
+        selected = set()
+        for line in lines:
+            if not isinstance(line, str):
+                raise ValueError('Citation keys must be strings')
+            if line.strip():
+                selected.add(line.strip())
         if not selected or selected - entries.keys():
             raise ValueError(
                 "Key list is empty or contains citation keys absent from the bibliography"

@@ -1225,7 +1225,7 @@ def _pubmed_client(client):
 _KNOWN_JOURNALS = {}
 
 
-def _known_journal(name):
+def _known_journal(name, bib=None):
     """Whether ``name`` is, under ``verification.normalize_journal``, a journal name the
     house journal list has (``helpers.journal_key``, the list ``format_journal_name``
     works from) or an entry of the library already uses (``correction_proposals.
@@ -1243,15 +1243,15 @@ def _known_journal(name):
     for short, full in helpers.journal_key.items():
         names.update(v for v in (short, full) if isinstance(v, str))
     try:
-        path = cp.library_bib()
+        path = bib if bib is not None else cp.library_bib()
         stamp = (str(path), path.stat().st_mtime_ns)
         if stamp not in _KNOWN_JOURNALS:
-            text = path.read_text(encoding="utf-8-sig")
+            from .verification import load_entries
             _KNOWN_JOURNALS.clear()
-            _KNOWN_JOURNALS[stamp] = {norm(v) for v in re.findall(
-                r"^\s*journal\s*=\s*\{(.*)\}\s*,?\s*$", text, re.I | re.M)}
+            _KNOWN_JOURNALS[stamp] = {norm(entry['fields'].get('journal', ''))
+                                      for entry in load_entries(path).values()}
         used = _KNOWN_JOURNALS[stamp]
-    except (CdlbibError, OSError, UnicodeError):  # no library at hand: the house list alone
+    except (CdlbibError, OSError, UnicodeError, ValueError):  # no library at hand: the house list alone
         used = set()
     wanted = norm(name)
     return bool(wanted) and (wanted in used or wanted in {norm(v) for v in names})
@@ -1275,7 +1275,7 @@ def _same_work(pubmed, record):
     return " and ".join(differs) or None
 
 
-def _by_pmid(client, pmid):
+def _by_pmid(client, pmid, bib=None):
     from .extra_sources import efetch, medline_is_notice, medline_record
     records, _ = efetch(_pubmed_client(client), [pmid])
     raw = records.get(str(pmid))
@@ -1296,7 +1296,7 @@ def _by_pmid(client, pmid):
         name = re.sub(r"\s*\([^()]*\)\s*$", "", catalogue)  # NLM's place and date qualifier
         record["container-title"] = [name] if name else []
         questions = {}
-        if name and not _known_journal(name):
+        if name and not _known_journal(name, bib):
             questions["journal"] = (f"journal: the name is the title in PubMed's catalogue (\"{catalogue}\"), which "
                                     "is not a journal name the library or the house journal list has; it may not "
                                     "be the name the journal prints")
@@ -1548,7 +1548,7 @@ def _by_arxiv(client, cache, requested):
     return Identified(record=raw, source="arxiv", note=missing, candidates=others)
 
 
-def identify(query, client, cache=None):
+def identify(query, client, cache=None, ws=None):
     """Find the work ``query`` names. Lookups go through ``client``; the arXiv documents
     are kept in ``cache`` (``client.cache`` when none is given), as the arXiv check keeps
     them. A source that does not answer raises ``verification.ProviderError``.
@@ -1565,7 +1565,7 @@ def identify(query, client, cache=None):
     if query.doi:
         return _from_doi(client, query.doi)
     if query.pmid:
-        return _by_pmid(client, query.pmid)
+        return _by_pmid(client, query.pmid, ws.bib if ws is not None else None)
     if query.arxiv:
         return _by_arxiv(client, cache if cache is not None else client.cache, query.arxiv)
     if query.title:
@@ -1914,7 +1914,7 @@ def checked(proposal, client, arxiv_raw=None):
     return proposal
 
 
-def _propose(query, client, cache):
+def _propose(query, client, cache, ws=None):
     """Find the work, build the entry, and have it checked. Returns a ``Proposal`` always:
 
     - no record (an unresolved DOI, nothing found, several candidates): the entry is left
@@ -1945,7 +1945,7 @@ def _propose(query, client, cache):
                         needs_decision=True)
 
     try:
-        found = identify(query, client, cache)
+        found = identify(query, client, cache, ws=ws)
     except ProviderError as exc:
         return as_typed([f"The lookup failed: a source did not answer ({exc}); the entry is left as typed"],
                         status=LOOKUP_FAILED)
@@ -2217,5 +2217,167 @@ def propose(query, client, cache, ws=None, batch=()):
     proposals for this preview, not for writing; the writer must replan accepted entries.
     """
     batch = tuple(batch)
-    proposal = _propose(query, client, cache)
+    proposal = _propose(query, client, cache, ws=ws)
     return _plan_proposal(ws, proposal, query, batch) if ws is not None else proposal
+
+
+@dataclass
+class Applied:
+    written: list[str] = field(default_factory=list)
+    renamed: dict[str, str] = field(default_factory=dict)
+    refused: list[tuple[str, str]] = field(default_factory=list)
+    backup: object = None
+
+
+def _key_token(raw, key):
+    match = re.match(r'(@[A-Za-z]+\s*[({]\s*)([^,\s})]+)', raw)
+    if not match:
+        raise ValueError('The proposed entry has no citation key token')
+    return raw[:match.start(2)] + key + raw[match.end(2):]
+
+
+def apply(ws, accepted):
+    """Write explicitly accepted proposals in place, refusing stale spans and previews.
+
+    UTF-8 (including BOM), line endings and final-newline presence are retained. No
+    approval is recorded. New entries append in accepted order with one blank line:
+    the house formatter does not require sorting entries.
+    """
+    import json
+    import os
+    import tempfile
+    from datetime import date
+    from pathlib import Path
+    from . import api, library
+    from .errors import CdlbibError
+    from .verification import load_entries
+    from .workspace import Workspace
+
+    result = Applied()
+    staged = []
+    try:
+        if api.is_managed(ws) and ws.bib.resolve() != (library.path() / 'cdl.bib').resolve():
+            raise CdlbibError('The managed backup cannot protect this named bibliography; use the managed cdl.bib')
+        original = ws.bib.read_bytes()
+        bom = original.startswith(b'\xef\xbb\xbf')
+        text = original.decode('utf-8-sig')
+        newline = '\r\n' if '\r\n' in text else '\n'
+        final = text.endswith('\n')
+        # A snapshot lets the strict scanner validate the one original read and each
+        # virtual accepted state, without rereading the user's file during planning.
+        with tempfile.TemporaryDirectory(prefix='cdlbib-apply-') as folder:
+            snapshot = Workspace(folder)
+            def scan(value):
+                snapshot.bib.write_bytes(value.encode('utf-8'))
+                return load_entries(snapshot.bib) if value.strip() else {}
+            entries = scan(text)
+            used_spans = set()
+            for proposal in accepted:
+                if not isinstance(proposal, Proposal):
+                    raise CdlbibError('Accepted entries must be Proposal objects')
+                name = proposal.key_typed or proposal.key_proposed or NO_KEY
+                try:
+                    if not proposal.proposed_raw or proposal.unsupported:
+                        raise ValueError('No writable entry was proposed')
+                    if proposal.typed_raw is not None:
+                        count = text.count(proposal.typed_raw)
+                        if count != 1:
+                            raise ValueError(f'appears {count} times' if count else 'changed on disk')
+                        if proposal.typed_raw in used_spans:
+                            raise ValueError('The typed entry was already accepted in this batch')
+                    fields = _completion_fields(proposal)
+                    old = proposal.key_typed
+                    reserved = {key: dict(entry['fields']) for key, entry in entries.items()}
+                    if old in entries and proposal.typed_raw == entries[old]['raw']:
+                        reserved.pop(old)
+                    elif old in entries:
+                        raise ValueError(f'The typed key {old} already exists in the library')
+                    ids, identity = _work_ids(fields), _title_byline(fields)
+                    for key, data in reserved.items():
+                        if ids & _work_ids(data) or (identity is not None and identity == _title_byline(data)):
+                            raise ValueError(f'This work is already in the library or accepted batch as {key}')
+                    plan = _key_plan(fields, reserved)
+                    if plan.key != proposal.key_proposed or plan.renames != proposal.renames:
+                        raise ValueError('The key or rename plan changed; review a new proposal')
+                    candidate = text
+                    raw = _key_token(proposal.proposed_raw, plan.key)
+                    raw = raw.replace('\r\n', '\n').replace('\n', newline)
+                    if proposal.typed_raw is not None:
+                        candidate = candidate.replace(proposal.typed_raw, raw, 1)
+                    else:
+                        candidate = candidate + (newline * (2 if not candidate.endswith(newline) else
+                                    1 if not candidate.endswith(newline * 2) else 0) if candidate else '') + raw
+                        if final:
+                            candidate += newline
+                    renames = dict(plan.renames)
+                    if old and old != plan.key:
+                        renames[old] = plan.key
+                    for source, target in plan.renames.items():
+                        source_raw = entries[source]['raw']
+                        if candidate.count(source_raw) != 1:
+                            raise ValueError(f'The entry to rename {source} is not uniquely located')
+                        candidate = candidate.replace(source_raw, _key_token(source_raw, target), 1)
+                    next_entries = scan(candidate)
+                    text, entries = candidate, next_entries
+                    if proposal.typed_raw is not None:
+                        used_spans.add(proposal.typed_raw)
+                    result.written = [plan.renames.get(key, key) for key in result.written] + [plan.key]
+                    result.renamed.update(renames)
+                except (ValueError, KeyError, TypeError) as exc:
+                    result.refused.append((name, str(exc)))
+            if not result.written:
+                return result
+        changed = (b'\xef\xbb\xbf' if bom else b'') + text.encode('utf-8')
+        writes = [(ws.bib, changed)]
+        expected = {ws.bib: original}
+        if result.renamed:
+            ledger = ws.key_renames
+            ledger_original = ledger.read_bytes() if ledger.exists() else None
+            expected[ledger] = ledger_original
+            records = json.loads(ledger_original) if ledger_original is not None else []
+            if not isinstance(records, list) or any(not isinstance(item, dict) for item in records):
+                raise ValueError('The key rename ledger must be a list of records')
+            records += [dict(old_key=old, new_key=new, date=date.today().isoformat(),
+                             reason='Accepted entry completion key plan', commit=None)
+                        for old, new in result.renamed.items()]
+            writes.append((ledger, (json.dumps(records, indent=1, ensure_ascii=False) + '\n').encode('utf-8')))
+        # Prepare every file before replacing either, so permission/disk failures
+        # during preparation leave both originals intact.
+        for target, data in writes:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            fd, name = tempfile.mkstemp(prefix='.' + target.name + '-', dir=target.parent)
+            staged.append((target, Path(name), expected[target]))
+            with os.fdopen(fd, 'wb') as stream:
+                stream.write(data)
+                stream.flush()
+                os.fsync(stream.fileno())
+            if target.exists():
+                os.chmod(name, target.stat().st_mode & 0o777)
+        for target, _, previous in staged:
+            if (target.read_bytes() if target.exists() else None) != previous:
+                raise CdlbibError(f'{target} changed while applying; nothing was written')
+        if ws.bib.read_bytes() != original:
+            raise CdlbibError('The bibliography changed while applying; nothing was written')
+        if api.is_managed(ws):
+            result.backup = library.backup(ws)
+        installed = []
+        try:
+            for target, temporary, previous in staged:
+                os.replace(temporary, target)
+                installed.append((target, previous))
+        except OSError:
+            for target, previous in reversed(installed):
+                if previous is None:
+                    target.unlink()
+                else:
+                    fd, name = tempfile.mkstemp(prefix='.rollback-', dir=target.parent)
+                    with os.fdopen(fd, 'wb') as stream:
+                        stream.write(previous)
+                    os.replace(name, target)
+            raise
+        return result
+    except (OSError, UnicodeError, ValueError, TypeError) as exc:
+        raise CdlbibError(f'Entry completion could not be written: {exc}') from exc
+    finally:
+        for _, temporary, _ in staged:
+            temporary.unlink(missing_ok=True)

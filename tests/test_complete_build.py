@@ -1253,3 +1253,17 @@ def test_built_entries_pass_the_format_checker(tmp_path):
     bib.write_text("\n\n".join(built) + "\n", encoding="utf-8")
     errors, _ = check_bib(str(bib), verbose=False)
     assert errors == {}
+
+
+def test_koel_typed_entry_uses_house_formatter_authority():
+    from cdlbib.helpers import format_title
+    record, mapped = sources('KoelEtal16')
+    typed = fields_of(LIBRARY['KoelEtal16'])
+    before = deepcopy(typed)
+    item = complete.build(typed, record, mapped)
+    assert typed == before
+    proposed = complete._written_fields(item)
+    assert proposed['title'] == format_title(typed['title'])
+    assert proposed['author'] == typed['author']
+    assert proposed['doi'] == typed['doi']
+    assert item.key_typed == 'KoelEtal16'

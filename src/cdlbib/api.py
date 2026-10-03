@@ -2,6 +2,7 @@
 import contextlib
 import io
 import sys
+import sqlite3
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -585,3 +586,87 @@ def _back_to_main(ws, merged, progress=None):
 def _message(exc):
     # str(KeyError('Nope')) is "'Nope'"; the CLI printed exactly that, so the text is kept as is.
     return str(exc)
+
+
+class ProposalResults(list):
+    """Proposals plus incremental (query/key, reason) errors; successes are retained."""
+    def __init__(self):
+        super().__init__()
+        self.errors = []
+
+
+def _proposals(ws, queries, mailto=None, database=None, progress=None, client=None):
+    from . import complete, extra_sources
+    from .verification import ProviderError
+    results = ProposalResults()
+    queries = list(queries)
+    if not queries:
+        return results
+    owns_client = client is None
+    try:
+        if owns_client:
+            path = database or ws.database
+            contact = mailto or extra_sources.contact_email(path)
+            client = extra_sources.make_client(path, contact=contact)
+        for label, query in queries:
+            try:
+                query = query if isinstance(query, complete.Query) else complete.Query.parse(query)
+                proposal = complete.propose(query, client, client.cache, ws=ws, batch=results)
+                results.append(proposal)
+                if proposal.status == 'provider_error' or (not proposal.proposed_raw and proposal.issues):
+                    results.errors.append((label, '; '.join(proposal.issues)))
+                if progress:
+                    progress(f'{label}: {proposal.status or "needs review"}')
+            except (CdlbibError, OSError, ValueError, TypeError, ProviderError, sqlite3.Error) as exc:
+                results.errors.append((label, str(exc)))
+                results.append(complete.Proposal(issues=[str(exc)], needs_decision=True))
+                if progress:
+                    progress(f'{label}: {exc}')
+        return results
+    except (OSError, ValueError, TypeError, ProviderError, sqlite3.Error) as exc:
+        raise CdlbibError(f'Entry completion could not start: {exc}') from exc
+    finally:
+        if owns_client and client is not None:
+            client.cache.close()
+
+
+def propose_new(ws, queries, mailto=None, database=None, progress=None):
+    """Find/build/check queries; list-compatible result.errors retains per-query failures.
+
+    Nothing is written or approved. ``progress`` receives one line per processed query.
+    """
+    return _proposals(ws, ((str(query), query) for query in queries), mailto, database, progress)
+
+
+def propose(ws, keys=None, reference='github', mailto=None, database=None, progress=None):
+    """Propose changed entries that are incomplete or lack current accepted verification.
+
+    ``keys`` is an iterable of keys or a UTF-8 key-list path; it overrides reference selection.
+    Per-entry failures are available on the returned list's ``errors`` attribute.
+    """
+    import tempfile
+    from . import complete
+    from .verification import ACCEPTED, Cache, current_results, load_entries
+    from .verification_cli import reference_bib, select_keys
+    try:
+        entries = load_entries(ws.bib)
+        with tempfile.TemporaryDirectory(prefix='cdlbib-reference-') as folder:
+            against = reference_bib(reference, folder) if reference is not None and keys is None else None
+            selected = select_keys(ws.bib, keys=keys, against=against, entries=entries)
+        cache = Cache(database or ws.database, ledger=ws.revocations)
+        try:
+            statuses = current_results(ws.bib, cache, entries=entries)
+        finally:
+            cache.close()
+        queries = [(key, complete.Query.from_entry(entry)) for key, entry in entries.items()
+                   if key in selected and (statuses[key]['status'] not in ACCEPTED or
+                       any(not entry['fields'].get(name) for name in complete.REQUIRED_FIELDS))]
+        return _proposals(ws, queries, mailto, database, progress)
+    except (OSError, ValueError, TypeError, sqlite3.Error) as exc:
+        raise CdlbibError(f'Entries could not be selected for completion: {exc}') from exc
+
+
+def apply_proposals(ws, accepted):
+    """Write only the explicitly accepted proposals; see complete.apply."""
+    from .complete import apply
+    return apply(ws, accepted)
