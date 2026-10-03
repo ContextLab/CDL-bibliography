@@ -412,3 +412,21 @@ def test_send_rejects_revocation_during_gate_final_progress(checkout, tmp_path):
         assert publish.current_branch(ws) == 'master'
     finally:
         cache.close()
+
+
+def test_checkout_without_origin_uses_real_explicit_upstream_base(checkout, tmp_path):
+    ws, upstream = checkout
+    git(ws.root, 'remote', 'remove', 'origin')
+    destination = tmp_path/'empty-fork.git'
+    git(tmp_path, 'init', '-q', '--bare', str(destination))
+    start = git(ws.root, 'rev-parse', 'HEAD')
+    (ws.root/'README.md').write_text('local edit must survive\n')
+    ws.bib.write_text('% accepted bibliography edit\n')
+    branch = 'cdlbib/test/explicit-local-base'
+    assert publish.deliver(ws, branch, 'bibliography', str(destination),
+                           upstream_url=str(upstream), base='master') == ['cdl.bib']
+    assert git(ws.root, 'remote') == ''
+    assert git(destination, 'rev-list', '--count', f'{start}..{branch}') == '1'
+    assert git(destination, 'diff', '--name-only', f'{start}..{branch}') == 'cdl.bib'
+    assert git(ws.root, 'status', '--porcelain', '--', 'README.md') == 'M README.md'
+    assert (ws.root/'README.md').read_text() == 'local edit must survive\n'

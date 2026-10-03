@@ -887,8 +887,14 @@ def test_send_refuses_an_unresolved_entry_and_sends_only_the_bib(tmp_path, monke
     remote = tmp_path / "fork.git"
     subprocess.run(["git", "init", "-q", "--bare", str(remote)], env=env, check=True)
     start, on = git("rev-parse", "HEAD").strip(), git("rev-parse", "--abbrev-ref", "HEAD").strip()
+    # Model the real PR base separately from its empty fork destination. The outgoing
+    # history check fetches this base; the original notes.txt belongs to that base.
+    upstream = tmp_path / "upstream.git"
+    subprocess.run(["git", "init", "-q", "--bare", str(upstream)], env=env, check=True)
+    git("push", "-q", str(upstream), f"{start}:refs/heads/{on}")
     branch = "cdlbib/test/2026-09-25-add-rame72"
-    sent = publish.deliver(Workspace.for_bib(bib), branch, api.compare(str(base), str(bib)).summary.strip(), str(remote))
+    sent = publish.deliver(Workspace.for_bib(bib), branch, api.compare(str(base), str(bib)).summary.strip(), str(remote),
+                           upstream_url=str(upstream), base=on)
     assert sent == ["cdl.bib"]
     pushed = subprocess.run(["git", "rev-parse", branch], cwd=remote, env=env, capture_output=True, text=True, check=True).stdout
     assert pushed == git("rev-parse", "HEAD") and git("rev-parse", "--abbrev-ref", "HEAD").strip() == branch
