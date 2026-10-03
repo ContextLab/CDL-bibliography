@@ -671,43 +671,84 @@ def apply_proposals(ws, accepted):
     return apply(ws, accepted)
 
 
-def recheck_proposal(ws, proposal, raw, mailto=None, database=None):
-    """Check exact edited text, retaining the original replacement identity."""
+def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fields=()):
+    """Check exact edited text and retain review evidence for untouched values.
+
+    Malformed saved text raises EditedEntryParseError; workspace/client failures
+    raise CdlbibError. Neither case mutates the input proposal or bibliography.
+    """
     import tempfile
     from dataclasses import replace
     from . import complete, extra_sources
-    from .verification import load_entries
-    with tempfile.TemporaryDirectory(prefix='cdlbib-edited-') as folder:
-        path = Path(folder) / 'edited.bib'
-        path.write_text(raw, encoding='utf-8')
-        entries = load_entries(path)
-    if len(entries) != 1:
-        raise ValueError('The edited text must contain exactly one entry')
-    entry = next(iter(entries.values()))
-    if entry['raw'].strip() != raw.strip():
-        raise ValueError('The edited text must contain only one entry')
-    item = replace(proposal, proposed_raw=raw, changes=[], unfilled=[], issues=[], candidates=[],
-                   duplicate_of=None, renames={}, unsupported=None, needs_decision=False,
-                   status=None, entry_type=entry['fields']['ENTRYTYPE'], edited_fields=dict(entry['fields']))
-    query = complete.Query.from_entry(entry)
-    existing = complete._library_entries(ws)
-    if entry['key'] in existing and entry['key'] != proposal.key_typed:
-        item.issues.append(f"The edited key {entry['key']} already exists in the library")
-        item.needs_decision = True
-    if proposal.typed_raw is not None:
-        query.key, query.raw = proposal.key_typed, proposal.typed_raw
-    complete._set_complete(item, entry['fields'])
-    complete._plan_proposal(ws, item, query, ())
-    item.proposed_raw = raw
-    if item.key_proposed and entry['key'] != item.key_proposed:
-        item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
-        item.needs_decision = True
-    if str(entry['fields']['ENTRYTYPE']).lower() != 'article':
-        item.unsupported = entry['fields']['ENTRYTYPE']
-        item.needs_decision = True
-    path = database or ws.database
-    client = extra_sources.make_client(path, contact=mailto or extra_sources.contact_email(path))
+    from .errors import EditedEntryParseError
+    from .verification import load_entries, ProviderError
+    client = None
     try:
+        with tempfile.TemporaryDirectory(prefix='cdlbib-edited-') as folder:
+            path = Path(folder) / 'edited.bib'
+            path.write_text(raw, encoding='utf-8')
+            try:
+                entries = load_entries(path)
+            except ValueError as exc:
+                raise EditedEntryParseError(str(exc)) from exc
+        if len(entries) != 1:
+            raise EditedEntryParseError('The edited text must contain exactly one entry')
+        entry = next(iter(entries.values()))
+        if entry['raw'].strip() != raw.strip():
+            raise EditedEntryParseError('The edited text must contain only one entry')
+        fields = dict(entry['fields'])
+        before = complete._completion_fields(proposal)
+        evidence = {change.field: change for change in proposal.changes}
+        changes = []
+        for name in sorted((set(before) | set(fields) | set(evidence)) - {'ENTRYTYPE', 'ID'}):
+            previous, value = before.get(name), fields.get(name)
+            change = evidence.get(name)
+            if previous == value and change:
+                if name in resolved_fields and change.kind == 'question':
+                    changes.append(replace(change, proposed=value, kind='kept',
+                                   source=f'typed (source alternative: {change.source}: {change.proposed})'))
+                else:
+                    changes.append(replace(change))
+            else:
+                changes.append(complete.FieldChange(name, previous, value, 'user edit',
+                                                    'changed' if value is not None else 'dropped'))
+        unfilled = [replace(missing) for missing in proposal.unfilled
+                    if before.get(missing.field) == fields.get(missing.field) or not fields.get(missing.field)]
+        missing_names = {missing.field for missing in unfilled}
+        for change in changes:
+            if change.kind == 'dropped' and change.field not in missing_names:
+                old = evidence.get(change.field)
+                unfilled.append(complete.Unfilled(change.field, 'Removed in editor',
+                                {old.source: str(old.proposed)} if old and old.proposed else {}))
+        item = replace(proposal, proposed_raw=raw, changes=changes, unfilled=unfilled, notes=list(proposal.notes), issues=[], candidates=[],
+                       duplicate_of=None, renames={}, unsupported=None, needs_decision=False,
+                       status=None, entry_type=fields['ENTRYTYPE'], edited_fields=fields)
+        query = complete.Query.from_entry(entry)
+        existing = complete._library_entries(ws)
+        if entry['key'] in existing and entry['key'] != proposal.key_typed:
+            item.issues.append(f"The edited key {entry['key']} already exists in the library")
+            item.needs_decision = True
+        if proposal.typed_raw is not None:
+            query.key, query.raw = proposal.key_typed, proposal.typed_raw
+        complete._set_complete(item, fields)
+        complete._plan_proposal(ws, item, query, ())
+        item.proposed_raw = raw
+        if item.key_proposed and entry['key'] != item.key_proposed:
+            item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
+            item.needs_decision = True
+        if str(fields['ENTRYTYPE']).lower() != 'article':
+            item.unsupported = fields['ENTRYTYPE']
+            item.needs_decision = True
+        path = database or ws.database
+        client = extra_sources.make_client(path, contact=mailto or extra_sources.contact_email(path))
         return complete.checked(item, client)
+    except CdlbibError:
+        raise
+    except (OSError, ValueError, TypeError, KeyError, ProviderError, sqlite3.Error) as exc:
+        raise CdlbibError(f'Edited entry could not be rechecked: {exc}') from exc
     finally:
-        client.cache.close()
+        if client is not None:
+            try:
+                client.cache.close()
+            except (OSError, sqlite3.Error) as exc:
+                raise CdlbibError(f'Edited entry cache could not be closed: {exc}') from exc

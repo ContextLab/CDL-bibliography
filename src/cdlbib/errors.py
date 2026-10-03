@@ -5,6 +5,10 @@ class CdlbibError(Exception):
     """Base class. Front ends show str(error) and choose the exit code or dialog."""
 
 
+class EditedEntryParseError(CdlbibError):
+    """The saved editor text cannot be read as exactly one BibTeX entry."""
+
+
 class WorkspaceNotFound(CdlbibError):
     pass
 

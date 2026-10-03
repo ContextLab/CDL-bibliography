@@ -12,7 +12,7 @@ import typer
 
 from . import __version__, api, deps, verification_cli
 from .errors import CdlbibError, GateFailed, LibraryUnavailable, MissingDependency, PublishRefused, WorkspaceNotFound
-from .errors import UpdateNeedsDecision
+from .errors import UpdateNeedsDecision, EditedEntryParseError
 from . import workspace
 from .verification_cli import app as crossref_app, library, named
 from .workspace import BIB_NAME
@@ -90,8 +90,12 @@ def show_proposal(item):
         from itertools import zip_longest
         width = (shutil.get_terminal_size().columns - 3) // 2
         typer.echo(f"{'Typed':<{width}} | Proposed")
+        import textwrap
         for a, b in zip_longest(left, right, fillvalue=''):
-            typer.echo(f"{a:<{width}} | {b}")
+            wrapped_a = textwrap.wrap(a.expandtabs(4), width=width, replace_whitespace=False, drop_whitespace=False) or ['']
+            wrapped_b = textwrap.wrap(b.expandtabs(4), width=width, replace_whitespace=False, drop_whitespace=False) or ['']
+            for row_a, row_b in zip_longest(wrapped_a, wrapped_b, fillvalue=''):
+                typer.echo(f"{row_a:<{width}} | {row_b}")
     else:
         typer.echo('Typed:\n' + '\n'.join(left) + '\nProposed:\n' + '\n'.join(right))
     for change in item.changes:
@@ -132,7 +136,7 @@ def _editable(item, recheck):
                 return item
             try:
                 return recheck(item, raw)
-            except ValueError as exc:
+            except EditedEntryParseError as exc:
                 typer.echo(f'Edited entry could not be read: {exc}. Reopening the editor.')
             except CdlbibError as exc:
                 typer.echo(f'Edited entry could not be checked: {exc}. Returning to choices.')
@@ -170,7 +174,8 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
                     from . import complete
                     fields = complete._completion_fields(item)
                     fields[change.field] = ' and '.join(names)
-                    item = recheck(item, complete.render(item.entry_type, item.key_typed or item.key_proposed, fields))
+                    item = recheck(item, complete.render(item.entry_type, item.key_typed or item.key_proposed, fields),
+                                   resolved_fields=(change.field,))
         while True:
             show_proposal(item)
             if not terminal:
@@ -241,9 +246,10 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
             failures = True
             continue
         failures |= bool(results.errors)
-        def recheck(item, raw):
-            return api.recheck_proposal(ws, item, raw, mailto=mailto, database=database)
+        def recheck(item, raw, resolved_fields=()):
+            return api.recheck_proposal(ws, item, raw, mailto=mailto, database=database, resolved_fields=resolved_fields)
         def candidate(item, selected):
+            nonlocal failures
             text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
             query = Query.parse(text)
             if item.typed_raw:
@@ -255,6 +261,7 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
                     entry = next(iter(load_entries(path).values()))
                 query.fields = dict(entry['fields'])
             chosen = api.propose_new(ws, [query], mailto=mailto, database=database)
+            failures |= bool(chosen.errors)
             return chosen[0]
         accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
         if accepted:
