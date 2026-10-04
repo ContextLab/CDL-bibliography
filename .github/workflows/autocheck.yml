@@ -25,6 +25,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/crossref-contact
+        with:
+          mailto: ${{ vars.CROSSREF_MAILTO }}
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
@@ -33,11 +36,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install ".[research]" pytest
       - name: run pytest
-        env:
-          CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
         run : |
           cdlbib verify --no-citations
-          python -m pytest -q tests
+          python -m pytest -q -rs tests
 
   build:
     runs-on: ubuntu-latest

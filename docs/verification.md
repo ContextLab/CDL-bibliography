@@ -686,8 +686,10 @@ This route is separate from the optional LLM adapter below: `crossref research` 
 
 `.github/workflows/citation-check.yml` (workflow name "Citation verification") runs
 `verification/check_ci.py` on pull requests to `master`, pushes to `master`, and manual
-dispatch. All jobs share one serial concurrency group, and `CROSSREF_MAILTO` comes from
-the repository's Actions variable.
+dispatch. All jobs share one serial concurrency group. The shared
+`.github/actions/crossref-contact` action supplies the public CI contact from its
+`mailto.txt`; the repository's `CROSSREF_MAILTO` Actions variable overrides it when
+available. This lets fork pull requests run when GitHub supplies an empty variable.
 
 - On a pull request or push, it writes the base revision's `cdl.bib` to
   `.bibcheck/base.bib`, restores the base revision's `verification/baseline.jsonl.gz`
