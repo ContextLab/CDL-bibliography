@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 import shutil
 
+from conftest import plain_output
+
 from cdlbib import deps
 
 # The command of the environment running the tests, not another one that is on PATH.
@@ -13,8 +15,8 @@ CDLBIB = str(_SIBLING) if _SIBLING.exists() else shutil.which("cdlbib")
 
 
 def run(*args, cwd, env=None):
-    return subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True,
-                          env=dict(os.environ, **(env or {})))
+    return plain_output(subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True,
+                                       env=dict(os.environ, **(env or {}))))
 
 
 def test_help_and_version_work_outside_a_library(tmp_path):

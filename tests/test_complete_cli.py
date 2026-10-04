@@ -454,11 +454,16 @@ def test_send_completion_gate_runs_before_any_publication(tmp_path, client):
     reference = tmp_path/'reference.bib'
     reference.write_text('@book{Base20, author={A Smith}, title={Baseline}, year={2020}}\n')
     subprocess.run(['git','init','-q'],cwd=tmp_path,check=True)
+    # send checks identity in a later Git process; commit-only -c settings do not persist.
+    subprocess.run(['git','config','--local','user.name','Fixture'],cwd=tmp_path,check=True)
+    subprocess.run(['git','config','--local','user.email','fixture@example.org'],cwd=tmp_path,check=True)
     subprocess.run(['git','add','cdl.bib'],cwd=tmp_path,check=True)
-    subprocess.run(['git','-c','user.name=Fixture','-c','user.email=fixture@example.org',
-                    'commit','-qm','Local isolated fixture'],cwd=tmp_path,check=True)
+    subprocess.run(['git','commit','-qm','Local isolated fixture'],cwd=tmp_path,check=True)
     status, out = terminal(tmp_path, 'from cdlbib.cli import main; main()', 'a\n', argv=[
-        'send', '--reference', str(reference), '--database', str(tmp_path/'responses.sqlite3'), '--mailto', CONTACT])
+        'send', '--reference', str(reference), '--database', str(tmp_path/'responses.sqlite3'), '--mailto', CONTACT],
+        extra_env={'GIT_CONFIG_GLOBAL': os.devnull, 'GIT_CONFIG_NOSYSTEM': '1',
+                   'GIT_CONFIG_COUNT': '1', 'GIT_CONFIG_KEY_0': 'user.useConfigOnly',
+                   'GIT_CONFIG_VALUE_0': 'true'})
     assert status == 1, out
     assert 'Completed: Zoll90' in out and 'not sent:' in out
     assert 'pull request:' not in out

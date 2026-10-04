@@ -104,6 +104,15 @@ def _frozen_library(monkeypatch, tmp_path):
     monkeypatch.setattr(cp, "LIBRARY_BIB", FROZEN_LIBRARY)
 
 
+def plain_output(result):
+    """Compare visible CLI wording even when CI forces ANSI terminal styling."""
+    import re
+    styling = re.compile(r"\x1b\[[0-9;]*m")
+    result.stdout = styling.sub("", result.stdout)
+    result.stderr = styling.sub("", result.stderr)
+    return result
+
+
 def keychain_problem():
     """Why no usable keychain exists under the current environment, or None when there is one.
 

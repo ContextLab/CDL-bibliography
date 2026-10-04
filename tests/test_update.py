@@ -23,6 +23,8 @@ from pathlib import Path
 import pytest
 
 import conftest
+from conftest import plain_output
+
 from cdlbib import api, cli, library, verification_cli, workspace
 from cdlbib.errors import CdlbibError, UpdateConflict, UpdateNeedsDecision
 from cdlbib.workspace import Workspace
@@ -159,8 +161,8 @@ def still_running(pids):
 
 def cdlbib(*args, cwd, **env):
     """Run the command with no terminal (stdin is /dev/null, whatever pytest itself runs in)."""
-    return subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True, env=dict(os.environ, **env),
-                          stdin=subprocess.DEVNULL)
+    return plain_output(subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True,
+                                       env=dict(os.environ, **env), stdin=subprocess.DEVNULL))
 
 
 @pytest.fixture

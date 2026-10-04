@@ -15,6 +15,8 @@ import subprocess
 
 import pytest
 
+from conftest import plain_output
+
 from cdlbib import api, publish
 from cdlbib.errors import GateFailed, IdentityUnavailable, PublishRefused
 from cdlbib.workspace import Workspace
@@ -479,8 +481,8 @@ def test_send_outside_a_git_checkout_refuses(tmp_path):
 # The command ----------------------------------------------------------------------------
 
 def cdlbib(cwd, *args, **env):
-    return subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True, timeout=1800,
-                          stdin=subprocess.DEVNULL, env=dict(os.environ, **GIT_ENV, **env))
+    return plain_output(subprocess.run([CDLBIB, *args], cwd=cwd, capture_output=True, text=True, timeout=1800,
+                                       stdin=subprocess.DEVNULL, env=dict(os.environ, **GIT_ENV, **env)))
 
 
 def library_checkout(checkout, text):

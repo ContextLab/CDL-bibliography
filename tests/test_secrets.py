@@ -161,6 +161,9 @@ def backend(monkeypatch):
 
 
 class SlowBackend(keyring.backend.KeyringBackend):
+    # keyring registers subclasses at import time. Only explicit test installation
+    # may select these backends; they must never satisfy system-keychain discovery.
+    viable = False
     priority = 1
 
     def get_password(self, service, username):
@@ -176,6 +179,41 @@ class SlowBackend(keyring.backend.KeyringBackend):
 class EmptyBackend(SlowBackend):
     def get_password(self, service, username):
         return None
+
+
+def test_test_backends_do_not_become_the_system_keychain(tmp_path):
+    """Collection must not supply a fake keychain on a headless machine."""
+    import subprocess
+    from pathlib import Path
+
+    env = dict(os.environ, HOME=str(tmp_path), XDG_CONFIG_HOME=str(tmp_path))
+    env.pop("PYTHON_KEYRING_BACKEND", None)
+    script = """
+import runpy
+import sys
+import keyring
+import keyring.backend
+import keyring.core
+from keyring.backends import chainer, fail
+
+collected = runpy.run_path(sys.argv[1])
+test_backend = collected['SlowBackend']
+assert not any(isinstance(item, test_backend) for item in keyring.backend.get_all_keyring())
+# Exercise real discovery with no platform backend available, including the chainer.
+keyring.core.init_backend(limit=lambda item: isinstance(item, (test_backend, chainer.ChainerBackend, fail.Keyring)))
+assert isinstance(keyring.get_keyring(), fail.Keyring), type(keyring.get_keyring())
+try:
+    keyring.set_password('cdlbib-test-unused', 'unused', 'fixture-value')
+except keyring.errors.NoKeyringError:
+    pass
+else:
+    raise AssertionError('a missing system keychain silently accepted a write')
+"""
+    done = subprocess.run(
+        [sys.executable, "-c", script, str(Path(__file__).resolve())],
+        env=env, capture_output=True, text=True, timeout=20,
+    )
+    assert done.returncode == 0, done.stdout + done.stderr
 
 
 def test_a_slow_keychain_becomes_a_timeout_message(backend, monkeypatch):
