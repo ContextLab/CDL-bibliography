@@ -374,6 +374,66 @@ def test_a_pdf_no_source_knows_model_routes_and_the_manual_form(site, made):
     assert [item["key"] for item in site.ok("get", "/api/review-queue", all="1")["entries"]][-1] == key
 
 
+def test_a_model_reading_is_accepted_with_its_evidence_and_is_no_approval(site, made):
+    """Everything after the model's answer. The proposal is the real one that
+    intake.proposal_from_findings builds (each quotation checked against the PDF's pages) from
+    an adapter answer of the shape tests/test_intake_model.py uses, kept in the server's store
+    as /api/pdf/model keeps it; the model call itself is made by the next test when a key exists."""
+    from cdlbib import intake
+    from cdlbib.source_passages import materialize
+    from cdlbib.web import routes
+    from test_intake_model import EXPECTED, SELECTED
+    before = keys(site.ws)
+    sent = site.ok("upload", "/api/pdf/upload", made["unknown"].read_bytes(), "application/pdf")
+    site.ok("post", "/api/pdf/read", {"pdf": sent["pdf"]})
+    read = site.running.app.store.get("pdf", sent["pdf"])["intake"]
+    answer = materialize({"fields": SELECTED, "uncertainties": ["The issue number is not printed."]}, read.pages[:intake.MODEL_PAGES])
+    answer["provider_trace"] = {"provider": "test selection", "model": None}
+    kept = routes.keep(site.running.app, intake.proposal_from_findings(site.ws, read, answer, "dartmouth"), pdf=sent["pdf"])
+
+    shown = site.ok("get", "/api/proposal", proposal=kept["id"])
+    assert shown["proposed_raw"] == EXPECTED and shown["manual"] and shown["status"] == "needs_review" and shown["needs_decision"]
+    assert shown["evidence"]["pdf_sha256"] == read.sha256 and shown["evidence"]["fields"]["year"]["page"] == 1
+    assert all(change["source"].startswith("model reading, p.1: ") for change in shown["changes"])
+    assert site.ok("get", "/api/pdf/prefill", pdf=sent["pdf"], model=kept["id"])["fields"]["journal"] == "Annals of Improbable Lattices"
+    # a proposal that needs a decision is never taken with "the remaining ones"
+    assert site.ok("post", "/api/proposal/accept-remaining", {"proposals": [kept["id"]]})["accepted"] == []
+    assert keys(site.ws) == before
+    done = site.ok("post", "/api/proposal/accept", {"proposal": kept["id"]})
+    assert done["written"] == ["ExamSamp19"] and done["evidence_stored"] is True and keys(site.ws) == before + ["ExamSamp19"]
+    detail = site.ok("get", "/api/entry", key="ExamSamp19")
+    assert detail["raw"] == EXPECTED and detail["fingerprint"] == done["fingerprint"]
+    assert detail["result"]["status"] == "needs_review" and "human_review" not in detail["result"]      # evidence, not approval
+    assert "2019" in detail["result"]["external_evidence"]["fields"]["year"]["quote"]
+    assert "ExamSamp19" in [item["key"] for item in site.ok("get", "/api/review-queue", all="1")["entries"]]
+
+
+def test_a_real_model_reading_through_the_server(tmp_path, monkeypatch, made):
+    from cdlbib import secrets
+    from cdlbib.errors import SecretNotFound
+    try:
+        secrets.get("dartmouth-chat")
+    except SecretNotFound as exc:
+        pytest.skip(f"no Dartmouth Chat key here, so no real model run: {exc}")
+    key = os.environ.get(secrets.KEYS["dartmouth-chat"].env)
+    running, site = _site(tmp_path, monkeypatch, home=False)         # the keychain and the way to the model are the real ones
+    if key:
+        monkeypatch.setenv(secrets.KEYS["dartmouth-chat"].env, key)
+    try:
+        sent = site.ok("upload", "/api/pdf/upload", made["unknown"].read_bytes(), "application/pdf")
+        site.ok("post", "/api/pdf/read", {"pdf": sent["pdf"]})
+        assert site.ok("post", "/api/model-routes/check", {"route": "dartmouth"})["routes"][0]["available"] is True
+        lines = []
+        proposal = site.ok("post", "/api/pdf/model", {"pdf": sent["pdf"], "route": "dartmouth"}, lines)
+        assert "Dartmouth Chat" in lines[0] and proposal["manual"] and proposal["status"] == "needs_review"
+        assert proposal["evidence"]["provider_trace"]["extract"]["provider"] == "dartmouth" and proposal["pdf"] == sent["pdf"]
+        assert pdfs.UNKNOWN_TITLE.lower() in proposal["proposed_raw"].lower()
+        assert all(change["source"].startswith("model reading, p.") for change in proposal["changes"])
+        assert keys(site.ws) == ["Kaha12", "Game62", "TeneEtal11"]                    # a reading writes nothing
+    finally:
+        running.stop()
+
+
 # --- the managed library: state, update, backups, undo ------------------------------------------
 
 @pytest.fixture

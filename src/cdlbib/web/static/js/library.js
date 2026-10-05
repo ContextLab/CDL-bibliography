@@ -24,7 +24,8 @@ export async function show(main, ctx) {
   const body = h("div", { class: "vt-rows", role: "presentation" });
   const space = h("div", { role: "presentation" }, body);
   const scroll = h("div", { class: "vt-scroll", tabindex: "0", role: "grid", "aria-label": "Entries", "aria-describedby": "match-count" }, space);
-  const head = h("div", { class: "vt-head", role: "row" }, COLUMNS.map(([name, label]) => h("span", { class: "c-" + name, role: "columnheader", text: label })));
+  // The headings are for the eye; each row carries its own spoken label, since rows come and go as the list scrolls.
+  const head = h("div", { class: "vt-head", "aria-hidden": "true" }, COLUMNS.map(([name, label]) => h("span", { class: "c-" + name, text: label })));
   const detail = h("section", { class: "detail panel", "aria-label": "Selected entry" }, h("p", { class: "muted", text: "Select an entry to see its text, issues and evidence." }));
   scroll.style.setProperty("--row", ROW + "px");
 
@@ -35,7 +36,8 @@ export async function show(main, ctx) {
     const made = [];
     for (let position = first; position < last; position += 1) {
       const row = rows[shown[position]];
-      made.push(h("div", { class: "vt-row", role: "row", id: "row-" + position, "aria-rowindex": position + 2, "aria-selected": position === chosen ? "true" : "false", "data-position": position },
+      made.push(h("div", { class: "vt-row", role: "row", id: "row-" + position, "aria-rowindex": position + 1, "aria-selected": position === chosen ? "true" : "false", "data-position": position,
+        "aria-label": [row[KEY], words(row[STATUS]), row[AUTHORS], row[YEAR], row[TITLE], row[VENUE]].filter(Boolean).join(", ") },
         h("span", { class: "c-status st st-" + row[STATUS], role: "gridcell", text: words(row[STATUS]) }),
         h("span", { class: "c-key mono", role: "gridcell", "data-mark": MARKS[row[STATUS]] || "✕", text: row[KEY] }),
         h("span", { class: "c-authors", role: "gridcell", text: row[AUTHORS] }),
@@ -57,7 +59,7 @@ export async function show(main, ctx) {
 
   function lay() {
     space.style.height = shown.length * ROW + "px";
-    scroll.setAttribute("aria-rowcount", String(shown.length + 1));
+    scroll.setAttribute("aria-rowcount", String(shown.length));
     summary.textContent = shown.length === rows.length ? rows.length + " entries" : shown.length + " of " + rows.length + " entries";
     draw();
   }

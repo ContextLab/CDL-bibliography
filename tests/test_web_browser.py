@@ -396,3 +396,63 @@ def test_every_view_opens_and_controls_have_names(visit):
     expect(page.locator("main")).to_contain_text("is not a git checkout of its own")
     expect(page.locator("#alerts .alert:not(.info)")).to_have_count(1)        # the review queue's "changed entries" needs GitHub
     expect(page.locator("#alerts")).to_have_attribute("role", "alert")
+
+
+# --- setup, export, the managed library ---------------------------------------------------------
+
+def test_export_upload_then_download(visit, tmp_path):
+    aux = tmp_path / "paper.aux"
+    aux.write_text("\\relax\n\\citation{Game62}\n\\citation{Kaha12}\n\\bibstyle{plain}\n\\bibdata{cdl}\n", encoding="utf-8")
+    page = visit.open()
+    visit.nav("setup")
+    expect(page.locator("main table").first).to_contain_text("gh login")
+    page.set_input_files("#export-files", str(aux))
+    expect(page.locator("#export-main option")).to_have_text(["paper.aux"])
+    page.click("button:has-text('Make the .bib')")
+    button = page.locator("[data-action=download]")
+    expect(button).to_have_text("Download cdl.bib", timeout=120_000)
+    expect(page.locator("main")).to_contain_text("citations read from the .aux file: 2 keys")
+    with page.expect_download() as caught:
+        button.click()
+    saved = tmp_path / "downloaded.bib"
+    caught.value.save_as(str(saved))
+    assert caught.value.suggested_filename == "cdl.bib"
+    assert saved.read_text(encoding="utf-8").strip() == KAHA12 + "\n\n" + GAME62          # the library's order, its exact text
+    assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
+
+
+from test_web_flows import managed  # noqa: E402,F401 - the managed library with an unsent edit and a newer upstream
+
+
+def test_update_with_unsent_changes_asks_in_the_page(browser, managed):  # noqa: F811
+    site, upstream = managed
+    found = Visit(browser, site.running, site.ws)
+    try:
+        page = found.open()
+        edited = site.ws.bib.read_text(encoding="utf-8")
+        found.nav("state")
+        expect(page.locator("main")).to_contain_text("this is the copy cdlbib downloads and manages")
+        page.click("button:has-text('Ask the upstream now')")
+        expect(page.locator(".banner")).to_contain_text("A newer version of the bibliography is available: 1 new commit, 1 new entry.")
+        page.click("button:has-text('Update now')")
+        dialog = page.locator("dialog[open]")
+        expect(dialog).to_contain_text("you have changes that have not been sent")
+        expect(dialog.locator(".choices button")).to_have_text([
+            "Keep working without updating (ask again tomorrow)", "Update and keep my changes",
+            "Send my changes first (runs `cdlbib send`)",
+            "Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)", "Cancel"])
+        assert site.ws.bib.read_text(encoding="utf-8") == edited                # asking changed nothing
+        dialog.locator("button:has-text('Cancel')").click()
+        expect(page.locator(".alert.info")).to_contain_text("Nothing was changed.")
+        assert site.ws.bib.read_text(encoding="utf-8") == edited
+        page.click("button:has-text('Update now')")
+        page.locator("dialog[open] button:has-text('Update and keep my changes')").click()
+        expect(page.locator("main")).to_contain_text("1 backup of", timeout=120_000)
+        assert set(keys(site.ws)) == {"TeneEtal11", "Zoll90", "Kaha12"}
+        page.click("button:has-text('Undo the last change')")
+        page.locator("dialog[open] button:has-text('Restore')").click()
+        expect(page.locator("main")).to_contain_text("2 backups of", timeout=120_000)
+        assert site.ws.bib.read_text(encoding="utf-8") == edited
+    finally:
+        found.context.close()
+    assert found.problems == [], found.problems

@@ -98,7 +98,7 @@ ul.plain { margin: 0; padding-left: 1.2em; }
 ul.plain li + li { margin-top: 2px; }
 
 table.grid { border-collapse: collapse; width: 100%; }
-table.grid th, table.grid td { text-align: left; vertical-align: top; padding: 4px 8px; border-bottom: 1px solid var(--cdl-border); overflow-wrap: break-word; }
+table.grid th, table.grid td { text-align: left; vertical-align: top; padding: 4px 8px; border-bottom: 1px solid var(--cdl-border); overflow-wrap: anywhere; }
 table.grid td:first-child, table.grid th, .agrees, .differs { white-space: nowrap; }
 table.grid th { color: var(--cdl-muted); font-weight: 600; font-size: .85rem; }
 .scroll-x { overflow-x: auto; }
