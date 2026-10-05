@@ -6,6 +6,8 @@ The real app over the real core. Lookups are saved responses put into the librar
 response cache, with the network refused; PDFs are typeset by pdflatex when the test runs.
 The library file is read afterwards.
 """
+import importlib.util
+
 import pytest
 
 pytest.importorskip("textual", reason="the terminal interface needs the optional package textual (pip install 'cdlbib[tui]')")
@@ -23,6 +25,8 @@ GAME62 = library_entry("Game62")
 ZOLLER_DOI, GAMES_DOI = "10.1002/tea.3660271011", "10.1037/h0041332"
 needs_pdflatex = pytest.mark.skipif(not pdfs.pdflatex(), reason="pdflatex is not installed, so no PDF can be typeset "
                                                                 "for the test")
+needs_pypdf = pytest.mark.skipif(not importlib.util.find_spec("pypdf"),
+                                 reason="pypdf is not installed (pip install 'cdlbib[research]'), so no PDF can be read")
 
 
 def _dartmouth_key():
@@ -129,7 +133,8 @@ def test_editing_a_proposal_checks_the_edited_text_again(ws):
             app = pilot.app
             await add_tab(pilot, 1)
             await T.type_text(pilot, ZOLLER_DOI)
-            await T.press(pilot, "enter", "e")
+            await T.press(pilot, "enter")
+            await T.press(pilot, "e")
             assert name(app) == "TextEditScreen" and app.screen.query_one("#proposal-editor").text == ZOLL90
             await T.press(pilot, "pagedown", "up", "up", "up", "end", "left", "left", "backspace", "backspace")
             await T.type_text(pilot, "66")                                 # Pages = {1053--1066}
@@ -225,6 +230,7 @@ def test_a_search_that_no_source_answers_says_which_did_not(ws):
 # --- PDF -------------------------------------------------------------------------------------------
 
 @needs_pdflatex
+@needs_pypdf
 def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
     pdf = pdfs.build("doi", tmp_path / "pdfs")
 
@@ -241,12 +247,11 @@ def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
             assert "(largest text on page 1)" in info
             assert "Text of the first page" in info and "Haifa University" in info
             page = T.shown(app, "#p-page")
-            if api.features()[[f.name for f in api.features()].index("pypdf")].available:
-                try:
-                    import pypdfium2  # noqa: F401
-                    assert page.count("▀") > 500 and len(page.splitlines()) > 20      # the first page, in half blocks
-                except ImportError:
-                    assert "The first page is not drawn" in page
+            if importlib.util.find_spec("pypdfium2"):
+                assert page.count("▀") > 500 and len(page.splitlines()) > 20      # the first page, in half blocks
+                assert max(len(line) for line in page.splitlines()) <= 54          # no wider than its pane
+            else:                                   # not installed, and no index can be reached from this test
+                assert "The first page is not drawn" in page and "pypdfium2" in page
             await T.press(pilot, "l")
             assert name(app) == "ProposalScreen" and str(pdf.name) in T.screen_text(app)
             findings = T.shown(app, "#findings")
@@ -260,6 +265,33 @@ def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
 
 
 @needs_pdflatex
+@needs_pypdf
+def test_the_pdf_is_chosen_from_the_folder_tree(ws, tmp_path):
+    pdf = pdfs.build("doi", tmp_path / "pdfs")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 2)
+            await T.type_text(pilot, str(pdf.parent))                 # a folder: the picker starts there
+            await T.press(pilot, "ctrl+o")
+            tree = app.screen.query_one("#tree")
+            assert name(app) == "FilePicker" and str(tree.path) == str(pdf.parent) and "doi.pdf" in T.screen_text(app)
+            for _ in range(20):
+                if tree.cursor_node is not None and str(tree.cursor_node.label) == "doi.pdf":
+                    break
+                await T.press(pilot, "down")
+            assert str(tree.cursor_node.label) == "doi.pdf"
+            await T.press(pilot, "enter")
+            assert name(app) != "FilePicker" and app.screen.query_one("#p-path").value == str(pdf)
+            assert f"doi: {ZOLLER_DOI} (page 1)" in T.shown(app, "#p-info")     # chosen, and read
+            await T.press(pilot, "ctrl+o", "escape")
+            assert name(app) != "FilePicker"
+    T.run(journey())
+
+
+@needs_pdflatex
+@needs_pypdf
 def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was_read(ws, tmp_path):
     pdf = pdfs.build("unknown", tmp_path / "pdfs")
 
@@ -318,6 +350,7 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
 
 
 @needs_pdflatex
+@needs_pypdf
 def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(ws, tmp_path, monkeypatch):
     if not _DARTMOUTH:
         pytest.skip("no Dartmouth Chat key here, so no real model run through the interface")

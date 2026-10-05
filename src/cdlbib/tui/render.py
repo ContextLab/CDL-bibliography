@@ -66,7 +66,7 @@ def _candidate(out, title, candidate):
             out.line(f"  {name}: {candidate[name]}")
     evidence = candidate.get("evidence") or {}
     if evidence:
-        out.line("  field       in the library  |  in the source", "muted")
+        out.line("  each field: = the library and the source agree, ≠ they differ", "muted")
     for name, found in evidence.items():
         if not isinstance(found, dict):
             out.line(f"  {name}: {_value(found)}")
@@ -75,8 +75,9 @@ def _candidate(out, title, candidate):
         role = "success" if match is True else "error" if match is False else "muted"
         source = found.get("source")
         shown = _people(source) if isinstance(source, list) else _value(source)
-        out.part(f"  {'=' if match is True else '≠' if match is False else '·'} {name:<9} ", role, bold=True)
-        out.line(f"{_value(found.get('local'))}  |  {shown}")
+        out.line(f"  {'=' if match is True else '≠' if match is False else '·'} {name}", role, bold=True)
+        out.line(f"      library: {_value(found.get('local'))}")
+        out.line(f"      source:  {shown}")
         if found.get("detail"):
             out.line(f"      {found['detail']}", "muted")
     for line in candidate.get("issues") or []:
@@ -300,25 +301,38 @@ def _decode_png(data):
 def half_blocks(png, columns):
     """The image as text, ``columns`` cells wide: each cell is an upper half block whose
     foreground is the pixel above and whose background is the pixel below. The picture is
-    averaged down to ``columns`` pixels across."""
+    brought down to ``columns`` pixels across (the mean of each block, weighted to its darkest
+    pixel so that print stays visible)."""
     width, height, pixels = _decode_png(png)
-    scale = max(1, width // columns)
-    wide, high = width // scale, height // scale
+    scale = max(1, -(-width // columns))          # whole pixels a cell, so that no more than ``columns`` cells result
+    wide, high = min(columns, width // scale), height // scale
 
     def averaged(x, y):
-        total, count = [0, 0, 0], 0
+        total, count, darkest = [0, 0, 0], 0, (255, 255, 255)
         for yy in range(y * scale, min((y + 1) * scale, height)):
             row = pixels[yy]
             for xx in range(x * scale, min((x + 1) * scale, width)):
                 r, g, b = row[xx]
                 total[0] += r; total[1] += g; total[2] += b
                 count += 1
-        return tuple(value // max(count, 1) for value in total)
+                if r + g + b < sum(darkest):
+                    darkest = (r, g, b)
+        # thin strokes of print would average away to a pale grey: the darkest pixel counts double
+        total = [value + 2 * dark * count for value, dark in zip(total, darkest)]
+        count *= 3
+        # 16 levels a channel: neighbouring cells of nearly one colour become one run of text
+        return tuple(min(255, (value // max(count, 1) + 8) // 17 * 17) for value in total)
 
     out = Text(no_wrap=True)
     for y in range(0, high - 1, 2):
+        run, colours = 0, None
         for x in range(wide):
-            top, bottom = averaged(x, y), averaged(x, y + 1)
-            out.append("▀", Style(color=Color.from_rgb(*top), bgcolor=Color.from_rgb(*bottom)))
+            pair = (averaged(x, y), averaged(x, y + 1))
+            if pair != colours and run:
+                out.append("▀" * run, Style(color=Color.from_rgb(*colours[0]), bgcolor=Color.from_rgb(*colours[1])))
+                run = 0
+            colours, run = pair, run + 1
+        if run:
+            out.append("▀" * run, Style(color=Color.from_rgb(*colours[0]), bgcolor=Color.from_rgb(*colours[1])))
         out.append("\n")
     return out

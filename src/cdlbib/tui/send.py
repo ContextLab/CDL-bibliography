@@ -20,6 +20,11 @@ class SendView(View):
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
 
+    DEFAULT_CSS = """
+    SendView #send-summary { width: 1fr; }
+    SendView #send-state-pane { height: auto; max-height: 50%; }
+    """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.result = None       # draws the result of the last send again

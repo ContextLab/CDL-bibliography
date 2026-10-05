@@ -38,8 +38,9 @@ class SetupView(View):
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
     DEFAULT_CSS = """
-    SetupView #setup-pane { height: 2fr; }
-    SetupView #setup-result-pane { height: 1fr; }
+    SetupView #setup-pane { height: 1fr; }
+    SetupView #setup-result-pane { height: auto; min-height: 3; max-height: 9; }
+    SetupView .form-label.short { width: 14; padding: 1 1 0 1; }
     SetupView .form-label { width: 22; padding: 1 1 0 0; color: $cdl-muted; }
     SetupView .form-row { height: 3; }
     SetupView .form-row Input { width: 1fr; }
@@ -64,10 +65,8 @@ class SetupView(View):
             yield Input(placeholder="The paper: its main .tex file, its folder, or a .aux/.bcf file", id="x-paper")
         with Horizontal(classes="form-row"):
             yield Static("Write to (optional)", classes="form-label")
-            yield Input(placeholder="Default: cdl.bib beside the paper; for a .bbl, the paper's name with .bbl",
-                        id="x-out")
-        with Horizontal(classes="form-row"):
-            yield Static("Style files (optional)", classes="form-label")
+            yield Input(placeholder="Default: cdl.bib, or NAME.bbl, beside the paper", id="x-out")
+            yield Static("Style files", classes="form-label short")
             yield Input(placeholder=f"For a .bbl: .bst/.cls/.sty files or folders, separated by {os.pathsep}",
                         id="x-inputs")
         with Horizontal(classes="row"):
@@ -122,19 +121,11 @@ class SetupView(View):
         status, found = self.tex, report.where
         out.line(f"library: {found.root}", bold=True)
         out.line(f"chosen by: {prompts.CHOSEN_BY[found.origin]}")
-        out.head("TeX link")
-        out.line(f"  TeX tree: {status.texmf_home}")
-        out.line(f"  link: {status.link}" + (f" -> {status.target}" if status.target else ""))
-        for line in status.changes:
-            out.line(f"  {line}")
+        out.head("TeX link (l links cdl.bib into your TeX tree; x removes the link)")
         out.line(f"  state: {tex_state(status)}", "success" if status.state == "linked" else "warning")
+        out.line(f"  link: {status.link}" + (f" -> {status.target}" if status.target else ""))
         if status.kpsewhich:
             out.line(f"  kpsewhich cdl.bib: {status.resolves_to or 'not found'}")
-        for line in status.notes:
-            out.line(f"  {line}")
-        if status.state != "linked":
-            out.line("  without a link, this shell line does the same (cdlbib does not write it anywhere): "
-                     f"{status.bibinputs_line}", "muted")
         out.head("Available on this computer")
         for feature in report.features:
             known = feature.available
@@ -153,6 +144,15 @@ class SetupView(View):
             out.line(f"  {route.label}{' (the default)' if route.default else ''}: {state}",
                      "success" if known else "muted", bold=bool(known))
             out.line(f"      {route.how}", "muted")
+        out.head("TeX link, in full")
+        out.line(f"  TeX tree: {status.texmf_home}")
+        for line in status.changes:
+            out.line(f"  {line}")
+        for line in status.notes:
+            out.line(f"  {line}")
+        if status.state != "linked":
+            out.line("  without a link, this shell line does the same (cdlbib does not write it anywhere): "
+                     f"{status.bibinputs_line}", "muted")
         self.query_one("#setup-report", Shown).show(out.text)
 
     def _result(self, draw):

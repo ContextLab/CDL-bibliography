@@ -67,7 +67,7 @@ def test_browse_shows_every_entry_with_its_status_and_the_counts(ws):
             text = T.screen_text(app)
             assert "5 of 5 entries" in text and "5 entries" in text.splitlines()[0]
             assert "? needs_review 2" in text and "· pending 3" in text       # counts per status, with the marks
-            assert re.search(r"\? needs_review\s+Game62", text) and re.search(r"· pending\s+Zoll90", text)
+            assert re.search(r"\?\s+Game62\s", text) and re.search(r"·\s+Zoll90\s", text)   # a status mark per entry
             assert "@article{Zoll90," in T.shown(app, "#library-detail #t-entry")   # the first entry's exact text
             assert "ready: 5 entries prepared" in "\n".join(app.log_lines)          # api.prepare ran first, and said so
             assert app.jobs.history[0][0] == "read the library"
@@ -115,9 +115,9 @@ def test_the_detail_tabs_show_issues_and_the_evidence_field_by_field(ws):
             await T.press(pilot, "d")                                   # Evidence
             evidence = T.shown(app, "#library-detail #t-evidence")
             assert "Closest source (field by field)" in evidence and "source: crossref" in evidence
-            assert "≠ volume    36  |  63" in evidence                  # in the library | in the source
+            assert "≠ volume\n      library: 36\n      source:  63" in evidence
             assert "issue: volume: missing evidence or mismatch" in evidence
-            assert "= year      1962  |  1962" in evidence and "Paul A. Games" in evidence
+            assert "= year\n      library: 1962\n      source:  1962" in evidence and "source:  Paul A. Games" in evidence
             assert "Lookups made" in evidence and "source=crossref-doi" in evidence
             assert "(no approval recorded for this entry text)" in evidence
             assert "Closest source" in T.screen_text(app)

@@ -20,6 +20,10 @@ from .proposal import ProposalScreen
 from .widgets import ChoiceScreen, FilePicker, Shown, View
 
 
+PAGE_COLUMNS = 54     # cells the drawn first page is wide (its pane is that plus border, padding and scrollbar)
+PAGE_SCALE = 4        # pixels of the rendered page averaged into one cell, across
+
+
 class AddView(View):
     BINDINGS = [
         Binding("ctrl+f", "find", "Find records", priority=True),
@@ -36,12 +40,12 @@ class AddView(View):
     AddView .form-label { width: 16; padding: 1 1 0 0; color: $cdl-muted; }
     AddView .form-row { height: 3; }
     AddView .form-row Input { width: 1fr; }
-    AddView #pdf-page-pane { width: 62; }
+    AddView #pdf-page-pane { width: 60; }
     AddView #pdf-info-pane { width: 1fr; }
     AddView #pdf-panes { height: 1fr; }
     AddView #manual-form { height: 1fr; }
     AddView #s-year { width: 12; }
-    AddView .form-label.short { width: 6; padding-left: 1; }
+    AddView .form-label.short { width: 7; padding: 1 1 0 1; }
     """
 
     def __init__(self, **kwargs):
@@ -305,7 +309,7 @@ class AddView(View):
             else:
                 self._pdf_message("Read. l looks up its source record; o opens the PDF in the system viewer.")
             self.query_one("#p-lookup", Button).focus()
-            self.app.job("draw the first page", lambda job: api.render_first_page(pdf.path, width=480), drawn,
+            self.app.job("draw the first page", lambda job: api.render_first_page(pdf.path, width=PAGE_COLUMNS * PAGE_SCALE), drawn,
                          not_drawn, quiet=True)
 
         def drawn(png):
@@ -328,7 +332,7 @@ class AddView(View):
             return
         if self.pdf_png is not None:
             try:
-                page.show(render.half_blocks(self.pdf_png, 58))
+                page.show(render.half_blocks(self.pdf_png, PAGE_COLUMNS))
             except ValueError as exc:
                 page.show(f"The first page is not drawn: {exc}")
         else:
@@ -415,7 +419,7 @@ class AddView(View):
                                                             self.pdf.path.name),
                              lambda exc: self._pdf_message(str(exc), role="error"))
         self.app.push_screen(ChoiceScreen("\n".join([result.message] + [f"  {line}" for line in result.tried]),
-                                          choices), chosen)
+                                          choices, wide=True), chosen)
 
     def action_model(self, probe=()):
         if not self._need_pdf():
@@ -517,7 +521,7 @@ class RouteScreen(ChoiceScreen):
     """The model routes: one that is not set up is listed, greyed, with how to set it up."""
 
     def __init__(self, question, rows):
-        super().__init__(question, [(letter, value, label) for letter, value, label, _ in rows])
+        super().__init__(question, [(letter, value, label) for letter, value, label, _ in rows], wide=True)
         self.off = {value for _, value, _, off in rows if off}
 
     def on_mount(self):

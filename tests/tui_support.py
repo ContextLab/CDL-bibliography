@@ -99,7 +99,7 @@ def screen_text(app):
         lines.setdefault(y, []).append((x, text.replace("\xa0", " ")))
     out = []
     for y in sorted(lines):
-        line, at = "", 0.0
+        line = ""
         for x, text in sorted(lines[y]):
             column = round(x / 12.2)
             line = line.ljust(column) + text

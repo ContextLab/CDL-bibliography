@@ -76,7 +76,10 @@ def test_update_with_unsent_edits_asks_in_the_cores_words_and_each_answer_does_w
         async with T.opened(ws) as pilot:
             app = pilot.app
             await T.press(pilot, "f7", "u")
-            assert name(app) == "ChoiceScreen" and T.shown(app, "#question") == question
+            answers = {f"  [{letter}] {text}" for letter, text in (prompts.ANSWERS[c] for c in raised.value.choices)}
+            assert name(app) == "ChoiceScreen"                               # the core's question; its answers are the buttons
+            assert T.shown(app, "#question") == "\n".join(line for line in question.splitlines() if line not in answers)
+            assert "What would you like to do?" in T.shown(app, "#question") and len(answers) == 4
             assert "A newer version of the bibliography is available (2 new commits)" in T.screen_text(app)
             labels = [str(button.label) for button in app.screen.query("Button")]
             assert labels == [f"[{letter}] {text}" for letter, text in (prompts.ANSWERS[c] for c in raised.value.choices)]
@@ -86,12 +89,14 @@ def test_update_with_unsent_edits_asks_in_the_cores_words_and_each_answer_does_w
             assert name(app) != "ChoiceScreen" and everything(root) == before
             assert "Nothing was changed: no answer was given." in T.shown(app, "#state-result")
 
-            await T.press(pilot, "u", "k")                                   # keep working
+            await T.press(pilot, "u")                                        # (the question comes when the job has asked)
+            await T.press(pilot, "k")                                        # keep working
             assert everything(root) == before
             assert "the bibliography was not updated and your changes are as they were" in T.shown(app, "#state-result")
             assert backups(app) == []
 
-            await T.press(pilot, "u", "u")                                   # update and keep my changes
+            await T.press(pilot, "u")
+            await T.press(pilot, "u")                                        # update and keep my changes
             result = T.shown(app, "#state-result")
             assert "updated the bibliography: 2 new commits, with your changes kept" in result
             assert (root / "cdl.bib").read_bytes() == (THEIRS + MINE).encode()
@@ -113,7 +118,8 @@ def test_update_with_unsent_edits_asks_in_the_cores_words_and_each_answer_does_w
             assert "restored backup" in T.shown(app, "#state-result") and len(backups(app)) == 2
             assert "2 new upstream commits" in T.shown(app, "#banner")
 
-            await T.press(pilot, "u", "d")                                   # discard my changes and update
+            await T.press(pilot, "u")
+            await T.press(pilot, "d")                                        # discard my changes and update
             assert (root / "cdl.bib").read_bytes() == THEIRS.encode()
             assert "updated the bibliography" in T.shown(app, "#state-result") and len(backups(app)) == 3
     T.run(journey())
@@ -137,6 +143,58 @@ def test_a_library_that_is_not_the_managed_one_offers_no_update_and_says_why(tmp
             assert name(app) != "ChoiceScreen" and "(kept for the library cdlbib manages" in T.shown(app, "#backups-head")
     T.run(journey())
     assert not Path(os.environ["CDLBIB_HOME"], "library").exists()            # nothing was downloaded for it
+
+
+def test_an_addition_to_the_managed_library_names_its_backup_and_undo_takes_it_back(managed, monkeypatch):
+    home, upstream, ws = managed
+    before = ws.bib.read_bytes()
+    T.seed_responses(ws, T.COMPLETION)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "f4", "escape", "right", "enter")
+            await T.type_text(pilot, "10.1037/h0041332")
+            await T.press(pilot, "enter")
+            await T.press(pilot, "a")
+            assert "Added: Game62" in app.log_lines and b"@article{Game62," in ws.bib.read_bytes()
+            stamp = next(line for line in app.log_lines if line.startswith("Batch backup: ")).split()[2].rstrip(";")
+            assert (f"Batch backup: {stamp}; cdlbib update --undo restores the state before this command’s accepted "
+                    "changes.") in T.shown(app, "#i-message")              # as the command line says it
+            assert not list((home / "completion-batches").glob("*"))         # the batch was closed with the proposals
+            await T.press(pilot, "f7")
+            assert backups(app) == [stamp] and "unsent changes: cdl.bib" in T.shown(app, "#state-now")
+            app.screen.query_one("#backups").focus()
+            await T.press(pilot, "z", "y")
+            assert ws.bib.read_bytes() == before and "restored backup " + stamp in T.shown(app, "#state-result")
+            await T.press(pilot, "f2")
+            assert "1 of 1 entries" in T.screen_text(app)
+            assert [key.value for key in app.screen.query_one("#entries").rows] == ["Zoll90"]
+    T.run(journey())
+
+
+def test_quitting_from_a_proposal_closes_what_it_held_open(managed):
+    home, upstream, ws = managed
+    T.seed_responses(ws, T.COMPLETION)
+    from cdlbib.tui import CdlbibApp
+
+    async def journey():
+        app = CdlbibApp(ws)
+        async with app.run_test(size=T.SIZE) as pilot:
+            await T.settle(pilot)
+            await T.press(pilot, "f4", "escape", "right", "enter")
+            await T.type_text(pilot, "10.1037/h0041332 10.1002/tea.3660271011")
+            await T.press(pilot, "enter")
+            await T.press(pilot, "a")
+            assert name(app) == "ProposalScreen" and len(list((home / "completion-batches").glob("*"))) == 1
+            await pilot.press("ctrl+q")
+            for _ in range(200):
+                await pilot.pause(0.05)
+                if app.return_code is not None:
+                    break
+            assert app.return_code == 0
+    T.run(journey())
+    assert not list((home / "completion-batches").glob("*")) and b"@article{Game62," in ws.bib.read_bytes()
 
 
 # --- send ----------------------------------------------------------------------------------------------
@@ -263,7 +321,8 @@ def test_a_file_cdlbib_did_not_put_in_the_tex_tree_is_replaced_only_after_a_yes(
             assert name(app) == "ConfirmScreen" and "Move it aside (it is kept) and make the link?" in T.shown(app, "#question")
             await T.press(pilot, "n")
             assert link.read_text(encoding="utf-8") == "% my own file\n" and not os.path.islink(link)
-            await T.press(pilot, "l", "y")
+            await T.press(pilot, "l")
+            await T.press(pilot, "y")
             assert os.path.islink(link) and Path(os.readlink(link)) == ws.bib
     T.run(journey())
     kept = [path for path in link.parent.iterdir() if path.name.startswith("cdl.bib.cdlbib-saved-")]

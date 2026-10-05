@@ -92,12 +92,12 @@ class ChoiceScreen(ModalScreen):
     """A question with lettered answers. ``choices``: [(letter, value, what it does)].
     Dismisses with the value chosen, or None on Escape when ``escape`` allows it."""
 
-    def __init__(self, question, choices, escape=True):
+    def __init__(self, question, choices, escape=True, wide=False):
         super().__init__()
-        self.question, self.choices, self.escape = question, list(choices), escape
+        self.question, self.choices, self.escape, self.wide = question, list(choices), escape, wide
 
     def compose(self) -> ComposeResult:
-        with Vertical(classes="dialog"):
+        with Vertical(classes="dialog wide" if self.wide else "dialog"):
             with VerticalScroll(classes="dialog-text"):
                 yield Shown(id="question")
             with Vertical(classes="choices"):

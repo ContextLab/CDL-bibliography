@@ -189,7 +189,10 @@ class StateView(View):
                 self._result(lambda out: out.line("Nothing was changed: no answer was given.", "muted"))
                 return
             self.action_update(decision=decision, seen=exc.seen)
-        self.app.push_screen(ChoiceScreen(prompts.unsent_question(exc), choices), chosen)
+        # The question in the core's words; its lettered answers are the buttons, word for word.
+        listed = {f"  [{letter}] {text}" for letter, _, text in choices}
+        question = "\n".join(line for line in prompts.unsent_question(exc).splitlines() if line not in listed)
+        self.app.push_screen(ChoiceScreen(question, choices, wide=True), chosen)
 
     # --- backups and undo --------------------------------------------------------------------
 

@@ -97,7 +97,7 @@ class LibraryView(View):
 
     def on_mount(self):
         table = self.query_one("#entries", DataTable)
-        table.add_columns("Status", "Key", "Authors", "Year", "Title", "Venue")
+        table.add_columns(" ", "Key", "Authors", "Year", "Title", "Venue")
         self.query_one("#counts", Shown).show("reading the library ...")
 
     # --- what the app tells ------------------------------------------------------------------
@@ -143,8 +143,8 @@ class LibraryView(View):
     def _row(self, item):
         glyph, role = mark(item.status)
         colour = self.app.colour(role)
-        return (Text(f"{glyph} {item.status}", colour), item.key, cut(item.authors, 22), item.year,
-                cut(item.title, 44), cut(item.venue, 30))
+        return (Text(glyph, colour), item.key, cut(item.authors, 24), item.year, cut(item.title, 50),
+                cut(item.venue, 30))
 
     def _fill(self, keep=None):
         table = self.query_one("#entries", DataTable)

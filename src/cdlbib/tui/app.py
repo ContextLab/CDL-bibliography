@@ -149,7 +149,7 @@ class CdlbibApp(App):
     .buttons { height: auto; margin-top: 1; }
     .buttons Button { margin-right: 2; }
     .choices { height: auto; margin-top: 1; }
-    .choice { width: 100%; margin-bottom: 0; }
+    .choice { width: 100%; height: auto; min-height: 3; margin-bottom: 0; text-wrap: wrap; content-align: left middle; }
     .row { height: auto; }
     .row Button { margin-right: 1; }
     .pane { border: round $cdl-border; padding: 0 1; }
@@ -422,8 +422,12 @@ class CdlbibApp(App):
 
     def action_leave(self):
         closing = getattr(self.screen, "before_quit", None)
-        if closing is not None:
-            closing()
+        if closing is not None and self.jobs.idle:
+            closing()                    # the screen puts away what it holds open (a job of its own), then the app goes
+            self._leaving = True
+            if self.jobs.idle:
+                self._close()
+            return
         if self.jobs.idle:
             self._close()
             return
@@ -431,6 +435,8 @@ class CdlbibApp(App):
 
         def chosen(value):
             if value == "wait":
+                if closing is not None:
+                    closing()
                 self._leaving = True
                 self.query_one("#jobline", Static).update(f"quitting when the job is done: {self.jobs.busy_label}")
                 if self.jobs.idle:
