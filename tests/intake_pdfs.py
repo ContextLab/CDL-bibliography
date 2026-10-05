@@ -194,6 +194,43 @@ def build_short_title(folder, name="short"):
     return _typeset(folder, name)
 
 
+LOGO_TITLE = "A study of memory"
+QUESTION_TITLE = "Who learns? A study of memory"
+LOWERCASE_TEXT = "we evaluated ten models. all models were trained on the same corpus."
+
+_FIRST = r"""\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.5in]{geometry}
+\begin{document}
+\thispagestyle{empty}
+%s
+\end{document}
+"""
+
+# First pages on which a title is told from the rest by where it lies and what surrounds it,
+# not by being the largest text or by its punctuation.
+LAYOUTS = {
+    # A publisher's mark of one word in 20pt, the title in 11pt, the authors and the text in 10pt.
+    "logo": r"\noindent{\fontsize{20}{24}\selectfont\bfseries ACM}\par\vspace{2em}" "\n"
+            r"\noindent{\fontsize{11}{13}\selectfont\bfseries " + LOGO_TITLE + r"\par}\vspace{1em}" "\n"
+            r"\noindent Ada Q. Example and Bo R. Sample\par\vspace{2em}" "\n"
+            r"\noindent " + _BODY + r"\par\vspace{1em}" "\n" r"\noindent " + _BODY,
+    # A title page: a title that is a question and an answer, and under it one author. Nothing else.
+    "question": r"\vspace*{2in}\begin{center}{\LARGE\bfseries " + QUESTION_TITLE + r"\par}\vspace{2em}" "\n"
+                r"{\large Uri Zoller\par}\end{center}\newpage" "\n" r"\noindent " + _BODY,
+    # A page of running text and nothing else: no title is printed on it.
+    "lowercase": r"\noindent " + LOWERCASE_TEXT + r"\newpage" "\n" r"\noindent " + _BODY,
+}
+
+
+def build_layout(name, folder):
+    """Typeset LAYOUTS[name] into <folder>/<name>.pdf with pdflatex; returns the path."""
+    folder = Path(folder)
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / f"{name}.tex").write_text(_FIRST % LAYOUTS[name], encoding="utf-8")
+    return _typeset(folder, name)
+
+
 def short_selection():
     """What a reader of the short-title page would select: the title, each of the eighteen
     authors, and the year of the arXiv stamp (which is not the work's own year)."""

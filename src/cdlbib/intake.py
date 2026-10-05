@@ -1825,44 +1825,55 @@ class _Enough(Exception):
 
 
 def _title_from_runs(runs):
-    """The text set largest on the page: consecutive fragments of one size are a run; the
-    largest run that is not an arXiv stamp, among the three largest sizes.
+    """The title among the text of page 1, told by the layout. ``runs`` is the page's
+    fragments in reading order, each (text, size); consecutive fragments of one size are a run.
 
-    A title is set larger than the page's running text, so a run qualifies only when its
-    size is more than a tenth above the size most of the page's characters are set in.
-    (Without that, a page whose larger runs all fail falls through to a paragraph of body
-    text.) The largest size on the page is the one exception, for a page that carries
-    little but its title: there a run qualifies unless it reads as sentences. A run needs
-    three words, or two when it is the largest text on the page ("Mistral 7B")."""
-    joined, sized = [], []
+    A run is taken as the title when all of this holds, and the largest such run is the one
+    (the first of them at that size):
+
+    - it is set more than 6% larger than the rest of the page: the size at the middle
+      character of all the other text. (Font expansion sets the lines of one paragraph up to
+      2% apart, so running text never passes; a title a tenth above the text does.) A page
+      with no other text, or text all of one size, gives no title;
+    - it is a few lines, not a block: at most four lines and 300 characters;
+    - it stands at the head of the page: no more than 300 characters of smaller text
+      come before it (a running head may; an abstract or a column of text may not);
+    - it has three words, or two when nothing on the page is set larger ("Mistral 7B"),
+      and is not an arXiv stamp.
+
+    Neither being the largest text nor what punctuation it has decides anything: a
+    one-word mark set larger than the title is passed over, and a title may be a question.
+    None when no run qualifies; the person is then asked."""
+    joined, sized = [], []     # [text, size, index of its first fragment], [(size, characters, run)]
     for text, size in runs:
-        if text.strip():
-            sized.append((size, len(text.strip())))
         if joined and abs(joined[-1][1] - size) <= 0.02 * size:
             joined[-1][0] += text
         elif text.strip():
-            joined.append([text, size])
+            joined.append([text, size, len(sized)])
+        else:
+            continue
+        if text.strip():
+            sized.append((size, len(text.strip()), len(joined) - 1))
     if not joined:
         return None
-    half, body = sum(count for _, count in sized) / 2, 0.0
-    for size, count in sorted(sized):  # the size at the middle character of the page
-        half, body = half - count, size
-        if half <= 0:
-            break
-    sizes = sorted({size for _, size in joined}, reverse=True)[:3]
-    for size in sizes:
-        largest, above = size == sizes[0], size > 1.1 * body
-        if not (largest or above):
-            break
-        for text, own in joined:
-            text = " ".join(text.split())
-            if own != size or not 10 <= len(text) <= 400 or re.match(r"(?i)arxiv\s*:", text):
-                continue
-            if len(text.split()) < (2 if largest else 3):
-                continue
-            if not above and re.search(r"[.!?]\s+[A-Z]", text):
-                continue
-            return text
+    top = max(size for _, size, _ in joined)
+    for number, (raw, size, first) in sorted(enumerate(joined), key=lambda item: (-item[1][1], item[0])):
+        text = " ".join(raw.split())
+        if not 10 <= len(text) <= 300 or len([line for line in raw.splitlines() if line.strip()]) > 4:
+            continue
+        if len(text.split()) < (2 if size == top else 3) or re.match(r"(?i)arxiv\s*:", text):
+            continue
+        others = sorted((s, count) for s, count, run in sized if run != number)
+        half, rest = sum(count for _, count in others) / 2, None
+        for other, count in others:    # the size at the middle character of the other text
+            half, rest = half - count, other
+            if half <= 0:
+                break
+        if rest is None or size <= 1.06 * rest:
+            continue
+        if sum(count for s, count, _ in sized[:first] if s < size) > 300:
+            continue
+        return text
     return None
 
 
