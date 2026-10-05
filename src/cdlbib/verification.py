@@ -22,7 +22,7 @@ import sqlite3
 import tempfile
 import time
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 
 from . import workspace
@@ -371,6 +371,7 @@ REVIEW_TEXT_FIELDS = {"reviewer": 200, "github_login": 39, "source": 4000, "note
 REVIEW_FIELDS = set(REVIEW_TEXT_FIELDS) | {"github_id"}
 APPROVAL_LEDGER_MAX_BYTES = 8 * 1024 * 1024
 APPROVAL_ROW_MAX_BYTES = 32 * 1024
+APPROVAL_CLOCK_ALLOWANCE = timedelta(minutes=5)   # how far ahead of this clock a row's time may be
 _FINGERPRINT = re.compile(r"v2:[0-9a-f]{64}")
 _DIGEST = re.compile(r"[0-9a-f]{64}")
 _GITHUB_LOGIN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})")
@@ -428,6 +429,12 @@ def shared_approval_problem(record):
         moment = None
     if moment is None or "T" not in record["approved_at"] or moment.tzinfo is None:
         return "approved_at is not a time with a zone"
+    # The time is typed text like the rest of the row. A row dated ahead of the clock would
+    # outrank every check and revocation made until then, so it is no valid row (the
+    # allowance is for clocks that differ a little).
+    if moment > datetime.now(timezone.utc) + APPROVAL_CLOCK_ALLOWANCE:
+        return (f"approved_at ({record['approved_at']}) is later than the present time; a row dated in the "
+                "future is not counted")
     written = len(dumps(record).encode("utf-8")) + 1
     if written > APPROVAL_ROW_MAX_BYTES:
         return (f"the row is {written} bytes as written; a line longer than {APPROVAL_ROW_MAX_BYTES} bytes "
@@ -800,14 +807,18 @@ class Cache:
         # As for an approval in this database, where the newest stored result for the text
         # is the current one whatever it says: a result stored here for this text after the
         # row's approval outranks the row. (Nothing stored, or a result no later than the
-        # approval, and the row counts. A stored time that cannot be read is taken as later.)
+        # approval, and the row counts.) Times are compared as parsed instants with a zone,
+        # never as text. Both doubts fall the closed way: a row whose time cannot be read
+        # never counts (shared_approval_problem already refuses it, and a time ahead of the
+        # clock), and a stored result whose time is missing or cannot be read is taken as
+        # later than any row, so a failed check is never hidden for want of its date.
         checked = _instant(result.get("checked_at")) if result else None
         revocations = self.revocations()
         for row in reversed(rows):
             if row["policy"] != POLICY or any(shared_revoked(r, row) for r in revocations):
                 continue
             approved = _instant(row["approved_at"])
-            if result and (checked is None or approved is None or checked > approved):
+            if approved is None or (result and (checked is None or checked > approved)):
                 continue
             return shared_view(entry, result, row)
         return result

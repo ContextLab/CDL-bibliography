@@ -325,8 +325,10 @@ the row and `checked_at` from `approved_at`, and is not written to the database
 stored in the database is: there, the newest stored result for the text is the current one,
 whatever its status. So a result stored in the reader's database for the same text with a
 `checked_at` strictly later than the row's `approved_at` outranks the row (any stored
-status: `needs_review`, `provider_error`, `metadata_verified`; a stored time that cannot be
-read counts as later), and the entry has that result's status. With nothing stored, or a
+status: `needs_review`, `provider_error`, `metadata_verified`), and the entry has that
+result's status. The times are compared as parsed instants with a zone, not as text. A
+stored result whose `checked_at` is missing or cannot be read counts as later than any row,
+so that a failed check is not hidden for want of its date. With nothing stored, or a
 stored result no later than the approval, the row counts. A newer row, or a new `approve`,
 recorded after that result counts again. Tests:
 `test_a_result_stored_after_the_approval_outranks_a_ledger_row_as_it_does_a_local_approval`
@@ -340,7 +342,9 @@ fingerprint; a `human_review` with non-blank text for `reviewer` (at most 200 ch
 `github_login` (a GitHub login), `source` (4,000) and `note` (8,000), an integer
 `github_id` when present, and no other field; an `approval_digest` equal to the digest
 computed from `human_review` (the stored digest is never used for anything else); an
-`approved_at` that is a time with a zone; a `policy`; and, as written (compact JSON plus the
+`approved_at` that is a time with a zone and not more than five minutes ahead of the
+reader's clock (`approved_at` is typed text; a row dated in the future is ignored and
+reported, is never written, and `send` refuses a ledger that holds a new one); a `policy`; and, as written (compact JSON plus the
 newline), at most 32,768 bytes. `record_approval` applies the same byte limit to the row an
 approval would become, and refuses one that would take the ledger over 8 MiB;
 `approval_lines` checks both again when a send adds rows. A file larger than 8 MiB, or one that cannot be

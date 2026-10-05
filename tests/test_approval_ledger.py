@@ -409,7 +409,7 @@ def test_a_typed_row_cannot_bring_a_revoked_approval_back(tmp_path, what):
     approve(ws, "Zoll90", database=approver)
     row = share(ws, database=approver)[0]
     records, _ = revoke(ws, "Zoll90", approver)
-    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(days=1)).isoformat()
+    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(seconds=2)).isoformat()
     forged = FORGERIES[what](row, later)
     assert v.valid_shared_approval(forged)
     assert v.approval_digest(forged["human_review"]) not in v.revoked_digests(records[0]) or forged["approved_at"] == later
@@ -437,7 +437,7 @@ def test_the_digest_written_in_a_row_is_never_what_is_compared(tmp_path):
     approve(ws, "Zoll90", database=approver)
     row = share(ws, database=approver)[0]
     records, _ = revoke(ws, "Zoll90", approver)
-    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(days=1)).isoformat()
+    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(seconds=2)).isoformat()
     with open(ws.approvals, "a", encoding="utf-8") as stream:
         stream.write(v.dumps(dict(row, approval_digest="f" * 64, approved_at=later)) + "\n")
     rows, problems = v.scan_approval_ledger(ws.approvals)
@@ -788,7 +788,8 @@ def test_approve_refuses_a_revoked_review_in_another_form_as_the_ledger_does(tmp
     ws = library(tmp_path / "lib")
     approve(ws, "Zoll90")
     approve(ws, "Rame72", note="Checked the volume in print.")               # the negative control: never revoked
-    revoke(ws, "Zoll90", ws.database)
+    records, _ = revoke(ws, "Zoll90", ws.database)
+    after_revocation = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(seconds=2)).isoformat()
     for review in (dict(note="  compared   EVERY field with the printed article. "),
                    dict(source=REVIEW["source"] + "  "),
                    dict(reviewer="@hubot", github_login="hubot", github_id=480938),
@@ -796,7 +797,7 @@ def test_approve_refuses_a_revoked_review_in_another_form_as_the_ledger_does(tmp
         with pytest.raises(ValueError, match="This exact approval was revoked"):
             approve(ws, "Zoll90", **review)
         row = {"key": "Zoll90", "fingerprint": fingerprint(ws, "Zoll90"), "human_review": dict(REVIEW, **review),
-               "approval_digest": v.approval_digest(dict(REVIEW, **review)), "approved_at": "2099-01-01T00:00:00+00:00",
+               "approval_digest": v.approval_digest(dict(REVIEW, **review)), "approved_at": after_revocation,
                "policy": v.POLICY}
         assert v.valid_shared_approval(row) and v.shared_revoked(v.read_revocation_ledger(ws.revocations)[0], row)
     assert statuses(ws, ws.database) == {"Zoll90": "needs_review", "Rame72": "human_verified"}
@@ -1167,14 +1168,66 @@ def test_a_row_and_a_stored_result_of_the_same_instant_and_a_stored_time_that_ca
     [row] = api.approvals_to_send(ws, database=approver)
     v.append_approvals(ws.approvals, [row])
     entry = v.load_entries(str(ws.bib))["Zoll90"]
-    for name, when, expected in (("same", row["approved_at"], "human_verified"), ("unreadable", "some time ago", "needs_review")):
+    at = datetime.datetime.fromisoformat(row["approved_at"])
+    other_zone = at.astimezone(datetime.timezone(datetime.timedelta(hours=-7)))          # the same instant, written otherwise
+    earlier_but_sorts_later = (at - datetime.timedelta(hours=1)).astimezone(datetime.timezone(datetime.timedelta(hours=9)))
+    assert earlier_but_sorts_later.isoformat() > row["approved_at"]                       # as text it would look later
+    for name, when, expected in (("same", row["approved_at"], "human_verified"),
+                                 ("same instant in another zone", other_zone.isoformat(), "human_verified"),
+                                 ("an hour earlier in a zone that sorts later", earlier_but_sorts_later.isoformat(), "human_verified"),
+                                 ("a second later", (at + datetime.timedelta(seconds=1)).isoformat(), "needs_review"),
+                                 ("unreadable", "some time ago", "needs_review"),
+                                 ("missing", None, "needs_review")):
         cache = v.Cache(str(tmp_path / f"{name}.sqlite3"), ledger=ws.revocations)
         try:
-            cache.store(str(ws.bib), entry, dict(v.outcome("needs_review", []), key="Zoll90", checked_at=when,
-                                                 fingerprint=entry["fingerprint"], policy=v.POLICY))
+            stored = dict(v.outcome("needs_review", []), key="Zoll90", checked_at=when,
+                          fingerprint=entry["fingerprint"], policy=v.POLICY)
+            if when is None:
+                del stored["checked_at"]
+            cache.store(str(ws.bib), entry, stored)
             assert cache.get(str(ws.bib), entry)["status"] == expected, name
         finally:
             cache.close()
+
+
+def test_a_row_dated_in_the_future_counts_nowhere_is_reported_and_is_never_written_or_sent(checkout, tmp_path):
+    """`approved_at` is typed text. A row dated ahead of the clock (beyond five minutes) is no
+    valid row: it approves nothing in an empty database, does not outrank a failed check
+    stored today or escape a revocation made today, is reported with its line number, cannot
+    be appended, and a send refuses to carry it. A row two minutes ahead (a clock that
+    differs a little) is a row like any other."""
+    ws, _ = checkout
+    approver = tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    [row] = api.approvals_to_send(ws, database=approver)
+    now = datetime.datetime.now(datetime.timezone.utc)
+    for when in ("2099-01-01T00:00:00+00:00", (now + datetime.timedelta(minutes=6)).isoformat(),
+                 (now + datetime.timedelta(hours=1)).astimezone(datetime.timezone(datetime.timedelta(hours=-11))).isoformat()):
+        future = dict(row, approved_at=when)
+        assert "is later than the present time" in v.shared_approval_problem(future), when
+        with pytest.raises(ValueError, match="a row dated in the future is not counted"):
+            v.append_approvals(tmp_path / "elsewhere" / "approvals.jsonl", [future])
+        ws.approvals.write_text(v.dumps(future) + "\n", encoding="utf-8")
+        assert statuses(ws, tmp_path / "empty.sqlite3")["Zoll90"] == "pending", when
+        rows, problems = v.scan_approval_ledger(ws.approvals)
+        assert rows == [] and "line 1 ignored: approved_at" in problems[0] and api.approval_problems(ws) == problems
+    assert not (tmp_path / "elsewhere" / "approvals.jsonl").exists()
+    # A failed check stored today, and a revocation made today, are not beaten by the year 2099.
+    ws.approvals.write_text(v.dumps(dict(row, approved_at="2099-01-01T00:00:00+00:00")) + "\n", encoding="utf-8")
+    stored_after(ws, tmp_path / "checked.sqlite3", "Zoll90", "needs_review", ["Found today"])
+    assert statuses(ws, tmp_path / "checked.sqlite3")["Zoll90"] == "needs_review"
+    revoke(ws, "Zoll90", approver)
+    assert statuses(ws, approver)["Zoll90"] == "needs_review" and statuses(ws, tmp_path / "empty.sqlite3")["Zoll90"] == "pending"
+    ws.revocations.unlink()
+    # A send does not carry it: refused before anything is written, whoever is logged in.
+    before, ledger = state(ws.root), ws.approvals.read_bytes()
+    with pytest.raises(PublishRefused, match="holds a new line that is not a valid approval row .approved_at .*is later than"):
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
+    assert state(ws.root) == before and ws.approvals.read_bytes() == ledger
+    # Within the allowance: a row.
+    near = dict(row, approved_at=(now + datetime.timedelta(minutes=2)).isoformat())
+    ws.approvals.write_text(v.dumps(near) + "\n", encoding="utf-8")
+    assert v.valid_shared_approval(near) and statuses(ws, tmp_path / "empty.sqlite3")["Zoll90"] == "human_verified"
 
 
 def test_after_the_merge_another_clone_sees_the_entry_approved_with_no_command(checkout, tmp_path):
