@@ -6,9 +6,8 @@ What is real here, and what is not there:
   (free-model check included) when ``secrets.get`` finds a key; otherwise it is skipped
   with the reason.
 - ``test_recorded_model_reading`` replays a real adapter answer recorded by
-  ``tests/fixtures/intake/record.py model``. No key was available when these tests were
-  written (2026-10-05), so no recording is committed and the test is skipped saying so;
-  nothing was written by hand in its place.
+  ``tests/fixtures/intake/record.py model`` on 2026-10-05 (``model_extract.json``); nothing
+  in it was written by hand.
 - The grounding tests use the adapter's own code after the model call
   (``source_passages.materialize``: it copies the quotations from the selected passages and
   flags them) on a passage selection chosen by hand here, on the pages of a PDF typeset by
@@ -778,8 +777,7 @@ def _check_real_reading(proposal, pages):
 
 def test_recorded_model_reading(tmp_path):
     if not RECORDING.exists():
-        pytest.skip("no recorded adapter answer is committed: none could be recorded without a Dartmouth Chat key "
-                    "(tests/fixtures/intake/record.py model records one)")
+        pytest.skip("no recorded adapter answer is here (tests/fixtures/intake/record.py model records one)")
     saved = json.loads(RECORDING.read_text(encoding="utf-8"))
     read = intake.PdfIntake(path=Path(saved["pdf"] + ".pdf"), sha256=saved["pdf_sha256"], pages=saved["pages"],
                             first_page_text=saved["pages"][0]["text"])

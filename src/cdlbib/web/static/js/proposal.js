@@ -133,7 +133,9 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
     }
     for (const choice of item.name_choices || []) parts.push(names(item, choice));
     if (item.unfilled.length) {
-      parts.push(h("h3", { text: "Unfilled" }), list(item.unfilled.map((m) => m.field + ": " + m.reason
+      parts.push(h("h3", { text: "Unfilled" }), list(item.unfilled.map((m) =>
+        // the core's reason may already begin with the field's name
+        (String(m.reason).startsWith(m.field + ":") ? m.reason : m.field + ": " + m.reason)
         + Object.entries(m.source_values || {}).map(([name, value]) => " (" + name + ": " + value + ")").join(""))));
     }
     parts.push(kv([

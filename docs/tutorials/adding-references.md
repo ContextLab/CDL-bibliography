@@ -195,8 +195,36 @@ the keychain. The button of a service that is not set up cannot be pressed.
 has no source record, and it stays unverified until a source confirms it or a logged-in
 person approves it. The next section shows the card of an entry typed by hand.
 
-No model reading was run for this tutorial: the computer used for the recording had no
-Dartmouth Chat key set up.
+With Dartmouth Chat set up, "Read with Dartmouth Chat" adds lines to the lookup log while
+the model reads, and then a proposal card beside the PDF's first page. Recorded on
+October 5, 2026 with the PDF of arXiv:2310.06825, uploaded as `real.pdf`; the reading took
+about three minutes. The web interface stores an uploaded PDF as `upload.pdf`, which is the
+name the log shows:
+
+```text
+Asking Dartmouth Chat to read 2 pages of upload.pdf
+Checking each quotation against the PDF's pages
+```
+
+The card is marked "model reading: evidence, not an approval" and "needs your decision".
+Its table gives, for each field the model read, the page and the text quoted from it:
+
+```text
+title	Mistral 7{B}	model reading, p.1: "Mistral 7B"	filled
+year	2023	model reading, p.1: "arXiv:2310.06825v1 [cs.CL] 10 Oct 2023"	question
+```
+
+The year is a question because the quoted text is an arXiv version stamp. The card listed
+`journal`, `pages` and `volume` under "Unfilled" as "not given", and said:
+
+```text
+Accept is not available:
+journal is missing (required for an entry of type article)
+year is still a question: choose between what was typed and what the source has
+```
+
+The first reading after the model has been idle can take longer: `cdlbib` waits up to 240
+seconds for an answer and, if none came, asks once more.
 
 ## Typing an entry by hand
 
