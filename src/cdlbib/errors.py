@@ -9,6 +9,15 @@ class EditedEntryParseError(CdlbibError):
     """The saved editor text cannot be read as exactly one BibTeX entry."""
 
 
+class EditRefused(CdlbibError):
+    """A hand edit that was not saved, with nothing written: the entry changed since it was
+    opened, its new key is in use, or the text is not one entry (``problems`` lists why)."""
+
+    def __init__(self, message, problems=()):
+        self.problems = list(problems)
+        super().__init__(message)
+
+
 class WorkspaceNotFound(CdlbibError):
     pass
 

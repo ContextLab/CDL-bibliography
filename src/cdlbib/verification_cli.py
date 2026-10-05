@@ -388,8 +388,9 @@ def closest_candidate(fields, result):
 
 
 def citation_gate(fname, reference="github", database=None, report=None, mailto=None, interval=1.0,
-                  all_entries=False, echo=typer.echo, selected_results=None):
-    """Verify the citations of new/edited entries (or all, with ``all_entries``).
+                  all_entries=False, echo=typer.echo, selected_results=None, keys=None):
+    """Verify the citations of new/edited entries (or all, with ``all_entries``; or exactly
+    the citation keys in ``keys``, an iterable, whatever ``reference`` holds).
 
     Runs ``crossref verify --auto-review --against <reference>`` (key-only renames are
     excluded by ``select_keys``), prints every changed entry that is not accepted with
@@ -401,19 +402,20 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
-        against = None if all_entries else reference_bib(reference, Path(database).parent)
-        selected = select_keys(fname, None, against)
+        keys = None if keys is None else list(keys)
+        against = None if all_entries or keys is not None else reference_bib(reference, Path(database).parent)
+        selected = select_keys(fname, keys, against)
         client = DeferredClient(cache, mailto, interval, False)
         if selected:
             run_verification(fname, cache, client, report, keys=selected)
             run_review_layers(fname, cache, client, report, selected)
         results = write_report(fname, cache, report)
-        selected = select_keys(fname, None, against, entries=results)
+        selected = select_keys(fname, keys, against, entries=results)
         unresolved = {key: results[key] for key in sorted(selected) if results[key]["status"] not in ACCEPTED}
         library = Counter(r["status"] for r in results.values())
         if selected_results is not None:
             selected_results.update({key: results[key] for key in selected})
-        scope = "entries" if all_entries else "new/edited entries"
+        scope = "chosen entries" if keys is not None else "entries" if all_entries else "new/edited entries"
         echo(f"citations: {len(selected) - len(unresolved)} of {len(selected)} {scope} verified; "
              f"network requests: {client.requests}")
         entries = load_entries(fname)

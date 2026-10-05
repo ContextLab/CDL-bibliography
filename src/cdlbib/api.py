@@ -17,6 +17,7 @@ class FormatResult:
     outfile: Path | None = None
     log: str = ""        # what helpers.check_bib printed (its verbose log)
     failure: str = ""    # set when check_bib raised instead of returning findings
+    corrections: dict = field(default_factory=dict)   # {key: {field: the formatter's value}}; "ID" is the key itself
 
     @property
     def ok(self):
@@ -260,7 +261,8 @@ def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):
             return FormatResult(errors=[failure], corrected=None, outfile=None,
                                 log=sink.getvalue(), failure=failure)
     return FormatResult(errors=list(errors), corrected=corrected,
-                        outfile=Path(outfile) if outfile else None, log=sink.getvalue())
+                        outfile=Path(outfile) if outfile else None, log=sink.getvalue(),
+                        corrections={key: dict(found) for key, found in errors.items()})
 
 
 def gate_after_format(fmt, citations=True, autofix=False, outfile=None):
@@ -273,9 +275,9 @@ def gate_after_format(fmt, citations=True, autofix=False, outfile=None):
 
 
 def check_citations(ws, fmt, reference="github", all_entries=False, database=None, mailto=None,
-                    progress=None, bars=None):
-    """Citation verification of the new/edited entries (or all); ``progress`` receives each
-    report line as it is produced."""
+                    progress=None, bars=None, keys=None):
+    """Citation verification of the new/edited entries (or all; or exactly ``keys``, an
+    iterable of citation keys); ``progress`` receives each report line as it is produced."""
     from .verification import ProviderError
     from .verification_cli import citation_gate
     lines, selected_results = [], {}
@@ -295,7 +297,7 @@ def check_citations(ws, fmt, reference="github", all_entries=False, database=Non
             try:
                 ok, unresolved, library = citation_gate(str(ws.bib), reference=reference, database=database,
                                                         all_entries=all_entries, mailto=mailto, echo=echo,
-                                                        selected_results=selected_results)
+                                                        selected_results=selected_results, keys=keys)
             finally:
                 printed.close_line()
     except (ValueError, OSError, ProviderError) as exc:
@@ -390,39 +392,49 @@ def status(ws, database=None, report=None, require_human=False, keys=None, again
 
 def approve(ws, key, fingerprint, source, note, database=None):
     """Record a human approval under the GitHub login of the gh CLI (the only source of the
-    reviewer's name). Raises IdentityUnavailable before anything is opened or written."""
-    from . import identity
+    reviewer's name). Raises IdentityUnavailable before anything is opened or written. The
+    library's write lock is held while ``fingerprint`` (the content the reviewer was shown)
+    is compared with the entry on disk and the approval is stored, so an edit cannot slip
+    in between; content that changed is refused (ApprovalRefused)."""
+    from . import identity, library
     from .verification import Cache, record_approval
     from .verification import revocation_ledger
     me = identity.current()
     review = {"reviewer": me.handle, "source": source, "note": note,
               "github_login": me.login, "github_id": me.id}
-    try:
-        cache = Cache(database or str(ws.database), ledger=revocation_ledger(str(ws.bib), None))
+    with library.transaction(ws):
         try:
-            return record_approval(cache, str(ws.bib), key, fingerprint, review)
-        finally:
-            cache.close()
-    except (ValueError, KeyError, OSError) as exc:
-        raise ApprovalRefused(_message(exc)) from exc
+            cache = Cache(database or str(ws.database), ledger=revocation_ledger(str(ws.bib), None))
+            try:
+                return record_approval(cache, str(ws.bib), key, fingerprint, review)
+            finally:
+                cache.close()
+        except (ValueError, KeyError, OSError) as exc:
+            raise ApprovalRefused(_message(exc)) from exc
 
 
-def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None):
-    """Withdraw a human approval, recorded under the GitHub login of the gh CLI."""
-    from . import identity
-    from .verification import Cache, record_revocation
+def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None, expected_fingerprint=None):
+    """Withdraw a human approval, recorded under the GitHub login of the gh CLI. The library's
+    write lock is held throughout. ``expected_fingerprint``: the fingerprint of the entry as
+    the person was shown it; when given and the entry on disk has another, nothing is revoked
+    (ApprovalRefused)."""
+    from . import identity, library
+    from .verification import Cache, load_entries, record_revocation
     from .verification import revocation_ledger
     me = identity.current()
     ledger_path = revocation_ledger(str(ws.bib), ledger)  # resolved once for the cache and the writer
-    try:
-        cache = Cache(database or str(ws.database), ledger=ledger_path)
+    with library.transaction(ws):
         try:
-            records, state = record_revocation(cache, str(ws.bib), key, reason, me.handle,
-                                               fingerprints=fingerprints, ledger=ledger_path)
-        finally:
-            cache.close()
-    except (ValueError, KeyError, OSError) as exc:
-        raise ApprovalRefused(_message(exc)) from exc
+            if expected_fingerprint is not None and load_entries(ws.bib)[key]["fingerprint"] != expected_fingerprint:
+                raise ValueError("Entry changed since review; revocation rejected")
+            cache = Cache(database or str(ws.database), ledger=ledger_path)
+            try:
+                records, state = record_revocation(cache, str(ws.bib), key, reason, me.handle,
+                                                   fingerprints=fingerprints, ledger=ledger_path)
+            finally:
+                cache.close()
+        except (ValueError, KeyError, OSError) as exc:
+            raise ApprovalRefused(_message(exc)) from exc
     return RevokeResult(records=records, status=state)
 
 
@@ -712,7 +724,7 @@ def _proposals(ws, queries, mailto=None, database=None, progress=None, client=No
                 query = query if isinstance(query, complete.Query) else complete.Query.parse(query)
                 proposal = complete.propose(query, client, client.cache, ws=ws, batch=results)
                 results.append(proposal)
-                if proposal.status == 'provider_error' or (not proposal.proposed_raw and proposal.issues):
+                if proposal_failed(proposal):
                     results.errors.append((label, '; '.join(proposal.issues)))
                 if progress:
                     progress(f'{label}: {proposal.status or "needs review"}')
@@ -857,3 +869,182 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
                 client.cache.close()
             except (OSError, sqlite3.Error) as exc:
                 raise CdlbibError(f'Edited entry cache could not be closed: {exc}') from exc
+
+
+# --- the desk and the shared workflows (issue #95, M2) ------------------------------------------
+# What the terminal and web interfaces call. Each is one action; the reading ones are offline
+# unless they say otherwise. Front ends never pass ``outfile`` or ``autofix`` to anything.
+
+def entries(ws):
+    """[desk.EntrySummary] of the library, in the file's order: key, type, authors, year,
+    title, venue, doi, status, issues. See desk.entries."""
+    from . import desk
+    return desk.entries(ws)
+
+
+def search(source, text="", status=None):
+    """The summaries matching ``text`` (``source``: a workspace, or the list ``entries`` gave).
+    Words are ANDed; ``field:word`` restricts to key, author, title, venue, year, doi, type or
+    status; case, accents and TeX braces are ignored. See desk.search."""
+    from . import desk
+    return desk.search(source, text, status=status)
+
+
+def entry(ws, key):
+    """desk.EntryDetail of one entry: raw text, fields, fingerprint, the verifier's result with
+    its evidence, the closest source, advisories and per-field format findings."""
+    from . import desk
+    return desk.entry(ws, key)
+
+
+def preview_edit(ws, key, raw):
+    """desk.EditPreview of saving ``raw`` as entry ``key`` (None: a new entry). Writes nothing
+    to the library; problems are data, not exceptions. See desk.preview_edit."""
+    from . import desk
+    return desk.preview_edit(ws, key, raw)
+
+
+def save_edit(ws, key, raw, expected_fingerprint=None):
+    """Write one hand-edited entry through the shared writer and return complete.Applied.
+    ``expected_fingerprint`` is the fingerprint the person was shown (None only for a new
+    entry); errors.EditRefused, with nothing written, when the entry changed since, the key is
+    in use or the text is not one entry. See desk.save_edit."""
+    from . import desk
+    return desk.save_edit(ws, key, raw, expected_fingerprint)
+
+
+def review_queue(ws, reference="github", all_entries=False):
+    """[desk.EntryDetail] of the changed (or all) entries that are not verified or approved."""
+    from . import desk
+    return desk.review_queue(ws, reference=reference, all_entries=all_entries)
+
+
+def revision(ws):
+    """Changes whenever cdl.bib, the verification database or the revocation ledger changes on
+    disk; a front end refreshes what it shows when this differs. See desk.revision."""
+    from . import desk
+    return desk.revision(ws)
+
+
+def library_state(ws, refresh=False, progress=None):
+    """desk.LibraryState: branch, unsent and unrelated changes, new upstream commits and
+    entries, the last check, an interrupted write, and with ``refresh`` (which fetches, and
+    asks GitHub, within the daily check's time limit) the send branch's pull request."""
+    from . import desk
+    return desk.library_state(ws, refresh=refresh, progress=progress)
+
+
+def recover_interrupted(ws):
+    """Settle a killed write to a library cdlbib does not manage; the lines saying what was
+    done. See desk.recover."""
+    from . import desk
+    return desk.recover(ws)
+
+
+def proposal_failed(proposal):
+    """Did the lookup behind ``proposal`` fail: a source that did not answer, or no entry
+    proposed and a reason why (what ProposalResults.errors lists)?"""
+    return proposal.status == 'provider_error' or bool(not proposal.proposed_raw and proposal.issues)
+
+
+@dataclass
+class CompletionOffer:
+    key: str                       # the changed, unaccepted entry
+    proposals: list = field(default_factory=list)   # what is worth showing for it ([]: nothing to decide)
+    error: CdlbibError | None = None   # the lookup failed; nothing is proposed for this key
+
+
+def worth_showing(proposal):
+    """Does a completion proposal give the person something to decide: a duplicate, an
+    incomplete entry, candidates to choose from, or a field a source would fill or change?"""
+    return bool(proposal.duplicate_of or not proposal.complete or proposal.candidates
+                or any(change.typed != change.proposed and change.kind in ('filled', 'changed', 'question')
+                       and change.source not in ('typed', 'house format')
+                       for change in proposal.changes))
+
+
+def completion_offers(ws, reference="github", database=None, mailto=None, seen=None):
+    """The completion proposals for the changed entries that are not yet accepted, one
+    CompletionOffer per entry, produced one at a time: each entry is read and looked up only
+    when the caller asks for the next offer, from the library as it then is, so a decision can
+    be written (apply_proposals) before the next entry is proposed. Proposals with nothing to
+    decide are left out (``worth_showing``). ``seen``: a set of (str(ws.bib), key, fingerprint)
+    the caller keeps; entries in it are passed over. A lookup that fails is an offer with
+    ``error`` set, and the others still come. Raises CdlbibError when the entries cannot be
+    selected at all; an unreadable library gives no offers (the format check reports it).
+    Nothing is written or approved here."""
+    from .verification import load_entries
+    try:
+        load_entries(ws.bib)
+    except (OSError, ValueError):
+        return iter(())
+    keys = completion_keys(ws, reference=reference, database=database)
+
+    def offers():
+        for key in keys:
+            current = load_entries(ws.bib)
+            if key not in current or (seen is not None and (str(ws.bib), key, current[key]['fingerprint']) in seen):
+                continue
+            try:
+                results = propose(ws, keys=[key], database=database, mailto=mailto)
+                results[:] = [item for item in results if worth_showing(item)]
+            except CdlbibError as exc:
+                yield CompletionOffer(key, [], exc)
+                continue
+            yield CompletionOffer(key, results)
+    return offers()
+
+
+def choose_candidate(ws, item, candidate, mailto=None, database=None, in_library=False):
+    """The proposal for the candidate a person picked from ``item.candidates`` (its DOI, else
+    arXiv identifier, PMID, title), keeping what was typed. ``in_library``: ``item`` completes
+    an entry of the library (a completion offer), whose fields are read from the file now; a
+    CdlbibError when that entry is no longer there. Otherwise the typed text, if any, is the
+    entry given to `add`. ``proposal_failed`` says whether the lookup failed. Nothing is written."""
+    import tempfile
+    from .complete import Query
+    from .verification import load_entries
+    text = candidate.get('doi') or candidate.get('arxiv') or (
+        'PMID:' + str(candidate['pmid']) if candidate.get('pmid') else candidate.get('title'))
+    query = Query.parse(text)
+    if in_library:
+        query.raw, query.key = item.typed_raw, item.key_typed
+        current = load_entries(ws.bib)
+        if item.key_typed not in current:
+            raise CdlbibError('The selected entry changed on disk; review a new proposal')
+        query.fields = dict(current[item.key_typed]['fields'])
+    elif item.typed_raw:
+        query.raw, query.key = item.typed_raw, item.key_typed
+        with tempfile.TemporaryDirectory(prefix='cdlbib-candidate-') as folder:
+            path = Path(folder) / 'typed.bib'
+            path.write_text(item.typed_raw, encoding='utf-8')
+            typed = next(iter(load_entries(path).values()))
+        query.fields = dict(typed['fields'])
+    return propose_new(ws, [query], mailto=mailto, database=database)[0]
+
+
+def check_keys(ws, keys, progress=None, database=None, mailto=None, bars=None):
+    """Check chosen entries now: the format check of the library, then the citation gate
+    (check_citations, the one gate) for exactly ``keys``, whatever has changed. Returns a
+    LibraryCheck: ``format.corrections`` holds the formatter's values per key, ``citations``
+    the gate's result (``checked``: the refreshed result of each key). ``ok`` is True when the
+    format check could run, none of ``keys`` has a format finding, and every one is verified
+    or approved. ``progress`` receives the gate's lines. ``mailto`` defaults to
+    CROSSREF_MAILTO. GateFailed when a key is not in the library or the check cannot be done."""
+    import os
+    keys = list(keys)
+    fmt = check_format(ws, bars=bars)
+    check = check_citations(ws, fmt, database=database, mailto=mailto or os.environ.get("CROSSREF_MAILTO"),
+                            progress=progress, bars=bars, keys=keys)
+    check.ok = bool(check.ok and not fmt.failure and not set(keys) & set(fmt.errors))
+    return check
+
+
+def send_checked(ws, summary=None, progress=None, report=None, allow_fork_creation=False):
+    """``send`` as an interactive front end may call it: the whole gate always runs (format,
+    then the citations of every new or edited entry against the GitHub master), and nothing
+    about where the change goes or what it is compared with can be passed. The contact for
+    Crossref is CROSSREF_MAILTO. See send for what is committed, pushed and returned."""
+    import os
+    return send(ws, summary=summary, reference="github", citations=True, mailto=os.environ.get("CROSSREF_MAILTO"),
+                progress=progress, report=report, allow_fork_creation=allow_fork_creation)

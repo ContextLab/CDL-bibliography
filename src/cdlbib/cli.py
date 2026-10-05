@@ -279,19 +279,9 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
             recheck = proposal_recheck(ws, mailto=mailto, database=database)
             def candidate(item, selected):
                 nonlocal failures
-                text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
-                query = Query.parse(text)
-                if item.typed_raw:
-                    from . import complete
-                    query.raw, query.key = item.typed_raw, item.key_typed
-                    with tempfile.TemporaryDirectory(prefix='cdlbib-candidate-') as folder:
-                        path = Path(folder) / 'typed.bib'
-                        path.write_text(item.typed_raw, encoding='utf-8')
-                        entry = next(iter(load_entries(path).values()))
-                    query.fields = dict(entry['fields'])
-                chosen = api.propose_new(ws, [query], mailto=mailto, database=database)
-                failures |= bool(chosen.errors)
-                return chosen[0]
+                chosen = api.choose_candidate(ws, item, selected, mailto=mailto, database=database)
+                failures |= api.proposal_failed(chosen)
+                return chosen
             accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session)
             if accepted:
                 applied = api.apply_proposals(ws, accepted, batch=batch)
@@ -314,46 +304,28 @@ _completion_seen = None
 
 def offer_completion(ws, reference="github", database=None, mailto=None):
     """Decide and persist one entry at a time, before the ordinary gate."""
-    from .complete import Query
     from .verification import load_entries
     from .library import completion_batch
     with completion_batch(ws) as batch:
         session = {}
         if _completion_seen is not None and ('stop', str(ws.bib)) in _completion_seen:
             return
-        try:
-            load_entries(ws.bib)
-        except (OSError, ValueError):
-            return  # the ordinary format gate reports unreadable/syntactically invalid text
-        try:
-            keys = api.completion_keys(ws, reference=reference, database=database)
+        try:   # an unreadable library gives no offers: the ordinary format gate reports it
+            offers = api.completion_offers(ws, reference=reference, database=database, mailto=mailto,
+                                           seen=_completion_seen)
         except CdlbibError as exc:
             typer.echo(f"Completion unavailable: {exc}")
             return
-        for key in keys:
-            entries = load_entries(ws.bib)
-            if key not in entries:
-                continue
-            marker = (str(ws.bib), key, entries[key]['fingerprint'])
-            if _completion_seen is not None and marker in _completion_seen:
-                continue
+        for offer in offers:
+            key = offer.key
             accepted, applied = [], None
             try:
-                results = api.propose(ws, keys=[key], database=database, mailto=mailto)
-                results[:] = [item for item in results if item.duplicate_of or not item.complete or item.candidates
-                              or any(change.typed != change.proposed and change.kind in ('filled', 'changed', 'question')
-                                     and change.source not in ('typed', 'house format')
-                                     for change in item.changes)]
+                if offer.error is not None:
+                    raise offer.error
+                results = offer.proposals
                 recheck = proposal_recheck(ws, mailto=mailto, database=database)
                 def candidate(item, selected):
-                    text = selected.get('doi') or selected.get('arxiv') or ('PMID:' + str(selected['pmid']) if selected.get('pmid') else selected.get('title'))
-                    query = Query.parse(text)
-                    query.raw, query.key = item.typed_raw, item.key_typed
-                    current = load_entries(ws.bib)
-                    if item.key_typed not in current:
-                        raise CdlbibError('The selected entry changed on disk; review a new proposal')
-                    query.fields = dict(current[item.key_typed]['fields'])
-                    return api.propose_new(ws, [query], mailto=mailto, database=database)[0]
+                    return api.choose_candidate(ws, item, selected, mailto=mailto, database=database, in_library=True)
                 accepted = decide(results, recheck=recheck, choose_candidate=candidate, session=session) if results else []
                 if accepted:
                     applied = api.apply_proposals(ws, accepted, batch=batch)
@@ -468,13 +440,7 @@ def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, s
         typer.echo("left uncommitted: " + ", ".join(result.left))
 
 
-CHOSEN_BY = {
-    workspace.Origin.NAMED: "the file you named",
-    workspace.Origin.OPTION: "--library",
-    workspace.Origin.ENVIRONMENT: "CDLBIB_LIBRARY",
-    workspace.Origin.FOUND: f"{BIB_NAME} found in or above the current folder",
-    workspace.Origin.MANAGED: "no library named or found; this is the copy cdlbib downloads and manages",
-}
+from .prompts import ANSWERS, MOVED, answers, unsent_question, CHOSEN_BY
 
 
 @app.command()
@@ -562,61 +528,7 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         typer.echo(result.message)
 
 
-ANSWERS = {"keep": ("k", "Keep working without updating (ask again tomorrow)"),
-           "update": ("u", "Update and keep my changes"),
-           "send": ("s", "Send my changes first (runs `cdlbib send`)"),
-           "discard": ("d", "Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)")}
-
-
-MOVED = {"keep": ("k", "Keep working with the copy here (ask again tomorrow)"),
-         "discard": ("m", "Move to the new version (the copy here is saved first; `cdlbib update --undo` brings it back)")}
-
-
-def answers(exc):
-    """{choice: (letter, what it does)} for the question ``exc`` asks."""
-    return MOVED if exc.rewritten else ANSWERS
-
-
-def unsent_question(exc):
-    """The question about unsent changes, as it is printed (errors.UpdateNeedsDecision)."""
-    if exc.rewritten:       # no changes of the user's: the upstream replaced its own history
-        return "\n".join(["The history of the bibliography's upstream was changed, and the copy here matches an older "
-                          "version of it (it holds no changes of yours).", "What would you like to do?"]
-                         + [f"  [{MOVED[choice][0]}] {MOVED[choice][1]}" for choice in exc.choices])
-    count, commits, new = exc.entries_changed, exc.local_commits, exc.new_commits
-    counted = f" ({count} {'entry' if count == 1 else 'entries'} changed)" if count else ""
-    lines = [f"A newer version of the bibliography is available ({new} new commit{'' if new == 1 else 's'}), "
-             "and you have changes that have not been sent:"]
-    if exc.branch:       # on the branch of an earlier send: the question is about that branch
-        lines = [f"Your pull request {exc.pull_request} was merged, and you have changes on branch {exc.branch} that "
-                 "have not been sent:" if exc.state == "merged" else
-                 f"Your pull request {exc.pull_request} was closed without being merged. Branch {exc.branch} is still "
-                 "selected."]
-    if commits:
-        lines.append(f"  {commits} commit{'' if commits == 1 else 's'} that the upstream does not have"
-                     + ("" if BIB_NAME in exc.changed else counted.replace(" changed)", f" of {BIB_NAME} changed)")))
-    lines += [f"  {name}{counted if name == BIB_NAME else ''}" for name in exc.changed[:10]]
-    if len(exc.changed) > 10:
-        lines.append(f"  ... and {len(exc.changed) - 10} more")
-    lines.append("What would you like to do?")
-    lines += [f"  [{ANSWERS[choice][0]}] {ANSWERS[choice][1]}" for choice in exc.choices]
-    if exc.branch:
-        if "update" not in exc.choices and commits:
-            lines.append("  (Updating and keeping your changes is not offered: the branch has commits that the upstream "
-                         "does not have.)")
-        if "send" not in exc.choices:
-            lines.append("  (Sending is not offered: the branch has commits that the upstream does not have.)"
-                         if exc.state == "merged" else
-                         "  (Sending is not offered: the pull request was closed, and a new change needs a new branch.)")
-        lines.append(f"  (Updating or discarding puts the library back on branch {exc.default}; your changes are saved "
-                     "in a backup first.)")
-        return "\n".join(lines)
-    if "update" not in exc.choices:
-        lines.append("  (Updating and keeping your changes is not offered: the library has commits that the upstream "
-                     "does not have.)")
-    if "send" not in exc.choices:
-        lines.append("  (Sending is not offered: there are no uncommitted changes to send.)")
-    return "\n".join(lines)
+# (prompts moved to prompts.py)
 
 
 def settle_unsent(ws, exc, force, say, sending=False):
