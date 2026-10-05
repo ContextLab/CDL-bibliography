@@ -1,6 +1,7 @@
 """Screenshots of the web interface's key states, as PNG files.
 
     python scripts/capture_web.py [--out docs/media] [--width 1180] [--height 760] [--only NAME ...]
+    python scripts/capture_web.py --gif [--out docs/media]
 
 Runs the real server (cdlbib.web.server) on a temporary library: the suite's frozen library
 (tests/fixtures/cdl-prewave1-2026-09-26.bib, about 6,400 entries) without Zoll90, with one
@@ -11,6 +12,10 @@ the upstream are temporary folders, the lookups are answered from the responses 
 tests/fixtures/ (no request leaves this computer), and the real data folder is compared
 before and after. The PDF is typeset here with pdflatex. Needs the dev dependencies
 `playwright` (with chromium installed) and `pytest` (tests/conftest.py is imported).
+
+With --gif, the screenshots above are not made: one short journey on the same temporary
+library (a search, an entry, its issues, an edit and its preview) is captured as a frame per
+step and joined into web-demo.gif. That needs ffmpeg on PATH.
 """
 import argparse
 import os
@@ -213,16 +218,92 @@ def capture(out, width, height, only):
     return made, problems
 
 
+GIF_SIZE = (960, 620)
+
+
+def record(out):
+    """The journey of web-demo.gif: a screenshot at each step, each shown for its time, joined by ffmpeg."""
+    import subprocess
+    from playwright.sync_api import expect, sync_playwright
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        raise SystemExit("ffmpeg was not found on PATH; --gif needs it to join the frames")
+    folder = Path(tempfile.mkdtemp(prefix="cdlbib-capture-web-"))
+    os.environ.update(web.isolated_environment(folder))
+    for name in web.unset():
+        os.environ.pop(name, None)
+    ws = build_library(folder / "library")
+    running, _ = web.start(ws)
+    width, height = GIF_SIZE
+    frames = folder / "frames"
+    frames.mkdir()
+    target, problems, shown = out / "web-demo.gif", [], []
+
+    def frame(page, seconds):
+        page.wait_for_timeout(250)
+        path = frames / f"{len(shown):03d}.png"
+        page.screenshot(path=str(path))
+        shown.append((path, seconds))
+
+    try:
+        with sync_playwright() as play:
+            browser = play.chromium.launch()
+            page = browser.new_page(viewport={"width": width, "height": height}, color_scheme="light")
+            page.on("console", lambda message: problems.append(message.text) if message.type == "error" else None)
+            page.on("pageerror", lambda error: problems.append(str(error)))
+            page.goto(running.url)
+            page.wait_for_selector(".vt-row", timeout=180_000)
+            frame(page, 1.5)
+            page.click("#search")
+            for typed in ("games", "games fact", "games factorial"):
+                page.fill("#search", typed)
+                page.wait_for_timeout(700)
+                frame(page, 0.7)
+            expect(page.locator(".vt-row")).to_have_count(1)
+            page.click(".vt-row")
+            page.wait_for_selector(".detail-head h2")
+            frame(page, 2.5)
+            page.click("role=tab[name=/Issues/]")
+            frame(page, 3)
+            page.click("text=Edit")
+            page.wait_for_selector("#entry-text")
+            frame(page, 1.5)
+            page.fill("#entry-text", GAME62.replace("Volume = {63}", "Volume = {36}").replace("Pages = {1--11}", "Pages = {1-11}"))
+            frame(page, 1.5)
+            page.click("button:has-text('Preview')")
+            page.wait_for_selector(".diff")
+            frame(page, 4)
+            page.fill("#entry-text", GAME62.replace("Volume = {63}", "Volume = {36}"))    # nothing unsaved is left behind
+            browser.close()
+        listing = folder / "frames.txt"
+        listing.write_text("".join(f"file '{path}'\nduration {seconds}\n" for path, seconds in shown)
+                           + f"file '{shown[-1][0]}'\n", encoding="utf-8")   # the concat demuxer needs the last file twice
+        # One palette for all frames, few colours, no dithering: flat interface colours stay
+        # flat, which is what keeps the file small.
+        done = subprocess.run(
+            [ffmpeg, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(listing), "-vf",
+             "split[a][b];[a]palettegen=max_colors=32:stats_mode=full[p];[b][p]paletteuse=dither=none",
+             "-fps_mode", "vfr", str(target)], capture_output=True, text=True)
+        if done.returncode != 0:
+            raise SystemExit("ffmpeg failed: " + done.stderr[-1000:])
+    finally:
+        os.chdir(ROOT)
+        running.stop()
+        shutil.rmtree(folder, ignore_errors=True)
+    return [target], problems
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--out", default=str(ROOT / "docs" / "media"))
     parser.add_argument("--width", type=int, default=1180)
     parser.add_argument("--height", type=int, default=760)
     parser.add_argument("--only", nargs="*", default=[], choices=NAMES)
+    parser.add_argument("--gif", action="store_true", help="record web-demo.gif instead of the screenshots (needs ffmpeg)")
     args = parser.parse_args()
     out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
-    made, problems = capture(out, args.width, args.height, args.only)
+    made, problems = record(out) if args.gif else capture(out, args.width, args.height, args.only)
     for path in made:
         print(f"{path} ({path.stat().st_size // 1024} KB)")
     for line in problems:

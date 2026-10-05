@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerate the terminal screencasts shown in docs/tutorials.md.
+# Regenerate the terminal screencasts shown in docs/tutorials/.
 #
 #   scripts/make_screencasts.sh [OUTPUT_DIR] [CAST ...]
 #
