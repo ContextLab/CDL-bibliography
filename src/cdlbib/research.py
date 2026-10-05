@@ -52,7 +52,8 @@ def invoke_adapter(executable, payload):
     except (subprocess.SubprocessError, OSError) as exc:
         # The adapter's own last line says why (it never prints a response body or a key).
         said = (getattr(exc, "stderr", None) or "").strip().splitlines()
-        why = f": {said[-1][:300]}" if said else ""
+        last = "".join(c for c in said[-1] if c.isprintable())[:200] if said else ""
+        why = f": {last}" if last else ""
         raise ValueError(f"Research adapter failed: {type(exc).__name__}{why}") from exc
     if len(result.stdout) > 2_000_000:
         raise ValueError("Research adapter output exceeded 2 MB")

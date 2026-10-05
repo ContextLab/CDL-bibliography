@@ -73,3 +73,28 @@ def test_a_failed_adapter_is_reported_with_the_last_line_it_printed(tmp_path):
         invoke_adapter(script, {"phase": "extract"})
     assert str(caught.value) == ("Research adapter failed: CalledProcessError: "
                                  "Example adapter failed: the service did not answer")
+
+
+def test_only_a_sentence_written_in_the_adapter_is_printed_never_another_errors_text(tmp_path):
+    """A ValueError that could carry remote text (a URL from a search result, say) is named
+    by its type only; control characters never reach the caller's message."""
+    import subprocess
+    import sys
+    code = ("import sys\nfrom cdlbib import dartmouth_research_adapter as a\n"
+            "def run(payload):\n    raise {}\n"
+            "a.run = run\nsys.argv = ['adapter']\na.main()\n")
+    def said(raised):
+        done = subprocess.run([sys.executable, "-c", code.format(raised)], input="{}", capture_output=True, text=True)
+        assert done.returncode == 2 and done.stdout == ""
+        return done.stderr.strip()
+    assert said("ValueError('PDF URL must use HTTPS: http://evil.example/\\x1b[31m')") == "Dartmouth adapter failed: ValueError"
+    assert said("a.Said('Dartmouth research HTTP 503')") == "Dartmouth adapter failed: Dartmouth research HTTP 503"
+
+    from cdlbib.research import invoke_adapter
+    script = tmp_path / "noisy_adapter.py"
+    script.write_text("import sys\nsys.stdin.read()\nsys.stderr.write('failed \\x1b[31mred\\x07 ' + 'x' * 500)\nsys.exit(2)\n",
+                      encoding="utf-8")
+    with pytest.raises(ValueError) as caught:
+        invoke_adapter(script, {})
+    message = str(caught.value)
+    assert "\x1b" not in message and "\x07" not in message and len(message) < 260

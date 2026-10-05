@@ -26,6 +26,11 @@ from .dartmouth_models import PREFERRED_TEXT_MODEL
 DEFAULT_MODEL = PREFERRED_TEXT_MODEL
 
 
+class Said(ValueError):
+    """A failure whose sentence is written here in full (a number at most), so it can be
+    shown: it never holds text from a response, a web page, a search result or a key."""
+
+
 def discover_sources(payload, session, results=(), fetched=None):
     hosts = payload["allowed_pdf_hosts"]
     sources, landing_pages = [], []
@@ -174,13 +179,13 @@ def complete(data, schema, instructions, session, key, model, read_timeout=90):
             break
         except requests.exceptions.ReadTimeout:
             if attempt == 2:
-                raise ValueError(f"Dartmouth Chat did not answer within {read_timeout} seconds, twice") from None
+                raise Said(f"Dartmouth Chat did not answer within {read_timeout} seconds, twice") from None
     if response.status_code != 200:
-        raise ValueError(f"Dartmouth research HTTP {response.status_code}")
+        raise Said(f"Dartmouth research HTTP {int(response.status_code)}")
     result = response.json()
     choices = result.get("choices", [])
     if len(choices) != 1 or choices[0].get("finish_reason") != "stop":
-        raise ValueError("Dartmouth response incomplete or refused")
+        raise Said("Dartmouth response incomplete or refused")
     message = choices[0]["message"]
     if message.get("refusal") or message.get("tool_calls"):
         raise ValueError("Unexpected refusal or tool request")
@@ -373,7 +378,7 @@ def main():
         # No raw response bodies, request objects, or credentials in logs.
         if sys.argv[1:] == ["--check-model"] and isinstance(exc, ValueError):
             print(str(exc), file=sys.stderr)
-        elif type(exc) is ValueError:      # this module's own refusals: fixed sentences, no response text
+        elif type(exc) is Said:            # a sentence written in this module, with no remote text
             print(f"Dartmouth adapter failed: {exc}", file=sys.stderr)
         else:
             print(f"Dartmouth adapter failed: {type(exc).__name__}", file=sys.stderr)
