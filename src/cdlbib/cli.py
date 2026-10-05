@@ -562,6 +562,124 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
         typer.echo(result.message)
 
 
+from .errors import TexLinkRefused
+
+
+def _tex_state(status):
+    """The line that says what the state of the TeX link means."""
+    return {
+        "linked": "linked: TeX finds this library's cdl.bib from any folder (\\bibliography{cdl} or \\addbibresource{cdl.bib})",
+        "absent": "not linked",
+        "other_library": f"linked to another library: {status.target}",
+        "foreign": f"not linked: {status.link} exists and was not made by cdlbib",
+        "shadowed": "linked, but TeX does not resolve cdl.bib to it",
+        "no_tex": {"linked": "linked; TeX was not found, so it could not be shown that TeX resolves it",
+                   "absent": "not linked; TeX was not found",
+                   "other_library": f"linked to another library: {status.target}; TeX was not found",
+                   "foreign": f"not linked: {status.link} exists and was not made by cdlbib; TeX was not found",
+                   }[status.present],
+    }[status.state]
+
+
+def report_setup(report, status, asked=False):
+    """Print the setup report: the library, the TeX link, what cdlbib can use here."""
+    found = report.where
+    typer.echo(f"library: {found.root}")
+    typer.echo(f"chosen by: {CHOSEN_BY[found.origin]}")
+    typer.echo(f"TeX tree: {status.texmf_home}")
+    typer.echo(f"link: {status.link}" + (f" -> {status.target}" if status.target else ""))
+    for line in status.changes:
+        typer.echo(line)
+    typer.echo(f"state: {_tex_state(status)}")
+    if status.kpsewhich:
+        typer.echo(f"kpsewhich cdl.bib: {status.resolves_to or 'not found'}")
+    for line in status.notes:
+        typer.echo(line)
+    if asked:
+        typer.echo("the link was not made (not confirmed); `cdlbib setup` without --ask makes it")
+    if status.state != "linked":
+        typer.echo(f"without a link, this shell line does the same (cdlbib does not write it anywhere): {status.bibinputs_line}")
+    typer.echo("available on this computer:")
+    for feature in report.features:
+        typer.echo(f"  {feature.name}: {'yes' if feature.available else 'no'} ({feature.detail})"
+                   + (f" {feature.how}" if feature.how else ""))
+
+
+@app.command()
+def setup(ctx: typer.Context,
+          check: bool = typer.Option(False, "--check", help="Report only; exit 1 when cdl.bib is not linked."),
+          remove: bool = typer.Option(False, "--remove", help="Remove the link cdlbib made in the TeX tree."),
+          replace: bool = typer.Option(False, "--replace", help="Move a cdl.bib that cdlbib did not put in the TeX "
+                                                                "tree aside (it is kept), then make the link.")):
+    """Link cdl.bib into your TeX tree so every manuscript finds it; report what cdlbib can use here."""
+    if check + remove + replace > 1:
+        raise typer.BadParameter("--check, --remove and --replace cannot be used together")
+    if remove:
+        done = api.tex_unlink()
+        typer.echo(f"removed {done.link}" if done.removed else f"nothing removed at {done.link}: {done.reason}")
+        for line in done.notes:
+            typer.echo(line)
+        return
+    ws = library(ctx, BIB_NAME)   # as every command: the managed library is downloaded when it is the one in use
+    report = api.setup_report(ws)
+    status, declined, refused = report.tex, False, None
+    if not check and status.present != "linked":
+        if deps.ask() and not _confirmed(f"Link {status.link} to {ws.bib}?"):
+            declined = True
+        else:
+            try:
+                status = api.tex_link(ws, replace=replace)
+            except TexLinkRefused as exc:
+                refused = exc
+    report_setup(report, status, asked=declined)
+    if refused is not None:
+        typer.echo(f"{refused} Run: cdlbib setup --replace", err=True)
+        raise typer.Exit(code=1)
+    if status.state != "linked" and (check or declined or status.state != "no_tex"):
+        raise typer.Exit(code=1)
+
+
+@app.command()
+def export(ctx: typer.Context,
+           paper: Path = typer.Argument(..., help="The paper: its main .tex file, its folder, or a .aux/.bcf file."),
+           out: Path = typer.Option(None, "-o", "--out", help="The file to write (default: cdl.bib beside the paper; "
+                                                               "with --bbl, the paper's name with .bbl)."),
+           bbl: bool = typer.Option(False, "--bbl", help="Write the paper's compiled .bbl instead of a .bib. This runs "
+                                                         "LaTeX on the paper's files, as compiling it yourself does."),
+           inputs: list[Path] = typer.Option(None, "--inputs", help="A style or class file the paper needs, or a folder "
+                                                                    "of them (repeat for several)."),
+           main: str = typer.Option(None, "--main", help="The main .tex file, when the folder has several."),
+           engine: str = typer.Option(None, "--engine", help="pdflatex, xelatex, lualatex or latex (default: what the "
+                                                             "paper asks for, else pdflatex)."),
+           force: bool = typer.Option(False, "--force", help="Replace the output file when it exists.")):
+    """Write the entries a paper cites as a .bib of its own, or its compiled .bbl."""
+    ws = library(ctx, BIB_NAME)
+    if bbl:
+        made = api.export_bbl(ws, paper, out=out, inputs=inputs or (), main=main, engine=engine, force=force)
+        count = len(made.keys)
+        typer.echo(f"wrote {made.path}: {made.backend}" + (f", style {made.style}" if made.style else "")
+                   + f", {made.engine}, {count} cited key{'' if count == 1 else 's'}"
+                   + (" and every other entry (\\nocite{*})" if made.cited.all_entries else ""))
+        for line in made.notes:
+            typer.echo(line)
+        return
+    made = api.export_bib(ws, paper, out=out, main=main, inputs=inputs or (), engine=engine, force=force)
+    cited = made.cited
+    read_from = {"aux": "the .aux file", "bcf": "the .bcf file", "compiled": "a fresh LaTeX run of the paper",
+                 "source": "the .tex source"}[cited.how]
+    count, entries = len(cited.keys), len(made.written)
+    typer.echo(f"citations read from {read_from}: {count} key{'' if count == 1 else 's'}"
+               + (" and \\nocite{*} (every entry)" if cited.all_entries else ""))
+    for line in made.notes:
+        typer.echo(line)
+    typer.echo(f"wrote {made.path}: {entries} entr{'y' if entries == 1 else 'ies'} from {ws.bib}")
+    if made.parents:
+        typer.echo("included because a cited entry inherits from them: " + ", ".join(made.parents))
+    if made.missing:
+        typer.echo("cited, but not in the library: " + ", ".join(str(item) for item in made.missing), err=True)
+        raise typer.Exit(code=1)
+
+
 ANSWERS = {"keep": ("k", "Keep working without updating (ask again tomorrow)"),
            "update": ("u", "Update and keep my changes"),
            "send": ("s", "Send my changes first (runs `cdlbib send`)"),

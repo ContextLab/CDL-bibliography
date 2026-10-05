@@ -857,3 +857,103 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
                 client.cache.close()
             except (OSError, sqlite3.Error) as exc:
                 raise CdlbibError(f'Edited entry cache could not be closed: {exc}') from exc
+
+
+# --- TeX integration and manuscript export ---
+
+GH_TIMEOUT = 10   # seconds features() gives `gh api user`, its one question to the network
+
+
+@dataclass
+class Feature:
+    """One thing cdlbib uses when it is there. ``detail`` says what was found, never a key's
+    value; ``how`` is what makes it available, and is empty when it is."""
+    name: str
+    available: bool
+    detail: str = ""
+    how: str = ""
+
+
+@dataclass
+class SetupReport:
+    where: Where
+    tex: object          # tex.TexStatus
+    features: list
+
+
+def features():
+    """What this computer has of the things cdlbib can use: git, the gh login, TeX, bibtex,
+    biber, pypdf, the Dartmouth Chat and OpenAI keys, textual. Installs nothing and asks
+    nothing; the gh login is the only thing looked up over the network."""
+    import importlib.util
+    import os
+    import shutil
+    from . import deps, identity, secrets
+    from .errors import IdentityUnavailable, SecretNotFound
+    tex_how = "Install TeX Live (https://tug.org/texlive/) or, on macOS, MacTeX (https://tug.org/mactex/)."
+    found = []
+
+    def program(name, command, how):
+        path = shutil.which(command)
+        found.append(Feature(name, bool(path), path or f"{command} was not found on PATH", "" if path else how))
+
+    def package(name, module, extra):
+        there = importlib.util.find_spec(module) is not None
+        found.append(Feature(name, there, "installed" if there else "not installed",
+                             "" if there else deps.manual_command(extra, module)))
+
+    program("git", "git", "Install git (https://git-scm.com/downloads).")
+    try:
+        found.append(Feature("gh login", True, identity.current(timeout=GH_TIMEOUT).handle))
+    except IdentityUnavailable as exc:
+        found.append(Feature("gh login", False, str(exc).replace(identity.HOW, "").strip(), identity.HOW))
+    program("TeX", "kpsewhich", tex_how)
+    program("bibtex", "bibtex", tex_how)
+    program("biber", "biber", "biber comes with a full TeX Live or MacTeX; in a smaller one: tlmgr install biber")
+    package("pypdf", "pypdf", "research")
+    for name, label in (("dartmouth-chat", "Dartmouth Chat key"), ("openai", "OpenAI key")):
+        try:
+            secrets.get(name)
+            found.append(Feature(label, True, f"set in the environment variable {secrets.KEYS[name].env}"
+                                 if os.environ.get(secrets.KEYS[name].env) else "stored in the system keychain"))
+        except SecretNotFound as exc:
+            found.append(Feature(label, False, str(exc).replace(secrets.places(name), "").strip(), secrets.places(name)))
+    package("textual", "textual", "tui")
+    return found
+
+
+def setup_report(ws):
+    """Which library is in use, the state of its TeX link, and features()."""
+    from . import tex, workspace
+    found = where()
+    if found.root != ws.root:       # a library handed in, not the one the lookup rule gives now
+        found = Where(root=ws.root, origin=workspace.Origin.NAMED, last_check=None)
+    return SetupReport(where=found, tex=tex.status(ws), features=features())
+
+
+def tex_link(ws, replace=False):
+    """Link the library's cdl.bib into the user's TeX tree (tex.link); the status afterwards."""
+    from . import tex
+    return tex.link(ws, replace=replace)
+
+
+def tex_unlink():
+    """Remove the link cdlbib made in the TeX tree, and nothing else (tex.unlink)."""
+    from . import tex
+    return tex.unlink()
+
+
+def export_bib(ws, paper, out=None, main=None, inputs=(), engine=None, force=False):
+    """Write the frozen .bib of what ``paper`` cites (export.cited, export.frozen_bib).
+    Default ``out``: beside the paper, named as the library (cdl.bib)."""
+    from . import export
+    found = export.cited(paper, main=main, inputs=inputs, engine=engine)
+    if out is None:
+        out = (found.folder or Path(paper).expanduser().resolve().parent) / ws.bib.name
+    return export.frozen_bib(ws, found, out, force=force)
+
+
+def export_bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
+    """Compile the paper's .bbl from the library with the paper's own style (export.bbl)."""
+    from . import export
+    return export.bbl(ws, paper, out=out, inputs=inputs, main=main, engine=engine, force=force)
