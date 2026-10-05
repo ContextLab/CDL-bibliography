@@ -663,7 +663,8 @@ def prefill_from(intake, proposal=None):
             for value in missing.source_values.values():
                 if value and missing.field != "ENTRYTYPE":
                     fields[missing.field] = value
-        fields.update(complete._completion_fields(proposal))
+        read = (getattr(proposal, "evidence", None) or {}).get("fields") or {}
+        fields.update({name: found["value"] for name, found in read.items()})
     return {k: v for k, v in fields.items() if k not in ("ENTRYTYPE", "ID") and isinstance(v, str) and v.strip()}
 
 
@@ -822,6 +823,9 @@ MODEL_FIELDS = ("title", "author", "year", "journal", "booktitle", "volume", "nu
                 "doi", "isbn", "issn", "edition")   # the only field names a reading can fill
 DRAFT_TYPES = ("article", "book", "incollection", "inproceedings", "inbook", "phdthesis", "mastersthesis",
                "techreport", "misc", "unpublished", "proceedings", "manual", "booklet")
+# A flagged passage whose value is still written, as a question, rather than left unfilled.
+QUESTION_RISKS = {"author": ("reference_list", "affiliation_line", "possible_omitted_author"),
+                  "year": ("receipt_or_revision_date", "copyright_line", "preprint_version_stamp")}
 KNOWN_RISKS = ("reference_list", "receipt_or_revision_date", "copyright_line", "preprint_version_stamp",
                "affiliation_line", "institution_named_as_venue", "possible_omitted_author")
 
@@ -853,10 +857,14 @@ def derivation(name, value, quote):
     - ``volume``, ``number``, ``edition``: one token that is a token of the quote;
     - ``pages``: one or two page numbers (``45`` or ``45-67``), each a token of the quote;
     - ``doi``: a DOI (``complete._doi_text``) that ``pdf_evidence.DOI_RX`` finds in the quote;
-    - ``isbn``, ``issn``: its digits (and X) stand in the quote, hyphens and spaces apart;
-    - ``author``: every name, split at `` and ``, is an unbroken run of the quote's tokens;
-    - ``title``, ``journal``, ``booktitle``, ``publisher``: the value's tokens are one
-      unbroken run of the quote's tokens.
+    - ``year``: also between 1500 and next year;
+    - ``isbn``, ``issn``: the quote prints one, as one number with a right check digit, and
+      it is the value's (digits of separate numbers are never joined);
+    - ``author``: every name, split at `` and ``, has two or more tokens, its family name
+      (the last, or the first before a comma) of two or more letters, and is an unbroken run of the quote's tokens; the names stand
+      in the quote in the value's order without overlapping;
+    - ``title``, ``journal``, ``booktitle``, ``publisher``: the value's tokens (two or more,
+      or one of four or more letters) are one unbroken run of the quote's tokens.
     """
     from .pdf_evidence import DOI_RX, fold
     from .verification import normalize_doi
@@ -864,9 +872,11 @@ def derivation(name, value, quote):
     if not value or name not in MODEL_FIELDS:
         return None
     if name == "year":
-        alone = re.fullmatch(r"\d{4}", value) and re.search(  # not a part of a DOI, an ISSN, a date or a decimal
-            r"(?<![\w./-])" + value + r"(?![\w/-]|\.\d)", fold(quote))
-        return "a four-digit number in the quotation" if alone else None
+        from datetime import date
+        alone = (re.fullmatch(r"\d{4}", value) and 1500 <= int(value) <= date.today().year + 1
+                 and re.search(  # not a part of a DOI, an ISSN, a date or a decimal
+                     r"(?<![\w./-])" + value + r"(?![\w/-]|\.\d)", fold(quote)))
+        return "a four-digit year in the quotation" if alone else None
     if name in ("volume", "number", "edition"):
         own = _tokens(value)
         return "a token of the quotation" if len(own) == 1 and own[0] in words else None
@@ -884,13 +894,147 @@ def derivation(name, value, quote):
         except ValueError:
             return None
     if name in ("isbn", "issn"):
-        digits = re.sub(r"[\s-]", "", value).lower()
-        ok = re.fullmatch(r"[\dx]{8,13}", digits) and digits in re.sub(r"[\s\u2010-\u2015-]", "", fold(quote)).lower()
-        return "its digits in the quotation" if ok else None
+        own = _standard_number(name, value)
+        printed = {_standard_number(name, m[0]) for m in _PRINTED_NUMBER[name].finditer(fold(quote))}
+        return f"a valid {name.upper()} printed in the quotation" if own and own in printed else None
     if name == "author":
-        names = [_tokens(n) for n in re.split(r"\s+and\s+", value)]
-        return "each name in the quotation" if names and all(_within(n, words) for n in names) else None
-    return "its words, in order, in the quotation" if _within(_tokens(value), words) else None
+        # Each name as printed: at least two tokens, one of them a family name of two or more
+        # letters; the names in the quotation in the value's order, none overlapping another.
+        # A footnote digit set against a surname ("Example1") is not part of the name.
+        names = [(_tokens(n), "," in n) for n in re.split(r"\s+and\s+", value)]
+        printed, position = [re.sub(r"(?<=[^\W\d_])\d+$", "", word) for word in words], 0
+        for tokens, family_first in names:
+            family = tokens[0 if family_first else -1] if tokens else ""  # "Example, Ada" or "Ada Example"
+            if len(tokens) < 2 or not (len(family) >= 2 and family.isalpha()):
+                return None
+            start = next((i for i in range(position, len(printed) - len(tokens) + 1)
+                          if printed[i:i + len(tokens)] == tokens), None)
+            if start is None:
+                return None
+            position = start + len(tokens)
+        return "each name, in order, in the quotation" if names else None
+    own = _tokens(value)
+    if not (len(own) >= 2 or (len(own) == 1 and sum(c.isalpha() for c in own[0]) >= 4)):
+        return None  # one short token grounds nothing
+    return "its words, in order, in the quotation" if _within(own, words) else None
+
+
+_PRINTED_NUMBER = {
+    "issn": re.compile(r"(?<![0-9A-Za-z])\d{4}[-\u2010-\u2015]?\d{3}[\dXx](?![0-9A-Za-z])"),
+    "isbn": re.compile(r"(?<![0-9A-Za-z])(?:(?:\d[- ]?){12}\d|(?:\d[- ]?){9}[\dXx])(?![0-9A-Za-z])"),
+}
+
+
+def _standard_number(kind, text):
+    """An ISSN or ISBN as its digits (and X), when ``text`` is one as printed and its check
+    digit is right; else None."""
+    if not _PRINTED_NUMBER[kind].fullmatch(text.strip()):
+        return None
+    digits = re.sub(r"[^0-9Xx]", "", text).upper()
+    if "X" in digits[:-1]:
+        return None
+    values = [10 if c == "X" else int(c) for c in digits]
+    if len(digits) == 8 and kind == "issn":
+        valid = sum(v * w for v, w in zip(values, range(8, 0, -1))) % 11 == 0
+    elif len(digits) == 10 and kind == "isbn":
+        valid = sum(v * w for v, w in zip(values, range(10, 0, -1))) % 11 == 0
+    elif len(digits) == 13 and kind == "isbn":
+        valid = sum(v * (1, 3)[i % 2] for i, v in enumerate(values)) % 10 == 0
+    else:
+        valid = False
+    return digits if valid else None
+
+
+# The control sequences a typed value may hold without a question: the accent and letter
+# commands and the text commands ``verification.normalized`` reads, and the text and maths
+# commands the library's entries use (counted in tests/fixtures/cdl-prewave1-2026-09-26.bib).
+ALLOWED_COMMANDS = frozenset(
+    "c v u H r k b d t ae AE aa AA oe OE o O l L ss i j "
+    "textit textbf emph textrm texttt textsc textnormal textsuperscript textsubscript LaTeX TeX "
+    "textasciitilde textasciicircum textregistered texttrademark url "
+    "alpha beta gamma delta epsilon theta lambda mu pi sigma tau phi chi psi omega times pm".split())
+ALLOWED_SYMBOLS = frozenset("'`^\"~=. &%_{}#$,-")
+# Never written, typed or not: they read or write files, run commands or redefine TeX.
+FORBIDDEN_COMMANDS = frozenset(
+    "input include write openout immediate csname endcsname catcode def let read special directlua "
+    "edef gdef xdef futurelet expandafter newcommand renewcommand providecommand usepackage "
+    "openin closeout closein newwrite newread latelua luaexec scantokens verbatiminput lstinputlisting "
+    "includegraphics InputIfFileExists IfFileExists ShellEscape".split())
+VERBATIM_FIELDS = ("doi",)   # written as given: a DOI's underscore is not escaped in the library
+_TEX_SPECIAL = {"&": "\\&", "%": "\\%", "#": "\\#", "$": "\\$", "_": "\\_",
+                "~": "\\textasciitilde{}", "^": "\\textasciicircum{}"}
+
+
+def plain_text_problem(name, value):
+    """Why ``value``, read from a PDF or by a model, cannot be taken as plain text, or None.
+    Such a value is text, never markup: it may hold no backslash, no brace, no ``^^`` and no
+    control character (a DOI, which is written as it is, no TeX special either)."""
+    if "\\" in value or "{" in value or "}" in value:
+        return "a backslash or a brace (LaTeX markup, which text read from a PDF may not bring)"
+    if "^^" in value:
+        return "the TeX character notation ^^"
+    if any(ord(char) < 32 or ord(char) == 127 for char in value):
+        return "a control character"
+    if name in VERBATIM_FIELDS and re.search(r"[%#&$~^\s]", value):
+        return "a character a DOI field cannot hold"
+    return None
+
+
+def escape_plain(name, value):
+    """Plain text as TeX text: ``% # & $ _ ~ ^`` are escaped (the house formatter has no
+    escaper of its own; this is the only one, used for text read from a PDF or by a
+    model). A ``VERBATIM_FIELDS`` value is returned as it is."""
+    return value if name in VERBATIM_FIELDS else re.sub(r"[&%#$_~^]", lambda m: _TEX_SPECIAL[m[0]], value)
+
+
+def latex_problems(name, value):
+    """(why a typed value is refused or None, questions about it). Refused: a command of
+    ``FORBIDDEN_COMMANDS``, ``^^``, and a ``%`` that is not written ``\\%`` (it would comment
+    out the rest of the line). Asked about: every other control sequence outside
+    ``ALLOWED_COMMANDS`` / ``ALLOWED_SYMBOLS``, and a ``#`` or ``&`` not written with a backslash."""
+    if "^^" in value:
+        return "the TeX character notation ^^", []
+    commands = re.findall(r"\\([A-Za-z@]+)", value)
+    banned = [c for c in commands if c in FORBIDDEN_COMMANDS or "@" in c]
+    if banned:
+        return f"the command \\{banned[0]}, which is never written into the library", []
+    bare = re.sub(r"\\.", "", value)  # what is left when every control sequence's first character is gone
+    if "%" in bare and name not in VERBATIM_FIELDS:
+        return "a % that is not written \\% (TeX would ignore the rest of the line)", []
+    asked = [f"{name}: the command \\{c} is not one the library's entries use; check that it is meant"
+             for c in dict.fromkeys(commands) if c not in ALLOWED_COMMANDS]
+    asked += [f"{name}: the control symbol \\{c} is not one the library's entries use; check that it is meant"
+              for c in dict.fromkeys(re.findall(r"\\([^A-Za-z@])", value)) if c not in ALLOWED_SYMBOLS]
+    asked += [f"{name}: {c} is not written \\{c}; TeX reads a bare {c} as markup"
+              for c in "#&" if c in bare and name not in VERBATIM_FIELDS]
+    return None, asked
+
+
+def scan_entry(raw):
+    """(entry type, key, {field: value}) of ``raw`` read by a strict scanner that accepts
+    only what ``complete.render`` writes: ``@type{Key`` then, for each field, ``,``, white
+    space, ``name = {value}`` with the value's braces paired, and one closing ``}`` with
+    nothing after it. No ``"`` delimiters, no ``#`` concatenation, no ``%``, no second
+    entry, no repeated field. Raises ``ValueError`` saying what was found instead."""
+    head = re.match(r"@([A-Za-z]+)\{([^\s,{}%#\"'@=\\()]+)", raw)
+    if not head:
+        raise ValueError("no @type{key header")
+    position, fields = head.end(), {}
+    while True:
+        if raw[position:] == "}":
+            return head[1].lower(), head[2], fields
+        field = re.compile(r",\s*([A-Za-z][A-Za-z0-9_-]*) = \{").match(raw, position)
+        if not field:
+            raise ValueError(f"unexpected text at character {position}: {raw[position:position + 20]!r}")
+        name, depth, end = field[1].lower(), 1, field.end()
+        while depth and end < len(raw):
+            depth += (raw[end] == "{") - (raw[end] == "}")
+            end += 1
+        if depth:
+            raise ValueError(f"the value of {name} is never closed")
+        if name in fields:
+            raise ValueError(f"the field {name} is written twice")
+        fields[name], position = raw[field.end():end - 1], end
 
 
 def structure_problem(value):
@@ -911,15 +1055,27 @@ def structure_problem(value):
         return "a control character"
     if _ENTRY_SYNTAX.search(value):
         return "the start of a BibTeX entry (@type{)"
+    if "^^" in value:
+        return "the TeX character notation ^^"
     return None
 
 
 def _proved(raw, entry_type, fields):
     """Refuse (``CdlbibError``) unless ``raw`` reads back, by the library's own reader
     (``verification.load_entries``), as exactly one entry of ``entry_type`` whose field
-    names and values are exactly ``fields``: the text holds nothing that was not checked."""
+    names and values are exactly ``fields``, AND ``scan_entry`` (a strict scanner of the
+    rendered text itself, which shares nothing with that reader) finds the same type, one
+    key and the same fields: the text holds nothing that was not checked."""
     import tempfile
     from .verification import load_entries
+    try:
+        kind, _, scanned = scan_entry(raw)
+    except ValueError as exc:
+        raise CdlbibError(f"The drafted text is not one plainly written entry ({exc}); nothing is proposed.") from exc
+    if kind != entry_type or scanned != fields:
+        differing = sorted(n for n in set(scanned) | set(fields) if scanned.get(n) != fields.get(n))
+        raise CdlbibError("The drafted text does not hold exactly the fields that were checked "
+                          f"({', '.join(differing) or 'entry type'}); nothing is proposed.")
     with tempfile.TemporaryDirectory(prefix="cdlbib-draft-") as folder:
         path = Path(folder) / "rendered.bib"
         path.write_text(raw + "\n", encoding="utf-8")
@@ -938,13 +1094,22 @@ def _proved(raw, entry_type, fields):
                           f"({', '.join(differing) or 'entry type'}); nothing is proposed.")
 
 
-def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
+def _draft(ws, entry_type, values, sources, unfilled, notes, kind, plain=(), questions=None):
     """The manual proposal for ``values`` ({field: text}); ``sources`` {field: where from}.
 
     The one place a model-read or typed entry is rendered. Every value is refused before
     rendering when it could change the entry's structure (``structure_problem``), again
     after the formatter, and the rendered text must read back as exactly the checked
-    fields (``_proved``). Nothing is repaired silently: a refusal is a ``CdlbibError``."""
+    fields (``_proved``). Nothing is repaired silently: a refusal is a ``CdlbibError``.
+
+    ``plain``: the fields whose value was read from a PDF or by a model. Such a value is
+    plain text: one with LaTeX markup in it (``plain_text_problem``) is left ``Unfilled``
+    with the reason, and the others have their TeX specials escaped (``escape_plain``), so
+    the only backslashes in them are that escaper's and the house accent conversion's. Any
+    other value was typed by a person and may hold LaTeX: ``latex_problems`` refuses what is
+    never written and turns an unfamiliar command into an issue. ``questions``
+    {field: reason}: kept fields that are a ``question``, with the reason in ``issues``."""
+    questions, unfilled, asked = dict(questions or {}), list(unfilled), []
     entry_type = str(entry_type or "article").strip().lower()
     if not re.fullmatch(r"[a-z]+", entry_type):
         raise CdlbibError(f"Not an entry type: {entry_type!r}")
@@ -957,13 +1122,23 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
             raise CdlbibError(f"Not a field name: {name!r}")
         if name == "force":  # the format checker skips an entry that has it; a draft follows the house rules
             raise CdlbibError("A draft cannot have a 'force' field.")
-        problem = structure_problem(value)
-        if problem:
-            raise CdlbibError(f"{name}: the value has {problem}, so it cannot be written as one field; correct it.")
+        if name in plain:
+            problem = plain_text_problem(name, value)
+            if problem:
+                unfilled.append(complete.Unfilled(
+                    name, f"{name}: the value has {problem}; it is not written", {sources.get(name, "read"): value}))
+                continue
+        else:
+            problem = structure_problem(value) or latex_problems(name, value)[0]
+            if problem:
+                raise CdlbibError(f"{name}: the value has {problem}, so it cannot be written as one field; correct it.")
+            asked += latex_problems(name, value)[1]
         typed[name] = value
     if not typed:
-        raise CdlbibError("There is nothing to draft: no field has a value.")
-    given = {name: complete.latex_text(value) for name, value in typed.items()}
+        raise CdlbibError("There is nothing to draft: no field has a value that can be written"
+                          + ("".join(f"; {u.reason}" for u in unfilled) if unfilled else "") + ".")
+    given = {name: complete.latex_text(escape_plain(name, value) if name in plain else value)
+             for name, value in typed.items()}
     fields, changed, removed, failure = _house(entry_type, given)
     for name, value in fields.items():
         problem = structure_problem(value) if isinstance(value, str) else "a value that is not text"
@@ -971,7 +1146,7 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
             raise CdlbibError(f"{name}: after formatting the value has {problem or 'no valid field name'}; "
                               "nothing is proposed.")
     proposal = ModelProposal(entry_type=entry_type, status="needs_review", manual=True, needs_decision=True,
-                             notes=[NO_SOURCE, *notes], unfilled=list(unfilled), doi=fields.get("doi"))
+                             notes=[NO_SOURCE, *notes], unfilled=unfilled, doi=fields.get("doi"), issues=asked)
     if failure:
         proposal.issues.append(f"The format check could not run on this entry ({failure}); it is written as given")
     for name in sorted(typed):
@@ -979,6 +1154,9 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
         shown = typed[name] if kind == "typed" else None
         if name in removed:
             proposal.changes.append(complete.FieldChange(name, typed[name], None, "house format", "dropped"))
+        elif name in questions:
+            proposal.changes.append(complete.FieldChange(name, shown, fields[name], source, "question"))
+            proposal.issues.append(questions[name])
         elif kind == "typed" and fields[name] != typed[name]:
             proposal.changes.append(complete.FieldChange(
                 name, shown, fields[name], f"{sources[name]}; house format" if name in sources else "house format",
@@ -1019,9 +1197,12 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
       the stated page as this program extracted it (``intake.pages``), and every passage
       is that page's text at the stated offsets;
     - ``derivation`` gives the rule by which the value follows from that quotation;
-    - the adapter did not withdraw it (``grounding``) or flag the passage's role
-      (``KNOWN_RISKS``): the adapter can only take a field away, never grant one;
-    - the value cannot change the entry's structure (``structure_problem``).
+    - the adapter did not withdraw it (``grounding``): it can only take a field away;
+    - the quoted passage's role is not in doubt (``source_passages.role_risks`` judged here
+      from the page, and the adapter's flags). An author or a year in a passage flagged as
+      ``QUESTION_RISKS`` lists is written as a ``question`` with the reason in ``issues``;
+    - the value is plain text (``plain_text_problem``: no backslash, brace or ``^^``); its
+      TeX specials are escaped when it is written (``escape_plain``).
 
     Every other field is ``Unfilled`` with the reason and the model's value. A kept field
     is a ``FieldChange`` whose source names the page and the quotation. The entry type is
@@ -1033,6 +1214,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     quotation beside each field is there for the person to compare with the page.
     """
     from .research import validate_findings
+    from .source_passages import REFERENCE_HEADING, role_risks
     from .verification import now
     read = extracted.get("fields") if isinstance(extracted, dict) else None
     if not isinstance(read, dict) or not read:
@@ -1042,7 +1224,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         raise CdlbibError(f"Not an entry type a draft can have: {_plain(entry_type, 30)!r}.")
     pages = intake.pages
     flagged = extracted.get("role_risk_fields") if isinstance(extracted.get("role_risk_fields"), dict) else {}
-    kept, unfilled, dropped = {}, [], 0
+    kept, unfilled, dropped, doubts = {}, [], 0, {}
     for name, evidence in list(read.items())[:50]:
         if name == "ENTRYTYPE":
             unfilled.append(complete.Unfilled("ENTRYTYPE", "ENTRYTYPE: the entry type is chosen by the person, "
@@ -1069,21 +1251,30 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         # What the adapter says against a field is heeded (it can only withdraw one); what it
         # says for a field is not: the rule above decides.
         withdrawn = evidence.get("grounding", "literal_text_present") != "literal_text_present"
-        risks = [r for r in [*(evidence.get("role_risk") or []), *(flagged.get(name) or [])] if r in KNOWN_RISKS]
+        # The role of the quoted passage, judged here from the page (source_passages.role_risks),
+        # together with what the adapter flagged; a flag can hold a field back, never grant it.
+        text = next(p["text"] for p in pages if p["page"] == evidence["page"])
+        heading, first = REFERENCE_HEADING.search(text), (quote.strip().splitlines() or [""])[0]
+        at = spans[0]["start"] if spans and isinstance(spans[0].get("start"), int) else text.find(first)
+        own = role_risks(name, value, [quote], bool(heading) and at >= heading.end())
+        risks = [r for r in [*own, *(evidence.get("role_risk") or []), *(flagged.get(name) or [])] if r in KNOWN_RISKS]
         risks = list(dict.fromkeys(risks))
-        broken = structure_problem(value)
+        broken = plain_text_problem(name, value)
         if broken:
             unfilled.append(complete.Unfilled(
-                name, f"{name}: the value has {broken}, so it cannot be written as one field", said))
+                name, f"{name}: the value has {broken}; it is not written", said))
         elif not rule or withdrawn:
             unfilled.append(complete.Unfilled(
                 name, f"{name}: the value is not literally in the quoted text (page {evidence['page']}); "
                       "it is the model's interpretation", said))
-        elif risks:
+        elif risks and not set(risks) <= set(QUESTION_RISKS.get(name, ())):
             unfilled.append(complete.Unfilled(
                 name, f"{name}: the quoted text (page {evidence['page']}) may play another role "
                       f"({', '.join(risks)}), so it is not taken as the work's own {name}", said))
         else:
+            if risks:  # written, as a question the person settles
+                doubts[name] = (f"{name}: the quoted text (page {evidence['page']}) may play another role "
+                                f"({', '.join(risks)}); check that {value} is the work's own {name}")
             kept[name] = {"value": value, "page": evidence["page"], "quote": evidence["quote"],
                           **({"passages": spans} if spans else {}), "derivation": rule}
     if not kept:
@@ -1103,7 +1294,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 if dropped else [])
              + (["This PDF contains text addressed to a language model; compare each quoted field with the page."]
                 if addressed_to_a_model(pages) else []))
-    proposal = _draft(ws, entry_type, {name: e["value"] for name, e in kept.items()}, sources, unfilled, notes, "model")
+    proposal = _draft(ws, entry_type, {name: e["value"] for name, e in kept.items()}, sources, unfilled, notes,
+                      "model", plain=set(kept), questions=doubts)
     proposal.issues += [f"model: {u}" for u in uncertainties if not u.startswith(left)]
     proposal.evidence = {
         "source": "local PDF read by a language model",
@@ -1164,7 +1356,10 @@ def read_pdf_with_model(ws, intake, route="dartmouth", progress=None, entry_type
 def draft_manual(ws, fields, entry_type="article", prefill=None):
     """A hand-typed entry in house format. ``fields`` is what the person typed; ``prefill``
     ({field: value}, e.g. ``prefill_from``) supplies fields they left empty, and those are
-    marked as read from the PDF. Values are put in the library's LaTeX form
+    marked as read from the PDF and taken as plain text (one with LaTeX markup in it is left
+    unfilled; TeX specials are escaped). A typed value may hold LaTeX: a command that is
+    never written (``FORBIDDEN_COMMANDS``), ``^^`` or a bare ``%`` is refused, and a command
+    outside ``ALLOWED_COMMANDS`` is an issue naming it. Values are put in the library's LaTeX form
     (``complete.latex_text``) and through the format checker (``helpers.check_bib`` on the
     one entry); the key comes from ``complete.plan_key`` and a duplicate is flagged. The
     proposal has no source record (``manual=True``, ``status="needs_review"``)."""
@@ -1172,7 +1367,7 @@ def draft_manual(ws, fields, entry_type="article", prefill=None):
     read = {str(k).strip().lower(): v for k, v in (prefill or {}).items()
             if str(v or "").strip() and str(k).strip().lower() not in typed}
     sources = {name: "read from the PDF (not typed)" for name in read}
-    return _draft(ws, entry_type, {**read, **typed}, sources, [], [], "typed")
+    return _draft(ws, entry_type, {**read, **typed}, sources, [], [], "typed", plain=set(read))
 
 
 # --- model evidence -----------------------------------------------------------------------------

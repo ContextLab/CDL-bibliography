@@ -149,8 +149,11 @@ def test_a_value_that_would_change_the_entrys_structure_is_refused(tmp_path, val
     for name in ("title", "author", "journal", "note", "doi"):
         with pytest.raises(CdlbibError, match=f"{name}: the value has .*{why}"):
             intake.draft_manual(ws, dict(typed, **{name: value}))
-    with pytest.raises(CdlbibError, match=why):
-        intake.draft_manual(ws, typed, prefill={"volume": value})
+    # the same text arriving as something read from a PDF is not markup at all: it is left out, and said
+    read = intake.draft_manual(ws, typed, prefill={"volume": value})
+    assert [(u.field, u.source_values) for u in read.unfilled if u.field == "volume"] == [
+        ("volume", {"read from the PDF (not typed)": " ".join(value.split())})]
+    assert "Volume" not in read.proposed_raw and "smuggled" not in read.proposed_raw and "Evil" not in read.proposed_raw
     assert intake.structure_problem("A {B}alanced title with {\\\"o} and 100\\% and an @ sign") is None
     assert ws.bib.read_text(encoding="utf-8") == ""
 
@@ -167,10 +170,94 @@ def test_the_rendered_text_reads_back_as_exactly_the_checked_fields(tmp_path):
     # the proof itself: text with a field or an entry that was not checked is refused, not repaired
     intake._proved(proposal.proposed_raw, "article", good)
     for raw, why in ((proposal.proposed_raw[:-1] + ",\n\tNote = {smuggled}}", "note"),
-                     (proposal.proposed_raw + "\n\n@article{Evil,\n\tTitle = {x}}", "2 entries"),
+                     (proposal.proposed_raw + "\n\n@article{Evil,\n\tTitle = {x}}", "not one plainly written entry"),
                      (proposal.proposed_raw.replace("{2031}", "{1999}"), "year"),
-                     ("@article{Broken,\n\tTitle = {x", "does not read back")):
+                     ("@article{Broken,\n\tTitle = {x", "never closed")):
         with pytest.raises(CdlbibError, match=why):
             intake._proved(raw, "article", good)
     with pytest.raises(CdlbibError, match="entry type"):
         intake._proved(proposal.proposed_raw, "book", good)
+
+
+# --- LaTeX in a typed value ---------------------------------------------------------------------
+
+@pytest.mark.parametrize("value, why", [
+    (r"A title \input{/etc/passwd}", r"the command \\input"),
+    (r"A title \include{x}", r"the command \\include"),
+    (r"A title \immediate\write18{rm -rf x}", r"the command \\immediate"),
+    (r"A title \write18{id}", r"the command \\write"),
+    (r"A title \csname input\endcsname{x}", r"the command \\csname"),
+    (r"A title \catcode`\%=12", r"the command \\catcode"),
+    (r"A title \def\x{y}", r"the command \\def"),
+    (r"A title \let\x\input", r"the command \\let"),
+    (r"A title \openout3=x \read16 to\x", r"the command \\openout"),
+    (r"A title \special{x} \directlua{os.execute()}", r"the command \\special"),
+    (r"A title \makeatletter\@@input x", r"the command \\@@input"),
+    ("A title ^^5cinput x", r"the TeX character notation \^\^"),
+    ("A title 50% of the rest is gone", r"a % that is not written \\%"),
+])
+def test_a_typed_command_that_is_never_written_is_refused(tmp_path, value, why):
+    ws = library(tmp_path / "lib")
+    for name in ("title", "journal", "author", "note"):
+        with pytest.raises(CdlbibError, match=f"{name}: the value has {why}"):
+            intake.draft_manual(ws, {"title": "A plain title", "author": "Example, Ada", "year": "2001",
+                                     "journal": "Memory", name: value})
+
+
+def test_typed_latex_of_the_librarys_kind_is_kept_and_other_commands_are_asked_about(tmp_path):
+    ws = library(tmp_path / "lib")
+    usual = intake.draft_manual(ws, {
+        "title": r"The $\alpha$-band at 50\% of R\&D costs: \textit{in vivo} 30\textsuperscript{th} trial",
+        "author": r"Gl{\"o}ckner, Andreas and Fran{\c{c}}ois, Ana", "year": "2001", "journal": "Memory"})
+    assert usual.issues == [] and "\\alpha" in usual.proposed_raw and "50\\% of" in usual.proposed_raw
+    assert "\\textit{in vivo} 30\\textsuperscript{th} trial" in usual.proposed_raw
+    odd = intake.draft_manual(ws, {
+        "title": r"A \weird{title} with \mathbb{R}, a bare # and a bare & and a \| symbol", "author": "Example, Ada",
+        "year": "2001", "journal": "Memory"})
+    assert odd.needs_decision and odd.manual
+    for said in (r"title: the command \weird is not one the library's entries use; check that it is meant",
+                 r"title: the command \mathbb is not one the library's entries use; check that it is meant",
+                 r"title: the control symbol \| is not one the library's entries use; check that it is meant",
+                 r"title: # is not written \#; TeX reads a bare # as markup",
+                 r"title: & is not written \&; TeX reads a bare & as markup"):
+        assert said in odd.issues
+    assert intake.latex_problems("doi", "10.1002/(SICI)1097%3C1") == (None, [])  # a DOI is written as it is
+
+
+def test_the_strict_scanner_accepts_only_what_is_rendered():
+    assert intake.scan_entry(HOUSE) == ("article", "ExamGloc31", {
+        "author": 'Ada Q Example and Bo Gl{\\"o}ckner', "journal": "Annals of Improbable Lattices", "pages": "45--67",
+        "title": "The neural basis of imaginary things: a study", "volume": "12", "year": "2031"})
+    assert intake.scan_entry("@article{KeyNeeded}") == ("article", "KeyNeeded", {})
+    for raw, why in (
+            ('@article{K,\n\tTitle = "quoted"}', "unexpected text"),
+            ("@article{K,\n\tTitle = {a} # {b}}", "unexpected text"),
+            ("@article{K,\n\tTitle = {a} # name}", "unexpected text"),
+            ("@article{K,\n\tTitle = {a}, % a comment\n\tYear = {2001}}", "unexpected text"),
+            ("@article{K,\n\tTitle = {a}}\n", "unexpected text"),
+            ("@article{K,\n\tTitle = {a}} trailing", "unexpected text"),
+            ("@article{K,\n\tTitle = {a}}\n@comment{x}", "unexpected text"),
+            ("@article{K,\n\tTitle = {a},\n\tTitle = {b}}", "written twice"),
+            ("@article{K,\n\tTitle = {a},}", "unexpected text"),
+            ("@article{K,\n\tTitle = 2001}", "unexpected text"),
+            ("@article(K,\n\tTitle = {a})", "no @type{key header"),
+            ("% x\n@article{K,\n\tTitle = {a}}", "no @type{key header"),
+            ("@article{K#L,\n\tTitle = {a}}", "unexpected text"),
+            ("@article{K,\n\tTitle = {a{b}", "never closed")):
+        with pytest.raises(ValueError, match=why):
+            intake.scan_entry(raw)
+        with pytest.raises(CdlbibError):
+            intake._proved(raw, "article", {"title": "a"})
+
+
+def test_text_read_from_a_pdf_is_escaped_not_interpreted(tmp_path):
+    proposal = intake.draft_manual(library(tmp_path / "lib"), {"author": "Example, Ada", "year": "2001", "journal": "Memory"},
+                                   prefill={"title": "Gains of 50% in R&D #1 trials: a_b ~x ^y $5", "doi": "10.1162/jocn_a_02216"})
+    fields = complete._completion_fields(proposal)
+    # (the house title rule lowers "R&D", as it lowers any unbraced capital after the first word)
+    assert fields["title"] == (r"Gains of 50\% in r\&d \#1 trials: a\_b \textasciitilde{}x \textasciicircum{}y \$5")
+    assert fields["doi"] == "10.1162/jocn_a_02216"  # a DOI's underscore stays, as in the library
+    assert intake.scan_entry(proposal.proposed_raw)[2] == fields
+    assert intake.escape_plain("title", "100% & more_") == r"100\% \& more\_"
+    assert intake.plain_text_problem("title", r"\input{x}") and intake.plain_text_problem("title", "a^^5cb")
+    assert intake.plain_text_problem("doi", "10.1/a%b") and intake.plain_text_problem("title", "50% & #1 ~ ^ _ $") is None
