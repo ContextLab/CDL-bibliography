@@ -76,7 +76,9 @@ An approval is stored in the local verification database (`.bibcheck/`, never co
 interface share it: the send appends one line per approval to
 `verification/approvals.jsonl` and commits that file. This applies to every current
 approval in the local database that was recorded under your own GitHub login, has not been
-revoked, and is not in the file yet. The send asks `gh` who is logged in and compares the
+revoked, and is not in the file yet. When nobody is logged in, no approval is added and the send prints
+`approval of KEY not sent: no GitHub login was found, so whose approval it is cannot be told (gh auth login)`
+for each. The send asks `gh` who is logged in and compares the
 numeric id (the login, when the approval has no id). Nothing else has to change for the
 send to go ahead. An approval under another login, or one that cannot be written as a line
 of the file, is not added; the send prints, for example,

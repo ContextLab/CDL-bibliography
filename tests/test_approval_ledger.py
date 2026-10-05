@@ -859,16 +859,37 @@ def test_only_the_senders_own_approvals_are_rows_to_send(tmp_path):
     assert api.approvals_to_send(plain, me=Identity(login="hubot", id=583231)) == []
 
 
-def test_a_send_with_an_approval_waiting_and_nobody_logged_in_changes_nothing(checkout, monkeypatch, tmp_path):
+def test_a_send_with_an_approval_waiting_and_nobody_logged_in_keeps_its_order_and_changes_nothing(checkout, monkeypatch, tmp_path):
+    """Nobody is logged in to GitHub (no token, an empty gh configuration). An approval waits.
+    Whose it is cannot be told, so it is not added and that is said. The order of a send is
+    unchanged: an approval alone is "nothing to send" with that line; with another change the
+    gate runs first (a format error is refused there), and a change that passes the gate is
+    refused for the login only after it."""
     ws, _ = checkout
-    with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
-        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)   # nothing waits: gh is not asked
     approve(ws, "Zoll90")
     nobody_logged_in(monkeypatch, tmp_path)
+    line = ("approval of Zoll90 not sent: no GitHub login was found, so whose approval it is cannot be told "
+            "(gh auth login)")
     before, lines = state(ws.root), []
-    with pytest.raises(IdentityUnavailable):                                 # whose approval it is cannot be told
+    with pytest.raises(PublishRefused) as refused:
         api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
-    assert lines == [] and state(ws.root) == before and not ws.approvals.exists()
+    assert str(refused.value) == publish.NO_CHANGES + "\n" + line and lines == [line]
+    assert state(ws.root) == before and not ws.approvals.exists() and not record_of(ws).exists()
+
+    original = ws.bib.read_text(encoding="utf-8")
+    ws.bib.write_text(original + "\n" + BAD, encoding="utf-8")               # another change, which fails the format check
+    before, lines = state(ws.root), []
+    with pytest.raises(GateFailed):                                          # the gate, before any question of a login
+        api.send(ws, summary="bad", reference=str(ws.bib), upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert lines[0] == line and state(ws.root) == before and not ws.approvals.exists()
+
+    ws.bib.write_text(original + "\n% a comment\n", encoding="utf-8")       # a change that passes the gate
+    before, lines = state(ws.root), []
+    with pytest.raises(IdentityUnavailable):                                 # the login, where it always refused: after the gate
+        api.send(ws, summary="edit", reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE,
+                 progress=lines.append)
+    assert lines[0] == line and "checks passed; generating commit message..." in lines
+    assert state(ws.root) == before and not ws.approvals.exists()
     assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90"]   # it still waits
 
 
