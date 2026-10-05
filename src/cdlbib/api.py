@@ -1128,10 +1128,12 @@ GH_TIMEOUT = 10   # seconds features() gives `gh api user`, its one question to 
 
 @dataclass
 class Feature:
-    """One thing cdlbib uses when it is there. ``detail`` says what was found, never a key's
+    """One thing cdlbib uses when it is there. ``available`` is True or False when that is
+    known, and None when it was not checked (finding out needs a probe: the network, or the
+    system keychain, which may ask the user). ``detail`` says what was found, never a key's
     value; ``how`` is what makes it available, and is empty when it is."""
     name: str
-    available: bool
+    available: bool | None
     detail: str = ""
     how: str = ""
 
@@ -1143,15 +1145,30 @@ class SetupReport:
     features: list
 
 
-def features():
+PROBES = ("github", "dartmouth-chat", "openai")     # what features() only finds out when asked to
+
+
+def features(probe=(), progress=None):
     """What this computer has of the things cdlbib can use: git, the gh login, TeX, bibtex,
-    biber, pypdf, the Dartmouth Chat and OpenAI keys, textual. Installs nothing and asks
-    nothing; the gh login is the only thing looked up over the network."""
+    biber, pypdf, the Dartmouth Chat and OpenAI keys, textual.
+
+    By default only what can be seen without asking anyone: programs on PATH, installed
+    packages, environment variables. It never blocks, prompts or uses the network; the gh login
+    and a key that is not in the environment are then ``available=None`` ("not checked").
+    ``probe`` names the checks to make as well, from PROBES, or "all": "github" asks gh who is
+    logged in (the network, GH_TIMEOUT seconds); "dartmouth-chat" and "openai" read the system
+    keychain (macOS may show an access dialog and wait for it). ``progress`` receives one line
+    before each probe. Nothing is installed."""
     import importlib.util
     import os
     import shutil
     from . import deps, identity, secrets
     from .errors import IdentityUnavailable, SecretNotFound
+    wanted = PROBES if probe == "all" else tuple([probe] if isinstance(probe, str) else probe)
+    unknown = [name for name in wanted if name not in PROBES]
+    if unknown:
+        raise CdlbibError(f"Unknown check: {', '.join(unknown)}. The checks are: {', '.join(PROBES)}, or \"all\".")
+    say = progress or (lambda line: None)
     tex_how = "Install TeX Live (https://tug.org/texlive/) or, on macOS, MacTeX (https://tug.org/mactex/)."
     found = []
 
@@ -1164,33 +1181,53 @@ def features():
         found.append(Feature(name, there, "installed" if there else "not installed",
                              "" if there else deps.manual_command(extra, module)))
 
+    def key(name, label):
+        variable = secrets.KEYS[name].env
+        value = os.environ.get(variable) or ""
+        if value:       # known without the keychain; the value itself is never shown
+            usable = not any(char.isspace() for char in value)
+            return Feature(label, usable, f"set in the environment variable {variable}" if usable
+                           else f"the environment variable {variable} holds whitespace; a key is a single token",
+                           "" if usable else secrets.places(name))
+        if name not in wanted:
+            return Feature(label, None, f"not checked: {variable} is not set, and the system keychain was not read",
+                           secrets.places(name))
+        say(f"reading the system keychain for the {label} ...")
+        try:
+            secrets.get(name)
+            return Feature(label, True, "stored in the system keychain")
+        except SecretNotFound as exc:
+            return Feature(label, False, str(exc).replace(secrets.places(name), "").strip(), secrets.places(name))
+
     program("git", "git", "Install git (https://git-scm.com/downloads).")
-    try:
-        found.append(Feature("gh login", True, identity.current(timeout=GH_TIMEOUT).handle))
-    except IdentityUnavailable as exc:
-        found.append(Feature("gh login", False, str(exc).replace(identity.HOW, "").strip(), identity.HOW))
+    if not shutil.which("gh"):
+        found.append(Feature("gh login", False, "gh was not found on PATH", identity.HOW))
+    elif "github" not in wanted:
+        found.append(Feature("gh login", None, "not checked: gh is installed; whether a user is logged in was not asked",
+                             identity.HOW))
+    else:
+        say("asking gh who is logged in (gh api user) ...")
+        try:
+            found.append(Feature("gh login", True, identity.current(timeout=GH_TIMEOUT).handle))
+        except IdentityUnavailable as exc:
+            found.append(Feature("gh login", False, str(exc).replace(identity.HOW, "").strip(), identity.HOW))
     program("TeX", "kpsewhich", tex_how)
     program("bibtex", "bibtex", tex_how)
     program("biber", "biber", "biber comes with a full TeX Live or MacTeX; in a smaller one: tlmgr install biber")
     package("pypdf", "pypdf", "research")
-    for name, label in (("dartmouth-chat", "Dartmouth Chat key"), ("openai", "OpenAI key")):
-        try:
-            secrets.get(name)
-            found.append(Feature(label, True, f"set in the environment variable {secrets.KEYS[name].env}"
-                                 if os.environ.get(secrets.KEYS[name].env) else "stored in the system keychain"))
-        except SecretNotFound as exc:
-            found.append(Feature(label, False, str(exc).replace(secrets.places(name), "").strip(), secrets.places(name)))
+    found.append(key("dartmouth-chat", "Dartmouth Chat key"))
+    found.append(key("openai", "OpenAI key"))
     package("textual", "textual", "tui")
     return found
 
 
-def setup_report(ws):
-    """Which library is in use, the state of its TeX link, and features()."""
+def setup_report(ws, probe=(), progress=None):
+    """Which library is in use, the state of its TeX link, and features(probe, progress)."""
     from . import tex, workspace
     found = where()
     if found.root != ws.root:       # a library handed in, not the one the lookup rule gives now
         found = Where(root=ws.root, origin=workspace.Origin.NAMED, last_check=None)
-    return SetupReport(where=found, tex=tex.status(ws), features=features())
+    return SetupReport(where=found, tex=tex.status(ws), features=features(probe=probe, progress=progress))
 
 
 def tex_link(ws, replace=False):

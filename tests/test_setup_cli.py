@@ -11,6 +11,7 @@ import pytest
 from conftest import plain_output
 
 from cdlbib import api, tex
+from cdlbib.errors import CdlbibError
 from texhelpers import (FIXTA, LIBRARY, ZOLL90, bibtex_bbl, make_library, need,
                         nothing_of_the_users_touched, paper, texenv)   # noqa: F401  (fixtures)
 
@@ -39,32 +40,67 @@ def files_under(folder):
 
 # --- features -----------------------------------------------------------------------------
 
-def test_features_lists_each_thing_with_what_to_do_when_it_is_missing(texenv, monkeypatch, tmp_path):
+def test_features_without_probes_looks_only_at_programs_packages_and_the_environment(texenv, monkeypatch, tmp_path):
+    """Passive: nothing here asks gh or the keychain, whatever this computer has stored."""
     secret = "sk-test-do-not-print-0123456789"
     monkeypatch.setenv("OPENAI_API_KEY", secret)
     monkeypatch.delenv("DARTMOUTH_CHAT_API_KEY", raising=False)
-    found = api.features()
-    assert [feature.name for feature in found] == FEATURES
+    said = []
+    found = api.features(progress=said.append)
+    assert said == [] and [feature.name for feature in found] == FEATURES
     by_name = {feature.name: feature for feature in found}
     for feature in found:
-        assert isinstance(feature.available, bool) and feature.detail and secret not in repr(feature)
-        assert bool(feature.how) != feature.available, feature             # instructions exactly when it is missing
-    assert by_name["OpenAI key"].available and by_name["OpenAI key"].detail == "set in the environment variable OPENAI_API_KEY"
-    assert not by_name["Dartmouth Chat key"].available and "DARTMOUTH_CHAT_API_KEY" in by_name["Dartmouth Chat key"].how
+        assert feature.available in (True, False, None) and feature.detail and secret not in repr(feature)
+        assert bool(feature.how) != (feature.available is True), feature   # instructions unless it is known to be there
+    assert by_name["OpenAI key"].available is True
+    assert by_name["OpenAI key"].detail == "set in the environment variable OPENAI_API_KEY"
+    dartmouth = by_name["Dartmouth Chat key"]
+    assert dartmouth.available is None and dartmouth.detail.startswith("not checked: DARTMOUTH_CHAT_API_KEY is not set")
+    assert "DARTMOUTH_CHAT_API_KEY" in dartmouth.how
     for name, program in (("git", "git"), ("TeX", "kpsewhich"), ("bibtex", "bibtex"), ("biber", "biber")):
         assert by_name[name].available == bool(shutil.which(program))
         assert by_name[name].detail == (shutil.which(program) or f"{program} was not found on PATH")
-    assert by_name["pypdf"].available and by_name["pypdf"].detail == "installed"
-    if not by_name["gh login"].available:
-        assert "gh auth login" in by_name["gh login"].how
-    else:
-        assert by_name["gh login"].detail.startswith("@")
+    assert by_name["pypdf"].available is True and by_name["pypdf"].detail == "installed"
+    login = by_name["gh login"]
+    assert (login.available, login.detail[:12]) == ((None, "not checked:") if shutil.which("gh") else (False, "gh was not f"))
+    assert "gh auth login" in login.how
+
+    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", "two words")                  # known from the environment alone
+    malformed = {feature.name: feature for feature in api.features()}["Dartmouth Chat key"]
+    assert malformed.available is False and "single token" in malformed.detail and "two words" not in repr(malformed)
 
     monkeypatch.setenv("PATH", str(tmp_path))                                  # nothing installed: every program is named
     missing = {feature.name: feature for feature in api.features()}
     for name in ("git", "gh login", "TeX", "bibtex", "biber"):
-        assert not missing[name].available and missing[name].how
+        assert missing[name].available is False and missing[name].how
     assert "tug.org/texlive" in missing["TeX"].how and "cli.github.com" in missing["gh login"].how
+    with pytest.raises(CdlbibError) as wrong:
+        api.features(probe=("keychain",))
+    assert "Unknown check: keychain" in str(wrong.value)
+
+
+def test_a_probe_is_announced_and_gives_a_definite_answer(texenv, monkeypatch, tmp_path):
+    """The gh probe under a HOME of the test: gh has no login there (or is not installed)."""
+    monkeypatch.delenv("GH_TOKEN", raising=False)
+    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "no gh config"))
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-test-do-not-print-0123456789")
+    said = []
+    found = {feature.name: feature for feature in api.features(probe=("github", "openai"), progress=said.append)}
+    assert said == (["asking gh who is logged in (gh api user) ..."] if shutil.which("gh") else [])   # the key is in the environment
+    assert found["gh login"].available in (True, False) and found["OpenAI key"].available is True
+    assert found["Dartmouth Chat key"].available is None or os.environ.get("DARTMOUTH_CHAT_API_KEY")
+    report = api.setup_report(make_library(tmp_path / "lib"))
+    assert {feature.name: feature for feature in report.features}["gh login"].available is not True     # passive by default
+
+
+def test_the_keychain_probe_reads_a_real_keychain(usable_keychain, monkeypatch):
+    """Only where a usable keychain exists (tests/conftest.py); it reads, never writes."""
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    said = []
+    found = {feature.name: feature for feature in api.features(probe=("openai",), progress=said.append)}
+    assert said == ["reading the system keychain for the OpenAI key ..."]
+    assert found["OpenAI key"].available in (True, False) and "not checked" not in found["OpenAI key"].detail
 
 
 # --- setup --------------------------------------------------------------------------------
@@ -273,3 +309,20 @@ def test_export_does_not_run_lualatex_unless_it_is_named(ws, texenv, tmp_path):
     assert bib.returncode == 0 and "citations read from the .tex source: 1 key" in bib.stdout and not written.exists()
     wrong = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", "--engine", "luatex", cwd=tmp_path)
     assert wrong.returncode == 1 and "luatex is not one of the LaTeX programs used here" in wrong.stderr
+
+
+def test_setup_announces_each_probe_and_export_says_when_it_read_the_source(ws, texenv, tmp_path):
+    need("kpsewhich", "pdflatex", "bibtex")
+    out = cdlbib("--library", str(ws.root), "setup", "--check", cwd=tmp_path, OPENAI_API_KEY="sk-test-do-not-print-0123456789",
+                 DARTMOUTH_CHAT_API_KEY="dc-test-do-not-print")
+    assert "not checked" not in out.stdout                                     # the setup command checks everything
+    if shutil.which("gh"):
+        assert "asking gh who is logged in (gh api user) ..." in out.stderr
+    assert "keychain" not in out.stderr                                        # both keys were in the environment
+
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN, "\\usepackage{notinstalledanywhere}")
+    made = cdlbib("--library", str(ws.root), "export", str(file), cwd=tmp_path)
+    lines = made.stdout.splitlines()
+    assert made.returncode == 0 and lines[0] == "citations read from the .tex source: 1 key"
+    assert "could not be compiled" in lines[1] and "notinstalledanywhere.sty" in lines[1]
+    assert lines[1].endswith("citations were read from the source; citations made by custom macros are not seen")
