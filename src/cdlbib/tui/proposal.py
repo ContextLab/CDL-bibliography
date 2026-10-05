@@ -35,10 +35,10 @@ class PickScreen(ModalScreen):
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="dialog wide"):
-            yield Static(self.heading, classes="title")
-            yield OptionList(*[Option(f"[{number}] {row}", id=f"row-{number - 1}")
+            yield Static(self.heading, classes="title", markup=False)
+            yield OptionList(*[Option(Text(f"[{number}] {row}"), id=f"row-{number - 1}")
                                for number, row in enumerate(self.rows, 1)],
-                             Option(f"[0] {self.none}", id="row-none"), id="rows")
+                             Option(Text(f"[0] {self.none}"), id="row-none"), id="rows")
             yield Static("enter chooses; esc: none of these", classes="hint")
 
     def on_mount(self):
@@ -68,7 +68,7 @@ class TextEditScreen(ModalScreen):
             yield Static("Edit the proposed entry", classes="title")
             yield TextArea(self.raw, id="proposal-editor", tab_behavior="indent", soft_wrap=True)
             yield Static(self.message or "ctrl+s checks the edited text again; esc leaves the proposal as it was",
-                         classes="hint", id="proposal-editor-hint")
+                         classes="hint", id="proposal-editor-hint", markup=False)
 
     def on_mount(self):
         editor = self.query_one(TextArea)
@@ -126,7 +126,7 @@ class ProposalScreen(Screen):
         return self.items[self.index] if 0 <= self.index < len(self.items) else None
 
     def compose(self) -> ComposeResult:
-        yield Static("Proposal", id="proposal-head")
+        yield Static("Proposal", id="proposal-head", markup=False)
         with Horizontal(id="sides"):
             with VerticalScroll(classes="side pane"):
                 yield Static("Typed", classes="side-title")

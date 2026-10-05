@@ -156,6 +156,9 @@ def isolate(monkeypatch, tmp_path):
                         ("GIT_COMMITTER_NAME", "cdlbib tests"), ("GIT_COMMITTER_EMAIL", "tests@cdlbib.invalid"),
                         ("GIT_TERMINAL_PROMPT", "0")):
         monkeypatch.setenv(name, value)
+    import sys
+    if sys.platform == "darwin":       # Apple's developer tools are found without the user's own HOME
+        monkeypatch.setenv("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
     workspace.select_library(None)
     deps.set_ask(False)
     return folder

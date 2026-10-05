@@ -102,7 +102,7 @@ class ChoiceScreen(ModalScreen):
                 yield Shown(id="question")
             with Vertical(classes="choices"):
                 for letter, value, label in self.choices:
-                    yield Button(f"[{letter}] {label}", id=f"choice-{value}", classes="choice")
+                    yield Button(Text(f"[{letter}] {label}"), id=f"choice-{value}", classes="choice")
 
     def on_mount(self):
         self.query_one("#question", Shown).show(self.question)
@@ -134,7 +134,7 @@ class TextScreen(ModalScreen):
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="dialog wide"):
-            yield Static(self.heading, classes="title")
+            yield Static(self.heading, classes="title", markup=False)
             with VerticalScroll(classes="dialog-text"):
                 yield Shown(id="page")
             yield Static("Esc closes", classes="hint")
@@ -159,12 +159,12 @@ class PromptScreen(ModalScreen):
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="dialog wide"):
-            yield Static(self.heading, classes="title")
+            yield Static(self.heading, classes="title", markup=False)
             if self.text is not None:
                 with VerticalScroll(classes="dialog-text"):
                     yield Shown(id="page")
             for name, label, value in self.fields:
-                yield Static(label, classes="label")
+                yield Static(label, classes="label", markup=False)
                 yield Input(value=value or "", id=f"field-{name}")
             with Horizontal(classes="buttons"):
                 yield Button(f"{self.ok} (ctrl+s)", id="ok", variant="primary")
@@ -213,7 +213,7 @@ class FilePicker(ModalScreen):
     def compose(self) -> ComposeResult:
         with Vertical(classes="dialog wide tall"):
             yield Static(f"Choose a file under {self.start}" + (f" ({self.suffix})" if self.suffix else ""),
-                         classes="title")
+                         classes="title", markup=False)
             yield DirectoryTree(str(self.start), id="tree")
             yield Static("Enter opens a folder or chooses a file; Esc cancels", classes="hint")
 

@@ -38,7 +38,7 @@ class EditScreen(Screen):
         self.previewed = None                # (the text previewed, desk.EditPreview)
 
     def compose(self) -> ComposeResult:
-        yield Static(f"Edit {self.key}" if self.key else "New entry (typed by hand)", id="edit-head")
+        yield Static(f"Edit {self.key}" if self.key else "New entry (typed by hand)", id="edit-head", markup=False)
         with Horizontal():
             yield TextArea(self.original, id="editor", tab_behavior="indent", soft_wrap=True, show_line_numbers=False,
                            placeholder="Type or paste one BibTeX entry, for example:\n\n" + EXAMPLE)

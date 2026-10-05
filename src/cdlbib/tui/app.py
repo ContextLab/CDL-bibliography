@@ -222,7 +222,7 @@ class CdlbibApp(App):
     # --- layout ------------------------------------------------------------------------------
 
     def compose(self) -> ComposeResult:
-        yield Static(f"cdlbib · {self.ws.root}", id="top")
+        yield Static(f"cdlbib · {self.ws.root}", id="top", markup=False)
         yield Shown(id="banner")
         with TabbedContent(id="views", initial="library"):
             with TabPane("F2 Library", id="library"):
@@ -240,7 +240,7 @@ class CdlbibApp(App):
             with TabPane("F8 Setup", id="setup"):
                 yield SetupView(id="setup-view")
         yield RichLog(id="log", max_lines=5000, wrap=True, markup=False, highlight=False)
-        yield Static("starting ...", id="jobline")
+        yield Static("starting ...", id="jobline", markup=False)
         yield Footer()
 
     def on_mount(self):
@@ -540,8 +540,9 @@ class CdlbibApp(App):
             self.refresh_library(force=True)
         self._with_login("A revocation", with_handle)
 
-    def fail(self, exc):
-        self.notify(str(exc), severity="error", timeout=12)
+    def notify(self, message, *, title="", severity="information", timeout=None, markup=False):
+        """A notification; its text is shown as it is (a path or a message may hold brackets)."""
+        super().notify(str(message), title=title, severity=severity, timeout=timeout, markup=markup)
 
 
 def run(ws):
