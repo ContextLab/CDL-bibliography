@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -676,3 +677,220 @@ def test_an_output_that_is_a_symbolic_link_is_never_written_through(ws, tmp_path
 
     made = export.frozen_bib(ws, found, tmp_path / "paper" / "libdir" / "beside.bib")       # a linked folder that is allowed
     assert made.path == ws.root / "beside.bib" and made.path.read_text(encoding="utf-8") == ZOLL90 + "\n"
+
+
+# --- security review, second round: configuration files, control files, what is copied ----
+
+BIBER_CONF = '<?xml version="1.0" encoding="UTF-8"?>\n<config>\n  <output_directory>{}</output_directory>\n</config>\n'
+
+
+def test_a_biber_conf_in_a_working_folder_really_redirects_biber(ws, tmp_path):
+    """The hazard itself, shown with the real program: biber run by hand in a folder that holds a
+    biber.conf writes its .bbl where that file says. The next test shows the export does not."""
+    need("pdflatex", "biber")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX)
+    (tmp_path / "paper" / "cdl.bib").write_text(ZOLL90 + "\n", encoding="utf-8")
+    redirect = tmp_path / "redirected"
+    redirect.mkdir()
+    (tmp_path / "paper" / "biber.conf").write_text(BIBER_CONF.format(redirect), encoding="utf-8")
+    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=file.parent).returncode == 0
+    assert run("biber", "main", cwd=file.parent).returncode == 0
+    assert (redirect / "main.bbl").is_file() and not (tmp_path / "paper" / "main.bbl").exists()
+
+
+@pytest.mark.parametrize("backend", ["bibtex", "biber"])
+def test_configuration_files_in_the_paper_or_the_environment_do_not_reach_the_programs(ws, tmp_path, monkeypatch, backend):
+    need("pdflatex", backend)
+    redirect, marker = tmp_path / "redirected", tmp_path / "ran-a-command"
+    redirect.mkdir()
+    body = f"\\immediate\\write18{{touch {marker}}}\\cite{{Zoll90}}\n"
+    file = (paper(tmp_path / "paper", body + PLAIN) if backend == "bibtex"
+            else paper(tmp_path / "paper", body + "\\printbibliography", BIBLATEX))
+    folder, styles = file.parent, tmp_path / "styles"
+    styles.mkdir()
+    hostile = {"biber.conf": BIBER_CONF.format(redirect), ".biber.conf": BIBER_CONF.format(redirect),
+               "texmf.cnf": "shell_escape = t\nopenout_any = a\nopenin_any = a\nTEXMFOUTPUT = " + str(redirect) + "\n",
+               "latexmkrc": "system('touch " + str(marker) + "');\n", ".latexmkrc": "system('touch " + str(marker) + "');\n",
+               "pdflatex.fmt": "not a format\n", "ascii.csf": "\\lowupcase{}\n", "run.lua": "os.exit(1)\n"}
+    for place in (folder, styles):
+        for name, text in hostile.items():
+            (place / name).write_text(text, encoding="utf-8")
+    monkeypatch.setenv("TEXMFCNF", f"{folder}{os.pathsep}")                    # the user's environment points at them too
+    monkeypatch.setenv("BIBER_CONF", str(folder / "biber.conf"))
+    monkeypatch.setenv("PERL5OPT", "-MNo::Such::Module::For::Cdlbib")          # would stop any perl program that got it
+    monkeypatch.setenv("TEXMFOUTPUT", str(redirect))
+    monkeypatch.setenv("BSTINPUTS", str(redirect))
+    monkeypatch.setenv("openout_any", "a")
+    monkeypatch.setenv("shell_escape", "t")
+
+    found = export.cited(file)
+    assert found.how == "compiled" and found.keys == ["Zoll90"]
+    assert any("6 files of other kinds were not copied" in note for note in found.notes), found.notes
+    done = export.bbl(ws, file, inputs=[styles], out=tmp_path / "made.bbl")
+    assert "Zoll90" in done.path.read_text(encoding="utf-8") and done.path == (tmp_path / "made.bbl").resolve()
+    assert list(redirect.iterdir()) == [] and not marker.exists()
+    assert sorted(item.name for item in folder.iterdir()) == sorted(["main.tex", *hostile])
+
+
+def test_a_cfg_file_of_the_paper_is_copied_because_it_is_tex_code(ws, tmp_path):
+    """biblatex.cfg is read by biblatex as TeX code; a paper ships one to set its bibliography."""
+    need("pdflatex", "biber")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\\fromcfg\n\\printbibliography", BIBLATEX)
+    assert export.cited(file).how == "source"                                  # \fromcfg is not defined yet
+    (tmp_path / "paper" / "biblatex.cfg").write_text("\\newcommand{\\fromcfg}{ (cfg read)}\n\\ExecuteBibliographyOptions{sorting=ydnt}\n",
+                                                     encoding="utf-8")
+    assert export.cited(file).how == "compiled"
+    assert "ydnt" in export.bbl(ws, file).path.read_text(encoding="utf-8")
+
+
+def test_a_control_line_the_paper_writes_in_tex_notation_never_reaches_bibtex(ws, tmp_path):
+    """\\bibdata{..^^2f..^^2fx} written straight into the .aux: BibTeX is only ever given the .aux
+    written here, and a name that is not a plain one is refused before BibTeX starts."""
+    need("pdflatex", "bibtex")
+    outside = tmp_path / "x.bib"
+    outside.write_text(FIXTA.replace("FixtA21", "Outside21") + "\n", encoding="utf-8")
+    write = ("\\makeatletter{{\\catcode`\\^=12 \\immediate\\write\\@auxout{{\\string\\bibdata{{{}}}}}}}\\makeatother\n")
+    for number, name in enumerate(["..^^2f..^^2fx", "x^^2fy", "^^2e^^2e/x", str(outside.with_suffix(""))]):
+        file = paper(tmp_path / "deep" / f"paper{number}", "\\cite{Zoll90}\\nocite{Outside21}\n" + write.format(name)
+                     + "\\bibliographystyle{plain}\n")
+        with pytest.raises(ExportFailed) as failed:
+            export.bbl(ws, file)
+        assert failed.value.kind == "resource_name", (name, str(failed.value))
+        assert sorted(item.name for item in file.parent.iterdir()) == ["main.tex"]
+    # the same line beside an honest one: the paper's own .aux is still never the one BibTeX reads
+    file = paper(tmp_path / "deep" / "both", "\\cite{Zoll90}\n" + PLAIN
+                 + "\n\\makeatletter\\immediate\\write\\@auxout{\\string\\@input{/etc/hosts.aux}}\\makeatother")
+    with pytest.raises(ExportFailed) as failed:
+        export.bbl(ws, file)
+    assert failed.value.kind == "resource_name" and failed.value.names == ["/etc/hosts.aux"]
+    assert outside.read_text(encoding="utf-8").startswith("@article{Outside21,")
+
+
+def test_the_aux_bibtex_reads_is_the_one_written_here(ws, tmp_path):
+    """The paper appends raw lines to its .aux that our reading does not take for anything; they
+    are in the paper's .aux and not in BibTeX's: the entry they ask for is not in the .bbl."""
+    need("pdflatex", "bibtex")
+    raw = "\\makeatletter\\immediate\\write\\@auxout{\\string\\citation\\space{FixtC23}}\\makeatother\n"   # a space our reading skips
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + raw + PLAIN)
+    done = export.bbl(ws, file)
+    text = done.path.read_text(encoding="utf-8")
+    assert done.keys == ["Zoll90"] and "\\bibitem{Zoll90}" in text and "FixtC23" not in text and "FixtB22" not in text
+
+
+def test_an_odd_citation_key_is_refused_before_a_backend_starts(ws, tmp_path):
+    need("pdflatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\\nocite{a^^7db}\n" + PLAIN)   # TeX reads ^^7d as a closing brace
+    with pytest.raises(ExportFailed) as failed:
+        export.bbl(ws, file)
+    assert failed.value.kind in ("citation_key", "undefined_keys", "engine")
+    assert not (tmp_path / "paper" / "main.bbl").exists()
+    with pytest.raises(ExportFailed) as failed:
+        export._checked_keys(["Good:key/1", "bad key", "bad}key", "bad\\key", "bad^^41"])
+    assert failed.value.kind == "citation_key" and failed.value.names == ["bad key", "bad}key", "bad\\key", "bad^^41"]
+
+
+def test_biber_gets_a_control_file_whose_data_sources_are_written_here(ws, tmp_path):
+    need("pdflatex", "biber")
+    outside = tmp_path / "x.bib"
+    outside.write_text(FIXTA.replace("FixtA21", "Outside21") + "\n", encoding="utf-8")
+    file = paper(tmp_path / "deep" / "paper", "\\cite{Zoll90}\\nocite{*}\n\\printbibliography",
+                 BIBLATEX + "\n\\csname addbibresource\\endcsname{\\detokenize{..&#47;..&#47;x.bib}}")
+    with pytest.raises(ExportFailed) as failed:                # however biblatex writes that name, it is not a plain one
+        export.bbl(ws, file)
+    assert failed.value.kind == "resource_name" and "x.bib" in str(failed.value)
+
+    honest = paper(tmp_path / "deep" / "honest", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX)
+    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=honest.parent).returncode == 0
+    real = (honest.parent / "main.bcf").read_text(encoding="utf-8")
+    source = '<bcf:datasource type="file" datatype="bibtex" glob="false">cdl.bib</bcf:datasource>'
+    assert source in real
+    crafted = real.replace(source, source
+                           + '<bcf:datasource type="file" datatype="bibtex" glob="false">..&#x2F;..&#47;x.bib</bcf:datasource>'
+                           + '<bcf:datasource type="file" datatype="bibtex"><![CDATA[../../x.bib]]></bcf:datasource>'
+                           + '<bcf:datasource type="remote" datatype="bibtex">https://example.org/x.bib</bcf:datasource>'
+                           + '<bcf:datasource type="file" datatype="bibtex" glob="true">*.bib</bcf:datasource>')
+    option = ('<bcf:option type="singlevalued"><bcf:key>output_directory</bcf:key><bcf:value>' + str(tmp_path)
+              + '</bcf:value></bcf:option><bcf:option type="singlevalued"><bcf:key>logfile</bcf:key><bcf:value>/tmp/x</bcf:value></bcf:option>')
+    marker = '<bcf:options component="biber" type="global">'
+    assert marker in crafted
+    crafted = crafted.replace(marker, marker + option, 1)
+    rewritten = export.own_bcf(crafted.encode("utf-8"), ["cdl"]).decode("utf-8")
+    assert rewritten.count("<bcf:datasource") == 1 and source in rewritten
+    for gone in ("x.bib", "example.org", "glob=\"true\"", "output_directory", "logfile", "CDATA", "&#"):
+        assert gone not in rewritten, gone
+    assert "<bcf:key>output_encoding</bcf:key>" in rewritten and "<bcf:citekey" in rewritten
+    for declared in ('<?xml version="1.0"?><!DOCTYPE x [<!ENTITY e SYSTEM "file:///etc/hosts">]>' + real.split("?>", 1)[1],
+                     real.encode("utf-8").decode("utf-8").replace("<bcf:controlfile", "<!DOCTYPE bcf:controlfile><bcf:controlfile", 1)):
+        with pytest.raises(ExportFailed) as failed:
+            export.own_bcf(declared.encode("utf-8"), ["cdl"])
+        assert failed.value.kind == "backend" and "declaration" in str(failed.value)
+    with pytest.raises(ExportFailed):
+        export.own_bcf(real.replace(">Zoll90<", ">Zo ll90<").encode("utf-8"), ["cdl"])
+    with pytest.raises(ExportFailed):
+        export.own_bcf(b"<notbcf/>", ["cdl"])
+
+    (honest.parent / "main.bcf").unlink()                      # and the real biber accepts the rewritten file
+    text = export.bbl(ws, honest).path.read_text(encoding="utf-8")
+    assert "\\entry{Zoll90}{article}" in text and "Outside21" not in text
+
+
+def test_only_regular_files_are_copied_and_a_fifo_does_not_stop_the_export(ws, tmp_path):
+    need("pdflatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    styles, outside = tmp_path / "styles", tmp_path / "outside.tex"
+    styles.mkdir()
+    outside.write_text("Outside \\cite{FixtA21}.\n", encoding="utf-8")
+    for place in (tmp_path / "paper", styles):
+        os.mkfifo(place / "pipe.tex")                         # opening one for reading would never return
+        os.symlink(outside, place / "leaves.tex")
+        os.symlink(tmp_path / "nowhere.tex", place / "dangling.tex")
+        os.symlink(tmp_path, place / "up.tex")
+    done = export.bbl(ws, file, inputs=[styles])
+    assert "\\bibitem{Zoll90}" in done.path.read_text(encoding="utf-8")
+    for name, why in (("pipe.tex", "it is not a regular file"), ("leaves.tex", "the link points outside the folder it is in"),
+                      ("dangling.tex", "the link points nowhere"), ("up.tex", "the link points outside the folder it is in")):
+        for place in (tmp_path / "paper", styles):
+            assert f"not copied, because {why}: {place / name}" in done.notes, (name, done.notes)
+    using = paper(tmp_path / "paper", "\\cite{Zoll90}\\input{leaves}\n" + PLAIN)
+    with pytest.raises(ExportFailed) as failed:
+        export.bbl(ws, using, force=True)
+    assert failed.value.kind == "missing_input" and failed.value.names == ["leaves.tex"]
+    assert outside.read_text(encoding="utf-8") == "Outside \\cite{FixtA21}.\n"
+
+
+def test_a_folder_that_is_too_large_fails_before_anything_is_copied(ws, tmp_path):
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    data = tmp_path / "paper" / "data"
+    data.mkdir()
+    for number in range(export.MAX_FILES + 1):
+        (data / f"{number}.txt").write_bytes(b"")
+    before = set(Path(tempfile.gettempdir()).glob("cdlbib-export-*"))
+    with pytest.raises(ExportFailed) as failed:
+        export.bbl(ws, file)
+    assert failed.value.kind == "too_large" and str(export.MAX_FILES) in str(failed.value)
+    found = export.cited(file)                                # the citations alone: read from the source instead
+    assert found.how == "source" and found.keys == ["Zoll90"] and "holds more than is copied" in found.notes[0]
+    assert set(Path(tempfile.gettempdir()).glob("cdlbib-export-*")) == before   # and the temporary folder is gone
+    assert not (tmp_path / "paper" / "main.bbl").exists()
+
+
+def test_a_file_a_build_made_is_taken_only_when_it_is_a_regular_file(tmp_path):
+    real = tmp_path / "job.bbl"
+    real.write_bytes(b"\\begin{thebibliography}{1}\\end{thebibliography}\n")
+    os.symlink(real, tmp_path / "link.bbl")
+    os.mkfifo(tmp_path / "pipe.bbl")
+    assert export._made(real) == real.read_bytes()
+    assert export._made(tmp_path / "link.bbl") is None and export._made(tmp_path / "pipe.bbl") is None
+    assert export._made(tmp_path / "absent.bbl") is None and export._made(tmp_path) is None
+
+
+def test_the_programs_get_a_minimal_environment(tmp_path, monkeypatch):
+    for name in ("TEXMFCNF", "TEXMFHOME", "TEXMFVAR", "BIBER_CONF", "PERL5LIB", "PERL5OPT", "TEXINPUTS_pdflatex",
+                 "max_print_line", "shell_escape", "LD_PRELOAD", "DYLD_INSERT_LIBRARIES", "GIT_DIR"):
+        monkeypatch.setenv(name, "/tmp/set-by-the-user")
+    env = export._environment([tmp_path / "in"], tmp_path / "home")
+    assert set(env) <= {"PATH", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE", "HOME", "TEXINPUTS", "BSTINPUTS", "BIBINPUTS",
+                        "openout_any", "openin_any", "max_print_line"}
+    assert env["HOME"] == str(tmp_path / "home") and env["openout_any"] == env["openin_any"] == "p"
+    assert env["TEXINPUTS"] == os.pathsep.join([".", f"{tmp_path / 'in'}//", ""]) and env["PATH"] == os.environ["PATH"]
+    assert "/tmp/set-by-the-user" not in env.values()

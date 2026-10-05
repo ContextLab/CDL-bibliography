@@ -130,8 +130,9 @@ class ExportFailed(CdlbibError):
     "no_style" (no \\bibliographystyle and no biblatex), "missing_input" (a .bst, .cls, .sty
     or .bib that TeX could not find), "undefined_keys" (cited keys in no bibliography),
     "engine" / "backend" (LaTeX, or BibTeX/biber, stopped with an error), "engine_choice"
-    (the paper asks for LuaLaTeX, which is run only when named), "output" (the output file
-    may not be written)."""
+    (the paper asks for LuaLaTeX, which is run only when named), "citation_key" (a cited key with
+    characters that cannot be written into a control file), "too_large" (the paper's folder
+    holds more than is copied for a compile), "output" (the output file may not be written)."""
 
     def __init__(self, kind, detail, names=()):
         self.kind, self.detail, self.names = kind, detail, list(names)

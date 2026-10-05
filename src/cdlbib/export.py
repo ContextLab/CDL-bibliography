@@ -10,6 +10,7 @@ import json
 import os
 import re
 import shutil
+import stat
 import subprocess
 import tempfile
 from dataclasses import dataclass, field
@@ -21,13 +22,25 @@ from .errors import ExportFailed
 LIMIT = 120                                            # seconds one TeX program is given
 ENGINES = {"pdflatex": "-draftmode", "latex": "-draftmode", "lualatex": "--draftmode", "xelatex": "-no-pdf"}
 SOURCE_NOTE = "citations were read from the source; citations made by custom macros are not seen"
-# Not copied into the build folder: version-control and tool folders, and what an earlier
-# compile left behind (a stale .aux or .bbl can stop a fresh run).
-_SKIPPED_FOLDERS = {".git", ".svn", ".hg", ".bibcheck", ".venv", "__pycache__", "node_modules"}
+# What is copied into the build folder, by kind: TeX sources and styles, bibliography files,
+# figures, fonts and plain data. Everything else stays behind, so no file of the paper can
+# configure a program (biber.conf, texmf.cnf, latexmkrc, a .fmt, a .csf ...). A .cfg is
+# copied: TeX reads it as TeX code (biblatex.cfg, hyperref.cfg), which gives the paper nothing
+# its .tex does not already have, and papers ship one to set their bibliography's format.
+COPIED = (".tex", ".ltx", ".sty", ".cls", ".clo", ".def", ".cfg", ".fd", ".ldf", ".bst", ".bbx", ".cbx", ".dbx", ".lbx",
+          ".bib", ".tikz", ".pgf", ".pdf_tex", ".pdf", ".png", ".jpg", ".jpeg", ".eps", ".ps", ".mps", ".svg",
+          ".tfm", ".vf", ".pfb", ".afm", ".otf", ".ttf", ".enc", ".map", ".csv", ".tsv", ".dat", ".txt")
+MAX_FILES, MAX_BYTES = 5000, 1_000_000_000             # the most that is copied for one paper (with its inputs)
+MAX_OUTPUT = 50_000_000                                # bytes of a control file read, or of a .bbl taken, from a build
+_SKIPPED_FOLDERS = {"__pycache__", "node_modules"}     # besides every folder whose name starts with a dot
+# What an earlier compile left behind is not counted among the "other files" a result mentions.
 _LEFTOVERS = (".aux", ".bbl", ".bcf", ".blg", ".run.xml", ".log", ".toc", ".lof", ".lot", ".out", ".fls",
               ".fdb_latexmk", ".synctex.gz", ".nav", ".snm")
-_SCRUBBED = ("TEXINPUTS", "BSTINPUTS", "BIBINPUTS")    # and every variant of them (TEXINPUTS_pdflatex ...)
-_ALSO_SCRUBBED = {"openout_any", "openin_any", "shell_escape", "shell_escape_commands", "TEXMFOUTPUT", "max_print_line"}
+_KEPT_VARIABLES = ("PATH", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE")     # all that the programs get of the user's environment
+_NAME = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_.+-]*\Z")                  # a style or bibliography name given to a backend
+_KEY = re.compile(r"[^\s{}(),\\%#^~\"'=&$]+\Z")                        # a citation key given to a backend
+JOB = "job"                                            # the backend's files are job.aux/.bcf/.bbl, whatever the paper is called
+BCF = "https://sourceforge.net/projects/biblatex"
 
 
 @dataclass
@@ -315,38 +328,85 @@ def engine_for(main, engine=None):
 
 # --- the build folder ---------------------------------------------------------------------
 
-def _copy(source, target, root, skipped):
-    """Copy the folder ``source`` into ``target``. A symbolic link is followed only to a place
-    inside ``root`` (the folder being copied); one that leaves it is not copied, and is listed.
-    Files an earlier compile wrote (.aux, .bcf, .bbl, .blg, .run.xml ...) are never copied:
-    BibTeX and biber only ever read control files that a compile here has just written."""
-    target.mkdir(parents=True, exist_ok=True)
+class _Budget:
+    """How much may still be copied; ExportFailed("too_large") before the copy that passes it."""
+
+    def __init__(self):
+        self.files, self.bytes, self.other = 0, 0, 0
+
+    def take(self, size, path):
+        self.files, self.bytes = self.files + 1, self.bytes + size
+        if self.files > MAX_FILES or self.bytes > MAX_BYTES:
+            raise ExportFailed("too_large", f"The paper's folder (with the inputs) holds more than is copied for a compile "
+                               f"({MAX_FILES} files, {MAX_BYTES // 1_000_000} MB); reached at {path}. Give a folder "
+                               "that holds only the paper.", [str(path)])
+
+
+def _plan(source, target, root, plan, skipped, budget):
+    """List, without copying anything, the (file, copy) pairs for the folder ``source``.
+
+    Only regular files of the kinds in COPIED, outside hidden folders. A symbolic link to a
+    regular file inside ``root`` (the folder being copied) is read through; any other link
+    (out of the folder, to a folder, dangling) and anything that is not a regular file (a
+    FIFO, a device, a socket) is left out and listed in ``skipped``."""
     for item in sorted(os.scandir(source), key=lambda entry: entry.name):
-        here = Path(item.path)
-        if item.is_symlink() and not (here.exists() and _inside(here, root)):
-            skipped.append(here)
-        elif item.is_dir():
-            if item.name not in _SKIPPED_FOLDERS and not (item.is_symlink() and _inside(root, here.resolve())):
-                _copy(here, target / item.name, root, skipped)
-        elif item.is_file() and not item.name.lower().endswith(_LEFTOVERS):
-            shutil.copyfile(here, target / item.name)
+        here, name = Path(item.path), item.name
+        if name.startswith("."):
+            continue
+        info = item.stat(follow_symlinks=False)
+        if stat.S_ISLNK(info.st_mode):
+            real = here.resolve()
+            try:
+                info = real.stat()
+            except OSError:
+                skipped.append((here, "the link points nowhere"))
+                continue
+            if not _inside(real, root) or not stat.S_ISREG(info.st_mode):
+                skipped.append((here, "the link points outside the folder it is in" if not _inside(real, root)
+                                else "the link is not to a file"))
+                continue
+            here = real
+        elif stat.S_ISDIR(info.st_mode):
+            if name not in _SKIPPED_FOLDERS:
+                _plan(here, target / name, root, plan, skipped, budget)
+            continue
+        elif not stat.S_ISREG(info.st_mode):
+            skipped.append((here, "it is not a regular file"))
+            continue
+        if not name.lower().endswith(COPIED):
+            budget.other += not name.lower().endswith(_LEFTOVERS)
+            continue
+        budget.take(info.st_size, here)
+        plan.append((here, target / name))
 
 
-def _environment(extra):
-    """The environment of every TeX program run here: the user's, with the three search paths
-    replaced by the build folder, the supplied inputs and TeX's own trees, and with files
-    written only below the build folder (openout_any=p)."""
-    env = {name: value for name, value in os.environ.items()
-           if not name.startswith(_SCRUBBED) and name not in _ALSO_SCRUBBED}
+def _copy_planned(plan):
+    for source, target in plan:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with open(source, "rb") as read, open(target, "xb") as write:      # a new file: never onto, or through, anything
+            if not stat.S_ISREG(os.fstat(read.fileno()).st_mode):
+                raise ExportFailed("engine", f"{source} stopped being a regular file while it was copied.")
+            shutil.copyfileobj(read, write)
+
+
+def _environment(extra, home):
+    """The whole environment of every program run here: PATH and the locale from the user's,
+    an empty HOME of the build's own, the three search paths (the build folder, the supplied
+    inputs, TeX's own trees), and reading and writing only below the folder a program runs in
+    (openin_any=p, openout_any=p). Nothing else of the user's environment reaches a program:
+    no TEXMFCNF, TEXMFHOME, BIBER_*, PERL5LIB or the like."""
+    env = {name: os.environ[name] for name in _KEPT_VARIABLES if os.environ.get(name)}
     searched = os.pathsep.join([".", *(f"{folder}//" for folder in extra), ""])
-    env.update(TEXINPUTS=searched, BSTINPUTS=searched, BIBINPUTS=searched, openout_any="p", max_print_line="1000")
+    env.update(HOME=str(home), TEXINPUTS=searched, BSTINPUTS=searched, BIBINPUTS=searched,
+               openout_any="p", openin_any="p", max_print_line="1000")
     return env
 
 
 @dataclass
 class _Build:
-    folder: Path
+    folder: Path        # the copy of the paper's folder, where LaTeX runs
     main: Path          # the main file's copy
+    backend: Path       # an empty folder, where BibTeX or biber runs on files written here
     env: dict
     notes: list
 
@@ -354,25 +414,43 @@ class _Build:
 @contextlib.contextmanager
 def _built(main, inputs=()):
     """A temporary copy of the main file's folder, plus ``inputs`` (files and folders holding
-    styles, classes or other things the paper needs) on the search paths."""
+    styles, classes or other things the paper needs) on the search paths. What is copied is
+    counted first, so a folder that is too large fails before anything is copied. The
+    temporary folder is removed afterwards without following any link in it."""
     folder = main.parent
     with tempfile.TemporaryDirectory(prefix="cdlbib-export-") as scratch:
-        build, extra, skipped = Path(scratch).resolve() / "paper", [], []
-        _copy(folder, build, folder, skipped)
+        scratch = Path(scratch).resolve()
+        build, extra, skipped, plan, budget = scratch / "paper", [], [], [], _Budget()
+        _plan(folder, build, folder, plan, skipped, budget)
         for number, given in enumerate(inputs, 1):
             given = Path(given).expanduser()
-            place = Path(scratch).resolve() / "inputs" / str(number)
+            place = scratch / "inputs" / str(number)
             if given.is_dir():
-                _copy(given, place, given.resolve(), skipped)
+                _plan(given.resolve(), place, given.resolve(), plan, skipped, budget)
             elif given.is_file():
-                place.mkdir(parents=True)
-                if not given.name.lower().endswith(_LEFTOVERS):
-                    shutil.copyfile(given, place / given.name)
+                real = given.resolve()
+                if real.name.lower().endswith(COPIED) and given.name.lower().endswith(COPIED):
+                    budget.take(real.stat().st_size, real)
+                    plan.append((real, place / given.name))
+                else:
+                    budget.other += 1
             else:
                 raise ExportFailed("missing_input", f"{given} (given as an input) is not a file or a folder.", [str(given)])
+            place.mkdir(parents=True, exist_ok=True)
             extra.append(place)
-        notes = [f"not copied, because the link points outside the folder it is in: {path}" for path in skipped]
-        yield _Build(build, build / main.name, _environment(extra), notes)
+        if not any(target == build / main.name for _, target in plan):
+            raise ExportFailed("no_main", f"{main.name} is not a file that is compiled (a .tex file inside the paper's folder).")
+        _copy_planned(plan)
+        for made in (scratch / "home", scratch / "backend"):
+            made.mkdir()
+        notes = [f"not copied, because {why}: {path}" for path, why in skipped]
+        if budget.other:
+            notes.append(f"{budget.other} file{'' if budget.other == 1 else 's'} of other kinds {'was' if budget.other == 1 else 'were'}"
+                         " not copied (TeX sources, styles, .bib files, figures, fonts and data files are)")
+        env = _environment(extra, scratch / "home")
+        env["BSTINPUTS"] = env["BIBINPUTS"] = os.pathsep.join([".", str(build), *(f"{place}//" for place in extra), ""])
+        latex = dict(env, BSTINPUTS=env["TEXINPUTS"], BIBINPUTS=env["TEXINPUTS"])
+        yield _Build(build, build / main.name, scratch / "backend", {"latex": latex, "backend": env}, notes)
 
 
 def _program(name):
@@ -382,10 +460,10 @@ def _program(name):
     return found
 
 
-def _run(command, build, kind):
+def _run(command, cwd, env, kind):
     name = Path(command[0]).name
     try:
-        return subprocess.run(command, cwd=build.folder, env=build.env, capture_output=True, encoding="utf-8",
+        return subprocess.run(command, cwd=cwd, env=env, capture_output=True, encoding="utf-8",
                               errors="replace", timeout=LIMIT, stdin=subprocess.DEVNULL)
     except subprocess.TimeoutExpired:
         raise ExportFailed(kind, f"{name} did not finish within {LIMIT} seconds.") from None
@@ -397,16 +475,28 @@ def _tail(text, lines=15):
     return "\n".join(text.strip().splitlines()[-lines:])
 
 
+def _made(path):
+    """The bytes of a file a program wrote in a build, when it is a regular file (not a link,
+    not a FIFO) of a size that is read; else None."""
+    try:
+        info = os.lstat(path)
+    except OSError:
+        return None
+    if not stat.S_ISREG(info.st_mode) or info.st_size > MAX_OUTPUT:
+        return None
+    return Path(path).read_bytes()
+
+
 def _latex(build, engine):
     """One LaTeX run of the copy, which writes the .aux (and biblatex's .bcf). Raises
     ExportFailed naming a missing class or package, or with the error and the end of the log."""
     name = build.main.name
     run = _run([_program(engine), "-no-shell-escape", "-interaction=nonstopmode", "-halt-on-error", ENGINES[engine],
-                "./" + name if name.startswith("-") else name], build, "engine")
+                "./" + name if name.startswith("-") else name], build.folder, build.env["latex"], "engine")
     if run.returncode == 0:
         return
-    log = build.main.with_suffix(".log")
-    text = _text(log) if log.is_file() else run.stdout
+    logged = _made(build.main.with_suffix(".log"))
+    text = logged.decode("utf-8", errors="replace") if logged is not None else run.stdout
     absent = list(dict.fromkeys(re.findall(r"! (?:LaTeX|Package \S+) Error: File [`']([^']+)' not found", text)))
     if absent:
         raise ExportFailed("missing_input", f"{engine} could not find: " + ", ".join(absent)
@@ -631,24 +721,93 @@ def _named(keys):
     return ", ".join(str(key) for key in keys)
 
 
-def _bibtex(build, stem):
-    run = _run([_program("bibtex"), stem], build, "backend")
-    log = build.folder / (stem + ".blg")
-    text = _text(log) if log.is_file() else run.stdout
-    absent = re.findall(r"I couldn't open (?:style|database) file (\S+)", text)
+def _checked_keys(keys):
+    """ExportFailed naming every citation key that cannot be written into a control file as it is."""
+    odd = [key for key in keys if not _KEY.match(key)]
+    if odd:
+        raise ExportFailed("citation_key", "Cited keys with characters a citation key cannot have here "
+                           "(spaces, braces, commas, backslashes, %, #, ^, ~, quotes, =, &, $): " + _named(odd) + ".", odd)
+
+
+def _backend_names(names):
+    odd = [name for name in names if not _NAME.match(name)]
+    if odd:
+        raise ExportFailed("resource_name", "A style or bibliography name the paper uses is not a plain name of letters, "
+                           "digits, '.', '_', '+' and '-': " + _named(odd) + ".", odd)
+
+
+def _log(build, run):
+    logged = _made(build.backend / (JOB + ".blg"))
+    return run.stdout + (logged.decode("utf-8", errors="replace") if logged is not None else "")
+
+
+def _bibtex(build, sources, style, keys, everything):
+    """Run BibTeX on a .aux written here and nowhere else: one \\citation per checked key, the
+    checked style name, the checked bibliography names. BibTeX reads no control file that
+    LaTeX or the paper wrote (it does not honour openin_any for the names in a .aux)."""
+    cites = (["*"] if everything else []) + list(keys)
+    text = "\\relax\n" + "".join(f"\\citation{{{key}}}\n" for key in cites)
+    text += f"\\bibdata{{{','.join(sources)}}}\n\\bibstyle{{{style}}}\n"
+    _write(build.backend / (JOB + ".aux"), text.encode("utf-8"))
+    run = _run([_program("bibtex"), JOB], build.backend, build.env["backend"], "backend")
+    text = _log(build, run)
+    absent = list(dict.fromkeys(re.findall(r"I couldn't open (?:style|database) file (\S+)", text)))
     if absent:
         raise ExportFailed("missing_input", "BibTeX could not find: " + ", ".join(absent)
                            + ". Supply the file, or the folder that holds it, as an input (--inputs PATH).", absent)
-    undefined = re.findall(r"I didn't find a database entry for \"([^\"]+)\"", text)
+    undefined = list(dict.fromkeys(re.findall(r"I didn't find a database entry for \"([^\"]+)\"", text)))
     if run.returncode >= 2:
         raise ExportFailed("backend", "BibTeX stopped with an error:\n" + _tail(text))
     return undefined, text
 
 
-def _biber(build, stem):
-    run = _run([_program("biber"), stem], build, "backend")
-    log = build.folder / (stem + ".blg")
-    text = run.stdout + (_text(log) if log.is_file() else "")
+def own_bcf(data, sources):
+    """biblatex's control file, rewritten for biber: read with an XML parser, every data source
+    replaced by ``sources`` (local files, no pattern), every option that names a file, folder,
+    path, configuration or log removed, every citation key checked; then written out anew."""
+    import xml.etree.ElementTree as ET
+    import xml.parsers.expat
+
+    def declared(*_):
+        raise ExportFailed("backend", "The control file LaTeX wrote for biber has a document type or entity "
+                           "declaration; it is not used.")
+
+    probe = xml.parsers.expat.ParserCreate()       # first pass: no DTD and no entity of the file's own, in any encoding
+    probe.StartDoctypeDeclHandler = probe.EntityDeclHandler = probe.UnparsedEntityDeclHandler = declared
+    ET.register_namespace("bcf", BCF)
+    try:
+        probe.Parse(data, True)
+        root = ET.fromstring(data)
+    except (ET.ParseError, xml.parsers.expat.ExpatError) as exc:
+        raise ExportFailed("backend", f"The control file LaTeX wrote for biber could not be read: {exc}") from exc
+    tag = "{" + BCF + "}"
+    if root.tag != tag + "controlfile":
+        raise ExportFailed("backend", "The control file LaTeX wrote for biber is not a biblatex control file.")
+    parents = {child: parent for parent in root.iter() for child in parent}
+    for element in list(root.iter()):
+        key = element.find(tag + "key") if element.tag == tag + "option" else None
+        if element.tag == tag + "datasource" or (
+                key is not None and re.search(r"(?i)file|dir|path|conf|log", "".join(key.itertext()))):
+            parents[element].remove(element)
+    _checked_keys([key for key in ("".join(element.itertext()).strip() for element in root.iter(tag + "citekey"))
+                   if key != "*"])
+    holders = list(root.iter(tag + "bibdata"))
+    if not holders:
+        holders = [ET.SubElement(root, tag + "bibdata", {"section": "0"})]
+    for holder in holders:
+        for name in sources:
+            source = ET.SubElement(holder, tag + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"})
+            source.text = name + ".bib"
+    return ET.tostring(root, encoding="utf-8", xml_declaration=True)
+
+
+def _biber(build, sources, generated):
+    """Run biber on the rewritten control file (own_bcf), without any configuration file, reading
+    and writing in the backend folder only."""
+    _write(build.backend / (JOB + ".bcf"), own_bcf(generated, sources))
+    run = _run([_program("biber"), "--noconf", "--input-directory", str(build.backend),
+                "--output-directory", str(build.backend), JOB], build.backend, build.env["backend"], "backend")
+    text = _log(build, run)
     absent = list(dict.fromkeys(re.findall(r"ERROR - Cannot find '([^']+)'", text)))
     if absent:
         raise ExportFailed("missing_input", "biber could not find: " + ", ".join(absent)
@@ -663,11 +822,13 @@ def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
     """Compile the paper's .bbl from the library and write it to ``out`` (default: beside the
     main file, with its name).
 
-    The paper's folder and ``inputs`` are copied to a temporary folder; the frozen entries are
-    written there under each bibliography name of the paper that stands for the library (a
-    .bib file the paper's folder already holds is used as it is); then one LaTeX run and one
-    run of BibTeX or biber, whichever the paper uses. The style is the paper's own: without a
-    \\bibliographystyle or biblatex nothing is compiled."""
+    The paper's folder and ``inputs`` are copied (by kind of file) to a temporary folder and
+    LaTeX is run there once. What that run wrote is only read here, for the keys, the style
+    and the bibliography names. BibTeX or biber, whichever the paper uses, then runs in a
+    second, empty folder on a control file written here, with the frozen entries under each
+    bibliography name of the paper that stands for the library (a .bib file the paper's
+    folder holds is copied beside them and used as it is). The style is the paper's own:
+    without a \\bibliographystyle or biblatex nothing is compiled."""
     paper = Path(paper).expanduser()
     if paper.is_file() and paper.suffix.lower() in (".aux", ".bcf"):
         if not paper.with_suffix(".tex").is_file():
@@ -690,6 +851,8 @@ def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
                 raise ExportFailed("no_style", f"{file.name} names a bibliography but no \\bibliographystyle (and does not "
                                    "use biblatex), so there is no style to compile a .bbl with. No style is chosen for it.")
             raise ExportFailed("no_bibliography", f"{file.name} has no \\bibliography or \\addbibresource command.")
+        _checked_keys(found.keys)
+        _backend_names(found.bibdata + ([found.style] if found.style else []))
         names = _library_names(found, build.folder, ws)
         local = build.folder / (ws.bib.stem + ".bib")
         if ws.bib.stem in found.bibdata and local.is_file():
@@ -703,19 +866,34 @@ def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
             raise ExportFailed("undefined_keys", "Cited, but in no bibliography of the paper: " + _named(absent) + ".",
                                [item.key for item in absent])
         text = _frozen_text(ws, found, entries)[0].encode("utf-8")
-        for name in names:
-            _write(build.folder / (name + ".bib"), text)
-        undefined, log = (_biber if found.backend == "biber" else _bibtex)(build, file.stem)
+        sources, keys = list(found.bibdata), list(found.keys)
+        for name in sources:                           # the backend's folder holds only files written here
+            own = _made(build.folder / (name + ".bib"))
+            if name in names:
+                _write(build.backend / (name + ".bib"), text)
+            elif own is not None:
+                _write(build.backend / (name + ".bib"), own)
+        if found.backend == "biber":
+            generated = _made(build.folder / (file.stem + ".bcf"))
+            if generated is None:
+                raise ExportFailed("engine", f"LaTeX wrote no usable {file.stem}.bcf.")
+            undefined, log = _biber(build, sources, generated)
+        else:
+            control = _made(build.folder / (file.stem + "-blx.bib")) if found.style == "biblatex" else None
+            if control is not None:                    # biblatex with BibTeX: its own control entry, under a name of ours
+                _write(build.backend / (JOB + "-blx.bib"), control)
+                sources, keys = [JOB + "-blx"] + sources, ["biblatex-control"] + keys
+            undefined, log = _bibtex(build, sources, found.style, keys, found.all_entries)
         if undefined:
             raise ExportFailed("undefined_keys", "Cited, but in no bibliography of the paper: " + _named(undefined) + ".",
                                undefined)
-        made = build.folder / (file.stem + ".bbl")
-        if not made.is_file():
-            raise ExportFailed("backend", f"{found.backend} wrote no {made.name}:\n" + _tail(log))
+        made = _made(build.backend / (JOB + ".bbl"))   # the fixed name, in the folder only the backend wrote in
+        if made is None:
+            raise ExportFailed("backend", f"{found.backend} wrote no usable .bbl:\n" + _tail(log))
         warnings = len(re.findall(r"(?m)^Warning--|^\S*WARN - ", log))
         if warnings:
             found.notes.append(f"{found.backend} gave {warnings} warning{'' if warnings == 1 else 's'}")
         target = writable(ws, out, force)
-        _write(target, made.read_bytes())
+        _write(target, made)
     return Bbl(path=target, backend=found.backend, engine=chosen, style=found.style, keys=found.keys, cited=found,
                notes=found.notes)
