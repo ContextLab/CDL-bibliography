@@ -522,11 +522,20 @@ class AddView(View):
         def message(lines, role=None):
             self._manual_message(lines, role)
         beside = self.manual_pdf if self.manual_pdf is self.pdf else None     # the PDF the form was filled from
+        form = self.query_one("#manual-form", VerticalScroll)
+        form.disabled = True                 # what is drafted is what the form shows: no typing until it is done
+
+        def drafted(proposal):
+            form.disabled = False
+            self.propose([proposal], message, pdf=beside, origin="manual form",
+                         page=self.pdf_png if beside is not None else None)
+
+        def failed(exc):
+            form.disabled = False
+            message([str(exc)], "error")
         self.app.job("draft the typed entry",
                      lambda job: api.draft_manual(self.app.ws, typed, entry_type=kind, prefill=read or None),
-                     lambda proposal: self.propose([proposal], message, pdf=beside, origin="manual form",
-                                                   page=self.pdf_png if beside is not None else None),
-                     lambda exc: message([str(exc)], "error"))
+                     drafted, failed)
 
 
 class RouteScreen(ChoiceScreen):

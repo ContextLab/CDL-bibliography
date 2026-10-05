@@ -54,7 +54,8 @@ KEYS = (
     ("Edit (an entry's text)", (
         ("ctrl+p", "preview: the diff, the format findings, key change, status that is lost, entries affected"),
         ("ctrl+r", "put the formatter's corrected text into the editor"),
-        ("ctrl+s", "save the previewed text"),
+        ("ctrl+s", "save the previewed text (the editor takes no typing while it is saved)"),
+        ("ctrl+o", "read the entry again from the file (asks before it replaces typed text)"),
         ("esc", "close (asks first when the text was changed)"),
     )),
     ("Review", (

@@ -184,7 +184,7 @@ class SetupView(View):
 
     # --- export ------------------------------------------------------------------------------
 
-    def _export(self, bbl):
+    def _export(self, bbl, engine=None):
         paper = self.query_one("#x-paper", Input).value.strip()
         out_path = self.query_one("#x-out", Input).value.strip() or None
         inputs = [part.strip() for part in self.query_one("#x-inputs", Input).value.split(os.pathsep) if part.strip()]
@@ -233,9 +233,14 @@ class SetupView(View):
                 if isinstance(exc, ExportFailed) and exc.names:
                     out.line("  " + ", ".join(str(name) for name in exc.names), "warning")
             self._result(draw)
+            if bbl and engine is None and isinstance(exc, ExportFailed) and exc.kind == "engine_choice" and exc.names:
+                named = str(exc.names[0])    # the engine the core names; running it is the person's decision
+                self.app.confirm(f"{exc}\n\nCompile this paper with {named} now?",
+                                 lambda: self._export(True, engine=named), yes=f"Run {named}", no="Do not run it")
         if bbl:
-            self.app.job("write the paper's .bbl (runs LaTeX on the paper's files)",
-                         lambda job: api.export_bbl(ws, paper, out=out_path, inputs=inputs, force=force),
+            self.app.job("write the paper's .bbl (runs LaTeX on the paper's files)" if engine is None
+                         else f"write the paper's .bbl with {engine}",
+                         lambda job: api.export_bbl(ws, paper, out=out_path, inputs=inputs, engine=engine, force=force),
                          wrote_bbl, failed)
         else:
             self.app.job("write the paper's .bib",

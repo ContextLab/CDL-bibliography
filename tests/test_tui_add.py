@@ -616,3 +616,63 @@ def test_evidence_left_waiting_is_listed_in_library_state_and_stored_from_there(
     assert api.pending_evidence(ws) == []
     entry = api.entry(ws, "ExamSamp19")
     assert entry.external_evidence["pdf_sha256"] == read.sha256 and entry.human_review is None
+
+
+def test_edited_text_that_could_not_be_checked_is_not_passed_over_by_accept_skip_or_accept_all(ws):
+    edited = ZOLL90.replace("1053--1065", "1053--1066")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 1)
+            await T.type_text(pilot, ZOLLER_DOI)
+            await T.press(pilot, "enter")
+            await T.press(pilot, "e")
+            await T.press(pilot, "pagedown", "up", "up", "up", "end", "left", "left", "backspace", "6")
+            saved = ws.database.read_bytes()
+            ws.database.unlink()
+            ws.database.mkdir()                                            # the check cannot open its cache
+            await T.press(pilot, "ctrl+s")
+            ws.database.rmdir()
+            ws.database.write_bytes(saved)
+            assert name(app) == "ProposalScreen" and T.shown(app, "#proposed") == ZOLL90.expandtabs(4)
+            assert "Edited text for this proposal was not checked; e opens it again." in T.shown(app, "#proposal-actions")
+            for key in ("a", "s", "A"):                                    # none of them goes past the edited text
+                await T.press(pilot, key)
+                assert name(app) == "ChoiceScreen" and "edited text that was not checked" in T.shown(app, "#question")
+                await T.press(pilot, "escape")
+                assert name(app) == "ProposalScreen" and ws.bib.read_text(encoding="utf-8") == ""
+            await T.press(pilot, "q")                                      # stopping asks too
+            assert name(app) == "ConfirmScreen"
+            await T.press(pilot, "n")
+            await T.press(pilot, "a")
+            await T.press(pilot, "e")                                      # open it again: the edited text is there
+            assert name(app) == "TextEditScreen" and app.screen.query_one("#proposal-editor").text == edited
+            await T.press(pilot, "ctrl+s")
+            assert T.shown(app, "#proposed") == edited.expandtabs(4) and "was not checked" not in T.shown(app, "#proposal-actions")
+            await T.press(pilot, "a")
+            assert name(app) != "ProposalScreen"
+    T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8").strip() == edited
+
+    async def discarded():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 1)
+            await T.type_text(pilot, GAMES_DOI)
+            await T.press(pilot, "enter")
+            await T.press(pilot, "e")
+            await T.press(pilot, "pagedown", "end", "left", "left", "backspace", "3")
+            saved = ws.database.read_bytes()
+            ws.database.unlink()
+            ws.database.mkdir()
+            await T.press(pilot, "ctrl+s")
+            ws.database.rmdir()
+            ws.database.write_bytes(saved)
+            await T.press(pilot, "a")
+            await T.press(pilot, "d")                                      # discard the edited text, said so
+            assert name(app) == "ProposalScreen" and "was not checked" not in T.shown(app, "#proposal-actions")
+            await T.press(pilot, "a")
+            assert name(app) != "ProposalScreen"
+    T.run(discarded())
+    assert GAME62 in ws.bib.read_text(encoding="utf-8")                      # the proposal as it was shown

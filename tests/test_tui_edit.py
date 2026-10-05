@@ -278,3 +278,102 @@ def test_a_force_field_is_refused_in_the_cores_words(ws):
             await T.press(pilot, "escape", "y")
     T.run(journey())
     assert ws.bib.read_bytes() == before
+
+
+def test_nothing_can_be_typed_into_a_text_that_is_being_saved(ws):
+    import threading
+    before = ws.bib.read_text(encoding="utf-8")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await change_volume(pilot)
+            await T.press(pilot, "ctrl+p")
+            hold = threading.Event()
+            app.job("a long job", lambda job: hold.wait(30))                 # the save has to wait behind it
+            await pilot.press("ctrl+s")
+            await pilot.pause(0.2)
+            editor = app.screen.query_one("#editor")
+            assert editor.read_only and "the editor takes no typing until it is done" in T.shown(app, "#edit-message")
+            await pilot.press("x", "y", "backspace", "enter")                # typed while the save is queued
+            await pilot.press("ctrl+s", "ctrl+p", "ctrl+r")                  # ... and no second save or preview is started
+            await pilot.press("escape")
+            await pilot.pause(0.2)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ZOLL90.replace("{27}", "{28}")
+            assert ws.bib.read_text(encoding="utf-8") == before              # not yet
+            hold.set()
+            await T.settle(pilot)
+            assert type(app.screen).__name__ != "EditScreen" and "Saved: Zoll90" in app.log_lines
+            assert [label for label, _, _ in app.jobs.history].count("save Zoll90") == 1
+    T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8") == before.replace("{27}", "{28}")   # exactly the text that was on screen
+
+
+def test_a_text_that_differs_from_what_was_saved_keeps_the_editor_open(ws):
+    """Should the editor ever hold other text than was saved when the save returns, it stays
+    open on that text, on the new baseline: here the text is put there behind the lock."""
+    import threading
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await change_volume(pilot)
+            await T.press(pilot, "ctrl+p")
+            hold = threading.Event()
+            app.job("a long job", lambda job: hold.wait(30))
+            await pilot.press("ctrl+s")
+            await pilot.pause(0.2)
+            later = ZOLL90.replace("{27}", "{29}")
+            app.screen.query_one("#editor").load_text(later)                 # not through the keyboard, which is locked
+            hold.set()
+            await T.settle(pilot)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == later
+            assert "Saved: Zoll90. The editor holds text that differs from what was saved" in T.shown(app, "#edit-message")
+            assert ws.bib.read_text(encoding="utf-8").count("Volume = {28}") == 1
+            await T.press(pilot, "ctrl+p")                                   # the later text, against what was just saved
+            assert "-    Volume = {28}," in T.shown(app, "#preview") and "+    Volume = {29}," in T.shown(app, "#preview")
+            await T.press(pilot, "ctrl+s")
+            assert type(app.screen).__name__ != "EditScreen"
+    T.run(journey())
+    assert "Volume = {29}" in ws.bib.read_text(encoding="utf-8")
+
+
+def test_an_entry_changed_by_another_program_after_it_was_opened_is_never_the_new_baseline(ws):
+    import subprocess
+    import sys
+    other = ZOLL90.replace("Number = {10}", "Number = {11}")
+    change = ("import sys; from pathlib import Path; p = Path(sys.argv[1]); "
+              "p.write_text(p.read_text(encoding='utf-8').replace('Number = {10}', 'Number = {11}'), encoding='utf-8')")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await change_volume(pilot)
+            mine = ZOLL90.replace("{27}", "{28}")
+            subprocess.run([sys.executable, "-c", change, str(ws.bib)], check=True)   # a second process, before any preview
+            on_disk = ws.bib.read_bytes()
+            await T.press(pilot, "ctrl+p")
+            message = T.shown(app, "#edit-message")
+            assert "Zoll90 was changed in the file after it was opened here" in message and "Nothing was saved" in message
+            assert app.screen.text == mine                                  # the typed text stays on the screen
+            await T.press(pilot, "ctrl+s")
+            await T.press(pilot, "ctrl+s")
+            assert type(app.screen).__name__ == "EditScreen" and ws.bib.read_bytes() == on_disk   # not overwritten
+            assert "save Zoll90" not in [label for label, _, _ in app.jobs.history]
+            await T.press(pilot, "ctrl+o")                                   # reload: asks, since text was typed
+            assert type(app.screen).__name__ == "ConfirmScreen" and "as it is in the file now?" in T.shown(app, "#question")
+            await T.press(pilot, "n")
+            assert app.screen.text == mine
+            await T.press(pilot, "ctrl+o")
+            await T.press(pilot, "y")
+            assert app.screen.text == other and "is in the editor as it is in the file now" in T.shown(app, "#edit-message")
+            await change_volume(pilot)                                       # the edit again, on the entry as it is now
+            await T.press(pilot, "ctrl+p")
+            await T.press(pilot, "ctrl+s")
+            assert type(app.screen).__name__ != "EditScreen"
+    T.run(journey())
+    text = ws.bib.read_text(encoding="utf-8")
+    assert "Number = {11}" in text and "Volume = {28}" in text              # both changes are in the file

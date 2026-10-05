@@ -52,12 +52,26 @@ class DetailPanes(Vertical):
         self.query_one("#t-issues", Shown).show(render.issues(detail, colour))
         self.query_one("#t-evidence", Shown).show(render.evidence(detail, colour))
 
-    def waiting(self, key, running):
-        """The entry is being read; behind a running job, say which."""
+    def waiting(self, summary, running):
+        """The entry's details are being read (a job, like every reading of the library). Until
+        they are here, what the table already knows of the entry is shown, and behind a running
+        job the line says what is waited for."""
         self.detail = None
-        text = f"reading {key} ..." + (f"\n(after the running job: {running})" if running else "")
+        out = self.app.writer()
+        out.line(f"{summary.key} ({summary.type})", bold=True)
+        for label, value in (("authors", summary.authors), ("year", summary.year), ("title", summary.title),
+                             ("venue", summary.venue), ("doi", summary.doi)):
+            if value:
+                out.line(f"  {label}: {value}")
+        out.part("  status: ").text.append_text(render.status_text(summary.status, self.app.colour))
+        out.line()
+        for issue in summary.issues:
+            out.line(f"  {issue}", "warning")
+        out.line()
+        out.line(f"The entry's text, issues and evidence load when the running job finishes: {running}" if running
+                 else "reading the entry's text, issues and evidence ...", "muted")
         for name in ("t-entry", "t-issues", "t-evidence"):
-            self.query_one(f"#{name}", Shown).show(text)
+            self.query_one(f"#{name}", Shown).show(out.text)
 
     def next_tab(self):
         tabs = self.query_one("#detail", TabbedContent)
@@ -216,7 +230,9 @@ class LibraryView(View):
         if key in self.read:                 # read since the library last changed: shown at once, no job
             panes.show(self.read[key])
             return
-        panes.waiting(key, self.app.jobs.busy_label)
+        summary = next((item for item in self.matches if item.key == key), None)
+        if summary is not None:
+            panes.waiting(summary, self.app.jobs.busy_label)
 
         def done(detail):
             self.read[detail.key] = detail

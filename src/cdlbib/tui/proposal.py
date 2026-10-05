@@ -59,9 +59,10 @@ class TextEditScreen(ModalScreen):
     BINDINGS = [Binding("ctrl+s", "accept", "Check this text", priority=True),
                 Binding("escape", "cancel", "Cancel", priority=True)]
 
-    def __init__(self, raw, message=""):
+    def __init__(self, raw, message="", original=None):
         super().__init__()
         self.raw, self.message = raw, message
+        self.original = raw if original is None else original     # the proposal's own text: what "unchanged" means
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="dialog wide tall"):
@@ -79,7 +80,7 @@ class TextEditScreen(ModalScreen):
         self.dismiss(self.query_one(TextArea).text)
 
     def unsaved(self):
-        return "the edited text of a proposal" if self.query_one(TextArea).text != self.raw else None
+        return "the edited text of a proposal" if self.query_one(TextArea).text != self.original else None
 
     def action_cancel(self):
         if self.unsaved():
@@ -127,6 +128,7 @@ class ProposalScreen(Screen):
         self.page = page                 # its first page as PNG bytes, when it could be drawn
         self.pending_evidence = None     # intake.Accepted whose model evidence could not be stored
         self.reasons = []                # why the proposal shown cannot be accepted (api.why_not_acceptable)
+        self.unchecked = None            # text typed in this proposal's editor that could not be checked
         self.in_library = in_library     # the proposals complete entries of the library (completion offers)
         self.origin = origin
         self.index = -1
@@ -203,7 +205,7 @@ class ProposalScreen(Screen):
 
     def _next(self):
         self.index += 1
-        self.reasons = []
+        self.reasons, self.unchecked = [], None
         if self.item is None:
             self._finish()
             return
@@ -312,6 +314,9 @@ class ProposalScreen(Screen):
         if self.pdf is not None and self.has_class("narrow"):
             actions.append(f"(the PDF's first page is shown beside the proposal in a window of {self.PDF_BESIDE} "
                            "columns or more)\n", colour("muted"))
+        if self.unchecked is not None:
+            actions.append("Edited text for this proposal was not checked; e opens it again. What is shown above is "
+                           "the proposal without it.\n", colour("error"))
         if self.reasons:
             actions.append("Cannot be accepted as it stands:\n", colour("warning"))
             for reason in self.reasons:
@@ -411,7 +416,21 @@ class ProposalScreen(Screen):
     # --- actions -----------------------------------------------------------------------------
 
     def _ready(self):
-        return self.item is not None and not self.busy and not self._finishing and self.pending_evidence is None
+        if self.item is None or self.busy or self._finishing or self.pending_evidence is not None:
+            return False
+        if self.unchecked is not None:       # text typed for this proposal that was never checked: not passed over
+            def chosen(value):
+                if value == "edit":
+                    self.action_edit()
+                elif value == "discard":
+                    self.unchecked = None
+                    self._show()
+            self.app.push_screen(ChoiceScreen(
+                "This proposal has edited text that was not checked. It is neither written nor dropped until you say:",
+                [("e", "edit", "open the edited text again (ctrl+s there checks it)"),
+                 ("d", "discard", "discard the edited text and decide on the proposal as shown")]), chosen)
+            return False
+        return True
 
     def _duplicate(self):
         return bool(self.item.duplicate_of and self.item.duplicate_in_library)
@@ -461,7 +480,7 @@ class ProposalScreen(Screen):
             self._next()
 
     def action_edit(self, raw=None, message=""):
-        if not self._ready():
+        if self.item is None or self.busy or self._finishing or self.pending_evidence is not None:
             return
         item = self.item
         original = item.proposed_raw or item.typed_raw or ""
@@ -470,7 +489,9 @@ class ProposalScreen(Screen):
             if text is None:
                 return
             if text == original:
+                self.unchecked = None
                 self.app.notify("The editor left the entry unchanged.")
+                self._show()
                 return
             self.busy = True
 
@@ -478,26 +499,35 @@ class ProposalScreen(Screen):
                 self.busy = False
                 if isinstance(exc, EditedEntryParseError):
                     self.action_edit(text, f"Edited entry could not be read: {exc}. ctrl+s checks again; esc gives up.")
-                else:
-                    self.app.notify(f"Edited entry could not be checked: {exc}. Returning to choices.",
-                                    severity="error", timeout=12)
+                else:                        # not checked: the text is kept, and nothing is decided past it
+                    self.unchecked = text
+                    self._show()
+                    self.app.notify(f"Edited entry could not be checked: {exc}", severity="error", timeout=12)
 
             def checked(new):
-                self.items[self.index], self.reasons = new, []
+                self.items[self.index], self.reasons, self.unchecked = new, [], None
                 self.busy = False
                 self._show()
             self.app.job("check the edited entry", lambda job: api.recheck_proposal(self.app.ws, item, text),
                          checked, failed)
-        self.app.push_screen(TextEditScreen(original if raw is None else raw, message), edited)
+        start = raw if raw is not None else self.unchecked if self.unchecked is not None else original
+        self.app.push_screen(TextEditScreen(start, message, original=original), edited)
 
-    def action_stop(self):
+    def action_stop(self, sure=False):
         if self._finishing:
+            return
+        if self.unchecked is not None and not sure:
+            self.app.confirm("Stop? The edited text of this proposal was not checked and is not kept.",
+                             lambda: self.action_stop(sure=True), yes="Stop and discard it", no="Go back")
             return
         if self.item is not None:
             self.stopped = True
         self._finish()
 
     # --- closing -----------------------------------------------------------------------------
+
+    def unsaved(self):
+        return "edited text of a proposal that was not checked" if self.unchecked is not None else None
 
     def before_quit(self):
         self._finish(dismiss=False)
