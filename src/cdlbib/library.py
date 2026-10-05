@@ -155,27 +155,97 @@ def _locked(folder, progress=None, waiting="waiting for another cdlbib to finish
 
 # A transaction can call another managed operation in the same execution context.
 # The PID prevents a forked child from inheriting ownership of its parent's flock.
-_owner = contextvars.ContextVar("cdlbib_write_owner", default=None)
+_owner = contextvars.ContextVar("cdlbib_write_owner", default=())
+WRITING = "waiting for another cdlbib to finish writing to this library ..."
+
+
+@contextlib.contextmanager
+def _own_lock(folder, progress=None):
+    """Hold <folder>/lock, for a library cdlbib does not manage (``folder`` is its .bibcheck).
+    Unlike the data folder's lock, this one is in a folder of the user's, so nothing is left
+    behind: on release the file is removed, and the folder too when this call made it and it
+    holds nothing else (a checkout that does not ignore .bibcheck/ stays clean). A waiter that
+    gets a file which is no longer the one at that path takes the new one instead."""
+    try:
+        import fcntl
+    except ImportError:   # no flock on this platform: no lock
+        yield
+        return
+    made, waited = not folder.exists(), False
+    while True:
+        folder.mkdir(parents=True, exist_ok=True)
+        try:
+            handle = open(folder / "lock", "a")
+        except FileNotFoundError:      # the folder was removed by the holder that made it: again
+            continue
+        try:
+            try:
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except OSError:            # held by another command
+                if progress and not waited:
+                    progress(WRITING)
+                waited = True
+                fcntl.flock(handle, fcntl.LOCK_EX)
+            try:
+                current = os.fstat(handle.fileno()).st_ino == os.stat(folder / "lock").st_ino
+            except FileNotFoundError:
+                current = False
+        except BaseException:
+            handle.close()
+            raise
+        if current:
+            break
+        handle.close()
+    try:
+        yield
+    finally:
+        with contextlib.suppress(OSError):     # removed while still held: no one else can hold this file
+            os.unlink(folder / "lock")
+        handle.close()                         # releases the lock
+        if made:
+            with contextlib.suppress(OSError):
+                os.rmdir(folder)
 
 
 @contextlib.contextmanager
 def transaction(ws, *, recovery=False, progress=None):
+    """Hold the write lock of the library ``ws`` is. The managed library's is the lock of the
+    data folder, and an unfinished update refuses (unless ``recovery``). Any other library's
+    is <its .bibcheck>/lock, held for the time of the write and then removed. A library whose
+    folder cannot be written at all (or is not there) has nothing to protect and is not
+    locked. Re-entered freely by the holder."""
     from .api import is_managed
-    if not is_managed(ws):
+    managed = is_managed(ws)
+    folder = home() if managed else Path(ws.work)
+    owner = (os.getpid(), str(folder.resolve()))
+    if owner in _owner.get():
         yield
         return
-    owner = (os.getpid(), str(home().resolve()))
-    if _owner.get() == owner:
-        yield
-        return
-    with _locked(home(), progress, WAITING):
-        if not recovery and _marked()[0]:
+    if managed:
+        lock = _locked(folder, progress, WAITING)
+        lock.__enter__()
+    elif not os.path.isdir(folder.parent):
+        lock = contextlib.nullcontext()
+    else:
+        try:
+            lock = _own_lock(folder, progress)
+            lock.__enter__()
+        except OSError as exc:
+            if os.path.isdir(folder.parent) and os.access(folder.parent, os.W_OK):
+                raise CdlbibError(f"{folder} cannot be written ({exc.strerror or exc}), so the library cannot be "
+                                  "locked; nothing was changed.") from exc
+            lock = contextlib.nullcontext()
+            lock.__enter__()
+    try:
+        if managed and not recovery and _marked()[0]:
             raise CdlbibError(_interrupted_line(ws.root, _marked()[1]))
-        token = _owner.set(owner)
+        token = _owner.set(_owner.get() + (owner,))
         try:
             yield
         finally:
             _owner.reset(token)
+    finally:
+        lock.__exit__(None, None, None)
 
 
 def serialized(function):
@@ -647,8 +717,9 @@ def _unmark():
 def _interrupted_operation():
     operation = "update"
     try:
-        if json.loads((home() / MARKER).read_text())["operation"] == "entry completion":
-            operation = "entry completion"
+        named = json.loads((home() / MARKER).read_text())["operation"]
+        if named in ("entry completion", "entry edit"):
+            operation = named
     except (OSError, ValueError, KeyError, TypeError):
         pass
     return operation
@@ -1979,6 +2050,74 @@ def _on_send_branch(root, branch, commit, default, target, new, found, decision,
                                 f"`{UNDO} {backup.stamp}` puts it back)")
 
 
+@dataclass
+class Behind:
+    """Where the managed library stands against its upstream, from the refs git has now."""
+    branch: str | None             # None: the library is not on a branch
+    commit: str
+    default: str                   # the upstream's default branch
+    target: str                    # the upstream's commit on it ("" when it has no such branch)
+    new_commits: int = 0           # commits the upstream has that the library does not
+    local_commits: int = 0         # commits the library has that the upstream does not
+    new_entries: int | None = None # keys of the upstream's cdl.bib that the library's commit lacks (behind() only)
+    fetched: bool = False          # the upstream was asked just now
+    problem: str = ""              # why it could not be asked, when a fetch was wanted and failed
+
+
+def _behind(root):
+    """The one count of how far ``root`` is behind (and ahead of) its upstream's default branch,
+    as last fetched. Read-only: symbolic-ref, rev-parse, rev-list --count."""
+    branch, commit = _head(root)
+    default = _default_branch(root)
+    target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{default}^{{commit}}", check=False).stdout.strip()
+    if not target:
+        return Behind(branch, commit, default, "")
+    return Behind(branch, commit, default, target,
+                  new_commits=int(_git(root, "rev-list", "--count", f"{commit}..{target}").stdout),
+                  local_commits=int(_git(root, "rev-list", "--count", f"{target}..{commit}").stdout))
+
+
+def _blob_entries(root, commit):
+    """{key: text} of cdl.bib at ``commit`` (_entries); None when it has none or git cannot say."""
+    try:
+        was = subprocess.run(["git", "-C", str(root), "cat-file", "blob", f"{commit}:{BIB_NAME}"], capture_output=True,
+                             stdin=subprocess.DEVNULL, env=git_env())
+    except OSError:
+        return None
+    return _entries(was.stdout) if was.returncode == 0 else None
+
+
+def behind(ws, fetch=False, progress=None):
+    """How far the managed library is behind its upstream: a Behind. Nothing in the library's
+    files, its branch or the record of the daily check is changed. With ``fetch`` the upstream
+    is asked first, as the daily check asks it (git fetch, AUTO_FETCH_TIMEOUT seconds, under
+    the lock: it writes remote-tracking refs and objects only); when that fails the counts
+    are those of the last fetch and ``problem`` says why. update() counts with the same
+    helper. Any other library than the managed one is a CdlbibError."""
+    root = Path(ws.root).resolve()
+    if root != path().resolve() or not exists():
+        raise CdlbibError(f"Only the library cdlbib manages ({path()}) has an upstream to compare with; "
+                          f"{ws.root} is not it.")
+    problem, fetched = "", False
+    if fetch:
+        try:
+            with transaction(ws, recovery=True, progress=progress):
+                status, errors = _fetch(root, AUTO_FETCH_TIMEOUT)
+            lines = [line.strip() for line in errors.splitlines() if line.strip()]
+            fetched = status == 0
+            problem = "" if fetched else f"git fetch failed ({lines[-1] if lines else f'status {status}'})"
+        except subprocess.TimeoutExpired:
+            problem = f"the upstream did not answer within {AUTO_FETCH_TIMEOUT} seconds"
+        except OSError as exc:
+            problem = _why(exc)
+    at = _behind(root)
+    at.fetched, at.problem = fetched, problem
+    if at.target:
+        mine, theirs = _blob_entries(root, at.commit), _blob_entries(root, at.target)
+        at.new_entries = None if mine is None or theirs is None else len(set(theirs) - set(mine))
+    return at
+
+
 def _update(root, force, now, made, decision=None, seen=None, found=None):
     """update(), with the lock held. ``made`` receives the backup, once one is taken.
     ``found``: the pull request of the send branch the library is on, when the caller knows
@@ -2041,16 +2180,15 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
         said = (fatal[0][len("fatal:"):].strip() if fatal else lines[-1] if lines else f"status {status}").rstrip(".")
         return skipped(f"git fetch from {origin} failed ({said})")
 
-    branch, commit = _head(root)
-    default = _default_branch(root)
+    at = _behind(root)
+    branch, commit, default, target = at.branch, at.commit, at.default, at.target
     again = "Run `cdlbib update` to check again."
-    target = _git(root, "rev-parse", "--verify", "--quiet", f"{_ORIGIN}{default}^{{commit}}", check=False).stdout.strip()
     if not target:
         record(True)
         return UpdateResult("left_alone", notes=notes,
                             message=f"the upstream has no branch {default}, so the bibliography in {root} was not "
                                     f"updated; nothing was changed. {again}")
-    new = int(_git(root, "rev-list", "--count", f"{commit}..{target}").stdout)
+    new = at.new_commits
     if found is not None and not (branch and branch.startswith(SEND_BRANCHES)):
         raise CdlbibError(f"{root} is not on a branch a send made (it is on {branch or 'no branch'}); nothing was changed.")
     if branch and branch.startswith(SEND_BRANCHES) and (found is not None or _github_origin(root)):
@@ -2075,7 +2213,7 @@ def _update(root, force, now, made, decision=None, seen=None, found=None):
     if branch != default:
         return left(f"the library is on branch {branch}, not {default}" if branch else "the library is not on a branch",
                     f"To update, run `git -C {shlex.quote(str(root))} switch {default}`, then `cdlbib update`.")
-    ahead = int(_git(root, "rev-list", "--count", f"{target}..{commit}").stdout)
+    ahead = at.local_commits
     edits = sorted({name for _, name in _status(root, *KEPT)[1]})
     token = _seen(root, branch, commit, target, edits)
     if decision in ("update", "discard") and seen is not None and seen != token:
