@@ -73,6 +73,101 @@ def test_title_only_and_metadata(made):
     assert read.metadata["author"] == "Bennet B. Murdock" and read.metadata["producer"].startswith("pdfTeX")
 
 
+def _page_one_runs(path):
+    """What the child-process reader collects from page 1: (text, size) of each upright fragment."""
+    import pypdf
+    runs = []
+
+    def visit(text, cm, tm, font, size):
+        a, b = tm[0] * cm[0] + tm[1] * cm[2], tm[0] * cm[1] + tm[1] * cm[3]
+        if text and size and abs(b) <= abs(a):
+            runs.append((text, round(abs(size) * (a * a + b * b) ** 0.5, 1)))
+
+    pypdf.PdfReader(str(path)).pages[0].extract_text(visitor_text=visit)
+    return runs
+
+
+def test_a_two_word_title_is_read_and_a_paragraph_never_is(tmp_path):
+    """The first page of arXiv:2310.06825 ("Mistral 7B"), as its layout: a logo, a title of
+    two words in 17pt between rules, eighteen authors, the abstract and the text in 10pt
+    with font expansion. Its title was refused for having fewer than three words, so were
+    the 12pt headings ("Abstract", "1 Introduction"), and the third-largest size on the
+    page was a few lines of a body paragraph that expansion had set a shade larger than
+    their neighbours: under 400 characters, so it was taken as the title."""
+    path = pdfs.build_short_title(tmp_path)
+    runs = _page_one_runs(path)
+    sizes = sorted({size for text, size in runs if text.strip()}, reverse=True)
+    # the properties that caused the misread are in this page
+    assert len(pdfs.SHORT_TITLE.split()) == 2 and sizes[0] == 17.2 and sizes[1] == 12.0
+    assert 9.5 < sizes[-1] < sizes[2] < 10.5                       # one 10pt face, at several sizes
+    third = [" ".join(text.split()) for text, size in runs if size == sizes[2]]
+    assert all(line in " ".join((pdfs.SHORT_ABSTRACT + " " + pdfs._BODY + pdfs.SHORT_AUTHORS).split())
+               for line in third)                                  # all of it running text
+    import pypdf
+    assert len(pypdf.PdfReader(str(path)).pages[0].images) == 1    # the logo is an image
+
+    read = intake.read_pdf(path)
+    assert read.problem is None
+    assert (read.title_guess, read.title_source) == (pdfs.SHORT_TITLE, "largest text on page 1")
+    assert pdfs.SHORT_AUTHORS.split(",")[0] in read.first_page_text
+
+
+def test_what_may_be_a_title():
+    title, body = "Backward learning in paired associates", "The study reported here was carried out. " * 3
+    lines = [(body + "\n", size) for size in (10.2, 9.8, 10.0, 10.1, 9.9, 10.2, 9.8)]
+    # three words at any size above the running text; two only when it is the largest text
+    assert intake._title_from_runs([("Journal of Things\n", 12.0), (title, 17.2)] + lines) == title
+    assert intake._title_from_runs([("Plorbnix 7Q", 17.2), ("Abstract\n", 12.0)] + lines) == "Plorbnix 7Q"
+    assert intake._title_from_runs([("Plorbnix", 17.2), ("1 Introduction\n", 12.0)] + lines) is None
+    assert intake._title_from_runs([("Plorbnix", 17.2), ("A second heading here\n", 12.0)] + lines) == "A second heading here"
+    # running text is never a title, whatever sizes lie above it
+    assert intake._title_from_runs([("Abstract\n", 12.0)] + lines) is None
+    assert intake._title_from_runs(lines) is None
+    assert intake._title_from_runs([(body, 10.0)]) is None                    # a page of one paragraph
+    # a page that carries little but its title: the largest text, unless it reads as sentences
+    assert intake._title_from_runs([(title, 20.0), ("A. N. Author", 12.0)]) == title
+    assert intake._title_from_runs([(title, 10.0)]) == title
+    assert intake._title_from_runs([]) is None and intake._title_from_runs([("\n", 3156.2)]) is None
+    # an image's blank fragment (its matrix makes it "3156pt") is not text and breaks no run
+    assert intake._title_from_runs([("Plorbnix 7Q", 17.2), ("\n", 3156.2)] + lines) == "Plorbnix 7Q"
+
+
+def test_a_file_kept_under_another_name_is_called_what_the_person_calls_it(tmp_path, made):
+    """An upload is kept as upload.pdf; the lines a person reads name their file. The name is
+    text for display: its last part, one line, printable characters, bounded, never opened."""
+    kept = tmp_path / "upload.pdf"
+    shutil.copy(made["doi"], kept)
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name="real.pdf")
+    assert lines == ["Reading the first pages of real.pdf"] and (read.name, read.shown) == ("real.pdf", "real.pdf")
+    assert read.path == kept and read.problem is None and read.title_guess == pdfs.ZOLLER_TITLE.replace("'", "’")
+    assert api.intake_data(read)["name"] == "real.pdf"
+    lines = []
+    plain = api.read_pdf(kept, progress=lines.append)                # no other name: the path's, as before
+    assert lines == ["Reading the first pages of upload.pdf"] and plain.name is None and plain.shown == "upload.pdf"
+    # what a name may be
+    clean = intake.shown_name
+    assert clean("real.pdf") == "real.pdf" and clean("Zoller (1990) – final.pdf") == "Zoller (1990) – final.pdf"
+    assert clean("../../etc/passwd") == "passwd" and clean("C:\\Users\\someone\\paper.pdf") == "paper.pdf"
+    assert clean("a\x00b\x1b[31mred\x07.pdf") == "a b [31mred .pdf"
+    assert clean("evil\u202efdp.exe") == "evil fdp.exe"              # a direction override is not printable
+    assert clean("two\nlines\r\n.pdf") == "two lines .pdf" and clean("  spaced \t out.pdf ") == "spaced out.pdf"
+    long = clean("x" * 500 + ".pdf")
+    assert len(long) == 80 and long.endswith("…") and long.startswith("x" * 79)
+    for nothing in ("", "   ", "\x00\x01", "dir/", None, 7, b"real.pdf", ["real.pdf"]):
+        assert clean(nothing) is None, nothing
+    # a name that cleans to nothing leaves the path's; nothing is opened by name
+    missing = tmp_path / "is-not-here.pdf"
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name=str(missing) + "\x00/")
+    assert read.name is None and lines == ["Reading the first pages of upload.pdf"] and not missing.exists()
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name=str(tmp_path / "elsewhere" / "other.pdf"))
+    assert lines == ["Reading the first pages of other.pdf"] and read.path == kept and read.sha256 == plain.sha256
+    assert not (tmp_path / "elsewhere").exists()
+    assert intake.read_pdf(tmp_path, name="a folder.pdf").name == "a folder.pdf"     # a problem keeps the name too
+
+
 def test_identifier_in_metadata_and_title_from_metadata(tmp_path, made):
     import pypdf
     writer = pypdf.PdfWriter(clone_from=str(made["unknown"]))

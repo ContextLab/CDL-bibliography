@@ -410,9 +410,27 @@ class PdfIntake:
     detail: str | None = None
     ocr: bool = False
     title_source: str | None = None   # "largest text on page 1" or "PDF metadata"
+    name: str | None = None           # what the person calls the file, when ``path`` is named otherwise (an upload)
+
+    @property
+    def shown(self):
+        """The file's name for a sentence a person reads: ``name``, else the path's last part."""
+        return shown_name(self.name) or shown_name(self.path.name) or "the PDF"
 
     def to_data(self):
         return to_data(self)
+
+
+def shown_name(text, limit=80):
+    """A file name someone else supplied, for display only: its last part (never a path),
+    on one line, printable characters only, at most ``limit`` characters. None when nothing
+    is left. It names nothing on disk and is never opened."""
+    if not isinstance(text, str):
+        return None
+    text = _plain(text[:4000].replace("\\", "/").rsplit("/", 1)[-1], 4000)
+    if len(text) > limit:
+        text = text[:limit - 1].rstrip() + "…"
+    return text or None
 
 
 def _child(arguments, timeout, limit):
@@ -581,8 +599,12 @@ def _ocr_tools():
     return all(shutil.which(tool) for tool in ("pdftoppm", "tesseract"))
 
 
-def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
+def read_pdf(path, ocr=True, progress=None, ocr_seconds=None, name=None):
     """Read a PDF's first ``MAX_PAGES`` pages in a child process.
+
+    ``name`` is what the person calls the file when ``path`` is named otherwise (an upload
+    kept under a fixed name): it is cleaned by ``shown_name``, used in the progress lines
+    and kept as ``PdfIntake.name``; it is never used to open anything.
 
     Returns a ``PdfIntake`` always, for a path that can be opened: something that is not a
     regular file (a folder, a pipe, a device: ``problem`` "not_a_file", decided from the
@@ -609,11 +631,12 @@ def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
     ocr_seconds = OCR_TIMEOUT if ocr_seconds is None else max(0.0, float(ocr_seconds))
     deadline = time.monotonic() + READ_TIMEOUT + (ocr_seconds if ocr else 0)
     said = progress or (lambda line: None)
+    name = shown_name(name)
     try:
         capture = _captured(path)
         real, size, head, digest = capture.__enter__()
     except _NotAFile as exc:
-        return PdfIntake(path=path, problem="not_a_file", detail=str(exc))
+        return PdfIntake(path=path, problem="not_a_file", detail=str(exc), name=name)
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
     try:      # ``real`` is this call's own copy of the bytes that were hashed; only it is read from here on
@@ -622,14 +645,14 @@ def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
             _READ[os.path.realpath(path)] = digest
             while len(_READ) > 256:
                 _READ.pop(next(iter(_READ)))
-        return _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said)
+        return _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said, name)
     finally:
         capture.__exit__(None, None, None)
 
 
-def _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said):
+def _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said, name=None):
     import time
-    intake = PdfIntake(path=path)
+    intake = PdfIntake(path=path, name=name)
     if b"%PDF-" not in head:
         intake.problem, intake.detail = "not_pdf", "The file does not start as a PDF (no %PDF- header)."
         return intake
@@ -639,7 +662,7 @@ def _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, s
         return intake
     intake.sha256 = digest
     deps.need("pypdf", "research", "Reading PDF files")
-    said(f"Reading the first pages of {path.name}")
+    said(f"Reading the first pages of {intake.shown}")
     try:
         code, out, err, over = _child(["read", real, MAX_PAGES, MAX_PAGE_CHARS, MAX_TOTAL_CHARS,
                                        MAX_STREAM_BYTES], READ_TIMEOUT, MAX_OUTPUT_BYTES)
@@ -879,7 +902,7 @@ class ModelRoute:
     name: str          # "dartmouth" or "openai"
     label: str
     available: bool | None   # None: not checked (the stored key was not looked up)
-    how: str           # how to set it up; shown whether or not it is available
+    how: str           # how to set it up; always given, and shown for a route that is not set up or not checked
     default: bool = False
     detail: str = ""   # when it is not available (or not checked): exactly what is missing or wrong
 
@@ -1385,7 +1408,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     quotation beside each field is there for the person to compare with the page.
     """
     from .research import validate_findings
-    from .source_passages import REFERENCE_HEADING, role_risks
+    from .source_passages import REFERENCE_HEADING, plain_uncertainty, role_risks, role_words
     from .verification import now
     read = extracted.get("fields") if isinstance(extracted, dict) else None
     if not isinstance(read, dict) or not read:
@@ -1395,7 +1418,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         raise CdlbibError(f"Not an entry type a draft can have: {_plain(entry_type, 30)!r}.")
     pages = intake.pages
     flagged = extracted.get("role_risk_fields") if isinstance(extracted.get("role_risk_fields"), dict) else {}
-    kept, unfilled, dropped, doubts = {}, [], 0, {}
+    kept, unfilled, dropped, doubts, stored = {}, [], 0, {}, {}
     for name, evidence in list(read.items())[:50]:
         if name == "ENTRYTYPE":
             unfilled.append(complete.Unfilled("ENTRYTYPE", "ENTRYTYPE: the entry type is chosen by the person, "
@@ -1439,13 +1462,14 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 name, f"{name}: the value is not literally in the quoted text (page {evidence['page']}); "
                       "it is the model's interpretation", said))
         elif risks and not set(risks) <= set(QUESTION_RISKS.get(name, ())):
-            unfilled.append(complete.Unfilled(
-                name, f"{name}: the quoted text (page {evidence['page']}) may play another role "
-                      f"({', '.join(risks)}), so it is not taken as the work's own {name}", said))
+            role = (f"{name}: the quoted text (page {evidence['page']}) may play another role (%s), "
+                    f"so it is not taken as the work's own {name}")
+            unfilled.append(complete.Unfilled(name, role % role_words(risks), said))
+            stored[name] = role % ", ".join(risks)  # evidence keeps the flag names
         else:
             if risks:  # written, as a question the person settles
                 doubts[name] = (f"{name}: the quoted text (page {evidence['page']}) may play another role "
-                                f"({', '.join(risks)}); check that {value} is the work's own {name}")
+                                f"({role_words(risks)}); check that {value} is the work's own {name}")
             kept[name] = {"value": value, "page": evidence["page"], "quote": evidence["quote"],
                           **({"passages": spans} if spans else {}), "derivation": rule}
     if not kept:
@@ -1459,7 +1483,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     left = tuple(f"{u.field}: " for u in unfilled) or ("\0",)  # said once, as the reason the field is unfilled
     said_too = extracted.get("uncertainties") if isinstance(extracted.get("uncertainties"), list) else []
     uncertainties = [_plain(u, 300) for u in said_too[:20] if isinstance(u, str)]
-    notes = ([f"Read by a language model ({route}) from {intake.path.name}; every kept field quotes the page it was read from."]
+    notes = ([f"Read by a language model ({route}) from {intake.shown}; every kept field quotes the page it was read from."]
              + (["The PDF's text is OCR output, which misreads characters."] if intake.ocr else [])
              + ([f"{dropped} item(s) of the model's answer were not bibliographic fields and were dropped."]
                 if dropped else [])
@@ -1467,7 +1491,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 if addressed_to_a_model(pages) else []))
     proposal = _draft(ws, entry_type, {name: e["value"] for name, e in kept.items()}, sources, unfilled, notes,
                       "model", plain=set(kept), questions=doubts)
-    proposal.issues += [f"model: {u}" for u in uncertainties if not u.startswith(left)]
+    # shown in plain words; the evidence below keeps each sentence, and each flag name, as given
+    proposal.issues += [f"model: {plain_uncertainty(u)}" for u in uncertainties if not u.startswith(left)]
     proposal.evidence = {
         "source": "local PDF read by a language model",
         "pdf_sha256": intake.sha256,
@@ -1476,7 +1501,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         "retrieved_at": now(),
         "reviewer": "model-reading:" + route,
         "fields": kept,
-        "unsupported_fields": [{"field": u.field, "reason": u.reason, "values": u.source_values} for u in unfilled],
+        "unsupported_fields": [{"field": u.field, "reason": stored.get(u.field, u.reason), "values": u.source_values}
+                               for u in unfilled],
         "uncertainties": uncertainties,
         "extraction_policy": _plain(extracted.get("extraction_policy"), 60) or None,
         "provider_trace": {"extract": extracted.get("provider_trace")
@@ -1507,7 +1533,7 @@ def read_pdf_with_model(ws, intake, route="dartmouth", progress=None, entry_type
     if not any(p["text"].strip() for p in pages):
         raise CdlbibError("The PDF gave no text for a model to read" + (f" ({intake.detail})" if intake.detail else "."))
     if progress:
-        progress(f"Asking {chosen.label} to read {len(pages)} page{'s' if len(pages) != 1 else ''} of {intake.path.name}")
+        progress(f"Asking {chosen.label} to read {len(pages)} page{'s' if len(pages) != 1 else ''} of {intake.shown}")
     try:
         extracted = invoke_adapter(_adapter(route), {
             "phase": "extract", "instructions": INSTRUCTIONS, "entry": {}, "pages": pages,
@@ -1800,18 +1826,43 @@ class _Enough(Exception):
 
 def _title_from_runs(runs):
     """The text set largest on the page: consecutive fragments of one size are a run; the
-    largest run of at least three words that is not an arXiv stamp, among the three largest sizes."""
-    joined = []
+    largest run that is not an arXiv stamp, among the three largest sizes.
+
+    A title is set larger than the page's running text, so a run qualifies only when its
+    size is more than a tenth above the size most of the page's characters are set in.
+    (Without that, a page whose larger runs all fail falls through to a paragraph of body
+    text.) The largest size on the page is the one exception, for a page that carries
+    little but its title: there a run qualifies unless it reads as sentences. A run needs
+    three words, or two when it is the largest text on the page ("Mistral 7B")."""
+    joined, sized = [], []
     for text, size in runs:
+        if text.strip():
+            sized.append((size, len(text.strip())))
         if joined and abs(joined[-1][1] - size) <= 0.02 * size:
             joined[-1][0] += text
         elif text.strip():
             joined.append([text, size])
-    for size in sorted({size for _, size in joined}, reverse=True)[:3]:
+    if not joined:
+        return None
+    half, body = sum(count for _, count in sized) / 2, 0.0
+    for size, count in sorted(sized):  # the size at the middle character of the page
+        half, body = half - count, size
+        if half <= 0:
+            break
+    sizes = sorted({size for _, size in joined}, reverse=True)[:3]
+    for size in sizes:
+        largest, above = size == sizes[0], size > 1.1 * body
+        if not (largest or above):
+            break
         for text, own in joined:
             text = " ".join(text.split())
-            if own == size and len(text.split()) >= 3 and 10 <= len(text) <= 400 and not re.match(r"(?i)arxiv\s*:", text):
-                return text
+            if own != size or not 10 <= len(text) <= 400 or re.match(r"(?i)arxiv\s*:", text):
+                continue
+            if len(text.split()) < (2 if largest else 3):
+                continue
+            if not above and re.search(r"[.!?]\s+[A-Z]", text):
+                continue
+            return text
     return None
 
 

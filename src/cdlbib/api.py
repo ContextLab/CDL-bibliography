@@ -741,10 +741,10 @@ def candidate_query(candidate):
     return intake.query_for(candidate)
 
 
-def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
+def read_pdf(path, ocr=True, progress=None, ocr_seconds=None, name=None):
     """The first pages of a PDF, its identifiers and a title guess; see intake.read_pdf."""
     from . import intake
-    return intake.read_pdf(path, ocr=ocr, progress=progress, ocr_seconds=ocr_seconds)
+    return intake.read_pdf(path, ocr=ocr, progress=progress, ocr_seconds=ocr_seconds, name=name)
 
 
 def render_first_page(path, width=800):

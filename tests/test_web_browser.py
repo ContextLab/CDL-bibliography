@@ -919,6 +919,84 @@ def test_the_daily_check_is_shown_when_the_page_opens(browser, managed):  # noqa
     assert found.problems == [], found.problems
 
 
+# --- a PDF read with a model, as it was done by hand ---------------------------------------------
+
+def test_a_pdf_named_real_is_read_with_a_model_and_every_line_is_plain(visit, tmp_path, monkeypatch):
+    """The journey of a hand run with the PDF of arXiv:2310.06825, on a page typeset here with
+    the same layout (intake_pdfs.build_short_title) and with the test's own adapter in the
+    model's place: the title is the title, a route that is set up does not explain how to set
+    it up, the lines name the file as it was uploaded, a passage's role is named in plain
+    words, and nothing scrolls sideways beside the PDF's first page."""
+    if not pdfs.pdflatex():
+        pytest.skip("pdflatex is not installed: the test PDF cannot be typeset")
+    if not importlib.util.find_spec("pypdfium2"):
+        pytest.skip("the pdf extra (pypdfium2) is not installed: no page is drawn beside the proposal")
+    from cdlbib import intake
+    pdf = _reading_route(monkeypatch, tmp_path)
+    assert pdf.name == "real.pdf"
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='PDF']")
+    page.set_input_files("#add-pdf", str(pdf))
+    panel = page.locator("[role=tabpanel]:visible")
+    expect(panel).to_contain_text("What was read from real.pdf", timeout=120_000)
+    facts = " ".join(panel.locator("dl.kv").first.inner_text().split())
+    assert f"Title read {pdfs.SHORT_TITLE} Read from largest text on page 1" in facts and "We introduce" not in facts
+
+    # a service that is set up: its button and its tag, not the steps to set it up
+    dartmouth = panel.locator(".card", has=page.locator("button[data-route=dartmouth]"))
+    openai = panel.locator(".card", has=page.locator("button[data-route=openai]"))
+    expect(dartmouth.locator(".tag").first).to_have_text("set up")
+    expect(dartmouth.locator("[data-how]")).to_have_count(0)
+    assert "Create an API key" not in dartmouth.inner_text() and "free are used" not in dartmouth.inner_text()
+    expect(openai.locator(".tag").first).to_have_text("not checked")           # not checked: the steps are there
+    expect(openai.locator("[data-how=openai]")).to_contain_text("Create an OpenAI API key.")
+    openai.locator("button:has-text('check')").click()                         # ... and stay when it is not set up
+    expect(openai.locator(".tag").first).to_have_text("not set up", timeout=60_000)
+    expect(openai.locator("[data-how=openai]")).to_contain_text("Create an OpenAI API key.")
+    expect(dartmouth.locator("[data-how]")).to_have_count(0)
+
+    page.click("button[data-route=dartmouth]")
+    card = page.locator(".beside article.card")
+    expect(card).to_have_count(1, timeout=120_000)
+    # the lines name the file as it was uploaded; it is kept under the server's own name
+    log = page.locator("section.logbox pre").inner_text()
+    assert "Asking Dartmouth Chat to read 2 pages of real.pdf" in log and "Checking each quotation" in log
+    expect(card).to_contain_text("Read by a language model (dartmouth) from real.pdf")
+    shown = page.locator("body").inner_text()
+    assert "upload.pdf" not in shown
+    assert [path.name for path in visit.running.app.store.folder.rglob("*.pdf")] == ["upload.pdf"]
+    # the role of the passage, in words
+    expect(card).to_contain_text("year: the quoted text (page 1) may play another role (an arXiv or other preprint "
+                                 "version stamp); check that 2023 is the work's own year")
+    for flag in intake.KNOWN_RISKS:
+        assert flag not in shown, flag
+    assert "selected passage role" not in shown
+    expect(card).to_contain_text("Milan El Sahed")
+
+    # beside the first page, with eighteen authors in a field: nothing scrolls sideways, at any width
+    expect(page.locator(".beside img.pdf-image, .beside iframe")).to_have_count(1, timeout=60_000)
+    table = card.locator("table.changes")
+    for width in (1440, 1180, 1000, 900, 700, 390):
+        page.set_viewport_size({"width": width, "height": 760})
+        page.wait_for_timeout(250)
+        assert page.evaluate(CLEAN) == [], width
+        inside, outside = table.bounding_box(), card.bounding_box()
+        assert outside["x"] <= inside["x"] and inside["x"] + inside["width"] <= outside["x"] + outside["width"] + 1, width
+        assert outside["x"] + outside["width"] <= width, width
+    assert "stacked" in table.get_attribute("class")                           # narrow: each row a block, nothing cut off
+    expect(table.locator("td[data-label=Source]").first).to_be_visible()
+    # one above the other: the first page scrolls away with the view and never lies over the card
+    table.evaluate("(el) => el.scrollIntoView({block: 'start'})")
+    page.wait_for_timeout(250)
+    above = page.locator(".beside .pdf-view").bounding_box()
+    assert above["y"] + above["height"] <= card.bounding_box()["y"] + 1
+    page.set_viewport_size({"width": 1440, "height": 760})
+    page.wait_for_timeout(250)
+    assert "stacked" not in table.get_attribute("class")                       # wide again: a table again
+    expect(table.locator("thead")).to_be_visible()
+
+
 # --- every view stays clean -----------------------------------------------------------------------
 
 CLEAN = """() => {
@@ -949,6 +1027,13 @@ CLEAN = """() => {
     if (cell.closest('.deep')) continue;       // nested data scrolls sideways inside its own box, by design
     if (shown(cell) && cell.scrollWidth > cell.clientWidth + 1 && getComputedStyle(cell).overflowX === 'visible') say('content overflows its box', cell);
   }
+  // no box of a view scrolls sideways either: a table or a block that is wider than its place
+  // gets a scrollbar of its own, which is sideways scrolling all the same (the list of entries
+  // is measured above; nested data and a single unbroken identifier scroll by design)
+  for (const el of main.querySelectorAll('*')) {
+    if (!shown(el) || el.closest('.deep, .unbroken, .vt-scroll') || el.matches('textarea, input, select')) continue;
+    if (el.scrollWidth > el.clientWidth + 1 && ['auto', 'scroll'].includes(getComputedStyle(el).overflowX)) say('a box scrolls sideways', el);
+  }
   // no rule that breaks inside words
   for (const el of main.querySelectorAll('*')) {
     const style = getComputedStyle(el);
@@ -978,7 +1063,18 @@ CLEAN = """() => {
 }"""
 
 
-def _walk(visit, page, pdf):
+def _reading_route(monkeypatch, folder):
+    """Make "Read with Dartmouth Chat" run without a model: the route's adapter is the test's
+    own executable (intake_pdfs.selecting_adapter), and the key's variable holds a token that
+    is no key, which that program never reads. Gives the short-title PDF to read with it."""
+    from cdlbib import intake
+    adapter = pdfs.selecting_adapter(folder / "adapter", pdfs.short_selection())
+    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", "a-test-token-that-is-not-a-key")
+    monkeypatch.setattr(intake, "ADAPTERS", {"dartmouth": str(adapter), "openai": str(adapter)})
+    return pdfs.build_short_title(folder / "short", name="real")
+
+
+def _walk(visit, page, pdf, long_pdf=None):
     """Every view, tab and dialog once; yields a name each time something new is on the screen."""
     yield "library"
     page.fill("#search", "key:Game62")
@@ -1030,6 +1126,19 @@ def _walk(visit, page, pdf):
         expect(page.locator(".beside article.card")).to_have_count(1, timeout=120_000)
         expect(page.locator(".beside img.pdf-image, .beside iframe")).to_have_count(1, timeout=60_000)
         yield "add, a proposal beside its PDF"
+    if long_pdf is not None:        # a card whose author field holds eighteen names, beside the page it was read from
+        page.click("role=tab[name='PDF']")
+        page.set_input_files("#add-pdf", str(long_pdf))
+        expect(page.locator("[role=tabpanel]:visible")).to_contain_text(pdfs.SHORT_TITLE, timeout=120_000)
+        page.click("button[data-route=dartmouth]")
+        card = page.locator(".beside article.card", has_text="Milan El Sahed")
+        expect(card).to_have_count(1, timeout=120_000)
+        expect(card.locator("xpath=..").locator("img.pdf-image, iframe")).to_have_count(1, timeout=60_000)
+        card.scroll_into_view_if_needed()
+        yield "add, a model reading with eighteen authors beside its PDF"
+        card.locator("[data-action=edit]").click()
+        yield "add, the editor of a model reading with eighteen authors"
+        card.locator("[data-action=edit]").click()
     page.click("role=tab[name='Manual']")
     expect(page.locator("input[data-field=title]")).to_be_visible(timeout=60_000)
     yield "add, manual"
@@ -1049,15 +1158,16 @@ def _walk(visit, page, pdf):
 
 @pytest.mark.parametrize("width,height,scheme", [(1180, 760, "light"), (1440, 900, "light"), (390, 800, "light"),
                                                   (1000, 700, "light"), (1180, 760, "dark")])
-def test_every_view_is_clean_at_every_size(browser, visit, tmp_path, width, height, scheme):
+def test_every_view_is_clean_at_every_size(browser, visit, tmp_path, monkeypatch, width, height, scheme):
     """Each view, tab and dialog: no text broken inside a word, nothing outside its box, buttons
     and chips on one line, no sideways scrolling, one consistent header, nothing under it."""
     pdf = pdfs.build("doi", tmp_path / "pdf") if pdfs.pdflatex() and importlib.util.find_spec("pypdfium2") else None
+    long_pdf = _reading_route(monkeypatch, tmp_path) if pdf is not None else None
     sized = Visit(browser, visit.running, visit.ws, viewport={"width": width, "height": height}, color_scheme=scheme)
     problems = {}
     try:
         page = sized.open()
-        for name in _walk(sized, page, pdf):
+        for name in _walk(sized, page, pdf, long_pdf):
             page.wait_for_timeout(250)
             found = page.evaluate(CLEAN)
             if found:

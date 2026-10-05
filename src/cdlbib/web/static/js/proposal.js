@@ -129,7 +129,9 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
       h("div", null, h("h3", { text: "Proposed" }), bib(item.proposed_raw || "(no proposed entry)"))));
     if (item.changes.length) {
       parts.push(table(["Field", "Typed", "Proposed", "Source", ""], item.changes.map((c) => [c.field, c.typed === null ? "" : c.typed,
-        c.proposed === null ? "" : c.proposed, c.source, c.kind]), { class: "grid changes" }));
+        c.proposed === null ? "" : c.proposed, c.source, c.kind]),
+        // a source that quotes its page (a model reading) is a column of text, and is given room as one
+        { class: "grid changes" + (item.changes.some((c) => String(c.source || "").length > 40) ? " quoted" : "") }));
     }
     for (const choice of item.name_choices || []) parts.push(names(item, choice));
     if (item.unfilled.length) {

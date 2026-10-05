@@ -163,7 +163,8 @@ def test_only_fields_whose_quotation_supports_them_are_kept(tmp_path, unknown, r
     # the others are unfilled, with the reason and the model's value
     unfilled = {u.field: u for u in proposal.unfilled}
     assert set(unfilled) == {"publisher", "number", "ENTRYTYPE"}
-    assert "affiliation_line" in unfilled["publisher"].reason
+    assert "an author's affiliation" in unfilled["publisher"].reason  # the flag affiliation_line, in plain words
+    assert "affiliation_line" in next(u["reason"] for u in proposal.evidence["unsupported_fields"] if u["field"] == "publisher")
     assert unfilled["publisher"].source_values == {"model reading (dartmouth)": "Nowhere College"}
     assert "not literally in the quoted text" in unfilled["number"].reason
     assert proposal.issues == ["model: The issue number is not printed."]
@@ -510,6 +511,62 @@ def test_stricter_derivation_rules():
         assert ok(name, "Brain", "Brain 12 (2019)") and ok(name, "A study", "A study of a thing")
 
 
+def test_no_flag_name_is_shown_and_every_flag_name_is_stored(tmp_path):
+    """A year read from an arXiv stamp, and a publisher read from an affiliation: what the
+    person is shown names each role in plain words; the evidence keeps the flag names."""
+    from cdlbib import source_passages as sp
+    assert set(sp.ROLE_WORDS) == set(intake.KNOWN_RISKS)
+    emitted = {"reference_list", "affiliation_line", "institution_named_as_venue", "possible_omitted_author",
+               *(name for name, _ in sp.DATE_ROLE_PATTERNS)}       # every name role_risks can return
+    assert emitted == set(sp.ROLE_WORDS)
+    for flag, words in sp.ROLE_WORDS.items():
+        assert "_" not in words and words[0].islower() and sp.role_words([flag]) == words
+    assert sp.role_words(["copyright_line", "preprint_version_stamp"]) == (
+        "a copyright line; an arXiv or other preprint version stamp")
+    assert sp.role_words([]) is None and sp.role_words(["copyright_line", "not_a_flag"]) is None
+    said = "The venue is not printed on these pages."
+    assert sp.plain_uncertainty(said) == said and sp.plain_uncertainty(None) is None
+    odd = "year: selected passage role is not_a_flag; literal support does not establish that this text states the work's own year"
+    assert sp.plain_uncertainty(odd) == odd
+
+    text = ("Plorbnix 7Q\nAda Q. Example and Bo R. Sample\nDepartment of Lattices, Nowhere College\n"
+            "arXiv:2310.06825v1 [cs.CL] 10 Oct 2023\n")
+    read = intake.PdfIntake(path=tmp_path / "x.pdf", sha256="3" * 64, pages=[{"page": 1, "text": text}], first_page_text=text)
+    reply = materialize({"fields": [
+        {"field": "title", "value": "Plorbnix 7Q", "passage_ids": ["p1l1"]},
+        {"field": "author", "value": "Ada Q. Example and Bo R. Sample", "passage_ids": ["p1l2"]},
+        {"field": "publisher", "value": "Nowhere College", "passage_ids": ["p1l3"]},
+        {"field": "year", "value": "2023", "passage_ids": ["p1l4"]},
+    ], "uncertainties": [said]}, read.pages)
+    assert reply["role_risk_fields"] == {"publisher": ["affiliation_line", "institution_named_as_venue"],
+                                         "year": ["preprint_version_stamp"]}
+    raw = ("year: selected passage role is preprint_version_stamp; literal support does not establish "
+           "that this text states the work's own year")
+    assert raw in reply["uncertainties"]                           # the adapter's sentence, as it is stored
+
+    proposal = intake.proposal_from_findings(library(tmp_path / "lib"), read, reply, "dartmouth", "misc")
+    assert {c.field: c.kind for c in proposal.changes}["year"] == "question"
+    assert ("year: the quoted text (page 1) may play another role (an arXiv or other preprint version stamp); "
+            "check that 2023 is the work's own year") in proposal.issues
+    assert ("model: year: the selected passage may be an arXiv or other preprint version stamp; that the text "
+            "is on the page does not show it states the work's own year") in proposal.issues
+    assert "model: " + said in proposal.issues
+    publisher = next(u for u in proposal.unfilled if u.field == "publisher")
+    assert publisher.reason == (
+        "publisher: the quoted text (page 1) may play another role (an author's affiliation; an institution's "
+        "name, not a publisher's or a journal's), so it is not taken as the work's own publisher")
+    shown = "\n".join([*proposal.issues, *proposal.notes, *(u.reason for u in proposal.unfilled),
+                       json.dumps(api.as_data(proposal)["issues"]), json.dumps(api.as_data(proposal)["unfilled"])])
+    for flag in intake.KNOWN_RISKS:
+        assert flag not in shown, flag
+    assert "selected passage role is" not in shown
+    # the evidence is what it was: flag names, and the adapter's sentences word for word
+    assert raw in proposal.evidence["uncertainties"]
+    assert {u["field"]: u["reason"] for u in proposal.evidence["unsupported_fields"]}["publisher"] == (
+        "publisher: the quoted text (page 1) may play another role (affiliation_line, institution_named_as_venue), "
+        "so it is not taken as the work's own publisher")
+
+
 def test_a_passage_whose_role_is_in_doubt_makes_author_and_year_questions(tmp_path):
     text = ("Journal of Things 12 (2019) 45\u201367\nA study of plorbnix lattices\nAda Q. Example, Bo R. Sample, and Cy T. Third\n"
             "Received 3 March 2018; accepted 1 May 2019\n\u00a9 2019 The Authors\n")
@@ -524,9 +581,11 @@ def test_a_passage_whose_role_is_in_doubt_makes_author_and_year_questions(tmp_pa
     proposal = intake.proposal_from_findings(library(tmp_path / "lib"), read, reply, "openai")
     kinds = {c.field: c.kind for c in proposal.changes}
     assert kinds == {"author": "question", "journal": "filled", "title": "filled", "year": "question"}
-    assert any(i.startswith("author: the quoted text (page 1) may play another role (possible_omitted_author)")
+    assert any(i.startswith("author: the quoted text (page 1) may play another role "
+                            "(an author list that goes on after the last name given)")
                for i in proposal.issues)
-    assert any(i.startswith("year: the quoted text (page 1) may play another role (receipt_or_revision_date)")
+    assert any(i.startswith("year: the quoted text (page 1) may play another role "
+                            "(a received, revised, accepted or published-online date)")
                for i in proposal.issues)
     assert not proposal.complete and proposal.needs_decision and proposal.status == "needs_review"
     # the copyright line too; and a year the adapter flags is a question even when this program sees no risk

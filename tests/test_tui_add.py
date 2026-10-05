@@ -385,6 +385,33 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
 
 @needs_pdflatex
 @needs_pypdf
+def test_a_route_that_is_set_up_is_listed_without_the_steps_to_set_it_up(ws, tmp_path, monkeypatch):
+    """The steps are for a route that is not set up, or not checked. The variable holds a
+    token that is no key: only whether it is set is looked at here, and no route is run."""
+    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", "a-test-token-that-is-not-a-key")
+    pdf = pdfs.build("unknown", tmp_path / "pdfs")
+    dartmouth, openai = api.model_routes()
+    assert (dartmouth.available, openai.available) == (True, None) and dartmouth.how and openai.how
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 2)
+            await T.type_text(pilot, str(pdf))
+            await T.press(pilot, "enter")
+            await T.press(pilot, "m")
+            assert name(app) == "RouteScreen"
+            routes = " ".join(T.shown(app, "#question").split())
+            assert "[1] Dartmouth Chat (the default): set up" in routes and "[2] OpenAI: not checked" in routes
+            assert "Create an API key in Dartmouth Chat" not in routes and "free are used" not in routes
+            assert "Create an OpenAI API key." in routes                 # not checked: its steps are there
+            assert "never a verification or an approval" in routes
+            await T.press(pilot, "escape")
+    T.run(journey())
+
+
+@needs_pdflatex
+@needs_pypdf
 def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(ws, tmp_path, monkeypatch):
     key = _dartmouth_key()
     if not key:

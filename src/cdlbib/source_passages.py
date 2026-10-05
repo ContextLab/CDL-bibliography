@@ -163,6 +163,44 @@ def _author_list_may_be_truncated(value, text):
     return bool(AUTHOR_CONTINUES.match(flat[position + len(names[-1]) :]))
 
 
+# Every flag ``role_risks`` can return, in the words a person is shown. The flag
+# names themselves are what evidence stores and what an acceptance rule reads;
+# they are never shown.
+ROLE_WORDS = {
+    "reference_list": "an entry in the reference list",
+    "receipt_or_revision_date": "a received, revised, accepted or published-online date",
+    "copyright_line": "a copyright line",
+    "preprint_version_stamp": "an arXiv or other preprint version stamp",
+    "affiliation_line": "an author's affiliation",
+    "institution_named_as_venue": "an institution's name, not a publisher's or a journal's",
+    "possible_omitted_author": "an author list that goes on after the last name given",
+}
+
+ROLE_UNCERTAINTY = re.compile(
+    r"^(?P<field>\w+): selected passage role is (?P<flags>[a-z_]+(?:, [a-z_]+)*); literal support "
+    r"does not establish that this text states the work's own (?P=field)$"
+)
+
+
+def role_words(flags):
+    """``flags`` in plain words, joined for a sentence; None when one is not a known flag."""
+    flags = list(flags)
+    if not flags or any(flag not in ROLE_WORDS for flag in flags):
+        return None
+    return "; ".join(ROLE_WORDS[flag] for flag in flags)
+
+
+def plain_uncertainty(sentence):
+    """An uncertainty of ``validate_and_ground`` about a passage's role, with each flag
+    name in plain words; any other sentence (the model's own) is returned as it is."""
+    match = ROLE_UNCERTAINTY.match(sentence) if isinstance(sentence, str) else None
+    words = role_words(match["flags"].split(", ")) if match else None
+    if not words:
+        return sentence
+    return (f"{match['field']}: the selected passage may be {words}; that the text is on the page "
+            f"does not show it states the work's own {match['field']}")
+
+
 def role_risks(field, value, runs, in_reference_list):
     """Printed roles that make a literally grounded value suspect.
 
