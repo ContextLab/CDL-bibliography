@@ -216,7 +216,7 @@ def plan(program):
 
     if real.parent in (Path("/usr/bin"), Path("/bin")):         # a distribution's own packages: they need root
         for manager, packages in SYSTEM.items():
-            if which(manager) and program in packages:
+            if (which(manager) or os.path.exists(f"/usr/bin/{manager}")) and program in packages:
                 return Plan(program, "system", manual="Run: " + SYSTEM_COMMAND[manager].format(packages[program]),
                             why="the system's packages need an administrator, and sudo is never run from here")
 
