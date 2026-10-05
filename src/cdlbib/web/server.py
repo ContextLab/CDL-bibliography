@@ -18,8 +18,8 @@ from urllib.parse import parse_qs
 from .. import api, theme
 from ..errors import CdlbibError
 from . import routes
-from .jobs import Worker
-from .store import MAX_UPLOAD, Store
+from .jobs import Busy, Closed, Worker
+from .store import MAX_UPLOAD, Full, Store
 
 LOOPBACK = "127.0.0.1"
 TOKEN_HEADER = "X-CDLBIB-Token"
@@ -32,7 +32,7 @@ CSP = ("default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 
 HEADERS = {"Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff",
            "X-Frame-Options": "DENY", "Content-Security-Policy": CSP,
            "Cross-Origin-Opener-Policy": "same-origin", "Cross-Origin-Resource-Policy": "same-origin"}
-MODULES = ("main", "api", "dom", "detail", "library", "edit", "check", "review", "add", "proposal", "send", "state", "setup")
+MODULES = ("main", "api", "dom", "detail", "library", "edit", "check", "review", "add", "proposal", "offers", "send", "state", "setup")
 STATIC = {"/": ("index.html", "text/html; charset=utf-8"),
           "/index.html": ("index.html", "text/html; charset=utf-8"),
           "/app.css": ("app.css", "text/css; charset=utf-8"),
@@ -83,8 +83,9 @@ class App:
         self.store = Store()
         self.worker = Worker(self.failure)
         self.managed = api.is_managed(ws)
-        self.cached = self.offers = self.identity = self.prepare_job = self.after = None
-        self.generation = 0
+        self.origin = api.library_state(ws).origin
+        self.cached = self.offers = self.offered = self.identity = self.prepare_job = None
+        self.generation, self.seen = 0, set()
         self.hosts = self.origins = ()
         folder = resources.files("cdlbib.web") / "static"
         self.static = {path: (kind, (folder / name).read_bytes()) for path, (name, kind) in STATIC.items()}
@@ -97,18 +98,19 @@ class App:
         return found
 
     def prepare(self):
-        def job(say):
-            try:
-                return api.as_data(api.prepare(self.ws, say))
-            finally:
-                routes.settle(self)
-        self.prepare_job = self.worker.submit("prepare", job).id
+        try:        # one waiting preparation is enough; when the queue is full the next request prepares
+            self.prepare_job = self.worker.submit("prepare", lambda say: api.as_data(api.prepare(self.ws, say)),
+                                                  single=True).id
+        except (Busy, Closed):
+            pass
 
     def start(self):
         self.worker.start()
         self.prepare()
 
     def close(self):
+        """Take no more jobs, cancel the ones that have not started, wait (for a bounded time)
+        for the one that is running, and only then remove the run's folder."""
         self.worker.stop()
         self.store.close()
 
@@ -176,6 +178,13 @@ class Handler(BaseHTTPRequestHandler):
         if not stated.isdigit() or len(stated) > 12:
             raise Refused(411, "LengthRequired", "a request body must state its length")
         length, most = int(stated), MAX_JSON if route.body == "json" else MAX_UPLOAD
+        if route.body != "json" and length <= most:
+            kind = "pdf" if route.body == "pdf" else "bundle"
+            try:        # room for the upload is set aside before a byte of it is read
+                self.app.store.reserve(kind, length)
+            except Full as exc:
+                raise Refused(413, "QuotaExceeded", str(exc)) from exc
+            self.reserved = (kind, length)
         if length > most:
             if route.body == "json" and length <= MAX_DRAIN:
                 left = length
@@ -214,6 +223,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def _handle(self):
         shown = "(no route)"
+        self.reserved = None
         try:
             host = self._host()
             target = self.path
@@ -261,6 +271,9 @@ class Handler(BaseHTTPRequestHandler):
             self._send(exc.status, {"error": {"kind": exc.kind, "message": exc.message}}, shown, headers=exc.headers)
         except Exception as exc:     # never a traceback to the browser
             self._send(500, {"error": self.app.failure(exc)}, shown)
+        finally:
+            if self.reserved:           # what was stored is counted with its object from here on
+                self.app.store.release(*self.reserved)
 
     def _answer(self, route, args, body):
         app = self.app
@@ -275,7 +288,12 @@ class Handler(BaseHTTPRequestHandler):
                 headers = {"Content-Disposition": f'attachment; filename="{name}"'} if name else {}
                 return self._send(200, data, route.path, kind=kind, headers=headers)
             return self._send(200, {"result": made}, route.path)
-        job = app.worker.submit(f"{route.method} {route.path}", routes.guarded(app, route, args))
+        try:
+            job = app.worker.submit(f"{route.method} {route.path}", routes.guarded(app, route, args), single=route.single)
+        except Busy as exc:
+            raise Refused(429, "TooManyJobs", str(exc), {"Retry-After": "2"}) from exc
+        except Closed as exc:
+            raise Refused(503, "Stopping", "cdlbib web is stopping") from exc
         if route.path in routes.CHANGES_LIBRARY:
             app.prepare()
         if route.wait and job.wait(route.wait):

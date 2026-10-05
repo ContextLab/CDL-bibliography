@@ -104,6 +104,7 @@ def test_browse_search_and_one_entry(site):
     assert detail["result"]["attempts"] and detail["format"] == [] and detail["closest"] is None
     queue = site.ok("get", "/api/review-queue", all="1")
     assert [item["key"] for item in queue["entries"]] == ["Kaha12", "TeneEtal11"]
+    assert (queue["total"], queue["offset"], queue["revision"]) == (2, 0, found["revision"])
     assert queue["entries"][0]["fingerprint"] == load_entries(site.ws.bib)["Kaha12"]["fingerprint"]
     result, error = site.get("/api/review-queue")              # the changed entries: needs the GitHub master
     assert error["kind"] == "CdlbibError" and "could not be selected" in error["message"]
@@ -283,7 +284,16 @@ def test_add_by_search_choose_edit_recheck_and_skip(site):
     assert site.ok("get", "/api/proposal", proposal=proposal["id"])["proposed_raw"] == raw      # the proposal is as it was
     edited = raw.replace("Attention is all you need", "Attention is all you really need")
     again = site.ok("post", "/api/proposal/recheck", {"proposal": proposal["id"], "raw": edited})
-    assert again["id"] == proposal["id"] and again["proposed_raw"] == edited
+    assert again["id"] != proposal["id"] and again["proposed_raw"] == edited and again["superseded"] is None
+    # the version that was rechecked is not changed, only superseded, and no decision is taken on it any more
+    old = site.ok("get", "/api/proposal", proposal=proposal["id"])
+    assert old["proposed_raw"] == raw and old["superseded"] == again["id"]
+    for path in ("/api/proposal/accept", "/api/proposal/skip", "/api/proposal/remove-duplicate"):
+        result, error = site.post(path, {"proposal": proposal["id"]})
+        assert error["kind"] == "StaleProposal" and error["current"] == again["id"], path
+    result, error = site.post("/api/proposal/recheck", {"proposal": proposal["id"], "raw": raw})
+    assert error["kind"] == "StaleProposal" and text(site.ws) == before
+    proposal = again
     assert [(c["field"], c["source"]) for c in again["changes"] if c["source"] == "user edit"] == [("title", "user edit")]
     assert again["status"] not in ACCEPTED                                  # the source no longer agrees with the title
     assert site.ok("post", "/api/proposal/skip", {"proposal": proposal["id"]}) == {"skipped": proposal["id"]}
@@ -301,6 +311,7 @@ def test_accept_remaining_writes_the_proposals_that_need_no_decision(site):
     wanted = [item["id"] for item in (first, second) if not item["needs_decision"]]
     done = site.ok("post", "/api/proposal/accept-remaining", {"proposals": [first["id"], second["id"], dup["id"]]})
     assert done["accepted"] == wanted and len(done["written"]) == len(wanted) and "Zoll90" in done["written"]
+    assert done["stale"] == []
     assert keys(site.ws) == before + done["written"]
     assert site.ok("get", "/api/proposal", proposal=dup["id"])["duplicate_of"] == "Game62"      # left for a decision
     assert site.post("/api/proposal/accept-remaining", {"proposals": ["A" * 22]})[1]["kind"] == "NotFound"
@@ -594,9 +605,11 @@ def test_a_send_that_cannot_pass_changes_nothing(site, tmp_path):
 
     git("init", "--quiet")
     git("symbolic-ref", "HEAD", "refs/heads/master")
+    git("config", "user.name", "cdlbib tests")              # the checkout has an author: the send gets as far as its gate
+    git("config", "user.email", "tests@cdlbib.invalid")
     git("add", "cdl.bib")
     git("commit", "--quiet", "-m", "start")
-    site.ws.bib.write_text(text(site.ws).replace("{2012}", "{2013}"), encoding="utf-8")
+    site.ws.bib.write_text(text(site.ws).replace("human memory}", "human memories}"), encoding="utf-8")
     state = site.ok("get", "/api/state")
     assert state["branch"] == "master" and state["pending"] == ["cdl.bib"] and state["managed"] is False
     head, edited = git("rev-parse", "HEAD"), text(site.ws)
@@ -604,7 +617,13 @@ def test_a_send_that_cannot_pass_changes_nothing(site, tmp_path):
         assert site.raw("POST", "/api/send", site.headers(post=True), json={name: False}).status_code == 400
     lines = []
     result, error = site.post("/api/send", {"summary": "A new year for Kahana"}, lines)
-    assert result is None and error["kind"] in ("GateFailed", "PublishRefused"), error
+    # the gate itself stops it: the format check passes, the citation check cannot reach its reference
+    assert result is None and error["kind"] == "GateFailed", error
+    assert error["message"].startswith("citation check failed: ") and "check" not in error
+    assert lines == ["format: looks good!"]
+    # nothing was committed, no branch was made, nothing was pushed (there is nowhere to push to), no file changed
     assert git("rev-parse", "HEAD") == head and git("branch", "--list") == "* master" and text(site.ws) == edited
+    assert git("status", "--porcelain", "--untracked-files=no") == "M cdl.bib" and git("remote") == ""
+    assert git("for-each-ref", "--format=%(refname)") == "refs/heads/master" and git("stash", "list") == ""
     result, error = site.post("/api/send/offers", {"restart": True})
     assert error["kind"] == "CdlbibError" and text(site.ws) == edited

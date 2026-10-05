@@ -246,9 +246,27 @@ def test_add_by_identifier(visit):
     expect(page.locator("#match-count")).to_have_text("4 entries")
 
 
+INK = """(img) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0);
+    const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let dark = 0, light = 0, top = 0;
+    for (let i = 0; i < data.length; i += 4) {
+        const grey = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        if (grey < 100) { dark += 1; if (i / 4 < canvas.width * canvas.height / 2) top += 1; }
+        if (grey > 240) light += 1;
+    }
+    return {width: canvas.width, height: canvas.height, dark, light, top, shown: img.getBoundingClientRect().width};
+}"""
+
+
 def test_add_by_pdf_upload(visit, tmp_path):
     if not pdfs.pdflatex():
         pytest.skip("pdflatex is not installed: the test PDF cannot be typeset")
+    if not importlib.util.find_spec("pypdfium2"):
+        pytest.skip("the pdf extra (pypdfium2) is not installed: no page is drawn, so nothing rendered can be examined")
     pdf = pdfs.build("doi", tmp_path / "pdf")
     page = visit.open()
     visit.nav("add")
@@ -261,10 +279,19 @@ def test_add_by_pdf_upload(visit, tmp_path):
     # the PDF itself in the browser's viewer; a browser without one (headless chromium) is shown its
     # first page drawn by the server, which needs the pdf extra
     if page.locator("iframe.pdf-frame").count():
-        assert page.locator("iframe.pdf-frame").get_attribute("src").startswith("blob:")
-    elif importlib.util.find_spec("pypdfium2"):
-        expect(page.locator("img.pdf-image")).to_be_visible(timeout=60_000)
-        assert page.locator("img.pdf-image").get_attribute("src").startswith("data:image/png;base64,")
+        assert page.locator("iframe.pdf-frame").first.get_attribute("src").startswith("blob:")
+        page.click("button:has-text('Show the first page as an image')")          # what a viewer shows cannot be read from here
+    image = page.locator("[role=tabpanel]:visible img.pdf-image")
+    expect(image).to_be_visible(timeout=60_000)
+    # what is drawn is the page: a white sheet with a real amount of ink, most of it in the upper
+    # half (the title and the abstract), at the size the server renders
+    ink = image.evaluate(INK)
+    assert ink["width"] == 800 and 1000 <= ink["height"] <= 1100 and ink["shown"] > 200
+    pixels = ink["width"] * ink["height"]
+    assert 0.005 * pixels < ink["dark"] < 0.2 * pixels and ink["light"] > 0.7 * pixels and ink["top"] > 0.5 * ink["dark"]
+    import base64
+    from cdlbib import api
+    assert base64.b64decode(image.get_attribute("src").split(",", 1)[1]) == api.render_first_page(pdf)
     expect(page.locator("button[data-route=dartmouth]")).to_be_visible()
     expect(page.locator("button[data-route=openai]")).to_be_visible()
     expect(page.locator("[role=tabpanel]:visible")).to_contain_text("Create an API key in Dartmouth Chat")
@@ -272,6 +299,26 @@ def test_add_by_pdf_upload(visit, tmp_path):
     card = page.locator("article.card")
     expect(card).to_have_count(1, timeout=120_000)
     expect(card).to_contain_text("Found by the doi read from the PDF (page 1)")
+    # the proposed entry lies beside the PDF's first page
+    beside = page.locator(".beside")
+    side = beside.locator("img.pdf-image")
+    expect(side).to_be_visible(timeout=60_000)
+    assert side.evaluate(INK)["dark"] == ink["dark"]
+    left, right = beside.locator(".pdf-view").bounding_box(), card.bounding_box()
+    assert left["x"] + left["width"] <= right["x"] and abs(left["y"] - right["y"]) < 40
+    page.set_viewport_size({"width": 600, "height": 760})                      # narrow: one above the other
+    left, right = beside.locator(".pdf-view").bounding_box(), card.bounding_box()
+    assert left["y"] + left["height"] <= right["y"] + 1 and abs(left["x"] - right["x"]) < 4
+    page.set_viewport_size({"width": 1180, "height": 760})
+    card.locator("[data-action=edit]").click()                                 # ... and stays there after a recheck
+    card.locator("textarea").fill(ZOLL90.replace("1053--1065", "1053--1066"))
+    card.locator("[data-action=recheck]").click()
+    expect(card.locator("pre").nth(1)).to_contain_text("1053--1066", timeout=120_000)
+    expect(beside.locator("img.pdf-image")).to_be_visible()
+    card.locator("[data-action=edit]").click()
+    card.locator("textarea").fill(ZOLL90)
+    card.locator("[data-action=recheck]").click()
+    expect(card.locator("pre").nth(1)).to_have_text(ZOLL90, timeout=120_000)
     card.locator("[data-action=accept]").click()
     expect(card).to_contain_text("Added: Zoll90", timeout=120_000)
     assert keys(visit.ws)[-1] == "Zoll90"
@@ -374,6 +421,43 @@ def test_a_narrow_window_keeps_every_view_usable(browser, visit):
     assert narrow.problems == [], narrow.problems
 
 
+def test_no_view_shows_a_missing_value_as_text(visit):
+    """Every view and every tab of it as first drawn, and an entry's three tabs: nowhere is a
+    missing value written out as the word null or undefined."""
+    page = visit.open()
+
+    def look(where):
+        page.wait_for_timeout(400)
+        shown = page.locator("body").inner_text()
+        assert not re.search(r"\b(null|undefined|NaN)\b|\[object ", shown), (where, re.findall(r".{0,60}\b(?:null|undefined|NaN)\b.{0,40}|.{0,40}\[object .{0,40}", shown))
+
+    for name in ("library", "check", "review", "add", "send", "state", "setup"):
+        visit.nav(name)
+        look(name)
+        for index in range(page.locator("main [role=tab]").count()):
+            page.locator("main [role=tab]").nth(index).click()
+            look(f"{name}, tab {index}")
+    page.click("#alerts .alert button")                 # the review queue's "changed entries" needs GitHub
+    visit.nav("review")
+    page.click("button:has-text('All entries')")
+    page.locator(".queue button.item").first.click()
+    look("review, an entry")
+    visit.nav("library")
+    for key in ("Game62", "Kaha12"):
+        page.fill("#search", "key:" + key)
+        expect(page.locator(".vt-row .c-key")).to_have_text([key])
+        page.click(".vt-row")
+        expect(page.locator(".detail-head h2")).to_have_text(key)
+        for index in range(3):
+            page.locator(".detail [role=tab]").nth(index).click()
+            look(f"{key}, tab {index}")
+        page.click("[role=tabpanel]:visible details >> nth=0") if page.locator("[role=tabpanel]:visible details").count() else None
+        look(f"{key}, a source record opened")
+    page.click("button:has-text('Edit')")
+    page.click("button:has-text('Preview')")
+    look("edit preview")
+
+
 def test_every_view_opens_and_controls_have_names(visit):
     page = visit.open()
     for name, heading in (("check", "Check"), ("review", "Review queue"), ("add", "Add references"), ("send", "Send"),
@@ -455,4 +539,277 @@ def test_update_with_unsent_changes_asks_in_the_page(browser, managed):  # noqa:
         assert site.ws.bib.read_text(encoding="utf-8") == edited
     finally:
         found.context.close()
+    assert found.problems == [], found.problems
+
+
+# --- found by the review of 2026-10-05 ----------------------------------------------------------
+
+def test_approve_and_withdraw_for_real_in_the_page(browser, tmp_path, monkeypatch):
+    from cdlbib import api, identity
+    from cdlbib.errors import IdentityUnavailable
+    try:
+        me = identity.current()
+    except IdentityUnavailable as exc:
+        pytest.skip(f"no GitHub login for a real approval: {exc}")
+    web.isolate(monkeypatch, tmp_path / "env", home=False)          # gh's login is under the real HOME
+    ws = web.make_library(tmp_path / "library", KAHA12, GAME62, TENE11)
+    running, _ = web.start(ws)
+    found = Visit(browser, running, ws)
+    try:
+        page = found.open()
+        page.click("#identity-check")
+        expect(page.locator("#identity")).to_have_text("GitHub: " + me.handle, timeout=60_000)
+        page.fill("#search", "key:Kaha12")
+        page.click(".vt-row")
+        page.click("button:has-text('Approve')")
+        dialog = page.locator("dialog[open]")
+        expect(dialog).to_contain_text("recorded under the GitHub login of this computer: " + me.handle)
+        dialog.locator("input[name=source]").fill("the book itself")
+        dialog.locator("textarea[name=note]").fill("title page checked")
+        dialog.locator("button:has-text('Record the approval')").click()
+        expect(page.locator(".detail-head .st")).to_have_text("human verified", timeout=60_000)
+        expect(page.locator(".detail")).to_contain_text("Approved by " + me.handle)
+        approved = api.entry(ws, "Kaha12")                                     # the database, not the page
+        assert approved.status == "human_verified" and approved.human_review["reviewer"] == me.handle
+        assert approved.human_review["github_id"] == me.id and approved.human_review["source"] == "the book itself"
+        assert approved.human_review["note"] == "title page checked"
+        page.click("role=tab[name=/Evidence/]")
+        expect(page.locator("[role=tabpanel]:visible")).to_contain_text("title page checked")
+        page.click("button:has-text('Withdraw approval')")
+        dialog.locator("textarea[name=reason]").fill("wrong edition")
+        dialog.locator("button:has-text('Withdraw the approval')").click()
+        expect(page.locator(".detail-head .st")).to_have_text("needs review", timeout=60_000)
+        after = api.entry(ws, "Kaha12")
+        assert after.status == "needs_review" and after.revoked_approval["reason"] == "wrong edition"
+        assert after.revoked_approval["revoked_by"] == me.handle and after.human_review is None
+    finally:
+        found.context.close()
+        running.stop()
+    assert found.problems == [], found.problems
+
+
+def test_text_that_changes_while_a_save_runs_is_not_lost(visit):
+    page = visit.open()
+    web.wait_idle(visit.running)
+    page.fill("#search", "key:Kaha12")
+    page.click(".vt-row")
+    page.click("button:has-text('Edit')")
+    saved = KAHA12.replace("{2012}", "{2013}")
+    page.fill("#entry-text", saved)
+    page.click("button:has-text('Preview')")
+    save = page.locator("button:has-text('Save')")
+    expect(save).to_be_enabled()
+    held = web.Held(visit.running)                       # the save waits behind this
+    try:
+        save.click()
+        text = page.locator("#entry-text")
+        expect(text).to_have_attribute("readonly", "")                          # nothing is typed into a text being saved
+        expect(page.locator("button:has-text('Preview')")).to_be_disabled()
+        later = saved.replace("{2013}", "{2014}")
+        text.evaluate("(el, value) => { el.value = value; }", later)           # and if the text changes all the same ...
+    finally:
+        held.done()
+    expect(page.locator("section[aria-label=Preview]")).to_contain_text("differs from what was saved and is not saved", timeout=60_000)
+    expect(page.locator("main h1")).to_have_text("Edit Kaha12")                 # ... the editor stays, with it
+    expect(text).to_have_value(later)
+    expect(text).not_to_have_attribute("readonly", "")
+    expect(save).to_be_disabled()
+    assert saved in visit.ws.bib.read_text(encoding="utf-8") and "{2014}" not in visit.ws.bib.read_text(encoding="utf-8")
+    visit.nav("library")                                                        # still unsaved: leaving asks
+    expect(page.locator("dialog[open] h2")).to_have_text("Leave without saving?")
+    page.click("dialog >> text=Cancel")
+    page.click("button:has-text('Preview')")
+    expect(save).to_be_enabled()
+    save.click()
+    expect(page.locator(".detail-head h2")).to_have_text("Kaha12")
+    assert later in visit.ws.bib.read_text(encoding="utf-8")
+
+
+def test_typed_text_survives_tabs_and_is_discarded_only_on_purpose(visit):
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='Manual']")
+    title = page.locator("input[data-field=title]")
+    title.fill("A hand-typed title")
+    page.locator("input[data-field=author]").fill("A Person")
+    page.select_option("#manual-type", "book")
+    page.click("role=tab[name='Search']")
+    page.fill("#add-title", "something to search for")
+    page.click("role=tab[name='Identifiers']")
+    page.click("role=tab[name='Manual']")
+    expect(title).to_have_value("A hand-typed title")                           # the form was not rebuilt
+    expect(page.locator("#manual-type")).to_have_value("book")
+    page.click("role=tab[name='Search']")
+    expect(page.locator("#add-title")).to_have_value("something to search for")
+    visit.nav("library")                                                        # leaving the view asks
+    dialog = page.locator("dialog[open]")
+    expect(dialog.locator("h2")).to_have_text("Leave without saving?")
+    page.keyboard.press("Escape")
+    expect(page.locator("main h1")).to_have_text("Add references")
+    page.click("role=tab[name='Manual']")
+    expect(title).to_have_value("A hand-typed title")
+    page.click("[data-action=manual-discard]")                                  # discarding is a decision of its own
+    expect(dialog.locator("h2")).to_have_text("Discard what you typed?")
+    page.click("dialog >> text=Cancel")
+    expect(title).to_have_value("A hand-typed title")
+    page.click("[data-action=manual-discard]")
+    dialog.locator("button:has-text('Discard')").click()
+    expect(page.locator("input[data-field=title]")).to_have_value("")
+    visit.nav("library")                                                        # nothing typed any more: no question
+    expect(page.locator(".vt-row").first).to_be_visible()
+    expect(page.locator("dialog[open]")).to_have_count(0)
+    # a dialog that holds typed text is not dismissed by one key
+    page.click(".vt-row")
+    page.click("button:has-text('Approve')")
+    dialog.locator("input[name=source]").fill("the journal's page")
+    page.keyboard.press("Escape")
+    expect(dialog).to_be_visible()
+    expect(dialog).to_contain_text("Cancel again to discard it.")
+    expect(dialog.locator("input[name=source]")).to_have_value("the journal's page")
+    page.click("dialog button:has-text('Cancel')")                              # the second, explicit step
+    expect(page.locator("dialog[open]")).to_have_count(0)
+
+
+def test_one_action_at_a_time_on_a_proposal_and_a_waiting_request_can_be_cancelled(visit):
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='Identifiers']")
+    page.fill("#add-identifiers", pdfs.ZOLLER_DOI)
+    page.click("button:has-text('Look up')")
+    card = page.locator("article.card")
+    expect(card).to_have_count(1, timeout=120_000)
+    first = card.get_attribute("data-proposal")
+    card.locator("[data-action=edit]").click()
+    card.locator("textarea").fill(ZOLL90.replace("1053--1065", "1053--1066"))
+    visit.nav("library")                                                        # an edited proposal is unsaved work too
+    expect(page.locator("dialog[open] h2")).to_have_text("Leave without saving?")
+    page.click("dialog >> text=Cancel")
+    web.wait_idle(visit.running)
+    held = web.Held(visit.running)
+    try:
+        card.locator("[data-action=recheck]").click()
+        expect(card).to_have_attribute("aria-busy", "true")
+        for action in ("accept", "edit", "skip", "recheck"):                    # nothing else can be decided meanwhile
+            expect(card.locator(f"[data-action={action}]")).to_be_disabled()
+        expect(card.locator("textarea")).to_be_disabled()
+        assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
+        expect(page.locator("#activity button")).to_have_text("Cancel what is waiting", timeout=30_000)
+    finally:
+        held.done()
+    expect(card.locator("pre").nth(1)).to_contain_text("1053--1066", timeout=120_000)
+    assert card.get_attribute("data-proposal") != first                         # a new version, under a new id
+    expect(card.locator("[data-action=skip]")).to_be_enabled()
+    held = web.Held(visit.running)
+    try:
+        card.locator("[data-action=skip]").click()                              # (skipping needs no job: it is done at once)
+        expect(card).to_contain_text("Skipped; nothing was changed.")
+        visit.nav("check")
+        page.click("button:has-text('Format check only')")
+        cancel = page.locator("#activity button")
+        expect(cancel).to_have_text("Cancel what is waiting", timeout=30_000)
+        cancel.click()
+        expect(page.locator("#alerts .alert")).to_contain_text("Cancelled before it started; nothing was done.")
+    finally:
+        held.done()
+    web.wait_idle(visit.running)
+    assert "POST /api/check/format" not in [label for label, _, _ in visit.running.app.worker.history]
+
+
+def test_check_and_send_begin_with_the_completion_step_unless_it_is_skipped(visit):
+    page = visit.open()
+    visit.nav("check")
+    page.click("[data-action=check-changed]")
+    # the reference cannot be fetched here: the step says so, as the command line does, and the check goes on
+    expect(page.locator("main")).to_contain_text("Completion unavailable: Entries could not be selected for completion", timeout=60_000)
+    expect(page.locator("#alerts .alert")).to_contain_text("citation check failed", timeout=60_000)
+    page.click("#alerts .alert button")
+    assert "POST /api/send/offers" in [label for label, _, _ in visit.running.app.worker.history]
+    visit.nav("send")
+    before = len(visit.running.app.worker.history)
+    page.check("#send-no-complete")
+    page.click("[data-action=send]")
+    expect(page.locator("pre.log").last).to_contain_text("completion skipped (--no-complete)")
+    expect(page.locator("main .note.bad")).to_be_visible(timeout=60_000)        # not a checkout: the send's own refusal
+    web.wait_idle(visit.running)
+    labels = [label for label, _, _ in visit.running.app.worker.history[before:]]
+    assert "POST /api/send" in labels and "POST /api/send/offers" not in labels
+    page.uncheck("#send-no-complete")
+    page.click("[data-action=send]")
+    expect(page.locator("main")).to_contain_text("Completion unavailable:", timeout=60_000)
+    web.wait_idle(visit.running)
+    labels = [label for label, _, _ in visit.running.app.worker.history[before:]]
+    assert labels.index("POST /api/send/offers") < len(labels) - 1 - labels[::-1].index("POST /api/send")
+    assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
+
+
+def test_names_are_chosen_one_by_one_in_the_proposal(browser, tmp_path, monkeypatch):
+    from cdlbib.web import routes
+    web.isolate(monkeypatch, tmp_path / "env")
+    ws, item, raw = web.name_question(tmp_path / "library")
+    running, _ = web.start(ws)
+    found = Visit(browser, running, ws)
+    try:
+        page = found.open()
+        kept = routes.keep(running.app, item, in_library=True)       # as the send step's completion offer keeps it
+        from playwright.sync_api import expect as _expect
+        # the card is drawn by the page's own module from the proposal's data
+        page.evaluate("""async (data) => {
+            const { proposalCard } = await import('/js/proposal.js');
+            document.getElementById('main').replaceChildren(proposalCard(data, { verb: 'Completed' }));
+        }""", kept)
+        card = page.locator("article.card")
+        _expect(card.locator("fieldset.names legend")).to_contain_text("author names differ")
+        _expect(card.locator("fieldset.names input[type=radio]")).to_have_count(2)      # only the name that differs is asked
+        _expect(card.locator("fieldset.names li").first).to_have_text("A Cleeremans")
+        card.locator("fieldset.names input[value=source]").check()
+        card.locator("[data-action=names]").click()
+        _expect(card.locator("pre").nth(1)).to_contain_text("McClelland", timeout=120_000)
+        _expect(card.locator("fieldset.names")).to_have_count(0)
+        _expect(card).to_contain_text("user edit")
+        assert ws.bib.read_text(encoding="utf-8") == raw
+        card.locator("[data-action=accept]").click()
+        _expect(card).to_contain_text("Completed: CleeMcCl91", timeout=120_000)
+        assert "McClelland" in ws.bib.read_text(encoding="utf-8") and "McCleeland" not in ws.bib.read_text(encoding="utf-8")
+    finally:
+        found.context.close()
+        running.stop()
+    assert found.problems == [], found.problems
+
+
+def test_the_whole_review_queue_is_searched_and_paged_and_follows_the_file(browser, tmp_path, monkeypatch):
+    from cdlbib import complete
+    web.isolate(monkeypatch, tmp_path / "env")
+    entries = [complete.render("article", f"Auth{n:03d}", dict(author=f"A Author{n}", title=f"Paper number {n}", journal="Journal of Tests",
+                                                              year=str(1900 + n), volume="1", pages="1--2")) for n in range(230)]
+    ws = web.make_library(tmp_path / "library", *entries)
+    running, _ = web.start(ws)
+    found = Visit(browser, running, ws)
+    try:
+        page = found.open()
+        found.nav("review")
+        page.click("#alerts .alert button")                     # "changed entries" needs the GitHub master
+        page.click("button:has-text('All entries')")
+        items = page.locator(".queue button.item")
+        expect(page.locator("#review-count")).to_have_text("230 entries are not verified or approved. Showing 1 to 100.")
+        expect(items).to_have_count(100)
+        page.click("button:has-text('Next 100')")
+        expect(items.first).to_contain_text("Auth100")
+        page.click("button:has-text('Next 100')")
+        expect(page.locator("#review-count")).to_contain_text("Showing 201 to 230.")
+        expect(items).to_have_count(30)
+        expect(page.locator("button:has-text('Next 100')")).to_be_disabled()
+        page.fill("#review-search", "key:Auth229 year:2129")
+        expect(items).to_have_count(1)
+        expect(page.locator("#review-count")).to_have_text("1 entry is not verified or approved, matching the search.")
+        items.first.click()
+        expect(page.locator(".detail-head h2")).to_have_text("Auth229")
+        expect(page.locator("[role=tabpanel]:visible")).to_contain_text("Paper number 229")
+        # another program edits the entry; when the window is looked at again, the queue and the entry are read again
+        ws.bib.write_text(ws.bib.read_text(encoding="utf-8").replace("Paper number 229", "Paper number 229 revised"), encoding="utf-8")
+        page.evaluate("() => window.dispatchEvent(new Event('focus'))")
+        expect(page.locator("[role=tabpanel]:visible")).to_contain_text("Paper number 229 revised", timeout=30_000)
+        expect(items.first).to_contain_text("Paper number 229 revised")
+    finally:
+        found.context.close()
+        running.stop()
     assert found.problems == [], found.problems

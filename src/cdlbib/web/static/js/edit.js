@@ -1,13 +1,13 @@
 // Editing one entry, or typing a new one: the preview first, then the save of exactly what was previewed.
 import { get, post } from "./api.js";
-import { h, clear, button, field, list, table, note, status, kv, run, info, announce } from "./dom.js";
+import { h, clear, button, field, list, table, note, status, kv, run, info, announce, drafts, showError, add } from "./dom.js";
 
 export function diffView(text) {
   const el = h("pre", { class: "diff mono panel", "aria-label": "Changes" });
   for (const line of String(text || "").split("\n")) {
     const head = line.startsWith("@@") || line.startsWith("+++") || line.startsWith("---");
     const kind = head ? "hunk" : line.startsWith("+") ? "add" : line.startsWith("-") ? "del" : "";
-    el.append(h("span", { class: kind, text: line || " " }));
+    add(el, h("span", { class: kind, text: line || " " }));
   }
   return el;
 }
@@ -19,10 +19,10 @@ export async function show(main, ctx, key) {
   const text = h("textarea", { class: "mono", id: "entry-text", spellcheck: "false", rows: "18" });
   text.value = original;
   const out = h("section", { "aria-label": "Preview", "aria-live": "polite" });
-  const save = button("Save", (event) => run(event.currentTarget, saving), { class: "primary", disabled: true });
+  const save = button("Save", () => saving().catch(showError), { class: "primary", disabled: true });
   const preview = button("Preview", (event) => run(event.currentTarget, previewing));
 
-  ctx.guard = () => text.isConnected && text.value !== original;
+  drafts.add(() => text.isConnected && text.value !== original);
 
   function stale() {
     previewed = null;
@@ -70,9 +70,25 @@ export async function show(main, ctx, key) {
 
   async function saving() {
     if (!previewed || previewed.raw !== text.value) { stale(); return; }
-    const done = await post("/api/edit/save", { preview: previewed.id });
-    original = text.value;
+    const submitted = previewed.raw;        // exactly what the server holds under this preview
+    let done;
+    save.disabled = true;                   // one save at a time; a new preview enables it again
+    text.readOnly = true;                   // nothing is typed into a text that is being saved
+    preview.disabled = true;
+    try {
+      done = await post("/api/edit/save", { preview: previewed.id });
+    } catch (error) {
+      stale();                              // the preview is used up or refused: preview again
+      throw error;
+    } finally {
+      text.readOnly = false;
+      preview.disabled = false;
+    }
     const written = done.written[0] || (key || "");
+    if (done.written.length) {
+      original = submitted;
+      key = written;
+    }
     const parts = ["Saved " + written + "."];
     for (const [from, to] of Object.entries(done.renamed)) parts.push("Renamed " + from + " to " + to + ".");
     if (done.backup) parts.push("Backup taken first: " + done.backup + ".");
@@ -80,10 +96,19 @@ export async function show(main, ctx, key) {
     for (const [refused, why] of done.refused) parts.push("Not written " + refused + ": " + why);
     info(parts.concat(done.notes).join("\n"));
     ctx.selected = written || ctx.selected;
+    stale();
+    if (text.value !== original) {          // typed since, or the save was refused: the text stays here
+      clear(out, note("warn", done.written.length
+        ? "Saved " + written + " as it was previewed. The text in the editor differs from what was saved and is not saved; preview it and save again to keep it."
+        : "Nothing was saved. The text is still in the editor."));
+      heading.textContent = "Edit " + key;
+      return;
+    }
     ctx.go("library");
   }
 
-  clear(main, h("h1", { text: key ? "Edit " + key : "New entry" }), h("div", { class: "two" },
+  const heading = h("h1", { text: key ? "Edit " + key : "New entry" });
+  clear(main, heading, h("div", { class: "two" },
     h("div", null,
       field(key ? "The entry's BibTeX text" : "The new entry's BibTeX text (one entry, with its key)", text),
       h("div", { class: "row" }, preview, save, button("Cancel", () => ctx.go("library"))),

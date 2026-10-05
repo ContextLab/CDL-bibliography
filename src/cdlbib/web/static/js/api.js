@@ -1,6 +1,6 @@
 // Requests to this server. The run's token is kept in this module's memory only and sent as a
 // header; it is never put in an address.
-import { ask } from "./dom.js";
+import { ask, h, clear } from "./dom.js";
 
 let token = null;
 let active = 0;
@@ -16,12 +16,24 @@ export class ApiError extends Error {
   }
 }
 
+const queued = new Set();        // jobs of this page that wait behind the one that is running
+
 function busy(change) {
   active += change;
   const el = document.getElementById("activity");
   if (!el) return;
   el.classList.toggle("on", active > 0);
-  el.textContent = active > 0 ? "Working…" : "";
+  if (active <= 0) { el.textContent = ""; return; }
+  if (!queued.size) { el.textContent = "Working…"; return; }
+  if (el.querySelector("button")) return;
+  clear(el, "Waiting for the job that is running… ", h("button", { type: "button", text: "Cancel what is waiting",
+    on: { click: () => { for (const job of [...queued]) cancel(job).catch(() => {}); } } }));
+}
+
+// Cancel a job that has not started (one that runs is left to finish).
+export async function cancel(job) {
+  const response = await send("POST", "/api/jobs/" + job + "/cancel", { json: {} });
+  return (await response.json()).result;
 }
 
 async function send(method, path, { query, json, body, type } = {}) {
@@ -64,6 +76,11 @@ export async function follow(job, onLine) {
     const view = found.result;
     for (const line of view.lines) if (onLine) onLine(line);
     after = view.next;
+    const waits = !view.done && !view.running;
+    if (waits !== queued.has(job)) {
+      if (waits) queued.add(job); else queued.delete(job);
+      busy(0);
+    }
     if (view.done) {
       if (view.error) throw new ApiError(view.error);
       return view.result;

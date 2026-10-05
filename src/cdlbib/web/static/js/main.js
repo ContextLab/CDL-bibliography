@@ -1,6 +1,6 @@
 // Start-up: the token, the views, the theme, the login shown in the header.
 import { setToken, hasToken, get, post, follow } from "./api.js";
-import { h, clear, button, announce, showError, run, ask, note } from "./dom.js";
+import { h, clear, button, announce, showError, run, ask, note, drafts, unsaved, add } from "./dom.js";
 import * as library from "./library.js";
 import * as edit from "./edit.js";
 import * as check from "./check.js";
@@ -21,7 +21,6 @@ const main = document.getElementById("main");
 const ctx = {
   session: null,
   selected: null,         // the key selected in the library
-  guard: null,            // a view's "there is unsaved text" test
   go(route) { window.location.hash = "#/" + route; },
   identity() { return ctx.session && ctx.session.identity; },
   showIdentity,
@@ -72,11 +71,12 @@ let shown = null;
 async function show() {
   const [name, param] = route();
   const view = (VIEWS.find((item) => item[0] === name) || [])[2] || HIDDEN[name] || library;
-  if (ctx.guard && ctx.guard()) {
-    const leave = await ask({ title: "Leave without saving?", body: "The text you edited has not been saved.", confirm: "Leave", danger: true });
+  if (unsaved()) {
+    const leave = await ask({ title: "Leave without saving?", body: "What you typed in this view has not been saved, and leaving discards it.",
+      confirm: "Discard and leave", danger: true });
     if (!leave) { window.history.replaceState(null, "", shown || "#/library"); return; }
   }
-  ctx.guard = null;
+  drafts.clear();
   shown = window.location.hash;
   for (const item of document.querySelectorAll("#nav button")) {
     if (item.dataset.view === name) item.setAttribute("aria-current", "page");
@@ -107,7 +107,7 @@ async function start() {
   document.getElementById("library-path").textContent = (parts.length > 2 ? "…/" : "/") + parts.slice(-2).join("/");
   document.getElementById("library-path").title = ctx.session.bib;
   const nav = document.getElementById("nav");
-  for (const [name, label] of VIEWS) nav.append(button(label, () => ctx.go(name), { "data-view": name }));
+  for (const [name, label] of VIEWS) add(nav, button(label, () => ctx.go(name), { "data-view": name }));
   showIdentity();
   const checker = document.getElementById("identity-check");
   checker.addEventListener("click", () => run(checker, async () => {
@@ -115,7 +115,7 @@ async function start() {
     announce(document.getElementById("identity").textContent);
   }));
   window.addEventListener("hashchange", show);
-  window.addEventListener("beforeunload", (event) => { if (ctx.guard && ctx.guard()) event.preventDefault(); });
+  window.addEventListener("beforeunload", (event) => { if (unsaved()) event.preventDefault(); });
   if (ctx.session.prepare) {
     clear(main, h("p", { class: "muted", text: "Reading the library…" }));
     const activity = document.getElementById("activity");

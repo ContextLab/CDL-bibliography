@@ -128,7 +128,7 @@ def test_requests_that_arrive_together_are_run_one_at_a_time(site):
     web.wait_idle(site.running)
     worker = site.running.app.worker
     history = sorted(worker.history, key=lambda item: item[1])
-    assert worker.overlaps == 0 and len(history) >= 49                     # prepare, then every request
+    assert worker.overlaps == 0 and len(history) >= 33      # prepare, every request with arguments, and the joined plain reads
     assert all(earlier[2] <= later[1] for earlier, later in zip(history, history[1:]))   # no two intervals overlap
     assert {label for label, _, _ in history} >= {"prepare", "GET /api/entries", "POST /api/edit/preview",
                                                   "POST /api/check/format", "GET /api/search", "GET /api/state"}
@@ -144,10 +144,6 @@ def test_errors_of_the_core_are_typed_by_their_class(site):
     assert error["kind"] == "EditRefused" and isinstance(error["problems"], list)
     result, error = site.post("/api/send")
     assert error["kind"] == "PublishRefused" and error["needs_fork"] is False and "needs_confirmation" not in error
-    result, error = site.get("/api/backups")
-    assert error["kind"] == "CdlbibError" and "has not downloaded a library yet" in error["message"]
-    result, error = site.post("/api/update")
-    assert error["kind"] == "CdlbibError" and "nothing to update" in error["message"]
     assert routes.failure(ValueError("boom")) == {"kind": "InternalError", "message": "ValueError: boom"}
     assert routes.failure(routes.Bad("no")) == {"kind": "BadRequest", "message": "no"}
     assert routes.failure(store.Missing("gone")) == {"kind": "NotFound", "message": "gone"}
@@ -172,10 +168,11 @@ def test_the_store_issues_random_ids_keeps_kinds_apart_and_removes_its_folder(tm
         held.drop("pdf", kept)
         assert not folder.exists()
         first = held.put("search", [])
-        for _ in range(store.KEPT + 5):
+        for _ in range(store.COUNTS["search"] + 5):
             held.put("search", [])
-        with pytest.raises(store.Missing):                # the oldest made room
+        with pytest.raises(store.Missing):                # the oldest of its kind made room
             held.get("search", first)
+        assert held.get("proposal", one)                  # and nothing of another kind did
     finally:
         held.close()
     assert not held.folder.exists()

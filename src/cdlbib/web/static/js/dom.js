@@ -1,6 +1,20 @@
 // Building the page. Text from the library, sources, PDFs and models is only ever set as
 // text (textContent, or a text node): nothing here parses markup.
 
+// Unsaved work, in one place: each editor, form or dialog that holds typed text adds a test
+// that says whether it still does. Leaving a view, and closing or reloading the page, ask first
+// while any test says yes; what is typed stays where it is until it is saved or discarded.
+export const drafts = new Set();
+
+export function unsaved() {
+  for (const test of [...drafts]) {
+    let found = false;
+    try { found = test(); } catch (error) { found = false; }
+    if (found) return true;
+  }
+  return false;
+}
+
 const PROPERTIES = new Set(["value", "checked", "disabled", "hidden", "selected", "multiple", "required", "readOnly"]);
 
 export function h(tag, attrs, ...kids) {
@@ -17,8 +31,9 @@ export function h(tag, attrs, ...kids) {
   return el;
 }
 
-export function add(el, kids) {
-  for (const kid of [kids].flat(Infinity)) {
+// Append children; null, undefined and false are left out (never written as text), arrays are flattened.
+export function add(el, ...kids) {
+  for (const kid of kids.flat(Infinity)) {
     if (kid === null || kid === undefined || kid === false) continue;
     el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
   }
@@ -127,13 +142,13 @@ export function logPane(label) {
 }
 
 export function tabs(label, items) {
-  // items: [[name, render(panel), fresh]]: a panel is drawn when first shown and kept; one
-  // marked fresh is drawn again each time it is shown.
+  // items: [[name, render(panel)]]: a panel is drawn when first shown and kept, with whatever
+  // was typed in it, for as long as the view is open.
   const buttons = items.map(([name], index) => h("button", {
     type: "button", role: "tab", id: "tab-" + Math.random().toString(36).slice(2), "aria-selected": "false", tabindex: "-1", text: name,
     on: { click: () => select(index) },
   }));
-  const panels = items.map((item, index) => h("div", { role: "tabpanel", tabindex: "0", hidden: true, "aria-labelledby": buttons[index].id }));
+  const panels = buttons.map((tab) => h("div", { role: "tabpanel", tabindex: "0", hidden: true, "aria-labelledby": tab.id }));
   const drawn = new Set();
   function select(index, focus) {
     buttons.forEach((b, i) => {
@@ -141,7 +156,7 @@ export function tabs(label, items) {
       b.tabIndex = i === index ? 0 : -1;
       panels[i].hidden = i !== index;
     });
-    if (!drawn.has(index) || items[index][2]) {
+    if (!drawn.has(index)) {
       drawn.add(index);
       clear(panels[index]);
       items[index][1](panels[index]);
@@ -174,7 +189,21 @@ export function ask({ title, body, fields, confirm, danger, choices }) {
     });
     const lines = [body].flat().filter((item) => item !== null && item !== undefined);
     let answer = null;
+    let warned = false;
+    const typed = () => inputs.some(([spec, control]) => control.value.trim() !== (spec.value || "").trim());
+    const warning = h("p", { class: "differs", role: "status" });
+    const holds = () => dialog.open && typed();
+    // Dismissing a dialog that holds typed text takes a second, explicit step.
+    const dismiss = () => {
+      if (typed() && !warned) {
+        warned = true;
+        warning.textContent = "What you typed here is not kept. Cancel again to discard it.";
+        return false;
+      }
+      return true;
+    };
     const done = (choice) => {
+      if (choice === null && !dismiss()) return;
       if (choice !== null) {
         const missing = inputs.find(([spec, control]) => spec.required && !control.value.trim());
         if (missing) { missing[1].focus(); return; }
@@ -190,8 +219,10 @@ export function ask({ title, body, fields, confirm, danger, choices }) {
           button(confirm || "Continue", () => done("yes"), { class: danger ? "danger" : "primary" }));
     const dialog = h("dialog", { "aria-labelledby": "dialog-title" }, heading,
       lines.map((line) => (line instanceof Node ? line : h("pre", { text: line }))),
-      inputs.map(([spec, control]) => field(spec.label, control)), offered);
-    dialog.addEventListener("close", () => { dialog.remove(); resolve(answer); });
+      inputs.map(([spec, control]) => field(spec.label, control)), warning, offered);
+    dialog.addEventListener("cancel", (event) => { if (!dismiss()) event.preventDefault(); });
+    dialog.addEventListener("close", () => { drafts.delete(holds); dialog.remove(); resolve(answer); });
+    drafts.add(holds);
     document.body.append(dialog);
     dialog.showModal();
     if (inputs.length) inputs[0][1].focus();

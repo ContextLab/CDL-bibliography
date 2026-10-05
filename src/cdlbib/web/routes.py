@@ -7,9 +7,9 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field, replace
 
-from .. import api, deps, prompts, workspace
+from .. import api, deps, prompts
 from ..errors import CdlbibError, MissingDependency, PublishRefused, UpdateNeedsDecision
-from .store import ID, MANUSCRIPT_TYPES, MAX_BUNDLE_FILES, Missing
+from .store import ID, MANUSCRIPT_TYPES, Missing
 
 # Names no endpoint takes, whatever the route: where a change goes, what it is compared
 # with, which cache or ledger is used, and anything that names a file.
@@ -25,6 +25,14 @@ READ_FROM = {"aux": "the .aux file", "bcf": "the .bcf file", "compiled": "a fres
 
 class Bad(Exception):
     """A request the table does not allow (HTTP 400)."""
+
+
+class Refusal(Exception):
+    """A refusal of this server's own, with a kind for the page to act on (and more to show)."""
+
+    def __init__(self, kind, message, **extra):
+        self.kind, self.extra = kind, extra
+        super().__init__(message)
 
 
 class Reply(Exception):
@@ -70,14 +78,14 @@ class Flag:
 
 
 class Whole:
-    def __init__(self, low=0, high=10 ** 9):
-        self.low, self.high = low, high
+    def __init__(self, low=0, high=10 ** 9, default=None):
+        self.low, self.high, self.default = low, high, low if default is None else default
 
     def check(self, name, value):
         if isinstance(value, str) and re.fullmatch(r"\d{1,10}", value):
             value = int(value)
         if value is None:
-            return self.low
+            return self.default
         if isinstance(value, bool) or not isinstance(value, int) or not self.low <= value <= self.high:
             raise Bad(f"{name} must be a whole number from {self.low} to {self.high}")
         return value
@@ -141,20 +149,47 @@ class Route:
     body: str = "json"           # "json" | "pdf" | "file" (an upload)
     answer: str = "json"         # "json" | "bytes" (the handler returns (content type, bytes, download name))
     direct: bool = False         # no api call: answered by the request thread (the store, the job list)
+    single: bool = False         # a repeat is pointless: a request of this kind that is already waiting is joined
 
 
 # --- data ----------------------------------------------------------------------------------------
 
 def summaries(app):
-    """(tag, [EntrySummary]). The entries are read again whenever cdl.bib, the verification
-    database or the revocation ledger changed on disk since this server's own last call
-    (``app.after``: api.revision as that call left it; reading results touches the database
-    file, so the value is taken after each job, not before), and after every job that may
-    have written. The tag names one reading; the page reloads its list when it differs."""
-    if app.cached is None or api.revision(app.ws) != app.after:
+    """(tag, [EntrySummary]) of the library as it is now. The snapshot is kept with the
+    api.revision it was built from and is rebuilt whenever the revision differs (a save, an
+    approval, a check, or another program's edit); nothing else moves that marker, so no
+    request can hide a change. The tag names one reading; the page reloads its list when it
+    differs."""
+    now = api.revision(app.ws)
+    if app.cached is None or app.cached[0] != now:
         app.generation += 1
-        app.cached = (str(app.generation), api.entries(app.ws))
-    return app.cached
+        app.cached = (now, str(app.generation), api.entries(app.ws))
+    return app.cached[1], app.cached[2]
+
+
+STALE = ("This proposal was checked again after the version you acted on was shown. Nothing was done; "
+         "the current version is shown now.")
+
+
+def latest(app, found):
+    """The id of the newest version of the proposal ``found`` is a version of."""
+    while True:
+        after = app.store.get("proposal", found)["replaced"]
+        if after is None:
+            return found
+        found = after
+
+
+def current(app, found):
+    """The stored proposal ``found``, which must be the version that is current: a proposal is
+    never changed in place, each recheck or choice makes a new version under a new id, and a
+    decision names exactly the version it was made on."""
+    held = app.store.get("proposal", found)
+    if held["replaced"] is not None:
+        raise Refusal("StaleProposal", STALE, current=latest(app, found))
+    if held["written"]:
+        raise Refusal("AlreadyWritten", f"{held['written']} is written already.")
+    return held
 
 
 def proposal_data(app, found):
@@ -163,12 +198,22 @@ def proposal_data(app, found):
     data = api.intake_data(proposal)
     data.update(id=found, pdf=held["pdf"], in_library=held["in_library"], acceptable=api.acceptable(proposal),
                 cannot_accept=None if api.acceptable(proposal) else CANNOT_ACCEPT,
-                failed=api.proposal_failed(proposal))
+                failed=api.proposal_failed(proposal), superseded=held["replaced"],
+                name_choices=[{"field": field, "typed": typed, "source": source}
+                              for field, typed, source in api.name_choices(proposal)])
     return data
 
 
 def keep(app, proposal, pdf=None, in_library=False):
-    return proposal_data(app, app.store.put("proposal", {"proposal": proposal, "pdf": pdf, "in_library": in_library}))
+    return proposal_data(app, app.store.put("proposal", {"proposal": proposal, "pdf": pdf, "in_library": in_library,
+                                                         "replaced": None, "written": None}))
+
+
+def version(app, found, held, proposal):
+    """Keep ``proposal`` as the next version of ``found``; the older id then only says so."""
+    data = keep(app, proposal, pdf=held["pdf"], in_library=held["in_library"])
+    held["replaced"] = data["id"]
+    return data
 
 
 def kept(app, results, **how):
@@ -214,6 +259,8 @@ def failure(exc):
     """The error a job or a request reports: {kind: the exception's class, message, ...}."""
     if isinstance(exc, Reply):
         return dict(failure(exc.cause), **exc.extra)
+    if isinstance(exc, Refusal):
+        return dict({"kind": exc.kind, "message": str(exc)}, **exc.extra)
     if isinstance(exc, Bad):
         return {"kind": "BadRequest", "message": str(exc)}
     if isinstance(exc, Missing):
@@ -234,7 +281,7 @@ def failure(exc):
 def guarded(app, route, args):
     """The job of a request: the handler, and for a missing optional package the CLI's rule
     (install it after saying so and run once more; with --ask, stop and let the page ask)."""
-    def attempt(say):
+    def call(say):
         for turn in (1, 2):
             try:
                 return route.handler(app, args, say)
@@ -246,24 +293,18 @@ def guarded(app, route, args):
                                 question=f"{exc.feature} needs '{exc.package}'. Install it now?") from exc
                 say(f"installing {exc.package} (needed for: {exc.feature}) ...")
                 deps.install(exc.extra, package=exc.package)
-
-    def call(say):
-        try:
-            return attempt(say)
-        finally:
-            settle(app, wrote=route.method == "POST")
     return call
 
 
-def settle(app, wrote=False):
-    """After a job: forget the entries when it may have written, and note the state of the
-    library's files as this server's own call left them."""
-    if wrote:
-        app.cached = None
-    try:
-        app.after = api.revision(app.ws)
-    except (CdlbibError, OSError):
-        app.after = None
+def not_managed(app):
+    """The sentence for a library the user chose: cdlbib neither updates nor backs it up."""
+    return (f"This library ({app.ws.root}) was chosen by: {prompts.CHOSEN_BY[app.origin]}. It is not the copy cdlbib "
+            "downloads and manages, so cdlbib does not update it, keeps no backups of it and has nothing to undo.")
+
+
+def managed_only(app):
+    if not api.is_managed(app.ws):
+        raise Refusal("NotManaged", not_managed(app))
 
 
 # --- handlers: the session and the jobs (no api call) -------------------------------------------
@@ -271,6 +312,7 @@ def settle(app, wrote=False):
 def session(app, a, say):
     from .. import __version__
     return {"version": __version__, "root": str(app.ws.root), "bib": str(app.ws.bib), "managed": app.managed,
+            "origin": app.origin, "not_managed": None if app.managed else not_managed(app),
             "ask": deps.ask(), "prepare": app.prepare_job, "identity": app.identity,
             "chosen_by": dict(prompts.CHOSEN_BY), "probes": list(api.PROBES), "no_bbl": NO_BBL,
             "manuscript_types": list(MANUSCRIPT_TYPES)}
@@ -281,6 +323,13 @@ def job(app, a, say):
     if found is None:
         raise Missing("no job with that id")
     return found.view(a["after"], seconds=1.0)
+
+
+def job_cancel(app, a, say):
+    found = app.worker.cancel(a["id"])
+    if found is None:
+        raise Missing("no job with that id")
+    return {"cancelled": found == "cancelled", "state": found}
 
 
 # --- handlers: the library -------------------------------------------------------------------------
@@ -307,12 +356,17 @@ def entry(app, a, say):
 
 
 def review_queue(app, a, say):
+    tag, listed = summaries(app)
     found = api.review_queue(app.ws, all_entries=a["all"])
-    return {"all": a["all"], "entries": [
+    if a["q"]:
+        wanted = {item.key for item in api.search(listed, a["q"])}
+        found = [detail for detail in found if detail.key in wanted]
+    page = found[a["offset"]:a["offset"] + a["limit"]]
+    return {"all": a["all"], "revision": tag, "total": len(found), "offset": a["offset"], "limit": a["limit"], "entries": [
         {"key": d.key, "fingerprint": d.fingerprint, "status": d.result.get("status"),
          "issues": api.as_data(d.result.get("issues") or []), "title": d.fields.get("title", ""),
          "authors": d.fields.get("author") or d.fields.get("editor") or "", "year": d.fields.get("year", "")}
-        for d in found]}
+        for d in page]}
 
 
 def preview_edit(app, a, say):
@@ -414,10 +468,7 @@ def model_routes_check(app, a, say):
 def pdf_upload(app, a, say, body):
     if not body.startswith(b"%PDF-"):
         raise Bad("The file does not start as a PDF (no %PDF- header).")
-    folder = app.store.new_folder()
-    (folder / "upload.pdf").write_bytes(body)
-    return {"pdf": app.store.put("pdf", {"folder": folder, "path": folder / "upload.pdf", "intake": None}),
-            "bytes": len(body)}
+    return {"pdf": app.store.add_pdf(body), "bytes": len(body)}
 
 
 def _intake_data(read, found):
@@ -466,14 +517,19 @@ def proposal(app, a, say):
     return proposal_data(app, a["proposal"])
 
 
-def _accepted(app, found, data):
-    if data["written"] or data["removed"]:
+def _accepted(app, found, held, data):
+    """A proposal is done with once it is written (or its duplicate removed). One whose entry
+    is written while its model evidence could not be stored stays, marked as written, so
+    that the page keeps showing what is still owed."""
+    if data.get("evidence_stored") is False:
+        held["written"] = data.get("key")
+    elif data["written"] or data["removed"]:
         app.store.drop("proposal", found)
     return data
 
 
 def proposal_accept(app, a, say):
-    held = app.store.get("proposal", a["proposal"])
+    held = current(app, a["proposal"])
     item = held["proposal"]
     if not api.acceptable(item):
         raise CdlbibError(CANNOT_ACCEPT)
@@ -483,49 +539,66 @@ def proposal_accept(app, a, say):
                     evidence_stored=done.evidence_stored, evidence_error=done.evidence_error)
     else:
         data = applied_data(api.apply_proposals(app.ws, [item]))
-    return _accepted(app, a["proposal"], data)
+    return _accepted(app, a["proposal"], held, data)
 
 
 def proposal_remove_duplicate(app, a, say):
-    item = app.store.get("proposal", a["proposal"])["proposal"]
+    held = current(app, a["proposal"])
+    item = held["proposal"]
     if not (item.duplicate_of and item.duplicate_in_library):
         raise Bad("proposal: this is not a typed duplicate of a library entry")
-    return _accepted(app, a["proposal"], applied_data(api.apply_proposals(app.ws, [replace(item, remove_duplicate=True)])))
+    return _accepted(app, a["proposal"], held, applied_data(api.apply_proposals(app.ws, [replace(item, remove_duplicate=True)])))
 
 
 def proposal_accept_remaining(app, a, say):
-    chosen = []
+    chosen, stale = [], []
     for found in dict.fromkeys(a["proposals"]):
-        item = app.store.get("proposal", found)["proposal"]
-        if api.acceptable(item) and not item.needs_decision and not item.manual:
+        held = app.store.get("proposal", found)
+        item = held["proposal"]
+        if held["replaced"] is not None or held["written"]:
+            stale.append(found)                 # not the version on the page: left for a decision of its own
+        elif api.acceptable(item) and not item.needs_decision and not item.manual:
             chosen.append((found, item))
     if not chosen:
-        return dict(applied_data(api.apply_proposals(app.ws, [])), accepted=[])
+        return dict(applied_data(api.apply_proposals(app.ws, [])), accepted=[], stale=stale)
     data = applied_data(api.apply_proposals(app.ws, [item for _, item in chosen]))
     refused = {key for key, _ in data["refused"]}
     data["accepted"] = [found for found, item in chosen if (item.key_proposed or item.key_typed) not in refused]
+    data["stale"] = stale
     for found in data["accepted"]:
         app.store.drop("proposal", found)
     return data
 
 
 def proposal_recheck(app, a, say):
-    held = app.store.get("proposal", a["proposal"])
-    held["proposal"] = api.recheck_proposal(app.ws, held["proposal"], a["raw"])
-    return proposal_data(app, a["proposal"])
+    held = current(app, a["proposal"])
+    return version(app, a["proposal"], held, api.recheck_proposal(app.ws, held["proposal"], a["raw"]))
 
 
 def proposal_candidate(app, a, say):
-    held = app.store.get("proposal", a["proposal"])
+    held = current(app, a["proposal"])
     leads = held["proposal"].candidates
     if a["index"] >= len(leads):
         raise Bad("index: no such candidate")
-    held["proposal"] = api.choose_candidate(app.ws, held["proposal"], leads[a["index"]], in_library=held["in_library"])
-    return proposal_data(app, a["proposal"])
+    return version(app, a["proposal"], held,
+                   api.choose_candidate(app.ws, held["proposal"], leads[a["index"]], in_library=held["in_library"]))
+
+
+def proposal_names(app, a, say):
+    """The author or editor list settled name by name: for each name the typed one or the
+    source's (the page sends which, never the names)."""
+    held = current(app, a["proposal"])
+    for field, typed, source in api.name_choices(held["proposal"]):
+        if field == a["field"]:
+            if len(a["picks"]) != len(typed):
+                raise Bad("picks: one choice for each name")
+            names = [theirs if pick == "source" else mine for pick, mine, theirs in zip(a["picks"], typed, source)]
+            return version(app, a["proposal"], held, api.resolve_names(app.ws, held["proposal"], field, names))
+    raise Bad("field: this proposal has no such list of names to settle")
 
 
 def proposal_skip(app, a, say):
-    app.store.get("proposal", a["proposal"])
+    current(app, a["proposal"])
     app.store.drop("proposal", a["proposal"])
     return {"skipped": a["proposal"]}
 
@@ -533,16 +606,26 @@ def proposal_skip(app, a, say):
 # --- handlers: sending -----------------------------------------------------------------------------
 
 def offers_next(app, a, say):
+    """The next completion offer for a changed entry that is not yet accepted. An entry that
+    was offered is not offered again in this run while its content stays the same (the CLI's
+    rule for `verify` followed by `send`), whatever was decided about it."""
+    if app.offered is not None:
+        try:
+            app.seen.add((str(app.ws.bib), app.offered, api.entry(app.ws, app.offered).fingerprint))
+        except CdlbibError:
+            pass                                # the entry is gone or renamed: nothing to remember
+        app.offered = None
     if a["restart"] or app.offers is None:
-        app.offers = api.completion_offers(app.ws)
+        app.offers = api.completion_offers(app.ws, seen=app.seen)
     for offer in app.offers:
+        app.offered = offer.key
         if offer.error is not None:
             return {"done": False, "offer": {"key": offer.key, "error": offer.error, "error_kind": offer.error_kind,
                                              "proposals": []}}
         if offer.proposals:
             return {"done": False, "offer": {"key": offer.key, "error": None,
                                              "proposals": [keep(app, item, in_library=True) for item in offer.proposals]}}
-    app.offers = None
+    app.offers = app.offered = None
     return {"done": True, "offer": None}
 
 
@@ -567,15 +650,22 @@ def send(app, a, say):
 
 # --- handlers: the state of the library --------------------------------------------------------------
 
+def _state(app, found):
+    data = api.as_data(found)
+    data["not_managed"] = None if found.managed else not_managed(app)
+    return data
+
+
 def state(app, a, say):
-    return api.as_data(api.library_state(app.ws))
+    return _state(app, api.library_state(app.ws))
 
 
 def state_refresh(app, a, say):
-    return api.as_data(api.library_state(app.ws, refresh=True, progress=say))
+    return _state(app, api.library_state(app.ws, refresh=True, progress=say))
 
 
 def backups(app, a, say):
+    managed_only(app)
     saved = api.backups()
     return {"root": str(api.managed_root()), "folder": str(api.backups_folder()),
             "backups": [dict(backup_data(item), only_copy=api.holds_only_copy(item)) for item in saved],
@@ -584,8 +674,9 @@ def backups(app, a, say):
 
 
 def update(app, a, say):
+    managed_only(app)
     try:
-        return api.as_data(api.update(force=True, progress=say))
+        return api.as_data(api.update(app.ws, force=True, progress=say))
     except UpdateNeedsDecision as exc:
         asked = prompts.answers(exc)
         raise Reply(exc, question=prompts.unsent_question(exc),
@@ -594,16 +685,17 @@ def update(app, a, say):
 
 
 def update_decide(app, a, say):
+    managed_only(app)
     held = app.store.get("decision", a["decision"])
     if a["choice"] not in held["choices"]:
         raise Bad("choice: not one of the choices that were offered")
-    result = api.update(workspace.Workspace(api.managed_root()), decision=a["choice"], force=True, progress=say,
-                        seen=held["seen"])
+    result = api.update(app.ws, decision=a["choice"], force=True, progress=say, seen=held["seen"])
     app.store.drop("decision", a["decision"])
     return dict(api.as_data(result), decision=a["choice"])
 
 
 def undo(app, a, say):
+    managed_only(app)
     if a["stamp"] is not None and a["stamp"] not in {item.stamp for item in api.backups()}:
         raise Bad("stamp: no backup of that name")
     done = api.undo(a["stamp"])
@@ -639,19 +731,11 @@ def tex_unlink(app, a, say):
 
 
 def export_upload(app, a, say, body):
-    if a["bundle"]:
-        found, held = a["bundle"], app.store.get("bundle", a["bundle"])
-    else:
-        held = {"folder": app.store.new_folder(), "files": []}
-        found = app.store.put("bundle", held)
-    if len(held["files"]) >= MAX_BUNDLE_FILES:
-        raise Bad(f"At most {MAX_BUNDLE_FILES} files are taken for one export.")
-    name = app.store.manuscript_name(held["folder"], a["name"])
-    if name is None:
-        raise Bad("name: only " + ", ".join(MANUSCRIPT_TYPES) + " files are taken")
-    (held["folder"] / name).write_bytes(body)
-    held["files"].append(name)
-    return {"bundle": found, "name": name, "files": list(held["files"])}
+    try:
+        found, name, files = app.store.add_manuscript(a["bundle"], a["name"], body)
+    except ValueError as exc:
+        raise Bad(f"name: {exc}") from exc
+    return {"bundle": found, "name": name, "files": files}
 
 
 def export_run(app, a, say):
@@ -673,7 +757,8 @@ def export_run(app, a, say):
     target = app.store.new_folder()
     made = api.export_bib(app.ws, paper, out=target / app.ws.bib.name, main=named)
     cited = made.cited
-    return {"export": app.store.put("export", {"folder": target, "path": made.path}), "name": made.path.name,
+    kept_as = app.store.put("export", {"folder": target, "path": made.path}, size=made.path.stat().st_size)
+    return {"export": kept_as, "name": made.path.name,
             "written": len(made.written), "cited": len(cited.keys), "all_entries": cited.all_entries,
             "read_from": READ_FROM[cited.how], "missing": [str(item) for item in made.missing],
             "parents": list(made.parents), "notes": list(made.notes)}
@@ -692,13 +777,16 @@ def _routes():
     return [
         Route(G, "/api/session", "", session, direct=True),
         Route(G, "/api/jobs/{id}", "", job, {"after": Whole()}, direct=True),
+        Route(P, "/api/jobs/{id}/cancel", "", job_cancel, direct=True),
         # the library
-        Route(G, "/api/entries", "revision, entries", entries, wait=quick),
+        Route(G, "/api/entries", "revision, entries", entries, wait=quick, single=True),
         Route(G, "/api/search", "revision, entries, search", search,
               {"q": Text(500, optional=True), "status": Text(40, r"[a-z_]+", optional=True)}, wait=quick),
-        Route(G, "/api/revision", "revision", revision, wait=quick),
+        Route(G, "/api/revision", "revision, entries", revision, wait=quick, single=True),
         Route(G, "/api/entry", "entry", entry, {"key": KEY}, wait=quick),
-        Route(G, "/api/review-queue", "review_queue", review_queue, {"all": Flag()}, wait=quick),
+        Route(G, "/api/review-queue", "revision, entries, review_queue, search", review_queue,
+              {"all": Flag(), "q": Text(500, optional=True), "offset": Whole(0, 10 ** 6), "limit": Whole(1, 200, 100)},
+              wait=quick),
         Route(P, "/api/edit/preview", "preview_edit", preview_edit,
               with_install(key=Text(200, KEY.pattern.pattern, optional=True), raw=RAW)),
         Route(P, "/api/edit/save", "save_edit", save_edit, with_install(preview=Ident())),
@@ -733,7 +821,7 @@ def _routes():
               wait=quick),
         Route(G, "/api/pdf/{id}/file", "", pdf_file, answer="bytes", direct=True),
         # one proposal
-        Route(G, "/api/proposal", "acceptable, proposal_failed, intake_data", proposal, {"proposal": Ident()},
+        Route(G, "/api/proposal", "acceptable, proposal_failed, intake_data, name_choices", proposal, {"proposal": Ident()},
               wait=quick),
         Route(P, "/api/proposal/accept", "acceptable, apply_proposals | accept_draft", proposal_accept,
               with_install(proposal=Ident())),
@@ -744,23 +832,26 @@ def _routes():
         Route(P, "/api/proposal/recheck", "recheck_proposal", proposal_recheck, with_install(proposal=Ident(), raw=RAW)),
         Route(P, "/api/proposal/candidate", "choose_candidate", proposal_candidate,
               with_install(proposal=Ident(), index=Whole(0, 1000))),
+        Route(P, "/api/proposal/names", "name_choices, resolve_names", proposal_names,
+              with_install(proposal=Ident(), field=Choice("author", "editor"),
+                           picks=Texts(200, Choice("typed", "source"), least=1))),
         Route(P, "/api/proposal/skip", "", proposal_skip, {"proposal": Ident()}, direct=True),
         # sending
-        Route(P, "/api/send/offers", "completion_offers", offers_next, with_install(restart=Flag())),
+        Route(P, "/api/send/offers", "entry, completion_offers", offers_next, with_install(restart=Flag())),
         Route(P, "/api/send", "send_checked", send, with_install(summary=Text(100, optional=True),
                                                                   allow_fork_creation=Flag())),
         # the state of the library
-        Route(G, "/api/state", "library_state", state, wait=quick),
-        Route(P, "/api/state/refresh", "library_state", state_refresh, with_install()),
-        Route(G, "/api/backups", "backups, unreadable_backups, holds_only_copy, completion_undo_checkpoint", backups,
-              wait=quick),
-        Route(P, "/api/update", "update", update, with_install()),
-        Route(P, "/api/update/decide", "update", update_decide,
+        Route(G, "/api/state", "library_state", state, wait=quick, single=True),
+        Route(P, "/api/state/refresh", "library_state", state_refresh, with_install(), single=True),
+        Route(G, "/api/backups", "is_managed, backups, unreadable_backups, holds_only_copy, completion_undo_checkpoint",
+              backups, wait=quick, single=True),
+        Route(P, "/api/update", "is_managed, update", update, with_install()),
+        Route(P, "/api/update/decide", "is_managed, update", update_decide,
               with_install(decision=Ident(), choice=Choice("keep", "update", "send", "discard"))),
-        Route(P, "/api/undo", "backups, undo", undo,
+        Route(P, "/api/undo", "is_managed, backups, undo", undo,
               with_install(stamp=Text(64, r"[0-9A-Za-z][0-9A-Za-z._-]*", optional=True))),
         # setup and export
-        Route(G, "/api/setup", "setup_report", setup, wait=quick),
+        Route(G, "/api/setup", "setup_report", setup, wait=quick, single=True),
         Route(P, "/api/setup/check", "setup_report", setup_check,
               with_install(probe=Choice(*api.PROBES, "all"))),
         Route(P, "/api/tex/link", "tex_link", tex_link, with_install(replace=Flag())),
