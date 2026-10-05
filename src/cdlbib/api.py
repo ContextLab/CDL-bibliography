@@ -544,8 +544,14 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     git is written to. No front end passes it.
     """
     import datetime
-    from . import identity, publish
+    from . import identity, library, publish
     from .errors import PublishRefused
+
+    # Taking the lock settled any write to this library that was killed part-way (or refused):
+    # what is checked and sent below is a whole library, never a half-made change.
+    for line in library.settled(ws):
+        if progress:
+            progress(line)
 
     def not_upstream(candidate, target):
         if candidate and target and candidate.lower() == target.lower() and not _test_inside_own_fork:
@@ -568,12 +574,15 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         before = publish.candidate(ws)
         fmt = check_format(ws, bars=bars)
         check = gate_after_format(fmt, citations=citations)
+        due, passed = bool(check.citations_due), bool(check.ok)      # the gate's own verdict, kept out of reach
         if report:
-            report(check)
-        if check.citations_due:
+            import copy
+            report(copy.deepcopy(check))      # a callback is shown a copy: nothing it does to it reaches the gate
+        if due:
             check = check_citations(ws, fmt, reference=reference, database=database, mailto=mailto,
                                     progress=progress, bars=bars)
-        if not check.ok:
+            passed = bool(check.ok)
+        if not passed:
             raise GateFailed("not sent: fix the format errors and resolve every new/edited entry first "
                              "(see `cdlbib verify`).", check=check)
         publish.require_candidate(ws, before)
@@ -938,7 +947,11 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
         if item.key_proposed and entry['key'] != item.key_proposed:
             item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
             item.needs_decision = True
-        if str(fields['ENTRYTYPE']).lower() != 'article':
+        # ``unsupported`` is about the builder: it makes journal articles only. An entry a person
+        # typed (a manual proposal) is theirs to write in any type the manual form offers.
+        from .intake import DRAFT_TYPES
+        kind = str(fields['ENTRYTYPE']).lower()
+        if kind != 'article' and not (getattr(proposal, 'manual', False) and kind in DRAFT_TYPES):
             item.unsupported = fields['ENTRYTYPE']
             item.needs_decision = True
         path = database or ws.database
@@ -1019,6 +1032,49 @@ def library_state(ws, refresh=False, progress=None):
     return desk.library_state(ws, refresh=refresh, progress=progress)
 
 
+def prepare(ws, progress=None):
+    """Read the library and work out what previews need (the parse, the key bases, the index
+    of works for duplicate detection), so that the first preview_edit is as quick as the
+    later ones. A front end runs this as a job when it opens a library and again when
+    ``revision`` changed; what is prepared is kept for exactly that state of cdl.bib, and a
+    save carries it over. ``progress`` receives a line per step and, for the long step, a
+    line every few hundred entries. Returns desk.Prepared (entries, seconds). Offline."""
+    from . import desk
+    return desk.prepare(ws, progress=progress)
+
+
+def as_data(value):
+    """``value`` as plain data that json.dumps takes as it is, with nothing lost: every result
+    a front end is given (dataclasses, nested) becomes a dict of its fields; a list that
+    carries ``errors`` (ProposalResults) becomes {"items": [...], "errors": [...]}; paths
+    become text, times ISO 8601 text, tuples and sets lists, bytes UTF-8 text, an exception
+    {"error_kind", "error"}; dict keys become text. Anything else is its ``str``."""
+    import dataclasses
+    import datetime
+    if value is None or isinstance(value, (bool, int, float, str)):
+        return value
+    if dataclasses.is_dataclass(value) and not isinstance(value, type):
+        data = {item.name: as_data(getattr(value, item.name)) for item in dataclasses.fields(value)}
+        if isinstance(value, BaseException):
+            data.update(error_kind=type(value).__name__, error=str(value))
+        return data
+    if isinstance(value, dict):
+        return {str(key): as_data(item) for key, item in value.items()}
+    if isinstance(value, list) and hasattr(value, "errors"):
+        return {"items": [as_data(item) for item in value], "errors": as_data(list(value.errors))}
+    if isinstance(value, (list, tuple)):
+        return [as_data(item) for item in value]
+    if isinstance(value, (set, frozenset)):
+        return sorted((as_data(item) for item in value), key=repr)
+    if isinstance(value, (datetime.datetime, datetime.date)):
+        return value.isoformat()
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    if isinstance(value, BaseException):
+        return {"error_kind": type(value).__name__, "error": str(value)}
+    return str(value)
+
+
 def recover_interrupted(ws):
     """Settle a killed write to a library cdlbib does not manage; the lines saying what was
     done. See desk.recover."""
@@ -1036,7 +1092,8 @@ def proposal_failed(proposal):
 class CompletionOffer:
     key: str                       # the changed, unaccepted entry
     proposals: list = field(default_factory=list)   # what is worth showing for it ([]: nothing to decide)
-    error: CdlbibError | None = None   # the lookup failed; nothing is proposed for this key
+    error: str | None = None       # the lookup failed (the message); nothing is proposed for this key
+    error_kind: str | None = None  # the name of the error's class (e.g. "CdlbibError", "CompletionRefused")
 
 
 def worth_showing(proposal):
@@ -1055,7 +1112,7 @@ def completion_offers(ws, reference="github", database=None, mailto=None, seen=N
     be written (apply_proposals) before the next entry is proposed. Proposals with nothing to
     decide are left out (``worth_showing``). ``seen``: a set of (str(ws.bib), key, fingerprint)
     the caller keeps; entries in it are passed over. A lookup that fails is an offer with
-    ``error`` set, and the others still come. Raises CdlbibError when the entries cannot be
+    ``error`` (its message) and ``error_kind`` set, and the others still come. Raises CdlbibError when the entries cannot be
     selected at all; an unreadable library gives no offers (the format check reports it).
     Nothing is written or approved here."""
     from .verification import load_entries
@@ -1074,24 +1131,26 @@ def completion_offers(ws, reference="github", database=None, mailto=None, seen=N
                 results = propose(ws, keys=[key], database=database, mailto=mailto)
                 results[:] = [item for item in results if worth_showing(item)]
             except CdlbibError as exc:
-                yield CompletionOffer(key, [], exc)
+                yield CompletionOffer(key, [], str(exc), type(exc).__name__)
                 continue
             yield CompletionOffer(key, results)
     return offers()
 
 
 def choose_candidate(ws, item, candidate, mailto=None, database=None, in_library=False):
-    """The proposal for the candidate a person picked from ``item.candidates`` (its DOI, else
-    arXiv identifier, PMID, title), keeping what was typed. ``in_library``: ``item`` completes
+    """The proposal for the candidate a person picked from ``item.candidates``, looked up by
+    complete.Query.from_candidate (the one rule: an arXiv lead by its arXiv id; otherwise DOI,
+    PMID, arXiv id, title), keeping what was typed. ``in_library``: ``item`` completes
     an entry of the library (a completion offer), whose fields are read from the file now; a
     CdlbibError when that entry is no longer there. Otherwise the typed text, if any, is the
     entry given to `add`. ``proposal_failed`` says whether the lookup failed. Nothing is written."""
     import tempfile
     from .complete import Query
     from .verification import load_entries
-    text = candidate.get('doi') or candidate.get('arxiv') or (
-        'PMID:' + str(candidate['pmid']) if candidate.get('pmid') else candidate.get('title'))
-    query = Query.parse(text)
+    try:
+        query = Query.from_candidate(candidate)
+    except ValueError as exc:
+        raise CdlbibError(str(exc)) from exc
     if in_library:
         query.raw, query.key = item.typed_raw, item.key_typed
         current = load_entries(ws.bib)
@@ -1117,7 +1176,12 @@ def check_keys(ws, keys, progress=None, database=None, mailto=None, bars=None):
     or approved. ``progress`` receives the gate's lines. ``mailto`` defaults to
     CROSSREF_MAILTO. GateFailed when a key is not in the library or the check cannot be done."""
     import os
+    from . import library
     keys = list(keys)
+    with library.transaction(ws):     # a write killed part-way is settled first, or this refuses (CdlbibError)
+        for line in library.settled(ws):
+            if progress:
+                progress(line)
     fmt = check_format(ws, bars=bars)
     check = check_citations(ws, fmt, database=database, mailto=mailto or os.environ.get("CROSSREF_MAILTO"),
                             progress=progress, bars=bars, keys=keys)

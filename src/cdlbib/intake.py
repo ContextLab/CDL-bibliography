@@ -390,23 +390,13 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
 
 def query_for(candidate):
     """The ``complete.Query`` for a chosen lead: what ``api.propose_new`` is given. The rule
-    is ``complete.Query.from_candidate`` when ``complete`` has it (the one shared rule);
-    until then the same policy here: the identifier of the source the lead came from (an
-    arXiv lead: its arXiv id), otherwise the DOI, then the PMID, then the title."""
-    shared = getattr(complete.Query, "from_candidate", None)
-    if shared is not None:
-        return shared(candidate)
-    if candidate.get("arxiv") and candidate.get("source") == "arxiv":
-        return complete.Query(arxiv=candidate["arxiv"])
-    if candidate.get("doi"):
-        return complete.Query(doi=candidate["doi"])
-    if candidate.get("pmid"):
-        return complete.Query(pmid=str(candidate["pmid"]))
-    if candidate.get("arxiv"):
-        return complete.Query(arxiv=candidate["arxiv"])
-    if candidate.get("title"):
-        return complete.Query(title=candidate["title"], year=str(candidate.get("year") or "").split("/")[0] or None)
-    raise CdlbibError("This record has no DOI, PMID, arXiv id or title to look it up by.")
+    is ``complete.Query.from_candidate`` (the one shared rule): the identifier of the source
+    the lead came from (an arXiv lead: its arXiv id), otherwise the DOI, then the PMID, then
+    the title. CdlbibError when the lead has none of them."""
+    try:
+        return complete.Query.from_candidate(candidate)
+    except ValueError as exc:
+        raise CdlbibError(str(exc)) from exc
 
 
 # --- PDF reading --------------------------------------------------------------------------------

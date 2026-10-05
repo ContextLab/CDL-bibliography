@@ -5,10 +5,12 @@ prints or prompts; the caller holds the library's write lock (library.serialized
 Whole files are prepared beside their targets, flushed, and moved into place only when every
 target still holds the bytes the caller planned from. Folders are opened once and held, and
 every file is read, made, replaced and removed by name within a held folder, through one
-descriptor, refusing links: nothing is checked by path and then used by path. What stays
-possible is a program that ignores the lock and saves cdl.bib itself in the instant between
-the last comparison and the replacement; anything saved before that comparison refuses the
-write, and the copy or backup taken first holds what the writer read. Before the first move:
+descriptor, refusing links: nothing is checked by path and then used by path. A program that
+ignores the lock and saves cdl.bib itself while a write is under way is not written over:
+the file is exchanged with the prepared one in a single step after the backups are made, and
+what it held at that step is compared with what the writer read; anything else is exchanged
+back and the write refused (where the system has no exchange call, the file is read again
+just before it is replaced, which leaves the instant between the two). Before the first move:
 
 - the managed library takes its command checkpoint (library.completion_checkpoint) and
   records the write as in progress (library._mark); a writer killed part-way is announced by
@@ -19,8 +21,10 @@ write, and the copy or backup taken first holds what the writer read. Before the
   already replaced are put back from those copies, so the library is whole again as it was.
 """
 import contextlib
+import ctypes
 import datetime
 import errno
+import functools
 import hashlib
 import json
 import os
@@ -126,6 +130,22 @@ class _Folder:
             return None
         return found.st_dev, found.st_ino
 
+    def ordinary(self, name):
+        """Is ``name`` an ordinary file now (not a link, a folder, or absent)?"""
+        try:
+            return stat.S_ISREG(os.stat(name, dir_fd=self.fd, follow_symlinks=False).st_mode)
+        except FileNotFoundError:
+            return False
+
+    def stamp(self, name):
+        """(device, inode, mtime_ns, size) of what ``name`` is now; None when not there. It
+        changes when the file is replaced by another, and when it is written in place."""
+        try:
+            found = os.stat(name, dir_fd=self.fd, follow_symlinks=False)
+        except FileNotFoundError:
+            return None
+        return found.st_dev, found.st_ino, found.st_mtime_ns, found.st_size
+
     def new(self, prefix, data, mode=None):
         """Make a file that was not there, write ``data`` to it and flush it to the disk.
         Returns (its name, its identity)."""
@@ -160,6 +180,23 @@ class _Folder:
             os.fsync(self.fd)
         return self.identity(onto) == identity
 
+    def exchange(self, name, onto):
+        """Exchange the two names in this folder in one step (each then names what the other
+        named), so that what ``onto`` held can be looked at after the fact and put back.
+        False, with nothing done, where the system or the file system has no such call."""
+        swap = _exchange()
+        if swap is None:
+            return False
+        call, flag = swap
+        if call(self.fd, os.fsencode(name), self.fd, os.fsencode(onto), flag) == 0:
+            with contextlib.suppress(OSError):
+                os.fsync(self.fd)
+            return True
+        code = ctypes.get_errno()
+        if code in (errno.ENOSYS, errno.EINVAL, errno.ENOTSUP, errno.EOPNOTSUPP):
+            return False
+        raise OSError(code, os.strerror(code), str(self.path / onto))
+
     def put(self, name, data, mode=None):
         """Replace ``name`` with ``data`` whole (None: remove it)."""
         if data is None:
@@ -181,6 +218,24 @@ class _Folder:
 
     def names(self):
         return os.listdir(self.fd)
+
+
+@functools.lru_cache(maxsize=1)
+def _exchange():
+    """(the C library's call that exchanges two names atomically, its flag): renameatx_np with
+    RENAME_SWAP on macOS, renameat2 with RENAME_EXCHANGE on Linux; None where there is none."""
+    try:
+        libc = ctypes.CDLL(None, use_errno=True)
+        call = getattr(libc, "renameatx_np" if sys.platform == "darwin" else "renameat2")
+    except (OSError, AttributeError):
+        return None
+    call.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]
+    call.restype = ctypes.c_int
+    return call, 2
+
+
+class _Changed(Exception):
+    """A target held something other than what the caller planned from, found at the replacement."""
 
 
 class _Held(contextlib.ExitStack):
@@ -365,7 +420,7 @@ def recover(ws):
                     raise refuse(f"the copy {ws.work / EDITS / kept} is not the file that write saved")
                 saved[name] = held_copy
             if waiting is not None:
-                if _sha(waiting) != after:
+                if _sha(waiting) not in (before, after):      # the new file, or the old one it was exchanged with
                     raise refuse(f"the prepared file {target.parent / staged[name]} is not the one that write made")
                 prepared.append((folder, staged[name]))
         replaced = [name for name, (before, after) in recorded.items() if now[name] == after and before != after]
@@ -463,20 +518,55 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                 done.saved_copy, extra = _copies(held, staged, writes)
             installed = []
             try:
+                # The backups are made; only now is each file read again and compared with what
+                # the caller planned from, and replaced. A file that is there is exchanged with
+                # the prepared one in one step, and what came out is checked to be the file that
+                # was just read: when it is not (something saved it meanwhile, however late),
+                # the two are exchanged back, so that save stays, and the write is refused.
+                # Without such a call the file is replaced straight after the comparison.
                 for target, folder, name, identity, previous in staged:
                     # The replacement is made by name within the held folder, so an auditor
                     # sees names only; the full paths are announced under the same event.
                     sys.audit("os.rename", str(target.parent / name), str(target), -1, -1)
+                    if folder.identity(name) != identity:
+                        raise OSError(errno.ESTALE, 'the prepared file was replaced by something else',
+                                      str(target.parent / name))
+                    seen = folder.stamp(target.name)
+                    if folder.read(target.name)[0] != previous or folder.stamp(target.name) != seen:
+                        raise _Changed(target)
+                    if previous is not None and folder.exchange(name, target.name):
+                        # What came out must be the very file just read (same file, not written
+                        # since): two stat calls, so the new text stands unconfirmed for an instant
+                        # only. Otherwise it is taken back; and should the other program have
+                        # saved yet again in that instant, its newest save is the one left.
+                        placed = folder.identity(target.name) == identity
+                        if folder.stamp(name) != seen or not placed:
+                            folder.exchange(name, target.name)
+                            # The new text was in place and is not what came back: the other
+                            # program saved once more over it, and that newest save (an ordinary
+                            # file, nothing else) is the one to leave there.
+                            if placed and folder.identity(name) != identity and folder.ordinary(name):
+                                folder.exchange(name, target.name)
+                            raise _Changed(target)
+                        installed.append((target, folder, previous))
+                        continue
                     intact = folder.move(name, target.name, identity)
                     installed.append((target, folder, previous))
                     if not intact:
                         raise OSError(errno.ESTALE, 'the file was replaced by something else while it was written',
                                       str(target))
-            except OSError:
+            except (OSError, _Changed) as stopped:
                 for target, folder, previous in reversed(installed):
                     folder.put(target.name, previous)
                 if not managed:
-                    held.edits().remove(PENDING)
+                    edits = held.edits()
+                    edits.remove(PENDING)
+                    for name in extra:
+                        edits.remove(name)
+                if isinstance(stopped, _Changed):      # everything is as it was found: no write is in progress
+                    if managed:
+                        library._unmark()
+                    raise CdlbibError(f'{stopped.args[0]} changed while applying; nothing was written') from None
                 raise
             if managed:
                 library._unmark()
