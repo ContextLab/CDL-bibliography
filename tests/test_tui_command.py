@@ -41,3 +41,14 @@ def test_the_command_opens_the_interface_on_the_chosen_library_and_quits(tmp_pat
     assert status == 0, seen[-2000:]
     assert "cdlbib" in seen and "Zoll90" in seen and "F2 Library" in seen and "this help" in seen
     assert ws.bib.read_bytes() == before
+
+
+def test_textual_is_the_optional_extra_tui_and_the_command_asks_for_it_first():
+    import inspect
+    from cdlbib import deps
+    assert deps.requirements_for("tui") == ["textual<9,>=8"]
+    assert deps.manual_command("tui", "textual") == "pip install 'textual<9,>=8'"
+    source = inspect.getsource(cli.tui)
+    assert 'deps.need("textual", "tui", "the terminal interface")' in source
+    assert source.index("deps.need") < source.index("library(ctx")       # before a library is downloaded for it
+    assert "textual" not in open(cli.__file__, encoding="utf-8").read().split("def tui")[0]   # nothing imports it earlier

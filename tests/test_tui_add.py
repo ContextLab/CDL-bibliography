@@ -409,3 +409,62 @@ def test_a_typed_entry_is_drafted_in_house_format_and_written_unverified(ws):
     T.run(journey())
     entry = api.entry(ws, "ExamGloc31")
     assert entry.status not in ACCEPTED and entry.human_review is None and "Year = {2031}" in entry.raw
+
+
+# --- names the typed entry and the source spell differently -----------------------------------------
+
+@pytest.mark.parametrize("choice", ["u", "k"])
+def test_a_name_the_source_spells_differently_is_settled_name_by_name(tmp_path, choice):
+    """The proposal is one completion offers during a send; that way to it asks GitHub for the
+    reference, which this test cannot, so the proposal view is opened on it directly. The
+    proposal is made as tests/test_complete_cli.py makes it, from a recorded Crossref deposit."""
+    from cdlbib import complete, extra_sources as xs
+    from cdlbib.tui.proposal import ProposalScreen
+    from cdlbib.workspace import Workspace
+    from test_complete_build import RECORDS, sources
+    from test_complete_recheck import seed_record
+    record, _ = sources("CleeMcCl91")
+    raw = complete.render("article", "CleeMcCl91", dict(RECORDS["CleeMcCl91"]["typed"], doi=record["DOI"]))
+    ws = Workspace(tmp_path / "lib")
+    ws.root.mkdir()
+    ws.bib.write_text(raw, encoding="utf-8")
+    ws.work.mkdir()
+    client = xs.make_client(ws.database, contact=T.CONTACT, offline=True)
+    try:
+        seed_record(client, record)
+        query = complete.Query.from_entry(next(iter(load_entries(ws.bib).values())))
+        item = complete.build(query.fields, record)
+        item.typed_raw = query.raw
+        complete._plan_proposal(ws, item, query, ())
+        complete.checked(item, client)
+    finally:
+        client.cache.close()
+    assert api.name_choices(item) == [("author", ["A Cleeremans", "J L McCleeland"], ["A Cleeremans", "J L McClelland"])]
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            app.push_screen(ProposalScreen([item], in_library=True))
+            await T.settle(pilot)
+            assert name(app) == "ChoiceScreen"                              # only the name that differs is asked
+            assert "The author list: the name typed and the name the source gives differ." in T.shown(app, "#question")
+            labels = [str(button.label) for button in app.screen.query("Button")]
+            assert labels == ["[k] keep typed J L McCleeland", "[u] use source J L McClelland"]
+            await T.press(pilot, "escape")                                  # this question has to be answered
+            assert name(app) == "ChoiceScreen"
+            await T.press(pilot, choice)
+            assert name(app) == "ProposalScreen"
+            findings = T.shown(app, "#findings")
+            if choice == "u":
+                assert "(source: user edit)" in findings and "McClelland" in T.shown(app, "#proposed")
+                await T.press(pilot, "a")
+                assert "Completed: CleeMcCl91" in app.log_lines
+            else:
+                assert "(source: typed (source alternative: crossref:" in findings
+                await T.press(pilot, "s")
+    T.run(journey())
+    written = ws.bib.read_text(encoding="utf-8")
+    if choice == "u":
+        assert "McClelland" in written and "McCleeland" not in written
+    else:
+        assert written == raw
