@@ -191,9 +191,7 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
                     from dataclasses import replace
                     accepted.append(replace(item, remove_duplicate=True))
                 break
-            safe = (item.complete and item.proposed_raw and not item.duplicate_of and not item.unsupported
-                    and not any("already exists in the library" in issue or "does not match the key plan" in issue or issue.startswith("format:")
-                                or "format check could not run" in issue for issue in item.issues))
+            safe = api.acceptable(item)
             if all_remaining and safe and not item.needs_decision:
                 accepted.append(item)
                 break
@@ -438,6 +436,14 @@ def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, s
     typer.echo(f"you are now on branch {result.branch}")
     if result.left:
         typer.echo("left uncommitted: " + ", ".join(result.left))
+
+
+@app.command()
+def web(port: int = typer.Option(0, "--port", help="The port to listen on (default: one the system picks)."),
+        no_open: bool = typer.Option(False, "--no-open", help="Do not open the browser; print the address only.")):
+    """Open the local web interface (this computer only) on the library in use."""
+    from .web import server
+    server.run(port=port, open_browser=not no_open, say=lambda line: typer.echo(line, err=True))
 
 
 from .prompts import ANSWERS, MOVED, answers, unsent_question, CHOSEN_BY
