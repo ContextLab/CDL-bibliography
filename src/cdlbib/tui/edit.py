@@ -11,7 +11,7 @@ from ..errors import EditRefused
 from . import render
 from .widgets import Shown
 
-NEW = "@article{,\n\tAuthor = {},\n\tJournal = {},\n\tTitle = {},\n\tYear = {}}"
+EXAMPLE = "@article{Key20,\n    Author = {A Author and B Author},\n    Journal = {Journal},\n    Title = {Title},\n    Year = {2020}}"
 
 
 class EditScreen(Screen):
@@ -34,13 +34,14 @@ class EditScreen(Screen):
         super().__init__()
         self.detail = detail                 # desk.EntryDetail of the entry; None for a new one
         self.key = detail.key if detail is not None else None
-        self.original = detail.raw if detail is not None else NEW
+        self.original = detail.raw if detail is not None else ""
         self.previewed = None                # (the text previewed, desk.EditPreview)
 
     def compose(self) -> ComposeResult:
         yield Static(f"Edit {self.key}" if self.key else "New entry (typed by hand)", id="edit-head")
         with Horizontal():
-            yield TextArea(self.original, id="editor", tab_behavior="indent", soft_wrap=True, show_line_numbers=False)
+            yield TextArea(self.original, id="editor", tab_behavior="indent", soft_wrap=True, show_line_numbers=False,
+                           placeholder="Type or paste one BibTeX entry, for example:\n\n" + EXAMPLE)
             with Vertical(id="edit-right", classes="pane"):
                 with VerticalScroll():
                     yield Shown(id="preview")

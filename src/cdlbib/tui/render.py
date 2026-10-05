@@ -150,7 +150,7 @@ def diff(text, colour):
         role = ("success" if line.startswith("+") and not line.startswith("+++") else
                 "error" if line.startswith("-") and not line.startswith("---") else
                 "muted" if line.startswith(("@@", "+++", "---")) else None)
-        out.append(line.expandtabs(4) + "\n", colour(role) if role else None)
+        out.append(line[:1] + line[1:].expandtabs(4) + "\n", colour(role) if role else None)
     return out
 
 
@@ -195,7 +195,7 @@ def preview(found, colour):
             out.line(f"      now:       {finding.current}")
             out.line(f"      formatter: {finding.corrected if finding.corrected is not None else '(removes the field)'}")
     if found.format and found.corrected_raw:
-        out.line("  ctrl+f puts the formatter's text into the editor", "muted")
+        out.line("  ctrl+r puts the formatter's text into the editor", "muted")
     return out.text
 
 
