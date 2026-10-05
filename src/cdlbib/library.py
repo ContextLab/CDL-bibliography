@@ -165,20 +165,36 @@ def _own_lock(folder, progress=None):
     Unlike the data folder's lock, this one is in a folder of the user's, so nothing is left
     behind: on release the file is removed, and the folder too when this call made it and it
     holds nothing else (a checkout that does not ignore .bibcheck/ stays clean). A waiter that
-    gets a file which is no longer the one at that path takes the new one instead."""
+    gets a file which is no longer the one at that name takes the new one instead.
+
+    The library's folder is opened once; .bibcheck and the lock are made, opened, compared and
+    removed by name from the held folders, refusing links (OSError), so a .bibcheck swapped
+    for a link cannot send the lock file, or its removal, anywhere else."""
     try:
         import fcntl
     except ImportError:   # no flock on this platform: no lock
         yield
         return
-    made, waited = not folder.exists(), False
-    while True:
-        folder.mkdir(parents=True, exist_ok=True)
-        try:
-            handle = open(folder / "lock", "a")
-        except FileNotFoundError:      # the folder was removed by the holder that made it: again
-            continue
-        try:
+    here = os.O_CLOEXEC | os.O_NOFOLLOW
+    parent = os.open(folder.parent, os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC)
+    made, waited, work, handle = False, False, None, None
+    try:
+        while True:
+            try:
+                os.mkdir(folder.name, dir_fd=parent)
+                made = True
+            except FileExistsError:
+                pass
+            try:
+                work = os.open(folder.name, os.O_RDONLY | os.O_DIRECTORY | here, dir_fd=parent)
+            except FileNotFoundError:      # removed by the holder that made it: again
+                continue
+            try:
+                handle = os.open("lock", os.O_WRONLY | os.O_CREAT | os.O_APPEND | here, 0o644, dir_fd=work)
+            except FileNotFoundError:
+                os.close(work)
+                work = None
+                continue
             try:
                 fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except OSError:            # held by another command
@@ -186,25 +202,31 @@ def _own_lock(folder, progress=None):
                     progress(WRITING)
                 waited = True
                 fcntl.flock(handle, fcntl.LOCK_EX)
-            try:
-                current = os.fstat(handle.fileno()).st_ino == os.stat(folder / "lock").st_ino
+            try:                       # still the file at that name, in the folder at that name?
+                current = (os.fstat(handle).st_ino == os.stat("lock", dir_fd=work, follow_symlinks=False).st_ino
+                           and os.fstat(work).st_ino == os.stat(folder.name, dir_fd=parent, follow_symlinks=False).st_ino)
             except FileNotFoundError:
                 current = False
-        except BaseException:
-            handle.close()
-            raise
-        if current:
-            break
-        handle.close()
-    try:
-        yield
+            if current:
+                break
+            os.close(handle)
+            os.close(work)
+            work = handle = None
+        try:
+            yield
+        finally:
+            with contextlib.suppress(OSError):     # removed while still held: no one else can hold this file
+                os.unlink("lock", dir_fd=work)
+            os.close(handle)                       # releases the lock
+            handle = None
+            if made:
+                with contextlib.suppress(OSError):
+                    os.rmdir(folder.name, dir_fd=parent)
     finally:
-        with contextlib.suppress(OSError):     # removed while still held: no one else can hold this file
-            os.unlink(folder / "lock")
-        handle.close()                         # releases the lock
-        if made:
-            with contextlib.suppress(OSError):
-                os.rmdir(folder)
+        for descriptor in (handle, work, parent):
+            if descriptor is not None:
+                with contextlib.suppress(OSError):
+                    os.close(descriptor)
 
 
 @contextlib.contextmanager

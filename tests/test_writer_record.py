@@ -167,3 +167,93 @@ def test_only_the_writers_own_copies_are_pruned_and_never_through_a_link(ws, tmp
     with pytest.raises(CdlbibError, match="not an ordinary folder"):
         api.save_edit(ws, "Kaha12", KAHA12, load_entries(ws.bib)["Kaha12"]["fingerprint"])
     assert everything(tmp_path) == kept and hashlib.sha256(outside.read_bytes()).hexdigest()
+
+
+# --- paths swapped for links while writes run ---------------------------------------------------
+
+SWAPPER = """
+import glob, os, sys, time
+root, outside, victim, stop = sys.argv[1:5]
+work, aside = os.path.join(root, '.bibcheck'), os.path.join(root, '.bibcheck.aside')
+turn = 0
+while not os.path.exists(stop):
+    turn += 1
+    try:
+        if turn % 3 == 0:                      # the working folder becomes a link to a folder outside
+            os.rename(work, aside)
+            try:
+                os.symlink(outside, work)
+                time.sleep(0.002)
+                os.unlink(work)
+            finally:
+                if not os.path.lexists(work):
+                    os.rename(aside, work)
+        elif turn % 3 == 1:                    # the prepared files become links to a file outside
+            made = []
+            for name in glob.glob(os.path.join(root, '.cdl.bib-*')):
+                os.unlink(name)
+                os.symlink(victim, name)
+                made.append(name)
+            time.sleep(0.001)
+            for name in made:
+                if os.path.islink(name):
+                    os.unlink(name)
+        else:                                  # the newest copy becomes a link to a file outside
+            copies = sorted(glob.glob(os.path.join(work, 'edits', '*-cdl.bib')))
+            if copies:
+                name = copies[-1]
+                os.rename(name, name + '.aside')
+                try:
+                    os.symlink(victim, name)
+                    time.sleep(0.001)
+                    os.unlink(name)
+                finally:
+                    if not os.path.lexists(name):
+                        os.rename(name + '.aside', name)
+    except OSError:
+        pass
+print('turns', turn, flush=True)
+"""
+
+
+def test_paths_swapped_for_links_while_writes_run_never_reach_outside_the_library(ws, tmp_path):
+    """A second real process keeps swapping .bibcheck, the writer's prepared files and its
+    newest copy for links to a folder and a file outside the library, while this process
+    saves edits. Every save either completes or refuses with the bibliography exactly as it
+    was; nothing outside is written, replaced or removed."""
+    import subprocess
+    import sys
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    victim = outside / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+    stop = tmp_path / "stop"
+    api.save_edit(ws, "Kaha12", KAHA12.replace("2012", "1899"), load_entries(ws.bib)["Kaha12"]["fingerprint"])
+    expected, apart = ws.bib.read_bytes(), everything(outside)
+    swapper = subprocess.Popen([sys.executable, "-c", SWAPPER, str(ws.root), str(outside), str(victim), str(stop)],
+                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    done = refused = 0
+    try:
+        for number in range(150):
+            year = str(1900 + number)
+            current = load_entries(ws.bib)["Kaha12"]
+            try:
+                applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", year), current["fingerprint"])
+            except CdlbibError:
+                refused += 1
+            else:
+                assert applied.written == ["Kaha12"]
+                expected = expected.replace(current["raw"].encode(), KAHA12.replace("2012", year).encode())
+                done += 1
+            assert not ws.bib.is_symlink() and ws.bib.read_bytes() == expected     # completed, or intact
+            assert everything(outside) == apart
+    finally:
+        stop.write_text("stop", encoding="utf-8")
+        out, err = swapper.communicate(timeout=30)
+    assert swapper.returncode == 0 and int(out.split()[1]) > 50, out + err
+    print("saves completed:", done, "refused:", refused, "swapper", out.strip())
+    assert done >= 1 and done + refused == 150, (done, refused)
+    assert everything(outside) == apart and victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
+    final = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", "2050"), load_entries(ws.bib)["Kaha12"]["fingerprint"])
+    assert final.written == ["Kaha12"] and "Year = {2050}" in ws.bib.read_text(encoding="utf-8")
+    assert everything(outside) == apart
