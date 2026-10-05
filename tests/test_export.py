@@ -511,9 +511,16 @@ def test_the_latex_program_is_the_one_the_source_asks_for(tmp_path):
     assert export.engine_for(paper(tmp_path / "a", "x")) == "pdflatex"
     assert export.engine_for(paper(tmp_path / "b", "x", "\\usepackage{fontspec}")) == "xelatex"
     assert export.engine_for(paper(tmp_path / "c", "x", "% \\usepackage{fontspec}")) == "pdflatex"
-    assert export.engine_for(paper(tmp_path / "d", "x", "\\usepackage{luacode}")) == "lualatex"
     magic = paper(tmp_path / "e", "x", "\\usepackage{fontspec}", documentclass="% !TEX program = lualatex\n\\documentclass{article}")
-    assert export.engine_for(magic) == "lualatex" and export.engine_for(magic, "xelatex") == "xelatex"
+    for asks in (paper(tmp_path / "d", "x", "\\usepackage{luacode}"), paper(tmp_path / "g", "\\directlua{tex.print(1)}"), magic):
+        with pytest.raises(ExportFailed) as failed:           # LuaLaTeX is never chosen from the source
+            export.engine_for(asks)
+        assert failed.value.kind == "engine_choice" and "--engine lualatex" in str(failed.value)
+        assert export.engine_for(asks, "lualatex") == "lualatex"
+    assert export.engine_for(magic, "xelatex") == "xelatex"
+    assert export.engine_for(paper(tmp_path / "h", "x", "% \\directlua{x}")) == "pdflatex"
+    xe = paper(tmp_path / "i", "x", documentclass="% !TEX program = xelatex\n\\documentclass{article}")
+    assert export.engine_for(xe) == "xelatex"
     odd = paper(tmp_path / "f", "x", documentclass="% !TEX TS-program = arara\n\\documentclass{article}")
     assert export.engine_for(odd) == "pdflatex"
     with pytest.raises(ExportFailed) as failed:
@@ -526,3 +533,146 @@ def test_a_paper_that_asks_for_xelatex_is_compiled_with_it(ws, tmp_path):
     file = paper(tmp_path / "paper", "\\cite{FixtB22}\n" + PLAIN, documentclass="% !TEX program = xelatex\n\\documentclass{article}")
     done = export.bbl(ws, file)
     assert done.engine == "xelatex" and "\\bibitem{FixtB22}" in done.path.read_text(encoding="utf-8")
+
+
+# --- security review, 2026-10-05 ----------------------------------------------------------
+
+def test_lua_in_a_paper_is_not_run_unless_lualatex_is_named(ws, tmp_path):
+    """LuaLaTeX is not chosen from the source, so the paper's Lua code does not run and writes
+    nothing; the citations are then read from the source, and a .bbl is refused by name."""
+    need("pdflatex", "bibtex")
+    written = tmp_path / "written-by-lua.txt"
+    lua = f'\\directlua{{local f = io.open("{written}", "w") if f then f:write("x") f:close() end}}'
+    for number, file in enumerate([
+            paper(tmp_path / "direct", lua + "\\cite{Zoll90}\n" + PLAIN),
+            paper(tmp_path / "magic", lua + "\\cite{Zoll90}\n" + PLAIN, documentclass="% !TeX program = lualatex\n\\documentclass{article}")]):
+        with pytest.raises(ExportFailed) as failed:
+            export.bbl(ws, file)
+        assert failed.value.kind == "engine_choice" and failed.value.names == ["lualatex"]
+        assert "asks for lualatex" in str(failed.value) and "--engine lualatex" in str(failed.value)
+        found = export.cited(file)
+        assert found.how == "source" and found.keys == ["Zoll90"] and "--engine lualatex" in found.notes[0]
+        assert found.notes[0].endswith(export.SOURCE_NOTE)
+        assert export.frozen_bib(ws, found, tmp_path / f"cited{number}.bib").written == ["Zoll90"]
+        assert not written.exists() and sorted(item.name for item in file.parent.iterdir()) == ["main.tex"]
+    with pytest.raises(ExportFailed) as failed:                # a program that is not on the list never starts
+        export.bbl(ws, tmp_path / "direct" / "main.tex", engine="lualatex --shell-escape")
+    assert failed.value.kind == "engine" and not written.exists()
+
+
+def test_lualatex_runs_when_it_is_named(ws, tmp_path):
+    need("lualatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\directlua{tex.print('Lua ran.')}\\cite{Zoll90}\n" + PLAIN)
+    done = export.bbl(ws, file, engine="lualatex")
+    assert done.engine == "lualatex" and "\\bibitem{Zoll90}" in done.path.read_text(encoding="utf-8")
+    assert export.cited(file, engine="lualatex").how == "compiled"
+
+
+@pytest.mark.parametrize("backend", ["bibtex", "biber"])
+def test_control_files_planted_in_the_paper_never_reach_the_backend(ws, tmp_path, backend):
+    """A .aux/.bcf/.bbl lying in the manuscript folder is not copied: BibTeX and biber read only
+    what the compile here has just written, and that names cdl alone."""
+    need("pdflatex", backend)
+    target = tmp_path / "x.bib"
+    target.write_text("@misc{Planted, title = {read from outside}}\n", encoding="utf-8")
+    if backend == "bibtex":
+        file = paper(tmp_path / "deep" / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    else:
+        file = paper(tmp_path / "deep" / "paper", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX)
+    folder = file.parent
+    (folder / "main.aux").write_text("\\relax\n\\citation{Planted}\n\\bibstyle{plain}\n\\bibdata{../../x}\n"
+                                     "\\@input{../../other.aux}\n", encoding="utf-8")
+    (folder / "main.bcf").write_text(
+        '<?xml version="1.0"?>\n<bcf:controlfile xmlns:bcf="https://sourceforge.net/projects/biblatex">\n'
+        '<bcf:bibdata section="0"><bcf:datasource type="file" datatype="bibtex" glob="false">../../x.bib</bcf:datasource>'
+        '<bcf:datasource type="remote" datatype="bibtex">https://example.org/x.bib</bcf:datasource></bcf:bibdata>\n'
+        '<bcf:section number="0"><bcf:citekey order="1">Planted</bcf:citekey></bcf:section>\n</bcf:controlfile>\n', encoding="utf-8")
+    (folder / "main.bbl").write_text("\\begin{thebibliography}{1}\\bibitem{Planted} planted\\end{thebibliography}\n", encoding="utf-8")
+    (folder / "main.run.xml").write_text("<requests/>\n", encoding="utf-8")
+    planted = {item.name: item.read_bytes() for item in folder.iterdir()}
+
+    found = export.cited(folder)                              # a fresh compile, not the planted files
+    assert found.how == "compiled" and found.keys == ["Zoll90"] and found.bibdata == ["cdl"]
+    done = export.bbl(ws, file, out=tmp_path / "made.bbl")
+    text = done.path.read_text(encoding="utf-8")
+    assert "Zoll90" in text and "Planted" not in text and "read from outside" not in text
+    assert {item.name: item.read_bytes() for item in folder.iterdir()} == planted
+    for named in ("main.aux", "main.bcf"):                    # named by the user: read by us for keys, and refused by name
+        with pytest.raises(ExportFailed) as failed:
+            export.cited(folder / named)
+        assert failed.value.kind == "resource_name"
+        assert "../../" in str(failed.value) or "https://example.org/x.bib" in str(failed.value)
+    assert target.read_text(encoding="utf-8") == "@misc{Planted, title = {read from outside}}\n"
+
+
+def test_a_planted_control_file_among_the_inputs_is_not_copied_either(ws, tmp_path):
+    need("pdflatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    styles = tmp_path / "styles"
+    styles.mkdir()
+    (styles / "main.aux").write_text("\\relax\n\\bibdata{../../x}\n", encoding="utf-8")
+    (styles / "main.bbl").write_text("planted\n", encoding="utf-8")
+    for given in (styles, styles / "main.bbl"):
+        text = export.bbl(ws, file, inputs=[given], force=True).path.read_text(encoding="utf-8")
+        assert "\\bibitem{Zoll90}" in text and "planted" not in text
+
+
+def test_what_the_backend_will_read_is_checked_in_the_generated_control_file(ws, tmp_path):
+    """A name built by a macro is not visible in the .tex; it is in the .aux/.bcf the compile
+    writes, which is what BibTeX and biber act on, and it is refused there before they start."""
+    need("pdflatex", "bibtex", "biber")
+    outside = tmp_path / "x.bib"
+    outside.write_text(FIXTA + "\n", encoding="utf-8")
+    cs = "\\csname {}\\endcsname"                               # the command name is not in the source as text
+    cases = [(paper(tmp_path / "deep" / "one", "\\cite{FixtA21}\n\\bibliographystyle{plain}\n" + cs.format("bibliography") + "{../../x}"), "../../x"),
+             (paper(tmp_path / "deep" / "two", "\\cite{FixtA21}\n" + cs.format("bibliographystyle") + "{../../x}\n\\bibliography{cdl}"), "../../x"),
+             (paper(tmp_path / "deep" / "three", "\\cite{FixtA21}\n\\printbibliography",
+                    "\\usepackage[backend=biber]{biblatex}\n" + cs.format("addbibresource") + "{../../x.bib}"), "../../x.bib"),
+             (paper(tmp_path / "deep" / "four", "\\cite{FixtA21}\n\\printbibliography",
+                    "\\usepackage[backend=biber]{biblatex}\n" + cs.format("addbibresource") + "[glob]{c?l.bib}"), "c?l.bib")]
+    for file, _ in cases:
+        assert export._from_source(file, file.parent).bibdata in ([], ["cdl"])      # nothing hostile is visible in the .tex
+    for file, name in cases:
+        with pytest.raises(ExportFailed) as failed:
+            export.bbl(ws, file)
+        assert failed.value.kind == "resource_name" and name in failed.value.names, (file, str(failed.value))
+        assert sorted(item.name for item in file.parent.iterdir()) == ["main.tex"]
+    assert outside.read_text(encoding="utf-8") == FIXTA + "\n"
+
+    aux = tmp_path / "nested.aux"
+    for line in ("\\@input{../other.aux}", "\\@input{/etc/other.aux}", "\\bibstyle{../style}", "\\bibdata{cdl,x-blx/../../y-blx}"):
+        aux.write_text("\\relax\n\\citation{Zoll90}\n\\bibstyle{plain}\n\\bibdata{cdl}\n" + line + "\n", encoding="utf-8")
+        with pytest.raises(ExportFailed) as failed:
+            export.cited(aux)
+        assert failed.value.kind == "resource_name", line
+
+
+def test_an_output_that_is_a_symbolic_link_is_never_written_through(ws, tmp_path):
+    need("pdflatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    found = export.cited(file)
+    mine = tmp_path / "my notes.txt"
+    mine.write_text("my own notes\n", encoding="utf-8")
+    links = {"to-library.bib": ws.bib, "to-mine.bib": mine, "dangling.bib": tmp_path / "nowhere" / "x.bib"}
+    for name, target in links.items():
+        os.symlink(target, tmp_path / "paper" / name)
+    os.symlink(ws.root, tmp_path / "paper" / "libdir")        # a linked folder: the checks are made behind it
+    os.symlink(ws.root / "verification", tmp_path / "records")
+    (ws.root / ".git").mkdir()
+    os.symlink(ws.root / ".git", tmp_path / "paper" / "repo")
+    refused = [tmp_path / "paper" / name for name in links] + [
+        tmp_path / "paper" / "libdir" / "cdl.bib", tmp_path / "records" / "x.bib", tmp_path / "paper" / "repo" / "x.bib"]
+    for out in refused:
+        for force in (False, True):
+            for attempt in (lambda: export.frozen_bib(ws, found, out, force=force), lambda: export.bbl(ws, file, out=out, force=force)):
+                with pytest.raises(ExportFailed) as failed:
+                    attempt()
+                assert failed.value.kind == "output", out
+                assert ("is a symbolic link" in str(failed.value)) == (out.parent == tmp_path / "paper" and out.suffix == ".bib"), out
+    assert ws.bib.read_text(encoding="utf-8") == LIBRARY and mine.read_text(encoding="utf-8") == "my own notes\n"
+    assert all(os.readlink(tmp_path / "paper" / name) == str(target) for name, target in links.items())
+    assert not (tmp_path / "nowhere").exists() and list((ws.root / "verification").iterdir()) == []
+    assert list((ws.root / ".git").iterdir()) == []
+
+    made = export.frozen_bib(ws, found, tmp_path / "paper" / "libdir" / "beside.bib")       # a linked folder that is allowed
+    assert made.path == ws.root / "beside.bib" and made.path.read_text(encoding="utf-8") == ZOLL90 + "\n"

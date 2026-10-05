@@ -280,3 +280,22 @@ def test_the_api_passes_the_link_through(ws, texenv):
     assert report.tex.state == "linked" and report.where.root == ws.root
     assert api.tex_unlink().removed and tex.status(ws).state == "absent"
     assert library.home() == texenv[2]
+
+
+def test_a_bib_folder_that_is_a_link_out_of_the_tree_is_said(ws, texenv, tmp_path):
+    need("kpsewhich")
+    _, texmf, _ = texenv
+    elsewhere = tmp_path / "elsewhere"
+    elsewhere.mkdir()
+    (texmf / "bibtex").mkdir(parents=True)
+    os.symlink(elsewhere, texmf / "bibtex" / "bib")
+    assert any("is a link to a folder outside the TeX tree" in note and str(elsewhere.resolve()) in note
+               for note in tex.status(ws).notes)
+    done = tex.link(ws)
+    assert done.state == "linked" and any("outside the TeX tree" in note for note in done.notes)
+    (elsewhere / "cdl.bib").unlink()
+    (elsewhere / "cdl.bib").write_text("mine\n", encoding="utf-8")            # replace: moved aside beside itself, kept
+    moved = tex.link(ws, replace=True)
+    saved = [item for item in elsewhere.iterdir() if item.name.startswith(tex.SAVED)]
+    assert moved.state == "linked" and len(saved) == 1 and saved[0].read_text(encoding="utf-8") == "mine\n"
+    assert not saved[0].is_symlink()

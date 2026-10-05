@@ -248,3 +248,28 @@ def test_export_with_biber_and_the_linked_library_in_use(ws, texenv, tmp_path):
     bib = cdlbib("--library", str(ws.root), "export", str(file), cwd=tmp_path)
     assert bib.returncode == 0 and "citations read from a fresh LaTeX run of the paper: 1 key and \\nocite{*} (every entry)" in bib.stdout
     assert (tmp_path / "paper" / "cdl.bib").read_bytes() == LIBRARY.encode("utf-8")
+
+
+def test_export_out_that_is_a_link_to_the_library_is_refused_even_with_force(ws, texenv, tmp_path):
+    need("pdflatex", "bibtex")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    link = tmp_path / "paper" / "refs.bib"
+    os.symlink(ws.bib, link)
+    for extra in ([], ["--force"], ["--bbl"], ["--bbl", "--force"]):
+        out = cdlbib("--library", str(ws.root), "export", str(file), "-o", str(link), *extra, cwd=tmp_path)
+        assert out.returncode == 1 and "is a symbolic link" in out.stderr and "Not written" in out.stderr, out.stderr
+    assert ws.bib.read_text(encoding="utf-8") == LIBRARY and os.readlink(link) == str(ws.bib)
+
+
+def test_export_does_not_run_lualatex_unless_it_is_named(ws, texenv, tmp_path):
+    need("pdflatex", "bibtex")
+    written = tmp_path / "written-by-lua.txt"
+    file = paper(tmp_path / "paper", f'\\directlua{{local f = io.open("{written}", "w") if f then f:write("x") f:close() end}}'
+                                     "\\cite{Zoll90}\n" + PLAIN)
+    out = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", cwd=tmp_path)
+    assert out.returncode == 1 and "asks for lualatex" in out.stderr and "pass --engine lualatex" in out.stderr
+    assert not written.exists() and not (tmp_path / "paper" / "main.bbl").exists()
+    bib = cdlbib("--library", str(ws.root), "export", str(file), cwd=tmp_path)
+    assert bib.returncode == 0 and "citations read from the .tex source: 1 key" in bib.stdout and not written.exists()
+    wrong = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", "--engine", "luatex", cwd=tmp_path)
+    assert wrong.returncode == 1 and "luatex is not one of the LaTeX programs used here" in wrong.stderr

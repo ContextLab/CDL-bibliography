@@ -193,6 +193,9 @@ def status(ws):
     if found[1:]:
         result.notes.append("TEXMFHOME lists more than one folder; the first is used. The others: "
                             + ", ".join(str(tree) for tree in found[1:]))
+    if link.parent.exists() and found[0].resolve() not in link.parent.resolve().parents:
+        result.notes.append(f"{link.parent} is a link to a folder outside the TeX tree: {link.parent.resolve()}; "
+                            "the link is, or would be, made in that folder")
     if present == "other_library" and not target.exists():
         result.notes.append(f"the library the link names is no longer there: {target}")
     if not kpsewhich:

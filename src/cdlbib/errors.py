@@ -129,8 +129,9 @@ class ExportFailed(CdlbibError):
     resource that is not a plain file name), "no_bibliography" (no bibliography command),
     "no_style" (no \\bibliographystyle and no biblatex), "missing_input" (a .bst, .cls, .sty
     or .bib that TeX could not find), "undefined_keys" (cited keys in no bibliography),
-    "engine" / "backend" (LaTeX, or BibTeX/biber, stopped with an error), "output" (the
-    output file may not be written)."""
+    "engine" / "backend" (LaTeX, or BibTeX/biber, stopped with an error), "engine_choice"
+    (the paper asks for LuaLaTeX, which is run only when named), "output" (the output file
+    may not be written)."""
 
     def __init__(self, kind, detail, names=()):
         self.kind, self.detail, self.names = kind, detail, list(names)

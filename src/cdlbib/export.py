@@ -108,7 +108,7 @@ def _keys(group):
 
 def plain_name(name):
     """Is a bibliography resource a plain file name: no folder, no "..", no URL, no drive."""
-    return bool(name) and not (set(name) & set('/\\:~') or name.startswith(".") or ".." in name
+    return bool(name) and not (set(name) & set('/\\:~*?[]{}') or name.startswith(".") or ".." in name
                                or any(ord(char) < 32 for char in name))
 
 
@@ -212,21 +212,37 @@ def _from_aux(aux):
                 elif key != "biblatex-control":
                     keys.append(key)
         for group in re.findall(r"\\bibdata\{([^{}]*)\}", text):
-            names += [name for name in _keys(group) if not name.endswith("-blx")]
-        styles = re.findall(r"\\bibstyle\{([^{}]*)\}", text)
-        style = styles[-1].strip() if styles else style
-        queue += [Path(aux).parent / name for name in re.findall(r"\\@input\{([^{}]+\.aux)\}", text)
-                  if ".." not in name and not os.path.isabs(name)]
+            names += _keys(group)
+        styles = [style.strip() for style in re.findall(r"\\bibstyle\{([^{}]*)\}", text)]
+        _checked(styles)                          # BibTeX opens <style>.bst: a plain name too
+        style = styles[-1] if styles else style
+        nested = [name.strip() for name in re.findall(r"\\@input\{([^{}]*)\}", text)]
+        outside = [name for name in nested if os.path.isabs(name) or ".." in Path(name).parts
+                   or set(name) & set(":~\\") or not name.endswith(".aux")]
+        if outside:                               # BibTeX would read these .aux files too
+            raise ExportFailed("resource_name", "The paper's .aux names another .aux file outside the paper's folder: "
+                               + ", ".join(outside) + ".", outside)
+        queue += [Path(aux).parent / name for name in nested]
+    names = [name for name in _checked(names) if not name.endswith("-blx")]   # checked first, biblatex's own file then left out
     backend = "bibtex" if style else None
     return Cited(keys=list(dict.fromkeys(keys)), all_entries=everything, sources=files, backend=backend, style=style,
-                 bibdata=_checked(names), how="aux", folder=Path(aux).parent), biblatex
+                 bibdata=names, how="aux", folder=Path(aux).parent), biblatex
 
 
 def _from_bcf(bcf):
     """The same from biblatex's control file (.bcf), which is what biber reads."""
     text = _text(bcf)
     keys = [html.unescape(key).strip() for key in re.findall(r"<bcf:citekey\b[^>]*>([^<]*)</bcf:citekey>", text)]
-    names = [html.unescape(name).strip() for name in re.findall(r"<bcf:datasource\b[^>]*>([^<]*)</bcf:datasource>", text)]
+    names, refused = [], []
+    for attributes, name in re.findall(r"<bcf:datasource\b([^>]*)>([^<]*)</bcf:datasource>", text):
+        name = html.unescape(name).strip()
+        kind, glob = (re.search(rf"\b{word}\s*=\s*[\"']([^\"']*)[\"']", attributes) for word in ("type", "glob"))
+        if (kind and kind.group(1) != "file") or (glob and glob.group(1).lower() not in ("false", "0")):
+            refused.append(name)                  # a remote source, or a pattern that biber would expand
+        names.append(name)
+    if refused:
+        raise ExportFailed("resource_name", "The paper names a bibliography that is not one local file: "
+                           + ", ".join(refused) + ".", refused)
     return Cited(keys=list(dict.fromkeys(key for key in keys if key and key != "*")), all_entries="*" in keys,
                  sources=[Path(bcf)], backend="biber", bibdata=_checked(names), how="bcf", folder=Path(bcf).parent)
 
@@ -270,20 +286,28 @@ def main_file(paper, main=None):
 
 
 def engine_for(main, engine=None):
-    """The LaTeX program: ``engine`` when given, else what the source asks for (a
-    `% !TEX program = ...` line; fontspec, unicode-math or polyglossia mean xelatex, luacode
-    or \\directlua lualatex), else pdflatex."""
+    """The LaTeX program: ``engine`` when given (one of ENGINES; anything else is refused
+    before any program runs), else what the source asks for (a `% !TEX program = ...` line;
+    fontspec, unicode-math or polyglossia mean xelatex), else pdflatex.
+
+    LuaLaTeX is never chosen from the source: Lua code in a document can read and write
+    files, which -no-shell-escape does not stop. A source that asks for it (the program line,
+    luacode, \\directlua) is ExportFailed("engine_choice") until ``engine`` says "lualatex"."""
     if engine:
         if engine not in ENGINES:
             raise ExportFailed("engine", f"{engine} is not one of the LaTeX programs used here: " + ", ".join(ENGINES) + ".")
         return engine
     text = _text(main)
     asked = _MAGIC.search(text)
+    plain = _uncommented(text)
+    lua = re.search(r"\\(?:usepackage|RequirePackage)\s*(?:\[[^\]]*\])?\s*\{[^{}]*\bluacode\b[^{}]*\}|\\directlua\b", plain)
+    if lua or (asked and asked.group(1).lower() == "lualatex"):
+        raise ExportFailed("engine_choice", f"{Path(main).name} asks for lualatex, which is not run unless it is named: "
+                           "Lua code in a document can read and write files. To compile it with LuaLaTeX, "
+                           "pass --engine lualatex.", ["lualatex"])
     if asked and asked.group(1).lower() in ENGINES:
         return asked.group(1).lower()
-    text = _uncommented(text)
-    if re.search(r"\\(?:usepackage|RequirePackage)\s*(?:\[[^\]]*\])?\s*\{[^{}]*\bluacode\b[^{}]*\}|\\directlua\b", text):
-        return "lualatex"
+    text = plain
     if re.search(r"\\(?:usepackage|RequirePackage)\s*(?:\[[^\]]*\])?\s*\{[^{}]*\b(?:fontspec|unicode-math|polyglossia)\b[^{}]*\}", text):
         return "xelatex"
     return "pdflatex"
@@ -291,9 +315,11 @@ def engine_for(main, engine=None):
 
 # --- the build folder ---------------------------------------------------------------------
 
-def _copy(source, target, root, skipped, leftovers=True):
+def _copy(source, target, root, skipped):
     """Copy the folder ``source`` into ``target``. A symbolic link is followed only to a place
-    inside ``root`` (the folder being copied); one that leaves it is not copied, and is listed."""
+    inside ``root`` (the folder being copied); one that leaves it is not copied, and is listed.
+    Files an earlier compile wrote (.aux, .bcf, .bbl, .blg, .run.xml ...) are never copied:
+    BibTeX and biber only ever read control files that a compile here has just written."""
     target.mkdir(parents=True, exist_ok=True)
     for item in sorted(os.scandir(source), key=lambda entry: entry.name):
         here = Path(item.path)
@@ -301,8 +327,8 @@ def _copy(source, target, root, skipped, leftovers=True):
             skipped.append(here)
         elif item.is_dir():
             if item.name not in _SKIPPED_FOLDERS and not (item.is_symlink() and _inside(root, here.resolve())):
-                _copy(here, target / item.name, root, skipped, leftovers)
-        elif item.is_file() and not (leftovers and item.name.lower().endswith(_LEFTOVERS)):
+                _copy(here, target / item.name, root, skipped)
+        elif item.is_file() and not item.name.lower().endswith(_LEFTOVERS):
             shutil.copyfile(here, target / item.name)
 
 
@@ -337,10 +363,11 @@ def _built(main, inputs=()):
             given = Path(given).expanduser()
             place = Path(scratch).resolve() / "inputs" / str(number)
             if given.is_dir():
-                _copy(given, place, given.resolve(), skipped, leftovers=False)
+                _copy(given, place, given.resolve(), skipped)
             elif given.is_file():
                 place.mkdir(parents=True)
-                shutil.copyfile(given, place / given.name)
+                if not given.name.lower().endswith(_LEFTOVERS):
+                    shutil.copyfile(given, place / given.name)
             else:
                 raise ExportFailed("missing_input", f"{given} (given as an input) is not a file or a folder.", [str(given)])
             extra.append(place)
@@ -413,7 +440,13 @@ def cited(paper, main=None, inputs=(), engine=None):
         return found
     file = main_file(paper, main)
     stated = _from_source(file, file.parent)          # also refuses hostile resource names before any program runs
-    stated.engine = engine_for(file, engine)
+    try:
+        stated.engine = engine_for(file, engine)
+    except ExportFailed as exc:
+        if exc.kind != "engine_choice":
+            raise
+        stated.notes.append(f"{exc.detail} Not compiled; {SOURCE_NOTE}")
+        return stated
     if not shutil.which(stated.engine):
         stated.notes.append(f"{stated.engine} was not found on PATH; {SOURCE_NOTE}")
         return stated
@@ -534,15 +567,19 @@ def _frozen_text(ws, found, entries):
 
 
 def writable(ws, out, force=False):
-    """The path ``out`` resolved, or ExportFailed("output"): an export is never written onto
-    the library's cdl.bib (also not through a link to it), into a .git or .bibcheck folder or
-    the library's verification/ folder, onto a folder, or onto an existing file without ``force``."""
+    """Where ``out`` is written (its folder resolved, its name as given), or
+    ExportFailed("output"). An export is never written through a symbolic link, onto the
+    library's cdl.bib, into a .git or .bibcheck folder or the library's verification/ folder,
+    or onto a folder, with or without ``force``; onto another existing file only with ``force``.
+    The checks are made on the resolved folder, so a linked folder does not get round them."""
     out = Path(out).expanduser()
-    real = (out.parent.resolve() / out.name).resolve() if out.parent.exists() else out.resolve()
 
     def refuse(why):
         raise ExportFailed("output", f"Not written: {out} {why}.", [str(out)])
 
+    if out.is_symlink():
+        refuse(f"is a symbolic link (to {os.readlink(out)}); an export is not written through a link")
+    real = out.parent.resolve() / out.name
     if real == ws.bib.resolve() or tex._same_file(real, ws.bib):
         refuse("is the library's own file")
     for part in (".git", ".bibcheck"):
@@ -560,6 +597,8 @@ def writable(ws, out, force=False):
 
 
 def _write(path, data):
+    """Write the file whole: a new temporary file in the same folder (created exclusively, so
+    never through a link), then moved into place, which replaces a link rather than follows it."""
     handle, temporary = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
     try:
         with os.fdopen(handle, "wb") as file:
