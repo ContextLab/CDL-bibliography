@@ -812,38 +812,85 @@ def _house(entry_type, fields):
 
 
 _ENTRY_SYNTAX = re.compile(r"@\s*[A-Za-z]+\s*[{(]")
-# Text addressed to whoever reads the page for a program rather than to a reader of the paper.
-_INSTRUCTION_LIKE = re.compile(
-    r"(?i)\b(?:ignore|disregard|forget|override)\b.{0,60}\b(?:instructions?|prompts?|rules|above|previous|prior)\b"
-    r"|\bsystem prompt\b|\byou are (?:an? |the )?(?:ai\b|assistant|language model|llm\b|chatbot)"
-    r"|\b(?:set|return|report|output|extract|use)\b.{0,40}\b(?:field|journal|title|authors?|doi|year|volume|pages)\b"
-    r".{0,30}(?:\bto\b|\bas\b|=|:)")
+# Words that address a program reading the page. Used for ONE thing: a note a person sees
+# (``addressed_to_a_model``). It is a list of phrases and is trivially avoided, so nothing
+# is kept, dropped or cleaned because of it; what a reading may contain is decided by
+# ``derivation`` and the fixed lists below, whatever the PDF says.
+_ADDRESSED = re.compile(r"(?i)\b(?:ignore|disregard|override)\b.{0,60}\binstructions?\b|\bsystem prompt\b"
+                        r"|\b(?:language model|ai assistant|chatbot)\b")
+MODEL_FIELDS = ("title", "author", "year", "journal", "booktitle", "volume", "number", "pages", "publisher",
+                "doi", "isbn", "issn", "edition")   # the only field names a reading can fill
+DRAFT_TYPES = ("article", "book", "incollection", "inproceedings", "inbook", "phdthesis", "mastersthesis",
+               "techreport", "misc", "unpublished", "proceedings", "manual", "booklet")
+KNOWN_RISKS = ("reference_list", "receipt_or_revision_date", "copyright_line", "preprint_version_stamp",
+               "affiliation_line", "institution_named_as_venue", "possible_omitted_author")
 
 
-def _instruction_lines(pages):
-    """{page: line numbers (from 0)} of the lines that, read with the line before and the
-    line after, look like an instruction to a program reading the page."""
-    found = {}
-    for page in pages:
-        lines = page["text"].splitlines()
-        found[page["page"]] = {i for i in range(len(lines))
-                               if _INSTRUCTION_LIKE.search(" ".join(" ".join(lines[max(0, i - 1):i + 2]).split()))}
-    return found
+def addressed_to_a_model(pages):
+    """Whether the pages hold words that address a language model. For a note only."""
+    return any(_ADDRESSED.search(" ".join(page["text"].split())) for page in pages)
 
 
-def _quoted_lines(evidence, pages):
-    """(page, line number) of every page line a finding's quotation covers."""
-    texts = {page["page"]: page["text"] for page in pages}
-    spans = [s for s in evidence.get("passages") or [] if s.get("page") in texts and isinstance(s.get("start"), int)]
-    if spans:
-        return {(s["page"], texts[s["page"]].count("\n", 0, s["start"])) for s in spans}
-    quote, text = " ".join(evidence["quote"].split()), texts.get(evidence["page"], "")
-    covered = set()
-    for number, line in enumerate(text.splitlines()):
-        line = " ".join(line.split())
-        if line and (line in quote or quote in line):
-            covered.add((evidence["page"], number))
-    return covered
+def _tokens(text):
+    """Lower-case runs of letters and digits after the PDF text fold (ligatures, full-width
+    forms); accents are kept, and a look-alike letter of another script is another letter."""
+    from .pdf_evidence import fold
+    return re.findall(r"[^\W_]+", fold(str(text)).lower())
+
+
+def _within(part, whole):
+    """Whether the token list ``part`` occurs in ``whole`` as one unbroken run."""
+    size = len(part)
+    return bool(size) and any(whole[i:i + size] == part for i in range(len(whole) - size + 1))
+
+
+def derivation(name, value, quote):
+    """The fixed rule by which ``value`` follows from ``quote`` (text of the PDF's page, as
+    this program extracted it), or None when it does not. One rule per field, none of them
+    set by the reply or by the PDF:
+
+    - ``year``: four digits that stand in the quote as a number of their own;
+    - ``volume``, ``number``, ``edition``: one token that is a token of the quote;
+    - ``pages``: one or two page numbers (``45`` or ``45-67``), each a token of the quote;
+    - ``doi``: a DOI (``complete._doi_text``) that ``pdf_evidence.DOI_RX`` finds in the quote;
+    - ``isbn``, ``issn``: its digits (and X) stand in the quote, hyphens and spaces apart;
+    - ``author``: every name, split at `` and ``, is an unbroken run of the quote's tokens;
+    - ``title``, ``journal``, ``booktitle``, ``publisher``: the value's tokens are one
+      unbroken run of the quote's tokens.
+    """
+    from .pdf_evidence import DOI_RX, fold
+    from .verification import normalize_doi
+    value, words = " ".join(str(value).split()), _tokens(quote)
+    if not value or name not in MODEL_FIELDS:
+        return None
+    if name == "year":
+        alone = re.fullmatch(r"\d{4}", value) and re.search(  # not a part of a DOI, an ISSN, a date or a decimal
+            r"(?<![\w./-])" + value + r"(?![\w/-]|\.\d)", fold(quote))
+        return "a four-digit number in the quotation" if alone else None
+    if name in ("volume", "number", "edition"):
+        own = _tokens(value)
+        return "a token of the quotation" if len(own) == 1 and own[0] in words else None
+    if name == "pages":
+        parts = re.fullmatch(r"([A-Za-z]{0,3}\d+)(?:\s*(?:-{1,2}|\u2013|\u2014)\s*([A-Za-z]{0,3}\d+))?", value)
+        if not parts or any(part and part.lower() not in words for part in parts.groups()):
+            return None
+        return "page numbers in the quotation"
+    if name == "doi":
+        own = complete._doi_text(value)
+        try:
+            found = {normalize_doi(complete._doi_text(m[1]) or "") for m in DOI_RX.finditer(fold(quote))
+                     if complete._doi_text(m[1])}
+            return "a DOI in the quotation" if own and normalize_doi(own) in found else None
+        except ValueError:
+            return None
+    if name in ("isbn", "issn"):
+        digits = re.sub(r"[\s-]", "", value).lower()
+        ok = re.fullmatch(r"[\dx]{8,13}", digits) and digits in re.sub(r"[\s\u2010-\u2015-]", "", fold(quote)).lower()
+        return "its digits in the quotation" if ok else None
+    if name == "author":
+        names = [_tokens(n) for n in re.split(r"\s+and\s+", value)]
+        return "each name in the quotation" if names and all(_within(n, words) for n in names) else None
+    return "its words, in order, in the quotation" if _within(_tokens(value), words) else None
 
 
 def structure_problem(value):
@@ -963,34 +1010,51 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
 def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type="article"):
     """The proposal for an adapter's ``extract`` answer, checked against the PDF's pages.
 
-    A field is kept only when ``research.validate_findings`` finds its quotation on the
-    stated page and the value is literally in the quoted text: that is checked here by
-    ``source_passages.literal_grounding`` whatever the answer claims (an adapter's
-    ``grounding`` can only withdraw support, never grant it), with no role risk flagged for
-    the quoted passage (a receipt date, a copyright line, an affiliation, a reference list,
-    or text that reads as an instruction to the reader's program rather than as the paper's
-    own metadata). A value that could change the structure of the entry
-    (``structure_problem``) is not kept either. Every other field is ``Unfilled`` with the
-    reason and the model's value. The PDF's text reaches the model as data and nothing the
-    model returns is used except through these checks. A kept field is a
-    ``FieldChange`` whose source names the page and the quotation. The entry is written in
-    house format, keyed by ``plan_key`` and checked for duplicates; it has no source record
-    (``manual=True``, ``status="needs_review"``) and always needs a decision.
+    The answer is untrusted data, and so is the PDF it was made from: no wording in either
+    can add to what is kept. A field is kept only when all of this holds, each decided here:
+
+    - its name is one of ``MODEL_FIELDS`` (anything else in the answer, such as a status,
+      an approval or a key, is dropped; ``ENTRYTYPE`` is never taken from the answer);
+    - ``research.validate_findings`` finds its quotation, white space apart, in the text of
+      the stated page as this program extracted it (``intake.pages``), and every passage
+      is that page's text at the stated offsets;
+    - ``derivation`` gives the rule by which the value follows from that quotation;
+    - the adapter did not withdraw it (``grounding``) or flag the passage's role
+      (``KNOWN_RISKS``): the adapter can only take a field away, never grant one;
+    - the value cannot change the entry's structure (``structure_problem``).
+
+    Every other field is ``Unfilled`` with the reason and the model's value. A kept field
+    is a ``FieldChange`` whose source names the page and the quotation. The entry type is
+    the caller's, from ``DRAFT_TYPES``. The entry is written in house format, keyed by
+    ``plan_key`` and checked for duplicates. Whatever the answer holds, the proposal has no
+    source record (``manual=True``, ``status="needs_review"``), always needs a decision, and
+    only a logged-in person's approval can change that (``api.approve``). A value the PDF
+    itself prints is grounded even when the PDF is wrong or was written to mislead: the
+    quotation beside each field is there for the person to compare with the page.
     """
     from .research import validate_findings
-    from .source_passages import literal_grounding
     from .verification import now
     read = extracted.get("fields") if isinstance(extracted, dict) else None
     if not isinstance(read, dict) or not read:
         raise CdlbibError("The model returned no fields for this PDF.")
+    entry_type = str(entry_type or "").strip().lower()
+    if entry_type not in DRAFT_TYPES:
+        raise CdlbibError(f"Not an entry type a draft can have: {_plain(entry_type, 30)!r}.")
     pages = intake.pages
     flagged = extracted.get("role_risk_fields") if isinstance(extracted.get("role_risk_fields"), dict) else {}
-    kept, unfilled = {}, []
-    suspect = _instruction_lines(pages)
-    for name, evidence in read.items():
+    kept, unfilled, dropped = {}, [], 0
+    for name, evidence in list(read.items())[:50]:
+        if name == "ENTRYTYPE":
+            unfilled.append(complete.Unfilled("ENTRYTYPE", "ENTRYTYPE: the entry type is chosen by the person, "
+                                                           "not read by the model", {}))
+            continue
+        if name not in MODEL_FIELDS:  # status, approved, key, anything else: not a field a reading has
+            dropped += 1
+            continue
         value = evidence.get("value") if isinstance(evidence, dict) else None
-        said = {f"model reading ({route})": value} if isinstance(value, str) and value.strip() else {}
-        try:
+        value = " ".join(value.split())[:2000] if isinstance(value, str) else None
+        said = {f"model reading ({route})": value} if value else {}
+        try:  # the quotation, and every passage, must be text of the stated page as read here
             validate_findings({"fields": {name: evidence}}, pages)
         except ValueError as exc:
             unfilled.append(complete.Unfilled(name, f"not kept: {exc}", said))
@@ -998,20 +1062,20 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         if not said:
             unfilled.append(complete.Unfilled(name, f"{name}: the model gave no value", {}))
             continue
-        quotes = [span["quote"] for span in evidence.get("passages") or []] or [evidence["quote"]]
-        grounded = (evidence.get("grounding", "literal_text_present") == "literal_text_present"
-                    and literal_grounding(name, value, ["".join(quotes), *quotes]))
-        risks = [r for r in [*(evidence.get("role_risk") or []), *(flagged.get(name) or [])] if isinstance(r, str)]
-        if any(line in suspect.get(page, ()) for page, line in _quoted_lines(evidence, pages)):
-            risks.append("instruction_like_text")
+        spans = [{k: span[k] for k in ("id", "page", "start", "end", "quote") if k in span}
+                 for span in evidence.get("passages") or []]
+        quote = "".join(span["quote"] for span in spans) or evidence["quote"]
+        rule = derivation(name, value, quote)
+        # What the adapter says against a field is heeded (it can only withdraw one); what it
+        # says for a field is not: the rule above decides.
+        withdrawn = evidence.get("grounding", "literal_text_present") != "literal_text_present"
+        risks = [r for r in [*(evidence.get("role_risk") or []), *(flagged.get(name) or [])] if r in KNOWN_RISKS]
         risks = list(dict.fromkeys(risks))
-        broken = structure_problem(" ".join(value.split()))
-        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]*", str(name)):
-            unfilled.append(complete.Unfilled(str(name)[:40], "not kept: not a field name", {}))
-        elif broken:
+        broken = structure_problem(value)
+        if broken:
             unfilled.append(complete.Unfilled(
                 name, f"{name}: the value has {broken}, so it cannot be written as one field", said))
-        elif name == "ENTRYTYPE" or not grounded:
+        elif not rule or withdrawn:
             unfilled.append(complete.Unfilled(
                 name, f"{name}: the value is not literally in the quoted text (page {evidence['page']}); "
                       "it is the model's interpretation", said))
@@ -1020,7 +1084,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 name, f"{name}: the quoted text (page {evidence['page']}) may play another role "
                       f"({', '.join(risks)}), so it is not taken as the work's own {name}", said))
         else:
-            kept[name] = evidence
+            kept[name] = {"value": value, "page": evidence["page"], "quote": evidence["quote"],
+                          **({"passages": spans} if spans else {}), "derivation": rule}
     if not kept:
         raise CdlbibError("The model reading gave no field that its quotation supports: "
                           + "; ".join(u.reason for u in unfilled))
@@ -1030,9 +1095,14 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
 
     sources = {name: f'model reading, p.{e["page"]}: "{quoted(e)}"' for name, e in kept.items()}
     left = tuple(f"{u.field}: " for u in unfilled) or ("\0",)  # said once, as the reason the field is unfilled
-    uncertainties = [u for u in extracted.get("uncertainties") or [] if isinstance(u, str)]
+    said_too = extracted.get("uncertainties") if isinstance(extracted.get("uncertainties"), list) else []
+    uncertainties = [_plain(u, 300) for u in said_too[:20] if isinstance(u, str)]
     notes = ([f"Read by a language model ({route}) from {intake.path.name}; every kept field quotes the page it was read from."]
-             + (["The PDF's text is OCR output, which misreads characters."] if intake.ocr else []))
+             + (["The PDF's text is OCR output, which misreads characters."] if intake.ocr else [])
+             + ([f"{dropped} item(s) of the model's answer were not bibliographic fields and were dropped."]
+                if dropped else [])
+             + (["This PDF contains text addressed to a language model; compare each quoted field with the page."]
+                if addressed_to_a_model(pages) else []))
     proposal = _draft(ws, entry_type, {name: e["value"] for name, e in kept.items()}, sources, unfilled, notes, "model")
     proposal.issues += [f"model: {u}" for u in uncertainties if not u.startswith(left)]
     proposal.evidence = {
@@ -1042,12 +1112,12 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         "ocr": intake.ocr,
         "retrieved_at": now(),
         "reviewer": "model-reading:" + route,
-        "fields": {name: {k: v for k, v in e.items() if k in ("value", "page", "quote", "passages", "grounding")}
-                   for name, e in kept.items()},
+        "fields": kept,
         "unsupported_fields": [{"field": u.field, "reason": u.reason, "values": u.source_values} for u in unfilled],
         "uncertainties": uncertainties,
-        "extraction_policy": extracted.get("extraction_policy"),
-        "provider_trace": {"extract": extracted.get("provider_trace")},
+        "extraction_policy": _plain(extracted.get("extraction_policy"), 60) or None,
+        "provider_trace": {"extract": extracted.get("provider_trace")
+                           if len(json.dumps(extracted.get("provider_trace"), default=str)) <= 20_000 else None},
         "quote_check": QUOTE_CHECK,
     }
     return proposal
