@@ -3,14 +3,6 @@ import { get, post, upload, blob, ApiError } from "./api.js";
 import { h, clear, button, field, list, table, note, kv, logPane, run, ask, info, download, announce } from "./dom.js";
 
 const PROBE = { "gh login": "github", "Dartmouth Chat key": "dartmouth-chat", "OpenAI key": "openai" };
-const TEX = {
-  linked: "linked: TeX finds this library's cdl.bib from any folder",
-  absent: "not linked",
-  other_library: "linked to another library",
-  foreign: "not linked: a file is there that cdlbib did not make",
-  shadowed: "linked, but TeX does not resolve cdl.bib to it",
-  no_tex: "TeX was not found, so it could not be shown that TeX resolves the link",
-};
 
 export async function show(main, ctx) {
   const features = h("div", { class: "panel" });
@@ -31,11 +23,7 @@ export async function show(main, ctx) {
       h("div", { class: "row" }, button("Check everything", (event) => run(event.currentTarget, () => checking("all")))),
       h("p", { class: "muted", text: "A check of the GitHub login asks gh over the network; a check of a key reads the system keychain, which may ask for permission." }));
     const s = found.tex;
-    clear(tex, h("h2", { text: "cdl.bib for every manuscript" }), kv([
-      ["TeX tree", s.texmf_home], ["Link", s.link + (s.target ? " -> " + s.target : "")], ["State", TEX[s.state] || s.state],
-      ["kpsewhich cdl.bib", s.kpsewhich ? (s.resolves_to || "not found") : null],
-      ["Without a link", s.state === "linked" ? null : h("code", { text: s.bibinputs_line })],
-    ]), s.changes.length ? list(s.changes) : null, s.notes.length ? note("", list(s.notes)) : null,
+    clear(tex, h("h2", { text: "cdl.bib for every manuscript" }), list(found.tex_lines, { class: "plain tex-lines" }),
     h("div", { class: "row" },
       s.present === "linked" ? null : button("Link cdl.bib into the TeX tree", (event) => run(event.currentTarget, () => linking(false)), { class: "primary" }),
       s.present === "absent" ? null : button("Remove the link", (event) => run(event.currentTarget, unlinking))));
@@ -49,7 +37,8 @@ export async function show(main, ctx) {
 
   async function linking(replace) {
     try {
-      await post("/api/tex/link", { replace });
+      const made = await post("/api/tex/link", { replace });
+      info(made.lines.join("\n"));
     } catch (error) {
       if (!(error instanceof ApiError) || error.kind !== "TexLinkRefused" || replace) throw error;
       const said = await ask({ title: "Something is already there", body: [error.message, "It can be moved aside (it is kept) and the link made."],

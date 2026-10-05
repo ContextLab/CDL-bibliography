@@ -273,14 +273,15 @@ def test_a_missing_package_is_installed_from_inside_a_job_or_asked_about_first(t
     asked = drive("ask")
     assert asked["missing_at_start"] and asked["session_ask"] is True
     first = asked["first"]["error"]
-    assert first["kind"] == "MissingDependency" and first["needs_confirmation"] == "install"
+    assert first["kind"] == "NeedsConfirmation" and first["needs_confirmation"] == "install"
+    assert first["question"] == first["message"] and first["question"].endswith("needs 'pypdfium2'. Install it now?")
     assert first["package"] == "pypdfium2" and first["extra"] == "pdf" and "Install it now?" in first["question"]
     assert asked["missing_after_first"] and not asked["first"]["lines"]            # nothing was installed unasked
     second = asked["second"]
     if second["error"] and "install failed" in second["error"]["message"]:
         pytest.skip("pypdfium2 could not be installed here (no network?); the question was asked as it should be")
     assert second["error"] is None and second["png"] == "89504e470d0a1a0a" and second["bytes"] > 1000
-    assert any(line.startswith("installing pypdfium2 (needed for: ") for line in second["lines"])
+    # (the person said yes: the package is installed without the line that announces an unasked install)
 
     subprocess.run(["uv", "pip", "uninstall", "-q", "--python", str(python), "pypdfium2"], check=True)
     default = drive("default")

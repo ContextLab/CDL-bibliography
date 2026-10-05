@@ -13,6 +13,7 @@ function corrections(found) {
 
 export function formatResult(found) {
   const parts = [note(found.ok ? "good" : "bad", found.ok ? "format: looks good!" : (found.failure ? "errors found: " + found.failure : "errors found in " + found.errors.length + " entr" + (found.errors.length === 1 ? "y" : "ies")))];
+  if (found.forced && found.forced.length) parts.push(note("bad", list(found.forced)));
   const rows = corrections(found);
   if (rows.length) parts.push(table(["Entry", "Field", "House format"], rows.slice(0, 500)), rows.length > 500 ? h("p", { class: "muted", text: "… and " + (rows.length - 500) + " more." }) : null);
   if (found.log) parts.push(h("details", null, h("summary", { text: "The format check's log" }), h("pre", { class: "mono log", text: found.log })));

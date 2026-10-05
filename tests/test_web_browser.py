@@ -723,7 +723,7 @@ def test_check_and_send_begin_with_the_completion_step_unless_it_is_skipped(visi
     expect(page.locator("main")).to_contain_text("Completion unavailable: Entries could not be selected for completion", timeout=60_000)
     expect(page.locator("#alerts .alert")).to_contain_text("citation check failed", timeout=60_000)
     page.click("#alerts .alert button")
-    assert "POST /api/send/offers" in [label for label, _, _ in visit.running.app.worker.history]
+    assert "GET /api/send/due" in [label for label, _, _ in visit.running.app.worker.history]
     visit.nav("send")
     before = len(visit.running.app.worker.history)
     page.check("#send-no-complete")
@@ -732,13 +732,13 @@ def test_check_and_send_begin_with_the_completion_step_unless_it_is_skipped(visi
     expect(page.locator("main .note.bad")).to_be_visible(timeout=60_000)        # not a checkout: the send's own refusal
     web.wait_idle(visit.running)
     labels = [label for label, _, _ in visit.running.app.worker.history[before:]]
-    assert "POST /api/send" in labels and "POST /api/send/offers" not in labels
+    assert "POST /api/send" in labels and "GET /api/send/due" not in labels
     page.uncheck("#send-no-complete")
     page.click("[data-action=send]")
     expect(page.locator("main")).to_contain_text("Completion unavailable:", timeout=60_000)
     web.wait_idle(visit.running)
     labels = [label for label, _, _ in visit.running.app.worker.history[before:]]
-    assert labels.index("POST /api/send/offers") < len(labels) - 1 - labels[::-1].index("POST /api/send")
+    assert labels.index("GET /api/send/due") < len(labels) - 1 - labels[::-1].index("POST /api/send")
     assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
 
 
@@ -813,3 +813,23 @@ def test_the_whole_review_queue_is_searched_and_paged_and_follows_the_file(brows
         found.context.close()
         running.stop()
     assert found.problems == [], found.problems
+
+
+def test_the_cores_own_sentences_are_shown_for_what_cannot_be_accepted_and_for_the_tex_link(visit):
+    from cdlbib import api, prompts
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='Identifiers']")
+    page.fill("#add-identifiers", "10.1037/h0041332")                           # Game62: in the library already
+    page.click("button:has-text('Look up')")
+    card = page.locator("article.card")
+    expect(card).to_have_count(1, timeout=120_000)
+    held = visit.running.app.store.get("proposal", card.get_attribute("data-proposal"))["proposal"]
+    reasons = api.why_not_acceptable(held)
+    assert reasons
+    expect(card.locator(".why-not li")).to_have_text(reasons)
+    expect(card.locator("[data-action=accept]")).to_be_disabled()
+    visit.nav("setup")
+    expect(page.locator(".tex-lines li")).to_have_text(prompts.tex_state_lines(api.setup_report(visit.ws).tex))
+    visit.nav("state")
+    expect(page.locator("#pending-evidence")).to_have_count(0)                  # nothing is owed

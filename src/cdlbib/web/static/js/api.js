@@ -110,8 +110,7 @@ export async function post(path, json, onLine) {
     const wanted = error instanceof ApiError && error.data.needs_confirmation;
     const flag = { install: "allow_install", fork: "allow_fork_creation" }[wanted];
     if (!flag || (json && json[flag])) throw error;
-    const said = await ask({ title: wanted === "install" ? "Install a package?" : "Create your fork?",
-      body: error.data.question, confirm: wanted === "install" ? "Install" : "Create the fork" });
+    const said = await ask({ title: "cdlbib asks", body: error.data.question, confirm: "Yes" });    // the core's question, word for word
     if (!said) throw error;
     return post(path, { ...(json || {}), [flag]: true }, onLine);
   }

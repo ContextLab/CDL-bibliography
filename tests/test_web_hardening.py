@@ -395,3 +395,135 @@ def test_the_review_queue_is_paged_and_searched_in_full(tmp_path, monkeypatch):
             assert client.raw("GET", "/api/review-queue", client.headers(), params=dict(all="1", **bad)).status_code == 400
     finally:
         running.stop()
+
+
+# --- the shared decisions of the core (merged 2026-10-05) ---------------------------------------
+
+def test_model_evidence_that_could_not_be_stored_is_kept_shown_and_retried(site, tmp_path):  # noqa: F811
+    """A real failure: the verification database is made read-only, so the entry is written and
+    the evidence cannot be stored; then it is made writable again and the retry stores it."""
+    if not pdfs.pdflatex():
+        pytest.skip("pdflatex is not installed: the test PDF cannot be typeset")
+    if os.geteuid() == 0:
+        pytest.skip("running as root: no file is unwritable")
+    from cdlbib import intake
+    from cdlbib.source_passages import materialize
+    from test_intake_model import SELECTED
+    web.wait_idle(site.running)
+    sent = site.ok("upload", "/api/pdf/upload", pdfs.build("unknown", tmp_path / "pdf").read_bytes(), "application/pdf")
+    site.ok("post", "/api/pdf/read", {"pdf": sent["pdf"]})
+    read = site.running.app.store.get("pdf", sent["pdf"])["intake"]
+    answer = materialize({"fields": SELECTED, "uncertainties": []}, read.pages[:intake.MODEL_PAGES])
+    answer["provider_trace"] = {"provider": "test selection", "model": None}
+    kept = routes.keep(site.running.app, intake.proposal_from_findings(site.ws, read, answer, "dartmouth"), pdf=sent["pdf"])
+    assert site.ok("get", "/api/evidence/pending") == {"pending": []}
+    locked = [path for path in site.ws.work.glob("verification.sqlite3*")]
+    for path in locked:
+        path.chmod(0o444)
+    try:
+        done = site.ok("post", "/api/proposal/accept", {"proposal": kept["id"]})
+        web.wait_idle(site.running)       # the preparation that follows a write tries the evidence again, and fails too
+        assert site.post("/api/proposal/accept", {"proposal": kept["id"]})[1]["kind"] == "AlreadyWritten"
+        web.wait_idle(site.running)
+    finally:
+        for path in locked:
+            path.chmod(0o644)
+    assert done["written"] == ["ExamSamp19"] and done["evidence_stored"] is False and done["evidence_error"]
+    assert done["outcomes"] == [{"index": 0, "key": "ExamSamp19", "status": "written", "reason": ""}]
+    assert "ExamSamp19" in keys(site.ws)
+    waiting = site.ok("get", "/api/evidence/pending")["pending"]
+    assert waiting == [{"key": "ExamSamp19", "fingerprint": done["fingerprint"], "stale": False}]
+    assert site.ok("get", "/api/proposal", proposal=kept["id"])["written"] == "ExamSamp19"       # the card is kept
+    for name in ("database", "fingerprint", "evidence"):
+        assert site.raw("POST", "/api/evidence/retry", site.headers(post=True), json={"key": "ExamSamp19", name: "x"}).status_code == 400
+    again = site.ok("post", "/api/evidence/retry", {"key": "ExamSamp19", "proposal": kept["id"]})
+    assert again == {"key": "ExamSamp19", "fingerprint": done["fingerprint"], "evidence_stored": True, "evidence_error": None}
+    assert site.ok("get", "/api/evidence/pending") == {"pending": []}
+    detail = site.ok("get", "/api/entry", key="ExamSamp19")
+    assert detail["result"]["external_evidence"]["pdf_sha256"] == read.sha256 and "human_review" not in detail["result"]
+    assert site.get("/api/proposal", proposal=kept["id"])[1]["kind"] == "NotFound"               # and now it is done with
+    assert site.post("/api/evidence/retry", {"key": "ExamSamp19"})[1]["kind"] == "CdlbibError"   # nothing waits any more
+
+
+def test_the_writers_own_outcomes_decide_which_cards_go(site):  # noqa: F811
+    """Two proposals for one work, both acceptable when they were made: the writer writes the
+    first and refuses the second, and says which by its place in the list."""
+    one = site.ok("post", "/api/add/identifiers", {"queries": [pdfs.ZOLLER_DOI]})["proposals"][0]
+    two = site.ok("post", "/api/add/identifiers", {"queries": [pdfs.ZOLLER_DOI]})["proposals"][0]
+    assert one["acceptable"] and two["acceptable"] and one["key_proposed"] == two["key_proposed"] == "Zoll90"
+    done = site.ok("post", "/api/proposal/accept-remaining", {"proposals": [one["id"], two["id"]]})
+    assert [(item["index"], item["status"]) for item in done["outcomes"]] == [(0, "written"), (1, "refused")]
+    assert done["accepted"] == [one["id"]] and done["written"] == ["Zoll90"]
+    (left,) = done["not_written"]
+    assert left["id"] == two["id"] and left["reason"] == done["outcomes"][1]["reason"] and left["reason"]
+    assert text(site.ws).count("@article{Zoll90,") == 1
+    assert site.get("/api/proposal", proposal=one["id"])[1]["kind"] == "NotFound"
+    kept = site.ok("get", "/api/proposal", proposal=two["id"])                    # the refused one is still there
+    assert kept["proposed_raw"] == ZOLL90
+    single = site.ok("post", "/api/proposal/accept", {"proposal": two["id"]})     # ... and a single accept says why as well
+    assert single["written"] == [] and single["outcomes"][0]["status"] == "refused" and single["outcomes"][0]["reason"]
+    assert site.ok("get", "/api/proposal", proposal=two["id"])["id"] == two["id"]
+
+
+def test_a_fork_is_asked_about_with_the_cores_question_and_made_only_on_a_yes(site):  # noqa: F811
+    """As far as this goes without creating a fork: the send itself is replaced by a job of the
+    test's own that refuses as api.send does when the user has no fork (a real
+    errors.PublishRefused), run through the same routes.guarded and api.attempt as a request."""
+    from cdlbib import deps
+    from cdlbib.errors import PublishRefused
+    web.wait_idle(site.running)
+    route = next(item for item in routes.ROUTES if item.path == "/api/send")
+    refusal = PublishRefused("@someone has no fork of ContextLab/CDL-bibliography.", needs_fork=True, upstream="ContextLab/CDL-bibliography")
+    calls = []
+
+    def handler(app, a, say):
+        calls.append(a["allow_fork_creation"])
+        if not a["allow_fork_creation"]:
+            raise refusal
+        return {"sent": True}
+
+    stand_in = routes.Route(route.method, route.path, route.api, handler, route.args)
+
+    def submit(**given):
+        args = routes.arguments(stand_in, given)
+        job = site.running.app.worker.submit("test: send", routes.guarded(site.running.app, stand_in, args))
+        assert job.wait(30)
+        return job.view()
+
+    deps.set_ask(True)
+    try:
+        asked = submit()["error"]
+        assert asked["kind"] == "NeedsConfirmation" and asked["needs_confirmation"] == "fork"
+        assert asked["question"] == prompts.fork_question(refusal) and asked["upstream"] == "ContextLab/CDL-bibliography"
+        assert calls == [False]                                             # nothing was created to ask the question
+        said = submit(allow_fork_creation=True)
+        assert said["result"] == {"sent": True} and calls == [False, False, True] and said["lines"] == []
+    finally:
+        deps.set_ask(False)
+    del calls[:]
+    plain = submit()                                                         # not asked to ask: said, then done
+    assert plain["result"] == {"sent": True} and calls == [False, True] and plain["lines"] == [prompts.fork_line(refusal)]
+    source = Path(routes.__file__).read_text(encoding="utf-8") + (Path(routes.__file__).parent / "static/js/api.js").read_text(encoding="utf-8")
+    assert "Install it now" not in source and "Create one now" not in source and "creating your fork" not in source
+    assert "deps.install" not in source and "api.attempt(" in source
+
+
+def test_whether_completion_has_anything_to_do_is_the_cores_answer(site):  # noqa: F811
+    due = site.ok("get", "/api/send/due")
+    assert due == api.as_data(api.completion_due(site.ws)) and due["reachable"] is False and due["keys"] == []
+    assert due["problem"].startswith("Entries could not be selected for completion")
+    for name in ("reference", "database"):
+        assert site.raw("GET", "/api/send/due", site.headers(), params={name: "x"}).status_code == 400
+
+
+def test_a_force_field_is_refused_in_the_cores_words(site):  # noqa: F811
+    forced = KAHA12.replace("\tYear = {2012}}", "\tForce = {True},\n\tYear = {2012}}")
+    assert forced != KAHA12
+    preview = site.ok("post", "/api/edit/preview", {"key": "Kaha12", "raw": forced})
+    assert any(prompts.FORCE_REFUSED in problem for problem in preview["problems"])
+    assert site.post("/api/edit/save", {"preview": preview["preview"]})[1]["kind"] == "EditRefused"
+    assert text(site.ws).count("Force") == 0
+    site.ws.bib.write_text(text(site.ws).replace(KAHA12, forced), encoding="utf-8")          # typed in by another program
+    found = site.ok("post", "/api/check/format")
+    assert found["ok"] is False and found["forced"] == [f"Kaha12: {prompts.FORCE_REFUSED}"] and "Kaha12" in found["errors"]
+    assert f"Kaha12: {prompts.FORCE_REFUSED}" in found["log"]
