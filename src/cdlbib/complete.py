@@ -2232,7 +2232,9 @@ class Applied:
     removed: list[str] = field(default_factory=list)
     renamed: dict[str, str] = field(default_factory=dict)
     refused: list[tuple[str, str]] = field(default_factory=list)
-    backup: object = None
+    backup: object = None       # the managed library's checkpoint taken before the write
+    saved_copy: object = None   # any other library: the copy of cdl.bib as it was (.bibcheck/edits/)
+    notes: list = field(default_factory=list)   # non-fatal lines (an interrupted earlier write that was settled)
 
 
 def _key_token(raw, key):
@@ -2251,23 +2253,19 @@ def apply(ws, accepted, *, batch=None):
 
     UTF-8 (including BOM), line endings and final-newline presence are retained. No
     approval is recorded. New entries append in accepted order with one blank line:
-    the house formatter does not require sorting entries.
+    the house formatter does not require sorting entries. The files are written by
+    writer.commit (checkpoint or pre-write copy, changed-since-read refusal, recovery).
     """
-    import json
-    import os
     import tempfile
-    from datetime import date
-    from pathlib import Path
-    from . import api, library
+    from . import writer
     from .errors import CdlbibError
     from .verification import load_entries
     from .workspace import Workspace
 
     result = Applied()
-    staged = []
     try:
-        if api.is_managed(ws) and ws.bib.resolve() != (library.path() / 'cdl.bib').resolve():
-            raise CdlbibError('The managed backup cannot protect this named bibliography; use the managed cdl.bib')
+        writer.require_protectable(ws)
+        result.notes = writer.recover(ws)
         original = ws.bib.read_bytes()
         bom = original.startswith(b'\xef\xbb\xbf')
         text = original.decode('utf-8-sig')
@@ -2360,57 +2358,11 @@ def apply(ws, accepted, *, batch=None):
         writes = [(ws.bib, changed)]
         expected = {ws.bib: original}
         if result.renamed:
-            ledger = ws.key_renames
-            ledger_original = ledger.read_bytes() if ledger.exists() else None
-            expected[ledger] = ledger_original
-            records = json.loads(ledger_original) if ledger_original is not None else []
-            if not isinstance(records, list) or any(not isinstance(item, dict) for item in records):
-                raise ValueError('The key rename ledger must be a list of records')
-            records += [dict(old_key=old, new_key=new, date=date.today().isoformat(),
-                             reason='Accepted entry completion key plan', commit=None)
-                        for old, new in result.renamed.items()]
-            writes.append((ledger, (json.dumps(records, indent=1, ensure_ascii=False) + '\n').encode('utf-8')))
-        # Prepare every file before replacing either, so permission/disk failures
-        # during preparation leave both originals intact.
-        for target, data in writes:
-            target.parent.mkdir(parents=True, exist_ok=True)
-            fd, name = tempfile.mkstemp(prefix='.' + target.name + '-', dir=target.parent)
-            staged.append((target, Path(name), expected[target]))
-            with os.fdopen(fd, 'wb') as stream:
-                stream.write(data)
-                stream.flush()
-                os.fsync(stream.fileno())
-            if target.exists():
-                os.chmod(name, target.stat().st_mode & 0o777)
-        for target, _, previous in staged:
-            if (target.read_bytes() if target.exists() else None) != previous:
-                raise CdlbibError(f'{target} changed while applying; nothing was written')
-        if ws.bib.read_bytes() != original:
-            raise CdlbibError('The bibliography changed while applying; nothing was written')
-        if api.is_managed(ws):
-            result.backup = library.completion_checkpoint(ws, batch)
-            library._mark(result.backup, "entry completion")
-        installed = []
-        try:
-            for target, temporary, previous in staged:
-                os.replace(temporary, target)
-                installed.append((target, previous))
-        except OSError:
-            for target, previous in reversed(installed):
-                if previous is None:
-                    target.unlink()
-                else:
-                    fd, name = tempfile.mkstemp(prefix='.rollback-', dir=target.parent)
-                    with os.fdopen(fd, 'wb') as stream:
-                        stream.write(previous)
-                    os.replace(name, target)
-            raise
-        if result.backup is not None:
-            library._unmark()
-            library._prune(library.backups_folder(), ws.root)
+            ledger, expected[ws.key_renames], data = writer.renames_recorded(
+                ws, result.renamed, 'Accepted entry completion key plan')
+            writes.append((ledger, data))
+        done = writer.commit(ws, writes, expected, batch=batch)
+        result.backup, result.saved_copy = done.backup, done.saved_copy
         return result
     except (OSError, UnicodeError, ValueError, TypeError) as exc:
         raise CdlbibError(f'Entry completion could not be written: {exc}') from exc
-    finally:
-        for _, temporary, _ in staged:
-            temporary.unlink(missing_ok=True)
