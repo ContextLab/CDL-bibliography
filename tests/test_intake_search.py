@@ -134,8 +134,31 @@ def test_nothing_to_search_for(tmp_path, client):
             intake.find_candidates(ws, client=client, **asked)
     with pytest.raises(CdlbibError, match="Nothing to search for"):
         api.find_candidates(ws)  # refused before any client is made
-    with pytest.raises(CdlbibError, match="no DOI, PMID or arXiv id"):
-        intake.query_for({"title": "x", "doi": None})
+    with pytest.raises(CdlbibError, match="no DOI, PMID, arXiv id or title"):
+        intake.query_for({"title": "", "doi": None})
+
+
+def test_one_rule_from_a_lead_to_its_query():
+    """The identifier of the source the lead came from; otherwise DOI, then PMID, then title."""
+    lead = {"source": "arxiv", "arxiv": "1706.03762", "doi": "10.48550/arxiv.1706.03762", "pmid": "1", "title": "T"}
+    assert intake.query_for(lead) == complete.Query(arxiv="1706.03762")
+    assert intake.query_for(dict(lead, source="pubmed")) == complete.Query(doi="10.48550/arxiv.1706.03762")
+    assert intake.query_for({"source": "pubmed", "doi": None, "pmid": 13306866, "title": "T"}) == complete.Query(pmid="13306866")
+    assert intake.query_for({"source": "crossref", "arxiv": "1706.03762"}) == complete.Query(arxiv="1706.03762")
+    assert intake.query_for({"source": "crossref", "title": "Only a title", "year": "1956/1957"}) == complete.Query(
+        title="Only a title", year="1956")
+    if hasattr(complete.Query, "from_candidate"):  # the shared rule, once complete has it, is the one used
+        assert intake.query_for(lead) == complete.Query.from_candidate(lead)
+
+
+def test_candidates_survive_serialization_with_their_errors(tmp_path, client):
+    import json
+    found = find(library(tmp_path / "lib"), client, title="Attention is all you need", authors=["Vaswani"], year="2017")
+    assert found.errors and len(found) == 1
+    data = json.loads(json.dumps(found.to_data(), default=str))
+    assert data == {"items": [dict(lead) for lead in found], "errors": [list(e) for e in found.errors]}
+    assert data == json.loads(json.dumps(api.intake_data(found))) and data["items"][0]["arxiv"] == "1706.03762"
+    assert isinstance(found, list) and found[0]["sources"] == ["arxiv"]  # still the list it was
 
 
 def test_arxiv_request_terms():

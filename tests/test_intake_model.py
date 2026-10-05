@@ -69,10 +69,10 @@ def reading(unknown):
 # --- routes -------------------------------------------------------------------------------------
 
 def test_routes_are_listed_whether_or_not_they_are_set_up():
-    dartmouth, openai = intake.model_routes({})
+    dartmouth, openai = intake.model_routes(environ={})
     assert (dartmouth.name, dartmouth.label, dartmouth.available, dartmouth.default) == (
-        "dartmouth", "Dartmouth Chat", False, True)
-    assert (openai.name, openai.label, openai.available, openai.default) == ("openai", "OpenAI", False, False)
+        "dartmouth", "Dartmouth Chat", None, True)  # None: not checked
+    assert (openai.name, openai.label, openai.available, openai.default) == ("openai", "OpenAI", None, False)
     for words in ("dartmouth-chat-api-key", "DARTMOUTH_CHAT_API_KEY",
                   "https://rc.dartmouth.edu/ai/online-resources/connecting-ai-clients/"):
         assert words in dartmouth.how
@@ -83,16 +83,40 @@ def test_routes_are_listed_whether_or_not_they_are_set_up():
     assert Path(intake._adapter("openai")).is_file()
 
 
-def test_route_availability_comes_from_the_key_lookup():
+def test_routes_are_passive_unless_a_route_is_probed():
     key = "a-test-token-that-is-not-a-key"
-    assert [r.available for r in intake.model_routes({"DARTMOUTH_CHAT_API_KEY": key})] == [True, False]
-    assert [r.available for r in intake.model_routes({"OPENAI_API_KEY": key})] == [False, False]  # no model named
-    assert [r.available for r in intake.model_routes(
-        {"OPENAI_API_KEY": key, "BIBCHECK_RESEARCH_MODEL": "some-model"})] == [False, True]
-    assert [r.available for r in intake.model_routes({"DARTMOUTH_CHAT_API_KEY": "two words"})] == [False, False]
-    for route in intake.model_routes({"DARTMOUTH_CHAT_API_KEY": key, "OPENAI_API_KEY": key}):
+
+    def available(environ, probe=()):
+        return [r.available for r in intake.model_routes(probe=probe, environ=environ)]
+
+    # passive: the environment only. True when the variable is set, None when it is not
+    assert available({}) == [None, None]
+    assert available({"DARTMOUTH_CHAT_API_KEY": key}) == [True, None]
+    assert available({"OPENAI_API_KEY": key}) == [None, False]  # set, but no model is named
+    assert available({"OPENAI_API_KEY": key, "BIBCHECK_RESEARCH_MODEL": "some-model"}) == [None, True]
+    assert available({"DARTMOUTH_CHAT_API_KEY": "two words"}) == [False, None]
+    # probed: that route's stored key is looked up (an explicit environment is the whole configuration)
+    assert available({}, probe=("dartmouth",)) == [False, None]
+    assert available({}, probe=("openai",)) == [None, False]
+    assert available({"DARTMOUTH_CHAT_API_KEY": key}, probe=("dartmouth", "openai")) == [True, False]
+    for route in intake.model_routes(environ={"DARTMOUTH_CHAT_API_KEY": key, "OPENAI_API_KEY": key}):
         assert key not in repr(route)  # a key is never part of what is shown
-    assert [r.name for r in api.model_routes()] == ["dartmouth", "openai"]
+    with pytest.raises(CdlbibError, match="Unknown model route 'other'"):
+        intake.model_routes(probe=("other",))
+
+
+def test_the_passive_listing_never_opens_the_keychain(monkeypatch):
+    """Without the variables, a keychain lookup would answer True or False; the passive
+    listing answers None (not checked), and a probe looks up only the route it names."""
+    from cdlbib import secrets as stored
+    monkeypatch.delenv("DARTMOUTH_CHAT_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.setattr(stored, "KEYS", {"dartmouth-chat": stored.KEYS["dartmouth-chat"],
+                                         "openai": stored.Key(env="OPENAI_API_KEY", item=None)})
+    assert [r.available for r in api.model_routes()] == [None, None]
+    # item=None would make a keychain lookup for OpenAI fail loudly (keyring refuses it): it is not made
+    assert [r.name for r in api.model_routes(probe=("dartmouth",))] == ["dartmouth", "openai"]
+    assert api.model_routes(probe=("dartmouth",))[1].available is None
 
 
 @needs_pdflatex
@@ -596,9 +620,14 @@ def test_evidence_is_stored_with_the_written_entry_and_is_not_an_approval(tmp_pa
     with pytest.raises(CdlbibError, match="changed since the model read it"):
         intake.attach_model_evidence(ws, "ExamSamp19", evidence, fingerprint="0" * 64)
     with pytest.raises(CdlbibError, match="no entry Nope"):
-        intake.attach_model_evidence(ws, "Nope", evidence)
+        intake.attach_model_evidence(ws, "Nope", evidence, entry["fingerprint"])
     with pytest.raises(CdlbibError, match="needs pdf_sha256, fields and reviewer"):
-        intake.attach_model_evidence(ws, "ExamSamp19", {"fields": {}})
+        intake.attach_model_evidence(ws, "ExamSamp19", {"fields": {}}, entry["fingerprint"])
+    with pytest.raises(TypeError):
+        intake.attach_model_evidence(ws, "ExamSamp19", evidence)  # the fingerprint is not optional
+    for missing in (None, ""):
+        with pytest.raises(CdlbibError, match="its fingerprint is required"):
+            intake.attach_model_evidence(ws, "ExamSamp19", evidence, missing)
     stored = api.attach_model_evidence(ws, "ExamSamp19", evidence, fingerprint=entry["fingerprint"])
     assert stored["fingerprint"] == entry["fingerprint"]
     _, after = _results(ws, "ExamSamp19")
@@ -626,23 +655,105 @@ def test_an_accepted_entry_is_left_alone(tmp_path, unknown, reading):
     finally:
         cache.close()
     with pytest.raises(CdlbibError, match="already metadata_verified"):
-        intake.attach_model_evidence(ws, "ExamSamp19", intake.evidence_for(proposal, unknown))
+        intake.attach_model_evidence(ws, "ExamSamp19", intake.evidence_for(proposal, unknown), entry["fingerprint"])
     _, after = _results(ws, "ExamSamp19")
     assert after["status"] == "metadata_verified" and "external_evidence" not in after
 
 
 @needs_pdflatex
-def test_written_through_save_edit_then_evidence(tmp_path, unknown, reading):
-    if not hasattr(api, "save_edit"):
-        pytest.skip("api.save_edit (the single-entry writer of milestone M2) is not in this branch yet")
+def test_accepting_a_model_draft_writes_the_entry_and_keeps_its_evidence(tmp_path, unknown, reading):
+    """Draft -> accept -> entry on disk, not accepted, evidence in api.entry(...).result; a
+    later edit (api.save_edit) changes the fingerprint and the evidence no longer applies."""
+    from conftest import ZOLL90
+    ws = library(tmp_path / "lib", ZOLL90)
+    proposal = intake.proposal_from_findings(ws, unknown, reading, "dartmouth")
+    done = api.accept_draft(ws, proposal, unknown)
+    assert done.written and done.key == "ExamSamp19" and done.applied.written == ["ExamSamp19"]
+    assert (done.evidence_stored, done.evidence_error) == (True, None)
+    assert ws.bib.read_text(encoding="utf-8") == ZOLL90 + "\n\n" + proposal.proposed_raw + "\n"
+    detail = api.entry(ws, "ExamSamp19")
+    assert detail.raw == proposal.proposed_raw and detail.fingerprint == done.fingerprint
+    assert detail.status == "needs_review" and detail.status not in ACCEPTED and "human_review" not in detail.result
+    shown = detail.result["external_evidence"]
+    assert shown == done.evidence and shown["pdf_sha256"] == unknown.sha256
+    assert shown["fields"]["year"]["page"] == 1 and "2019" in shown["fields"]["year"]["quote"]
+    assert api.status(ws).counts.get("human_verified") is None and not api.status(ws).ok
+    assert api.entry(ws, "Zoll90").raw == ZOLL90  # the other entry is as it was
+    # accepting the same draft again is refused by the writer; nothing more is written or stored
+    again = api.accept_draft(ws, proposal, unknown)
+    assert not again.written and again.applied.refused and again.evidence_stored is None
+    # a later edit: another fingerprint, and the evidence does not go with it
+    edited = proposal.proposed_raw.replace("{2019}", "{2018}")
+    api.save_edit(ws, "ExamSamp19", edited, detail.fingerprint)
+    after = api.entry(ws, "ExamSamp19")
+    assert after.raw == edited and after.fingerprint != detail.fingerprint
+    assert after.status == "pending" and "external_evidence" not in after.result
+    with pytest.raises(CdlbibError, match="changed since the model read it"):
+        api.attach_model_evidence(ws, "ExamSamp19", done.evidence, done.fingerprint)
+    data = json.loads(json.dumps(api.intake_data(done), default=str))
+    assert data["key"] == "ExamSamp19" and data["evidence"] == done.evidence and data["written"] is True
+    assert data["applied"]["written"] == ["ExamSamp19"]
+
+
+@needs_pdflatex
+def test_an_entry_written_without_its_evidence_says_so_and_can_be_retried(tmp_path, unknown, reading):
     ws = library(tmp_path / "lib")
     proposal = intake.proposal_from_findings(ws, unknown, reading, "dartmouth")
-    api.save_edit(ws, None, proposal.proposed_raw, None)
-    entry, before = _results(ws, "ExamSamp19")
-    assert entry["raw"] == proposal.proposed_raw and before["status"] not in ACCEPTED
-    api.attach_model_evidence(ws, "ExamSamp19", intake.evidence_for(proposal, unknown), fingerprint=entry["fingerprint"])
-    _, after = _results(ws, "ExamSamp19")
-    assert after["external_evidence"]["pdf_sha256"] == unknown.sha256 and after["status"] == "needs_review"
+    blocked = tmp_path / "a-folder-not-a-database"
+    blocked.mkdir()
+    done = intake.accept_draft(ws, proposal, unknown, database=blocked)  # the evidence store cannot be opened
+    assert done.written and done.key == "ExamSamp19" and done.evidence_stored is False
+    assert "could not be stored" in done.evidence_error
+    assert api.entry(ws, "ExamSamp19").raw == proposal.proposed_raw           # the entry is written
+    assert "external_evidence" not in api.entry(ws, "ExamSamp19").result       # and has no evidence yet
+    api.attach_model_evidence(ws, done.key, done.evidence, done.fingerprint)   # the retry, with the result's values
+    assert api.entry(ws, "ExamSamp19").result["external_evidence"] == done.evidence
+    assert api.entry(ws, "ExamSamp19").status == "needs_review"
+    # evidence of another PDF is not accepted with this proposal
+    other = intake.PdfIntake(path=Path("other.pdf"), sha256="0" * 64)
+    with pytest.raises(CdlbibError, match="different PDF"):
+        intake.accept_draft(library(tmp_path / "lib2"), proposal, other)
+    assert library(tmp_path / "lib2").bib.read_text(encoding="utf-8") == ""
+
+
+def test_accepting_a_typed_draft_and_what_is_not_a_draft(tmp_path):
+    ws = library(tmp_path / "lib")
+    draft = api.draft_manual(ws, {"title": "A typed paper on recall", "author": "Example, Ada", "year": "2001",
+                                  "journal": "Memory"})
+    done = api.accept_draft(ws, draft)
+    assert done.written and done.key == "Exam01" and (done.evidence, done.evidence_stored) == (None, None)
+    detail = api.entry(ws, "Exam01")
+    assert detail.raw == draft.proposed_raw and detail.fingerprint == done.fingerprint
+    assert detail.status == "pending" and "external_evidence" not in detail.result
+    keyless = api.draft_manual(ws, {"title": "Only a title was typed"})
+    refused = api.accept_draft(ws, keyless)
+    assert not refused.written and refused.applied.refused and "KeyNeeded" not in ws.bib.read_text(encoding="utf-8")
+    with pytest.raises(CdlbibError, match="Only a model-read or hand-typed draft"):
+        api.accept_draft(ws, complete.Proposal(proposed_raw=draft.proposed_raw, entry_type="article"))
+    with pytest.raises(CdlbibError, match="Only a model-read or hand-typed draft"):
+        api.accept_draft(ws, {"proposed_raw": draft.proposed_raw, "manual": True})
+
+
+@needs_pdflatex
+def test_what_intake_returns_survives_serialization(tmp_path, unknown, reading):
+    data = json.loads(json.dumps(unknown.to_data(), default=str))
+    assert data["path"] == str(unknown.path) and data["sha256"] == unknown.sha256 and data["pages"] == unknown.pages
+    assert set(data) == {f for f in unknown.__dataclass_fields__}
+    held = intake.PdfIntake(path=Path("x.pdf"), identifiers=[intake.Identifier("doi", "10.1/x", 1, "doi:10.1/x")])
+    assert held.to_data()["identifiers"] == [{"kind": "doi", "value": "10.1/x", "page": 1, "quote": "doi:10.1/x"}]
+    proposal = intake.proposal_from_findings(library(tmp_path / "lib"), unknown, reading, "dartmouth")
+    shown = json.loads(json.dumps(proposal.to_data(), default=str))
+    assert shown["evidence"] == json.loads(json.dumps(proposal.evidence)) and shown["manual"] is True
+    assert shown["changes"][0] == {"field": "author", "typed": None, "proposed": "Ada Q Example and Bo R Sample",
+                                   "source": 'model reading, p.1: "Ada Q. Example and Bo R. Sample"', "kind": "filled"}
+    assert set(shown) == set(proposal.__dataclass_fields__)
+    result = intake.PdfResult(intake=held, proposal=proposal, found_by=held.identifiers[0], candidates=[{"doi": "10.1/x"}],
+                              tried=["doi 10.1/x: record found"], message="m", prefill={"title": "t"})
+    whole = json.loads(json.dumps(api.intake_data(result), default=str))
+    assert set(whole) == set(result.__dataclass_fields__) | {"matched"} and whole["found_by"]["kind"] == "doi"
+    assert whole["intake"]["identifiers"][0]["value"] == "10.1/x" and whole["proposal"]["evidence"] == shown["evidence"]
+    assert result.to_data()["matched"] is True
+    assert [r["name"] for r in api.intake_data(intake.model_routes(environ={}))] == ["dartmouth", "openai"]
 
 
 # --- real model answers -------------------------------------------------------------------------

@@ -383,3 +383,58 @@ def test_a_preview_is_sized_before_it_is_drawn(tmp_path, made, monkeypatch):
     monkeypatch.setattr(intake, "MAX_IMAGE_BYTES", 1000)
     with pytest.raises(CdlbibError, match="larger than 1000 bytes; drawing was stopped"):
         intake.render_first_page(made["doi"], 800)
+
+
+# --- only a regular file is read, and the whole reading has a deadline ---------------------------
+
+def test_a_pipe_a_folder_and_a_device_are_refused_without_waiting(tmp_path, made):
+    import os
+    import time
+    pipe = tmp_path / "pipe.pdf"
+    os.mkfifo(pipe)  # nobody writes to it: an ordinary open() would wait for ever
+    device = tmp_path / "device.pdf"
+    device.symlink_to("/dev/zero")  # endless input behind a link
+    folder = tmp_path / "folder.pdf"
+    folder.mkdir()
+    for path, kind in ((pipe, "a pipe"), (device, "a device"), (folder, "a folder")):
+        started = time.monotonic()
+        read = intake.read_pdf(path)
+        assert (read.problem, read.pages, read.sha256) == ("not_a_file", [], None) and kind in read.detail
+        with pytest.raises(CdlbibError, match=f"names {kind}, not a file"):
+            intake.render_first_page(path, 300)
+        assert time.monotonic() - started < 5
+    # a link to a real PDF is that PDF
+    link = tmp_path / "link.pdf"
+    link.symlink_to(made["doi"])
+    assert intake.read_pdf(link).sha256 == intake.read_pdf(made["doi"]).sha256
+    loop = tmp_path / "loop.pdf"
+    loop.symlink_to(loop)
+    with pytest.raises(CdlbibError, match="could not be opened"):
+        intake.read_pdf(loop)
+
+
+def test_progress_lines_and_the_ocr_deadline(tmp_path, made):
+    lines = []
+    intake.read_pdf(made["doi"], progress=lines.append)
+    assert lines == ["Reading the first pages of doi.pdf"]
+    if not shutil.which("gs"):
+        pytest.skip("Ghostscript (gs) is not installed: no image-only PDF can be made")
+    scan = pdfs.image_only(made["title"], tmp_path / "scan.pdf")
+    lines.clear()
+    assert api.read_pdf(scan, ocr=False, progress=lines.append).problem == "no_text"
+    assert lines == ["Reading the first pages of scan.pdf", "No text was found in the PDF (a scan)"]
+    if not (shutil.which("pdftoppm") and shutil.which("tesseract")):
+        pytest.skip("pdftoppm and tesseract are not both installed: local_ocr cannot run")
+    import time
+    lines.clear()
+    started = time.monotonic()
+    late = intake.read_pdf(scan, progress=lines.append, ocr_seconds=0.3)  # OCR of two pages takes seconds
+    assert time.monotonic() - started < 20
+    assert late.problem == "no_text" and not late.ocr and "did not finish within 0 seconds; it was stopped" in late.detail
+    assert lines[:2] == ["Reading the first pages of scan.pdf", "No text was found in the PDF (a scan)"]
+    assert lines[2].startswith("Running OCR on the first pages") and len(lines) == 3
+    time.sleep(0.5)
+    left = subprocess.run(["pgrep", "-f", str(scan)], capture_output=True, text=True).stdout.split()
+    assert left == []  # the tools the OCR child started were stopped with it
+    done = intake.read_pdf(scan, progress=lines.append)  # within the ordinary limit it is read
+    assert done.ocr and done.problem is None and pdfs.MURDOCK_TITLE in done.first_page_text

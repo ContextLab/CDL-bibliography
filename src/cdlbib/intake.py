@@ -50,6 +50,7 @@ MAX_PDF_BYTES = 50_000_000  # a larger file is not opened
 MAX_OUTPUT_BYTES = 4_000_000    # what the reading child may send back
 MAX_IMAGE_BYTES = 40_000_000    # what the rendering child may send back
 READ_TIMEOUT = 60           # seconds the reading child may take
+OCR_TIMEOUT = 120           # seconds the OCR child may take (read_pdf's ocr_seconds)
 RENDER_TIMEOUT = 30
 IDENTIFIER_PAGES = 2        # identifiers are looked for on these first pages
 TITLE_PAGES = 4             # a record's title is looked for on these first pages
@@ -73,12 +74,38 @@ _NOT_A_TITLE = re.compile(r"(?i)^(?:untitled|microsoft word\b.*|.*\.(?:pdf|docx?
 
 # --- candidates ---------------------------------------------------------------------------------
 
+def to_data(value):
+    """``value`` as plain data (dicts, lists, strings, numbers) with nothing left out: what
+    a front end may hand to ``json.dumps``. A ``Candidates`` list becomes
+    ``{"items": [...], "errors": [...]}``, a dataclass a dict of its fields (and of the
+    properties its ``DATA_PROPERTIES`` names), a named tuple a dict, a path its text."""
+    import dataclasses
+    if isinstance(value, Candidates):
+        return {"items": [to_data(item) for item in value], "errors": [list(error) for error in value.errors]}
+    if dataclasses.is_dataclass(value) and not isinstance(value, type):
+        names = [f.name for f in dataclasses.fields(value)] + list(getattr(type(value), "DATA_PROPERTIES", ()))
+        return {name: to_data(getattr(value, name)) for name in names}
+    if isinstance(value, tuple) and hasattr(value, "_asdict"):
+        return {name: to_data(item) for name, item in value._asdict().items()}
+    if isinstance(value, dict):
+        return {str(name): to_data(item) for name, item in value.items()}
+    if isinstance(value, (list, tuple, set, frozenset)):
+        return [to_data(item) for item in value]
+    if isinstance(value, Path):
+        return str(value)
+    return value if isinstance(value, (str, int, float, bool)) or value is None else str(value)
+
+
 class Candidates(list):
-    """The leads, plus ``errors``: (source, reason) for each source that did not answer."""
+    """The leads, plus ``errors``: (source, reason) for each source that did not answer.
+    ``to_data()`` gives both as plain data (a bare list would lose the errors)."""
 
     def __init__(self):
         super().__init__()
         self.errors = []
+
+    def to_data(self):
+        return to_data(self)
 
 
 def _plain(text, limit):
@@ -362,8 +389,13 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
 
 
 def query_for(candidate):
-    """The ``complete.Query`` that names a lead by its identifier (arXiv id, then DOI, then
-    PMID): what ``api.propose_new`` is given when the lead is chosen."""
+    """The ``complete.Query`` for a chosen lead: what ``api.propose_new`` is given. The rule
+    is ``complete.Query.from_candidate`` when ``complete`` has it (the one shared rule);
+    until then the same policy here: the identifier of the source the lead came from (an
+    arXiv lead: its arXiv id), otherwise the DOI, then the PMID, then the title."""
+    shared = getattr(complete.Query, "from_candidate", None)
+    if shared is not None:
+        return shared(candidate)
     if candidate.get("arxiv") and candidate.get("source") == "arxiv":
         return complete.Query(arxiv=candidate["arxiv"])
     if candidate.get("doi"):
@@ -372,7 +404,9 @@ def query_for(candidate):
         return complete.Query(pmid=str(candidate["pmid"]))
     if candidate.get("arxiv"):
         return complete.Query(arxiv=candidate["arxiv"])
-    raise CdlbibError("This record has no DOI, PMID or arXiv id to look it up by.")
+    if candidate.get("title"):
+        return complete.Query(title=candidate["title"], year=str(candidate.get("year") or "").split("/")[0] or None)
+    raise CdlbibError("This record has no DOI, PMID, arXiv id or title to look it up by.")
 
 
 # --- PDF reading --------------------------------------------------------------------------------
@@ -386,7 +420,7 @@ class Identifier(NamedTuple):
 
 @dataclass
 class PdfIntake:
-    """What was read from a PDF. ``problem``: None, or "not_pdf", "too_large", "encrypted",
+    """What was read from a PDF. ``problem``: None, or "not_a_file", "not_pdf", "too_large", "encrypted",
     "no_text" (a scan no OCR tool read), "unreadable" or "timeout"; ``detail`` says more.
     ``ocr``: the text is OCR output (``local_ocr``), which misreads characters."""
     path: Path
@@ -400,6 +434,9 @@ class PdfIntake:
     detail: str | None = None
     ocr: bool = False
     title_source: str | None = None   # "largest text on page 1" or "PDF metadata"
+
+    def to_data(self):
+        return to_data(self)
 
 
 def _child(arguments, timeout, limit):
@@ -419,7 +456,8 @@ def _child(arguments, timeout, limit):
     command = [sys.executable, "-m", "cdlbib.intake", *map(str, arguments)]
     out, over, deadline = bytearray(), False, time.monotonic() + timeout
     with tempfile.TemporaryFile() as errors:
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors, stdin=subprocess.DEVNULL, env=env)
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors, stdin=subprocess.DEVNULL, env=env,
+                                   start_new_session=True)  # its own group: the tools it starts die with it
         try:
             with selectors.DefaultSelector() as selector:
                 selector.register(process.stdout, selectors.EVENT_READ)
@@ -439,8 +477,11 @@ def _child(arguments, timeout, limit):
             if not over:
                 process.wait(max(0.1, deadline - time.monotonic()))
         finally:
-            if process.poll() is None:
-                process.kill()
+            try:  # the child and whatever it started (pdftoppm, tesseract)
+                os.killpg(process.pid, 9)
+            except (ProcessLookupError, PermissionError, AttributeError):
+                if process.poll() is None:
+                    process.kill()
             process.wait()
             process.stdout.close()
         errors.seek(0)
@@ -484,39 +525,81 @@ def _identifiers(pages, metadata):
     return found
 
 
-def _hash(path):
-    digest = hashlib.sha256()
-    with open(path, "rb") as handle:
-        for block in iter(lambda: handle.read(1 << 20), b""):
+class _NotAFile(Exception):
+    """The path does not name a regular file; the message says what it is."""
+
+
+def _regular_file(path, hashed=True):
+    """(real path, size, first 1024 bytes, SHA-256 or None) of the regular file ``path``
+    names, read from one descriptor that is checked before anything is read from it.
+
+    The path is resolved, then opened without blocking and without following a link
+    (``O_NONBLOCK | O_NOFOLLOW``), and the descriptor is ``fstat``-ed: a FIFO, a device, a
+    socket or a directory raises ``_NotAFile`` at once (opening a FIFO never waits for a
+    writer). A file larger than ``MAX_PDF_BYTES`` is not read beyond its first block (the
+    SHA-256 is then None). ``OSError`` when it cannot be opened."""
+    import stat
+    real = Path(os.path.realpath(path))
+    descriptor = os.open(real, os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
+                         | getattr(os, "O_CLOEXEC", 0))
+    try:
+        status = os.fstat(descriptor)
+        if not stat.S_ISREG(status.st_mode):
+            kind = ("a folder" if stat.S_ISDIR(status.st_mode) else "a pipe" if stat.S_ISFIFO(status.st_mode)
+                    else "a device" if stat.S_ISCHR(status.st_mode) or stat.S_ISBLK(status.st_mode)
+                    else "a socket" if stat.S_ISSOCK(status.st_mode) else "not a regular file")
+            raise _NotAFile(f"The path names {kind}, not a file; nothing was read.")
+        head = os.read(descriptor, 1024)
+        if status.st_size > MAX_PDF_BYTES or not hashed:
+            return real, status.st_size, head, None
+        digest, read = hashlib.sha256(head), len(head)
+        while read <= MAX_PDF_BYTES:  # never more than the cap, whatever the file has become
+            block = os.read(descriptor, min(1 << 20, MAX_PDF_BYTES + 1 - read))
+            if not block:
+                break
             digest.update(block)
-    return digest.hexdigest()
+            read += len(block)
+        return real, max(status.st_size, read), head, digest.hexdigest()
+    finally:
+        os.close(descriptor)
 
 
 def _ocr_tools():
     return all(shutil.which(tool) for tool in ("pdftoppm", "tesseract"))
 
 
-def read_pdf(path, ocr=True):
-    """Read a PDF's first ``MAX_PAGES`` pages in a child process (``READ_TIMEOUT`` seconds).
+def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
+    """Read a PDF's first ``MAX_PAGES`` pages in a child process.
 
-    Returns a ``PdfIntake`` always, for an existing file: a file that is not a PDF, is
-    larger than ``MAX_PDF_BYTES``, is encrypted, cannot be parsed, takes too long or has no
-    text is reported in ``problem``. The limits are applied before or while the work they
-    bound is done: the size from ``stat`` before the file is read; in the child, a cap on
+    Returns a ``PdfIntake`` always, for a path that can be opened: something that is not a
+    regular file (a folder, a pipe, a device: ``problem`` "not_a_file", decided from the
+    opened descriptor before anything is read, and never waited for), a file that is not a
+    PDF, is larger than ``MAX_PDF_BYTES``, is encrypted, cannot be parsed, takes too long
+    or has no text is reported in ``problem``. The limits are applied before or while the
+    work they bound is done: in the child, a cap on
     what one PDF stream may decompress to (``MAX_STREAM_BYTES``), text extraction that stops
     at ``MAX_PAGE_CHARS`` per page and ``MAX_TOTAL_CHARS`` in all (``detail`` then says the
     text was cut), a CPU limit and, where the platform accepts one, an address-space limit;
     here, the child's output is read in blocks up to ``MAX_OUTPUT_BYTES`` and the child is
-    killed when it writes more or runs longer than ``READ_TIMEOUT``. A PDF with no text is read by ``local_ocr`` when
-    ``pdftoppm`` and ``tesseract`` are installed (``ocr=True``); the result then has
-    ``ocr=True`` and no ``problem``. A missing file raises ``CdlbibError``; a missing pypdf
-    raises ``MissingDependency``.
+    killed when it writes more or runs out of time.
+
+    A PDF with no text is read by ``local_ocr`` when ``pdftoppm`` and ``tesseract`` are
+    installed (``ocr=True``), also in a child, which is killed with the tools it started
+    after ``ocr_seconds`` (default ``OCR_TIMEOUT``); the result then has ``ocr=True`` and no
+    ``problem``, or ``problem`` "no_text" with the reason. One deadline covers the whole
+    call: ``READ_TIMEOUT`` for reading plus ``ocr_seconds`` when OCR may run. ``progress``
+    receives a line when reading starts, when no text is found, and when OCR starts.
+    A path that cannot be opened raises ``CdlbibError``; a missing pypdf ``MissingDependency``.
     """
+    import time
     path = Path(path)
+    ocr_seconds = OCR_TIMEOUT if ocr_seconds is None else max(0.0, float(ocr_seconds))
+    deadline = time.monotonic() + READ_TIMEOUT + (ocr_seconds if ocr else 0)
+    said = progress or (lambda line: None)
     try:
-        size = path.stat().st_size
-        with open(path, "rb") as handle:
-            head = handle.read(1024)
+        real, size, head, digest = _regular_file(path)
+    except _NotAFile as exc:
+        return PdfIntake(path=path, problem="not_a_file", detail=str(exc))
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
     intake = PdfIntake(path=path)
@@ -527,10 +610,11 @@ def read_pdf(path, ocr=True):
         intake.problem = "too_large"
         intake.detail = f"The file is {size // 1_000_000} MB; at most {MAX_PDF_BYTES // 1_000_000} MB is read."
         return intake
-    intake.sha256 = _hash(path)
+    intake.sha256 = digest
     deps.need("pypdf", "research", "Reading PDF files")
+    said(f"Reading the first pages of {path.name}")
     try:
-        code, out, err, over = _child(["read", path.resolve(), MAX_PAGES, MAX_PAGE_CHARS, MAX_TOTAL_CHARS,
+        code, out, err, over = _child(["read", real, MAX_PAGES, MAX_PAGE_CHARS, MAX_TOTAL_CHARS,
                                        MAX_STREAM_BYTES], READ_TIMEOUT, MAX_OUTPUT_BYTES)
     except subprocess.TimeoutExpired:
         intake.problem, intake.detail = "timeout", f"Reading the PDF took more than {READ_TIMEOUT} seconds."
@@ -550,15 +634,26 @@ def read_pdf(path, ocr=True):
     except (ValueError, KeyError, TypeError, AttributeError):
         intake.pages, intake.problem, intake.detail = [], "unreadable", "The PDF reader's answer could not be read."
         return intake
+    if intake.problem == "no_text":
+        said("No text was found in the PDF (a scan)")
     if intake.problem == "no_text" and ocr and _ocr_tools():
-        from . import local_ocr
+        allowed = min(ocr_seconds, deadline - time.monotonic())
+        said(f"Running OCR on the first pages (pdftoppm, tesseract; at most {allowed:.0f} seconds)")
         try:
-            pages = local_ocr.ocr_front(path, local_ocr.extraction_profile())
-            intake.pages = [{"page": p["page"], "text": p["text"][:MAX_PAGE_CHARS]} for p in pages][:MAX_PAGES]
+            if allowed <= 0:
+                raise subprocess.TimeoutExpired("ocr", ocr_seconds)
+            code, out, err, over = _child(["ocr", real, MAX_PAGES, MAX_PAGE_CHARS], allowed, MAX_OUTPUT_BYTES)
+            pages = json.loads(out.decode("utf-8")) if code == 0 and not over else None
+            if not isinstance(pages, list):
+                raise ValueError(err.splitlines()[-1][:200] if err else "the OCR reader stopped")
+            intake.pages = [{"page": int(p["page"]), "text": str(p["text"])[:MAX_PAGE_CHARS]} for p in pages][:MAX_PAGES]
             intake.ocr, intake.problem = True, None
             intake.detail = "The PDF has no text of its own; this text was read from the page images (OCR) and may be misread."
-        except (OSError, ValueError, subprocess.SubprocessError) as exc:
-            intake.detail = f"The PDF has no text, and OCR did not read it ({type(exc).__name__}: {str(exc)[:200]})."
+        except subprocess.TimeoutExpired:
+            intake.detail = (f"The PDF has no text, and OCR did not finish within {ocr_seconds:.0f} seconds; "
+                             "it was stopped.")
+        except (ValueError, KeyError, TypeError) as exc:
+            intake.detail = f"The PDF has no text, and OCR did not read it ({str(exc)[:200]})."
     elif intake.problem == "no_text" and ocr:
         intake.detail = "The PDF has no text (a scan), and pdftoppm and tesseract are not both installed to read it."
     intake.first_page_text = intake.pages[0]["text"] if intake.pages else ""
@@ -581,9 +676,9 @@ def render_first_page(path, width=800):
     if not 16 <= width <= 4000:
         raise CdlbibError("The preview width must be between 16 and 4000 pixels.")
     try:
-        size = path.stat().st_size
-        with open(path, "rb") as handle:
-            head = handle.read(1024)
+        real, size, head, _ = _regular_file(path, hashed=False)
+    except _NotAFile as exc:
+        raise CdlbibError(str(exc)) from exc
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
     if b"%PDF-" not in head:
@@ -592,7 +687,7 @@ def render_first_page(path, width=800):
         raise CdlbibError(f"The file is larger than {MAX_PDF_BYTES // 1_000_000} MB; no preview is drawn.")
     deps.need("pypdfium2", "pdf", "the PDF page preview")
     try:
-        code, out, err, over = _child(["render", path.resolve(), width, MAX_PIXELS], RENDER_TIMEOUT, MAX_IMAGE_BYTES)
+        code, out, err, over = _child(["render", real, width, MAX_PIXELS], RENDER_TIMEOUT, MAX_IMAGE_BYTES)
     except subprocess.TimeoutExpired:
         raise CdlbibError(f"Drawing the page took more than {RENDER_TIMEOUT} seconds.") from None
     if over:
@@ -646,6 +741,11 @@ class PdfResult:
     @property
     def matched(self):
         return self.proposal is not None
+
+    DATA_PROPERTIES = ("matched",)
+
+    def to_data(self):
+        return to_data(self)
 
 
 def prefill_from(intake, proposal=None):
@@ -741,33 +841,52 @@ def propose_from_pdf(ws, intake, client=None, mailto=None, database=None, progre
 class ModelRoute:
     name: str          # "dartmouth" or "openai"
     label: str
-    available: bool
+    available: bool | None   # None: not checked (the stored key was not looked up)
     how: str           # how to set it up; shown whether or not it is available
     default: bool = False
 
 
-def _has_key(name, environ=None):
-    from . import secrets
-    try:
-        secrets.get(name, environ)
-    except SecretNotFound:
-        return False
-    return True
+_ROUTE_KEYS = {"dartmouth": "dartmouth-chat", "openai": "openai"}
 
 
-def model_routes(environ=None):
-    """The model routes, Dartmouth Chat (the default) first. ``available`` is whether the
-    route's API key is found by ``secrets.get`` (the environment variable, then the system
-    keychain) and, for OpenAI, whether ``BIBCHECK_RESEARCH_MODEL`` names a model. A route
-    that is not available is still listed, with ``how``. No key is returned or shown."""
+def _route_ready(route, environ=None, stored=False):
+    """Whether ``route`` can be used: True, False, or None for "not checked". Without
+    ``stored`` only the environment is looked at (no keychain, so no consent dialog and no
+    wait): True when the key's variable holds one token (and, for OpenAI, a model is
+    named), False when what is set cannot work, None when the variable is not set. With
+    ``stored`` the key is looked up as the adapter will (``secrets.get``: the variable, then
+    the keychain), for this route only."""
     from . import secrets
     source = os.environ if environ is None else environ
+    value = source.get(secrets.KEYS[_ROUTE_KEYS[route]].env) or ""
+    model = route != "openai" or bool(source.get("BIBCHECK_RESEARCH_MODEL"))
+    if value:
+        return model and not any(char.isspace() for char in value)
+    if not stored:
+        return None
+    try:
+        secrets.get(_ROUTE_KEYS[route], environ)
+    except SecretNotFound:
+        return False
+    return model
+
+
+def model_routes(probe=(), environ=None):
+    """The model routes, Dartmouth Chat (the default) first, each with ``how`` to set it up
+    whether or not it is. ``available`` is passive unless the route is named in ``probe``:
+    True when the key's environment variable is set, otherwise None ("not checked"; the
+    keychain is not opened). For a route in ``probe`` (e.g. ``probe=("dartmouth",)``) the
+    stored key is looked up too and ``available`` is True or False. No key is returned."""
+    from . import secrets
+    unknown = [name for name in probe if name not in _ROUTE_KEYS]
+    if unknown:
+        raise CdlbibError(f"Unknown model route {unknown[0]!r}; the routes are {', '.join(_ROUTE_KEYS)}.")
     return [
-        ModelRoute("dartmouth", "Dartmouth Chat", _has_key("dartmouth-chat", environ),
+        ModelRoute("dartmouth", "Dartmouth Chat", _route_ready("dartmouth", environ, "dartmouth" in probe),
                    f"Create an API key in Dartmouth Chat (steps: {DARTMOUTH_KEY_PAGE}). "
                    + secrets.places("dartmouth-chat") + " Only models the Dartmouth catalogue lists as free are used.",
                    default=True),
-        ModelRoute("openai", "OpenAI", _has_key("openai", environ) and bool(source.get("BIBCHECK_RESEARCH_MODEL")),
+        ModelRoute("openai", "OpenAI", _route_ready("openai", environ, "openai" in probe),
                    "Create an OpenAI API key. " + secrets.places("openai")
                    + " Also set the environment variable BIBCHECK_RESEARCH_MODEL to the model to use."),
     ]
@@ -777,6 +896,9 @@ def model_routes(environ=None):
 class ModelProposal(complete.Proposal):
     """A proposal read from a PDF by a model. ``evidence``: what ``evidence_for`` stores."""
     evidence: dict | None = None
+
+    def to_data(self):
+        return to_data(self)
 
 
 def _adapter(route):
@@ -1321,17 +1443,17 @@ def read_pdf_with_model(ws, intake, route="dartmouth", progress=None, entry_type
     The route's installed adapter is run through ``research.invoke_adapter`` with the
     ``extract`` phase of the research protocol, so the Dartmouth adapter makes its
     free-model check before any inference; the answer goes through
-    ``proposal_from_findings``. Raises ``CdlbibError`` when the route is unknown or not set
-    up, when the PDF gave no text, or when the adapter fails. Nothing is written; the
+    ``proposal_from_findings``. Only the chosen route's key is looked up. Raises
+    ``SecretNotFound`` (a ``CdlbibError``) with the setup instructions when it is missing, and
+    ``CdlbibError`` when the route is unknown, when the PDF gave no text, or when the adapter fails. Nothing is written; the
     proposal is never a verification.
     """
     from .research import INSTRUCTIONS, invoke_adapter
-    routes = {r.name: r for r in model_routes()}
-    if route not in routes:
-        raise CdlbibError(f"Unknown model route {route!r}; the routes are {', '.join(routes)}.")
-    chosen = routes[route]
+    if route not in _ROUTE_KEYS:
+        raise CdlbibError(f"Unknown model route {route!r}; the routes are {', '.join(_ROUTE_KEYS)}.")
+    chosen = next(r for r in model_routes(probe=(route,)) if r.name == route)  # this route's key only
     if not chosen.available:
-        raise CdlbibError(f"{chosen.label} is not set up. {chosen.how}")
+        raise SecretNotFound(f"{chosen.label} is not set up. {chosen.how}")
     pages = [p for p in intake.pages[:MODEL_PAGES]]
     if not any(p["text"].strip() for p in pages):
         raise CdlbibError("The PDF gave no text for a model to read" + (f" ({intake.detail})" if intake.detail else "."))
@@ -1385,39 +1507,109 @@ def evidence_for(proposal, intake):
     return json.loads(json.dumps(evidence))
 
 
-def attach_model_evidence(ws, key, evidence, fingerprint=None, database=None):
+def attach_model_evidence(ws, key, evidence, fingerprint, database=None):
     """Store ``evidence`` (``evidence_for``) with the library entry ``key`` as its
     ``external_evidence``, the record ``crossref attach-evidence`` writes, bound to the
-    entry's current fingerprint (``fingerprint``, when given, must be the current one).
+    entry's fingerprint: ``fingerprint`` is required and must be the entry's current one
+    (``Accepted.fingerprint``, ``EntryDetail.fingerprint``). The library's write lock is
+    held while the entry is read and the record stored (``library.transaction``).
 
     This is not an approval. The entry's result is ``needs_review`` with the evidence
     attached, as ``attach-evidence`` leaves it; an entry that is already accepted is left
     alone (``CdlbibError``), so no accepted status is changed. Returns the stored result.
     """
-    from .verification import ACCEPTED, Cache, load_entries, outcome, run_lock
+    from .library import transaction
+    from .verification import ACCEPTED, Cache, outcome, run_lock
     if not isinstance(evidence, dict) or not all(evidence.get(k) for k in ("pdf_sha256", "fields", "reviewer")):
         raise CdlbibError("Model evidence needs pdf_sha256, fields and reviewer.")
+    if not isinstance(fingerprint, str) or not fingerprint:
+        raise CdlbibError("Model evidence is stored for one exact entry text: its fingerprint is required.")
     cache = None
     try:
-        cache = Cache(database or ws.database, ledger=ws.revocations)
-        with run_lock(cache):
-            entries = complete._library_entries(ws)
-            if key not in entries:
-                raise CdlbibError(f"There is no entry {key} in the library.")
-            entry = entries[key]
-            if fingerprint is not None and entry["fingerprint"] != fingerprint:
-                raise CdlbibError("The entry changed since the model read it; the evidence was not attached.")
-            previous = cache.get(ws.bib, entry)
-            if previous and previous["status"] in ACCEPTED:
-                raise CdlbibError(f"{key} is already {previous['status']}; the model evidence was not attached.")
-            return cache.put(ws.bib, entry, dict(
-                previous or outcome("needs_review", []), status="needs_review", external_evidence=evidence,
-                issues=["External PDF/LLM findings attached; human confirmation required"]))
+        with transaction(ws):
+            cache = Cache(database or ws.database, ledger=ws.revocations)
+            with run_lock(cache):
+                entries = complete._library_entries(ws)
+                if key not in entries:
+                    raise CdlbibError(f"There is no entry {key} in the library.")
+                entry = entries[key]
+                if entry["fingerprint"] != fingerprint:
+                    raise CdlbibError("The entry changed since the model read it; the evidence was not attached.")
+                previous = cache.get(ws.bib, entry)
+                if previous and previous["status"] in ACCEPTED:
+                    raise CdlbibError(f"{key} is already {previous['status']}; the model evidence was not attached.")
+                return cache.put(ws.bib, entry, dict(
+                    previous or outcome("needs_review", []), status="needs_review", external_evidence=evidence,
+                    issues=["External PDF/LLM findings attached; human confirmation required"]))
     except (OSError, ValueError, sqlite3.Error) as exc:
         raise CdlbibError(f"The model evidence could not be stored: {exc}") from exc
     finally:
         if cache is not None:
             cache.close()
+
+
+@dataclass
+class Accepted:
+    """What ``accept_draft`` did. ``applied``: the writer's ``complete.Applied`` (``written``
+    is empty when the writer refused, with the reason in ``refused``). ``key`` and
+    ``fingerprint``: the entry as it is now in the file. ``evidence``: the model evidence of
+    the proposal, or None for a draft that has none. ``evidence_stored``: True, None (there
+    was none to store) or False, with ``evidence_error`` saying why; the entry is written
+    all the same, and ``attach_model_evidence(ws, key, evidence, fingerprint)`` with this
+    result's values stores it later."""
+    applied: object
+    key: str | None = None
+    fingerprint: str | None = None
+    evidence: dict | None = None
+    evidence_stored: bool | None = None
+    evidence_error: str | None = None
+
+    @property
+    def written(self):
+        return self.key is not None
+
+    DATA_PROPERTIES = ("written",)
+
+    def to_data(self):
+        return to_data(self)
+
+
+def accept_draft(ws, proposal, pdf=None, database=None):
+    """Write an accepted model-read or hand-typed proposal and keep its evidence, as one
+    action under the library's write lock (``library.transaction``, which the writer
+    re-enters): the entry is written by the existing writer (``complete.apply``: backup or
+    saved copy, key plan, rename ledger), read back from the file, and the proposal's model
+    evidence (``evidence_for(proposal, pdf)``; none for a typed draft) is stored bound to
+    exactly the fingerprint read back. Returns ``Accepted``.
+
+    No approval is recorded and the entry's status is not an accepted one. When the writer
+    refuses, nothing is written or stored (``Accepted.applied.refused``). When the entry is
+    written and the evidence cannot be stored, the result says so (``evidence_stored``
+    False, ``evidence_error``) and carries what a retry needs. A proposal that was not made
+    here (``manual`` False) is refused: those are written by ``api.apply_proposals``.
+    """
+    from .library import transaction
+    if not isinstance(proposal, complete.Proposal) or not proposal.manual:
+        raise CdlbibError("Only a model-read or hand-typed draft is accepted here; a proposal built from a "
+                          "source record is written by apply_proposals.")
+    evidence = evidence_for(proposal, pdf) if getattr(proposal, "evidence", None) else None
+    try:
+        with transaction(ws):
+            applied = complete.apply(ws, [proposal])
+            if not applied.written:
+                return Accepted(applied=applied, evidence=evidence)
+            key = applied.written[0]
+            result = Accepted(applied=applied, key=key, evidence=evidence,
+                              fingerprint=complete._library_entries(ws)[key]["fingerprint"])
+            if evidence is not None:
+                try:
+                    attach_model_evidence(ws, key, evidence, result.fingerprint, database=database)
+                    result.evidence_stored = True
+                except CdlbibError as exc:
+                    result.evidence_stored, result.evidence_error = False, str(exc)
+            return result
+    except (OSError, ValueError, KeyError) as exc:
+        raise CdlbibError(f"The draft could not be accepted: {exc}") from exc
 
 
 # --- the child process --------------------------------------------------------------------------
@@ -1597,6 +1789,13 @@ def _main(arguments):
             _limit(RENDER_TIMEOUT, MAX_CHILD_MEMORY)
             sys.stdout.buffer.write(_render_job(arguments[1], int(arguments[2]), int(arguments[3])))
             return 0
+        if job == "ocr" and len(arguments) == 4:  # the existing OCR (local_ocr), bounded like the reading
+            from . import local_ocr
+            _limit(OCR_TIMEOUT * 4, MAX_CHILD_MEMORY)
+            pages, kept = local_ocr.ocr_front(arguments[1], local_ocr.extraction_profile()), int(arguments[3])
+            sys.stdout.write(json.dumps([{"page": p["page"], "text": p["text"][:kept]}
+                                         for p in pages[:int(arguments[2])]], ensure_ascii=False))
+            return 0
         if job == "limits" and len(arguments) == 1:  # which limits this platform accepts
             sys.stdout.write(json.dumps(_limit(READ_TIMEOUT, MAX_CHILD_MEMORY)))
             return 0
@@ -1604,7 +1803,7 @@ def _main(arguments):
         sys.stderr.write(f"{type(exc).__name__}: {str(exc)[:300]}\n")
         return 3
     sys.stderr.write("usage: python -m cdlbib.intake read PATH PAGES PAGE_CHARS TOTAL_CHARS STREAM_BYTES"
-                     " | render PATH WIDTH MAX_PIXELS | limits\n")
+                     " | render PATH WIDTH MAX_PIXELS | ocr PATH PAGES PAGE_CHARS | limits\n")
     return 2
 
 

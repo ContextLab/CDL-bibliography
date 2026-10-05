@@ -715,10 +715,10 @@ def candidate_query(candidate):
     return intake.query_for(candidate)
 
 
-def read_pdf(path, ocr=True):
+def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
     """The first pages of a PDF, its identifiers and a title guess; see intake.read_pdf."""
     from . import intake
-    return intake.read_pdf(path, ocr=ocr)
+    return intake.read_pdf(path, ocr=ocr, progress=progress, ocr_seconds=ocr_seconds)
 
 
 def render_first_page(path, width=800):
@@ -733,10 +733,10 @@ def propose_from_pdf(ws, pdf, mailto=None, database=None, progress=None):
     return intake.propose_from_pdf(ws, pdf, mailto=mailto, database=database, progress=progress)
 
 
-def model_routes():
+def model_routes(probe=()):
     """The model routes and whether each is set up; see intake.model_routes."""
     from . import intake
-    return intake.model_routes()
+    return intake.model_routes(probe=probe)
 
 
 def read_pdf_with_model(ws, pdf, route="dartmouth", progress=None):
@@ -763,11 +763,25 @@ def model_evidence(proposal, pdf):
     return intake.evidence_for(proposal, pdf)
 
 
-def attach_model_evidence(ws, key, evidence, fingerprint=None, database=None):
-    """Store a model reading's evidence with a written entry; never an approval.
-    See intake.attach_model_evidence."""
+def attach_model_evidence(ws, key, evidence, fingerprint, database=None):
+    """Store a model reading's evidence with a written entry, bound to its fingerprint; never
+    an approval. accept_draft does this itself; this is the retry. See intake.attach_model_evidence."""
     from . import intake
-    return intake.attach_model_evidence(ws, key, evidence, fingerprint=fingerprint, database=database)
+    return intake.attach_model_evidence(ws, key, evidence, fingerprint, database=database)
+
+
+def accept_draft(ws, proposal, pdf=None, database=None):
+    """Write an accepted model-read or hand-typed draft and store its model evidence, in one
+    action under the write lock; returns intake.Accepted. Never an approval. See intake.accept_draft."""
+    from . import intake
+    return intake.accept_draft(ws, proposal, pdf=pdf, database=database)
+
+
+def intake_data(value):
+    """Anything intake returned (candidates, a read PDF, a PDF result, a proposal, an
+    acceptance) as plain data for json.dumps, with nothing dropped. See intake.to_data."""
+    from . import intake
+    return intake.to_data(value)
 
 
 class ProposalResults(list):
