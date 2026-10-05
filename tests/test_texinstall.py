@@ -513,7 +513,10 @@ def test_an_interrupted_run_leaves_no_program_behind(tmp_path):
     import time
     pids = tmp_path / "pids"
     slow = CHILD + "time.sleep(600)\n"
-    outer = subprocess.Popen([sys.executable, "-c", "import sys; from cdlbib import texinstall\n"
+    # A test run started as a background job inherits an ignored SIGINT; this program takes
+    # Ctrl-C as one started at a terminal does.
+    outer = subprocess.Popen([sys.executable, "-c", "import signal, sys; from cdlbib import texinstall\n"
+                              "signal.signal(signal.SIGINT, signal.default_int_handler)\n"
                               f"texinstall._run([sys.executable, '-c', {slow!r}, {str(pids)!r}], timeout=300)"],
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     try:

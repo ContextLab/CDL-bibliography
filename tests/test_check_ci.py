@@ -20,6 +20,18 @@ def clone(tmp_path_factory):
     subprocess.run(["git", "clone", "-q", str(ROOT), str(repo)], check=True)
     for k, v in (("user.name", "check_ci test"), ("user.email", "check-ci-test@example.org")):
         subprocess.run(["git", "config", k, v], cwd=repo, check=True)
+    # The saved results are a snapshot: entries added to cdl.bib since it was last saved (a
+    # pull request that only adds references) have none yet. These tests are about what the
+    # script does with a library and the results saved for it, so the clone's cdl.bib is the
+    # one of the commit that last saved them.
+    saved = subprocess.run(["git", "log", "-1", "--format=%H", "--", "verification/baseline.jsonl.gz"], cwd=repo,
+                           check=True, capture_output=True, text=True).stdout.strip()
+    assert saved, "no commit saved verification/baseline.jsonl.gz"
+    subprocess.run(["git", "checkout", "-q", saved, "--", "cdl.bib"], cwd=repo, check=True)
+    if subprocess.run(["git", "status", "--porcelain", "cdl.bib"], cwd=repo, check=True, capture_output=True,
+                      text=True).stdout.strip():
+        subprocess.run(["git", "commit", "-q", "-m", "cdl.bib as it was when the results were last saved", "cdl.bib"],
+                       cwd=repo, check=True)
     return repo
 
 
