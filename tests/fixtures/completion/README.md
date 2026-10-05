@@ -149,3 +149,37 @@ way by `extract_records.py`. They are kept apart so that tests which count the i
 | Item | DOI | Copied from | Crossref retrieved | Europe PMC | What it exercises |
 |-|-|-|-|-|-|
 | `MeyeEtal88` | 10.1037/0033-295x.95.2.183 | apply-2026-09-25-cases.json.gz, case `MeyeEtal88` | 2026-09-25 | PMID 3375399 | a capital after a colon at Crossref, lower case at PubMed; the last author spelled differently by the two sources |
+
+## `type_responses.json`
+
+The lookups of `tests/test_complete_types.py` (papers in proceedings, chapters, and the
+types that are not built): 24 responses, each requested once on 2026-10-05 through
+`cdlbib.verification.PoliteClient`, in the form of `responses.json` (the `request` is the
+client's cache key, the `response` is what the client cached). `record_type_responses.py`
+beside this file is the script that made it: it runs `cdlbib.complete.propose` on the
+queries below and writes out every response the client used. One alteration: the contact
+address is removed from each saved URL. No body holds an e-mail address.
+
+Keys are entries of `tests/fixtures/cdl-prewave1-2026-09-26.bib`.
+
+| Request (address removed) | Work | Crossref type | Why |
+|-|-|-|-|
+| `api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.2` | `KahaEtal24` | book-chapter | a chapter of an edited book; "Two Volume Pack" after the book's title |
+| `api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.38` | `Mann24` | book-chapter | another chapter of the same book (a DOI for a different work) |
+| `api.crossref.org/works/10.1515%2F9781400882618-002` | `Klee56` | book-chapter | a series number after the book's title |
+| `api.crossref.org/works/10.1016%2Fb978-0-12-108550-6.50010-0` | `BobrNorm75` | book-chapter | a chapter the citation check accepts from Crossref |
+| `api.crossref.org/works/10.1007%2F978-0-387-21579-2_9` | `Scha03` | book-chapter | two container titles (a series and a book); publisher "Springer New York" |
+| `api.crossref.org/works/10.1007%2F978-1-4684-1083-9_9` | `AherBeat81` | book-chapter | registry publisher "Springer US"; the imprint is Plenum Press |
+| `api.crossref.org/works/10.1109%2Fcvpr.2017.354` | `BauEtal17` | proceedings-article | year and acronym in the proceedings' name |
+| `api.crossref.org/works/10.1109%2Fcvpr.2010.5539970` | `XiaoEtal10` | proceedings-article | an acronym in the title |
+| `api.crossref.org/works/10.1145%2F3210240.3210322` | `NguyEtal18` | proceedings-article | title and subtitle apart; an ordinal in the name |
+| `api.crossref.org/works/10.18653%2Fv1%2Fd19-1410` | `ReimGure19` | proceedings-article | an ACL Anthology paper whose Crossref pages differ from the Anthology's |
+| `api.crossref.org/works/10.32470%2Fccn.2018.1267-0` | `HeusMann18` | proceedings-article | no pages |
+| `api.crossref.org/works/10.1109%2Ficassp.1990.115702` | `Kais90` | proceedings-article | no publication date |
+| `api.crossref.org/works/10.1201%2Fb16018` | `GelmEtal13` | book | a book cited by edition |
+| `api.crossref.org/works/10.1017%2Fcbo9780511802843` | `DaviHink97` | monograph | a type that is not built |
+| `api.crossref.org/works/10.4135%2F9781452257044.n183` | `KahaMill13` | reference-entry | a type that is not built |
+| `api.crossref.org/works/10.1136%2Febm-2023-pod.3` | not in the library | proceedings-article | a meeting abstract ("Preventing overdiagnosis meeting abstracts") |
+| `api.crossref.org/works/10.1167%2F15.11.1` | not in the library | journal-article | an article of Journal of Vision 15 (2015), beside the meeting abstract 10.1167/15.12.782 of `responses.json` |
+| `api.crossref.org/works?query.bibliographic=network dissection: … D Bau 2017 {IEEE} Conference on Computer Vision and Pattern Recognition&rows=5` | `BauEtal17` | | a typed paper without its DOI, found by title |
+| `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"` (6 requests) | `Scha03`, `Kais90`, `KahaEtal24`, `BauEtal17`, and the two works not in the library | | the PubMed side: of the article 10.1167/15.11.1 (one result), of the meeting abstract, and of each DOI whose entry the citation check did not accept at first (no result) |

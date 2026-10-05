@@ -8,6 +8,8 @@ filled with
 
 - tests/fixtures/completion/responses.json: the 36 responses fetched once for these tests
   on 2026-10-02 (the README beside it lists each request), stored as the client cached them;
+- tests/fixtures/completion/type_responses.json: the 24 responses fetched once on 2026-10-05
+  for the papers in proceedings and the chapters of tests/test_complete_types.py;
 - tests/fixtures/arxiv_preprints.json: the arXiv, arXiv-page and DataCite documents the
   arXiv check's own tests use.
 
@@ -30,6 +32,7 @@ from test_machinery_2026_09_25 import RAME72, ZOLL90, crossref_contact
 
 ROOT = Path(__file__).resolve().parents[1]
 SAVED = json.loads((ROOT / "tests/fixtures/completion/responses.json").read_text(encoding="utf-8"))
+TYPES = json.loads((ROOT / "tests/fixtures/completion/type_responses.json").read_text(encoding="utf-8"))
 ARXIV = json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text(encoding="utf-8"))
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
@@ -48,7 +51,7 @@ def library_entry(key):
 def client(tmp_path):
     """The real client over a real cache holding the saved responses; no network."""
     client = xs.make_client(tmp_path / "responses.sqlite3", contact=CONTACT, offline=True)
-    for item in SAVED:
+    for item in SAVED + TYPES:
         request = item["request"]
         if isinstance(request, list):  # PubMed requests name the caller's contact address
             url, params, xml = request
@@ -964,7 +967,10 @@ def test_one_rule_says_whether_an_entry_is_complete():
     import inspect
     assert "_set_complete(proposal, fields)" in inspect.getsource(complete.build)
     assert "_set_complete(proposal, fields)" in inspect.getsource(complete.build_arxiv)
-    assert inspect.getsource(complete).count("for name in REQUIRED_FIELDS") == 1
+    # One loop over the required fields, which are those of the entry's type (complete.KINDS).
+    assert inspect.getsource(complete).count("for name in required)") == 1
+    assert inspect.getsource(complete).count("for name in REQUIRED_FIELDS") == 0
+    assert complete.KINDS["article"].required is complete.REQUIRED_FIELDS
 
 
 def test_a_typed_doi_with_punctuation_after_it_is_looked_up_without_and_kept_as_typed(client, tmp_path):

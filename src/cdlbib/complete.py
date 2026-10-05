@@ -23,14 +23,18 @@ The kinds of ``FieldChange``:
     and a year the sources leave open are questions;
   - ``dropped``: a field outside the house list, or ``publisher`` on an article.
 
-Only journal articles are built. Any other type gives a proposal with ``unsupported`` set
-and no proposed text. A record that is itself a correction or retraction notice is refused
-(``CompletionRefused``). An article that has been retracted is built, named as retracted
-in ``issues``, and always needs a decision.
+Three types are built, each from the one Crossref record type the verifier accepts for it
+(``verification.compare_record``): ``@article`` from ``journal-article``, ``@inproceedings``
+from ``proceedings-article`` and ``@incollection`` from ``book-chapter`` (``KINDS``). Any
+other entry type or record type, and a record that is not of the typed entry's type, gives
+a proposal with ``unsupported`` set and no proposed text. A record that is itself a
+correction or retraction notice is refused (``CompletionRefused``). A work that has been
+retracted is built, named as retracted in ``issues``, and always needs a decision.
 """
 
 from dataclasses import dataclass, field
 from functools import lru_cache
+import html
 import re
 import unicodedata
 
@@ -49,6 +53,36 @@ BUILT_FIELDS = ("author", "doi", "journal", "number", "pages", "title", "volume"
 REQUIRED_FIELDS = ("author", "title", "journal", "year")
 # The fields an article is expected to have: one that no source states is listed as unfilled.
 EXPECTED_FIELDS = ("author", "journal", "pages", "title", "volume", "year")
+
+
+
+@dataclass(frozen=True)
+class Kind:
+    """One entry type the builder makes. ``record``: the Crossref record type the verifier
+    accepts for it (``verification.compare_record``). ``built``: the fields filled from the
+    record, in the layout's order (the record's ``container-title`` is the ``journal`` of an
+    article and the ``booktitle`` of the others). ``required``: what the entry must have to be accepted without a
+    decision. ``expected``: fields listed as unfilled when no source states them.
+    ``unverified``: house fields the library's entries of the type usually have that the
+    verifier has no check for (``compare_record`` answers them "no deterministic verifier
+    for this field"): never filled, and listed as unfilled with what the record says."""
+    record: str
+    built: tuple
+    required: tuple
+    expected: tuple
+    unverified: tuple = ()
+
+
+KINDS = {
+    "article": Kind("journal-article", BUILT_FIELDS, REQUIRED_FIELDS, EXPECTED_FIELDS),
+    "inproceedings": Kind("proceedings-article", ("author", "booktitle", "doi", "pages", "title", "volume", "year"),
+                          ("author", "title", "booktitle", "year"), ("author", "booktitle", "pages", "title", "year")),
+    "incollection": Kind("book-chapter",
+                         ("author", "booktitle", "doi", "pages", "publisher", "title", "volume", "year"),
+                         ("author", "title", "booktitle", "year"),
+                         ("author", "booktitle", "pages", "publisher", "title", "year"), ("address", "editor")),
+}
+RECORD_KINDS = {kind.record: name for name, kind in KINDS.items()}
 
 # Crossref update types that make a record a notice about another work.
 NOTICE_WORDS = ("errat", "corrig", "correct", "retract", "withdraw", "concern", "removal")
@@ -158,7 +192,8 @@ class Proposal:
     renames: dict[str, str] = field(default_factory=dict)
     unsupported: str | None = None
     needs_decision: bool = False  # True: never accepted without the person looking at it
-    # True when the entry has a key and its required fields (author, title, journal, year)
+    # True when the entry has a key and the required fields of its type (KINDS: author, title,
+    # year, and the journal of an article or the book title of a paper or chapter)
     # and none of them is a question. ``build`` sets it; an entry that is not complete
     # always needs a decision.
     complete: bool = False
@@ -384,6 +419,68 @@ def _journal(record):
     return _Value(value, "crossref", values, doubts)
 
 
+def _booktitle(record, kind):
+    """The proceedings or the book a paper or chapter is in: the record's one container
+    title in the form the verifier documents as the house form of a source name
+    (``verification.proceedings_name_forms``: no year, no final acronym;
+    ``verification.book_title_forms``: no series number, no volume-pack tail), through the
+    format checker's formatter for ``booktitle``. A record with several container titles
+    (a series and a book, in no stated order) fills nothing."""
+    from .helpers import format_journal_name
+    from .verification import book_title_forms, ordinal_form, proceedings_name_forms
+    venues = [_text(v) for v in record.get("container-title") or [] if _text(v)]
+    if not venues:
+        return None
+    values = {"crossref": "; ".join(venues)}
+    if len(venues) != 1 or re.search(r"[<>{}\\$]", venues[0]):
+        raise _Hold("booktitle: no single registry title", values)
+    source = html.unescape(venues[0])
+    form = proceedings_name_forms(source) if kind == "inproceedings" else book_title_forms(source)
+    value = format_journal_name(cp.journal_text(form))
+    try:
+        if ordinal_form(normalized(value)) != ordinal_form(normalized(form)):
+            raise _Hold("booktitle: formatter changes the title", values)
+    except ValueError as exc:
+        raise _Hold("booktitle: " + str(exc), values)
+    try:
+        value, doubts = _written("booktitle", value, format_journal_name)
+    except _Hold as hold:
+        raise _Hold(hold.reason, values)
+    return _Value(value, "crossref", values, doubts)
+
+
+def _publisher_format(name):
+    from . import helpers
+    return helpers.format_journal_name(name, key=helpers.publisher_key, dotted_initials=True)
+
+
+def _publisher(record):
+    """The record's publisher through the format checker's publisher formatter, when that
+    leaves the name the verifier compares (``verification.normalize_book_publisher``) as it
+    is and changes no letter's case; a name the formatter turns into another (``Springer New
+    York`` -> ``Springer``) or respells (``Springer US`` -> ``Springer Us``) is not written."""
+    from .helpers import remove_curlies
+    from .verification import normalize_book_publisher
+    name = _text(record.get("publisher")) if isinstance(record.get("publisher"), str) else ""
+    if not name:
+        return None
+    values = {"crossref": name}
+    if re.search(r"[<>{}\\$]", name):
+        raise _Hold("publisher: no plain registry name", values)
+    value = _publisher_format(html.unescape(name))
+    try:
+        letters = [re.sub(r"[^A-Za-z]", "", latex_text(text)) for text in (remove_curlies(value), html.unescape(name))]
+        if normalize_book_publisher(value) != normalize_book_publisher(name) or letters[0] != letters[1]:
+            raise _Hold("publisher: formatter changes the registry name", values)
+    except ValueError as exc:
+        raise _Hold("publisher: " + str(exc), values)
+    try:
+        value, doubts = _written("publisher", value, _publisher_format)
+    except _Hold as hold:
+        raise _Hold(hold.reason, values)
+    return _Value(value, "crossref", values, doubts)
+
+
 def _volume(record, mapped):
     value, source = _text(record.get("volume")), "crossref"
     second = _text(mapped.get("volume")) if mapped else ""
@@ -465,6 +562,22 @@ def _pages(record, mapped):
         if "+" not in source and "-" not in pages and not _article_number(pages, record, from_number):
             doubts.append(f"pages: the source gives only a first page ({pages}); the last page is not confirmed")
     return _Value(_cased(pages, printed).replace("-", "--"), source, values, doubts)
+
+
+def _proceedings_pages(outcome, doi):
+    """The pages of a paper in proceedings, as a question when the paper is in the ACL
+    Anthology: the Anthology's own record outranks Crossref's page range (``acl_review``;
+    Crossref deposits 3980-3990 for 10.18653/v1/d19-1410, the Anthology and the paper give
+    3982--3992), and the builder does not read the Anthology."""
+    from .acl_review import parse_id
+    try:
+        parse_id(doi)
+    except ValueError:
+        return outcome
+    if outcome is not None:
+        outcome.doubts.append(f"pages: {doi} is an ACL Anthology paper; the Anthology's record outranks Crossref's "
+                              "page range and was not read, so the pages are not confirmed")
+    return outcome
 
 
 def _year(record, mapped, evidence):
@@ -577,19 +690,29 @@ def _as_typed(proposal, typed, kind, questions):
     return proposal
 
 
+def _formatters():
+    """The format checker's formatter for each field it rewrites (``helpers.check_bib``)."""
+    from . import helpers
+    return {"title": helpers.format_title, "journal": helpers.format_journal_name,
+            "booktitle": helpers.format_journal_name, "publisher": _publisher_format,
+            "author": helpers.reformat_author, "editor": helpers.reformat_author,
+            "address": lambda value: helpers.format_journal_name(value, key=helpers.address_key,
+                                                                 force_caps=helpers.address_codes)}
+
+
 def _house_form(name, value):
     """A typed value as the format checker would write it (helpers.check_bib rewrites the
-    title, the journal, the authors and the pages; it leaves every other field alone), with
+    title, the journal, the book title, the publisher, the address, the authors, the editors
+    and the pages; it leaves every other field alone), with
     raw non-ASCII letters in the library's LaTeX form. A DOI is never rewritten. When the
     formatter would not leave the LaTeX form alone, the typed value is returned unchanged
     (``_house_question`` then says so)."""
-    from . import helpers
-    formatter = {"title": helpers.format_title, "journal": helpers.format_journal_name,
-                 "author": helpers.reformat_author}.get(name)
+    formatter = _formatters().get(name)
     if name == "doi":
         return value
     if name == "pages":
-        return helpers.valid_pages(value)[1][1]
+        from .helpers import valid_pages
+        return valid_pages(value)[1][1]
     formed = formatter(value) if formatter else value
     written = latex_text(formed)  # new text is written in the library's LaTeX form
     if formatter and formatter(written) != written:
@@ -599,9 +722,7 @@ def _house_form(name, value):
 
 def _house_question(name, value):
     """Why a typed value is kept although it is not in the library's LaTeX form, or None."""
-    from . import helpers
-    formatter = {"title": helpers.format_title, "journal": helpers.format_journal_name,
-                 "author": helpers.reformat_author}.get(name)
+    formatter = _formatters().get(name)
     if not formatter:
         return None
     written = latex_text(formatter(value))
@@ -631,34 +752,49 @@ def _usable_corroboration(mapped):
 
 
 def build(typed_fields, record, corroborating=None):
-    """Propose a complete ``@article`` entry for ``record``.
+    """Propose a complete entry for ``record``: an ``@article``, an ``@inproceedings`` or an
+    ``@incollection`` (``KINDS``). With no typed entry type, the type is the one the record's
+    type is built as; a typed type is never changed, and a record of another type fills
+    nothing.
 
     ``typed_fields``: the entry as typed, by lower-case field name, with ``ENTRYTYPE`` and
     ``ID`` when there are any (``{"doi": ...}`` alone is enough). ``record``: the Crossref
     record of the work. ``corroborating``: the PubMed record for the same DOI in the shape
     ``auto_review.epmc_record`` returns, or None.
 
+    A paper in proceedings has no publisher, address or editors filled, and a chapter no
+    address or editors: the record the client keeps states no place, and the verifier has
+    no check for an editor, so an entry with one could not be verified. A chapter's record
+    lists them under ``unfilled``.
+
     Raises ``CompletionRefused`` when the record is a correction or retraction notice.
     """
     from .helpers import authors2key, split_names
     typed = {(k if k in ("ENTRYTYPE", "ID") else k.lower()): v for k, v in typed_fields.items()
              if v is not None and str(v) != ""}
-    kind = str(typed.get("ENTRYTYPE") or "article").lower()
+    given_kind = str(typed.get("ENTRYTYPE") or "").lower()
+    named = record.get("type") if isinstance(record.get("type"), str) and record.get("type") else None
+    kind = given_kind or RECORD_KINDS.get(named, "article")
     record_doi = record.get("DOI").strip() if isinstance(record.get("DOI"), str) else ""
     if typed.get("ID") == NO_KEY:  # the placeholder is not a key
         del typed["ID"]
     proposal = Proposal(key_typed=typed.get("ID") or None, entry_type=kind, record_source="crossref",
                         doi=typed.get("doi") or record_doi or None)
-    if kind != "article":
+    if kind not in KINDS:
         proposal.unsupported = kind
         proposal.issues.append(f"An entry of type {kind} is not built automatically; the entry is left as typed")
         return proposal
-    if record.get("type") != "journal-article":
-        named = record.get("type") if isinstance(record.get("type"), str) and record.get("type") else None
+    if named not in RECORD_KINDS:
         proposal.unsupported = named or "unknown"
         proposal.issues.append((f"A record of type {named}" if named else "A record with no type")
                                + " is not built automatically; the entry is left as typed")
         return proposal
+    if named != KINDS[kind].record:  # the typed type is the person's: a record of another type fills nothing
+        proposal.unsupported = named
+        proposal.issues.append(f"A record of type {named} is not built as an entry of type {kind}; "
+                               "the entry is left as typed")
+        return proposal
+    spec = KINDS[kind]
     record, problems = _readable(record)
     _refuse_notice(record)
 
@@ -686,8 +822,8 @@ def build(typed_fields, record, corroborating=None):
         return _as_typed(proposal, typed, kind, {"doi": (typed["doi"], "typed")})
 
     keep = set(_field_order())
-    house = {k: v for k, v in typed.items() if k in keep and k != "publisher"}
-    evidence, compare_issues = safe_compare(dict(house, ENTRYTYPE="article"), record)
+    house = {k: v for k, v in typed.items() if k in keep and (k != "publisher" or kind != "article")}
+    evidence, compare_issues = safe_compare(dict(house, ENTRYTYPE=kind), record)
     unsupported = next((i for i in compare_issues if i.startswith("Unsupported source metadata")), None)
 
     conflict = _different_work(typed, record, evidence)
@@ -714,7 +850,8 @@ def build(typed_fields, record, corroborating=None):
     retractions = _retractions(record)
     banner = next((_BANNER.match(t)[0].strip() for t in _source_titles(record, evidence) if _BANNER.match(t)), None)
     if retractions:  # decision log: retractions are flagged for the person; nothing automatic
-        proposal.issues.append("The article was retracted (the retraction notice: " + ", ".join(retractions)
+        proposal.issues.append(("The article" if kind == "article" else "The work")
+                               + " was retracted (the retraction notice: " + ", ".join(retractions)
                                + "); it is not added without a decision")
         proposal.needs_decision = True
     elif banner:
@@ -729,9 +866,12 @@ def build(typed_fields, record, corroborating=None):
 
     makers = {
         "author": lambda: _author(record, mapped, typed.get("author")),
+        "booktitle": lambda: _booktitle(record, kind),
         "journal": lambda: _journal(record),
         "number": lambda: _number(record, mapped),
-        "pages": lambda: _pages(record, mapped),
+        "pages": lambda: _proceedings_pages(_pages(record, mapped), record_doi) if kind == "inproceedings"
+        else _pages(record, mapped),
+        "publisher": lambda: _publisher(record),
         "title": lambda: _title(record, mapped, typed.get("title"), evidence, unsupported),
         "volume": lambda: _volume(record, mapped),
         "year": lambda: _year(record, mapped, evidence),
@@ -758,7 +898,7 @@ def build(typed_fields, record, corroborating=None):
         proposal.issues.extend([reasons] if isinstance(reasons, str) else reasons)
         proposal.needs_decision = True
 
-    for name in BUILT_FIELDS:
+    for name in spec.built:
         had = typed.get(name)
         if name == "doi":
             if had:
@@ -798,7 +938,7 @@ def build(typed_fields, record, corroborating=None):
             if had:  # no source states it: left as typed, and said so
                 keep_typed(name, had)
                 proposal.unfilled.append(Unfilled(name, reason, {}))
-            elif name in EXPECTED_FIELDS or name in problems:
+            elif name in spec.expected or name in problems:
                 proposal.unfilled.append(Unfilled(name, reason, {}))
             continue
         value, source, values = outcome.value, outcome.source, outcome.values
@@ -837,9 +977,18 @@ def build(typed_fields, record, corroborating=None):
 
     # Other typed house fields stay as typed; the rest are dropped, as the format checker does.
     dropped = []
-    for name in sorted(k for k in typed if k not in ("ENTRYTYPE", "ID") and k not in BUILT_FIELDS):
+    for name in spec.unverified:
+        if not typed.get(name):
+            # A field the library's entries of this type usually have. The verifier has no
+            # check for it, so it is not written; what the record says is listed.
+            people = record.get(name) if name == "editor" and isinstance(record.get(name), list) else []
+            stated = _people_text([p for p in people if isinstance(p, dict)])
+            proposal.unfilled.append(Unfilled(
+                name, f"{name}: the verifier has no check for this field; the record's value is not written"
+                if stated else f"{name}: no source record states it", {"crossref": stated} if stated else {}))
+    for name in sorted(k for k in typed if k not in ("ENTRYTYPE", "ID") and k not in spec.built):
         if name == "publisher" and cp.drop_publisher_proposal(
-                {"fields": {"ENTRYTYPE": "article", "publisher": typed[name]}, "key": proposal.key_typed,
+                {"fields": {"ENTRYTYPE": kind, "publisher": typed[name]}, "key": proposal.key_typed,
                  "fingerprint": None}):
             dropped.append(FieldChange(name, typed[name], None, "house rule: no publisher on an article", "dropped"))
         elif name in keep:
@@ -861,12 +1010,14 @@ def build(typed_fields, record, corroborating=None):
 
 
 def _set_complete(proposal, fields):
-    """Set ``Proposal.complete``: the entry has a key and every required field, and none of
+    """Set ``Proposal.complete``: the entry has a key and every required field of its type
+    (``KINDS``; a type the builder does not make is held to the article's), and none of
     them is a question. An entry that is not complete needs a decision. The one rule, for
     every builder (``build``, ``build_arxiv`` and ``propose`` when it rewrites the text)."""
     asked = {c.field for c in proposal.changes if c.kind == "question"}
+    required = KINDS.get(str(proposal.entry_type or "").lower(), KINDS["article"]).required
     proposal.complete = bool((proposal.key_typed or proposal.key_proposed)
-                             and all(fields.get(name) and name not in asked for name in REQUIRED_FIELDS))
+                             and all(fields.get(name) and name not in asked for name in required))
     if not proposal.complete:
         proposal.needs_decision = True
 
@@ -1081,15 +1232,23 @@ def _abstract_sign(record, mapped=None):
     builder's ``_article_number`` says what an article number is). ``mapped``: the PubMed
     record for the same DOI, whose pages count when Crossref deposits none or only the first.
 
+    A paper in proceedings (``proceedings-article``) is read the same way, except that its
+    venue is a meeting by nature: only a venue that names abstracts is the ``venue`` sign.
+    A chapter (``book-chapter``) shows the ``venue`` sign alone, when its book names
+    abstracts; a chapter's pages are not read as a sign.
+
     Known gap: an abstract of the Vision Sciences Society meeting printed in Journal of
     Vision (10.1167/15.12.782) has a volume, an issue and a page that is also the end of
-    its DOI, exactly as an article of that journal has. Its Crossref record shows no sign,
-    and it is built as an article."""
+    its DOI, exactly as an article of that journal has (10.1167/15.11.1 is one: the two
+    Crossref records carry the same fields, down to a reference count of 0). Its Crossref
+    record shows no sign, and it is built as an article."""
     venues = record.get("container-title") if isinstance(record.get("container-title"), list) else []
-    named = next((_text(v) for v in venues if isinstance(v, str)
-                  and re.search(r"\b(?:abstracts?|meetings?)\b", v, re.I)), None)
+    words = r"\b(?:abstracts?|meetings?)\b" if record.get("type") == "journal-article" else r"\babstracts?\b"
+    named = next((_text(v) for v in venues if isinstance(v, str) and re.search(words, v, re.I)), None)
     if named:
         return "venue", named
+    if record.get("type") == "book-chapter":
+        return None
     for part in ("issue", "volume"):
         value = record.get(part)
         if isinstance(value, str) and re.search(r"suppl", value, re.I):
@@ -1127,7 +1286,7 @@ def _abstract_signs(record, mapped=None):
 def _abstract_note(record, mapped=None):
     """For a record that is taken or refused on its own (a DOI that was given, the one
     match of a title search), with PubMed's pages read when there are any."""
-    sign = _abstract_signs(record, mapped) if record.get("type") == "journal-article" else None
+    sign = _abstract_signs(record, mapped) if record.get("type") in RECORD_KINDS else None
     return (f"The record {record.get('DOI')} may be a conference abstract: {sign}. A conference abstract is not "
             "cited (house rule), so it is not taken without a decision.") if sign else None
 
@@ -1136,7 +1295,7 @@ def _crossref_states(record):
     """For a record in a list of several matches, where only its Crossref record has been
     read: what that record states, and no more. Only a venue that names abstracts or a
     meeting is called a possible conference abstract."""
-    sign = _abstract_sign(record) if record.get("type") == "journal-article" else None
+    sign = _abstract_sign(record) if record.get("type") in RECORD_KINDS else None
     if not sign:
         return None
     kind, detail = sign
@@ -1196,10 +1355,24 @@ def _notes(*parts):
     return " ".join(p for p in parts if p) or None
 
 
-def _from_doi(client, doi, follow=True):
+def _wanted(query):
+    """The typed entry's type when the builder makes it (None for a bare query or any other
+    type), and the Crossref record types that can be the record: the one the verifier
+    accepts for that type, or every built type when no type was typed."""
+    kind = str((query.fields or {}).get("ENTRYTYPE") or "").lower()
+    return (kind, {KINDS[kind].record}) if kind in KINDS else (None, set(RECORD_KINDS))
+
+
+def _not_built(named, kind):
+    """Why a record of type ``named`` is not the record of an entry of type ``kind``."""
+    return f"is not built as an entry of type {kind}" if kind and named in RECORD_KINDS else "is not built automatically"
+
+
+def _from_doi(client, doi, follow=True, wanted=frozenset({"journal-article"})):
     """The record of a DOI. It is that DOI's Crossref record and nothing else: nothing is
     searched for, and a DOI Crossref does not have gives no record. A preprint record that
-    names one published journal article is answered with the article, offered first."""
+    names one published work of a type in ``wanted`` is answered with that work, offered
+    first."""
     try:
         record, response = _crossref_record(client, doi)
     except ValueError as exc:
@@ -1214,7 +1387,7 @@ def _from_doi(client, doi, follow=True):
         linked = _published_dois(record)
         if len(linked) == 1:
             published = _from_doi(client, linked[0], follow=False)
-            if published.record is not None and published.record.get("type") == "journal-article":
+            if published.record is not None and published.record.get("type") in wanted:
                 published.candidates = [_summary(published.record), _summary(record)]
                 published.published_for = doi
                 published.note = _notes(
@@ -1374,10 +1547,11 @@ def _is_notice(record):
     return False
 
 
-def _judged(fields, record, source, want_surname, want_year):
+def _judged(fields, record, source, want_surname, want_year, kind=None, wanted=frozenset({"journal-article"})):
     """How a found record stands against the typed title, first author and year.
 
-    ``strict``: the record is a journal article that shows no sign of being a conference
+    ``strict``: the record is of a type in ``wanted`` (a journal article, unless the typed
+    entry or the bare query says otherwise) and shows no sign of being a conference
     abstract (``_abstract_signs``), the title is the same after ``verification.normalize_title`` (the
     verifier's comparison: case, accents, LaTeX, punctuation and spacing do not count), the
     first author's surname is the same after ``verification.normalized``, and, when a year
@@ -1401,15 +1575,17 @@ def _judged(fields, record, source, want_surname, want_year):
     same_year = not want_year or str(want_year).strip() in years
     usable = not _is_notice(record)
     matches = usable and same_title and same_surname and same_year
-    # Only a journal article that does not look like a conference abstract is taken; any
+    # Only a record of a wanted type that does not look like a conference abstract is taken; any
     # other match is a candidate, with the reason.
     demoted = None
-    if matches and record.get("type") != "journal-article":
-        demoted = f"The record {record.get('DOI') or record.get('PMID')} is of type {record.get('type')}, not a journal article."
+    if matches and record.get("type") not in wanted:
+        demoted = (f"The record {record.get('DOI') or record.get('PMID')} is of type {record.get('type')}, "
+                   + ("not a journal article." if wanted == {"journal-article"}
+                      else f"which {_not_built(record.get('type'), kind)}."))
     elif matches:
         demoted = _abstract_note(record)
     return {"record": record, "source": source, "doi": record.get("DOI"), "demoted": demoted,
-            "states": _crossref_states(record) if matches and record.get("type") == "journal-article" else demoted,
+            "states": _crossref_states(record) if matches and record.get("type") in wanted else demoted,
             "match": matches, "strict": matches and not demoted,
             "plausible": usable and ((same_surname and near_title) if want_surname else same_title)}
 
@@ -1442,24 +1618,26 @@ def _by_title(client, query):
     from .extra_sources import crossref_candidate, medline_is_notice, medline_record, route_pubmed
     fields = {k: v for k, v in (query.fields or {}).items() if isinstance(v, str)}
     fields.update({k: v for k, v in (("title", query.title), ("author", query.author), ("year", query.year)) if v})
-    fields = dict(fields, ENTRYTYPE="article")
+    kind, wanted = _wanted(query)
+    fields = dict(fields, ENTRYTYPE=kind or "article")
     fields.pop("doi", None)
     want_surname, want_year = _first_surname(fields.get("author")), fields.get("year")
     response = client.crossref_search(fields)
     items = (response.get("body") or {}).get("message", {}).get("items", [])
-    pool = [_judged(fields, record, "crossref", want_surname, want_year) for record in items]
+    pool = [_judged(fields, record, "crossref", want_surname, want_year, kind, wanted) for record in items]
     known = set()
     for item in pool:
         try:
             known.add(normalize_doi(item["doi"]))
         except (ValueError, AttributeError):
             continue
-    pubmed = route_pubmed(_pubmed_client(client), fields)
+    # PubMed holds journal articles: it is not asked about a typed paper in proceedings or chapter.
+    pubmed = route_pubmed(_pubmed_client(client), fields) if "journal-article" in wanted else {"records": {}}
     for pmid, raw in pubmed["records"].items():
         if medline_is_notice(raw):
             continue
         mapped = medline_record(raw, fields.get("journal"))
-        judged = _judged(fields, mapped, "pubmed", want_surname, want_year)
+        judged = _judged(fields, mapped, "pubmed", want_surname, want_year, kind, wanted)
         if not judged["plausible"] and not judged["strict"]:
             continue
         if mapped.get("DOI"):
@@ -1468,7 +1646,7 @@ def _by_title(client, query):
             candidate = crossref_candidate(client, mapped["DOI"])
             if candidate:  # found through PubMed; the record is still Crossref's
                 known.add(normalize_doi(mapped["DOI"]))
-                pool.append(_judged(fields, candidate["record"], "crossref", want_surname, want_year))
+                pool.append(_judged(fields, candidate["record"], "crossref", want_surname, want_year, kind, wanted))
                 continue
         pool.append(judged)
 
@@ -1482,9 +1660,9 @@ def _by_title(client, query):
         if item["source"] != "crossref":
             return Identified(candidates=listed, note=f"The one record that matches {asked} is in PubMed only, "
                                                       "without a DOI; an entry is built from a Crossref record")
-        if item["demoted"] and item["record"].get("type") != "journal-article":
+        if item["demoted"] and item["record"].get("type") not in wanted:
             return Identified(candidates=listed, note=_notes(f"One record matches {asked}.", item["demoted"]))
-        found = _from_doi(client, item["doi"])
+        found = _from_doi(client, item["doi"], wanted=wanted)
         if found.record is None or found.decision:
             # Still with the signs of an abstract once PubMed's pages are known: a candidate.
             return Identified(candidates=listed, note=_notes(f"One record matches {asked}.", found.decision or found.note))
@@ -1519,14 +1697,15 @@ def _arxiv_documents(cache, client, requested, only_api=False):
     return ar.collect(cache, client, {"ENTRYTYPE": "article", "journal": ARXIV_JOURNAL, "volume": requested})
 
 
-def _by_arxiv(client, cache, requested):
+def _by_arxiv(client, cache, requested, kind=None, wanted=frozenset({"journal-article"})):
     from . import arxiv_review as ar
     base, _ = ar.parse_id(requested)
     own = ar.doi_for(base)
 
     def published(doi, said_by):
         """The published version a source names: the identification when Crossref has it as
-        a journal article; otherwise why not, and the record Crossref does have, if any."""
+        a record of a type in ``wanted``; otherwise why not, and the record Crossref does
+        have, if any."""
         doi = _doi_text(doi or "")
         if not doi or normalize_doi(doi) == own:
             return None, None, []
@@ -1534,9 +1713,10 @@ def _by_arxiv(client, cache, requested):
         if found.record is None:
             return None, (f"{said_by} names {doi} as the published version of arXiv:{requested}, but Crossref "
                           "has no record of that DOI; the preprint is proposed."), []
-        if found.record.get("type") != "journal-article":
+        if found.record.get("type") not in wanted:
             return None, (f"{said_by} names {doi} as the published version of arXiv:{requested}; Crossref has "
-                          f"it as a record of type {found.record.get('type')}, which is not built automatically. "
+                          f"it as a record of type {found.record.get('type')}, which "
+                          f"{_not_built(found.record.get('type'), kind)}. "
                           "The preprint is proposed (house rule: cite the published version)."), [
                               _summary(found.record)]
         return found, None, []
@@ -1587,12 +1767,13 @@ def identify(query, client, cache=None, ws=None):
     A preprint that names its published version is answered with the published record
     (``published_for`` names the preprint, ``candidates`` lists both, published first).
     """
+    kind, wanted = _wanted(query)
     if query.doi:
-        return _from_doi(client, query.doi)
+        return _from_doi(client, query.doi, wanted=wanted)
     if query.pmid:
         return _by_pmid(client, query.pmid, ws.bib if ws is not None else None)
     if query.arxiv:
-        return _by_arxiv(client, cache if cache is not None else client.cache, query.arxiv)
+        return _by_arxiv(client, cache if cache is not None else client.cache, query.arxiv, kind, wanted)
     if query.title:
         return _by_title(client, query)
     return Identified(note="Nothing to look up: give a DOI, a PMID, an arXiv id, or a title")
@@ -1959,7 +2140,7 @@ def _propose(query, client, cache, ws=None):
     from .verification import ProviderError
     typed = dict(query.fields) if query.fields else ({"doi": query.doi} if query.doi else {})
     kind = str(typed.get("ENTRYTYPE") or "article").lower()
-    if kind != "article":
+    if kind not in KINDS:
         proposal = build(typed, {})
         proposal.typed_raw = query.raw
         return proposal

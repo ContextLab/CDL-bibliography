@@ -947,11 +947,11 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
         if item.key_proposed and entry['key'] != item.key_proposed:
             item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
             item.needs_decision = True
-        # ``unsupported`` is about the builder: it makes journal articles only. An entry a person
-        # typed (a manual proposal) is theirs to write in any type the manual form offers.
+        # ``unsupported`` is about the builder: it makes the types of ``complete.KINDS`` only. An
+        # entry a person typed (a manual proposal) is theirs to write in any type the manual form offers.
         from .intake import DRAFT_TYPES
         kind = str(fields['ENTRYTYPE']).lower()
-        if kind != 'article' and not (getattr(proposal, 'manual', False) and kind in DRAFT_TYPES):
+        if kind not in complete.KINDS and not (getattr(proposal, 'manual', False) and kind in DRAFT_TYPES):
             item.unsupported = fields['ENTRYTYPE']
             item.needs_decision = True
         path = database or ws.database
