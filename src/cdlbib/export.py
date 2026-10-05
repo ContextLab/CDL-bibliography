@@ -832,7 +832,6 @@ BCF_SHAPE = {
     "noinit": (("value",), (), False),
     "noinits": ((), ("noinit",), False),
     "nolabel": (("value",), (), False),
-    "nolabelwidthcount": (("value",), (), False),
     "nolabelwidthcounts": ((), ("nolabelwidthcount",), False),
     "nolabels": ((), ("nolabel",), False),
     "nolabelwidthcount": (("value",), (), False),
