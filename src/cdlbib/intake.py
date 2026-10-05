@@ -76,25 +76,10 @@ _NOT_A_TITLE = re.compile(r"(?i)^(?:untitled|microsoft word\b.*|.*\.(?:pdf|docx?
 # --- candidates ---------------------------------------------------------------------------------
 
 def to_data(value):
-    """``value`` as plain data (dicts, lists, strings, numbers) with nothing left out: what
-    a front end may hand to ``json.dumps``. A ``Candidates`` list becomes
-    ``{"items": [...], "errors": [...]}``, a dataclass a dict of its fields (and of the
-    properties its ``DATA_PROPERTIES`` names), a named tuple a dict, a path its text."""
-    import dataclasses
-    if isinstance(value, Candidates):
-        return {"items": [to_data(item) for item in value], "errors": [list(error) for error in value.errors]}
-    if dataclasses.is_dataclass(value) and not isinstance(value, type):
-        names = [f.name for f in dataclasses.fields(value)] + list(getattr(type(value), "DATA_PROPERTIES", ()))
-        return {name: to_data(getattr(value, name)) for name in names}
-    if isinstance(value, tuple) and hasattr(value, "_asdict"):
-        return {name: to_data(item) for name, item in value._asdict().items()}
-    if isinstance(value, dict):
-        return {str(name): to_data(item) for name, item in value.items()}
-    if isinstance(value, (list, tuple, set, frozenset)):
-        return [to_data(item) for item in value]
-    if isinstance(value, Path):
-        return str(value)
-    return value if isinstance(value, (str, int, float, bool)) or value is None else str(value)
+    """``value`` as plain data with nothing left out: ``api.as_data``, the one serializer
+    (kept under this name for what intake's own classes call)."""
+    from .api import as_data
+    return as_data(value)
 
 
 class Candidates(list):
@@ -541,19 +526,24 @@ class _NotAFile(Exception):
     """The path does not name a regular file; the message says what it is."""
 
 
-def _regular_file(path, hashed=True):
-    """(real path, size, first 1024 bytes, SHA-256 or None) of the regular file ``path``
-    names, read from one descriptor that is checked before anything is read from it.
+_READ = {}     # real path -> SHA-256 of the bytes read_pdf read from it (the newest 256 paths of this process)
 
-    The path is resolved, then opened without blocking and without following a link
-    (``O_NONBLOCK | O_NOFOLLOW``), and the descriptor is ``fstat``-ed: a FIFO, a device, a
-    socket or a directory raises ``_NotAFile`` at once (opening a FIFO never waits for a
-    writer). A file larger than ``MAX_PDF_BYTES`` is not read beyond its first block (the
-    SHA-256 is then None). ``OSError`` when it cannot be opened."""
+
+@contextlib.contextmanager
+def _captured(path):
+    """The file ``path`` names, captured once: its bytes are copied from one checked
+    descriptor (opened without blocking and without following a link; nothing but a regular file)
+    into a private folder of this call and hashed as they are copied. Yields (the copy, its
+    size, its first 1024 bytes, its SHA-256); the copy is None, and nothing is copied, for a
+    file larger than ``MAX_PDF_BYTES``. Everything that reads the PDF afterwards (the parser,
+    OCR, the page preview) reads the copy, so what is read is what was hashed, whatever
+    happens to the path meanwhile. The folder is removed when the block ends."""
     import stat
+    import tempfile
     real = Path(os.path.realpath(path))
     descriptor = os.open(real, os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_NOFOLLOW", 0)
                          | getattr(os, "O_CLOEXEC", 0))
+    scratch = None
     try:
         status = os.fstat(descriptor)
         if not stat.S_ISREG(status.st_mode):
@@ -562,18 +552,29 @@ def _regular_file(path, hashed=True):
                     else "a socket" if stat.S_ISSOCK(status.st_mode) else "not a regular file")
             raise _NotAFile(f"The path names {kind}, not a file; nothing was read.")
         head = os.read(descriptor, 1024)
-        if status.st_size > MAX_PDF_BYTES or not hashed:
-            return real, status.st_size, head, None
+        if status.st_size > MAX_PDF_BYTES:
+            yield None, status.st_size, head, None
+            return
+        scratch = tempfile.mkdtemp(prefix="cdlbib-pdf-copy-")
+        copy = Path(scratch) / "paper.pdf"
         digest, read = hashlib.sha256(head), len(head)
-        while read <= MAX_PDF_BYTES:  # never more than the cap, whatever the file has become
-            block = os.read(descriptor, min(1 << 20, MAX_PDF_BYTES + 1 - read))
-            if not block:
-                break
-            digest.update(block)
-            read += len(block)
-        return real, max(status.st_size, read), head, digest.hexdigest()
+        with open(copy, "xb") as held:
+            held.write(head)
+            while read <= MAX_PDF_BYTES:      # never more than the cap, whatever the file has become
+                block = os.read(descriptor, min(1 << 20, MAX_PDF_BYTES + 1 - read))
+                if not block:
+                    break
+                digest.update(block)
+                held.write(block)
+                read += len(block)
+        if read > MAX_PDF_BYTES:              # it grew past the cap while it was read
+            yield None, read, head, None
+            return
+        yield copy, read, head, digest.hexdigest()
     finally:
         os.close(descriptor)
+        if scratch is not None:
+            shutil.rmtree(scratch, ignore_errors=True)
 
 
 def _ocr_tools():
@@ -609,11 +610,25 @@ def read_pdf(path, ocr=True, progress=None, ocr_seconds=None):
     deadline = time.monotonic() + READ_TIMEOUT + (ocr_seconds if ocr else 0)
     said = progress or (lambda line: None)
     try:
-        real, size, head, digest = _regular_file(path)
+        capture = _captured(path)
+        real, size, head, digest = capture.__enter__()
     except _NotAFile as exc:
         return PdfIntake(path=path, problem="not_a_file", detail=str(exc))
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
+    try:      # ``real`` is this call's own copy of the bytes that were hashed; only it is read from here on
+        if digest is not None:
+            _READ.pop(os.path.realpath(path), None)
+            _READ[os.path.realpath(path)] = digest
+            while len(_READ) > 256:
+                _READ.pop(next(iter(_READ)))
+        return _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said)
+    finally:
+        capture.__exit__(None, None, None)
+
+
+def _read_captured(path, real, size, head, digest, ocr, ocr_seconds, deadline, said):
+    import time
     intake = PdfIntake(path=path)
     if b"%PDF-" not in head:
         intake.problem, intake.detail = "not_pdf", "The file does not start as a PDF (no %PDF- header)."
@@ -688,20 +703,30 @@ def render_first_page(path, width=800):
     if not 16 <= width <= 4000:
         raise CdlbibError("The preview width must be between 16 and 4000 pixels.")
     try:
-        real, size, head, _ = _regular_file(path, hashed=False)
+        capture = _captured(path)
+        real, size, head, digest = capture.__enter__()
     except _NotAFile as exc:
         raise CdlbibError(str(exc)) from exc
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
-    if b"%PDF-" not in head:
-        raise CdlbibError("The file does not start as a PDF (no %PDF- header).")
-    if size > MAX_PDF_BYTES:
-        raise CdlbibError(f"The file is larger than {MAX_PDF_BYTES // 1_000_000} MB; no preview is drawn.")
-    deps.need("pypdfium2", "pdf", "the PDF page preview")
     try:
-        code, out, err, over = _child(["render", real, width, MAX_PIXELS], RENDER_TIMEOUT, MAX_IMAGE_BYTES)
-    except subprocess.TimeoutExpired:
-        raise CdlbibError(f"Drawing the page took more than {RENDER_TIMEOUT} seconds.") from None
+        if b"%PDF-" not in head:
+            raise CdlbibError("The file does not start as a PDF (no %PDF- header).")
+        if size > MAX_PDF_BYTES:
+            raise CdlbibError(f"The file is larger than {MAX_PDF_BYTES // 1_000_000} MB; no preview is drawn.")
+        read_as = _READ.get(os.path.realpath(path))
+        if read_as is not None and read_as != digest:
+            # The preview stands beside what was read (and beside evidence bound to that
+            # reading's SHA-256): a file that is no longer those bytes is not shown as if it were.
+            raise CdlbibError("The file has changed since it was read (it is no longer the same bytes), so no "
+                              "preview of it is drawn; read the PDF again.")
+        deps.need("pypdfium2", "pdf", "the PDF page preview")
+        try:
+            code, out, err, over = _child(["render", real, width, MAX_PIXELS], RENDER_TIMEOUT, MAX_IMAGE_BYTES)
+        except subprocess.TimeoutExpired:
+            raise CdlbibError(f"Drawing the page took more than {RENDER_TIMEOUT} seconds.") from None
+    finally:
+        capture.__exit__(None, None, None)
     if over:
         raise CdlbibError(f"The page image is larger than {MAX_IMAGE_BYTES} bytes; drawing was stopped.")
     if code != 0 or not out.startswith(b"\x89PNG\r\n\x1a\n"):
@@ -891,11 +916,6 @@ def route_state(route, environ=None, stored=False):
     except SecretNotFound:
         return False, "no API key was found" + ("" if model else "; and " + no_model)
     return (True, "") if model else (False, no_model)
-
-
-def _route_ready(route, environ=None, stored=False):
-    """``route_state`` without the reason."""
-    return route_state(route, environ, stored)[0]
 
 
 def model_routes(probe=(), environ=None):
@@ -1622,22 +1642,36 @@ def accept_draft(ws, proposal, pdf=None, database=None):
         raise CdlbibError("Only a model-read or hand-typed draft is accepted here; a proposal built from a "
                           "source record is written by apply_proposals.")
     evidence = evidence_for(proposal, pdf) if getattr(proposal, "evidence", None) else None
+    kept = []
+
+    def journal(entries, planned):
+        # The evidence is put on disk BEFORE the entry is written, bound to the fingerprint the
+        # entry will have (read from the exact text about to be written), so that whatever
+        # happens after this point, a retry has what it needs. If it cannot be kept, the entry
+        # is not written either.
+        key = planned.written[0]
+        try:
+            _keep_pending(ws, key, entries[key]["fingerprint"], evidence)
+        except (CdlbibError, OSError) as exc:
+            from .errors import CompletionRefused
+            raise CompletionRefused(f"The model evidence of {key} could not be kept on disk ({exc}), so the entry "
+                                    "was not written either; nothing was changed.") from exc
+        kept.append(key)
+
     try:
         with transaction(ws):
-            applied = complete.apply(ws, [proposal])
+            try:
+                applied = complete.apply(ws, [proposal], before_commit=journal if evidence is not None else None)
+            except BaseException:
+                for key in kept:       # the write did not happen: the evidence has no entry to wait for
+                    _drop_pending(ws, key)
+                raise
             if not applied.written:
                 return Accepted(applied=applied, evidence=evidence)
             key = applied.written[0]
             result = Accepted(applied=applied, key=key, evidence=evidence,
                               fingerprint=complete._library_entries(ws)[key]["fingerprint"])
             if evidence is not None:
-                # Kept on disk before it is stored, so that a failure (or a crash) here leaves
-                # what a retry needs; removed once it is stored.
-                try:
-                    _keep_pending(ws, key, result.fingerprint, evidence)
-                except (CdlbibError, OSError) as exc:
-                    result.evidence_stored, result.evidence_error = False, f"the evidence could not be kept for a retry: {exc}"
-                    return result
                 try:
                     attach_model_evidence(ws, key, evidence, result.fingerprint, database=database)
                     result.evidence_stored = True
@@ -1713,9 +1747,14 @@ def retry_evidence(ws, key, database=None):
             fingerprint, evidence = waiting[key]
             result = Accepted(applied=None, key=key, fingerprint=fingerprint, evidence=evidence, evidence_stored=False)
             entry = complete._library_entries(ws).get(key)
-            if entry is None or entry["fingerprint"] != fingerprint:
-                result.evidence_error = (f"{key} is no longer in the library" if entry is None else
-                                         f"{key} has changed since the evidence was read; it no longer applies")
+            if entry is None:
+                # The record is written before the entry: a write that never happened (a crash in
+                # between) leaves evidence for no entry. It is dropped.
+                _drop_pending(ws, key)
+                result.evidence_error = f"{key} is not in the library: the entry was not written, and its evidence was dropped"
+                return result
+            if entry["fingerprint"] != fingerprint:
+                result.evidence_error = f"{key} has changed since the evidence was read; it no longer applies"
                 return result
             try:
                 attach_model_evidence(ws, key, evidence, fingerprint, database=database)

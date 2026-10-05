@@ -243,42 +243,71 @@ def proposal_recheck(ws, mailto=None, database=None):
 
 @app.command()
 def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
-        author: str = typer.Option(None, '--author'), year: str = typer.Option(None, '--year'),
+        authors: list[str] = typer.Option(None, '--author', help="An author (repeat for several). With a title: "
+                                          "whose paper it is. With nothing else: search by author."),
+        year: str = typer.Option(None, '--year'),
         from_file: Path = typer.Option(None, '--from'),
+        per_source: int = typer.Option(None, '--per-source', hidden=True,
+                                       help="With an author search: records asked of each source (default 10)."),
+        pdf: Path = typer.Option(None, '--pdf', help="A PDF of the paper: its identifier or title is read from it."),
         database: str = typer.Option(None, '--database'),
         mailto: str = typer.Option(None, '--mailto', envvar='CROSSREF_MAILTO')):
     """Look up entries, then accept, edit or skip each proposal."""
-    from .complete import Query
+    from .complete import Proposal, Query
     from .verification import load_entries
     ws = library(ctx, BIB_NAME)
+    authors = [name for name in authors or [] if name.strip()]
+    author = ' and '.join(authors) or None
+    found = []       # proposals that did not come from a query: the leads of an author search, what a PDF gave
     try:
         inputs = list(queries or [])
         if from_file:
             inputs.extend(line.strip() for line in from_file.read_text(encoding='utf-8').splitlines() if line.strip())
         parsed = [Query.parse(text, author=author, year=year) for text in inputs]
-        if not parsed and not sys.stdin.isatty():
+        if pdf is not None:
+            if parsed:
+                raise typer.BadParameter('--pdf is given by itself: one PDF, and no other query')
+            found, nothing = _from_pdf(ws, pdf, mailto, database)
+            if nothing:
+                raise typer.Exit(code=1)
+        if not parsed and pdf is None and not sys.stdin.isatty():
             raw = sys.stdin.read()
             if raw.strip():
                 with tempfile.TemporaryDirectory(prefix='cdlbib-input-') as folder:
                     path = Path(folder) / 'stdin.bib'
                     path.write_text(raw, encoding='utf-8')
                     parsed = [Query.from_entry(entry) for entry in load_entries(path).values()]
+        if not parsed and not found and authors:
+            # No title: search by author(s), and offer what is found through the candidate choice.
+            leads = api.find_candidates(ws, authors=authors, year=year, mailto=mailto, database=database,
+                                        per_source=per_source)
+            for source, reason in leads.errors:
+                typer.echo(f'{source}: {reason}')
+            if not leads:
+                typer.echo(f"No record by {', '.join(authors)}" + (f' in {year}' if year else '') + ' was found.')
+                raise typer.Exit(code=1)
+            typer.echo(f"{len(leads)} record{'s' if len(leads) != 1 else ''} by {', '.join(authors)}"
+                       + (f' in {year}' if year else '') + '; choose one')
+            found = [Proposal(candidates=list(leads), needs_decision=True)]
     except (OSError, UnicodeError, ValueError, TypeError) as exc:
         raise typer.BadParameter(f'Could not read entry input: {exc}') from exc
-    if not parsed:
+    if not parsed and not found:
         raise typer.BadParameter('Provide a query, --from FILE, or BibTeX on standard input')
     failures = False
     from .library import completion_batch
     with completion_batch(ws) as batch:
         session = {}
-        for query in parsed:
-            try:
-                results = api.propose_new(ws, [query], mailto=mailto, database=database)
-            except CdlbibError as exc:
-                typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
-                failures = True
-                continue
-            failures |= bool(results.errors)
+        for query in parsed or [None]:
+            if query is None:        # what an author search or a PDF gave, decided like any proposal
+                results = found
+            else:
+                try:
+                    results = api.propose_new(ws, [query], mailto=mailto, database=database)
+                except CdlbibError as exc:
+                    typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
+                    failures = True
+                    continue
+                failures |= bool(results.errors)
             recheck = proposal_recheck(ws, mailto=mailto, database=database)
             def candidate(item, selected):
                 nonlocal failures
@@ -294,6 +323,35 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
                 break
         if failures:
             raise typer.Exit(code=1)
+
+
+def _from_pdf(ws, pdf, mailto, database):
+    """`add --pdf`: read the PDF (api.read_pdf), say what was read, and look its record up
+    (api.propose_from_pdf). Returns ([the proposal to decide on], whether nothing was found)."""
+    from .complete import Proposal
+    read = api.read_pdf(pdf, progress=typer.echo)
+    typer.echo(f'PDF: {pdf}' + (f' (SHA-256 {read.sha256})' if read.sha256 else ''))
+    if read.detail:
+        typer.echo(read.detail)
+    for item in read.identifiers:
+        where = f'page {item.page}' if item.page else 'the PDF metadata'
+        typer.echo(f'  {item.kind} {item.value} ({where}: "{item.quote}")')
+    if read.title_guess:
+        typer.echo(f'  title read: {read.title_guess}' + (f' ({read.title_source})' if read.title_source else ''))
+    if not read.identifiers and not read.title_guess:
+        typer.echo('  no identifier and no title could be read from it')
+    result = api.propose_from_pdf(ws, read, mailto=mailto, database=database)
+    for line in result.tried:
+        typer.echo(f'  {line}')
+    typer.echo(result.message)
+    if result.proposal is not None:
+        return [result.proposal], False
+    if result.candidates:
+        return [Proposal(candidates=list(result.candidates), needs_decision=True,
+                         issues=['Records with a similar title; choose one, or none'])], False
+    typer.echo('Reading the PDF with a language model, and typing the entry by hand, are offered by '
+               '`cdlbib tui` and `cdlbib web`.')
+    return [], True
 
 
 _completion_seen = None
@@ -541,11 +599,6 @@ def update(stamp: str = typer.Argument(None, help="With --undo: the backup to re
 from .errors import TexLinkRefused
 
 
-def _tex_state(status):
-    """The line that says what the state of the TeX link means."""
-    return prompts.tex_state(status)
-
-
 def report_setup(report, status, asked=False):
     """Print the setup report: the library, the TeX link, what cdlbib can use here."""
     found = report.where
@@ -677,12 +730,6 @@ def _consented(exc):
         return api.consent(exc, progress=typer.echo)
     except NeedsConfirmation as ask:
         return _confirmed(ask.question)
-
-
-def install_wanted(exc):
-    """Whether to install the missing package now: by default yes, after saying so; with --ask
-    the user is asked first (no terminal means no)."""
-    return _consented(exc)
 
 
 def _run_once(argv):

@@ -1083,14 +1083,14 @@ def prepare(ws, progress=None):
         if progress:
             progress(f"model evidence waiting to be stored could not be read: {exc}")
     for item in waiting:
-        if item.stale:
-            said = "not stored: the entry has changed since the evidence was read"
-        else:
-            try:
-                again = retry_evidence(ws, item.key)
-                said = "stored" if again.evidence_stored else f"not stored: {again.evidence_error}"
-            except CdlbibError as exc:
-                said = f"not stored: {exc}"
+        try:
+            again = retry_evidence(ws, item.key)     # also drops evidence whose entry was never written
+            said = ("stored" if again.evidence_stored
+                    else "dropped: the entry it was read for was not written" if "evidence was dropped" in again.evidence_error
+                    else "not stored: the entry has changed since the evidence was read" if item.stale
+                    else f"not stored: {again.evidence_error}")
+        except CdlbibError as exc:
+            said = f"not stored: {exc}"
         if progress:
             progress(f"model evidence for {item.key}: {said}")
     return prepared
@@ -1221,7 +1221,8 @@ def as_data(value):
     if value is None or isinstance(value, (bool, int, float, str)):
         return value
     if dataclasses.is_dataclass(value) and not isinstance(value, type):
-        data = {item.name: as_data(getattr(value, item.name)) for item in dataclasses.fields(value)}
+        names = [item.name for item in dataclasses.fields(value)] + list(getattr(type(value), "DATA_PROPERTIES", ()))
+        data = {name: as_data(getattr(value, name)) for name in names}
         if isinstance(value, BaseException):
             data.update(error_kind=type(value).__name__, error=str(value))
         return data
@@ -1229,6 +1230,8 @@ def as_data(value):
         return {str(key): as_data(item) for key, item in value.items()}
     if isinstance(value, list) and hasattr(value, "errors"):
         return {"items": [as_data(item) for item in value], "errors": as_data(list(value.errors))}
+    if isinstance(value, tuple) and hasattr(value, "_asdict"):       # a named tuple keeps its names
+        return {name: as_data(item) for name, item in value._asdict().items()}
     if isinstance(value, (list, tuple)):
         return [as_data(item) for item in value]
     if isinstance(value, (set, frozenset)):

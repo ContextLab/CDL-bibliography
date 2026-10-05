@@ -115,6 +115,16 @@ class PublishRefused(CdlbibError):
         super().__init__(message)
 
 
+class WriteConflict(CdlbibError):
+    """A write that had to be taken back found that a file it had already replaced was changed
+    again by something else. That file was left as it is (``files`` names each); the record
+    of the write in progress is kept, so the next write refuses until a person has looked."""
+
+    def __init__(self, message, files=()):
+        self.files = [str(name) for name in files]
+        super().__init__(message)
+
+
 class NeedsConfirmation(CdlbibError):
     """Something a front end must ask the person before the core goes on: installing a
     missing optional package (``kind`` "install": ``package``, ``extra``, ``feature``) or
