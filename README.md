@@ -52,7 +52,7 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 | System-wide LaTeX setup: one link in your TeX tree | `cdlbib setup`; web: Setup |
 | Cited-key `.bib` export, and `.bbl` generation from manuscript/style inputs | `cdlbib export`; web: Setup (`.bib` only) |
 | Optional Dartmouth Chat/OpenAI research adapters and keychain credentials | `cdlbib crossref research`; web: Add, "PDF" tab |
-| Terminal interface (TUI) with the same views as the web interface | `cdlbib tui`; [tutorial](docs/tutorials/terminal-interface.md) |
+| Terminal interface (TUI) with the same views as the web interface (of a PDF it shows the text read; the page itself is shown in the web interface) | `cdlbib tui`; [tutorial](docs/tutorials/terminal-interface.md) |
 | Tutorials, screenshots and recorded demonstrations | [docs/tutorials.md](docs/tutorials.md) |
 
 The web interface uses the same formatting, verification, identity and library
@@ -114,7 +114,7 @@ that only some features need:
 |Extra|Package|Needed for|
 |-|-|-|
 |`research`|`pypdf`|reading PDFs (`cdlbib crossref research`, and the "PDF" tab of the web interface)|
-|`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface and the terminal interface|
+|`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface|
 |`tui`|`textual`|the terminal interface (`cdlbib tui`)|
 
 Install them ahead of time with `python -m pip install "cdlbib[research,pdf,tui]"`, or
@@ -658,8 +658,9 @@ state: linked: TeX finds this library's cdl.bib from any folder (\bibliography{c
 
 The link names the file's path, so it follows the library through updates.
 
-- `cdlbib setup --check` prints the report and changes nothing. It exits with `1`
-  when `cdl.bib` is not linked.
+- `cdlbib setup --check` prints the report and changes nothing in the TeX tree. As
+  with every command, the library `cdlbib` manages is downloaded or updated first when it
+  is the one in use. It exits with `1` when `cdl.bib` is not linked.
 - `cdlbib setup --remove` removes the link that `cdlbib` made.
 - `cdlbib setup --replace` is for a `cdl.bib` in the TeX tree that `cdlbib` did not
   put there: without it `setup` leaves that file alone and exits with `1`; with it,

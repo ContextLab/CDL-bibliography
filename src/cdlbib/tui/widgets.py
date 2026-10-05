@@ -7,7 +7,17 @@ from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.screen import ModalScreen
-from textual.widgets import Button, DirectoryTree, Input, Static
+from textual.scrollbar import ScrollBar, ScrollBarRender
+from textual.widgets import Button, DataTable, DirectoryTree, Input, Static
+
+class WholeCells(ScrollBarRender):
+    """A scrollbar drawn in whole cells only: no partial-block glyphs at its ends."""
+    VERTICAL_BARS = [" "]
+    HORIZONTAL_BARS = [" "]
+
+
+ScrollBar.renderer = WholeCells
+
 
 # status -> (mark, role colour). The status itself is always shown beside its mark, as the core gives it.
 MARKS = {
@@ -23,15 +33,137 @@ def mark(status):
     return MARKS.get(status, ("•", "muted"))
 
 
+def cut(text, width):
+    """``text`` on one line, at most ``width`` cells, ending in an ellipsis when it was cut."""
+    text = " ".join(str(text or "").split())
+    width = max(1, int(width))
+    return text if len(text) <= width else text[:width - 1] + "…"
+
+
+def short_path(path, width):
+    """A folder's path in at most ``width`` cells: cut from the left, on a folder name."""
+    text = str(path)
+    if len(text) <= width:
+        return text
+    parts = text.split("/")
+    kept = []
+    for part in reversed(parts):
+        if len("/".join([part, *kept])) + 2 > width:
+            break
+        kept.insert(0, part)
+    return "…/" + "/".join(kept) if kept else "…" + text[-(width - 1):]
+
+
+class Table(DataTable):
+    """A table whose columns are laid out for its width (``fill_table``). ``filler`` is called
+    to lay them out again when the width changes, and when the table comes back on the screen
+    after its rows were set while it was hidden."""
+
+    filler = None
+    filled_for = None
+
+    def _refit(self):
+        if self.filler is not None and self.size.width and self.filled_for != self.size.width:
+            self.filler()
+
+    def on_resize(self, event):
+        self._refit()
+
+    def on_show(self, event):
+        self._refit()
+
+
+def fill_table(table, columns, rows, keys=None):
+    """Put ``rows`` into a DataTable so that every column is whole within the table's width.
+    ``columns``: [(label, width)] where width is a number of cells, or a float weight for a
+    column that shares what is left. Cells of text are cut to their column with an ellipsis;
+    rich Text cells (marks) are taken as they are."""
+    total = table.size.width or max(40, table.app.size.width // 2)
+    table.filled_for = table.size.width
+    room = total - 2 * len(columns) - 1                      # a cell of padding either side of each column
+    fixed = sum(width for _, width in columns if isinstance(width, int))
+    weight = sum(width for _, width in columns if not isinstance(width, int)) or 1
+    spare = max(0, room - fixed)
+    widths = [width if isinstance(width, int) else max(6, int(spare * width / weight)) for _, width in columns]
+    table.clear(columns=True)
+    for (label, _), width in zip(columns, widths):
+        table.add_column(cut(label, width) if label.strip() else label, width=width)
+    add_rows(table, widths, rows, keys)
+    return widths
+
+
+def add_rows(table, widths, rows, keys=None):
+    """More rows for a table that ``fill_table`` laid out (``widths``: what it returned)."""
+    for number, row in enumerate(rows):
+        cells = [cell if isinstance(cell, Text) else cut(cell, width) for cell, width in zip(row, widths)]
+        table.add_row(*cells, key=None if keys is None else keys[number])
+
+
 class Shown(Static):
-    """A pane of text. ``plain`` is the text it shows now."""
+    """A pane of text. ``plain`` is the text it shows now. A line too long for the pane is
+    continued under its own first word (indented lists stay lists); a text made with
+    ``no_wrap`` is shown line for line."""
 
     plain = ""
+    _text = None
 
     def show(self, content):
         text = content if isinstance(content, Text) else Text(str(content))
-        self.plain = text.plain
-        self.update(text)
+        self.plain, self._text = text.plain, text
+        self._draw()
+
+    def on_resize(self, event):
+        if self._text is not None:
+            self._draw()
+
+    def on_show(self, event):
+        """Shown again after it was hidden (another view was in front): a text that was set
+        meanwhile was laid out for no width, and is laid out now."""
+        if self._text is not None and self.drawn_for != self.size.width:
+            self._draw()
+
+    drawn_for = None     # the width the text was last laid out for
+
+    def _draw(self):
+        text, width = self._text, self.size.width
+        self.drawn_for = width
+        if text.no_wrap or width < 12:
+            self.update(text)
+            return
+        out = wrapped(text, width)
+        out.no_wrap = True
+        self.update(out)
+
+
+def wrapped(text, width):
+    """``text`` with every line that is longer than ``width`` cells continued on further
+    lines, indented two cells more than the line itself. A line is broken at a space; a word
+    too long for a line (a path, an address) is broken after a ``/``, ``-`` or ``.``."""
+    out = Text()
+    for line in text.split("\n", allow_blank=True):
+        plain = line.plain
+        indent = len(plain) - len(plain.lstrip(" "))
+        hang = min(indent + 2, max(0, width - 10))
+        start, room = 0, width
+        while len(plain) - start > room:
+            window = plain[start:start + room]
+            at = window.rfind(" ")
+            if at > (indent if start == 0 else 0):
+                end, following = start + at, start + at + 1
+            else:
+                at = max(window.rfind(mark) for mark in "/-.")
+                end = following = start + (at + 1 if at > 0 else room)
+            if start:
+                out.append(" " * hang)
+            out.append_text(line[start:end])
+            out.append("\n")
+            start, room = following, max(10, width - hang)
+        if start:
+            out.append(" " * hang)
+        out.append_text(line[start:])
+        out.append("\n")
+    out.rstrip()
+    return out
 
 
 class Writer:
@@ -75,6 +207,7 @@ class ConfirmScreen(ModalScreen):
             with Horizontal(classes="buttons"):
                 yield Button(f"{self.yes} (y)", id="yes", variant="primary")
                 yield Button(f"{self.no} (n)", id="no")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         self.query_one("#question", Shown).show(self.question)
@@ -103,6 +236,7 @@ class ChoiceScreen(ModalScreen):
             with Vertical(classes="choices"):
                 for letter, value, label in self.choices:
                     yield Button(Text(f"[{letter}] {label}"), id=f"choice-{value}", classes="choice")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         self.query_one("#question", Shown).show(self.question)
@@ -138,6 +272,7 @@ class TextScreen(ModalScreen):
             with VerticalScroll(classes="dialog-text"):
                 yield Shown(id="page")
             yield Static("Esc closes", classes="hint")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         self.query_one("#page", Shown).show(self.text)
@@ -169,6 +304,7 @@ class PromptScreen(ModalScreen):
             with Horizontal(classes="buttons"):
                 yield Button(f"{self.ok} (ctrl+s)", id="ok", variant="primary")
                 yield Button("Cancel (esc)", id="cancel")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         if self.text is not None:
@@ -225,6 +361,7 @@ class FilePicker(ModalScreen):
                          classes="title", markup=False)
             yield DirectoryTree(str(self.start), id="tree")
             yield Static("Enter opens a folder or chooses a file; Esc cancels", classes="hint")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         self.query_one(DirectoryTree).focus()
@@ -246,6 +383,13 @@ class View(Vertical):
 
     def activated(self):
         """The view was brought to the front: load what it shows and take the focus."""
+
+    def relayout(self):
+        """Lay out again what was drawn while the view was not on the screen (it had no size
+        then): every pane of text for the width it has now; a view with tables adds those."""
+        for pane in self.query(Shown):
+            if pane._text is not None and pane.drawn_for != pane.size.width:
+                pane._draw()
 
     def recolour(self):
         """The theme changed: draw the coloured text again."""

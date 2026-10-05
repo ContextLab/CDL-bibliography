@@ -5,7 +5,8 @@ from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Button, Input, Static, Switch
+from rich.text import Text
+from textual.widgets import Button, Input, Static
 
 from .. import api, deps, prompts
 from ..errors import ExportFailed, TexLinkRefused
@@ -14,20 +15,16 @@ from .widgets import Shown, View
 
 class SetupView(View):
     BINDINGS = [
-        Binding("c", "check", "Check everything"),
-        Binding("l", "link", "Link cdl.bib into TeX"),
-        Binding("x", "unlink", "Remove the link"),
-        Binding("b", "export_bib", "Write the .bib"),
-        Binding("B", "export_bbl", "Write the .bbl"),
+        Binding("c", "check", "Check"),
+        Binding("l", "link", "Link"),
+        Binding("x", "unlink", "Unlink"),
+        Binding("b", "export_bib", "Write .bib"),
+        Binding("B", "export_bbl", "Write .bbl"),
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
     DEFAULT_CSS = """
     SetupView #setup-pane { height: 1fr; }
-    SetupView #setup-result-pane { height: auto; min-height: 3; max-height: 9; }
-    SetupView .form-label.short { width: 14; padding: 1 1 0 1; }
-    SetupView .form-label { width: 22; padding: 1 1 0 0; color: $cdl-muted; }
-    SetupView .form-row { height: 3; }
-    SetupView .form-row Input { width: 1fr; }
+    SetupView #setup-result-pane { height: auto; max-height: 9; }
     """
 
     def __init__(self, **kwargs):
@@ -44,22 +41,29 @@ class SetupView(View):
             yield Button("Check everything (c)", id="setup-check")
             yield Button("Link cdl.bib into TeX (l)", id="setup-link")
             yield Button("Remove the link (x)", id="setup-unlink")
+        yield Static("Export what a paper cites", classes="label")
         with Horizontal(classes="form-row"):
-            yield Static("Export for the paper", classes="form-label")
-            yield Input(placeholder="The paper: its main .tex file, its folder, or a .aux/.bcf file", id="x-paper")
+            yield Static("Paper", classes="form-label")
+            yield Input(placeholder="main .tex file, folder, or .aux/.bcf file", id="x-paper")
         with Horizontal(classes="form-row"):
-            yield Static("Write to (optional)", classes="form-label")
-            yield Input(placeholder="Default: cdl.bib, or NAME.bbl, beside the paper", id="x-out")
-            yield Static("Style files", classes="form-label short")
-            yield Input(placeholder=f"For a .bbl: .bst/.cls/.sty files or folders, separated by {os.pathsep}",
-                        id="x-inputs")
+            yield Static("Write to", classes="form-label")
+            yield Input(placeholder="optional; default: beside the paper", id="x-out")
+        with Horizontal(classes="form-row"):
+            yield Static("Style files", classes="form-label")
+            yield Input(placeholder=f"optional, for a .bbl; several separated by {os.pathsep}", id="x-inputs")
         with Horizontal(classes="row"):
-            yield Static("Replace an existing file", classes="form-label")
-            yield Switch(id="x-force")
+            yield Button(Text(self.FORCE[False]), id="x-force")
             yield Button("Write the .bib (b)", id="setup-bib")
             yield Button("Write the .bbl (B)", id="setup-bbl")
-        with VerticalScroll(classes="pane", id="setup-result-pane"):
+        with VerticalScroll(classes="pane empty", id="setup-result-pane"):
             yield Shown(id="setup-result")
+
+    FORCE = {False: "[ ] Replace an existing file", True: "[x] Replace an existing file"}
+    force = False
+
+    def toggle_force(self):
+        self.force = not self.force
+        self.query_one("#x-force", Button).label = Text(self.FORCE[self.force])
 
     def activated(self):
         self.query_one("#setup-check", Button).focus()
@@ -76,7 +80,7 @@ class SetupView(View):
 
     @on(Button.Pressed)
     def _pressed(self, event):
-        {"setup-check": self.action_check, "setup-link": self.action_link, "setup-unlink": self.action_unlink,
+        {"x-force": self.toggle_force, "setup-check": self.action_check, "setup-link": self.action_link, "setup-unlink": self.action_unlink,
          "setup-bib": self.action_export_bib, "setup-bbl": self.action_export_bbl}[event.button.id]()
 
     # --- the report --------------------------------------------------------------------------
@@ -136,6 +140,7 @@ class SetupView(View):
             out = self.app.writer()
             draw(out)
             self.query_one("#setup-result", Shown).show(out.text)
+            self.query_one("#setup-result-pane").remove_class("empty")
         self.result = again
         again()
 
@@ -184,11 +189,11 @@ class SetupView(View):
 
     # --- export ------------------------------------------------------------------------------
 
-    def _export(self, bbl):
+    def _export(self, bbl, engine=None):
         paper = self.query_one("#x-paper", Input).value.strip()
         out_path = self.query_one("#x-out", Input).value.strip() or None
         inputs = [part.strip() for part in self.query_one("#x-inputs", Input).value.split(os.pathsep) if part.strip()]
-        force, ws = self.query_one("#x-force", Switch).value, self.app.ws
+        force, ws = self.force, self.app.ws
         if not paper:
             self._result(lambda out: out.line("Name the paper first: its main .tex file, its folder, or a .aux/.bcf "
                                               "file.", "warning"))
@@ -233,9 +238,14 @@ class SetupView(View):
                 if isinstance(exc, ExportFailed) and exc.names:
                     out.line("  " + ", ".join(str(name) for name in exc.names), "warning")
             self._result(draw)
+            if bbl and engine is None and isinstance(exc, ExportFailed) and exc.kind == "engine_choice" and exc.names:
+                named = str(exc.names[0])    # the engine the core names; running it is the person's decision
+                self.app.confirm(f"{exc}\n\nCompile this paper with {named} now?",
+                                 lambda: self._export(True, engine=named), yes=f"Run {named}", no="Do not run it")
         if bbl:
-            self.app.job("write the paper's .bbl (runs LaTeX on the paper's files)",
-                         lambda job: api.export_bbl(ws, paper, out=out_path, inputs=inputs, force=force),
+            self.app.job("write the paper's .bbl (runs LaTeX on the paper's files)" if engine is None
+                         else f"write the paper's .bbl with {engine}",
+                         lambda job: api.export_bbl(ws, paper, out=out_path, inputs=inputs, engine=engine, force=force),
                          wrote_bbl, failed)
         else:
             self.app.job("write the paper's .bib",

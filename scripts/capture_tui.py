@@ -1,4 +1,4 @@
-"""Screenshots of the terminal interface's key states, as SVG files.
+"""Screenshots of the terminal interface's key states, as PNG files.
 
     python scripts/capture_tui.py [OUTPUT_FOLDER]          (default: docs/media)
 
@@ -8,17 +8,20 @@ HOME, TEXMFHOME, CDLBIB_HOME and CDLBIB_UPSTREAM are set to temporary folders be
 anything of cdlbib runs, so neither the user's library, their TeX tree nor the real upstream
 is read or written. Lookups are the test suite's saved responses, with the network refused.
 
-Writes tui-library.svg, tui-detail-evidence.svg, tui-edit-preview.svg, tui-review-approve.svg,
-tui-add-search.svg, tui-proposal.svg, tui-add-pdf.svg and tui-proposal-pdf.svg (when pdflatex is
-installed),
-tui-send.svg, tui-update-question.svg, tui-setup.svg and tui-library-light.svg.
+Writes tui-library.png, tui-detail-evidence.png, tui-edit-preview.png, tui-review-approve.png,
+tui-add-search.png, tui-proposal.png, tui-add-pdf.png and tui-proposal-pdf.png (when pdflatex is
+installed), tui-send.png, tui-update-question.png, tui-setup.png and tui-library-light.png.
+
+Each picture is the interface's own screenshot (Textual's SVG export), drawn by headless
+Chromium: this needs the package playwright and its Chromium (python -m playwright install
+chromium).
 
     python scripts/capture_tui.py --demo-library FOLDER
 
 makes the small library that scripts/make_screencasts.sh records the "tui" cast in (see
 ``demo_library``).
 
-tui-review-approve.svg shows the approval dialog, which names the GitHub login of the gh CLI of
+tui-review-approve.png shows the approval dialog, which names the GitHub login of the gh CLI of
 whoever runs this; in the saved picture that name is replaced by a placeholder of the same
 length. Without a login the picture shows what the interface says then.
 """
@@ -79,6 +82,9 @@ def main(out):
     out = Path(out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     token = gh_token()
+    # Chromium is where Playwright put it for this user; HOME is substituted below.
+    cache = Path.home() / ("Library/Caches/ms-playwright" if sys.platform == "darwin" else ".cache/ms-playwright")
+    os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(cache))
     folder = Path(tempfile.mkdtemp(prefix="cdlbib-demo-"))
     try:
         # The test suite's helpers first (its conftest points cdlbib's data folder and upstream at
@@ -118,7 +124,8 @@ def main(out):
         ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + mine, encoding="utf-8")
         commit(work, bare, "A correction upstream", "\n\n".join([entries[0], KAHA12.replace("2012", "2013"), *entries[2:]]) + "\n")
         pdf = intake_pdfs.build("doi", folder / "pdfs") if intake_pdfs.pdflatex() else None
-        T.run(journey(T, ws, out, pdf))
+        made = T.run(journey(T, ws, out, pdf))
+        write_pngs(made)
     finally:
         os.chdir(ROOT)
         shutil.rmtree(folder, ignore_errors=True)
@@ -130,14 +137,15 @@ async def journey(T, ws, out, pdf):
     made = []
 
     def shot(name):
-        path = out / f"tui-{name}.svg"
+        path = out / f"tui-{name}.png"
         svg = app.export_screenshot(title=f"cdlbib tui: {name}", simplify=True)
         # The picture, and only the picture, names a placeholder where the interface showed the gh
         # login of whoever ran this (the core was asked for real; nothing it returned is changed).
         for login in set(re.findall(r"(?:Approving|Revoking)&#160;as&#160;(@[A-Za-z0-9-]+)", svg)):
-            svg = svg.replace(login, "@" + "your-login".ljust(len(login) - 1, "_")[:len(login) - 1])
-        path.write_text(svg, encoding="utf-8")
-        made.append(path)
+            room = len(login) - 1
+            name = next((n for n in ("your-github-login", "your-gh-login", "your-login", "you") if len(n) <= room), "")
+            svg = svg.replace(login, "@" + name + "&#160;" * (room - len(name)))
+        made.append((path, svg))
 
     async with app.run_test(size=SIZE, notifications=False) as pilot:
         await T.settle(pilot)
@@ -176,7 +184,7 @@ async def journey(T, ws, out, pdf):
             await T.type_text(pilot, str(pdf))
             await T.press(pilot, "enter")
             shot("add-pdf")
-            await T.press(pilot, "l")                                  # its record, with the page beside it
+            await T.press(pilot, "l")                                  # its record, with the PDF's text beside it
             shot("proposal-pdf")
             await T.press(pilot, "q")
 
@@ -193,8 +201,48 @@ async def journey(T, ws, out, pdf):
         await T.press(pilot, "f2", "ctrl+t")                           # the light theme
         shot("library-light")
         app.jobs.stop()
-    for path in made:
-        print(f"{path}  {path.stat().st_size // 1024} KB")
+    return made
+
+
+WIDTH = 1280        # pixels each picture is wide
+
+
+def write_pngs(made):
+    """Each screenshot (Textual's own SVG export of the running interface) drawn by headless
+    Chromium and saved as a PNG. The SVG names the font Fira Code and where to fetch it; when
+    it cannot be fetched, a monospaced font of this computer is named instead, in the copy
+    that is drawn. With ffmpeg installed the PNG is saved with a palette of its own colours,
+    which makes the file smaller and changes no pixel's position."""
+    from playwright.sync_api import sync_playwright
+    clean = {name: value for name, value in os.environ.items() if not name.lower().endswith("_proxy")}
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(env=clean)
+        page = browser.new_page(viewport={"width": WIDTH, "height": 900})
+        for path, svg in made:
+            page.set_content(f"<html><body style='margin:0'>{svg}</body></html>")
+            page.evaluate("document.querySelector('svg').setAttribute('width', '%d')" % WIDTH)
+            try:
+                loaded = page.evaluate("""async () => { await Promise.all([document.fonts.load('20px "Fira Code"'),
+                    document.fonts.load('bold 20px "Fira Code"')]); await document.fonts.ready;
+                    return document.fonts.check('20px "Fira Code"'); }""")
+            except Exception:
+                loaded = False
+            if not loaded:
+                local = svg.replace("font-family: Fira Code, monospace", "font-family: Menlo, 'DejaVu Sans Mono', monospace")
+                page.set_content(f"<html><body style='margin:0'>{local}</body></html>")
+                page.evaluate("document.querySelector('svg').setAttribute('width', '%d')" % WIDTH)
+            page.locator("svg").screenshot(path=str(path))
+            if shutil.which("ffmpeg"):
+                small = path.with_suffix(".small.png")
+                done = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-vf",
+                                       "split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=none",
+                                       str(small)], capture_output=True)
+                if done.returncode == 0 and small.stat().st_size < path.stat().st_size:
+                    small.replace(path)
+                else:
+                    small.unlink(missing_ok=True)
+            print(f"{path}  {path.stat().st_size // 1024} KB  ({'Fira Code' if loaded else 'a local monospaced font'})")
+        browser.close()
 
 
 def demo_library(folder):

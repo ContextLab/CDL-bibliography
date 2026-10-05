@@ -196,7 +196,7 @@ async def until(pilot, condition, timeout=180.0, what="the expected state"):
 
 def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=180.0):
     """Run ``command`` with a real pseudo-terminal as its stdin, stdout and stderr. ``steps``:
-    [(text to wait for in the output, bytes to type then)]. Returns (exit status, everything
+    [(text to wait for in what is written after the keys before it, bytes to type then)]. Returns (exit status, everything
     it wrote). The process is killed when a text does not appear in ``timeout`` seconds."""
     import fcntl
     import pty
@@ -209,12 +209,13 @@ def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=18
     process = subprocess.Popen(command, stdin=slave, stdout=slave, stderr=slave, cwd=cwd, close_fds=True,
                                env=dict(env or os.environ, TERM="xterm-256color", LINES=str(size[0]), COLUMNS=str(size[1])))
     os.close(slave)
-    seen, steps, deadline = b"", list(steps), time.monotonic() + timeout
+    seen, steps, deadline, since = b"", list(steps), time.monotonic() + timeout, 0
     try:
         while True:
-            if steps and steps[0][0].encode() in seen:
+            if steps and steps[0][0].encode() in seen[since:]:     # written after the last keys were typed
                 os.write(master, steps.pop(0)[1])
                 seen += b"\n<typed>\n"
+                since = len(seen)
                 deadline = time.monotonic() + timeout
             if select.select([master], [], [], 0.1)[0]:
                 try:
@@ -236,3 +237,11 @@ def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=18
             process.kill()
             process.wait()
         os.close(master)
+
+
+def changes(app):
+    """The rows of the proposal view's table of changes, as shown: {field: (typed, proposed,
+    source, kind)}. A cell too long for its column ends in an ellipsis."""
+    table = app.screen.query_one("#changes")
+    rows = [[str(cell) for cell in table.get_row_at(number)] for number in range(table.row_count)]
+    return {row[0]: tuple(row[1:]) for row in rows}

@@ -146,7 +146,7 @@ def test_a_library_that_is_not_the_managed_one_offers_no_update_and_says_why(tmp
             assert app.screen.query_one("#state-update").disabled and app.screen.query_one("#state-undo").disabled
             await T.press(pilot, "u")
             assert name(app) != "ChoiceScreen" and "(kept for the library cdlbib manages" in T.shown(app, "#backups-head")
-            assert any("This library was chosen by the file you named" in note.message for note in app._notifications)
+            assert any("This library was chosen by the file you named" in note for note in app.notices)
             await T.press(pilot, "z")
             assert name(app) != "ConfirmScreen" and "update the library" not in [label for label, _, _ in app.jobs.history]
     T.run(journey())
@@ -387,3 +387,40 @@ def test_export_writes_the_papers_frozen_bib_and_its_bbl(tmp_path):
                 assert "Zoller" in made.read_text(encoding="utf-8") and "\\bibitem{Zoll90}" in made.read_text(encoding="utf-8")
     T.run(journey())
     assert out.exists()
+
+
+def test_a_paper_that_asks_for_lualatex_is_compiled_with_it_only_after_a_yes(tmp_path):
+    ws = T.library(tmp_path / "lib", *texhelpers.LIBRARY.strip().split("\n\n"))
+    file = texhelpers.paper(tmp_path / "paper", "Cited: \\cite{Zoll90}.\n\\bibliographystyle{plain}\n\\bibliography{cdl}",
+                            preamble="\\usepackage{luacode}")
+    made = tmp_path / "paper" / "main.bbl"
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "f8")
+            app.screen.query_one("#x-paper").focus()
+            await T.type_text(pilot, str(file))
+            await T.press(pilot, "escape")
+            await T.press(pilot, "B")
+            await T.settle(pilot, timeout=300)
+            if not (shutil.which("pdflatex") or shutil.which("lualatex")):
+                assert name(app) != "ConfirmScreen"                      # no TeX: that is the refusal, and no question
+                return
+            assert name(app) == "ConfirmScreen"
+            question = T.shown(app, "#question")
+            assert "main.tex asks for lualatex, which is not run unless it is named" in question
+            assert question.endswith("Compile this paper with lualatex now?")
+            assert "asks for lualatex" in T.shown(app, "#setup-result", screen=app.screen_stack[0])
+            await T.press(pilot, "n")
+            assert not made.exists() and "write the paper's .bbl with lualatex" not in [l for l, _, _ in app.jobs.history]
+            await T.press(pilot, "B")
+            await T.press(pilot, "y")
+            await T.settle(pilot, timeout=300)
+            assert "write the paper's .bbl with lualatex" in [label for label, _, _ in app.jobs.history]
+            if shutil.which("lualatex") and shutil.which("bibtex"):
+                assert f"wrote {made}: bibtex, style plain, lualatex" in T.shown(app, "#setup-result")
+                assert "\\bibitem{Zoll90}" in made.read_text(encoding="utf-8")
+            else:
+                assert not made.exists() and name(app) != "ConfirmScreen"   # refused again, and not asked again
+    T.run(journey())

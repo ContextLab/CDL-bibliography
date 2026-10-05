@@ -233,7 +233,8 @@ def test_help_lists_every_key_the_interface_binds(ws):
             await T.press(pilot, "escape")
             assert len(app.screen_stack) == 1
             footer = T.screen_text(app).splitlines()[-1]
-            assert "Search" in footer and "Edit" in footer and "Help" in footer and "Quit" in footer   # the key hints
+            for pair in ("/ Search", "e Edit", "^q Quit", "f1 All keys"):       # each key beside its own label
+                assert pair in footer, footer
     T.run(journey())
 
 
@@ -268,4 +269,36 @@ def test_a_library_of_6481_entries_stays_responsive(tmp_path):
             started = time.monotonic()
             await T.press(pilot, "pagedown", "pagedown", "down", "down")
             assert time.monotonic() - started < 10
+    T.run(journey())
+
+
+def test_an_entry_not_read_yet_shows_what_is_known_while_a_job_runs(ws):
+    import threading
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            hold = threading.Event()
+            app.job("a long check", lambda job: hold.wait(30))
+            await pilot.press("down")                                       # Kaha12: not read yet
+            await pilot.pause(0.3)
+            shown = T.shown(app, "#library-detail #t-entry")
+            assert shown.startswith("Kaha12 (book)\n  authors: M J Kahana\n  year: 2012\n  title: Foundations of human memory")
+            assert "status: ? needs_review" in shown
+            assert "The entry's text, issues and evidence load when the running job finishes: a long check" in shown
+            await pilot.press("slash", "g", "a", "m", "e", "s")            # and a search does not wait either
+            await pilot.pause(0.3)
+            assert table_keys(app) == ["Game62"] and not app.jobs.idle
+            await pilot.press("escape")
+            hold.set()
+            await T.settle(pilot)
+            assert "@article{Game62," in T.shown(app, "#library-detail #t-entry")
+            app.screen.query_one("#search").value = ""
+            await T.settle(pilot)
+            app.job("another long check", lambda job: hold.clear() or hold.wait(30))
+            app.screen.query_one("#entries").move_cursor(row=4)             # Game62 again: read before, shown at once
+            await pilot.pause(0.3)
+            assert "@article{Game62," in T.shown(app, "#library-detail #t-entry") and not app.jobs.idle
+            hold.set()
+            await T.settle(pilot)
     T.run(journey())

@@ -15,13 +15,8 @@ from textual.widgets import Button, DataTable, Input, Select, Static, TabbedCont
 
 from .. import api
 from . import render
-from .library import cut
 from .proposal import ProposalScreen
-from .widgets import ChoiceScreen, FilePicker, Shown, View
-
-
-PAGE_COLUMNS = 54     # cells the drawn first page is wide (its pane is that plus border, padding and scrollbar)
-PAGE_SCALE = 4        # pixels of the rendered page averaged into one cell, across
+from .widgets import ChoiceScreen, FilePicker, Shown, Table, View, fill_table
 
 
 class AddView(View):
@@ -29,23 +24,21 @@ class AddView(View):
         Binding("ctrl+f", "find", "Find records", priority=True),
         Binding("space", "mark", "Mark", show=False),
         Binding("ctrl+o", "browse", "Choose a PDF", priority=True),
-        Binding("l", "lookup", "Look up the PDF's record"),
-        Binding("o", "open_pdf", "Open the PDF"),
+        Binding("l", "lookup", "Look up"),
+        Binding("o", "open_pdf", "Open in viewer"),
         Binding("m", "model", "Read with a model"),
         Binding("t", "manual", "Type it in"),
         Binding("ctrl+s", "draft", "Draft the entry", priority=True),
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
     DEFAULT_CSS = """
-    AddView .form-label { width: 16; padding: 1 1 0 0; color: $cdl-muted; }
-    AddView .form-row { height: 3; }
-    AddView .form-row Input { width: 1fr; }
-    AddView #pdf-page-pane { width: 60; }
-    AddView #pdf-info-pane { width: 1fr; }
-    AddView #pdf-panes { height: 1fr; }
+    AddView #pdf-info-pane { height: 1fr; }
     AddView #manual-form { height: 1fr; }
-    AddView #s-year { width: 12; }
-    AddView .form-label.short { width: 7; padding: 1 1 0 1; }
+    AddView #s-year { width: 8; margin-right: 2; }
+    AddView #s-authors { margin-right: 2; }
+    AddView #p-path { margin-right: 2; }
+    AddView .form-label.short { width: 5; }
+    AddView #m-entrytype { margin-right: 2; }
     """
 
     def __init__(self, **kwargs):
@@ -54,8 +47,6 @@ class AddView(View):
         self.marked = set()          # indexes of the marked leads
         self.search_errors = []
         self.pdf = None              # intake.PdfIntake of the PDF read
-        self.pdf_png = None
-        self.pdf_png_note = ""
         self.pdf_result = None       # intake.PdfResult of the lookup
         self.model_proposal = None   # the model's reading of the PDF, when one was made
         self.prefill = {}            # what the manual form was filled with from the PDF
@@ -67,36 +58,34 @@ class AddView(View):
             with TabPane("Search", id="add-search"):
                 with Horizontal(classes="form-row"):
                     yield Static("Title", classes="form-label")
-                    yield Input(placeholder="Title, or some of its words", id="s-title")
+                    yield Input(placeholder="title, or some of its words", id="s-title")
                 with Horizontal(classes="form-row"):
                     yield Static("Authors", classes="form-label")
-                    yield Input(placeholder="One or several surnames, separated by ;", id="s-authors")
+                    yield Input(placeholder="surnames, separated by ;", id="s-authors")
                     yield Static("Year", classes="form-label short")
-                    yield Input(placeholder="Year", id="s-year")
+                    yield Input(placeholder="year", id="s-year")
                     yield Button("Find (ctrl+f)", id="s-find")
                 yield Shown(id="s-message", classes="message")
-                yield DataTable(id="s-results", cursor_type="row")
+                yield Table(id="s-results", cursor_type="row")
             with TabPane("Identifier", id="add-identifier"):
                 yield Static("DOI, PMID or arXiv id; several separated by spaces, commas or semicolons",
                              classes="label")
-                yield Input(placeholder="10.1002/tea.3660271011, 1706.03762", id="i-ids")
+                with Horizontal(classes="form-row"):
+                    yield Input(placeholder="10.1002/tea.3660271011, 1706.03762", id="i-ids")
                 yield Shown(id="i-message", classes="message")
             with TabPane("PDF", id="add-pdf"):
                 with Horizontal(classes="form-row"):
                     yield Static("PDF file", classes="form-label")
-                    yield Input(placeholder="Path of the PDF (enter reads it)", id="p-path")
+                    yield Input(placeholder="path of the PDF; enter reads it", id="p-path")
                     yield Button("Choose (ctrl+o)", id="p-browse")
                 with Horizontal(classes="row"):
-                    yield Button("Look up its record (l)", id="p-lookup")
-                    yield Button("Open in the system viewer (o)", id="p-open")
+                    yield Button("Look up (l)", id="p-lookup")
+                    yield Button("Open in viewer (o)", id="p-open")
                     yield Button("Read with a model (m)", id="p-model")
                     yield Button("Type it in (t)", id="p-manual")
                 yield Shown(id="p-message", classes="message")
-                with Horizontal(id="pdf-panes"):
-                    with VerticalScroll(id="pdf-page-pane", classes="pane"):
-                        yield Shown(id="p-page")
-                    with VerticalScroll(id="pdf-info-pane", classes="pane"):
-                        yield Shown(id="p-info")
+                with VerticalScroll(id="pdf-info-pane", classes="pane"):
+                    yield Shown(id="p-info")
             with TabPane("Manual", id="add-manual"):
                 yield Shown(id="m-message", classes="message")
                 with Horizontal(classes="form-row"):
@@ -106,8 +95,8 @@ class AddView(View):
                 yield VerticalScroll(id="manual-form")
 
     def on_mount(self):
-        self.query_one("#s-results", DataTable).add_columns(" ", "In library", "Source", "Authors", "Year", "Title",
-                                                            "Identifier", "Journal")
+        self._fill_leads()
+        self.query_one("#s-results", Table).filler = self._fill_leads
         self._search_message()
         self.query_one("#i-message", Shown).show("enter looks the identifiers up and shows each proposal.")
         self._pdf_message("Type the path of a PDF and press enter, or choose it with ctrl+o.")
@@ -125,6 +114,7 @@ class AddView(View):
     def recolour(self):
         self._fill_leads()
         self._pdf_show()
+
 
     @property
     def tab(self):
@@ -167,7 +157,7 @@ class AddView(View):
 
     # --- the proposals -----------------------------------------------------------------------
 
-    def propose(self, items, message, pdf=None, origin="", page=None):
+    def propose(self, items, message, pdf=None, origin=""):
         """Show the proposals; ``message(lines)`` is told what was done."""
         if not items:
             return
@@ -179,7 +169,7 @@ class AddView(View):
             if result["written"]:
                 self.app.notify("Added: " + ", ".join(result["written"]))
             self.app.refresh_library()
-        self.app.push_screen(ProposalScreen(items, pdf=pdf, origin=origin, page=page), closed)
+        self.app.push_screen(ProposalScreen(items, pdf=pdf, origin=origin), closed)
 
     # --- Search ------------------------------------------------------------------------------
 
@@ -203,6 +193,7 @@ class AddView(View):
             self.leads, self.marked, self.search_errors = list(found), set(), list(found.errors)
             self.searched = True
             self._fill_leads()
+            self._leads_message()
             if self.leads:
                 self.query_one("#s-results", DataTable).focus()
         self.app.job("find records", lambda job: api.find_candidates(self.app.ws, title=title, authors=authors,
@@ -212,18 +203,18 @@ class AddView(View):
     def _fill_leads(self):
         table, colour = self.query_one("#s-results", DataTable), self.app.colour
         position = table.cursor_row
-        table.clear()
-        for number, lead in enumerate(self.leads):
-            there = lead.get("in_library")
-            table.add_row(Text("●" if number in self.marked else " ", colour("accent")),
-                          Text(there or "", colour("warning")), ", ".join(lead.get("sources") or [lead.get("source", "")]),
-                          cut(lead.get("authors"), 26), lead.get("year") or "", cut(lead.get("title"), 48),
-                          lead.get("doi") or lead.get("arxiv") or lead.get("pmid") or "", cut(lead.get("journal"), 30),
-                          key=str(number))
+        rows = [(Text("●" if number in self.marked else " ", colour("accent")),
+                 lead.get("in_library") or "", ", ".join(lead.get("sources") or [lead.get("source", "")]),
+                 lead.get("authors") or "", lead.get("year") or "", lead.get("title") or "",
+                 lead.get("doi") or lead.get("arxiv") or lead.get("pmid") or "")
+                for number, lead in enumerate(self.leads)]
+        fill_table(table, [(" ", 1), ("In library", 12), ("Source", 16), ("Authors", 2.0), ("Year", 4), ("Title", 4.0),
+                           ("Identifier", 3.0)], rows, [str(number) for number in range(len(rows))])
         if self.leads:
             table.move_cursor(row=min(position or 0, len(self.leads) - 1))
-        if not self.searched:
-            return
+
+    def _leads_message(self):
+        """What the search found, said once when it returns."""
         out = self.app.writer()
         count = len(self.leads)
         out.line(f"{count} record{'' if count == 1 else 's'} found. enter proposes the selected one (space marks "
@@ -255,7 +246,7 @@ class AddView(View):
     def _proposed(self, results, message, origin, pdf=None):
         for label, reason in results.errors:
             self.app.say(f"{label}: {reason}")
-        self.propose(list(results), message, pdf=pdf, origin=origin, page=self.pdf_png if pdf is not None else None)
+        self.propose(list(results), message, pdf=pdf, origin=origin)
 
     # --- Identifier --------------------------------------------------------------------------
 
@@ -301,68 +292,21 @@ class AddView(View):
         path = str(Path(path).expanduser())
 
         def read(pdf):
-            self.pdf, self.pdf_png, self.pdf_result, self.model_proposal = pdf, None, None, None
-            self.pdf_png_note = "drawing the first page ..."
+            self.pdf, self.pdf_result, self.model_proposal = pdf, None, None
             self._pdf_show()
             if pdf.problem:
                 self._pdf_message(f"The PDF could not be read as usual: {pdf.problem}"
                                   + (f" ({pdf.detail})" if pdf.detail else ""), role="warning")
             else:
-                self._pdf_message("Read. l looks up its source record; o opens the PDF in the system viewer.")
+                self._pdf_message("Read: its text is below. l looks up its source record; o opens the PDF itself in "
+                                  "the system viewer.")
             self.query_one("#p-lookup", Button).focus()
-            self.app.job("draw the first page", lambda job: api.render_first_page(pdf.path, width=PAGE_COLUMNS * PAGE_SCALE), drawn,
-                         not_drawn, quiet=True)
-
-        def drawn(png):
-            if self.pdf is not None:
-                self.pdf_png, self.pdf_png_note = png, ""
-                self._pdf_show()
-
-        def not_drawn(exc):
-            self.pdf_png_note = f"The first page is not drawn: {exc}"
-            self._pdf_show()
         self.app.job(f"read {Path(path).name}", lambda job: api.read_pdf(path, progress=job.progress), read,
                      lambda exc: self._pdf_message(str(exc), role="error"))
 
     def _pdf_show(self):
-        pdf, colour = self.pdf, self.app.colour
-        page, info = self.query_one("#p-page", Shown), self.query_one("#p-info", Shown)
-        if pdf is None:
-            page.show("")
-            info.show("")
-            return
-        if self.pdf_png is not None:
-            try:
-                page.show(render.half_blocks(self.pdf_png, PAGE_COLUMNS))
-            except ValueError as exc:
-                page.show(f"The first page is not drawn: {exc}")
-        else:
-            page.show(Text(self.pdf_png_note, colour("muted")))
-        out = self.app.writer()
-        out.line(str(pdf.path), bold=True)
-        if pdf.problem:
-            out.line(f"problem: {pdf.problem}" + (f" ({pdf.detail})" if pdf.detail else ""), "warning")
-        if pdf.ocr:
-            out.line("The text is OCR output; it can misread characters.", "warning")
-        out.head("Identifiers found")
-        for found in pdf.identifiers or [None]:
-            if found is None:
-                out.line("  (none)", "muted")
-                continue
-            where = "the PDF's metadata" if found.page is None else f"page {found.page}"
-            out.line(f"  {found.kind}: {found.value} ({where})")
-            out.line(f"      “{found.quote}”", "muted")
-        out.head("Title read")
-        out.line(f"  {pdf.title_guess}" + (f" ({pdf.title_source})" if pdf.title_source else "") if pdf.title_guess
-                 else "  (none)", None if pdf.title_guess else "muted")
-        if self.pdf_result is not None:
-            out.head("Lookup")
-            out.line(f"  {self.pdf_result.message}")
-            for line in self.pdf_result.tried:
-                out.line(f"    {line}", "muted")
-        out.head("Text of the first page")
-        out.line(pdf.first_page_text.strip() or "(no text)")
-        info.show(out.text)
+        info = self.query_one("#p-info", Shown)
+        info.show("" if self.pdf is None else render.pdf_text(self.pdf, self.app.colour, self.pdf_result))
 
     def _need_pdf(self):
         if self.pdf is None:
@@ -391,8 +335,7 @@ class AddView(View):
             self._pdf_show()
             if result.proposal is not None:
                 self._pdf_message(result.message)
-                self.propose([result.proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=pdf.path.name,
-                             page=self.pdf_png)
+                self.propose([result.proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=pdf.path.name)
                 return
             self._pdf_message(result.message, role="warning")
             self._no_record(result)
@@ -460,8 +403,8 @@ class AddView(View):
         def done(proposal):
             self.model_proposal = proposal
             self._pdf_message("The model's reading is shown as a proposal; it is unverified.")
-            self.propose([proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=f"{pdf.path.name}, {route}",
-                         page=self.pdf_png)
+            self.propose([proposal], lambda lines: self._pdf_message(*lines), pdf=pdf,
+                         origin=f"{pdf.path.name}, {route}")
 
         def failed(exc):
             self._pdf_message(str(exc), "t opens the manual form, filled with what was read.", role="error")
@@ -522,11 +465,19 @@ class AddView(View):
         def message(lines, role=None):
             self._manual_message(lines, role)
         beside = self.manual_pdf if self.manual_pdf is self.pdf else None     # the PDF the form was filled from
+        form = self.query_one("#manual-form", VerticalScroll)
+        form.disabled = True                 # what is drafted is what the form shows: no typing until it is done
+
+        def drafted(proposal):
+            form.disabled = False
+            self.propose([proposal], message, pdf=beside, origin="manual form")
+
+        def failed(exc):
+            form.disabled = False
+            message([str(exc)], "error")
         self.app.job("draft the typed entry",
                      lambda job: api.draft_manual(self.app.ws, typed, entry_type=kind, prefill=read or None),
-                     lambda proposal: self.propose([proposal], message, pdf=beside, origin="manual form",
-                                                   page=self.pdf_png if beside is not None else None),
-                     lambda exc: message([str(exc)], "error"))
+                     drafted, failed)
 
 
 class RouteScreen(ChoiceScreen):

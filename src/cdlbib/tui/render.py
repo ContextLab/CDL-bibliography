@@ -1,11 +1,8 @@
 """What the core returned, laid out as text. Nothing here decides anything: every status,
 issue and message is shown as the core gave it."""
 import json
-import struct
-import zlib
+from datetime import datetime, timezone
 
-from rich.color import Color
-from rich.style import Style
 from rich.text import Text
 
 from .widgets import Writer, mark
@@ -59,11 +56,26 @@ def issues(detail, colour):
     return out.text
 
 
+def when(moment):
+    """A moment as the interface writes it: "2026-10-05 04:29 UTC". ``moment`` is a datetime or
+    the ISO text of one; text that is not a date is given back as it is."""
+    if isinstance(moment, str):
+        try:
+            moment = datetime.fromisoformat(moment.replace("Z", "+00:00"))
+        except ValueError:
+            return moment
+    if moment.tzinfo is not None:
+        moment = moment.astimezone(timezone.utc)
+    return moment.strftime("%Y-%m-%d %H:%M UTC")
+
+
 def _candidate(out, title, candidate):
     out.head(title)
-    for name in ("source", "doi", "url", "retrieved_at"):
+    for name in ("source", "doi", "url"):
         if candidate.get(name):
             out.line(f"  {name}: {candidate[name]}")
+    if candidate.get("retrieved_at"):
+        out.line(f"  retrieved: {when(candidate['retrieved_at'])}")
     evidence = candidate.get("evidence") or {}
     if evidence:
         out.line("  each field: = the library and the source agree, ≠ they differ", "muted")
@@ -202,21 +214,22 @@ def preview(found, colour):
 
 # --- a proposal --------------------------------------------------------------------------------
 
+def changes(item):
+    """The rows of a proposal's table of changes: (field, typed, proposed, source, kind)."""
+    return [(change.field, "" if change.typed is None else str(change.typed),
+             "" if change.proposed is None else str(change.proposed), change.source, change.kind)
+            for change in item.changes]
+
+
 def proposal(item, colour):
-    """The findings of a proposal, in the words the command line prints them."""
+    """The findings of a proposal other than its changes, in the words the command line prints."""
     out = Writer(colour)
-    out.line(f"Entry: {item.key_typed or item.key_proposed or '(new)'}", bold=True)
-    out.head("Changes (each with its source)")
-    for change in item.changes or [None]:
-        if change is None:
-            out.line("  (none)", "muted")
-            continue
-        role = {"question": "warning", "dropped": "error", "kept": "muted"}.get(change.kind)
-        out.line(f"  {change.field}: {change.typed} -> {change.proposed} (source: {change.source}) [{change.kind}]", role)
     if item.unfilled:
         out.head("Unfilled")
         for missing in item.unfilled:
-            out.line(f"  Unfilled {missing.field}: {missing.reason}", "warning")
+            reason = str(missing.reason)         # the core's reason may already begin with the field's name
+            said = reason if reason.startswith(f"{missing.field}:") else f"{missing.field}: {reason}"
+            out.line(f"  {said}", "warning")
             for source, value in (missing.source_values or {}).items():
                 out.line(f"      {source}: {value}", "muted")
     consequences = [f"Rename: {old} -> {new}" for old, new in item.renames.items()]
@@ -248,91 +261,33 @@ def lead(candidate):
             f"{candidate.get('doi') or candidate.get('arxiv') or ''}").strip()
 
 
-# --- a PDF's first page ------------------------------------------------------------------------
+# --- what was read from a PDF --------------------------------------------------------------------
 
-def _decode_png(data):
-    """(width, height, rows of (r, g, b)) of an 8-bit, non-interlaced PNG."""
-    if data[:8] != b"\x89PNG\r\n\x1a\n":
-        raise ValueError("not a PNG")
-    position, chunks, header = 8, [], None
-    while position < len(data):
-        length, kind = struct.unpack(">I4s", data[position:position + 8])
-        body = data[position + 8:position + 8 + length]
-        position += 12 + length
-        if kind == b"IHDR":
-            header = struct.unpack(">IIBBBBB", body)
-        elif kind == b"IDAT":
-            chunks.append(body)
-    width, height, depth, colour_type, _, _, interlace = header
-    channels = {0: 1, 2: 3, 4: 2, 6: 4}.get(colour_type)
-    if depth != 8 or channels is None or interlace:
-        raise ValueError("unsupported PNG layout")
-    raw, stride = zlib.decompress(b"".join(chunks)), width * channels
-    rows, previous = [], bytearray(stride)
-    for y in range(height):
-        start = y * (stride + 1)
-        kind, line = raw[start], bytearray(raw[start + 1:start + 1 + stride])
-        for i in range(stride):
-            left = line[i - channels] if i >= channels else 0
-            up = previous[i]
-            corner = previous[i - channels] if i >= channels else 0
-            if kind == 1:
-                line[i] = (line[i] + left) & 255
-            elif kind == 2:
-                line[i] = (line[i] + up) & 255
-            elif kind == 3:
-                line[i] = (line[i] + (left + up) // 2) & 255
-            elif kind == 4:
-                p = left + up - corner
-                pa, pb, pc = abs(p - left), abs(p - up), abs(p - corner)
-                line[i] = (line[i] + (left if pa <= pb and pa <= pc else up if pb <= pc else corner)) & 255
-        rows.append(line)
-        previous = line
-
-    def pixel(line, x):
-        at = x * channels
-        if channels in (1, 2):
-            return (line[at],) * 3
-        return line[at], line[at + 1], line[at + 2]
-
-    return width, height, [[pixel(line, x) for x in range(width)] for line in rows]
-
-
-def half_blocks(png, columns):
-    """The image as text, ``columns`` cells wide: each cell is an upper half block whose
-    foreground is the pixel above and whose background is the pixel below. The picture is
-    brought down to ``columns`` pixels across (the mean of each block, weighted to its darkest
-    pixel so that print stays visible)."""
-    width, height, pixels = _decode_png(png)
-    scale = max(1, -(-width // columns))          # whole pixels a cell, so that no more than ``columns`` cells result
-    wide, high = min(columns, width // scale), height // scale
-
-    def averaged(x, y):
-        total, count, darkest = [0, 0, 0], 0, (255, 255, 255)
-        for yy in range(y * scale, min((y + 1) * scale, height)):
-            row = pixels[yy]
-            for xx in range(x * scale, min((x + 1) * scale, width)):
-                r, g, b = row[xx]
-                total[0] += r; total[1] += g; total[2] += b
-                count += 1
-                if r + g + b < sum(darkest):
-                    darkest = (r, g, b)
-        # thin strokes of print would average away to a pale grey: the darkest pixel counts double
-        total = [value + 2 * dark * count for value, dark in zip(total, darkest)]
-        count *= 3
-        # 16 levels a channel: neighbouring cells of nearly one colour become one run of text
-        return tuple(min(255, (value // max(count, 1) + 8) // 17 * 17) for value in total)
-
-    out = Text(no_wrap=True)
-    for y in range(0, high - 1, 2):
-        run, colours = 0, None
-        for x in range(wide):
-            pair = (averaged(x, y), averaged(x, y + 1))
-            if pair != colours and run:
-                out.append("▀" * run, Style(color=Color.from_rgb(*colours[0]), bgcolor=Color.from_rgb(*colours[1])))
-                run = 0
-            colours, run = pair, run + 1
-        if run:
-            out.append("▀" * run, Style(color=Color.from_rgb(*colours[0]), bgcolor=Color.from_rgb(*colours[1])))
-        out.append("\n")
-    return out
+def pdf_text(pdf, colour, result=None, name_only=False):
+    """What was read from a PDF, as text: its identifiers with the page and line each was read
+    from, the title read, the outcome of a lookup, and the text of the first page."""
+    out = Writer(colour)
+    out.line(f"Read from {pdf.path.name}" if name_only else str(pdf.path), bold=True)
+    if pdf.problem:
+        out.line(f"problem: {pdf.problem}" + (f" ({pdf.detail})" if pdf.detail else ""), "warning")
+    if pdf.ocr:
+        out.line("The text is OCR output; it can misread characters.", "warning")
+    out.head("Identifiers found")
+    for found in pdf.identifiers or [None]:
+        if found is None:
+            out.line("  (none)", "muted")
+            continue
+        where = "the PDF's metadata" if found.page is None else f"page {found.page}"
+        out.line(f"  {found.kind}: {found.value} ({where})")
+        out.line(f"      “{found.quote}”", "muted")
+    out.head("Title read")
+    out.line(f"  {pdf.title_guess}" + (f" ({pdf.title_source})" if pdf.title_source else "") if pdf.title_guess
+             else "  (none)", None if pdf.title_guess else "muted")
+    if result is not None:
+        out.head("Lookup")
+        out.line(f"  {result.message}")
+        for line in result.tried:
+            out.line(f"    {line}", "muted")
+    out.head("Text of the first page")
+    out.line(pdf.first_page_text.strip() or "(no text)")
+    return out.text

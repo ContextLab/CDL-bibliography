@@ -12,14 +12,9 @@ from textual.widgets import DataTable, Input, TabbedContent, TabPane
 from .. import api
 from ..errors import CdlbibError
 from . import render
-from .widgets import Shown, View, mark
+from .widgets import Shown, Table, View, add_rows, fill_table, mark
 
 CHUNK = 400     # rows put into the table at a time; more are added as the cursor nears the end
-
-
-def cut(text, width):
-    text = " ".join(str(text or "").split())
-    return text if len(text) <= width else text[:width - 1] + "…"
 
 
 class DetailPanes(Vertical):
@@ -52,12 +47,26 @@ class DetailPanes(Vertical):
         self.query_one("#t-issues", Shown).show(render.issues(detail, colour))
         self.query_one("#t-evidence", Shown).show(render.evidence(detail, colour))
 
-    def waiting(self, key, running):
-        """The entry is being read; behind a running job, say which."""
+    def waiting(self, summary, running):
+        """The entry's details are being read (a job, like every reading of the library). Until
+        they are here, what the table already knows of the entry is shown, and behind a running
+        job the line says what is waited for."""
         self.detail = None
-        text = f"reading {key} ..." + (f"\n(after the running job: {running})" if running else "")
+        out = self.app.writer()
+        out.line(f"{summary.key} ({summary.type})", bold=True)
+        for label, value in (("authors", summary.authors), ("year", summary.year), ("title", summary.title),
+                             ("venue", summary.venue), ("doi", summary.doi)):
+            if value:
+                out.line(f"  {label}: {value}")
+        out.part("  status: ").text.append_text(render.status_text(summary.status, self.app.colour))
+        out.line()
+        for issue in summary.issues:
+            out.line(f"  {issue}", "warning")
+        out.line()
+        out.line(f"The entry's text, issues and evidence load when the running job finishes: {running}" if running
+                 else "reading the entry's text, issues and evidence ...", "muted")
         for name in ("t-entry", "t-issues", "t-evidence"):
-            self.query_one(f"#{name}", Shown).show(text)
+            self.query_one(f"#{name}", Shown).show(out.text)
 
     def next_tab(self):
         tabs = self.query_one("#detail", TabbedContent)
@@ -71,10 +80,10 @@ class LibraryView(View):
     BINDINGS = [
         Binding("slash", "search", "Search"),
         Binding("escape", "table", "Table", show=False),
-        Binding("f", "filter", "Status filter"),
-        Binding("d", "detail_tab", "Detail tab"),
+        Binding("f", "filter", "Status"),
+        Binding("d", "detail_tab", "Tab"),
         Binding("e", "edit", "Edit"),
-        Binding("n", "new", "New entry"),
+        Binding("n", "new", "New"),
         Binding("c", "check", "Check"),
         Binding("a", "approve", "Approve"),
         Binding("v", "revoke", "Revoke"),
@@ -91,23 +100,23 @@ class LibraryView(View):
         self.shown = 0           # how many of them are in the table
         self.status = None       # the status filter
         self.selected = None     # the key under the cursor
+        self.widths = None       # the table's column widths, as last laid out
         self.read = {}           # {key: desk.EntryDetail} read since the library last changed
         self.searched = False
 
     def compose(self) -> ComposeResult:
         with Horizontal():
             with Vertical(id="left"):
-                yield Input(placeholder='Search: words, field:word (author: title: year: status: ...), "a phrase"',
-                            id="search")
+                yield Input(placeholder='Search: words, field:word, "a phrase"', id="search")
                 yield Shown(id="counts")
-                yield DataTable(id="entries", cursor_type="row", zebra_stripes=False)
+                yield Table(id="entries", cursor_type="row", zebra_stripes=False)
             with Vertical(id="right", classes="pane"):
                 yield DetailPanes(id="library-detail")
 
     def on_mount(self):
-        table = self.query_one("#entries", DataTable)
-        table.add_columns(" ", "Key", "Authors", "Year", "Title", "Venue")
         self.query_one("#counts", Shown).show("reading the library ...")
+        self._fill()
+        self.query_one("#entries", Table).filler = lambda: self._fill(keep=self.selected)   # the columns follow the window
 
     # --- what the app tells ------------------------------------------------------------------
 
@@ -156,17 +165,17 @@ class LibraryView(View):
 
     def _row(self, item):
         glyph, role = mark(item.status)
-        colour = self.app.colour(role)
-        return (Text(glyph, colour), item.key, cut(item.authors, 24), item.year, cut(item.title, 50),
-                cut(item.venue, 30))
+        return (Text(glyph, self.app.colour(role)), item.key, item.authors, item.year, item.title, item.venue)
 
     def _fill(self, keep=None):
         table = self.query_one("#entries", DataTable)
         position = next((i for i, item in enumerate(self.matches) if item.key == keep), 0) if keep else 0
         self.shown = min(len(self.matches), max(CHUNK, position + CHUNK // 2))
-        table.clear()
-        for item in self.matches[:self.shown]:
-            table.add_row(*self._row(item), key=item.key)
+        listed = self.matches[:self.shown]
+        longest = max([len(item.key) for item in listed] + [3])
+        self.widths = fill_table(table, [(" ", 1), ("Key", min(longest, 22)), ("Authors", 2.0), ("Year", 4),
+                                         ("Title", 4.0), ("Venue", 2.0)],
+                                 [self._row(item) for item in listed], [item.key for item in listed])
         self._counts()
         if self.matches:
             table.move_cursor(row=position)
@@ -179,8 +188,8 @@ class LibraryView(View):
         """Put the next rows into the table (all of them up to ``upto``)."""
         table = self.query_one("#entries", DataTable)
         end = min(len(self.matches), max(self.shown + CHUNK, (upto or 0) + 1))
-        for item in self.matches[self.shown:end]:
-            table.add_row(*self._row(item), key=item.key)
+        more = self.matches[self.shown:end]
+        add_rows(table, self.widths, [self._row(item) for item in more], [item.key for item in more])
         self.shown = end
         self._counts()
 
@@ -216,7 +225,9 @@ class LibraryView(View):
         if key in self.read:                 # read since the library last changed: shown at once, no job
             panes.show(self.read[key])
             return
-        panes.waiting(key, self.app.jobs.busy_label)
+        summary = next((item for item in self.matches if item.key == key), None)
+        if summary is not None:
+            panes.waiting(summary, self.app.jobs.busy_label)
 
         def done(detail):
             self.read[detail.key] = detail

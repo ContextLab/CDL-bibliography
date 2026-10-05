@@ -89,10 +89,15 @@ def test_identifiers_are_looked_up_together_and_each_proposal_is_accepted_or_ski
             assert "(no typed entry)" in T.shown(app, "#typed")                      # typed | proposed, side by side
             assert T.shown(app, "#proposed") == ZOLL90.expandtabs(4)
             findings = T.shown(app, "#findings")
-            assert "Entry: Zoll90" in findings and "(source: crossref)" in findings   # each change with its source
-            assert "title: None -> Students' misunderstandings" in findings
+            table = T.changes(app)                                          # each change with its source, as a table
+            assert table["volume"] == ("", "27", "crossref", "filled") and table["doi"][2:] == ("typed", "kept")
+            assert table["title"][1].startswith("Students' misunderstandings") and table["title"][1].endswith("…")
+            assert [str(column.label) for column in app.screen.query_one("#changes").columns.values()] == [
+                "Field", "Typed", "Proposed", "Source", "Kind"]
             assert "Verification: metadata_verified" in findings
-            assert "[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop" in T.shown(app, "#proposal-actions")
+            assert "[a] accept" not in T.shown(app, "#proposal-actions")      # the keys are the footer's, said once
+            footer = T.screen_text(app).splitlines()[-1]
+            assert all(pair in footer for pair in ("a Accept", "e Edit", "s Skip", "A Accept all", "q Stop"))
             assert "it does not verify or approve it" in T.shown(app, "#proposal-actions")
             assert ws.bib.read_text(encoding="utf-8") == ""                           # nothing is written by proposing
             await T.press(pilot, "a")
@@ -126,7 +131,7 @@ def test_accept_all_remaining_writes_those_that_need_no_decision(ws):
             assert name(app) == "ProposalScreen"                         # it cannot be accepted: the core's rule
             assert T.shown(app, "#proposal-actions").startswith("Cannot be accepted as it stands:\n  no entry is proposed\n")
             assert "no entry is proposed" in T.screen_text(app)             # ... and its reasons (api.why_not_acceptable)
-            assert any("Cannot accept: complete required fields" in note.message for note in app._notifications)
+            assert any("Cannot accept: complete required fields" in note for note in app.notices)
             await T.press(pilot, "q")
             assert name(app) != "ProposalScreen"
     T.run(journey())
@@ -149,7 +154,7 @@ def test_editing_a_proposal_checks_the_edited_text_again(ws):
             edited = ZOLL90.replace("1053--1065", "1053--1066")
             assert T.shown(app, "#proposed") == edited.expandtabs(4)
             findings = T.shown(app, "#findings")
-            assert "pages: 1053--1065 -> 1053--1066 (source: user edit) [changed]" in findings
+            assert T.changes(app)["pages"] == ("1053--1065", "1053--1066", "user edit", "changed")
             assert "Verification: metadata_verified" not in findings        # the edited text was checked again
             await T.press(pilot, "e", "escape")                            # leaving the editor changes nothing
             assert T.shown(app, "#proposed") == edited.expandtabs(4)
@@ -177,10 +182,10 @@ def test_a_title_search_lists_leads_with_their_sources_and_the_chosen_one_is_pro
             assert "Bennet B. Murdock" in text and "1956" in text
             assert app.focused is table
             await T.press(pilot, "enter")
-            assert name(app) == "ProposalScreen" and "Entry: Murd56" in T.shown(app, "#findings")
+            assert name(app) == "ProposalScreen" and T.changes(app)["author"][1] == "B B Murdock"
             assert "@article{Murd56," in T.shown(app, "#proposed")
             findings = T.shown(app, "#findings")                          # the sources disagree: said, not settled
-            assert "Unfilled title: title: sources disagree" in findings
+            assert "Unfilled\n  title: sources disagree\n" in findings and "title: title" not in findings
             assert 'crossref: "Backward" learning in paired associates.' in findings
             assert "pubmed: Backward learning in paired associates" in findings
             await T.press(pilot, "a")
@@ -190,8 +195,8 @@ def test_a_title_search_lists_leads_with_their_sources_and_the_chosen_one_is_pro
             await T.type_text(pilot, "Title = {Backward learning in paired associates},")
             await T.press(pilot, "ctrl+s")
             findings = T.shown(app, "#findings")
-            assert "title: None -> Backward learning in paired associates (source: user edit) [changed]" in findings
-            assert "Unfilled title" not in findings
+            assert T.changes(app)["title"] == ("", "Backward learning in paired associates", "user edit", "changed")
+            assert "Unfilled" not in findings and "sources disagree" not in findings
             await T.press(pilot, "a")
             assert "Added: Murd56" in T.shown(app, "#s-message")
     T.run(journey())
@@ -253,26 +258,22 @@ def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
             assert "misunderstandings and misconceptions in college freshman chemistry" in info
             assert "(largest text on page 1)" in info
             assert "Text of the first page" in info and "Haifa University" in info
-            page = T.shown(app, "#p-page")
-            if importlib.util.find_spec("pypdfium2"):
-                assert page.count("▀") > 500 and len(page.splitlines()) > 20      # the first page, in half blocks
-                assert max(len(line) for line in page.splitlines()) <= 54          # no wider than its pane
-            else:                                   # not installed, and no index can be reached from this test
-                assert "The first page is not drawn" in page and "pypdfium2" in page
+            assert not app.screen.query("#p-page")                         # the page itself is not drawn in the terminal
+            assert "o opens the PDF itself in the system viewer" in T.shown(app, "#p-message")
+            assert "▀" not in T.screen_text(app)
             await T.press(pilot, "l")
             assert name(app) == "ProposalScreen" and str(pdf.name) in T.screen_text(app)
             findings = T.shown(app, "#findings")
             assert f"Found by the doi read from the PDF (page 1): {ZOLLER_DOI}" in findings
             assert T.shown(app, "#proposed") == ZOLL90.expandtabs(4)
-            beside = app.screen.query_one("#proposal-pdf")                 # the PDF's first page, beside the proposal
+            beside = app.screen.query_one("#proposal-pdf")                 # what was read from the PDF, beside the proposal
             assert beside.display and "Haifa University" in T.shown(app, "#pdf-text")
-            if importlib.util.find_spec("pypdfium2"):
-                assert T.shown(app, "#pdf-page").count("▀") > 500
-            assert f"First page of {pdf.name}" in T.screen_text(app)
+            assert f"doi: {ZOLLER_DOI} (page 1)" in T.shown(app, "#pdf-text") and not app.screen.query("#pdf-page")
+            assert f"Read from {pdf.name}" in T.screen_text(app) and "Identifiers found" in T.screen_text(app)
             await T.press(pilot, "e")                                      # editing and checking again keeps it there
             await T.press(pilot, "pagedown", "up", "up", "up", "end", "left", "left", "backspace", "6")
             await T.press(pilot, "ctrl+s")
-            assert "pages: 1053--1065 -> 1053--1066 (source: user edit)" in T.shown(app, "#findings")
+            assert T.changes(app)["pages"] == ("1053--1065", "1053--1066", "user edit", "changed")
             assert app.screen.query_one("#proposal-pdf").display and "Haifa University" in T.shown(app, "#pdf-text")
             await T.press(pilot, "a")
             assert name(app) != "ProposalScreen" and "Added: Zoll90" in T.shown(app, "#p-message")
@@ -280,16 +281,15 @@ def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
     T.run(journey())
     assert ws.bib.read_text(encoding="utf-8").strip() == ZOLL90.replace("1053--1065", "1053--1066")
 
-    async def narrow():                                                    # under 124 columns the page is not beside
-        async with T.opened(ws, size=(110, 40)) as pilot:
+    async def narrow():                                                    # in a narrow window too
+        async with T.opened(ws, size=(100, 30)) as pilot:
             app = pilot.app
             await add_tab(pilot, 2)
             await T.type_text(pilot, str(pdf))
             await T.press(pilot, "enter")
             await T.press(pilot, "l")
-            assert name(app) == "ProposalScreen" and not app.screen.query_one("#proposal-pdf").display
-            assert "shown beside the proposal in a window of 124 columns or more" in T.shown(app, "#proposal-actions")
-            assert "Duplicate: Zoll90" in T.shown(app, "#findings")
+            assert name(app) == "ProposalScreen" and app.screen.query_one("#proposal-pdf").display
+            assert "Haifa University" in T.shown(app, "#pdf-text") and "Duplicate: Zoll90" in T.shown(app, "#findings")
             await T.press(pilot, "q")
     T.run(narrow())
 
@@ -371,7 +371,8 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
             assert name(app) == "ProposalScreen" and "typed by hand" in T.screen_text(app)
             assert app.screen.query_one("#proposal-pdf").display and "Nowhere College" in T.shown(app, "#pdf-text")
             findings = T.shown(app, "#findings")
-            assert "read from the PDF (not typed)" in findings and "(source: typed)" in findings
+            sources = {field: row[2] for field, row in T.changes(app).items()}
+            assert sources["title"].startswith("read from the PDF") and sources["year"] == "typed"
             assert "Verification: needs_review" in findings and "No source record" in findings
             assert "@article{ExamSamp19," in T.shown(app, "#proposed")
             await T.press(pilot, "a")
@@ -405,7 +406,8 @@ def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(
             await T.settle(pilot, timeout=300)
             assert name(app) == "ProposalScreen" and "read from the PDF by a model" in T.screen_text(app)
             findings = T.shown(app, "#findings")
-            assert "model reading, p.1" in findings and "Verification: needs_review" in findings
+            assert any(row[2].startswith("model reading, p.1") for row in T.changes(app).values())
+            assert "Verification: needs_review" in findings
             await T.press(pilot, "a")
             await T.settle(pilot)
     T.run(journey())
@@ -490,11 +492,11 @@ def test_a_name_the_source_spells_differently_is_settled_name_by_name(tmp_path, 
             assert name(app) == "ProposalScreen"
             findings = T.shown(app, "#findings")
             if choice == "u":
-                assert "(source: user edit)" in findings and "McClelland" in T.shown(app, "#proposed")
+                assert T.changes(app)["author"][2] == "user edit" and "McClelland" in T.shown(app, "#proposed")
                 await T.press(pilot, "a")
                 assert "Completed: CleeMcCl91" in app.log_lines
             else:
-                assert "(source: typed (source alternative: crossref:" in findings
+                assert T.changes(app)["author"][2].startswith("typed (source alternative")
                 await T.press(pilot, "s")
     T.run(journey())
     written = ws.bib.read_text(encoding="utf-8")
@@ -530,7 +532,8 @@ def test_an_entry_written_without_its_model_evidence_stays_on_screen_until_it_is
             app = pilot.app
             app.push_screen(ProposalScreen([proposal], pdf=read))
             await T.settle(pilot)
-            assert "read from the PDF by a model" in T.screen_text(app) and "model reading, p.1" in T.shown(app, "#findings")
+            assert "read from the PDF by a model" in T.screen_text(app)
+            assert any(row[2].startswith("model reading, p.1") for row in T.changes(app).values())
             assert "Nowhere College" in T.shown(app, "#pdf-text")           # the page it was read from, beside it
             ws.work.mkdir(exist_ok=True)
             ws.database.mkdir()                                            # the evidence store cannot be opened
@@ -611,8 +614,68 @@ def test_evidence_left_waiting_is_listed_in_library_state_and_stored_from_there(
                     in T.shown(app, "#state-result"))
             assert "Model evidence not yet stored" not in T.shown(app, "#state-now")
             await T.press(pilot, "p")
-            assert any("No model evidence is waiting to be stored." in note.message for note in app._notifications)
+            assert any("No model evidence is waiting to be stored." in note for note in app.notices)
     T.run(journey())
     assert api.pending_evidence(ws) == []
     entry = api.entry(ws, "ExamSamp19")
     assert entry.external_evidence["pdf_sha256"] == read.sha256 and entry.human_review is None
+
+
+def test_edited_text_that_could_not_be_checked_is_not_passed_over_by_accept_skip_or_accept_all(ws):
+    edited = ZOLL90.replace("1053--1065", "1053--1066")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 1)
+            await T.type_text(pilot, ZOLLER_DOI)
+            await T.press(pilot, "enter")
+            await T.press(pilot, "e")
+            await T.press(pilot, "pagedown", "up", "up", "up", "end", "left", "left", "backspace", "6")
+            saved = ws.database.read_bytes()
+            ws.database.unlink()
+            ws.database.mkdir()                                            # the check cannot open its cache
+            await T.press(pilot, "ctrl+s")
+            ws.database.rmdir()
+            ws.database.write_bytes(saved)
+            assert name(app) == "ProposalScreen" and T.shown(app, "#proposed") == ZOLL90.expandtabs(4)
+            assert "Edited text for this proposal was not checked; e opens it again." in T.shown(app, "#proposal-actions")
+            for key in ("a", "s", "A"):                                    # none of them goes past the edited text
+                await T.press(pilot, key)
+                assert name(app) == "ChoiceScreen" and "edited text that was not checked" in T.shown(app, "#question")
+                await T.press(pilot, "escape")
+                assert name(app) == "ProposalScreen" and ws.bib.read_text(encoding="utf-8") == ""
+            await T.press(pilot, "q")                                      # stopping asks too
+            assert name(app) == "ConfirmScreen"
+            await T.press(pilot, "n")
+            await T.press(pilot, "a")
+            await T.press(pilot, "e")                                      # open it again: the edited text is there
+            assert name(app) == "TextEditScreen" and app.screen.query_one("#proposal-editor").text == edited
+            await T.press(pilot, "ctrl+s")
+            assert T.shown(app, "#proposed") == edited.expandtabs(4) and "was not checked" not in T.shown(app, "#proposal-actions")
+            await T.press(pilot, "a")
+            assert name(app) != "ProposalScreen"
+    T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8").strip() == edited
+
+    async def discarded():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 1)
+            await T.type_text(pilot, GAMES_DOI)
+            await T.press(pilot, "enter")
+            await T.press(pilot, "e")
+            await T.press(pilot, "pagedown", "end", "left", "left", "backspace", "3")
+            saved = ws.database.read_bytes()
+            ws.database.unlink()
+            ws.database.mkdir()
+            await T.press(pilot, "ctrl+s")
+            ws.database.rmdir()
+            ws.database.write_bytes(saved)
+            await T.press(pilot, "a")
+            await T.press(pilot, "d")                                      # discard the edited text, said so
+            assert name(app) == "ProposalScreen" and "was not checked" not in T.shown(app, "#proposal-actions")
+            await T.press(pilot, "a")
+            assert name(app) != "ProposalScreen"
+    T.run(discarded())
+    assert GAME62 in ws.bib.read_text(encoding="utf-8")                      # the proposal as it was shown

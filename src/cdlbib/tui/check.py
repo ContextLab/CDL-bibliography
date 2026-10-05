@@ -4,7 +4,7 @@ from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Button
+from textual.widgets import Button, Static
 
 from .. import api, prompts
 from . import render
@@ -13,8 +13,8 @@ from .widgets import Shown, View
 
 class CheckView(View):
     BINDINGS = [
-        Binding("c", "selected", "Check the selected entry"),
-        Binding("g", "changed", "Offers, then check the changed entries"),
+        Binding("c", "selected", "Check selected"),
+        Binding("g", "changed", "Offers, then check changed"),
         Binding("G", "changed(False)", "Check the changed entries, no offers", show=False),
         Binding("m", "format", "Format check"),
     ]
@@ -26,14 +26,17 @@ class CheckView(View):
     def compose(self) -> ComposeResult:
         yield Shown(id="check-head", classes="message")
         with Horizontal(classes="row"):
-            yield Button("Check the selected entry (c)", id="check-selected")
-            yield Button("Offers, then check the changed entries (g; G: no offers)", id="check-changed")
-            yield Button("Format check of the library (m)", id="check-format")
+            yield Button("Check selected (c)", id="check-selected")
+            yield Button("Offers, then check changed (g)", id="check-changed")
+            yield Button("Format check (m)", id="check-format")
+        yield Static("G checks the changed entries without the completion offers.", classes="hint")
         with VerticalScroll(classes="pane"):
             yield Shown(id="check-result")
 
     def activated(self):
         self.state_changed()
+        if self.last is None:
+            self.query_one("#check-result", Shown).show("The result of a check is shown here.")
         self.query_one("#check-selected", Button).focus()
 
     def state_changed(self):

@@ -126,7 +126,7 @@ for cast in "$@"; do
           http_proxy="$proxy" https_proxy="$proxy" all_proxy="$proxy" no_proxy="" \
           vhs -o "$scratch/tui.gif" "$repo/scripts/tui.tape")
       if command -v gifsicle >/dev/null; then
-        gifsicle -O3 --lossy=140 --colors 24 "$scratch/tui.gif" -o "$out/tui.gif"
+        gifsicle -O3 --colors 32 "$scratch/tui.gif" -o "$out/tui.gif"
       else
         cp "$scratch/tui.gif" "$out/tui.gif"
       fi
