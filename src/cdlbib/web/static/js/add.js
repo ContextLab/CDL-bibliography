@@ -97,7 +97,7 @@ export async function show(main) {
       clear(out, h("p", { class: "muted", text: "Reading " + chosen.name + "…" }));
       const sent = await upload("/api/pdf/upload", null, chosen, "application/pdf");
       names.set(sent.pdf, chosen.name);
-      const read = await post("/api/pdf/read", { pdf: sent.pdf }, log.add);
+      const read = await post("/api/pdf/read", { pdf: sent.pdf, shown: chosen.name.slice(0, 200) }, log.add);   // the name is text for the lines below, nothing more
       await drawPdf(out, read, chosen.name);
     }));
   }
@@ -140,7 +140,8 @@ export async function show(main) {
             route.available === null ? button("check", (event) => run(event.currentTarget, async () => routes(await post("/api/model-routes/check", { route: route.name }))),
               { "aria-label": "Check whether " + route.label + " is set up" }) : null),
           route.available === false && route.detail ? h("p", { class: "differs", text: route.detail }) : null,
-          h("p", { class: "muted", text: route.how }))));
+          // how to set it up: only for a service that is not set up, or not checked yet
+          route.available === true ? null : h("p", { class: "muted", "data-how": route.name, text: route.how }))));
     }
 
     const byHand = button("Type it in by hand", (event) => run(event.currentTarget, async () => {

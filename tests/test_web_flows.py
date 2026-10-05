@@ -386,6 +386,45 @@ def test_a_pdf_no_source_knows_model_routes_and_the_manual_form(site, made):
     assert [item["key"] for item in site.ok("get", "/api/review-queue", all="1")["entries"]][-1] == key
 
 
+def test_the_lines_name_an_upload_as_the_person_named_it_and_the_name_is_only_text(site, made):
+    """What the person's file is called is sent with the request to read it, as text
+    (``shown``): cleaned for display (last part, printable, bounded), used in the progress
+    lines, and never part of a path. The upload itself still takes no argument."""
+    data = made["doi"].read_bytes()
+    store = site.running.app.store
+
+    def read_as(**shown):
+        sent = site.ok("upload", "/api/pdf/upload", data, "application/pdf")
+        lines = []
+        read = site.ok("post", "/api/pdf/read", {"pdf": sent["pdf"], **shown}, lines)
+        held = store.get("pdf", sent["pdf"])
+        assert held["path"].name == "upload.pdf" and held["path"].parent.parent == store.folder
+        assert held["intake"].path == held["path"] and read["problem"] is None and "path" not in read
+        return lines, read, {"name": held["intake"].name}
+
+    lines, read, held = read_as(shown="real.pdf")
+    assert lines == ["Reading the first pages of real.pdf"] and read["name"] == "real.pdf" and held["name"] == "real.pdf"
+    lines, read, _ = read_as()                                                # no name sent: the stored one, as before
+    assert lines == ["Reading the first pages of upload.pdf"] and read["name"] is None
+    outside = store.folder.parent / "planted.pdf"
+    for sent, shown in (("../../planted.pdf", "planted.pdf"), (str(outside), "planted.pdf"),
+                        ("..\\..\\planted.pdf", "planted.pdf"), ("a\x1b[2J\x07b\r\nc.pdf", "a [2J b c.pdf"),
+                        ("evil‮fdp.exe", "evil fdp.exe"), ("x" * 300 + ".pdf", "x" * 79 + "…"),
+                        ("<img src=x onerror=alert(1)>.pdf", "<img src=x onerror=alert(1)>.pdf")):
+        lines, read, held = read_as(shown=sent)
+        assert lines == [f"Reading the first pages of {shown}"] and read["name"] == shown == held["name"], sent
+    for sent in ("", "   ", "../", "\x1b\x07"):                              # nothing left to show: the stored name
+        lines, read, held = read_as(shown=sent)
+        assert lines == ["Reading the first pages of upload.pdf"] and read["name"] is None and held["name"] is None
+    assert not outside.exists() and sorted({path.name for path in store.folder.rglob("*") if path.is_file()}) == ["upload.pdf"]
+    # a name longer than the route takes, with a NUL, or not text, is refused and nothing is read
+    sent = site.ok("upload", "/api/pdf/upload", data, "application/pdf")
+    for bad in ("y" * 401, "a\x00b.pdf", 7, ["real.pdf"], {"name": "real.pdf"}):
+        result, error = site.post("/api/pdf/read", {"pdf": sent["pdf"], "shown": bad})
+        assert result is None and error["kind"] == "BadRequest", bad
+    assert store.get("pdf", sent["pdf"])["intake"] is None
+
+
 def test_a_model_reading_is_accepted_with_its_evidence_and_is_no_approval(site, made):
     """Everything after the model's answer. The proposal is the real one that
     intake.proposal_from_findings builds (each quotation checked against the PDF's pages) from

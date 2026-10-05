@@ -491,7 +491,10 @@ def _intake_data(read, found):
 
 def pdf_read(app, a, say):
     held = app.store.get("pdf", a["pdf"])
-    held["intake"] = api.read_pdf(held["path"], progress=say)
+    # ``shown`` is what the person's file is called: text for the progress lines and the notes,
+    # cleaned by the core (intake.shown_name: last part, printable, bounded). It names nothing
+    # here: the bytes are the ones kept under the store's own name for the id.
+    held["intake"] = api.read_pdf(held["path"], progress=say, name=a["shown"])
     return _intake_data(held["intake"], a["pdf"])
 
 
@@ -866,7 +869,7 @@ def _routes():
         Route(P, "/api/model-routes/check", "model_routes", model_routes_check,
               with_install(route=Choice("dartmouth", "openai"))),
         Route(P, "/api/pdf/upload", "", pdf_upload, body="pdf", direct=True),
-        Route(P, "/api/pdf/read", "read_pdf", pdf_read, with_install(pdf=Ident())),
+        Route(P, "/api/pdf/read", "read_pdf", pdf_read, with_install(pdf=Ident(), shown=Text(400, optional=True))),
         Route(P, "/api/pdf/lookup", "propose_from_pdf", pdf_lookup, with_install(pdf=Ident())),
         Route(P, "/api/pdf/model", "read_pdf_with_model", pdf_model,
               with_install(pdf=Ident(), route=Choice("dartmouth", "openai"))),

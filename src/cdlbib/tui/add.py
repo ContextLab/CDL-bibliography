@@ -383,7 +383,8 @@ class AddView(View):
                          "muted" if route.available is False else None, bold=route.available is not False)
                 if route.detail and not route.available:
                     out.line(f"    {route.detail}", "muted")
-                out.line(f"    {route.how}", "muted")
+                if route.available is not True:  # how to set it up: not for one that is set up
+                    out.line(f"    {route.how}", "muted")
                 rows.append((str(number), route.name, f"{route.label}: {state}", route.available is False))
             rows.append(("c", "check", "Check which are set up (reads the system keychain)", False))
             rows.append(("t", "manual", "Type the entry in instead", False))

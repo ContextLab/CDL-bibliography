@@ -185,8 +185,9 @@ Dartmouth Chat, which is marked "default", and OpenAI. The panel says:
 A model's reading is a proposal with page quotations; it is not a verification or an approval.
 ```
 
-Each card has a "Read with ..." button, a tag that says "set up", "not set up" or "not
-checked", and the steps to set the service up. "not checked" means that the environment
+Each card has a "Read with ..." button and a tag that says "set up", "not set up" or "not
+checked". The card of a service that is not set up, or not checked, also gives the steps to
+set it up. "not checked" means that the environment
 variable is not set and the system keychain has not been read; the "check" button reads
 the keychain. The button of a service that is not set up cannot be pressed.
 [API keys](api-keys.md) describes how to set up each service.
@@ -198,11 +199,10 @@ person approves it. The next section shows the card of an entry typed by hand.
 With Dartmouth Chat set up, "Read with Dartmouth Chat" adds lines to the lookup log while
 the model reads, and then a proposal card beside the PDF's first page. Recorded on
 October 5, 2026 with the PDF of arXiv:2310.06825, uploaded as `real.pdf`; the reading took
-about three minutes. The web interface stores an uploaded PDF as `upload.pdf`, which is the
-name the log shows:
+about three minutes. The log names the file as it was uploaded:
 
 ```text
-Asking Dartmouth Chat to read 2 pages of upload.pdf
+Asking Dartmouth Chat to read 2 pages of real.pdf
 Checking each quotation against the PDF's pages
 ```
 

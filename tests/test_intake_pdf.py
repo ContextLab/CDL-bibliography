@@ -132,6 +132,42 @@ def test_what_may_be_a_title():
     assert intake._title_from_runs([("Plorbnix 7Q", 17.2), ("\n", 3156.2)] + lines) == "Plorbnix 7Q"
 
 
+def test_a_file_kept_under_another_name_is_called_what_the_person_calls_it(tmp_path, made):
+    """An upload is kept as upload.pdf; the lines a person reads name their file. The name is
+    text for display: its last part, one line, printable characters, bounded, never opened."""
+    kept = tmp_path / "upload.pdf"
+    shutil.copy(made["doi"], kept)
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name="real.pdf")
+    assert lines == ["Reading the first pages of real.pdf"] and (read.name, read.shown) == ("real.pdf", "real.pdf")
+    assert read.path == kept and read.problem is None and read.title_guess == pdfs.ZOLLER_TITLE.replace("'", "’")
+    assert api.intake_data(read)["name"] == "real.pdf"
+    lines = []
+    plain = api.read_pdf(kept, progress=lines.append)                # no other name: the path's, as before
+    assert lines == ["Reading the first pages of upload.pdf"] and plain.name is None and plain.shown == "upload.pdf"
+    # what a name may be
+    clean = intake.shown_name
+    assert clean("real.pdf") == "real.pdf" and clean("Zoller (1990) – final.pdf") == "Zoller (1990) – final.pdf"
+    assert clean("../../etc/passwd") == "passwd" and clean("C:\\Users\\someone\\paper.pdf") == "paper.pdf"
+    assert clean("a\x00b\x1b[31mred\x07.pdf") == "a b [31mred .pdf"
+    assert clean("evil\u202efdp.exe") == "evil fdp.exe"              # a direction override is not printable
+    assert clean("two\nlines\r\n.pdf") == "two lines .pdf" and clean("  spaced \t out.pdf ") == "spaced out.pdf"
+    long = clean("x" * 500 + ".pdf")
+    assert len(long) == 80 and long.endswith("…") and long.startswith("x" * 79)
+    for nothing in ("", "   ", "\x00\x01", "dir/", None, 7, b"real.pdf", ["real.pdf"]):
+        assert clean(nothing) is None, nothing
+    # a name that cleans to nothing leaves the path's; nothing is opened by name
+    missing = tmp_path / "is-not-here.pdf"
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name=str(missing) + "\x00/")
+    assert read.name is None and lines == ["Reading the first pages of upload.pdf"] and not missing.exists()
+    lines = []
+    read = intake.read_pdf(kept, progress=lines.append, name=str(tmp_path / "elsewhere" / "other.pdf"))
+    assert lines == ["Reading the first pages of other.pdf"] and read.path == kept and read.sha256 == plain.sha256
+    assert not (tmp_path / "elsewhere").exists()
+    assert intake.read_pdf(tmp_path, name="a folder.pdf").name == "a folder.pdf"     # a problem keeps the name too
+
+
 def test_identifier_in_metadata_and_title_from_metadata(tmp_path, made):
     import pypdf
     writer = pypdf.PdfWriter(clone_from=str(made["unknown"]))
