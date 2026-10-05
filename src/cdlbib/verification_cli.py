@@ -1,6 +1,7 @@
 """CLI for citation verification, offline gates, and explicit human review."""
 
 import json
+import os
 from collections import Counter
 from pathlib import Path
 from typing import Optional
@@ -378,6 +379,32 @@ def reference_bib(reference, directory):
     return str(target)
 
 
+def reference_approvals(reference, directory):
+    """The approvals ledger the gate reads: the reference's, never the working tree's, so that
+    a row typed into verification/approvals.jsonl approves nothing in the gate of the change
+    that adds it. For 'github' the master's verification/approvals.jsonl is downloaded into
+    ``directory`` (an empty file when the master has none); for a reference file, an empty
+    file: a bibliography file names no ledger. Returns the path."""
+    Path(directory).mkdir(parents=True, exist_ok=True)
+    target = Path(directory) / "reference-approvals.jsonl"
+    text = b""
+    if reference == "github":
+        from urllib.error import HTTPError
+        from urllib.request import build_opener
+        from .helpers import LATEST_BIBFILE
+        from .verification import APPROVAL_LEDGER_MAX_BYTES, APPROVAL_LEDGER_NAME
+        url = LATEST_BIBFILE.rsplit("/", 1)[0] + "/verification/" + APPROVAL_LEDGER_NAME
+        try:
+            text = build_opener().open(url, timeout=60).read(APPROVAL_LEDGER_MAX_BYTES + 1)
+        except HTTPError as exc:
+            if exc.code != 404:
+                raise OSError(f"Cannot download the reference approvals {url}: {exc}") from exc
+        except OSError as exc:
+            raise OSError(f"Cannot download the reference approvals {url}: {exc}") from exc
+    target.write_bytes(text)
+    return str(target)
+
+
 def closest_candidate(fields, result):
     """The candidate for the entry's own DOI, else the one with the fewest issues."""
     candidates = [c for c in result.get("candidates") or [] if c.get("issues")]
@@ -410,6 +437,9 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
     try:
         keys = None if keys is None else list(keys)
         against = None if all_entries or keys is not None else reference_bib(reference, Path(database).parent)
+        if against is not None and not os.environ.get(verification.APPROVAL_LEDGER_ENV):
+            # Entries are gated against a reference: ledger rows count from that reference only.
+            cache.approvals = reference_approvals(reference, Path(database).parent)
         selected = select_keys(fname, keys, against)
         client = DeferredClient(cache, mailto, interval, False)
         if selected:
@@ -553,6 +583,8 @@ def status(
     except GateFailed as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)
+    for problem in api.approval_problems(Workspace.for_bib(bib(ctx, fname))):
+        typer.echo(problem, err=True)
     typer.echo(counts_line(result.counts))
     if not result.ok:
         raise typer.Exit(1)

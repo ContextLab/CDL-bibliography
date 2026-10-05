@@ -171,43 +171,110 @@ def test_a_row_under_another_policy_approves_nothing(tmp_path):
     assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] == "pending"
 
 
-@pytest.mark.parametrize("change", [
-    lambda row: dict(row, human_review=dict(row["human_review"], note="  ")),                 # a blank note
-    lambda row: dict(row, human_review=dict(row["human_review"], source="")),
-    lambda row: dict(row, human_review=dict(row["human_review"], reviewer="")),
-    lambda row: dict(row, human_review={k: x for k, x in row["human_review"].items() if k != "github_login"}),
-    lambda row: dict(row, human_review=dict(row["human_review"], note="Another note.")),     # the digest is of another record
-    lambda row: {k: x for k, x in row.items() if k != "approved_at"},
-    lambda row: dict(row, fingerprint=""),
-    lambda row: "not a row",
-])
-def test_an_invalid_row_is_refused_whole(tmp_path, change):
+def retyped(row, **review):
+    """``row`` with its human_review changed and the digest computed again, as someone typing
+    a row would write it."""
+    changed = dict(row["human_review"], **review)
+    return dict(row, human_review=changed, approval_digest=v.approval_digest(changed))
+
+
+BAD_ROWS = {
+    "a blank note": lambda row: retyped(row, note="  "),
+    "no source": lambda row: retyped(row, source=""),
+    "no reviewer": lambda row: retyped(row, reviewer=""),
+    "no GitHub login": lambda row: dict(
+        row, human_review={k: x for k, x in row["human_review"].items() if k != "github_login"},
+        approval_digest=v.approval_digest({k: x for k, x in row["human_review"].items() if k != "github_login"})),
+    "a login GitHub could not have issued": lambda row: retyped(row, github_login="octo cat/../x"),
+    "a note that is not text": lambda row: retyped(row, note=["checked"]),
+    "a github_id that is not a number": lambda row: retyped(row, github_id="583231"),
+    "an unknown field in the review": lambda row: retyped(row, verified_by_machine=True),
+    "a note longer than the limit": lambda row: retyped(row, note="x" * 8001),
+    "a digest that is not the review's": lambda row: dict(row, human_review=dict(row["human_review"], note="Another note.")),
+    "a digest of the wrong shape": lambda row: dict(row, approval_digest="abc"),
+    "no time": lambda row: {k: x for k, x in row.items() if k != "approved_at"},
+    "a time that is none": lambda row: dict(row, approved_at="yesterday"),
+    "a date without a time": lambda row: dict(row, approved_at="2026-10-05"),
+    "no fingerprint": lambda row: dict(row, fingerprint=""),
+    "a fingerprint of another format": lambda row: dict(row, fingerprint="0" * 64),
+    "an unknown field in the row": lambda row: dict(row, status="human_verified"),
+    "a policy that is not text": lambda row: dict(row, policy=2),
+    "not an object": lambda row: "not a row",
+    "a list": lambda row: [row],
+}
+
+
+@pytest.mark.parametrize("what", sorted(BAD_ROWS))
+def test_an_invalid_row_is_ignored_and_reported_and_the_rows_beside_it_still_count(tmp_path, what):
+    """Three lines: a valid row for Rame72, the invalid row (for Zoll90), a valid row for
+    Rame72 again. Nothing raises; Zoll90 is not approved; Rame72 is; the problem names line 2."""
     ws = library(tmp_path / "lib")
     approve(ws, "Zoll90")
-    row = share(ws)[0]
-    changed = change(row)
-    if isinstance(changed, dict) and "human_review" in changed and changed["human_review"] != row["human_review"]:
-        # The digest is kept consistent where the test is about the record's fields, so that
-        # the field rule and not the digest rule is what refuses the row.
-        if changed["human_review"].get("note") != "Another note.":
-            changed = dict(changed, approval_digest=v.approval_digest(changed["human_review"]))
-    assert not v.valid_shared_approval(changed)
-    ws.approvals.write_text(v.dumps(changed) + "\n", encoding="utf-8")
-    with pytest.raises(ValueError, match="Invalid approval record"):
-        statuses(ws, tmp_path / "other.sqlite3")
-    with pytest.raises(ValueError, match="Invalid approval record"):
+    approve(ws, "Rame72", note="Checked the volume in print.")
+    zoll, rame = share(ws)
+    changed = BAD_ROWS[what](zoll)
+    assert v.shared_approval_problem(changed) and not v.valid_shared_approval(changed)
+    ws.approvals.write_text("".join(v.dumps(row) + "\n" for row in (rame, changed, rame)), encoding="utf-8")
+    other = tmp_path / "other.sqlite3"
+    assert statuses(ws, other) == {"Zoll90": "pending", "Rame72": "human_verified"}
+    rows, problems = v.scan_approval_ledger(ws.approvals)
+    assert rows == [rame, rame] and len(problems) == 1
+    assert problems[0].startswith(f"{ws.approvals}: line 2 ignored: ")
+    assert api.approval_problems(ws) == problems
+    with pytest.raises(ValueError, match="Invalid approval record"):         # and such a row is never written
         v.append_approvals(tmp_path / "elsewhere.jsonl", [changed])
     assert not (tmp_path / "elsewhere.jsonl").exists()
 
 
-def test_a_line_that_is_not_json_is_refused_whole(tmp_path):
+def test_lines_that_are_not_rows_at_all_are_ignored_and_reported(tmp_path):
+    """What a merge conflict leaves, a field named twice, bytes that are not UTF-8, a line
+    longer than the limit, deeply nested JSON: each is reported with its line number, none
+    approves anything and none stops the rows around it from being read."""
     ws = library(tmp_path / "lib")
     approve(ws, "Zoll90")
-    share(ws)
-    with open(ws.approvals, "a", encoding="utf-8") as stream:
-        stream.write("<<<<<<< HEAD\n")                                       # what a merge conflict leaves
-    with pytest.raises(ValueError, match="Invalid approval record"):
-        statuses(ws, tmp_path / "other.sqlite3")
+    approve(ws, "Rame72", note="Checked the volume in print.")
+    zoll, rame = share(ws)
+    good = (v.dumps(rame) + "\n").encode("utf-8")
+    twice = v.dumps(zoll)[:-1] + ',"fingerprint":"' + zoll["fingerprint"] + '"}'      # the field appears twice
+    assert json.loads(twice) == zoll                                         # a plain reader would take it
+    huge = v.dumps(retyped(zoll, source="x" * 3999, note="y" * 7999))
+    padded = v.dumps(zoll)[:-1] + "," + " " * v.APPROVAL_ROW_MAX_BYTES + '"x":1}'
+    ws.approvals.write_bytes(b"<<<<<<< HEAD\n" + good + twice.encode() + b"\n" + b"\xff\xfe{}\n" + padded.encode() + b"\n"
+                             + b"[" * 100000 + b"\n" + huge.encode() + b"\n" + good)
+    rows, problems = v.scan_approval_ledger(ws.approvals)
+    assert [row["key"] for row in rows] == ["Rame72", "Zoll90", "Rame72"]    # the long but valid row counts
+    assert [problem.split(": ", 1)[1].split(": ")[0] for problem in problems] == [
+        "line 1 ignored", "line 3 ignored", "line 4 ignored", "line 5 ignored", "line 6 ignored"]
+    assert "appears twice" in problems[1] and "longer than" in problems[3]
+    assert statuses(ws, tmp_path / "other.sqlite3") == {"Zoll90": "human_verified", "Rame72": "human_verified"}
+    ws.approvals.write_bytes(b"<<<<<<< HEAD\n" + twice.encode() + b"\n")
+    assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] == "pending"   # the twice-named row alone approves nothing
+
+
+def test_a_ledger_larger_than_the_limit_is_ignored_whole_and_reported(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    row = share(ws)[0]
+    line = (v.dumps(row) + "\n").encode("utf-8")
+    ws.approvals.write_bytes(line * (v.APPROVAL_LEDGER_MAX_BYTES // len(line) + 1))
+    rows, problems = v.scan_approval_ledger(ws.approvals)
+    assert rows == [] and problems == [f"{ws.approvals}: ignored whole: larger than {v.APPROVAL_LEDGER_MAX_BYTES} bytes"]
+    assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] == "pending"
+
+
+def test_problems_in_the_ledger_are_shown_by_status_and_by_the_state_of_the_library(checkout):
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    ws, _ = checkout
+    ws.approvals.write_text("not a row\n", encoding="utf-8")
+    problem = f"{ws.approvals}: line 1 ignored: not valid JSON"
+    found = api.library_state(ws)
+    assert [note for note in found.notes if note.startswith(problem)] and found.approvals == []
+    run = CliRunner().invoke(app, ["status", str(ws.bib), "--database", str(ws.database),
+                                                   "--report", str(ws.work / "report.jsonl")])
+    assert run.exit_code == 1 and run.stdout.strip() == "2 entries: pending=2"      # counted, not crashed
+    assert run.stderr.startswith(problem)
+
 
 
 def test_restore_still_stores_the_snapshots_result_beside_a_ledger_row(tmp_path):
@@ -305,6 +372,111 @@ def test_a_row_dated_before_a_revocation_of_its_text_is_revoked_whatever_its_not
     with open(ws.approvals, "a", encoding="utf-8") as stream:
         stream.write(v.dumps(forged) + "\n")
     assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] != "human_verified"
+
+
+FORGERIES = {
+    "the note with other spacing and case": lambda row, later: dict(
+        retyped(row, note="  compared   EVERY field with the printed article. "), approved_at=later),
+    "the same review at a later time": lambda row, later: dict(row, approved_at=later),
+    "the same review under another login": lambda row, later: dict(
+        retyped(row, reviewer="@hubot", github_login="hubot", github_id=480938), approved_at=later),
+    "the same review with another id": lambda row, later: dict(retyped(row, github_id=1), approved_at=later),
+    "the source with other spacing": lambda row, later: dict(
+        retyped(row, source=row["human_review"]["source"] + " "), approved_at=later),
+    "a new note dated before the revocation": lambda row, later: retyped(row, note="An entirely new check."),
+}
+
+
+@pytest.mark.parametrize("what", sorted(FORGERIES))
+def test_a_typed_row_cannot_bring_a_revoked_approval_back(tmp_path, what):
+    """An approval is ledgered, then revoked. A row typed afterwards that repeats the revoked
+    review in another form (each has a digest the revocation does not name, and all but the
+    last a time after the revocation) is a valid row and approves nothing."""
+    ws = library(tmp_path / "lib")
+    approver = tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    row = share(ws, database=approver)[0]
+    records, _ = revoke(ws, "Zoll90", approver)
+    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(days=1)).isoformat()
+    forged = FORGERIES[what](row, later)
+    assert v.valid_shared_approval(forged)
+    assert v.approval_digest(forged["human_review"]) not in v.revoked_digests(records[0]) or forged["approved_at"] == later
+    with open(ws.approvals, "a", encoding="utf-8") as stream:
+        stream.write(v.dumps(forged) + "\n")
+    assert v.scan_approval_ledger(ws.approvals) == ([row, forged], [])
+    for database in (approver, tmp_path / "other.sqlite3"):
+        assert statuses(ws, database)["Zoll90"] != "human_verified", database
+    # The revocation ledger alone decides: a database that never held the revocation agrees.
+    assert json.loads(ws.revocations.read_text(encoding="utf-8")) == records[0]
+
+    # The negative control: a new note, dated after the revocation, is a new decision.
+    fresh = dict(retyped(row, note="Checked again against the publisher's page."), approved_at=later)
+    with open(ws.approvals, "a", encoding="utf-8") as stream:
+        stream.write(v.dumps(fresh) + "\n")
+    found = results(ws, tmp_path / "other.sqlite3")["Zoll90"]
+    assert found["status"] == "human_verified" and found["human_review"] == fresh["human_review"]
+
+
+def test_the_digest_written_in_a_row_is_never_what_is_compared(tmp_path):
+    """A revoked row typed again with a digest of its own invention: the digest is computed
+    from the review, the row is invalid, and it approves nothing."""
+    ws = library(tmp_path / "lib")
+    approver = tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    row = share(ws, database=approver)[0]
+    records, _ = revoke(ws, "Zoll90", approver)
+    later = (datetime.datetime.fromisoformat(records[0]["revoked_at"]) + datetime.timedelta(days=1)).isoformat()
+    with open(ws.approvals, "a", encoding="utf-8") as stream:
+        stream.write(v.dumps(dict(row, approval_digest="f" * 64, approved_at=later)) + "\n")
+    rows, problems = v.scan_approval_ledger(ws.approvals)
+    assert rows == [row] and "line 2 ignored: approval_digest is not the digest of human_review" in problems[0]
+    assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] != "human_verified"
+
+
+# --- which copy of the ledger a gate reads -----------------------------------------------------------
+
+def test_a_row_typed_into_the_working_tree_approves_nothing_in_the_gate(tmp_path, monkeypatch):
+    """An entry is edited and a valid row approving the new text is typed into
+    verification/approvals.jsonl; no database holds any approval. Read as the library's own
+    ledger (status, the views) the row approves the entry. The gate of `verify` and `send`
+    compares with a reference and reads the reference's ledger, here an empty one: the entry
+    is not approved there, so the gate goes to look it up (the network is closed, so the
+    look-up fails) and does not pass."""
+    ws = library(tmp_path / "lib")
+    base = tmp_path / "base.bib"
+    base.write_bytes(ws.bib.read_bytes())
+    ws.bib.write_text(ws.bib.read_text(encoding="utf-8").replace("Volume = {27}", "Volume = {28}"), encoding="utf-8")
+    row = {"key": "Zoll90", "fingerprint": fingerprint(ws, "Zoll90"), "human_review": REVIEW,
+           "approval_digest": v.approval_digest(REVIEW), "approved_at": v.now(), "policy": v.POLICY}
+    v.append_approvals(ws.approvals, [row])
+    assert statuses(ws, ws.database)["Zoll90"] == "human_verified"           # the checkout's own ledger, outside a gate
+    for name in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"):
+        monkeypatch.setenv(name, "http://127.0.0.1:9")                       # nothing listens there
+    monkeypatch.setenv("NO_PROXY", ""); monkeypatch.setenv("no_proxy", "")
+    lines = []
+    try:
+        passed = api.check_citations(ws, None, reference=str(base), mailto="valid@example.org", progress=lines.append).ok
+    except GateFailed as refused:
+        passed, lines = False, lines + [str(refused)]
+    assert not passed, lines
+    assert (ws.work / "reference-approvals.jsonl").read_bytes() == b""
+    assert not any("human_verified=1" in line for line in lines)
+    # With the same row in the reference's ledger the gate reads it: this is the base-branch case.
+    monkeypatch.setenv(v.APPROVAL_LEDGER_ENV, str(ws.approvals))
+    check = api.check_citations(ws, None, reference=str(base), mailto="valid@example.org")
+    assert check.ok and check.citations.checked["Zoll90"]["status"] == "human_verified"
+
+
+def test_the_gate_downloads_the_reference_ledger_from_the_master_branch(tmp_path):
+    """The real download, as the gate of a send makes it: the master's
+    verification/approvals.jsonl, or an empty file while the master has none. Whatever it
+    holds is read with the same validation as any ledger."""
+    from cdlbib.verification_cli import reference_approvals
+    path = reference_approvals("github", tmp_path / "work")
+    assert path == str(tmp_path / "work" / "reference-approvals.jsonl")
+    rows, problems = v.scan_approval_ledger(path)
+    assert problems == [] and all(v.valid_shared_approval(row) for row in rows)
+    assert Path(reference_approvals(str(tmp_path / "any.bib"), tmp_path / "work")).read_bytes() == b""
 
 
 # --- sending --------------------------------------------------------------------------------------

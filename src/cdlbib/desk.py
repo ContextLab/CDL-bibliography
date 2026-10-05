@@ -144,7 +144,7 @@ def revision(ws, database=None):
     a check that stores a result does, from this process or another."""
     from .verification import approval_ledger, revocation_ledger
     revocations = revocation_ledger(str(ws.bib), None)
-    ledgers, approvals = _stat(revocations), _stat(approval_ledger(revocations))
+    ledgers, approvals = _stat(revocations), _stat(approval_ledger(revocations))     # revocations is a path: so is its ledger
     return (_stat(ws.bib), _stored(database or ws.database), _stat(ws.key_renames),
             ledgers if approvals is None else (ledgers, approvals))
 
@@ -854,6 +854,7 @@ def library_state(ws, refresh=False, progress=None):
                                for row in api.approvals_to_send(ws, entries=parsed(ws))]
         except CdlbibError as exc:
             state.notes.append(f"the approvals waiting to be sent could not be read: {' '.join(str(exc).split())[:300]}")
+    state.notes += api.approval_problems(ws)
     if managed:
         state.last_check = library.read_state().last_check
         try:

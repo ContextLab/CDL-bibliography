@@ -287,20 +287,54 @@ A row:
 Reading. `Cache.get` returns the stored result when it is a human approval. Otherwise it
 looks for rows with the entry's fingerprint (`Cache.shared_approval`) and returns a
 `human_verified` view built from the newest row whose `policy` is the current `POLICY` and
-that no revocation matches (`revocation_matches`: the same digest and time rules as for a
-stored approval). The view keeps the stored result's evidence, takes `human_review` from
+that no revocation matches (`shared_revoked`, below). The view keeps the stored result's evidence, takes `human_review` from
 the row and `checked_at` from `approved_at`, and is not written to the database
 (`Cache.stored` is the result without the ledger). Every command that reads results through
 `Cache.get` therefore sees the approval, with no `restore`. A row applies under a stored
 result of any other status, including one stored later by a new machine check of the same
-text. `read_approval_ledger` validates every line (`valid_shared_approval`: all fields
-present and non-blank, the four `human_review` fields above, and a digest equal to the
-digest of `human_review`) and raises `ValueError` for the whole file when one is invalid.
+text.
 
-The file read is `approvals.jsonl` beside the revocation ledger in use, unless the
-environment variable `CDLBIB_APPROVAL_LEDGER` names another file.
+Validation. `scan_approval_ledger` reads the file and returns the valid rows and a list of
+problems; it does not raise for anything the file holds. A line is ignored, and reported
+with its line number, when it is longer than 32 KiB, is not UTF-8 JSON, names a field
+twice, or is not a valid row (`shared_approval_problem`): exactly the six fields; a `v2:`
+fingerprint; a `human_review` with non-blank text for `reviewer` (at most 200 characters),
+`github_login` (a GitHub login), `source` (4,000) and `note` (8,000), an integer
+`github_id` when present, and no other field; an `approval_digest` equal to the digest
+computed from `human_review` (the stored digest is never used for anything else); an
+`approved_at` that is a time; a `policy`. A file larger than 8 MiB, or one that cannot be
+read, is ignored whole and reported. `api.approval_problems`, `crossref status` (standard
+error), the progress lines of `send` and the notes of the library state show the problems.
+`append_approvals` refuses to write a row that is not valid, and `approvals_to_send` does
+not list an approval whose row would not be.
 
-Revocation. `record_revocation` also finds approvals that exist only as ledger rows (rows
+Which copy is read (the trust model). A row is text that anyone can type, so what a typed
+row can do depends on which copy of the file a command reads:
+
+|Reader|Copy of `approvals.jsonl` read|
+|-|-|
+|Pull request check, and push check with a base (`check_ci.py`)|The base revision's, through `CDLBIB_APPROVAL_LEDGER`.|
+|The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. `CDLBIB_APPROVAL_LEDGER`, when set, is used instead.|
+|`crossref status`, `crossref verify` run by hand, the library views, `restore`, `snapshot`, a push check without a base, a manual workflow run|The file beside the revocation ledger the cache was opened with: the checkout's own.|
+|A cache opened without a ledger|None.|
+
+In the first two rows a row counts only once it is on the branch the change is compared
+with, so a row cannot approve an entry in the check or the gate of the change that adds
+it. In the third, the working tree's file has the trust of the checkout itself, which is
+what `crossref restore` of a snapshot file, or an `approve` in the local database, already
+has: none of them is read by the pull request check. An approval the sender recorded with
+`approve` is in the sender's database and counts in the sender's own gate, as before.
+
+Revocation of a row (`shared_revoked`). A revocation revokes a row with the same
+fingerprint when any of these holds: the digest computed from the row's `human_review` is
+one the revocation names (`revoked_digests`); the row's `approved_at` is not after
+`revoked_at`; or the row's `source` and `note`, with white space collapsed and case folded,
+equal those of the approval the revocation carries. The third rule means a copy of a revoked
+review with other spacing, another time, another reviewer or another `github_id` is not a
+new decision. `approved_at` is typed text like the rest of the row, so a row with a new note
+and a later time counts as a new decision, as a new `approve` with a new note does.
+
+`record_revocation` also finds approvals that exist only as ledger rows (rows
 with the key, or with the entry's current fingerprint), so `crossref revoke` works on a
 computer whose database never stored the approval. The approvals ledger is not edited; the
 revocation row is what makes the approval stop counting. `restore` stores a snapshot's

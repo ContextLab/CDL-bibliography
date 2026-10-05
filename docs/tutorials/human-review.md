@@ -107,11 +107,23 @@ A line of `verification/approvals.jsonl` is one JSON object with these fields:
 
 Once the line is in someone's copy of the library (after the pull request is merged and
 they update), the entry reads as `human_verified` there with no command to run, provided
-its text still has that fingerprint. A file with an invalid line is refused whole, with
-the message `Invalid approval record in <file>`. `cdlbib crossref revoke` withdraws an
-approval that came from this file too, also on a computer whose database never stored it;
-the revocation takes precedence. The pull request check reads the file from the base
-branch only.
+its text still has that fingerprint. A line that is not a valid row approves nothing and
+does not stop the other lines from being read; `cdlbib crossref status` prints, and the
+Library state views show, one line for it, for example:
+
+```text
+verification/approvals.jsonl: line 2 ignored: approval_digest is not the digest of human_review
+```
+
+(the file is named by its full path). `cdlbib crossref revoke` withdraws an approval that
+came from this file too, also on a computer whose database never stored it; the revocation
+takes precedence. After a revocation, a line for the same text counts only if it is dated
+after the revocation and its source and note differ from the revoked review's by more than
+spacing and capitals.
+
+The pull request check reads the file from the base branch only. The checks of
+`cdlbib verify` and `cdlbib send` on new and edited entries read it from the reference
+they compare with (the `master` branch on GitHub), not from the working copy.
 
 ## Web interface
 

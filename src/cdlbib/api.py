@@ -472,7 +472,7 @@ def approvals_note(ws, reference=None, database=None, ledgered=()):
         selected = set(select_keys(str(ws.bib), None, against, entries=results))
     except (ValueError, OSError, ProviderError) as exc:
         raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
-    added = {(row["fingerprint"], row["approval_digest"]) for row in ledgered}
+    added = {(row["fingerprint"], approval_digest(row["human_review"])) for row in ledgered}
     selected |= {key for key, result in results.items()
                  if (result["fingerprint"], approval_digest(result.get("human_review"))) in added}
     by_login = {}
@@ -516,6 +516,15 @@ def approvals_to_send(ws, database=None, entries=None):
             cache.close()
     except (ValueError, KeyError, TypeError, OSError, sqlite3.Error) as exc:
         raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+
+
+def approval_problems(ws):
+    """What is ignored in the approvals ledger the library reads (verification/approvals.jsonl,
+    or the file CDLBIB_APPROVAL_LEDGER names): a sentence for each line that is not a valid
+    row, or for the file when it cannot be read. Such a line approves nothing. [] when all is
+    well or there is no ledger."""
+    from .verification import approval_ledger, revocation_ledger, scan_approval_ledger
+    return scan_approval_ledger(approval_ledger(revocation_ledger(str(ws.bib), None)))[1]
 
 
 def _approval_login(row):
@@ -562,20 +571,18 @@ def _ledger_rows_since(ws, commit):
     import json
     from . import publish
     from .verification import read_approval_ledger
-    try:
-        rows = read_approval_ledger(ws.approvals)
-    except (OSError, ValueError) as exc:
-        raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+    rows = read_approval_ledger(ws.approvals)
     if not rows:
         return []
+    from .verification import approval_digest
     held = set()
     for line in (publish.file_at(ws, commit, APPROVALS_PATH) or "").splitlines():
         try:
             row = json.loads(line)
-            held.add((row["fingerprint"], row["approval_digest"]))
+            held.add((row["fingerprint"], approval_digest(row["human_review"])))
         except (ValueError, KeyError, TypeError):
             continue                     # not a row: it holds no approval
-    return [row for row in rows if (row["fingerprint"], row["approval_digest"]) not in held]
+    return [row for row in rows if (row["fingerprint"], approval_digest(row["human_review"])) not in held]
 
 
 def _send_evidence(ws, *, reference, database=None):
@@ -684,6 +691,9 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     not_upstream(fork, upstream)
     here = publish.require_branch(ws, base)
     waiting = approvals_to_send(ws, database=database)
+    if progress:
+        for problem in approval_problems(ws):
+            progress(problem)
     if not publish.pending(ws) and not waiting and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
     publish.require_identity(ws)
