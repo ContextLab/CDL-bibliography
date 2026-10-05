@@ -1107,24 +1107,74 @@ def test_a_report_or_snapshot_cannot_be_written_over_a_ledger(tmp_path, target):
 
 # --- a later machine result for the same text ---------------------------------------------------------
 
-def test_what_a_later_negative_machine_result_does_to_a_local_and_to_a_ledger_approval(tmp_path):
-    """Pinned as it is today (2026-10-05), not a statement of what it should be. A check that
-    stores needs_review for the same text after a human approval (as `verify --refresh`
-    stores its result): an approval that is only in the local database is no longer current
-    (the newest stored result wins); an approval that is a ledger row still is."""
-    ws = library(tmp_path / "lib")
-    approve(ws, "Zoll90")
-    approve(ws, "Rame72", note="Checked the volume in print.")
-    [zoll, rame] = api.approvals_to_send(ws)
-    v.append_approvals(ws.approvals, [rame])                                 # Rame72 is in the ledger; Zoll90 is local only
-    cache = v.Cache(str(ws.database), ledger=ws.revocations)
+def stored_after(ws, database, key, status, issues):
+    """A result stored for ``key`` now, as a check stores it (`verify --refresh`, a review layer)."""
+    cache = v.Cache(str(database), ledger=ws.revocations)
     try:
-        entries = v.load_entries(str(ws.bib))
-        for key in ("Zoll90", "Rame72"):
-            cache.put(str(ws.bib), entries[key], v.outcome("needs_review", ["Conflicting metadata found later"]))
+        cache.put(str(ws.bib), v.load_entries(str(ws.bib))[key], v.outcome(status, issues))
     finally:
         cache.close()
-    assert statuses(ws, ws.database) == {"Zoll90": "needs_review", "Rame72": "human_verified"}
+
+
+@pytest.mark.parametrize("status", ["needs_review", "provider_error", "metadata_verified"])
+def test_a_result_stored_after_the_approval_outranks_a_ledger_row_as_it_does_a_local_approval(tmp_path, status):
+    """Parity of the two paths. Zoll90's approval is only in the local database; Rame72's is
+    only a ledger row (the database that reads it never stored it). A result is then stored
+    for each text, whatever it says: each entry has that result's status. A new approval
+    recorded after it counts again on both paths."""
+    ws = library(tmp_path / "lib")
+    reader, approver = tmp_path / "reader.sqlite3", tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=reader)                                   # local only
+    approve(ws, "Rame72", database=approver, note="Checked the volume in print.")
+    v.append_approvals(ws.approvals, [row for row in api.approvals_to_send(ws, database=approver)])   # a ledger row only
+    assert statuses(ws, reader) == {"Zoll90": "human_verified", "Rame72": "human_verified"}
+    for key in ("Zoll90", "Rame72"):
+        stored_after(ws, reader, key, status, ["Stored by a later check"])
+    assert statuses(ws, reader) == {"Zoll90": status, "Rame72": status}
+    assert statuses(ws, tmp_path / "empty.sqlite3")["Rame72"] == "human_verified"      # where nothing later is stored
+
+    approve(ws, "Zoll90", database=reader, note="Looked again after the later check.")           # a new local approval
+    approve(ws, "Rame72", database=approver, note="Looked again after the later check.")         # a new ledger row
+    v.append_approvals(ws.approvals, [row for row in api.approvals_to_send(ws, database=approver)])
+    assert len(rows_of(ws)) == 2
+    assert statuses(ws, reader) == {"Zoll90": "human_verified", "Rame72": "human_verified"}
+    assert results(ws, reader)["Rame72"]["human_review"]["note"] == "Looked again after the later check."
+
+
+def test_a_result_stored_before_the_approval_does_not_outrank_it_on_either_path(tmp_path):
+    """The other order in time: the check's result is stored first, the approval is made
+    afterwards. Both the local approval and the ledger row count, and the row's view keeps
+    the stored result's findings."""
+    ws = library(tmp_path / "lib")
+    reader, approver = tmp_path / "reader.sqlite3", tmp_path / "approver.sqlite3"
+    for key in ("Zoll90", "Rame72"):
+        stored_after(ws, reader, key, "needs_review", ["Found by the earlier check"])
+    assert statuses(ws, reader) == {"Zoll90": "needs_review", "Rame72": "needs_review"}
+    approve(ws, "Zoll90", database=reader)
+    approve(ws, "Rame72", database=approver, note="Checked the volume in print.")
+    v.append_approvals(ws.approvals, [row for row in api.approvals_to_send(ws, database=approver)])
+    found = results(ws, reader)
+    assert {key: result["status"] for key, result in found.items()} == {"Zoll90": "human_verified", "Rame72": "human_verified"}
+    assert found["Rame72"]["issues"] == ["Found by the earlier check"] == found["Zoll90"]["issues"]
+
+
+def test_a_row_and_a_stored_result_of_the_same_instant_and_a_stored_time_that_cannot_be_read(tmp_path):
+    """Strictly later outranks: a result stored at exactly the row's time does not. A stored
+    result whose time cannot be read is taken as later."""
+    ws = library(tmp_path / "lib")
+    approver = tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    [row] = api.approvals_to_send(ws, database=approver)
+    v.append_approvals(ws.approvals, [row])
+    entry = v.load_entries(str(ws.bib))["Zoll90"]
+    for name, when, expected in (("same", row["approved_at"], "human_verified"), ("unreadable", "some time ago", "needs_review")):
+        cache = v.Cache(str(tmp_path / f"{name}.sqlite3"), ledger=ws.revocations)
+        try:
+            cache.store(str(ws.bib), entry, dict(v.outcome("needs_review", []), key="Zoll90", checked_at=when,
+                                                 fingerprint=entry["fingerprint"], policy=v.POLICY))
+            assert cache.get(str(ws.bib), entry)["status"] == expected, name
+        finally:
+            cache.close()
 
 
 def test_after_the_merge_another_clone_sees_the_entry_approved_with_no_command(checkout, tmp_path):

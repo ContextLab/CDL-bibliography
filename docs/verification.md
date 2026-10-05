@@ -321,9 +321,16 @@ looks for rows with the entry's fingerprint (`Cache.shared_approval`) and return
 that no revocation matches (`shared_revoked`, below). The view keeps the stored result's evidence, takes `human_review` from
 the row and `checked_at` from `approved_at`, and is not written to the database
 (`Cache.stored` is the result without the ledger). Every command that reads results through
-`Cache.get` therefore sees the approval, with no `restore`. A row applies under a stored
-result of any other status, including one stored later by a new machine check of the same
-text.
+`Cache.get` therefore sees the approval, with no `restore`. A row is treated as an approval
+stored in the database is: there, the newest stored result for the text is the current one,
+whatever its status. So a result stored in the reader's database for the same text with a
+`checked_at` strictly later than the row's `approved_at` outranks the row (any stored
+status: `needs_review`, `provider_error`, `metadata_verified`; a stored time that cannot be
+read counts as later), and the entry has that result's status. With nothing stored, or a
+stored result no later than the approval, the row counts. A newer row, or a new `approve`,
+recorded after that result counts again. Tests:
+`test_a_result_stored_after_the_approval_outranks_a_ledger_row_as_it_does_a_local_approval`
+and the two after it in `tests/test_approval_ledger.py`.
 
 Validation. `scan_approval_ledger` reads the file and returns the valid rows and a list of
 problems; it does not raise for anything the file holds. A line is ignored, and reported

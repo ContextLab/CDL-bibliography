@@ -135,7 +135,10 @@ A line of `verification/approvals.jsonl` is one JSON object with these fields:
 
 Once the line is in someone's copy of the library (after the pull request is merged and
 they update), the entry reads as `human_verified` there with no command to run, provided
-its text still has that fingerprint. A line that is not a valid row approves nothing and
+its text still has that fingerprint and their database holds no result for that text that
+was checked after the approval was recorded. A later check's result takes the approval's
+place, as it does for an approval made on the same computer, until the entry is approved
+again. A line that is not a valid row approves nothing and
 does not stop the other lines from being read; `cdlbib crossref status` prints, and the
 Library state views show, one line for it, for example:
 

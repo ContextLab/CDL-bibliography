@@ -790,15 +790,24 @@ class Cache:
     def shared_approval(self, entry, result):
         """``result`` (the stored result of ``entry``, or None), or the human_verified view a
         ledger row gives the entry: the newest row for exactly this text, under the current
-        policy, that no revocation matches. A stored human approval stands as it is."""
+        policy, that no revocation matches and that no result stored here for the text is
+        later than. A stored human approval stands as it is."""
         if result and result.get("status") == "human_verified":
             return result
         rows = self.shared_approvals().get(entry["fingerprint"])
         if not rows:
             return result
+        # As for an approval in this database, where the newest stored result for the text
+        # is the current one whatever it says: a result stored here for this text after the
+        # row's approval outranks the row. (Nothing stored, or a result no later than the
+        # approval, and the row counts. A stored time that cannot be read is taken as later.)
+        checked = _instant(result.get("checked_at")) if result else None
         revocations = self.revocations()
         for row in reversed(rows):
             if row["policy"] != POLICY or any(shared_revoked(r, row) for r in revocations):
+                continue
+            approved = _instant(row["approved_at"])
+            if result and (checked is None or approved is None or checked > approved):
                 continue
             return shared_view(entry, result, row)
         return result
