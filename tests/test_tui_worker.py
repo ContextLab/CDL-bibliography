@@ -198,13 +198,29 @@ def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_wi
     made = subprocess.run(["uv", "venv", "-q", str(tmp_path / "e"), "--python", sys.executable], capture_output=True,
                           text=True, env=clean)
     assert made.returncode == 0, made.stderr
-    installed = subprocess.run(["uv", "pip", "install", "-q", "--python", python, f"{ROOT}[tui]"], capture_output=True,
+    installed = subprocess.run(["uv", "pip", "install", "-q", "--python", python, str(ROOT)], capture_output=True,
                                text=True, env=clean)
     if installed.returncode != 0:
         pytest.skip("the scratch environment could not be built (is a package index reachable?): "
                     + installed.stderr.strip()[-300:])
     pdf = pdfs.build("doi", tmp_path / "pdfs")
-    T.library(tmp_path / "work" / "lib", ZOLL90)
+    ws = T.library(tmp_path / "work" / "lib", ZOLL90)
+    command = [str(tmp_path / "e" / "bin" / "cdlbib"), "--library", str(ws.root)]
+    here = dict(clean, **T.isolated_environment(tmp_path / "work" / "user"))
+
+    def has(module):
+        return subprocess.run([python, "-c", f"import {module}"], capture_output=True).returncode == 0
+
+    # The interface's own package first: textual is not there. Asked for with --ask and nobody to ask: not installed.
+    assert not has("textual")
+    asked = subprocess.run([command[0], "--ask", *command[1:], "tui"], capture_output=True, text=True, env=here,
+                           stdin=subprocess.DEVNULL, cwd=tmp_path)
+    assert asked.returncode == 1 and "the terminal interface needs the package 'textual'" in asked.stderr
+    assert not has("textual")
+    # By default it is installed, after saying so, and the command runs again: the interface opens.
+    status, shown = T.at_a_terminal([*command, "tui"], [("1 of 1 entries", b"?"), ("this help", b"\x1b"), ("<typed>", b"\x11")],
+                                    env=here, cwd=tmp_path, timeout=600)      # the help, close it, ctrl+q
+    assert status == 0 and "installing textual (needed for: the terminal interface) ..." in shown and has("textual")
     run = subprocess.run([python, str(ROOT / "tests/tui_install_journey.py"), str(tmp_path / "work"), str(pdf)],
                          capture_output=True, text=True, timeout=900, cwd=tmp_path,
                          env=dict(clean, PYTHONPATH=str(ROOT / "tests"), CDLBIB_UPSTREAM=os.environ["CDLBIB_UPSTREAM"]))

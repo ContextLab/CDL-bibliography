@@ -192,3 +192,47 @@ async def until(pilot, condition, timeout=180.0, what="the expected state"):
             return
         if time.monotonic() > deadline:
             raise AssertionError(f"{what} was not reached in {timeout} s; log: {pilot.app.log_lines[-10:]}")
+
+
+def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=180.0):
+    """Run ``command`` with a real pseudo-terminal as its stdin, stdout and stderr. ``steps``:
+    [(text to wait for in the output, bytes to type then)]. Returns (exit status, everything
+    it wrote). The process is killed when a text does not appear in ``timeout`` seconds."""
+    import fcntl
+    import pty
+    import select
+    import struct
+    import subprocess
+    import termios
+    master, slave = pty.openpty()
+    fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", size[0], size[1], 0, 0))
+    process = subprocess.Popen(command, stdin=slave, stdout=slave, stderr=slave, cwd=cwd, close_fds=True,
+                               env=dict(env or os.environ, TERM="xterm-256color", LINES=str(size[0]), COLUMNS=str(size[1])))
+    os.close(slave)
+    seen, steps, deadline = b"", list(steps), time.monotonic() + timeout
+    try:
+        while True:
+            if steps and steps[0][0].encode() in seen:
+                os.write(master, steps.pop(0)[1])
+                seen += b"\n<typed>\n"
+                deadline = time.monotonic() + timeout
+            if select.select([master], [], [], 0.1)[0]:
+                try:
+                    chunk = os.read(master, 65536)
+                except OSError:
+                    chunk = b""
+                if chunk:
+                    seen += chunk
+                    continue
+            if process.poll() is not None:
+                break
+            if time.monotonic() > deadline:
+                process.kill()
+                raise AssertionError("the command did not get to " + repr(steps[0][0] if steps else "its end")
+                                     + ": " + seen.decode(errors="replace")[-3000:])
+        return process.wait(timeout=10), seen.decode(errors="replace")
+    finally:
+        if process.poll() is None:
+            process.kill()
+            process.wait()
+        os.close(master)
