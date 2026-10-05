@@ -1,6 +1,7 @@
 """The Review and Check views by key presses: the queue, approve and revoke under the real
 GitHub login of gh (skipped by name without one), and the checks with their live log.
 Real app, real core, no mocks; the database is read afterwards."""
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -18,9 +19,13 @@ from test_desk import KAHA12, ZOLL90  # noqa: E402
 GAME62 = library_entry("Game62")
 
 
+_REAL_HOME = os.environ.get("HOME", "")      # a name only; nothing is read or run at import
+_TOKENS = []
+
+
 def _token():
-    """The token of the user's own gh login, read before any test substitutes HOME (gh keeps
-    it in the user's keychain, which a substituted HOME hides). Never printed."""
+    """The token of the user's own gh login (gh keeps it in the user's keychain, which a
+    substituted HOME hides). Never printed."""
     if not shutil.which("gh"):
         return None
     try:
@@ -29,8 +34,6 @@ def _token():
         return None
     return done.stdout.strip() if done.returncode == 0 and done.stdout.strip() else None
 
-
-_TOKEN = _token()
 
 
 @pytest.fixture(autouse=True)
@@ -47,9 +50,13 @@ def isolated(monkeypatch, tmp_path):
 @pytest.fixture
 def reviewer(monkeypatch):
     """The real GitHub login, through gh as the core asks it."""
-    if not _TOKEN:
+    if not _TOKENS:                                   # asked once, by the first test that needs it
+        with pytest.MonkeyPatch.context() as own:    # gh keeps the token under the user's own HOME
+            own.setenv("HOME", _REAL_HOME)
+            _TOKENS.append(_token())
+    if not _TOKENS[0]:
         pytest.skip("no GitHub login for a real approval: `gh auth token` gave none (run: gh auth login)")
-    monkeypatch.setenv("GH_TOKEN", _TOKEN)
+    monkeypatch.setenv("GH_TOKEN", _TOKENS[0])
     from cdlbib import identity
     from cdlbib.errors import IdentityUnavailable
     try:
@@ -86,7 +93,11 @@ def test_the_queue_lists_what_waits_and_says_why_the_changed_ones_cannot_be_told
             await T.press(pilot, "down", "d")
             assert "@book{Kaha12," in T.shown(app, "#review-detail #t-entry")
             assert "New, edited, or policy-invalidated entry" in T.shown(app, "#review-detail #t-issues")
+    before = ws.bib.read_bytes()
     T.run(journey())
+    assert ws.bib.read_bytes() == before                                    # looking at the queue records nothing
+    assert [api.entry(ws, key).status for key in ("Zoll90", "Kaha12")] == ["pending", "pending"]
+    assert all(api.entry(ws, key).human_review is None for key in ("Zoll90", "Kaha12"))
 
 
 def test_approve_and_revoke_are_recorded_under_the_shown_login_after_a_confirmation(ws, reviewer):

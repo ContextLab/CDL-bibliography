@@ -9,14 +9,16 @@ anything of cdlbib runs, so neither the user's library, their TeX tree nor the r
 is read or written. Lookups are the test suite's saved responses, with the network refused.
 
 Writes tui-library.svg, tui-detail-evidence.svg, tui-edit-preview.svg, tui-review-approve.svg,
-tui-add-search.svg, tui-proposal.svg, tui-add-pdf.svg (when pdflatex is installed),
+tui-add-search.svg, tui-proposal.svg, tui-add-pdf.svg and tui-proposal-pdf.svg (when pdflatex is
+installed),
 tui-send.svg, tui-update-question.svg, tui-setup.svg and tui-library-light.svg.
 
-tui-review-approve.svg shows the approval dialog under the GitHub login of the gh CLI of
-whoever runs this (the dialog exists to show it); without a login it shows what the interface
-says then.
+tui-review-approve.svg shows the approval dialog, which names the GitHub login of the gh CLI of
+whoever runs this; in the saved picture that name is replaced by a placeholder of the same
+length. Without a login the picture shows what the interface says then.
 """
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -124,7 +126,12 @@ async def journey(T, ws, out, pdf):
 
     def shot(name):
         path = out / f"tui-{name}.svg"
-        path.write_text(app.export_screenshot(title=f"cdlbib tui: {name}", simplify=True), encoding="utf-8")
+        svg = app.export_screenshot(title=f"cdlbib tui: {name}", simplify=True)
+        # The picture, and only the picture, names a placeholder where the interface showed the gh
+        # login of whoever ran this (the core was asked for real; nothing it returned is changed).
+        for login in set(re.findall(r"(?:Approving|Revoking)&#160;as&#160;(@[A-Za-z0-9-]+)", svg)):
+            svg = svg.replace(login, "@" + "your-login".ljust(len(login) - 1, "_")[:len(login) - 1])
+        path.write_text(svg, encoding="utf-8")
         made.append(path)
 
     async with app.run_test(size=SIZE, notifications=False) as pilot:
@@ -148,6 +155,8 @@ async def journey(T, ws, out, pdf):
             await T.type_text(pilot, "volume, issue and pages checked")
         shot("review-approve")
         await T.press(pilot, "escape")
+        if type(app.screen).__name__ == "ConfirmScreen":               # text was typed: closing asks first
+            await T.press(pilot, "y")
 
         await T.press(pilot, "f4")                                     # add: a title search, then the proposal
         await T.type_text(pilot, "Backward learning in paired associates")
@@ -162,6 +171,9 @@ async def journey(T, ws, out, pdf):
             await T.type_text(pilot, str(pdf))
             await T.press(pilot, "enter")
             shot("add-pdf")
+            await T.press(pilot, "l")                                  # its record, with the page beside it
+            shot("proposal-pdf")
+            await T.press(pilot, "q")
 
         await T.press(pilot, "f6")                                     # send: what would go
         shot("send")

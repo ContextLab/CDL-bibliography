@@ -26,7 +26,12 @@ class Running:
         self.runner, self.job = runner, job
 
     def progress(self, line):
-        self.runner.say(str(line))
+        """A line for the log. It never raises: a log that cannot be written to must not stop
+        the core's work part-way."""
+        try:
+            self.runner.say(str(line))
+        except Exception:
+            pass
 
     def confirm(self, question):
         """Ask the person yes or no; the job waits for the answer (False when it cannot be asked)."""
@@ -103,15 +108,31 @@ class Runner:
                 self.active += 1
                 self.most_active = max(self.most_active, self.active)
             started = time.monotonic()
-            self._tell(self.changed)
+            self._safely(job.label, self.changed)
             try:
                 self._run(job)
+            except Exception as exc:        # nothing a job or its callbacks do ends the one worker
+                self._error(job.label, exc)
             finally:
                 with self.lock:
                     self.active -= 1
                     self.current = None
                     self.history.append((job.label, started, time.monotonic()))
-                self._tell(self.changed)
+                self._safely(job.label, self.changed)
+
+    def _error(self, label, exc):
+        try:
+            self.say(f"error: {label}: {type(exc).__name__}: {exc}")
+        except Exception:
+            pass
+
+    def _safely(self, label, function, *args):
+        """Run a callback on the interface's thread; an exception it raises is an error line in
+        the log, and the worker goes on to the next job."""
+        try:
+            self._tell(function, *args)
+        except Exception as exc:
+            self._error(label, exc)
 
     def _tell(self, function, *args):
         if self.stopped:
@@ -138,19 +159,19 @@ class Runner:
                 self._failed(job, exc)
                 return
             except Exception as exc:        # not a failure the core reports: shown, never swallowed
-                self.say(f"{job.label}: {type(exc).__name__}: {exc}")
-                self._tell(self.unexpected, job.label, exc)
+                self._error(job.label, exc)
+                self._safely(job.label, self.unexpected, job.label, exc)
                 return
             if job.done:
-                self._tell(job.done, result)
+                self._safely(job.label, job.done, result)
             return
 
     def _failed(self, job, exc):
         self.say(str(exc))
         if job.failed:
-            self._tell(job.failed, exc)
+            self._safely(job.label, job.failed, exc)
         else:
-            self._tell(self.unexpected, job.label, exc)
+            self._safely(job.label, self.unexpected, job.label, exc)
 
     def _install(self, exc):
         """Install the package a job needs: by default after saying so, with --ask after a

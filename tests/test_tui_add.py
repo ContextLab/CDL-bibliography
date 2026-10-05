@@ -7,6 +7,7 @@ response cache, with the network refused; PDFs are typeset by pdflatex when the 
 The library file is read afterwards.
 """
 import importlib.util
+import os
 
 import pytest
 
@@ -29,15 +30,18 @@ needs_pypdf = pytest.mark.skipif(not importlib.util.find_spec("pypdf"),
                                  reason="pypdf is not installed (pip install 'cdlbib[research]'), so no PDF can be read")
 
 
+_REAL_HOME = os.environ.get("HOME", "")      # a name only; nothing is read at import
+
+
 def _dartmouth_key():
-    """The Dartmouth Chat key of this user, looked up before any test substitutes HOME."""
-    try:
-        return secrets.get("dartmouth-chat")
-    except SecretNotFound:
-        return None
-
-
-_DARTMOUTH = _dartmouth_key()
+    """The Dartmouth Chat key of this user, looked up under the user's own HOME by the one
+    test that makes a real model run."""
+    with pytest.MonkeyPatch.context() as own:
+        own.setenv("HOME", _REAL_HOME)
+        try:
+            return secrets.get("dartmouth-chat")
+        except SecretNotFound:
+            return None
 
 
 @pytest.fixture(autouse=True)
@@ -225,6 +229,7 @@ def test_a_search_that_no_source_answers_says_which_did_not(ws):
             for source in ("crossref", "pubmed", "arxiv"):
                 assert f"{source} did not answer:" in message
     T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8") == ""                         # a search writes nothing
 
 
 # --- PDF -------------------------------------------------------------------------------------------
@@ -257,11 +262,34 @@ def test_a_pdf_is_read_shown_looked_up_and_its_record_proposed(ws, tmp_path):
             findings = T.shown(app, "#findings")
             assert f"Found by the doi read from the PDF (page 1): {ZOLLER_DOI}" in findings
             assert T.shown(app, "#proposed") == ZOLL90.expandtabs(4)
+            beside = app.screen.query_one("#proposal-pdf")                 # the PDF's first page, beside the proposal
+            assert beside.display and "Haifa University" in T.shown(app, "#pdf-text")
+            if importlib.util.find_spec("pypdfium2"):
+                assert T.shown(app, "#pdf-page").count("▀") > 500
+            assert f"First page of {pdf.name}" in T.screen_text(app)
+            await T.press(pilot, "e")                                      # editing and checking again keeps it there
+            await T.press(pilot, "pagedown", "up", "up", "up", "end", "left", "left", "backspace", "6")
+            await T.press(pilot, "ctrl+s")
+            assert "pages: 1053--1065 -> 1053--1066 (source: user edit)" in T.shown(app, "#findings")
+            assert app.screen.query_one("#proposal-pdf").display and "Haifa University" in T.shown(app, "#pdf-text")
             await T.press(pilot, "a")
             assert name(app) != "ProposalScreen" and "Added: Zoll90" in T.shown(app, "#p-message")
             assert "A source record was found by the doi read from the PDF." in T.shown(app, "#p-info")
     T.run(journey())
-    assert ws.bib.read_text(encoding="utf-8").strip() == ZOLL90
+    assert ws.bib.read_text(encoding="utf-8").strip() == ZOLL90.replace("1053--1065", "1053--1066")
+
+    async def narrow():                                                    # under 124 columns the page is not beside
+        async with T.opened(ws, size=(110, 40)) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 2)
+            await T.type_text(pilot, str(pdf))
+            await T.press(pilot, "enter")
+            await T.press(pilot, "l")
+            assert name(app) == "ProposalScreen" and not app.screen.query_one("#proposal-pdf").display
+            assert "shown beside the proposal in a window of 124 columns or more" in T.shown(app, "#proposal-actions")
+            assert "Duplicate: Zoll90" in T.shown(app, "#findings")
+            await T.press(pilot, "q")
+    T.run(narrow())
 
 
 @needs_pdflatex
@@ -337,6 +365,7 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
             await T.type_text(pilot, "Annals of Improbable Lattices")
             await T.press(pilot, "ctrl+s")
             assert name(app) == "ProposalScreen" and "typed by hand" in T.screen_text(app)
+            assert app.screen.query_one("#proposal-pdf").display and "Nowhere College" in T.shown(app, "#pdf-text")
             findings = T.shown(app, "#findings")
             assert "read from the PDF (not typed)" in findings and "(source: typed)" in findings
             assert "Verification: needs_review" in findings and "No source record" in findings
@@ -352,11 +381,12 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
 @needs_pdflatex
 @needs_pypdf
 def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(ws, tmp_path, monkeypatch):
-    if not _DARTMOUTH:
+    key = _dartmouth_key()
+    if not key:
         pytest.skip("no Dartmouth Chat key here, so no real model run through the interface")
     for variable in T.refused_network():
         monkeypatch.delenv(variable, raising=False)
-    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", _DARTMOUTH)
+    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", key)
     pdf = pdfs.build("unknown", tmp_path / "pdfs")
 
     async def journey():
@@ -468,3 +498,54 @@ def test_a_name_the_source_spells_differently_is_settled_name_by_name(tmp_path, 
         assert "McClelland" in written and "McCleeland" not in written
     else:
         assert written == raw
+
+
+# --- a model reading whose evidence could not be stored -------------------------------------------
+
+@needs_pdflatex
+@needs_pypdf
+def test_an_entry_written_without_its_model_evidence_stays_on_screen_until_it_is_stored(tmp_path):
+    """The reading is the Dartmouth adapter's own code after the model call, over a selection
+    of passages (as tests/test_intake_model.py makes it), since no key is here for a real run;
+    the proposal view is opened on it directly. The store fails for real: a folder is where
+    the database should be."""
+    from cdlbib import intake
+    from cdlbib.source_passages import materialize
+    from cdlbib.tui.proposal import ProposalScreen
+    from test_intake_model import SELECTED
+    read = api.read_pdf(pdfs.build("unknown", tmp_path / "pdfs"))
+    found = materialize({"fields": SELECTED, "uncertainties": ["The issue number is not printed."]},
+                        read.pages[:intake.MODEL_PAGES])
+    found["provider_trace"] = {"provider": "test selection", "model": None}
+    ws = T.library(tmp_path / "lib")
+    ws.bib.write_text("", encoding="utf-8")
+    proposal = intake.proposal_from_findings(ws, read, found, "dartmouth")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            app.push_screen(ProposalScreen([proposal], pdf=read))
+            await T.settle(pilot)
+            assert "read from the PDF by a model" in T.screen_text(app) and "model reading, p.1" in T.shown(app, "#findings")
+            assert "Nowhere College" in T.shown(app, "#pdf-text")           # the page it was read from, beside it
+            ws.work.mkdir(exist_ok=True)
+            ws.database.mkdir()                                            # the evidence store cannot be opened
+            await T.press(pilot, "a")
+            assert name(app) == "ProposalScreen"                         # not passed over: it stays, with the reason
+            actions = T.shown(app, "#proposal-actions")
+            assert "ExamSamp19 was written, but the model reading's evidence was not stored with it:" in actions
+            assert "could not be stored" in actions and "[t] try storing the evidence again" in actions
+            assert "@article{ExamSamp19," in ws.bib.read_text(encoding="utf-8")
+            await T.press(pilot, "a")
+            await T.press(pilot, "s")                                      # nothing else is done meanwhile
+            assert name(app) == "ProposalScreen"
+            await T.press(pilot, "t")                                      # still blocked: the new reason, still there
+            assert name(app) == "ProposalScreen" and "could not be stored" in T.shown(app, "#proposal-actions")
+            ws.database.rmdir()
+            await T.press(pilot, "t")
+            assert name(app) != "ProposalScreen"
+            assert "The model reading's evidence is stored with ExamSamp19; it is not an approval." in app.log_lines
+    T.run(journey())
+    entry = api.entry(ws, "ExamSamp19")
+    assert entry.status == "needs_review" and entry.human_review is None
+    assert entry.external_evidence["pdf_sha256"] == read.sha256 and "title" in entry.external_evidence["fields"]

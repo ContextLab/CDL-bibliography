@@ -14,7 +14,8 @@ from .widgets import Shown, View
 class CheckView(View):
     BINDINGS = [
         Binding("c", "selected", "Check the selected entry"),
-        Binding("g", "changed", "Check the changed entries"),
+        Binding("g", "changed", "Offers, then check the changed entries"),
+        Binding("G", "changed(False)", "Check the changed entries, no offers", show=False),
         Binding("m", "format", "Format check"),
     ]
 
@@ -26,7 +27,7 @@ class CheckView(View):
         yield Shown(id="check-head", classes="message")
         with Horizontal(classes="row"):
             yield Button("Check the selected entry (c)", id="check-selected")
-            yield Button("Check the changed entries (g)", id="check-changed")
+            yield Button("Offers, then check the changed entries (g; G: no offers)", id="check-changed")
             yield Button("Format check of the library (m)", id="check-format")
         with VerticalScroll(classes="pane"):
             yield Shown(id="check-result")
@@ -59,7 +60,16 @@ class CheckView(View):
             return
         self.app.check_keys([key], f"check {key}")
 
-    def action_changed(self):
+    def action_changed(self, offers=True):
+        """The command line's verify: completion offers for the changed entries first (skipped
+        with G, as its --no-complete), then their check."""
+        if offers:
+            self.app.offer_completion(self._check_changed)
+        else:
+            self.app.say("completion offers skipped (as `cdlbib verify --no-complete`)")
+            self._check_changed()
+
+    def _check_changed(self):
         def call(job):
             keys = [detail.key for detail in api.review_queue(self.app.ws)]
             return keys, (api.check_keys(self.app.ws, keys, progress=job.progress) if keys else None)

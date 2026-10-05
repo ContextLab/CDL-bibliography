@@ -60,7 +60,10 @@ def test_the_banner_names_new_upstream_commits_and_the_state_says_how_the_librar
             assert "upstream: 2 new commits (u updates)" in state and "branch: master" in state
             assert "unsent changes: cdl.bib, verification/notes/my new file.jsonl, verification/tracked.txt" in state
             assert f"no backups of {ws.root} yet" in T.shown(app, "#backups-head")
+    before, state = everything(ws.root), (home / "state.json").read_bytes()
     T.run(journey())
+    assert everything(ws.root) == before and not list((home / "backups").glob("*"))    # looking changes nothing
+    assert git("rev-parse", "HEAD", cwd=ws.root) != new                     # in particular, it does not update
 
 
 def test_update_with_unsent_edits_asks_in_the_cores_words_and_each_answer_does_what_it_says(managed):
@@ -136,13 +139,19 @@ def test_a_library_that_is_not_the_managed_one_offers_no_update_and_says_why(tmp
             await T.press(pilot, "f7")
             state = T.shown(app, "#state-now")
             assert f"Library: {ws.root}" in state and "chosen by: the file you named" in state
-            assert "is not the copy cdlbib downloads and manages" in state
+            assert ("This library was chosen by the file you named, so cdlbib does not update it: update (u), backups "
+                    "(b) and undo (z) are for the copy cdlbib downloads and manages, and are not offered here.") in state
+            assert prompts.CHOSEN_BY["named"] == "the file you named"
             assert "is not a git checkout of its own, so there is no branch and nothing to send" in state
             assert app.screen.query_one("#state-update").disabled and app.screen.query_one("#state-undo").disabled
             await T.press(pilot, "u")
             assert name(app) != "ChoiceScreen" and "(kept for the library cdlbib manages" in T.shown(app, "#backups-head")
+            assert any("This library was chosen by the file you named" in note.message for note in app._notifications)
+            await T.press(pilot, "z")
+            assert name(app) != "ConfirmScreen" and "update the library" not in [label for label, _, _ in app.jobs.history]
     T.run(journey())
     assert not Path(os.environ["CDLBIB_HOME"], "library").exists()            # nothing was downloaded for it
+    assert ws.bib.read_text(encoding="utf-8") == ZOLL90 + "\n"
 
 
 def test_an_addition_to_the_managed_library_names_its_backup_and_undo_takes_it_back(managed, monkeypatch):
@@ -199,10 +208,14 @@ def test_quitting_from_a_proposal_closes_what_it_held_open(managed):
 
 # --- send ----------------------------------------------------------------------------------------------
 
-def test_send_shows_what_would_go_and_a_send_the_checks_refuse_changes_nothing(managed):
-    home, upstream, ws, new = unsent(managed)
+def test_send_shows_what_would_go_and_a_send_the_gate_refuses_makes_no_commit_and_no_branch(managed):
+    """The edit holds an entry that is not in house format (a single hyphen in its pages), so
+    the gate's format check, which needs no network, refuses the send."""
+    bad = MINE.replace("\tTitle = {My own entry},\n", "\tPages = {1-2},\n\tTitle = {My own entry},\n")
+    home, upstream, ws, new = unsent(managed, mine=BASE + bad)
     root = ws.root
     before, head = everything(root), git("rev-parse", "HEAD", cwd=root)
+    branches = git("branch", "--list", "--all", cwd=root)
 
     async def journey():
         async with T.opened(ws) as pilot:
@@ -213,17 +226,31 @@ def test_send_shows_what_would_go_and_a_send_the_checks_refuse_changes_nothing(m
             assert "Branch\n  master" in state
             await T.press(pilot, "s")
             assert name(app) == "ConfirmScreen" and "as a pull request from your fork?" in T.shown(app, "#question")
+            assert "Completion is offered for new or edited entries first" in T.shown(app, "#question")
             await T.press(pilot, "n")
             assert everything(root) == before and app.jobs.idle
-            await T.press(pilot, "s", "y")                                   # GitHub cannot be reached from here
+            await T.press(pilot, "s", "y")
             await T.settle(pilot, timeout=300)
             result = T.shown(app, "#send-result")
-            assert result.startswith("Not sent.") and "Sent." not in result.replace("Not sent.", "")
-            assert any(line.startswith("Completion unavailable:") for line in app.log_lines)
-            assert "pull request:" not in result
+            assert result.startswith("Not sent.")
+            assert "not sent: fix the format errors and resolve every new/edited entry first" in result   # the gate's refusal
+            assert "House format\n  Mine26" in result and "pull request:" not in result
+            assert any(line.startswith("Completion unavailable:") for line in app.log_lines)   # GitHub's copy is out of reach
+            assert "format: errors found in Mine26" in app.log_lines
+            assert "  Mine26: pages: the formatter writes 1--2" in app.log_lines
+            lines = len(app.log_lines)
+            await T.press(pilot, "S")                                        # the same send, the offers skipped
+            assert "Completion offers are skipped; the checks run" in T.shown(app, "#question")
+            await T.press(pilot, "y")
+            await T.settle(pilot, timeout=300)
+            said = app.log_lines[lines:]
+            assert "completion offers skipped (as `cdlbib send --no-complete`)" in said
+            assert not any("ompletion unavailable" in line for line in said)
+            assert "not sent: fix the format errors" in T.shown(app, "#send-result")
     T.run(journey())
     assert git("rev-parse", "HEAD", cwd=root) == head and git("symbolic-ref", "--short", "HEAD", cwd=root) == "master"
-    assert everything(root)["snapshot"] == before["snapshot"]
+    assert git("branch", "--list", "--all", cwd=root) == branches and git("stash", "list", cwd=root) == ""
+    assert everything(root) == before                                        # no commit, no branch, every byte as it was
 
 
 def test_the_send_of_the_interface_is_the_checked_send_and_no_other():
@@ -271,6 +298,9 @@ def test_setup_lists_what_was_not_checked_and_checks_on_request(tmp_path, monkey
             assert "Dartmouth Chat (the default): not set up" in report
             assert "asking gh who is logged in (gh api user) ..." in app.log_lines or not shutil.which("gh")
     T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8") == ZOLL90 + "\n"               # a report: nothing written, nothing linked
+    assert not os.path.lexists(Path(os.environ["TEXMFHOME"]) / "bibtex/bib/cdl.bib")
+    assert not Path(os.environ["CDLBIB_HOME"], "tex-link.json").exists()
 
 
 def test_the_tex_link_is_made_and_removed_and_with_ask_only_after_a_yes(tmp_path):

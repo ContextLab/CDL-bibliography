@@ -13,6 +13,7 @@ from textual.message import Message
 from textual.widgets import Footer, RichLog, Static, TabbedContent, TabPane
 
 from .. import api, theme
+from ..errors import CdlbibError
 from . import themes
 from .add import AddView
 from .check import CheckView
@@ -77,6 +78,7 @@ KEYS = (
         ("o", "PDF tab: open the PDF in the system viewer"),
         ("m", "PDF tab: read the PDF with a language model"),
         ("t", "PDF tab: type the entry in, the form filled with what was read"),
+        ("t / c", "a proposal whose model evidence was not stored: try again / go on without it"),
         ("ctrl+s", "Manual tab: draft the entry from the form"),
     )),
     ("A proposal", (
@@ -89,11 +91,13 @@ KEYS = (
     )),
     ("Check", (
         ("c", "check the entry selected in the Library view"),
-        ("g", "check the changed entries that are not yet verified or approved"),
+        ("g", "completion offers for the changed entries, then their check"),
+        ("G", "check the changed entries without the completion offers"),
         ("m", "run the format check on the whole library"),
     )),
     ("Send", (
         ("s", "send: completion offers first, then the checks, then the pull request from your fork"),
+        ("S", "send without the completion offers (the checks still run)"),
         ("r", "read the library's state again (asks the upstream and GitHub)"),
     )),
     ("Library state", (
@@ -301,7 +305,19 @@ class CdlbibApp(App):
     def job(self, label, call, done=None, failed=None, key=None, quiet=False):
         """Queue an api call; its result goes to ``done``, its CdlbibError to ``failed`` (by
         default shown as a notification; the log has it too)."""
-        return self.jobs.submit(label, call, done, failed, key=key, quiet=quiet)
+        owner = self.screen if len(self.screen_stack) > 1 else None
+
+        def still_there(callback):
+            """A job started from a dialog or an editor reports to it only while it is open."""
+            if callback is None or owner is None:
+                return callback
+            return lambda *args: callback(*args) if owner in self._screen_stack else None
+
+        def started(job):
+            if owner is not None and owner not in self._screen_stack:
+                return None                  # its dialog or editor was closed before its turn came: nothing is done
+            return call(job)
+        return self.jobs.submit(label, started, still_there(done), still_there(failed), key=key, quiet=quiet)
 
     def ask(self, question):
         """Called by a job on the worker thread: a yes/no dialog, and the job waits."""
@@ -398,7 +414,8 @@ class CdlbibApp(App):
         return self.query_one("#views", TabbedContent).active
 
     def action_view(self, name):
-        if len(self.screen_stack) > 1:
+        if len(self.screen_stack) > 1:       # an editor or a dialog is open: it is closed first, by its own keys
+            self.notify("Close this first (esc); the views are behind it.")
             return
         self.query_one("#views", TabbedContent).active = name
         self.view(name).activated()
@@ -420,7 +437,25 @@ class CdlbibApp(App):
 
     # --- quitting ----------------------------------------------------------------------------
 
+    def unsaved(self):
+        """What is typed and not saved anywhere, in words: the open editors and dialogs, and the
+        manual form. One rule for every way out."""
+        places = [*self.screen_stack, *(self.view(name) for name, _ in VIEWS)]
+        return [found for found in (getattr(place, "unsaved", lambda: None)() for place in places) if found]
+
     def action_leave(self):
+        if isinstance(self.screen, ConfirmScreen) and getattr(self.screen, "about_quitting", False):
+            return
+        dirty = self.unsaved()
+        if dirty:
+            screen = ConfirmScreen("Quit? This was typed and is not saved; quitting does not keep it:\n\n"
+                                   + "\n".join(f"  {line}" for line in dirty), "Quit and discard it", "Keep editing")
+            screen.about_quitting = True
+            self.push_screen(screen, lambda value: self._leave() if value else None)
+            return
+        self._leave()
+
+    def _leave(self):
         closing = getattr(self.screen, "before_quit", None)
         if closing is not None and self.jobs.idle:
             closing()                    # the screen puts away what it holds open (a job of its own), then the app goes
@@ -475,6 +510,52 @@ class CdlbibApp(App):
             self.notify(f"{label}: passed" if check.ok else f"{label}: not passed; see the Check view (F5)",
                         severity="information" if check.ok else "warning")
         self.job(label, call, done, lambda exc: self.view("check").show_failure(label, exc))
+
+    def offer_completion(self, then):
+        """The step that comes before the checks of changed entries, here as in the command
+        line's verify and send: each new or edited entry that is not yet accepted is looked up,
+        one at a time, and what a source would complete is shown as a proposal to accept, edit
+        or skip. ``then()`` is called when there is nothing more to offer, when the person
+        stopped, or when the offers cannot be made (said in the log)."""
+        from .proposal import ProposalScreen
+        ws, holder = self.ws, {}
+
+        def first(job):
+            if ("stop", str(ws.bib)) in self.seen:
+                return None
+            holder["offers"] = api.completion_offers(ws, seen=self.seen)
+            return next(holder["offers"], None)
+
+        def unavailable(exc):
+            self.say(f"Completion unavailable: {exc}")
+            then()
+
+        def offered(offer):
+            if offer is None:
+                then()
+            elif offer.error is not None:
+                self.say(f"{offer.key}: completion unavailable: {offer.error}")
+                seen(offer.key, [], False)
+            elif not offer.proposals:
+                seen(offer.key, [], False)
+            else:
+                self.push_screen(ProposalScreen(offer.proposals, in_library=True, origin=f"completion of {offer.key}"),
+                                 lambda result: seen(offer.key, (result or {}).get("written", []),
+                                                     bool(result and result["stopped"])))
+
+        def seen(key, written, stopped):
+            def call(job):
+                for name in [key, *written]:
+                    try:
+                        self.seen.add((str(ws.bib), name, api.entry(ws, name).fingerprint))
+                    except CdlbibError:      # the entry is gone (renamed or removed): nothing to remember
+                        pass
+                if stopped:
+                    self.seen.add(("stop", str(ws.bib)))
+                    return None
+                return next(holder["offers"], None)
+            self.job("look for the next entry to complete", call, offered, unavailable, quiet=True)
+        self.job("look for entries a source can complete", first, offered, unavailable)
 
     def _with_login(self, what, then):
         """Ask gh who is logged in (a job), and go on with the handle; without a login, say

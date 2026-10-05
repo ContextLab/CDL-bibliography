@@ -134,6 +134,11 @@ class EditScreen(Screen):
 
     # --- close -------------------------------------------------------------------------------
 
+    def unsaved(self):
+        if self.text != self.original:
+            return f"the edited text of {self.key}" if self.key else "the new entry being typed"
+        return None
+
     def action_close(self):
         if self.text == self.original:
             self.dismiss(None)
