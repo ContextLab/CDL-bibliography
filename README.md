@@ -1,85 +1,80 @@
-# Contextual Dynamics Laboratory's Bibliography Management Tool
+# CDL bibliography manager (`cdlbib`)
 
 ![autocheck](https://github.com/ContextLab/CDL-bibliography/workflows/autocheck/badge.svg) ![citation check](https://github.com/ContextLab/CDL-bibliography/actions/workflows/citation-check.yml/badge.svg) [![DOI](https://zenodo.org/badge/69401856.svg)](https://zenodo.org/badge/latestdoi/69401856)
 
-The main bibtex file ([cdl.bib](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib)) is shared by all documents produced by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/).
+`cdlbib` manages the shared [BibTeX bibliography](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib) used by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/). It downloads and updates a local library, helps add references from source records, checks formatting and citation accuracy, records human reviews, and sends contributions through GitHub pull requests.
+
+The current interface is the **command line**, backed by a shared Python API. A TUI and a local web interface are planned over that same core. Automated system-wide LaTeX setup, per-paper exports and interactive PDF intake are also planned; see [Current capabilities and design](#current-capabilities-and-design). You can already [connect the managed library to LaTeX manually](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files).
+
+For CDL members, the goal is one accurate, consistent bibliography across written documents. Other groups are welcome to adapt the approach for their own libraries.
 
 As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been checked against the published record. 6,348 entries match their source's metadata, and a person reviewed and approved the remaining 36 against the source itself. New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
 
-## Contents:
-- [What can you use this repository for?](#what-can-you-use-this-repository-for)
-- [Using `cdl.bib`](#using-cdlbib)
-- [Using the bibtex checker tools](#using-the-bibtex-checker-tools)
-  - [Installation](#installation)
-  - [Overview](#overview)
+## Contents
+
+- [Current capabilities and design](#current-capabilities-and-design)
+- [Installation](#installation)
+- [Managed-library updates](#managed-library-updates)
+- [Overview](#overview)
 - [Suggested workflow](#suggested-workflow)
 - [What belongs in `cdl.bib`](#what-belongs-in-cdlbib)
-- [Additional information and usage instructions](#additional-information-and-usage-instructions)
+- [Command reference](#additional-information-and-usage-instructions)
   - [`cdlbib add`](#add)
   - [`cdlbib verify`](#verify)
   - [`cdlbib compare`](#compare)
   - [`cdlbib send`](#send)
   - [`cdlbib crossref`: citation verification](#crossref-citation-verification)
-- [Using the bibtex file as a common bibliography for all *local* LaTeX files](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
-  - [General Unix/Linux Setup (Command Line Compilation)](#general-unixlinux-setup-command-line-compilation)
-  - [MacOS Setup with TeXShop and TeX Live](#macos-setup-with-texshop-and-tex-live)
-- [Using the bibtex file on Overleaf](#using-the-bibtex-file-on-overleaf)
-- [Using the bibtex file as a submodule of a paper's repository](#using-the-bibtex-file-as-a-submodule-of-a-papers-repository)
-- [Using it from Python](#using-it-from-python)
-- [Running the tests](#running-the-tests)
+- [System-wide LaTeX use](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
+- [Overleaf](#using-the-bibtex-file-on-overleaf)
+- [Optional Git submodule](#using-the-bibtex-file-as-a-submodule-of-a-papers-repository)
+- [Frozen manuscript copies and exports](#frozen-manuscript-copies-and-exports)
+- [Python API](#using-it-from-python)
+- [Tests](#running-the-tests)
 - [Acknowledgements](#acknowledgements)
 
-# What can you use this repository for?
-The main components of this repository are:
-1. A bibtex file containing the bibliographic information
-2. A set of bibtex checker tools that verify the formatting *and* the accuracy of the bibtex file
+## Current capabilities and design
 
-## Using `cdl.bib`
-You may find the included bibtex file and/or readme file useful for any of the following:
-- Provides a "pre seeded" bibtex file, checked against the published record, that you can reference in your LaTeX documents
-- A means of organizing a set of papers related to psychology, neuroscience, math, and machine learning
-- A template for a new bibtex file that you want to start
-- Instructions for configuring a system-referenced bibtex file that can be referenced by any LaTeX file on your local machine
-- Instructions for using the bibliography in Overleaf projects and as a submodule of a paper's GitHub repository
+| Available in this version | Planned next |
+| --- | --- |
+| Installable `cdlbib` package, CLI and shared Python API | TUI first, then a local web interface using the same core |
+| Automatic library download, updates during command use, backups and undo | Guided system-wide LaTeX setup (`setup`) |
+| DOI/PMID/arXiv and title-with-author lookup; review, edit or skip source-supported entries | Interactive title/author discovery and PDF intake with first-page preview |
+| House-format and citation checks, source evidence, GitHub-attributed human approvals and revocations | Integrated browse/search/edit/check/review screens |
+| Contributions through your own fork and an opened or updated PR | The same contribution workflow in both interactive interfaces |
+| Optional Dartmouth Chat/OpenAI research adapters and keychain credentials | Guided PDF reading with quoted evidence, then a manual-entry fallback |
+| CLI tutorials and recorded demonstrations | Cited-key `.bib` export and `.bbl` generation from manuscript/style inputs |
 
-## Using the bibtex checker tools
+The TUI and web interface will use the same formatting, verification, identity and
+library services as the CLI. The design calls for Dartmouth-green themes, visible
+source evidence and review decisions, and bibliography management without Git
+expertise or a separate bibliography editor. Accepting proposed metadata remains
+separate from a human approval, and every interface must preserve unsent work.
 
-The checker (`cdlbib`) does two complementary jobs:
+[Issue #95](https://github.com/ContextLab/CDL-bibliography/issues/95) records the
+full design, the work supplied by [PR #94](https://github.com/ContextLab/CDL-bibliography/pull/94),
+and remaining milestones. There are no `cdlbib setup`, `cdlbib export`, TUI or web
+commands yet. PyPI publication is a separate, manual maintainer step; see
+[Releasing](docs/releasing.md).
 
-1. **Formatting** (`cdlbib verify`, `compare`, and `send`) checks that every entry follows the lab's conventions:
-   - Checks key naming conventions
-   - Validates author/editor name formatting
-   - Ensures proper capitalization
-   - Verifies page number formatting
-   - Detects duplicate entries
+The former `bibcheck.py` and `bibverify.py` entry points are now `cdlbib` and
+`cdlbib crossref`. `commit` is now `send`. The old `magic` command is replaced by
+source-supported completion in `add`, `verify` and `send`, using the existing house
+formatter. The older fuzzy-matching verifier and its `--workers` option are retired.
 
-2. **Accuracy** (`cdlbib crossref`) checks each entry against the published record:
-   - Looks up the entry by DOI (or searches by title and authors) in [Crossref](https://www.crossref.org/)
-   - Falls back to other sources when Crossref can't settle it: PubMed/Europe PMC, publisher full text, library catalogues (for books), preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite (for software and data), the ACL Anthology, and the Society for Neuroscience abstract archive
-   - Requires every field in the entry (title, all authors in order, year, venue, volume, issue, pages, DOI, ...) to agree with the source
-   - Never guesses: when the evidence is incomplete or conflicting, the entry is flagged for review instead of being accepted
-   - Remembers what has been checked, so only new or edited entries are checked again
+## Installation
 
-You may find these tools useful for:
-- Verifying the integrity and accuracy of a .bib file
-- Autocorrecting the formatting of a .bib file (use with caution!)
-- Automatically generating change logs and commit messages
-- Finding and fixing metadata errors
+`cdlbib` is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
 
-`bibcheck.py` and `bibverify.py` have been removed: `python bibcheck.py COMMAND` is now `cdlbib COMMAND`, and `python bibverify.py COMMAND` is now `cdlbib crossref COMMAND`. The former `commit` command is now `cdlbib send`. The `magic` command has been removed. The older parallel, fuzzy-matching verifier (and its `--workers` option) has been retired.
-
-### Installation
-The bibtex checker is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
-
-Install the checker with Python 3.11 or later:
+Install with Python 3.11 or later:
 
 ```bash
 python -m pip install cdlbib
 cdlbib --help
 ```
 
-No clone is needed. When a command needs a library and you have not selected one,
-`cdlbib` downloads the bibliography on first use. The managed copy is stored in:
+Git must be installed for the managed download and updates. No manual clone is needed.
+`--help` and `--version` do not download a library. When a command needs a library
+and you have not selected one, `cdlbib` downloads the bibliography on first use. The managed copy is stored in:
 
 - macOS: `~/Library/Application Support/cdlbib/library/`
 - Linux: `$XDG_DATA_HOME/cdlbib/library/`, or `~/.local/share/cdlbib/library/` when `XDG_DATA_HOME` is unset.
@@ -98,13 +93,19 @@ uses it and never updates it. A named folder without `cdl.bib` remains an error:
 ```
 
 The same error begins with `CDLBIB_LIBRARY` when that variable named the folder.
+Global options go before the command, for example:
+
+```bash
+cdlbib --library "/absolute/path/to/library" verify --no-citations
+```
+
 The dependencies are listed in `pyproject.toml`. The `research` extra installs
 `pypdf` for reading PDFs: `python -m pip install "cdlbib[research]"`. If an
 optional package is missing when a command needs it, the tool prints a notice and
 installs it. Use `cdlbib --ask COMMAND` to be asked first; without a terminal,
 `--ask` leaves it uninstalled and prints the manual installation command.
 
-### Managed-library updates
+## Managed-library updates
 
 When a command uses the managed library, it checks for updates at most once a day
 when the command runs. There is no background updater. `cdlbib update` checks now.
@@ -131,6 +132,11 @@ What would you like to do?
   [d] Discard my changes and update (they are saved first; `cdlbib update --undo` brings them back)
 ```
 
+After a sent PR merges, the next managed-library update can return to the main
+branch and bring in the merged version. An open PR is left in place; a closed PR
+or further local edits may require a choice. An unreachable GitHub service leaves
+the send branch intact.
+
 The files, counts and available choices depend on your changes. Without a terminal,
 no choice is made and your files are left as they were. Keeping your copy postpones
 the question until tomorrow; `cdlbib update` asks again now.
@@ -143,7 +149,7 @@ The accuracy checker contacts Crossref and other public services, which ask that
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
 ```
 
-### Overview
+## Overview
 
 `cdlbib` has the following commands (a summary; run `cdlbib --help` for the full list):
 
@@ -164,25 +170,62 @@ Step-by-step tutorials are in [docs/tutorials.md](docs/tutorials.md).
 
 # Suggested workflow
 
-After making changes to `cdl.bib` (manually, using
-[BibDesk](https://bibdesk.sourceforge.io/), etc.), please follow the suggested
-workflow below in order to safely update the shared lab resource:
+Start from a folder outside an existing bibliography checkout to use the managed
+library, or select your own library with `--library`. Install the
+[GitHub CLI](https://cli.github.com) and run `gh auth login` before recording a
+human review or sending a contribution. Set your Crossref contact address as
+shown above.
 
-1. Check the formatting of the modified file *and* the accuracy of every new or edited entry (correct any problems until this passes):
-```bash
-cdlbib verify --verbose
-```
-   The formatting check covers the whole file. The accuracy check covers only the entries that are new or changed compared with the `master` branch on GitHub, so it takes seconds rather than hours.
+1. **Find your library and add a reference.**
 
-2. If an entry fails the accuracy check, look at the issues printed for it (they are also saved in `.bibcheck/report.jsonl`). Usually the fix is to correct the entry to match the actual paper: a wrong page range, a missing author, a preprint cited where the published version was meant, and so on. Then run step 1 again. If you are certain the entry is right but it can't be checked automatically (e.g., an old book with no online record), see [Human review](#human-review).
+   ```bash
+   cdlbib where
+   cdlbib add 10.1002/tea.3660271011
+   ```
 
-3. Generate a change log and send your changes as a pull request:
-```bash
-cdlbib send --verbose
-```
-   `send` runs the same checks as `verify` and sends nothing if anything fails. It commits your changes to `cdl.bib` and to files under `verification/` on a new branch, pushes that branch to your fork, and opens a pull request for pulling your changes into the ContextLab fork. Other files with uncommitted changes are left as they are.
+   `where` prints the library folder, how it was selected, and any download or
+   update notices. `add` looks up the source, reports duplicates, and lets you accept,
+   edit or skip the proposed entry. You can also use a PMID, arXiv identifier or
+   title with `--author`. No change is sent to GitHub yet. To modify an existing
+   reference directly, edit `cdl.bib` in the folder shown by `where` with your
+   preferred text editor, then run the checks below.
 
-4. The pull request is checked automatically: formatting and tests (`autocheck`), and the accuracy of every new or edited entry (`Citation verification`).
+2. **Check your changes.**
+
+   ```bash
+   cdlbib verify --verbose
+   ```
+
+   Completion is offered for new or edited entries before the checks run. The
+   format check covers the whole file; citation checks normally cover entries
+   changed from upstream. Resolve the reported problems and rerun. If a correct
+   entry cannot be checked automatically, follow [Human review](#human-review).
+   Accepting a completion proposal is not a human approval.
+
+3. **Send the contribution.**
+
+   ```bash
+   cdlbib send --verbose
+   ```
+
+   `send` checks the final bibliography and evidence, commits bibliography and
+   verification changes, pushes to your own fork, and opens or updates a PR into
+   the upstream repository. It preserves unrelated working files and refuses
+   unrelated outgoing commits. The same fork route applies to maintainers and
+   other contributors; no direct push access to ContextLab is needed.
+
+4. **Review the PR and keep your copy current.**
+
+   CI checks formatting, tests and citations. Review and merge happen on GitHub.
+   Subsequent sends on the contribution branch update the same PR. For the
+   managed library, `cdlbib update` checks its state now; normal command use also
+   performs the daily update check. Your own clone remains yours to update.
+
+[The tutorials](docs/tutorials.md) walk through adding/editing a proposal,
+verification, human review, credentials and sending a PR. This recording shows
+reviewing, editing, rechecking and accepting an entry in a scratch library:
+
+![CLI entry review, edit, recheck and acceptance](docs/media/add.gif)
 
 # What belongs in `cdl.bib`
 
@@ -523,43 +566,83 @@ More detail on how verification works, including every acceptance rule, is in [d
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 
+The library download is automatic; TeX integration is currently manual. Install
+TeX separately, run `cdlbib where`, and use the **library-folder path it prints**
+as the library path below. Do not capture the entire output as a path: it also
+contains status lines. If you change `CDLBIB_HOME` or switch libraries later,
+update your TeX configuration to match.
+
+These methods make the bibliography available across projects for your user
+account. They do not need administrator access or another clone. LaTeX compilation
+does not run `cdlbib` or check for library updates; use `cdlbib update` when you want
+the latest shared version.
+
 ## General Unix/Linux Setup (Command Line Compilation)
-1. Check out this repository to your home directory
-2. Add the following line to your `~/.bash_profile` (or `~/.zshrc`, etc.).  The trailing colon keeps TeX's default search locations:
+
+Add a line like this to the startup file your shell reads (for example `~/.zshrc`
+or `~/.bashrc`), replacing the example folder with the one from `cdlbib where`:
+
+```bash
+export BIBINPUTS=".:/absolute/path/to/library:${BIBINPUTS}:"
 ```
-export BIBINPUTS="$HOME/CDL-bibliography:$BIBINPUTS:"
+
+The leading `.` checks the manuscript folder first, the quotes preserve spaces,
+and the trailing colon retains TeX's default search locations. Open a new terminal
+or source the startup file you edited.
+From your manuscript folder, check which file TeX finds:
+
+```bash
+kpsewhich cdl.bib
 ```
-3. Run (in terminal): `source ~/.bash_profile`
-4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys that were defined in cdl.bib and used in the current file.
-5. To compile your document (filename.tex) and generate its bibliography and a pdf (filename.pdf), run:
+
+It should resolve to the intended library. A `cdl.bib` already in the manuscript
+folder takes precedence with this setting; keep it there only when you want that
+frozen copy.
+See the [Kpathsea manual](https://www.tug.org/texinfohtml/kpathsea.html) for TeX's
+search-path rules.
+
+For a BibTeX manuscript, select its bibliography style and the shared library:
+
+```latex
+\bibliographystyle{plain} % or the style required by your venue
+\bibliography{cdl}
 ```
+
+Compile with your usual toolchain; a basic BibTeX example is:
+
+```bash
 pdflatex filename
 bibtex filename
 pdflatex filename
 pdflatex filename
 ```
 
+For a `biblatex` manuscript, use its `\addbibresource{cdl.bib}` configuration and
+its chosen backend instead of mixing it with the BibTeX example above.
+
 ## MacOS Setup with TeXShop and TeX Live
 
-Mac GUI applications like TeXShop don't execute within your shell environment, which means the environment variable approach described above won't work when compiling through the TeXShop GUI. Instead, use TeX Live's built-in support for personal files:
+GUI editors may not inherit shell variables. With TeX Live, link the selected
+bibliography into the personal TeX tree instead. `kpsewhich` reports the location
+used by your TeX installation; it need not be the same on every Mac.
 
-1. Check out this repository (we'll assume you cloned it to your home directory: `~/CDL-bibliography`)
-2. Create the TeX Live personal texmf directory structure for bibliography files:
-```bash
-mkdir -p ~/Library/texmf/bibtex/bib
-```
-3. Create a symbolic link from your personal texmf directory to the CDL-bibliography repository. **Important**: You must use the absolute path (not relative paths or `~`):
-```bash
-ln -s /Users/YOUR_USERNAME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
-```
-Replace `YOUR_USERNAME` with your actual macOS username, or use `$HOME` instead:
-```bash
-ln -s $HOME/CDL-bibliography/cdl.bib ~/Library/texmf/bibtex/bib/cdl.bib
-```
-4. In your .tex file, use the line `\bibliography{cdl}` to generate a bibliography using the citation keys defined in cdl.bib
-5. Compile your document using TeXShop's GUI or from the command line
+Run these commands in Terminal after replacing the example library path with the
+absolute folder printed by `cdlbib where`:
 
-**Note**: This approach also works for command-line compilation, so you don't need to set up the environment variables if you use this method.
+```bash
+cdlbib_library="/absolute/path/to/library"
+cdlbib_texmf="$(kpsewhich -var-value=TEXMFHOME)"
+mkdir -p "$cdlbib_texmf/bibtex/bib"
+ln -s "$cdlbib_library/cdl.bib" "$cdlbib_texmf/bibtex/bib/cdl.bib"
+kpsewhich cdl.bib
+```
+
+If the destination already exists, inspect it before changing it; the command
+above does not replace an existing file or link. The final command should locate
+the linked bibliography. Use `\bibliography{cdl}` with your manuscript's BibTeX
+style, or its `biblatex` configuration. The link follows library updates without
+copying the file. This method also works with command-line TeX Live on Linux;
+`BIBINPUTS` is unnecessary when the personal-tree link resolves correctly.
 
 # Using the bibtex file on Overleaf
 Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization), so (unlike what earlier versions of this readme suggested) you can't add this repository to an Overleaf project as a submodule.  Instead, either:
@@ -569,7 +652,8 @@ Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integ
 Either way, change the `\bibliography{...}` line in your .tex file to `\bibliography{cdl}`.
 
 # Using the bibtex file as a submodule of a paper's repository
-If you write your paper in a git repository of your own (outside Overleaf), you can use a [git submodule](https://github.blog/2016-02-01-working-with-submodules/) to keep a reference to this repository that you can easily keep in sync with the latest version:
+As an alternative to the managed-library setup, if you write your paper in a Git
+repository of your own (outside Overleaf), you can use a [git submodule](https://github.blog/2016-02-01-working-with-submodules/) to keep a reference to this repository that you can easily keep in sync with the latest version:
 1. Navigate to your paper's repository (in Terminal) and then run
 ```
 git submodule add https://github.com/ContextLab/CDL-bibliography.git
@@ -583,20 +667,37 @@ git submodule init
 git submodule update
 ```
 
-Whichever setup you use, it's a good idea to keep a copy of the bibliography with each submitted manuscript, so that later edits to the shared file don't change that submission's references.
+# Frozen manuscript copies and exports
+
+Keep a bibliography snapshot with each submitted manuscript so later library
+updates do not alter its references. Today, copy the selected library's `cdl.bib`
+into the manuscript folder (or pin the optional submodule to a commit). Review the
+rendered bibliography using the manuscript's actual style.
+
+Automatic export is planned in [issue #95](https://github.com/ContextLab/CDL-bibliography/issues/95):
+a frozen `.bib` containing just the keys cited by a manuscript, plus `.bbl`
+generation when its TeX/style inputs or project folder are supplied. There is no
+`cdlbib export` command yet. Your existing TeX build can already generate a `.bbl`;
+retain it with the submission when your venue requires it.
 
 # Using it from Python
 
 The functions behind the commands are in the module `cdlbib.api`. They return result objects and raise subclasses of `cdlbib.errors.CdlbibError`. They do not print or prompt. `api.status` writes `.bibcheck/verification.sqlite3` and `.bibcheck/report.jsonl` in the library folder.
 
 ```python
-from cdlbib import api, workspace
+from cdlbib import api
 
-ws = workspace.Workspace("/path/to/CDL-bibliography")
+ws = api.ensure_library()  # existing selection/checkout, otherwise download the managed library
 print(api.check_format(ws).errors)
 status = api.status(ws)
 print(status.counts, status.ok)
 ```
+
+For a specific library, construct `workspace.Workspace("/absolute/path/to/library")`
+after importing `workspace` from `cdlbib`. Front ends use the shared API for
+updates, proposals and decisions rather than parsing CLI output. `ensure_library`
+selects/downloads a workspace; long-running clients must also handle update
+results and decisions through `api.update`.
 
 In a clone where `cdlbib crossref restore verification/baseline.jsonl.gz` had been run, this printed (October 2, 2026):
 
@@ -609,15 +710,20 @@ Before the restore, the second line was `{'pending': 6384} False`.
 
 # Running the tests
 
-To run the full test suite:
+From a development checkout, install the package and test tools as CI does:
 ```bash
-python -m pip install ".[research]" pytest
+python -m pip install ".[research]" pytest uv
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
-python -m pytest tests
+python -m pytest -q -rs tests
 cdlbib verify --no-citations
 ```
 
 Almost all tests use saved copies of real source records, so they run offline. Tests in `tests/test_machinery_2026_09_25.py`, `tests/test_api.py` and `tests/test_publish.py` check new entries against the live Crossref API, so they need `CROSSREF_MAILTO` and a network connection, and can fail temporarily if Crossref is down. Without `CROSSREF_MAILTO` (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests in `tests/test_identity.py`, `tests/test_revoke_ledger.py` and `tests/test_publish.py` that need a GitHub login are skipped when `gh` is not installed or not logged in. The tests in `tests/test_publish.py` that open a pull request do so only inside your own fork of this repository, on its `cdlbib-test-base` branch, and are skipped when you have no fork. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. The tests in `tests/test_pdf_evidence.py` that read PDFs from a local paper library are skipped when it isn't available. `cdlbib verify --no-citations` runs the formatting check on `cdl.bib`.
+
+The CI workflows use a shared checked-in Crossref contact default, with an optional
+repository variable override, so fork PRs can run the checks. Local users should
+set their own `CROSSREF_MAILTO`. Skips are reported explicitly for unavailable
+credentials, Keychain access, local PDFs and opt-in GUI checks.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a citation, and [docs/verification.md](docs/verification.md) for how verification works.
 
