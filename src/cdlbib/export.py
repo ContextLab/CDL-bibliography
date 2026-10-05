@@ -761,44 +761,279 @@ def _bibtex(build, sources, style, keys, everything):
     return undefined, text
 
 
-def own_bcf(data, sources):
-    """biblatex's control file, rewritten for biber: read with an XML parser, every data source
-    replaced by ``sources`` (local files, no pattern), every option that names a file, folder,
-    path, configuration or log removed, every citation key checked; then written out anew."""
-    import xml.etree.ElementTree as ET
+# The control file biblatex writes for biber, as an allowlist: element -> (attributes, child
+# elements, may it hold text). Derived on 2026-10-05 from biber 2.22's own schema of the file
+# (Biber/bcf.rng), plus the two elements biblatex 3.21 was seen to write that the schema lacks
+# (nolabelwidthcounts, nolabelwidthcount), checked against the files biblatex wrote here for
+# eleven documents (default, authoryear, alphabetic, apa, ieee, nature, chicago and verbose
+# styles; refsections, sets, templates, each \Declare... that adds a section). The map_step
+# attributes are the schema's without the seven in BCF_REGEX_STEPS. own_bcf() copies these
+# names and nothing else; any other element or attribute fails the export by name (dropping
+# it would change the .bbl).
+MAX_BCF, MAX_BCF_ELEMENTS, MAX_BCF_VALUE = 5_000_000, 100_000, 2000
+BCF_SHAPE = {
+    "antecedent": (("quant",), ("field",), False),
+    "bibdata": (("section",), ("datasource",), False),
+    "citekey": (("intorder", "members", "nocite", "order", "type"), (), True),
+    "citekeycount": (("count",), (), True),
+    "consequent": (("quant",), ("field",), False),
+    "constant": (("name", "type"), (), True),
+    "constants": ((), ("constant",), False),
+    "constraint": (("datatype", "pattern", "rangemax", "rangemin", "type"), ("antecedent", "consequent", "field",
+        "fieldor", "fieldxor"), False),
+    "constraints": ((), ("constraint", "entrytype"), False),
+    "controlfile": (("bltxversion", "version"), ("bibdata", "datafieldset", "datalist", "datamodel", "extradatespec",
+        "inheritance", "labelalphanametemplate", "labelalphatemplate", "namehashtemplate", "noinits", "nolabels",
+        "nolabelwidthcounts", "nonamestrings", "nosorts", "options", "optionscope", "presort", "section", "sortexclusion",
+        "sortinclusion", "sortingnamekeytemplate", "sortingtemplate", "sourcemap", "transliteration",
+        "uniquenametemplate"), False),
+    "datafieldset": (("name",), ("member",), False),
+    "datalist": (("labelalphanametemplatename", "labelprefix", "name", "namehashtemplatename", "section",
+        "sortingnamekeytemplatename", "sortingtemplatename", "type", "uniquenametemplatename"), ("filter", "filteror"),
+        False),
+    "datamodel": ((), ("constants", "constraints", "entryfields", "entrytypes", "fields", "multiscriptfields"), False),
+    "datasource": (("datatype", "encoding", "glob", "type"), (), True),
+    "defaults": (("ignore", "inherit_all", "override_target"), ("type_pair",), False),
+    "entryfields": ((), ("entrytype", "field"), False),
+    "entrytype": (("skip_output",), (), True),
+    "entrytypes": ((), ("entrytype",), False),
+    "exclusion": ((), (), True),
+    "extradatespec": ((), ("scope",), False),
+    "field": (("datatype", "fieldtype", "format", "label", "nullok", "order", "override_target", "skip", "skip_output",
+        "source", "target"), (), True),
+    "fieldor": ((), ("field",), False),
+    "fields": ((), ("field",), False),
+    "fieldxor": ((), ("field",), False),
+    "filter": (("type",), (), True),
+    "filteror": ((), ("filter",), False),
+    "inclusion": ((), (), True),
+    "inherit": (("ignore",), ("field", "type_pair"), False),
+    "inheritance": ((), ("defaults", "inherit"), False),
+    "key": ((), (), True),
+    "keypart": (("order",), ("part",), False),
+    "labelalphanametemplate": (("name",), ("namepart",), False),
+    "labelalphatemplate": (("type",), ("labelelement",), False),
+    "labelelement": (("order",), ("labelpart",), False),
+    "labelpart": (("final", "ifnames", "names", "namessep", "noalphaothers", "pad_char", "pad_side",
+        "substring_fixed_threshold", "substring_side", "substring_width", "substring_width_max"), (), True),
+    "map": (("map_foreach", "map_overwrite", "refsection"), ("map_step", "per_datasource", "per_nottype", "per_type"),
+        False),
+    "map_step": (("map_append", "map_appendstrict", "map_entry_clone", "map_entry_new", "map_entry_newtype",
+        "map_entry_null", "map_entrykey_allnocited", "map_entrykey_cited", "map_entrykey_citedornocited",
+        "map_entrykey_nocited", "map_entrykey_starnocited", "map_entrytarget", "map_field_set", "map_field_source",
+        "map_field_target", "map_field_value", "map_final", "map_notfield", "map_null", "map_origentrytype",
+        "map_origfield", "map_origfieldval", "map_type_source", "map_type_target"), (), False),
+    "maps": (("datatype", "level", "map_overwrite"), ("map",), False),
+    "member": (("datatype", "field", "fieldtype"), (), False),
+    "multiscriptfields": ((), ("field",), False),
+    "namehashtemplate": (("name",), ("namepart",), False),
+    "namepart": (("base", "disambiguation", "hashscope", "order", "pre", "substring_compound", "substring_side",
+        "substring_width", "use"), (), True),
+    "noinit": (("value",), (), False),
+    "noinits": ((), ("noinit",), False),
+    "nolabel": (("value",), (), False),
+    "nolabelwidthcount": (("value",), (), False),
+    "nolabelwidthcounts": ((), ("nolabelwidthcount",), False),
+    "nolabels": ((), ("nolabel",), False),
+    "nolabelwidthcount": (("value",), (), False),
+    "nonamestring": (("field", "value"), (), False),
+    "nonamestrings": ((), ("nonamestring",), False),
+    "nosort": (("field", "value"), (), False),
+    "nosorts": ((), ("nosort",), False),
+    "option": (("backendin", "backendout", "datatype", "type"), ("key", "value"), True),
+    "options": (("component", "type"), ("option",), False),
+    "optionscope": (("type",), ("option",), False),
+    "part": (("inits", "order", "type", "use"), (), True),
+    "per_datasource": ((), (), True),
+    "per_nottype": ((), (), True),
+    "per_type": ((), (), True),
+    "presort": (("type",), (), True),
+    "scope": ((), ("field",), False),
+    "section": (("number",), ("citekey", "citekeycount"), False),
+    "sort": (("final", "locale", "order", "sort_direction", "sortcase", "sortupper"), ("sortitem",), False),
+    "sortexclusion": (("type",), ("exclusion",), False),
+    "sortinclusion": (("type",), ("inclusion",), False),
+    "sortingnamekeytemplate": (("name", "visibility"), ("keypart",), False),
+    "sortingtemplate": (("locale", "name"), ("sort",), False),
+    "sortitem": (("literal", "order", "pad_char", "pad_side", "pad_width", "substring_side", "substring_width"), (),
+        True),
+    "sourcemap": ((), ("maps",), False),
+    "translit": (("from", "langids", "target", "to"), (), False),
+    "transliteration": (("entrytype",), ("translit",), False),
+    "type_pair": (("inherit_all", "override_target", "source", "suppress", "target"), (), False),
+    "uniquenametemplate": (("name",), ("namepart",), False),
+    "value": (("order", "type"), (), True),
+}
+# A source-map step with one of these makes biber 2.22 compile the value as a Perl regular
+# expression (Biber::Utils::imatch) and, for a replacement, evaluate it as Perl code in a Safe
+# compartment (Biber::Utils::ireplace); every other step value is only substituted as text. A
+# map that has one is refused whoever declared it (the paper, or the style it loads).
+BCF_REGEX_STEPS = ("map_match", "map_matchi", "map_matches", "map_matchesi", "map_notmatch", "map_notmatchi", "map_replace")
+# Values biber matches as regular expressions and biblatex writes by default (\DeclareNosort,
+# \DeclareNolabel ...): kept, unless they hold a construct that runs code.
+BCF_PATTERNS = {("nosort", "value"), ("nolabel", "value"), ("noinit", "value"), ("nonamestring", "value"),
+                ("nolabelwidthcount", "value"), ("constraint", "pattern")}
+# The options biblatex passes to biber (the component="biber" and per-type option lists); a
+# use<name> option exists for every name field of the data model.
+BCF_OPTIONS = frozenset("""alphaothers debug extradatecontext gregorianstart input_encoding julian labelalpha
+    labeldateparts labeldatespec labelnamespec labeltitle labeltitlespec labeltitleyear maxalphanames maxbibnames
+    maxcitenames maxitems maxsortnames minalphanames minbibnames mincitenames mincrossrefs minitems minsortnames minxrefs
+    nohashothers noroman nosortothers output_encoding pluralothers singletitle skipbib skipbiblist skiplab sortalphaothers
+    sortcase sortingtemplatename sortlocale sortsets sortupper uniquebaretitle uniquelist uniquename uniqueprimaryauthor
+    uniquetitle uniquework""".split())
+_OPTION_NAME = re.compile(r"use[a-z]{1,40}\Z")
+_OPTION_VALUE = re.compile(r"[A-Za-z0-9_+.:,\- ]{0,200}\Z")
+
+
+def _bcf_refused(why, names=()):
+    raise ExportFailed("control_file", "The control file LaTeX wrote for biber is not used: " + why
+                       + " No .bbl was compiled.", names)
+
+
+def _bcf_probe(data):
+    """First pass over the bytes, before any tree is built: the size and the number of elements
+    are bounded, and the file has no document type, no entity of its own, no processing
+    instruction, and exactly one namespace declaration (bcf = biblatex's)."""
     import xml.parsers.expat
+    if len(data) > MAX_BCF:
+        _bcf_refused(f"it is larger than {MAX_BCF // 1_000_000} MB.")
+    seen = {"elements": 0, "namespaces": []}
 
     def declared(*_):
-        raise ExportFailed("backend", "The control file LaTeX wrote for biber has a document type or entity "
-                           "declaration; it is not used.")
+        _bcf_refused("it has a document type or entity declaration.")
 
-    probe = xml.parsers.expat.ParserCreate()       # first pass: no DTD and no entity of the file's own, in any encoding
+    def instruction(target, _):
+        _bcf_refused(f"it has a processing instruction ({target}).", [target])
+
+    def element(name, attributes):
+        seen["elements"] += 1
+        if seen["elements"] > MAX_BCF_ELEMENTS:
+            _bcf_refused(f"it has more than {MAX_BCF_ELEMENTS} elements.")
+        for attribute in attributes:
+            if attribute.startswith("xmlns"):
+                seen["namespaces"].append((attribute, attributes[attribute]))
+            elif ":" in attribute:
+                _bcf_refused(f"the attribute {attribute} of {name} has a namespace.", [attribute])
+        if not name.startswith("bcf:") or name.count(":") != 1:
+            _bcf_refused(f"the element {name} is not written as bcf:<name>.", [name])
+
+    probe = xml.parsers.expat.ParserCreate()               # not namespace-aware: names are seen as they are written
     probe.StartDoctypeDeclHandler = probe.EntityDeclHandler = probe.UnparsedEntityDeclHandler = declared
-    ET.register_namespace("bcf", BCF)
+    probe.ProcessingInstructionHandler = instruction
+    probe.StartElementHandler = element
     try:
         probe.Parse(data, True)
-        root = ET.fromstring(data)
-    except (ET.ParseError, xml.parsers.expat.ExpatError) as exc:
-        raise ExportFailed("backend", f"The control file LaTeX wrote for biber could not be read: {exc}") from exc
-    tag = "{" + BCF + "}"
-    if root.tag != tag + "controlfile":
-        raise ExportFailed("backend", "The control file LaTeX wrote for biber is not a biblatex control file.")
-    parents = {child: parent for parent in root.iter() for child in parent}
-    for element in list(root.iter()):
-        key = element.find(tag + "key") if element.tag == tag + "option" else None
-        if element.tag == tag + "datasource" or (
-                key is not None and re.search(r"(?i)file|dir|path|conf|log", "".join(key.itertext()))):
-            parents[element].remove(element)
-    _checked_keys([key for key in ("".join(element.itertext()).strip() for element in root.iter(tag + "citekey"))
-                   if key != "*"])
-    holders = list(root.iter(tag + "bibdata"))
-    if not holders:
-        holders = [ET.SubElement(root, tag + "bibdata", {"section": "0"})]
-    for holder in holders:
-        for name in sources:
-            source = ET.SubElement(holder, tag + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"})
-            source.text = name + ".bib"
-    return ET.tostring(root, encoding="utf-8", xml_declaration=True)
+    except xml.parsers.expat.ExpatError as exc:
+        _bcf_refused(f"it could not be read ({exc}).")
+    if seen["namespaces"] != [("xmlns:bcf", BCF)]:
+        _bcf_refused("its namespaces are not the one declaration biblatex writes (xmlns:bcf).",
+                     [name for name, _ in seen["namespaces"]])
+
+
+def _bcf_value(element, what, value):
+    """A text or attribute value that is copied: bounded, without control characters."""
+    if len(value) > MAX_BCF_VALUE or any(ord(char) < 32 and char not in "\t\n\r" for char in value):
+        _bcf_refused(f"{what} of {element} is too long or holds control characters.", [element])
+    return value
+
+
+def own_bcf(data, sources):
+    """The control file for biber, built here from the one biblatex wrote.
+
+    The file must have exactly the shape biblatex writes (_bcf_probe; every element bcf:<name>
+    in biblatex's namespace). A new tree is then made from nothing: for each element only the
+    names in BCF_SHAPE are copied, with their text; anything else is ExportFailed
+    ("control_file") naming it. The data sources are not copied at all: each bibdata gets
+    ``sources`` (local files, no pattern). A source map with a match or a replacement is
+    refused, because biber runs those as Perl regular expressions. Option names are those in
+    BCF_OPTIONS; citation keys, and the members of a set, pass the key check."""
+    import xml.etree.ElementTree as ET
+    _bcf_probe(data)
+    ET.register_namespace("bcf", BCF)
+    try:
+        old = ET.fromstring(data)
+    except ET.ParseError as exc:
+        _bcf_refused(f"it could not be read ({exc}).")
+    space = "{" + BCF + "}"
+
+    def local(element):
+        if not isinstance(element.tag, str) or not element.tag.startswith(space):
+            _bcf_refused(f"the element {element.tag} is not biblatex's.", [str(element.tag)])
+        return element.tag[len(space):]
+
+    def text_of(element, name, allowed):
+        text = element.text or ""
+        for child in element:
+            if (child.tail or "").strip():
+                _bcf_refused(f"{name} holds text between its elements.", [name])
+        if text.strip() and not allowed:
+            _bcf_refused(f"{name} holds text.", [name])
+        return _bcf_value(name, "the text", text) if allowed else None
+
+    def checked(name, element, text):
+        """The checks that depend on what an element means to biber."""
+        if name == "map_step":
+            regex = [attribute for attribute in element.attrib if attribute in BCF_REGEX_STEPS]
+            if regex:
+                _bcf_refused("the paper, or the bibliography style it loads, declares a source map with a match or a "
+                             f"replacement ({', '.join(regex)}), which biber runs as a Perl regular expression.", regex)
+        for attribute, value in element.attrib.items():
+            if (name, attribute) in BCF_PATTERNS and ("(?{" in value or "(??{" in value):
+                _bcf_refused(f"the pattern of a {name} holds a construct that runs code.", [name])
+        if name == "citekey":
+            _checked_keys([key for key in [text.strip()] if key != "*"]
+                          + [key.strip() for key in element.get("members", "").split(",") if key.strip()])
+        if name in ("section", "bibdata") and not (element.get("number") or element.get("section") or "0").isdigit():
+            _bcf_refused(f"a {name} has a number that is not one.", [name])
+        if name == "per_datasource" and not plain_name(text.strip()):
+            _bcf_refused(f"a source map names a data source that is not a plain file name: {text.strip()}.", [text.strip()])
+        if name == "option" and element.find(space + "key") is not None:
+            key = "".join(element.find(space + "key").itertext()).strip()
+            if key not in BCF_OPTIONS and not _OPTION_NAME.match(key):
+                _bcf_refused(f"the option {key} is not one biblatex passes to biber.", [key])
+            for value in element.iter(space + "value"):
+                if not _OPTION_VALUE.match("".join(value.itertext()).strip()):
+                    _bcf_refused(f"the value of the option {key} is not a plain word or number.", [key])
+
+    def rebuilt(element, parent=None):
+        name = local(element)
+        if name not in BCF_SHAPE:
+            _bcf_refused(f"it has an element this version does not know: {name}.", [name])
+        attributes, children, holds_text = BCF_SHAPE[name]
+        unknown = [attribute for attribute in element.attrib if attribute not in attributes]
+        if unknown:
+            hint = [attribute for attribute in unknown if attribute in BCF_REGEX_STEPS]
+            if name == "map_step" and hint:
+                checked(name, element, "")
+            _bcf_refused(f"{name} has an attribute this version does not know: {', '.join(unknown)}.", unknown)
+        text = text_of(element, name, holds_text)
+        checked(name, element, text or "")
+        fresh = ET.Element(space + name) if parent is None else ET.SubElement(parent, space + name)
+        for attribute in attributes:                           # in the allowlist's order; only what is listed
+            if attribute in element.attrib:
+                fresh.set(attribute, _bcf_value(name, "the attribute " + attribute, element.attrib[attribute]))
+        if holds_text and not len(element):
+            fresh.text = text
+        for child in element:
+            kind = local(child)
+            if kind not in children:
+                _bcf_refused(f"{name} holds an element it does not hold in a file biblatex writes: {kind}.", [kind])
+            if kind != "datasource":                           # never copied: written below
+                rebuilt(child, fresh)
+        if name == "bibdata":
+            for source in sources:
+                made = ET.SubElement(fresh, space + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"})
+                made.text = source + ".bib"
+        return fresh
+
+    if local(old) != "controlfile":
+        _bcf_refused("it is not a biblatex control file.")
+    new = rebuilt(old)
+    if new.find(space + "bibdata") is None:
+        holder = ET.SubElement(new, space + "bibdata", {"section": "0"})
+        for source in sources:
+            ET.SubElement(holder, space + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"}).text = source + ".bib"
+    return ET.tostring(new, encoding="utf-8", xml_declaration=True)
 
 
 def _biber(build, sources, generated):
