@@ -1,6 +1,6 @@
 // One entry: its text, its issues and its evidence; approving and revoking.
 import { get, post } from "./api.js";
-import { h, clear, button, kv, list, table, tabs, status, data, note, ask, run, info, announce } from "./dom.js";
+import { h, clear, button, kv, list, table, tabs, status, data, note, ask, run, info, announce, add } from "./dom.js";
 
 function compact(value) {
   if (value === null || value === undefined) return "";
@@ -48,46 +48,46 @@ function modelEvidence(evidence) {
 }
 
 function entryTab(panel, detail) {
-  panel.append(kv(Object.entries(detail.fields).filter(([name]) => !["ENTRYTYPE", "ID"].includes(name)).map(([name, value]) => [name, value])),
+  add(panel, kv(Object.entries(detail.fields).filter(([name]) => !["ENTRYTYPE", "ID"].includes(name)).map(([name, value]) => [name, value])),
     h("h3", { text: "Text in the library" }), h("pre", { class: "mono panel", text: detail.raw }));
 }
 
 function issuesTab(panel, detail) {
   const result = detail.result || {};
   const issues = result.issues || [];
-  panel.append(h("h3", { text: "Verification" }), issues.length ? list(issues) : h("p", { class: "muted", text: "No issues recorded." }));
-  if (detail.advisories && detail.advisories.length) panel.append(h("h3", { text: "Remarks" }), list(detail.advisories));
+  add(panel, h("h3", { text: "Verification" }), issues.length ? list(issues) : h("p", { class: "muted", text: "No issues recorded." }));
+  if (detail.advisories && detail.advisories.length) add(panel, h("h3", { text: "Remarks" }), list(detail.advisories));
   const format = findings(detail);
-  panel.append(h("h3", { text: "House format" }), format || h("p", { class: "muted", text: detail.format === null ? "Not computed." : "No findings." }));
+  add(panel, h("h3", { text: "House format" }), format || h("p", { class: "muted", text: detail.format === null ? "Not computed." : "No findings." }));
   if (detail.closest) {
-    panel.append(h("h3", { text: "Closest source: " + source(detail.closest) }),
+    add(panel, h("h3", { text: "Closest source: " + source(detail.closest) }),
       detail.closest.issues && detail.closest.issues.length ? list(detail.closest.issues) : null, comparison(detail.closest));
   }
 }
 
 function evidenceTab(panel, detail) {
   const result = detail.result || {};
-  if (result.human_review) panel.append(h("h3", { text: "Human approval" }), approval(result.human_review));
+  if (result.human_review) add(panel, h("h3", { text: "Human approval" }), approval(result.human_review));
   if (result.revoked_approval) {
-    panel.append(h("h3", { text: "Revoked approval" }), kv([["Reason", result.revoked_approval.reason],
+    add(panel, h("h3", { text: "Revoked approval" }), kv([["Reason", result.revoked_approval.reason],
       ["Revoked by", result.revoked_approval.revoked_by || result.revoked_approval.reviewer],
       ["Revoked", result.revoked_approval.revoked_at]]),
     result.revoked_approval.human_review ? approval(result.revoked_approval.human_review) : null);
   }
   if (result.external_evidence) {
-    panel.append(h("h3", { text: "Model reading of a PDF (evidence, not an approval)" }), modelEvidence(result.external_evidence));
+    add(panel, h("h3", { text: "Model reading of a PDF (evidence, not an approval)" }), modelEvidence(result.external_evidence));
   }
   const candidates = result.candidates || [];
-  panel.append(h("h3", { text: "Source records compared (" + candidates.length + ")" }));
+  add(panel, h("h3", { text: "Source records compared (" + candidates.length + ")" }));
   for (const candidate of candidates) {
-    panel.append(h("details", { class: "card" }, h("summary", { text: source(candidate) + (candidate.issues && candidate.issues.length ? " — " + candidate.issues.length + " issue(s)" : " — agrees") }),
+    add(panel, h("details", { class: "card" }, h("summary", { text: source(candidate) + (candidate.issues && candidate.issues.length ? " — " + candidate.issues.length + " issue(s)" : " — agrees") }),
       comparison(candidate), h("details", null, h("summary", { text: "The source's record" }), data(candidate.record))));
   }
   const attempts = result.attempts || [];
-  panel.append(h("h3", { text: "Lookups made (" + attempts.length + ")" }), attempts.length ? list(attempts.map((item) => data(item))) : h("p", { class: "muted", text: "None recorded." }));
+  add(panel, h("h3", { text: "Lookups made (" + attempts.length + ")" }), attempts.length ? list(attempts.map((item) => data(item))) : h("p", { class: "muted", text: "None recorded." }));
   const known = new Set(["status", "issues", "candidates", "attempts", "human_review", "revoked_approval", "external_evidence"]);
   const rest = Object.entries(result).filter(([name]) => !known.has(name));
-  if (rest.length) panel.append(h("details", null, h("summary", { text: "Everything else in the stored result" }), data(Object.fromEntries(rest))));
+  if (rest.length) add(panel, h("details", null, h("summary", { text: "Everything else in the stored result" }), data(Object.fromEntries(rest))));
 }
 
 function who(ctx) {

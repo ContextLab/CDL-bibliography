@@ -1,20 +1,20 @@
-// Sending: what will be sent, completion offers for the changed entries, then the one send action.
+// Sending: what will be sent, the completion step for the changed entries, then the one send action.
 import { get, post, ApiError } from "./api.js";
 import { h, clear, button, field, list, note, kv, logPane, run, announce } from "./dom.js";
-import { proposalList } from "./proposal.js";
+import { completionStep } from "./offers.js";
 import { checkResult } from "./check.js";
 
 function link(url) {
   return /^https:\/\//.test(url) ? h("a", { href: url, target: "_blank", rel: "noopener noreferrer", text: url }) : h("span", { text: url });
 }
 
-export async function show(main, ctx) {
+export async function show(main) {
   const what = h("div", { class: "panel" });
-  const offers = h("div", { class: "stack" });
-  const proposals = proposalList({ verb: "Completed" });
   const log = logPane("Send log");
+  const step = completionStep({ log: log.add });
   const out = h("div", { class: "stack", "aria-live": "polite" });
   const summary = h("input", { type: "text", id: "send-summary", maxlength: "100" });
+  const skip = h("input", { type: "checkbox", id: "send-no-complete" });
 
   async function state() {
     const found = await get("/api/state");
@@ -25,22 +25,11 @@ export async function show(main, ctx) {
       found.notes.length ? note("warn", list(found.notes)) : null);
   }
 
-  async function next(restart) {
-    const found = await post("/api/send/offers", { restart }, log.add);
-    if (found.done) {
-      clear(offers, note("", "No more changed entries have a completion to offer."));
-      return;
-    }
-    const offer = found.offer;
-    clear(offers, offer.error ? note("warn", offer.key + ": completion unavailable: " + offer.error) : h("p", { text: "Completion offered for " + offer.key + ":" }),
-      button("Next entry", (event) => run(event.currentTarget, () => next(false))));
-    for (const item of offer.proposals) proposals.add(item);
-    announce("Completion offered for " + offer.key);
-  }
-
   async function sending() {
     log.clear();
     clear(out);
+    if (skip.checked) log.add("completion skipped (--no-complete)");
+    else if (!(await step.run())) { await state(); return; }
     try {
       const done = await post("/api/send", { summary: summary.value.trim() || null }, log.add);
       clear(out, note("good", kv([["Pull request", link(done.url)], ["Branch", done.branch], ["Fork", done.fork + (done.created_fork ? " (created now)" : "")],
@@ -56,13 +45,11 @@ export async function show(main, ctx) {
   }
 
   clear(main, h("div", { class: "stack" }, h("h1", { text: "Send" }), what,
-    h("div", { class: "panel" }, h("h2", { text: "Completion offers" }),
-      h("p", { class: "muted", text: "For new or changed entries that are not yet verified: what the sources would fill in or change. Nothing is written unless accepted." }),
-      h("div", { class: "row" }, button("Look for completions", (event) => run(event.currentTarget, () => next(true)))), offers, proposals.el),
     h("div", { class: "panel" }, h("h2", { text: "Send the change" }),
-      h("p", { class: "muted", text: "Runs the format check and the citation check of every new or edited entry, then commits cdl.bib and verification/ on a branch, pushes it to your fork and opens or updates the pull request." }),
+      h("p", { class: "muted", text: "First the completion step: for new or changed entries that are not yet verified, what the sources would fill in or change, to accept, edit or skip. Then the format check and the citation check of every new or edited entry; then cdl.bib and verification/ are committed on a branch, pushed to your fork, and the pull request is opened or updated." }),
       field("One line describing the change (optional)", summary),
-      h("div", { class: "row" }, button("Check and send", (event) => run(event.currentTarget, sending), { class: "primary" })),
-      h("h3", { text: "Log" }), log.el, out)));
+      h("label", { class: "check" }, skip, " Skip the completion step (as `cdlbib send --no-complete`)"),
+      h("div", { class: "row" }, button("Check and send", (event) => run(event.currentTarget, sending), { class: "primary", "data-action": "send" })),
+      step.el, h("h3", { text: "Log" }), log.el, out)));
   await state();
 }

@@ -1,6 +1,7 @@
 // Checks: chosen entries, the changed entries, or the house format alone; the log as it runs.
 import { post } from "./api.js";
 import { h, clear, button, field, list, table, note, status, logPane, run, announce } from "./dom.js";
+import { completionStep } from "./offers.js";
 
 function corrections(found) {
   const rows = [];
@@ -37,9 +38,20 @@ export async function show(main, ctx) {
   keys.value = ctx.selected || "";
   const log = logPane("Check log");
   const out = h("section", { "aria-label": "Result", "aria-live": "polite" });
+  const step = completionStep({ log: log.add });
+  const skip = h("input", { type: "checkbox", id: "check-no-complete" });
 
-  async function go(path, body, render) {
+  // The changed entries: the completion step first, as `cdlbib verify` does, unless it is skipped.
+  async function changed() {
     log.clear();
+    clear(out);
+    if (skip.checked) log.add("completion skipped (--no-complete)");
+    else if (!(await step.run())) return;
+    await go("/api/check/changed", {}, checkResult, true);
+  }
+
+  async function go(path, body, render, keep) {
+    if (!keep) log.clear();
     clear(out);
     const found = await post(path, body, log.add);
     clear(out, h("h2", { text: "Result" }), render(found));
@@ -53,7 +65,8 @@ export async function show(main, ctx) {
       h("div", { class: "row" },
         button("Check these entries", (event) => run(event.currentTarget, () => go("/api/check/keys",
           { keys: keys.value.split(/[\s,]+/).filter(Boolean) }, checkResult)), { class: "primary" }),
-        button("Check the changed entries", (event) => run(event.currentTarget, () => go("/api/check/changed", {}, checkResult))),
-        button("Format check only", (event) => run(event.currentTarget, () => go("/api/check/format", {}, formatResult))))),
-    h("h2", { text: "Log" }), log.el, out));
+        button("Check the changed entries", (event) => run(event.currentTarget, changed), { "data-action": "check-changed" }),
+        button("Format check only", (event) => run(event.currentTarget, () => go("/api/check/format", {}, formatResult)))),
+      h("label", { class: "check" }, skip, " Skip the completion step before checking the changed entries (as `cdlbib verify --no-complete`)")),
+    step.el, h("h2", { text: "Log" }), log.el, out));
 }

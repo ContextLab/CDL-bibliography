@@ -1,6 +1,6 @@
 // The state of the library: where it is, what is unsent, what the upstream has, updates, backups, undo.
 import { get, post, ApiError } from "./api.js";
-import { h, clear, button, list, table, note, kv, logPane, run, ask, info, announce } from "./dom.js";
+import { h, clear, button, list, table, note, kv, logPane, run, ask, info, announce, add } from "./dom.js";
 
 function count(n, one, many) {
   return n + " " + (n === 1 ? one : many);
@@ -14,13 +14,14 @@ export async function show(main, ctx) {
 
   function draw(found) {
     clear(banner);
-    if (found.new_commits) {
-      banner.append(note("warn", h("div", { class: "banner" },
+    if (found.not_managed) add(banner, note("", found.not_managed));
+    if (found.managed && found.new_commits) {
+      add(banner, note("warn", h("div", { class: "banner" },
         h("strong", { text: "A newer version of the bibliography is available: " + count(found.new_commits, "new commit", "new commits")
           + (found.new_entries ? ", " + count(found.new_entries, "new entry", "new entries") : "") + "." }),
         button("Update now", (event) => run(event.currentTarget, updating), { class: "primary" }))));
     }
-    if (found.interrupted) banner.append(note("bad", "A write or update did not finish. The state from before it: " + found.interrupted));
+    if (found.interrupted) add(banner, note("bad", "A write or update did not finish. The state from before it: " + found.interrupted));
     const pr = found.pull_request;
     clear(where, h("h2", { text: "This library" }), kv([
       ["Folder", found.root], ["Chosen by", ctx.session.chosen_by[found.origin] || found.origin],
@@ -35,7 +36,7 @@ export async function show(main, ctx) {
     ]), found.notes.length ? note("", list(found.notes)) : null,
     h("div", { class: "row" },
       button("Ask the upstream now", (event) => run(event.currentTarget, async () => { draw(await post("/api/state/refresh", {}, log.add)); announce("State refreshed."); })),
-      button("Update the managed library", (event) => run(event.currentTarget, updating)),
+      found.managed ? button("Update the library now", (event) => run(event.currentTarget, updating), { "data-action": "update" }) : null,
       found.pending && found.pending.length ? button("Go to Send", () => ctx.go("send")) : null));
   }
 
@@ -72,30 +73,35 @@ export async function show(main, ctx) {
     await load();
   }
 
-  async function backups() {
+  async function backups(state) {
     clear(saved, h("h2", { text: "Backups and undo" }));
+    if (!state.managed) {       // backups and undo belong to the library cdlbib manages, and this is not it
+      add(saved, h("p", { class: "muted", text: state.not_managed }));
+      return;
+    }
     let found;
     try {
       found = await get("/api/backups");
     } catch (error) {
-      saved.append(h("p", { class: "muted", text: error.message }));
+      add(saved, h("p", { class: "muted", text: error.message }));
       return;
     }
-    saved.append(h("p", { class: "muted", text: count(found.backups.length, "backup", "backups") + " of " + found.root + ", newest first (kept in " + found.folder + ")." }));
-    if (found.checkpoint) saved.append(h("p", { text: "Undo restores the command checkpoint " + found.checkpoint + "." }));
+    add(saved, h("p", { class: "muted", text: count(found.backups.length, "backup", "backups") + " of " + found.root + ", newest first (kept in " + found.folder + ")." }));
+    if (found.checkpoint) add(saved, h("p", { text: "Undo restores the command checkpoint " + found.checkpoint + "." }));
     if (found.backups.length) {
-      saved.append(h("div", { class: "row" }, button("Undo the last change", (event) => run(event.currentTarget, () => restore(null)))),
+      add(saved, h("div", { class: "row" }, button("Undo the last change", (event) => run(event.currentTarget, () => restore(null)))),
         table(["Backup", "Taken", "State", ""], found.backups.map((b) => [h("span", { class: "mono", text: b.stamp }), b.when,
           (b.branch ? "branch " + b.branch : "no branch") + " at " + b.commit + ", " + count(b.changed, "changed file", "changed files")
             + (b.has_bundle ? ", local commits saved" : "") + (b.only_copy ? ", holds commits kept nowhere else" : ""),
           button("Restore", (event) => run(event.currentTarget, () => restore(b.stamp)), { "aria-label": "Restore backup " + b.stamp })])));
     }
-    if (found.unreadable.length) saved.append(note("warn", list(found.unreadable.map(([stamp, why]) => stamp + ": unreadable (" + why + ")"))));
+    if (found.unreadable.length) add(saved, note("warn", list(found.unreadable.map(([stamp, why]) => stamp + ": unreadable (" + why + ")"))));
   }
 
   async function load() {
-    draw(await get("/api/state"));
-    await backups();
+    const found = await get("/api/state");
+    draw(found);
+    await backups(found);
   }
 
   clear(main, h("div", { class: "stack" }, h("h1", { text: "Library state" }), banner, where, saved,

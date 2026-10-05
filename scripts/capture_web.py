@@ -35,7 +35,7 @@ import web_support as web            # noqa: E402
 from test_complete_identify import library_entry   # noqa: E402
 
 GAME62 = library_entry("Game62")
-NAMES = ("library", "evidence", "edit-preview", "check", "review-approve", "add-identifier", "add-pdf", "setup",
+NAMES = ("library", "evidence", "edit-preview", "check", "review-approve", "review", "add-identifier", "add-pdf", "add-manual", "setup",
          "library-dark", "library-narrow", "send", "state", "update-choices")
 
 
@@ -152,7 +152,19 @@ def capture(out, width, height, only):
             page.fill("dialog input[name=source]", "The journal's page for the article")
             page.fill("dialog textarea[name=note]", "Volume, issue and pages compared with the printed issue.")
             shot(page, "review-approve")
-            page.click("dialog >> text=Cancel")
+            page.click("dialog button:has-text('Cancel')")
+            page.click("dialog button:has-text('Cancel')")       # typed text: discarding it takes a second step
+
+            page.click("#nav >> [data-view=review]")
+            page.click("button:has-text('All entries')")
+            page.fill("#review-search", "memory")
+            page.wait_for_selector(".queue button.item", timeout=60_000)
+            page.wait_for_timeout(800)
+            for box in page.locator("#alerts .alert button").all():
+                box.click()
+            page.locator(".queue button.item").first.click()
+            page.wait_for_selector(".detail-head h2")
+            shot(page, "review")
 
             page.click("#nav >> text=Add")
             page.click("role=tab[name='Identifiers']")
@@ -170,9 +182,15 @@ def capture(out, width, height, only):
                     page.wait_for_selector("img.pdf-image", timeout=60_000)
                 page.click("[data-action=pdf-lookup]")
                 page.wait_for_selector("article.card [data-action=accept]", timeout=120_000)
-                page.locator("#add-pdf").scroll_into_view_if_needed()
-                page.mouse.wheel(0, 120)
+                page.wait_for_selector(".beside img.pdf-image, .beside iframe", timeout=60_000)
+                page.locator(".beside").scroll_into_view_if_needed()
                 shot(page, "add-pdf")
+                page.click("article.card >> [data-action=skip]")
+                page.click("role=tab[name='PDF']")
+                page.click("button:has-text('Type it in by hand')")
+                page.wait_for_selector("input[data-field=doi]")
+                page.locator("[role=tablist]").scroll_into_view_if_needed()
+                shot(page, "add-manual")
 
             page.click("#nav >> [data-view=setup]")
             page.wait_for_selector("main table")

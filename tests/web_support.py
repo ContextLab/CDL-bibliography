@@ -166,8 +166,52 @@ def wait_idle(running, seconds=120):
     """Wait until the job worker has nothing queued or running (the first job is api.prepare)."""
     deadline = time.monotonic() + seconds
     while time.monotonic() < deadline:
-        worker = running.app.worker
-        if worker.queue.empty() and worker.running is None:
+        if running.app.worker.idle():
             return
         time.sleep(0.02)
     raise AssertionError("the job worker did not become idle")
+
+
+class Held:
+    """A job of the test's own that occupies the one worker until the test lets it go: how the
+    queue behind a running job is observed without racing it (jobs.Worker runs any callable)."""
+
+    def __init__(self, running):
+        import threading
+        self.started, self.release = threading.Event(), threading.Event()
+        self.job = running.app.worker.submit("test: hold", self.call)
+        assert self.started.wait(30)
+
+    def call(self, say):
+        self.started.set()
+        assert self.release.wait(120)
+        return "released"
+
+    def done(self):
+        self.release.set()
+        assert self.job.wait(30)
+
+
+def name_question(folder):
+    """A library of one typed entry whose author list the source spells differently, and the
+    completion proposal for it, made as tests/test_tui_add.py makes it from a recorded Crossref
+    deposit (the way to it through a send asks GitHub for the reference). Gives
+    (workspace, proposal, the entry's text)."""
+    from cdlbib import complete
+    from test_complete_build import RECORDS, sources
+    from test_complete_recheck import seed_record
+    record, _ = sources("CleeMcCl91")
+    raw = complete.render("article", "CleeMcCl91", dict(RECORDS["CleeMcCl91"]["typed"], doi=record["DOI"]))
+    ws = make_library(folder, text=raw)
+    ws.work.mkdir()
+    client = xs.make_client(ws.database, contact=CONTACT, offline=True)
+    try:
+        seed_record(client, record)
+        query = complete.Query.from_entry(next(iter(load_entries(ws.bib).values())))
+        item = complete.build(query.fields, record)
+        item.typed_raw = query.raw
+        complete._plan_proposal(ws, item, query, ())
+        complete.checked(item, client)
+    finally:
+        client.cache.close()
+    return ws, item, raw

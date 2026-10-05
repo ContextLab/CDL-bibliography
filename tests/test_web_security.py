@@ -299,8 +299,8 @@ def test_an_id_that_was_never_issued_or_is_of_another_kind_is_not_found(site):
     result, error = site.get("/api/proposal", proposal=unknown)
     assert error["kind"] == "NotFound"
     for path, body in (("/api/edit/save", {"preview": unknown}), ("/api/proposal/accept", {"proposal": unknown}),
-                       ("/api/pdf/read", {"pdf": unknown}), ("/api/export/run", {"bundle": unknown}),
-                       ("/api/update/decide", {"decision": unknown, "choice": "discard"})):
+                       ("/api/pdf/read", {"pdf": unknown}), ("/api/export/run", {"bundle": unknown})
+                       ):
         result, error = site.post(path, body)
         assert result is None and error["kind"] == "NotFound", path
     # an id of one kind is not an id of another
