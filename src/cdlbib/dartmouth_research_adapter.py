@@ -143,28 +143,38 @@ def complete(data, schema, instructions, session, key, model, read_timeout=90):
             "chat_template_kwargs": {"clear_thinking": True, "reasoning_effort": "max"},
         }
         read_timeout = max(read_timeout, 240)
-    time.sleep(2)
-    response = session.post(
-        BASE + "/chat/completions",
-        headers={"Authorization": "Bearer " + key},
-        json={
-            "model": model,
-            "stream": False,
-            **sampling,
-            "max_tokens": 16000 if model.startswith("zai-org.glm-5.3") else 4000,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": instructions
-                    + " Return only JSON matching: "
-                    + json.dumps(schema),
-                },
-                {"role": "user", "content": content},
-            ],
-        },
-        timeout=(5, read_timeout),
-        allow_redirects=False,
-    )
+    # A model that has been idle can take longer than the limit to load and answer once
+    # (seen on 2026-10-05: about 250 s, then 50-90 s). One more request is made after a
+    # read timeout, and only then.
+    request = {
+        "model": model,
+        "stream": False,
+        **sampling,
+        "max_tokens": 16000 if model.startswith("zai-org.glm-5.3") else 4000,
+        "messages": [
+            {
+                "role": "system",
+                "content": instructions
+                + " Return only JSON matching: "
+                + json.dumps(schema),
+            },
+            {"role": "user", "content": content},
+        ],
+    }
+    for attempt in (1, 2):
+        time.sleep(2)
+        try:
+            response = session.post(
+                BASE + "/chat/completions",
+                headers={"Authorization": "Bearer " + key},
+                json=request,
+                timeout=(5, read_timeout),
+                allow_redirects=False,
+            )
+            break
+        except requests.exceptions.ReadTimeout:
+            if attempt == 2:
+                raise ValueError(f"Dartmouth Chat did not answer within {read_timeout} seconds, twice") from None
     if response.status_code != 200:
         raise ValueError(f"Dartmouth research HTTP {response.status_code}")
     result = response.json()
@@ -363,6 +373,8 @@ def main():
         # No raw response bodies, request objects, or credentials in logs.
         if sys.argv[1:] == ["--check-model"] and isinstance(exc, ValueError):
             print(str(exc), file=sys.stderr)
+        elif type(exc) is ValueError:      # this module's own refusals: fixed sentences, no response text
+            print(f"Dartmouth adapter failed: {exc}", file=sys.stderr)
         else:
             print(f"Dartmouth adapter failed: {type(exc).__name__}", file=sys.stderr)
         sys.exit(2)
