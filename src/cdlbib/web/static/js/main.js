@@ -1,6 +1,6 @@
 // Start-up: the token, the views, the theme, the login shown in the header.
-import { setToken, hasToken, get, post, follow } from "./api.js";
-import { h, clear, button, announce, showError, run, ask, note, drafts, unsaved, add } from "./dom.js";
+import { setToken, hasToken, get, post, follow, ApiError } from "./api.js";
+import { h, clear, button, announce, showError, run, ask, note, drafts, unsaved, add, alertBox } from "./dom.js";
 import * as library from "./library.js";
 import * as edit from "./edit.js";
 import * as check from "./check.js";
@@ -125,6 +125,22 @@ async function start() {
   }
   if (!/^#\//.test(window.location.hash)) window.history.replaceState(null, "", "#/library");
   await show();
+  if (ctx.session.daily) daily(ctx.session.daily);
+}
+
+// The daily update check of the managed library, made once when the server started: what it
+// did is said; when the library holds unsent work nothing was changed and the person is asked.
+async function daily(job) {
+  try {
+    const done = await follow(job);
+    const said = [done.message].concat(done.notes || []).filter(Boolean);
+    if (said.length) alertBox(said.join("\n"), "info daily");
+    if (done.action === "updated" || done.action === "returned_to_main") await show();
+  } catch (error) {
+    if (!(error instanceof ApiError) || error.kind !== "UpdateNeedsDecision") { showError(error); return; }
+    const done = await stateView.decide(error, ctx);
+    if (done && done.decision !== "send") await show();
+  }
 }
 
 function storedThemeNow() {

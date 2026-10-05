@@ -27,7 +27,21 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
   const card = h("article", { class: "card", "data-proposal": found.id, "aria-label": "Proposal " + (found.key_typed || found.key_proposed || "(new)") });
   let pending = false;
   let typedInEditor = () => false;
+  let discardEdit = () => {};
   drafts.add(() => card.isConnected && typedInEditor());
+  card.unchecked = () => typedInEditor();      // the editor holds text that was not checked
+
+  // No decision is taken on a card while its editor holds unchecked text: that text would be
+  // dropped without a word. Recheck it, or discard it on purpose, first.
+  function settledEdit() {
+    if (!typedInEditor()) return true;
+    const said = card.querySelector(".unchecked") || h("div", { class: "unchecked" });
+    clear(said, note("warn", "The editor holds text that has not been checked. Recheck it, or discard the edit, before deciding about this proposal. ",
+      button("Discard the edit", () => { discardEdit(); said.remove(); }, { "data-action": "discard-edit" })));
+    card.prepend(said);
+    announce("The editor holds text that has not been checked.");
+    return false;
+  }
 
   // One action at a time on a card: while a job of this card runs, all its controls are off,
   // so nothing is decided about a version that is being replaced.
@@ -134,12 +148,12 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
     const editor = h("div", { hidden: true });
     const actions = h("div", { class: "row" });
     if (item.duplicate_of && item.duplicate_in_library) {
-      add(actions, button("Remove this typed duplicate", () => act(async () => {
+      add(actions, button("Remove this typed duplicate", () => settledEdit() && act(async () => {
         const done = await post("/api/proposal/remove-duplicate", { proposal: item.id });
         finish(appliedLines(done, verb), done.removed.length > 0);
-      })), button("Keep both for the formatter", () => act(skip)));
+      })), button("Keep both for the formatter", () => settledEdit() && act(skip)));
     } else {
-      add(actions, button("Accept", () => act(async () => {
+      add(actions, button("Accept", () => settledEdit() && act(async () => {
         const done = await post("/api/proposal/accept", { proposal: item.id });
         if (done.evidence_stored === false) {
           // the entry is written; what is still owed stays on the page
@@ -152,13 +166,14 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
         finish(appliedLines(done, verb), true);
       }), { class: "primary", disabled: !item.acceptable, "data-action": "accept" }),
       button("Edit", () => { editor.hidden = !editor.hidden; if (!editor.hidden) editor.querySelector("textarea").focus(); }, { "data-action": "edit" }),
-      button("Skip", () => act(skip), { "data-action": "skip" }));
+      button("Skip", () => settledEdit() && act(skip), { "data-action": "skip" }));
     }
     if (!item.acceptable && item.why_not.length) parts.push(h("div", { class: "why-not" }, h("p", { class: "muted", text: "Accept is not available:" }), list(item.why_not)));
     const base = item.proposed_raw || item.typed_raw || "";
     const text = h("textarea", { class: "mono", rows: "12", spellcheck: "false" });
     text.value = base;
     typedInEditor = () => text.isConnected && text.value !== base;
+    discardEdit = () => { text.value = base; editor.hidden = true; };
     add(editor, field("Edit the entry, then check it again", text),
       button("Recheck", () => act(async () => draw(await post("/api/proposal/recheck", { proposal: item.id, raw: text.value }))),
         { "data-action": "recheck" }));
@@ -183,7 +198,13 @@ export function proposalList({ verb, aside } = {}) {
   const remaining = button("Accept all remaining", async () => {
     remaining.disabled = true;
     try {
-      const done = await post("/api/proposal/accept-remaining", { proposals: [...open] });
+      // A card whose editor holds unchecked text is left out, and says so.
+      const editing = [...cards.querySelectorAll("article.card")].filter((card) => card.unchecked && card.unchecked());
+      const held = new Set(editing.map((card) => card.dataset.proposal));
+      for (const card of editing) {
+        if (!card.querySelector(".left-out")) card.prepend(h("div", { class: "left-out" }, note("warn", "Left out of \"accept all remaining\": its editor holds text that has not been checked.")));
+      }
+      const done = await post("/api/proposal/accept-remaining", { proposals: [...open].filter((id) => !held.has(id)) });
       for (const id of done.accepted) {
         const card = cards.querySelector('[data-proposal="' + id + '"]');
         if (card) clear(card, note("good", "Accepted with the remaining proposals."));

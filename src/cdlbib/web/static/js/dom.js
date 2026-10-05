@@ -104,7 +104,7 @@ export function alertBox(text, kind) {
     button("Close", () => box.remove(), { "aria-label": "Close this message" }));
   region.append(box);
   while (region.children.length > 4) region.firstChild.remove();
-  if (kind === "info") window.setTimeout(() => box.remove(), 8000);
+  if (kind === "info") window.setTimeout(() => box.remove(), 8000);       // (other kinds stay until closed)
   return box;
 }
 

@@ -14,7 +14,12 @@ export function diffView(text) {
 
 export async function show(main, ctx, key) {
   let original = "";
-  if (key) original = (await get("/api/entry", { key })).raw;
+  let opened = null;           // the entry's fingerprint when it was opened: what a save is bound to
+  if (key) {
+    const entry = await get("/api/entry", { key });
+    original = entry.raw;
+    opened = entry.fingerprint;
+  }
   let previewed = null;        // {id, raw, problems}
   const text = h("textarea", { class: "mono", id: "entry-text", spellcheck: "false", rows: "18" });
   text.value = original;
@@ -32,7 +37,25 @@ export async function show(main, ctx, key) {
 
   async function previewing() {
     const raw = text.value;
-    const found = await post("/api/edit/preview", { key: key || null, raw });
+    const found = await post("/api/edit/preview", { key: key || null, raw, opened });
+    if (found.changed_on_disk) {
+      // The entry is not what was opened: nothing is previewed against it and nothing can be saved over it.
+      stale();
+      const now = key ? await get("/api/entry", { key }).catch(() => null) : null;
+      clear(out, note("bad", h("strong", { text: "The entry changed on disk after you opened it." }),
+        h("p", { text: "Your text was not saved and is kept below to copy. Reloading puts the entry as it is now in the editor." })),
+        h("h3", { text: "Your text" }), h("pre", { class: "mono panel", id: "kept-text", text: raw }),
+        now ? [h("h3", { text: "The entry as it is now" }), h("pre", { class: "mono panel", text: now.raw }),
+          button("Reload the entry", () => {
+            original = now.raw;
+            opened = now.fingerprint;
+            text.value = now.raw;
+            stale();
+            text.focus();
+          }, { "data-action": "reload" })] : h("p", { text: "The entry is no longer in the library." }));
+      announce("The entry changed on disk after you opened it.");
+      return;
+    }
     previewed = { id: found.preview, raw };
     save.disabled = found.problems.length > 0 || !found.changed;
     const parts = [h("h2", { text: "Preview" })];
@@ -88,6 +111,7 @@ export async function show(main, ctx, key) {
     if (done.written.length) {
       original = submitted;
       key = written;
+      opened = (await get("/api/entry", { key })).fingerprint;       // what a further save from here is bound to
     }
     const parts = ["Saved " + written + "."];
     for (const [from, to] of Object.entries(done.renamed)) parts.push("Renamed " + from + " to " + to + ".");

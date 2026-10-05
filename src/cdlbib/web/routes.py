@@ -4,12 +4,13 @@ argument is refused by name, and no argument is a filesystem path. Each handler 
 checking, one action of cdlbib.api, and the result as plain data."""
 import base64
 import re
+import shutil
 from collections import Counter
 from dataclasses import dataclass, field, replace
 
 from .. import api, deps, prompts
 from ..errors import CdlbibError, UpdateNeedsDecision
-from .store import ID, MANUSCRIPT_TYPES, Missing
+from .store import ID, MANUSCRIPT_TYPES, Full, Missing
 
 # Names no endpoint takes, whatever the route: where a change goes, what it is compared
 # with, which cache or ledger is used, and anything that names a file.
@@ -262,6 +263,8 @@ def failure(exc):
         return dict(failure(exc.cause), **exc.extra)
     if isinstance(exc, Refusal):
         return dict({"kind": exc.kind, "message": str(exc)}, **exc.extra)
+    if isinstance(exc, Full):
+        return {"kind": "QuotaExceeded", "message": str(exc)}
     if isinstance(exc, Bad):
         return {"kind": "BadRequest", "message": str(exc)}
     if isinstance(exc, Missing):
@@ -315,7 +318,7 @@ def session(app, a, say):
     from .. import __version__
     return {"version": __version__, "root": str(app.ws.root), "bib": str(app.ws.bib), "managed": app.managed,
             "origin": app.origin, "not_managed": None if app.managed else not_managed(app),
-            "ask": deps.ask(), "prepare": app.prepare_job, "identity": app.identity,
+            "ask": deps.ask(), "prepare": app.prepare_job, "daily": app.daily_job, "identity": app.identity,
             "chosen_by": dict(prompts.CHOSEN_BY), "probes": list(api.PROBES), "no_bbl": NO_BBL,
             "manuscript_types": list(MANUSCRIPT_TYPES)}
 
@@ -324,7 +327,10 @@ def job(app, a, say):
     found = app.worker.get(a["id"])
     if found is None:
         raise Missing("no job with that id")
-    return found.view(a["after"], seconds=1.0)
+    view = found.view(a["after"], seconds=1.0)
+    if view["done"] and a["id"] == app.daily_job:
+        app.daily_job = None            # the daily check's outcome is shown once, by the page that fetched it
+    return view
 
 
 def job_cancel(app, a, say):
@@ -372,9 +378,14 @@ def review_queue(app, a, say):
 
 
 def preview_edit(app, a, say):
+    """``opened``: the fingerprint the entry had when the editor was opened. The save that
+    follows is bound to it, not to the entry as it is at preview time, so a change made on
+    disk in between is refused by the writer instead of becoming the new baseline."""
     preview = api.preview_edit(app.ws, a["key"], a["raw"])
     data = api.as_data(preview)
-    data["preview"] = app.store.put("preview", {"key": a["key"], "raw": a["raw"], "fingerprint": preview.fingerprint})
+    expected = a["opened"] if a["key"] and a["opened"] else preview.fingerprint
+    data["changed_on_disk"] = expected != preview.fingerprint
+    data["preview"] = app.store.put("preview", {"key": a["key"], "raw": a["raw"], "fingerprint": expected})
     return data
 
 
@@ -417,19 +428,17 @@ def add_search(app, a, say):
     found = api.find_candidates(app.ws, title=a["title"] or None, authors=a["authors"], year=a["year"] or None,
                                 progress=say)
     data = api.intake_data(found)
-    data["search"] = app.store.put("search", list(found))
+    data["search"] = app.store.put("search", {"leads": list(found), "pdf": None})
     return data
 
 
-def _lead(app, a):
-    leads = app.store.get("search", a["search"])
-    if a["index"] >= len(leads):
-        raise Bad("index: no such candidate")
-    return leads[a["index"]]
-
-
 def add_choose(app, a, say):
-    return kept(app, api.propose_new(app.ws, [api.candidate_query(_lead(app, a))], progress=say))
+    """The proposal for a chosen lead. A lead that was found for an uploaded PDF keeps that
+    PDF with it, so the proposal is shown beside the PDF's first page like any other from it."""
+    held = app.store.get("search", a["search"])
+    if a["index"] >= len(held["leads"]):
+        raise Bad("index: no such candidate")
+    return kept(app, api.propose_new(app.ws, [api.candidate_query(held["leads"][a["index"]])], progress=say), pdf=held["pdf"])
 
 
 def add_identifiers(app, a, say):
@@ -492,7 +501,7 @@ def pdf_lookup(app, a, say):
             "found_by": api.intake_data(result.found_by), "prefill": dict(result.prefill),
             "proposal": keep(app, result.proposal, pdf=a["pdf"]) if result.proposal is not None else None,
             "candidates": api.intake_data(result.candidates),
-            "search": app.store.put("search", list(result.candidates)) if result.candidates else None}
+            "search": app.store.put("search", {"leads": list(result.candidates), "pdf": a["pdf"]}) if result.candidates else None}
 
 
 def pdf_model(app, a, say):
@@ -687,15 +696,32 @@ def backups(app, a, say):
             "checkpoint": api.completion_undo_checkpoint()}
 
 
+def asks(app, exc):
+    """UpdateNeedsDecision as the page is given it: the question and the answers in the
+    words of ``prompts``, and the id under which what the question is about is kept."""
+    asked = prompts.answers(exc)
+    return Reply(exc, question=prompts.unsent_question(exc), answers={choice: asked[choice][1] for choice in exc.choices},
+                 decision=app.store.put("decision", {"seen": exc.seen, "choices": tuple(exc.choices)}))
+
+
 def update(app, a, say):
     managed_only(app)
     try:
         return api.as_data(api.update(app.ws, force=True, progress=say))
     except UpdateNeedsDecision as exc:
-        asked = prompts.answers(exc)
-        raise Reply(exc, question=prompts.unsent_question(exc),
-                    answers={choice: asked[choice][1] for choice in exc.choices},
-                    decision=app.store.put("decision", {"seen": exc.seen, "choices": tuple(exc.choices)})) from exc
+        raise asks(app, exc) from exc
+
+
+def daily(app):
+    """The job run once when the server starts on the managed library: the daily check of
+    every command (api.update without force: nothing is fetched when the last check is under
+    a day old). Unsent work is never touched: the page asks, as for an update asked for."""
+    def call(say):
+        try:
+            return api.as_data(api.update(app.ws, progress=say))
+        except UpdateNeedsDecision as exc:
+            raise asks(app, exc) from exc
+    return call
 
 
 def update_decide(app, a, say):
@@ -773,7 +799,11 @@ def export_run(app, a, say):
     target = app.store.new_folder()
     made = api.export_bib(app.ws, paper, out=target / app.ws.bib.name, main=named)
     cited = made.cited
-    kept_as = app.store.put("export", {"folder": target, "path": made.path}, size=made.path.stat().st_size)
+    try:        # what was made is kept only when it fits; otherwise it is removed again and the refusal says why
+        kept_as = app.store.put("export", {"folder": target, "path": made.path}, size=made.path.stat().st_size)
+    except Full:
+        shutil.rmtree(target, ignore_errors=True)
+        raise
     return {"export": kept_as, "name": made.path.name,
             "written": len(made.written), "cited": len(cited.keys), "all_entries": cited.all_entries,
             "read_from": READ_FROM[cited.how], "missing": [str(item) for item in made.missing],
@@ -804,7 +834,8 @@ def _routes():
               {"all": Flag(), "q": Text(500, optional=True), "offset": Whole(0, 10 ** 6), "limit": Whole(1, 200, 100)},
               wait=quick),
         Route(P, "/api/edit/preview", "preview_edit", preview_edit,
-              with_install(key=Text(200, KEY.pattern.pattern, optional=True), raw=RAW)),
+              with_install(key=Text(200, KEY.pattern.pattern, optional=True), raw=RAW,
+                           opened=Text(128, FINGERPRINT.pattern.pattern, optional=True))),
         Route(P, "/api/edit/save", "save_edit", save_edit, with_install(preview=Ident())),
         Route(P, "/api/check/keys", "check_keys", check_keys, with_install(keys=Texts(500, KEY, least=1))),
         Route(P, "/api/check/changed", "check_library", check_changed, with_install()),

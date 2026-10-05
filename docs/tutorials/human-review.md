@@ -123,7 +123,7 @@ cdlbib crossref status cdl.bib --keys keys.txt
 The **Review** view lists the entries that are not verified or approved. It has two
 buttons. "Changed entries" lists those among the entries that differ from the `master`
 version of `cdl.bib` on GitHub, which it downloads. "All entries" lists those in the whole
-library (the first 500). The view says at the top:
+library, 100 to a page, with a search box that takes the same words as the library's. The view says at the top:
 
 ```text
 A lookup, a proposal or a model reading is evidence. An approval is recorded only by the Approve action, under this computer's GitHub login.

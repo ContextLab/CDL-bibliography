@@ -18,7 +18,7 @@ from urllib.parse import parse_qs
 from .. import api, theme
 from ..errors import CdlbibError
 from . import routes
-from .jobs import Busy, Closed, Worker
+from .jobs import STOP_WAIT, Busy, Closed, Worker
 from .store import MAX_UPLOAD, Full, Store
 
 LOOPBACK = "127.0.0.1"
@@ -84,7 +84,7 @@ class App:
         self.worker = Worker(self.failure)
         self.managed = api.is_managed(ws)
         self.origin = api.library_state(ws).origin
-        self.cached = self.offers = self.offered = self.identity = self.prepare_job = None
+        self.cached = self.offers = self.offered = self.identity = self.prepare_job = self.daily_job = None
         self.generation, self.seen = 0, set()
         self.hosts = self.origins = ()
         folder = resources.files("cdlbib.web") / "static"
@@ -105,14 +105,25 @@ class App:
             pass
 
     def start(self):
+        """Start the worker. Its first job prepares the library; for the managed library the
+        next is the daily update check every command makes (api.update without force: at
+        most one fetch a day), whose outcome the page shows when it opens."""
         self.worker.start()
         self.prepare()
+        if self.managed:
+            self.daily_job = self.worker.submit("daily update check", routes.daily(self)).id
 
-    def close(self):
-        """Take no more jobs, cancel the ones that have not started, wait (for a bounded time)
-        for the one that is running, and only then remove the run's folder."""
-        self.worker.stop()
+    def close(self, wait=STOP_WAIT):
+        """Take no more jobs, cancel the ones that have not started, and wait up to ``wait``
+        seconds for the one that is running. The run's folder is removed only when the worker
+        has stopped: a job that is still running keeps its files, and the folder is named on
+        stderr instead. True when everything was removed."""
+        if not self.worker.stop(wait):
+            print(f"cdlbib web: a job ({self.worker.running}) was still running after {wait:g} seconds; its files "
+                  f"were left in {self.store.folder}", file=sys.stderr)
+            return False
         self.store.close()
+        return True
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -181,10 +192,10 @@ class Handler(BaseHTTPRequestHandler):
         if route.body != "json" and length <= most:
             kind = "pdf" if route.body == "pdf" else "bundle"
             try:        # room for the upload is set aside before a byte of it is read
-                self.app.store.reserve(kind, length)
+                self.app.store.reserve(kind, length, count=1 if kind == "pdf" else 0)
             except Full as exc:
                 raise Refused(413, "QuotaExceeded", str(exc)) from exc
-            self.reserved = (kind, length)
+            self.reserved = True
         if length > most:
             if route.body == "json" and length <= MAX_DRAIN:
                 left = length
@@ -272,8 +283,8 @@ class Handler(BaseHTTPRequestHandler):
         except Exception as exc:     # never a traceback to the browser
             self._send(500, {"error": self.app.failure(exc)}, shown)
         finally:
-            if self.reserved:           # what was stored is counted with its object from here on
-                self.app.store.release(*self.reserved)
+            if self.reserved:           # what was stored is counted with its object; the rest is given back
+                self.app.store.release()
 
     def _answer(self, route, args, body):
         app = self.app
@@ -334,12 +345,13 @@ class Running:
         self.thread.start()
         return self
 
-    def stop(self):
+    def stop(self, wait=STOP_WAIT):
+        """Stop serving, then close the app (App.close); True when its folder was removed."""
         if self.thread is not None:
             self.httpd.shutdown()
             self.thread.join(timeout=10)
         self.httpd.server_close()
-        self.app.close()
+        return self.app.close(wait)
 
 
 def start(ws, port=0, log=None):
