@@ -103,8 +103,14 @@ async function start() {
     return;
   }
   ctx.session = await get("/api/session");
-  const parts = ctx.session.root.split("/").filter(Boolean);
-  document.getElementById("library-path").textContent = (parts.length > 2 ? "…/" : "/") + parts.slice(-2).join("/");
+  // the end of the path, cut from the left at a folder boundary, to a fixed length
+  const root = ctx.session.root;
+  let tail = root;
+  if (root.length > 30) {
+    tail = root.slice(-29);
+    tail = "…" + (tail.includes("/") ? tail.slice(tail.indexOf("/")) : tail);
+  }
+  document.getElementById("library-path").textContent = tail;
   document.getElementById("library-path").title = ctx.session.bib;
   const nav = document.getElementById("nav");
   for (const [name, label] of VIEWS) add(nav, button(label, () => ctx.go(name), { "data-view": name }));

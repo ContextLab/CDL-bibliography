@@ -2,7 +2,7 @@
 // The browser sends back the id of the version it shows and the decision; the proposal itself
 // stays on the server, and a recheck or a choice makes a new version under a new id.
 import { get, post, ApiError } from "./api.js";
-import { h, clear, button, field, list, table, note, status, kv, showError, announce, drafts, add } from "./dom.js";
+import { h, clear, button, field, list, table, note, status, kv, showError, announce, drafts, add, bib } from "./dom.js";
 
 export function candidateLine(lead) {
   return [lead.authors, lead.year].filter(Boolean).join(" ") + ": " + (lead.title || "(no title)")
@@ -124,9 +124,9 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
     if (said) parts.push(note("warn", said));
     if (item.issues.length) parts.push(note("warn", list(item.issues)));
     if (item.notes.length) parts.push(note("", list(item.notes)));
-    parts.push(h("div", { class: "two" },
-      h("div", null, h("h3", { text: "Typed" }), h("pre", { class: "mono panel", text: item.typed_raw || "(no typed entry)" })),
-      h("div", null, h("h3", { text: "Proposed" }), h("pre", { class: "mono panel", text: item.proposed_raw || "(no proposed entry)" }))));
+    parts.push(h("div", { class: item.typed_raw ? "pair" : "pair single" },
+      h("div", null, h("h3", { text: "Typed" }), bib(item.typed_raw || "(no typed entry)")),
+      h("div", null, h("h3", { text: "Proposed" }), bib(item.proposed_raw || "(no proposed entry)"))));
     if (item.changes.length) {
       parts.push(table(["Field", "Typed", "Proposed", "Source", ""], item.changes.map((c) => [c.field, c.typed === null ? "" : c.typed,
         c.proposed === null ? "" : c.proposed, c.source, c.kind]), { class: "grid changes" }));
@@ -231,7 +231,12 @@ export function proposalList({ verb, aside } = {}) {
     add(found) {
       open.add(found.id);
       const card = proposalCard(found, { verb,
-        settled: (id) => { open.delete(id); update(); },
+        settled: (id) => {
+          open.delete(id);
+          update();
+          const pair = card.closest(".beside");       // decided: the PDF's page is no longer shown beside it
+          if (pair) pair.replaceWith(card);
+        },
         renewed: (before, after) => { open.delete(before); open.add(after); } });
       const beside = aside ? aside(found) : null;
       cards.prepend(beside ? h("div", { class: "two beside" }, beside, card) : card);

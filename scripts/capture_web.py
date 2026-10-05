@@ -63,6 +63,9 @@ def managed_library(folder):
     return ws
 
 
+LARGE = 235_000        # bytes; a picture above this is stored with a palette
+
+
 def recompress(path):
     """Write the PNG again with zlib's strongest setting (what Playwright writes is lightly packed)."""
     import struct
@@ -84,6 +87,47 @@ def recompress(path):
     smaller = b"".join(out)
     if len(smaller) < len(data):
         path.write_bytes(smaller)
+    if path.stat().st_size > LARGE and shutil.which("ffmpeg"):
+        # A tall picture: one palette of 256 colours, no dithering (an interface is flat colours and
+        # text; nothing visible changes), which more than halves the file.
+        import subprocess
+        made = path.with_suffix(".palette.png")
+        done = subprocess.run([shutil.which("ffmpeg"), "-y", "-loglevel", "error", "-i", str(path), "-vf",
+                               "split[a][b];[a]palettegen=max_colors=256:stats_mode=full[p];[b][p]paletteuse=dither=none",
+                               "-frames:v", "1", "-update", "1", str(made)], capture_output=True, text=True)
+        if done.returncode == 0 and made.stat().st_size < path.stat().st_size:
+            made.replace(path)
+        else:
+            made.unlink(missing_ok=True)
+
+
+MAX_HEIGHT = 2600
+# How much taller the window must be for the view (and an entry's pane inside it) to show whole.
+EXTRA = """() => {
+  const main = document.getElementById('main');
+  let extra = main.scrollHeight - main.clientHeight;
+  for (const el of document.querySelectorAll('.detail')) extra = Math.max(extra, el.scrollHeight - el.clientHeight);
+  return Math.max(0, extra);
+}"""
+PART_ROW = "() => { const list = document.querySelector('.vt-scroll'); return list ? list.clientHeight % 30 : 0; }"
+
+
+def whole(page):
+    """Size the window so that nothing of the view is cut: no line of text at the lower edge,
+    no entry's pane that scrolls, no half row at the end of the list. Returns the size to go back to."""
+    size = dict(page.viewport_size)
+    page.locator("main").evaluate("(el) => el.scrollTo(0, 0)")
+    for _ in range(6):
+        extra = page.evaluate(EXTRA)
+        if not extra or page.viewport_size["height"] >= MAX_HEIGHT:
+            break
+        page.set_viewport_size({"width": size["width"], "height": min(MAX_HEIGHT, page.viewport_size["height"] + extra + 2)})
+        page.wait_for_timeout(150)
+    part = page.evaluate(PART_ROW)
+    if part:
+        page.set_viewport_size({"width": size["width"], "height": page.viewport_size["height"] - part})
+        page.wait_for_timeout(150)
+    return size
 
 
 def capture(out, width, height, only):
@@ -98,11 +142,18 @@ def capture(out, width, height, only):
     wanted = [name for name in NAMES if not only or name in only]
     made = []
 
-    def shot(page, name):
+    def shot(page, name, part=None):
+        """The whole view (the window is made as tall as it needs), or just ``part`` of it."""
         if name in wanted:
             page.wait_for_timeout(250)
+            size = whole(page)
+            page.mouse.move(0, 0)               # nothing is hovered
             target = out / f"web-{name}.png"
-            page.screenshot(path=str(target))
+            if part:
+                page.locator(part).first.screenshot(path=str(target))
+            else:
+                page.screenshot(path=str(target))
+            page.set_viewport_size(size)
             recompress(target)
             made.append(target)
 
@@ -157,7 +208,7 @@ def capture(out, width, height, only):
 
             page.click("#nav >> [data-view=review]")
             page.click("button:has-text('All entries')")
-            page.fill("#review-search", "memory")
+            page.fill("#review-search", "author:kahana year:2002")
             page.wait_for_selector(".queue button.item", timeout=60_000)
             page.wait_for_timeout(800)
             for box in page.locator("#alerts .alert button").all():
@@ -175,22 +226,27 @@ def capture(out, width, height, only):
             page.click("article.card >> [data-action=skip]")
 
             if pdf is not None:
+                page.set_viewport_size({"width": 1640, "height": height})    # room for the page beside a whole line of BibTeX
+                page.click("#nav >> text=Library")
+                page.wait_for_selector(".vt-row")
+                page.click("#nav >> text=Add")                                 # the view anew: nothing left from the step before
                 page.click("role=tab[name='PDF']")
                 page.set_input_files("#add-pdf", str(pdf))
                 page.wait_for_selector("[data-action=pdf-lookup]", timeout=120_000)
                 if page.locator("img.pdf-image").count() == 0 and page.locator("iframe.pdf-frame").count() == 0:
                     page.wait_for_selector("img.pdf-image", timeout=60_000)
+                page.click("button:has-text('Type it in by hand')")
+                page.wait_for_selector("input[data-field=doi]")
+                page.set_viewport_size({"width": width, "height": height})
+                shot(page, "add-manual")
+                page.set_viewport_size({"width": 1640, "height": height})
+                page.click("role=tab[name='PDF']")
                 page.click("[data-action=pdf-lookup]")
                 page.wait_for_selector("article.card [data-action=accept]", timeout=120_000)
                 page.wait_for_selector(".beside img.pdf-image, .beside iframe", timeout=60_000)
-                page.locator(".beside").scroll_into_view_if_needed()
-                shot(page, "add-pdf")
+                shot(page, "add-pdf", part=".beside")
+                page.set_viewport_size({"width": width, "height": height})
                 page.click("article.card >> [data-action=skip]")
-                page.click("role=tab[name='PDF']")
-                page.click("button:has-text('Type it in by hand')")
-                page.wait_for_selector("input[data-field=doi]")
-                page.locator("[role=tablist]").scroll_into_view_if_needed()
-                shot(page, "add-manual")
 
             page.click("#nav >> [data-view=setup]")
             page.wait_for_selector("main table")
@@ -236,7 +292,7 @@ def capture(out, width, height, only):
     return made, problems
 
 
-GIF_SIZE = (960, 620)
+GIF_SIZE = (1180, 900)      # tall enough that no step of the journey is cut at the lower edge
 
 
 def record(out):
@@ -300,7 +356,7 @@ def record(out):
         # flat, which is what keeps the file small.
         done = subprocess.run(
             [ffmpeg, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(listing), "-vf",
-             "split[a][b];[a]palettegen=max_colors=32:stats_mode=full[p];[b][p]paletteuse=dither=none",
+             "split[a][b];[a]palettegen=max_colors=128:stats_mode=full[p];[b][p]paletteuse=dither=none",
              "-fps_mode", "vfr", str(target)], capture_output=True, text=True)
         if done.returncode != 0:
             raise SystemExit("ffmpeg failed: " + done.stderr[-1000:])

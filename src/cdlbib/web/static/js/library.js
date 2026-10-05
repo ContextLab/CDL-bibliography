@@ -92,7 +92,8 @@ export async function show(main, ctx) {
     }
     chosen = ctx.selected ? shown.indexOf(at.get(ctx.selected)) : -1;
     space.style.height = shown.length * ROW + "px";
-    scroll.scrollTop = chosen >= 0 ? Math.max(0, chosen * ROW - scroll.clientHeight / 2 + ROW) : 0;
+    // the selected row near the middle, the list starting at a whole row
+    scroll.scrollTop = chosen >= 0 ? Math.max(0, (chosen - Math.floor(scroll.clientHeight / ROW / 2) + 1) * ROW) : 0;
     lay();
   }
 

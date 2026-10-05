@@ -231,7 +231,7 @@ export async function show(main) {
     ["Manual", (panel) => { manualTab(panel).catch((error) => add(panel, note("bad", error.message))); }],
   ]);
   clear(main, h("div", { class: "stack" }, h("h1", { text: "Add references" }), h("div", { class: "panel" }, view.el),
-    h("details", null, h("summary", { text: "Lookup log" }), log.el), h("h2", { text: "Proposals" }),
+    log.el, h("h2", { text: "Proposals" }),
     h("p", { class: "muted", text: "Nothing is written until a proposal is accepted. An accepted entry is still subject to the checks before a send." }),
     proposals.el));
 }

@@ -50,6 +50,6 @@ export async function show(main) {
       field("One line describing the change (optional)", summary),
       h("label", { class: "check" }, skip, " Skip the completion step (as `cdlbib send --no-complete`)"),
       h("div", { class: "row" }, button("Check and send", (event) => run(event.currentTarget, sending), { class: "primary", "data-action": "send" })),
-      step.el, h("h3", { text: "Log" }), log.el, out)));
+      step.el, log.el, out)));
   await state();
 }

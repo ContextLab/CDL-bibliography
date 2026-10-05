@@ -676,6 +676,8 @@ def evidence_retry(app, a, say):
 def _state(app, found):
     data = api.as_data(found)
     data["not_managed"] = None if found.managed else not_managed(app)
+    # as `cdlbib where` prints it
+    data["last_check_text"] = found.last_check.strftime("%Y-%m-%d %H:%M UTC") if found.last_check else "never"
     return data
 
 
@@ -700,7 +702,12 @@ def asks(app, exc):
     """UpdateNeedsDecision as the page is given it: the question and the answers in the
     words of ``prompts``, and the id under which what the question is about is kept."""
     asked = prompts.answers(exc)
-    return Reply(exc, question=prompts.unsent_question(exc), answers={choice: asked[choice][1] for choice in exc.choices},
+    # prompts.unsent_question is the terminal's text: the sentences, then one "[letter] answer"
+    # line per choice. A page shows the answers as buttons (the same words, from prompts.answers),
+    # so those lines are left out here; every other line is the core's, unchanged.
+    lettered = {f"  [{letter}] {words}" for letter, words in asked.values()}
+    question = "\n".join(line for line in prompts.unsent_question(exc).splitlines() if line not in lettered)
+    return Reply(exc, question=question, answers={choice: asked[choice][1] for choice in exc.choices},
                  decision=app.store.put("decision", {"seen": exc.seen, "choices": tuple(exc.choices)}))
 
 

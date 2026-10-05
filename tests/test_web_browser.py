@@ -917,3 +917,164 @@ def test_the_daily_check_is_shown_when_the_page_opens(browser, managed):  # noqa
         found.context.close()
         running.stop()
     assert found.problems == [], found.problems
+
+
+# --- every view stays clean -----------------------------------------------------------------------
+
+CLEAN = """() => {
+  const bad = [];
+  const shown = (el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden';
+  const say = (what, el) => bad.push(what + ': ' + (el.textContent || el.tagName).trim().slice(0, 60));
+  const root = document.documentElement, main = document.getElementById('main'), top = document.querySelector('header.top');
+  if (root.scrollWidth > root.clientWidth) bad.push('the page scrolls sideways');
+  if (main.scrollWidth > main.clientWidth + 1) bad.push('the view scrolls sideways');
+  const rows = document.querySelector('.vt-scroll');
+  if (rows && rows.scrollWidth > rows.clientWidth + 1) bad.push('the list of entries is wider than its box');
+  // nothing lies under the header, and a view opens at its top
+  if (main.getBoundingClientRect().top < top.getBoundingClientRect().bottom - 1) bad.push('the view starts under the header');
+  // controls and chips: one line, and their text inside their box
+  for (const el of document.querySelectorAll('button, .tag, .st, th, [role=tab], #identity, .brand')) {
+    if (!shown(el)) continue;
+    if (el.scrollWidth > el.clientWidth + 1 && !['hidden', 'clip'].includes(getComputedStyle(el).overflowX)) say('text overflows its box', el);
+    if (el.matches('.item, .choices button') || !el.matches('button, .tag, .st, [role=tab]')) continue;
+    const style = getComputedStyle(el);
+    const line = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.45;
+    const inner = el.getBoundingClientRect().height - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+    if (inner > line * 1.6) say('more than one line', el);
+  }
+  for (const cell of document.querySelectorAll('.vt-row > *, .vt-head > *, .queue .item > div')) {       // one line each, cut with an ellipsis
+    if (shown(cell) && cell.scrollHeight > cell.clientHeight + 2) say('a one-line cell holds more than one line', cell);
+  }
+  for (const cell of document.querySelectorAll('td, dd, dt, .note, .card, .panel, li')) {
+    if (cell.closest('.deep')) continue;       // nested data scrolls sideways inside its own box, by design
+    if (shown(cell) && cell.scrollWidth > cell.clientWidth + 1 && getComputedStyle(cell).overflowX === 'visible') say('content overflows its box', cell);
+  }
+  // no rule that breaks inside words
+  for (const el of main.querySelectorAll('*')) {
+    const style = getComputedStyle(el);
+    if (style.overflowWrap === 'anywhere' || style.wordBreak === 'break-all') { say('breaks anywhere', el); break; }
+  }
+  // no word is split over two lines (identifiers may wrap after / . _ - : =, where the page allows it)
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    const parent = node.parentElement;
+    if (!parent || !shown(parent) || parent.closest('textarea, select, script, style, .visually-hidden')) continue;
+    for (const found of node.data.matchAll(/[\\p{L}\\p{N}]{2,}/gu)) {
+      range.setStart(node, found.index);
+      range.setEnd(node, found.index + found[0].length);
+      const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+      if (lines.size > 1) { bad.push('a word is broken across lines: ' + found[0] + ' in: ' + node.data.trim().slice(0, 50)); break; }
+    }
+  }
+  // the header: brand, views and login on one row from 1000px up; the views on one line
+  const tops = new Set([...document.querySelectorAll('#nav button')].map((el) => Math.round(el.getBoundingClientRect().top)));
+  if (window.innerWidth >= 1000) {
+    if (tops.size !== 1) bad.push('the views wrap in the header');
+    const middles = ['.brand', '#nav', '.who'].map((name) => { const box = document.querySelector(name).getBoundingClientRect(); return box.top + box.height / 2; });
+    if (Math.max(...middles) - Math.min(...middles) > 12 || top.getBoundingClientRect().height > 60) bad.push('the header is not one row');
+  }
+  return bad;
+}"""
+
+
+def _walk(visit, page, pdf):
+    """Every view, tab and dialog once; yields a name each time something new is on the screen."""
+    yield "library"
+    page.fill("#search", "key:Game62")
+    expect(page.locator(".vt-row .c-key")).to_have_text(["Game62"])
+    page.click(".vt-row")
+    expect(page.locator(".detail-head h2")).to_have_text("Game62")
+    for index, name in enumerate(("entry", "issues", "evidence")):
+        page.locator(".detail [role=tab]").nth(index).click()
+        yield "library, " + name
+    page.click(".detail [role=tabpanel]:visible details.card summary")
+    yield "library, a source record"
+    page.click("button:has-text('Approve')")
+    yield "the approval dialog"
+    page.keyboard.press("Escape")
+    page.click("button:has-text('Edit')")
+    page.fill("#entry-text", GAME62.replace("Pages = {1--11}", "Pages = {1-11}"))
+    page.click("button:has-text('Preview')")
+    expect(page.locator(".diff")).to_be_visible()
+    yield "edit, previewed"
+    page.fill("#entry-text", GAME62)
+    visit.nav("check")
+    yield "check"
+    page.click("button:has-text('Format check only')")
+    expect(page.locator("section[aria-label=Result] .note").first).to_be_visible(timeout=60_000)
+    yield "check, a result"
+    visit.nav("review")
+    page.click("#alerts .alert button")
+    page.click("button:has-text('All entries')")
+    page.locator(".queue button.item").first.click()
+    expect(page.locator(".detail-head h2")).to_be_visible()
+    yield "review, an entry"
+    visit.nav("add")
+    yield "add, search"
+    page.click("role=tab[name='Identifiers']")
+    page.fill("#add-identifiers", pdfs.ZOLLER_DOI)
+    page.click("button:has-text('Look up')")
+    expect(page.locator("article.card")).to_have_count(1, timeout=120_000)
+    yield "add, a proposal"
+    page.locator("article.card [data-action=edit]").click()
+    yield "add, a proposal's editor"
+    page.locator("article.card [data-action=edit]").click()
+    if pdf is not None:
+        page.click("role=tab[name='PDF']")
+        page.set_input_files("#add-pdf", str(pdf))
+        expect(page.locator("[data-action=pdf-lookup]")).to_be_visible(timeout=120_000)
+        expect(page.locator("button[data-route=openai]")).to_be_visible(timeout=60_000)
+        yield "add, a PDF"
+        page.click("[data-action=pdf-lookup]")
+        expect(page.locator(".beside article.card")).to_have_count(1, timeout=120_000)
+        expect(page.locator(".beside img.pdf-image, .beside iframe")).to_have_count(1, timeout=60_000)
+        yield "add, a proposal beside its PDF"
+    page.click("role=tab[name='Manual']")
+    expect(page.locator("input[data-field=title]")).to_be_visible(timeout=60_000)
+    yield "add, manual"
+    visit.nav("send")
+    yield "send"
+    visit.nav("state")
+    expect(page.locator("main dl.kv").first).to_be_visible()
+    yield "library state"
+    visit.nav("setup")
+    expect(page.locator("main table").first).to_be_visible()
+    yield "setup"
+    page.click("button:has-text('Remove the link')") if page.locator("button:has-text('Remove the link')").count() else None
+    if page.locator("dialog[open]").count():
+        yield "setup, a confirmation"
+        page.keyboard.press("Escape")
+
+
+@pytest.mark.parametrize("width,height,scheme", [(1180, 760, "light"), (1440, 900, "light"), (390, 800, "light"),
+                                                  (1000, 700, "light"), (1180, 760, "dark")])
+def test_every_view_is_clean_at_every_size(browser, visit, tmp_path, width, height, scheme):
+    """Each view, tab and dialog: no text broken inside a word, nothing outside its box, buttons
+    and chips on one line, no sideways scrolling, one consistent header, nothing under it."""
+    pdf = pdfs.build("doi", tmp_path / "pdf") if pdfs.pdflatex() and importlib.util.find_spec("pypdfium2") else None
+    sized = Visit(browser, visit.running, visit.ws, viewport={"width": width, "height": height}, color_scheme=scheme)
+    problems = {}
+    try:
+        page = sized.open()
+        for name in _walk(sized, page, pdf):
+            page.wait_for_timeout(250)
+            found = page.evaluate(CLEAN)
+            if found:
+                problems[name] = found
+    finally:
+        sized.context.close()
+    assert problems == {}, problems
+    assert sized.problems == [], sized.problems
+
+
+def test_going_to_a_view_or_a_tab_never_leaves_its_top_out_of_sight(visit):
+    page = visit.open()
+    for name in ("setup", "add", "state", "send", "check", "review", "library"):
+        visit.nav("setup")
+        page.locator("main").evaluate("(el) => el.scrollTo(0, el.scrollHeight)")       # far down in a long view ...
+        visit.nav(name)
+        page.wait_for_timeout(200)
+        assert page.locator("main").evaluate("(el) => el.scrollTop") == 0, name         # ... and the next one opens at its top
+        box = page.locator("main > :first-child").first.bounding_box()
+        assert box["y"] >= page.locator("header.top").bounding_box()["height"], name

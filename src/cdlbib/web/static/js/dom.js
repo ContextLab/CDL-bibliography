@@ -21,7 +21,7 @@ export function h(tag, attrs, ...kids) {
   const el = document.createElement(tag);
   for (const [name, value] of Object.entries(attrs || {})) {
     if (value === null || value === undefined || value === false) continue;
-    if (name === "text") el.textContent = String(value);
+    if (name === "text") add(el, String(value));
     else if (name === "on") for (const [event, fn] of Object.entries(value)) el.addEventListener(event, fn);
     else if (name === "class") el.className = value;
     else if (PROPERTIES.has(name)) el[name] = value;
@@ -35,9 +35,41 @@ export function h(tag, attrs, ...kids) {
 export function add(el, ...kids) {
   for (const kid of kids.flat(Infinity)) {
     if (kid === null || kid === undefined || kid === false) continue;
-    el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+    if (kid instanceof Node) el.append(kid);
+    else if (VERBATIM.has(el.tagName) && (el.tagName !== "PRE" || el.classList.contains("mono"))) el.append(String(kid));
+    else el.append(...soft(String(kid)));
   }
   return el;
+}
+
+// Text as nodes, with a break opportunity after each / . _ - : = inside a long unbroken token (a
+// DOI, a key, a path, an address), so that such a token wraps there and never in the middle of
+// a word. What is shown and what is copied are unchanged. Text that is kept exactly as written
+// (BibTeX in a pre, form controls) is not touched.
+const VERBATIM = new Set(["PRE", "TEXTAREA", "OPTION", "TITLE", "CODE"]);
+const LONG = /(\S{16,})/;
+
+export function soft(text) {
+  if (!LONG.test(text)) return [document.createTextNode(text)];
+  const nodes = [];
+  for (const part of text.split(LONG)) {
+    if (!part) continue;
+    if (!LONG.test(part)) { nodes.push(document.createTextNode(part)); continue; }
+    part.split(/(?<=[/._:=-])(?=[^/._:=-])/).forEach((piece, index) => {
+      if (index) nodes.push(document.createElement("wbr"));
+      // a piece with nowhere to break (a hash) is kept whole and scrolls inside its own box
+      if (piece.length > 28) nodes.push(h("span", { class: "unbroken", tabindex: "0" }, document.createTextNode(piece)));
+      else nodes.push(document.createTextNode(piece));
+    });
+  }
+  return nodes;
+}
+
+// The text of an entry, line by line (see pre.bib in the style sheet). What is copied is the text itself.
+export function bib(text, attrs) {
+  const lines = String(text).split("\n");
+  return h("pre", { class: "bib mono panel", ...(attrs || {}) },
+    lines.map((line, index) => h("span", null, document.createTextNode(line + (index < lines.length - 1 ? "\n" : "")))));
 }
 
 export function clear(el, ...kids) {
@@ -81,14 +113,20 @@ export function status(value) {
 }
 
 // Any plain data as nested lists: what a source record, an attempt or a review record holds.
+// Deeply nested data keeps its words whole and scrolls sideways in its own box when it is wider than the view.
 export function data(value) {
+  const simple = value === null || typeof value !== "object" || (Array.isArray(value) && value.every((item) => item === null || typeof item !== "object"));
+  return simple ? tree(value) : h("div", { class: "deep" }, tree(value));
+}
+
+function tree(value) {
   if (value === null || value === undefined) return h("span", { class: "muted", text: "none" });
   if (Array.isArray(value)) {
     if (!value.length) return h("span", { class: "muted", text: "none" });
     if (value.every((item) => item === null || typeof item !== "object")) return h("span", { text: value.join("; ") });
-    return list(value.map((item) => data(item)));
+    return list(value.map((item) => tree(item)));
   }
-  if (typeof value === "object") return kv(Object.entries(value).map(([name, item]) => [name, data(item)]));
+  if (typeof value === "object") return kv(Object.entries(value).map(([name, item]) => [name, tree(item)]));
   return h("span", { text: String(value) });
 }
 
@@ -129,15 +167,18 @@ export async function run(control, action) {
   }
 }
 
+// A log of progress lines. It takes no room until it has a line.
 export function logPane(label) {
-  const el = h("pre", { class: "log mono", role: "log", "aria-live": "polite", "aria-label": label || "Progress", tabindex: "0" });
+  const pre = h("pre", { class: "log mono", role: "log", "aria-live": "polite", "aria-label": label || "Progress", tabindex: "0" });
+  const el = h("section", { class: "logbox", hidden: true }, h("h3", { text: label || "Progress" }), pre);
   return {
     el,
     add(line) {
-      el.append(line + "\n");
-      el.scrollTop = el.scrollHeight;
+      el.hidden = false;
+      pre.append(line + "\n");
+      pre.scrollTop = pre.scrollHeight;
     },
-    clear() { el.textContent = ""; },
+    clear() { pre.textContent = ""; el.hidden = true; },
   };
 }
 

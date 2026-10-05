@@ -1,6 +1,6 @@
 // Editing one entry, or typing a new one: the preview first, then the save of exactly what was previewed.
 import { get, post } from "./api.js";
-import { h, clear, button, field, list, table, note, status, kv, run, info, announce, drafts, showError, add } from "./dom.js";
+import { h, clear, button, field, list, table, note, status, kv, run, info, announce, drafts, showError, add, bib } from "./dom.js";
 
 export function diffView(text) {
   const el = h("pre", { class: "diff mono panel", "aria-label": "Changes" });
@@ -44,8 +44,8 @@ export async function show(main, ctx, key) {
       const now = key ? await get("/api/entry", { key }).catch(() => null) : null;
       clear(out, note("bad", h("strong", { text: "The entry changed on disk after you opened it." }),
         h("p", { text: "Your text was not saved and is kept below to copy. Reloading puts the entry as it is now in the editor." })),
-        h("h3", { text: "Your text" }), h("pre", { class: "mono panel", id: "kept-text", text: raw }),
-        now ? [h("h3", { text: "The entry as it is now" }), h("pre", { class: "mono panel", text: now.raw }),
+        h("h3", { text: "Your text" }), bib(raw, { id: "kept-text" }),
+        now ? [h("h3", { text: "The entry as it is now" }), bib(now.raw),
           button("Reload the entry", () => {
             original = now.raw;
             opened = now.fingerprint;
@@ -80,7 +80,7 @@ export async function show(main, ctx, key) {
         f.corrected === null ? "(removed)" : f.corrected, f.message])));
       if (found.corrected_raw && found.corrected_raw !== raw) {
         parts.push(h("details", null, h("summary", { text: "The entry as the house formatter would write it" }),
-          h("pre", { class: "mono panel", text: found.corrected_raw }),
+          bib(found.corrected_raw),
           button("Put this text in the editor", () => { text.value = found.corrected_raw; stale(); clear(out); text.focus(); })));
       }
       parts.push(h("p", { class: "muted", text: "Format findings do not stop a save; they are checked again before a send." }));
