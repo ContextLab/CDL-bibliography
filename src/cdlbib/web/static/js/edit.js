@@ -5,7 +5,8 @@ import { h, clear, button, field, list, table, note, status, kv, run, info, anno
 export function diffView(text) {
   const el = h("pre", { class: "diff mono panel", "aria-label": "Changes" });
   for (const line of String(text || "").split("\n")) {
-    const kind = line.startsWith("@@") ? "hunk" : line.startsWith("+") ? "add" : line.startsWith("-") ? "del" : "";
+    const head = line.startsWith("@@") || line.startsWith("+++") || line.startsWith("---");
+    const kind = head ? "hunk" : line.startsWith("+") ? "add" : line.startsWith("-") ? "del" : "";
     el.append(h("span", { class: kind, text: line || " " }));
   }
   return el;
