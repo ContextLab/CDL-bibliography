@@ -490,13 +490,25 @@ def approvals_to_send(ws, database=None, entries=None):
     """The human approvals a send adds to verification/approvals.jsonl: the ledger row (key,
     fingerprint, human_review, approval_digest, approved_at, policy) of each entry whose
     stored result is a current human approval recorded under a GitHub login and is not in
-    that ledger yet. [] when there is no verification database. Reads only. ``entries``: the
-    parsed library, when the caller holds it."""
-    from .verification import Cache, unshared_approvals
+    that ledger yet. [] when there is no verification database. The database is asked through
+    a read-only connection first, and opened as the verifier opens it only when a stored
+    human approval is there to be read. ``entries``: the parsed library, when the caller
+    holds it."""
+    from .verification import Cache, approval_candidates, load_entries, unshared_approvals
     database = Path(database or ws.database)
     if not database.is_file():
         return []
     try:
+        entries = entries if entries is not None else load_entries(str(ws.bib))
+        try:
+            held = sqlite3.connect(database.resolve().as_uri() + "?mode=ro", uri=True, timeout=5)
+            try:
+                if not approval_candidates(held, str(ws.bib), entries):
+                    return []
+            finally:
+                held.close()
+        except sqlite3.OperationalError:
+            pass                         # a database the verifier has not set up yet, or a busy one: read as usual
         cache = Cache(str(database), ledger=ws.revocations)
         try:
             return unshared_approvals(str(ws.bib), cache, ws.approvals, entries=entries)

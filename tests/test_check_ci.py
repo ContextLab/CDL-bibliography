@@ -78,3 +78,48 @@ def test_push_with_reachable_base_and_no_change_selects_nothing(clone):
     run = run_ci(clone, "push", head(clone))
     assert run.returncode == 0, run.stdout + run.stderr
     assert "not in the history" not in run.stdout
+
+
+def reported(repo, key):
+    """The status the run's report (.bibcheck/report.jsonl) gives ``key``."""
+    import json
+    for line in (repo / ".bibcheck" / "report.jsonl").read_text(encoding="utf-8").splitlines():
+        row = json.loads(line)
+        if row["key"] == key:
+            return row["status"]
+    raise AssertionError(f"{key} is not in the report")
+
+
+def test_a_pull_request_reads_the_approvals_ledger_of_its_base_only(clone):
+    """A commit adds a valid ledger row (verification/approvals.jsonl) approving Zoll90 as it
+    stands. As a pull request against the commit before it, the row is the pull request's own
+    and is not read: Zoll90 keeps the status of the base's baseline. Once the base holds the
+    row (the push after the merge, or the committed library checked whole), it is read."""
+    from cdlbib import verification as v
+    key = "Zoll90"
+    entry = v.load_entries(str(clone / "cdl.bib"))[key]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+    row = {"key": key, "fingerprint": entry["fingerprint"], "human_review": review,
+           "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+    assert v.valid_shared_approval(row)
+    start = head(clone)
+    ledger = clone / "verification" / "approvals.jsonl"
+    with open(ledger, "a", encoding="utf-8") as stream:
+        stream.write(v.dumps(row) + "\n")
+    subprocess.run(["git", "add", "verification/approvals.jsonl"], cwd=clone, check=True)
+    subprocess.run(["git", "commit", "-q", "-m", "an approval of Zoll90"], cwd=clone, check=True)
+    try:
+        run = run_ci(clone, "pull_request", start)
+        assert run.returncode == 0, run.stdout + run.stderr                  # no entry changed: nothing is gated
+        assert reported(clone, key) == "metadata_verified"                   # and the row approved nothing
+        at_base = subprocess.run(["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True)
+        assert (clone / ".bibcheck" / "base-approvals.jsonl").read_bytes() == at_base.stdout
+        run = run_ci(clone, "push", head(clone))                             # the base holds the row
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert reported(clone, key) == "human_verified"
+        run = run_ci(clone, "push", MISSING)                                 # the committed library, checked whole
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert reported(clone, key) == "human_verified"
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)

@@ -427,22 +427,32 @@ def shared_view(entry, result, row):
     return base
 
 
+def approval_candidates(db, filename, entries):
+    """The keys of ``entries`` whose newest stored result for exactly their text may be a human
+    approval, asked of the SQLite connection ``db`` without reading the results into Python
+    (a read-only connection will do). What it names is then read through the cache."""
+    bibliography = str(Path(filename).resolve())
+    found = []
+    for key, entry in entries.items():
+        newest = db.execute(
+            """SELECT instr(result, '"status":"human_verified"') FROM reviews WHERE bibliography=?
+            AND fingerprint=? AND policy=? ORDER BY id DESC LIMIT 1""",
+            (bibliography, entry["fingerprint"], POLICY)).fetchone()
+        if newest and newest[0]:
+            found.append(key)
+    return found
+
+
 def unshared_approvals(filename, cache, ledger, entries=None):
     """The ledger rows a send adds to ``ledger``: one for each entry whose stored result in
     this database is a current human approval recorded under a GitHub login (not revoked,
     for exactly the entry's text, complete) that ``ledger`` does not hold yet, in the
-    file's order. Reads only."""
+    file's order."""
     entries = entries if entries is not None else load_entries(filename)
     held = {(r["fingerprint"], r["approval_digest"]) for r in read_approval_ledger(ledger)}
-    bibliography = str(Path(filename).resolve())
     rows = []
-    for key, entry in entries.items():
-        newest = cache.db.execute(
-            """SELECT instr(result, '"status":"human_verified"') FROM reviews WHERE bibliography=?
-            AND fingerprint=? AND policy=? ORDER BY id DESC LIMIT 1""",
-            (bibliography, entry["fingerprint"], POLICY)).fetchone()
-        if not newest or not newest[0]:
-            continue                     # the newest stored result for this text is no human approval
+    for key in approval_candidates(cache.db, filename, entries):
+        entry = entries[key]
         result = cache.stored(filename, entry)
         if not result or result.get("status") != "human_verified" or result.get("fingerprint") != entry["fingerprint"]:
             continue

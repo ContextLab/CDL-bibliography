@@ -742,6 +742,44 @@ def test_check_and_send_begin_with_the_completion_step_unless_it_is_skipped(visi
     assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
 
 
+def test_the_send_and_state_pages_list_an_approval_that_waits_when_no_file_has_changed(visit):
+    """The library is a real checkout with nothing changed, and one human approval recorded
+    under a GitHub login in its verification database. The Send page lists the approval and
+    does not say "nothing has changed"; the Library state page lists it and offers the way to
+    Send. Looking adds nothing to verification/approvals.jsonl."""
+    import os
+    import subprocess
+    from cdlbib import verification as v
+    ws = visit.ws
+    env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@cdlbib.invalid", GIT_COMMITTER_NAME="t",
+               GIT_COMMITTER_EMAIL="t@cdlbib.invalid")
+    for args in (("init", "--quiet"), ("symbolic-ref", "HEAD", "refs/heads/master"), ("add", "cdl.bib"),
+                 ("commit", "--quiet", "-m", "start")):
+        subprocess.run(["git", *args], cwd=ws.root, env=env, capture_output=True, text=True, check=True)
+    page = visit.open()
+    visit.nav("send")
+    expect(page.locator("main dl")).to_contain_text("nothing has changed")
+    expect(page.locator("main dl")).not_to_contain_text("Approvals to send")
+
+    cache = v.Cache(str(ws.database), ledger=ws.revocations)
+    try:
+        v.record_approval(cache, str(ws.bib), "Game62", load_entries(ws.bib)["Game62"]["fingerprint"],
+                          {"reviewer": "@octocat", "source": "The printed volume.", "note": "Compared every field.",
+                           "github_login": "octocat", "github_id": 583231})
+    finally:
+        cache.close()
+    visit.nav("state")
+    expect(page.locator("main")).to_contain_text("Unsent approvals")
+    expect(page.locator("main")).to_contain_text("Game62 (@octocat)")
+    page.get_by_role("button", name="Go to Send").click()
+    expect(page.locator("main h1")).to_have_text("Send")
+    expect(page.locator("main dl")).to_contain_text("Approvals to send")
+    expect(page.locator("main dl")).to_contain_text("Game62, approved by @octocat")
+    expect(page.locator("main dl")).to_contain_text("verification/approvals.jsonl (the send adds the approvals below to it)")
+    expect(page.locator("main dl")).not_to_contain_text("nothing has changed")
+    assert not ws.approvals.exists()
+
+
 def test_names_are_chosen_one_by_one_in_the_proposal(browser, tmp_path, monkeypatch):
     from cdlbib.web import routes
     web.isolate(monkeypatch, tmp_path / "env")

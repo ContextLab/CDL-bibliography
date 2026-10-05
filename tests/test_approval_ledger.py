@@ -112,6 +112,13 @@ def test_an_approval_under_a_login_becomes_one_ledger_row_and_approves_in_an_emp
         cache.close()
     assert api.status(ws, database=str(other), report=str(tmp_path / "report.jsonl"), keys=None).counts == {
         "human_verified": 1, "pending": 1}
+    # A snapshot written from that database carries the approval, as any current result.
+    cache = v.Cache(str(other), ledger=ws.revocations)
+    try:
+        exported = v.export_snapshot(str(ws.bib), cache, str(tmp_path / "snapshot.jsonl.gz"))
+    finally:
+        cache.close()
+    assert exported["Zoll90"]["status"] == "human_verified" and exported["Zoll90"]["human_review"] == REVIEW
 
 
 def test_rows_are_appended_and_earlier_lines_are_never_rewritten(tmp_path):

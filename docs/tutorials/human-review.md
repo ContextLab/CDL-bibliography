@@ -69,6 +69,50 @@ cdlbib crossref revoke Zoll90 --reason 'Recorded as a demonstration.'
 Zoll90: every matching approval is already revoked
 ```
 
+## Sharing an approval
+
+An approval is stored in the local verification database (`.bibcheck/`, never committed).
+`cdlbib send`, the Send view of the terminal interface and the Send view of the web
+interface share it: the send appends one line per approval to
+`verification/approvals.jsonl` and commits that file. This applies to every current
+approval in the local database that was recorded under a GitHub login, has not been
+revoked, and is not in the file yet. Nothing else has to change for the send to go ahead.
+For each approval the send prints (or shows in its log):
+
+```text
+approval of MannEtal11 by @you: added to verification/approvals.jsonl
+```
+
+and, after the commit, `approvals sent: MannEtal11`. The pull request's text ends with a
+line `Approved by @you: MannEtal11`. If the send stops before the commit is made, it prints
+
+```text
+not sent: verification/approvals.jsonl is as it was before (the approvals stay in the local database)
+```
+
+and the file is byte for byte as it was. Before a send, the Send view lists the approvals
+under "Approvals that will be sent" (terminal) or "Approvals to send" (web), and the
+Library state view lists them as unsent approvals.
+
+A line of `verification/approvals.jsonl` is one JSON object with these fields:
+
+|Field|Content|
+|-|-|
+|`key`|The entry's key when the approval was sent (for the reader; the fingerprint decides).|
+|`fingerprint`|The fingerprint of the entry's text that was approved.|
+|`human_review`|The review as recorded: `reviewer`, `github_login`, `github_id`, `source`, `note`.|
+|`approval_digest`|A hash of `human_review`; a line whose digest does not match is invalid.|
+|`approved_at`|When the approval was recorded.|
+|`policy`|The checker's policy version at that time; a line under another version approves nothing.|
+
+Once the line is in someone's copy of the library (after the pull request is merged and
+they update), the entry reads as `human_verified` there with no command to run, provided
+its text still has that fingerprint. A file with an invalid line is refused whole, with
+the message `Invalid approval record in <file>`. `cdlbib crossref revoke` withdraws an
+approval that came from this file too, also on a computer whose database never stored it;
+the revocation takes precedence. The pull request check reads the file from the base
+branch only.
+
 ## Web interface
 
 The web-interface output in this section was recorded with `cdlbib 2.0.0` on October 5,

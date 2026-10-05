@@ -253,6 +253,63 @@ new approval). The database's copy and the ledger's copy of a revocation both co
 
 Tests: `tests/test_revocation.py` (real entries and approval rows frozen from commit 7f3eead).
 
+### Sharing an approval: the approvals ledger
+
+`verification/approvals.jsonl` is the counterpart of `revocations.jsonl` for approvals. It
+is written by `cdlbib send` (`api.send`, which the terminal and web interfaces call through
+`api.send_checked`) and by nothing else; `approve` writes only to the database.
+
+Writing. Before `send` decides whether there is anything to send, `api.approvals_to_send`
+lists the rows to add: one for each entry whose stored result in the local database is a
+current `human_verified` result for exactly the entry's text, with a `human_review` that
+has a non-blank reviewer, source, note and `github_login`, that is not revoked, and whose
+(fingerprint, digest) pair is not in the file yet. The rows are appended before the gate
+(`verification.append_approvals`: one line each, `json.dumps` with sorted keys and no
+spaces; earlier lines are not touched), and `progress` receives a line for each. The file
+is under `verification/`, so it is committed and pushed with the change, and it alone is a
+change to send. If the send raises before a commit holds the rows, the file is put back to
+the bytes it had (removed when it did not exist), unless something else changed it in the
+meantime; the approvals stay in the database. `api.approvals_note` adds to the pull
+request's text the entries whose current approval is a row that the upstream base's copy of
+the file does not hold, whether or not the entry differs from the reference.
+
+A row:
+
+|Field|Content|
+|-|-|
+|`key`|The entry's key when the row was written. Informational: matching is by fingerprint.|
+|`fingerprint`|The content fingerprint of the approved text.|
+|`human_review`|The stored record: `reviewer`, `github_login`, `github_id`, `source`, `note`.|
+|`approval_digest`|`approval_digest(human_review)`, the identity revocations use.|
+|`approved_at`|The stored result's `checked_at`. It is beside `human_review`, not inside it, because the digest is a hash of `human_review`.|
+|`policy`|The `POLICY` the approval was stored under.|
+
+Reading. `Cache.get` returns the stored result when it is a human approval. Otherwise it
+looks for rows with the entry's fingerprint (`Cache.shared_approval`) and returns a
+`human_verified` view built from the newest row whose `policy` is the current `POLICY` and
+that no revocation matches (`revocation_matches`: the same digest and time rules as for a
+stored approval). The view keeps the stored result's evidence, takes `human_review` from
+the row and `checked_at` from `approved_at`, and is not written to the database
+(`Cache.stored` is the result without the ledger). Every command that reads results through
+`Cache.get` therefore sees the approval, with no `restore`. A row applies under a stored
+result of any other status, including one stored later by a new machine check of the same
+text. `read_approval_ledger` validates every line (`valid_shared_approval`: all fields
+present and non-blank, the four `human_review` fields above, and a digest equal to the
+digest of `human_review`) and raises `ValueError` for the whole file when one is invalid.
+
+The file read is `approvals.jsonl` beside the revocation ledger in use, unless the
+environment variable `CDLBIB_APPROVAL_LEDGER` names another file.
+
+Revocation. `record_revocation` also finds approvals that exist only as ledger rows (rows
+with the key, or with the entry's current fingerprint), so `crossref revoke` works on a
+computer whose database never stored the approval. The approvals ledger is not edited; the
+revocation row is what makes the approval stop counting. `restore` stores a snapshot's
+result for a text even when a ledger row approves it. `snapshot` exports current results,
+so an approval read from the ledger is written into a new baseline as `human_verified`.
+
+Tests: `tests/test_approval_ledger.py`, and
+`test_a_pull_request_reads_the_approvals_ledger_of_its_base_only` in `tests/test_check_ci.py`.
+
 ## Operational limits
 
 - Crossref deposits can be incomplete or incorrect. A metadata match is not independent corroboration from the PDF.
@@ -695,13 +752,17 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   `.bibcheck/base.bib`, restores the base revision's `verification/baseline.jsonl.gz`
   (never the snapshot in the pull request), and runs
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
-  edited content is gated; key-only renames are excluded.
+  edited content is gated; key-only renames are excluded. It also writes the base
+  revision's `verification/approvals.jsonl` to `.bibcheck/base-approvals.jsonl` (an empty
+  file when the base has none) and sets `CDLBIB_APPROVAL_LEDGER` to it, so the checker
+  reads approvals from that copy and not from the pull request's file.
 - A push whose base revision is not in the history (a force-push, rewritten history, or
   a new branch) has nothing to compare against. Its content is already merged, so the job
   restores the pushed commit's own `verification/baseline.jsonl.gz` and runs
   `crossref status cdl.bib` (offline): every entry must have an accepted result for its
   exact current text. Pull requests never take this path; one without a base is refused.
 - A manual run restores the committed baseline and checks the whole library.
+- The last two read the checked-out commit's own `verification/approvals.jsonl`.
 - The SQLite database is kept in the Actions cache, keyed by ref; a pull request can
   fall back to the `master` cache, and `master` never restores a pull-request cache. The
   report and a checkpoint snapshot are uploaded as artifacts. The cache only saves
@@ -711,8 +772,10 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   configuration or provider error.
 
 Because approvals are trusted only from the base branch, a pull request that adds a
-`human_verified` approval to `baseline.jsonl.gz` still fails its own check for that
-entry; a maintainer merges it after checking the approval. The job runs the pull
+`human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`, still
+fails its own check for an entry it also adds or edits; a maintainer merges it after
+checking the approval. A pull request that only adds rows to `approvals.jsonl` changes no
+entry, so no entry is selected and the check passes without reading those rows. The job runs the pull
 request's own code, so this guarantee assumes the checker itself is unchanged; review any
 change under `src/cdlbib/` or `verification/check_ci.py` separately.
 
