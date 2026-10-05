@@ -17,8 +17,8 @@ import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import library, tex
-from .errors import ExportFailed
+from . import library, tex, texinstall
+from .errors import ExportFailed, MissingProgram
 
 LIMIT = 120                                            # seconds one TeX program is given
 ENGINES = {"pdflatex": "-draftmode", "latex": "-draftmode", "lualatex": "--draftmode", "xelatex": "-no-pdf"}
@@ -492,10 +492,17 @@ def _built(main, inputs=(), lua=False):
 
 
 def _program(name):
+    """The program's path. When it is not installed: errors.MissingProgram if this computer's
+    TeX package manager can install it as the current user (a front end then installs it and
+    runs the export again, api.attempt), else ExportFailed("no_tex") naming the command."""
     found = shutil.which(name)
-    if not found:
-        raise ExportFailed("no_tex", f"{name} was not found on PATH. A .bbl needs a TeX installation that has it.", [name])
-    return found
+    if found:
+        return found
+    wanted = texinstall.plan(name)
+    if wanted.command:
+        raise MissingProgram(name, "Compiling a .bbl", wanted.command, wanted.shown)
+    raise ExportFailed("no_tex", f"{name} was not found on PATH. A .bbl needs a TeX installation that has it. "
+                       + texinstall.how(name), [name])
 
 
 def _run(command, cwd, env, kind):
@@ -1042,6 +1049,18 @@ def _bcf_value(element, what, value):
     return value
 
 
+def _bcf_versions(root):
+    """What wrote the control file and what would read it, for a refusal about a name the
+    allowlist lacks: the biblatex version and the file's format version (both from the file's
+    own first element), the installed biber, and the biber the allowlist was derived from."""
+    def stated(attribute):
+        value = root.get(attribute, "")
+        return value if re.fullmatch(r"[0-9][0-9A-Za-z.+-]{0,19}", value) else "not stated"
+    return (f"Found here: biblatex {stated('bltxversion')} (control file format {stated('version')}) and biber "
+            f"{texinstall.version('biber') or 'not installed'}; the names that are passed on were derived from "
+            f"biber {texinstall.ALLOWLIST_BIBER}'s schema of the file.")
+
+
 def own_bcf(data, sources):
     """The control file for biber, built here from the one biblatex wrote.
 
@@ -1108,11 +1127,12 @@ def own_bcf(data, sources):
     def rebuilt(element, parent=None):
         name = local(element)
         if name not in BCF_SHAPE:
-            _bcf_refused(f"it has an element this version does not know: {name}.", [name])
+            _bcf_refused(f"it has an element this version does not know: {name}. {_bcf_versions(old)}", [name])
         attributes, children, holds_text = BCF_SHAPE[name]
         unknown = [attribute for attribute in element.attrib if attribute not in attributes]
         if unknown:
-            _bcf_refused(f"{name} has an attribute this version does not know: {', '.join(unknown)}.", unknown)
+            _bcf_refused(f"{name} has an attribute this version does not know: {', '.join(unknown)}. "
+                         + _bcf_versions(old), unknown)
         text = text_of(element, name, holds_text)
         checked(name, element, text or "")
         fresh = ET.Element(space + name) if parent is None else ET.SubElement(parent, space + name)

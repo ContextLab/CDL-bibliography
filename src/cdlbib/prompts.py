@@ -76,11 +76,15 @@ FORCE_REFUSED = ("a Force field is not allowed: every entry follows the same hou
 
 def install_question(exc):
     """The question about installing a missing optional package (errors.MissingDependency)."""
+    if getattr(exc, "command", None):       # a TeX program (errors.MissingProgram): the command is part of the question
+        return f"{exc.feature} needs the TeX program '{exc.package}'. Install it now ({exc.shown})?"
     return f"{exc.feature} needs '{exc.package}'. Install it now?"
 
 
 def install_line(exc):
     """The line said when a missing optional package is installed without asking."""
+    if getattr(exc, "command", None):
+        return f"installing {exc.package} (needed for: {exc.feature}) with: {exc.shown} ..."
     return f"installing {exc.package} (needed for: {exc.feature}) ..."
 
 

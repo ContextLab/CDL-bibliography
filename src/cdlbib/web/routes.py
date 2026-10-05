@@ -251,7 +251,8 @@ def backup_data(backup, only_copy=False):
 
 
 EXTRA = {"EditRefused": ("problems",), "UpdateConflict": ("entries", "files"),
-         "MissingDependency": ("package", "extra", "feature"), "PublishRefused": ("needs_fork", "upstream"),
+         "MissingDependency": ("package", "extra", "feature"), "MissingProgram": ("package", "extra", "feature", "command"),
+         "PublishRefused": ("needs_fork", "upstream"),
          "ExportFailed": ("names",), "TexLinkRefused": ("status",),
          "UpdateNeedsDecision": ("changed", "entries_changed", "new_commits", "local_commits", "choices", "branch",
                                  "pull_request", "state", "default", "rewritten")}

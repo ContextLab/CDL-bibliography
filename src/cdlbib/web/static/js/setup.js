@@ -17,7 +17,7 @@ export async function show(main, ctx) {
       table(["", "", "What was found", "How to set it up", ""], found.features.map((item) => [
         h("strong", { text: item.name }),
         h("span", { class: (item.available ? "agrees" : item.available === null ? "muted" : "differs") + " nowrap", text: item.available === null ? "not checked" : item.available ? "yes" : "no" }),
-        item.detail, item.how,
+        item.version ? item.detail + " (" + item.version + ")" : item.detail, item.how,
         PROBE[item.name] && item.available !== true ? button("check", (event) => run(event.currentTarget, () => checking(PROBE[item.name])),
           { "aria-label": "Check " + item.name }) : ""])),
       h("div", { class: "row" }, button("Check everything", (event) => run(event.currentTarget, () => checking("all")))),

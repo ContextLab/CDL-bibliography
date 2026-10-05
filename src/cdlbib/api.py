@@ -1407,6 +1407,7 @@ class Feature:
     available: bool | None
     detail: str = ""
     how: str = ""
+    version: str = ""       # of a program whose version matters (biber: with the biblatex TeX finds)
 
 
 @dataclass
@@ -1424,7 +1425,8 @@ def features(probe=(), progress=None):
     biber, pypdf, the Dartmouth Chat and OpenAI keys, textual.
 
     By default only what can be seen without asking anyone: programs on PATH, installed
-    packages, environment variables. It never blocks, prompts or uses the network; the gh login
+    packages, environment variables, and the version bibtex and biber report (``version``; for
+    biber with the biblatex TeX finds). It never prompts or uses the network; the gh login
     and a key that is not in the environment are then ``available=None`` ("not checked").
     ``probe`` names the checks to make as well, from PROBES, or "all": "github" asks gh who is
     logged in (the network, GH_TIMEOUT seconds); "dartmouth-chat" and "openai" read the system
@@ -1433,7 +1435,7 @@ def features(probe=(), progress=None):
     import importlib.util
     import os
     import shutil
-    from . import deps, identity, secrets
+    from . import deps, identity, secrets, texinstall
     from .errors import IdentityUnavailable, SecretNotFound
     wanted = PROBES if probe == "all" else tuple([probe] if isinstance(probe, str) else probe)
     unknown = [name for name in wanted if name not in PROBES]
@@ -1483,8 +1485,10 @@ def features(probe=(), progress=None):
         except IdentityUnavailable as exc:
             found.append(Feature("gh login", False, str(exc).replace(identity.HOW, "").strip(), identity.HOW))
     program("TeX", "kpsewhich", tex_how)
-    program("bibtex", "bibtex", tex_how)
-    program("biber", "biber", "biber comes with a full TeX Live or MacTeX; in a smaller one: tlmgr install biber")
+    for name in ("bibtex", "biber"):
+        path = shutil.which(name)
+        found.append(Feature(name, bool(path), path or f"{name} was not found on PATH", "" if path else texinstall.how(name),
+                             version=(texinstall.versions_line() if name == "biber" else texinstall.version(name)) if path else ""))
     package("pypdf", "pypdf", "research")
     found.append(key("dartmouth-chat", "Dartmouth Chat key"))
     found.append(key("openai", "OpenAI key"))      # the key only; whether the route is usable: model_routes (.detail)

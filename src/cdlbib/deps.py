@@ -72,7 +72,12 @@ def manual_command(extra, package=None):
 
 def install(extra, python=sys.executable, requirement=None, package=None):
     """Install what cdlbib's metadata lists for `extra` (or `requirement`, for tests) into
-    python's environment."""
+    python's environment. A TeX program (``extra`` "tex": errors.MissingProgram) is installed
+    by the TeX installation's own package manager instead (texinstall.install)."""
+    if extra == "tex" and not requirement:
+        from . import texinstall
+        texinstall.install(package)
+        return
     targets = [requirement] if requirement else requirements_for(extra, package)
     command = installer(python)
     if not command:
