@@ -769,6 +769,12 @@ def _outgoing_ledger(ws):
     if current is None and not committed:
         return [], None
     rows, problems = ledger_additions(committed, current)
+    if rows and not problems:            # held to the bibliography as it stands (parsed only when rows were added)
+        from .verification import load_entries
+        try:
+            rows, problems = ledger_additions(committed, current, entries=load_entries(str(ws.bib)))
+        except (OSError, ValueError) as exc:
+            raise CdlbibError(f"{ws.bib} could not be read: {exc}") from exc
     if problems:
         return [], (f"{APPROVALS_PATH} cannot be sent as it is: {'; '.join(problems)}. A send commits only valid "
                     "rows added after the committed ones. Nothing was changed. Put the file right (`git diff -- "

@@ -374,8 +374,13 @@ Rows are validated when they enter the ledger, not only when they are read. `sen
 only rows that are valid at that moment and refuses a ledger whose uncommitted lines are not
 (`ledger_additions`). The pull request check runs `crossref check-ledger --base FILE` first:
 it fails when a line the base revision holds was removed or changed, or when an added line
-is not a valid row at the time of the run. A row dated ahead of the clock is not valid, so
-one cannot be merged today and begin to count when its date comes. A reader still validates
+is not, at the time of the run, a valid row under the current `POLICY` whose fingerprint is
+that of an entry of the same commit's `cdl.bib` and whose `key` is that entry's key (any of
+them, where the same text stands under several keys). So nothing can be merged today and
+begin to count later: not a row dated ahead of the clock, not a row for another policy, not
+a row for a text that no entry has yet. `send` applies the same function to the working
+tree. Lines the base already holds are not checked again: a row whose entry was edited or
+removed since no longer matches any entry and is not an error for later changes. A reader still validates
 every row each time, and a row typed into a working tree is subject to the reader's clock
 there.
 

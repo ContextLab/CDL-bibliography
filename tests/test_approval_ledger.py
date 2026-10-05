@@ -594,6 +594,67 @@ def test_check_ledger_fails_what_must_not_enter_the_ledger(tmp_path):
     assert run.exit_code == 2 and "is a link or not an ordinary" in run.output
 
 
+def test_a_row_enters_only_for_an_entry_as_it_stands_under_its_key_and_the_current_policy(checkout, tmp_path):
+    """The same check for the pull request check (`crossref check-ledger`) and for `send`.
+    Refused when added: a row for a text no entry has (it would lie in wait for whoever adds
+    that text), a row whose key is another entry's, a row for another policy. Not a problem:
+    a row the base already holds whose entry was edited or removed since; the same text under
+    two keys, named by either."""
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    ws, _ = checkout
+    approve(ws, "Zoll90")
+    approve(ws, "Rame72", note="Checked the volume in print.")
+    zoll, rame = api.approvals_to_send(ws)
+    base = tmp_path / "base-approvals.jsonl"
+    line = lambda row: (v.dumps(row) + "\n").encode("utf-8")               # noqa: E731
+    original = ws.bib.read_text(encoding="utf-8")
+    absent = dict(zoll, fingerprint="v2:" + "ab" * 32, key="NotYet26")       # a text nobody has added yet
+    miskeyed = dict(zoll, key="Rame72")
+    other_policy = dict(zoll, policy=v.POLICY + "9")
+    assert all(v.valid_shared_approval(row) for row in (absent, miskeyed, other_policy))
+
+    def check(base_bytes, head_bytes):
+        base.write_bytes(base_bytes)
+        ws.approvals.write_bytes(head_bytes)
+        run = CliRunner().invoke(app, ["check-ledger", "--base", str(base), "--fname", str(ws.bib)])
+        return run.exit_code, run.output
+
+    def send_refusal():
+        before, ledger = state(ws.root), ws.approvals.read_bytes()
+        with pytest.raises(PublishRefused) as refused:
+            api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
+        assert state(ws.root) == before and ws.approvals.read_bytes() == ledger
+        return str(refused.value)
+    for row, why in ((absent, "line 1 approves a text that no entry of the bibliography has (key 'NotYet26'"),
+                     (miskeyed, "line 1 names the key 'Rame72', and its fingerprint is that of Zoll90"),
+                     (other_policy, f"line 1 is a row for policy '{v.POLICY}9'; rows enter under the current policy")):
+        code, said = check(b"", line(row))
+        assert code == 1 and why in said, said
+        assert why in send_refusal()                                         # the working tree's uncommitted line
+    assert check(b"", line(zoll) + line(rame)) == (0, "approvals ledger: 2 rows added\n")
+    # Readers: a row for another policy, or for a text no entry has, counts for nothing meanwhile.
+    ws.approvals.write_bytes(line(other_policy) + line(absent))
+    assert statuses(ws, tmp_path / "empty.sqlite3") == {"Zoll90": "pending", "Rame72": "pending"}
+
+    # Already in the base, and its entry edited or removed since: no error for a later change.
+    ws.bib.write_text(original.replace("Volume = {27}", "Volume = {28}"), encoding="utf-8")
+    assert check(line(zoll), line(zoll) + line(rame)) == (0, "approvals ledger: 1 row added\n")
+    assert check(line(zoll), line(zoll)) == (0, "approvals ledger: 0 rows added\n")
+    assert check(b"", line(zoll))[0] == 1                                    # added now, it is for a text no entry has
+    assert statuses(ws, tmp_path / "empty.sqlite3")["Zoll90"] == "pending"   # and the old row simply no longer matches
+    ws.bib.write_text(RAME72 % "1" + "\n", encoding="utf-8")                 # Zoll90 removed
+    assert check(line(zoll), line(zoll) + line(rame)) == (0, "approvals ledger: 1 row added\n")
+
+    # The same text under two keys: a row may name either, and no third.
+    from test_machinery_2026_09_25 import ZOLL90
+    ws.bib.write_text(ZOLL90 + "\n\n" + ZOLL90.replace("{Zoll90,", "{Zoll90b,") + "\n", encoding="utf-8")
+    assert fingerprint(ws, "Zoll90b") == zoll["fingerprint"]
+    assert check(b"", line(zoll) + line(dict(zoll, key="Zoll90b")))[0] == 0
+    code, said = check(b"", line(dict(zoll, key="Rame72")))
+    assert code == 1 and "its fingerprint is that of Zoll90, Zoll90b" in said
+
+
 # --- which copy of the ledger a gate reads -----------------------------------------------------------
 
 def closed_network(monkeypatch):

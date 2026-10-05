@@ -669,11 +669,15 @@ def check_ledger(
     fname: str = typer.Option("cdl.bib", "--fname"),
 ):
     """Check what verification/approvals.jsonl adds to a base copy: nothing removed or changed,
-    every added line a valid row now (a time ahead of the clock is not). Exit 1 otherwise."""
+    every added line a valid row now (a time ahead of the clock is not), under the current
+    policy, for an entry of the bibliography as it stands and under its key. Exit 1 otherwise."""
     fname = bib(ctx, fname)
     try:
         head = verification.ledger_bytes(Workspace.for_bib(fname).approvals)[0]
-        rows, problems = verification.ledger_additions(Path(base).read_bytes(), head)
+        base_bytes = Path(base).read_bytes()
+        rows, problems = verification.ledger_additions(base_bytes, head)
+        if rows or problems:             # something was added: it is held to the bibliography of this commit
+            rows, problems = verification.ledger_additions(base_bytes, head, entries=load_entries(fname))
     except (ValueError, OSError) as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)

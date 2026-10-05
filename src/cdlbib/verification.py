@@ -535,13 +535,24 @@ def shared_revoked(revocation, row):
     return approval_revoked(revocation, row["fingerprint"], row["human_review"], row["approved_at"])
 
 
-def ledger_additions(base, head):
+def ledger_additions(base, head, entries=None):
     """What the approvals ledger ``head`` (bytes, or None for no file) adds to ``base`` (the
-    same), checked as rows are checked when they enter: (rows, problems). The ledger only
-    grows, so ``head`` must begin with the bytes of ``base``; every line after them must be
-    a valid row now (shared_approval_problem: which refuses, among the rest, a time ahead of
-    the clock, so that a row cannot be let in today to start counting later). ``problems``
-    holds a sentence for each failure; the rows are the valid added ones."""
+    same), checked as rows are checked when they enter: (rows, problems). The one check of
+    `crossref check-ledger` (the pull request check) and of `cdlbib send`.
+
+    The ledger only grows, so ``head`` must begin with the bytes of ``base``. Every line
+    after them must be a row that counts now, for an entry that is there now, so that
+    nothing can be let in today to start counting later:
+      - a valid row (shared_approval_problem; a time ahead of the clock is not);
+      - under the current POLICY (a row for another policy would wait for that policy);
+      - with ``entries`` (the bibliography of the same commit, as load_entries gives it): its
+        fingerprint is that of an entry, and its key is that entry's key (one of them, where
+        the same text stands under several keys). A row for a text that no entry has would
+        lie in wait for whoever adds that text.
+    Rows the base already holds are not looked at: one whose entry was since edited or removed
+    no longer matches anything, and is no problem of a later change.
+
+    ``problems`` holds a sentence for each failure; the rows are the added ones that pass."""
     base, head = base or b"", head or b""
     if head == base:
         return [], []
@@ -563,8 +574,23 @@ def ledger_additions(base, head):
                 problem = f"not valid JSON ({str(exc)[:120]})"
         if problem:
             problems.append(f"line {number} is not a valid approval row: {problem}")
-        else:
-            rows.append(record)
+            continue
+        if record["policy"] != POLICY:
+            problems.append(f"line {number} is a row for policy {record['policy']!r}; rows enter under the current "
+                            f"policy ({POLICY!r}) only")
+            continue
+        if entries is not None:
+            keys = sorted(key for key, entry in entries.items() if entry["fingerprint"] == record["fingerprint"])
+            if not keys:
+                problems.append(f"line {number} approves a text that no entry of the bibliography has (key "
+                                f"{record['key']!r}, fingerprint {record['fingerprint']}); a row enters only for an "
+                                "entry as it stands")
+                continue
+            if record["key"] not in keys:
+                problems.append(f"line {number} names the key {record['key']!r}, and its fingerprint is that of "
+                                f"{', '.join(keys)}")
+                continue
+        rows.append(record)
     if len(head) > APPROVAL_LEDGER_MAX_BYTES:
         problems.append(f"the ledger would be larger than {APPROVAL_LEDGER_MAX_BYTES} bytes, and is then not read")
     return rows, problems

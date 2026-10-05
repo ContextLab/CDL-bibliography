@@ -87,8 +87,9 @@ def main():
             revocations.write_bytes(b"")
         trusted_ledgers = ["--trusted-revocations", str(revocations.resolve())]
         # Rows are validated when they enter: a change that removes or alters a ledger line,
-        # or adds a line that is not a valid row now (a time ahead of the clock is not, so a
-        # row cannot be merged today to start counting later), fails here.
+        # or adds a line that is not a valid row now, under the current policy, for an entry
+        # of this commit's cdl.bib under its key, fails here (nothing can be merged today to
+        # start counting later: not a future date, another policy, or a text nobody has yet).
         entering = subprocess.run(command + ["check-ledger", "--base", str(approvals.resolve())])
         if entering.returncode:
             return entering.returncode
