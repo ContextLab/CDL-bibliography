@@ -1,0 +1,6203 @@
+{
+"2.14": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"lang",
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.15": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"lang",
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.16": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"lang",
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.17": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"lang",
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.18": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"intorder",
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"encoding",
+"glob",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name",
+"visibility"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"lang",
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.19": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"intorder",
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"encoding",
+"glob",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name",
+"visibility"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.20": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"intorder",
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"namehashtemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"namehashtemplatename",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"encoding",
+"glob",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namehashtemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"hashscope",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name",
+"visibility"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.21": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"intorder",
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"namehashtemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"namehashtemplatename",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"encoding",
+"glob",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namehashtemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"hashscope",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name",
+"visibility"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"order",
+"type"
+],
+[],
+true
+]
+},
+"2.22": {
+"antecedent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"bibdata": [
+[
+"section"
+],
+[
+"datasource"
+],
+false
+],
+"citekey": [
+[
+"intorder",
+"members",
+"nocite",
+"order",
+"type"
+],
+[],
+true
+],
+"citekeycount": [
+[
+"count"
+],
+[],
+true
+],
+"consequent": [
+[
+"quant"
+],
+[
+"field"
+],
+false
+],
+"constant": [
+[
+"name",
+"type"
+],
+[],
+true
+],
+"constants": [
+[],
+[
+"constant"
+],
+false
+],
+"constraint": [
+[
+"datatype",
+"pattern",
+"rangemax",
+"rangemin",
+"type"
+],
+[
+"antecedent",
+"consequent",
+"field",
+"fieldor",
+"fieldxor"
+],
+false
+],
+"constraints": [
+[],
+[
+"constraint",
+"entrytype"
+],
+false
+],
+"controlfile": [
+[
+"bltxversion",
+"version"
+],
+[
+"bibdata",
+"datafieldset",
+"datalist",
+"datamodel",
+"extradatespec",
+"inheritance",
+"labelalphanametemplate",
+"labelalphatemplate",
+"namehashtemplate",
+"noinits",
+"nolabels",
+"nonamestrings",
+"nosorts",
+"options",
+"optionscope",
+"presort",
+"section",
+"sortexclusion",
+"sortinclusion",
+"sortingnamekeytemplate",
+"sortingtemplate",
+"sourcemap",
+"transliteration",
+"uniquenametemplate"
+],
+false
+],
+"datafieldset": [
+[
+"name"
+],
+[
+"member"
+],
+false
+],
+"datalist": [
+[
+"labelalphanametemplatename",
+"labelprefix",
+"name",
+"namehashtemplatename",
+"section",
+"sortingnamekeytemplatename",
+"sortingtemplatename",
+"type",
+"uniquenametemplatename"
+],
+[
+"filter",
+"filteror"
+],
+false
+],
+"datamodel": [
+[],
+[
+"constants",
+"constraints",
+"entryfields",
+"entrytypes",
+"fields",
+"multiscriptfields"
+],
+false
+],
+"datasource": [
+[
+"datatype",
+"encoding",
+"glob",
+"type"
+],
+[],
+true
+],
+"defaults": [
+[
+"ignore",
+"inherit_all",
+"override_target"
+],
+[
+"type_pair"
+],
+false
+],
+"entryfields": [
+[],
+[
+"entrytype",
+"field"
+],
+false
+],
+"entrytype": [
+[
+"skip_output"
+],
+[],
+true
+],
+"entrytypes": [
+[],
+[
+"entrytype"
+],
+false
+],
+"exclusion": [
+[],
+[],
+true
+],
+"extradatespec": [
+[],
+[
+"scope"
+],
+false
+],
+"field": [
+[
+"datatype",
+"fieldtype",
+"format",
+"label",
+"nullok",
+"order",
+"override_target",
+"skip",
+"skip_output",
+"source",
+"target"
+],
+[],
+true
+],
+"fieldor": [
+[],
+[
+"field"
+],
+false
+],
+"fields": [
+[],
+[
+"field"
+],
+false
+],
+"fieldxor": [
+[],
+[
+"field"
+],
+false
+],
+"filter": [
+[
+"type"
+],
+[],
+true
+],
+"filteror": [
+[],
+[
+"filter"
+],
+false
+],
+"inclusion": [
+[],
+[],
+true
+],
+"inherit": [
+[
+"ignore"
+],
+[
+"field",
+"type_pair"
+],
+false
+],
+"inheritance": [
+[],
+[
+"defaults",
+"inherit"
+],
+false
+],
+"key": [
+[],
+[],
+true
+],
+"keypart": [
+[
+"order"
+],
+[
+"part"
+],
+false
+],
+"labelalphanametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"labelalphatemplate": [
+[
+"type"
+],
+[
+"labelelement"
+],
+false
+],
+"labelelement": [
+[
+"order"
+],
+[
+"labelpart"
+],
+false
+],
+"labelpart": [
+[
+"final",
+"ifnames",
+"names",
+"namessep",
+"noalphaothers",
+"pad_char",
+"pad_side",
+"substring_fixed_threshold",
+"substring_side",
+"substring_width",
+"substring_width_max"
+],
+[],
+true
+],
+"map": [
+[
+"map_foreach",
+"map_overwrite",
+"refsection"
+],
+[
+"map_step",
+"per_datasource",
+"per_nottype",
+"per_type"
+],
+false
+],
+"map_step": [
+[
+"map_append",
+"map_appendstrict",
+"map_entry_clone",
+"map_entry_new",
+"map_entry_newtype",
+"map_entry_null",
+"map_entrykey_allnocited",
+"map_entrykey_cited",
+"map_entrykey_citedornocited",
+"map_entrykey_nocited",
+"map_entrykey_starnocited",
+"map_entrytarget",
+"map_field_set",
+"map_field_source",
+"map_field_target",
+"map_field_value",
+"map_final",
+"map_match",
+"map_matches",
+"map_matchesi",
+"map_matchi",
+"map_notfield",
+"map_notmatch",
+"map_notmatchi",
+"map_null",
+"map_origentrytype",
+"map_origfield",
+"map_origfieldval",
+"map_replace",
+"map_type_source",
+"map_type_target"
+],
+[],
+false
+],
+"maps": [
+[
+"datatype",
+"level",
+"map_overwrite"
+],
+[
+"map"
+],
+false
+],
+"member": [
+[
+"datatype",
+"field",
+"fieldtype"
+],
+[],
+false
+],
+"multiscriptfields": [
+[],
+[
+"field"
+],
+false
+],
+"namehashtemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"namepart": [
+[
+"base",
+"disambiguation",
+"hashscope",
+"order",
+"pre",
+"substring_compound",
+"substring_side",
+"substring_width",
+"use"
+],
+[],
+true
+],
+"noinit": [
+[
+"value"
+],
+[],
+false
+],
+"noinits": [
+[],
+[
+"noinit"
+],
+false
+],
+"nolabel": [
+[
+"value"
+],
+[],
+false
+],
+"nolabels": [
+[],
+[
+"nolabel"
+],
+false
+],
+"nonamestring": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nonamestrings": [
+[],
+[
+"nonamestring"
+],
+false
+],
+"nosort": [
+[
+"field",
+"value"
+],
+[],
+false
+],
+"nosorts": [
+[],
+[
+"nosort"
+],
+false
+],
+"option": [
+[
+"backendin",
+"backendout",
+"datatype",
+"type"
+],
+[
+"key",
+"value"
+],
+true
+],
+"options": [
+[
+"component",
+"type"
+],
+[
+"option"
+],
+false
+],
+"optionscope": [
+[
+"type"
+],
+[
+"option"
+],
+false
+],
+"part": [
+[
+"inits",
+"order",
+"type",
+"use"
+],
+[],
+true
+],
+"per_datasource": [
+[],
+[],
+true
+],
+"per_nottype": [
+[],
+[],
+true
+],
+"per_type": [
+[],
+[],
+true
+],
+"presort": [
+[
+"type"
+],
+[],
+true
+],
+"scope": [
+[],
+[
+"field"
+],
+false
+],
+"section": [
+[
+"number"
+],
+[
+"citekey",
+"citekeycount"
+],
+false
+],
+"sort": [
+[
+"final",
+"locale",
+"order",
+"sort_direction",
+"sortcase",
+"sortupper"
+],
+[
+"sortitem"
+],
+false
+],
+"sortexclusion": [
+[
+"type"
+],
+[
+"exclusion"
+],
+false
+],
+"sortinclusion": [
+[
+"type"
+],
+[
+"inclusion"
+],
+false
+],
+"sortingnamekeytemplate": [
+[
+"name",
+"visibility"
+],
+[
+"keypart"
+],
+false
+],
+"sortingtemplate": [
+[
+"locale",
+"name"
+],
+[
+"sort"
+],
+false
+],
+"sortitem": [
+[
+"literal",
+"order",
+"pad_char",
+"pad_side",
+"pad_width",
+"substring_side",
+"substring_width"
+],
+[],
+true
+],
+"sourcemap": [
+[],
+[
+"maps"
+],
+false
+],
+"translit": [
+[
+"from",
+"langids",
+"target",
+"to"
+],
+[],
+false
+],
+"transliteration": [
+[
+"entrytype"
+],
+[
+"translit"
+],
+false
+],
+"type_pair": [
+[
+"inherit_all",
+"override_target",
+"source",
+"suppress",
+"target"
+],
+[],
+false
+],
+"uniquenametemplate": [
+[
+"name"
+],
+[
+"namepart"
+],
+false
+],
+"value": [
+[
+"order",
+"type"
+],
+[],
+true
+]
+}
+}

@@ -1116,3 +1116,17 @@ def test_going_to_a_view_or_a_tab_never_leaves_its_top_out_of_sight(visit):
         assert page.locator("main").evaluate("(el) => el.scrollTop") == 0, name         # ... and the next one opens at its top
         box = page.locator("main > :first-child").first.bounding_box()
         assert box["y"] >= page.locator("header.top").bounding_box()["height"], name
+
+
+def test_an_unfilled_field_is_named_once(visit):
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='Manual']")
+    page.locator("input[data-field=title]").fill("A hand-typed title")
+    page.locator("input[data-field=author]").fill("Ada Person")
+    page.locator("input[data-field=year]").fill("2019")
+    page.click("[data-action=draft]")
+    card = page.locator("article.card")
+    expect(card).to_have_count(1, timeout=120_000)
+    expect(card).to_contain_text("journal: not given")
+    assert "journal: journal:" not in card.inner_text()

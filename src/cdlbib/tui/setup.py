@@ -118,7 +118,8 @@ class SetupView(View):
             known = feature.available
             state = "not checked" if known is None else "yes" if known else "no"
             role = "success" if known else "muted"
-            out.part(f"  {feature.name}: {state}", role, bold=bool(known)).line(f" ({feature.detail})", role)
+            out.part(f"  {feature.name}: {state}", role, bold=bool(known)).line(
+                f" ({feature.detail}{'; ' + feature.version if feature.version else ''})", role)
             if feature.how:
                 out.line(f"      {feature.how}", "muted")
         if any(feature.available is None for feature in report.features):

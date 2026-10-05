@@ -47,6 +47,18 @@ def site(tmp_path, monkeypatch):
     assert running.app.worker.overlaps == 0
 
 
+def stopped(process, number=signal.SIGINT):
+    """Send the signal and give (stdout, stderr). A server that does not stop within a
+    minute is killed, so that no test leaves one running, and the test fails."""
+    process.send_signal(number)
+    try:
+        return process.communicate(timeout=60)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        process.communicate()
+        raise
+
+
 # --- the session and the first job --------------------------------------------------------------
 
 def test_the_first_job_prepares_the_library_and_the_session_names_it(site):
@@ -214,8 +226,7 @@ def test_the_command_prints_the_address_serves_until_interrupted_and_cleans_up(t
         assert http.get(origin + "/api/session").status_code == 401
         assert http.get(origin + "/").status_code == 200
     finally:
-        process.send_signal(signal.SIGINT)
-        out, err = process.communicate(timeout=60)
+        out, err = stopped(process)
     assert process.returncode == 0, err
     assert "Traceback" not in err and token not in err and token not in out      # only the one printed address held it
     assert "GET (no route) 401" in err                                            # a refusal is logged, without the token
@@ -237,8 +248,7 @@ def test_ask_is_carried_into_the_session_and_a_port_in_use_is_an_error(tmp_path)
         assert second.returncode == 1 and "could not listen on 127.0.0.1:" + port in second.stderr
         assert "Traceback" not in second.stderr
     finally:
-        process.send_signal(signal.SIGINT)
-        process.communicate(timeout=60)
+        stopped(process)
 
 
 def test_the_command_is_listed_with_its_options():

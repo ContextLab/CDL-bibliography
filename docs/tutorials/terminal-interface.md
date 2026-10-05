@@ -405,5 +405,4 @@ in the dark theme otherwise.
 - A send from the interface that ends in a pull request. A send that the checks refuse
   was run.
 - Completion offers before a check or a send, which need the GitHub copy of `cdl.bib`.
-- Reading a PDF with a model through the interface with a real key.
 - `o` in the PDF tab (opening the system viewer).

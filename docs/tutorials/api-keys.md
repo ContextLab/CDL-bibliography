@@ -71,15 +71,21 @@ Dartmouth catalogue lists as free are used."
 ## Checking what is set up
 
 Recorded with `cdlbib 2.0.0` on October 5, 2026, on a computer with `OPENAI_API_KEY` set
-and no Dartmouth Chat key.
+and a Dartmouth Chat key stored in the system keychain with `keyring set`.
 
 `cdlbib setup --check` reports each key in its list headed `available on this computer:`.
 It reads the system keychain to do so, and prints
 `reading the system keychain for the Dartmouth Chat key ...` first.
 
 ```text
-  Dartmouth Chat key: no (No API key found.) Store it in the system keychain as 'dartmouth-chat-api-key' (account: your user name), or set the environment variable DARTMOUTH_CHAT_API_KEY.
+  Dartmouth Chat key: yes (stored in the system keychain)
   OpenAI key: yes (set in the environment variable OPENAI_API_KEY)
+```
+
+Without a stored key, the first of these lines is:
+
+```text
+  Dartmouth Chat key: no (No API key found.) Store it in the system keychain as 'dartmouth-chat-api-key' (account: your user name), or set the environment variable DARTMOUTH_CHAT_API_KEY.
 ```
 
 The **Setup** view of [the web interface](web-interface.md) shows the same list without
@@ -109,5 +115,5 @@ Reading PDF files needs the package 'pypdf' (install: pip install 'pypdf<7,>=6.0
 ## What was not verified
 
 The macOS keychain access prompt (the "Always Allow" window) did not appear during the
-recordings for these tutorials, and reading a stored Dartmouth Chat key was not run:
-`cdlbib` found no Dartmouth Chat key on the computer used.
+recordings for these tutorials: the key was stored with `keyring set`, and macOS did not
+ask when `cdlbib` read it.

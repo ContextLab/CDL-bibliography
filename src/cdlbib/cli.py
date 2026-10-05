@@ -611,7 +611,7 @@ def report_setup(report, status, asked=False):
     typer.echo("available on this computer:")
     for feature in report.features:
         typer.echo(f"  {feature.name}: {'not checked' if feature.available is None else 'yes' if feature.available else 'no'}"
-                   f" ({feature.detail})"
+                   f" ({feature.detail}{'; ' + feature.version if feature.version else ''})"
                    + (f" {feature.how}" if feature.how else ""))
 
 

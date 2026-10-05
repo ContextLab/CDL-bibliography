@@ -1,0 +1,165 @@
+{
+ "extracted": {
+  "extraction_policy": "source-passages-1",
+  "fields": {
+   "ENTRYTYPE": {
+    "grounding": "interpretation_required",
+    "page": 1,
+    "passages": [
+     {
+      "end": 52,
+      "id": "p1l1",
+      "page": 1,
+      "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+      "start": 0
+     }
+    ],
+    "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+    "role_risk": [],
+    "value": "article"
+   },
+   "author": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 143,
+      "id": "p1l4",
+      "page": 1,
+      "quote": "Ada Q. Example and Bo R. Sample\n",
+      "start": 111
+     }
+    ],
+    "quote": "Ada Q. Example and Bo R. Sample\n",
+    "role_risk": [],
+    "value": "Ada Q. Example and Bo R. Sample"
+   },
+   "journal": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 52,
+      "id": "p1l1",
+      "page": 1,
+      "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+      "start": 0
+     }
+    ],
+    "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+    "role_risk": [],
+    "value": "Annals of Improbable Lattices"
+   },
+   "pages": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 52,
+      "id": "p1l1",
+      "page": 1,
+      "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+      "start": 0
+     }
+    ],
+    "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+    "role_risk": [],
+    "value": "45–67"
+   },
+   "title": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 103,
+      "id": "p1l2",
+      "page": 1,
+      "quote": "Plorbnix dynamics in zzyzxqv lattices under qwxzvk\n",
+      "start": 52
+     },
+     {
+      "end": 111,
+      "id": "p1l3",
+      "page": 1,
+      "quote": "forcing\n",
+      "start": 103
+     }
+    ],
+    "quote": "Plorbnix dynamics in zzyzxqv lattices under qwxzvk\n",
+    "role_risk": [],
+    "value": "Plorbnix dynamics in zzyzxqv lattices under qwxzvk forcing"
+   },
+   "volume": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 52,
+      "id": "p1l1",
+      "page": 1,
+      "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+      "start": 0
+     }
+    ],
+    "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+    "role_risk": [],
+    "value": "12"
+   },
+   "year": {
+    "grounding": "literal_text_present",
+    "page": 1,
+    "passages": [
+     {
+      "end": 52,
+      "id": "p1l1",
+      "page": 1,
+      "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+      "start": 0
+     }
+    ],
+    "quote": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\n",
+    "role_risk": [],
+    "value": "2019"
+   }
+  },
+  "provider_trace": {
+   "model": "zai-org.glm-5.3",
+   "provider": "dartmouth",
+   "response_id": "chatcmpl-a576312e4b8d9146",
+   "usage": {
+    "completion_tokens": 2609,
+    "completion_tokens_details": {
+     "reasoning_tokens": 2153
+    },
+    "prompt_tokens": 1952,
+    "total_tokens": 4561
+   }
+  },
+  "role_risk_fields": {},
+  "source_text_sha256": "269b536f1649f41239da4c313aac8ba0755dd62f19ff93145bb83767452a6e85",
+  "uncertainties": [
+   "The title is split across two passages: p1l3 ('forcing') is a line-wrapped continuation of the title line p1l2; a joining space was supplied between the two segments.",
+   "ENTRYTYPE 'article' is inferred from the page-1 header format (journal name, volume, year, page range) characteristic of a journal article; the document does not explicitly label its publication type.",
+   "The DOI '10.9999/not.this.one' appearing on p2l14 belongs to a cited work in the reference list (Someone, A., 1999) and was therefore not used; no DOI, ISSN, issue number, or publisher for this document itself is stated.",
+   "The page range '45–67' uses an en-dash as printed in the header on p1l1.",
+   "The author line p1l4 contains both authors separated by 'and'; each name was returned as a separate author item in document order, and the affiliation on p1l5 was excluded from the author list.",
+   "ENTRYTYPE: proposed value is not literally supported by selected passages"
+  ],
+  "unsupported_fields": [
+   "ENTRYTYPE"
+  ]
+ },
+ "pages": [
+  {
+   "page": 1,
+   "text": "Annals of Improbable Lattices, vol. 12 (2019) 45–67\nPlorbnix dynamics in zzyzxqv lattices under qwxzvk\nforcing\nAda Q. Example and Bo R. Sample\nDepartment of Imaginary Physics, Nowhere College\nAbstract.We describe what was done and what was found.\n1 Introduction\nThe study reported here was carried out over two terms. Participants were given written problems\nand their answers were scored by two readers working independently. The study reported here was\ncarried out over two terms. Participants were given written problems and their answers were scored\nby two readers working independently. The study reported here was carried out over two terms.\nParticipants were given written problems and their answers were scored by two readers working\nindependently. The study reported here was carried out over two terms. Participants were given\nwritten problems and their answers were scored by two readers working independently. The study\nreported here was carried out over two terms. Participants were given written problems and their\nanswers were scored by two readers working independently. The study reported here was carried\nout over two terms. Participants were given written problems and their answers were scored by two\nreaders working independently."
+  },
+  {
+   "page": 2,
+   "text": "2 Method\nThe study reported here was carried out over two terms. Participants were given written problems\nand their answers were scored by two readers working independently. The study reported here was\ncarried out over two terms. Participants were given written problems and their answers were scored\nby two readers working independently. The study reported here was carried out over two terms.\nParticipants were given written problems and their answers were scored by two readers working\nindependently. The study reported here was carried out over two terms. Participants were given\nwritten problems and their answers were scored by two readers working independently. The study\nreported here was carried out over two terms. Participants were given written problems and their\nanswers were scored by two readers working independently. The study reported here was carried\nout over two terms. Participants were given written problems and their answers were scored by two\nreaders working independently.\nReferences\nSomeone, A.(1999). Anotherworkentirely.Journal of Other Things, 3, 1–9. doi:10.9999/not.this.one\n2"
+  }
+ ],
+ "pdf": "unknown",
+ "pdf_sha256": "cd0a063395cd1bce2a7c4e713b87620313794c678ada083f12ce310506177e4d",
+ "route": "dartmouth"
+}
