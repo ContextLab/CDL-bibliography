@@ -4,7 +4,7 @@
 
 `cdlbib` manages the shared [BibTeX bibliography](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib) used by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/). It downloads and updates a local library, helps add references from source records, checks formatting and citation accuracy, records human reviews, and sends contributions through GitHub pull requests.
 
-`cdlbib` has a **command line** and a **local web interface** (`cdlbib web`), both backed by a shared Python API. `cdlbib setup` [makes the library available to every LaTeX manuscript](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files) on the computer, and `cdlbib export` [writes the entries a paper cites](#frozen-manuscript-copies-and-exports) as a `.bib` of its own or as its compiled `.bbl`. See [Current capabilities and design](#current-capabilities-and-design) and the [tutorials](docs/tutorials.md).
+`cdlbib` has a **command line**, a **terminal interface** (`cdlbib tui`) and a **local web interface** (`cdlbib web`), all backed by a shared Python API. `cdlbib setup` [makes the library available to every LaTeX manuscript](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files) on the computer, and `cdlbib export` [writes the entries a paper cites](#frozen-manuscript-copies-and-exports) as a `.bib` of its own or as its compiled `.bbl`. See [Current capabilities and design](#current-capabilities-and-design) and the [tutorials](docs/tutorials.md).
 
 For CDL members, the goal is one accurate, consistent bibliography across written documents. Other groups are welcome to adapt the approach for their own libraries.
 
@@ -52,7 +52,7 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 | System-wide LaTeX setup: one link in your TeX tree | `cdlbib setup`; web: Setup |
 | Cited-key `.bib` export, and `.bbl` generation from manuscript/style inputs | `cdlbib export`; web: Setup (`.bib` only) |
 | Optional Dartmouth Chat/OpenAI research adapters and keychain credentials | `cdlbib crossref research`; web: Add, "PDF" tab |
-| Terminal interface (TUI) | added in the same change as the web interface |
+| Terminal interface (TUI) with the same views as the web interface | `cdlbib tui`; [tutorial](docs/tutorials/terminal-interface.md) |
 | Tutorials, screenshots and recorded demonstrations | [docs/tutorials.md](docs/tutorials.md) |
 
 The web interface uses the same formatting, verification, identity and library
@@ -108,17 +108,16 @@ Global options go before the command, for example:
 cdlbib --library "/absolute/path/to/library" verify --no-citations
 ```
 
-The dependencies are listed in `pyproject.toml`. Two optional extras add packages
+The dependencies are listed in `pyproject.toml`. Three optional extras add packages
 that only some features need:
 
 |Extra|Package|Needed for|
 |-|-|-|
 |`research`|`pypdf`|reading PDFs (`cdlbib crossref research`, and the "PDF" tab of the web interface)|
-|`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface|
+|`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface and the terminal interface|
+|`tui`|`textual`|the terminal interface (`cdlbib tui`)|
 
-<!-- TUI: the extra for the terminal interface is added to this table with it -->
-
-Install them ahead of time with `python -m pip install "cdlbib[research,pdf]"`, or
+Install them ahead of time with `python -m pip install "cdlbib[research,pdf,tui]"`, or
 not at all: if an optional package is missing when a command needs it, the tool
 prints a line saying so and installs it, for example
 
@@ -189,6 +188,7 @@ Commands:
   send      Run the verify gate, then send the change as a pull request from your fork
   crossref  Check citation accuracy against external evidence (never edits BibTeX)
   web       Open the local web interface (this computer only) on the library in use
+  tui       Open the terminal interface on the library
   where     Show which bibliography the command will use
   update    Check the managed library now; list or restore its backups
   setup     Link cdl.bib into your TeX tree so every manuscript finds it; report what cdlbib can use here
@@ -855,7 +855,7 @@ Before the restore, the second line was `{'pending': 6384} False`.
 
 From a development checkout, install the package and test tools:
 ```bash
-python -m pip install ".[research,pdf]" pytest uv playwright
+python -m pip install ".[research,pdf,tui]" pytest uv playwright
 python -m playwright install chromium
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
 python -m pytest -q -rs tests

@@ -13,6 +13,11 @@ tui-add-search.svg, tui-proposal.svg, tui-add-pdf.svg and tui-proposal-pdf.svg (
 installed),
 tui-send.svg, tui-update-question.svg, tui-setup.svg and tui-library-light.svg.
 
+    python scripts/capture_tui.py --demo-library FOLDER
+
+makes the small library that scripts/make_screencasts.sh records the "tui" cast in (see
+``demo_library``).
+
 tui-review-approve.svg shows the approval dialog, which names the GitHub login of the gh CLI of
 whoever runs this; in the saved picture that name is replaced by a placeholder of the same
 length. Without a login the picture shows what the interface says then.
@@ -192,5 +197,30 @@ async def journey(T, ws, out, pdf):
         print(f"{path}  {path.stat().st_size // 1024} KB")
 
 
+def demo_library(folder):
+    """For scripts/make_screencasts.sh (the "tui" cast): a small library in FOLDER/library, a
+    folder the caller made outside the repository, with the test suite's saved lookup
+    responses in its own response cache, so that the interface recorded there asks no
+    service. HOME, TEXMFHOME and CDLBIB_HOME are folders under FOLDER while this runs, as
+    they are for the recording."""
+    folder = Path(folder).resolve()
+    if ROOT in folder.parents or folder == ROOT or not folder.is_dir():
+        raise SystemExit(f"refusing: {folder} must be an existing folder outside the repository")
+    import tui_support as T
+    from test_desk import GLOC08, KAHA12, TENE11, ZOLL90
+    os.environ.update(T.isolated_environment(folder))
+    os.environ["CROSSREF_MAILTO"] = T.CONTACT
+    os.environ.pop("CDLBIB_LIBRARY", None)
+    from cdlbib import api
+    ws = T.library(folder / "library", ZOLL90.replace("{27}", "{28}"), KAHA12, GLOC08, TENE11)
+    T.seed_responses(ws, T.COMPLETION)
+    os.environ.update(T.refused_network())
+    api.check_keys(ws, ["Zoll90"], mailto=T.CONTACT)          # the real gate, over the saved responses
+    print(ws.root)
+
+
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else ROOT / "docs" / "media")
+    if len(sys.argv) == 3 and sys.argv[1] == "--demo-library":
+        demo_library(sys.argv[2])
+    else:
+        main(sys.argv[1] if len(sys.argv) > 1 else ROOT / "docs" / "media")

@@ -6,7 +6,9 @@ is available from Python as `cdlbib.api.search`. The command line has no search 
 The counts shown were recorded with `cdlbib 2.0.0` on October 5, 2026, in a temporary
 copy of the bibliography with 6,481 entries, none of which had been checked there.
 
-<!-- TUI steps: added with the terminal interface -->
+In [the terminal interface](terminal-interface.md) (`cdlbib tui`), press `/` in the
+Library view and type; the table follows each letter. `f` limits the table to one status
+at a time.
 
 ## What a search matches
 

@@ -5,7 +5,7 @@
 #
 # OUTPUT_DIR defaults to docs/media in this repository. It may not be empty,
 # /, your home folder, or any other folder inside the repository. CAST is
-# "check" (the default) or "send". Needs vhs
+# "check" (the default), "tui" or "send". Needs vhs
 # (https://github.com/charmbracelet/vhs) and an installed cdlbib on PATH.
 #
 # check   Copies cdl.bib and verification/ into a temporary folder made with
@@ -14,6 +14,17 @@
 #         `cdlbib crossref status cdl.bib` as OUTPUT_DIR/check.gif. The
 #         temporary folder is removed when the script ends. Nothing else is
 #         removed, and cdl.bib and verification/ are not changed.
+#
+# tui     Makes a small library in a temporary folder made with mktemp outside
+#         the repository (scripts/capture_tui.py --demo-library: four entries
+#         and the test suite's saved lookup responses) and records
+#         scripts/tui.tape there as OUTPUT_DIR/tui.gif: a search, an entry's
+#         evidence, an edit with its preview, and an addition by DOI. HOME,
+#         TEXMFHOME and CDLBIB_HOME are folders inside that temporary folder,
+#         CDLBIB_LIBRARY names the library in it, and the network is refused by
+#         an unreachable proxy, so nothing of yours is read or changed and no
+#         service is asked. When gifsicle is installed the recording is reduced
+#         with it. The temporary folder is removed when the script ends.
 #
 # send    Records a real `cdlbib send`: it pushes a branch to a fork and
 #         opens a real pull request from that fork into its parent repository.
@@ -97,6 +108,31 @@ for cast in "$@"; do
       remove_scratch
       scratch=""
       ;;
+    tui)
+      scratch="$(mktemp -d "${TMPDIR:-/tmp}/cdlbib-screencast.XXXXXX")"
+      scratch="$(cd "$scratch" && pwd -P)"
+      case "$scratch/" in
+        "$repo"/*) echo "tui: the temporary folder $scratch is inside the repository; set TMPDIR to a folder outside it." >&2; exit 1 ;;
+      esac
+      python="$(dirname "$(command -v cdlbib)")/python"
+      [ -x "$python" ] || { echo "tui: no python beside the cdlbib on PATH ($python)" >&2; exit 1; }
+      "$python" "$repo/scripts/capture_tui.py" --demo-library "$scratch" >/dev/null
+      proxy="http://127.0.0.1:1"
+      mkdir -p "$out"
+      (cd "$scratch" && env -u CDLBIB_UPSTREAM -u COLORFGBG -u BIBINPUTS -u GH_TOKEN -u GITHUB_TOKEN \
+          HOME="$scratch/home" TEXMFHOME="$scratch/texmf" CDLBIB_HOME="$scratch/cdlbib-home" \
+          CDLBIB_LIBRARY="$scratch/library" CROSSREF_MAILTO="valid@example.org" \
+          HTTP_PROXY="$proxy" HTTPS_PROXY="$proxy" ALL_PROXY="$proxy" NO_PROXY="" \
+          http_proxy="$proxy" https_proxy="$proxy" all_proxy="$proxy" no_proxy="" \
+          vhs -o "$scratch/tui.gif" "$repo/scripts/tui.tape")
+      if command -v gifsicle >/dev/null; then
+        gifsicle -O3 --lossy=140 --colors 24 "$scratch/tui.gif" -o "$out/tui.gif"
+      else
+        cp "$scratch/tui.gif" "$out/tui.gif"
+      fi
+      remove_scratch
+      scratch=""
+      ;;
     send)
       checkout="${CDLBIB_SCREENCAST_CHECKOUT:-}"
       if [ -z "$checkout" ] || [ ! -f "$checkout/cdl.bib" ]; then
@@ -125,7 +161,7 @@ for cast in "$@"; do
       (cd "$checkout" && vhs -o "$out/send.gif" "$repo/scripts/send.tape")
       ;;
     *)
-      echo "unknown cast: $cast (expected check or send)" >&2
+      echo "unknown cast: $cast (expected check, tui or send)" >&2
       exit 1
       ;;
   esac

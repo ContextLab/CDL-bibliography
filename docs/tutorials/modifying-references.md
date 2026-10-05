@@ -6,7 +6,15 @@ verification result.
 The output shown was recorded with `cdlbib 2.0.0` on October 5, 2026, in a temporary copy
 of the library chosen with `--library`. `~/demo` stands for that temporary folder.
 
-<!-- TUI steps: added with the terminal interface -->
+## Terminal interface
+
+1. Start [the terminal interface](terminal-interface.md) with `cdlbib tui`. In the
+   Library view, press `/`, type a search, press `enter`, and move to the entry.
+2. Press `e` and change the text.
+3. Press `ctrl+p`. The preview shows the diff, the house-format findings, a key change,
+   and the status the entry has now and will have after saving.
+4. Press `ctrl+s` to save. `esc` closes the editor; when the text was changed, it asks
+   first.
 
 ## Command line
 

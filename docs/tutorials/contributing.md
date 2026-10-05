@@ -90,7 +90,13 @@ adds the new changes to the same pull request. To return to `master`:
 git switch master
 ```
 
-<!-- TUI steps: added with the terminal interface -->
+## In the terminal interface
+
+Start [the terminal interface](terminal-interface.md) with `cdlbib tui` and press `F6`
+for the Send view. It lists the files that would be committed. Type a summary if you
+want one, press `s`, and answer the question with `y`. The view then shows `Sent.` and
+the pull request's address, or `Not sent.` and the reason. `S` sends without the
+completion offers.
 
 ## In the web interface
 

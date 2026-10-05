@@ -20,7 +20,9 @@ with `TEXMFHOME` set to a folder inside it. `~/demo` stands for that temporary f
 `@you` for the GitHub login. The global option `--library ~/demo/library`, which came
 before the command name in each recorded command, is left out of the commands below.
 
-<!-- TUI steps: added with the terminal interface -->
+In [the terminal interface](terminal-interface.md) (`cdlbib tui`), the Setup view (`F8`)
+shows the state of the link. `l` makes the link and `x` removes it. To export, type the
+paper's path in the form of that view and press `b` for the `.bib` or `B` for the `.bbl`.
 
 ## Link `cdl.bib` into the TeX tree
 

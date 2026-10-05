@@ -25,7 +25,11 @@ Except where a section says otherwise, the output shown was recorded with `cdlbi
 on October 5, 2026, in temporary copies of the library chosen with `--library`. Counts and
 candidates will differ when you run the commands.
 
-<!-- TUI steps: added with the terminal interface -->
+In [the terminal interface](terminal-interface.md) (`cdlbib tui`), press `F4` for the Add
+view. It has the same four tabs as the web interface: Search, Identifier, PDF and Manual.
+`esc`, then `left` or `right`, then `enter` changes tabs. Each tab ends in a proposal:
+`a` accepts it, `e` edits it, `s` skips it, `A` accepts it and the remaining ones that
+need no decision, and `q` stops.
 
 ## Before you start
 
