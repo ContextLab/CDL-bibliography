@@ -263,7 +263,10 @@ Writing. Before `send` decides whether there is anything to send, `api.approvals
 lists the rows to add: one for each entry whose stored result in the local database is a
 current `human_verified` result for exactly the entry's text, with a `human_review` that
 has a non-blank reviewer, source, note and `github_login`, that is not revoked, and whose
-(fingerprint, digest) pair is not in the file yet. When such a row exists, `send` asks
+(fingerprint, digest) pair is not in the file yet. When nobody is logged in, no row is
+added, each waiting approval is reported as not sent for that reason, and `send` goes on in
+its usual order (the gate, then the refusal for the missing login; an approval alone is the
+"no changes" refusal with those lines). When such a row exists, `send` asks
 `gh` who is logged in (`identity.current`) and keeps only the rows recorded under that user:
 the same `github_id` when the review has an integer one, else the same login ignoring case.
 The others, and stored approvals under a login that are not valid rows, are returned as

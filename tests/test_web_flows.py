@@ -677,9 +677,9 @@ def test_a_send_that_cannot_pass_changes_nothing(site, tmp_path):
 def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_to_send(site, tmp_path, monkeypatch):
     """The library is a real checkout with no changed file. One human approval recorded under
     a GitHub login is in its verification database, and one stored result that cannot be
-    written as a ledger row. The state names both; the send is not refused as "no changes":
-    it asks who is logged in, to tell whose the approval is (nobody is, here), and changes
-    nothing."""
+    written as a ledger row. The state names both. Nobody is logged in to GitHub here, so
+    whose the approval is cannot be told: the send adds nothing, says so for each approval in
+    its log and in its refusal, and changes nothing."""
     from cdlbib import verification as v
     monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
     for token in ("GH_TOKEN", "GITHUB_TOKEN"):
@@ -719,8 +719,11 @@ def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_
                                                     "human_review.note is 9000 characters long; the limit is 8000"}]
     head, lines = git("rev-parse", "HEAD"), []
     result, error = site.post("/api/send", {}, lines)
-    assert result is None and error["kind"] == "IdentityUnavailable", error  # whose it is cannot be told: not "nothing to send"
-    assert lines == []
+    said = ("approval of Game62 not sent: no GitHub login was found, so whose approval it is cannot be told "
+            "(gh auth login)")
+    assert result is None and error["kind"] == "PublishRefused", error      # nobody is logged in: nothing can be sent,
+    assert error["message"].endswith(said) and said in lines                # and the refusal and the log say why
+    assert any(line.startswith("approval of Kaha12 not sent: it cannot be written") for line in lines)
     assert not site.ws.approvals.exists() and git("status", "--porcelain", "--untracked-files=no") == ""
     assert git("rev-parse", "HEAD") == head and git("branch", "--list") == "* master"
     assert site.ok("get", "/api/state")["approvals"] == [{"key": "Game62", "login": "octocat"}]     # it still waits

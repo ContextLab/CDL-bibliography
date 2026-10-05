@@ -860,7 +860,9 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
 
     Human approvals are sent too. Each current human approval in the verification database
     that was recorded under the GitHub login of the gh CLI (asked first, when an approval
-    waits; compared by the numeric id, else the login) and is not yet in
+    waits; compared by the numeric id, else the login; with nobody logged in no approval is
+    added, ``progress`` says so for each, and the send goes on in the order above, so that an
+    approval alone is then "nothing to send" with those lines) and is not yet in
     verification/approvals.jsonl (``approvals_waiting``) is appended to that file before the
     gate, and ``progress`` receives a line for each; they alone are a change to send. An
     approval recorded under another login, or one that cannot be written as a row, is never
@@ -934,9 +936,21 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         # Whose they are decides whether they are sent: only the logged-in user's own. gh is
         # asked now, once, and only because an approval waits or the ledger already holds
         # uncommitted rows; that one answer is what every row of this send is held to.
-        me = _me()
-        waiting, unsent = approvals_waiting(ws, database=database, me=me)
-        _require_own(outgoing, me, "not yet committed")
+        # With nobody logged in, the order of a send stays what it is (no GitHub login refuses
+        # after the gate): no row is added, each waiting approval is said not to be sent, and
+        # the send goes on. Rows already in the working tree are then held to the login at
+        # publication (nothing is published without one).
+        from .errors import IdentityUnavailable
+        try:
+            me = _me()
+        except IdentityUnavailable:
+            unsent = unsent + [{"key": row["key"], "login": row["human_review"]["github_login"],
+                                "why": "no GitHub login was found, so whose approval it is cannot be told "
+                                       "(gh auth login)"} for row in waiting]
+            waiting = []
+        else:
+            waiting, unsent = approvals_waiting(ws, database=database, me=me)
+            _require_own(outgoing, me, "not yet committed")
     if progress:
         for problem in approval_problems(ws):
             progress(problem)
