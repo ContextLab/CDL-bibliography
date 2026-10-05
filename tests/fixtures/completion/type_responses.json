@@ -1,0 +1,2720 @@
+[
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.2",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1093/oxfordhb/9780190917982.013.2",
+     "ISBN": [
+      "9780190917982",
+      "9780190918019"
+     ],
+     "URL": "https://doi.org/10.1093/oxfordhb/9780190917982.013.2",
+     "author": [
+      {
+       "affiliation": [
+        {
+         "name": "Psychology, University of Pennsylvania"
+        }
+       ],
+       "family": "Kahana",
+       "given": "Michael J.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Psychology, University of Pennsylvania"
+        }
+       ],
+       "family": "Diamond",
+       "given": "Nicholas B.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Psychology, University of Pennsylvania"
+        }
+       ],
+       "family": "Aka",
+       "given": "Ada",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "The Oxford Handbook of Human Memory, Two Volume Pack"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://academic.oup.com/edited-volume/57928/chapter/475472818",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "29-63",
+     "published": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "publisher": "Oxford University Press",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Laws of Human Memory"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:03.421809+00:00",
+   "url": "https://api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.2"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.38",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1093/oxfordhb/9780190917982.013.38",
+     "ISBN": [
+      "9780190917982",
+      "9780190918019"
+     ],
+     "URL": "https://doi.org/10.1093/oxfordhb/9780190917982.013.38",
+     "author": [
+      {
+       "affiliation": [
+        {
+         "name": "Psychological and Brain Sciences, Dartmouth College"
+        }
+       ],
+       "family": "Manning",
+       "given": "Jeremy R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "The Oxford Handbook of Human Memory, Two Volume Pack"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://academic.oup.com/edited-volume/57928/chapter/475477702",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1114-1139",
+     "published": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2024,
+        7,
+        18
+       ]
+      ]
+     },
+     "publisher": "Oxford University Press",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Context Reinstatement"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:05.561641+00:00",
+   "url": "https://api.crossref.org/works/10.1093%2Foxfordhb%2F9780190917982.013.38"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1515%2F9781400882618-002",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1515/9781400882618-002",
+     "ISBN": [
+      "9781400882618"
+     ],
+     "URL": "https://doi.org/10.1515/9781400882618-002",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Kleene",
+       "given": "S. C.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Automata Studies. (AM-34)"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1956,
+        12,
+        31
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://www.degruyter.com/view/books/9781400882618/9781400882618-002/9781400882618-002.xml",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.degruyter.com/document/doi/10.1515/9781400882618-002/xml",
+       "content-type": "application/xml",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.degruyter.com/document/doi/10.1515/9781400882618-002/pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "3-42",
+     "published": {
+      "date-parts": [
+       [
+        1956,
+        12,
+        31
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1956,
+        12,
+        31
+       ]
+      ]
+     },
+     "publisher": "Princeton University Press",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Representation of Events in Nerve Nets and Finite Automata"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:09.833426+00:00",
+   "url": "https://api.crossref.org/works/10.1515%2F9781400882618-002"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1016%2Fb978-0-12-108550-6.50010-0",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1016/b978-0-12-108550-6.50010-0",
+     "ISBN": [
+      "9780121085506"
+     ],
+     "URL": "https://doi.org/10.1016/b978-0-12-108550-6.50010-0",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Bobrow",
+       "given": "Daniel G.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Norman",
+       "given": "Donald A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Representation and Understanding"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1975
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://api.elsevier.com/content/article/PII:B9780121085506500100?httpAccept=text/xml",
+       "content-type": "text/xml",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://api.elsevier.com/content/article/PII:B9780121085506500100?httpAccept=text/plain",
+       "content-type": "text/plain",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      }
+     ],
+     "page": "131-149",
+     "published": {
+      "date-parts": [
+       [
+        1975
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1975
+       ]
+      ]
+     },
+     "publisher": "Elsevier",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "SOME PRINCIPLES OF MEMORY SCHEMATA"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:06.629821+00:00",
+   "url": "https://api.crossref.org/works/10.1016%2Fb978-0-12-108550-6.50010-0"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1007%2F978-0-387-21579-2_9",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1007/978-0-387-21579-2_9",
+     "ISBN": [
+      "9780387954714",
+      "9780387215792"
+     ],
+     "ISSN": [
+      "0930-0325"
+     ],
+     "URL": "https://doi.org/10.1007/978-0-387-21579-2_9",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Schapire",
+       "given": "Robert E.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Lecture Notes in Statistics",
+      "Nonlinear Estimation and Classification"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2003
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://link.springer.com/content/pdf/10.1007/978-0-387-21579-2_9",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "149-171",
+     "published": {
+      "date-parts": [
+       [
+        2003
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2003
+       ]
+      ]
+     },
+     "publisher": "Springer New York",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "The Boosting Approach to Machine Learning: An Overview"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:04.483823+00:00",
+   "url": "https://api.crossref.org/works/10.1007%2F978-0-387-21579-2_9"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1007/978-0-387-21579-2_9\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1007/978-0-387-21579-2_9\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:49:32.915926+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2F978-0-387-21579-2_9%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1007%2F978-1-4684-1083-9_9",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1007/978-1-4684-1083-9_9",
+     "ISBN": [
+      "9781468410853",
+      "9781468410839"
+     ],
+     "URL": "https://doi.org/10.1007/978-1-4684-1083-9_9",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Ahern",
+       "given": "Sylvia",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Beatty",
+       "given": "Jackson",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Intelligence and Learning"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1981
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://link.springer.com/content/pdf/10.1007/978-1-4684-1083-9_9.pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "121-128",
+     "published": {
+      "date-parts": [
+       [
+        1981
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1981
+       ]
+      ]
+     },
+     "publisher": "Springer US",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Physiological Evidence that Demand for Processing Capacity Varies with Intelligence"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:07.695718+00:00",
+   "url": "https://api.crossref.org/works/10.1007%2F978-1-4684-1083-9_9"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1109%2Fcvpr.2017.354",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1109/cvpr.2017.354",
+     "URL": "https://doi.org/10.1109/cvpr.2017.354",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Bau",
+       "given": "David",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Zhou",
+       "given": "Bolei",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Khosla",
+       "given": "Aditya",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Oliva",
+       "given": "Aude",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Torralba",
+       "given": "Antonio",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2017,
+        7
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://xplorestaging.ieee.org/ielx7/8097368/8099483/08099837.pdf?arnumber=8099837",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "3319-3327",
+     "published": {
+      "date-parts": [
+       [
+        2017,
+        7
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2017,
+        7
+       ]
+      ]
+     },
+     "publisher": "IEEE",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Network Dissection: Quantifying Interpretability of Deep Visual Representations"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:39:05.090736+00:00",
+   "url": "https://api.crossref.org/works/10.1109%2Fcvpr.2017.354"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1109%2Fcvpr.2010.5539970",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1109/cvpr.2010.5539970",
+     "URL": "https://doi.org/10.1109/cvpr.2010.5539970",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Xiao",
+       "given": "Jianxiong",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Hays",
+       "given": "James",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Ehinger",
+       "given": "Krista A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Oliva",
+       "given": "Aude",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Torralba",
+       "given": "Antonio",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "2010 IEEE Computer Society Conference on Computer Vision and Pattern Recognition"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2010,
+        6
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://xplorestaging.ieee.org/ielx5/5521876/5539770/05539970.pdf?arnumber=5539970",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "3485-3492",
+     "published": {
+      "date-parts": [
+       [
+        2010,
+        6
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2010,
+        6
+       ]
+      ]
+     },
+     "publisher": "IEEE",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "SUN database: Large-scale scene recognition from abbey to zoo"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:56.386013+00:00",
+   "url": "https://api.crossref.org/works/10.1109%2Fcvpr.2010.5539970"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1145%2F3210240.3210322",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1145/3210240.3210322",
+     "URL": "https://doi.org/10.1145/3210240.3210322",
+     "author": [
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Nguyen",
+       "given": "Phuc",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Bui",
+       "given": "Nam",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Nguyen",
+       "given": "Anh",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Truong",
+       "given": "Hoang",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Suresh",
+       "given": "Abhijit",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Whitlock",
+       "given": "Matt",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Denver"
+        }
+       ],
+       "family": "Pham",
+       "given": "Duy",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Virginia Commonwealth University"
+        }
+       ],
+       "family": "Dinh",
+       "given": "Thang",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "University of Colorado Boulder"
+        }
+       ],
+       "family": "Vu",
+       "given": "Tam",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2018,
+        6,
+        10
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://dl.acm.org/doi/10.1145/3210240.3210322",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://dl.acm.org/doi/pdf/10.1145/3210240.3210322",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "269-282",
+     "published": {
+      "date-parts": [
+       [
+        2018,
+        6,
+        10
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2018,
+        6,
+        10
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2018,
+        6,
+        10
+       ]
+      ]
+     },
+     "publisher": "ACM",
+     "relation": {},
+     "subtitle": [
+      "Tongue-Teeth Localization for Human-Computer Interface"
+     ],
+     "title": [
+      "TYTH-Typing On Your Teeth"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:58.504173+00:00",
+   "url": "https://api.crossref.org/works/10.1145%2F3210240.3210322"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-1410",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.18653/v1/d19-1410",
+     "URL": "https://doi.org/10.18653/v1/d19-1410",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Reimers",
+       "given": "Nils",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Gurevych",
+       "given": "Iryna",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "page": "3980-3990",
+     "published": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "publisher": "Association for Computational Linguistics",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:39:07.203892+00:00",
+   "url": "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-1410"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.32470%2Fccn.2018.1267-0",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.32470/ccn.2018.1267-0",
+     "URL": "https://doi.org/10.32470/ccn.2018.1267-0",
+     "author": [
+      {
+       "affiliation": [
+        {
+         "name": "Dartmouth College"
+        }
+       ],
+       "family": "Heusser",
+       "given": "Andrew",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Dartmouth College"
+        }
+       ],
+       "family": "Manning",
+       "given": "Jeremy",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "2018 Conference on Cognitive Computational Neuroscience"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2018
+       ]
+      ]
+     },
+     "published": {
+      "date-parts": [
+       [
+        2018
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2018
+       ]
+      ]
+     },
+     "publisher": "Cognitive Computational Neuroscience",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Capturing the geometric structure of episodic memories for naturalistic experiences"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:55.321264+00:00",
+   "url": "https://api.crossref.org/works/10.32470%2Fccn.2018.1267-0"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1109%2Ficassp.1990.115702",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1109/icassp.1990.115702",
+     "URL": "https://doi.org/10.1109/icassp.1990.115702",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Kaiser",
+       "given": "J.F.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "International Conference on Acoustics, Speech, and Signal Processing"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        null
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://xplorestaging.ieee.org/ielx5/132/3385/00115702.pdf?arnumber=115702",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "381-384",
+     "publisher": "IEEE",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "On a simple algorithm to calculate the 'energy' of a signal"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:57.444274+00:00",
+   "url": "https://api.crossref.org/works/10.1109%2Ficassp.1990.115702"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1109/icassp.1990.115702\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1109/icassp.1990.115702\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:49:59.179636+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109%2Ficassp.1990.115702%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1201%2Fb16018",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1201/b16018",
+     "ISBN": [
+      "9780429113079"
+     ],
+     "URL": "https://doi.org/10.1201/b16018",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Gelman",
+       "given": "Andrew",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Carlin",
+       "given": "John B.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Stern",
+       "given": "Hal S.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Dunson",
+       "given": "David B.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Vehtari",
+       "given": "Aki",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Rubin",
+       "given": "Donald B.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [],
+     "issued": {
+      "date-parts": [
+       [
+        2013,
+        11,
+        27
+       ]
+      ]
+     },
+     "published": {
+      "date-parts": [
+       [
+        2013,
+        11,
+        27
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2013,
+        11,
+        27
+       ]
+      ]
+     },
+     "publisher": "Chapman and Hall/CRC",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Bayesian Data Analysis"
+     ],
+     "type": "book"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:37:59.136788+00:00",
+   "url": "https://api.crossref.org/works/10.1201%2Fb16018"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1017%2Fcbo9780511802843",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1017/cbo9780511802843",
+     "ISBN": [
+      "9780521573917",
+      "9780521574716",
+      "9780511802843"
+     ],
+     "URL": "https://doi.org/10.1017/cbo9780511802843",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Davison",
+       "given": "A. C.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Hinkley",
+       "given": "D. V.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [],
+     "issued": {
+      "date-parts": [
+       [
+        1997,
+        10,
+        28
+       ]
+      ]
+     },
+     "published": {
+      "date-parts": [
+       [
+        1997,
+        10,
+        28
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2013,
+        6,
+        5
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1997,
+        10,
+        28
+       ]
+      ]
+     },
+     "publisher": "Cambridge University Press",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Bootstrap Methods and their Application"
+     ],
+     "type": "monograph"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:01.256642+00:00",
+   "url": "https://api.crossref.org/works/10.1017%2Fcbo9780511802843"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.4135%2F9781452257044.n183",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.4135/9781452257044.n183",
+     "ISBN": [
+      "9781412950572",
+      "9781452257044"
+     ],
+     "URL": "https://doi.org/10.4135/9781452257044.n183",
+     "container-title": [
+      "Encyclopedia of the Mind"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2013
+       ]
+      ]
+     },
+     "published": {
+      "date-parts": [
+       [
+        2013
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2013
+       ]
+      ]
+     },
+     "publisher": "SAGE Publications, Inc.",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Memory Recall, Dynamics"
+     ],
+     "type": "reference-entry"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:38:08.760818+00:00",
+   "url": "https://api.crossref.org/works/10.4135%2F9781452257044.n183"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1136%2Febm-2023-pod.3",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1136/ebm-2023-pod.3",
+     "URL": "https://doi.org/10.1136/ebm-2023-pod.3",
+     "author": [
+      {
+       "affiliation": [
+        {
+         "name": "Department of General Practice, Institute of Clinical Medicine, University of Turku and Turku University Hospital, Turku, Finland"
+        }
+       ],
+       "family": "Holopainen",
+       "given": "Lotta",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Department of General Practice, Institute of Clinical Medicine, University of Turku and Turku University Hospital, Turku, Finland"
+        }
+       ],
+       "family": "Tähtinen",
+       "given": "Hanna",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "THL Finnish Institute for Health and Welfare, Department of Knowledge Brokers, Helsinki, Finland"
+        },
+        {
+         "name": "Research Centre for Child Psychiatry, University of Turku, Turku, Finland"
+        },
+        {
+         "name": "Karolinska Institute, Department of Molecular Medicine and Surgery, Stockholm, Sweden"
+        },
+        {
+         "name": "Region Stockholm, Academic Primary Health Care Centre, Stockholm, Sweden"
+        }
+       ],
+       "family": "Gissler",
+       "given": "Mika",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Department of General Practice, Institute of Clinical Medicine, University of Turku and Turku University Hospital, Turku, Finland"
+        }
+       ],
+       "family": "Korhonen",
+       "given": "Päivi",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [
+        {
+         "name": "Department of General Practice, Institute of Clinical Medicine, University of Turku and Turku University Hospital, Turku, Finland"
+        }
+       ],
+       "family": "Ekblad",
+       "given": "Mikael",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Preventing overdiagnosis meeting abstracts"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2023,
+        8,
+        13
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://syndication.highwire.org/content/doi/10.1136/EBM-2023-POD.3",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "A1.3-A2",
+     "published": {
+      "date-parts": [
+       [
+        2023,
+        8,
+        13
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2023,
+        8,
+        13
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2023,
+        9
+       ]
+      ]
+     },
+     "publisher": "BMJ Publishing Group Ltd",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "3 Pre-pregnancy body surface area and risk for gestational diabetes mellitus"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:06.419774+00:00",
+   "url": "https://api.crossref.org/works/10.1136%2Febm-2023-pod.3"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1136/ebm-2023-pod.3\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1136/ebm-2023-pod.3\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:07.986987+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1136%2Febm-2023-pod.3%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1167%2F15.11.1",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1167/15.11.1",
+     "ISSN": [
+      "1534-7362"
+     ],
+     "URL": "https://doi.org/10.1167/15.11.1",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Fougnie",
+       "given": "Daryl",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Cormiea",
+       "given": "Sarah M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Zhang",
+       "given": "Jinxia",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Alvarez",
+       "given": "George A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Wolfe",
+       "given": "Jeremy M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Journal of Vision"
+     ],
+     "issue": "11",
+     "issued": {
+      "date-parts": [
+       [
+        2015,
+        8,
+        3
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://jov.arvojournals.org/article.aspx?doi=10.1167/15.11.1",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1",
+     "published": {
+      "date-parts": [
+       [
+        2015,
+        8,
+        3
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2015,
+        8,
+        3
+       ]
+      ]
+     },
+     "publisher": "Association for Research in Vision and Ophthalmology (ARVO)",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Winter is coming: How humans forage in a temporally structured environment"
+     ],
+     "type": "journal-article",
+     "volume": "15"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:08.554634+00:00",
+   "url": "https://api.crossref.org/works/10.1167%2F15.11.1"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1167/15.11.1\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 1,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1167/15.11.1\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": [
+      {
+       "authorList": {
+        "author": [
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Science Division, New York University Abu Dhabi, Abu Dhabi, UAE"
+            },
+            {
+             "affiliation": "Department of Psychology, Harvard University, Cambridge, MA, USA"
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0001-8245-883X"
+          },
+          "firstName": "Daryl",
+          "fullName": "Fougnie D",
+          "initials": "D",
+          "lastName": "Fougnie"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Psychology, Harvard University, Cambridge, MA, USA"
+            }
+           ]
+          },
+          "firstName": "Sarah M",
+          "fullName": "Cormiea SM",
+          "initials": "SM",
+          "lastName": "Cormiea"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Visual Attention Lab Brigham and Women's Hospital, Cambridge, MA, USA"
+            },
+            {
+             "affiliation": "School of Computer Science and Engineering, Nanjing University of Science and Technology, Nanjing, China"
+            }
+           ]
+          },
+          "firstName": "Jinxia",
+          "fullName": "Zhang J",
+          "initials": "J",
+          "lastName": "Zhang"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Department of Psychology, Harvard University, Cambridge, MA, USA"
+            }
+           ]
+          },
+          "firstName": "George A",
+          "fullName": "Alvarez GA",
+          "initials": "GA",
+          "lastName": "Alvarez"
+         },
+         {
+          "authorAffiliationDetailsList": {
+           "authorAffiliation": [
+            {
+             "affiliation": "Visual Attention Lab Brigham and Women's Hospital, Cambridge, MA, USA"
+            },
+            {
+             "affiliation": "Harvard Medical School, Boston, MA, USA"
+            }
+           ]
+          },
+          "authorId": {
+           "type": "ORCID",
+           "value": "0000-0002-6475-1984"
+          },
+          "firstName": "Jeremy M",
+          "fullName": "Wolfe JM",
+          "initials": "JM",
+          "lastName": "Wolfe"
+         }
+        ]
+       },
+       "doi": "10.1167/15.11.1",
+       "firstPublicationDate": "2015-08-01",
+       "fullTextUrlList": {
+        "fullTextUrl": [
+         {
+          "availability": "Subscription required",
+          "availabilityCode": "S",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1167/15.11.1"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "html",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC4948597"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "pdf",
+          "site": "Europe_PMC",
+          "url": "https://europepmc.org/articles/PMC4948597?pdf=render"
+         },
+         {
+          "availability": "Free",
+          "availabilityCode": "F",
+          "documentStyle": "doi",
+          "site": "DOI",
+          "url": "https://doi.org/10.1167/15.11.1"
+         }
+        ]
+       },
+       "id": "26237297",
+       "isOpenAccess": "N",
+       "journalInfo": {
+        "dateOfPublication": "2015 Aug",
+        "issue": "11",
+        "journal": {
+         "essn": "1534-7362",
+         "isoabbreviation": "J Vis",
+         "issn": "1534-7362",
+         "medlineAbbreviation": "J Vis",
+         "nlmid": "101147197",
+         "title": "Journal of vision"
+        },
+        "journalIssueId": 2309778,
+        "monthOfPublication": 8,
+        "printPublicationDate": "2015-08-01",
+        "volume": "15",
+        "yearOfPublication": 2015
+       },
+       "pageInfo": "1",
+       "pmcid": "PMC4948597",
+       "pubTypeList": {
+        "pubType": [
+         "Research Support, Non-U.S. Gov't",
+         "research-article",
+         "Research Support, U.S. Gov't, Non-P.H.S.",
+         "Journal Article"
+        ]
+       },
+       "pubYear": "2015",
+       "source": "MED",
+       "title": "Winter is coming: How humans forage in a temporally structured environment."
+      }
+     ]
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:09.707963+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1167%2F15.11.1%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1093/oxfordhb/9780190917982.013.2\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1093/oxfordhb/9780190917982.013.2\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:10.360287+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1093%2Foxfordhb%2F9780190917982.013.2%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "query.bibliographic": "network dissection: quantifying interpretability of deep visual representations D Bau 2017 {IEEE} Conference on Computer Vision and Pattern Recognition",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1109/cvpr.2017.354",
+       "URL": "https://doi.org/10.1109/cvpr.2017.354",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Bau",
+         "given": "David",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Zhou",
+         "given": "Bolei",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Khosla",
+         "given": "Aditya",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Oliva",
+         "given": "Aude",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Torralba",
+         "given": "Antonio",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/8097368/8099483/08099837.pdf?arnumber=8099837",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "3319-3327",
+       "published": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "publisher": "IEEE",
+       "title": [
+        "Network Dissection: Quantifying Interpretability of Deep Visual Representations"
+       ],
+       "type": "proceedings-article"
+      },
+      {
+       "DOI": "10.1109/cvpr.2017.110",
+       "URL": "https://doi.org/10.1109/cvpr.2017.110",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Dong",
+         "given": "Yinpeng",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Su",
+         "given": "Hang",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Zhu",
+         "given": "Jun",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Zhang",
+         "given": "Bo",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/8097368/8099483/08099593.pdf?arnumber=8099593",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "975-983",
+       "published": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "publisher": "IEEE",
+       "title": [
+        "Improving Interpretability of Deep Neural Networks with Semantic Information"
+       ],
+       "type": "proceedings-article"
+      },
+      {
+       "DOI": "10.1109/tpami.2018.2858759",
+       "ISSN": [
+        "0162-8828",
+        "2160-9292",
+        "1939-3539"
+       ],
+       "URL": "https://doi.org/10.1109/tpami.2018.2858759",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0003-4030-0684",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Zhou",
+         "given": "Bolei",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0003-1744-6765",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Bau",
+         "given": "David",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Oliva",
+         "given": "Aude",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Torralba",
+         "given": "Antonio",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+       ],
+       "issue": "9",
+       "issued": {
+        "date-parts": [
+         [
+          2019,
+          9,
+          1
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://ieeexplore.ieee.org/ielaam/34/8787855/8417924-aam.pdf",
+         "content-type": "application/pdf",
+         "content-version": "am",
+         "intended-application": "syndication"
+        },
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/34/8787855/08417924.pdf?arnumber=8417924",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "2131-2145",
+       "published": {
+        "date-parts": [
+         [
+          2019,
+          9,
+          1
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2019,
+          9,
+          1
+         ]
+        ]
+       },
+       "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+       "title": [
+        "Interpreting Deep Visual Representations via Network Dissection"
+       ],
+       "type": "journal-article",
+       "volume": "41"
+      },
+      {
+       "DOI": "10.1109/cvprw.2017.216",
+       "URL": "https://doi.org/10.1109/cvprw.2017.216",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Ithapu",
+         "given": "Vamsi K.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/8014302/8014734/08014950.pdf?arnumber=8014950",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1695-1704",
+       "published": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2017,
+          7
+         ]
+        ]
+       },
+       "publisher": "IEEE",
+       "title": [
+        "Decoding the Deep: Exploring Class Hierarchies of Deep Representations Using Multiresolution Matrix Factorization"
+       ],
+       "type": "proceedings-article"
+      },
+      {
+       "DOI": "10.1109/cvpr.2016.13",
+       "URL": "https://doi.org/10.1109/cvpr.2016.13",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Reed",
+         "given": "Scott",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Akata",
+         "given": "Zeynep",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Lee",
+         "given": "Honglak",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Schiele",
+         "given": "Bernt",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2016,
+          6
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/7776647/7780329/07780382.pdf?arnumber=7780382",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "49-58",
+       "published": {
+        "date-parts": [
+         [
+          2016,
+          6
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2016,
+          6
+         ]
+        ]
+       },
+       "publisher": "IEEE",
+       "title": [
+        "Learning Deep Representations of Fine-Grained Visual Descriptions"
+       ],
+       "type": "proceedings-article"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 643130
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:52:11.066302+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=network+dissection%3A+quantifying+interpretability+of+deep+visual+representations+D+Bau+2017+%7BIEEE%7D+Conference+on+Computer+Vision+and+Pattern+Recognition&rows=5"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1109/cvpr.2017.354\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1109/cvpr.2017.354\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T07:57:16.571470+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1109%2Fcvpr.2017.354%22&format=json&resultType=core&pageSize=100"
+  }
+ }
+]
