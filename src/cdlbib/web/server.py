@@ -7,6 +7,7 @@ which a browser never sends). A request that changes anything is a POST whose Or
 this server. There are no CORS headers. All work is done by one job worker (jobs.Worker)."""
 import json
 import secrets
+import signal
 import sys
 import threading
 import traceback
@@ -389,10 +390,18 @@ def run(port=0, open_browser=True, say=print):
             webbrowser.open(running.url)
         except Exception as exc:        # no browser to open: the address is printed above
             say(f"the browser could not be opened ({type(exc).__name__}); open the address above")
+    def stop(signum, frame):
+        raise KeyboardInterrupt
+
+    # Started as a background job, a process inherits "ignore" for SIGINT and could then only be
+    # killed, which would leave the uploads behind: the server answers both signals itself.
+    earlier = {number: signal.signal(number, stop) for number in (signal.SIGINT, signal.SIGTERM)}
     try:
         running.serve()
     except KeyboardInterrupt:
         pass
     finally:
+        for number, handler in earlier.items():
+            signal.signal(number, handler)
         running.httpd.server_close()
         running.app.close()

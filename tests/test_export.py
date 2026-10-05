@@ -1062,7 +1062,10 @@ def test_only_regular_files_are_copied_and_a_fifo_does_not_stop_the_export(ws, t
     assert outside.read_text(encoding="utf-8") == "Outside \\cite{FixtA21}.\n"
 
 
-def test_a_folder_that_is_too_large_fails_before_anything_is_copied(ws, tmp_path):
+def test_a_folder_that_is_too_large_fails_before_anything_is_copied(ws, tmp_path, monkeypatch):
+    own = tmp_path / "tmp"                                        # a temporary folder no other run writes to
+    own.mkdir()
+    monkeypatch.setattr(tempfile, "tempdir", str(own))
     file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
     data = tmp_path / "paper" / "data"
     data.mkdir()
