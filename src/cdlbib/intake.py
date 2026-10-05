@@ -1800,18 +1800,43 @@ class _Enough(Exception):
 
 def _title_from_runs(runs):
     """The text set largest on the page: consecutive fragments of one size are a run; the
-    largest run of at least three words that is not an arXiv stamp, among the three largest sizes."""
-    joined = []
+    largest run that is not an arXiv stamp, among the three largest sizes.
+
+    A title is set larger than the page's running text, so a run qualifies only when its
+    size is more than a tenth above the size most of the page's characters are set in.
+    (Without that, a page whose larger runs all fail falls through to a paragraph of body
+    text.) The largest size on the page is the one exception, for a page that carries
+    little but its title: there a run qualifies unless it reads as sentences. A run needs
+    three words, or two when it is the largest text on the page ("Mistral 7B")."""
+    joined, sized = [], []
     for text, size in runs:
+        if text.strip():
+            sized.append((size, len(text.strip())))
         if joined and abs(joined[-1][1] - size) <= 0.02 * size:
             joined[-1][0] += text
         elif text.strip():
             joined.append([text, size])
-    for size in sorted({size for _, size in joined}, reverse=True)[:3]:
+    if not joined:
+        return None
+    half, body = sum(count for _, count in sized) / 2, 0.0
+    for size, count in sorted(sized):  # the size at the middle character of the page
+        half, body = half - count, size
+        if half <= 0:
+            break
+    sizes = sorted({size for _, size in joined}, reverse=True)[:3]
+    for size in sizes:
+        largest, above = size == sizes[0], size > 1.1 * body
+        if not (largest or above):
+            break
         for text, own in joined:
             text = " ".join(text.split())
-            if own == size and len(text.split()) >= 3 and 10 <= len(text) <= 400 and not re.match(r"(?i)arxiv\s*:", text):
-                return text
+            if own != size or not 10 <= len(text) <= 400 or re.match(r"(?i)arxiv\s*:", text):
+                continue
+            if len(text.split()) < (2 if largest else 3):
+                continue
+            if not above and re.search(r"[.!?]\s+[A-Z]", text):
+                continue
+            return text
     return None
 
 
