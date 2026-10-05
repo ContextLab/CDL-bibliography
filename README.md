@@ -134,7 +134,7 @@ installation's own package manager can install it without an administrator:
 |TeX installation|A missing `biber` or `bibtex`|
 |-|-|
 |TeX Live in a folder you can write to (for example TinyTeX)|installed with `tlmgr install biber` or `tlmgr install bibtex`|
-|Homebrew `texlive`|`biber` is installed with `brew install biber`|
+|Homebrew `texlive`|`biber` is installed with `brew install biber`, after a question that is asked with or without `--ask`; without a terminal it is not installed and the message names the command|
 |TeX Live in a folder you cannot write to, TeX from `apt-get`, `dnf` or `pacman`, MiKTeX|not installed; the message names the command, for example `Run: sudo tlmgr install biber`|
 
 `cdlbib` never runs `sudo`. See

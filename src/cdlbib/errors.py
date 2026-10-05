@@ -85,11 +85,13 @@ class MissingDependency(CdlbibError):
 class MissingProgram(MissingDependency):
     """A TeX program that is not installed and that this computer's TeX package manager can
     install as the current user (texinstall.plan). ``package`` is the program, ``extra`` is
-    texinstall.EXTRA, ``command`` the argument list that installs it; deps.install runs it."""
+    texinstall.EXTRA, ``command`` the argument list that installs it; deps.install runs it.
+    ``always_ask``: api.consent asks a person first whether or not --ask was given."""
 
-    def __init__(self, program, feature, command, shown):
+    def __init__(self, program, feature, command, shown, always_ask=False):
         self.package, self.extra, self.feature = program, "tex", feature
         self.command, self.shown = list(command), shown
+        self.always_ask = bool(always_ask)      # asked about even without --ask (texinstall.Plan.confirm)
         CdlbibError.__init__(self, f"{feature} needs the TeX program '{program}', which was not found on PATH "
                                    f"(install: {shown})")
 

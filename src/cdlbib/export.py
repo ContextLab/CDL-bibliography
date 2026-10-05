@@ -500,7 +500,7 @@ def _program(name):
         return found
     wanted = texinstall.plan(name)      # the command is an absolute path inside the TeX installation, never a PATH lookup
     if wanted.command:
-        raise MissingProgram(name, "Compiling a .bbl", wanted.command, wanted.shown)
+        raise MissingProgram(name, "Compiling a .bbl", wanted.command, wanted.shown, always_ask=wanted.confirm)
     raise ExportFailed("no_tex", f"{name} was not found on PATH. A .bbl needs a TeX installation that has it. "
                        + texinstall.how(name), [name])
 

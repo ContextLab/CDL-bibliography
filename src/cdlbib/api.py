@@ -1384,14 +1384,15 @@ def consent(exc, allow=None, progress=None):
     PublishRefused with ``needs_fork`` (create the user's fork): the one decision every front
     end uses. ``allow`` True or False is the person's answer. Without one: when the user did
     not ask to be asked (deps.ask() false) it is yes, and ``progress`` receives the line
-    saying what is being done; when they did (--ask), errors.NeedsConfirmation is raised
+    saying what is being done; when they did (--ask), or when ``exc`` is a MissingProgram that
+    is always asked about (Homebrew's `brew install`), errors.NeedsConfirmation is raised
     carrying the question to put to them. Nothing is installed or created here."""
     from . import deps, prompts
     from .errors import MissingDependency, NeedsConfirmation
     install = isinstance(exc, MissingDependency)
     if allow is not None:
         return bool(allow)
-    if deps.ask():
+    if deps.ask() or getattr(exc, "always_ask", False):     # brew install: a question with or without --ask
         if install:
             raise NeedsConfirmation("install", prompts.install_question(exc), package=exc.package, extra=exc.extra,
                                     feature=exc.feature) from exc

@@ -4,7 +4,7 @@ installed, and how a missing one gets installed on this computer.
 plan() only looks (PATH, the folders of the TeX installation, the package manager beside it);
 install() runs the one command plan() names. That command is the TeX installation's own
 package manager, run as the current user: `tlmgr install` in a TeX Live folder this user can
-write to, `brew install` beside a Homebrew TeX Live. Nothing here runs sudo; where the
+write to, `brew install` beside a Homebrew TeX Live (always asked about first: Plan.confirm). Nothing here runs sudo; where the
 installation needs an administrator (MacTeX, a distribution's packages) or has no package
 manager that can be run (MiKTeX is not driven from here), the plan carries the command for
 a person to run instead.
@@ -14,8 +14,11 @@ What is run, and how:
   the kpsewhich in use (links followed), or the brew of the Homebrew prefix whose Cellar
   holds that kpsewhich. A TeX found through a folder of PATH that is not an absolute path
   (".", an empty component) gives no command at all.
-- Every program runs in an empty folder of its own, with standard input closed, a time limit,
-  and environment() as its whole environment.
+- Every program runs in an empty folder of its own, with standard input closed, and with
+  environment() as its whole environment: its PATH is the program's own folder and the
+  system's folders, not the user's PATH.
+- One time limit covers a program's exit and the end of its output; the program and all it
+  started are ended when the limit passes, and on every other way out of the call.
 - Of what a program prints, at most MAX_OUTPUT bytes are kept; of a file, at most MAX_FILE
   bytes are read, and only from a regular file.
 - Text from a program or a file that is shown to a person passes shown(): printable
@@ -28,6 +31,7 @@ import stat
 import subprocess
 import tempfile
 import threading
+import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -53,6 +57,14 @@ _VERSION = re.compile(r"(?<![\w.])(\d{1,4}(?:\.\d{1,4}){1,3})(?![.\d])")
 # files are (a package manager keeps its cache there), the locale, and the proxy for a download.
 KEPT = ("HOME", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE", "http_proxy", "https_proxy", "ftp_proxy", "no_proxy",
         "HTTP_PROXY", "HTTPS_PROXY", "FTP_PROXY", "NO_PROXY")
+# Where a program run here finds an interpreter or a helper, after its own folder: the system's
+# folders only. The user's PATH is not passed on.
+SYSTEM_PATH = ("/usr/bin", "/bin", "/usr/sbin", "/sbin")
+# What `brew install` is told every time: no update of Homebrew itself, no cleanup of other
+# formulae, no upgrade or reinstallation of the formulae that depend on this one, no hints.
+BREW_QUIET = ("HOMEBREW_NO_AUTO_UPDATE", "HOMEBREW_NO_INSTALL_CLEANUP", "HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK",
+              "HOMEBREW_NO_ENV_HINTS")
+BREW_KEPT = ("HOMEBREW_NO_ANALYTICS", "HOMEBREW_NO_INSTALL_UPGRADE")      # the user's own, passed on as "1" when set
 
 
 @dataclass
@@ -61,12 +73,14 @@ class Plan:
     its tlmgr), "homebrew", "miktex", "system" (a distribution's packages), "unknown", or
     "none" (no TeX found). ``command`` is the argument list install() runs (its first item an
     absolute path), and is empty when nothing can be run from here; ``manual`` is then the
-    sentence naming the command for a person, and ``why`` the reason it is not run."""
+    sentence naming the command for a person, and ``why`` the reason it is not run.
+    ``confirm``: the command is run only after a person said yes, with or without --ask."""
     program: str
     distribution: str
     command: list = field(default_factory=list)
     manual: str = ""
     why: str = ""
+    confirm: bool = False        # the command changes software outside the TeX installation (brew): always asked first
 
     @property
     def shown(self):
@@ -83,13 +97,25 @@ def shown(text, limit=MAX_SHOWN, lines=True):
     return kept.strip()[-limit:]
 
 
-def environment(first=None):
-    """The whole environment of a program run here: KEPT from the user's, and a PATH of
-    ``first`` (the folder of the program run) and then the user's PATH without any folder
-    that is not an absolute path. No TEXMFCNF, PERL5LIB, BIBER_* or the like reaches it."""
+def environment(command=()):
+    """The whole environment of ``command``, a program run here: KEPT from the user's, and a
+    PATH made here, not taken from the user's: the folder of the program (as it was named,
+    and the one it really lies in when that is a link) and SYSTEM_PATH. An interpreter or a
+    helper the program looks up by name (`#!/usr/bin/env perl`, curl, git) is therefore the
+    one of its own installation or of the system, never one in a folder the user's PATH
+    happens to hold. No TEXMFCNF, PERL5LIB, BIBER_* or the like reaches it.
+
+    brew is also told not to update Homebrew, not to clean up and not to upgrade what depends
+    on the formula (BREW_QUIET), and the user's own opt-outs of that kind (BREW_KEPT) stay."""
     env = {name: os.environ[name] for name in KEPT if os.environ.get(name)}
-    folders = [part for part in os.environ.get("PATH", "").split(os.pathsep) if part and os.path.isabs(part)]
-    env["PATH"] = os.pathsep.join(dict.fromkeys(([str(first)] if first else []) + folders))
+    folders = []
+    if command:
+        named = Path(command[0])
+        folders = [str(named.parent), str(named.resolve().parent)]
+        if named.name == "brew":
+            env.update({name: "1" for name in BREW_KEPT if os.environ.get(name)})
+            env.update({name: "1" for name in BREW_QUIET})
+    env["PATH"] = os.pathsep.join(dict.fromkeys(folders + list(SYSTEM_PATH)))
     return env
 
 
@@ -97,14 +123,22 @@ def _run(command, timeout=QUICK, keep="head", limit=MAX_OUTPUT):
     """(exit status, what the program printed) of ``command``, an argument list whose first
     item is an absolute path; (None, why) when it could not be run or did not finish in
     ``timeout`` seconds. Of the output (stdout and stderr together) only the first, or with
-    ``keep`` "tail" the last, ``limit`` bytes are held; the rest is read and dropped."""
+    ``keep`` "tail" the last, ``limit`` bytes are held; the rest is read and dropped.
+
+    ``timeout`` is one limit for all of it: the program's exit and the end of its output (a
+    child it left behind that still holds the output open counts as not finished). However
+    this returns or is left (the limit, an interruption, an error), every program of the
+    group that was started is ended first."""
     if not os.path.isabs(command[0]):
         return None, f"{command[0]} is not an absolute path"
     held = bytearray()
 
-    def read(stream):
+    def read(descriptor):
         while True:
-            chunk = stream.read(8192)
+            try:
+                chunk = os.read(descriptor, 8192)
+            except OSError:
+                return
             if not chunk:
                 return
             if keep == "tail":
@@ -113,33 +147,50 @@ def _run(command, timeout=QUICK, keep="head", limit=MAX_OUTPUT):
             elif len(held) < limit:
                 held.extend(chunk[:limit - len(held)])
 
+    deadline = time.monotonic() + timeout
     with tempfile.TemporaryDirectory(prefix="cdlbib-tex-") as empty:
         try:
-            process = subprocess.Popen(command, cwd=empty, env=environment(Path(command[0]).parent), stdin=subprocess.DEVNULL,
-                                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT, start_new_session=True)
+            process = subprocess.Popen(command, cwd=empty, env=environment(command), stdin=subprocess.DEVNULL,
+                                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT, start_new_session=True, bufsize=0)
         except OSError as exc:
-            return None, str(exc)
-        reader = threading.Thread(target=read, args=(process.stdout,), daemon=True)
-        reader.start()
+            return None, shown(exc, lines=False)
+        reader = threading.Thread(target=read, args=(process.stdout.fileno(),), name="cdlbib-tex-output", daemon=True)
+        status = None
         try:
-            status = process.wait(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            _stop(process)
-            status = None
-        reader.join(5)
-        process.stdout.close()
+            reader.start()
+            try:
+                status = process.wait(timeout=max(0.0, deadline - time.monotonic()))
+            except subprocess.TimeoutExpired:
+                status = None
+            if status is not None:
+                reader.join(max(0.0, deadline - time.monotonic()))
+                if reader.is_alive():                          # the output is still held open by something it started
+                    status = None
+        finally:
+            _stop(process)                                     # on every way out: nothing that was started stays
+            reader.join(5)
+            if not reader.is_alive():                          # a reader still reading is left to end; closing would wait for it
+                process.stdout.close()
     text = bytes(held).decode("utf-8", errors="replace")
     return (status, text) if status is not None else (None, f"it did not finish within {timeout} seconds")
 
 
 def _stop(process):
-    """End a program that ran out of time, with whatever it started."""
+    """End the program and whatever it started (its process group), finished or not."""
     import signal
     try:
-        os.killpg(process.pid, signal.SIGKILL)
+        os.killpg(process.pid, signal.SIGKILL)                # the group is the program's own (start_new_session)
     except (OSError, AttributeError):
-        process.kill()
-    process.wait()
+        pass
+    if process.poll() is None:
+        try:
+            process.kill()
+        except OSError:
+            pass
+    try:
+        process.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        pass
 
 
 def _out(command):
@@ -212,7 +263,7 @@ def plan(program):
             return Plan(program, "homebrew", manual=said, why=f"{shown(brew, MAX_PATH)} is not there")
         if not os.access(cellar, os.W_OK):
             return Plan(program, "homebrew", manual=said, why=f"{shown(cellar, MAX_PATH)} is not writable by this user")
-        return Plan(program, "homebrew", command=[str(brew), "install", "biber"], manual=said)
+        return Plan(program, "homebrew", command=[str(brew), "install", "biber"], manual=said, confirm=True)
 
     if real.parent in (Path("/usr/bin"), Path("/bin")):         # a distribution's own packages: they need root
         for manager, packages in SYSTEM.items():
@@ -243,7 +294,8 @@ def how(program):
     """One sentence for a person: what installs ``program`` here, and why it is not done for them."""
     found = plan(program)
     if found.command:
-        return f"Run: {found.shown} (cdlbib export --bbl does this when the program is needed)"
+        return (f"Run: {found.shown} (cdlbib export --bbl " + ("asks, then does this," if found.confirm else "does this")
+                + " when the program is needed)")
     return found.manual + (f" ({found.why})" if found.why and found.distribution != "none" else "")
 
 
