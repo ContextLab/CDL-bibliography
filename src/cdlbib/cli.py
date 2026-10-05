@@ -567,7 +567,8 @@ def report_setup(report, status, asked=False):
         typer.echo(f"without a link, this shell line does the same (cdlbib does not write it anywhere): {status.bibinputs_line}")
     typer.echo("available on this computer:")
     for feature in report.features:
-        typer.echo(f"  {feature.name}: {'yes' if feature.available else 'no'} ({feature.detail})"
+        typer.echo(f"  {feature.name}: {'not checked' if feature.available is None else 'yes' if feature.available else 'no'}"
+                   f" ({feature.detail})"
                    + (f" {feature.how}" if feature.how else ""))
 
 
@@ -587,7 +588,7 @@ def setup(ctx: typer.Context,
             typer.echo(line)
         return
     ws = library(ctx, BIB_NAME)   # as every command: the managed library is downloaded when it is the one in use
-    report = api.setup_report(ws)
+    report = api.setup_report(ws, probe="all", progress=lambda line: typer.echo(line, err=True))   # the setup command checks everything
     status, declined, refused = report.tex, False, None
     if not check and status.present != "linked":
         if deps.ask() and not _confirmed(f"Link {status.link} to {ws.bib}?"):

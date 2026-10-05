@@ -299,3 +299,19 @@ def test_a_bib_folder_that_is_a_link_out_of_the_tree_is_said(ws, texenv, tmp_pat
     saved = [item for item in elsewhere.iterdir() if item.name.startswith(tex.SAVED)]
     assert moved.state == "linked" and len(saved) == 1 and saved[0].read_text(encoding="utf-8") == "mine\n"
     assert not saved[0].is_symlink()
+
+
+def test_a_tree_that_cannot_be_written_is_a_refusal_not_a_crash(ws, texenv):
+    need("kpsewhich")
+    if os.geteuid() == 0:
+        pytest.skip("running as root: no folder is unwritable")
+    _, texmf, _ = texenv
+    texmf.mkdir()
+    texmf.chmod(0o555)
+    try:
+        with pytest.raises(TexLinkRefused) as refused:
+            tex.link(ws)
+        assert "could not be read or changed" in str(refused.value) and str(texmf) in str(refused.value)
+        assert list(texmf.iterdir()) == []
+    finally:
+        texmf.chmod(0o755)

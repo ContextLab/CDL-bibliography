@@ -820,20 +820,53 @@ def test_the_control_file_for_biber_is_built_anew_from_listed_names(ws, tmp_path
     import xml.etree.ElementTree as ET
     real = real_bcf(tmp_path / "paper")
     assert SOURCE in real and real.count(ROOT) == 1
-    hidden = SOURCE + ('<bcf:datasource type="file" datatype="bibtex" glob="false">..&#x2F;..&#47;x.bib</bcf:datasource>'
-                       '<bcf:datasource type="file" datatype="bibtex"><![CDATA[../../x.bib]]></bcf:datasource>'
-                       '<bcf:datasource type="remote" datatype="bibtex">https://example.org/x.bib</bcf:datasource>'
-                       '<bcf:datasource type="file" datatype="bibtex" glob="true">*.bib</bcf:datasource>')
-    rewritten = export.own_bcf(real.replace(SOURCE, hidden).encode("utf-8"), ["cdl", "extra"]).decode("utf-8")
-    assert rewritten.count("<bcf:datasource") == 2 and SOURCE in rewritten and SOURCE.replace("cdl.bib", "extra.bib") in rewritten
-    for gone in ("x.bib", "example.org", 'glob="true"', "CDATA", "&#", "<!--"):
-        assert gone not in rewritten, gone
+    rewritten = export.own_bcf(real.encode("utf-8"), ["cdl", "extra"]).decode("utf-8")
+    assert rewritten.count("<bcf:datasource") == 1 and SOURCE in rewritten and "<!--" not in rewritten
     # nothing of biblatex's own is lost: the same elements, attributes and text, in the same order
     def shape(text):
-        return [(element.tag, sorted(element.attrib.items()), (element.text or "").strip())
-                for element in ET.fromstring(text).iter() if not element.tag.endswith("datasource")]
-    assert shape(export.own_bcf(real.encode("utf-8"), ["cdl"]).decode("utf-8")) == shape(real)
-    assert export.own_bcf(real.encode("utf-8"), ["cdl"]).decode("utf-8").count("<bcf:") == real.count("<bcf:")
+        return [(element.tag, sorted(element.attrib.items()), (element.text or "").strip()) for element in ET.fromstring(text).iter()]
+    assert shape(rewritten) == shape(real) and rewritten.count("<bcf:") == real.count("<bcf:")
+    for what, hidden in {
+            "entities": '<bcf:datasource type="file" datatype="bibtex" glob="false">..&#x2F;..&#47;x.bib</bcf:datasource>',
+            "cdata": '<bcf:datasource type="file" datatype="bibtex"><![CDATA[../../x.bib]]></bcf:datasource>',
+            "remote": '<bcf:datasource type="remote" datatype="bibtex">cdl.bib</bcf:datasource>',
+            "url": '<bcf:datasource type="file" datatype="bibtex">https://example.org/x.bib</bcf:datasource>',
+            "glob": '<bcf:datasource type="file" datatype="bibtex" glob="true">cdl.bib</bcf:datasource>',
+            "pattern": '<bcf:datasource type="file" datatype="bibtex">*.bib</bcf:datasource>',
+            "another kind of data": '<bcf:datasource type="file" datatype="biblatexml">cdl.bib</bcf:datasource>',
+            "an encoding": '<bcf:datasource type="file" datatype="bibtex" encoding="latin1">cdl.bib</bcf:datasource>',
+            "not one of the paper's files": '<bcf:datasource type="file" datatype="bibtex">other.bib</bcf:datasource>'}.items():
+        with pytest.raises(ExportFailed) as failed:           # in any section: refused, never dropped or passed on
+            export.own_bcf(real.replace(SOURCE, SOURCE + hidden).encode("utf-8"), ["cdl"])
+        assert failed.value.kind == "control_file" and "a data source of section 0" in str(failed.value), what
+
+
+def test_reference_sections_keep_their_own_data_sources(ws, tmp_path):
+    """Two sections whose files define the same key differently, a section-level \\nocite{*}, and
+    the library in the main section: the .bbl is the one biber makes by hand."""
+    need("pdflatex", "biber")
+    body = ("\\cite{Zoll90}\\printbibliography\n"
+            "\\begin{refsection}[a.bib]\\cite{Same}\\printbibliography\\end{refsection}\n"
+            "\\begin{refsection}[b.bib]\\nocite{*}\\printbibliography\\end{refsection}\n")
+    file = paper(tmp_path / "paper", body, BIBLATEX)
+    (tmp_path / "paper" / "a.bib").write_text("@misc{Same, title = {The work in A}, year = {2001}}\n"
+                                              "@misc{OnlyA, title = {Not cited}, year = {2003}}\n", encoding="utf-8")
+    (tmp_path / "paper" / "b.bib").write_text("@misc{Same, title = {Another work in B}, year = {2002}}\n"
+                                              "@misc{OnlyB, title = {Only in B}, year = {2004}}\n", encoding="utf-8")
+    made = export.bbl(ws, file, out=tmp_path / "made.bbl").path.read_text(encoding="utf-8")
+    sections = made.split("\\refsection{")
+    assert len(sections) == 4
+    assert "\\entry{Zoll90}" in sections[1] and "Same" not in sections[1] and "FixtA21" not in sections[1]
+    assert "The work in A" in sections[2] and "Another work in B" not in sections[2] and "OnlyA" not in sections[2]
+    assert "Another work in B" in sections[3] and "Only in B" in sections[3] and "The work in A" not in sections[3]
+    assert "Zoll90" not in sections[2] + sections[3]
+
+    (tmp_path / "paper" / "cdl.bib").write_text(LIBRARY, encoding="utf-8")       # by hand, with the whole library beside the paper
+    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=file.parent).returncode == 0
+    assert run("biber", "main", cwd=file.parent).returncode == 0
+    assert made == (tmp_path / "paper" / "main.bbl").read_text(encoding="utf-8")
+    rewritten = export.own_bcf((tmp_path / "paper" / "main.bcf").read_bytes(), ["cdl", "a", "b"]).decode("utf-8")
+    assert [line.split(">")[1].split("<")[0] for line in rewritten.split("<bcf:datasource")[1:]] == ["cdl.bib", "a.bib", "b.bib"]
 
 
 def hostile_bcfs(real, tmp_path):
@@ -856,6 +889,7 @@ def hostile_bcfs(real, tmp_path):
         "a bare document type": real.replace(ROOT, "<!DOCTYPE bcf:controlfile>" + ROOT),
         "an unknown element": real.replace(section, '<bcf:tool><bcf:run>touch /tmp/x</bcf:run></bcf:tool>' + section),
         "a known element in the wrong place": real.replace(section, section + SOURCE),
+        "a data source that is not one of the paper's": real.replace(SOURCE, SOURCE.replace("cdl.bib", "elsewhere.bib")),
         "an unknown attribute": real.replace(section, '<bcf:section number="0" output="/tmp/x">'),
         "an option that names a folder": real.replace(biber, biber + option.format("output_directory", tmp_path)),
         "an option biblatex does not pass": real.replace(biber, biber + option.format("tool", "1")),
@@ -1055,12 +1089,93 @@ def test_a_file_a_build_made_is_taken_only_when_it_is_a_regular_file(tmp_path):
 
 
 def test_the_programs_get_a_minimal_environment(tmp_path, monkeypatch):
-    for name in ("TEXMFCNF", "TEXMFHOME", "TEXMFVAR", "BIBER_CONF", "PERL5LIB", "PERL5OPT", "TEXINPUTS_pdflatex",
+    for name in ("TEXMFCNF", "TEXMFLOCAL", "TEXMFDIST", "BIBER_CONF", "PERL5LIB", "PERL5OPT", "TEXINPUTS_pdflatex",
                  "max_print_line", "shell_escape", "LD_PRELOAD", "DYLD_INSERT_LIBRARIES", "GIT_DIR"):
         monkeypatch.setenv(name, "/tmp/set-by-the-user")
     env = export._environment([tmp_path / "in"], tmp_path / "home")
     assert set(env) <= {"PATH", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE", "HOME", "TEXINPUTS", "BSTINPUTS", "BIBINPUTS",
-                        "openout_any", "openin_any", "max_print_line"}
+                        "openout_any", "openin_any", "max_print_line", "TEXMFHOME", "TEXMFVAR", "TEXMFCONFIG"}
     assert env["HOME"] == str(tmp_path / "home") and env["openout_any"] == env["openin_any"] == "p"
     assert env["TEXINPUTS"] == os.pathsep.join([".", f"{tmp_path / 'in'}//", ""]) and env["PATH"] == os.environ["PATH"]
     assert "/tmp/set-by-the-user" not in env.values()
+
+
+# --- red team, 2026-10-05: the user's own TeX tree, failures of the file system --------------
+
+def test_styles_installed_only_in_the_users_tex_tree_are_found(ws, texenv, tmp_path, monkeypatch):
+    need("pdflatex", "bibtex", "kpsewhich")
+    _, texmf, _ = texenv
+    (texmf / "bibtex" / "bst" / "lab").mkdir(parents=True)
+    (texmf / "tex" / "latex" / "lab").mkdir(parents=True)
+    shutil.copyfile(subprocess.run(["kpsewhich", "plain.bst"], capture_output=True, text=True).stdout.strip(),
+                    texmf / "bibtex" / "bst" / "lab" / "treestyle.bst")
+    (texmf / "tex" / "latex" / "lab" / "treemacros.sty").write_text(
+        "\\ProvidesPackage{treemacros}\n\\newcommand{\\treeref}[1]{\\cite{#1}}\n", encoding="utf-8")
+    file = paper(tmp_path / "paper", "\\treeref{Zoll90}\n\\bibliographystyle{treestyle}\n\\bibliography{cdl}", "\\usepackage{treemacros}")
+    found = export.cited(file)                                # compiled: the package in the user's tree was found
+    assert found.how == "compiled" and found.keys == ["Zoll90"] and found.notes == []
+    done = export.bbl(ws, file)
+    assert done.style == "treestyle" and "\\bibitem{Zoll90}" in done.path.read_text(encoding="utf-8")
+    trees = export.users_trees()
+    assert trees["TEXMFHOME"] == str(texmf) and set(trees) == {"TEXMFHOME", "TEXMFVAR", "TEXMFCONFIG"}
+    env = export._environment([], tmp_path / "h")
+    assert env["TEXMFHOME"] == str(texmf) and env["HOME"] == str(tmp_path / "h") and "TEXMFCNF" not in env
+
+    monkeypatch.setenv("TEXMFHOME", str(tmp_path / "another tree"))               # not installed there: said, not hidden
+    with pytest.raises(ExportFailed) as failed:
+        export.bbl(ws, file, force=True)
+    assert failed.value.kind == "missing_input" and failed.value.names == ["treemacros.sty"]
+    degraded = export.cited(file)
+    assert degraded.how == "source" and degraded.keys == [] and "treemacros.sty" in degraded.notes[0]
+    assert degraded.notes[0].endswith(export.SOURCE_NOTE)
+
+
+def test_the_link_in_the_users_tree_does_not_decide_which_bib_is_read(ws, texenv, tmp_path):
+    """The TeX link names another library whose Zoll90 differs; the export for this library still
+    reads the file written here, for BibTeX and for biber."""
+    need("pdflatex", "bibtex", "biber", "kpsewhich")
+    from cdlbib import tex
+    other = make_library(tmp_path / "other library", ZOLL90.replace("U Zoller", "Q Otherlibrary") + "\n")
+    assert tex.link(other).state == "linked"
+    for file in (paper(tmp_path / "one", "\\cite{Zoll90}\n" + PLAIN), paper(tmp_path / "two", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX)):
+        text = export.bbl(ws, file).path.read_text(encoding="utf-8")
+        assert "Zoller" in text and "Otherlibrary" not in text
+
+
+def test_a_file_system_failure_is_an_export_failure(ws, tmp_path):
+    need("pdflatex", "bibtex")
+    if os.geteuid() == 0:
+        pytest.skip("running as root: no folder is unwritable")
+    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
+    found = export.cited(file)
+    locked = tmp_path / "locked"
+    locked.mkdir()
+    locked.chmod(0o555)
+    try:
+        for attempt in (lambda: export.frozen_bib(ws, found, locked / "cited.bib"), lambda: export.bbl(ws, file, out=locked / "main.bbl")):
+            with pytest.raises(ExportFailed) as failed:
+                attempt()
+            assert failed.value.kind == "output" and "Not written" in str(failed.value) and str(locked) in str(failed.value)
+        assert list(locked.iterdir()) == []
+    finally:
+        locked.chmod(0o755)
+    secret = tmp_path / "paper" / "unreadable"
+    secret.mkdir()
+    (secret / "x.tex").write_text("x", encoding="utf-8")
+    secret.chmod(0o000)
+    try:
+        with pytest.raises(ExportFailed) as failed:           # a folder of the paper that cannot be listed
+            export.bbl(ws, file)
+        assert failed.value.kind == "files" and "unreadable" in str(failed.value)
+        assert export.cited(file).how == "source"
+    finally:
+        secret.chmod(0o755)
+    unreadable = paper(tmp_path / "paper b", "\\cite{Zoll90}\n" + PLAIN)
+    unreadable.chmod(0o000)
+    try:
+        for attempt in (lambda: export.cited(unreadable), lambda: export.bbl(ws, unreadable)):
+            with pytest.raises(ExportFailed) as failed:
+                attempt()
+            assert failed.value.kind == "files"
+    finally:
+        unreadable.chmod(0o644)
