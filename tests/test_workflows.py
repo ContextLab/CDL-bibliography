@@ -186,7 +186,7 @@ def test_check_keys_runs_the_one_gate_on_exactly_those_keys(tmp_path, offline):
     lines = []
     check = api.check_keys(ws, ["Zoll90"], progress=lines.append, mailto=CONTACT)
     assert check.ok and check.format.ok and check.citations.ok and check.citations.unresolved == {}
-    assert lines == check.citations.lines
+    assert lines[0] == "format: Zoll90: looks good" and lines[1:] == check.citations.lines and check.scope == "keys"
     # (the review layers' own progress lines come first, as in every gate run)
     assert [text for text in lines if text.startswith("citations:")] == [
         "citations: 1 of 1 chosen entries verified; network requests: 0"]
@@ -218,8 +218,10 @@ def test_check_keys_reports_a_format_finding_on_a_chosen_key(tmp_path, offline):
     ws = approved_library(tmp_path, ZOLL90 + "\n\n" + bad + "\n", ["Zoll90", "Game62"])
     chosen = api.check_keys(ws, ["Game62"], mailto=CONTACT)
     assert not chosen.ok and chosen.citations.ok and chosen.format.corrections == {"Game62": {"pages": "1--11"}}
-    other = api.check_keys(ws, ["Zoll90"], mailto=CONTACT)        # a finding on another entry is reported, not held against it
-    assert other.ok and not other.format.ok and other.format.errors == ["Game62"]
+    assert chosen.scope == "keys"
+    other = api.check_keys(ws, ["Zoll90"], mailto=CONTACT)        # another entry's finding is not this check's business
+    assert other.ok and other.format.ok and other.format.errors == [] and other.scope == "keys"
+    assert api.check_library(ws, citations=False).format.errors == ["Game62"]       # the whole-library check finds it
 
 
 def test_check_keys_refuses_keys_the_library_does_not_have(tmp_path, offline):

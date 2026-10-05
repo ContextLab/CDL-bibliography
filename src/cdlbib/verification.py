@@ -7,6 +7,7 @@ the source fingerprints, rather than reading old review rows as current approval
 from __future__ import annotations
 
 import contextlib
+import contextvars
 from functools import lru_cache
 import hashlib
 import gzip
@@ -102,6 +103,28 @@ def top_level_parts(text):
     return parts
 
 
+_READ_ONCE = contextvars.ContextVar("cdlbib_read_once", default=None)
+
+
+@contextlib.contextmanager
+def read_once():
+    """Within this block ``load_entries`` parses a file once for each state of it (its path,
+    modification time and size, read afresh at every call) and hands every caller a copy of
+    its own. For a run that reads one large library many times over (the citation gate asked
+    about a few chosen keys read the 6,481-entry library some thirty times, minutes of
+    parsing). A file that changes is parsed again. Not used by the gate a send runs. Yields
+    the store ({(path, mtime_ns, size): entries}); a block inside another shares its store."""
+    held = _READ_ONCE.get()
+    if held is not None:
+        yield held
+        return
+    token = _READ_ONCE.set({})
+    try:
+        yield _READ_ONCE.get()
+    finally:
+        _READ_ONCE.reset(token)
+
+
 def load_entries(filename):
     """Strict source scanner plus BibTeX parser; never silently drop entries.
 
@@ -110,6 +133,23 @@ def load_entries(filename):
     string/preamble definitions, and recursively inherited crossref/xdata entries.
     A definition change deliberately invalidates all entries, conservatively.
     """
+    held = _READ_ONCE.get()
+    if held is None:
+        return _load_entries(filename)
+    path = Path(filename).resolve()
+    before = os.stat(path)
+    state = (str(path), before.st_mtime_ns, before.st_size)
+    if state not in held:
+        entries = _load_entries(filename)
+        after = os.stat(path)
+        if (after.st_mtime_ns, after.st_size) != state[1:]:       # changed while it was read: not kept
+            return entries
+        held.clear()
+        held[state] = entries
+    return {key: dict(entry, fields=dict(entry["fields"])) for key, entry in held[state].items()}
+
+
+def _load_entries(filename):
     text = Path(filename).read_bytes().decode("utf-8-sig")
     blocks, definitions, pos = [], [], 0
     while pos < len(text):

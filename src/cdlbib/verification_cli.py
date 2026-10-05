@@ -401,6 +401,11 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
     """
     database, report = paths(fname, database, report)
     cache = Cache(database, ledger=revocation_ledger(fname))
+    # Asked about chosen keys, the library is parsed once per state of the file, not once per
+    # step (verification.read_once). The gate of a send (no keys) reads as it always did.
+    reading = verification.read_once() if keys is not None else None
+    if reading is not None:
+        reading.__enter__()
     try:
         keys = None if keys is None else list(keys)
         against = None if all_entries or keys is not None else reference_bib(reference, Path(database).parent)
@@ -433,6 +438,8 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
              + ", ".join(f"{k}={v}" for k, v in sorted(library.items())))
         return not unresolved, unresolved, dict(library)
     finally:
+        if reading is not None:
+            reading.__exit__(None, None, None)
         cache.close()
 
 
