@@ -40,6 +40,7 @@ class LibraryCheck:
     ok: bool
     needs_review_of_autofix: bool = False
     citations_due: bool = False   # format passed and the citation check has not run yet
+    scope: str = "library"        # what the format check covered: "library" (every entry) or "keys" (check_keys)
 
 
 @dataclass
@@ -710,12 +711,18 @@ def _message(exc):
 
 # --- reference intake ---
 
-def find_candidates(ws, title=None, authors=(), year=None, mailto=None, database=None, progress=None):
+def find_candidates(ws, title=None, authors=(), year=None, mailto=None, database=None, progress=None,
+                    limit=None, per_source=None):
     """Leads for a title, one or several authors, or both; see intake.find_candidates.
-    A lead becomes an entry only through propose_new([candidate_query(lead)])."""
+    A lead becomes an entry only through propose_new([candidate_query(lead)]). ``limit``
+    (leads returned; default intake.CANDIDATE_LIMIT) and ``per_source`` (records asked of
+    each source; default intake.PER_SOURCE) are intake's own, and bounded there: never more
+    than intake.MAX_CANDIDATES and intake.MAX_PER_SOURCE, whatever is passed."""
     from . import intake
     return intake.find_candidates(ws, title=title, authors=authors, year=year, mailto=mailto,
-                                  database=database, progress=progress)
+                                  database=database, progress=progress,
+                                  limit=intake.CANDIDATE_LIMIT if limit is None else limit,
+                                  per_source=intake.PER_SOURCE if per_source is None else per_source)
 
 
 def candidate_query(candidate):
@@ -1168,24 +1175,47 @@ def choose_candidate(ws, item, candidate, mailto=None, database=None, in_library
 
 
 def check_keys(ws, keys, progress=None, database=None, mailto=None, bars=None):
-    """Check chosen entries now: the format check of the library, then the citation gate
-    (check_citations, the one gate) for exactly ``keys``, whatever has changed. Returns a
-    LibraryCheck: ``format.corrections`` holds the formatter's values per key, ``citations``
-    the gate's result (``checked``: the refreshed result of each key). ``ok`` is True when the
-    format check could run, none of ``keys`` has a format finding, and every one is verified
-    or approved. ``progress`` receives the gate's lines. ``mailto`` defaults to
-    CROSSREF_MAILTO. GateFailed when a key is not in the library or the check cannot be done."""
-    import os
+    """Check chosen entries now, and only them: each one's house format by the one-entry
+    format check that ``entry`` and ``preview_edit`` use (no pass over the whole library),
+    then the citation gate (check_citations, the one gate) for exactly ``keys``, whatever
+    has changed. Returns a LibraryCheck with ``scope`` "keys": ``format`` covers the chosen
+    entries only (``errors``: those with a finding; ``corrections``: the formatter's value
+    per field, None for a field it would remove; ``failure``: an entry it could not judge),
+    ``citations`` is the gate's result (``checked``: the refreshed result of each key).
+    ``ok`` is True when none of ``keys`` has a format finding and every one is verified or
+    approved. ``progress`` receives a line per entry for the format, then the gate's lines.
+    ``mailto`` defaults to CROSSREF_MAILTO. GateFailed when a key is not in the library or
+    the check cannot be done. The whole-library check is check_library, which is what a send
+    runs; this one never stands in for it."""
     from . import library
     keys = list(keys)
     with library.transaction(ws):     # a write killed part-way is settled first, or this refuses (CdlbibError)
         for line in library.settled(ws):
             if progress:
                 progress(line)
-    fmt = check_format(ws, bars=bars)
+    from . import verification
+    with verification.read_once() as parses:     # the library is parsed once for the format part and the gate
+        return _check_keys(ws, keys, progress, database, mailto, bars, parses)
+
+
+def _check_keys(ws, keys, progress, database, mailto, bars, parses):
+    import os
+    from . import desk
+    try:
+        judged = desk.format_findings(ws, keys, progress=progress)
+        desk.lend_parse(ws, parses)
+    except CdlbibError as exc:
+        raise GateFailed(str(exc)) from exc
+    unjudged = [f"{key}: {item.message}" for key, found in judged.items() for item in found if item.field is None]
+    fmt = FormatResult(errors=[key for key, found in judged.items() if found], corrected=None,
+                       failure="; ".join(unjudged),
+                       corrections={key: {("ID" if item.field == "key" else item.field): item.corrected
+                                          for item in found if item.field is not None}
+                                    for key, found in judged.items() if any(item.field for item in found)})
     check = check_citations(ws, fmt, database=database, mailto=mailto or os.environ.get("CROSSREF_MAILTO"),
                             progress=progress, bars=bars, keys=keys)
-    check.ok = bool(check.ok and not fmt.failure and not set(keys) & set(fmt.errors))
+    check.scope = "keys"
+    check.ok = bool(check.ok and fmt.ok)
     return check
 
 

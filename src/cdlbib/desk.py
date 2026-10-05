@@ -70,6 +70,19 @@ def parsed(ws):
     return _snapshot(ws)[0]
 
 
+def lend_parse(ws, store):
+    """Put the parse of the library as it is now into ``store`` (verification.read_once), so
+    that the citation gate does not parse again what the desk has parsed. Nothing is lent
+    when the file changed while it was read."""
+    path = str(Path(ws.bib).resolve())
+    before = _stat(path)
+    found = parsed(ws)
+    held = _PARSED.get(str(ws.bib))
+    if before is not None and held and held[0] == before and held[1] is found and _stat(path) == before:
+        store.clear()
+        store[(path, *before)] = found
+
+
 def _derived(ws, entries, name, build):
     """``build(entries)``, kept with the parse it was made from."""
     held = _PARSED.get(str(ws.bib))
@@ -98,14 +111,38 @@ def _cache(ws, database=None):
         cache.close()
 
 
+def _stored(database):
+    """What the verification database holds, as a value that moves only when a result or a
+    revocation is stored: (the newest review's row number, the number of revocations). Read
+    through a read-only connection, so asking changes nothing; the file's own size and times
+    are not used (SQLite moves them when nothing was stored). None: no database yet."""
+    database = Path(database)
+    if not database.is_file():
+        return None
+    try:
+        held = sqlite3.connect(database.resolve().as_uri() + "?mode=ro", uri=True, timeout=5)
+        try:
+            return (held.execute("SELECT max(id) FROM reviews").fetchone()[0],
+                    held.execute("SELECT count(*) FROM revocations").fetchone()[0])
+        finally:
+            held.close()
+    except sqlite3.Error as exc:
+        return ("unreadable", type(exc).__name__)
+
+
 def revision(ws, database=None):
-    """A value that changes whenever the bibliography, the verification database (or its
-    write-ahead log) or the revocation ledger changes on disk: their (mtime_ns, size), None for
-    one that is not there. Reads no file."""
+    """A value that changes when what a front end shows may have changed, and only then: the
+    (mtime_ns, size) of the bibliography, of the key-rename ledger and of the revocation
+    ledger (None for one that is not there), and for the verification database what it holds
+    (``_stored``), in the order (bibliography, database, key renames, revocations). Looking
+    at the library (entries, entry, search, preview_edit, review_queue, library_state) does
+    not move it once the verifier's own bookkeeping for this state has been done, which
+    ``prepare`` does (reading a result can store it again in its current form, once: an old
+    fingerprint brought up to date, a retained notice); a save, an approval, a revocation or
+    a check that stores a result does, from this process or another."""
     from .verification import revocation_ledger
-    database = Path(database or ws.database)
-    return tuple(_stat(path) for path in (ws.bib, database, Path(str(database) + "-wal"),
-                                          revocation_ledger(str(ws.bib), None)))
+    return (_stat(ws.bib), _stored(database or ws.database), _stat(ws.key_renames),
+            _stat(revocation_ledger(str(ws.bib), None)))
 
 
 # --- browse and search -------------------------------------------------------------------------
@@ -380,6 +417,27 @@ def entry(ws, key, database=None):
                                                _derived(ws, found, "definitions", lambda _: _definitions(data)))[0])
 
 
+def format_findings(ws, keys, progress=None):
+    """{key: [FormatFinding]} for the chosen entries, each judged by the one-entry format
+    check ``entry`` and ``preview_edit`` use (the entry with the entries that share its key
+    base, the entries it inherits from and the file's @string definitions), not by a pass
+    over the whole library. Keys the library does not have are left out. ``progress``
+    receives a line per entry."""
+    found, data = _snapshot(ws)
+    bases = _derived(ws, found, "bases", _bases)
+    definitions = _derived(ws, found, "definitions", lambda _: _definitions(data))
+    judged = {}
+    for key in dict.fromkeys(keys):
+        if key not in found:
+            continue
+        others = {name: item for name, item in found.items() if name != key}
+        judged[key] = _format(found[key], others, bases, definitions)[0]
+        if progress:
+            progress(f"format: {key}: " + ("looks good" if not judged[key] else
+                                           "; ".join(item.message for item in judged[key])))
+    return judged
+
+
 def review_queue(ws, reference="github", all_entries=False, database=None):
     """The entries waiting for a person: those that differ from ``reference`` (the GitHub
     master cdl.bib, or a path; key-only renames do not count), or every entry with
@@ -556,6 +614,14 @@ def prepare(ws, progress=None):
     _derived(ws, found, "definitions", lambda _: _definitions(data))
     say("indexing the works for duplicate detection ...")
     _derived(ws, found, "works", lambda entries: _works(entries, say))
+    if Path(ws.database).is_file():
+        # Reading a stored result can make the cache store it again in its current form (an
+        # old fingerprint brought up to date, a retained notice). Done here once for every
+        # entry, so that later reads store nothing and ``revision`` stays put under them.
+        from .verification import current_results
+        say("reading the stored verification results ...")
+        with _cache(ws) as cache:
+            current_results(str(ws.bib), cache, found)
     seconds = time.monotonic() - started
     say(f"ready: {len(found)} entries prepared in {seconds:.1f} s")
     return Prepared(len(found), seconds, revision(ws))
