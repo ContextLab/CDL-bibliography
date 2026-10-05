@@ -136,7 +136,7 @@ class CdlbibApp(App):
     CSS = """
     Screen { background: $background; color: $foreground; }
     * { scrollbar-size-vertical: 1; scrollbar-size-horizontal: 1; }
-    ModalScreen { align: center middle; background: $background 70%; }
+    ModalScreen { align: center middle; background: $background; }   /* one frame: nothing shows through around it */
     #top { height: 1; background: $primary; color: $cdl-on-primary; padding: 0 1; text-style: bold; }
     #banner { height: auto; background: $panel; color: $warning; padding: 0 1; display: none; }
     #banner.shown { display: block; }
@@ -145,7 +145,7 @@ class CdlbibApp(App):
     #log.hidden { display: none; }
     #jobline { height: 1; background: $surface; color: $cdl-muted; padding: 0 1; }
     #jobline.busy { color: $accent; }
-    .dialog { width: 76; max-width: 95%; height: auto; max-height: 90%; border: round $accent; background: $surface;
+    .dialog { width: 76; max-width: 95%; height: auto; max-height: 90%; border: round $accent; background: $background;
               padding: 1 2; }
     .dialog.wide { width: 95%; }
     .dialog.tall { height: 90%; }

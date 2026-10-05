@@ -7,6 +7,7 @@ from textual.widgets import Button, DataTable
 
 from .. import api, prompts
 from ..errors import UpdateConflict, UpdateNeedsDecision
+from . import render
 from .widgets import ChoiceScreen, Shown, Table, View, fill_table
 
 
@@ -77,8 +78,7 @@ class StateView(View):
         out.line(f"Library: {state.root}", bold=True)
         out.line(f"chosen by: {prompts.CHOSEN_BY[state.origin]}")
         if state.managed:
-            out.line("last update check: " + (state.last_check.strftime("%Y-%m-%d %H:%M UTC") if state.last_check
-                                              else "never"))
+            out.line("last update check: " + (render.when(state.last_check) if state.last_check else "never"))
             if state.new_commits is None:
                 out.line("upstream: not compared yet (r looks now)", "muted")
             elif state.new_commits:

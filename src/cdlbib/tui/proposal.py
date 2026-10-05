@@ -19,7 +19,7 @@ from textual.widgets.option_list import Option
 from .. import api
 from ..errors import EditedEntryParseError
 from . import render
-from .widgets import ChoiceScreen, Shown, Table, fill_table
+from .widgets import ChoiceScreen, Shown, Table, fill_table, wrapped
 
 CANNOT = "Cannot accept: complete required fields and resolve duplicate or unsupported entries first."
 
@@ -114,8 +114,7 @@ class ProposalScreen(Screen):
     ProposalScreen #proposal-main { width: 2fr; }
     ProposalScreen #proposal-pdf { width: 1fr; }
     ProposalScreen #sides { height: 13; }
-    ProposalScreen .side { width: 1fr; overflow-x: auto; }
-    ProposalScreen .side Shown { width: auto; }
+    ProposalScreen .side { width: 1fr; }
     ProposalScreen .side-title { color: $accent; text-style: bold; height: 1; }
     ProposalScreen #changes { height: auto; max-height: 12; }
     ProposalScreen #findings-pane { height: 1fr; }
@@ -179,6 +178,19 @@ class ProposalScreen(Screen):
     def on_resize(self, event):
         if self.item is not None and not self.busy:
             self._show()
+
+    def _fit_sides(self):
+        """The two texts' panes are as tall as the longer text needs at the width they have, up to
+        two fifths of the window; a longer text scrolls."""
+        if not self.is_attached or self.item is None:
+            return
+        need = 0
+        for name in ("#typed", "#proposed"):
+            pane = self.query_one(name, Shown)
+            if pane._text is not None and pane.size.width >= 12:
+                need = max(need, wrapped(pane._text, pane.size.width).plain.count("\n") + 1)
+        if need:
+            self.query_one("#sides").styles.height = max(6, min(need + 3, self.app.size.height * 2 // 5))
 
     def _refit(self):
         if self.item is not None and not self.busy:
@@ -289,13 +301,22 @@ class ProposalScreen(Screen):
                 "typed by hand" if item.manual else "built from a source record")
         self.query_one("#proposal-head", Static).update(
             f"Proposal {self.index + 1} of {len(self.items)} · {kind}" + (f" · {self.origin}" if self.origin else ""))
-        # the two texts line for line as they are written: long lines scroll sideways, none is wrapped
-        self.query_one("#typed", Shown).show(Text((item.typed_raw or "(no typed entry)").expandtabs(4), no_wrap=True))
-        self.query_one("#proposed", Shown).show(Text((item.proposed_raw or "(no proposed entry)").expandtabs(4),
-                                                     no_wrap=True))
+        # the two texts line for line as they are written; a line longer than its pane is continued
+        # under itself, indented, as the Library's Entry pane does (nothing is cut at the pane's edge)
+        self.query_one("#typed", Shown).show(Text((item.typed_raw or "(no typed entry)").expandtabs(4)))
+        self.query_one("#proposed", Shown).show(Text((item.proposed_raw or "(no proposed entry)").expandtabs(4)))
+        rows = render.changes(item) or [("(no changes)", "", "", "", "")]
+
+        def widest(column, label):
+            return max(len(label), *(len(row[column]) for row in rows))
+        # Field, Kind, and a short Typed or Source (an identifier, a source's name) are as wide as what
+        # they hold; Proposed and the long ones share the rest by what they hold
+        typed, proposed, source = widest(1, "Typed"), widest(2, "Proposed"), widest(3, "Source")
         fill_table(self.query_one("#changes", DataTable),
-                   [("Field", 9), ("Typed", 2.0), ("Proposed", 3.0), ("Source", 2.0), ("Kind", 8)],
-                   render.changes(item) or [("(no changes)", "", "", "", "")])
+                   [("Field", min(widest(0, "Field"), 14)), ("Typed", typed if typed <= 24 else float(min(typed, 40))),
+                    ("Proposed", float(min(proposed, 40))), ("Source", source if source <= 20 else float(min(source, 40))),
+                    ("Kind", min(widest(4, "Kind"), 10))], rows)
+        self.call_after_refresh(self._fit_sides)
         self.query_one("#findings", Shown).show(render.proposal(item, colour))
         if self.pdf is not None:
             self.query_one("#pdf-text", Shown).show(render.pdf_text(self.pdf, colour, name_only=True))
@@ -318,9 +339,8 @@ class ProposalScreen(Screen):
         if item.duplicate_of and item.duplicate_in_library:
             actions.append("[r] remove this typed duplicate   [k] keep both for the formatter   [q] stop",
                            colour("accent"))
-        else:
-            actions.append("[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop", colour("accent"))
-        actions.append("\nAccepting writes the entry; it does not verify or approve it.", colour("muted"))
+            actions.append("\n")
+        actions.append("Accepting writes the entry; it does not verify or approve it.", colour("muted"))
         self.query_one("#proposal-actions", Shown).show(actions)
 
     # --- writing (runs in a job) -----------------------------------------------------------------

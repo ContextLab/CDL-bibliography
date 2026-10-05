@@ -95,7 +95,9 @@ def test_identifiers_are_looked_up_together_and_each_proposal_is_accepted_or_ski
             assert [str(column.label) for column in app.screen.query_one("#changes").columns.values()] == [
                 "Field", "Typed", "Proposed", "Source", "Kind"]
             assert "Verification: metadata_verified" in findings
-            assert "[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop" in T.shown(app, "#proposal-actions")
+            assert "[a] accept" not in T.shown(app, "#proposal-actions")      # the keys are the footer's, said once
+            footer = T.screen_text(app).splitlines()[-1]
+            assert all(pair in footer for pair in ("a Accept", "e Edit", "s Skip", "A Accept all", "q Stop"))
             assert "it does not verify or approve it" in T.shown(app, "#proposal-actions")
             assert ws.bib.read_text(encoding="utf-8") == ""                           # nothing is written by proposing
             await T.press(pilot, "a")
@@ -183,7 +185,7 @@ def test_a_title_search_lists_leads_with_their_sources_and_the_chosen_one_is_pro
             assert name(app) == "ProposalScreen" and T.changes(app)["author"][1] == "B B Murdock"
             assert "@article{Murd56," in T.shown(app, "#proposed")
             findings = T.shown(app, "#findings")                          # the sources disagree: said, not settled
-            assert "Unfilled title: title: sources disagree" in findings
+            assert "Unfilled\n  title: sources disagree\n" in findings and "title: title" not in findings
             assert 'crossref: "Backward" learning in paired associates.' in findings
             assert "pubmed: Backward learning in paired associates" in findings
             await T.press(pilot, "a")
@@ -194,7 +196,7 @@ def test_a_title_search_lists_leads_with_their_sources_and_the_chosen_one_is_pro
             await T.press(pilot, "ctrl+s")
             findings = T.shown(app, "#findings")
             assert T.changes(app)["title"] == ("", "Backward learning in paired associates", "user edit", "changed")
-            assert "Unfilled title" not in findings
+            assert "Unfilled" not in findings and "sources disagree" not in findings
             await T.press(pilot, "a")
             assert "Added: Murd56" in T.shown(app, "#s-message")
     T.run(journey())

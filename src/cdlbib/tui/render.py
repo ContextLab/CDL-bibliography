@@ -1,6 +1,7 @@
 """What the core returned, laid out as text. Nothing here decides anything: every status,
 issue and message is shown as the core gave it."""
 import json
+from datetime import datetime, timezone
 
 from rich.text import Text
 
@@ -55,11 +56,26 @@ def issues(detail, colour):
     return out.text
 
 
+def when(moment):
+    """A moment as the interface writes it: "2026-10-05 04:29 UTC". ``moment`` is a datetime or
+    the ISO text of one; text that is not a date is given back as it is."""
+    if isinstance(moment, str):
+        try:
+            moment = datetime.fromisoformat(moment.replace("Z", "+00:00"))
+        except ValueError:
+            return moment
+    if moment.tzinfo is not None:
+        moment = moment.astimezone(timezone.utc)
+    return moment.strftime("%Y-%m-%d %H:%M UTC")
+
+
 def _candidate(out, title, candidate):
     out.head(title)
-    for name in ("source", "doi", "url", "retrieved_at"):
+    for name in ("source", "doi", "url"):
         if candidate.get(name):
             out.line(f"  {name}: {candidate[name]}")
+    if candidate.get("retrieved_at"):
+        out.line(f"  retrieved: {when(candidate['retrieved_at'])}")
     evidence = candidate.get("evidence") or {}
     if evidence:
         out.line("  each field: = the library and the source agree, ≠ they differ", "muted")
@@ -211,7 +227,9 @@ def proposal(item, colour):
     if item.unfilled:
         out.head("Unfilled")
         for missing in item.unfilled:
-            out.line(f"  Unfilled {missing.field}: {missing.reason}", "warning")
+            reason = str(missing.reason)         # the core's reason may already begin with the field's name
+            said = reason if reason.startswith(f"{missing.field}:") else f"{missing.field}: {reason}"
+            out.line(f"  {said}", "warning")
             for source, value in (missing.source_values or {}).items():
                 out.line(f"      {source}: {value}", "muted")
     consequences = [f"Rename: {old} -> {new}" for old, new in item.renames.items()]
