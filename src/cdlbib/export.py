@@ -498,7 +498,7 @@ def _program(name):
     found = shutil.which(name)
     if found:
         return found
-    wanted = texinstall.plan(name)
+    wanted = texinstall.plan(name)      # the command is an absolute path inside the TeX installation, never a PATH lookup
     if wanted.command:
         raise MissingProgram(name, "Compiling a .bbl", wanted.command, wanted.shown)
     raise ExportFailed("no_tex", f"{name} was not found on PATH. A .bbl needs a TeX installation that has it. "
@@ -846,7 +846,10 @@ def _bibtex(build, sources, style, keys, everything):
 # eleven documents (default, authoryear, alphabetic, apa, ieee, nature, chicago and verbose
 # styles; refsections, sets, templates, each \Declare... that adds a section). The map_step
 # attributes are the schema's without map_matches and map_matchesi, plus map_entry_nocite (a
-# flag in biber's bibtex.pm that the schema lacks and biblatex-chicago writes). own_bcf() copies these
+# flag in biber's bibtex.pm that the schema lacks and biblatex-chicago writes). The schemas of
+# biber 2.14 to 2.21 name no element, and no child of an element, that is not here; their one
+# attribute that 2.22's lacks is lang on a value (2.14 to 2.18), which is listed for that reason
+# (tests/fixtures/bcf_schema_names.json holds each schema's names). own_bcf() copies these
 # names and nothing else; any other element or attribute fails the export by name (dropping
 # it would change the .bbl).
 MAX_BCF, MAX_BCF_ELEMENTS, MAX_BCF_VALUE = 5_000_000, 100_000, 2000
@@ -941,7 +944,7 @@ BCF_SHAPE = {
     "transliteration": (("entrytype",), ("translit",), False),
     "type_pair": (("inherit_all", "override_target", "source", "suppress", "target"), (), False),
     "uniquenametemplate": (("name",), ("namepart",), False),
-    "value": (("order", "type"), (), True),
+    "value": (("lang", "order", "type"), (), True),
 }
 # The source-map steps biber 2.22 does more with than substitute text. A match is compiled as
 # a Perl regular expression (Biber::Utils::imatch: `$val_match = qr/$val_match/;`). A
@@ -1055,7 +1058,7 @@ def _bcf_versions(root):
     own first element), the installed biber, and the biber the allowlist was derived from."""
     def stated(attribute):
         value = root.get(attribute, "")
-        return value if re.fullmatch(r"[0-9][0-9A-Za-z.+-]{0,19}", value) else "not stated"
+        return value if re.fullmatch(r"\d{1,4}(\.\d{1,4}){0,3}", value) else "not stated"   # digits and dots, or not repeated
     return (f"Found here: biblatex {stated('bltxversion')} (control file format {stated('version')}) and biber "
             f"{texinstall.version('biber') or 'not installed'}; the names that are passed on were derived from "
             f"biber {texinstall.ALLOWLIST_BIBER}'s schema of the file.")
@@ -1143,6 +1146,8 @@ def own_bcf(data, sources):
             fresh.text = text
         for child in element:
             kind = local(child)
+            if kind not in BCF_SHAPE:
+                _bcf_refused(f"it has an element this version does not know: {kind}. {_bcf_versions(old)}", [kind])
             if kind not in children:
                 _bcf_refused(f"{name} holds an element it does not hold in a file biblatex writes: {kind}.", [kind])
             if kind != "datasource":
