@@ -280,9 +280,27 @@ process (`api.known_identity`), or none. The rows are appended before the gate
 (`verification.append_approvals`: one line each, `json.dumps` with sorted keys and no
 spaces; earlier lines are not touched), and `progress` receives a line for each. The file
 is under `verification/`, so it is committed and pushed with the change, and it alone is a
-change to send. If the send raises before a commit holds the rows, the file is put back to
-the bytes it had (removed when it did not exist), unless something else changed it in the
-meantime; the approvals stay in the database. `api.approvals_note` adds to the pull
+change to send. Before the file is touched, a record of the rows about to be added
+(checksums of the file before and after, the added bytes, git's index entry for the file) is
+kept durably in `.bibcheck/approval-send/pending.json` (`writer.keep_record`). The file is
+read and replaced whole by name within its folder held open (`writer._Folder`, `O_NOFOLLOW`):
+a link in the place of `verification/` or of the file is refused before anything is read,
+and there is no half-written line. `api.settle_approval_send` settles the record: when the
+send raises (the append and the progress callbacks are inside the protected block), when it
+succeeds, and whenever the library's lock is taken (`library.transaction`), which settles a
+send that was killed. If the file holds exactly what the send left and no commit holds it,
+the file is put back to the bytes it had (removed when it did not exist) and the index
+entry to what it was; if a commit holds it, only the record is dropped; if anything else
+changed the file, it is not written to, and the refusal (or the settled line) says that it
+was not put back and names the rows. The approvals stay in the database.
+
+Before anything is written, `send` compares the working tree's file with the copy in the
+commit the checkout is on (`_outgoing_ledger`): the committed bytes must still be there,
+first, and every added line must be a valid row. gh is asked who is logged in once, when a
+row waits or the file has uncommitted rows; those rows, the rows the send adds, and (after
+the upstream base is fetched) every row the upstream does not have must have been recorded
+under that user (`_require_own`), and gh is asked again after the gate and before
+publication (`_still`): another answer, or none, refuses the send. `api.approvals_note` adds to the pull
 request's text the entries whose current approval is a row that the upstream base's copy of
 the file does not hold, whether or not the entry differs from the reference.
 
@@ -303,19 +321,33 @@ looks for rows with the entry's fingerprint (`Cache.shared_approval`) and return
 that no revocation matches (`shared_revoked`, below). The view keeps the stored result's evidence, takes `human_review` from
 the row and `checked_at` from `approved_at`, and is not written to the database
 (`Cache.stored` is the result without the ledger). Every command that reads results through
-`Cache.get` therefore sees the approval, with no `restore`. A row applies under a stored
-result of any other status, including one stored later by a new machine check of the same
-text.
+`Cache.get` therefore sees the approval, with no `restore`. A row is treated as an approval
+stored in the database is: there, the newest stored result for the text is the current one,
+whatever its status. So a result stored in the reader's database for the same text with a
+`checked_at` strictly later than the row's `approved_at` outranks the row (any stored
+status: `needs_review`, `provider_error`, `metadata_verified`), and the entry has that
+result's status. The times are compared as parsed instants with a zone, not as text. A
+stored result whose `checked_at` is missing or cannot be read counts as later than any row,
+so that a failed check is not hidden for want of its date. With nothing stored, or a
+stored result no later than the approval, the row counts. A newer row, or a new `approve`,
+recorded after that result counts again. Tests:
+`test_a_result_stored_after_the_approval_outranks_a_ledger_row_as_it_does_a_local_approval`
+and the two after it in `tests/test_approval_ledger.py`.
 
 Validation. `scan_approval_ledger` reads the file and returns the valid rows and a list of
 problems; it does not raise for anything the file holds. A line is ignored, and reported
-with its line number, when it is longer than 32 KiB, is not UTF-8 JSON, names a field
+with its line number, when it is longer than 32 KiB (32,768 bytes), is not UTF-8 JSON, names a field
 twice, or is not a valid row (`shared_approval_problem`): exactly the six fields; a `v2:`
 fingerprint; a `human_review` with non-blank text for `reviewer` (at most 200 characters),
 `github_login` (a GitHub login), `source` (4,000) and `note` (8,000), an integer
 `github_id` when present, and no other field; an `approval_digest` equal to the digest
 computed from `human_review` (the stored digest is never used for anything else); an
-`approved_at` that is a time; a `policy`. A file larger than 8 MiB, or one that cannot be
+`approved_at` that is a time with a zone and not more than five minutes ahead of the
+reader's clock (`approved_at` is typed text; a row dated in the future is ignored and
+reported, is never written, and `send` refuses a ledger that holds a new one); a `policy`; and, as written (compact JSON plus the
+newline), at most 32,768 bytes. `record_approval` applies the same byte limit to the row an
+approval would become, and refuses one that would take the ledger over 8 MiB;
+`approval_lines` checks both again when a send adds rows. A file larger than 8 MiB, or one that cannot be
 read, is ignored whole and reported. `api.approval_problems`, `crossref status` (standard
 error), the progress lines of `send` and the notes of the library state show the problems.
 `append_approvals` refuses to write a row that is not valid, and `approvals_to_send` does
@@ -326,8 +358,8 @@ row can do depends on which copy of the file a command reads:
 
 |Reader|Copy of `approvals.jsonl` read|
 |-|-|
-|Pull request check, and push check with a base (`check_ci.py`)|The base revision's, through `CDLBIB_APPROVAL_LEDGER`.|
-|The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. `CDLBIB_APPROVAL_LEDGER`, when set, is used instead.|
+|Pull request check, and push check with a base (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`.|
+|The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. This holds whichever entries are checked (new and edited, `--all`, or chosen keys); when all entries or chosen keys are checked and `master`'s file cannot be downloaded, no row counts and the gate prints a line saying so. No environment variable names a ledger.|
 |`crossref status`, `crossref verify` run by hand, the library views, `restore`, `snapshot`, a push check without a base, a manual workflow run|The file beside the revocation ledger the cache was opened with: the checkout's own.|
 |A cache opened without a ledger|None.|
 
@@ -338,10 +370,32 @@ what `crossref restore` of a snapshot file, or an `approve` in the local databas
 has: none of them is read by the pull request check. An approval the sender recorded with
 `approve` is in the sender's database and counts in the sender's own gate, as before.
 
-Revocation of a row (`shared_revoked`). A revocation revokes a row with the same
-fingerprint when any of these holds: the digest computed from the row's `human_review` is
-one the revocation names (`revoked_digests`); the row's `approved_at` is not after
-`revoked_at`; or the row's `source` and `note`, with white space collapsed and case folded,
+Rows are validated when they enter the ledger, not only when they are read. `send` writes
+only rows that are valid at that moment and refuses a ledger whose uncommitted lines are not
+(`ledger_additions`). The pull request check runs `crossref check-ledger --base FILE` first:
+it fails when a line the base revision holds was removed or changed, or when an added line
+is not, at the time of the run, a valid row under the current `POLICY` whose fingerprint is
+that of an entry of the same commit's `cdl.bib` and whose `key` is that entry's key (any of
+them, where the same text stands under several keys). So nothing can be merged today and
+begin to count later: not a row dated ahead of the clock, not a row for another policy, not
+a row for a text that no entry has yet. `send` applies the same function to the working
+tree. Lines the base already holds are not checked again: a row whose entry was edited or
+removed since no longer matches any entry and is not an error for later changes. A reader still validates
+every row each time, and a row typed into a working tree is subject to the reader's clock
+there.
+
+One revocation rule (`approval_revoked`, asked through `Cache.revoked`). Every reader of
+approvals asks it, over every revocation the cache knows (`Cache.revocations`: the
+database's `revocations` table, which also receives the rows of a restored snapshot and of
+`--trusted-revocations`, and the revocation ledger file): `Cache.stored` for an approval in
+the database, `Cache.shared_approval` for a ledger row, `import_snapshot` for a restored
+result, and `record_approval` for a review about to be recorded. `current_results`,
+`status`, `snapshot`, the library views, `approvals_note` and `approvals_waiting` read
+through `Cache.get`/`Cache.stored`. A revocation revokes an approval with the same
+fingerprint when any of these holds: the digest computed from its `human_review` is
+one the revocation names (`revoked_digests`); its time (a row's `approved_at`, a stored
+result's `checked_at`) is not after `revoked_at`, compared as instants, or cannot be read;
+or its `source` and `note`, with white space collapsed and case folded,
 equal those of the approval the revocation carries. The third rule means a copy of a revoked
 review with other spacing, another time, another reviewer or another `github_id` is not a
 new decision. `approved_at` is typed text like the rest of the row, so a row with a new note
@@ -801,8 +855,12 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
   edited content is gated; key-only renames are excluded. It also writes the base
   revision's `verification/approvals.jsonl` to `.bibcheck/base-approvals.jsonl` (an empty
-  file when the base has none) and sets `CDLBIB_APPROVAL_LEDGER` to it, so the checker
-  reads approvals from that copy and not from the pull request's file.
+  file when the base has none) and passes it as `--trusted-approvals`, so the checker
+  reads approvals from that copy and not from the pull request's file. The base revision's
+  `verification/revocations.jsonl` is written to `.bibcheck/base-revocations.jsonl` and
+  passed as `--trusted-revocations` to `restore` and `verify`, which add its rows to the
+  database's `revocations` table; they count together with the rows of the pull request's
+  own file, so a pull request that deletes a revocation line does not undo it.
 - A push whose base revision is not in the history (a force-push, rewritten history, or
   a new branch) has nothing to compare against. Its content is already merged, so the job
   restores the pushed commit's own `verification/baseline.jsonl.gz` and runs

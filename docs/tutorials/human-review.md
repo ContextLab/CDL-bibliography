@@ -91,8 +91,15 @@ Send views list such approvals under "Approvals that will not be sent" (terminal
 "Approvals not sent" (web).
 
 `approve` refuses a review that could not be written as a line: a source longer than 4,000
-characters, a note longer than 8,000 or a reviewer longer than 200. It prints, for example,
+characters, a note longer than 8,000 or a reviewer longer than 200; a review whose line
+would be longer than 32,768 bytes as written (letters outside ASCII take more than one
+byte); or one that would take the file over 8,388,608 bytes. It prints, for example,
 `The note is 8001 characters long; an approval's note can be at most 8000 characters. Nothing was recorded.`
+
+The send refuses, before it writes anything, when `verification/approvals.jsonl` or the
+`verification` folder is a link, when the file holds an uncommitted line that is not a
+valid row or was recorded under another login, or when a line that is already committed
+was changed or removed.
 For each approval the send prints (or shows in its log):
 
 ```text
@@ -106,7 +113,12 @@ line `Approved by @you: MannEtal11`. If the send stops before the commit is made
 not sent: verification/approvals.jsonl is as it was before (the approvals stay in the local database)
 ```
 
-and the file is byte for byte as it was. Before a send, the Send view lists the approvals
+and the file is byte for byte as it was. A send that is killed leaves the lines in the
+file; the next `cdlbib` command that locks the library takes them out and prints the same
+line. If another program changed the file after the send added its lines, the send does
+not write to it again and its refusal ends with a sentence that begins
+`verification/approvals.jsonl was NOT put back as it was before the send` and names the
+approvals it had added. Before a send, the Send view lists the approvals
 under "Approvals that will be sent" (terminal) or "Approvals to send" (web), and the
 Library state view lists them as unsent approvals.
 
@@ -123,7 +135,10 @@ A line of `verification/approvals.jsonl` is one JSON object with these fields:
 
 Once the line is in someone's copy of the library (after the pull request is merged and
 they update), the entry reads as `human_verified` there with no command to run, provided
-its text still has that fingerprint. A line that is not a valid row approves nothing and
+its text still has that fingerprint and their database holds no result for that text that
+was checked after the approval was recorded. A later check's result takes the approval's
+place, as it does for an approval made on the same computer, until the entry is approved
+again. A line that is not a valid row approves nothing and
 does not stop the other lines from being read; `cdlbib crossref status` prints, and the
 Library state views show, one line for it, for example:
 

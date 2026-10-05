@@ -123,3 +123,82 @@ def test_a_pull_request_reads_the_approvals_ledger_of_its_base_only(clone):
         assert reported(clone, key) == "human_verified"
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_a_pull_request_that_deletes_a_revocation_does_not_revive_the_base_approval(clone):
+    """The base holds a ledger approval of Zoll90 and, in verification/revocations.jsonl only,
+    its revocation. The pull request deletes that revocation line. The check honours the base
+    revision's revocations together with the pull request's: the approval stays revoked.
+    Control: with the revocation never made, the same approval counts."""
+    from cdlbib import verification as v
+    key = "Zoll90"
+    entry = v.load_entries(str(clone / "cdl.bib"))[key]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+    row = {"key": key, "fingerprint": entry["fingerprint"], "human_review": review,
+           "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+    revocation = {"key": key, "fingerprint": row["fingerprint"], "approval": review, "approval_digest": row["approval_digest"],
+                  "approval_checked_at": row["approved_at"], "revoked_at": v.now(), "revoked_by": "@hubot",
+                  "reason": "Recorded in error."}
+    assert v.valid_shared_approval(row) and v.valid_revocation(revocation)
+    start = head(clone)
+    revocations = clone / "verification" / "revocations.jsonl"
+    kept = revocations.read_bytes()
+
+    def commit(message):
+        subprocess.run(["git", "add", "verification"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
+        return head(clone)
+    try:
+        with open(clone / "verification" / "approvals.jsonl", "a", encoding="utf-8") as stream:
+            stream.write(v.dumps(row) + "\n")
+        approved = commit("an approval of Zoll90")
+        run = run_ci(clone, "push", approved)                                # control: approved, not revoked
+        assert run.returncode == 0 and reported(clone, key) == "human_verified", run.stdout + run.stderr
+        revocations.write_bytes(kept + (v.dumps(revocation) + "\n").encode("utf-8"))
+        base = commit("its revocation")
+        run = run_ci(clone, "push", base)
+        assert run.returncode == 0 and reported(clone, key) == "metadata_verified", run.stdout + run.stderr
+        revocations.write_bytes(kept)                                        # the pull request: the line is gone
+        commit("delete the revocation")
+        run = run_ci(clone, "pull_request", base)
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert (clone / ".bibcheck" / "base-revocations.jsonl").read_bytes().endswith((v.dumps(revocation) + "\n").encode("utf-8"))
+        assert reported(clone, key) == "metadata_verified"                   # still revoked
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_a_pull_request_that_adds_a_row_that_is_no_valid_row_today_fails_the_check(clone):
+    """Rows are validated when they enter. A pull request adds a ledger row dated in the
+    future (which no reader counts today and which would start counting when its date came):
+    the check fails, naming the line, before anything is verified. So does one that alters a
+    line the base already holds. A valid row added passes this step (the tests above)."""
+    from cdlbib import verification as v
+    entry = v.load_entries(str(clone / "cdl.bib"))["Zoll90"]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+    row = {"key": "Zoll90", "fingerprint": entry["fingerprint"], "human_review": review,
+           "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+    start = head(clone)
+    ledger = clone / "verification" / "approvals.jsonl"
+    kept = ledger.read_bytes() if ledger.exists() else b""
+
+    def commit(data, message):
+        ledger.write_bytes(data)
+        subprocess.run(["git", "add", "verification/approvals.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
+        return head(clone)
+    try:
+        future = dict(row, approved_at="2099-01-01T00:00:00+00:00")
+        commit(kept + (v.dumps(future) + "\n").encode("utf-8"), "a row dated 2099")
+        run = run_ci(clone, "pull_request", start)
+        assert run.returncode == 1, run.stdout + run.stderr
+        assert "is not a valid approval row: approved_at (2099-01-01T00:00:00+00:00) is later than the present time" in run.stdout
+        assert "Restored" not in run.stdout                                  # it stopped before the baseline was read
+        base = commit(kept + (v.dumps(row) + "\n").encode("utf-8"), "a valid row instead")
+        commit(kept + (v.dumps(row) + "\n").encode("utf-8").replace(b"Compared", b"compared"), "the row altered")
+        run = run_ci(clone, "pull_request", base)
+        assert run.returncode == 1 and "already held was removed or changed" in run.stdout, run.stdout + run.stderr
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)

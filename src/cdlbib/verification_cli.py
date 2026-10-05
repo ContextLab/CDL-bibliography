@@ -437,9 +437,17 @@ def citation_gate(fname, reference="github", database=None, report=None, mailto=
     try:
         keys = None if keys is None else list(keys)
         against = None if all_entries or keys is not None else reference_bib(reference, Path(database).parent)
-        if against is not None and not os.environ.get(verification.APPROVAL_LEDGER_ENV):
-            # Entries are gated against a reference: ledger rows count from that reference only.
+        # Which ledger rows count does not depend on which entries are asked about: the
+        # reference's ledger, never the working tree's. When all entries or chosen keys are
+        # checked and the reference's ledger cannot be fetched, no ledger row counts.
+        try:
             cache.approvals = reference_approvals(reference, Path(database).parent)
+        except OSError as exc:
+            if against is not None:
+                raise
+            cache.approvals = False
+            if verification.read_approval_ledger(verification.approval_ledger(cache.ledger)):
+                echo(f"approvals: {exc}; no row of verification/approvals.jsonl is counted in this check")
         selected = select_keys(fname, keys, against)
         client = DeferredClient(cache, mailto, interval, False)
         if selected:
@@ -513,11 +521,26 @@ def verify(
         "--against",
         help="Check new/edited content relative to this base .bib file; key-only renames are excluded.",
     ),
+    trusted_approvals: Optional[str] = typer.Option(
+        None, "--trusted-approvals",
+        help="Read approvals from this ledger file instead of verification/approvals.jsonl "
+             "(verification/check_ci.py passes the base revision's copy)."),
+    trusted_revocations: Optional[str] = typer.Option(
+        None, "--trusted-revocations",
+        help="Also honour the revocations in this ledger file "
+             "(verification/check_ci.py passes the base revision's copy)."),
 ):
     """Verify new/modified entries; save every result so interrupted runs resume."""
     fname = bib(ctx, fname)
     database, report = paths(fname, database, report)
-    cache = Cache(database, ledger=revocation_ledger(fname))
+    cache = Cache(database, ledger=revocation_ledger(fname), approvals=trusted_approvals)
+    try:
+        if trusted_revocations:
+            cache.remember_revocations(verification.read_revocation_ledger(trusted_revocations))
+    except (ValueError, OSError) as exc:
+        cache.close()
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(2)
     try:
         for selection_input in (keys, against):
             if selection_input:
@@ -617,6 +640,10 @@ def restore(
     snapshot: str = typer.Argument("verification/baseline.jsonl.gz"),
     fname: str = typer.Option("cdl.bib", "--fname"),
     database: Optional[str] = typer.Option(None, "--database"),
+    trusted_revocations: Optional[str] = typer.Option(
+        None, "--trusted-revocations",
+        help="Also honour the revocations in this ledger file "
+             "(verification/check_ci.py passes the base revision's copy)."),
 ):
     """Restore matching reviews from a trusted snapshot; changed entries stay pending."""
     fname = bib(ctx, fname)
@@ -624,6 +651,8 @@ def restore(
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
         with run_lock(cache):
+            if trusted_revocations:
+                cache.remember_revocations(verification.read_revocation_ledger(trusted_revocations))
             count = import_snapshot(fname, cache, snapshot)
         typer.echo(f"Restored {count} matching reviews")
     except (ValueError, OSError, StopIteration) as exc:
@@ -631,6 +660,33 @@ def restore(
         raise typer.Exit(2)
     finally:
         cache.close()
+
+
+@app.command("check-ledger")
+def check_ledger(
+    ctx: typer.Context,
+    base: str = typer.Option(..., "--base", help="The approvals ledger as the base revision holds it (an empty file for none)."),
+    fname: str = typer.Option("cdl.bib", "--fname"),
+):
+    """Check what verification/approvals.jsonl adds to a base copy: nothing removed or changed,
+    every added line a valid row now (a time ahead of the clock is not), under the current
+    policy, for an entry of the bibliography as it stands and under its key. Exit 1 otherwise."""
+    fname = bib(ctx, fname)
+    try:
+        head = verification.ledger_bytes(Workspace.for_bib(fname).approvals)[0]
+        base_bytes = Path(base).read_bytes()
+        rows, problems = verification.ledger_additions(base_bytes, head)
+        if rows or problems:             # something was added: it is held to the bibliography of this commit
+            rows, problems = verification.ledger_additions(base_bytes, head, entries=load_entries(fname))
+    except (ValueError, OSError) as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(2)
+    for problem in problems:
+        typer.echo(f"verification/approvals.jsonl: {problem}")
+    typer.echo(f"approvals ledger: {len(rows)} row{'' if len(rows) == 1 else 's'} added"
+               + (f", {len(problems)} problem{'' if len(problems) == 1 else 's'}" if problems else ""))
+    if problems:
+        raise typer.Exit(1)
 
 
 @app.command("review-packet")

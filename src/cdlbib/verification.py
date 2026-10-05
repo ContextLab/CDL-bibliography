@@ -22,7 +22,7 @@ import sqlite3
 import tempfile
 import time
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 
 from . import workspace
@@ -315,15 +315,42 @@ def revoked_digests(revocation):
     return out
 
 
-def revocation_matches(revocation, fingerprint, result):
-    """True when ``revocation`` revokes the human approval in ``result``."""
-    if result.get("status") != "human_verified" or revocation["fingerprint"] != fingerprint:
+def _review_text(review):
+    """What a human_review says, apart from how it is written down: its source and note with
+    white space collapsed and case folded. Who signed it, when, and any other field are not
+    part of it."""
+    review = review if isinstance(review, dict) else {}
+    return tuple(" ".join(str(review.get(name) or "").split()).casefold() for name in ("source", "note"))
+
+
+def approval_revoked(revocation, fingerprint, human_review, approved_at):
+    """THE rule for whether ``revocation`` revokes a human approval (its text's fingerprint,
+    its human_review record, the time it was recorded). Every reader of approvals asks it,
+    through Cache.revoked, over every revocation the cache knows: an approval stored in the
+    database, a row of the approvals ledger, a result restored from a snapshot, a review
+    about to be recorded. The same text (fingerprint), and any of
+      - the digest of human_review, computed here, is one the revocation names
+        (revoked_digests: the digest recorded then, and that of the approval text it carries);
+      - the approval's time is not after the revocation, or either time cannot be read (an
+        approval cannot then be shown to postdate the revocation);
+      - its source and note say what the revoked approval's say (_review_text), so that a
+        copy of the revoked approval with other spacing, another time, another signer or an
+        added field is not a new decision.
+    A later approval with a new note is a new decision."""
+    if revocation["fingerprint"] != fingerprint:
         return False
-    if approval_digest(result.get("human_review")) in revoked_digests(revocation):
+    if approval_digest(human_review) in revoked_digests(revocation):
         return True
-    approved, revoked = _instant(result.get("checked_at")), _instant(revocation["revoked_at"])
-    # An approval with no readable time cannot be shown to postdate the revocation.
-    return approved is None or revoked is None or approved <= revoked
+    approved, revoked = _instant(approved_at), _instant(revocation["revoked_at"])
+    if approved is None or revoked is None or approved <= revoked:
+        return True
+    return bool(revocation.get("approval")) and _review_text(revocation["approval"]) == _review_text(human_review)
+
+
+def revocation_matches(revocation, fingerprint, result):
+    """True when ``revocation`` revokes the human approval in the stored ``result`` (approval_revoked)."""
+    return result.get("status") == "human_verified" and approval_revoked(
+        revocation, fingerprint, result.get("human_review"), result.get("checked_at"))
 
 
 def revoked_view(result, revocation):
@@ -358,19 +385,20 @@ def revoked_view(result, revocation):
 # digest is computed from the row's human_review (a row whose stored digest differs is
 # invalid). Which copy of the file is read decides what a typed row can do:
 #   - the pull request check reads the base revision's copy (verification/check_ci.py names
-#     it through APPROVAL_LEDGER_ENV), and the gate of `cdlbib verify` and `cdlbib send`
-#     reads the reference's copy (verification_cli.reference_approvals): a row counts there
-#     only once it is on the branch the change is compared with;
+#     it with `crossref verify --trusted-approvals`), and the gate of `cdlbib verify` and
+#     `cdlbib send` reads the reference's copy (verification_cli.reference_approvals),
+#     whichever entries it was asked about: a row counts there only once it is on the branch
+#     the change is compared with. No environment variable names a ledger;
 #   - everything else (status, the library views, restore, snapshot) reads the copy beside
 #     the revocation ledger the cache was given: the working tree's, which has the trust of
 #     the checkout itself, as `crossref restore` of a snapshot file has.
-APPROVAL_LEDGER_ENV = "CDLBIB_APPROVAL_LEDGER"
 APPROVAL_LEDGER_NAME = "approvals.jsonl"
 APPROVAL_FIELDS = {"key", "fingerprint", "human_review", "approval_digest", "approved_at", "policy"}
 REVIEW_TEXT_FIELDS = {"reviewer": 200, "github_login": 39, "source": 4000, "note": 8000}   # required; the longest allowed
 REVIEW_FIELDS = set(REVIEW_TEXT_FIELDS) | {"github_id"}
 APPROVAL_LEDGER_MAX_BYTES = 8 * 1024 * 1024
 APPROVAL_ROW_MAX_BYTES = 32 * 1024
+APPROVAL_CLOCK_ALLOWANCE = timedelta(minutes=5)   # how far ahead of this clock a row's time may be
 _FINGERPRINT = re.compile(r"v2:[0-9a-f]{64}")
 _DIGEST = re.compile(r"[0-9a-f]{64}")
 _GITHUB_LOGIN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})")
@@ -400,7 +428,8 @@ def shared_approval_problem(record):
     exactly the six fields; a fingerprint of the current format; a human_review with a
     non-blank reviewer, source and note and a GitHub login (texts of bounded length, an
     integer github_id when there is one, and no other field); a digest that is the digest of
-    that human_review; a time with a zone; and a policy."""
+    that human_review; a time with a zone; a policy; and, as written, no more bytes than a
+    reader accepts in one line."""
     if not isinstance(record, dict):
         return "not a JSON object"
     if set(record) != APPROVAL_FIELDS:
@@ -421,9 +450,22 @@ def shared_approval_problem(record):
         return problem
     if not _DIGEST.fullmatch(record["approval_digest"]) or record["approval_digest"] != approval_digest(review):
         return "approval_digest is not the digest of human_review"
-    moment = _instant(record["approved_at"])
-    if moment is None or "T" not in record["approved_at"]:
-        return "approved_at is not a time"
+    try:
+        moment = datetime.fromisoformat(record["approved_at"].replace("Z", "+00:00"))
+    except ValueError:
+        moment = None
+    if moment is None or "T" not in record["approved_at"] or moment.tzinfo is None:
+        return "approved_at is not a time with a zone"
+    # The time is typed text like the rest of the row. A row dated ahead of the clock would
+    # outrank every check and revocation made until then, so it is no valid row (the
+    # allowance is for clocks that differ a little).
+    if moment > datetime.now(timezone.utc) + APPROVAL_CLOCK_ALLOWANCE:
+        return (f"approved_at ({record['approved_at']}) is later than the present time; a row dated in the "
+                "future is not counted")
+    written = len(dumps(record).encode("utf-8")) + 1
+    if written > APPROVAL_ROW_MAX_BYTES:
+        return (f"the row is {written} bytes as written; a line longer than {APPROVAL_ROW_MAX_BYTES} bytes "
+                "is not read")
     return None
 
 
@@ -436,9 +478,6 @@ def approval_ledger(revocations=None):
     REVOCATION_LEDGER): the file the environment names, else approvals.jsonl in the same
     folder. None when no revocation ledger was named: a cache that was not tied to a library
     reads no approvals (the current folder is not asked which library is meant)."""
-    override = os.environ.get(APPROVAL_LEDGER_ENV)
-    if override:
-        return Path(override)
     revocations = revocations if revocations is not None else REVOCATION_LEDGER
     return Path(revocations).with_name(APPROVAL_LEDGER_NAME) if revocations else None
 
@@ -491,32 +530,70 @@ def read_approval_ledger(path):
     return scan_approval_ledger(path)[0]
 
 
-def _review_text(review):
-    """What a human_review says, apart from how it is written down: its source and note with
-    white space collapsed and case folded. Who signed it, when, and any other field are not
-    part of it."""
-    review = review if isinstance(review, dict) else {}
-    return tuple(" ".join(str(review.get(name) or "").split()).casefold() for name in ("source", "note"))
-
-
 def shared_revoked(revocation, row):
-    """True when ``revocation`` revokes the approval in the ledger ``row``: the same text
-    (fingerprint), and any of
-      - the digest of the row's human_review, computed here, is one the revocation names
-        (revoked_digests: the digest recorded then, and that of the approval text it carries);
-      - the row's time is not after the revocation (as for a stored approval);
-      - the row's source and note say what the revoked approval's say (_review_text), so
-        that a copy of the revoked approval with other spacing, another time, another
-        signer or an added field is not a new decision.
-    A later approval with a new note is a new decision, as for `approve`."""
-    if revocation["fingerprint"] != row["fingerprint"]:
-        return False
-    if approval_digest(row["human_review"]) in revoked_digests(revocation):
-        return True
-    approved, revoked = _instant(row["approved_at"]), _instant(revocation["revoked_at"])
-    if approved is None or revoked is None or approved <= revoked:
-        return True
-    return bool(revocation.get("approval")) and _review_text(revocation["approval"]) == _review_text(row["human_review"])
+    """True when ``revocation`` revokes the approval in the ledger ``row`` (approval_revoked)."""
+    return approval_revoked(revocation, row["fingerprint"], row["human_review"], row["approved_at"])
+
+
+def ledger_additions(base, head, entries=None):
+    """What the approvals ledger ``head`` (bytes, or None for no file) adds to ``base`` (the
+    same), checked as rows are checked when they enter: (rows, problems). The one check of
+    `crossref check-ledger` (the pull request check) and of `cdlbib send`.
+
+    The ledger only grows, so ``head`` must begin with the bytes of ``base``. Every line
+    after them must be a row that counts now, for an entry that is there now, so that
+    nothing can be let in today to start counting later:
+      - a valid row (shared_approval_problem; a time ahead of the clock is not);
+      - under the current POLICY (a row for another policy would wait for that policy);
+      - with ``entries`` (the bibliography of the same commit, as load_entries gives it): its
+        fingerprint is that of an entry, and its key is that entry's key (one of them, where
+        the same text stands under several keys). A row for a text that no entry has would
+        lie in wait for whoever adds that text.
+    Rows the base already holds are not looked at: one whose entry was since edited or removed
+    no longer matches anything, and is no problem of a later change.
+
+    ``problems`` holds a sentence for each failure; the rows are the added ones that pass."""
+    base, head = base or b"", head or b""
+    if head == base:
+        return [], []
+    kept = base.rstrip(b"\n")
+    if not head.startswith(kept) or (kept and head[len(kept):len(kept) + 1] not in (b"", b"\n")):
+        return [], ["a line the ledger already held was removed or changed (the ledger is only ever added to)"]
+    rows, problems = [], []
+    first = len([1 for line in kept.split(b"\n")]) if kept else 0
+    for number, line in enumerate(head[len(kept):].split(b"\n")[1 if kept else 0:], first + 1):
+        if not line.strip():
+            continue
+        if len(line) > APPROVAL_ROW_MAX_BYTES:
+            problem = f"longer than {APPROVAL_ROW_MAX_BYTES} bytes"
+        else:
+            try:
+                record = json.loads(line.decode("utf-8"), object_pairs_hook=_no_duplicate_keys)
+                problem = shared_approval_problem(record)
+            except (ValueError, RecursionError) as exc:
+                problem = f"not valid JSON ({str(exc)[:120]})"
+        if problem:
+            problems.append(f"line {number} is not a valid approval row: {problem}")
+            continue
+        if record["policy"] != POLICY:
+            problems.append(f"line {number} is a row for policy {record['policy']!r}; rows enter under the current "
+                            f"policy ({POLICY!r}) only")
+            continue
+        if entries is not None:
+            keys = sorted(key for key, entry in entries.items() if entry["fingerprint"] == record["fingerprint"])
+            if not keys:
+                problems.append(f"line {number} approves a text that no entry of the bibliography has (key "
+                                f"{record['key']!r}, fingerprint {record['fingerprint']}); a row enters only for an "
+                                "entry as it stands")
+                continue
+            if record["key"] not in keys:
+                problems.append(f"line {number} names the key {record['key']!r}, and its fingerprint is that of "
+                                f"{', '.join(keys)}")
+                continue
+        rows.append(record)
+    if len(head) > APPROVAL_LEDGER_MAX_BYTES:
+        problems.append(f"the ledger would be larger than {APPROVAL_LEDGER_MAX_BYTES} bytes, and is then not read")
+    return rows, problems
 
 
 def approval_row(result):
@@ -591,20 +668,86 @@ def unshared_approvals(filename, cache, ledger, entries=None):
     return rows, unwritable
 
 
-def append_approvals(ledger, rows):
-    """Append ``rows`` to the approvals ledger, one line each; the lines already there are
-    not touched. Returns the bytes written."""
+def _ledger_folder(ledger, create=False):
+    """The folder of the approvals ledger, opened once and held (writer._Folder), reached
+    from the folder above it by name and refusing a link: None when it is not there and is
+    not to be made. ValueError when it is a link or not a folder."""
+    from .writer import _Folder
+    ledger = Path(ledger)
+    try:
+        above = _Folder.at(ledger.parent.parent)
+    except FileNotFoundError:
+        if not create:
+            return None
+        ledger.parent.parent.mkdir(parents=True, exist_ok=True)
+        above = _Folder.at(ledger.parent.parent)
+    try:
+        return above.sub(ledger.parent.name, create)
+    except OSError as exc:
+        raise ValueError(f"{ledger.parent} is a link or not an ordinary folder; the approvals ledger is not "
+                         "read or written through it. Nothing was changed.") from exc
+    finally:
+        above.close()
+
+
+def ledger_bytes(ledger):
+    """(bytes, permission bits) of the approvals ledger, read through one descriptor from its
+    folder held open; (None, None) when there is none. ValueError when the ledger or its
+    folder is a link, or the ledger is not an ordinary file: nothing is read through a link."""
+    folder = _ledger_folder(ledger)
+    if folder is None:
+        return None, None
+    try:
+        return folder.read(Path(ledger).name)
+    except OSError as exc:
+        raise ValueError(f"{ledger} is a link or not an ordinary file; the approvals ledger is not read or "
+                         "written through it. Nothing was changed.") from exc
+    finally:
+        folder.close()
+
+
+def approval_lines(before, rows):
+    """The bytes that ``rows`` add to a ledger that holds ``before`` (bytes or None), checked:
+    every row valid (which includes its length in bytes as written) and the ledger with them
+    no larger than a reader accepts. ValueError otherwise, naming the limit."""
     for row in rows:
         problem = shared_approval_problem(row)
         if problem:
             raise ValueError(f"Invalid approval record: {problem}")
-    ledger = Path(ledger)
-    ledger.parent.mkdir(parents=True, exist_ok=True)
-    before = ledger.read_bytes() if ledger.exists() else b""
+    before = before or b""
     text = ((b"\n" if before and not before.endswith(b"\n") else b"")
             + "".join(dumps(row) + "\n" for row in rows).encode("utf-8"))
-    with open(ledger, "ab") as stream:
-        stream.write(text)
+    if rows and len(before) + len(text) > APPROVAL_LEDGER_MAX_BYTES:
+        raise ValueError(
+            f"The approvals ledger would be {len(before) + len(text)} bytes with "
+            f"{'this approval' if len(rows) == 1 else 'these approvals'}; a ledger larger than "
+            f"{APPROVAL_LEDGER_MAX_BYTES} bytes is not read. Nothing was changed.")
+    return text
+
+
+def write_ledger(ledger, data, mode=None):
+    """Make the approvals ledger hold exactly ``data`` (None: remove it), whole: prepared
+    beside it and moved into place by name within its folder held open, never through a link."""
+    folder = _ledger_folder(ledger, create=data is not None)
+    if folder is None:
+        return
+    try:
+        folder.put(Path(ledger).name, data, mode)
+    except OSError as exc:
+        raise ValueError(f"{ledger} could not be written ({exc.strerror or exc})") from exc
+    finally:
+        folder.close()
+
+
+def append_approvals(ledger, rows):
+    """Add ``rows`` to the approvals ledger, one line each, after the lines already there
+    (which are kept byte for byte). The ledger is read and replaced whole by name within its
+    folder held open: a link in the place of the folder or the file is refused before
+    anything is read, and there is no half-written line. Returns the bytes added."""
+    before, mode = ledger_bytes(ledger)
+    text = approval_lines(before, rows)
+    if rows:
+        write_ledger(ledger, (before or b"") + text, mode if mode is not None else 0o644)
     return text
 
 
@@ -682,13 +825,21 @@ class Cache:
                     "INSERT OR IGNORE INTO revocations (fingerprint,approval_digest,record) VALUES (?,?,?)",
                     (record["fingerprint"], record["approval_digest"], dumps(record)))
 
+    def revoked(self, fingerprint, human_review, approved_at, revocations=None):
+        """The revocation that revokes this approval, or None: the one question every reader
+        of approvals asks (approval_revoked), over every revocation this cache knows
+        (``revocations()``: the database's table, which also holds those of a restored
+        snapshot and of --trusted-revocations, and the ledger file). ``revocations``: that
+        same list, when the caller already holds it."""
+        for revocation in (self.revocations() if revocations is None else revocations):
+            if approval_revoked(revocation, fingerprint, human_review, approved_at):
+                return revocation
+        return None
+
     def revocation_for(self, fingerprint, result, revocations=None):
         if result.get("status") != "human_verified":
             return None
-        for revocation in (self.revocations() if revocations is None else revocations):
-            if revocation_matches(revocation, fingerprint, result):
-                return revocation
-        return None
+        return self.revoked(fingerprint, result.get("human_review"), result.get("checked_at"), revocations)
 
     def shared_approvals(self):
         """The rows of the approvals ledger, by fingerprint, in the ledger's order; read again
@@ -719,15 +870,29 @@ class Cache:
     def shared_approval(self, entry, result):
         """``result`` (the stored result of ``entry``, or None), or the human_verified view a
         ledger row gives the entry: the newest row for exactly this text, under the current
-        policy, that no revocation matches. A stored human approval stands as it is."""
+        policy, that no revocation matches and that no result stored here for the text is
+        later than. A stored human approval stands as it is."""
         if result and result.get("status") == "human_verified":
             return result
         rows = self.shared_approvals().get(entry["fingerprint"])
         if not rows:
             return result
+        # As for an approval in this database, where the newest stored result for the text
+        # is the current one whatever it says: a result stored here for this text after the
+        # row's approval outranks the row. (Nothing stored, or a result no later than the
+        # approval, and the row counts.) Times are compared as parsed instants with a zone,
+        # never as text. Both doubts fall the closed way: a row whose time cannot be read
+        # never counts (shared_approval_problem already refuses it, and a time ahead of the
+        # clock), and a stored result whose time is missing or cannot be read is taken as
+        # later than any row, so a failed check is never hidden for want of its date.
+        checked = _instant(result.get("checked_at")) if result else None
         revocations = self.revocations()
         for row in reversed(rows):
-            if row["policy"] != POLICY or any(shared_revoked(r, row) for r in revocations):
+            if row["policy"] != POLICY or self.revoked(
+                    row["fingerprint"], row["human_review"], row["approved_at"], revocations):
+                continue
+            approved = _instant(row["approved_at"])
+            if approved is None or (result and (checked is None or checked > approved)):
                 continue
             return shared_view(entry, result, row)
         return result
@@ -2553,7 +2718,9 @@ def current_results(filename, cache, entries=None):
 
 
 def validate_output_path(filename, output, cache):
-    """Reports/snapshots must never overwrite the bibliography or working DB."""
+    """Reports/snapshots must never overwrite the bibliography, the working DB, or a ledger
+    of approvals or revocations: the library's own two and the ones this cache reads, by
+    path, through a link, or as another name of the same file."""
     output = Path(output)
     for protected in (Path(filename), cache.path):
         if output.resolve() == protected.resolve() or (
@@ -2561,6 +2728,20 @@ def validate_output_path(filename, output, cache):
         ):
             raise ValueError(
                 "Output path would overwrite the bibliography or verification database"
+            )
+    own = workspace.Workspace.for_bib(filename)
+    ledgers = {own.revocations, own.approvals}
+    named = cache.ledger if cache.ledger is not None else REVOCATION_LEDGER
+    if named:
+        ledgers |= {Path(named), approval_ledger(named)}
+    if cache.approvals:
+        ledgers.add(Path(cache.approvals))
+    for protected in ledgers:
+        if output.resolve() == protected.resolve() or (
+            output.exists() and protected.exists() and output.samefile(protected)
+        ):
+            raise ValueError(
+                "Output path would overwrite a ledger of approvals or revocations"
             )
 
 
@@ -3060,16 +3241,34 @@ def record_approval(cache, fname, key, fingerprint, human_review):
             if problem:
                 raise ValueError(f"This approval could not be shared as a row of the approvals ledger "
                                  f"({problem}). Nothing was recorded.")
-        for revocation in cache.revocations():
-            # The same rule as for a ledger row (shared_revoked): the revoked review's digest
-            # in either form, or its source and note whatever the spacing, case or signer.
-            if revocation["fingerprint"] == fingerprint and (
-                    approval_digest(human_review) in revoked_digests(revocation)
-                    or (revocation.get("approval")
-                        and _review_text(revocation["approval"]) == _review_text(human_review))):
+            # The row exactly as a send would write it (the time has now()'s form), in bytes:
+            # a line or a ledger over the reader's limits would be ignored by every other copy.
+            row = {"key": key, "fingerprint": fingerprint, "human_review": human_review,
+                   "approval_digest": approval_digest(human_review), "approved_at": now(), "policy": POLICY}
+            written = len(dumps(row).encode("utf-8")) + 1
+            if written > APPROVAL_ROW_MAX_BYTES:
                 raise ValueError(
-                    f"This exact approval was revoked {revocation['revoked_at']} "
-                    f"({revocation['reason']}); record the new review in a new note")
+                    f"This approval would be a line of {written} bytes in the approvals ledger; a line longer "
+                    f"than {APPROVAL_ROW_MAX_BYTES} bytes is not read. Shorten the note or the source. Nothing "
+                    "was recorded.")
+            ledger = approval_ledger(cache.ledger) or workspace.Workspace.for_bib(fname).approvals
+            try:
+                held = os.stat(ledger).st_size
+            except OSError:
+                held = 0
+            if held + written > APPROVAL_LEDGER_MAX_BYTES:
+                raise ValueError(
+                    f"The approvals ledger ({ledger}) holds {held} bytes and would be {held + written} with this "
+                    f"approval; a ledger larger than {APPROVAL_LEDGER_MAX_BYTES} bytes is not read. Nothing was "
+                    "recorded.")
+        # The one rule (Cache.revoked), asked of this review as if recorded now: a revoked
+        # review's digest in either form, or its source and note whatever the spacing, case
+        # or signer.
+        revocation = cache.revoked(fingerprint, human_review, now())
+        if revocation:
+            raise ValueError(
+                f"This exact approval was revoked {revocation['revoked_at']} "
+                f"({revocation['reason']}); record the new review in a new note")
         previous = cache.get(fname, entry) or outcome("pending", [])
         if previous.get("revoked_approval"):
             # The revocation notice describes the withdrawn approval, not this one.
