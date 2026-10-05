@@ -4,7 +4,7 @@
 
 `cdlbib` manages the shared [BibTeX bibliography](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib) used by the [Contextual Dynamics Lab](https://www.context-lab.com/) at [Dartmouth College](https://www.dartmouth.edu/). It downloads and updates a local library, helps add references from source records, checks formatting and citation accuracy, records human reviews, and sends contributions through GitHub pull requests.
 
-The current interface is the **command line**, backed by a shared Python API. A TUI and a local web interface are planned over that same core. Automated system-wide LaTeX setup, per-paper exports and interactive PDF intake are also planned; see [Current capabilities and design](#current-capabilities-and-design). You can already [connect the managed library to LaTeX manually](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files).
+`cdlbib` has a **command line** and a **local web interface** (`cdlbib web`), both backed by a shared Python API. `cdlbib setup` [makes the library available to every LaTeX manuscript](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files) on the computer, and `cdlbib export` [writes the entries a paper cites](#frozen-manuscript-copies-and-exports) as a `.bib` of its own or as its compiled `.bbl`. See [Current capabilities and design](#current-capabilities-and-design) and the [tutorials](docs/tutorials.md).
 
 For CDL members, the goal is one accurate, consistent bibliography across written documents. Other groups are welcome to adapt the approach for their own libraries.
 
@@ -17,12 +17,16 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 - [Managed-library updates](#managed-library-updates)
 - [Overview](#overview)
 - [Suggested workflow](#suggested-workflow)
+- [Tutorials](docs/tutorials.md)
 - [What belongs in `cdl.bib`](#what-belongs-in-cdlbib)
 - [Command reference](#additional-information-and-usage-instructions)
   - [`cdlbib add`](#add)
   - [`cdlbib verify`](#verify)
   - [`cdlbib compare`](#compare)
   - [`cdlbib send`](#send)
+  - [`cdlbib web`](#web)
+  - [`cdlbib setup`](#automated-setup-cdlbib-setup)
+  - [`cdlbib export`](#frozen-manuscript-copies-and-exports)
   - [`cdlbib crossref`: citation verification](#crossref-citation-verification)
 - [System-wide LaTeX use](#using-the-bibtex-file-as-a-common-bibliography-for-all-local-latex-files)
 - [Overleaf](#using-the-bibtex-file-on-overleaf)
@@ -34,26 +38,31 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 
 ## Current capabilities and design
 
-| Available in this version | Planned next |
+| Available in this version | Where |
 | --- | --- |
-| Installable `cdlbib` package, CLI and shared Python API | TUI first, then a local web interface using the same core |
-| Automatic library download, updates during command use, backups and undo | Guided system-wide LaTeX setup (`setup`) |
-| DOI/PMID/arXiv and title-with-author lookup; review, edit or skip source-supported entries | Interactive title/author discovery and PDF intake with first-page preview |
-| House-format and citation checks, source evidence, GitHub-attributed human approvals and revocations | Integrated browse/search/edit/check/review screens |
-| Contributions through your own fork and an opened or updated PR | The same contribution workflow in both interactive interfaces |
-| Optional Dartmouth Chat/OpenAI research adapters and keychain credentials | Guided PDF reading with quoted evidence, then a manual-entry fallback |
-| CLI tutorials and recorded demonstrations | Cited-key `.bib` export and `.bbl` generation from manuscript/style inputs |
+| Installable `cdlbib` package, CLI and shared Python API | `cdlbib`, `cdlbib.api` |
+| Local web interface: browse, search, edit, check, review, add, send, library state and setup in the browser | `cdlbib web` |
+| Automatic library download, updates during command use, backups and undo | `cdlbib update`; web: Library state |
+| DOI/PMID/arXiv and title-with-author lookup; review, edit or skip source-supported entries | `cdlbib add`; web: Add |
+| Search by title, authors or both, with a list of candidates to choose from | web: Add, "Search" tab |
+| PDF intake: the first page beside what was read, lookup of the source record, reading with a language model, and a manual-entry form filled from the PDF | web: Add, "PDF" and "Manual" tabs |
+| Entries built from source records: journal articles, arXiv preprints, papers in conference proceedings and book chapters | `cdlbib add`; web: Add |
+| House-format and citation checks, source evidence, GitHub-attributed human approvals and revocations | `cdlbib verify`, `cdlbib crossref`; web: Check, Library, Review |
+| Contributions through your own fork and an opened or updated PR | `cdlbib send`; web: Send |
+| System-wide LaTeX setup: one link in your TeX tree | `cdlbib setup`; web: Setup |
+| Cited-key `.bib` export, and `.bbl` generation from manuscript/style inputs | `cdlbib export`; web: Setup (`.bib` only) |
+| Optional Dartmouth Chat/OpenAI research adapters and keychain credentials | `cdlbib crossref research`; web: Add, "PDF" tab |
+| Terminal interface (TUI) | added in the same change as the web interface |
+| Tutorials, screenshots and recorded demonstrations | [docs/tutorials.md](docs/tutorials.md) |
 
-The TUI and web interface will use the same formatting, verification, identity and
-library services as the CLI. The design calls for Dartmouth-green themes, visible
-source evidence and review decisions, and bibliography management without Git
-expertise or a separate bibliography editor. Accepting proposed metadata remains
-separate from a human approval, and every interface must preserve unsent work.
+The web interface uses the same formatting, verification, identity and library
+services as the CLI. Accepting proposed metadata remains separate from a human
+approval. When an update is available and there are unsent changes, the web
+interface asks the same question as the command line.
 
 [Issue #95](https://github.com/ContextLab/CDL-bibliography/issues/95) records the
 full design, the work supplied by [PR #94](https://github.com/ContextLab/CDL-bibliography/pull/94),
-and remaining milestones. There are no `cdlbib setup`, `cdlbib export`, TUI or web
-commands yet. PyPI publication is a separate, manual maintainer step; see
+and remaining milestones. PyPI publication is a separate, manual maintainer step; see
 [Releasing](docs/releasing.md).
 
 The former `bibcheck.py` and `bibverify.py` entry points are now `cdlbib` and
@@ -99,11 +108,30 @@ Global options go before the command, for example:
 cdlbib --library "/absolute/path/to/library" verify --no-citations
 ```
 
-The dependencies are listed in `pyproject.toml`. The `research` extra installs
-`pypdf` for reading PDFs: `python -m pip install "cdlbib[research]"`. If an
-optional package is missing when a command needs it, the tool prints a notice and
-installs it. Use `cdlbib --ask COMMAND` to be asked first; without a terminal,
+The dependencies are listed in `pyproject.toml`. Two optional extras add packages
+that only some features need:
+
+|Extra|Package|Needed for|
+|-|-|-|
+|`research`|`pypdf`|reading PDFs (`cdlbib crossref research`, and the "PDF" tab of the web interface)|
+|`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface|
+
+<!-- TUI: the extra for the terminal interface is added to this table with it -->
+
+Install them ahead of time with `python -m pip install "cdlbib[research,pdf]"`, or
+not at all: if an optional package is missing when a command needs it, the tool
+prints a line saying so and installs it, for example
+
+```text
+installing pypdf (needed for: Reading PDF files) ...
+```
+
+Use `cdlbib --ask COMMAND` to be asked first; without a terminal,
 `--ask` leaves it uninstalled and prints the manual installation command.
+
+`cdlbib setup` and `cdlbib export --bbl` use a TeX installation (TeX Live or
+MacTeX), which is installed separately. `cdlbib setup` lists what it found on the
+computer.
 
 ## Managed-library updates
 
@@ -160,13 +188,16 @@ Commands:
   compare   Show the differences between two .bib files
   send      Run the verify gate, then send the change as a pull request from your fork
   crossref  Check citation accuracy against external evidence (never edits BibTeX)
+  web       Open the local web interface (this computer only) on the library in use
   where     Show which bibliography the command will use
   update    Check the managed library now; list or restore its backups
+  setup     Link cdl.bib into your TeX tree so every manuscript finds it; report what cdlbib can use here
+  export    Write the entries a paper cites as a .bib of its own, or its compiled .bbl
 ```
 
 Run `cdlbib COMMAND --help` for the options of any command.
 
-Step-by-step tutorials are in [docs/tutorials.md](docs/tutorials.md).
+Step-by-step tutorials, one for each task, are listed in [docs/tutorials.md](docs/tutorials.md). Each shows the command-line way and, where there is one, the web-interface way.
 
 # Suggested workflow
 
@@ -221,8 +252,11 @@ shown above.
    managed library, `cdlbib update` checks its state now; normal command use also
    performs the daily update check. Your own clone remains yours to update.
 
-[The tutorials](docs/tutorials.md) walk through adding/editing a proposal,
-verification, human review, credentials and sending a PR. This recording shows
+[The tutorials](docs/tutorials.md) walk through adding, modifying and searching
+references, verification, human review, sending a PR, LaTeX setup and export,
+the web interface and credentials. Adding, checking and sending can also be done
+in the browser: run `cdlbib web` ([the web interface](docs/tutorials/web-interface.md)).
+This recording shows
 reviewing, editing, rechecking and accepting an entry in a scratch library:
 
 ![CLI entry review, edit, recheck and acceptance](docs/media/add.gif)
@@ -301,7 +335,10 @@ state before the command’s accepted changes, including after stopping or a lat
 lookup failure. The checkpoint survives backup retention while the command runs.
 Your own clone is not backed up by the tool.
 
-A recorded example is in [the add tutorial](docs/tutorials.md#add-a-paper).
+The web interface's Add view also searches by title, authors or both, reads a PDF,
+and has a form for typing an entry by hand; see
+[the add tutorial](docs/tutorials/adding-references.md), which also has a
+[recorded example](docs/tutorials/adding-references.md#recorded-addedit-session).
 
 ## `verify`
 
@@ -460,6 +497,30 @@ with `1`, and sends nothing.
 @LOGIN has no fork of OWNER/NAME. Create one with: gh repo fork OWNER/NAME --clone=false
 ```
 
+## `web`
+
+```bash
+cdlbib web
+```
+
+`web` serves the library in use to a browser on this computer and opens the page.
+It prints the address, which holds a token made for that run, and runs until it is
+stopped with Ctrl-C:
+
+```text
+cdlbib web: /absolute/path/to/library/cdl.bib
+open: http://127.0.0.1:8765/#token=<TOKEN>
+This address works on this computer only, and until this command is stopped (Ctrl-C).
+```
+
+`--no-open` prints the address without opening a browser, and `--port` chooses the
+port. The page has the views Library, Check, Review, Add, Send, Library state and
+Setup. Files are uploaded in the browser (a PDF; a paper's `.tex`, `.aux` or `.bcf`
+files); the page takes no file paths, and it does not make a `.bbl`.
+[The web-interface tutorial](docs/tutorials/web-interface.md) describes each view.
+
+![The Library view of the web interface: a search box, status filters, the list of entries, and the selected entry with its fields and BibTeX text](docs/media/web-library.png)
+
 ## `crossref`: citation verification
 
 `cdlbib crossref` is the accuracy checker on its own, with more control than `verify` gives you. It never edits `cdl.bib`; it only reports. Run the relative-path examples below from the library folder printed by `cdlbib where`.
@@ -560,7 +621,7 @@ cdlbib crossref research CiteKey --adapter cdlbib-adapter-dartmouth --allow-host
 cdlbib crossref research-batch cdl.bib --adapter cdlbib-adapter-dartmouth --allow-host HOST
 ```
 
-`--allow-host` gives an exact host that PDFs may be downloaded from; repeat it for redirects. `cdlbib-adapter-dartmouth --check-model` checks that the model is available. Each adapter needs its service's API key ([Setting an API key](docs/tutorials.md#setting-an-api-key)); without one, `cdlbib-adapter-dartmouth --check-model` prints where to put the key and exits with `2`.
+`--allow-host` gives an exact host that PDFs may be downloaded from; repeat it for redirects. `cdlbib-adapter-dartmouth --check-model` checks that the model is available. Each adapter needs its service's API key ([API keys](docs/tutorials/api-keys.md)); without one, `cdlbib-adapter-dartmouth --check-model` prints where to put the key and exits with `2`.
 
 ### Being polite to Crossref
 
@@ -570,16 +631,54 @@ More detail on how verification works, including every acceptance rule, is in [d
 
 # Using the bibtex file as a common bibliography for all *local* LaTeX files
 
-The library download is automatic; TeX integration is currently manual. Install
-TeX separately, run `cdlbib where`, and use the **library-folder path it prints**
-as the library path below. Do not capture the entire output as a path: it also
-contains status lines. If you change `CDLBIB_HOME` or switch libraries later,
-update your TeX configuration to match.
+The library download is automatic, and `cdlbib setup` connects the library to TeX.
+Install TeX separately. The manual methods after it do the same by hand.
 
-These methods make the bibliography available across projects for your user
+All of these methods make the bibliography available across projects for your user
 account. They do not need administrator access or another clone. LaTeX compilation
 does not run `cdlbib` or check for library updates; use `cdlbib update` when you want
 the latest shared version.
+
+## Automated setup: `cdlbib setup`
+
+```bash
+cdlbib setup
+```
+
+`setup` makes one symbolic link, `bibtex/bib/cdl.bib` in your personal TeX tree
+(the folder `kpsewhich -var-value=TEXMFHOME` prints), that points to the `cdl.bib`
+of the library in use. It then prints a report: the library, the TeX tree, the
+link, what `kpsewhich cdl.bib` resolves to, and what `cdlbib` can use on the
+computer (Git, the GitHub login, TeX, BibTeX, biber, optional packages and API
+keys). When the link works, the report has this line:
+
+```text
+state: linked: TeX finds this library's cdl.bib from any folder (\bibliography{cdl} or \addbibresource{cdl.bib})
+```
+
+The link names the file's path, so it follows the library through updates.
+
+- `cdlbib setup --check` prints the report and changes nothing. It exits with `1`
+  when `cdl.bib` is not linked.
+- `cdlbib setup --remove` removes the link that `cdlbib` made.
+- `cdlbib setup --replace` is for a `cdl.bib` in the TeX tree that `cdlbib` did not
+  put there: without it `setup` leaves that file alone and exits with `1`; with it,
+  the file is moved aside to `cdl.bib.cdlbib-saved-<time>` in the same folder and
+  the link is made.
+- `cdlbib --ask setup` asks before making the link.
+
+When there is no link, the report also prints an `export BIBINPUTS=...` line for
+your shell that does the same; `cdlbib` does not write that line to any file.
+The Setup view of the web interface shows the same report and makes or removes
+the link. [The setup tutorial](docs/tutorials/latex-setup-and-export.md) shows
+the output of each case.
+
+## Manual methods
+
+For the methods below, run `cdlbib where` and use the **library-folder path it
+prints** as the library path. Do not capture the entire output as a path: it also
+contains status lines. If you change `CDLBIB_HOME` or switch libraries later,
+update your TeX configuration to match.
 
 ## General Unix/Linux Setup (Command Line Compilation)
 
@@ -627,7 +726,8 @@ its chosen backend instead of mixing it with the BibTeX example above.
 ## MacOS Setup with TeXShop and TeX Live
 
 GUI editors may not inherit shell variables. With TeX Live, link the selected
-bibliography into the personal TeX tree instead. `kpsewhich` reports the location
+bibliography into the personal TeX tree instead. `cdlbib setup` makes this link;
+the commands below make it by hand. `kpsewhich` reports the location
 used by your TeX installation; it need not be the same on every Mac.
 
 Run these commands in Terminal after replacing the example library path with the
@@ -674,15 +774,54 @@ git submodule update
 # Frozen manuscript copies and exports
 
 Keep a bibliography snapshot with each submitted manuscript so later library
-updates do not alter its references. Today, copy the selected library's `cdl.bib`
-into the manuscript folder (or pin the optional submodule to a commit). Review the
-rendered bibliography using the manuscript's actual style.
+updates do not alter its references. Review the rendered bibliography using the
+manuscript's actual style.
 
-Automatic export is planned in [issue #95](https://github.com/ContextLab/CDL-bibliography/issues/95):
-a frozen `.bib` containing just the keys cited by a manuscript, plus `.bbl`
-generation when its TeX/style inputs or project folder are supplied. There is no
-`cdlbib export` command yet. Your existing TeX build can already generate a `.bbl`;
-retain it with the submission when your venue requires it.
+`cdlbib export` writes that snapshot. Name the paper by its folder, its main `.tex`
+file, or a `.aux` or `.bcf` file:
+
+```bash
+cdlbib export /absolute/path/to/paper
+```
+
+```text
+citations read from a fresh LaTeX run of the paper: 2 keys
+wrote /absolute/path/to/paper/cdl.bib: 2 entries from /absolute/path/to/library/cdl.bib
+```
+
+The output is a `.bib` that holds just the entries the paper cites, as the library
+has them. It is written as `cdl.bib` beside the paper unless `--out FILE` names
+another file, and an existing file is replaced only with `--force`. When a folder
+holds several main files, name one with `--main`. A cited key that is not in the
+library is listed, and the command exits with `1`.
+
+With `--bbl`, the command compiles the paper's `.bbl` instead. It runs LaTeX and
+then BibTeX or biber, whichever the paper uses, on a temporary copy of the paper's
+files:
+
+```bash
+cdlbib export /absolute/path/to/paper --bbl
+```
+
+```text
+wrote /absolute/path/to/paper/main.bbl: bibtex, style plain, pdflatex, 2 cited keys
+```
+
+- `--inputs PATH` names a style or class file the paper needs, or a folder of them.
+  Repeat it for several. Styles in your personal TeX tree are found without it.
+- `--engine` chooses `pdflatex`, `xelatex`, `lualatex` or `latex`. Without it, the
+  program the paper asks for is used, otherwise `pdflatex`.
+- A missing input is named and no style is chosen in its place, for example
+  `BibTeX could not find: labstyle.bst. Supply the file, or the folder that holds it, as an input (--inputs PATH).`
+- A paper that asks for LuaLaTeX is compiled only with `--engine lualatex`, and a
+  `biblatex` source map that contains code is refused.
+
+The web interface's Setup view makes the `.bib` from uploaded `.tex`, `.aux` or
+`.bcf` files; it does not make a `.bbl`.
+[The export tutorial](docs/tutorials/latex-setup-and-export.md#export-the-cited-entries-as-a-bib)
+shows each message. Your usual TeX build also generates a `.bbl`, and copying the
+library's `cdl.bib` into the manuscript folder (or pinning the optional submodule
+to a commit) also keeps a snapshot.
 
 # Using it from Python
 
@@ -714,13 +853,21 @@ Before the restore, the second line was `{'pending': 6384} False`.
 
 # Running the tests
 
-From a development checkout, install the package and test tools as CI does:
+From a development checkout, install the package and test tools:
 ```bash
-python -m pip install ".[research]" pytest uv
+python -m pip install ".[research,pdf]" pytest uv playwright
+python -m playwright install chromium
 export CROSSREF_MAILTO='your.name@dartmouth.edu'
 python -m pytest -q -rs tests
 cdlbib verify --no-citations
 ```
+
+The tests of `cdlbib setup`, `cdlbib export` and PDF intake run the real programs:
+`kpsewhich`, `pdflatex`, `xelatex`, `lualatex`, `bibtex` and `biber` from a TeX
+installation, Ghostscript (`gs`), `pdftoppm` and `tesseract`. The browser tests of
+the web interface use Playwright's Chromium. A test whose program is not installed
+is skipped, and the skip names the program. CI installs these programs
+([autocheck.yml](.github/workflows/autocheck.yml)).
 
 Almost all tests use saved copies of real source records, so they run offline. Tests in `tests/test_machinery_2026_09_25.py`, `tests/test_api.py` and `tests/test_publish.py` check new entries against the live Crossref API, so they need `CROSSREF_MAILTO` and a network connection, and can fail temporarily if Crossref is down. Without `CROSSREF_MAILTO` (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests in `tests/test_identity.py`, `tests/test_revoke_ledger.py` and `tests/test_publish.py` that need a GitHub login are skipped when `gh` is not installed or not logged in. The tests in `tests/test_publish.py` that open a pull request do so only inside your own fork of this repository, on its `cdlbib-test-base` branch, and are skipped when you have no fork. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. The tests in `tests/test_pdf_evidence.py` that read PDFs from a local paper library are skipped when it isn't available. `cdlbib verify --no-citations` runs the formatting check on `cdl.bib`.
 
