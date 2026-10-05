@@ -289,7 +289,7 @@ def test_setup_lists_what_was_not_checked_and_checks_on_request(tmp_path, monkey
             assert "textual: yes (installed)" in report
             assert "c checks what was not checked" in report
             assert "Dartmouth Chat (the default): not checked" in report and "OpenAI: not checked" in report
-            assert "Create an API key in Dartmouth Chat" in report          # how to set it up, whatever its state
+            assert "Create an API key in Dartmouth Chat" in report          # how to set it up, while it is not known to be
             await T.press(pilot, "c")
             report = T.shown(app, "#setup-report")
             assert "not checked" not in report                               # every one is now yes or no
@@ -301,6 +301,21 @@ def test_setup_lists_what_was_not_checked_and_checks_on_request(tmp_path, monkey
     assert ws.bib.read_text(encoding="utf-8") == ZOLL90 + "\n"               # a report: nothing written, nothing linked
     assert not os.path.lexists(Path(os.environ["TEXMFHOME"]) / "bibtex/bib/cdl.bib")
     assert not Path(os.environ["CDLBIB_HOME"], "tex-link.json").exists()
+
+
+def test_setup_does_not_show_the_steps_for_a_model_that_is_set_up(tmp_path, monkeypatch):
+    monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", "placeholder-not-a-key")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    ws = T.library(tmp_path / "lib", ZOLL90)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            await T.press(pilot, "f8")
+            report = T.shown(pilot.app, "#setup-report")
+            assert "Dartmouth Chat (the default): set up" in report
+            assert "Create an API key in Dartmouth Chat" not in report      # nothing is left to set up
+            assert "Create an OpenAI API key" in report                     # the other one is not set up
+    T.run(journey())
 
 
 def test_the_tex_link_is_made_and_removed_and_with_ask_only_after_a_yes(tmp_path):

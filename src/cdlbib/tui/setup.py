@@ -133,7 +133,8 @@ class SetupView(View):
                      "success" if known else "muted", bold=bool(known))
             if route.detail and not known:
                 out.line(f"      {route.detail}", "muted")
-            out.line(f"      {route.how}", "muted")
+            if not known:                          # the steps, only while there is something left to set up
+                out.line(f"      {route.how}", "muted")
         self.query_one("#setup-report", Shown).show(out.text)
 
     def _result(self, draw):
