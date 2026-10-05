@@ -370,10 +370,27 @@ what `crossref restore` of a snapshot file, or an `approve` in the local databas
 has: none of them is read by the pull request check. An approval the sender recorded with
 `approve` is in the sender's database and counts in the sender's own gate, as before.
 
-Revocation of a row (`shared_revoked`). A revocation revokes a row with the same
-fingerprint when any of these holds: the digest computed from the row's `human_review` is
-one the revocation names (`revoked_digests`); the row's `approved_at` is not after
-`revoked_at`; or the row's `source` and `note`, with white space collapsed and case folded,
+Rows are validated when they enter the ledger, not only when they are read. `send` writes
+only rows that are valid at that moment and refuses a ledger whose uncommitted lines are not
+(`ledger_additions`). The pull request check runs `crossref check-ledger --base FILE` first:
+it fails when a line the base revision holds was removed or changed, or when an added line
+is not a valid row at the time of the run. A row dated ahead of the clock is not valid, so
+one cannot be merged today and begin to count when its date comes. A reader still validates
+every row each time, and a row typed into a working tree is subject to the reader's clock
+there.
+
+One revocation rule (`approval_revoked`, asked through `Cache.revoked`). Every reader of
+approvals asks it, over every revocation the cache knows (`Cache.revocations`: the
+database's `revocations` table, which also receives the rows of a restored snapshot and of
+`--trusted-revocations`, and the revocation ledger file): `Cache.stored` for an approval in
+the database, `Cache.shared_approval` for a ledger row, `import_snapshot` for a restored
+result, and `record_approval` for a review about to be recorded. `current_results`,
+`status`, `snapshot`, the library views, `approvals_note` and `approvals_waiting` read
+through `Cache.get`/`Cache.stored`. A revocation revokes an approval with the same
+fingerprint when any of these holds: the digest computed from its `human_review` is
+one the revocation names (`revoked_digests`); its time (a row's `approved_at`, a stored
+result's `checked_at`) is not after `revoked_at`, compared as instants, or cannot be read;
+or its `source` and `note`, with white space collapsed and case folded,
 equal those of the approval the revocation carries. The third rule means a copy of a revoked
 review with other spacing, another time, another reviewer or another `github_id` is not a
 new decision. `approved_at` is typed text like the rest of the row, so a row with a new note

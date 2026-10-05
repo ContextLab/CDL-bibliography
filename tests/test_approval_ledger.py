@@ -445,6 +445,155 @@ def test_the_digest_written_in_a_row_is_never_what_is_compared(tmp_path):
     assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] != "human_verified"
 
 
+# --- one revocation rule, over every source, for every reader -------------------------------------------
+
+READERS = ("a stored approval", "a ledger row")
+SOURCES = ("the revocation ledger file only", "the database's table only", "a trusted file given to restore")
+
+
+@pytest.mark.parametrize("source", SOURCES)
+@pytest.mark.parametrize("reader", READERS)
+def test_every_reader_of_approvals_honours_a_revocation_from_any_one_source(tmp_path, reader, source):
+    """One approval (stored in the reader's database, or only a ledger row) and its
+    revocation, known from one source alone. Every reader says the same: the cache, the
+    current results, the status, the library views, a restore, an exported snapshot, the pull
+    request's text, the rows a send would add, and `approve` asked to record it again.
+    Rame72 is approved the same way and never revoked: it counts for every reader."""
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    ws = library(tmp_path / "lib")
+    approver, reads = tmp_path / "approver.sqlite3", tmp_path / "reader.sqlite3"
+    home = reads if reader == "a stored approval" else approver
+    approve(ws, "Zoll90", database=home)
+    approve(ws, "Rame72", database=home, note="Checked the volume in print.")
+    if reader == "a ledger row":
+        v.append_approvals(ws.approvals, api.approvals_to_send(ws, database=approver))
+    shutil.copy(home, tmp_path / "revoker.sqlite3")
+    records, _ = revoke(ws, "Zoll90", tmp_path / "revoker.sqlite3")          # made elsewhere; this database is not the reader's
+    ledger_line = ws.revocations.read_bytes()
+    snapshot = tmp_path / "before.jsonl.gz"                                  # a snapshot from before the revocation
+    ws.revocations.unlink()
+    cache = v.Cache(str(home), ledger=ws.revocations)
+    try:
+        v.export_snapshot(str(ws.bib), cache, str(snapshot))
+    finally:
+        cache.close()
+    if source == "the revocation ledger file only":
+        ws.revocations.write_bytes(ledger_line)
+    elif source == "the database's table only":
+        cache = v.Cache(str(reads), ledger=ws.revocations)
+        try:
+            cache.remember_revocations(records)
+        finally:
+            cache.close()
+    else:
+        trusted = tmp_path / "base-revocations.jsonl"
+        trusted.write_bytes(ledger_line)
+        run = CliRunner().invoke(app, ["restore", str(snapshot), "--fname", str(ws.bib), "--database", str(reads),
+                                       "--trusted-revocations", str(trusted)])
+        assert run.exit_code == 0, run.output
+    assert ws.revocations.exists() == (source == "the revocation ledger file only")
+
+    expected = {"Zoll90": False, "Rame72": True}
+    cache = v.Cache(str(reads), ledger=ws.revocations)
+    try:
+        entries = v.load_entries(str(ws.bib))
+        assert cache.revoked(records[0]["fingerprint"], records[0]["approval"], records[0]["approval_checked_at"]) is not None
+        assert {k: (cache.get(str(ws.bib), entries[k]) or {}).get("status") == "human_verified" for k in entries} == expected
+        assert {k: r["status"] == "human_verified" for k, r in v.current_results(str(ws.bib), cache).items()} == expected
+        exported = v.export_snapshot(str(ws.bib), cache, str(tmp_path / "after.jsonl.gz"))
+        assert {k: r["status"] == "human_verified" for k, r in exported.items()} == expected
+        with pytest.raises(ValueError, match="This exact approval was revoked"):
+            v.record_approval(cache, str(ws.bib), "Zoll90", entries["Zoll90"]["fingerprint"], dict(REVIEW))
+    finally:
+        cache.close()
+    # A restore of the snapshot taken before the revocation, into a database that knows it from this source alone.
+    fresh = tmp_path / "fresh.sqlite3"
+    if source == "the database's table only":
+        cache = v.Cache(str(fresh), ledger=ws.revocations)
+        try:
+            cache.remember_revocations(records)
+        finally:
+            cache.close()
+    more = ["--trusted-revocations", str(tmp_path / "base-revocations.jsonl")] if source.startswith("a trusted") else []
+    run = CliRunner().invoke(app, ["restore", str(snapshot), "--fname", str(ws.bib), "--database", str(fresh), *more])
+    assert run.exit_code == 0, run.output
+    assert {k: s == "human_verified" for k, s in statuses(ws, fresh).items()} == expected
+    # The front-end boundary: status, the library views, the pull request's text, a send's rows.
+    assert api.status(ws, database=str(reads), report=str(tmp_path / "report.jsonl")).counts.get("human_verified") == 1
+    from cdlbib import desk
+    assert {e.key: e.status == "human_verified" for e in desk.entries(ws, database=str(reads))} == expected
+    assert api.approvals_note(ws, database=str(reads)) == "\n\nApproved by @octocat: Rame72"
+    rows, unsent = api.approvals_waiting(ws, database=str(reads))
+    assert "Zoll90" not in [row["key"] for row in rows] + [item["key"] for item in unsent]
+    assert [row["key"] for row in rows] == (["Rame72"] if reader == "a stored approval" else [])
+
+
+def test_the_three_forms_of_a_revoked_approval_are_revoked_for_a_stored_approval_and_for_a_row_alike():
+    """approval_revoked is the one rule; the stored-result and ledger-row forms are it."""
+    review = dict(REVIEW)
+    fp = "v2:" + "0" * 64
+    revocation = {"key": "K", "fingerprint": fp, "approval": review, "approval_digest": v.approval_digest(review),
+                  "approval_checked_at": "2026-10-01T00:00:00+00:00", "revoked_at": "2026-10-02T00:00:00+00:00",
+                  "revoked_by": "@hubot", "reason": "r"}
+    cases = [(review, "2026-10-03T00:00:00+00:00", True),                                        # the digest
+             (dict(review, note="A new note."), "2026-10-02T00:00:00+00:00", True),              # not after the revocation
+             (dict(review, note="A new note."), "2026-10-02T08:00:00+09:00", True),              # an hour before it; as text it sorts after
+             (dict(review, note="A new note."), "2026-10-01T23:00:00-09:00", False),             # eight hours after it; as text it sorts before
+             (dict(review, note="A new note."), "not a time", True),                             # a time that cannot be read
+             (dict(review, note=review["note"].upper() + "  ", reviewer="@x", github_login="x"), "2026-10-03T00:00:00+00:00", True),
+             (dict(review, note="A new note."), "2026-10-03T00:00:00+00:00", False)]             # a new decision
+    for human_review, when, expected in cases:
+        assert v.approval_revoked(revocation, fp, human_review, when) is expected, (human_review["note"], when)
+        assert v.revocation_matches(revocation, fp, {"status": "human_verified", "human_review": human_review,
+                                                     "checked_at": when}) is expected
+        row = {"fingerprint": fp, "human_review": human_review, "approved_at": when}
+        assert v.shared_revoked(revocation, row) is expected
+        assert v.approval_revoked(revocation, "v2:" + "1" * 64, human_review, when) is False     # another text: never
+
+
+# --- rows are validated when they enter ----------------------------------------------------------------
+
+def test_check_ledger_fails_what_must_not_enter_the_ledger(tmp_path):
+    """`crossref check-ledger --base FILE`, which the pull request check runs first: what the
+    library's ledger adds to the base copy must be valid rows now, and nothing the base holds
+    may be removed or changed. A row dated ahead of the clock fails today, so it cannot be
+    merged and start counting when its date comes."""
+    from typer.testing import CliRunner
+    from cdlbib.verification_cli import app
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    approve(ws, "Rame72", note="Checked the volume in print.")
+    zoll, rame = share(ws)
+    both = ws.approvals.read_bytes()
+    base = tmp_path / "base-approvals.jsonl"
+    line = lambda row: (v.dumps(row) + "\n").encode("utf-8")               # noqa: E731
+
+    def check(base_bytes, head_bytes):
+        base.write_bytes(base_bytes)
+        ws.approvals.write_bytes(head_bytes)
+        run = CliRunner().invoke(app, ["check-ledger", "--base", str(base), "--fname", str(ws.bib)])
+        return run.exit_code, run.output
+    assert check(b"", both) == (0, "approvals ledger: 2 rows added\n")
+    assert check(line(zoll), both) == (0, "approvals ledger: 1 row added\n")
+    assert check(both, both)[0] == 0
+    future = dict(rame, approved_at="2099-01-01T00:00:00+00:00")
+    code, said = check(line(zoll), line(zoll) + line(future))
+    assert code == 1 and "line 2 is not a valid approval row: approved_at (2099-01-01T00:00:00+00:00) is later than the present time" in said
+    for head, why in ((line(rame), "already held was removed or changed"),                       # a line removed
+                      (line(zoll).replace(b"Compared", b"compared") + line(rame), "already held was removed or changed"),
+                      (line(zoll) + b"not a row\n", "line 2 is not a valid approval row: not valid JSON"),
+                      (line(zoll) + line(dict(rame, approval_digest="f" * 64)), "approval_digest is not the digest"),
+                      (line(zoll) + line(dict(rame, approved_at="2026-10-05T12:00:00")), "not a time with a zone"),
+                      (line(zoll)[:-1] + b" " + line(rame), "already held was removed or changed")):
+        code, said = check(line(zoll), head)
+        assert code == 1 and why in said, (why, said)
+    ws.approvals.unlink()
+    ws.approvals.symlink_to(base)
+    run = CliRunner().invoke(app, ["check-ledger", "--base", str(base), "--fname", str(ws.bib)])
+    assert run.exit_code == 2 and "is a link or not an ordinary" in run.output
+
+
 # --- which copy of the ledger a gate reads -----------------------------------------------------------
 
 def closed_network(monkeypatch):
@@ -971,9 +1120,10 @@ def test_a_send_refuses_a_ledger_whose_committed_lines_changed_or_that_gained_a_
     share(ws)
     git(ws.root, "add", LEDGER); git(ws.root, "commit", "-q", "-m", "an approval")
     committed = ws.approvals.read_bytes()
-    for changed, said in ((b"", "a line was removed or changed"),
-                          (committed.replace(b"Checked", b"checked"), "a line was removed or changed"),
-                          (committed + b"not a row\n", "holds a new line that is not a valid approval row"),
+    for changed, said in ((b"", "already held was removed or changed"),
+                          (committed.replace(b"Checked", b"checked"), "already held was removed or changed"),
+                          (committed[:-2] + b"}x\n", "already held was removed or changed"),
+                          (committed + b"not a row\n", "line 2 is not a valid approval row"),
                           (committed + committed.replace(b'"note":"Checked', b'"note":"x'), "approval_digest is not the digest")):
         ws.approvals.write_bytes(changed)
         before = state(ws.root)
@@ -1221,7 +1371,7 @@ def test_a_row_dated_in_the_future_counts_nowhere_is_reported_and_is_never_writt
     ws.revocations.unlink()
     # A send does not carry it: refused before anything is written, whoever is logged in.
     before, ledger = state(ws.root), ws.approvals.read_bytes()
-    with pytest.raises(PublishRefused, match="holds a new line that is not a valid approval row .approved_at .*is later than"):
+    with pytest.raises(PublishRefused, match="cannot be sent as it is: line 1 is not a valid approval row: approved_at .*is later than"):
         api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
     assert state(ws.root) == before and ws.approvals.read_bytes() == ledger
     # Within the allowance: a row.

@@ -754,8 +754,7 @@ def _outgoing_ledger(ws):
     there, first; every added line must be a valid row. ``why not`` is the sentence of the
     refusal when one of those fails (the rows are then [])."""
     from . import publish
-    from .verification import ledger_bytes, shared_approval_problem
-    import json
+    from .verification import ledger_additions, ledger_bytes
     try:
         current, _ = ledger_bytes(ws.approvals)
     except ValueError as exc:
@@ -767,27 +766,13 @@ def _outgoing_ledger(ws):
         from .gitenv import git_env
         committed = subprocess.run(["git", "cat-file", "blob", blob.stdout.strip()], cwd=ws.root, capture_output=True,
                                    env=git_env()).stdout
-    if current is None:
-        return [], None                  # removed: there is nothing of anybody's to send in it
-    if current == committed:
+    if current is None and not committed:
         return [], None
-    if not current.startswith(committed.rstrip(b"\n")):
-        return [], (f"{APPROVALS_PATH} no longer begins with the lines the last commit holds: a line was removed or "
-                    "changed. The ledger is only ever added to. Nothing was changed; put the file back with "
-                    "`git restore verification/approvals.jsonl`, then send again.")
-    rows = []
-    for line in current[len(committed.rstrip(b"\n")):].split(b"\n"):
-        if not line.strip():
-            continue
-        try:
-            row = json.loads(line.decode("utf-8"))
-            problem = shared_approval_problem(row)
-        except ValueError as exc:
-            problem = f"not valid JSON ({str(exc)[:80]})"
-        if problem:
-            return [], (f"{APPROVALS_PATH} holds a new line that is not a valid approval row ({problem}); a send "
-                        "does not commit it. Nothing was changed. Remove that line, then send again.")
-        rows.append(row)
+    rows, problems = ledger_additions(committed, current)
+    if problems:
+        return [], (f"{APPROVALS_PATH} cannot be sent as it is: {'; '.join(problems)}. A send commits only valid "
+                    "rows added after the committed ones. Nothing was changed. Put the file right (`git diff -- "
+                    "verification/approvals.jsonl` shows the lines), then send again.")
     return rows, None
 
 

@@ -167,3 +167,38 @@ def test_a_pull_request_that_deletes_a_revocation_does_not_revive_the_base_appro
         assert reported(clone, key) == "metadata_verified"                   # still revoked
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_a_pull_request_that_adds_a_row_that_is_no_valid_row_today_fails_the_check(clone):
+    """Rows are validated when they enter. A pull request adds a ledger row dated in the
+    future (which no reader counts today and which would start counting when its date came):
+    the check fails, naming the line, before anything is verified. So does one that alters a
+    line the base already holds. A valid row added passes this step (the tests above)."""
+    from cdlbib import verification as v
+    entry = v.load_entries(str(clone / "cdl.bib"))["Zoll90"]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+    row = {"key": "Zoll90", "fingerprint": entry["fingerprint"], "human_review": review,
+           "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+    start = head(clone)
+    ledger = clone / "verification" / "approvals.jsonl"
+    kept = ledger.read_bytes() if ledger.exists() else b""
+
+    def commit(data, message):
+        ledger.write_bytes(data)
+        subprocess.run(["git", "add", "verification/approvals.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
+        return head(clone)
+    try:
+        future = dict(row, approved_at="2099-01-01T00:00:00+00:00")
+        commit(kept + (v.dumps(future) + "\n").encode("utf-8"), "a row dated 2099")
+        run = run_ci(clone, "pull_request", start)
+        assert run.returncode == 1, run.stdout + run.stderr
+        assert "is not a valid approval row: approved_at (2099-01-01T00:00:00+00:00) is later than the present time" in run.stdout
+        assert "Restored" not in run.stdout                                  # it stopped before the baseline was read
+        base = commit(kept + (v.dumps(row) + "\n").encode("utf-8"), "a valid row instead")
+        commit(kept + (v.dumps(row) + "\n").encode("utf-8").replace(b"Compared", b"compared"), "the row altered")
+        run = run_ci(clone, "pull_request", base)
+        assert run.returncode == 1 and "already held was removed or changed" in run.stdout, run.stdout + run.stderr
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)

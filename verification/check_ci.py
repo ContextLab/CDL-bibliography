@@ -7,7 +7,10 @@ too: the checker is given the base's copy (an empty file when the base has none)
 with --trusted-approvals, so rows a pull request adds are not read. The base
 revision's revocations (verification/revocations.jsonl) are given with
 --trusted-revocations and honoured together with the checkout's own: a pull
-request that removes a revocation line does not undo the revocation.
+request that removes a revocation line does not undo the revocation. What the
+change adds to the approvals ledger is checked first (crossref check-ledger): a
+removed or altered line, or an added line that is not a valid row at the time of
+the run, fails the check.
 
 A push whose previous commit is not in the history (a force-push or rewritten
 history, or a new branch) has no base to compare against. Pushed content is
@@ -83,6 +86,12 @@ def main():
         except subprocess.CalledProcessError:
             revocations.write_bytes(b"")
         trusted_ledgers = ["--trusted-revocations", str(revocations.resolve())]
+        # Rows are validated when they enter: a change that removes or alters a ledger line,
+        # or adds a line that is not a valid row now (a time ahead of the clock is not, so a
+        # row cannot be merged today to start counting later), fails here.
+        entering = subprocess.run(command + ["check-ledger", "--base", str(approvals.resolve())])
+        if entering.returncode:
+            return entering.returncode
     elif event != "workflow_dispatch":
         raise ValueError("Unsupported event")
     else:

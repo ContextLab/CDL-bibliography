@@ -315,15 +315,42 @@ def revoked_digests(revocation):
     return out
 
 
-def revocation_matches(revocation, fingerprint, result):
-    """True when ``revocation`` revokes the human approval in ``result``."""
-    if result.get("status") != "human_verified" or revocation["fingerprint"] != fingerprint:
+def _review_text(review):
+    """What a human_review says, apart from how it is written down: its source and note with
+    white space collapsed and case folded. Who signed it, when, and any other field are not
+    part of it."""
+    review = review if isinstance(review, dict) else {}
+    return tuple(" ".join(str(review.get(name) or "").split()).casefold() for name in ("source", "note"))
+
+
+def approval_revoked(revocation, fingerprint, human_review, approved_at):
+    """THE rule for whether ``revocation`` revokes a human approval (its text's fingerprint,
+    its human_review record, the time it was recorded). Every reader of approvals asks it,
+    through Cache.revoked, over every revocation the cache knows: an approval stored in the
+    database, a row of the approvals ledger, a result restored from a snapshot, a review
+    about to be recorded. The same text (fingerprint), and any of
+      - the digest of human_review, computed here, is one the revocation names
+        (revoked_digests: the digest recorded then, and that of the approval text it carries);
+      - the approval's time is not after the revocation, or either time cannot be read (an
+        approval cannot then be shown to postdate the revocation);
+      - its source and note say what the revoked approval's say (_review_text), so that a
+        copy of the revoked approval with other spacing, another time, another signer or an
+        added field is not a new decision.
+    A later approval with a new note is a new decision."""
+    if revocation["fingerprint"] != fingerprint:
         return False
-    if approval_digest(result.get("human_review")) in revoked_digests(revocation):
+    if approval_digest(human_review) in revoked_digests(revocation):
         return True
-    approved, revoked = _instant(result.get("checked_at")), _instant(revocation["revoked_at"])
-    # An approval with no readable time cannot be shown to postdate the revocation.
-    return approved is None or revoked is None or approved <= revoked
+    approved, revoked = _instant(approved_at), _instant(revocation["revoked_at"])
+    if approved is None or revoked is None or approved <= revoked:
+        return True
+    return bool(revocation.get("approval")) and _review_text(revocation["approval"]) == _review_text(human_review)
+
+
+def revocation_matches(revocation, fingerprint, result):
+    """True when ``revocation`` revokes the human approval in the stored ``result`` (approval_revoked)."""
+    return result.get("status") == "human_verified" and approval_revoked(
+        revocation, fingerprint, result.get("human_review"), result.get("checked_at"))
 
 
 def revoked_view(result, revocation):
@@ -503,32 +530,44 @@ def read_approval_ledger(path):
     return scan_approval_ledger(path)[0]
 
 
-def _review_text(review):
-    """What a human_review says, apart from how it is written down: its source and note with
-    white space collapsed and case folded. Who signed it, when, and any other field are not
-    part of it."""
-    review = review if isinstance(review, dict) else {}
-    return tuple(" ".join(str(review.get(name) or "").split()).casefold() for name in ("source", "note"))
-
-
 def shared_revoked(revocation, row):
-    """True when ``revocation`` revokes the approval in the ledger ``row``: the same text
-    (fingerprint), and any of
-      - the digest of the row's human_review, computed here, is one the revocation names
-        (revoked_digests: the digest recorded then, and that of the approval text it carries);
-      - the row's time is not after the revocation (as for a stored approval);
-      - the row's source and note say what the revoked approval's say (_review_text), so
-        that a copy of the revoked approval with other spacing, another time, another
-        signer or an added field is not a new decision.
-    A later approval with a new note is a new decision, as for `approve`."""
-    if revocation["fingerprint"] != row["fingerprint"]:
-        return False
-    if approval_digest(row["human_review"]) in revoked_digests(revocation):
-        return True
-    approved, revoked = _instant(row["approved_at"]), _instant(revocation["revoked_at"])
-    if approved is None or revoked is None or approved <= revoked:
-        return True
-    return bool(revocation.get("approval")) and _review_text(revocation["approval"]) == _review_text(row["human_review"])
+    """True when ``revocation`` revokes the approval in the ledger ``row`` (approval_revoked)."""
+    return approval_revoked(revocation, row["fingerprint"], row["human_review"], row["approved_at"])
+
+
+def ledger_additions(base, head):
+    """What the approvals ledger ``head`` (bytes, or None for no file) adds to ``base`` (the
+    same), checked as rows are checked when they enter: (rows, problems). The ledger only
+    grows, so ``head`` must begin with the bytes of ``base``; every line after them must be
+    a valid row now (shared_approval_problem: which refuses, among the rest, a time ahead of
+    the clock, so that a row cannot be let in today to start counting later). ``problems``
+    holds a sentence for each failure; the rows are the valid added ones."""
+    base, head = base or b"", head or b""
+    if head == base:
+        return [], []
+    kept = base.rstrip(b"\n")
+    if not head.startswith(kept) or (kept and head[len(kept):len(kept) + 1] not in (b"", b"\n")):
+        return [], ["a line the ledger already held was removed or changed (the ledger is only ever added to)"]
+    rows, problems = [], []
+    first = len([1 for line in kept.split(b"\n")]) if kept else 0
+    for number, line in enumerate(head[len(kept):].split(b"\n")[1 if kept else 0:], first + 1):
+        if not line.strip():
+            continue
+        if len(line) > APPROVAL_ROW_MAX_BYTES:
+            problem = f"longer than {APPROVAL_ROW_MAX_BYTES} bytes"
+        else:
+            try:
+                record = json.loads(line.decode("utf-8"), object_pairs_hook=_no_duplicate_keys)
+                problem = shared_approval_problem(record)
+            except (ValueError, RecursionError) as exc:
+                problem = f"not valid JSON ({str(exc)[:120]})"
+        if problem:
+            problems.append(f"line {number} is not a valid approval row: {problem}")
+        else:
+            rows.append(record)
+    if len(head) > APPROVAL_LEDGER_MAX_BYTES:
+        problems.append(f"the ledger would be larger than {APPROVAL_LEDGER_MAX_BYTES} bytes, and is then not read")
+    return rows, problems
 
 
 def approval_row(result):
@@ -760,13 +799,21 @@ class Cache:
                     "INSERT OR IGNORE INTO revocations (fingerprint,approval_digest,record) VALUES (?,?,?)",
                     (record["fingerprint"], record["approval_digest"], dumps(record)))
 
+    def revoked(self, fingerprint, human_review, approved_at, revocations=None):
+        """The revocation that revokes this approval, or None: the one question every reader
+        of approvals asks (approval_revoked), over every revocation this cache knows
+        (``revocations()``: the database's table, which also holds those of a restored
+        snapshot and of --trusted-revocations, and the ledger file). ``revocations``: that
+        same list, when the caller already holds it."""
+        for revocation in (self.revocations() if revocations is None else revocations):
+            if approval_revoked(revocation, fingerprint, human_review, approved_at):
+                return revocation
+        return None
+
     def revocation_for(self, fingerprint, result, revocations=None):
         if result.get("status") != "human_verified":
             return None
-        for revocation in (self.revocations() if revocations is None else revocations):
-            if revocation_matches(revocation, fingerprint, result):
-                return revocation
-        return None
+        return self.revoked(fingerprint, result.get("human_review"), result.get("checked_at"), revocations)
 
     def shared_approvals(self):
         """The rows of the approvals ledger, by fingerprint, in the ledger's order; read again
@@ -815,7 +862,8 @@ class Cache:
         checked = _instant(result.get("checked_at")) if result else None
         revocations = self.revocations()
         for row in reversed(rows):
-            if row["policy"] != POLICY or any(shared_revoked(r, row) for r in revocations):
+            if row["policy"] != POLICY or self.revoked(
+                    row["fingerprint"], row["human_review"], row["approved_at"], revocations):
                 continue
             approved = _instant(row["approved_at"])
             if approved is None or (result and (checked is None or checked > approved)):
@@ -3187,16 +3235,14 @@ def record_approval(cache, fname, key, fingerprint, human_review):
                     f"The approvals ledger ({ledger}) holds {held} bytes and would be {held + written} with this "
                     f"approval; a ledger larger than {APPROVAL_LEDGER_MAX_BYTES} bytes is not read. Nothing was "
                     "recorded.")
-        for revocation in cache.revocations():
-            # The same rule as for a ledger row (shared_revoked): the revoked review's digest
-            # in either form, or its source and note whatever the spacing, case or signer.
-            if revocation["fingerprint"] == fingerprint and (
-                    approval_digest(human_review) in revoked_digests(revocation)
-                    or (revocation.get("approval")
-                        and _review_text(revocation["approval"]) == _review_text(human_review))):
-                raise ValueError(
-                    f"This exact approval was revoked {revocation['revoked_at']} "
-                    f"({revocation['reason']}); record the new review in a new note")
+        # The one rule (Cache.revoked), asked of this review as if recorded now: a revoked
+        # review's digest in either form, or its source and note whatever the spacing, case
+        # or signer.
+        revocation = cache.revoked(fingerprint, human_review, now())
+        if revocation:
+            raise ValueError(
+                f"This exact approval was revoked {revocation['revoked_at']} "
+                f"({revocation['reason']}); record the new review in a new note")
         previous = cache.get(fname, entry) or outcome("pending", [])
         if previous.get("revoked_approval"):
             # The revocation notice describes the withdrawn approval, not this one.
