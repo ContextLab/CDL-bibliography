@@ -148,7 +148,7 @@ def test_the_openai_route_says_exactly_what_is_missing(monkeypatch):
     assert spaced == (False, "the environment variable OPENAI_API_KEY holds whitespace; a key is a single token")
     assert intake.route_state("dartmouth", {"DARTMOUTH_CHAT_API_KEY": "k"})[0] in (True, None)
     # the rule model_routes shows is the rule that decides (one function)
-    assert intake._route_ready("openai", key) is False and intake._route_ready("openai", dict(key, BIBCHECK_RESEARCH_MODEL="m"))
+    assert intake.route_state("openai", key)[0] is False and intake.route_state("openai", dict(key, BIBCHECK_RESEARCH_MODEL="m"))[0]
     # features() reports the key itself, as it did; the route's state is model_routes' to tell
     for name, value in key.items():
         monkeypatch.setenv(name, value)

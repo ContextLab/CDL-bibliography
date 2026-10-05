@@ -359,10 +359,10 @@ class _Budget:
                                "that holds only the paper.", [str(path)])
 
 
-def _plan(source, target, root, plan, skipped, budget):
+def _plan(source, target, root, plan, skipped, budget, kinds=COPIED):
     """List, without copying anything, the (file, copy) pairs for the folder ``source``.
 
-    Only regular files of the kinds in COPIED, outside hidden folders. A symbolic link to a
+    Only regular files of the kinds in ``kinds`` (COPIED), outside hidden folders. A symbolic link to a
     regular file inside ``root`` (the folder being copied) is read through; any other link
     (out of the folder, to a folder, dangling) and anything that is not a regular file (a
     FIFO, a device, a socket) is left out and listed in ``skipped``."""
@@ -385,12 +385,12 @@ def _plan(source, target, root, plan, skipped, budget):
             here = real
         elif stat.S_ISDIR(info.st_mode):
             if name not in _SKIPPED_FOLDERS:
-                _plan(here, target / name, root, plan, skipped, budget)
+                _plan(here, target / name, root, plan, skipped, budget, kinds)
             continue
         elif not stat.S_ISREG(info.st_mode):
             skipped.append((here, "it is not a regular file"))
             continue
-        if not name.lower().endswith(COPIED):
+        if not name.lower().endswith(kinds):
             budget.other += not name.lower().endswith(_LEFTOVERS)
             continue
         budget.take(info.st_size, here)
@@ -447,24 +447,27 @@ class _Build:
 
 
 @contextlib.contextmanager
-def _built(main, inputs=()):
+def _built(main, inputs=(), lua=False):
     """A temporary copy of the main file's folder, plus ``inputs`` (files and folders holding
-    styles, classes or other things the paper needs) on the search paths. What is copied is
+    styles, classes or other things the paper needs) on the search paths. ``lua``: the person
+    named lualatex themselves (``engine="lualatex"``), so the paper's own .lua files are part
+    of what they asked to run and are copied too; never otherwise. What is copied is
     counted first, so a folder that is too large fails before anything is copied. The
     temporary folder is removed afterwards without following any link in it."""
     folder = main.parent
     with tempfile.TemporaryDirectory(prefix="cdlbib-export-") as scratch:
         scratch = Path(scratch).resolve()
         build, extra, skipped, plan, budget = scratch / "paper", [], [], [], _Budget()
-        _plan(folder, build, folder, plan, skipped, budget)
+        kinds = COPIED + ((".lua",) if lua else ())
+        _plan(folder, build, folder, plan, skipped, budget, kinds)
         for number, given in enumerate(inputs, 1):
             given = Path(given).expanduser()
             place = scratch / "inputs" / str(number)
             if given.is_dir():
-                _plan(given.resolve(), place, given.resolve(), plan, skipped, budget)
+                _plan(given.resolve(), place, given.resolve(), plan, skipped, budget, kinds)
             elif given.is_file():
                 real = given.resolve()
-                if real.name.lower().endswith(COPIED) and given.name.lower().endswith(COPIED):
+                if real.name.lower().endswith(kinds) and given.name.lower().endswith(kinds):
                     budget.take(real.stat().st_size, real)
                     plan.append((real, place / given.name))
                 else:
@@ -577,7 +580,7 @@ def cited(paper, main=None, inputs=(), engine=None):
         stated.notes.append(f"{stated.engine} was not found on PATH; {SOURCE_NOTE}")
         return stated
     try:
-        with _built(file, inputs) as build:
+        with _built(file, inputs, lua=engine == "lualatex") as build:
             _latex(build, stated.engine)
             found = _compiled_citations(build.folder, file.stem)
             found.notes += build.notes
@@ -725,9 +728,13 @@ def writable(ws, out, force=False):
     return real
 
 
-def _write(path, data):
+def _write(path, data, replace=True):
     """Write the file whole: a new temporary file in the same folder (created exclusively, so
     never through a link), then moved into place, which replaces a link rather than follows it.
+    With ``replace`` False the file is put in place only if nothing has that name at that
+    very step (a hard link to the temporary file, which the system refuses when the name is
+    taken; an exclusive create where links are not supported): a file made there since it was
+    checked is never written over, and that is ExportFailed("output").
     A folder that cannot be written in, a full disk and the like are ExportFailed("output")."""
     try:
         handle, temporary = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
@@ -736,7 +743,25 @@ def _write(path, data):
     try:
         with os.fdopen(handle, "wb") as file:
             file.write(data)
-        os.replace(temporary, path)
+        if replace:
+            os.replace(temporary, path)
+        else:
+            try:
+                try:
+                    os.link(temporary, path)
+                except FileExistsError:
+                    raise
+                except OSError:        # no hard links here: an exclusive create is the same promise
+                    with open(path, "xb") as file:
+                        file.write(data)
+            except FileExistsError:
+                raise ExportFailed("output", f"Not written: {path} already exists; --force replaces it.",
+                                   [str(path)]) from None
+            finally:
+                with contextlib.suppress(OSError):
+                    os.unlink(temporary)
+    except ExportFailed:
+        raise
     except BaseException as exc:
         with contextlib.suppress(OSError):
             os.unlink(temporary)
@@ -756,7 +781,7 @@ def frozen_bib(ws, cited, out, force=False):
     entries = _entries(ws)
     target = writable(ws, out, force)
     text, written, parents = _frozen_text(ws, cited, entries)
-    _write(target, text.encode("utf-8"))
+    _write(target, text.encode("utf-8"), replace=force)
     return Frozen(path=target, written=written, missing=missing(ws, cited, entries), parents=parents, cited=cited,
                   notes=list(cited.notes))
 
@@ -1169,7 +1194,7 @@ def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
     stated = _from_source(file, file.parent)          # refuses hostile resource names before any program runs
     chosen = engine_for(file, engine)
     entries = _entries(ws)
-    with _built(file, inputs) as build:
+    with _built(file, inputs, lua=engine == "lualatex") as build:
         _latex(build, chosen)
         found = _compiled_citations(build.folder, file.stem)
         found.how, found.sources, found.main, found.folder, found.engine = "compiled", stated.sources, file, file.parent, chosen
@@ -1222,6 +1247,6 @@ def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
         if warnings:
             found.notes.append(f"{found.backend} gave {warnings} warning{'' if warnings == 1 else 's'}")
         target = writable(ws, out, force)
-        _write(target, made)
+        _write(target, made, replace=force)
     return Bbl(path=target, backend=found.backend, engine=chosen, style=found.style, keys=found.keys, cited=found,
                notes=found.notes)

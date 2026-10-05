@@ -2519,8 +2519,13 @@ from .library import serialized
 
 
 @serialized
-def apply(ws, accepted, *, batch=None):
+def apply(ws, accepted, *, batch=None, before_commit=None):
     """Write explicitly accepted proposals in place, refusing stale spans and previews.
+
+    ``before_commit(entries, result)``: called once everything is planned and nothing is
+    written yet, with the library as it will be (``verification.load_entries`` of the exact
+    text about to be written: keys, texts, fingerprints) and the Applied so far; what it
+    raises stops the write, with nothing written.
 
     UTF-8 (including BOM), line endings and final-newline presence are retained. No
     approval is recorded. New entries append in accepted order with one blank line:
@@ -2644,6 +2649,8 @@ def apply(ws, accepted, *, batch=None):
             ledger, expected[ws.key_renames], data = writer.renames_recorded(
                 ws, result.renamed, 'Accepted entry completion key plan')
             writes.append((ledger, data))
+        if before_commit is not None:
+            before_commit(entries, result)
         done = writer.commit(ws, writes, expected, batch=batch)
         result.backup, result.saved_copy = done.backup, done.saved_copy
         return result

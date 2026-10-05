@@ -622,8 +622,28 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                         raise OSError(errno.ESTALE, 'the file was replaced by something else while it was written',
                                       str(target))
             except (OSError, _Changed) as stopped:
+                # Taking back what was installed: only a file that still holds exactly what
+                # this write put there is put back. One that something else has changed since
+                # is left as it is, the record of this write stays, and the conflict is said.
+                written, conflicts = dict(writes), []
                 for target, folder, previous in reversed(installed):
-                    folder.put(target.name, previous)
+                    try:
+                        untouched = folder.read(target.name)[0] == written[target]
+                    except OSError:
+                        untouched = False
+                    if untouched:
+                        folder.put(target.name, previous)
+                    else:
+                        conflicts.append(target)
+                if conflicts:
+                    from .errors import WriteConflict
+                    kept = done.saved_copy or (done.backup.path if done.backup is not None else None)
+                    raise WriteConflict(
+                        "The write could not be finished and was being taken back, but "
+                        + ", ".join(str(target) for target in conflicts) + " was changed by something else in the "
+                        "meantime; it was left as it is now. What it held before this write is in " + str(kept)
+                        + ". Compare the two" + ("" if managed else f", then delete {ws.work / EDITS / PENDING}") + ".",
+                        files=conflicts) from None
                 if not managed:
                     edits = held.edits()
                     edits.remove(PENDING)

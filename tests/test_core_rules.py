@@ -359,7 +359,7 @@ def test_attempt_installs_a_missing_package_for_real_and_runs_again_once(asking,
     asking(True)
     with pytest.raises(NeedsConfirmation, match="a feature of this test needs 'cdlbib-no-such-package-5d1c'. Install it now"):
         api.attempt(run)
-    assert cli.install_wanted.__doc__ and cli.fork_wanted.__doc__
+    assert cli.fork_wanted.__doc__
 
 
 # --- 6. what completion would look at ----------------------------------------------------------------
@@ -422,7 +422,6 @@ def test_the_tex_and_backup_wording_is_one_text(managed_library):
     assert isinstance(status, tex.TexStatus)
     lines = prompts.tex_state_lines(status)
     assert lines[0] == f"TeX tree: {status.texmf_home}" and f"state: {prompts.tex_state(status)}" in lines
-    assert cli._tex_state(status) == prompts.tex_state(status)
     assert (status.state == "linked") != any(text.startswith("without a link, this shell line") for text in lines)
     assert prompts.tex_state_lines(status, asked=True).count(
         "the link was not made (not confirmed); `cdlbib setup` without --ask makes it") == 1
