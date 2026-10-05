@@ -802,6 +802,9 @@ class LibraryState:
     unrelated: list | None = None    # other changed paths, which a send leaves alone
     approvals: list | None = None    # human approvals a send would add to verification/approvals.jsonl:
                                      # [{"key", "login"}] (None: not a git checkout, or they could not be read)
+    unsent_approvals: list | None = None   # approvals under a GitHub login that a send does not add: [{"key", "login", "why"}]
+    login: str | None = None         # the GitHub login the two lists were told apart by; None: gh was not asked,
+                                     # and ``approvals`` holds every login's (a send adds only the sender's own)
     new_commits: int | None = None   # managed: commits the upstream has that the library does not (as last fetched)
     new_entries: int | None = None   # managed: entries of the upstream's cdl.bib the library's commit lacks
     local_commits: int | None = None # managed: commits the library has that the upstream does not
@@ -849,9 +852,16 @@ def library_state(ws, refresh=False, progress=None):
     except CdlbibError as exc:
         state.notes.append(f"git could not be asked about {ws.root}: {' '.join(str(exc).split())[:300]}")
     if state.pending is not None:
+        me = api.known_identity()
+        if refresh:
+            try:
+                me = api._me(timeout=library.AUTO_FETCH_TIMEOUT)
+            except CdlbibError:
+                me = None                # nobody is logged in: the lists are not told apart
         try:
-            state.approvals = [{"key": row["key"], "login": str(row["human_review"]["github_login"])}
-                               for row in api.approvals_to_send(ws, entries=parsed(ws))]
+            rows, unsent = api.approvals_waiting(ws, entries=parsed(ws), me=me)
+            state.approvals = [{"key": row["key"], "login": str(row["human_review"]["github_login"])} for row in rows]
+            state.unsent_approvals, state.login = unsent, (me.login if me is not None else None)
         except CdlbibError as exc:
             state.notes.append(f"the approvals waiting to be sent could not be read: {' '.join(str(exc).split())[:300]}")
     state.notes += api.approval_problems(ws)

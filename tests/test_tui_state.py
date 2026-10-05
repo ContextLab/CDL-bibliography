@@ -253,14 +253,19 @@ def test_send_shows_what_would_go_and_a_send_the_gate_refuses_makes_no_commit_an
     assert everything(root) == before                                        # no commit, no branch, every byte as it was
 
 
-def test_send_and_state_list_an_approval_that_waits_when_no_file_has_changed(managed):
+def test_send_and_state_list_an_approval_that_waits_when_no_file_has_changed(managed, monkeypatch, tmp_path):
     """No file of the library has changed; one human approval, recorded under a GitHub login,
     is in the verification database and not in verification/approvals.jsonl. The Send view
     lists it as what will be sent and its question names it; the Library state view lists it
-    as unsent. Looking adds nothing to the ledger."""
+    as unsent. Nobody is logged in to GitHub here, so the view says that only the logged-in
+    user's approvals are sent. Looking adds nothing to the ledger."""
     from cdlbib import verification as v
     home, upstream, ws = managed
     root = ws.root
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
+    for token in ("GH_TOKEN", "GITHUB_TOKEN"):
+        monkeypatch.delenv(token, raising=False)
+    monkeypatch.setattr(api, "_identity", None)
     cache = v.Cache(str(ws.database), ledger=ws.revocations)
     try:
         v.record_approval(cache, str(ws.bib), "Zoll90", v.load_entries(str(ws.bib))["Zoll90"]["fingerprint"],
@@ -280,6 +285,8 @@ def test_send_and_state_list_an_approval_that_waits_when_no_file_has_changed(man
             assert "Will be sent" in state and "(no changed file)" not in state
             assert ("Approvals that will be sent (the send adds them to verification/approvals.jsonl)\n"
                     "  Zoll90, approved by @octocat") in state
+            assert "only the approvals recorded under that login are sent" in " ".join(state.split())
+            assert "Approvals that will not be sent" not in state
             await T.press(pilot, "s")
             assert name(app) == "ConfirmScreen"
             assert "Send the approval of Zoll90 as a pull request from your fork?" in T.shown(app, "#question")

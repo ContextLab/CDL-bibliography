@@ -105,6 +105,8 @@ class StateView(View):
         if state.approvals:
             out.line("unsent approvals: " + ", ".join(f"{item['key']} (@{item['login']})" for item in state.approvals),
                      "accent")
+        for item in state.unsent_approvals or []:
+            out.line(f"approval of {item['key']} not sent: {item['why']}", "warning")
         if state.unrelated:
             out.line("other changed files (a send leaves them): " + ", ".join(state.unrelated), "muted")
         if state.interrupted:

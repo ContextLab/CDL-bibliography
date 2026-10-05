@@ -59,7 +59,9 @@ from the upstream base.
 A human approval recorded under your GitHub login ([Human review](human-review.md)) is
 sent too. Before the checks, `send` appends one line per approval that is not yet in
 `verification/approvals.jsonl` to that file and prints
-`approval of KEY by @you: added to verification/approvals.jsonl`. An approval is enough for
+`approval of KEY by @you: added to verification/approvals.jsonl`. An approval in your
+database that was recorded under another login is not added, and `send` prints
+`approval of KEY not sent: recorded under @login`. An approval is enough for
 a send; no entry has to change. If the send stops before the commit is made, the lines are
 taken out again and the file is as it was.
 

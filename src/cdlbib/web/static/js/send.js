@@ -19,11 +19,14 @@ export async function show(main) {
   async function state() {
     const found = await get("/api/state");
     const approvals = found.approvals || [];
+    const unsent = found.unsent_approvals || [];
     clear(what, h("h2", { text: "What will be sent" }),
       kv([["Library", found.root], ["Branch", found.branch || "(none)"],
         ["Files to send", found.pending === null ? null : found.pending.length ? list(found.pending)
           : approvals.length ? "verification/approvals.jsonl (the send adds the approvals below to it)" : "nothing has changed"],
-        ["Approvals to send", approvals.length ? list(approvals.map((item) => `${item.key}, approved by @${item.login}`)) : null],
+        ["Approvals to send", approvals.length ? list(approvals.map((item) => `${item.key}, approved by @${item.login}`)
+          .concat(found.login ? [] : ["GitHub has not been asked who is logged in: only the approvals recorded under that login are sent."])) : null],
+        ["Approvals not sent", unsent.length ? list(unsent.map((item) => `${item.key}: not sent: ${item.why}`)) : null],
         ["Left as they are", found.unrelated && found.unrelated.length ? list(found.unrelated) : null]]),
       found.notes.length ? note("warn", list(found.notes)) : null);
   }

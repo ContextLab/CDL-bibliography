@@ -81,6 +81,13 @@ class SendView(View):
                 out.head("Approvals that will be sent (the send adds them to verification/approvals.jsonl)")
                 for item in approvals:
                     out.line(f"  {item['key']}, approved by @{item['login']}", "accent")
+                if state.login is None:
+                    out.line("  GitHub has not been asked who is logged in (r asks): only the approvals recorded "
+                             "under that login are sent.", "muted")
+            if state.unsent_approvals:
+                out.head("Approvals that will not be sent")
+                for item in state.unsent_approvals:
+                    out.line(f"  {item['key']}: not sent: {item['why']}", "warning")
             if state.unrelated:
                 out.head("Other changed files (left as they are)")
                 for path in state.unrelated:

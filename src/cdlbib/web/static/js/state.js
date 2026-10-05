@@ -57,6 +57,7 @@ export async function show(main, ctx) {
       ["Managed by cdlbib", found.managed ? "yes" : "no"], ["Branch", found.branch],
       ["Unsent changes", found.pending === null ? null : found.pending.length ? list(found.pending) : approvals.length ? null : "none"],
       ["Unsent approvals", approvals.length ? list(approvals.map((item) => `${item.key} (@${item.login})`)) : null],
+      ["Approvals not sent", (found.unsent_approvals || []).length ? list(found.unsent_approvals.map((item) => `${item.key}: not sent: ${item.why}`)) : null],
       ["Other changed files", found.unrelated && found.unrelated.length ? list(found.unrelated) : null],
       ["New upstream commits", found.new_commits === null ? null : String(found.new_commits) + (found.refreshed ? " (asked just now)" : " (as last fetched)")],
       ["New upstream entries", found.new_entries === null ? null : String(found.new_entries)],

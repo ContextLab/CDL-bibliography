@@ -742,15 +742,16 @@ def test_check_and_send_begin_with_the_completion_step_unless_it_is_skipped(visi
     assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"]
 
 
-def test_the_send_and_state_pages_list_an_approval_that_waits_when_no_file_has_changed(visit):
+def test_the_send_and_state_pages_list_an_approval_that_waits_when_no_file_has_changed(visit, monkeypatch):
     """The library is a real checkout with nothing changed, and one human approval recorded
     under a GitHub login in its verification database. The Send page lists the approval and
     does not say "nothing has changed"; the Library state page lists it and offers the way to
     Send. Looking adds nothing to verification/approvals.jsonl."""
     import os
     import subprocess
-    from cdlbib import verification as v
+    from cdlbib import api, verification as v
     ws = visit.ws
+    monkeypatch.setattr(api, "_identity", None)        # nobody has been asked who is logged in
     env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@cdlbib.invalid", GIT_COMMITTER_NAME="t",
                GIT_COMMITTER_EMAIL="t@cdlbib.invalid")
     for args in (("init", "--quiet"), ("symbolic-ref", "HEAD", "refs/heads/master"), ("add", "cdl.bib"),
@@ -766,15 +767,23 @@ def test_the_send_and_state_pages_list_an_approval_that_waits_when_no_file_has_c
         v.record_approval(cache, str(ws.bib), "Game62", load_entries(ws.bib)["Game62"]["fingerprint"],
                           {"reviewer": "@octocat", "source": "The printed volume.", "note": "Compared every field.",
                            "github_login": "octocat", "github_id": 583231})
+        cache.put(str(ws.bib), load_entries(ws.bib)["Kaha12"], dict(         # stored, and no valid row: its note is too long
+            v.outcome("human_verified", []), human_review={"reviewer": "@octocat", "source": "The printed volume.",
+                                                           "note": "x" * 9000, "github_login": "octocat", "github_id": 583231}))
     finally:
         cache.close()
     visit.nav("state")
+    expect(page.locator("main")).to_contain_text("Approvals not sent")
+    expect(page.locator("main")).to_contain_text("Kaha12: not sent: it cannot be written to verification/approvals.jsonl: "
+                                                 "human_review.note is 9000 characters long; the limit is 8000")
     expect(page.locator("main")).to_contain_text("Unsent approvals")
     expect(page.locator("main")).to_contain_text("Game62 (@octocat)")
     page.get_by_role("button", name="Go to Send").click()
     expect(page.locator("main h1")).to_have_text("Send")
     expect(page.locator("main dl")).to_contain_text("Approvals to send")
     expect(page.locator("main dl")).to_contain_text("Game62, approved by @octocat")
+    expect(page.locator("main dl")).to_contain_text("only the approvals recorded under that login are sent")
+    expect(page.locator("main dl")).to_contain_text("Kaha12: not sent: it cannot be written to verification/approvals.jsonl")
     expect(page.locator("main dl")).to_contain_text("verification/approvals.jsonl (the send adds the approvals below to it)")
     expect(page.locator("main dl")).not_to_contain_text("nothing has changed")
     assert not ws.approvals.exists()

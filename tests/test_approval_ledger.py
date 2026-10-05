@@ -35,6 +35,7 @@ def _the_librarys_own_ledgers(monkeypatch):
     # its own verification/ folder, as it does outside the tests.
     monkeypatch.setattr(v, "REVOCATION_LEDGER", None)
     monkeypatch.delenv(v.APPROVAL_LEDGER_ENV, raising=False)
+    monkeypatch.setattr(api, "_identity", None)        # no test inherits who another test's gh call named
     monkeypatch.setenv("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
 
 
@@ -505,6 +506,7 @@ def test_the_state_of_the_library_lists_the_approvals_a_send_would_add(checkout)
     approve(ws, "Zoll90")
     found = api.library_state(ws)
     assert found.approvals == [{"key": "Zoll90", "login": "octocat"}] and found.pending == [] and found.notes == []
+    assert found.unsent_approvals == [] and found.login is None             # gh was not asked whose they are
     assert not ws.approvals.exists()                                         # looking adds nothing to the ledger
     share(ws)
     found = api.library_state(ws)
@@ -515,47 +517,220 @@ def test_the_state_of_the_library_lists_the_approvals_a_send_would_add(checkout)
     assert api.library_state(plain).approvals is None and api.library_state(plain).pending is None
 
 
-def test_a_send_of_approvals_alone_is_not_refused_as_nothing_to_send(checkout, monkeypatch, tmp_path):
-    """Nothing in cdl.bib or verification/ has changed; one approval waits. The send goes past
-    "nothing to send" and past the gate, and stops where it asks who is logged in (nobody is,
-    here): the row it had added is taken out again and the checkout is as it was."""
+def logged_in():
+    """The real GitHub user of the gh CLI (identity.Identity); a skip where nobody is logged in."""
+    from cdlbib import identity
+    try:
+        return identity.current()
+    except IdentityUnavailable as exc:
+        pytest.skip(f"no GitHub user is logged in (expected in CI): {exc}")
+
+
+def mine(me, **more):
+    """A review as `approve` records it for the logged-in user."""
+    return dict(reviewer=me.handle, github_login=me.login, github_id=me.id, **more)
+
+
+def nobody_logged_in(monkeypatch, tmp_path):
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
+    for name in ("GH_TOKEN", "GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN"):
+        monkeypatch.delenv(name, raising=False)
+
+
+def test_only_the_senders_own_approvals_are_rows_to_send(tmp_path):
+    """Whose an approval is: by the numeric id when the approval has one, else by the login
+    whatever its case. The sender here is an Identity value; no one is asked."""
+    from cdlbib.identity import Identity
+    ws = library(tmp_path / "lib", ZOLL90 + "\n\n" + RAME72 % "1" + "\n\n" + (RAME72 % "2").replace("Rame72", "Rame72b") + "\n")
+    approve(ws, "Zoll90")                                                    # @octocat, id 583231
+    approve(ws, "Rame72", reviewer="@hubot", github_login="hubot", github_id=480938)
+    cache = v.Cache(str(ws.database), ledger=ws.revocations)                 # one stored before `approve` checked rows
+    try:
+        cache.put(str(ws.bib), v.load_entries(str(ws.bib))["Rame72b"], dict(
+            v.outcome("human_verified", []), human_review=dict(REVIEW, reviewer="@OctoCat", github_login="OctoCat", github_id=None)))
+    finally:
+        cache.close()
+    rows, unsent = api.approvals_waiting(ws)
+    assert [row["key"] for row in rows] == ["Zoll90", "Rame72"] and [item["key"] for item in unsent] == ["Rame72b"]
+    assert "github_id is not an integer" in unsent[0]["why"]                 # a stored review that is no valid row
+    octocat = Identity(login="octocat", id=583231)
+    rows, unsent = api.approvals_waiting(ws, me=octocat)
+    assert [row["key"] for row in rows] == ["Zoll90"]
+    assert {item["key"]: item["why"] for item in unsent}["Rame72"] == "recorded under @hubot"
+    assert api.unsent_line(unsent[0]) == "approval of Rame72 not sent: recorded under @hubot"
+    assert api.approvals_to_send(ws, me=octocat) == rows
+    # The login was renamed since: the id still says it is the same user. The same login
+    # under another id is another user.
+    assert [row["key"] for row in api.approvals_to_send(ws, me=Identity(login="octocat-renamed", id=583231))] == ["Zoll90"]
+    assert api.approvals_to_send(ws, me=Identity(login="octocat", id=1)) == []
+    assert [row["key"] for row in api.approvals_to_send(ws, me=Identity(login="HUBOT", id=480938))] == ["Rame72"]
+    # An approval stored without an id is compared by login, whatever the case.
+    plain = library(tmp_path / "plain")
+    cache = v.Cache(str(plain.database), ledger=plain.revocations)
+    try:
+        v.record_approval(cache, str(plain.bib), "Zoll90", fingerprint(plain, "Zoll90"),
+                          {k: x for k, x in REVIEW.items() if k != "github_id"})
+    finally:
+        cache.close()
+    assert [row["key"] for row in api.approvals_to_send(plain, me=Identity(login="OctoCat", id=7))] == ["Zoll90"]
+    assert api.approvals_to_send(plain, me=Identity(login="hubot", id=583231)) == []
+
+
+def test_a_send_with_an_approval_waiting_and_nobody_logged_in_changes_nothing(checkout, monkeypatch, tmp_path):
     ws, _ = checkout
     with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
-        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)   # nothing waits: gh is not asked
     approve(ws, "Zoll90")
-    assert publish.pending(ws) == []
-    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
-    for name in ("GH_TOKEN", "GITHUB_TOKEN"):
-        monkeypatch.delenv(name, raising=False)
+    nobody_logged_in(monkeypatch, tmp_path)
     before, lines = state(ws.root), []
-    with pytest.raises(IdentityUnavailable):
+    with pytest.raises(IdentityUnavailable):                                 # whose approval it is cannot be told
         api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
-    assert f"approval of Zoll90 by @octocat: added to {LEDGER}" in lines
-    assert "checks passed; generating commit message..." in lines           # the gate ran with the row in place
-    assert lines[-1] == f"not sent: {LEDGER} is as it was before (the approvals stay in the local database)"
-    assert state(ws.root) == before and not ws.approvals.exists()
+    assert lines == [] and state(ws.root) == before and not ws.approvals.exists()
     assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90"]   # it still waits
 
 
+def test_a_send_of_my_approval_alone_is_not_refused_as_nothing_to_send(checkout):
+    """Nothing in cdl.bib or verification/ has changed; one approval under the real login
+    waits, and one under another login. The send adds mine alone, passes the gate, and stops
+    where GitHub is asked about a repository that cannot exist: the row is taken out again."""
+    me = logged_in()
+    ws, _ = checkout
+    approve(ws, "Zoll90", **mine(me))
+    approve(ws, "Rame72", note="Checked the volume in print.")               # @octocat's, restored or copied here
+    assert publish.pending(ws) == []
+    before, lines = state(ws.root), []
+    with pytest.raises(PublishRefused) as refused:
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert "no changes to cdl.bib" not in str(refused.value)
+    assert lines[0] == "approval of Rame72 not sent: recorded under @octocat"
+    assert lines[1] == f"approval of Zoll90 by @{me.login}: added to {LEDGER}"
+    assert not any("Rame72" in line for line in lines[1:])
+    assert "checks passed; generating commit message..." in lines           # the gate ran with the row in place
+    assert lines[-1] == f"not sent: {LEDGER} is as it was before (the approvals stay in the local database)"
+    assert state(ws.root) == before and not ws.approvals.exists()
+    assert [row["key"] for row in api.approvals_to_send(ws, me=me)] == ["Zoll90"]
+
+
+def test_a_send_of_someone_elses_approval_alone_is_refused_and_says_why(checkout):
+    """The only approval in the database is under another login. Nothing is added to the
+    ledger, and the send is the refusal "no changes" with the approval and the reason named."""
+    logged_in()
+    ws, _ = checkout
+    approve(ws, "Zoll90")
+    before, lines = state(ws.root), []
+    with pytest.raises(PublishRefused) as refused:
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert str(refused.value) == (publish.NO_CHANGES + "\napproval of Zoll90 not sent: recorded under @octocat")
+    assert lines == ["approval of Zoll90 not sent: recorded under @octocat"]
+    assert state(ws.root) == before and not ws.approvals.exists()
+
+
 def test_a_send_the_gate_refuses_leaves_the_ledger_byte_for_byte(checkout):
-    """An earlier row is committed; a second approval waits; the edit to cdl.bib fails the
-    format check. After the refusal the ledger holds the committed row and nothing else."""
+    """An earlier row is committed; a second approval, under the real login, waits; the edit
+    to cdl.bib fails the format check. After the refusal the ledger holds the committed row
+    and nothing else."""
+    me = logged_in()
     ws, _ = checkout
     approve(ws, "Rame72", note="Checked the volume in print.")
     share(ws)
     git(ws.root, "add", LEDGER); git(ws.root, "commit", "-q", "-m", "an approval")
     committed = ws.approvals.read_bytes()
-    approve(ws, "Zoll90")
+    approve(ws, "Zoll90", **mine(me))
     ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + "\n" + BAD, encoding="utf-8")
     assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90"]   # the edit is to another entry
     before, lines = state(ws.root), []
     with pytest.raises(GateFailed) as refused:
         api.send(ws, summary="bad", reference=str(ws.bib), upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
     assert refused.value.check is not None and not refused.value.check.ok
-    assert lines[0] == f"approval of Zoll90 by @octocat: added to {LEDGER}"
+    assert lines[0] == f"approval of Zoll90 by @{me.login}: added to {LEDGER}"
     assert lines[-1].startswith(f"not sent: {LEDGER} is as it was before")
     assert state(ws.root) == before and ws.approvals.read_bytes() == committed
     assert git(ws.root, "status", "--porcelain", "--", "verification") == ""
+
+
+# --- an approval that could not be a row is refused when it is recorded, and named when it is stored ----
+
+def test_approve_refuses_a_note_or_source_over_the_ledgers_limit_and_names_the_limit(tmp_path):
+    ws = library(tmp_path / "lib")
+    with pytest.raises(ValueError) as refused:
+        approve(ws, "Zoll90", note="x" * 8001)
+    assert str(refused.value) == ("The note is 8001 characters long; an approval's note can be at most 8000 "
+                                  "characters. Nothing was recorded.")
+    with pytest.raises(ValueError, match="The source is 4001 characters long; an approval's source can be at most 4000"):
+        approve(ws, "Zoll90", source="x" * 4001)
+    with pytest.raises(ValueError, match="The reviewer is 201 characters long; an approval's reviewer can be at most 200"):
+        approve(ws, "Zoll90", reviewer="x" * 201)
+    with pytest.raises(ValueError, match=r"could not be shared as a row of the approvals ledger \(human_review.github_id "
+                                         r"is not an integer\)"):
+        approve(ws, "Zoll90", github_id="583231")
+    with pytest.raises(ValueError, match="github_login is not a GitHub login"):
+        approve(ws, "Zoll90", github_login="octo cat")
+    assert statuses(ws, ws.database) == {"Zoll90": "pending", "Rame72": "pending"}       # nothing was recorded
+    approve(ws, "Zoll90", note="x" * 8000, source="y" * 4000)               # at the limit: recorded, and a valid row
+    assert [row["key"] for row in share(ws)] == ["Zoll90"] and v.scan_approval_ledger(ws.approvals)[1] == []
+    # A review that names no GitHub login (as the baseline's do) has the same limits.
+    with pytest.raises(ValueError, match="at most 8000 characters"):
+        approve(ws, "Rame72", reviewer="A Person", github_login=None, github_id=None, note="x" * 8001)
+
+
+def test_the_approve_command_path_refuses_an_over_long_note_under_the_real_login(tmp_path):
+    from cdlbib.errors import ApprovalRefused
+    logged_in()
+    ws = library(tmp_path / "lib")
+    with pytest.raises(ApprovalRefused, match="an approval's note can be at most 8000 characters. Nothing was recorded."):
+        api.approve(ws, "Zoll90", fingerprint(ws, "Zoll90"), REVIEW["source"], "x" * 8001)
+    assert api.status(ws).counts == {"pending": 2}
+
+
+def test_a_stored_approval_that_cannot_be_a_row_is_named_and_a_send_of_it_alone_is_refused(checkout):
+    """An approval stored before the limit was checked at `approve` (written here as the
+    cache stores a result): the state and the send name it and the limit; a send of it alone
+    is refused, adds nothing to the ledger and changes nothing."""
+    me = logged_in()
+    ws, _ = checkout
+    cache = v.Cache(str(ws.database), ledger=ws.revocations)
+    try:
+        entry = v.load_entries(str(ws.bib))["Zoll90"]
+        cache.put(str(ws.bib), entry, dict(v.outcome("human_verified", []),
+                                           human_review=mine(me, source=REVIEW["source"], note="x" * 9000)))
+    finally:
+        cache.close()
+    assert statuses(ws, ws.database)["Zoll90"] == "human_verified"
+    why = f"it cannot be written to {LEDGER}: human_review.note is 9000 characters long; the limit is 8000"
+    assert api.approvals_waiting(ws, me=me) == ([], [{"key": "Zoll90", "login": me.login, "why": why}])
+    found = api.library_state(ws)
+    assert found.approvals == [] and found.unsent_approvals == [{"key": "Zoll90", "login": me.login, "why": why}]
+    before, lines = state(ws.root), []
+    with pytest.raises(PublishRefused) as refused:
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert str(refused.value) == publish.NO_CHANGES + f"\napproval of Zoll90 not sent: {why}"
+    assert lines == [f"approval of Zoll90 not sent: {why}"]
+    assert state(ws.root) == before and not ws.approvals.exists()
+
+
+def test_approve_refuses_a_revoked_review_in_another_form_as_the_ledger_does(tmp_path):
+    """The rule `approve` and the ledger share: after a revocation, the same source and note
+    (whatever the spacing, the case or the signer) is the revoked review; a new note is a new
+    decision."""
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    approve(ws, "Rame72", note="Checked the volume in print.")               # the negative control: never revoked
+    revoke(ws, "Zoll90", ws.database)
+    for review in (dict(note="  compared   EVERY field with the printed article. "),
+                   dict(source=REVIEW["source"] + "  "),
+                   dict(reviewer="@hubot", github_login="hubot", github_id=480938),
+                   dict(github_id=1), {}):
+        with pytest.raises(ValueError, match="This exact approval was revoked"):
+            approve(ws, "Zoll90", **review)
+        row = {"key": "Zoll90", "fingerprint": fingerprint(ws, "Zoll90"), "human_review": dict(REVIEW, **review),
+               "approval_digest": v.approval_digest(dict(REVIEW, **review)), "approved_at": "2099-01-01T00:00:00+00:00",
+               "policy": v.POLICY}
+        assert v.valid_shared_approval(row) and v.shared_revoked(v.read_revocation_ledger(ws.revocations)[0], row)
+    assert statuses(ws, ws.database) == {"Zoll90": "needs_review", "Rame72": "human_verified"}
+    approve(ws, "Rame72", note="  checked the VOLUME in print. ")            # not revoked: the same words may be recorded again
+    approve(ws, "Zoll90", note="Checked again against the publisher's page.")
+    assert statuses(ws, ws.database)["Zoll90"] == "human_verified"
+    assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90", "Rame72"]
 
 
 def test_rows_stay_when_something_else_changed_the_ledger_or_a_commit_holds_them(checkout, tmp_path):

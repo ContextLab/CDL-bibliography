@@ -259,11 +259,24 @@ Tests: `tests/test_revocation.py` (real entries and approval rows frozen from co
 is written by `cdlbib send` (`api.send`, which the terminal and web interfaces call through
 `api.send_checked`) and by nothing else; `approve` writes only to the database.
 
-Writing. Before `send` decides whether there is anything to send, `api.approvals_to_send`
+Writing. Before `send` decides whether there is anything to send, `api.approvals_waiting`
 lists the rows to add: one for each entry whose stored result in the local database is a
 current `human_verified` result for exactly the entry's text, with a `human_review` that
 has a non-blank reviewer, source, note and `github_login`, that is not revoked, and whose
-(fingerprint, digest) pair is not in the file yet. The rows are appended before the gate
+(fingerprint, digest) pair is not in the file yet. When such a row exists, `send` asks
+`gh` who is logged in (`identity.current`) and keeps only the rows recorded under that user:
+the same `github_id` when the review has an integer one, else the same login ignoring case.
+The others, and stored approvals under a login that are not valid rows, are returned as
+`unsent` (`{"key", "login", "why"}`); `progress` receives `approval of KEY not sent: WHY`
+for each, and the refusal when nothing else is to be sent lists them. An approval whose
+`human_review` names no GitHub login is in neither list. `record_approval` refuses a
+reviewer, source or note over the row limits, and a review with a `github_login` that would
+not be a valid row, so an approval made with `approve` can always be written. It also
+refuses a review whose source and note equal a revoked approval's of the same text after
+white space is collapsed and case folded, the rule `shared_revoked` applies to rows. The
+library state lists `approvals`, `unsent_approvals` and the `login` they were told apart by;
+it asks `gh` only with `refresh`, and otherwise uses the user `gh` last named in the
+process (`api.known_identity`), or none. The rows are appended before the gate
 (`verification.append_approvals`: one line each, `json.dumps` with sorted keys and no
 spaces; earlier lines are not touched), and `progress` receives a line for each. The file
 is under `verification/`, so it is committed and pushed with the change, and it alone is a

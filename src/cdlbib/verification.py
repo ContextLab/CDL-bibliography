@@ -376,6 +376,25 @@ _DIGEST = re.compile(r"[0-9a-f]{64}")
 _GITHUB_LOGIN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})")
 
 
+def review_problem(review):
+    """Why the human_review record ``review`` cannot be written as a ledger row, or None: a
+    non-blank reviewer, source and note and a GitHub login, each a text no longer than its
+    limit (REVIEW_TEXT_FIELDS); an integer github_id when there is one; no other field."""
+    if set(review) - REVIEW_FIELDS:
+        return "human_review has unknown fields: " + ", ".join(str(n)[:40] for n in sorted(set(review) - REVIEW_FIELDS)[:6])
+    for name, longest in REVIEW_TEXT_FIELDS.items():
+        value = review.get(name)
+        if not isinstance(value, str) or not value.strip():
+            return f"human_review.{name} is missing or blank"
+        if len(value) > longest:
+            return f"human_review.{name} is {len(value)} characters long; the limit is {longest}"
+    if not _GITHUB_LOGIN.fullmatch(review["github_login"]):
+        return "human_review.github_login is not a GitHub login"
+    if "github_id" in review and (isinstance(review["github_id"], bool) or not isinstance(review["github_id"], int)):
+        return "human_review.github_id is not an integer"
+    return None
+
+
 def shared_approval_problem(record):
     """Why ``record`` cannot stand for an approval, or None when it can. A valid row has
     exactly the six fields; a fingerprint of the current format; a human_review with a
@@ -397,18 +416,9 @@ def shared_approval_problem(record):
         return "key or policy is too long"
     if not _FINGERPRINT.fullmatch(record["fingerprint"]):
         return "fingerprint is not a v2 content fingerprint"
-    if set(review) - REVIEW_FIELDS:
-        return "human_review has unknown fields: " + ", ".join(str(n)[:40] for n in sorted(set(review) - REVIEW_FIELDS)[:6])
-    for name, longest in REVIEW_TEXT_FIELDS.items():
-        value = review.get(name)
-        if not isinstance(value, str) or not value.strip():
-            return f"human_review.{name} is missing or blank"
-        if len(value) > longest:
-            return f"human_review.{name} is longer than {longest} characters"
-    if not _GITHUB_LOGIN.fullmatch(review["github_login"]):
-        return "human_review.github_login is not a GitHub login"
-    if "github_id" in review and (isinstance(review["github_id"], bool) or not isinstance(review["github_id"], int)):
-        return "human_review.github_id is not an integer"
+    problem = review_problem(review)
+    if problem:
+        return problem
     if not _DIGEST.fullmatch(record["approval_digest"]) or record["approval_digest"] != approval_digest(review):
         return "approval_digest is not the digest of human_review"
     moment = _instant(record["approved_at"])
@@ -553,22 +563,32 @@ def approval_candidates(db, filename, entries):
 
 
 def unshared_approvals(filename, cache, ledger, entries=None):
-    """The ledger rows a send adds to ``ledger``: one for each entry whose stored result in
-    this database is a current human approval recorded under a GitHub login (not revoked,
-    for exactly the entry's text, complete) that ``ledger`` does not hold yet, in the
-    file's order."""
+    """(rows, unwritable) for the approvals of this database that ``ledger`` does not hold
+    yet, in the file's order. Considered: each entry whose stored result is a current human
+    approval (not revoked, for exactly the entry's text) whose human_review names a GitHub
+    login. ``rows``: the ledger row of each that is a valid row. ``unwritable``:
+    [(key, login as stored, why)] for each that cannot be written as a row (a note over the
+    limit, say). An approval that names no GitHub login is in neither."""
     entries = entries if entries is not None else load_entries(filename)
     held = {(r["fingerprint"], approval_digest(r["human_review"])) for r in read_approval_ledger(ledger)}
-    rows = []
+    rows, unwritable = [], []
     for key in approval_candidates(cache.db, filename, entries):
         entry = entries[key]
         result = cache.stored(filename, entry)
         if not result or result.get("status") != "human_verified" or result.get("fingerprint") != entry["fingerprint"]:
             continue
+        review = result.get("human_review")
+        if not isinstance(review, dict) or review.get("github_login") in (None, ""):
+            continue
         row = approval_row(result)
-        if valid_shared_approval(row) and (row["fingerprint"], row["approval_digest"]) not in held:
+        if (row["fingerprint"], row["approval_digest"]) in held:
+            continue
+        problem = shared_approval_problem(row)
+        if problem:
+            unwritable.append((key, str(review.get("github_login"))[:60], problem))
+        else:
             rows.append(row)
-    return rows
+    return rows, unwritable
 
 
 def append_approvals(ledger, rows):
@@ -3028,9 +3048,25 @@ def record_approval(cache, fname, key, fingerprint, human_review):
             raise ValueError("Entry changed since review; approval rejected")
         if not all(_text(human_review.get(x)) for x in ("reviewer", "source", "note")):
             raise ValueError("Human reviewer, source, and review notes are required")
+        # What is stored must be writable as one row of the approvals ledger: the limits are
+        # the ledger's, applied here so that an approval is refused now and not left unsent.
+        for name in ("reviewer", "source", "note"):
+            if len(human_review[name]) > REVIEW_TEXT_FIELDS[name]:
+                raise ValueError(
+                    f"The {name} is {len(human_review[name])} characters long; an approval's {name} can be at most "
+                    f"{REVIEW_TEXT_FIELDS[name]} characters. Nothing was recorded.")
+        if human_review.get("github_login") is not None:
+            problem = review_problem(human_review)
+            if problem:
+                raise ValueError(f"This approval could not be shared as a row of the approvals ledger "
+                                 f"({problem}). Nothing was recorded.")
         for revocation in cache.revocations():
-            if (revocation["fingerprint"] == fingerprint
-                    and approval_digest(human_review) in revoked_digests(revocation)):
+            # The same rule as for a ledger row (shared_revoked): the revoked review's digest
+            # in either form, or its source and note whatever the spacing, case or signer.
+            if revocation["fingerprint"] == fingerprint and (
+                    approval_digest(human_review) in revoked_digests(revocation)
+                    or (revocation.get("approval")
+                        and _review_text(revocation["approval"]) == _review_text(human_review))):
                 raise ValueError(
                     f"This exact approval was revoked {revocation['revoked_at']} "
                     f"({revocation['reason']}); record the new review in a new note")

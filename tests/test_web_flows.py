@@ -635,12 +635,17 @@ def test_a_send_that_cannot_pass_changes_nothing(site, tmp_path):
     assert error["kind"] == "CdlbibError" and text(site.ws) == edited
 
 
-def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_to_send(site, tmp_path):
+def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_to_send(site, tmp_path, monkeypatch):
     """The library is a real checkout with no changed file. One human approval recorded under
-    a GitHub login is in its verification database. The state names it; the send is not
-    refused as "no changes": it adds the row to verification/approvals.jsonl, reaches the gate
-    (which cannot reach its reference here) and takes the row out again."""
+    a GitHub login is in its verification database, and one stored result that cannot be
+    written as a ledger row. The state names both; the send is not refused as "no changes":
+    it asks who is logged in, to tell whose the approval is (nobody is, here), and changes
+    nothing."""
     from cdlbib import verification as v
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
+    for token in ("GH_TOKEN", "GITHUB_TOKEN"):
+        monkeypatch.delenv(token, raising=False)
+    monkeypatch.setattr(api, "_identity", None)
     env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@cdlbib.invalid", GIT_COMMITTER_NAME="t",
                GIT_COMMITTER_EMAIL="t@cdlbib.invalid")
 
@@ -663,17 +668,20 @@ def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_
         v.record_approval(cache, str(site.ws.bib), "Game62", load_entries(site.ws.bib)["Game62"]["fingerprint"],
                           {"reviewer": "@octocat", "source": "The printed volume.", "note": "Compared every field.",
                            "github_login": "octocat", "github_id": 583231})
+        cache.put(str(site.ws.bib), load_entries(site.ws.bib)["Kaha12"], dict(     # stored, and no valid row: its note is too long
+            v.outcome("human_verified", []), human_review={"reviewer": "@octocat", "source": "The printed volume.",
+                                                           "note": "x" * 9000, "github_login": "octocat", "github_id": 583231}))
     finally:
         cache.close()
     state = site.ok("get", "/api/state")
     assert state["pending"] == [] and state["approvals"] == [{"key": "Game62", "login": "octocat"}]
+    assert state["login"] is None and state["unsent_approvals"] == [{
+        "key": "Kaha12", "login": "octocat", "why": "it cannot be written to verification/approvals.jsonl: "
+                                                    "human_review.note is 9000 characters long; the limit is 8000"}]
     head, lines = git("rev-parse", "HEAD"), []
     result, error = site.post("/api/send", {}, lines)
-    assert result is None and error["kind"] == "GateFailed", error           # the gate, not "nothing to send"
-    assert error["message"].startswith("citation check failed: ")
-    assert lines[0] == "approval of Game62 by @octocat: added to verification/approvals.jsonl"
-    assert lines[-1] == ("not sent: verification/approvals.jsonl is as it was before "
-                         "(the approvals stay in the local database)")
+    assert result is None and error["kind"] == "IdentityUnavailable", error  # whose it is cannot be told: not "nothing to send"
+    assert lines == []
     assert not site.ws.approvals.exists() and git("status", "--porcelain", "--untracked-files=no") == ""
     assert git("rev-parse", "HEAD") == head and git("branch", "--list") == "* master"
     assert site.ok("get", "/api/state")["approvals"] == [{"key": "Game62", "login": "octocat"}]     # it still waits

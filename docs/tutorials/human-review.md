@@ -75,8 +75,24 @@ An approval is stored in the local verification database (`.bibcheck/`, never co
 `cdlbib send`, the Send view of the terminal interface and the Send view of the web
 interface share it: the send appends one line per approval to
 `verification/approvals.jsonl` and commits that file. This applies to every current
-approval in the local database that was recorded under a GitHub login, has not been
-revoked, and is not in the file yet. Nothing else has to change for the send to go ahead.
+approval in the local database that was recorded under your own GitHub login, has not been
+revoked, and is not in the file yet. The send asks `gh` who is logged in and compares the
+numeric id (the login, when the approval has no id). Nothing else has to change for the
+send to go ahead. An approval under another login, or one that cannot be written as a line
+of the file, is not added; the send prints, for example,
+
+```text
+approval of Zoll90 not sent: recorded under @someone
+```
+
+and when nothing else is to be sent it stops with
+`There are no changes to cdl.bib or verification/ to send.` followed by those lines. The
+Send views list such approvals under "Approvals that will not be sent" (terminal) or
+"Approvals not sent" (web).
+
+`approve` refuses a review that could not be written as a line: a source longer than 4,000
+characters, a note longer than 8,000 or a reviewer longer than 200. It prints, for example,
+`The note is 8001 characters long; an approval's note can be at most 8000 characters. Nothing was recorded.`
 For each approval the send prints (or shows in its log):
 
 ```text
