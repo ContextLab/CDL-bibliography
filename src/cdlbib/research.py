@@ -7,6 +7,7 @@ from the downloaded PDF's text. Neither phase can change verification status.
 
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -36,6 +37,21 @@ def locate_adapter(executable, strict=True):
     return Path(located or executable).resolve(strict=strict)
 
 
+# What a shipped adapter prints last when it fails: its name, then one plain sentence (words,
+# numbers and light punctuation). Anything else an adapter printed (a header, a URL, a
+# response body) is not repeated, here or in what is stored about the attempt.
+_ADAPTER_SAID = re.compile(r"(?:Dartmouth|Research) adapter failed: ([A-Za-z0-9 ,.'()-]{1,160})")
+
+
+def _adapter_reason(exc):
+    said = getattr(exc, "stderr", None) or ""
+    if isinstance(said, bytes):                    # TimeoutExpired keeps bytes even in text mode
+        said = said[-4000:].decode("utf-8", errors="replace")
+    lines = said.strip().splitlines()
+    found = _ADAPTER_SAID.fullmatch(lines[-1].strip()) if lines else None
+    return f": {found.group(1)}" if found else ""
+
+
 def invoke_adapter(executable, payload):
     executable = locate_adapter(executable)  # a .py path is run with this interpreter
     try:
@@ -50,11 +66,7 @@ def invoke_adapter(executable, payload):
             check=True,
         )
     except (subprocess.SubprocessError, OSError) as exc:
-        # The adapter's own last line says why (it never prints a response body or a key).
-        said = (getattr(exc, "stderr", None) or "").strip().splitlines()
-        last = "".join(c for c in said[-1] if c.isprintable())[:200] if said else ""
-        why = f": {last}" if last else ""
-        raise ValueError(f"Research adapter failed: {type(exc).__name__}{why}") from exc
+        raise ValueError(f"Research adapter failed: {type(exc).__name__}{_adapter_reason(exc)}") from exc
     if len(result.stdout) > 2_000_000:
         raise ValueError("Research adapter output exceeded 2 MB")
     try:

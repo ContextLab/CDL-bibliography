@@ -252,7 +252,9 @@ def capture(out, width, height, only):
                 page.click("article.card >> [data-action=skip]")
 
             page.click("#nav >> [data-view=setup]")
-            page.wait_for_selector("main table")
+            page.wait_for_selector("main h2:has-text('Available on this computer')")    # the report itself, not an earlier view's table
+            page.wait_for_selector("main .tex-lines")
+            page.wait_for_function("document.querySelector('#busy, [role=status]') && !document.body.innerText.includes('Working…')")
             shot(page, "setup")
 
             page.click("#nav >> text=Library")

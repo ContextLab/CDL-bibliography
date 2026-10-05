@@ -63,16 +63,45 @@ def test_two_timeouts_are_an_error_that_says_so_and_no_third_request_is_made(ser
     assert service["seen"] == 2
 
 
-def test_a_failed_adapter_is_reported_with_the_last_line_it_printed(tmp_path):
-    from cdlbib.research import invoke_adapter
+def _failing(tmp_path, last_line):
     script = tmp_path / "failing_adapter.py"
     script.write_text("import sys\nsys.stdin.read()\nprint('first line', file=sys.stderr)\n"
-                      "print('Example adapter failed: the service did not answer', file=sys.stderr)\nsys.exit(2)\n",
-                      encoding="utf-8")
+                      f"print({last_line!r}, file=sys.stderr)\nsys.exit(2)\n", encoding="utf-8")
+    return script
+
+
+def test_a_failed_adapter_is_reported_with_the_sentence_a_shipped_adapter_prints(tmp_path):
+    from cdlbib.research import invoke_adapter
     with pytest.raises(ValueError) as caught:
-        invoke_adapter(script, {"phase": "extract"})
-    assert str(caught.value) == ("Research adapter failed: CalledProcessError: "
-                                 "Example adapter failed: the service did not answer")
+        invoke_adapter(_failing(tmp_path, "Research adapter failed: the service did not answer"), {"phase": "extract"})
+    assert str(caught.value) == "Research adapter failed: CalledProcessError: the service did not answer"
+
+
+@pytest.mark.parametrize("line", [
+    "Authorization: Bearer not-a-real-token",
+    "Research adapter failed: see https://example.org/file.pdf?signature=abc",
+    "Example adapter failed: the service did not answer",
+    "Research adapter failed: " + "x" * 400,
+])
+def test_anything_else_an_adapter_printed_is_not_repeated(tmp_path, line):
+    from cdlbib.research import invoke_adapter
+    with pytest.raises(ValueError) as caught:
+        invoke_adapter(_failing(tmp_path, line), {"phase": "extract"})
+    assert str(caught.value) == "Research adapter failed: CalledProcessError"
+
+
+def test_what_a_timed_out_adapter_printed_is_read_as_bytes(tmp_path):
+    """subprocess keeps stderr as bytes on a timeout, even in text mode."""
+    import subprocess
+    import sys
+    from cdlbib.research import _adapter_reason
+    script = tmp_path / "slow_adapter.py"
+    script.write_text("import sys, time\nprint('Research adapter failed: still waiting', file=sys.stderr, flush=True)\n"
+                      "time.sleep(30)\n", encoding="utf-8")
+    with pytest.raises(subprocess.TimeoutExpired) as caught:
+        subprocess.run([sys.executable, str(script)], input="{}", text=True, capture_output=True, timeout=2, check=True)
+    assert isinstance(caught.value.stderr, bytes)
+    assert _adapter_reason(caught.value) == ": still waiting"
 
 
 def test_only_a_sentence_written_in_the_adapter_is_printed_never_another_errors_text(tmp_path):
