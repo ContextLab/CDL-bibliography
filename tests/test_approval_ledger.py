@@ -1,0 +1,508 @@
+"""The approvals ledger (verification/approvals.jsonl): human approvals that travel with a send.
+
+Real files, real SQLite databases and real git repositories in temporary folders; the real
+gh where a login is needed (those tests skip, with the reason, where nobody is logged in or
+the user has no fork). An approval "of another user" is one stored in a second database. No
+mocks.
+"""
+import datetime
+import json
+import os
+import shutil
+import subprocess
+from pathlib import Path
+
+import pytest
+
+from cdlbib import api, publish
+from cdlbib import verification as v
+from cdlbib.errors import GateFailed, IdentityUnavailable, PublishRefused
+from cdlbib.workspace import Workspace
+
+from test_machinery_2026_09_25 import RAME72, ZOLL90
+from test_publish import GIT_ENV, NOWHERE, TEST_BASE, clean_up, git, my_fork, open_prs, state
+
+FIX = Path(__file__).resolve().parent / "fixtures" / "revocation"
+LEDGER = "verification/approvals.jsonl"
+REVIEW = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+          "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+BAD = "@article{Bad,\n\tPages = {10--1}}\n"
+
+
+@pytest.fixture(autouse=True)
+def _the_librarys_own_ledgers(monkeypatch):
+    # No patched ledger and none named by the environment: each library reads the ledgers in
+    # its own verification/ folder, as it does outside the tests.
+    monkeypatch.setattr(v, "REVOCATION_LEDGER", None)
+    monkeypatch.delenv(v.APPROVAL_LEDGER_ENV, raising=False)
+    monkeypatch.setenv("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
+
+
+def library(folder, text=ZOLL90 + "\n\n" + RAME72 % "1" + "\n"):
+    folder.mkdir(parents=True)
+    (folder / "verification").mkdir()
+    (folder / "cdl.bib").write_text(text, encoding="utf-8")
+    return Workspace(folder)
+
+
+def fingerprint(ws, key):
+    return v.load_entries(str(ws.bib))[key]["fingerprint"]
+
+
+def approve(ws, key, database=None, **review):
+    """A human approval stored as `approve` stores it, under the login in REVIEW."""
+    cache = v.Cache(str(database or ws.database), ledger=ws.revocations)
+    try:
+        v.record_approval(cache, str(ws.bib), key, fingerprint(ws, key), dict(REVIEW, **review))
+    finally:
+        cache.close()
+
+
+def results(ws, database):
+    cache = v.Cache(str(database), ledger=ws.revocations)
+    try:
+        return v.current_results(str(ws.bib), cache)
+    finally:
+        cache.close()
+
+
+def statuses(ws, database):
+    return {key: result["status"] for key, result in results(ws, database).items()}
+
+
+def share(ws, database=None):
+    """What a send does with the approvals: the rows not yet in the ledger are appended."""
+    rows = api.approvals_to_send(ws, database=database)
+    v.append_approvals(ws.approvals, rows)
+    return rows
+
+
+def rows_of(ws):
+    return [json.loads(line) for line in ws.approvals.read_text(encoding="utf-8").splitlines()]
+
+
+# --- the ledger: written, read, validated ---------------------------------------------------------
+
+def test_an_approval_under_a_login_becomes_one_ledger_row_and_approves_in_an_empty_database(tmp_path):
+    ws = library(tmp_path / "lib")
+    assert api.approvals_to_send(ws) == [] and not ws.work.exists()         # no database: nothing waits, nothing is made
+    approve(ws, "Zoll90")
+    stored = results(ws, ws.database)["Zoll90"]
+    waiting = api.approvals_to_send(ws)
+    assert not ws.approvals.exists()                                         # asking writes nothing
+    assert waiting == [{"key": "Zoll90", "fingerprint": fingerprint(ws, "Zoll90"), "human_review": REVIEW,
+                        "approval_digest": v.approval_digest(REVIEW), "approved_at": stored["checked_at"],
+                        "policy": v.POLICY}]
+    assert share(ws) == waiting
+    line = ws.approvals.read_bytes()
+    assert line == (v.dumps(waiting[0]) + "\n").encode("utf-8")              # one line, sorted keys, no spaces
+    assert api.approvals_to_send(ws) == [] and share(ws) == [] and ws.approvals.read_bytes() == line   # never twice
+
+    # Someone else's database, which never saw the approval: the ledger alone approves the entry.
+    other = tmp_path / "other.sqlite3"
+    found = results(ws, other)
+    assert found["Zoll90"]["status"] == "human_verified" and found["Rame72"]["status"] == "pending"
+    assert found["Zoll90"]["human_review"] == REVIEW and found["Zoll90"]["checked_at"] == stored["checked_at"]
+    assert found["Zoll90"]["fingerprint"] == fingerprint(ws, "Zoll90")
+    assert api.approvals_to_send(ws, database=other) == []                   # a ledger row is not an approval to send
+    cache = v.Cache(str(other), ledger=ws.revocations)
+    try:                                                                     # and nothing was stored for it
+        assert cache.db.execute("SELECT count(*) FROM reviews").fetchone()[0] == 0
+    finally:
+        cache.close()
+    assert api.status(ws, database=str(other), report=str(tmp_path / "report.jsonl"), keys=None).counts == {
+        "human_verified": 1, "pending": 1}
+
+
+def test_rows_are_appended_and_earlier_lines_are_never_rewritten(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    share(ws)
+    first = ws.approvals.read_bytes()
+    approve(ws, "Rame72", source="https://doi.org/10.1016/S0146-664X(72)80017-0", note="Checked the volume in print.")
+    added = share(ws)
+    assert [row["key"] for row in added] == ["Rame72"]
+    now = ws.approvals.read_bytes()
+    assert now.startswith(first) and now[len(first):] == (v.dumps(added[0]) + "\n").encode("utf-8")
+    assert statuses(ws, tmp_path / "other.sqlite3") == {"Zoll90": "human_verified", "Rame72": "human_verified"}
+    # A ledger whose last line lost its newline (an editor) still gets whole lines.
+    ws.approvals.write_bytes(first.rstrip(b"\n"))
+    assert [row["key"] for row in share(ws)] == ["Rame72"]
+    assert ws.approvals.read_bytes() == now
+
+
+def test_an_approval_without_a_github_login_is_never_ledgered(tmp_path):
+    """The three approvals of the frozen 7f3eead baseline carry a reviewer's name and no login."""
+    ws = library(tmp_path / "lib", (FIX / "entries-7f3eead.bib").read_text(encoding="utf-8"))
+    cache = v.Cache(str(ws.database), ledger=ws.revocations)
+    try:
+        assert v.import_snapshot(str(ws.bib), cache, str(FIX / "baseline-7f3eead-3-approvals.jsonl.gz")) == 3
+    finally:
+        cache.close()
+    assert set(statuses(ws, ws.database).values()) == {"human_verified"}
+    assert api.approvals_to_send(ws) == []
+    approve(ws, "NastEtal20", note="Read again, under my own login.")       # a new approval of one of them, under a login
+    assert [row["key"] for row in api.approvals_to_send(ws)] == ["NastEtal20"]
+
+
+def test_a_row_approves_only_the_exact_text_it_was_made_for(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    share(ws)
+    other = tmp_path / "other.sqlite3"
+    assert statuses(ws, other)["Zoll90"] == "human_verified"
+    ws.bib.write_text(ws.bib.read_text(encoding="utf-8").replace("Volume = {27}", "Volume = {28}"), encoding="utf-8")
+    assert statuses(ws, other) == {"Zoll90": "pending", "Rame72": "pending"}
+    assert statuses(ws, ws.database)["Zoll90"] == "pending" and api.approvals_to_send(ws) == []   # the approver's too
+
+
+def test_a_row_under_another_policy_approves_nothing(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    row = share(ws)[0]
+    ws.approvals.write_text(v.dumps(dict(row, policy=v.POLICY + "-earlier")) + "\n", encoding="utf-8")
+    assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] == "pending"
+
+
+@pytest.mark.parametrize("change", [
+    lambda row: dict(row, human_review=dict(row["human_review"], note="  ")),                 # a blank note
+    lambda row: dict(row, human_review=dict(row["human_review"], source="")),
+    lambda row: dict(row, human_review=dict(row["human_review"], reviewer="")),
+    lambda row: dict(row, human_review={k: x for k, x in row["human_review"].items() if k != "github_login"}),
+    lambda row: dict(row, human_review=dict(row["human_review"], note="Another note.")),     # the digest is of another record
+    lambda row: {k: x for k, x in row.items() if k != "approved_at"},
+    lambda row: dict(row, fingerprint=""),
+    lambda row: "not a row",
+])
+def test_an_invalid_row_is_refused_whole(tmp_path, change):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    row = share(ws)[0]
+    changed = change(row)
+    if isinstance(changed, dict) and "human_review" in changed and changed["human_review"] != row["human_review"]:
+        # The digest is kept consistent where the test is about the record's fields, so that
+        # the field rule and not the digest rule is what refuses the row.
+        if changed["human_review"].get("note") != "Another note.":
+            changed = dict(changed, approval_digest=v.approval_digest(changed["human_review"]))
+    assert not v.valid_shared_approval(changed)
+    ws.approvals.write_text(v.dumps(changed) + "\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Invalid approval record"):
+        statuses(ws, tmp_path / "other.sqlite3")
+    with pytest.raises(ValueError, match="Invalid approval record"):
+        v.append_approvals(tmp_path / "elsewhere.jsonl", [changed])
+    assert not (tmp_path / "elsewhere.jsonl").exists()
+
+
+def test_a_line_that_is_not_json_is_refused_whole(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    share(ws)
+    with open(ws.approvals, "a", encoding="utf-8") as stream:
+        stream.write("<<<<<<< HEAD\n")                                       # what a merge conflict leaves
+    with pytest.raises(ValueError, match="Invalid approval record"):
+        statuses(ws, tmp_path / "other.sqlite3")
+
+
+def test_restore_still_stores_the_snapshots_result_beside_a_ledger_row(tmp_path):
+    """A ledger row is read, never stored: restoring the baseline into a database that sees
+    the row stores the baseline's result (its evidence) for the same text."""
+    ws = library(tmp_path / "lib", (FIX / "entries-7f3eead.bib").read_text(encoding="utf-8"))
+    approve(ws, "NastEtal20", database=tmp_path / "approver.sqlite3")
+    share(ws, database=tmp_path / "approver.sqlite3")
+    cache = v.Cache(str(tmp_path / "other.sqlite3"), ledger=ws.revocations)
+    try:
+        entry = v.load_entries(str(ws.bib))["NastEtal20"]
+        assert cache.stored(str(ws.bib), entry) is None and cache.get(str(ws.bib), entry)["status"] == "human_verified"
+        assert v.import_snapshot(str(ws.bib), cache, str(FIX / "baseline-7f3eead-3-approvals.jsonl.gz")) == 3
+        assert cache.stored(str(ws.bib), entry)["human_review"]["reviewer"] == "Jeremy Manning"
+    finally:
+        cache.close()
+
+
+def test_the_environment_can_name_the_ledger_that_is_read(tmp_path, monkeypatch):
+    """What verification/check_ci.py does with the base revision's copy."""
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    share(ws)
+    other = tmp_path / "other.sqlite3"
+    assert statuses(ws, other)["Zoll90"] == "human_verified"
+    base = tmp_path / "base-approvals.jsonl"
+    base.write_bytes(b"")
+    monkeypatch.setenv(v.APPROVAL_LEDGER_ENV, str(base))
+    assert statuses(ws, other)["Zoll90"] == "pending"                        # the library's own rows are not read
+    base.write_bytes(ws.approvals.read_bytes())
+    assert statuses(ws, other)["Zoll90"] == "human_verified"
+
+
+# --- revocation beats the approvals ledger --------------------------------------------------------
+
+def revoke(ws, key, database):
+    cache = v.Cache(str(database), ledger=ws.revocations)
+    try:
+        return v.record_revocation(cache, str(ws.bib), key, "Recorded in error.", "@hubot", ledger=ws.revocations)
+    finally:
+        cache.close()
+
+
+def test_a_revocation_by_the_approver_wins_over_the_ledger_row_everywhere(tmp_path):
+    ws = library(tmp_path / "lib")
+    approve(ws, "Zoll90")
+    approve(ws, "Rame72", note="Checked the volume in print.")               # the negative control: never revoked
+    share(ws)
+    ledger = ws.approvals.read_bytes()
+    records, status = revoke(ws, "Zoll90", ws.database)
+    assert len(records) == 1 and status == "needs_review"
+    assert ws.approvals.read_bytes() == ledger                               # the approvals ledger is not rewritten
+    for database in (ws.database, tmp_path / "other.sqlite3"):               # the approver's, and an empty one
+        found = results(ws, database)
+        assert found["Zoll90"]["status"] != "human_verified" and found["Rame72"]["status"] == "human_verified"
+    assert api.approvals_to_send(ws) == []                                   # a revoked approval is not sent again
+
+
+def test_someone_who_only_has_the_ledger_row_can_revoke_it(tmp_path):
+    ws = library(tmp_path / "lib")
+    approver, other = tmp_path / "approver.sqlite3", tmp_path / "other.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    row = share(ws, database=approver)[0]
+    assert statuses(ws, other)["Zoll90"] == "human_verified"
+    records, status = revoke(ws, "Zoll90", other)                            # this database never stored the approval
+    assert status == "needs_review" and len(records) == 1
+    assert (records[0]["fingerprint"], records[0]["approval_digest"], records[0]["approval"],
+            records[0]["approval_checked_at"]) == (row["fingerprint"], row["approval_digest"], REVIEW, row["approved_at"])
+    assert json.loads(ws.revocations.read_text(encoding="utf-8")) == records[0]
+    for database in (other, approver, tmp_path / "third.sqlite3"):           # the revocation ledger beats the approvals ledger
+        assert statuses(ws, database)["Zoll90"] != "human_verified", database
+    assert revoke(ws, "Zoll90", other) == ([], "needs_review")               # already revoked: nothing more is written
+
+    # A new approval with a new note, made after the revocation, is a new decision; its row counts.
+    with pytest.raises(ValueError, match="This exact approval was revoked"):
+        approve(ws, "Zoll90", database=approver)
+    approve(ws, "Zoll90", database=approver, note="Checked again against the publisher's page.")
+    assert [r["human_review"]["note"] for r in share(ws, database=approver)] == ["Checked again against the publisher's page."]
+    assert len(rows_of(ws)) == 2
+    found = results(ws, tmp_path / "third.sqlite3")["Zoll90"]
+    assert found["status"] == "human_verified" and found["human_review"]["note"].startswith("Checked again")
+
+
+def test_a_row_dated_before_a_revocation_of_its_text_is_revoked_whatever_its_note(tmp_path):
+    """The revocation rule that is not about the digest: an approval of the same text stored
+    no later than the revocation is revoked too."""
+    ws = library(tmp_path / "lib")
+    approver = tmp_path / "approver.sqlite3"
+    approve(ws, "Zoll90", database=approver)
+    row = share(ws, database=approver)[0]
+    revoke(ws, "Zoll90", approver)
+    earlier = dict(REVIEW, note="The same check, worded differently.")
+    forged = dict(row, human_review=earlier, approval_digest=v.approval_digest(earlier))
+    assert v.valid_shared_approval(forged)
+    with open(ws.approvals, "a", encoding="utf-8") as stream:
+        stream.write(v.dumps(forged) + "\n")
+    assert statuses(ws, tmp_path / "other.sqlite3")["Zoll90"] != "human_verified"
+
+
+# --- sending --------------------------------------------------------------------------------------
+
+@pytest.fixture
+def checkout(tmp_path, monkeypatch):
+    """A real clone of a real bare repository (the fork's stand-in) holding a two-entry library."""
+    for name, value in GIT_ENV.items():
+        monkeypatch.setenv(name, value)
+    remote = tmp_path / "fork.git"
+    git(tmp_path, "init", "-q", "--bare", "-b", "master", str(remote))
+    work = tmp_path / "library"
+    git(tmp_path, "clone", "-q", str(remote), str(work))
+    git(work, "checkout", "-q", "-B", "master")
+    (work / "verification").mkdir()
+    (work / "cdl.bib").write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
+    (work / "verification" / "key-renames.json").write_text("{}\n", encoding="utf-8")
+    (work / ".gitignore").write_text(".bibcheck/\n", encoding="utf-8")
+    git(work, "add", "-A"); git(work, "commit", "-q", "-m", "start"); git(work, "push", "-q", "origin", "HEAD:master")
+    return Workspace(work), remote
+
+
+def test_the_state_of_the_library_lists_the_approvals_a_send_would_add(checkout):
+    ws, _ = checkout
+    assert api.library_state(ws).approvals == [] and api.library_state(ws).pending == []
+    approve(ws, "Zoll90")
+    found = api.library_state(ws)
+    assert found.approvals == [{"key": "Zoll90", "login": "octocat"}] and found.pending == [] and found.notes == []
+    assert not ws.approvals.exists()                                         # looking adds nothing to the ledger
+    share(ws)
+    found = api.library_state(ws)
+    assert found.approvals == [] and found.pending == [LEDGER]
+    assert api.as_data(found)["approvals"] == []
+    plain = library(ws.root.parent / "no checkout")                          # not a git checkout: nothing can be sent
+    approve(plain, "Zoll90")
+    assert api.library_state(plain).approvals is None and api.library_state(plain).pending is None
+
+
+def test_a_send_of_approvals_alone_is_not_refused_as_nothing_to_send(checkout, monkeypatch, tmp_path):
+    """Nothing in cdl.bib or verification/ has changed; one approval waits. The send goes past
+    "nothing to send" and past the gate, and stops where it asks who is logged in (nobody is,
+    here): the row it had added is taken out again and the checkout is as it was."""
+    ws, _ = checkout
+    with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE)
+    approve(ws, "Zoll90")
+    assert publish.pending(ws) == []
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
+    for name in ("GH_TOKEN", "GITHUB_TOKEN"):
+        monkeypatch.delenv(name, raising=False)
+    before, lines = state(ws.root), []
+    with pytest.raises(IdentityUnavailable):
+        api.send(ws, reference=str(ws.bib), citations=False, upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert f"approval of Zoll90 by @octocat: added to {LEDGER}" in lines
+    assert "checks passed; generating commit message..." in lines           # the gate ran with the row in place
+    assert lines[-1] == f"not sent: {LEDGER} is as it was before (the approvals stay in the local database)"
+    assert state(ws.root) == before and not ws.approvals.exists()
+    assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90"]   # it still waits
+
+
+def test_a_send_the_gate_refuses_leaves_the_ledger_byte_for_byte(checkout):
+    """An earlier row is committed; a second approval waits; the edit to cdl.bib fails the
+    format check. After the refusal the ledger holds the committed row and nothing else."""
+    ws, _ = checkout
+    approve(ws, "Rame72", note="Checked the volume in print.")
+    share(ws)
+    git(ws.root, "add", LEDGER); git(ws.root, "commit", "-q", "-m", "an approval")
+    committed = ws.approvals.read_bytes()
+    approve(ws, "Zoll90")
+    ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + "\n" + BAD, encoding="utf-8")
+    assert [row["key"] for row in api.approvals_to_send(ws)] == ["Zoll90"]   # the edit is to another entry
+    before, lines = state(ws.root), []
+    with pytest.raises(GateFailed) as refused:
+        api.send(ws, summary="bad", reference=str(ws.bib), upstream=NOWHERE, base=TEST_BASE, progress=lines.append)
+    assert refused.value.check is not None and not refused.value.check.ok
+    assert lines[0] == f"approval of Zoll90 by @octocat: added to {LEDGER}"
+    assert lines[-1].startswith(f"not sent: {LEDGER} is as it was before")
+    assert state(ws.root) == before and ws.approvals.read_bytes() == committed
+    assert git(ws.root, "status", "--porcelain", "--", "verification") == ""
+
+
+def test_rows_stay_when_something_else_changed_the_ledger_or_a_commit_holds_them(checkout, tmp_path):
+    ws, remote = checkout
+    approve(ws, "Zoll90")
+    rows = api.approvals_to_send(ws)
+    take_out = api._ledger_approvals(ws, rows)
+    written = ws.approvals.read_bytes()
+    with open(ws.approvals, "ab") as stream:                                 # another writer, meanwhile
+        stream.write(b"\n")
+    take_out()
+    assert ws.approvals.read_bytes() == written + b"\n"                      # not ours alone any more: left as it is
+    ws.approvals.unlink()
+
+    take_out = api._ledger_approvals(ws, rows)
+    branch = "cdlbib/test/2026-10-05-approvals"
+    with pytest.raises(PublishRefused, match=f"committed on branch {branch}"):
+        publish.deliver(ws, branch, "approvals", str(tmp_path / "no-such-remote.git"))
+    take_out()                                                               # committed: the rows are the branch's now
+    assert ws.approvals.read_bytes() == written and git(ws.root, "status", "--porcelain") == ""
+    assert git(ws.root, "show", "--name-only", "--format=", "HEAD").split() == [LEDGER]
+    assert publish.deliver(ws, branch, "approvals", str(remote)) == []       # the resumed send: the push alone
+    assert git(remote, "rev-parse", branch) == git(ws.root, "rev-parse", "HEAD")
+
+
+def test_after_the_merge_another_clone_sees_the_entry_approved_with_no_command(checkout, tmp_path):
+    """The approvals-only branch is merged in the shared repository; a second clone, with no
+    verification database at all, reads the entry as human_verified."""
+    ws, remote = checkout
+    approve(ws, "Zoll90")
+    share(ws)
+    assert publish.pending(ws) == [LEDGER]
+    branch = "cdlbib/test/2026-10-05-approvals"
+    assert publish.deliver(ws, branch, "approvals", str(remote)) == [LEDGER]
+    git(remote, "update-ref", "refs/heads/master", f"refs/heads/{branch}")   # the pull request is merged
+    theirs = tmp_path / "their clone"
+    git(tmp_path, "clone", "-q", str(remote), str(theirs))
+    other = Workspace(theirs)
+    assert not other.work.exists()
+    found = {entry.key: entry.status for entry in api.entries(other)}
+    assert found == {"Zoll90": "human_verified", "Rame72": "pending"}
+    assert api.entry(other, "Zoll90").status == "human_verified"
+    assert [entry.key for entry in api.review_queue(other, reference=str(other.bib), all_entries=True)] == ["Rame72"]
+    assert not other.work.exists()                                           # reading created no database
+    assert api.status(other).counts == {"human_verified": 1, "pending": 1}
+    assert api.library_state(other).approvals == []
+
+
+def test_the_pull_request_text_names_an_approval_of_an_unchanged_entry(checkout):
+    ws, _ = checkout
+    approve(ws, "Zoll90")
+    start = git(ws.root, "rev-parse", "HEAD")
+    assert api.approvals_note(ws, reference=str(ws.bib)) == ""               # no entry differs from the reference
+    assert api._ledger_rows_since(ws, start) == []
+    rows = share(ws)
+    assert api._ledger_rows_since(ws, start) == rows
+    assert api.approvals_note(ws, reference=str(ws.bib), ledgered=rows) == "\n\nApproved by @octocat: Zoll90"
+    # Read from the ledger alone (no database), as on a branch that is sent again from another computer.
+    assert api.approvals_note(ws, reference=str(ws.bib), database=str(ws.root / "none.sqlite3"),
+                              ledgered=rows) == "\n\nApproved by @octocat: Zoll90"
+    # Once the base holds the row, it is no longer something this pull request adds.
+    git(ws.root, "add", LEDGER); git(ws.root, "commit", "-q", "-m", "an approval")
+    assert api._ledger_rows_since(ws, git(ws.root, "rev-parse", "HEAD")) == []
+    # A revoked approval is not named, whatever the ledger holds.
+    revoke(ws, "Zoll90", ws.database)
+    assert api.approvals_note(ws, reference=str(ws.bib), ledgered=rows) == ""
+
+
+# --- the whole send, inside the tester's own fork only --------------------------------------------
+
+def test_send_of_an_approval_alone_end_to_end_inside_my_own_fork(tmp_path, monkeypatch):
+    """`api.approve` under the real login, then `api.send` with nothing else changed: the
+    ledger row is the commit, the pull request names the approval, and a fresh clone of the
+    branch reads the entry as human_verified. The pull request is opened inside the tester's
+    own fork against the test base branch, and closed."""
+    login, fork = my_fork()
+    if login is None:
+        pytest.skip(fork)
+    publish.assert_safe_test_target(fork, TEST_BASE)                         # never ContextLab, never master
+    work = tmp_path / "clone"
+    subprocess.run(["gh", "repo", "clone", fork, str(work), "--", "--depth", "1", "-q"], check=True)
+    for name, value in GIT_ENV.items():
+        monkeypatch.setenv(name, value)
+    ws = Workspace(work)
+    # The test base inside the fork: a two-entry library with no approvals ledger.
+    ws.bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n", encoding="utf-8")
+    if ws.approvals.exists():
+        ws.approvals.unlink()
+    git(work, "add", "-A", "--", "cdl.bib", "verification")
+    git(work, "commit", "-q", "-m", "cdlbib test base: please ignore")
+    git(work, "push", "-q", "origin", f"HEAD:refs/heads/{TEST_BASE}", "--force")
+    start = git(work, "rev-parse", "HEAD")
+    database = tmp_path / "db.sqlite3"
+    summary = f"cdlbib test {os.getpid()} approval: please ignore"
+    branch = publish.branch_name(login, summary, datetime.date.today())
+    options = dict(reference=str(ws.bib), citations=False, database=str(database), upstream=fork, base=TEST_BASE,
+                   fork=fork, _test_inside_own_fork=True)
+    url = None
+    try:
+        with pytest.raises(PublishRefused, match="no changes to cdl.bib or verification/"):
+            api.send(ws, summary=summary, **options)
+        api.approve(ws, "Zoll90", fingerprint(ws, "Zoll90"), REVIEW["source"], REVIEW["note"], database=str(database))
+        assert api.library_state(ws).pending == [] and publish.pending(ws) == []
+        waiting = api.approvals_to_send(ws, database=str(database))
+        assert [(row["key"], row["human_review"]["github_login"]) for row in waiting] == [("Zoll90", login)]
+        lines = []
+        sent = api.send(ws, summary=summary, progress=lines.append, **options)
+        url = sent.url
+        assert f"approval of Zoll90 by @{login}: added to {LEDGER}" in lines
+        assert sent.files == [LEDGER] and sent.approvals == ["Zoll90"] and sent.branch == branch
+        assert git(work, "show", "--name-only", "--format=", "HEAD").split() == [LEDGER]
+        assert git(work, "rev-list", "--count", f"{start}..HEAD") == "1" and git(work, "status", "--porcelain") == ""
+        assert rows_of(ws) == waiting
+        found = open_prs(fork, branch)
+        assert [p["url"] for p in found] == [url] and found[0]["baseRefName"] == TEST_BASE
+        assert found[0]["body"].endswith(f"\n\nApproved by @{login}: Zoll90")
+
+        again = api.send(ws, **options)                                      # nothing new: the same pull request,
+        assert again.url == url and again.files == [] and again.approvals == []
+        assert open_prs(fork, branch)[0]["body"].endswith(f"\n\nApproved by @{login}: Zoll90")   # which still names it
+        assert rows_of(ws) == waiting
+
+        # Someone else: a fresh clone of the pushed branch, no database.
+        theirs = tmp_path / "theirs"
+        subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", branch, f"https://github.com/{fork}.git",
+                        str(theirs)], check=True)
+        assert {e.key: e.status for e in api.entries(Workspace(theirs))} == {"Zoll90": "human_verified", "Rame72": "pending"}
+    finally:
+        clean_up(work, url, branch)

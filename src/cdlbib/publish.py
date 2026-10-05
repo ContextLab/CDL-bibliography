@@ -236,6 +236,12 @@ def require_history(ws, base_commit, tip="HEAD"):
             raise PublishRefused(f"Outgoing commit {commit[:12]} includes unrelated paths: {', '.join(sorted(set(unrelated)))}. Nothing was pushed. Preserve this branch and prepare a bibliography-only branch from the upstream PR base before sending.")
 
 
+def file_at(ws, commit, path):
+    """The text of ``path`` in ``commit``; None when the commit has no such file."""
+    run = _run(["git", "show", f"{commit}:{path}"], cwd=ws.root, check=False)
+    return run.stdout if run.returncode == 0 else None
+
+
 def upstream_base(ws, url, base):
     _run(["git", "fetch", "--no-tags", url, f"refs/heads/{base}"], cwd=ws.root)
     return _head(ws, "FETCH_HEAD^{commit}")

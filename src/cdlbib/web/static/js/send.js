@@ -18,9 +18,12 @@ export async function show(main) {
 
   async function state() {
     const found = await get("/api/state");
+    const approvals = found.approvals || [];
     clear(what, h("h2", { text: "What will be sent" }),
       kv([["Library", found.root], ["Branch", found.branch || "(none)"],
-        ["Files to send", found.pending === null ? null : found.pending.length ? list(found.pending) : "nothing has changed"],
+        ["Files to send", found.pending === null ? null : found.pending.length ? list(found.pending)
+          : approvals.length ? "verification/approvals.jsonl (the send adds the approvals below to it)" : "nothing has changed"],
+        ["Approvals to send", approvals.length ? list(approvals.map((item) => `${item.key}, approved by @${item.login}`)) : null],
         ["Left as they are", found.unrelated && found.unrelated.length ? list(found.unrelated) : null]]),
       found.notes.length ? note("warn", list(found.notes)) : null);
   }
@@ -34,6 +37,7 @@ export async function show(main) {
       const done = await post("/api/send", { summary: summary.value.trim() || null }, log.add);
       clear(out, note("good", kv([["Pull request", link(done.url)], ["Branch", done.branch], ["Fork", done.fork + (done.created_fork ? " (created now)" : "")],
         ["Committed", done.files.length ? list(done.files) : "nothing new (the pull request was resumed)"],
+        ["Approvals sent", done.approvals && done.approvals.length ? list(done.approvals) : null],
         ["Left uncommitted", done.left.length ? list(done.left) : null]])));
       announce("Sent. Pull request: " + done.url);
     } catch (error) {

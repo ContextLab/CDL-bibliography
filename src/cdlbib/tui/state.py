@@ -100,8 +100,11 @@ class StateView(View):
             out.line(f"pull request: {state.pull_request.url} ({state.pull_request.state})")
         if state.pending:
             out.line("unsent changes: " + ", ".join(state.pending), "accent")
-        elif state.pending is not None:
+        elif state.pending is not None and not state.approvals:
             out.line("unsent changes: none")
+        if state.approvals:
+            out.line("unsent approvals: " + ", ".join(f"{item['key']} (@{item['login']})" for item in state.approvals),
+                     "accent")
         if state.unrelated:
             out.line("other changed files (a send leaves them): " + ", ".join(state.unrelated), "muted")
         if state.interrupted:

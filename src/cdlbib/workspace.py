@@ -36,6 +36,10 @@ class Workspace:
         return self.root / "verification" / "revocations.jsonl"
 
     @property
+    def approvals(self):
+        return self.root / "verification" / "approvals.jsonl"
+
+    @property
     def key_renames(self):
         return self.root / "verification" / "key-renames.json"
 

@@ -345,13 +345,137 @@ def revoked_view(result, revocation):
     return view
 
 
+# Shared human approvals (2026-10-05). verification/approvals.jsonl is the counterpart of the
+# revocation ledger: one row per human approval that was sent with `cdlbib send`, appended and
+# never rewritten. A row makes its entry human_verified for whoever reads the ledger, when the
+# row's fingerprint is the entry's, its policy is the current one, it is complete (see
+# valid_shared_approval) and no revocation matches it. The row carries the time the approval
+# was stored (``approved_at``, the stored result's checked_at) beside the human_review record,
+# not inside it: approval_digest is a hash of human_review and must stay what it was.
+# The ledger read is the file beside the revocation ledger in use, unless the environment
+# names another (verification/check_ci.py names the base revision's copy, so that a pull
+# request's own rows are not read).
+APPROVAL_LEDGER_ENV = "CDLBIB_APPROVAL_LEDGER"
+APPROVAL_LEDGER_NAME = "approvals.jsonl"
+APPROVAL_FIELDS = {"key", "fingerprint", "human_review", "approval_digest", "approved_at", "policy"}
+
+
+def valid_shared_approval(record):
+    """A ledger row that can stand for an approval: every field present, the reviewer, source
+    and note record_approval requires, a GitHub login, and a digest that is the digest of the
+    human_review record the row carries."""
+    if not (isinstance(record, dict) and APPROVAL_FIELDS <= record.keys()
+            and isinstance(record["human_review"], dict)
+            and all(isinstance(record[k], str) and record[k].strip() for k in APPROVAL_FIELDS - {"human_review"})):
+        return False
+    review = record["human_review"]
+    return (all(isinstance(review.get(k), str) and review[k].strip()
+                for k in ("reviewer", "source", "note", "github_login"))
+            and record["approval_digest"] == approval_digest(review))
+
+
+def approval_ledger(revocations=None):
+    """The approvals ledger read with the revocation ledger ``revocations`` (None: the patched
+    REVOCATION_LEDGER, else the workspace of the current folder): the file the environment
+    names, else approvals.jsonl in the same folder."""
+    override = os.environ.get(APPROVAL_LEDGER_ENV)
+    if override:
+        return Path(override)
+    revocations = revocations if revocations is not None else (REVOCATION_LEDGER or workspace.default().revocations)
+    return Path(revocations).with_name(APPROVAL_LEDGER_NAME)
+
+
+def read_approval_ledger(path):
+    """The rows of the approvals ledger at ``path`` ([] when there is none). ValueError when a
+    line is not a valid row: a ledger that cannot be read whole approves nothing."""
+    path = Path(path)
+    if not path.exists():
+        return []
+    try:
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    except ValueError as exc:
+        raise ValueError(f"Invalid approval record in {path}: {exc}") from exc
+    if not all(valid_shared_approval(r) for r in records):
+        raise ValueError(f"Invalid approval record in {path}")
+    return records
+
+
+def approval_row(result):
+    """The ledger row for the stored human approval ``result``."""
+    review = result.get("human_review") or {}
+    return {
+        "key": result["key"],
+        "fingerprint": result["fingerprint"],
+        "human_review": review,
+        "approval_digest": approval_digest(review),
+        "approved_at": result.get("checked_at") or "",
+        "policy": result.get("policy") or "",
+    }
+
+
+def shared_view(entry, result, row):
+    """The human_verified result the ledger ``row`` gives ``entry``, on top of the stored
+    result ``result`` (None when there is none): the stored evidence is kept, a revocation
+    notice of an earlier approval is dropped (as record_approval drops it)."""
+    base = dict(result) if result else outcome("pending", [])
+    if base.get("revoked_approval"):
+        base["issues"] = [i for i in base.get("issues", [])
+                          if not (isinstance(i, str) and i.startswith("Human approval revoked "))]
+    base.pop("revoked_approval", None)
+    base.update(status="human_verified", human_review=row["human_review"], checked_at=row["approved_at"],
+                key=entry["key"], fingerprint=entry["fingerprint"], policy=POLICY)
+    return base
+
+
+def unshared_approvals(filename, cache, ledger, entries=None):
+    """The ledger rows a send adds to ``ledger``: one for each entry whose stored result in
+    this database is a current human approval recorded under a GitHub login (not revoked,
+    for exactly the entry's text, complete) that ``ledger`` does not hold yet, in the
+    file's order. Reads only."""
+    entries = entries if entries is not None else load_entries(filename)
+    held = {(r["fingerprint"], r["approval_digest"]) for r in read_approval_ledger(ledger)}
+    bibliography = str(Path(filename).resolve())
+    rows = []
+    for key, entry in entries.items():
+        newest = cache.db.execute(
+            """SELECT instr(result, '"status":"human_verified"') FROM reviews WHERE bibliography=?
+            AND fingerprint=? AND policy=? ORDER BY id DESC LIMIT 1""",
+            (bibliography, entry["fingerprint"], POLICY)).fetchone()
+        if not newest or not newest[0]:
+            continue                     # the newest stored result for this text is no human approval
+        result = cache.stored(filename, entry)
+        if not result or result.get("status") != "human_verified" or result.get("fingerprint") != entry["fingerprint"]:
+            continue
+        row = approval_row(result)
+        if valid_shared_approval(row) and (row["fingerprint"], row["approval_digest"]) not in held:
+            rows.append(row)
+    return rows
+
+
+def append_approvals(ledger, rows):
+    """Append ``rows`` to the approvals ledger, one line each; the lines already there are
+    not touched. Returns the bytes written."""
+    if not all(valid_shared_approval(row) for row in rows):
+        raise ValueError("Invalid approval record")
+    ledger = Path(ledger)
+    ledger.parent.mkdir(parents=True, exist_ok=True)
+    before = ledger.read_bytes() if ledger.exists() else b""
+    text = ((b"\n" if before and not before.endswith(b"\n") else b"")
+            + "".join(dumps(row) + "\n" for row in rows).encode("utf-8"))
+    with open(ledger, "ab") as stream:
+        stream.write(text)
+    return text
+
+
 class Cache:
     """Indexed SQLite with atomic per-entry checkpoints and immutable history."""
 
     def __init__(self, filename, ledger=None):
         # ledger: the revocation ledger this cache reads; None resolves REVOCATION_LEDGER or
-        # the cwd workspace on use.
+        # the cwd workspace on use. The approvals ledger read is the one that goes with it
+        # (approval_ledger).
         self.ledger = ledger
+        self._approvals = (None, {})     # (path and stat of the approvals ledger as read, its rows by fingerprint)
         self.path = Path(filename)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(self.path, timeout=30)
@@ -424,7 +548,46 @@ class Cache:
                 return revocation
         return None
 
+    def shared_approvals(self):
+        """The rows of the approvals ledger, by fingerprint, in the ledger's order; read again
+        only when the file changed."""
+        path = approval_ledger(self.ledger)
+        try:
+            stat = path.stat()
+            state = (str(path), stat.st_mtime_ns, stat.st_size)
+        except OSError:
+            state = (str(path), None, None)
+        if self._approvals[0] != state:
+            rows = {}
+            for record in read_approval_ledger(path):
+                rows.setdefault(record["fingerprint"], []).append(record)
+            self._approvals = (state, rows)
+        return self._approvals[1]
+
+    def shared_approval(self, entry, result):
+        """``result`` (the stored result of ``entry``, or None), or the human_verified view a
+        ledger row gives the entry: the newest row for exactly this text, under the current
+        policy, that no revocation matches. A stored human approval stands as it is."""
+        if result and result.get("status") == "human_verified":
+            return result
+        rows = self.shared_approvals().get(entry["fingerprint"])
+        if not rows:
+            return result
+        revocations = self.revocations()
+        for row in reversed(rows):
+            if row["policy"] != POLICY:
+                continue
+            view = shared_view(entry, result, row)
+            if not any(revocation_matches(r, entry["fingerprint"], view) for r in revocations):
+                return view
+        return result
+
     def get(self, bibliography, entry, any_policy=False):
+        """The current result of ``entry``: what this database stores for exactly its text
+        (``stored``), or the human approval the approvals ledger holds for it."""
+        return self.shared_approval(entry, self.stored(bibliography, entry, any_policy=any_policy))
+
+    def stored(self, bibliography, entry, any_policy=False):
         # Separate indexed lookups: an OR across the two fingerprint formats
         # makes SQLite scan a bibliography's entire audit history per entry.
         content_row = self.db.execute(
@@ -466,7 +629,7 @@ class Cache:
             if not self.store(
                 bibliography, entry, result, after_id=row[0], any_policy=any_policy
             ):
-                return self.get(bibliography, entry, any_policy=any_policy)
+                return self.stored(bibliography, entry, any_policy=any_policy)
         result = dict(result, key=entry["key"])
         revocation = self.revocation_for(entry["fingerprint"], result)
         if revocation:
@@ -2576,7 +2739,9 @@ def import_snapshot(filename, cache, snapshot):
             else:
                 matches = by_fingerprint.get(result["fingerprint"], [])
             for entry in matches:
-                if result["status"] == "pending" or cache.get(filename, entry):
+                # ``stored``: an approval in the approvals ledger does not keep the snapshot's
+                # result (the evidence) for the same text out of the database.
+                if result["status"] == "pending" or cache.stored(filename, entry):
                     continue
                 restored = dict(
                     result, key=entry["key"], fingerprint=entry["fingerprint"]
@@ -2773,6 +2938,16 @@ def record_revocation(cache, fname, key, reason, by, fingerprints=None, ledger=N
             if fingerprints and row_fingerprint not in fingerprints:
                 continue
             approvals[(row_fingerprint, approval_digest(result.get("human_review")))] = result
+        # An approval this database never stored, read from the approvals ledger: of this key,
+        # or of the entry's current text.
+        for row_fingerprint, shared in cache.shared_approvals().items():
+            for row in shared:
+                if row["key"] != key and row_fingerprint != entry["fingerprint"]:
+                    continue
+                if fingerprints and row_fingerprint not in fingerprints:
+                    continue
+                approvals.setdefault((row_fingerprint, row["approval_digest"]),
+                                     {"human_review": row["human_review"], "checked_at": row["approved_at"]})
         if not approvals:
             raise ValueError(f"No human approval recorded for {key}"
                              + (" with that fingerprint" if fingerprints else ""))

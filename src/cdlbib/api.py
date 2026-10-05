@@ -75,6 +75,7 @@ class SendResult:
     created_fork: bool = False
     files: list = field(default_factory=list)   # the paths committed by this send ([] when only resuming)
     left: list = field(default_factory=list)    # other changed files, left exactly as they were
+    approvals: list = field(default_factory=list)   # keys of the human approvals this send added to the approvals ledger
 
 
 @dataclass
@@ -449,31 +450,120 @@ def revoke(ws, key, reason, fingerprints=None, ledger=None, database=None, expec
     return RevokeResult(records=records, status=state)
 
 
-def approvals_note(ws, reference=None, database=None):
+def approvals_note(ws, reference=None, database=None, ledgered=()):
     """The pull request's record of human approvals: '\n\nApproved by @login: KEY, KEY' per
-    reviewer, for entries whose stored status is human_verified under a GitHub login (only
-    the entries that differ from ``reference``, when one is given); '' when there are none."""
-    from .verification import Cache, ProviderError, current_results, revocation_ledger
+    reviewer, for entries whose current status is human_verified under a GitHub login: the
+    entries that differ from ``reference`` (every entry, when none is given), and the entries
+    whose current approval is one of the approvals-ledger rows ``ledgered`` (the rows a pull
+    request adds), changed or not; '' when there are none."""
+    from .verification import Cache, ProviderError, approval_digest, current_results, revocation_ledger
     from .verification_cli import reference_bib, select_keys
     database = Path(database or ws.database)
-    if not database.is_file():
+    if not database.is_file() and not ledgered:
         return ""
     try:
-        cache = Cache(str(database), ledger=revocation_ledger(str(ws.bib), None))
+        cache = Cache(str(database) if database.is_file() else ":memory:",
+                      ledger=revocation_ledger(str(ws.bib), None))
         try:
             results = current_results(str(ws.bib), cache)
         finally:
             cache.close()
         against = reference_bib(reference, database.parent) if reference else None
-        selected = select_keys(str(ws.bib), None, against, entries=results)
+        selected = set(select_keys(str(ws.bib), None, against, entries=results))
     except (ValueError, OSError, ProviderError) as exc:
         raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+    added = {(row["fingerprint"], row["approval_digest"]) for row in ledgered}
+    selected |= {key for key, result in results.items()
+                 if (result["fingerprint"], approval_digest(result.get("human_review"))) in added}
     by_login = {}
     for key in sorted(selected):
         review = results[key].get("human_review") or {}
         if results[key]["status"] == "human_verified" and review.get("github_login"):
             by_login.setdefault(str(review["github_login"]), []).append(key)
     return "".join(f"\n\nApproved by @{login}: {', '.join(keys)}" for login, keys in sorted(by_login.items()))
+
+
+APPROVALS_PATH = "verification/approvals.jsonl"
+
+
+def approvals_to_send(ws, database=None, entries=None):
+    """The human approvals a send adds to verification/approvals.jsonl: the ledger row (key,
+    fingerprint, human_review, approval_digest, approved_at, policy) of each entry whose
+    stored result is a current human approval recorded under a GitHub login and is not in
+    that ledger yet. [] when there is no verification database. Reads only. ``entries``: the
+    parsed library, when the caller holds it."""
+    from .verification import Cache, unshared_approvals
+    database = Path(database or ws.database)
+    if not database.is_file():
+        return []
+    try:
+        cache = Cache(str(database), ledger=ws.revocations)
+        try:
+            return unshared_approvals(str(ws.bib), cache, ws.approvals, entries=entries)
+        finally:
+            cache.close()
+    except (ValueError, KeyError, TypeError, OSError, sqlite3.Error) as exc:
+        raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+
+
+def _approval_login(row):
+    return "@" + str(row["human_review"]["github_login"])
+
+
+def _ledger_approvals(ws, rows, progress=None):
+    """Append ``rows`` to the library's approvals ledger and say so, a line each. Returns the
+    function that takes them out again when they were not committed: the ledger is put back
+    byte for byte as it was (removed when it was not there), unless something else changed
+    it meanwhile or a commit holds the rows."""
+    from . import publish
+    from .verification import append_approvals
+    if not rows:
+        return lambda: None
+    path = ws.approvals
+    existed = path.exists()
+    before = path.read_bytes() if existed else b""
+    try:
+        written = append_approvals(path, rows)
+    except (OSError, ValueError) as exc:
+        raise CdlbibError(f"The approvals could not be added to {APPROVALS_PATH}: {exc}") from exc
+    if progress:
+        for row in rows:
+            progress(f"approval of {row['key']} by {_approval_login(row)}: added to {APPROVALS_PATH}")
+
+    def take_out():
+        try:
+            if not path.exists() or path.read_bytes() != before + written or APPROVALS_PATH not in publish.pending(ws):
+                return
+            if existed:
+                path.write_bytes(before)
+            else:
+                path.unlink()
+        except (OSError, CdlbibError):
+            return                       # the reason for the refusal is what is reported; the rows stay, to be sent next time
+        if progress:
+            progress(f"not sent: {APPROVALS_PATH} is as it was before (the approvals stay in the local database)")
+    return take_out
+
+
+def _ledger_rows_since(ws, commit):
+    """The rows of the library's approvals ledger that the copy in ``commit`` does not hold."""
+    import json
+    from . import publish
+    from .verification import read_approval_ledger
+    try:
+        rows = read_approval_ledger(ws.approvals)
+    except (OSError, ValueError) as exc:
+        raise CdlbibError(f"could not read the approvals: {type(exc).__name__}: {exc}") from exc
+    if not rows:
+        return []
+    held = set()
+    for line in (publish.file_at(ws, commit, APPROVALS_PATH) or "").splitlines():
+        try:
+            row = json.loads(line)
+            held.add((row["fingerprint"], row["approval_digest"]))
+        except (ValueError, KeyError, TypeError):
+            continue                     # not a row: it holds no approval
+    return [row for row in rows if (row["fingerprint"], row["approval_digest"]) not in held]
 
 
 def _send_evidence(ws, *, reference, database=None):
@@ -525,6 +615,15 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     modified, staged or untracked file is left exactly as it was (``SendResult.left``), and
     .bibcheck/ is never sent.
 
+    Human approvals are sent too. Each current human approval in the verification database
+    that was recorded under a GitHub login and is not yet in verification/approvals.jsonl
+    (``approvals_to_send``) is appended to that file before the gate, and ``progress``
+    receives a line for each; they alone are a change to send. When the send stops before a
+    commit holds them, the file is put back as it was (``progress`` receives a line), so a
+    refused send leaves the checkout as it was; the approvals stay in the database and the
+    next send adds them again. ``SendResult.approvals`` names the entries whose approvals were
+    committed, and the pull request's text names them with their reviewers.
+
     Order: a checkout on no branch refuses; nothing to send refuses; no git author refuses; the
     gate (check_library) refuses; no GitHub login refuses; a branch whose pull request is
     already merged or closed refuses; no fork refuses (PublishRefused.needs_fork) unless
@@ -554,8 +653,7 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     that repository is a fork owned by the logged-in user, or the send is refused before
     git is written to. No front end passes it.
     """
-    import datetime
-    from . import identity, library, publish
+    from . import library, publish
     from .errors import PublishRefused
 
     # Taking the lock settled any write to this library that was killed part-way (or refused):
@@ -573,9 +671,30 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     validate_summary_path(outfile, ws=ws, inputs=(reference,), database=database)
     not_upstream(fork, upstream)
     here = publish.require_branch(ws, base)
-    if not publish.pending(ws) and not here.startswith("cdlbib/"):
+    waiting = approvals_to_send(ws, database=database)
+    if not publish.pending(ws) and not waiting and not here.startswith("cdlbib/"):
         raise PublishRefused(publish.NO_CHANGES)       # before anything outward: no login, no fork, for nothing
     publish.require_identity(ws)
+    # The approvals go into the ledger before the gate, which checks the files as they will
+    # be committed. A send that stops before they are committed takes them out again.
+    take_out = _ledger_approvals(ws, waiting, progress)
+    try:
+        return _send(ws, here, not_upstream, [row["key"] for row in waiting],
+                     summary=summary, reference=reference, citations=citations, mailto=mailto, database=database,
+                     progress=progress, bars=bars, report=report, upstream=upstream, base=base, fork=fork,
+                     allow_fork_creation=allow_fork_creation, outfile=outfile, verbose=verbose,
+                     _test_inside_own_fork=_test_inside_own_fork)
+    except BaseException:
+        take_out()
+        raise
+
+
+def _send(ws, here, not_upstream, approvals, *, summary, reference, citations, mailto, database, progress, bars,
+          report, upstream, base, fork, allow_fork_creation, outfile, verbose, _test_inside_own_fork):
+    """``send`` from the gate on: the changes are in the working tree (see send)."""
+    import datetime
+    from . import identity, publish
+    from .errors import PublishRefused
 
     def evidence():
         return _send_evidence(ws, reference=reference, database=database)
@@ -673,6 +792,13 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         if not allow_fork_creation:
             raise PublishRefused(f"{me.handle} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
         fork, created = publish.create_fork(upstream), True
+    if ws.approvals.is_file():
+        # Approvals the pull request adds for entries it does not change are named in its
+        # text too: the ledger's rows that the upstream's copy does not hold.
+        added = _ledger_rows_since(ws, publish.upstream_base(ws, f"https://github.com/{upstream}.git", base))
+        if added:
+            body = changes + approvals_note(ws, reference=reference, database=database, ledgered=added)
+            revalidate()
     files = publish.deliver(ws, branch, changes, f"https://github.com/{fork}.git", target=fork,
                             upstream_url=f"https://github.com/{upstream}.git", base=base, expected=checked, revalidate=revalidate)
     try:
@@ -683,7 +809,8 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
             f"The change is committed on branch {branch} and pushed to {fork}, but the pull request could not be "
             f"opened or updated. Run `cdlbib send` again to resume from there.{publish.go_back(here, branch)}\n{exc}") from exc
     return SendResult(url=url, branch=branch, fork=fork, created_fork=created, files=files,
-                      left=publish.unrelated_changes(ws))
+                      left=publish.unrelated_changes(ws),
+                      approvals=approvals if APPROVALS_PATH in files else [])
 
 
 def _back_to_main(ws, merged, progress=None):

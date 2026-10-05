@@ -134,15 +134,19 @@ def revision(ws, database=None):
     """A value that changes when what a front end shows may have changed, and only then: the
     (mtime_ns, size) of the bibliography, of the key-rename ledger and of the revocation
     ledger (None for one that is not there), and for the verification database what it holds
-    (``_stored``), in the order (bibliography, database, key renames, revocations). Looking
+    (``_stored``), in the order (bibliography, database, key renames, revocations). Once
+    there is an approvals ledger, the last item is the pair (revocations, approvals ledger),
+    so that a change to either moves it. Looking
     at the library (entries, entry, search, preview_edit, review_queue, library_state) does
     not move it once the verifier's own bookkeeping for this state has been done, which
     ``prepare`` does (reading a result can store it again in its current form, once: an old
     fingerprint brought up to date, a retained notice); a save, an approval, a revocation or
     a check that stores a result does, from this process or another."""
-    from .verification import revocation_ledger
+    from .verification import approval_ledger, revocation_ledger
+    revocations = revocation_ledger(str(ws.bib), None)
+    ledgers, approvals = _stat(revocations), _stat(approval_ledger(revocations))
     return (_stat(ws.bib), _stored(database or ws.database), _stat(ws.key_renames),
-            _stat(revocation_ledger(str(ws.bib), None)))
+            ledgers if approvals is None else (ledgers, approvals))
 
 
 # --- browse and search -------------------------------------------------------------------------
@@ -796,6 +800,8 @@ class LibraryState:
     branch: str | None = None        # None: not a git checkout, or on no branch
     pending: list | None = None      # changed paths a send would commit (None: not a git checkout)
     unrelated: list | None = None    # other changed paths, which a send leaves alone
+    approvals: list | None = None    # human approvals a send would add to verification/approvals.jsonl:
+                                     # [{"key", "login"}] (None: not a git checkout, or they could not be read)
     new_commits: int | None = None   # managed: commits the upstream has that the library does not (as last fetched)
     new_entries: int | None = None   # managed: entries of the upstream's cdl.bib the library's commit lacks
     local_commits: int | None = None # managed: commits the library has that the upstream does not
@@ -842,6 +848,12 @@ def library_state(ws, refresh=False, progress=None):
             state.pending, state.unrelated = publish.pending(ws), publish.unrelated_changes(ws)
     except CdlbibError as exc:
         state.notes.append(f"git could not be asked about {ws.root}: {' '.join(str(exc).split())[:300]}")
+    if state.pending is not None:
+        try:
+            state.approvals = [{"key": row["key"], "login": str(row["human_review"]["github_login"])}
+                               for row in api.approvals_to_send(ws, entries=parsed(ws))]
+        except CdlbibError as exc:
+            state.notes.append(f"the approvals waiting to be sent could not be read: {' '.join(str(exc).split())[:300]}")
     if managed:
         state.last_check = library.read_state().last_check
         try:

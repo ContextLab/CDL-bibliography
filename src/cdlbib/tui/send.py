@@ -74,8 +74,13 @@ class SendView(View):
             out.head("Will be sent")
             if state.pending is None:
                 out.line("  (nothing can be sent from here)", "muted")
-            for path in state.pending or ([] if state.pending is None else [None]):
+            approvals = state.approvals or []
+            for path in state.pending or ([] if state.pending is None or approvals else [None]):
                 out.line("  (no changed file)" if path is None else f"  {path}", "muted" if path is None else "accent")
+            if approvals:
+                out.head("Approvals that will be sent (the send adds them to verification/approvals.jsonl)")
+                for item in approvals:
+                    out.line(f"  {item['key']}, approved by @{item['login']}", "accent")
             if state.unrelated:
                 out.head("Other changed files (left as they are)")
                 for path in state.unrelated:
@@ -109,6 +114,11 @@ class SendView(View):
             return
         state = self.app.state
         files = ", ".join(state.pending) if state is not None and state.pending else "the changes of this library"
+        approvals = (state.approvals or []) if state is not None else []
+        if approvals:
+            said = ("the approval of " if len(approvals) == 1 else "the approvals of ") + ", ".join(
+                item["key"] for item in approvals)
+            files = f"{files} and {said}" if state.pending else said
         first = ("Completion is offered for new or edited entries first; then the checks run"
                  if offers else "Completion offers are skipped; the checks run")
         self.app.confirm(f"Send {files} as a pull request from your fork?\n\n{first}; nothing is sent unless they pass.",
@@ -154,6 +164,8 @@ class SendView(View):
                     out.line(f"created fork {result.fork}")
                 if result.files:
                     out.line("committed: " + ", ".join(result.files))
+                if result.approvals:
+                    out.line("approvals sent: " + ", ".join(result.approvals))
                 out.line(f"pull request: {result.url}", "accent", bold=True)
                 out.line(f"you are now on branch {result.branch}")
                 if result.left:

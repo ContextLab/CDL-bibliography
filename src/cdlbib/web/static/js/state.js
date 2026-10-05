@@ -51,10 +51,12 @@ export async function show(main, ctx) {
     }
     if (found.interrupted) add(banner, note("bad", "A write or update did not finish. The state from before it: " + found.interrupted));
     const pr = found.pull_request;
+    const approvals = found.approvals || [];
     clear(where, h("h2", { text: "This library" }), kv([
       ["Folder", found.root], ["Chosen by", ctx.session.chosen_by[found.origin] || found.origin],
       ["Managed by cdlbib", found.managed ? "yes" : "no"], ["Branch", found.branch],
-      ["Unsent changes", found.pending === null ? null : found.pending.length ? list(found.pending) : "none"],
+      ["Unsent changes", found.pending === null ? null : found.pending.length ? list(found.pending) : approvals.length ? null : "none"],
+      ["Unsent approvals", approvals.length ? list(approvals.map((item) => `${item.key} (@${item.login})`)) : null],
       ["Other changed files", found.unrelated && found.unrelated.length ? list(found.unrelated) : null],
       ["New upstream commits", found.new_commits === null ? null : String(found.new_commits) + (found.refreshed ? " (asked just now)" : " (as last fetched)")],
       ["New upstream entries", found.new_entries === null ? null : String(found.new_entries)],
@@ -65,7 +67,7 @@ export async function show(main, ctx) {
     h("div", { class: "row" },
       button("Ask the upstream now", (event) => run(event.currentTarget, async () => { draw(await post("/api/state/refresh", {}, log.add)); announce("State refreshed."); })),
       found.managed && !found.new_commits ? button("Update the library now", (event) => run(event.currentTarget, updating), { "data-action": "update" }) : null,
-      found.pending && found.pending.length ? button("Go to Send", () => ctx.go("send")) : null));
+      (found.pending && found.pending.length) || approvals.length ? button("Go to Send", () => ctx.go("send")) : null));
   }
 
   function outcome(done) {
