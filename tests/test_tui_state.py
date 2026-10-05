@@ -253,6 +253,56 @@ def test_send_shows_what_would_go_and_a_send_the_gate_refuses_makes_no_commit_an
     assert everything(root) == before                                        # no commit, no branch, every byte as it was
 
 
+def test_send_and_state_list_an_approval_that_waits_when_no_file_has_changed(managed, monkeypatch, tmp_path):
+    """No file of the library has changed; one human approval, recorded under a GitHub login,
+    is in the verification database and not in verification/approvals.jsonl. The Send view
+    lists it as what will be sent and its question names it; the Library state view lists it
+    as unsent. Nobody is logged in to GitHub here, so the view says that only the logged-in
+    user's approvals are sent. Looking adds nothing to the ledger."""
+    from cdlbib import verification as v
+    home, upstream, ws = managed
+    root = ws.root
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path / "empty-gh"))
+    for token in ("GH_TOKEN", "GITHUB_TOKEN"):
+        monkeypatch.delenv(token, raising=False)
+    monkeypatch.setattr(api, "_identity", None)
+    cache = v.Cache(str(ws.database), ledger=ws.revocations)
+    try:
+        v.record_approval(cache, str(ws.bib), "Zoll90", v.load_entries(str(ws.bib))["Zoll90"]["fingerprint"],
+                          {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+                           "note": "Compared every field with the printed article.", "github_login": "octocat",
+                           "github_id": 583231})
+    finally:
+        cache.close()
+    assert api.library_state(ws).pending == []
+    before = everything(root)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "f6")
+            state = T.shown(app, "#send-state")
+            assert "Will be sent" in state and "(no changed file)" not in state
+            assert ("Approvals that will be sent (the send adds them to verification/approvals.jsonl)\n"
+                    "  Zoll90, approved by @octocat") in state
+            assert "only the approvals recorded under that login are sent" in " ".join(state.split())
+            assert "Approvals that will not be sent" not in state
+            await T.press(pilot, "s")
+            assert name(app) == "ConfirmScreen"
+            assert "Send the approval of Zoll90 as a pull request from your fork?" in T.shown(app, "#question")
+            await T.press(pilot, "n")
+            await T.press(pilot, "f7")
+            state = T.shown(app, "#state-now")
+            assert "unsent approvals: Zoll90 (@octocat)" in state and "unsent changes: none" not in state
+    T.run(journey())
+    after = everything(root)
+    # The library's files, branches and commits are as they were. (The verification database
+    # under .bibcheck/, which reading a stored result opens, is the one thing not compared.)
+    assert {part: found for part, found in after.items() if part != "outside"} == {
+        part: found for part, found in before.items() if part != "outside"}
+    assert not ws.approvals.exists() and api.library_state(ws).pending == []
+
+
 def test_the_send_of_the_interface_is_the_checked_send_and_no_other():
     import re
     package = Path(conftest.ROOT, "src/cdlbib/tui")

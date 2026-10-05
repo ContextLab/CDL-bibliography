@@ -56,11 +56,21 @@ pull request base. Unrelated committed files cause a refusal, even if a later
 commit deleted them. Preserve that branch and prepare a bibliography-only branch
 from the upstream base.
 
+A human approval recorded under your GitHub login ([Human review](human-review.md)) is
+sent too. Before the checks, `send` appends one line per approval that is not yet in
+`verification/approvals.jsonl` to that file and prints
+`approval of KEY by @you: added to verification/approvals.jsonl`. An approval in your
+database that was recorded under another login is not added, and `send` prints
+`approval of KEY not sent: recorded under @login`. An approval is enough for
+a send; no entry has to change. If the send stops before the commit is made, the lines are
+taken out again and the file is as it was.
+
 `send` then commits your changes to `cdl.bib` and to files under `verification/` on a
 new branch, pushes the branch to your fork, and opens the pull request. Other files with
 uncommitted changes are neither committed nor pushed; they are left as they are. `send` ends
 with these lines (the first only when a fork was created, the last only when other files
-have uncommitted changes; `notes.txt` stands for such a file):
+have uncommitted changes; `notes.txt` stands for such a file). When approvals were sent, a
+line `approvals sent: KEY, KEY` follows the `committed:` line.
 
 ```
 created fork you/CDL-bibliography
@@ -76,7 +86,8 @@ left uncommitted: notes.txt
   the change list.
 - Its body is the list of added, removed and modified entries. If entries in the change
   have a recorded human review, a line `Approved by @login: KEY, KEY` follows for each
-  reviewer.
+  reviewer. The line also names entries that the change does not edit and whose approval
+  the pull request adds to `verification/approvals.jsonl`.
 - It comes from the branch `cdlbib/<your login>/<date>-<summary>` of your fork and goes
   into the `master` branch of the repository your checkout was cloned from (or of its
   parent, if you cloned a fork).
@@ -93,8 +104,9 @@ git switch master
 ## In the terminal interface
 
 Start [the terminal interface](terminal-interface.md) with `cdlbib tui` and press `F6`
-for the Send view. It lists the files that would be committed. Type a summary if you
-want one, press `s`, and answer the question with `y`. The view then shows `Sent.` and
+for the Send view. It lists the files that would be committed and, under "Approvals that
+will be sent", the human approvals the send would add to `verification/approvals.jsonl`.
+Type a summary if you want one, press `s`, and answer the question with `y`. The view then shows `Sent.` and
 the pull request's address, or `Not sent.` and the reason. `S` sends without the
 completion offers.
 
@@ -102,7 +114,9 @@ completion offers.
 
 Start [the web interface](web-interface.md) with `cdlbib web` and open the **Send** view.
 
-- "What will be sent" shows the library's folder, its branch and the files to send.
+- "What will be sent" shows the library's folder, its branch and the files to send, and
+  under "Approvals to send" the human approvals the send would add to
+  `verification/approvals.jsonl`.
 - "Look for completions" shows, for new or changed entries that are not yet verified,
   what the sources would fill in or change. Nothing is written unless a proposal is
   accepted.

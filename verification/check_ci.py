@@ -2,6 +2,9 @@
 
 PR snapshots come from the trusted base revision, not the proposed changes.
 PR caches remain scoped to their merge ref; master never restores a PR cache.
+The approvals ledger (verification/approvals.jsonl) is read from the base revision
+too: the checker is pointed at the base's copy (an empty file when the base has
+none) through CDLBIB_APPROVAL_LEDGER, so rows a pull request adds are not read.
 
 A push whose previous commit is not in the history (a force-push or rewritten
 history, or a new branch) has no base to compare against. Pushed content is
@@ -65,6 +68,13 @@ def main():
         else:
             trusted.write_bytes(data)
             snapshot = trusted
+        # Human approvals shared in the ledger count from the base revision only.
+        approvals = work / "base-approvals.jsonl"
+        try:
+            approvals.write_bytes(git_file(base, "verification/approvals.jsonl"))
+        except subprocess.CalledProcessError:
+            approvals.write_bytes(b"")
+        os.environ["CDLBIB_APPROVAL_LEDGER"] = str(approvals.resolve())
     elif event != "workflow_dispatch":
         raise ValueError("Unsupported event")
     if snapshot is not None:

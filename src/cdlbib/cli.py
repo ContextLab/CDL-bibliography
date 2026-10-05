@@ -488,6 +488,8 @@ def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, s
         typer.echo(f"created fork {result.fork}")
     if result.files:
         typer.echo("committed: " + ", ".join(result.files))
+    if result.approvals:
+        typer.echo("approvals sent: " + ", ".join(result.approvals))
     typer.echo(f"pull request: {result.url}")
     typer.echo(f"you are now on branch {result.branch}")
     if result.left:
