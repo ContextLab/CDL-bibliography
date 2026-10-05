@@ -116,6 +116,7 @@ def test_a_lookup_that_fails_is_an_offer_that_says_so_and_the_others_still_come(
     assert [offer.key for offer in offers] == ["Fail20", "Game62"]
     failed = offers[0]
     assert failed.error is not None or api.proposal_failed(failed.proposals[0])
+    assert failed.error is None or (isinstance(failed.error, str) and failed.error_kind.endswith("Error"))
     assert offers[1].error is None and offers[1].proposals[0].complete
 
 
@@ -284,8 +285,166 @@ def test_send_checked_runs_the_gate_and_a_failed_gate_sends_nothing(checkout):
     before, reports, lines = state(ws.root), [], []
     with pytest.raises(GateFailed, match="not sent: fix the format errors") as failed:
         api.send_checked(ws, summary="a bad entry", progress=lines.append, report=reports.append, allow_fork_creation=True)
-    assert len(reports) == 1 and reports[0] is failed.value.check and not reports[0].format.ok
+    assert len(reports) == 1 and reports[0] == failed.value.check and not reports[0].format.ok
+    assert reports[0] is not failed.value.check                   # a callback is given a copy of the gate's result
     assert reports[0].format.corrections == {"Zoll90": {"pages": "1053--1065"}} and lines == []
     assert state(ws.root) == before and publish.current_branch(ws) == "master"
     from test_publish import git
     assert git(remote, "for-each-ref", "--format=%(refname)", "refs/heads/cdlbib/") == ""
+
+
+@pytest.mark.parametrize("tamper,said", [
+    (lambda check: setattr(check, "citations_due", False), "citation check failed"),     # the citations still run
+    (lambda check: setattr(check, "ok", True), "citation check failed"),
+])
+def test_a_report_callback_cannot_switch_the_citation_check_off(checkout, offline, tamper, said):
+    """A changed, unverified entry with the network refused: were the citation check skipped
+    the send would go on to the fork lookup; it must stop at the check instead."""
+    ws, remote = checkout
+    ws.bib.write_text(ZOLL90 + "\n", encoding="utf-8")
+    before, seen = state(ws.root), []
+
+    def report(check):
+        seen.append((check.citations_due, check.ok))
+        tamper(check)
+
+    with pytest.raises(GateFailed, match=said):
+        api.send_checked(ws, report=report)
+    assert seen == [(True, True)] and state(ws.root) == before and publish.current_branch(ws) == "master"
+
+
+@pytest.mark.parametrize("tamper", [
+    lambda check: setattr(check, "ok", True),
+    lambda check: (setattr(check, "ok", True), setattr(check.format, "errors", []), setattr(check.format, "failure", "")),
+    lambda check: setattr(check, "citations_due", False),
+])
+def test_a_report_callback_cannot_pass_a_format_failure(checkout, offline, tamper):
+    ws, remote = checkout
+    ws.bib.write_text(ZOLL90.replace("1053--1065", "1053-1065") + "\n", encoding="utf-8")
+    before = state(ws.root)
+    with pytest.raises(GateFailed, match="not sent: fix the format errors") as failed:
+        api.send_checked(ws, report=tamper)
+    assert failed.value.check.format.errors == ["Zoll90"] and not failed.value.check.ok
+    assert state(ws.root) == before and publish.current_branch(ws) == "master"
+
+
+# --- one rule from a candidate to a query ----------------------------------------------------------
+
+@pytest.mark.parametrize("candidate,expected", [
+    ({"source": "arxiv", "arxiv": "2208.02957", "doi": "10.48550/arXiv.2208.02957"}, ("arxiv", "2208.02957")),
+    ({"source": "arxiv", "arxiv": "https://arxiv.org/abs/2208.02957v2"}, ("arxiv", "2208.02957v2")),
+    ({"source": "crossref", "doi": "10.1037/h0041332", "arxiv": "2208.02957", "pmid": "1"}, ("doi", "10.1037/h0041332")),
+    ({"doi": "10.1037/h0041332", "title": "A title"}, ("doi", "10.1037/h0041332")),
+    ({"source": "pubmed", "pmid": 13946309, "title": "A title"}, ("pmid", "13946309")),
+    ({"source": "pubmed", "arxiv": "2208.02957"}, ("arxiv", "2208.02957")),
+    ({"title": "A factorial analysis of verbal learning tasks"}, ("title", "A factorial analysis of verbal learning tasks")),
+])
+def test_one_rule_names_a_candidate(candidate, expected):
+    from cdlbib.complete import Query
+    query = Query.from_candidate(candidate)
+    name, value = expected
+    assert getattr(query, name) == value
+    assert [other for other in ("doi", "pmid", "arxiv", "title") if getattr(query, other)] == [name]
+
+
+def test_a_candidate_with_nothing_to_look_up_is_refused(tmp_path):
+    from cdlbib import complete
+    with pytest.raises(ValueError, match="no DOI, PMID, arXiv id or title"):
+        complete.Query.from_candidate({"source": "crossref", "authors": "A Smith"})
+    ws = Workspace(tmp_path)
+    ws.bib.write_text("", encoding="utf-8")
+    with pytest.raises(CdlbibError, match="no DOI, PMID, arXiv id or title"):
+        api.choose_candidate(ws, complete.Proposal(), {"authors": "A Smith"})
+
+
+# --- a manual draft stays writable after it is edited -------------------------------------------------
+
+@pytest.mark.parametrize("kind,fields,edit", [
+    ("book", dict(author="M J Kahana", title="Foundations of human memory", publisher="Oxford University Press",
+                  address="New York, NY", year="2012"), ("2012", "2013")),
+    ("incollection", dict(author="J R Manning and M J Kahana", title="Interpreting semantic clustering effects in free recall",
+                          booktitle="The Oxford handbook of human memory", publisher="Oxford University Press",
+                          editor="M J Kahana and A D Wagner", pages="1--20", year="2024"), ("1--20", "1--22")),
+])
+def test_a_manual_draft_of_any_type_is_written_after_an_edit(tmp_path, client, offline, kind, fields, edit):
+    ws = Workspace(tmp_path)
+    ws.bib.write_text("", encoding="utf-8")
+    draft = api.draft_manual(ws, fields, entry_type=kind)
+    assert draft.manual and draft.proposed_raw and not draft.unsupported
+    edited = draft.proposed_raw.replace(*edit)
+    assert edited != draft.proposed_raw
+    again = api.recheck_proposal(ws, draft, edited, mailto=CONTACT, database=str(client.cache.path))
+    assert again.manual and again.unsupported is None and again.entry_type.lower() == kind
+    applied = api.apply_proposals(ws, [again])
+    assert applied.written == [again.key_proposed] and applied.refused == []
+    # (an edited year changes the house key; the accepted key plan is what is written)
+    assert ws.bib.read_text(encoding="utf-8") == edited.replace("{" + draft.key_proposed + ",", "{" + again.key_proposed + ",")
+    assert api.entry(ws, again.key_proposed).status == "pending"       # written, and still unverified
+
+
+def test_a_builder_proposal_edited_into_another_type_is_still_unsupported(tmp_path, client, offline):
+    from cdlbib import complete
+    ws = Workspace(tmp_path)
+    ws.bib.write_text("", encoding="utf-8")
+    built = complete.propose(complete.Query.parse("10.1037/h0041332"), client, client.cache, ws=ws)
+    assert not built.manual
+    as_book = api.recheck_proposal(ws, built, built.proposed_raw.replace("@article{", "@book{"), mailto=CONTACT,
+                                   database=str(client.cache.path))
+    assert as_book.unsupported and api.apply_proposals(ws, [as_book]).refused
+
+
+# --- everything a front end receives is plain data ---------------------------------------------------
+
+def test_as_data_makes_every_result_plain_and_loses_nothing(tmp_path, client, offline, checkout):
+    import dataclasses
+    import datetime
+    import json
+    from pathlib import Path
+    from cdlbib import complete, library
+    ws = approved_library(tmp_path / "lib", ZOLL90 + "\n\n" + GAME62 + "\n", ["Zoll90"]) if (tmp_path / "lib").mkdir() is None else None
+    reference = tmp_path / "reference.bib"
+    reference.write_text(BASE, encoding="utf-8")
+    where = dict(database=str(client.cache.path), mailto=CONTACT)
+    summaries = api.entries(ws)
+    detail = api.entry(ws, "Zoll90")
+    preview = api.preview_edit(ws, "Game62", GAME62.replace("{Game62,", "{Games1962,").replace("1--11", "1-11"))
+    saved = api.save_edit(ws, "Game62", GAME62.replace("{Game62,", "{Games1962,"), api.entry(ws, "Game62").fingerprint)
+    proposals = api.propose_new(ws, ["10.9999/completion-cli-missing", "10.1037/h0041332"], **where)
+    offers = list(api.completion_offers(ws, reference=str(reference), **where))
+    failed = api.CompletionOffer("Key20", [], "no such record", "CdlbibError")
+    results = dict(
+        summaries=summaries, detail=detail, queue=api.review_queue(ws, all_entries=True), preview=preview, saved=saved,
+        state=api.library_state(checkout[0]), prepared=api.prepare(ws), revision=api.revision(ws),
+        check=api.check_keys(ws, ["Zoll90"], mailto=CONTACT), format=api.check_format(ws), proposals=proposals,
+        offers=offers, failed=failed, where=api.where(str(ws.bib)), behind=library.Behind("master", "a" * 40, "master", ""),
+        status=api.status(ws), revoke=api.RevokeResult([{"key": "Zoll90"}], "needs_review"),
+        update=library.UpdateResult("up_to_date", message="up to date"),
+        error=api.as_data(CdlbibError("a failure")), mixed={1: (Path("/tmp/x"), {"b", "a"}), "when": datetime.date(2026, 10, 5)})
+    data = api.as_data(results)
+    text = json.dumps(data)                                       # no default= needed: it is all plain
+    assert json.loads(text) == data
+    # nothing is lost: each dataclass keeps every field, by name
+    assert data["summaries"][0] == dataclasses.asdict(summaries[0]) | {"issues": list(summaries[0].issues)}
+    assert set(data["detail"]) == {f.name for f in dataclasses.fields(detail)}
+    assert data["detail"]["result"] == detail.result and data["detail"]["fingerprint"] == detail.fingerprint
+    assert data["preview"]["key_change"] == {"old": "Game62", "new": "Games1962", "kind": "rename"}
+    assert data["preview"]["format"] and set(data["preview"]["format"][0]) == {"field", "current", "corrected", "message"}
+    assert data["saved"]["written"] == ["Games1962"] and data["saved"]["renamed"] == {"Game62": "Games1962"}
+    assert data["saved"]["saved_copy"] == str(saved.saved_copy)
+    assert data["state"]["root"] == str(checkout[0].root) and data["state"]["branch"] == "master"
+    assert data["prepared"]["entries"] == 2 and isinstance(data["revision"], list)
+    assert data["check"]["citations"]["checked"]["Zoll90"]["status"] == "human_verified" and data["check"]["ok"] is True
+    assert set(data["proposals"]) == {"items", "errors"} and len(data["proposals"]["items"]) == 2
+    assert data["proposals"]["errors"] == [list(item) for item in proposals.errors] and proposals.errors
+    assert data["proposals"]["items"][1]["proposed_raw"] == proposals[1].proposed_raw
+    assert data["proposals"]["items"][1]["changes"][0] == dataclasses.asdict(proposals[1].changes[0])
+    assert data["failed"] == {"key": "Key20", "proposals": [], "error": "no such record", "error_kind": "CdlbibError"}
+    assert all(set(offer) == {"key", "proposals", "error", "error_kind"} for offer in data["offers"])
+    assert data["error"] == {"error_kind": "CdlbibError", "error": "a failure"}
+    assert data["mixed"] == {"1": ["/tmp/x", ["a", "b"]], "when": "2026-10-05"}
+    assert data["where"]["root"] == str(ws.bib) and data["update"]["action"] == "up_to_date"
+    # and the plainer route the web layer may take also works on each of them
+    for value in results.values():
+        if dataclasses.is_dataclass(value):
+            json.dumps(dataclasses.asdict(value), default=str)
+    assert isinstance(complete.Proposal(), object)

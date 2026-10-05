@@ -968,6 +968,26 @@ class Query:
         return cls(title=text or None, author=author, year=year)
 
     @classmethod
+    def from_candidate(cls, candidate):
+        """The query for a candidate a person picked (a dict with any of ``source``, ``doi``,
+        ``pmid``, ``arxiv``, ``title``): the one rule every front end uses. The identifier of
+        the source the candidate came from: an arXiv lead by its arXiv id; anything else by
+        its DOI, else its PMID, else an arXiv id, else its title. ValueError when it has
+        none of them."""
+        arxiv = str(candidate.get("arxiv") or "").strip()
+        if arxiv and candidate.get("source") == "arxiv":
+            return cls(arxiv=_arxiv_text(arxiv) or arxiv)
+        if candidate.get("doi"):
+            return cls.parse(candidate["doi"])
+        if candidate.get("pmid"):
+            return cls(pmid=str(candidate["pmid"]).strip())
+        if arxiv:
+            return cls(arxiv=_arxiv_text(arxiv) or arxiv)
+        if str(candidate.get("title") or "").strip():
+            return cls.parse(candidate["title"])
+        raise ValueError("This record has no DOI, PMID, arXiv id or title to look it up by.")
+
+    @classmethod
     def from_entry(cls, entry):
         """The query a typed entry makes (``verification.load_entries`` shape). An entry
         that names arXiv as its journal is an arXiv query; otherwise its DOI comes first,
@@ -2265,7 +2285,8 @@ def apply(ws, accepted, *, batch=None):
     result = Applied()
     try:
         writer.require_protectable(ws)
-        result.notes = writer.recover(ws)
+        from . import library
+        result.notes = library.settled(ws) + writer.recover(ws)
         original = ws.bib.read_bytes()
         bom = original.startswith(b'\xef\xbb\xbf')
         text = original.decode('utf-8-sig')

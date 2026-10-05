@@ -264,11 +264,64 @@ def _bases(found):
     return bases
 
 
-def _format(entry, others, bases):
+_BLOCK = re.compile(r"@([A-Za-z]+)\s*([({])")
+
+
+def _definitions(data):
+    """The @string and @preamble blocks of a bibliography (``data``: its bytes), each as its
+    exact text, in the file's order; [] when it has none or cannot be scanned."""
+    text = data.decode("utf-8-sig", errors="replace")
+    if not _DEFINITIONS.search(text):
+        return []
+    found, at = [], 0
+    while at < len(text):
+        if text[at].isspace():
+            at += 1
+            continue
+        if text[at] == "%":
+            end = text.find("\n", at)
+            at = len(text) if end < 0 else end + 1
+            continue
+        head = _BLOCK.match(text, at)
+        if not head:
+            return found
+        start, depth, quoted = at, 0, False
+        at = head.end()
+        while at < len(text):
+            c = text[at]
+            if c == "\\":
+                at += 2
+                continue
+            if c == '"' and depth == 0:
+                quoted = not quoted
+            if not quoted:
+                if depth == 0 and c == ("}" if head[2] == "{" else ")"):
+                    break
+                depth += (c == "{") - (c == "}")
+            at += 1
+        if at >= len(text):        # never closed: the file does not scan, and the reader says so
+            return found
+        at += 1
+        if head[1].lower() in ("string", "preamble"):
+            found.append(text[start:at])
+    return found
+
+
+def _bases_beside(ws, found, others):
+    """_bases of ``others``, taken from what was worked out for the library as it is
+    (``found``) for every entry that is still the same object."""
+    known = _derived(ws, found, "bases", _bases)
+    changed = {name: item for name, item in others.items() if found.get(name) is not item}
+    same = {name: known[name] for name in others if name in known and name not in changed}
+    return {**same, **_bases(changed)} if changed else same
+
+
+def _format(entry, others, bases, definitions=()):
     """([FormatFinding], the entry as the formatter would write it or None) for one entry.
     The house checker judges a whole file (key suffixes depend on the other entries with the
-    same authors and year), so it is given this entry, those entries and any entry this one
-    inherits from, in a file of their own; only what it says about this entry is returned."""
+    same authors and year), so it is given this entry, those entries, any entry this one
+    inherits from and the file's @string/@preamble definitions (an entry may use them), in a
+    file of their own; only what it says about this entry is returned."""
     import io
     from .helpers import check_bib
     from .verification import load_entries
@@ -283,7 +336,8 @@ def _format(entry, others, bases):
             todo += _parents(others[name]["fields"])
     with tempfile.TemporaryDirectory(prefix="cdlbib-desk-") as folder:
         path, out = Path(folder) / "entry.bib", Path(folder) / "formatted.bib"
-        path.write_text("\n\n".join([item["raw"] for item in beside.values()] + [entry["raw"]]) + "\n", encoding="utf-8")
+        path.write_text("\n\n".join([*definitions, *(item["raw"] for item in beside.values()), entry["raw"]]) + "\n",
+                        encoding="utf-8")
         try:
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                 errors, _ = check_bib(str(path), autofix=True, outfile=str(out), verbose=False)
@@ -316,13 +370,14 @@ def entry(ws, key, database=None):
     current result with its evidence, the closest source, advisories, and the house-format
     findings field by field. CdlbibError when the library has no such key."""
     from .verification import current_results
-    found = parsed(ws)
+    found, data = _snapshot(ws)
     if key not in found:
         raise CdlbibError(f"There is no entry {key} in {ws.bib}.")
     with _cache(ws, database) as cache:
         result = current_results(str(ws.bib), cache, {key: found[key]})[key]
     others = {name: item for name, item in found.items() if name != key}
-    return _detail(found[key], result, _format(found[key], others, _derived(ws, found, "bases", _bases))[0])
+    return _detail(found[key], result, _format(found[key], others, _derived(ws, found, "bases", _bases),
+                                               _derived(ws, found, "definitions", lambda _: _definitions(data)))[0])
 
 
 def review_queue(ws, reference="github", all_entries=False, database=None):
@@ -464,11 +519,46 @@ def _plan(original, found, key, raw):
     return plan
 
 
-def _works(found):
+def _works(found, progress=None):
     """{key: (the entry, its work identifiers, its title and surnames)}: what tells two entries
-    of one work apart from two works (complete._work_ids, complete._title_byline)."""
+    of one work apart from two works (complete._work_ids, complete._title_byline).
+    ``progress`` receives a line every 500 entries."""
     from .complete import _title_byline, _work_ids
-    return {key: (item, _work_ids(item["fields"]), _title_byline(item["fields"])) for key, item in found.items()}
+    works = {}
+    for number, (key, item) in enumerate(found.items(), 1):
+        works[key] = (item, _work_ids(item["fields"]), _title_byline(item["fields"]))
+        if progress and number % 500 == 0:
+            progress(f"indexed {number} of {len(found)} entries")
+    return works
+
+
+@dataclass
+class Prepared:
+    entries: int         # how many entries the library holds
+    seconds: float       # how long the preparation took (near 0 when it was already prepared)
+    revision: tuple      # revision(ws) of the state that was prepared
+
+
+def prepare(ws, progress=None):
+    """Read the library and work out, once for this state of cdl.bib, what an entry's detail
+    and an edit's preview need: the parse, the citation-key groups, the @string definitions
+    and the index of works that duplicate detection reads. They are kept with the parse (so
+    by path, mtime_ns and size), reused by every preview, and carried over by save_edit.
+    ``progress`` receives a line per step, and every 500 entries during the index."""
+    import time
+    say = progress or (lambda line: None)
+    started = time.monotonic()
+    say(f"reading {ws.bib.name} ...")
+    found, data = _snapshot(ws)
+    say(f"read {len(found)} entries")
+    say("grouping citation keys ...")
+    _derived(ws, found, "bases", _bases)
+    _derived(ws, found, "definitions", lambda _: _definitions(data))
+    say("indexing the works for duplicate detection ...")
+    _derived(ws, found, "works", lambda entries: _works(entries, say))
+    seconds = time.monotonic() - started
+    say(f"ready: {len(found)} entries prepared in {seconds:.1f} s")
+    return Prepared(len(found), seconds, revision(ws))
 
 
 def _same_work(new, others, known):
@@ -528,7 +618,9 @@ def preview_edit(ws, key, raw, database=None):
             after = current_results(str(ws.bib), cache, moved)
             preview.affected = [Affected(name, before[name]["status"], after[name]["status"]) for name in moved]
     preview.duplicate_of = _same_work(new, others, _derived(ws, found, "works", _works))
-    preview.format, preview.corrected_raw = _format(new, others, _bases(others))
+    preview.format, preview.corrected_raw = _format(
+        new, others, _bases_beside(ws, found, others),
+        _derived(ws, found, "definitions", lambda _: _definitions(original)))
     return preview
 
 
@@ -552,7 +644,8 @@ def save_edit(ws, key, raw, expected_fingerprint=None, *, batch=None):
     from .complete import Applied
     try:
         writer.require_protectable(ws)
-        result = Applied(notes=writer.recover(ws))
+        from . import library
+        result = Applied(notes=library.settled(ws) + writer.recover(ws))
         found, original = _snapshot(ws)
         if key is not None:
             if key not in found:
@@ -584,10 +677,19 @@ def save_edit(ws, key, raw, expected_fingerprint=None, *, batch=None):
         before = _stat(path)
         if before is not None and ws.bib.read_bytes() == plan.data and _stat(path) == before:
             held, kept = _PARSED.get(path), {}
-            works = held[2].get("works") if held and held[1] is found else None
-            if works is not None and plan.alone:      # what was worked out for the entries that are still the same objects
+            derived = held[2] if held and held[1] is found and plan.alone else {}
+            # What was worked out for the entries that are still the same objects is kept.
+            if "works" in derived:
+                works = derived["works"]
                 kept["works"] = {name: works[name] if name in works and works[name][0] is item
                                  else _works({name: item})[name] for name, item in plan.entries.items()}
+            if "bases" in derived:
+                bases = derived["bases"]
+                kept["bases"] = {**{name: bases[name] for name, item in plan.entries.items()
+                                    if name in bases and found.get(name) is item},
+                                 **_bases({plan.new_key: plan.entries[plan.new_key]})}
+            if "definitions" in derived:
+                kept["definitions"] = derived["definitions"]
             _PARSED[path] = (before, plan.entries, kept)
     return result
 
@@ -598,9 +700,9 @@ def recover(ws):
     writer.recover); the lines saying what was done, [] when there was nothing to settle. The
     next save does this by itself. For the managed library an interrupted write is a
     CdlbibError naming the backup that `cdlbib update --undo` restores."""
-    from . import writer
+    from . import library, writer
     try:
-        return writer.recover(ws)
+        return library.settled(ws) + writer.recover(ws)
     except OSError as exc:
         raise CdlbibError(f"The interrupted write could not be settled: {exc}") from exc
 
@@ -642,6 +744,14 @@ def library_state(ws, refresh=False, progress=None):
     except CdlbibError:
         origin = workspace.Origin.NAMED
     state = LibraryState(root=ws.root, origin=workspace.Origin.MANAGED if managed else origin, managed=managed)
+    if not managed and writer.interrupted(ws) is not None:
+        # A write killed part-way: it is settled under the lock before anything is reported
+        # (the library is put back whole), or the refusal is the note and ``interrupted`` stays.
+        try:
+            with library.transaction(ws, progress=progress):
+                state.notes += library.settled(ws)
+        except CdlbibError as exc:
+            state.notes.append(str(exc))
     state.interrupted = library.interrupted() if managed else writer.interrupted(ws)
     try:
         top = publish._run(["git", "rev-parse", "--show-toplevel"], cwd=ws.root, check=False)

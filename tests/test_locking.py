@@ -279,9 +279,8 @@ def test_a_writer_killed_between_the_bibliography_and_the_ledger_is_put_back(ws)
     assert half == before.replace(ZOLL90.encode(), RENAMED.encode()) and not ws.key_renames.exists()   # part-way
     copy = writer.interrupted(ws)
     assert copy and Path(copy).read_bytes() == before and Path(copy).parent == ws.work / "edits"
-    assert api.library_state(ws).interrupted == copy
-    assert [item.key for item in api.entries(ws)] == ["Zoller1990", "Kaha12"]       # reading does not settle it
-    assert ws.bib.read_bytes() == half
+    assert [item.key for item in api.entries(ws)] == ["Zoller1990", "Kaha12"]       # reading entries does not settle it
+    assert ws.bib.read_bytes() == half and writer.interrupted(ws) == copy
     said = api.recover_interrupted(ws)                            # the lock the dead writer held is free
     assert len(said) == 1 and "interrupted part-way; the library was put back as it was" in said[0] and copy in said[0]
     assert ws.bib.read_bytes() == before and not ws.key_renames.exists()
@@ -344,3 +343,145 @@ def test_an_edit_of_the_managed_library_killed_part_way_is_announced_and_undone(
     assert not ws.key_renames.exists() and library.interrupted() is None
     assert api.save_edit(ws, "Zoll90", RENAMED, load_entries(ws.bib)["Zoll90"]["fingerprint"]).written == ["Zoller1990"]
     assert desk.parsed(ws) == load_entries(ws.bib)
+
+
+def test_asking_for_the_state_settles_a_killed_writer_and_says_so(ws):
+    before = ws.bib.read_bytes()
+    killed_at(ws, ws.key_renames)
+    copy = writer.interrupted(ws)
+    state = api.library_state(ws)
+    assert state.interrupted is None and ws.bib.read_bytes() == before and not ws.key_renames.exists()
+    assert any("interrupted part-way; the library was put back as it was" in note and copy in note for note in state.notes)
+    assert api.recover_interrupted(ws) == [] and not any("interrupted" in note for note in api.library_state(ws).notes)
+
+
+def test_a_killed_writer_is_settled_before_a_check_an_approval_or_a_revocation(ws):
+    """Nothing is checked, approved or revoked on a half-made change: taking the lock puts
+    the library back first. (Zoll90 is the key before the interrupted rename.)"""
+    from cdlbib import identity
+    from cdlbib.errors import ApprovalRefused, GateFailed
+    before = ws.bib.read_bytes()
+    killed_at(ws, ws.key_renames)
+    half = load_entries(ws.bib)
+    assert "Zoller1990" in half and "Zoll90" not in half
+    lines = []
+    with pytest.raises(GateFailed, match="citation keys absent from the bibliography"):
+        api.check_keys(ws, ["Zoller1990"], progress=lines.append, mailto="valid@example.org")   # the key of the half state
+    assert ws.bib.read_bytes() == before and writer.interrupted(ws) is None
+    assert len(lines) == 1 and "put back as it was" in lines[0]
+    try:
+        identity.current()
+    except IdentityUnavailable as exc:
+        pytest.skip(f"no GitHub login for a real approval: {exc}")
+    for act in (lambda: api.approve(ws, "Zoller1990", half["Zoller1990"]["fingerprint"], "a source", "a note"),
+                lambda: api.revoke(ws, "Zoller1990", "a reason", expected_fingerprint=half["Zoller1990"]["fingerprint"])):
+        killed_at(ws, ws.key_renames)
+        with pytest.raises(ApprovalRefused):
+            act()
+        assert ws.bib.read_bytes() == before and writer.interrupted(ws) is None
+    assert api.entry(ws, "Zoll90").status == "pending"
+
+
+def test_a_killed_writer_is_never_sent_half_done(tmp_path, monkeypatch):
+    """A real checkout: the rename is killed between the bibliography and the ledger. The
+    send that follows works on the library put back whole (the gate sees the old key and the
+    format failure planted in it refuses the send); the half-made state is never committed."""
+    from cdlbib import publish
+    from cdlbib.errors import GateFailed
+    from test_publish import git
+    for name, value in GIT_ENV.items():
+        monkeypatch.setenv(name, value)
+    remote = tmp_path / "fork.git"
+    git(tmp_path, "init", "-q", "--bare", "-b", "master", str(remote))
+    work = tmp_path / "checkout"
+    git(tmp_path, "clone", "-q", str(remote), str(work))
+    git(work, "checkout", "-q", "-B", "master")
+    (work / "verification").mkdir()
+    (work / "verification" / ".gitkeep").write_text("", encoding="utf-8")
+    (work / "cdl.bib").write_text("% start\n", encoding="utf-8")
+    git(work, "add", "-A"); git(work, "commit", "-q", "-m", "start"); git(work, "push", "-q", "origin", "HEAD:master")
+    mine = Workspace(work)
+    mine.bib.write_text(ZOLL90.replace("1053--1065", "1053-1065") + "\n", encoding="utf-8")     # unsent, and not yet sendable
+    before = mine.bib.read_bytes()
+    process = child(KILLED.format(root=str(work), target=str(mine.key_renames),
+                                  raw=RENAMED.replace("1053--1065", "1053-1065")), work)
+    try:
+        assert line(process) == "paused"
+        process.kill(); process.wait(timeout=10)
+    finally:
+        finish(process)
+    assert b"Zoller1990" in mine.bib.read_bytes() and not mine.key_renames.exists()
+    lines, reports = [], []
+    with pytest.raises(GateFailed, match="not sent") as refused:
+        api.send_checked(mine, progress=lines.append, report=reports.append)
+    assert mine.bib.read_bytes() == before and writer.interrupted(mine) is None        # settled before the gate
+    assert len(lines) == 1 and "put back as it was" in lines[0] and str(mine.bib) in lines[0], lines   # this library's, once
+    assert refused.value.check.format.errors == ["Zoll90"] and reports[0].format.errors == ["Zoll90"]
+    assert publish.current_branch(mine) == "master" and git(work, "log", "--oneline").count("\n") == 0
+    assert git(remote, "for-each-ref", "--format=%(refname)", "refs/heads/cdlbib/") == ""
+    # and a record that cannot be trusted refuses the send outright, naming the record
+    process = child(KILLED.format(root=str(work), target=str(mine.key_renames),
+                                  raw=RENAMED.replace("1053--1065", "1053-1065")), work)
+    try:
+        assert line(process) == "paused"
+        process.kill(); process.wait(timeout=10)
+    finally:
+        finish(process)
+    mine.bib.write_text(mine.bib.read_text(encoding="utf-8") + "% changed since\n", encoding="utf-8")
+    changed = mine.bib.read_bytes()
+    with pytest.raises(CdlbibError, match="was interrupted, and the library was changed since") as refused:
+        api.send_checked(mine)
+    assert writer.PENDING in str(refused.value) and mine.bib.read_bytes() == changed
+    assert publish.current_branch(mine) == "master" and git(work, "log", "--oneline").count("\n") == 0
+
+
+HAMMER = """
+import os, random, sys, time
+bib, stop, log = sys.argv[1:4]
+number = 0
+while not os.path.exists(stop):
+    number += 1
+    with open(bib, 'rb') as stream:              # an editor that knows nothing of the lock:
+        data = stream.read()                     # read, add a line, save by rename
+    with open(bib + '.editor', 'wb') as stream:
+        stream.write(data + b'%% saved by the other program %d\\n' % number)
+        stream.flush(); os.fsync(stream.fileno())
+    os.replace(bib + '.editor', bib)
+    with open(log, 'a') as stream:
+        stream.write('%d\\n' % number)
+    time.sleep(random.random() * 0.05)
+"""
+
+
+def test_a_program_that_ignores_the_lock_never_has_a_save_written_over(ws, tmp_path):
+    """A second real process saves cdl.bib over and over (read, append a numbered line, rename
+    into place) while this one saves edits through the writer. Each of this process's saves
+    either completes or is refused; and whichever it is, no save of the other program is
+    discarded: every line it ever saved is in the file, in order, at the end."""
+    stop, log = tmp_path / "stop", tmp_path / "saved.txt"
+    hammer = subprocess.Popen([sys.executable, "-c", HAMMER, str(ws.bib), str(stop), str(log)],
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    done = refused = 0
+    try:
+        while not log.exists():
+            time.sleep(0.01)
+        for number in range(150):
+            try:
+                current = api.entry(ws, "Kaha12")
+                applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", str(1500 + number)), current.fingerprint)
+                done += applied.written == ["Kaha12"]
+            except CdlbibError as exc:
+                assert "changed" in str(exc) or "could not be read" in str(exc), exc
+                refused += 1
+    finally:
+        stop.write_text("stop", encoding="utf-8")
+        out, err = hammer.communicate(timeout=30)
+    assert hammer.returncode == 0, err
+    saved = [int(text) for text in log.read_text().split()]
+    kept = [int(text.rsplit(" ", 1)[1]) for text in ws.bib.read_text(encoding="utf-8").splitlines()
+            if text.startswith("% saved by the other program ")]
+    print("writer saves completed:", done, "refused:", refused, "other program's saves:", len(saved))
+    assert done + refused == 150 and done >= 1 and refused >= 1 and len(saved) > 30
+    assert kept == saved == list(range(1, len(saved) + 1))            # not one of its saves was written over
+    assert set(load_entries(ws.bib)) == {"Zoll90", "Kaha12"} and not list(ws.root.glob(".cdl.bib-*"))
+    assert writer.interrupted(ws) is None

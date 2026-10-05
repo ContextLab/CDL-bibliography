@@ -263,11 +263,38 @@ def transaction(ws, *, recovery=False, progress=None):
             raise CdlbibError(_interrupted_line(ws.root, _marked()[1]))
         token = _owner.set(_owner.get() + (owner,))
         try:
+            if not managed and not isinstance(lock, contextlib.nullcontext):
+                # A write to this library that was killed part-way is settled before anything
+                # else is done under the lock (a send, an approval, another write): the library
+                # is put back whole, or this refuses, naming the record (writer.recover).
+                from . import writer
+                try:
+                    said = writer.recover(ws)
+                except OSError as exc:
+                    raise CdlbibError(f"An earlier write to {ws.bib} was interrupted and could not be settled "
+                                      f"({exc.strerror or exc}); nothing was changed. The record of it is "
+                                      f"{ws.work / writer.EDITS / writer.PENDING}; api.recover_interrupted tries "
+                                      "again.") from exc
+                # What this taking of the lock settled, for this library only (never what an
+                # earlier call settled and nobody asked about).
+                _settled.set({**(_settled.get() or {}), owner[1]: said})
             yield
         finally:
             _owner.reset(token)
     finally:
         lock.__exit__(None, None, None)
+
+
+_settled = contextvars.ContextVar("cdlbib_settled_writes", default=None)
+
+
+def settled(ws):
+    """The lines saying which interrupted write to the library ``ws`` was settled when its
+    lock was last taken (transaction); asking empties the list."""
+    held = dict(_settled.get() or {})
+    said = held.pop(str(Path(ws.work).resolve()), [])
+    _settled.set(held)
+    return list(said)
 
 
 def serialized(function):

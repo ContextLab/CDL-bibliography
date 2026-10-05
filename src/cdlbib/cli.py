@@ -321,7 +321,7 @@ def offer_completion(ws, reference="github", database=None, mailto=None):
             accepted, applied = [], None
             try:
                 if offer.error is not None:
-                    raise offer.error
+                    raise CdlbibError(offer.error)
                 results = offer.proposals
                 recheck = proposal_recheck(ws, mailto=mailto, database=database)
                 def candidate(item, selected):
@@ -742,13 +742,35 @@ def _installing(run):
                 raise SystemExit(1)
 
 
+class _interruptible:
+    """While a question is on the terminal, Ctrl-C ends it, also when the command was started
+    with interrupts ignored (a shell's background job, nohup: Python then installs no handler
+    and the read would never return). The inherited setting is put back afterwards."""
+
+    def __enter__(self):
+        import signal
+        self.previous = None
+        try:
+            if signal.getsignal(signal.SIGINT) == signal.SIG_IGN:
+                self.previous = signal.signal(signal.SIGINT, signal.default_int_handler)
+        except (ValueError, OSError):       # not the main thread: nothing to change
+            pass
+
+    def __exit__(self, *exc):
+        import signal
+        if self.previous is not None:
+            signal.signal(signal.SIGINT, self.previous)
+        return False
+
+
 def _confirmed(question):
     """Ask only at a terminal; with none, the caller prints the manual command and exits."""
     if not sys.stdin.isatty():
         return False
     try:
-        return typer.confirm(question, default=False)
-    except typer.Abort:  # Ctrl-C or end of input at the prompt
+        with _interruptible():
+            return typer.confirm(question, default=False)
+    except (typer.Abort, KeyboardInterrupt):  # Ctrl-C or end of input at the prompt
         typer.echo("Aborted.", err=True)
         raise SystemExit(1)
 
@@ -763,7 +785,8 @@ def _chosen(question, letters, words=(), case_sensitive=False):
     while True:
         typer.echo(f"Your choice [{'/'.join(letters)}]: ", nl=False, err=True)     # nothing of it on stdout
         try:
-            answer = sys.stdin.readline()
+            with _interruptible():
+                answer = sys.stdin.readline()
         except KeyboardInterrupt:
             answer = ""
         if not answer:  # Ctrl-C or end of input at the prompt

@@ -77,17 +77,90 @@ os.environ["CDLBIB_HOME"] = str(Path(_MANAGED) / "home")
 os.environ["CDLBIB_UPSTREAM"] = str(build_upstream(_MANAGED))
 _REAL_DATA_FOLDER = _real_data_folder()
 _REAL_DATA_FOLDER_EXISTED = _REAL_DATA_FOLDER.exists()
+_HASHED = ("state.json", "lock", "update-in-progress.json", "completion-undo", "tex-link.json")
+
+
+def data_folder_state(folder):
+    """What a run must leave alone in a data folder that exists: {relative name: what it is}.
+
+    Every file, folder and link under it by kind, size and modification time (a link by its
+    target), except inside the clone's .git, where only HEAD (its bytes), packed-refs and
+    refs/ are recorded: git rewrites its index and objects when anything merely looks at the
+    clone. The small files cdlbib steers by (state.json, the lock, the interrupted-update
+    marker, the undo checkpoint, the TeX link record) and the library's cdl.bib are recorded
+    by SHA-256 as well. Nothing is read beyond those; a whole clone takes well under a second."""
+    import hashlib
+    folder = Path(folder)
+    state = {}
+
+    def digest(path):
+        try:
+            return hashlib.sha256(path.read_bytes()).hexdigest()
+        except OSError as exc:
+            return f"unreadable ({type(exc).__name__})"
+
+    for base, folders, files in os.walk(folder):
+        relative = Path(base).relative_to(folder)
+        if relative.parts[:2] == ("library", ".git"):
+            inside = relative.parts[2:]
+            if not inside:
+                folders[:] = [name for name in folders if name == "refs"]
+                files = [name for name in files if name in ("HEAD", "packed-refs")]
+            elif inside[0] != "refs":
+                folders[:], files = [], []
+        for name in sorted(folders + files):
+            path = Path(base) / name
+            key = str(relative / name)
+            try:
+                found = path.lstat()
+            except OSError as exc:
+                state[key] = f"unreadable ({type(exc).__name__})"
+                continue
+            if path.is_symlink():
+                state[key] = ("link", os.readlink(path))
+            elif path.is_dir():
+                state[key] = ("folder",)
+            else:
+                state[key] = ("file", found.st_size, found.st_mtime_ns)
+                if key in _HASHED or key in ("library/cdl.bib", "library/.git/HEAD"):
+                    state[key] += (digest(path),)
+    return state
+
+
+def data_folder_changes(before, after):
+    """The names that differ between two data_folder_state results, each with how."""
+    return [f"{name}: {'removed' if name not in after else 'added' if name not in before else 'changed'}"
+            for name in sorted(set(before) | set(after)) if before.get(name) != after.get(name)]
+
+
+_REAL_DATA_FOLDER_STATE = data_folder_state(_REAL_DATA_FOLDER) if _REAL_DATA_FOLDER_EXISTED else None
+
+
+def real_data_folder_problem():
+    """Why this run failed to leave the real data folder alone; None when it did. A folder
+    that was not there must still not be there; one that was must be exactly as it was."""
+    if not _REAL_DATA_FOLDER_EXISTED:
+        return f"this run created {_REAL_DATA_FOLDER}" if _REAL_DATA_FOLDER.exists() else None
+    if not _REAL_DATA_FOLDER.exists():
+        return f"this run removed {_REAL_DATA_FOLDER}"
+    changed = data_folder_changes(_REAL_DATA_FOLDER_STATE, data_folder_state(_REAL_DATA_FOLDER))
+    if changed:
+        return (f"{_REAL_DATA_FOLDER} changed during this run (" + "; ".join(changed[:10])
+                + (f"; and {len(changed) - 10} more" if len(changed) > 10 else "")
+                + "). If nothing but the tests used cdlbib meanwhile, a test wrote there")
+    return None
 
 
 def no_real_library_touched():
-    """The real data folder, if it did not exist before this run, still does not."""
-    assert _REAL_DATA_FOLDER_EXISTED or not _REAL_DATA_FOLDER.exists(), (
-        f"a test created {_REAL_DATA_FOLDER}: the managed library must only be written under CDLBIB_HOME")
+    """The real data folder is as this run found it: absent still, or unchanged."""
+    problem = real_data_folder_problem()
+    assert problem is None, f"{problem}: the managed library must only be written under CDLBIB_HOME"
 
 
 def pytest_sessionfinish(session, exitstatus):
-    if not _REAL_DATA_FOLDER_EXISTED and _REAL_DATA_FOLDER.exists():
-        sys.stderr.write(f"\nERROR: this run created {_REAL_DATA_FOLDER}; tests must never write there.\n")
+    problem = real_data_folder_problem()
+    if problem:
+        sys.stderr.write(f"\nERROR: {problem}; tests must never write there.\n")
         session.exitstatus = 1
 
 
