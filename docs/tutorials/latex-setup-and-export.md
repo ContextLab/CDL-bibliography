@@ -300,13 +300,13 @@ depends on the TeX installation that holds the `kpsewhich` in use:
 |TeX installation|What `cdlbib export --bbl` does|
 |-|-|
 |TeX Live in a folder you can write to (TinyTeX, a TeX Live installed in your home folder)|runs `tlmgr install biber` (or `tlmgr install bibtex`) with that installation's own `tlmgr`, then compiles|
-|Homebrew `texlive`|runs `brew install biber` with the `brew` of the same Homebrew prefix, then compiles (biber is a Homebrew formula of its own; `tlmgr install` is switched off in Homebrew's TeX Live)|
+|Homebrew `texlive`|asks first, with or without `--ask`; after a yes it runs `brew install biber` with the `brew` of the same Homebrew prefix, then compiles (biber is a Homebrew formula of its own; `tlmgr install` is switched off in Homebrew's TeX Live)|
 |TeX Live in a folder you cannot write to|stops and prints `Run: sudo tlmgr install biber`|
 |TeX from `apt-get`, `dnf` or `pacman`|stops and prints the command, for example `Run: sudo apt-get install biber`|
 |MiKTeX|stops and names the MiKTeX package to install|
 |no TeX|stops and names TeX Live and MacTeX|
 
-The command prints a line before it installs:
+With `tlmgr`, the command prints a line before it installs:
 
 ```text
 installing biber (needed for: Compiling a .bbl) with: tlmgr install biber ...
@@ -329,11 +329,35 @@ Compiling a .bbl needs the TeX program 'biber', which was not found on PATH (ins
 The terminal interface asks the same question in a dialog when it was started with
 `cdlbib --ask tui`, and otherwise shows the `installing` line in its log.
 
+`brew install biber` changes software outside the TeX installation, so the question is
+asked every time, also without `--ask`:
+
+```text
+Compiling a .bbl needs the TeX program 'biber'. Install it now (brew install biber)?
+```
+
+Without a terminal, or after a no, `brew` is not run, and the command prints the
+following and exits with `1`:
+
+```text
+Compiling a .bbl needs the TeX program 'biber', which was not found on PATH (install: brew install biber)
+```
+
+After a yes, `brew` is run with `HOMEBREW_NO_AUTO_UPDATE`, `HOMEBREW_NO_INSTALL_CLEANUP`,
+`HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK` and `HOMEBREW_NO_ENV_HINTS` set to `1`: it does
+not update Homebrew, clean up other formulae, or upgrade the formulae that depend on
+biber. `HOMEBREW_NO_ANALYTICS` and `HOMEBREW_NO_INSTALL_UPGRADE` are passed on when you
+have set them.
+
 `cdlbib` never runs `sudo`. `tlmgr --usermode` is not used, because it does not install
 programs (`tlmgr` answers `package biber is not relocatable, cannot install it in user
 mode`). The package manager is run from the TeX installation's own folder, not looked up
-on `PATH`, in an empty temporary folder, and with only `HOME`, `PATH`, `TMPDIR`, the
-locale and the proxy variables of your environment. A missing `pdflatex`, `xelatex` or
+on `PATH`, in an empty temporary folder, and with only `HOME`, `TMPDIR`, the locale and
+the proxy variables of your environment. Its `PATH` is its own folder followed by
+`/usr/bin`, `/bin`, `/usr/sbin` and `/sbin`, not your `PATH`, so the `perl`, `curl` and
+other programs it calls by name are its own or the system's. It is given 30 minutes; when
+the time is up, or the command is interrupted, it and every program it started are
+ended. A missing `pdflatex`, `xelatex` or
 `lualatex` is not installed by `cdlbib`; the message names what to install.
 
 When the installation stops with an error, the message starts with `install failed`

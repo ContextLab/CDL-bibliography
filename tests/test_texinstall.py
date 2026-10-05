@@ -351,6 +351,188 @@ def test_what_is_shown_of_a_program_is_printable_and_a_version_is_digits_and_dot
     assert status == 0 and "\x1b" in text and texinstall.shown(text).isprintable() and len(texinstall.shown(text)) <= texinstall.MAX_SHOWN
 
 
+def test_an_interpreter_or_helper_planted_on_path_is_not_what_a_program_finds(tmp_path, monkeypatch):
+    """A package manager that starts with `#!/usr/bin/env perl`, as tlmgr does, and one that
+    calls a helper by name: a perl and a helper in an absolute folder that comes first on the
+    user's PATH (the paper's folder, say) are not the ones that run."""
+    if not os.path.exists("/usr/bin/perl"):
+        pytest.skip("/usr/bin/perl is not installed (the test runs a real Perl script)")
+    marker = tmp_path / "a planted program ran"
+    planted = tmp_path / "paper"
+    for name in ("perl", "sh", "env", "uname", "curl", "git", "wget", "gpg", "tar", "xz"):
+        decoy(planted, name, marker)
+    own = tmp_path / "installation" / "bin"
+    own.mkdir(parents=True)
+    manager = own / "manager"
+    manager.write_text("#!/usr/bin/env perl\nprint 'perl ', `/usr/bin/which perl`; print `uname`; print \"PATH $ENV{PATH}\\n\";\n", encoding="utf-8")
+    manager.chmod(0o755)
+    helper = own / "helper"                                    # a helper beside the program is found, by name
+    helper.write_text("#!/bin/sh\necho the helper of the installation\n", encoding="utf-8")
+    helper.chmod(0o755)
+    calls = own / "calls"
+    calls.write_text("#!/bin/sh\nhelper\nuname\n", encoding="utf-8")
+    calls.chmod(0o755)
+    monkeypatch.setenv("PATH", os.pathsep.join([str(planted), os.environ["PATH"]]))
+    monkeypatch.chdir(planted)
+    assert shutil.which("perl") == str(planted / "perl") and shutil.which("uname") == str(planted / "uname")
+
+    status, text = texinstall._run([str(manager)])
+    assert status == 0 and not marker.exists(), text
+    assert text.splitlines()[0] == "perl /usr/bin/perl" and text.splitlines()[1] == platform.system()
+    folders = text.splitlines()[2].removeprefix("PATH ").split(os.pathsep)
+    assert folders == [str(own), *texinstall.SYSTEM_PATH] and str(planted) not in folders
+    status, text = texinstall._run([str(calls)])
+    assert status == 0 and text.splitlines() == ["the helper of the installation", platform.system()] and not marker.exists()
+    assert texinstall.environment([str(manager)])["PATH"] == os.pathsep.join([str(own), *texinstall.SYSTEM_PATH])
+    linked = tmp_path / "links" / "manager"                    # found through a link: the folder it really lies in, too
+    linked.parent.mkdir()
+    os.symlink(manager, linked)
+    assert texinstall.environment([str(linked)])["PATH"] == os.pathsep.join([str(linked.parent), str(own), *texinstall.SYSTEM_PATH])
+    assert subprocess.run(["perl", "-e", "1"], capture_output=True).returncode == 0 and marker.exists()   # the planted perl is real
+
+
+def test_homebrew_is_run_without_its_update_cleanup_and_dependents_check(tmp_path, monkeypatch):
+    """A real program called brew, run as install() runs one: whatever the user's environment
+    holds, it is told not to update Homebrew, not to clean up and not to touch dependents."""
+    brew = tmp_path / "prefix" / "bin" / "brew"
+    brew.parent.mkdir(parents=True)
+    brew.write_text("#!/bin/sh\nenv | grep '^HOMEBREW' | sort\n", encoding="utf-8")
+    brew.chmod(0o755)
+    wanted = ["HOMEBREW_NO_AUTO_UPDATE=1", "HOMEBREW_NO_ENV_HINTS=1", "HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1",
+              "HOMEBREW_NO_INSTALL_CLEANUP=1"]
+    for name in list(os.environ):
+        if name.startswith("HOMEBREW"):
+            monkeypatch.delenv(name)
+    status, text = texinstall._run([str(brew), "install", "biber"])
+    assert status == 0 and sorted(text.splitlines()) == sorted(wanted)
+    for name, value in (("HOMEBREW_NO_AUTO_UPDATE", "0"), ("HOMEBREW_NO_INSTALL_CLEANUP", ""), ("HOMEBREW_NO_ANALYTICS", "1"),
+                        ("HOMEBREW_NO_INSTALL_UPGRADE", "yes"), ("HOMEBREW_CURLRC", "/tmp/x"), ("HOMEBREW_GIT", "/tmp/git"),
+                        ("HOMEBREW_CASK_OPTS", "--appdir=/tmp")):
+        monkeypatch.setenv(name, value)
+    status, text = texinstall._run([str(brew), "install", "biber"])       # the user's opt-outs stay; nothing else of theirs
+    assert status == 0 and sorted(text.splitlines()) == sorted(wanted + ["HOMEBREW_NO_ANALYTICS=1", "HOMEBREW_NO_INSTALL_UPGRADE=1"])
+    other = tmp_path / "prefix" / "bin" / "tlmgr"
+    other.write_text("#!/bin/sh\nenv | grep -c '^HOMEBREW'\n", encoding="utf-8")
+    other.chmod(0o755)
+    assert texinstall._run([str(other), "install", "biber"]) == (1, "0\n")       # only brew is given them
+
+
+def test_homebrew_is_asked_about_every_time(ws, texenv, tmp_path, monkeypatch):
+    """`brew install` changes software outside the TeX installation, so it is a question even
+    without --ask: the core raises NeedsConfirmation, and without a terminal nothing is run
+    and the message names the command."""
+    from cdlbib import prompts
+    brew = MissingProgram("biber", "Compiling a .bbl", ["/opt/homebrew/bin/brew", "install", "biber"], "brew install biber",
+                          always_ask=True)
+    tlmgr = MissingProgram("biber", "Compiling a .bbl", ["/tex/bin/tlmgr", "install", "biber"], "tlmgr install biber")
+    assert deps.ask() is False and tlmgr.always_ask is False
+    said = []
+    assert api.consent(tlmgr, progress=said.append) is True and said == [prompts.install_line(tlmgr)]
+    with pytest.raises(NeedsConfirmation) as asked:
+        api.consent(brew, progress=said.append)
+    assert asked.value.question == "Compiling a .bbl needs the TeX program 'biber'. Install it now (brew install biber)?"
+    assert asked.value.__cause__ is brew and len(said) == 1
+    assert api.consent(brew, allow=True) is True and api.consent(brew, allow=False) is False
+    ran = []
+
+    def run(allow_fork_creation=False):
+        ran.append(1)
+        raise brew
+    with pytest.raises(NeedsConfirmation):
+        api.attempt(run, progress=said.append)                 # asked before anything is installed
+    with pytest.raises(MissingProgram):
+        api.attempt(run, allow_install=False)
+    assert len(ran) == 2 and len(said) == 1
+
+    need("pdflatex", "kpsewhich", "biber")
+    real = Path(shutil.which("kpsewhich")).resolve()
+    for program in ("biber", "bibtex"):
+        found = texinstall.plan(program)
+        assert found.confirm == (bool(found.command) and Path(found.command[0]).name == "brew")
+    if "Cellar" not in real.parts:
+        return                                                 # the rest is this computer's own Homebrew
+    file = paper(tmp_path / "paper", CITES, BIBLATEX)
+    monkeypatch.setenv("PATH", path_without(tmp_path / "bin", "biber"))
+    found = texinstall.plan("biber")
+    assert found.confirm and found.shown == "brew install biber"
+    assert texinstall.how("biber") == "Run: brew install biber (cdlbib export --bbl asks, then does this, when the program is needed)"
+    with pytest.raises(MissingProgram) as stopped:
+        export.bbl(ws, file)
+    assert stopped.value.always_ask and stopped.value.command == found.command
+    before = sorted(path.name for path in (Path(*real.parts[:real.parts.index("Cellar") + 1]) / "biber").iterdir())
+    out = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", cwd=tmp_path)      # no --ask, no terminal
+    assert out.returncode == 1 and out.stdout == "" and "installing" not in out.stderr
+    assert out.stderr.strip() == ("Compiling a .bbl needs the TeX program 'biber', which was not found on PATH "
+                                  "(install: brew install biber)")
+    assert not file.with_suffix(".bbl").exists()
+    assert sorted(path.name for path in (Path(*real.parts[:real.parts.index("Cellar") + 1]) / "biber").iterdir()) == before
+
+
+CHILD = ("import os, subprocess, sys, time\n"
+         "child = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(600)'])\n"     # inherits stdout
+         "open(sys.argv[1], 'w').write(f'{os.getpid()} {child.pid}')\n"
+         "print('started', flush=True)\n")
+
+
+def gone(pid):
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return True
+    return False
+
+
+def test_the_time_limit_covers_a_child_that_keeps_the_output_open(tmp_path):
+    """A program that starts a sleeping child and exits at once: the child holds the pipe, so
+    there is no end of output to read. One time limit covers the exit and the reading, and
+    the child is ended with it."""
+    import time
+    pids = tmp_path / "pids"
+    started = time.monotonic()
+    status, text = texinstall._run([sys.executable, "-c", CHILD, str(pids)], timeout=4)
+    took = time.monotonic() - started
+    assert (status, text) == (None, "it did not finish within 4 seconds") and 3.5 < took < 12, took
+    parent, child = (int(pid) for pid in pids.read_text().split())
+    time.sleep(0.5)
+    assert gone(child) and gone(parent)
+    assert threading.active_count() < 20 and not [t for t in threading.enumerate() if t.name == "cdlbib-tex-output" and t.is_alive()]
+
+    pids.unlink()                                             # a program that finishes leaves no one behind either
+    quiet = CHILD.replace("subprocess.Popen([", "subprocess.Popen(stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, args=[")
+    started = time.monotonic()
+    assert texinstall._run([sys.executable, "-c", quiet, str(pids)], timeout=30) == (0, "started\n")
+    assert time.monotonic() - started < 10
+    parent, child = (int(pid) for pid in pids.read_text().split())
+    time.sleep(0.5)
+    assert gone(child) and gone(parent)
+
+
+def test_an_interrupted_run_leaves_no_program_behind(tmp_path):
+    """Ctrl-C while a program is running: it, and the child it started, are ended."""
+    import signal
+    import time
+    pids = tmp_path / "pids"
+    slow = CHILD + "time.sleep(600)\n"
+    outer = subprocess.Popen([sys.executable, "-c", "import sys; from cdlbib import texinstall\n"
+                              f"texinstall._run([sys.executable, '-c', {slow!r}, {str(pids)!r}], timeout=300)"],
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    try:
+        deadline = time.monotonic() + 60
+        while not (pids.exists() and len(pids.read_text().split()) == 2):
+            assert time.monotonic() < deadline and outer.poll() is None, "the program did not start"
+            time.sleep(0.1)
+        parent, child = (int(pid) for pid in pids.read_text().split())
+        assert not gone(parent) and not gone(child)
+        outer.send_signal(signal.SIGINT)
+        _, said = outer.communicate(timeout=60)
+    finally:
+        if outer.poll() is None:
+            outer.kill()
+    assert "KeyboardInterrupt" in said and outer.returncode != 0
+    time.sleep(0.5)
+    assert gone(parent) and gone(child)
+
+
 # --- the control file: versions in a refusal, and the schemas of other bibers -----------------------
 
 def real_bcf(folder):
@@ -567,8 +749,13 @@ def test_without_ask_a_missing_bibtex_is_announced_installed_and_used(on_texlive
     removed = subprocess.run(["tlmgr", "remove", "--force", "bibtex"], capture_output=True, text=True)
     assert removed.returncode == 0 and shutil.which("bibtex") is None, removed.stdout[-800:] + removed.stderr[-800:]
     file = paper(tmp_path / "paper", "\\cite{Zoll90}\n" + PLAIN)
-    out = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", cwd=tmp_path)
+    marker = tmp_path / "a planted program ran"               # tlmgr is a Perl script found by `env perl`, and calls helpers
+    for name in ("perl", "curl", "wget", "xz", "tar", "gpg", "uname"):
+        decoy(tmp_path / "planted", name, marker)
+    out = cdlbib("--library", str(ws.root), "export", str(file), "--bbl", cwd=tmp_path,
+                 PATH=os.pathsep.join([str(tmp_path / "planted"), os.environ["PATH"]]))
     assert out.returncode == 0, out.stderr
+    assert not marker.exists()
     assert out.stdout.splitlines()[0] == "installing bibtex (needed for: Compiling a .bbl) with: tlmgr install bibtex ..."
     assert out.stdout.splitlines()[-1] == f"wrote {file.with_suffix('.bbl').resolve()}: bibtex, style plain, pdflatex, 1 cited key"
     assert shutil.which("bibtex") == str(on_texlive / "bibtex")
