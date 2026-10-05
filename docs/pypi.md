@@ -16,6 +16,9 @@ If you are *not* a CDL member, you probably won't want to use this package direc
 - Records a human review of an entry under the reviewer's GitHub login.
 - Sends a change to the bibliography as a pull request from your own fork.
 - Optionally reads PDFs to collect quoted evidence for an entry (the `research` extra).
+- Links the bibliography into your TeX tree (`cdlbib setup`) and exports the entries a
+  paper cites as a `.bib` or a compiled `.bbl` (`cdlbib export`).
+- Offers the same tasks in a local web interface in your browser (`cdlbib web`).
 
 ## Requirements
 
