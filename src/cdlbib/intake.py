@@ -446,19 +446,31 @@ def _child(arguments, timeout, limit):
     The output is read in blocks and never beyond ``limit`` (plus one block): a child that
     writes more is killed at once. A child still running after ``timeout`` seconds is
     killed and ``subprocess.TimeoutExpired`` is raised. Arguments are passed as an argument
-    list (no shell); stderr goes to a temporary file, of which the first 2000 bytes are read.
+    list (no shell).
+
+    The scratch space is this call's own: one private folder (``tempfile.mkdtemp``, mode
+    0700) made here, given to the child as its only temporary location (``TMPDIR``, ``TEMP``
+    and ``TMP``, which ``local_ocr``, pdftoppm and tesseract follow, and ``CDLBIB_SCRATCH``),
+    holding the child's stderr too. It is removed here, after the child and its process
+    group are dead, however the call ends (a result, a timeout, too much output, an
+    exception, an interrupt); a killed child cannot clean up after itself, and what it
+    leaves is text and images of the person's paper. ``shutil.rmtree`` removes a link found
+    inside without following it.
     """
     import selectors
     import tempfile
     import time
     package_parent = str(Path(__file__).resolve().parents[1])
-    env = dict(os.environ, PYTHONPATH=os.pathsep.join(p for p in (package_parent, os.environ.get("PYTHONPATH")) if p))
     command = [sys.executable, "-m", "cdlbib.intake", *map(str, arguments)]
-    out, over, deadline = bytearray(), False, time.monotonic() + timeout
-    with tempfile.TemporaryFile() as errors:
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors, stdin=subprocess.DEVNULL, env=env,
-                                   start_new_session=True)  # its own group: the tools it starts die with it
-        try:
+    out, over, deadline, process = bytearray(), False, time.monotonic() + timeout, None
+    scratch = tempfile.mkdtemp(prefix="cdlbib-pdf-")
+    try:
+        env = dict(os.environ, TMPDIR=scratch, TEMP=scratch, TMP=scratch, CDLBIB_SCRATCH=scratch,
+                   PYTHONPATH=os.pathsep.join(p for p in (package_parent, os.environ.get("PYTHONPATH")) if p))
+        with open(os.path.join(scratch, "stderr"), "w+b") as errors:
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors, stdin=subprocess.DEVNULL,
+                                       env=env, cwd=scratch,
+                                       start_new_session=True)  # its own group: the tools it starts die with it
             with selectors.DefaultSelector() as selector:
                 selector.register(process.stdout, selectors.EVENT_READ)
                 while True:
@@ -476,17 +488,26 @@ def _child(arguments, timeout, limit):
                         break
             if not over:
                 process.wait(max(0.1, deadline - time.monotonic()))
-        finally:
-            try:  # the child and whatever it started (pdftoppm, tesseract)
-                os.killpg(process.pid, 9)
-            except (ProcessLookupError, PermissionError, AttributeError):
-                if process.poll() is None:
-                    process.kill()
-            process.wait()
-            process.stdout.close()
-        errors.seek(0)
-        said = errors.read(2000).decode("utf-8", "replace").strip()
-    return process.returncode, bytes(out), said, over
+            _stop(process)
+            errors.seek(0)
+            said = errors.read(2000).decode("utf-8", "replace").strip()
+        return process.returncode, bytes(out), said, over
+    finally:
+        if process is not None:
+            _stop(process)
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+def _stop(process):
+    """Kill the child and whatever it started (pdftoppm, tesseract), and wait until it is gone."""
+    try:
+        os.killpg(process.pid, 9)
+    except (ProcessLookupError, PermissionError, AttributeError):
+        if process.poll() is None:
+            process.kill()
+    process.wait()
+    if process.stdout and not process.stdout.closed:
+        process.stdout.close()
 
 
 def _identifiers(pages, metadata):
