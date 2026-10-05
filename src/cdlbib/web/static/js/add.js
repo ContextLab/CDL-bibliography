@@ -139,6 +139,7 @@ export async function show(main) {
             route.default ? h("span", { class: "tag", text: "default" }) : null,
             route.available === null ? button("check", (event) => run(event.currentTarget, async () => routes(await post("/api/model-routes/check", { route: route.name }))),
               { "aria-label": "Check whether " + route.label + " is set up" }) : null),
+          route.available === false && route.detail ? h("p", { class: "differs", text: route.detail }) : null,
           h("p", { class: "muted", text: route.how }))));
     }
 

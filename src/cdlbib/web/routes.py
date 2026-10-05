@@ -8,7 +8,7 @@ from collections import Counter
 from dataclasses import dataclass, field, replace
 
 from .. import api, deps, prompts
-from ..errors import CdlbibError, MissingDependency, PublishRefused, UpdateNeedsDecision
+from ..errors import CdlbibError, UpdateNeedsDecision
 from .store import ID, MANUSCRIPT_TYPES, Missing
 
 # Names no endpoint takes, whatever the route: where a change goes, what it is compared
@@ -16,7 +16,6 @@ from .store import ID, MANUSCRIPT_TYPES, Missing
 NEVER = frozenset({"database", "reference", "ledger", "upstream", "fork", "outfile", "autofix", "engine",
                    "citations", "mailto", "path", "file", "out", "inputs", "paper", "force", "base", "bars",
                    "fingerprints", "verbose", "all_entries", "client", "reviewer", "login", "ws"})
-CANNOT_ACCEPT = "Cannot accept: complete required fields and resolve duplicate or unsupported entries first."
 NO_BBL = ("A compiled .bbl is not made here. In a terminal: cdlbib export PAPER --bbl "
           "(PAPER is the paper's main .tex file or its folder).")
 READ_FROM = {"aux": "the .aux file", "bcf": "the .bcf file", "compiled": "a fresh LaTeX run of the paper",
@@ -197,7 +196,7 @@ def proposal_data(app, found):
     proposal = held["proposal"]
     data = api.intake_data(proposal)
     data.update(id=found, pdf=held["pdf"], in_library=held["in_library"], acceptable=api.acceptable(proposal),
-                cannot_accept=None if api.acceptable(proposal) else CANNOT_ACCEPT,
+                why_not=api.why_not_acceptable(proposal), written=held["written"],
                 failed=api.proposal_failed(proposal), superseded=held["replaced"],
                 name_choices=[{"field": field, "typed": typed, "source": source}
                               for field, typed, source in api.name_choices(proposal)])
@@ -223,6 +222,7 @@ def kept(app, results, **how):
 
 def format_data(fmt):
     return {"ok": fmt.ok, "failure": fmt.failure, "errors": [str(item) for item in fmt.errors][:5000],
+            "forced": [f"{key}: {prompts.FORCE_REFUSED}" for key in fmt.forced],
             "corrections": api.as_data(fmt.corrections), "log": fmt.log[-50_000:]}
 
 
@@ -239,12 +239,13 @@ def check_data(check):
 def applied_data(applied):
     return {"written": list(applied.written), "removed": list(applied.removed), "renamed": dict(applied.renamed),
             "refused": [list(item) for item in applied.refused],
+            "outcomes": [{"index": o.index, "key": o.key, "status": o.status, "reason": o.reason} for o in applied.outcomes],
             "backup": applied.backup.stamp if applied.backup is not None else None,
             "saved_copy": str(applied.saved_copy) if applied.saved_copy else None, "notes": list(applied.notes)}
 
 
-def backup_data(backup):
-    return {"stamp": backup.stamp, "when": backup.when, "branch": backup.branch, "commit": backup.commit[:8],
+def backup_data(backup, only_copy=False):
+    return {"line": prompts.backup_line(backup, only_copy=only_copy), "stamp": backup.stamp, "when": backup.when, "branch": backup.branch, "commit": backup.commit[:8],
             "changed": len(backup.changed), "has_bundle": backup.has_bundle}
 
 
@@ -271,6 +272,9 @@ def failure(exc):
     data = {"kind": plain["error_kind"], "message": plain["error"]}
     for name in EXTRA.get(data["kind"], ()):
         data[name] = api.as_data(getattr(exc, name, None))
+    if data["kind"] == "NeedsConfirmation":       # the page asks ``question`` and sends the request again with the allow flag
+        data.update(needs_confirmation=exc.kind, question=exc.question, package=exc.package, extra=exc.extra,
+                    feature=exc.feature, upstream=exc.upstream)
     if data["kind"] == "ExportFailed":
         data["reason"] = exc.kind
     if data["kind"] == "GateFailed" and exc.check is not None:
@@ -279,20 +283,18 @@ def failure(exc):
 
 
 def guarded(app, route, args):
-    """The job of a request: the handler, and for a missing optional package the CLI's rule
-    (install it after saying so and run once more; with --ask, stop and let the page ask)."""
+    """The job of a request: the handler, run through api.attempt, the core's one rule for a
+    missing optional package and a missing fork (go on after saying so; with --ask, stop with
+    NeedsConfirmation until the page sends the person's explicit yes). A route that does not
+    take the allow flags (a read) is not retried."""
     def call(say):
-        for turn in (1, 2):
-            try:
-                return route.handler(app, args, say)
-            except MissingDependency as exc:
-                if turn == 2 or "allow_install" not in route.args:
-                    raise
-                if deps.ask() and not args["allow_install"]:
-                    raise Reply(exc, needs_confirmation="install",
-                                question=f"{exc.feature} needs '{exc.package}'. Install it now?") from exc
-                say(f"installing {exc.package} (needed for: {exc.feature}) ...")
-                deps.install(exc.extra, package=exc.package)
+        if "allow_install" not in route.args:
+            return route.handler(app, args, say)
+
+        def run(allow_fork_creation=False):
+            return route.handler(app, dict(args, allow_fork_creation=allow_fork_creation), say)
+        return api.attempt(run, allow_install=True if args["allow_install"] else None,
+                           allow_fork=True if args.get("allow_fork_creation") else None, progress=say)
     return call
 
 
@@ -518,12 +520,13 @@ def proposal(app, a, say):
 
 
 def _accepted(app, found, held, data):
-    """A proposal is done with once it is written (or its duplicate removed). One whose entry
-    is written while its model evidence could not be stored stays, marked as written, so
-    that the page keeps showing what is still owed."""
+    """A proposal is done with once the writer confirms it (its outcome is "written" or
+    "removed"). One whose entry is written while its model evidence could not be stored
+    stays, marked as written, so that the page keeps showing what is still owed."""
+    done = [item for item in data["outcomes"] if item["status"] in ("written", "removed")]
     if data.get("evidence_stored") is False:
         held["written"] = data.get("key")
-    elif data["written"] or data["removed"]:
+    elif done:
         app.store.drop("proposal", found)
     return data
 
@@ -531,8 +534,9 @@ def _accepted(app, found, held, data):
 def proposal_accept(app, a, say):
     held = current(app, a["proposal"])
     item = held["proposal"]
-    if not api.acceptable(item):
-        raise CdlbibError(CANNOT_ACCEPT)
+    why = api.why_not_acceptable(item)
+    if why:
+        raise Refusal("NotAcceptable", "; ".join(why), why_not=why)
     if item.manual:
         done = api.accept_draft(app.ws, item, pdf=_read(app, held["pdf"]) if held["pdf"] else None)
         data = dict(applied_data(done.applied), key=done.key, fingerprint=done.fingerprint,
@@ -559,11 +563,14 @@ def proposal_accept_remaining(app, a, say):
             stale.append(found)                 # not the version on the page: left for a decision of its own
         elif api.acceptable(item) and not item.needs_decision and not item.manual:
             chosen.append((found, item))
-    if not chosen:
-        return dict(applied_data(api.apply_proposals(app.ws, [])), accepted=[], stale=stale)
     data = applied_data(api.apply_proposals(app.ws, [item for _, item in chosen]))
-    refused = {key for key, _ in data["refused"]}
-    data["accepted"] = [found for found, item in chosen if (item.key_proposed or item.key_typed) not in refused]
+    # The writer says what it did with each accepted proposal, by its place in the list.
+    by_place = {item["index"]: item for item in data["outcomes"]}
+    data["accepted"] = [found for place, (found, _) in enumerate(chosen)
+                        if by_place.get(place, {}).get("status") in ("written", "removed")]
+    data["not_written"] = [{"id": found, "key": by_place[place]["key"], "reason": by_place[place]["reason"]}
+                           for place, (found, _) in enumerate(chosen)
+                           if place in by_place and by_place[place]["status"] == "refused"]
     data["stale"] = stale
     for found in data["accepted"]:
         app.store.drop("proposal", found)
@@ -629,23 +636,30 @@ def offers_next(app, a, say):
     return {"done": True, "offer": None}
 
 
+def completion_due(app, a, say):
+    return api.as_data(api.completion_due(app.ws))
+
+
 def send(app, a, say):
     def report(check):
+        for line in ([] if check.format.ok else format_data(check.format)["forced"]):
+            say(line)
         say("format: looks good!" if check.format.ok else f"errors found: {check.format.failure or 'see the format check'}")
 
-    def attempt(allow, **more):
-        return api.send_checked(app.ws, summary=a["summary"] or None, progress=say, allow_fork_creation=allow, **more)
+    return api.as_data(api.send_checked(app.ws, summary=a["summary"] or None, progress=say, report=report,
+                                        allow_fork_creation=a["allow_fork_creation"]))
 
-    try:
-        result = attempt(a["allow_fork_creation"], report=report)
-    except PublishRefused as exc:
-        if not exc.needs_fork:
-            raise
-        if deps.ask():
-            raise Reply(exc, needs_confirmation="fork", question=f"{exc} Create one now?") from exc
-        say(f"creating your fork of {exc.upstream} ...")
-        result = attempt(True)
-    return api.as_data(result)
+
+def evidence_pending(app, a, say):
+    return {"pending": api.as_data(api.pending_evidence(app.ws))}
+
+
+def evidence_retry(app, a, say):
+    done = api.retry_evidence(app.ws, a["key"])
+    if done.evidence_stored and a["proposal"]:
+        app.store.drop("proposal", a["proposal"])       # the card that waited for this is done with
+    return {"key": done.key, "fingerprint": done.fingerprint, "evidence_stored": done.evidence_stored,
+            "evidence_error": done.evidence_error}
 
 
 # --- handlers: the state of the library --------------------------------------------------------------
@@ -668,7 +682,7 @@ def backups(app, a, say):
     managed_only(app)
     saved = api.backups()
     return {"root": str(api.managed_root()), "folder": str(api.backups_folder()),
-            "backups": [dict(backup_data(item), only_copy=api.holds_only_copy(item)) for item in saved],
+            "backups": [backup_data(item, only_copy=api.holds_only_copy(item)) for item in saved],
             "unreadable": [list(item) for item in api.unreadable_backups()],
             "checkpoint": api.completion_undo_checkpoint()}
 
@@ -707,6 +721,7 @@ def undo(app, a, say):
 
 def _setup(app, report):
     data = api.as_data(report)
+    data["tex_lines"] = prompts.tex_state_lines(report.tex)
     data["chosen_by"] = prompts.CHOSEN_BY[report.where.origin]
     for item in report.features:
         if item.name == "gh login" and item.available is not None:
@@ -723,7 +738,8 @@ def setup_check(app, a, say):
 
 
 def tex_link(app, a, say):
-    return api.as_data(api.tex_link(app.ws, replace=a["replace"]))
+    status = api.tex_link(app.ws, replace=a["replace"])
+    return dict(api.as_data(status), lines=prompts.tex_state_lines(status))
 
 
 def tex_unlink(app, a, say):
@@ -821,9 +837,9 @@ def _routes():
               wait=quick),
         Route(G, "/api/pdf/{id}/file", "", pdf_file, answer="bytes", direct=True),
         # one proposal
-        Route(G, "/api/proposal", "acceptable, proposal_failed, intake_data, name_choices", proposal, {"proposal": Ident()},
+        Route(G, "/api/proposal", "acceptable, why_not_acceptable, proposal_failed, intake_data, name_choices", proposal, {"proposal": Ident()},
               wait=quick),
-        Route(P, "/api/proposal/accept", "acceptable, apply_proposals | accept_draft", proposal_accept,
+        Route(P, "/api/proposal/accept", "why_not_acceptable, apply_proposals | accept_draft", proposal_accept,
               with_install(proposal=Ident())),
         Route(P, "/api/proposal/remove-duplicate", "apply_proposals", proposal_remove_duplicate,
               with_install(proposal=Ident())),
@@ -838,6 +854,9 @@ def _routes():
         Route(P, "/api/proposal/skip", "", proposal_skip, {"proposal": Ident()}, direct=True),
         # sending
         Route(P, "/api/send/offers", "entry, completion_offers", offers_next, with_install(restart=Flag())),
+        Route(G, "/api/send/due", "completion_due", completion_due, wait=quick, single=True),
+        Route(G, "/api/evidence/pending", "pending_evidence", evidence_pending, wait=quick, single=True),
+        Route(P, "/api/evidence/retry", "retry_evidence", evidence_retry, with_install(key=KEY, proposal=Ident(optional=True))),
         Route(P, "/api/send", "send_checked", send, with_install(summary=Text(100, optional=True),
                                                                   allow_fork_creation=Flag())),
         # the state of the library

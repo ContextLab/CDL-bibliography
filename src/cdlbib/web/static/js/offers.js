@@ -2,7 +2,7 @@
 // in the command line (`verify` and `send` without --no-complete): for each new or changed
 // entry that is not yet verified, what the sources would fill in or change, decided one
 // entry at a time.
-import { post, ApiError } from "./api.js";
+import { get, post, ApiError } from "./api.js";
 import { h, clear, button, note, announce } from "./dom.js";
 import { proposalList } from "./proposal.js";
 
@@ -39,7 +39,12 @@ export function completionStep({ log, verb }) {
         for (const item of offer.proposals) proposals.add(item);
         announce("Completion offered for " + offer.key);
       }
-      next(true);
+      // Is there anything to offer? (The entries that differ from the reference and are not yet accepted.)
+      get("/api/send/due").then((due) => {
+        if (!due.reachable) { clear(said, note("warn", "Completion unavailable: " + due.problem)); resolve(true); return; }
+        if (!due.keys.length) { clear(said, note("", "Completion: no changed entry is waiting for it.")); resolve(true); return; }
+        next(true);
+      }, (error) => { clear(said, note("bad", error.message)); resolve(false); });
     });
   }
 

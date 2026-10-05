@@ -218,7 +218,7 @@ def test_without_a_login_nothing_is_approved(site):
 
 def test_checks_of_the_format_of_chosen_entries_and_of_the_changed_ones(site):
     clean = site.ok("post", "/api/check/format")
-    assert set(clean) == {"ok", "failure", "errors", "corrections", "log"} and clean["failure"] == ""
+    assert set(clean) == {"ok", "failure", "errors", "forced", "corrections", "log"} and clean["failure"] == ""
     site.ws.bib.write_text(text(site.ws).replace("Pages = {1--11}", "Pages = {1-11}"), encoding="utf-8")
     found = site.ok("post", "/api/check/format")
     assert found["ok"] is False and "Game62" in found["errors"] and found["corrections"]["Game62"]["pages"] == "1--11"
@@ -246,7 +246,7 @@ def test_add_by_identifier_then_accept(site):
     assert found["errors"] == [] and len(found["proposals"]) == 1 and lines == [f"{pdfs.ZOLLER_DOI}: metadata_verified"]
     proposal = found["proposals"][0]
     assert proposal["proposed_raw"] == ZOLL90 and proposal["key_proposed"] == "Zoll90" and proposal["status"] in ACCEPTED
-    assert proposal["acceptable"] is True and proposal["cannot_accept"] is None and not proposal["manual"]
+    assert proposal["acceptable"] is True and proposal["why_not"] == [] and not proposal["manual"]
     assert {change["field"]: change["source"] for change in proposal["changes"]}["journal"] == "crossref"
     assert text(site.ws) == before                                         # a proposal writes nothing
     assert site.ok("get", "/api/proposal", proposal=proposal["id"])["proposed_raw"] == ZOLL90
@@ -261,9 +261,9 @@ def test_add_by_identifier_then_accept(site):
     assert site.post("/api/proposal/accept", {"proposal": proposal["id"]})[1]["kind"] == "NotFound"
     # the same work again is now a duplicate, and is not accepted
     again = site.ok("post", "/api/add/identifiers", {"queries": [pdfs.ZOLLER_DOI]})["proposals"][0]
-    assert again["duplicate_of"] == "Zoll90" and again["acceptable"] is False and again["cannot_accept"]
+    assert again["duplicate_of"] == "Zoll90" and again["acceptable"] is False and again["why_not"] == api.why_not_acceptable(site.running.app.store.get("proposal", again["id"])["proposal"])
     result, error = site.post("/api/proposal/accept", {"proposal": again["id"]})
-    assert error["kind"] == "CdlbibError" and error["message"] == again["cannot_accept"]
+    assert error["kind"] == "NotAcceptable" and error["why_not"] == again["why_not"] and "Zoll90" in error["message"]
     assert keys(site.ws) == ["Kaha12", "Game62", "TeneEtal11", "Zoll90"]
 
 
@@ -362,6 +362,7 @@ def test_a_pdf_no_source_knows_model_routes_and_the_manual_form(site, made):
     assert all(route["how"] for route in listed)                            # shown whether or not the route is set up
     checked = site.ok("post", "/api/model-routes/check", {"route": "dartmouth"})["routes"]
     assert checked[0]["available"] is False and checked[1]["available"] is None      # only the one asked about was looked up
+    assert checked[0]["detail"] == api.model_routes(probe=("dartmouth",))[0].detail and checked[0]["detail"]
     result, error = site.post("/api/pdf/model", {"pdf": sent["pdf"], "route": "dartmouth"})
     assert error["kind"] == "SecretNotFound" and "Dartmouth Chat is not set up" in error["message"]
 
@@ -495,6 +496,7 @@ def test_state_update_with_unsent_edits_backups_and_undo(managed):
     assert saved["backups"] and saved["root"] == str(site.ws.root) and saved["unreadable"] == []
     stamp = saved["backups"][0]["stamp"]
     assert saved["backups"][0]["changed"] == 1 and re.fullmatch(r"\d{8}T\d{6}\.\d{6}Z", stamp)
+    assert saved["backups"][0]["line"] == prompts.backup_line(api.backups()[0], api.holds_only_copy(api.backups()[0]))
     for bad in ("20200101T000000.000000Z", "nothing"):
         assert site.post("/api/undo", {"stamp": bad})[1]["kind"] == "BadRequest"
     undone = site.ok("post", "/api/undo", {"stamp": stamp})
@@ -530,6 +532,7 @@ def test_setup_reports_passively_and_checks_only_what_is_asked(site):
     assert found["git"]["available"] is True and found["Dartmouth Chat key"]["how"]
     assert report["where"]["root"] == str(site.ws.root) and report["chosen_by"] == prompts.CHOSEN_BY[report["where"]["origin"]]
     assert report["tex"]["state"] in ("absent", "no_tex") and report["tex"]["bibinputs_line"]
+    assert report["tex_lines"] == prompts.tex_state_lines(api.setup_report(site.ws).tex) and report["tex_lines"][0].startswith("TeX tree: ")
     lines = []
     checked = site.ok("post", "/api/setup/check", {"probe": "dartmouth-chat"}, lines)
     after = {item["name"]: item for item in checked["features"]}

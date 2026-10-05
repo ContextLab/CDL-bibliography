@@ -10,6 +10,22 @@ export async function show(main, ctx) {
   const where = h("div", { class: "panel" });
   const banner = h("div");
   const saved = h("div", { class: "panel" });
+  const owed = h("div");
+
+  // Model evidence that could not be stored when its entry was written: kept until it is.
+  async function evidence() {
+    const found = (await get("/api/evidence/pending")).pending;
+    clear(owed);
+    if (!found.length) return;
+    add(owed, h("div", { class: "panel", id: "pending-evidence" }, h("h2", { text: "Model evidence not yet stored" }),
+      table(["Entry", "", ""], found.map((item) => [h("span", { class: "mono", text: item.key }),
+        item.stale ? "The entry has changed since the model read it; this evidence can no longer be stored with it." : "Written; the evidence of the model reading waits to be stored (it is not an approval).",
+        item.stale ? "" : button("Retry", (event) => run(event.currentTarget, async () => {
+          const done = await post("/api/evidence/retry", { key: item.key }, log.add);
+          info(done.evidence_stored ? "The evidence was stored with " + done.key + "." : done.evidence_error);
+          await evidence();
+        }), { "aria-label": "Retry storing the evidence of " + item.key })]))));
+  }
   const log = logPane("Update log");
 
   function draw(found) {
@@ -91,8 +107,7 @@ export async function show(main, ctx) {
     if (found.backups.length) {
       add(saved, h("div", { class: "row" }, button("Undo the last change", (event) => run(event.currentTarget, () => restore(null)))),
         table(["Backup", "Taken", "State", ""], found.backups.map((b) => [h("span", { class: "mono", text: b.stamp }), b.when,
-          (b.branch ? "branch " + b.branch : "no branch") + " at " + b.commit + ", " + count(b.changed, "changed file", "changed files")
-            + (b.has_bundle ? ", local commits saved" : "") + (b.only_copy ? ", holds commits kept nowhere else" : ""),
+          b.line,
           button("Restore", (event) => run(event.currentTarget, () => restore(b.stamp)), { "aria-label": "Restore backup " + b.stamp })])));
     }
     if (found.unreadable.length) add(saved, note("warn", list(found.unreadable.map(([stamp, why]) => stamp + ": unreadable (" + why + ")"))));
@@ -101,10 +116,11 @@ export async function show(main, ctx) {
   async function load() {
     const found = await get("/api/state");
     draw(found);
+    await evidence();
     await backups(found);
   }
 
-  clear(main, h("div", { class: "stack" }, h("h1", { text: "Library state" }), banner, where, saved,
+  clear(main, h("div", { class: "stack" }, h("h1", { text: "Library state" }), banner, where, owed, saved,
     h("details", null, h("summary", { text: "Log" }), log.el)));
   await load();
 }

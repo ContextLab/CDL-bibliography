@@ -61,6 +61,24 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
     if (settled) settled(found.id);
   }
 
+  // The entry is written; the model evidence is still owed. The card stays until it is stored.
+  function owes(done) {
+    typedInEditor = () => false;
+    const id = found.id;
+    clear(card, note("good", list(appliedLines(done, verb))),
+      note("bad", "The entry " + done.key + " was written, but the model reading's evidence could not be stored with it: " + done.evidence_error),
+      h("div", { class: "row" }, button("Retry storing the evidence", () => act(async () => {
+        const again = await post("/api/evidence/retry", { key: done.key, proposal: id });
+        if (again.evidence_stored) finish(["The model reading's evidence was stored with " + done.key + " (it is not an approval)."], true);
+        else owes({ ...done, evidence_error: again.evidence_error });
+      }), { "data-action": "retry-evidence" })));
+    if (settled) settled(id);
+  }
+
+  function refusedLines(done) {
+    return done.outcomes.filter((item) => item.status === "refused").map((item) => "Not written " + item.key + ": " + item.reason);
+  }
+
   function names(item, choice) {
     const picks = choice.typed.map(() => "typed");
     const rows = choice.typed.map((mine, index) => {
@@ -126,17 +144,17 @@ export function proposalCard(found, { verb, settled, renewed } = {}) {
         if (done.evidence_stored === false) {
           // the entry is written; what is still owed stays on the page
           typedInEditor = () => false;
-          clear(card, note("good", list(appliedLines(done, verb))),
-            note("bad", "The entry " + done.key + " was written, but the model reading's evidence could not be stored with it: " + done.evidence_error));
-          if (settled) settled(found.id);
+          owes(done);
           return;
         }
-        finish(appliedLines(done, verb), done.written.length > 0);
+        const refused = refusedLines(done);
+        if (refused.length) { draw(item, refused.join(" ")); return; }       // nothing was written: the card stays, with the reason
+        finish(appliedLines(done, verb), true);
       }), { class: "primary", disabled: !item.acceptable, "data-action": "accept" }),
       button("Edit", () => { editor.hidden = !editor.hidden; if (!editor.hidden) editor.querySelector("textarea").focus(); }, { "data-action": "edit" }),
       button("Skip", () => act(skip), { "data-action": "skip" }));
     }
-    if (!item.acceptable && item.cannot_accept) parts.push(h("p", { class: "muted", text: item.cannot_accept }));
+    if (!item.acceptable && item.why_not.length) parts.push(h("div", { class: "why-not" }, h("p", { class: "muted", text: "Accept is not available:" }), list(item.why_not)));
     const base = item.proposed_raw || item.typed_raw || "";
     const text = h("textarea", { class: "mono", rows: "12", spellcheck: "false" });
     text.value = base;
@@ -170,6 +188,10 @@ export function proposalList({ verb, aside } = {}) {
         const card = cards.querySelector('[data-proposal="' + id + '"]');
         if (card) clear(card, note("good", "Accepted with the remaining proposals."));
         open.delete(id);
+      }
+      for (const item of done.not_written) {      // the writer refused these: each card stays and says why
+        const card = cards.querySelector('[data-proposal="' + item.id + '"]');
+        if (card) card.prepend(note("bad", "Not written " + item.key + ": " + item.reason));
       }
       summary.replaceChildren(note(done.written.length ? "good" : "", list(appliedLines(done, verb).concat(
         open.size ? [open.size + " proposal(s) need an individual decision and were left."] : []))));
