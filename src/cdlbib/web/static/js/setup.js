@@ -16,7 +16,7 @@ export async function show(main, ctx) {
       kv([["Library", found.where.root], ["Chosen by", found.chosen_by]]),
       table(["", "", "What was found", "How to set it up", ""], found.features.map((item) => [
         h("strong", { text: item.name }),
-        h("span", { class: item.available ? "agrees" : item.available === null ? "muted" : "differs", text: item.available === null ? "not checked" : item.available ? "yes" : "no" }),
+        h("span", { class: (item.available ? "agrees" : item.available === null ? "muted" : "differs") + " nowrap", text: item.available === null ? "not checked" : item.available ? "yes" : "no" }),
         item.detail, item.how,
         PROBE[item.name] && item.available !== true ? button("check", (event) => run(event.currentTarget, () => checking(PROBE[item.name])),
           { "aria-label": "Check " + item.name }) : ""])),
@@ -60,6 +60,8 @@ export async function show(main, ctx) {
 
   const files = h("input", { type: "file", id: "export-files", multiple: true, accept: ctx.session.manuscript_types.join(",") });
   const mainFile = h("select", { id: "export-main" });
+  const mainField = field("Main file", mainFile);
+  mainField.hidden = true;           // asked only when several files were chosen
   let bundle = null;
   files.addEventListener("change", () => run(files, async () => {
     bundle = null;
@@ -72,6 +74,7 @@ export async function show(main, ctx) {
     }
     clear(mainFile, h("option", { value: "", text: listed.length > 1 ? "(the file with \\documentclass)" : listed[0] || "" }),
       listed.length > 1 ? listed.map((name) => h("option", { value: name, text: name })) : null);
+    mainField.hidden = listed.length < 2;
     announce(listed.length + " file(s) uploaded.");
   }));
 
@@ -94,9 +97,9 @@ export async function show(main, ctx) {
   clear(main, h("div", { class: "stack" }, h("h1", { text: "Setup" }), features, tex,
     h("div", { class: "panel" }, h("h2", { text: "A paper's own .bib" }),
       h("p", { class: "muted", text: "Upload the paper's .tex, .aux or .bcf file (several files when the paper is split); the entries it cites are written as a .bib to download. The files are kept only while cdlbib web runs." }),
-      field("The paper's files", files), field("Main file", mainFile),
+      field("The paper's files", files), mainField,
       h("div", { class: "row" }, button("Make the .bib", (event) => run(event.currentTarget, exporting), { class: "primary" })),
       exported, note("", ctx.session.no_bbl)),
-    h("details", null, h("summary", { text: "Log" }), log.el)));
+    log.el));
   draw(await get("/api/setup"));
 }

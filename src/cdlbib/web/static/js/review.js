@@ -6,6 +6,12 @@ import { renderDetail } from "./detail.js";
 
 const PAGE = 100;
 
+// The first three names of an author list, then how many more: every card the same height.
+function people(authors) {
+  const names = String(authors || "").split(" and ");
+  return names.length > 3 ? names.slice(0, 3).join(", ") + " … and " + (names.length - 3) + " more" : names.join(", ");
+}
+
 export async function show(main, ctx) {
   let all = false;
   let offset = 0;
@@ -48,7 +54,7 @@ export async function show(main, ctx) {
       + (all ? "" : " among those that differ from the GitHub master") + (search.value.trim() ? ", matching the search" : "") + "."
       + (found.total > PAGE ? " Showing " + first + " to " + (offset + found.entries.length) + "." : "") }),
     found.entries.map((item) => button([h("strong", { class: "mono", text: item.key }), " ", status(item.status),
-      h("div", { text: [item.authors, item.year].filter(Boolean).join(" · ") }),
+      h("div", { text: [people(item.authors), item.year].filter(Boolean).join(" · ") }),
       h("div", { text: item.title }), item.issues.length ? h("div", { class: "muted", text: item.issues.join("; ") }) : null],
     () => run(null, () => open(item.key, true)), { class: "item", "data-key": item.key, "aria-pressed": item.key === chosen ? "true" : "false" })));
     clear(pager, found.total > PAGE ? [

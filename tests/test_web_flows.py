@@ -481,7 +481,10 @@ def test_state_update_with_unsent_edits_backups_and_undo(managed):
     assert error["question"].startswith("A newer version of the bibliography is available (1 new commit), and you have "
                                         "changes that have not been sent:")
     assert error["answers"] == {choice: prompts.ANSWERS[choice][1] for choice in error["choices"]}
-    assert all(prompts.ANSWERS[choice][1] in error["question"] for choice in error["choices"])
+    # the answers are the buttons; the question is the core's sentences without the terminal's lettered list
+    assert not any(prompts.ANSWERS[choice][1] in error["question"] for choice in error["choices"]) and "[k]" not in error["question"]
+    assert error["question"].splitlines()[-1] == "What would you like to do?" and "cdl.bib" in error["question"]
+    assert set(error["question"].splitlines()) <= set(prompts.unsent_question(type("E", (), dict(rewritten=False, entries_changed=1, local_commits=0, new_commits=1, branch=None, changed=["cdl.bib"], choices=tuple(error["choices"])))()).splitlines())
     assert "seen" not in error and ID.fullmatch(error["decision"])
     assert site.raw("POST", "/api/update/decide", site.headers(post=True),
                     json={"decision": error["decision"], "choice": "update", "seen": "x"}).status_code == 400

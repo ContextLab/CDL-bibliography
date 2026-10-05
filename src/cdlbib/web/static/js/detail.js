@@ -1,6 +1,6 @@
 // One entry: its text, its issues and its evidence; approving and revoking.
 import { get, post } from "./api.js";
-import { h, clear, button, kv, list, table, tabs, status, data, note, ask, run, info, announce, add } from "./dom.js";
+import { h, clear, button, kv, list, table, tabs, status, data, note, ask, run, info, announce, add, bib } from "./dom.js";
 
 function compact(value) {
   if (value === null || value === undefined) return "";
@@ -49,7 +49,7 @@ function modelEvidence(evidence) {
 
 function entryTab(panel, detail) {
   add(panel, kv(Object.entries(detail.fields).filter(([name]) => !["ENTRYTYPE", "ID"].includes(name)).map(([name, value]) => [name, value])),
-    h("h3", { text: "Text in the library" }), h("pre", { class: "mono panel", text: detail.raw }));
+    h("h3", { text: "Text in the library" }), bib(detail.raw));
 }
 
 function issuesTab(panel, detail) {

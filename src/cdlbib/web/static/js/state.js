@@ -59,12 +59,12 @@ export async function show(main, ctx) {
       ["New upstream commits", found.new_commits === null ? null : String(found.new_commits) + (found.refreshed ? " (asked just now)" : " (as last fetched)")],
       ["New upstream entries", found.new_entries === null ? null : String(found.new_entries)],
       ["Commits the upstream lacks", found.local_commits === null ? null : String(found.local_commits)],
-      ["Last update check", found.managed ? (found.last_check || "never") : null],
+      ["Last update check", found.managed ? found.last_check_text : null],
       ["Pull request", pr ? pr.url + " (" + pr.state + ")" : null],
     ]), found.notes.length ? note("", list(found.notes)) : null,
     h("div", { class: "row" },
       button("Ask the upstream now", (event) => run(event.currentTarget, async () => { draw(await post("/api/state/refresh", {}, log.add)); announce("State refreshed."); })),
-      found.managed ? button("Update the library now", (event) => run(event.currentTarget, updating), { "data-action": "update" }) : null,
+      found.managed && !found.new_commits ? button("Update the library now", (event) => run(event.currentTarget, updating), { "data-action": "update" }) : null,
       found.pending && found.pending.length ? button("Go to Send", () => ctx.go("send")) : null));
   }
 
@@ -129,6 +129,6 @@ export async function show(main, ctx) {
   }
 
   clear(main, h("div", { class: "stack" }, h("h1", { text: "Library state" }), banner, where, owed, saved,
-    h("details", null, h("summary", { text: "Log" }), log.el)));
+    log.el));
   await load();
 }

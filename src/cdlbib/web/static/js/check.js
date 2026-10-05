@@ -69,5 +69,5 @@ export async function show(main, ctx) {
         button("Check the changed entries", (event) => run(event.currentTarget, changed), { "data-action": "check-changed" }),
         button("Format check only", (event) => run(event.currentTarget, () => go("/api/check/format", {}, formatResult)))),
       h("label", { class: "check" }, skip, " Skip the completion step before checking the changed entries (as `cdlbib verify --no-complete`)")),
-    step.el, h("h2", { text: "Log" }), log.el, out));
+    step.el, log.el, out));
 }
