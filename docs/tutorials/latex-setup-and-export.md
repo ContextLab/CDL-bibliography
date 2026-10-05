@@ -53,14 +53,16 @@ available on this computer:
   git: yes (/usr/bin/git)
   gh login: yes (@you)
   TeX: yes (/opt/homebrew/bin/kpsewhich)
-  bibtex: yes (/opt/homebrew/bin/bibtex)
-  biber: yes (/opt/homebrew/bin/biber)
+  bibtex: yes (/opt/homebrew/bin/bibtex; 0.99)
+  biber: yes (/opt/homebrew/bin/biber; biber 2.22, biblatex 3.21)
   pypdf: yes (installed)
 ```
 
 The list under `available on this computer:` continues with one line for each API key and
-optional package. A line that says `no` ends with how to set that item up. The command
-exits with `0` when the state is `linked`.
+optional package. A line that says `no` ends with how to set that item up. The `bibtex`
+line ends with the version `bibtex --version` reports, and the `biber` line with the
+versions of biber and of the `biblatex.sty` that TeX finds. The command exits with `0`
+when the state is `linked`.
 
 From any other folder, `kpsewhich` then finds the linked file:
 
@@ -290,6 +292,55 @@ A paper that uses `biblatex` with biber is compiled with biber:
 wrote ~/demo/p5/main.bbl: biber, pdflatex, 1 cited key
 ```
 
+### When biber or BibTeX is not installed
+
+When the paper needs `biber` or `bibtex` and the program is not on `PATH`, what happens
+depends on the TeX installation that holds the `kpsewhich` in use:
+
+|TeX installation|What `cdlbib export --bbl` does|
+|-|-|
+|TeX Live in a folder you can write to (TinyTeX, a TeX Live installed in your home folder)|runs `tlmgr install biber` (or `tlmgr install bibtex`) with that installation's own `tlmgr`, then compiles|
+|Homebrew `texlive`|runs `brew install biber` with the `brew` of the same Homebrew prefix, then compiles (biber is a Homebrew formula of its own; `tlmgr install` is switched off in Homebrew's TeX Live)|
+|TeX Live in a folder you cannot write to|stops and prints `Run: sudo tlmgr install biber`|
+|TeX from `apt-get`, `dnf` or `pacman`|stops and prints the command, for example `Run: sudo apt-get install biber`|
+|MiKTeX|stops and names the MiKTeX package to install|
+|no TeX|stops and names TeX Live and MacTeX|
+
+The command prints a line before it installs:
+
+```text
+installing biber (needed for: Compiling a .bbl) with: tlmgr install biber ...
+wrote ~/demo/p5/main.bbl: biber, pdflatex, 1 cited key
+```
+
+With `cdlbib --ask export ... --bbl`, it asks first:
+
+```text
+Compiling a .bbl needs the TeX program 'biber'. Install it now (tlmgr install biber)?
+```
+
+Without a terminal, `--ask` leaves the program uninstalled, prints the following, and
+exits with `1`:
+
+```text
+Compiling a .bbl needs the TeX program 'biber', which was not found on PATH (install: tlmgr install biber)
+```
+
+The terminal interface asks the same question in a dialog when it was started with
+`cdlbib --ask tui`, and otherwise shows the `installing` line in its log.
+
+`cdlbib` never runs `sudo`. `tlmgr --usermode` is not used, because it does not install
+programs (`tlmgr` answers `package biber is not relocatable, cannot install it in user
+mode`). The package manager is run from the TeX installation's own folder, not looked up
+on `PATH`, in an empty temporary folder, and with only `HOME`, `PATH`, `TMPDIR`, the
+locale and the proxy variables of your environment. A missing `pdflatex`, `xelatex` or
+`lualatex` is not installed by `cdlbib`; the message names what to install.
+
+When the installation stops with an error, the message starts with `install failed`
+followed by the command and the end of what the package manager printed. A TeX Live of
+an earlier year than its package repository is one such case: `tlmgr` does not install
+into it until the installation is updated.
+
 `--engine` chooses the LaTeX program: `pdflatex`, `xelatex`, `lualatex` or `latex`.
 Without it, the program the paper asks for is used, otherwise `pdflatex`.
 
@@ -390,6 +441,26 @@ The control file LaTeX wrote for biber is not used: the paper, or the bibliograp
 ```
 
 `cdlbib export` without `--bbl` still writes the `.bib` for that paper.
+
+### biber and biblatex versions
+
+Before biber runs, `cdlbib` rebuilds the control file that `biblatex` wrote (the `.bcf`),
+copying only the element and attribute names on a list. The list was derived from the
+schema of the control file in biber 2.22. The schemas of biber 2.14 to 2.21 name no
+element that is not on the list. Their attributes are all on the list too, except
+`map_matches` and `map_matchesi` of a source map step, which are refused in every
+version. `tests/fixtures/bcf_schema_names.json` holds the names of each schema, and
+`scripts/bcf_schema_names.py` writes that file from biber's repository.
+
+A control file with a name that is not on the list is refused, and the message says
+which versions were found:
+
+```text
+The control file LaTeX wrote for biber is not used: it has an element this version does not know: newthing. Found here: biblatex 3.21 (control file format 3.11) and biber 2.22; the names that are passed on were derived from biber 2.22's schema of the file. No .bbl was compiled.
+```
+
+biber itself stops when its version and the version of `biblatex` do not belong
+together; `cdlbib` then prints biber's message after `biber stopped with an error:`.
 
 ## In the web interface
 

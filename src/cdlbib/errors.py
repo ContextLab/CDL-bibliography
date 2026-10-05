@@ -82,6 +82,18 @@ class MissingDependency(CdlbibError):
         super().__init__(f"{feature} needs the package '{package}' (install: {manual_command(extra, package)})")
 
 
+class MissingProgram(MissingDependency):
+    """A TeX program that is not installed and that this computer's TeX package manager can
+    install as the current user (texinstall.plan). ``package`` is the program, ``extra`` is
+    texinstall.EXTRA, ``command`` the argument list that installs it; deps.install runs it."""
+
+    def __init__(self, program, feature, command, shown):
+        self.package, self.extra, self.feature = program, "tex", feature
+        self.command, self.shown = list(command), shown
+        CdlbibError.__init__(self, f"{feature} needs the TeX program '{program}', which was not found on PATH "
+                                   f"(install: {shown})")
+
+
 class IdentityUnavailable(CdlbibError):
     pass
 
