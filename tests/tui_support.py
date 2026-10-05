@@ -179,3 +179,16 @@ def library(folder, *entries, git=False):
     (folder / "verification").mkdir(parents=True, exist_ok=True)
     (folder / "cdl.bib").write_text("\n\n".join(entries) + "\n", encoding="utf-8")
     return Workspace(folder)
+
+
+async def until(pilot, condition, timeout=180.0, what="the expected state"):
+    """Wait until ``condition()`` holds (for a state reached while a job is still running,
+    such as a job's question on the screen)."""
+    deadline = time.monotonic() + timeout
+    while True:
+        await pilot.pause(0.05)
+        if condition():
+            await pilot.pause()
+            return
+        if time.monotonic() > deadline:
+            raise AssertionError(f"{what} was not reached in {timeout} s; log: {pilot.app.log_lines[-10:]}")

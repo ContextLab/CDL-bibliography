@@ -291,7 +291,7 @@ class CdlbibApp(App):
         line.update("idle · F1 lists every key" if label is None else
                     f"working: {label}" + (f" · {waiting} waiting" if waiting else ""))
         if self._leaving and self.jobs.idle:
-            self._exit()
+            self._close()
 
     def _unexpected(self, label, exc):
         self.notify(f"{label}: {exc}", severity="error", timeout=10)
@@ -425,7 +425,7 @@ class CdlbibApp(App):
         if closing is not None:
             closing()
         if self.jobs.idle:
-            self._exit()
+            self._close()
             return
         label, waiting = self.jobs.busy_label, self.jobs.waiting
 
@@ -434,16 +434,16 @@ class CdlbibApp(App):
                 self._leaving = True
                 self.query_one("#jobline", Static).update(f"quitting when the job is done: {self.jobs.busy_label}")
                 if self.jobs.idle:
-                    self._exit()
+                    self._close()
             elif value == "now":
-                self._exit()
+                self._close()
         self.push_screen(ChoiceScreen(
             f"A job is running: {label}" + (f" ({waiting} more waiting)" if waiting else "") + ".",
             [("w", "wait", "Wait for it to finish, then quit"),
              ("x", "now", "Quit now; the running job is stopped where it is"),
              ("s", "stay", "Stay")]), chosen)
 
-    def _exit(self):
+    def _close(self):
         self.jobs.stop()
         self.exit()
 
