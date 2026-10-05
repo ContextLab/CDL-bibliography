@@ -446,6 +446,15 @@ def web(port: int = typer.Option(0, "--port", help="The port to listen on (defau
     server.run(port=port, open_browser=not no_open, say=lambda line: typer.echo(line, err=True))
 
 
+@app.command()
+def tui(ctx: typer.Context):
+    """Open the terminal interface on the library."""
+    deps.need("textual", "tui", "the terminal interface")
+    ws = library(ctx, BIB_NAME)   # as every command: the managed library is downloaded when it is the one in use
+    from .tui import run
+    run(ws)
+
+
 from .prompts import ANSWERS, MOVED, answers, unsent_question, CHOSEN_BY
 
 

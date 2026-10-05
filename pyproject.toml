@@ -26,6 +26,7 @@ dependencies = [
 [project.optional-dependencies]
 research = ["pypdf>=6.0,<7"]
 pdf = ["pypdfium2>=4"]
+tui = ["textual>=8,<9"]
 
 [project.scripts]
 cdlbib = "cdlbib.cli:main"

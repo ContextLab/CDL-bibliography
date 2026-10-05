@@ -5,12 +5,16 @@
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py web
     python tests/fixtures/intake/record.py model          (needs the Dartmouth Chat key)
 
+    CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py tui
+
 (or add the path of a verification cache whose Crossref requests name the contact, as
 ``extra_sources.contact_email`` reads it). ``searches`` runs each search of SEARCHES with
 ``cdlbib.intake.find_candidates``; ``pdfs`` typesets the PDFs of tests/intake_pdfs.py and
 runs ``cdlbib.intake.propose_from_pdf`` on each. Both go through the project's
 ``PoliteClient`` over an empty response cache; what the client cached is then written to
 ``searches.json.gz`` / ``pdf_lookups.json.gz`` with the alterations README.md lists.
+``tui`` records what the terminal interface's Add view asks through ``cdlbib.api`` in
+tests/test_tui_add.py (``tui_search.json.gz``).
 """
 import gzip
 import json
@@ -61,6 +65,19 @@ def pdfs(ws, client, folder):
         print(name, "->", result.message, result.tried, file=sys.stderr)
 
 
+TUI_SEARCH = {"title": "Backward learning in paired associates"}
+
+
+def tui(ws, client, folder):
+    """The search the Add view makes for TUI_SEARCH (the api's own number of records per
+    source), and the lookup of the first lead, as choosing it in the view makes it."""
+    from cdlbib import api
+    found = intake.find_candidates(ws, client=client, **TUI_SEARCH)
+    print(TUI_SEARCH, "->", len(found), "leads;", "errors:", found.errors, file=sys.stderr)
+    results = api._proposals(ws, [("first lead", intake.query_for(found[0]))], client=client)
+    print("first lead ->", results[0].key_proposed, results[0].status, results.errors, file=sys.stderr)
+
+
 def model(route="dartmouth"):
     """One real ``extract`` run of the route's adapter on the first pages of the ``unknown``
     PDF, saved with the pages it was given (``model_extract.json``). Needs the route's key."""
@@ -86,7 +103,7 @@ def main(part, contact_source=None):
         client = xs.make_client(folder / "responses.sqlite3", contact=xs.contact_email(contact_source))
         contact = client.contact
         try:
-            {"searches": searches, "pdfs": pdfs, "web": web}[part](Workspace(folder), client, folder)
+            {"searches": searches, "pdfs": pdfs, "web": web, "tui": tui}[part](Workspace(folder), client, folder)
         finally:
             client.cache.close()
         rows = sqlite3.connect(folder / "responses.sqlite3").execute(
@@ -102,7 +119,7 @@ def main(part, contact_source=None):
             response = json.loads(ADDRESS.sub("[address removed]", json.dumps(response, ensure_ascii=False)))
         assert contact not in json.dumps(response) and contact not in json.dumps(request)
         saved.append({"request": request, "response": response})
-    name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz", "web": "web_searches.json.gz"}[part]
+    name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz", "web": "web_searches.json.gz", "tui": "tui_search.json.gz"}[part]
     with gzip.GzipFile(HERE / name, "wb", mtime=0) as handle:
         handle.write(json.dumps(saved, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8"))
     print(len(saved), "responses saved to", name, file=sys.stderr)
