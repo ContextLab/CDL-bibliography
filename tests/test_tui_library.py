@@ -233,7 +233,8 @@ def test_help_lists_every_key_the_interface_binds(ws):
             await T.press(pilot, "escape")
             assert len(app.screen_stack) == 1
             footer = T.screen_text(app).splitlines()[-1]
-            assert "Search" in footer and "Edit" in footer and "Help" in footer and "Quit" in footer   # the key hints
+            for pair in ("/ Search", "e Edit", "^q Quit", "f1 All keys"):       # each key beside its own label
+                assert pair in footer, footer
     T.run(journey())
 
 

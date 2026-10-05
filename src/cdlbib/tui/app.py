@@ -23,7 +23,7 @@ from .review import ReviewView
 from .send import SendView
 from .setup import SetupView
 from .state import StateView
-from .widgets import ChoiceScreen, ConfirmScreen, PromptScreen, Shown, TextScreen, Writer
+from .widgets import ChoiceScreen, ConfirmScreen, PromptScreen, Shown, TextScreen, Writer, short_path, wrapped
 from .worker import Runner
 
 VIEWS = (("library", "Library"), ("review", "Review"), ("add", "Add"), ("check", "Check"), ("send", "Send"),
@@ -76,7 +76,7 @@ KEYS = (
         ("ctrl+o", "PDF tab: choose the file from the folder tree"),
         ("enter", "PDF tab, in the path box: read the PDF"),
         ("l", "PDF tab: look up the PDF's source record"),
-        ("o", "PDF tab: open the PDF in the system viewer"),
+        ("o", "PDF tab: open the PDF in the system viewer (the interface itself shows its text)"),
         ("m", "PDF tab: read the PDF with a language model"),
         ("t", "PDF tab: type the entry in, the form filled with what was read"),
         ("ctrl+s", "Manual tab: draft the entry from the form"),
@@ -135,6 +135,7 @@ class CdlbibApp(App):
     ENABLE_COMMAND_PALETTE = False
     CSS = """
     Screen { background: $background; color: $foreground; }
+    * { scrollbar-size-vertical: 1; scrollbar-size-horizontal: 1; }
     ModalScreen { align: center middle; background: $background 70%; }
     #top { height: 1; background: $primary; color: $cdl-on-primary; padding: 0 1; text-style: bold; }
     #banner { height: auto; background: $panel; color: $warning; padding: 0 1; display: none; }
@@ -150,41 +151,61 @@ class CdlbibApp(App):
     .dialog.tall { height: 90%; }
     .dialog-text { height: auto; max-height: 24; }
     .title { text-style: bold; color: $accent; margin-bottom: 1; }
-    .label { color: $cdl-muted; margin-top: 1; }
-    .hint { color: $cdl-muted; }
-    .buttons { height: auto; margin-top: 1; }
+    .label { color: $cdl-muted; margin-top: 1; height: 1; }
+    .hint { color: $cdl-muted; height: auto; }
+    .buttons { height: 1; margin-top: 1; }
     .buttons Button { margin-right: 2; }
     .choices { height: auto; margin-top: 1; }
-    .choice { width: 100%; height: auto; min-height: 3; margin-bottom: 0; text-wrap: wrap; content-align: left middle; }
-    .row { height: auto; }
-    .row Button { margin-right: 1; }
+    .choice { width: 100%; height: auto; min-height: 1; margin-bottom: 1; text-wrap: wrap; content-align: left middle; }
+    .row { height: 1; margin: 1 0 0 0; }
+    .row Button { margin-right: 2; }
+    .form-row { height: 1; margin: 1 0 0 0; }
+    .form-row Input { width: 1fr; }
+    .form-label { width: 14; height: 1; color: $cdl-muted; }
     .pane { border: round $cdl-border; padding: 0 1; }
     .pane:focus-within { border: round $accent; }
+    .pane.empty { display: none; }
+    VerticalScroll > Shown { padding-right: 1; }   /* text never touches the scrollbar */
+    .notice { display: none; height: auto; padding: 0 1; background: $panel; }
+    .notice.shown { display: block; }
     .message { height: auto; color: $foreground; padding: 0 1; }
     .greyed { color: $cdl-muted; }
     DataTable { height: 1fr; background: $background; }
     DataTable > .datatable--header { background: $panel; color: $accent; text-style: bold; }
-    Input { background: $surface; color: $foreground; border: tall $cdl-border; }
-    Input:focus { border: tall $accent; }
+    Input { background: $panel; color: $foreground; border: none; height: 1; padding: 0 1; }
+    Input:focus { border: none; background: $panel; text-style: bold; }
     Input > .input--placeholder { color: $cdl-muted; }
-    TextArea { background: $surface; color: $foreground; border: tall $cdl-border; }
-    TextArea:focus { border: tall $accent; }
-    Button { background: $panel; color: $foreground; border: tall $cdl-border; height: 3; min-width: 10; }
-    Button:focus { border: tall $accent; text-style: bold; }
-    Button.-primary { background: $primary; color: $cdl-on-primary; }
+    TextArea { background: $surface; color: $foreground; border: round $cdl-border; padding: 0 1; }
+    TextArea:focus { border: round $accent; }
+    Button { background: $panel; color: $foreground; border: none; height: 1; min-width: 8; padding: 0 2;
+             text-style: none; }
+    Button:hover { border: none; background: $panel; }
+    Button:focus { border: none; background: $primary; color: $cdl-on-primary; text-style: bold; }
+    Button.-active { border: none; }
+    Button.-primary { border: none; background: $primary; color: $cdl-on-primary; }
+    Button.-primary:focus { text-style: bold; }
     Button:disabled { color: $cdl-muted; text-style: italic; }
     TabbedContent { height: 1fr; }
     ContentSwitcher { height: 1fr; }
     TabPane { height: 1fr; padding: 0; }
-    Tabs { background: $surface; }
-    Tab { color: $cdl-muted; }
-    Tab.-active { color: $accent; text-style: bold; }
-    Underline > .underline--bar { color: $accent; background: $panel; }
-    Select { background: $surface; }
+    Tabs { background: $surface; height: 1; }
+    Tabs Underline { display: none; }
+    Tab { color: $cdl-muted; padding: 0 2; }
+    Tab.-active { color: $cdl-on-primary; background: $primary; text-style: bold; }
+    Select { background: $panel; height: 1; width: 24; }
+    Select > SelectCurrent { border: none; background: $panel; height: 1; padding: 0 1; }
+    Select:focus > SelectCurrent { border: none; text-style: bold; }
+    Select > SelectOverlay { border: round $cdl-border; background: $surface; }
     DirectoryTree { height: 1fr; background: $surface; }
+    OptionList { border: round $cdl-border; background: $surface; height: auto; max-height: 20; }
+    OptionList:focus { border: round $accent; }
+    #s-year { width: 8; margin-right: 2; }
+    #s-authors, #p-path, #i-ids, #m-entrytype, #send-summary { margin-right: 2; }
+    .form-label.short { width: 5; }
+    #s-message, #p-message, #i-message, #m-message { margin-top: 1; }
     """
     BINDINGS = [
-        Binding("f1", "help", "Help", priority=True),
+        Binding("f1", "help", "All keys", priority=True),
         Binding("question_mark", "help", "Help", show=False),
         Binding("f2", "view('library')", "Library", priority=True, show=False),
         Binding("f3", "view('review')", "Review", priority=True, show=False),
@@ -200,8 +221,8 @@ class CdlbibApp(App):
         Binding("5", "view('send')", "Send", show=False),
         Binding("6", "view('state')", "State", show=False),
         Binding("7", "view('setup')", "Setup", show=False),
-        Binding("ctrl+t", "switch_theme", "Theme", priority=True),
-        Binding("ctrl+l", "toggle_log", "Log", priority=True),
+        Binding("ctrl+t", "switch_theme", "Theme", priority=True, show=False),
+        Binding("ctrl+l", "toggle_log", "Log", priority=True, show=False),
         Binding("ctrl+q", "leave", "Quit", priority=True),
         Binding("q", "leave", "Quit", show=False),
     ]
@@ -213,6 +234,8 @@ class CdlbibApp(App):
         self.state = None            # desk.LibraryState, as api.library_state gave it last
         self.problem = None          # why the library could not be read
         self.pending = []            # [api.PendingEvidence]: model evidence written entries still wait for
+        self.notices = []            # every notice shown (notify), in order
+        self._notice_timer = None
         self.log_lines = []          # every line of the log, for tests and the capture script
         self.seen = set()            # completion offers already decided in this sitting (touched by jobs only)
         self._revision = None        # the revision the entries were read at (touched by jobs only)
@@ -229,7 +252,7 @@ class CdlbibApp(App):
     # --- layout ------------------------------------------------------------------------------
 
     def compose(self) -> ComposeResult:
-        yield Static(f"cdlbib · {self.ws.root}", id="top", markup=False)
+        yield Static("cdlbib", id="top", markup=False)
         yield Shown(id="banner")
         with TabbedContent(id="views", initial="library"):
             with TabPane("F2 Library", id="library"):
@@ -246,12 +269,14 @@ class CdlbibApp(App):
                 yield StateView(id="state-view")
             with TabPane("F8 Setup", id="setup"):
                 yield SetupView(id="setup-view")
-        yield RichLog(id="log", max_lines=5000, wrap=True, markup=False, highlight=False)
+        yield RichLog(id="log", max_lines=5000, wrap=False, markup=False, highlight=False)
+        yield Shown(id="notice", classes="notice")
         yield Static("starting ...", id="jobline", markup=False)
         yield Footer()
 
     def on_mount(self):
         self.theme_changed_signal.subscribe(self, self._theme_changed)
+        self._top()
         self.job("read the library", lambda job: api.prepare(self.ws, job.progress), self._prepared, self._unreadable)
         self.refresh_library(force=True)
         self.job("look for upstream changes",
@@ -286,7 +311,9 @@ class CdlbibApp(App):
     @on(LogLine)
     def _log_line(self, event):
         self.log_lines.append(event.line)
-        self.query_one("#log", RichLog).write(Text(event.line))
+        log = self.query_one("#log", RichLog)
+        width = log.size.width - 3           # its padding, and the scrollbar's column
+        log.write(wrapped(Text(event.line), width) if width > 20 else Text(event.line))
 
     def action_toggle_log(self):
         self.query_one("#log").toggle_class("hidden")
@@ -371,7 +398,7 @@ class CdlbibApp(App):
         if found["entries"] is not None:
             self.problem = None
             self.entries = found["entries"]
-            self.query_one("#top", Static).update(f"cdlbib · {self.ws.root} · {len(self.entries)} entries")
+            self._top()
             self.view("library").library_changed()
             self.view("review").library_changed()
         self.pending = found["pending"]
@@ -386,6 +413,16 @@ class CdlbibApp(App):
         self._banner()
         for name in ("send", "state", "check"):
             self.view(name).state_changed()
+
+    def _top(self):
+        """The header: the library's folder, cut from the left to fit, and the number of entries."""
+        count = f" · {len(self.entries)} entries"
+        room = min(44, max(10, self.size.width - len("cdlbib · ") - len(count) - 2))
+        self.query_one("#top", Static).update(f"cdlbib · {short_path(self.ws.root, room)}{count}")
+
+    def on_resize(self, event):
+        if self.is_mounted:
+            self._top()
 
     def _banner(self):
         out, state = self.writer(), self.state
@@ -424,11 +461,13 @@ class CdlbibApp(App):
             return
         self.query_one("#views", TabbedContent).active = name
         self.view(name).activated()
+        self.call_after_refresh(self.view(name).relayout)
 
     @on(TabbedContent.TabActivated, "#views")
     def _view_shown(self, event):
         if event.tabbed_content.id == "views" and event.pane is not None and event.pane.id in dict(VIEWS):
             self.view(event.pane.id).activated()
+            self.call_after_refresh(self.view(event.pane.id).relayout)
 
     def action_help(self):
         if isinstance(self.screen, TextScreen):
@@ -642,8 +681,26 @@ class CdlbibApp(App):
         self._with_login("A revocation", with_handle)
 
     def notify(self, message, *, title="", severity="information", timeout=None, markup=False):
-        """A notification; its text is shown as it is (a path or a message may hold brackets)."""
-        super().notify(str(message), title=title, severity=severity, timeout=timeout, markup=markup)
+        """A short notice to the person. It is a line of the screen that is open (above the job
+        line, or at the foot of a dialog), never a box laid over other text; it stays until the
+        next notice or for ``timeout`` seconds (8 by default). ``notices`` keeps them all."""
+        message = str(message)
+        self.notices.append(message)
+        found = self.screen.query("#dialog-notice") if len(self.screen_stack) > 1 else self.query("#notice")
+        if not found:
+            return
+        line = found.first()
+        role = {"error": "error", "warning": "warning"}.get(severity, "accent")
+        line.show(Text(message, self.colour(role)))
+        line.add_class("shown")
+        if self._notice_timer is not None:
+            self._notice_timer.stop()
+
+        def clear():
+            if line.is_attached:
+                line.show("")
+                line.remove_class("shown")
+        self._notice_timer = self.set_timer(timeout or 8, clear)
 
 
 def run(ws):

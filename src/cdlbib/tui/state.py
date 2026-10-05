@@ -7,15 +7,15 @@ from textual.widgets import Button, DataTable
 
 from .. import api, prompts
 from ..errors import UpdateConflict, UpdateNeedsDecision
-from .widgets import ChoiceScreen, Shown, View
+from .widgets import ChoiceScreen, Shown, Table, View, fill_table
 
 
 class StateView(View):
     BINDINGS = [
-        Binding("r", "refresh", "Look for upstream changes"),
+        Binding("r", "refresh", "Look upstream"),
         Binding("u", "update", "Update"),
         Binding("b", "backups", "Backups"),
-        Binding("z", "undo", "Undo to the selected backup"),
+        Binding("z", "undo", "Undo to backup"),
         Binding("p", "evidence", "Store pending model evidence", show=False),
     ]
     DEFAULT_CSS = """
@@ -36,13 +36,14 @@ class StateView(View):
             yield Button("Look for upstream changes (r)", id="state-refresh")
             yield Button("Update (u)", id="state-update", variant="primary")
             yield Button("Undo to the selected backup (z)", id="state-undo")
-        with VerticalScroll(classes="pane", id="state-result-pane"):
+        with VerticalScroll(classes="pane empty", id="state-result-pane"):
             yield Shown(id="state-result")
         yield Shown(id="backups-head", classes="message")
-        yield DataTable(id="backups", cursor_type="row")
+        yield Table(id="backups", cursor_type="row")
 
     def on_mount(self):
-        self.query_one("#backups", DataTable).add_columns("Backup", "Taken", "What it holds")
+        self._backups_shown()
+        self.query_one("#backups", Table).filler = self._backups_shown
 
     def activated(self):
         self.state_changed()
@@ -126,6 +127,7 @@ class StateView(View):
             out = self.app.writer()
             draw(out)
             self.query_one("#state-result", Shown).show(out.text)
+            self.query_one("#state-result-pane").remove_class("empty")
         self.result = again
         again()
 
@@ -238,7 +240,7 @@ class StateView(View):
 
     def _backups_shown(self):
         table, out = self.query_one("#backups", DataTable), self.app.writer()
-        table.clear()
+        position, rows = table.cursor_row, {}
         if not self.managed:
             out.line("Backups", bold=True)
             out.line("(kept for the library cdlbib manages; this is another library)", "muted")
@@ -258,8 +260,10 @@ class StateView(View):
             rows = {backup.stamp: (backup.stamp, backup.when, prompts.backup_line(backup, found["only"][backup.stamp]))
                     for backup in saved}
             rows.update({stamp: (stamp, "", f"unreadable ({reason})") for stamp, reason in unreadable})
-            for stamp in sorted(rows, reverse=True):
-                table.add_row(*rows[stamp], key=stamp)
+        order = sorted(rows, reverse=True)
+        fill_table(table, [("Backup", 24), ("Taken", 23), ("What it holds", 1.0)], [rows[stamp] for stamp in order], order)
+        if order:
+            table.move_cursor(row=min(position or 0, len(order) - 1))
         self.query_one("#backups-head", Shown).show(out.text)
 
     def action_undo(self):

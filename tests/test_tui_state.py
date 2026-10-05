@@ -146,7 +146,7 @@ def test_a_library_that_is_not_the_managed_one_offers_no_update_and_says_why(tmp
             assert app.screen.query_one("#state-update").disabled and app.screen.query_one("#state-undo").disabled
             await T.press(pilot, "u")
             assert name(app) != "ChoiceScreen" and "(kept for the library cdlbib manages" in T.shown(app, "#backups-head")
-            assert any("This library was chosen by the file you named" in note.message for note in app._notifications)
+            assert any("This library was chosen by the file you named" in note for note in app.notices)
             await T.press(pilot, "z")
             assert name(app) != "ConfirmScreen" and "update the library" not in [label for label, _, _ in app.jobs.history]
     T.run(journey())

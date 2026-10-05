@@ -19,9 +19,9 @@ class EditScreen(Screen):
 
     BINDINGS = [
         Binding("ctrl+p", "preview", "Preview", priority=True),
-        Binding("ctrl+r", "formatter", "Use the formatter's text", priority=True),
+        Binding("ctrl+r", "formatter", "Formatter's text", priority=True),
         Binding("ctrl+s", "save", "Save", priority=True),
-        Binding("ctrl+o", "reload", "Reload from the file", priority=True),
+        Binding("ctrl+o", "reload", "Reload", priority=True),
         Binding("escape", "close", "Close", priority=True),
     ]
     DEFAULT_CSS = """
@@ -52,6 +52,7 @@ class EditScreen(Screen):
                 with VerticalScroll():
                     yield Shown(id="preview")
         yield Shown(id="edit-message")
+        yield Shown(id="dialog-notice", classes="notice")
         yield Footer()
 
     def on_mount(self):

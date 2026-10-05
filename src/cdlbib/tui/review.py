@@ -7,15 +7,15 @@ from textual.containers import Horizontal, Vertical
 from textual.widgets import DataTable
 
 from .. import api
-from .library import DetailPanes, cut
-from .widgets import Shown, View, mark
+from .library import DetailPanes
+from .widgets import Shown, Table, View, fill_table, mark
 
 
 class ReviewView(View):
     BINDINGS = [
-        Binding("t", "toggle", "Changed / every entry"),
-        Binding("r", "reload", "Read again"),
-        Binding("d", "detail_tab", "Detail tab"),
+        Binding("t", "toggle", "Changed/all"),
+        Binding("r", "reload", "Reload"),
+        Binding("d", "detail_tab", "Tab"),
         Binding("a", "approve", "Approve"),
         Binding("v", "revoke", "Revoke"),
         Binding("e", "edit", "Edit"),
@@ -38,13 +38,14 @@ class ReviewView(View):
         with Horizontal():
             with Vertical(id="review-left"):
                 yield Shown(id="review-head", classes="message")
-                yield DataTable(id="queue", cursor_type="row")
+                yield Table(id="queue", cursor_type="row")
             with Vertical(id="review-right", classes="pane"):
                 yield DetailPanes(id="review-detail")
 
     def on_mount(self):
-        self.query_one("#queue", DataTable).add_columns(" ", "Key", "Status", "First issue")
         self._head()
+        self._fill()
+        self.query_one("#queue", Table).filler = self._fill
 
     def activated(self):
         self.query_one("#queue", DataTable).focus()
@@ -101,13 +102,15 @@ class ReviewView(View):
 
     def _fill(self):
         table = self.query_one("#queue", DataTable)
-        table.clear()
         queue = self.queue or []
+        rows = []
         for detail in queue:
             glyph, role = mark(detail.status)
             colour = self.app.colour(role)
-            table.add_row(Text(glyph, colour), detail.key, Text(detail.status, colour),
-                          cut((detail.issues or [""])[0], 70), key=detail.key)
+            rows.append((Text(glyph, colour), detail.key, Text(detail.status, colour), (detail.issues or [""])[0]))
+        longest = max([len(detail.key) for detail in queue] + [3])
+        fill_table(table, [(" ", 1), ("Key", min(longest, 22)), ("Status", 17), ("First issue", 1.0)], rows,
+                   [detail.key for detail in queue])
         self._head()
         keys = [detail.key for detail in queue]
         if keys:

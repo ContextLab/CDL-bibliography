@@ -196,8 +196,9 @@ def test_a_failure_the_core_does_not_report_is_shown_and_the_worker_goes_on(tmp_
 
 @pytest.mark.skipif(not pdfs.pdflatex(), reason="pdflatex is not installed, so no PDF can be typeset for the test")
 def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_with_ask(tmp_path):
-    """Real installs into a scratch environment (uv, as tests/test_deps.py): pypdf after a yes
-    under --ask, pypdfium2 without a question by default; a no installs nothing."""
+    """Real installs into a scratch environment (uv, as tests/test_deps.py): textual by the
+    command without a question, pypdf from inside the interface after a yes under --ask; a no
+    installs nothing."""
     if not shutil.which("uv"):
         pytest.skip("uv is needed to build the scratch environment the packages are installed into")
     python = str(tmp_path / "e" / "bin" / "python")
@@ -227,7 +228,7 @@ def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_wi
     assert asked.returncode == 1 and "the terminal interface needs the package 'textual'" in asked.stderr
     assert not has("textual")
     # By default it is installed, after saying so, and the command runs again: the interface opens.
-    status, shown = T.at_a_terminal([*command, "tui"], [("1 of 1 entries", b"?"), ("this help", b"\x1b"), ("<typed>", b"\x11")],
+    status, shown = T.at_a_terminal([*command, "tui"], [("1 of 1 entries", b"?"), ("this help", b"\x1b"), ("F2 Library", b"\x11")],
                                     env=here, cwd=tmp_path, timeout=600)      # the help, close it, ctrl+q
     assert status == 0 and "installing textual (needed for: the terminal interface) ..." in shown and has("textual")
     run = subprocess.run([python, str(ROOT / "tests/tui_install_journey.py"), str(tmp_path / "work"), str(pdf)],
@@ -235,17 +236,13 @@ def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_wi
                          env=dict(clean, PYTHONPATH=str(ROOT / "tests"), CDLBIB_UPSTREAM=os.environ["CDLBIB_UPSTREAM"]))
     assert run.returncode == 0, run.stderr[-3000:]
     seen = json.loads(run.stdout.strip().splitlines()[-1])
-    assert seen["before"] == [False, False]
-    assert seen["question"].endswith("needs 'pypdf'. Install it now?")
+    assert seen["before"] is False
+    assert seen["question"] == "Reading PDF files needs 'pypdf'. Install it now?"
     assert seen["declined"][0] is False and "needs the package 'pypdf' (install: pip install 'pypdf" in seen["declined"][1]
-    assert "needs 'pypdfium2'. Install it now?" in seen["second_question"]
-    installed_pypdf, installed_pdfium, info = seen["after_yes"]
-    assert installed_pypdf is True and installed_pdfium is False and "doi: 10.1002/tea.3660271011 (page 1)" in info
-    assert "The first page is not drawn:" in seen["page_declined"] and "pypdfium2" in seen["page_declined"]
-    has_pdfium, blocks, screens = seen["default"]
-    assert has_pdfium is True and blocks > 500 and screens == 1          # installed without a question, and drawn
+    installed, info, screens = seen["after_yes"]
+    assert installed is True and screens == 1 and "doi: 10.1002/tea.3660271011 (page 1)" in info
     assert not any(line.startswith("installing pypdf (") for line in seen["log"])   # asked, so not announced
-    assert any(line.startswith("installing pypdfium2 (needed for: the PDF page preview)") for line in seen["log"])
+    assert seen["modules"] == [] and not has("pypdfium2")               # the interface draws no page: nothing more is installed
     assert seen["most_active"] == 1
 
 

@@ -4,12 +4,12 @@
 # holds saved lookup responses, HOME is a folder there, and the network is refused.
 
 Set Shell bash
-Set FontSize 13
-Set Width 1160
-Set Height 620
+Set FontSize 11
+Set Width 940
+Set Height 500
 Set Padding 8
-Set Framerate 5
-Set TypingSpeed 80ms
+Set Framerate 4
+Set TypingSpeed 40ms
 
 Hide
 Type "clear && cdlbib tui"
@@ -65,5 +65,6 @@ Escape
 Sleep 700ms
 Type "1"
 Sleep 3s
+Hide
 Ctrl+Q
 Sleep 500ms

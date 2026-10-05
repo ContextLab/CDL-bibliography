@@ -37,7 +37,7 @@ def test_the_command_opens_the_interface_on_the_chosen_library_and_quits(tmp_pat
     before = ws.bib.read_bytes()
     status, seen = T.at_a_terminal(
         [sys.executable, "-c", "from cdlbib.cli import main; main()", "--library", str(ws.root), "tui"],
-        [("1 of 1 entries", b"?"), ("Keys", b"\x1b"), ("<typed>", CTRL_Q)], cwd=tmp_path)
+        [("1 of 1 entries", b"?"), ("Keys", b"\x1b"), ("F2 Library", CTRL_Q)], cwd=tmp_path)
     assert status == 0, seen[-2000:]
     assert "cdlbib" in seen and "Zoll90" in seen and "F2 Library" in seen and "this help" in seen
     assert ws.bib.read_bytes() == before

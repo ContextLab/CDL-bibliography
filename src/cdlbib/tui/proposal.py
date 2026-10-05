@@ -13,13 +13,13 @@ from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.screen import ModalScreen, Screen
-from textual.widgets import Footer, OptionList, Static, TextArea
+from textual.widgets import DataTable, Footer, OptionList, Static, TextArea
 from textual.widgets.option_list import Option
 
 from .. import api
 from ..errors import EditedEntryParseError
 from . import render
-from .widgets import ChoiceScreen, Shown
+from .widgets import ChoiceScreen, Shown, Table, fill_table
 
 CANNOT = "Cannot accept: complete required fields and resolve duplicate or unsupported entries first."
 
@@ -40,6 +40,7 @@ class PickScreen(ModalScreen):
                                for number, row in enumerate(self.rows, 1)],
                              Option(Text(f"[0] {self.none}"), id="row-none"), id="rows")
             yield Static("enter chooses; esc: none of these", classes="hint")
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         self.query_one(OptionList).focus()
@@ -70,6 +71,7 @@ class TextEditScreen(ModalScreen):
             yield TextArea(self.raw, id="proposal-editor", tab_behavior="indent", soft_wrap=True)
             yield Static(self.message or "ctrl+s checks the edited text again; esc leaves the proposal as it was",
                          classes="hint", id="proposal-editor-hint", markup=False)
+            yield Shown(id="dialog-notice", classes="notice")
 
     def on_mount(self):
         editor = self.query_one(TextArea)
@@ -98,7 +100,7 @@ class ProposalScreen(Screen):
         Binding("a", "accept", "Accept"),
         Binding("e", "edit", "Edit"),
         Binding("s", "skip", "Skip"),
-        Binding("A", "accept_all", "Accept all remaining"),
+        Binding("A", "accept_all", "Accept all"),
         Binding("r", "remove", "Remove the typed duplicate", show=False),
         Binding("k", "keep", "Keep both", show=False),
         Binding("t", "retry_evidence", "Store the evidence again", show=False),
@@ -109,23 +111,21 @@ class ProposalScreen(Screen):
     DEFAULT_CSS = """
     ProposalScreen #proposal-head { height: 1; background: $primary; color: $cdl-on-primary; padding: 0 1;
                                     text-style: bold; }
-    ProposalScreen #sides { height: 2fr; }
-    ProposalScreen #findings-pane { height: 3fr; }
-    ProposalScreen .side { width: 1fr; }
-    ProposalScreen .side-title { color: $accent; text-style: bold; }
+    ProposalScreen #proposal-main { width: 2fr; }
+    ProposalScreen #proposal-pdf { width: 1fr; }
+    ProposalScreen #sides { height: 13; }
+    ProposalScreen .side { width: 1fr; overflow-x: auto; }
+    ProposalScreen .side Shown { width: auto; }
+    ProposalScreen .side-title { color: $accent; text-style: bold; height: 1; }
+    ProposalScreen #changes { height: auto; max-height: 12; }
+    ProposalScreen #findings-pane { height: 1fr; }
     ProposalScreen #proposal-actions { height: auto; padding: 0 1; }
-    ProposalScreen #proposal-main { width: 1fr; }
-    ProposalScreen #proposal-pdf { width: 60; }
-    ProposalScreen.narrow #proposal-pdf { display: none; }
     """
 
-    PDF_BESIDE = 124                     # columns: in a narrower window the PDF's page is not shown beside
-
-    def __init__(self, items, pdf=None, in_library=False, origin="", page=None):
+    def __init__(self, items, pdf=None, in_library=False, origin=""):
         super().__init__()
         self.items = list(items)
         self.pdf = pdf                   # the read PDF the proposals came from (intake.PdfIntake), if one
-        self.page = page                 # its first page as PNG bytes, when it could be drawn
         self.pending_evidence = None     # intake.Accepted whose model evidence could not be stored
         self.reasons = []                # why the proposal shown cannot be accepted (api.why_not_acceptable)
         self.unchecked = None            # text typed in this proposal's editor that could not be checked
@@ -155,13 +155,13 @@ class ProposalScreen(Screen):
                     with VerticalScroll(classes="side pane"):
                         yield Static("Proposed", classes="side-title")
                         yield Shown(id="proposed")
+                yield Table(id="changes", cursor_type="row")
                 with VerticalScroll(id="findings-pane", classes="pane"):
                     yield Shown(id="findings")
-            if self.pdf is not None:             # the PDF's first page stays beside what is proposed from it
+            if self.pdf is not None:             # what was read from the PDF stays beside what is proposed from it
                 with VerticalScroll(id="proposal-pdf", classes="pane"):
-                    yield Static(f"First page of {self.pdf.path.name}", classes="side-title", markup=False)
-                    yield Shown(id="pdf-page")
                     yield Shown(id="pdf-text")
+        yield Shown(id="dialog-notice", classes="notice")
         yield Shown(id="proposal-actions")
         yield Footer()
 
@@ -169,6 +169,7 @@ class ProposalScreen(Screen):
         def call(job):
             manager = api.completion_batch(self.app.ws)
             self._batch = (manager, manager.__enter__())
+        self.query_one("#changes", Table).filler = self._refit
         self.app.job("open the batch", call, lambda _: self._next(), self._failed, quiet=True)
 
     def recolour(self):
@@ -176,22 +177,12 @@ class ProposalScreen(Screen):
             self._show()
 
     def on_resize(self, event):
-        self.set_class(event.size.width < self.PDF_BESIDE, "narrow")
         if self.item is not None and not self.busy:
             self._show()
 
-    def _show_pdf(self):
-        if self.pdf is None:
-            return
-        page = self.query_one("#pdf-page", Shown)
-        try:
-            page.show(render.half_blocks(self.page, 54) if self.page else "")
-        except ValueError:
-            page.show("")
-        out = self.app.writer()
-        out.head("Its text")
-        out.line(self.pdf.first_page_text.strip() or "(no text)")
-        self.query_one("#pdf-text", Shown).show(out.text)
+    def _refit(self):
+        if self.item is not None and not self.busy:
+            self._show()
 
     # --- moving on ---------------------------------------------------------------------------
 
@@ -298,10 +289,16 @@ class ProposalScreen(Screen):
                 "typed by hand" if item.manual else "built from a source record")
         self.query_one("#proposal-head", Static).update(
             f"Proposal {self.index + 1} of {len(self.items)} · {kind}" + (f" · {self.origin}" if self.origin else ""))
-        self.query_one("#typed", Shown).show(Text((item.typed_raw or "(no typed entry)").expandtabs(4)))
-        self.query_one("#proposed", Shown).show(Text((item.proposed_raw or "(no proposed entry)").expandtabs(4)))
+        # the two texts line for line as they are written: long lines scroll sideways, none is wrapped
+        self.query_one("#typed", Shown).show(Text((item.typed_raw or "(no typed entry)").expandtabs(4), no_wrap=True))
+        self.query_one("#proposed", Shown).show(Text((item.proposed_raw or "(no proposed entry)").expandtabs(4),
+                                                     no_wrap=True))
+        fill_table(self.query_one("#changes", DataTable),
+                   [("Field", 9), ("Typed", 2.0), ("Proposed", 3.0), ("Source", 2.0), ("Kind", 8)],
+                   render.changes(item) or [("(no changes)", "", "", "", "")])
         self.query_one("#findings", Shown).show(render.proposal(item, colour))
-        self._show_pdf()
+        if self.pdf is not None:
+            self.query_one("#pdf-text", Shown).show(render.pdf_text(self.pdf, colour, name_only=True))
         actions = Text()
         if self.pending_evidence is not None:
             held = self.pending_evidence
@@ -311,9 +308,6 @@ class ProposalScreen(Screen):
                            "kept, and Library state lists it to store later)", colour("accent"))
             self.query_one("#proposal-actions", Shown).show(actions)
             return
-        if self.pdf is not None and self.has_class("narrow"):
-            actions.append(f"(the PDF's first page is shown beside the proposal in a window of {self.PDF_BESIDE} "
-                           "columns or more)\n", colour("muted"))
         if self.unchecked is not None:
             actions.append("Edited text for this proposal was not checked; e opens it again. What is shown above is "
                            "the proposal without it.\n", colour("error"))

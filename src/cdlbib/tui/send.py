@@ -14,12 +14,13 @@ class SendView(View):
     BINDINGS = [
         Binding("s", "send", "Send"),
         Binding("S", "send(False)", "Send without completion offers", show=False),
-        Binding("r", "refresh", "Read the state again"),
+        Binding("r", "refresh", "Read state again"),
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
 
     DEFAULT_CSS = """
-    SendView #send-summary { width: 1fr; }
+    SendView #send-summary { width: 1fr; margin-right: 2; }
+    SendView .form-label { width: 9; }
     SendView #send-state-pane { height: auto; max-height: 50%; }
     """
 
@@ -31,12 +32,12 @@ class SendView(View):
     def compose(self) -> ComposeResult:
         with VerticalScroll(classes="pane", id="send-state-pane"):
             yield Shown(id="send-state")
-        yield Static("Summary: one line describing the change (optional; the pull request's title)", classes="label")
-        with Horizontal(classes="row"):
-            yield Input(placeholder="e.g. Add Zoller 1990", id="send-summary")
+        with Horizontal(classes="form-row"):
+            yield Static("Summary", classes="form-label")
+            yield Input(placeholder="optional: one line, the pull request's title", id="send-summary")
             yield Button("Send (s)", id="send-go", variant="primary")
         yield Static("S sends without the completion offers (the checks still run).", classes="hint")
-        with VerticalScroll(classes="pane", id="send-result-pane"):
+        with VerticalScroll(classes="pane empty", id="send-result-pane"):
             yield Shown(id="send-result")
 
     def activated(self):
@@ -98,6 +99,7 @@ class SendView(View):
             out = self.app.writer()
             draw(out)
             self.query_one("#send-result", Shown).show(out.text)
+            self.query_one("#send-result-pane").remove_class("empty")
         self.result = again
         again()
 
