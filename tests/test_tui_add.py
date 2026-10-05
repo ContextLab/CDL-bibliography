@@ -124,6 +124,8 @@ def test_accept_all_remaining_writes_those_that_need_no_decision(ws):
             assert "(no proposed entry)" in T.shown(app, "#proposed")
             await T.press(pilot, "a")
             assert name(app) == "ProposalScreen"                         # it cannot be accepted: the core's rule
+            assert T.shown(app, "#proposal-actions").startswith("Cannot be accepted as it stands:\n  no entry is proposed\n")
+            assert "no entry is proposed" in T.screen_text(app)             # ... and its reasons (api.why_not_acceptable)
             assert any("Cannot accept: complete required fields" in note.message for note in app._notifications)
             await T.press(pilot, "q")
             assert name(app) != "ProposalScreen"
@@ -347,6 +349,8 @@ def test_a_pdf_no_source_knows_offers_a_model_then_the_form_filled_with_what_was
             assert name(app) == "RouteScreen"
             routes = T.shown(app, "#question")
             assert "[1] Dartmouth Chat (the default): not set up" in routes and "[2] OpenAI: not set up" in routes
+            for route in api.model_routes(probe=("dartmouth", "openai")):   # what exactly is missing, as the core says it
+                assert route.detail and route.detail in routes
             assert "Create an API key in Dartmouth Chat" in routes        # how to set it up stays on the screen
             off = [button for button in app.screen.query("Button") if button.disabled]
             assert [button.id for button in off] == ["choice-dartmouth", "choice-openai"]   # listed, greyed
@@ -549,3 +553,66 @@ def test_an_entry_written_without_its_model_evidence_stays_on_screen_until_it_is
     entry = api.entry(ws, "ExamSamp19")
     assert entry.status == "needs_review" and entry.human_review is None
     assert entry.external_evidence["pdf_sha256"] == read.sha256 and "title" in entry.external_evidence["fields"]
+    assert api.pending_evidence(ws) == []
+
+
+@needs_pdflatex
+@needs_pypdf
+def test_evidence_left_waiting_is_listed_in_library_state_and_stored_from_there(tmp_path):
+    """After the first failure (a folder where the database should be) the store is refused for
+    a second, lasting reason: the entry holds an approval (recorded with the verifier's own
+    function, under a fixture name). When that is revoked, p stores the evidence."""
+    from cdlbib import intake
+    from cdlbib.source_passages import materialize
+    from cdlbib.tui.proposal import ProposalScreen
+    from cdlbib.verification import Cache, record_approval, record_revocation
+    from test_intake_model import SELECTED
+    read = api.read_pdf(pdfs.build("unknown", tmp_path / "pdfs"))
+    found = materialize({"fields": SELECTED, "uncertainties": []}, read.pages[:intake.MODEL_PAGES])
+    found["provider_trace"] = {"provider": "test selection", "model": None}
+    ws = T.library(tmp_path / "lib", ZOLL90)
+    proposal = intake.proposal_from_findings(ws, read, found, "dartmouth")
+
+    def reviewed(act):
+        cache = Cache(ws.database, ledger=ws.revocations)
+        try:
+            act(cache)
+        finally:
+            cache.close()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            app.push_screen(ProposalScreen([proposal], pdf=read))
+            await T.settle(pilot)
+            ws.work.mkdir(exist_ok=True)
+            assert not ws.database.exists()
+            ws.database.mkdir()                                            # the evidence store cannot be opened
+            await T.press(pilot, "a")
+            assert "the evidence is kept, and Library state lists it to store later" in T.shown(app, "#proposal-actions")
+            ws.database.rmdir()
+            await T.press(pilot, "c")                                      # go on; the entry stays written
+            assert name(app) != "ProposalScreen" and "ExamSamp19: left without its model evidence" in app.log_lines
+            assert [item.key for item in api.pending_evidence(ws)] == ["ExamSamp19"]
+            fingerprint = api.entry(ws, "ExamSamp19").fingerprint
+            reviewed(lambda cache: record_approval(cache, ws.bib, "ExamSamp19", fingerprint, dict(
+                reviewer="@fixture", source="the PDF", note="checked", github_login="fixture", github_id=1)))
+            app.refresh_library(force=True)                                # reading the library tries once, and is refused
+            await T.settle(pilot)
+            await T.press(pilot, "f7")
+            state = T.shown(app, "#state-now")
+            assert "Model evidence not yet stored with its entry (p stores it again)\n  ExamSamp19\n" in state
+            await T.press(pilot, "p")
+            assert "ExamSamp19: the model evidence was not stored:" in T.shown(app, "#state-result")
+            assert "human_verified" in T.shown(app, "#state-result") and api.pending_evidence(ws) != []
+            reviewed(lambda cache: record_revocation(cache, ws.bib, "ExamSamp19", "to store the evidence", "@fixture"))
+            await T.press(pilot, "p")
+            assert ("The model reading's evidence is stored with ExamSamp19; it is not an approval."
+                    in T.shown(app, "#state-result"))
+            assert "Model evidence not yet stored" not in T.shown(app, "#state-now")
+            await T.press(pilot, "p")
+            assert any("No model evidence is waiting to be stored." in note.message for note in app._notifications)
+    T.run(journey())
+    assert api.pending_evidence(ws) == []
+    entry = api.entry(ws, "ExamSamp19")
+    assert entry.external_evidence["pdf_sha256"] == read.sha256 and entry.human_review is None

@@ -126,6 +126,7 @@ class ProposalScreen(Screen):
         self.pdf = pdf                   # the read PDF the proposals came from (intake.PdfIntake), if one
         self.page = page                 # its first page as PNG bytes, when it could be drawn
         self.pending_evidence = None     # intake.Accepted whose model evidence could not be stored
+        self.reasons = []                # why the proposal shown cannot be accepted (api.why_not_acceptable)
         self.in_library = in_library     # the proposals complete entries of the library (completion offers)
         self.origin = origin
         self.index = -1
@@ -202,6 +203,7 @@ class ProposalScreen(Screen):
 
     def _next(self):
         self.index += 1
+        self.reasons = []
         if self.item is None:
             self._finish()
             return
@@ -303,13 +305,17 @@ class ProposalScreen(Screen):
             held = self.pending_evidence
             actions.append(f"{held.key} was written, but the model reading's evidence was not stored with it: "
                            f"{held.evidence_error}\n", colour("error"))
-            actions.append("[t] try storing the evidence again   [c] go on without it (the entry stays written)",
-                           colour("accent"))
+            actions.append("[t] try storing the evidence again   [c] go on (the entry stays written; the evidence is "
+                           "kept, and Library state lists it to store later)", colour("accent"))
             self.query_one("#proposal-actions", Shown).show(actions)
             return
         if self.pdf is not None and self.has_class("narrow"):
             actions.append(f"(the PDF's first page is shown beside the proposal in a window of {self.PDF_BESIDE} "
                            "columns or more)\n", colour("muted"))
+        if self.reasons:
+            actions.append("Cannot be accepted as it stands:\n", colour("warning"))
+            for reason in self.reasons:
+                actions.append(f"  {reason}\n", colour("warning"))
         if item.duplicate_of and item.duplicate_in_library:
             actions.append("[r] remove this typed duplicate   [k] keep both for the formatter   [q] stop",
                            colour("accent"))
@@ -325,8 +331,9 @@ class ProposalScreen(Screen):
         ws = self.app.ws
         if remove:
             return "applied", api.apply_proposals(ws, [replace(item, remove_duplicate=True)], batch=self._batch[1])
-        if not api.acceptable(item) or (automatic and item.needs_decision):
-            return ("ask" if automatic else "cannot"), None
+        reasons = api.why_not_acceptable(item)
+        if reasons or (automatic and item.needs_decision):
+            return ("ask" if automatic else "cannot"), reasons
         if item.manual:
             return "accepted", api.accept_draft(ws, item, pdf=self.pdf if getattr(item, "evidence", None) else None)
         return "applied", api.apply_proposals(ws, [item], batch=self._batch[1])
@@ -338,17 +345,19 @@ class ProposalScreen(Screen):
             self._show()
             return
         if what == "cannot":
-            self.busy = False
+            self.busy, self.reasons = False, list(result)
+            self._show()
             self.app.notify(CANNOT, severity="warning", timeout=8)
             return
         applied = result.applied if what == "accepted" else result
-        for key in applied.removed:
-            self._say(f"Removed duplicate: {key}")
-        for key in applied.written:
-            self._say(f"Completed: {key}" if self.in_library else f"Added: {key}")
-            self.written.append(key)
-        for key, reason in applied.refused:
-            self._say(f"Not written {key}: {reason}")
+        for outcome in applied.outcomes:             # what the writer did with each accepted proposal
+            if outcome.status == "removed":
+                self._say(f"Removed duplicate: {outcome.key}")
+            elif outcome.status == "written":
+                self._say(f"Completed: {outcome.key}" if self.in_library else f"Added: {outcome.key}")
+                self.written.append(outcome.key)
+            else:
+                self._say(f"Not written {outcome.key}: {outcome.reason}")
         for line in applied.notes:
             self._say(line)
         if applied.backup is not None and not self._backup_said:
@@ -375,16 +384,20 @@ class ProposalScreen(Screen):
             return
         self.busy = True
 
-        def stored(_):
-            self.pending_evidence, self.busy = None, False
+        def stored(result):
+            self.busy = False
+            if not result.evidence_stored:           # still not stored: the reason, and it stays here
+                held.evidence_error = result.evidence_error
+                self._show()
+                return
+            self.pending_evidence = None
             self._say(f"The model reading's evidence is stored with {held.key}; it is not an approval.")
             self._next()
 
         def failed(exc):
             held.evidence_error, self.busy = str(exc), False
             self._show()
-        self.app.job(f"store the model evidence of {held.key}",
-                     lambda job: api.attach_model_evidence(self.app.ws, held.key, held.evidence, held.fingerprint),
+        self.app.job(f"store the model evidence of {held.key}", lambda job: api.retry_evidence(self.app.ws, held.key),
                      stored, failed)
 
     def action_leave_evidence(self):
@@ -470,7 +483,7 @@ class ProposalScreen(Screen):
                                     severity="error", timeout=12)
 
             def checked(new):
-                self.items[self.index] = new
+                self.items[self.index], self.reasons = new, []
                 self.busy = False
                 self._show()
             self.app.job("check the edited entry", lambda job: api.recheck_proposal(self.app.ws, item, text),

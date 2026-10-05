@@ -6,7 +6,7 @@ from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
 from textual.widgets import Button
 
-from .. import api
+from .. import api, prompts
 from . import render
 from .widgets import Shown, View
 
@@ -116,6 +116,9 @@ class CheckView(View):
         elif not found:
             count = len(result.errors)
             out.line(f"  none on the chosen entries ({count} other entr{'y has' if count == 1 else 'ies have'} findings)")
+        for key in result.forced:
+            if keys is None or key in keys:
+                out.line(f"  {key}: {prompts.FORCE_REFUSED}", "error")
         for key, fields in found.items():
             out.line(f"  {key}", "warning", bold=True)
             for name, value in fields.items():

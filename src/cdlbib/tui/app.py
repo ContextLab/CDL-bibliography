@@ -78,7 +78,6 @@ KEYS = (
         ("o", "PDF tab: open the PDF in the system viewer"),
         ("m", "PDF tab: read the PDF with a language model"),
         ("t", "PDF tab: type the entry in, the form filled with what was read"),
-        ("t / c", "a proposal whose model evidence was not stored: try again / go on without it"),
         ("ctrl+s", "Manual tab: draft the entry from the form"),
     )),
     ("A proposal", (
@@ -87,6 +86,7 @@ KEYS = (
         ("s", "skip this one"),
         ("A", "accept this and all remaining proposals that need no decision"),
         ("r / k", "a typed duplicate: remove it / keep both for the formatter"),
+        ("t / c", "a proposal whose model evidence was not stored: try again / go on without it"),
         ("q or esc", "stop here; nothing more is written"),
     )),
     ("Check", (
@@ -105,6 +105,7 @@ KEYS = (
         ("u", "update the library (asks what to do when there are unsent changes)"),
         ("b", "read the list of backups again"),
         ("z", "undo: put the library back as it was at the selected backup"),
+        ("p", "store again the model evidence that entries still wait for"),
     )),
     ("Setup", (
         ("c", "check everything: asks gh who is logged in and reads the system keychain"),
@@ -210,6 +211,7 @@ class CdlbibApp(App):
         self.entries = []            # [desk.EntrySummary], as api.entries gave them last
         self.state = None            # desk.LibraryState, as api.library_state gave it last
         self.problem = None          # why the library could not be read
+        self.pending = []            # [api.PendingEvidence]: model evidence written entries still wait for
         self.log_lines = []          # every line of the log, for tests and the capture script
         self.seen = set()            # completion offers already decided in this sitting (touched by jobs only)
         self._revision = None        # the revision the entries were read at (touched by jobs only)
@@ -352,6 +354,7 @@ class CdlbibApp(App):
                 found["entries"] = api.entries(self.ws)
                 self._revision = revision
             found["state"] = api.library_state(self.ws)
+            found["pending"] = api.pending_evidence(self.ws)
             return found
         self.job("read what changed", call, self._refreshed, self._unreadable, key="refresh", quiet=True)
 
@@ -370,6 +373,7 @@ class CdlbibApp(App):
             self.query_one("#top", Static).update(f"cdlbib · {self.ws.root} · {len(self.entries)} entries")
             self.view("library").library_changed()
             self.view("review").library_changed()
+        self.pending = found["pending"]
         self._state(found["state"], keep_fetched=True)
 
     def _state(self, state, keep_fetched=False):
@@ -523,6 +527,15 @@ class CdlbibApp(App):
         def first(job):
             if ("stop", str(ws.bib)) in self.seen:
                 return None
+            due = api.completion_due(ws)             # which entries the offers would look at; no source is asked
+            if not due.reachable:
+                job.progress(f"Completion unavailable: {due.problem}")
+                return None
+            if not due:
+                job.progress("completion offers: no new or edited entry is waiting for one")
+                return None
+            count = len(due.keys)
+            job.progress(f"completion offers: {count} new or edited entr{'y' if count == 1 else 'ies'} to look at")
             holder["offers"] = api.completion_offers(ws, seen=self.seen)
             return next(holder["offers"], None)
 

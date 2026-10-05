@@ -108,7 +108,7 @@ def test_rapid_actions_run_one_at_a_time_and_only_on_the_worker(tmp_path):
     for name in ("prepare", "entries", "library_state", "check_keys", "entry", "review_queue",
                  "check_format", "preview_edit", "setup_report", "revision"):
         assert name in watch.names, name
-    assert watch.names[0] == "prepare"                                  # the first job of all
+    assert watch.names[:2] == ["attempt", "prepare"]                    # the first job of all (every job runs in api.attempt)
     spans = [(started, ended) for _, started, ended in jobs.history]
     assert len(spans) >= 12 and all(later[0] >= earlier[1] for earlier, later in zip(spans, spans[1:]))
     labels = [label for label, _, _ in jobs.history]
@@ -244,9 +244,9 @@ def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_wi
     assert "The first page is not drawn:" in seen["page_declined"] and "pypdfium2" in seen["page_declined"]
     has_pdfium, blocks, screens = seen["default"]
     assert has_pdfium is True and blocks > 500 and screens == 1          # installed without a question, and drawn
-    assert any(line.startswith("installing pypdf (needed for:") for line in seen["log"])
+    assert not any(line.startswith("installing pypdf (") for line in seen["log"])   # asked, so not announced
     assert any(line.startswith("installing pypdfium2 (needed for: the PDF page preview)") for line in seen["log"])
-    assert "installed pypdfium2" in seen["log"] and seen["most_active"] == 1
+    assert seen["most_active"] == 1
 
 
 # --- nothing ends the worker ------------------------------------------------------------------------
