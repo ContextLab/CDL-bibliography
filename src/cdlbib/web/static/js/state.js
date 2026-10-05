@@ -6,6 +6,18 @@ function count(n, one, many) {
   return n + " " + (n === 1 ? one : many);
 }
 
+// The question about unsent changes (the core's wording), and what follows from the answer.
+// Returns what the update did, or null when the person chose nothing.
+export async function decide(error, ctx, onLine) {
+  const said = await ask({ title: "Unsent changes", body: error.data.question,
+    choices: error.data.choices.map((choice) => ({ value: choice, label: error.data.answers[choice], kind: choice === "discard" ? "danger" : "" })) });
+  if (!said) { info("Nothing was changed."); return null; }
+  const done = await post("/api/update/decide", { decision: error.data.decision, choice: said.choice }, onLine);
+  info([done.message].concat(done.notes || []).filter(Boolean).join("\n") || "Nothing to do.");
+  if (done.decision === "send") ctx.go("send");
+  return done;
+}
+
 export async function show(main, ctx) {
   const where = h("div", { class: "panel" });
   const banner = h("div");
@@ -66,12 +78,8 @@ export async function show(main, ctx) {
       outcome(await post("/api/update", {}, log.add));
     } catch (error) {
       if (!(error instanceof ApiError) || error.kind !== "UpdateNeedsDecision") throw error;
-      const said = await ask({ title: "Unsent changes", body: error.data.question,
-        choices: error.data.choices.map((choice) => ({ value: choice, label: error.data.answers[choice], kind: choice === "discard" ? "danger" : "" })) });
-      if (!said) { info("Nothing was changed."); return; }
-      const done = await post("/api/update/decide", { decision: error.data.decision, choice: said.choice }, log.add);
-      outcome(done);
-      if (done.decision === "send") { ctx.go("send"); return; }
+      const done = await decide(error, ctx, log.add);
+      if (!done || done.decision === "send") return;
     }
     await load();
   }

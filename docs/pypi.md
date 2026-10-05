@@ -18,7 +18,8 @@ If you are *not* a CDL member, you probably won't want to use this package direc
 - Optionally reads PDFs to collect quoted evidence for an entry (the `research` extra).
 - Links the bibliography into your TeX tree (`cdlbib setup`) and exports the entries a
   paper cites as a `.bib` or a compiled `.bbl` (`cdlbib export`).
-- Offers the same tasks in a local web interface in your browser (`cdlbib web`).
+- Offers these tasks in a local web interface in your browser (`cdlbib web`), except the
+  compiled `.bbl`, which only `cdlbib export --bbl` makes.
 
 ## Requirements
 

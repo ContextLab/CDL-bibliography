@@ -833,3 +833,87 @@ def test_the_cores_own_sentences_are_shown_for_what_cannot_be_accepted_and_for_t
     expect(page.locator(".tex-lines li")).to_have_text(prompts.tex_state_lines(api.setup_report(visit.ws).tex))
     visit.nav("state")
     expect(page.locator("#pending-evidence")).to_have_count(0)                  # nothing is owed
+
+
+# --- the last review (2026-10-05) ---------------------------------------------------------------
+
+def test_no_decision_is_taken_over_an_edit_that_was_not_checked(visit):
+    page = visit.open()
+    visit.nav("add")
+    page.click("role=tab[name='Identifiers']")
+    page.fill("#add-identifiers", pdfs.ZOLLER_DOI + "\narXiv:" + pdfs.ARXIV_ID)
+    page.click("button:has-text('Look up')")
+    cards = page.locator("article.card")
+    expect(cards).to_have_count(2, timeout=120_000)
+    card = cards.filter(has_text="Entry: Zoll90")
+    card.locator("[data-action=edit]").click()
+    card.locator("textarea").fill(ZOLL90.replace("1053--1065", "1053--1066"))
+    web.wait_idle(visit.running)
+    before = len(visit.running.app.worker.history)
+    for action in ("accept", "skip"):                                           # neither acts over the unchecked text
+        card.locator(f"[data-action={action}]").click()
+        expect(card.locator(".unchecked")).to_contain_text("The editor holds text that has not been checked.")
+    assert keys(visit.ws) == ["Kaha12", "Game62", "TeneEtal11"] and len(visit.running.app.worker.history) == before
+    expect(card.locator("textarea")).to_have_value(ZOLL90.replace("1053--1065", "1053--1066"))       # and the text is still there
+    page.click("[data-action=accept-remaining]")                                # the others are accepted; this card is left out, and says so
+    expect(cards.filter(has_text="Accepted with the remaining proposals.")).to_have_count(1, timeout=120_000)
+    expect(card.locator(".left-out")).to_contain_text("its editor holds text that has not been checked")
+    assert "Zoll90" not in keys(visit.ws) and len(keys(visit.ws)) == 4
+    card.locator("[data-action=discard-edit]").click()                          # discarding is the explicit step
+    expect(card.locator(".unchecked")).to_have_count(0)
+    expect(card.locator("textarea")).to_be_hidden()
+    card.locator("[data-action=accept]").click()
+    expect(page.locator("section[aria-label=Proposals]")).to_contain_text("Added: Zoll90", timeout=120_000)
+    assert visit.ws.bib.read_text(encoding="utf-8").rstrip().endswith(ZOLL90)
+
+
+def test_an_entry_that_changed_on_disk_after_it_was_opened_is_not_overwritten(visit):
+    page = visit.open()
+    page.fill("#search", "key:Kaha12")
+    page.click(".vt-row")
+    page.click("button:has-text('Edit')")
+    expect(page.locator("#entry-text")).to_have_value(KAHA12)
+    theirs = KAHA12.replace("Oxford University Press", "Oxford Univ. Press")
+    visit.ws.bib.write_text(visit.ws.bib.read_text(encoding="utf-8").replace(KAHA12, theirs), encoding="utf-8")     # another program
+    mine = KAHA12.replace("{2012}", "{2013}")
+    page.fill("#entry-text", mine)
+    page.click("button:has-text('Preview')")
+    preview = page.locator("section[aria-label=Preview]")
+    expect(preview).to_contain_text("The entry changed on disk after you opened it.")
+    expect(page.locator("#kept-text")).to_have_text(mine)                       # the text typed is kept, to copy
+    expect(page.locator("button:has-text('Save')")).to_be_disabled()
+    expect(page.locator("#entry-text")).to_have_value(mine)
+    assert theirs in visit.ws.bib.read_text(encoding="utf-8") and "{2013}" not in visit.ws.bib.read_text(encoding="utf-8")
+    page.click("[data-action=reload]")
+    expect(page.locator("#entry-text")).to_have_value(theirs)
+    page.fill("#entry-text", theirs.replace("{2012}", "{2013}"))
+    page.click("button:has-text('Preview')")
+    page.click("button:has-text('Save')")
+    expect(page.locator(".detail-head h2")).to_have_text("Kaha12")
+    assert theirs.replace("{2012}", "{2013}") in visit.ws.bib.read_text(encoding="utf-8")
+
+
+def test_the_daily_check_is_shown_when_the_page_opens(browser, managed):  # noqa: F811
+    """The managed library has an unsent edit and its upstream a newer commit: the daily check
+    made at start changed nothing and the page asks, in the core's words."""
+    site, upstream = managed
+    from test_web_hardening import _make_due
+    edited = site.ws.bib.read_text(encoding="utf-8")
+    site.running.stop()
+    _make_due()
+    running, _ = web.start(site.ws)
+    found = Visit(browser, running, site.ws)
+    try:
+        page = found.open()
+        dialog = page.locator("dialog[open]")
+        expect(dialog).to_contain_text("you have changes that have not been sent", timeout=60_000)
+        assert site.ws.bib.read_text(encoding="utf-8") == edited
+        dialog.locator("button:has-text('Update and keep my changes')").click()
+        expect(page.locator("#match-count")).to_have_text("3 entries", timeout=120_000)
+        assert set(keys(site.ws)) == {"TeneEtal11", "Zoll90", "Kaha12"}
+        page.reload()
+        assert [label for label, _, _ in running.app.worker.history].count("daily update check") == 1
+    finally:
+        found.context.close()
+        running.stop()
+    assert found.problems == [], found.problems
