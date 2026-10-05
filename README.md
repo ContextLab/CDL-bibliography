@@ -128,6 +128,18 @@ installing pypdf (needed for: Reading PDF files) ...
 Use `cdlbib --ask COMMAND` to be asked first; without a terminal,
 `--ask` leaves it uninstalled and prints the manual installation command.
 
+`cdlbib export --bbl` treats a missing `biber` or `bibtex` the same way where the TeX
+installation's own package manager can install it without an administrator:
+
+|TeX installation|A missing `biber` or `bibtex`|
+|-|-|
+|TeX Live in a folder you can write to (for example TinyTeX)|installed with `tlmgr install biber` or `tlmgr install bibtex`|
+|Homebrew `texlive`|`biber` is installed with `brew install biber`|
+|TeX Live in a folder you cannot write to, TeX from `apt-get`, `dnf` or `pacman`, MiKTeX|not installed; the message names the command, for example `Run: sudo tlmgr install biber`|
+
+`cdlbib` never runs `sudo`. See
+[the LaTeX tutorial](docs/tutorials/latex-setup-and-export.md#when-biber-or-bibtex-is-not-installed).
+
 `cdlbib setup` and `cdlbib export --bbl` use a TeX installation (TeX Live or
 MacTeX), which is installed separately. `cdlbib setup` lists what it found on the
 computer.
@@ -868,7 +880,10 @@ The tests of `cdlbib setup`, `cdlbib export` and PDF intake run the real program
 installation, Ghostscript (`gs`), `pdftoppm` and `tesseract`. The browser tests of
 the web interface use Playwright's Chromium. A test whose program is not installed
 is skipped, and the skip names the program. CI installs these programs
-([autocheck.yml](.github/workflows/autocheck.yml)).
+([autocheck.yml](.github/workflows/autocheck.yml)). The tests in
+`tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
+(TinyTeX) and biber, about 140 MB, into pytest's temporary folder, and run only with
+`CDLBIB_TEST_TEX_INSTALL=1`.
 
 Almost all tests use saved copies of real source records, so they run offline. Tests in `tests/test_machinery_2026_09_25.py`, `tests/test_api.py` and `tests/test_publish.py` check new entries against the live Crossref API, so they need `CROSSREF_MAILTO` and a network connection, and can fail temporarily if Crossref is down. Without `CROSSREF_MAILTO` (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests in `tests/test_identity.py`, `tests/test_revoke_ledger.py` and `tests/test_publish.py` that need a GitHub login are skipped when `gh` is not installed or not logged in. The tests in `tests/test_publish.py` that open a pull request do so only inside your own fork of this repository, on its `cdlbib-test-base` branch, and are skipped when you have no fork. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. The tests in `tests/test_pdf_evidence.py` that read PDFs from a local paper library are skipped when it isn't available. `cdlbib verify --no-citations` runs the formatting check on `cdl.bib`.
 
