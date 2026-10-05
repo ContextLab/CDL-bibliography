@@ -767,7 +767,8 @@ def _bibtex(build, sources, style, keys, everything):
 # (nolabelwidthcounts, nolabelwidthcount), checked against the files biblatex wrote here for
 # eleven documents (default, authoryear, alphabetic, apa, ieee, nature, chicago and verbose
 # styles; refsections, sets, templates, each \Declare... that adds a section). The map_step
-# attributes are the schema's without the seven in BCF_REGEX_STEPS. own_bcf() copies these
+# attributes are the schema's without map_matches and map_matchesi, plus map_entry_nocite (a
+# flag in biber's bibtex.pm that the schema lacks and biblatex-chicago writes). own_bcf() copies these
 # names and nothing else; any other element or attribute fails the export by name (dropping
 # it would change the .bbl).
 MAX_BCF, MAX_BCF_ELEMENTS, MAX_BCF_VALUE = 5_000_000, 100_000, 2000
@@ -818,11 +819,12 @@ BCF_SHAPE = {
         "substring_fixed_threshold", "substring_side", "substring_width", "substring_width_max"), (), True),
     "map": (("map_foreach", "map_overwrite", "refsection"), ("map_step", "per_datasource", "per_nottype", "per_type"),
         False),
-    "map_step": (("map_append", "map_appendstrict", "map_entry_clone", "map_entry_new", "map_entry_newtype",
+    "map_step": (("map_append", "map_appendstrict", "map_entry_clone", "map_entry_new", "map_entry_newtype", "map_entry_nocite",
         "map_entry_null", "map_entrykey_allnocited", "map_entrykey_cited", "map_entrykey_citedornocited",
         "map_entrykey_nocited", "map_entrykey_starnocited", "map_entrytarget", "map_field_set", "map_field_source",
-        "map_field_target", "map_field_value", "map_final", "map_notfield", "map_null", "map_origentrytype",
-        "map_origfield", "map_origfieldval", "map_type_source", "map_type_target"), (), False),
+        "map_field_target", "map_field_value", "map_final", "map_match", "map_matchi", "map_notfield", "map_notmatch",
+        "map_notmatchi", "map_null", "map_origentrytype", "map_origfield", "map_origfieldval", "map_replace",
+        "map_type_source", "map_type_target"), (), False),
     "maps": (("datatype", "level", "map_overwrite"), ("map",), False),
     "member": (("datatype", "field", "fieldtype"), (), False),
     "multiscriptfields": ((), ("field",), False),
@@ -863,11 +865,44 @@ BCF_SHAPE = {
     "uniquenametemplate": (("name",), ("namepart",), False),
     "value": (("order", "type"), (), True),
 }
-# A source-map step with one of these makes biber 2.22 compile the value as a Perl regular
-# expression (Biber::Utils::imatch) and, for a replacement, evaluate it as Perl code in a Safe
-# compartment (Biber::Utils::ireplace); every other step value is only substituted as text. A
-# map that has one is refused whoever declared it (the paper, or the style it loads).
-BCF_REGEX_STEPS = ("map_match", "map_matchi", "map_matches", "map_matchesi", "map_notmatch", "map_notmatchi", "map_replace")
+# The source-map steps biber 2.22 does more with than substitute text. A match is compiled as
+# a Perl regular expression (Biber::Utils::imatch: `$val_match = qr/$val_match/;`). A
+# replacement is evaluated as Perl, as the body of a double-quoted string, in a Safe
+# compartment (Biber::Utils::ireplace):
+#     my $cpt = Safe->new;
+#     $cpt->permit_only(qw(:default));
+#     $value =~ s{$val_match}{ my $r = $cpt->reval(qq{"$val_replace"}); $@ ? $val_match : $r; }egxms;
+# biblatex-apa, -chicago, -mla and other styles ship such steps, so they are passed, but only
+# when their values are in a grammar that cannot hold code (safe_match, safe_replace); who
+# declared a step (the paper or a style) cannot be told, so the grammar is all that decides.
+BCF_MATCH_STEPS = ("map_match", "map_matchi", "map_notmatch", "map_notmatchi")
+BCF_REPLACE_STEP = "map_replace"
+MAX_PATTERN = 500
+# In a match: code blocks, verbs, anything Perl could interpolate, named characters, backticks.
+_MATCH_REFUSED = re.compile(r"\(\?\??\{|\(\?p\{|\(\*|@|`|\\N\{|\$(?![0-9)|]|\Z)")
+# A replacement is literal text, $1..$9 or ${1}..${9} (a bare one not followed by anything that
+# would make Perl read on: a digit, [ { - : or an opening parenthesis), and \ before one of \ { } [ ] ( ) .
+_REPLACEMENT = re.compile(r"""(?: [^@`$\\{};"\x00-\x1f\x7f]
+                                | \$[1-9](?![0-9\[{\-:(])
+                                | \$\{[1-9]\}
+                                | \\[\\{}\[\]().]
+                              )*\Z""", re.X)
+
+
+def safe_match(value):
+    r"""Is a source map's match a regular expression that only matches: no code block ((?{ ,
+    (??{ , (?p{ ), no (* verb, no @ and no $ but an anchor or $1..$9, no backtick, no \N{...},
+    no control character, and at most MAX_PATTERN characters."""
+    return (len(value) <= MAX_PATTERN and not _MATCH_REFUSED.search(value)
+            and not any(ord(char) < 32 or ord(char) == 127 for char in value))
+
+
+def safe_replace(value):
+    """Is a source map's replacement only literal text, $1..$9 / ${1}..${9}, and a backslash
+    before one of \\ { } [ ] ( ) . : nothing else can be given to the Perl that biber evaluates."""
+    return len(value) <= MAX_PATTERN and bool(_REPLACEMENT.match(value))
+
+
 # Values biber matches as regular expressions and biblatex writes by default (\DeclareNosort,
 # \DeclareNolabel ...): kept, unless they hold a construct that runs code.
 BCF_PATTERNS = {("nosort", "value"), ("nolabel", "value"), ("noinit", "value"), ("nonamestring", "value"),
@@ -943,8 +978,8 @@ def own_bcf(data, sources):
     in biblatex's namespace). A new tree is then made from nothing: for each element only the
     names in BCF_SHAPE are copied, with their text; anything else is ExportFailed
     ("control_file") naming it. The data sources are not copied at all: each bibdata gets
-    ``sources`` (local files, no pattern). A source map with a match or a replacement is
-    refused, because biber runs those as Perl regular expressions. Option names are those in
+    ``sources`` (local files, no pattern). A source map's match and replacement, which biber
+    runs as Perl, must pass safe_match and safe_replace. Option names are those in
     BCF_OPTIONS; citation keys, and the members of a set, pass the key check."""
     import xml.etree.ElementTree as ET
     _bcf_probe(data)
@@ -972,10 +1007,15 @@ def own_bcf(data, sources):
     def checked(name, element, text):
         """The checks that depend on what an element means to biber."""
         if name == "map_step":
-            regex = [attribute for attribute in element.attrib if attribute in BCF_REGEX_STEPS]
-            if regex:
-                _bcf_refused("the paper, or the bibliography style it loads, declares a source map with a match or a "
-                             f"replacement ({', '.join(regex)}), which biber runs as a Perl regular expression.", regex)
+            unsafe = [attribute for attribute in BCF_MATCH_STEPS
+                      if attribute in element.attrib and not safe_match(element.attrib[attribute])]
+            if BCF_REPLACE_STEP in element.attrib and not safe_replace(element.attrib[BCF_REPLACE_STEP]):
+                unsafe.append(BCF_REPLACE_STEP)
+            if unsafe:
+                shown = "; ".join(f"{attribute}: {element.attrib[attribute][:80]}" for attribute in unsafe)
+                _bcf_refused("the paper, or the bibliography style it loads, declares a source map whose match or "
+                             "replacement holds more than a plain regular expression or plain text with $1..$9 "
+                             f"({shown}); biber would run it as Perl.", unsafe)
         for attribute, value in element.attrib.items():
             if (name, attribute) in BCF_PATTERNS and ("(?{" in value or "(??{" in value):
                 _bcf_refused(f"the pattern of a {name} holds a construct that runs code.", [name])
@@ -1001,9 +1041,6 @@ def own_bcf(data, sources):
         attributes, children, holds_text = BCF_SHAPE[name]
         unknown = [attribute for attribute in element.attrib if attribute not in attributes]
         if unknown:
-            hint = [attribute for attribute in unknown if attribute in BCF_REGEX_STEPS]
-            if name == "map_step" and hint:
-                checked(name, element, "")
             _bcf_refused(f"{name} has an attribute this version does not know: {', '.join(unknown)}.", unknown)
         text = text_of(element, name, holds_text)
         checked(name, element, text or "")

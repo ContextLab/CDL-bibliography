@@ -865,9 +865,11 @@ def hostile_bcfs(real, tmp_path):
         "a set member with a brace": real.replace('<bcf:citekey order="1" intorder="1">', '<bcf:citekey order="1" intorder="1" type="set" members="A,B}C">'),
         "a section number that is not one": real.replace(section, '<bcf:section number="0/../x">'),
         "a source map with a match": real.replace('<bcf:maps datatype="bibtex" level="driver">',
-            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_match="a"/></bcf:map>'),
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_match="a(?{ system(1) })"/></bcf:map>'),
         "a source map with a replacement": real.replace('<bcf:maps datatype="bibtex" level="driver">',
-            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_matchi="a" map_replace="b"/></bcf:map>'),
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_matchi="a" map_replace="@{[ system(1) ]}"/></bcf:map>'),
+        "a source map with a list of matches": real.replace('<bcf:maps datatype="bibtex" level="driver">',
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_matches="a,b" map_replace="c,d"/></bcf:map>'),
         "a source map step this version has not checked": real.replace('<bcf:maps datatype="bibtex" level="driver">',
             '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_perl="1"/></bcf:map>'),
         "a pattern that runs code": real.replace("<bcf:datamodel>", '<bcf:nosorts><bcf:nosort field="title" value="T(?{ system(1) })"/></bcf:nosorts><bcf:datamodel>'),
@@ -891,6 +893,7 @@ def test_a_control_file_that_is_not_of_biblatexs_shape_is_refused(ws, tmp_path):
     named = {"an unknown element": "tool", "an unknown attribute": "output", "an option that names a folder": "output_directory",
              "an option biblatex does not pass": "tool", "a source map with a match": "map_match",
              "a source map with a replacement": "map_replace", "a source map step this version has not checked": "map_perl",
+             "a source map with a list of matches": "map_matches",
              "a processing instruction": "biber"}
     for what, name in named.items():                          # refused by name
         with pytest.raises(ExportFailed) as failed:
@@ -904,37 +907,87 @@ def test_a_control_file_that_is_not_of_biblatexs_shape_is_refused(ws, tmp_path):
         assert failed.value.kind == "control_file" and ("larger than" in str(failed.value) or "more than" in str(failed.value))
 
 
-def test_a_paper_that_declares_a_source_map_with_a_match_is_refused_by_name(ws, tmp_path):
+def step_bcf(real, **attributes):
+    written = "".join(f' {name}="{value}"' for name, value in attributes.items())
+    anchor = '<bcf:maps datatype="bibtex" level="driver">'
+    assert anchor in real
+    return real.replace(anchor, anchor + f'<bcf:map><bcf:map_step map_field_source="title"{written}/></bcf:map>', 1).encode("utf-8")
+
+
+HOSTILE_MATCHES = ["T(?{ system('touch X') })", "T(??{ 'a' })", "(?p{ 1 })", "a(*ACCEPT)", "a@{[ system(1) ]}", "a${\\ system(1)}",
+                   "$(", "$ENV", "@x", "a`id`b", "\\N{U+41}", "a\tb", "x" * 501, "$_", "$&amp;"]
+HOSTILE_REPLACEMENTS = ["@{[ system('touch X') ]}", "${\\ system(1)}", "`id`", "$ENV{HOME}", "$x", "$1[0]", "$1{a}", "$1->x", "$12",
+                        "$0", "a;b", "a&quot;.system(1).&quot;", "a{b}", "\\x41", "\\N{U+41}", "\\Lx", "\\", "$", "${10}", "${a}",
+                        "a\nb", "y" * 501, "$1::x", "$1(", "@"]
+SAFE_MATCHES = ["(.+)", "^$1$", "($)", "^$", "forthcoming|inpreparation", "\\\\(mkbib|en)quote\\{.+((\\?|\\!)\\})$", "(?:\\A|[^{])\\K\\.([^\\d}])",
+                "(.+\\s+and\\s+){3,}|and\\s+others\\s*$", "https?://(dx.)?doi.org/(.+)", "x" * 500]
+SAFE_REPLACEMENTS = ["", "$1", "$1$2", "$1.$2", "${1}0", "\\[$1\\]\\\\midsentence$2", "\\\\bibstring\\{$1\\}", "useauthor=false,$1",
+                     "$1 \\\\mkbibemph\\{app\\}", "ed.", "y" * 500]
+
+
+def test_the_grammar_of_source_map_matches_and_replacements(ws, tmp_path):
+    need("pdflatex", "biber")
+    real = real_bcf(tmp_path / "paper")
+    import html
+    for value in HOSTILE_MATCHES:
+        assert not export.safe_match(html.unescape(value)), value
+        for attribute in export.BCF_MATCH_STEPS:
+            with pytest.raises(ExportFailed) as failed:
+                export.own_bcf(step_bcf(real, **{attribute: value.replace("\t", "&#9;")}), ["cdl"])
+            assert failed.value.kind == "control_file" and failed.value.names == [attribute], value
+            assert "biber would run it as Perl" in str(failed.value)
+    for value in HOSTILE_REPLACEMENTS:
+        assert not export.safe_replace(html.unescape(value)), value
+        with pytest.raises(ExportFailed) as failed:
+            export.own_bcf(step_bcf(real, map_match="(.+)", map_replace=value.replace("\n", "&#10;")), ["cdl"])
+        assert failed.value.kind == "control_file" and failed.value.names == ["map_replace"], value
+    for value in SAFE_MATCHES:
+        assert export.safe_match(value), value
+    for value in SAFE_REPLACEMENTS:
+        assert export.safe_replace(value), value
+    rewritten = export.own_bcf(step_bcf(real, map_match="(.+)", map_replace="$1 \\\\emph\\{x\\}"), ["cdl"]).decode("utf-8")
+    assert 'map_match="(.+)"' in rewritten and 'map_replace="$1 \\\\emph\\{x\\}"' in rewritten
+
+
+def test_a_paper_whose_source_map_holds_code_is_refused_and_a_plain_one_works(ws, tmp_path):
     need("pdflatex", "biber")
     marker = tmp_path / "ran-a-command"
-    declared = ("\\DeclareSourcemap{\\maps[datatype=bibtex]{\\map{\\step[fieldsource=title, match=\\regexp{(.+)}, "
-                "replace=\\regexp{$1 changed}]}}}")
-    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + declared)
-    with pytest.raises(ExportFailed) as failed:
-        export.bbl(ws, file)
-    assert failed.value.kind == "control_file" and set(failed.value.names) == {"map_match", "map_replace"}
-    assert "declares a source map with a match or a replacement (map_match, map_replace)" in str(failed.value)
-    assert not marker.exists() and not (tmp_path / "paper" / "main.bbl").exists()
-    found = export.cited(file)                                # the frozen .bib needs no biber
-    assert found.keys == ["Zoll90"] and export.frozen_bib(ws, found, tmp_path / "cited.bib").written == ["Zoll90"]
+    hostile = {"map_match": "\\regexp{T(?{ system('touch " + str(marker) + "') })}",
+               "map_replace": "\\regexp{@{[ system('touch " + str(marker) + "') ]}}"}
+    for number, (name, value) in enumerate(hostile.items()):
+        step = f"match={value}" if name == "map_match" else f"match=\\regexp{{(.+)}}, replace={value}"
+        declared = f"\\DeclareSourcemap{{\\maps[datatype=bibtex]{{\\map{{\\step[fieldsource=title, {step}]}}}}}}"
+        file = paper(tmp_path / f"paper{number}", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + declared)
+        with pytest.raises(ExportFailed) as failed:
+            export.bbl(ws, file)
+        assert failed.value.kind == "control_file" and failed.value.names == [name], str(failed.value)
+        assert "declares a source map whose match or replacement" in str(failed.value) and name in str(failed.value)
+        assert not marker.exists() and not (file.parent / "main.bbl").exists()
+        found = export.cited(file)                            # the frozen .bib needs no biber
+        assert found.keys == ["Zoll90"] and export.frozen_bib(ws, found, tmp_path / f"cited{number}.bib").written == ["Zoll90"]
 
-    harmless = ("\\DeclareSourcemap{\\maps[datatype=bibtex]{\\map[overwrite]{\\pertype{article}"
-                "\\step[fieldset=note, fieldvalue={set by the paper}]}}}")
-    other = paper(tmp_path / "paper b", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + harmless)
-    assert "set by the paper" in export.bbl(ws, other).path.read_text(encoding="utf-8")      # a map without one still works
+    plain = ("\\DeclareSourcemap{\\maps[datatype=bibtex]{\\map[overwrite]{\\pertype{article}"
+             "\\step[fieldsource=journal, match=\\regexp{Journal\\s+of\\s+(.+)}, replace=\\regexp{$1.mapped}]"
+             "\\step[fieldset=note, fieldvalue={set by the paper}]}}}")
+    other = paper(tmp_path / "paper b", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + plain)
+    text = export.bbl(ws, other).path.read_text(encoding="utf-8")
+    assert "set by the paper" in text and "Research in Science Teaching.mapped" in text
 
 
-@pytest.mark.parametrize("options", ["style=authoryear,natbib=true,sorting=ynt,maxbibnames=99,giveninits=true",
-                                     "style=alphabetic,defernumbers=true,sortcites=true,backref=true",
-                                     "style=ieee", "style=nature", "style=verbose-ibid"])
-def test_the_maps_and_sections_biblatex_writes_by_default_pass_for_common_styles(ws, tmp_path, options):
-    """The rebuilt control file gives the same .bbl as the one biblatex wrote, with the real biber."""
+STYLES = [None, "numeric", "authoryear", "alphabetic", "ieee", "nature", "verbose-ibid", "apa", "chicago-authordate",
+          "chicago-notes", "mla", "oxyear", "gost-numeric", "lncs", "vancouver"]
+
+
+@pytest.mark.parametrize("style", STYLES)
+def test_the_bbl_of_each_installed_biblatex_style_is_the_one_biber_makes_by_hand(ws, tmp_path, style):
+    """Each style's own source maps (apa, chicago, mla ... ship matches and replacements) pass the
+    grammar, and the rebuilt control file gives the same .bbl as biblatex's own, with the real biber."""
     need("pdflatex", "biber", "kpsewhich")
-    style = options.split(",")[0].split("=")[1]
-    if not subprocess.run(["kpsewhich", style + ".bbx"], capture_output=True, text=True).stdout.strip():
+    if style and not subprocess.run(["kpsewhich", style + ".bbx"], capture_output=True, text=True).stdout.strip():
         pytest.skip(f"the biblatex style {style} is not installed")
-    preamble = f"\\usepackage[backend=biber,{options}]{{biblatex}}\n\\addbibresource{{cdl.bib}}"
-    file = paper(tmp_path / "paper", "\\cite{Zoll90} \\cite{FixtB22}\\nocite{FixtA21}\n\\printbibliography", preamble)
+    options = f"backend=biber,style={style}" if style else "backend=biber"
+    file = paper(tmp_path / "paper", "\\cite{Zoll90} \\cite{FixtB22}\\nocite{FixtA21}\n\\printbibliography",
+                 f"\\usepackage[{options}]{{biblatex}}\n\\addbibresource{{cdl.bib}}")
     made = export.bbl(ws, file, out=tmp_path / "made.bbl").path.read_text(encoding="utf-8")
     export.frozen_bib(ws, export.cited(file), tmp_path / "paper" / "cdl.bib")
     assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=file.parent).returncode == 0
@@ -943,17 +996,12 @@ def test_the_maps_and_sections_biblatex_writes_by_default_pass_for_common_styles
     assert all(f"\\entry{{{key}}}{{article}}" in made for key in ("Zoll90", "FixtA21", "FixtB22"))
 
 
-def test_a_style_whose_own_source_maps_match_is_refused_and_says_why(ws, tmp_path):
-    """biblatex-apa ships source maps with a match; they cannot be told from a paper's own."""
-    need("pdflatex", "biber", "kpsewhich")
-    if not subprocess.run(["kpsewhich", "apa.bbx"], capture_output=True, text=True).stdout.strip():
-        pytest.skip("the biblatex style apa is not installed")
-    file = paper(tmp_path / "paper", "\\cite{Zoll90}\n\\printbibliography",
-                 "\\usepackage[backend=biber,style=apa]{biblatex}\n\\addbibresource{cdl.bib}")
-    with pytest.raises(ExportFailed) as failed:
-        export.bbl(ws, file)
-    assert failed.value.kind == "control_file" and "or the bibliography style it loads" in str(failed.value)
-    assert export.frozen_bib(ws, export.cited(file), tmp_path / "cited.bib").written == ["Zoll90"]
+def test_common_style_options_pass(ws, tmp_path):
+    need("pdflatex", "biber")
+    options = "backend=biber,style=authoryear,natbib=true,sorting=ynt,maxbibnames=99,giveninits=true,defernumbers=true,sortcites=true,backref=true"
+    file = paper(tmp_path / "paper", "\\citep{Zoll90} \\citet{FixtB22}\n\\printbibliography",
+                 f"\\usepackage[{options}]{{biblatex}}\n\\addbibresource{{cdl.bib}}")
+    assert "\\entry{FixtB22}{article}" in export.bbl(ws, file).path.read_text(encoding="utf-8")
 
 
 def test_only_regular_files_are_copied_and_a_fifo_does_not_stop_the_export(ws, tmp_path):
