@@ -8,7 +8,7 @@ import time
 import pytest
 
 import web_support as web
-from test_web_server import CDLBIB, ZOLL90
+from test_web_server import CDLBIB, ZOLL90, stopped
 
 
 @pytest.mark.parametrize("number", [signal.SIGINT, signal.SIGTERM])
@@ -31,7 +31,6 @@ def test_the_server_stops_when_it_was_started_with_interrupts_ignored(tmp_path, 
                 break
         assert process.poll() is None, said
     finally:
-        process.send_signal(number)
-        out, err = process.communicate(timeout=60)
+        out, err = stopped(process, number)
     assert process.returncode == 0, err
     assert "Traceback" not in err
