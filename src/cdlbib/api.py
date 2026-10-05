@@ -1334,3 +1334,64 @@ def export_bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=Fal
     """Compile the paper's .bbl from the library with the paper's own style (export.bbl)."""
     from . import export
     return export.bbl(ws, paper, out=out, inputs=inputs, main=main, engine=engine, force=force)
+
+
+# --- front-end helpers added for the TUI ---
+
+def acceptable(proposal):
+    """May this proposal be written when the person accepts it: it is complete, has an entry
+    text, is no duplicate, is of a type the writer takes, and none of its issues is about the
+    key or the house format. The one rule of `add`, of completion and of the interactive
+    front ends; ``needs_decision`` is separate (it says "never without the person looking")."""
+    return bool(proposal.complete and proposal.proposed_raw and not proposal.duplicate_of and not proposal.unsupported
+                and not any("already exists in the library" in issue or "does not match the key plan" in issue
+                            or issue.startswith("format:") or "format check could not run" in issue
+                            for issue in proposal.issues))
+
+
+def completion_batch(ws):
+    """The context manager that makes every acceptance of one sitting share one backup of the
+    managed library (library.completion_batch): pass what it yields as ``batch`` to
+    ``apply_proposals``. Entered and left on the same thread."""
+    from . import library
+    return library.completion_batch(ws)
+
+
+def name_choices(proposal):
+    """[(field, typed names, source names)] for each author or editor list of ``proposal``
+    that is a question and has as many names typed as the source gives: the lists a person
+    settles name by name (``resolve_names``)."""
+    found = []
+    for change in proposal.changes:
+        if change.kind == 'question' and change.field in ('author', 'editor') and change.typed and change.proposed:
+            typed, source = change.typed.split(' and '), change.proposed.split(' and ')
+            if len(typed) == len(source):
+                found.append((change.field, typed, source))
+    return found
+
+
+def resolve_names(ws, proposal, field, names, mailto=None, database=None):
+    """``proposal`` with its ``field`` (author or editor) set to ``names``, the list the person
+    chose name by name, rechecked (``recheck_proposal``); the field is then no longer a
+    question. Nothing is written."""
+    from . import complete
+    fields = complete._completion_fields(proposal)
+    fields[field] = ' and '.join(names)
+    return recheck_proposal(ws, proposal, complete.render(proposal.entry_type, proposal.key_typed or proposal.key_proposed, fields),
+                            mailto=mailto, database=database, resolved_fields=(field,))
+
+
+def draft_types():
+    """The entry types a hand-typed draft may have (intake.DRAFT_TYPES), "article" first."""
+    from . import intake
+    return tuple(intake.DRAFT_TYPES)
+
+
+def draft_fields():
+    """The field names a manual form offers, in the order to show them: the house format's
+    fields (keep_fields.txt) without the entry type, the key and ``force``."""
+    from .helpers import read
+    first = ("author", "title", "year", "journal", "booktitle", "volume", "number", "pages", "publisher", "address",
+             "editor", "doi")
+    kept = [name for name in read("keep_fields.txt") if name not in ("ENTRYTYPE", "ID", "force")]
+    return tuple([name for name in first if name in kept] + sorted(name for name in kept if name not in first))

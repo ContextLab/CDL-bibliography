@@ -191,9 +191,7 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
                     from dataclasses import replace
                     accepted.append(replace(item, remove_duplicate=True))
                 break
-            safe = (item.complete and item.proposed_raw and not item.duplicate_of and not item.unsupported
-                    and not any("already exists in the library" in issue or "does not match the key plan" in issue or issue.startswith("format:")
-                                or "format check could not run" in issue for issue in item.issues))
+            safe = api.acceptable(item)
             if all_remaining and safe and not item.needs_decision:
                 accepted.append(item)
                 break
@@ -438,6 +436,15 @@ def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, s
     typer.echo(f"you are now on branch {result.branch}")
     if result.left:
         typer.echo("left uncommitted: " + ", ".join(result.left))
+
+
+@app.command()
+def tui(ctx: typer.Context):
+    """Open the terminal interface on the library."""
+    deps.need("textual", "tui", "the terminal interface")
+    ws = library(ctx, BIB_NAME)   # as every command: the managed library is downloaded when it is the one in use
+    from .tui import run
+    run(ws)
 
 
 from .prompts import ANSWERS, MOVED, answers, unsent_question, CHOSEN_BY
