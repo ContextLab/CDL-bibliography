@@ -1,14 +1,12 @@
 """The Send view: what will be sent, the completion offers, then the one checked send."""
-import re
-
 from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
 from textual.widgets import Button, Input, Static
 
-from .. import api, deps
-from ..errors import GateFailed, PublishRefused
+from .. import api, prompts
+from ..errors import GateFailed
 from .widgets import Shown, View
 
 
@@ -137,23 +135,13 @@ class SendView(View):
                     job.progress("format: looks good!")
                 else:
                     job.progress("format: errors found in " + ", ".join(str(key) for key in fmt.errors))
+                    for key in fmt.forced:
+                        job.progress(f"  {key}: {prompts.FORCE_REFUSED}")
                     for key, fields in fmt.corrections.items():
                         for name, value in fields.items():
                             job.progress(f"  {key}: {'key' if name == 'ID' else name}: the formatter writes {value}")
-            try:
-                return api.send_checked(ws, summary=summary, progress=job.progress, report=report)
-            except PublishRefused as exc:
-                if not exc.needs_fork:
-                    raise
-                if deps.ask():
-                    if not job.confirm(f"{exc} Create one now?"):
-                        raise PublishRefused(f"{exc} Create one with: gh repo fork {exc.upstream} --clone=false") from exc
-                else:
-                    login = re.match(r"@(\S+) has no fork of ", str(exc))
-                    name = exc.upstream.split("/", 1)[1] if exc.upstream and "/" in exc.upstream else "the upstream repository"
-                    job.progress(f"creating your fork {login.group(1)}/{name} ..." if login
-                                 else f"creating your fork of {exc.upstream} ...")
-                return api.send_checked(ws, summary=summary, progress=job.progress, allow_fork_creation=True)
+            return api.send_checked(ws, summary=summary, progress=job.progress, report=report,
+                                    allow_fork_creation=job.allow_fork)
 
         def done(result):
             self.sending = False

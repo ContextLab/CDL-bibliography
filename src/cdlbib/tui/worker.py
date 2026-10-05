@@ -2,15 +2,17 @@
 
 A job is a function of one argument (the ``Running`` it is run as: ``progress(line)`` for the
 log, ``confirm(question)`` to ask the person). Its result is handed to ``done`` on the
-interface's thread, its CdlbibError to ``failed``. A job that stops for a missing optional
-package has the package installed (after a question with --ask) and is run again, once.
+interface's thread, its CdlbibError to ``failed``. A job runs inside api.attempt: when it
+stops for a missing optional package or a missing fork, the core decides whether to go on
+(by default yes, saying so; with --ask its question is put to the person) and the job is run
+again, once.
 """
 import queue
 import threading
 import time
 
-from .. import deps
-from ..errors import CdlbibError, MissingDependency
+from .. import api
+from ..errors import CdlbibError, NeedsConfirmation
 
 
 class Job:
@@ -24,6 +26,7 @@ class Running:
 
     def __init__(self, runner, job):
         self.runner, self.job = runner, job
+        self.allow_fork = False      # the core let this run create the user's fork (api.attempt)
 
     def progress(self, line):
         """A line for the log. It never raises: a log that cannot be written to must not stop
@@ -147,14 +150,22 @@ class Runner:
         running = Running(self, job)
         if not job.quiet:
             self.say(f"> {job.label}")
-        for attempt in (1, 2):
+        def run(allow_fork_creation=False):
+            running.allow_fork = allow_fork_creation
+            return job.call(running)
+        answers = {}
+        while True:
             try:
-                result = job.call(running)
-            except MissingDependency as exc:
-                if attempt == 1 and self._install(exc):
-                    continue
-                self._failed(job, exc)
-                return
+                # api.attempt installs a missing package or lets the fork be made, once each, and
+                # runs the job again; whether to is the core's decision (asked first with --ask).
+                result = api.attempt(run, allow_install=answers.get("install"), allow_fork=answers.get("fork"),
+                                     progress=running.progress)
+            except NeedsConfirmation as exc:
+                if exc.kind in answers:              # asked already: the core's refusal stands
+                    self._failed(job, exc)
+                    return
+                answers[exc.kind] = bool(self.ask(exc.question))
+                continue
             except CdlbibError as exc:
                 self._failed(job, exc)
                 return
@@ -172,18 +183,3 @@ class Runner:
             self._safely(job.label, job.failed, exc)
         else:
             self._safely(job.label, self.unexpected, job.label, exc)
-
-    def _install(self, exc):
-        """Install the package a job needs: by default after saying so, with --ask after a
-        yes. True when it was installed."""
-        if deps.ask():
-            if not self.ask(f"{exc.feature} needs '{exc.package}'. Install it now?"):
-                return False
-        self.say(f"installing {exc.package} (needed for: {exc.feature}) ...")
-        try:
-            deps.install(exc.extra, package=exc.package)
-        except CdlbibError as failure:
-            self.say(str(failure))
-            return False
-        self.say(f"installed {exc.package}")
-        return True

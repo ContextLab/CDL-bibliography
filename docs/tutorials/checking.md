@@ -7,7 +7,11 @@ you will see. The [README](../../README.md#verify) describes every check;
 The output shown was recorded with `cdlbib 2.0.0` on October 2, 2026. Progress bars are
 left out. Counts and dates will differ when you run the commands.
 
-<!-- TUI steps: added with the terminal interface -->
+In [the terminal interface](terminal-interface.md) (`cdlbib tui`): `c` in the Library
+view checks the selected entry. In the Check view (`F5`), `g` runs the completion offers
+and then the check of the new or edited entries, `G` runs that check without the offers,
+and `m` runs the format check on the whole library. The lines of a check appear in the
+log at the bottom of the window.
 
 ## 1. Install
 

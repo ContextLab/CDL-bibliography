@@ -257,3 +257,24 @@ def test_a_dialog_with_typed_text_asks_before_it_is_closed(ws):
             await T.press(pilot, "escape", "y")
             assert answers == [None, None] and len(app.screen_stack) == 1
     T.run(journey())
+
+
+def test_a_force_field_is_refused_in_the_cores_words(ws):
+    from cdlbib import prompts
+    before = ws.bib.read_bytes()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await T.press(pilot, "end", "enter", "tab")
+            await T.type_text(pilot, "Force = {True},")
+            assert app.screen.text == ZOLL90.replace("{Zoll90,\n", "{Zoll90,\n\tForce = {True},\n")
+            await T.press(pilot, "ctrl+p")
+            assert prompts.FORCE_REFUSED in T.shown(app, "#preview")
+            assert "a Force field is not allowed" in T.screen_text(app)
+            await T.press(pilot, "ctrl+s")
+            assert type(app.screen).__name__ == "EditScreen" and ws.bib.read_bytes() == before
+            await T.press(pilot, "escape", "y")
+    T.run(journey())
+    assert ws.bib.read_bytes() == before

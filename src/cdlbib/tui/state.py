@@ -10,20 +10,13 @@ from ..errors import UpdateConflict, UpdateNeedsDecision
 from .widgets import ChoiceScreen, Shown, View
 
 
-def backup_line(backup, only_copy):
-    changed = len(backup.changed)
-    return ((f"branch {backup.branch}" if backup.branch else "no branch")
-            + f" at {backup.commit[:8]}, {changed} changed file{'' if changed == 1 else 's'}"
-            + (", local commits saved" if backup.has_bundle else "")
-            + (", holds commits kept nowhere else" if only_copy else ""))
-
-
 class StateView(View):
     BINDINGS = [
         Binding("r", "refresh", "Look for upstream changes"),
         Binding("u", "update", "Update"),
         Binding("b", "backups", "Backups"),
         Binding("z", "undo", "Undo to the selected backup"),
+        Binding("p", "evidence", "Store pending model evidence", show=False),
     ]
     DEFAULT_CSS = """
     StateView #state-pane { height: auto; max-height: 14; }
@@ -115,6 +108,11 @@ class StateView(View):
                      "error")
         for note in state.notes:
             out.line(note, "warning")
+        if self.app.pending:
+            out.head("Model evidence not yet stored with its entry (p stores it again)")
+            for waiting in self.app.pending:
+                out.line(f"  {waiting.key}" + (": the entry is gone or was changed since; this evidence can no longer be "
+                                               "stored" if waiting.stale else ""), "warning")
         self.query_one("#state-now", Shown).show(out.text)
         for name in ("#state-update", "#state-undo"):
             self.query_one(name, Button).disabled = not state.managed
@@ -138,6 +136,28 @@ class StateView(View):
                         "undo are for the copy cdlbib downloads and manages." if self.app.state is not None
                         else "The library's state is still being read.")
         return True
+
+    def action_evidence(self):
+        waiting = [item.key for item in self.app.pending if not item.stale]
+        if not waiting:
+            self.app.notify("No model evidence is waiting to be stored.")
+            return
+
+        def call(job):
+            return [api.retry_evidence(self.app.ws, key) for key in waiting]
+
+        def done(results):
+            def draw(out):
+                for result in results:
+                    if result.evidence_stored:
+                        out.line(f"The model reading's evidence is stored with {result.key}; it is not an approval.",
+                                 "success")
+                    else:
+                        out.line(f"{result.key}: the model evidence was not stored: {result.evidence_error}", "error")
+            self._result(draw)
+            self.app.refresh_library(force=True)
+        self.app.job("store the pending model evidence", call, done,
+                     lambda exc: self._result(lambda out: out.line(str(exc), "error")))
 
     # --- update ------------------------------------------------------------------------------
 
@@ -235,7 +255,7 @@ class StateView(View):
                          + f", newest first (kept in {found['folder']})", bold=True)
             if found["checkpoint"]:
                 out.line(f"z without a selection restores the checkpoint {found['checkpoint']}", "muted")
-            rows = {backup.stamp: (backup.stamp, backup.when, backup_line(backup, found["only"][backup.stamp]))
+            rows = {backup.stamp: (backup.stamp, backup.when, prompts.backup_line(backup, found["only"][backup.stamp]))
                     for backup in saved}
             rows.update({stamp: (stamp, "", f"unreadable ({reason})") for stamp, reason in unreadable})
             for stamp in sorted(rows, reverse=True):
@@ -256,7 +276,7 @@ class StateView(View):
 
             def draw(out):
                 out.line(f"restored backup {restored.stamp} ({restored.when}): "
-                         f"{backup_line(restored, False)}", "success")
+                         f"{prompts.backup_line(restored, False)}", "success")
                 out.line(f"the library as it was just before is backup {undone.before.stamp}; z on it returns to it")
                 for branch, commit in undone.taken_off:
                     out.line(f"branch {branch} was on commit {commit[:8]}, which is on no other branch and not in the "

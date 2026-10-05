@@ -17,7 +17,8 @@ The other commands need no key.
 - [Optional packages](#optional-packages)
 - [What was not verified](#what-was-not-verified)
 
-<!-- TUI steps: added with the terminal interface -->
+In [the terminal interface](terminal-interface.md), the Setup view (`F8`) lists both keys
+as `not checked` until `c` is pressed; `c` reads the system keychain.
 
 ## A Dartmouth Chat key
 

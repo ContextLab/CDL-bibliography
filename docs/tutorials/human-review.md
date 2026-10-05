@@ -4,7 +4,13 @@ How to record that you have checked an entry against its source, and how to with
 such a record. The reviewer's identity is the GitHub login of the GitHub CLI (`gh`) on
 the computer; neither the command nor the web interface takes a typed name.
 
-<!-- TUI steps: added with the terminal interface -->
+## Terminal interface
+
+In [the terminal interface](terminal-interface.md) (`cdlbib tui`), press `F3` for the
+Review view and select the entry. `a` opens the approval dialog, which names the GitHub
+login the approval will be recorded under and has boxes for the source and the note;
+`ctrl+s`, then `y`, records it. `v` revokes an approval in the same way, with a reason.
+Both keys also work in the Library view (`F2`). The dialog has no box for a name.
 
 ## Command line
 

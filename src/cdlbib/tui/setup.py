@@ -12,22 +12,6 @@ from ..errors import ExportFailed, TexLinkRefused
 from .widgets import Shown, View
 
 
-def tex_state(status):
-    """The line that says what the state of the TeX link means."""
-    return {
-        "linked": "linked: TeX finds this library's cdl.bib from any folder (\\bibliography{cdl} or \\addbibresource{cdl.bib})",
-        "absent": "not linked",
-        "other_library": f"linked to another library: {status.target}",
-        "foreign": f"not linked: {status.link} exists and was not made by cdlbib",
-        "shadowed": "linked, but TeX does not resolve cdl.bib to it",
-        "no_tex": {"linked": "linked; TeX was not found, so it could not be shown that TeX resolves it",
-                   "absent": "not linked; TeX was not found",
-                   "other_library": f"linked to another library: {status.target}; TeX was not found",
-                   "foreign": f"not linked: {status.link} exists and was not made by cdlbib; TeX was not found",
-                   }[status.present],
-    }[status.state]
-
-
 class SetupView(View):
     BINDINGS = [
         Binding("c", "check", "Check everything"),
@@ -122,10 +106,9 @@ class SetupView(View):
         out.line(f"library: {found.root}", bold=True)
         out.line(f"chosen by: {prompts.CHOSEN_BY[found.origin]}")
         out.head("TeX link (l links cdl.bib into your TeX tree; x removes the link)")
-        out.line(f"  state: {tex_state(status)}", "success" if status.state == "linked" else "warning")
-        out.line(f"  link: {status.link}" + (f" -> {status.target}" if status.target else ""))
-        if status.kpsewhich:
-            out.line(f"  kpsewhich cdl.bib: {status.resolves_to or 'not found'}")
+        for line in prompts.tex_state_lines(status):
+            out.line(f"  {line}", ("success" if status.state == "linked" else "warning") if line.startswith("state: ")
+                     else None)
         out.head("Available on this computer")
         for feature in report.features:
             known = feature.available
@@ -143,16 +126,9 @@ class SetupView(View):
             state = "not checked" if known is None else "set up" if known else "not set up"
             out.line(f"  {route.label}{' (the default)' if route.default else ''}: {state}",
                      "success" if known else "muted", bold=bool(known))
+            if route.detail and not known:
+                out.line(f"      {route.detail}", "muted")
             out.line(f"      {route.how}", "muted")
-        out.head("TeX link, in full")
-        out.line(f"  TeX tree: {status.texmf_home}")
-        for line in status.changes:
-            out.line(f"  {line}")
-        for line in status.notes:
-            out.line(f"  {line}")
-        if status.state != "linked":
-            out.line("  without a link, this shell line does the same (cdlbib does not write it anywhere): "
-                     f"{status.bibinputs_line}", "muted")
         self.query_one("#setup-report", Shown).show(out.text)
 
     def _result(self, draw):
@@ -175,9 +151,9 @@ class SetupView(View):
             def draw(out):
                 for line in status.changes:
                     out.line(line)
-                out.line(f"state: {tex_state(status)}", "success" if status.state == "linked" else "warning")
+                out.line(f"state: {prompts.tex_state(status)}", "success" if status.state == "linked" else "warning")
             self._result(draw)
-            self.app.say(f"TeX link: {tex_state(status)}")
+            self.app.say(f"TeX link: {prompts.tex_state(status)}")
 
         def refused(exc):
             if isinstance(exc, TexLinkRefused) and not replace:

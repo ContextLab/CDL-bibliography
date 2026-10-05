@@ -13,9 +13,8 @@ One file for each task: what to type, or what to press, and what you will see. T
 |Send a change as a pull request from your fork|[Contribute a pull request](tutorials/contributing.md)|
 |Make `cdl.bib` available to every manuscript; export a paper's `.bib` or `.bbl`|[LaTeX setup and export](tutorials/latex-setup-and-export.md)|
 |Use the browser instead of the command line|[The web interface](tutorials/web-interface.md)|
+|Use a full-screen interface in the terminal|[The terminal interface](tutorials/terminal-interface.md)|
 |Set a Dartmouth Chat or OpenAI key|[API keys](tutorials/api-keys.md)|
-
-<!-- TUI: a row for tutorials/terminal-interface.md is added to the table with the terminal interface -->
 
 Each tutorial says when its output was recorded. Progress bars are left out. Counts and
 dates will differ when you run the commands.

@@ -16,7 +16,8 @@ The output shown was recorded with `cdlbib 2.0.0` on October 5, 2026, with Chrom
 temporary copies of the library chosen with `--library`. `~/demo` stands for the temporary
 folder and `<TOKEN>` for the token.
 
-<!-- TUI steps: added with the terminal interface -->
+[The terminal interface](terminal-interface.md) (`cdlbib tui`) offers the same views in
+the terminal.
 
 ## Start it
 
