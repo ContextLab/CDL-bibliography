@@ -36,7 +36,7 @@ cdlbib-adapter-openai = "cdlbib.openai_research_adapter:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-cdlbib = ["data/*"]
+cdlbib = ["data/*", "web/static/*", "web/static/js/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cdlbib</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/theme.css">
+<link rel="stylesheet" href="/app.css">
+<script type="module" src="/js/main.js"></script>
+</head>
+<body>
+<button type="button" class="skip" id="skip">Skip to the content</button>
+<header class="top">
+  <div class="brand"><span class="brand-name">cdlbib</span><span class="brand-library" id="library-path"></span></div>
+  <nav id="nav" aria-label="Views"></nav>
+  <div class="who">
+    <span id="identity">GitHub: not checked</span>
+    <button type="button" id="identity-check" class="quiet" aria-label="Check the GitHub login">check</button>
+    <button type="button" id="theme-toggle" class="quiet">Theme: system</button>
+  </div>
+</header>
+<div id="activity" class="activity" role="status" aria-live="polite"></div>
+<main id="main" tabindex="-1"></main>
+<div id="status" class="visually-hidden" role="status" aria-live="polite"></div>
+<div id="alerts" class="alerts" role="alert" aria-live="assertive"></div>
+<noscript><p class="pad">This page needs JavaScript. Nothing is loaded from outside this computer.</p></noscript>
+</body>
+</html>
