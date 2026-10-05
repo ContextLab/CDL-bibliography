@@ -67,3 +67,75 @@ def unsent_question(exc):
     if "send" not in exc.choices:
         lines.append("  (Sending is not offered: there are no uncommitted changes to send.)")
     return "\n".join(lines)
+
+
+
+FORCE_REFUSED = ("a Force field is not allowed: every entry follows the same house rules, with no override for one "
+                 "entry (remove the field)")
+
+
+def install_question(exc):
+    """The question about installing a missing optional package (errors.MissingDependency)."""
+    return f"{exc.feature} needs '{exc.package}'. Install it now?"
+
+
+def install_line(exc):
+    """The line said when a missing optional package is installed without asking."""
+    return f"installing {exc.package} (needed for: {exc.feature}) ..."
+
+
+def fork_question(exc):
+    """The question about creating the user's fork (errors.PublishRefused with needs_fork)."""
+    return f"{exc} Create one now?"
+
+
+def fork_line(exc):
+    """The line said when the user's fork is created without asking."""
+    import re
+    login = re.match(r"@(\S+) has no fork of ", str(exc))
+    name = exc.upstream.split("/", 1)[1] if exc.upstream and "/" in exc.upstream else "the upstream repository"
+    return f"creating your fork {login.group(1)}/{name} ..." if login else f"creating your fork of {exc.upstream} ..."
+
+
+def tex_state(status):
+    """The line that says what the state of the TeX link means (a tex.TexStatus)."""
+    return {
+        "linked": "linked: TeX finds this library's cdl.bib from any folder (\\bibliography{cdl} or \\addbibresource{cdl.bib})",
+        "absent": "not linked",
+        "other_library": f"linked to another library: {status.target}",
+        "foreign": f"not linked: {status.link} exists and was not made by cdlbib",
+        "shadowed": "linked, but TeX does not resolve cdl.bib to it",
+        "no_tex": {"linked": "linked; TeX was not found, so it could not be shown that TeX resolves it",
+                   "absent": "not linked; TeX was not found",
+                   "other_library": f"linked to another library: {status.target}; TeX was not found",
+                   "foreign": f"not linked: {status.link} exists and was not made by cdlbib; TeX was not found",
+                   }[status.present],
+    }[status.state]
+
+
+def tex_state_lines(status, asked=False):
+    """The lines of a setup report about the TeX link, in order: the tree, the link, what was
+    changed, the state, what kpsewhich resolves, notes, and without a link the shell line that
+    does the same. ``asked``: the link was offered and not confirmed."""
+    lines = [f"TeX tree: {status.texmf_home}",
+             f"link: {status.link}" + (f" -> {status.target}" if status.target else ""),
+             *status.changes, f"state: {tex_state(status)}"]
+    if status.kpsewhich:
+        lines.append(f"kpsewhich cdl.bib: {status.resolves_to or 'not found'}")
+    lines += list(status.notes)
+    if asked:
+        lines.append("the link was not made (not confirmed); `cdlbib setup` without --ask makes it")
+    if status.state != "linked":
+        lines.append("without a link, this shell line does the same (cdlbib does not write it anywhere): "
+                     f"{status.bibinputs_line}")
+    return lines
+
+
+def backup_line(backup, only_copy=False):
+    """One backup of the managed library in words (a library.Backup). ``only_copy``: it alone
+    keeps a commit (api.holds_only_copy)."""
+    changed = len(backup.changed)
+    return ((f"branch {backup.branch}" if backup.branch else "no branch")
+            + f" at {backup.commit[:8]}, {changed} changed file{'' if changed == 1 else 's'}"
+            + (", local commits saved" if backup.has_bundle else "")
+            + (", holds commits kept nowhere else" if only_copy else ""))

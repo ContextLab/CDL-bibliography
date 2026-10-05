@@ -22,6 +22,7 @@ A model-read or hand-typed entry has no source record: its proposal has ``manual
 """
 from dataclasses import dataclass, field
 import hashlib
+import contextlib
 import json
 import os
 from pathlib import Path
@@ -855,31 +856,46 @@ class ModelRoute:
     available: bool | None   # None: not checked (the stored key was not looked up)
     how: str           # how to set it up; shown whether or not it is available
     default: bool = False
+    detail: str = ""   # when it is not available (or not checked): exactly what is missing or wrong
 
 
 _ROUTE_KEYS = {"dartmouth": "dartmouth-chat", "openai": "openai"}
 
 
-def _route_ready(route, environ=None, stored=False):
-    """Whether ``route`` can be used: True, False, or None for "not checked". Without
-    ``stored`` only the environment is looked at (no keychain, so no consent dialog and no
-    wait): True when the key's variable holds one token (and, for OpenAI, a model is
-    named), False when what is set cannot work, None when the variable is not set. With
-    ``stored`` the key is looked up as the adapter will (``secrets.get``: the variable, then
-    the keychain), for this route only."""
+OPENAI_MODEL_HOW = ("Set the environment variable BIBCHECK_RESEARCH_MODEL to the OpenAI model to use "
+                    "(e.g. `export BIBCHECK_RESEARCH_MODEL=<model name>`).")
+
+
+def route_state(route, environ=None, stored=False):
+    """(whether ``route`` can be used: True, False, or None for "not checked"; what exactly is
+    missing or wrong, "" when nothing is). The one rule, for ``model_routes`` and for
+    ``api.features``. Without ``stored`` only the environment is looked at (no keychain, so
+    no consent dialog and no wait): True when the key's variable holds one token (and, for
+    OpenAI, a model is named), False when what is set cannot work, None when the variable
+    is not set. With ``stored`` the key is looked up as the adapter will (``secrets.get``:
+    the variable, then the keychain), for this route only."""
     from . import secrets
     source = os.environ if environ is None else environ
-    value = source.get(secrets.KEYS[_ROUTE_KEYS[route]].env) or ""
+    variable = secrets.KEYS[_ROUTE_KEYS[route]].env
+    value = source.get(variable) or ""
     model = route != "openai" or bool(source.get("BIBCHECK_RESEARCH_MODEL"))
+    no_model = "the model to use is not named: the environment variable BIBCHECK_RESEARCH_MODEL is not set"
     if value:
-        return model and not any(char.isspace() for char in value)
+        if any(char.isspace() for char in value):
+            return False, f"the environment variable {variable} holds whitespace; a key is a single token"
+        return (True, "") if model else (False, no_model)
     if not stored:
-        return None
+        return None, f"not checked: {variable} is not set, and the system keychain was not read"
     try:
         secrets.get(_ROUTE_KEYS[route], environ)
     except SecretNotFound:
-        return False
-    return model
+        return False, "no API key was found" + ("" if model else "; and " + no_model)
+    return (True, "") if model else (False, no_model)
+
+
+def _route_ready(route, environ=None, stored=False):
+    """``route_state`` without the reason."""
+    return route_state(route, environ, stored)[0]
 
 
 def model_routes(probe=(), environ=None):
@@ -892,14 +908,16 @@ def model_routes(probe=(), environ=None):
     unknown = [name for name in probe if name not in _ROUTE_KEYS]
     if unknown:
         raise CdlbibError(f"Unknown model route {unknown[0]!r}; the routes are {', '.join(_ROUTE_KEYS)}.")
+    dartmouth, openai = (route_state(name, environ, name in probe) for name in ("dartmouth", "openai"))
     return [
-        ModelRoute("dartmouth", "Dartmouth Chat", _route_ready("dartmouth", environ, "dartmouth" in probe),
+        ModelRoute("dartmouth", "Dartmouth Chat", dartmouth[0],
                    f"Create an API key in Dartmouth Chat (steps: {DARTMOUTH_KEY_PAGE}). "
                    + secrets.places("dartmouth-chat") + " Only models the Dartmouth catalogue lists as free are used.",
-                   default=True),
-        ModelRoute("openai", "OpenAI", _route_ready("openai", environ, "openai" in probe),
+                   default=True, detail=dartmouth[1]),
+        ModelRoute("openai", "OpenAI", openai[0],
                    "Create an OpenAI API key. " + secrets.places("openai")
-                   + " Also set the environment variable BIBCHECK_RESEARCH_MODEL to the model to use."),
+                   + " Also set the environment variable BIBCHECK_RESEARCH_MODEL to the model to use.",
+                   detail=openai[1]),
     ]
 
 
@@ -1613,14 +1631,102 @@ def accept_draft(ws, proposal, pdf=None, database=None):
             result = Accepted(applied=applied, key=key, evidence=evidence,
                               fingerprint=complete._library_entries(ws)[key]["fingerprint"])
             if evidence is not None:
+                # Kept on disk before it is stored, so that a failure (or a crash) here leaves
+                # what a retry needs; removed once it is stored.
+                try:
+                    _keep_pending(ws, key, result.fingerprint, evidence)
+                except (CdlbibError, OSError) as exc:
+                    result.evidence_stored, result.evidence_error = False, f"the evidence could not be kept for a retry: {exc}"
+                    return result
                 try:
                     attach_model_evidence(ws, key, evidence, result.fingerprint, database=database)
                     result.evidence_stored = True
+                    _drop_pending(ws, key)
                 except CdlbibError as exc:
                     result.evidence_stored, result.evidence_error = False, str(exc)
             return result
     except (OSError, ValueError, KeyError) as exc:
         raise CdlbibError(f"The draft could not be accepted: {exc}") from exc
+
+
+PENDING_EVIDENCE = "pending-evidence"    # <library>/.bibcheck/pending-evidence/<key>.json
+
+
+def _pending_name(key):
+    from urllib.parse import quote
+    return quote(str(key), safe="").replace(".", "%2E") + ".json"
+
+
+def _keep_pending(ws, key, fingerprint, evidence):
+    from . import writer
+    data = json.dumps({"key": key, "fingerprint": fingerprint, "evidence": evidence}, ensure_ascii=False, indent=1)
+    writer.keep_record(ws, PENDING_EVIDENCE, _pending_name(key), data.encode("utf-8"))
+
+
+def _drop_pending(ws, key):
+    from . import writer
+    with contextlib.suppress(CdlbibError, OSError):
+        writer.drop_record(ws, PENDING_EVIDENCE, _pending_name(key))
+
+
+def _pending(ws):
+    """{key: (fingerprint, evidence)} of the records that are what ``_keep_pending`` writes
+    (the right name for their key, the three fields, of the right kinds); others are ignored."""
+    from . import writer
+    found = {}
+    for name, data in writer.records(ws, PENDING_EVIDENCE).items():
+        try:
+            record = json.loads(data.decode("utf-8"))
+            key, fingerprint, evidence = record["key"], record["fingerprint"], record["evidence"]
+        except (ValueError, KeyError, TypeError):
+            continue
+        if (set(record) == {"key", "fingerprint", "evidence"} and isinstance(key, str) and isinstance(fingerprint, str)
+                and isinstance(evidence, dict) and name == _pending_name(key)):
+            found[key] = (fingerprint, evidence)
+    return found
+
+
+def pending_evidence(ws):
+    """The model evidence waiting to be stored, as ``api.PendingEvidence(key, fingerprint,
+    stale)``: ``stale`` when the entry is gone or no longer has that fingerprint."""
+    from .api import PendingEvidence
+    waiting = _pending(ws)
+    if not waiting:
+        return []
+    try:
+        entries = complete._library_entries(ws)
+    except (OSError, ValueError) as exc:
+        raise CdlbibError(f"{ws.bib} could not be read: {exc}") from exc
+    return [PendingEvidence(key, fingerprint, key not in entries or entries[key]["fingerprint"] != fingerprint)
+            for key, (fingerprint, _) in sorted(waiting.items())]
+
+
+def retry_evidence(ws, key, database=None):
+    """Store the evidence kept for ``key`` (``_keep_pending``), under the library's write
+    lock, bound to the fingerprint it was kept with; see ``api.retry_evidence``."""
+    from .library import transaction
+    try:
+        with transaction(ws):
+            waiting = _pending(ws)
+            if key not in waiting:
+                raise CdlbibError(f"No model evidence is waiting to be stored for {key}.")
+            fingerprint, evidence = waiting[key]
+            result = Accepted(applied=None, key=key, fingerprint=fingerprint, evidence=evidence, evidence_stored=False)
+            entry = complete._library_entries(ws).get(key)
+            if entry is None or entry["fingerprint"] != fingerprint:
+                result.evidence_error = (f"{key} is no longer in the library" if entry is None else
+                                         f"{key} has changed since the evidence was read; it no longer applies")
+                return result
+            try:
+                attach_model_evidence(ws, key, evidence, fingerprint, database=database)
+            except CdlbibError as exc:
+                result.evidence_error = str(exc)
+                return result
+            result.evidence_stored = True
+            _drop_pending(ws, key)
+            return result
+    except (OSError, ValueError, KeyError) as exc:
+        raise CdlbibError(f"The evidence for {key} could not be stored: {exc}") from exc
 
 
 # --- the child process --------------------------------------------------------------------------

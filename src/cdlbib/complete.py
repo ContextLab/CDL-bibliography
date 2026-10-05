@@ -46,6 +46,9 @@ from .verification import (CORRECTION_FLAG, normalize_doi, normalize_journal, no
 
 # The key written when neither a typed key nor the authors and year are there to make one.
 NO_KEY = "KeyNeeded"
+# Said of a proposal that has no key yet (the placeholder stands in its text):
+NO_KEY_YET = ("No key can be made until the authors are entered: a key is built from the authors and the year. "
+              f"({NO_KEY} in the text is a placeholder, not a key; edit the authors in and the key is planned.)")
 
 # The fields built from a source record, in the order they are settled (the layout's order).
 BUILT_FIELDS = ("author", "doi", "journal", "number", "pages", "title", "volume", "year")
@@ -1612,6 +1615,25 @@ def _distinct_works(picked):
     return picked
 
 
+def _mentioned(title, records):
+    """Does the title of any of ``records`` contain ``title`` (compared as the verifier
+    compares titles) without being it?"""
+    from .verification import normalize_title
+    try:
+        wanted = normalize_title(title)
+    except ValueError:
+        return False
+    for record in records:
+        for text in record.get("title") or []:
+            try:
+                found = normalize_title(text)
+            except (ValueError, TypeError):
+                continue
+            if wanted and wanted in found and wanted != found:
+                return True
+    return False
+
+
 def _by_title(client, query):
     """Crossref's bibliographic search (``PoliteClient.crossref_search``) and PubMed
     (``extra_sources.route_pubmed``), judged by ``_judged``."""
@@ -1682,6 +1704,25 @@ def _by_title(client, query):
         return Identified(candidates=listed,
                           note=f"No record matches {asked} exactly; {len(plausible)} similar "
                                f"record{'s' if len(plausible) != 1 else ''} found, and none is taken without a choice")
+    if not want_surname and fields.get("title") and _mentioned(fields["title"], items):
+        # A title alone is never taken as the work (nothing is strict without the first author),
+        # and the search above ranked records ABOUT a paper of this title (recommendations,
+        # commentaries: their titles contain it) before the paper itself. So the title is asked
+        # for as a title, among the records of the wanted type, and what carries exactly this
+        # title is offered for a choice.
+        kinds = sorted(wanted) if wanted else ["journal-article"]
+        again = client.get("https://api.crossref.org/works",
+                           {"query.title": fields["title"][:1500], "filter": ",".join("type:" + k for k in kinds), "rows": 5})
+        titled = _distinct_works([item for item in (
+            _judged(fields, record, "crossref", want_surname, want_year, kind, wanted)
+            for record in (again.get("body") or {}).get("message", {}).get("items", [])) if item["plausible"]])
+        if titled:
+            listed = [_summary(item["record"], item["source"]) for item in titled[:SHORT_LIST]]
+            return Identified(candidates=listed, note=(
+                f"{len(titled)} record{'s have' if len(titled) != 1 else ' has'} this title. A title alone is not "
+                "taken as the work: choose the record, or give the first author as well"))
+        return Identified(note=f"No record in Crossref or PubMed has exactly {asked}. A title alone often does not "
+                               "find the work: give the first author as well, or its DOI; the entry is left as typed")
     return Identified(note=f"No record in Crossref or PubMed matches {asked}; the entry is left as typed")
 
 
@@ -2069,8 +2110,17 @@ def checked(proposal, client, arxiv_raw=None):
             add(f"The format check could not run on the proposed entry ({type(exc).__name__}: {exc})")
             proposal.needs_decision = True
         else:
+            keyless = entry["key"] == NO_KEY and not proposal.key_typed and not proposal.key_proposed
+            if keyless:
+                # The text carries the placeholder because an entry cannot be written without a
+                # key token. The checker's advice for it (a key made of the year alone, since
+                # there are no names) is not a finding about this entry: there is no key yet.
+                add(NO_KEY_YET)
+                proposal.needs_decision = True
             for key in sorted(errors):
                 for name in sorted(errors[key]):
+                    if keyless and name == "ID":
+                        continue
                     add(f"format: the format checker would write {'the key' if name == 'ID' else name} "
                         f"as {errors[key][name]}")
                     proposal.needs_decision = True
@@ -2429,11 +2479,30 @@ def propose(query, client, cache, ws=None, batch=()):
 
 
 @dataclass
+class Outcome:
+    """What the writer did with one accepted proposal."""
+    index: int           # its place in the ``accepted`` list
+    key: str             # written: the key it has in the file now; removed: the key removed;
+                         # refused: the key the refusal is listed under in ``Applied.refused``
+    status: str          # "written" | "removed" | "refused"
+    reason: str = ""     # why, when refused
+
+
+def has_force(fields):
+    """Does an entry (its fields, any case) carry the ``force`` field, the per-entry override
+    of the format checker? Such an entry is never written and never passes the gate
+    (prompts.FORCE_REFUSED): every entry follows the same house rules."""
+    return any(str(name).lower() == "force" for name in fields or ())
+
+
+@dataclass
 class Applied:
     written: list[str] = field(default_factory=list)
     removed: list[str] = field(default_factory=list)
     renamed: dict[str, str] = field(default_factory=dict)
     refused: list[tuple[str, str]] = field(default_factory=list)
+    # One Outcome per accepted proposal, in the order they were given (outcomes[i] is about accepted[i]).
+    outcomes: list = field(default_factory=list)
     backup: object = None       # the managed library's checkpoint taken before the write
     saved_copy: object = None   # any other library: the copy of cdl.bib as it was (.bibcheck/edits/)
     notes: list = field(default_factory=list)   # non-fatal lines (an interrupted earlier write that was settled)
@@ -2460,6 +2529,7 @@ def apply(ws, accepted, *, batch=None):
     """
     import tempfile
     from . import writer
+    from .prompts import FORCE_REFUSED
     from .errors import CdlbibError
     from .verification import load_entries
     from .workspace import Workspace
@@ -2483,7 +2553,7 @@ def apply(ws, accepted, *, batch=None):
                 return load_entries(snapshot.bib) if value.strip() else {}
             entries = scan(text)
             used_spans = set()
-            for proposal in accepted:
+            for index, proposal in enumerate(accepted):
                 if not isinstance(proposal, Proposal):
                     raise CdlbibError('Accepted entries must be Proposal objects')
                 name = proposal.key_typed or proposal.key_proposed or NO_KEY
@@ -2514,8 +2584,11 @@ def apply(ws, accepted, *, batch=None):
                         entries = scan(text)
                         used_spans.add(proposal.typed_raw)
                         result.removed.append(proposal.key_typed)
+                        result.outcomes.append(Outcome(index, proposal.key_typed, 'removed'))
                         continue
                     fields = _completion_fields(proposal)
+                    if has_force(fields):
+                        raise ValueError(FORCE_REFUSED)
                     old = proposal.key_typed
                     reserved = {key: dict(entry['fields']) for key, entry in entries.items()}
                     if old in entries and proposal.typed_raw == entries[old]['raw']:
@@ -2548,13 +2621,20 @@ def apply(ws, accepted, *, batch=None):
                             raise ValueError(f'The entry to rename {source} is not uniquely located')
                         candidate = candidate.replace(source_raw, _key_token(source_raw, target), 1)
                     next_entries = scan(candidate)
+                    if has_force(next_entries[plan.key]['fields']):       # whatever the proposal said its fields were
+                        raise ValueError(FORCE_REFUSED)
                     text, entries = candidate, next_entries
                     if proposal.typed_raw is not None:
                         used_spans.add(proposal.typed_raw)
                     result.written = [plan.renames.get(key, key) for key in result.written] + [plan.key]
+                    for earlier in result.outcomes:       # an entry written earlier in this batch may be renamed by this one
+                        if earlier.status == 'written':
+                            earlier.key = plan.renames.get(earlier.key, earlier.key)
+                    result.outcomes.append(Outcome(index, plan.key, 'written'))
                     result.renamed.update(renames)
                 except (ValueError, KeyError, TypeError) as exc:
                     result.refused.append((name, str(exc)))
+                    result.outcomes.append(Outcome(index, name, 'refused', str(exc)))
             if not result.written and not result.removed:
                 return result
         changed = (b'\xef\xbb\xbf' if bom else b'') + text.encode('utf-8')

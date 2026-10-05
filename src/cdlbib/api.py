@@ -17,6 +17,7 @@ class FormatResult:
     outfile: Path | None = None
     log: str = ""        # what helpers.check_bib printed (its verbose log)
     failure: str = ""    # set when check_bib raised instead of returning findings
+    forced: list = field(default_factory=list)   # keys of entries that carry a Force field (each is an error)
     corrections: dict = field(default_factory=dict)   # {key: {field: the formatter's value}}; "ID" is the key itself
 
     @property
@@ -261,9 +262,18 @@ def check_format(ws, autofix=False, outfile=None, verbose=False, bars=None):
             failure = f"{type(exc).__name__}: {exc}"
             return FormatResult(errors=[failure], corrected=None, outfile=None,
                                 log=sink.getvalue(), failure=failure)
-    return FormatResult(errors=list(errors), corrected=corrected,
-                        outfile=Path(outfile) if outfile else None, log=sink.getvalue(),
-                        corrections={key: dict(found) for key, found in errors.items()})
+    from .complete import has_force
+    from .prompts import FORCE_REFUSED
+    # The checker leaves an entry that carries Force unchecked. No entry is exempt from the
+    # house rules, so each such entry fails the check by name, whatever else it holds.
+    forced = [str(item.get("ID")) for item in corrected or () if isinstance(item, dict) and has_force(item)]
+    corrections = {key: dict(found) for key, found in errors.items()}
+    for key in forced:
+        corrections.setdefault(key, {})["force"] = None
+    return FormatResult(errors=list(errors) + [key for key in forced if key not in errors], corrected=corrected,
+                        outfile=Path(outfile) if outfile else None,
+                        log=sink.getvalue() + "".join(f"{key}: {FORCE_REFUSED}\n" for key in forced),
+                        corrections=corrections, forced=forced)
 
 
 def gate_after_format(fmt, citations=True, autofix=False, outfile=None):
@@ -915,6 +925,10 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
         if entry['raw'].strip() != raw.strip():
             raise EditedEntryParseError('The edited text must contain only one entry')
         fields = dict(entry['fields'])
+        if complete.has_force(fields):
+            from .errors import CompletionRefused
+            from .prompts import FORCE_REFUSED
+            raise CompletionRefused(f"{entry['key']}: {FORCE_REFUSED}")
         before = complete._completion_fields(proposal)
         evidence = {change.field: change for change in proposal.changes}
         changes = []
@@ -948,8 +962,18 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
             item.needs_decision = True
         if proposal.typed_raw is not None:
             query.key, query.raw = proposal.key_typed, proposal.typed_raw
-        complete._set_complete(item, fields)
+        placeholder = entry['key'] == complete.NO_KEY and not proposal.key_typed
+        if not placeholder:
+            complete._set_complete(item, fields)
         complete._plan_proposal(ws, item, query, ())
+        if placeholder:
+            # The text still carries the placeholder of a proposal that had no key. When a key
+            # can be planned now (the authors and the year are there), it takes the
+            # placeholder's place, and only then is the entry judged complete or not.
+            if item.key_proposed:
+                raw = complete._key_token(raw, item.key_proposed)
+                entry = dict(entry, key=item.key_proposed)
+            complete._set_complete(item, fields)
         item.proposed_raw = raw
         if item.key_proposed and entry['key'] != item.key_proposed:
             item.issues.append(f"The edited key {entry['key']} does not match the key plan {item.key_proposed}; edit the key before accepting")
@@ -1045,9 +1069,145 @@ def prepare(ws, progress=None):
     later ones. A front end runs this as a job when it opens a library and again when
     ``revision`` changed; what is prepared is kept for exactly that state of cdl.bib, and a
     save carries it over. ``progress`` receives a line per step and, for the long step, a
-    line every few hundred entries. Returns desk.Prepared (entries, seconds). Offline."""
+    line every few hundred entries. Returns desk.Prepared (entries, seconds). Offline.
+
+    Model evidence that an accepted draft's entry was written without (``pending_evidence``)
+    is tried once more here, and ``progress`` receives a line for each: stored, not stored
+    (why), or left because the entry has changed since."""
     from . import desk
-    return desk.prepare(ws, progress=progress)
+    prepared = desk.prepare(ws, progress=progress)
+    try:
+        waiting = pending_evidence(ws)
+    except CdlbibError as exc:
+        waiting = []
+        if progress:
+            progress(f"model evidence waiting to be stored could not be read: {exc}")
+    for item in waiting:
+        if item.stale:
+            said = "not stored: the entry has changed since the evidence was read"
+        else:
+            try:
+                again = retry_evidence(ws, item.key)
+                said = "stored" if again.evidence_stored else f"not stored: {again.evidence_error}"
+            except CdlbibError as exc:
+                said = f"not stored: {exc}"
+        if progress:
+            progress(f"model evidence for {item.key}: {said}")
+    return prepared
+
+
+@dataclass
+class PendingEvidence:
+    key: str             # the entry the evidence is for
+    fingerprint: str     # the fingerprint the entry had when it was written (the evidence is bound to it)
+    stale: bool          # the entry is gone or has another fingerprint now: the evidence can no longer be stored
+
+
+def pending_evidence(ws):
+    """[PendingEvidence] of the model evidence that ``accept_draft`` could not store after it
+    wrote the entry: kept in <library>/.bibcheck/pending-evidence/<key>.json until it is
+    stored (``retry_evidence``; ``prepare`` tries too). Offline; reads only."""
+    from . import intake
+    return intake.pending_evidence(ws)
+
+
+def retry_evidence(ws, key, database=None):
+    """Store the model evidence waiting for the entry ``key``, under the write lock, bound to
+    the fingerprint it was read for. Returns intake.Accepted (``applied`` None; ``key``,
+    ``fingerprint``, ``evidence``; ``evidence_stored`` True and the record removed, or False
+    with ``evidence_error``, the record kept). CdlbibError when nothing waits for ``key``.
+    Never an approval."""
+    from . import intake
+    return intake.retry_evidence(ws, key, database=database)
+
+
+@dataclass
+class CompletionDue:
+    keys: list = field(default_factory=list)   # the changed, not yet accepted entries completion would look at
+    reachable: bool = True                     # False: the reference could not be read, so nothing could be selected
+    problem: str | None = None                 # why, when not reachable
+
+    def __bool__(self):
+        return bool(self.keys)
+
+
+def completion_due(ws, reference="github", database=None):
+    """Which entries the completion flow (``completion_offers``) would look at now: the
+    entries that differ from ``reference`` and hold no accepted result. No source is asked
+    about any entry; only the reference is read (the GitHub master cdl.bib by default, a
+    download; a path is read locally). Returns CompletionDue, true when there are such
+    entries; when the reference cannot be reached it says so (``reachable`` False,
+    ``problem``) instead of raising, and an unreadable library gives none (the format check
+    reports that).
+
+    Where a front end runs the offers flow, as the command line does:
+    - before "check" (`cdlbib verify`): offers first, one entry at a time, each decision
+      written before the next; then the format check; then the citation check. Skipped when
+      the check is format-only or writes an autofixed copy (--no-citations, --autofix,
+      --outfile), or on request (--no-complete).
+    - before "send" (`cdlbib send`): after the refusals that need no work (not the canonical
+      cdl.bib, no branch, no git author), offers first; then send's own gate. Skipped on
+      request (--no-complete).
+    An entry already offered in the same sitting is not offered again (``seen``), and "stop"
+    ends the offers for that sitting."""
+    from .verification import load_entries
+    try:
+        load_entries(ws.bib)
+    except (OSError, ValueError):
+        return CompletionDue()
+    try:
+        return CompletionDue(keys=completion_keys(ws, reference=reference, database=database))
+    except CdlbibError as exc:
+        return CompletionDue(reachable=False, problem=str(exc))
+
+
+def consent(exc, allow=None, progress=None):
+    """Whether to go on after ``exc``, a MissingDependency (install the package) or a
+    PublishRefused with ``needs_fork`` (create the user's fork): the one decision every front
+    end uses. ``allow`` True or False is the person's answer. Without one: when the user did
+    not ask to be asked (deps.ask() false) it is yes, and ``progress`` receives the line
+    saying what is being done; when they did (--ask), errors.NeedsConfirmation is raised
+    carrying the question to put to them. Nothing is installed or created here."""
+    from . import deps, prompts
+    from .errors import MissingDependency, NeedsConfirmation
+    install = isinstance(exc, MissingDependency)
+    if allow is not None:
+        return bool(allow)
+    if deps.ask():
+        if install:
+            raise NeedsConfirmation("install", prompts.install_question(exc), package=exc.package, extra=exc.extra,
+                                    feature=exc.feature) from exc
+        raise NeedsConfirmation("fork", prompts.fork_question(exc), upstream=exc.upstream) from exc
+    if progress:
+        progress(prompts.install_line(exc) if install else prompts.fork_line(exc))
+    return True
+
+
+def attempt(run, allow_install=None, allow_fork=None, progress=None):
+    """Call ``run(allow_fork_creation=False)`` and return what it returns, dealing with the two
+    things a command can stop for, once each: a missing optional package (MissingDependency:
+    it is installed with deps.install and ``run`` is called again) and a missing fork
+    (PublishRefused with ``needs_fork``: ``run(allow_fork_creation=True)`` is called). Whether
+    to go on is ``consent``'s answer: ``allow_install`` / ``allow_fork`` True or False when
+    the person has answered; None means go on and say so through ``progress`` unless the user
+    asked to be asked, in which case errors.NeedsConfirmation is raised (nothing done; ask
+    ``.question`` and call again with the answer). A refusal that is declined, or that
+    comes back after the one retry, is raised as it is."""
+    from . import deps
+    from .errors import MissingDependency, PublishRefused
+    installed = fork = False
+    while True:
+        try:
+            return run(allow_fork_creation=fork)
+        except MissingDependency as exc:
+            if installed or not consent(exc, allow_install, progress):
+                raise
+            deps.install(exc.extra, package=exc.package)
+            installed = True
+        except PublishRefused as exc:
+            if not exc.needs_fork or fork or not consent(exc, allow_fork, progress):
+                raise
+            fork = True
 
 
 def as_data(value):
@@ -1324,7 +1484,7 @@ def features(probe=(), progress=None):
     program("biber", "biber", "biber comes with a full TeX Live or MacTeX; in a smaller one: tlmgr install biber")
     package("pypdf", "pypdf", "research")
     found.append(key("dartmouth-chat", "Dartmouth Chat key"))
-    found.append(key("openai", "OpenAI key"))
+    found.append(key("openai", "OpenAI key"))      # the key only; whether the route is usable: model_routes (.detail)
     package("textual", "textual", "tui")
     return found
 
@@ -1374,11 +1534,47 @@ def acceptable(proposal):
     format? The one test every front end applies before it writes an accepted proposal
     (``needs_decision`` is separate: such a proposal is never accepted with the remaining
     ones, only by the person looking at it)."""
-    return bool(proposal.complete and proposal.proposed_raw and not proposal.duplicate_of
-                and not proposal.unsupported
-                and not any("already exists in the library" in issue or "does not match the key plan" in issue
-                            or issue.startswith("format:") or "format check could not run" in issue
-                            for issue in proposal.issues))
+    return not why_not_acceptable(proposal)
+
+
+def why_not_acceptable(proposal):
+    """Why ``proposal`` cannot be accepted as it stands, as sentences ([] when it can: the
+    predicate ``acceptable`` is ``not why_not_acceptable``). One reason each for: no entry
+    proposed; no key; every required field of the entry's type that is missing or still a
+    question, by name; the work being in the library already (the key it has there); a type
+    that is not written; and each issue about the key or the format."""
+    from . import complete
+    reasons = []
+    if not proposal.proposed_raw:
+        reasons.append("no entry is proposed")
+    if not proposal.complete:
+        fields = {}
+        if proposal.proposed_raw:      # the fields of the text that would be written, whoever made the proposal
+            from . import intake
+            try:
+                fields = {str(name).lower(): value for name, value in intake.scan_entry(proposal.proposed_raw)[2].items()}
+            except (CdlbibError, ValueError):
+                fields = complete._completion_fields(proposal)
+        asked = {change.field for change in proposal.changes if change.kind == "question"}
+        kind = str(proposal.entry_type or "article").lower()
+        required = complete.KINDS.get(kind, complete.KINDS["article"]).required
+        if not (proposal.key_typed or proposal.key_proposed):
+            reasons.append("it has no key yet (a key is made from the authors and the year)")
+        for name in required:
+            if not fields.get(name):
+                reasons.append(f"{name} is missing (required for an entry of type {kind})")
+            elif name in asked:
+                reasons.append(f"{name} is still a question: choose between what was typed and what the source has")
+        if len(reasons) == (not proposal.proposed_raw):
+            reasons.append("a required field is missing")
+    if proposal.duplicate_of:
+        reasons.append(f"it is the same work as {proposal.duplicate_of}, which is already in the library")
+    if proposal.unsupported:
+        reasons.append(f"an entry of type {proposal.unsupported} is not written from a source record")
+    reasons += [issue for issue in proposal.issues
+                if "already exists in the library" in issue or "does not match the key plan" in issue
+                or issue.startswith("format:") or "format check could not run" in issue]
+    return reasons
 
 
 def draft_form():
@@ -1410,15 +1606,19 @@ def name_choices(proposal):
     return found
 
 
-def resolve_names(ws, proposal, field, names, mailto=None, database=None):
+def resolve_names(ws, proposal, field, names, mailto=None, database=None, recheck=None):
     """``proposal`` with its ``field`` (author or editor) set to ``names``, the list the person
     chose name by name, rechecked (``recheck_proposal``); the field is then no longer a
-    question. Nothing is written."""
+    question. Nothing is written. ``recheck``: a front end's own
+    ``recheck(proposal, raw, resolved_fields=...)`` to call in place of recheck_proposal
+    (``ws``, ``mailto`` and ``database`` are then not used)."""
     from . import complete
     fields = complete._completion_fields(proposal)
     fields[field] = ' and '.join(names)
-    return recheck_proposal(ws, proposal, complete.render(proposal.entry_type, proposal.key_typed or proposal.key_proposed, fields),
-                            mailto=mailto, database=database, resolved_fields=(field,))
+    raw = complete.render(proposal.entry_type, proposal.key_typed or proposal.key_proposed, fields)
+    if recheck is not None:
+        return recheck(proposal, raw, resolved_fields=(field,))
+    return recheck_proposal(ws, proposal, raw, mailto=mailto, database=database, resolved_fields=(field,))
 
 
 def draft_types():

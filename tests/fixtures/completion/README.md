@@ -183,3 +183,12 @@ Keys are entries of `tests/fixtures/cdl-prewave1-2026-09-26.bib`.
 | `api.crossref.org/works/10.1167%2F15.11.1` | not in the library | journal-article | an article of Journal of Vision 15 (2015), beside the meeting abstract 10.1167/15.12.782 of `responses.json` |
 | `api.crossref.org/works?query.bibliographic=network dissection: … D Bau 2017 {IEEE} Conference on Computer Vision and Pattern Recognition&rows=5` | `BauEtal17` | | a typed paper without its DOI, found by title |
 | `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"` (6 requests) | `Scha03`, `Kais90`, `KahaEtal24`, `BauEtal17`, and the two works not in the library | | the PubMed side: of the article 10.1167/15.11.1 (one result), of the meeting abstract, and of each DOI whose entry the citation check did not accept at first (no result) |
+
+## title_only.json
+
+Two Crossref responses fetched once on 2026-10-05 for `tests/test_core_lookups.py`, stored
+as the client cached them (the request is the cache key; neither holds a contact address):
+the bibliographic search for the bare title "Highly accurate protein structure prediction
+with AlphaFold" (its five results are recommendations of the paper, not the paper), and the
+title search among chapters, journal articles and proceedings papers that follows it (its
+first result is the paper, `10.1038/s41586-021-03819-2`).

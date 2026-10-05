@@ -1395,6 +1395,11 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
     editors = get_vals(bd, "editor")
     addresses = get_vals(bd, "address")
 
+    # an entry without a title cannot be judged (format_title read title[-1]: IndexError)
+    untitled = [i for i, t in zip(ids, titles) if not str(t).strip()]
+    if untitled:
+        raise Exception("title: missing: " + ", ".join(untitled))
+
     # check for duplicate keys
     duplicate_keys, redundant_keys = find_duplicates(
         ids, authors, titles, verbose=verbose

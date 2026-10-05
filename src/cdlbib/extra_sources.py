@@ -148,17 +148,24 @@ def contact_email(main_path):
     contact = os.environ.get("CROSSREF_MAILTO")
     if contact:
         return contact
-    db = sqlite3.connect(f"file:{Path(main_path)}?mode=ro", uri=True)
-    try:
-        for (body,) in db.execute("SELECT body FROM responses"):
-            url = urlparse(json.loads(body).get("url", ""))
-            if url.hostname == "api.crossref.org":
-                values = parse_qs(url.query).get("mailto", [])
-                if values:
-                    return values[0]
-    finally:
-        db.close()
-    raise ValueError("No contact email: set CROSSREF_MAILTO")
+    # A cache that is not there yet (a library never checked has no .bibcheck/ at all), or that
+    # holds no response, has no contact to offer: that, and not the cache, is what is missing.
+    if main_path is not None and Path(main_path).is_file():
+        try:
+            db = sqlite3.connect(Path(main_path).resolve().as_uri() + "?mode=ro", uri=True)
+            try:
+                for (body,) in db.execute("SELECT body FROM responses"):
+                    url = urlparse(json.loads(body).get("url", ""))
+                    if url.hostname == "api.crossref.org":
+                        values = parse_qs(url.query).get("mailto", [])
+                        if values:
+                            return values[0]
+            finally:
+                db.close()
+        except sqlite3.Error:
+            pass
+    raise ValueError("No contact email: set CROSSREF_MAILTO to your email address (Crossref asks for one with "
+                     "every request), e.g. `export CROSSREF_MAILTO=you@example.org`, or pass --mailto")
 
 
 def make_client(own_path, main_path=None, contact=None, offline=False):

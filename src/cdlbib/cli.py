@@ -1,6 +1,6 @@
 """The cdlbib command. Parsing and formatting only; the work is in cdlbib.api."""
 import os
-import re
+
 import sys
 import shlex
 import shutil
@@ -12,7 +12,7 @@ import typer
 
 from . import __version__, api, deps, verification_cli
 from .errors import CdlbibError, GateFailed, LibraryUnavailable, MissingDependency, PublishRefused, WorkspaceNotFound
-from .errors import UpdateNeedsDecision, EditedEntryParseError
+from .errors import UpdateNeedsDecision, EditedEntryParseError, NeedsConfirmation
 from . import workspace
 from .verification_cli import app as crossref_app, library, named
 from .workspace import BIB_NAME
@@ -160,24 +160,15 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
                 continue
             item = choose_candidate(item, item.candidates[int(choice)-1])
         if terminal and recheck and item.proposed_raw:
-            for change in list(item.changes):
-                if change.kind == 'question' and change.field in ('author', 'editor') and change.typed and change.proposed:
-                    typed_names = change.typed.split(' and ')
-                    source_names = change.proposed.split(' and ')
-                    if len(typed_names) != len(source_names):
-                        continue
-                    names = []
-                    for typed_name, source_name in zip(typed_names, source_names):
-                        if typed_name != source_name:
-                            choice = _chosen(f'Name: [k] keep typed {typed_name} / [u] use source {source_name}', ['k', 'u'])
-                            names.append(source_name if choice == 'u' else typed_name)
-                        else:
-                            names.append(typed_name)
-                    from . import complete
-                    fields = complete._completion_fields(item)
-                    fields[change.field] = ' and '.join(names)
-                    item = recheck(item, complete.render(item.entry_type, item.key_typed or item.key_proposed, fields),
-                                   resolved_fields=(change.field,))
+            for field, typed_names, source_names in api.name_choices(item):
+                names = []
+                for typed_name, source_name in zip(typed_names, source_names):
+                    if typed_name != source_name:
+                        choice = _chosen(f'Name: [k] keep typed {typed_name} / [u] use source {source_name}', ['k', 'u'])
+                        names.append(source_name if choice == 'u' else typed_name)
+                    else:
+                        names.append(typed_name)
+                item = api.resolve_names(None, item, field, names, recheck=recheck)
         while True:
             show_proposal(item)
             if not terminal:
@@ -217,6 +208,8 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
                 break
             else:
                 typer.echo('Cannot accept: complete required fields and resolve duplicate or unsupported entries first.')
+                for reason in api.why_not_acceptable(item):
+                    typer.echo(f'  - {reason}')
     if not terminal:
         typer.echo('nothing was changed')
     return accepted
@@ -226,6 +219,18 @@ def report_checkpoint(applied, session):
     if applied.backup is not None and not session.get('checkpoint'):
         session['checkpoint'] = applied.backup.stamp
         typer.echo(f'Batch backup: {applied.backup.stamp}; cdlbib update --undo restores the state before this command’s accepted changes.')
+
+
+def report_applied(applied, written):
+    """Print what the writer did with each accepted proposal, from its outcomes (one per
+    proposal): removals, then what was written (``written``: the word for it), then refusals.
+    Returns whether anything was refused."""
+    for status, said in (('removed', 'Removed duplicate: {key}'), ('written', written + ': {key}'),
+                         ('refused', 'Not written {key}: {reason}')):
+        for outcome in applied.outcomes:
+            if outcome.status == status:
+                typer.echo(said.format(key=outcome.key, reason=outcome.reason))
+    return any(outcome.status == 'refused' for outcome in applied.outcomes)
 
 
 def proposal_recheck(ws, mailto=None, database=None):
@@ -284,13 +289,7 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
             if accepted:
                 applied = api.apply_proposals(ws, accepted, batch=batch)
                 report_checkpoint(applied, session)
-                for key in applied.removed:
-                    typer.echo(f'Removed duplicate: {key}')
-                for key in applied.written:
-                    typer.echo(f'Added: {key}')
-                for key, reason in applied.refused:
-                    typer.echo(f'Not written {key}: {reason}')
-                    failures = True
+                failures |= report_applied(applied, 'Added')
             if session.get("stop"):
                 break
         if failures:
@@ -328,12 +327,7 @@ def offer_completion(ws, reference="github", database=None, mailto=None):
                 if accepted:
                     applied = api.apply_proposals(ws, accepted, batch=batch)
                     report_checkpoint(applied, session)
-                    for removed in applied.removed:
-                        typer.echo(f'Removed duplicate: {removed}')
-                    for written in applied.written:
-                        typer.echo(f'Completed: {written}')
-                    for refused, reason in applied.refused:
-                        typer.echo(f'Not written {refused}: {reason}')
+                    report_applied(applied, 'Completed')
             except CdlbibError as exc:
                 typer.echo(f'{key}: completion unavailable: {exc}')
             if _completion_seen is not None:
@@ -413,16 +407,20 @@ def _send(ws, fname=BIB_NAME, reference="github", verbose=False, outfile=None, s
                         progress=progress, bars=sys.stderr, report=report, allow_fork_creation=allow_fork_creation,
                         outfile=outfile, verbose=verbose)
 
+    def run(allow_fork_creation=False):
+        if allow_fork_creation:
+            return attempt(allow_fork_creation=True)  # the gate runs again, from its cache, unreported
+        return attempt(report=shown, progress=typer.echo)
+
     try:
-        try:
-            result = attempt(report=shown, progress=typer.echo)
-        except PublishRefused as exc:
-            if not exc.needs_fork:
-                raise
-            if not fork_wanted(exc):
-                typer.echo(f"{exc} Create one with: gh repo fork {exc.upstream} --clone=false", err=True)
+        try:   # a missing package is the whole command's business (main); the fork is settled here
+            result = api.attempt(run, allow_install=False, progress=typer.echo)
+        except NeedsConfirmation as ask:
+            refused = ask.__cause__
+            if not _confirmed(ask.question):
+                typer.echo(f"{refused} Create one with: gh repo fork {refused.upstream} --clone=false", err=True)
                 raise typer.Exit(code=1)
-            result = attempt(allow_fork_creation=True)  # the gate runs again, from its cache, unreported
+            result = run(allow_fork_creation=True)
     except GateFailed as exc:
         if exc.check is None:  # the check could not be done; main() reports it
             raise
@@ -456,6 +454,7 @@ def tui(ctx: typer.Context):
 
 
 from .prompts import ANSWERS, MOVED, answers, unsent_question, CHOSEN_BY
+from . import prompts
 
 
 @app.command()
@@ -470,11 +469,7 @@ def where(ctx: typer.Context, fname: str = BIB_NAME):
 
 
 def _backup_line(backup):
-    changed = len(backup.changed)
-    return ((f"branch {backup.branch}" if backup.branch else "no branch")
-            + f" at {backup.commit[:8]}, {changed} changed file{'' if changed == 1 else 's'}"
-            + (", local commits saved" if backup.has_bundle else "")
-            + (", holds commits kept nowhere else" if api.holds_only_copy(backup) else ""))
+    return prompts.backup_line(backup, api.holds_only_copy(backup))
 
 
 @app.command()
@@ -548,18 +543,7 @@ from .errors import TexLinkRefused
 
 def _tex_state(status):
     """The line that says what the state of the TeX link means."""
-    return {
-        "linked": "linked: TeX finds this library's cdl.bib from any folder (\\bibliography{cdl} or \\addbibresource{cdl.bib})",
-        "absent": "not linked",
-        "other_library": f"linked to another library: {status.target}",
-        "foreign": f"not linked: {status.link} exists and was not made by cdlbib",
-        "shadowed": "linked, but TeX does not resolve cdl.bib to it",
-        "no_tex": {"linked": "linked; TeX was not found, so it could not be shown that TeX resolves it",
-                   "absent": "not linked; TeX was not found",
-                   "other_library": f"linked to another library: {status.target}; TeX was not found",
-                   "foreign": f"not linked: {status.link} exists and was not made by cdlbib; TeX was not found",
-                   }[status.present],
-    }[status.state]
+    return prompts.tex_state(status)
 
 
 def report_setup(report, status, asked=False):
@@ -567,19 +551,8 @@ def report_setup(report, status, asked=False):
     found = report.where
     typer.echo(f"library: {found.root}")
     typer.echo(f"chosen by: {CHOSEN_BY[found.origin]}")
-    typer.echo(f"TeX tree: {status.texmf_home}")
-    typer.echo(f"link: {status.link}" + (f" -> {status.target}" if status.target else ""))
-    for line in status.changes:
+    for line in prompts.tex_state_lines(status, asked=asked):
         typer.echo(line)
-    typer.echo(f"state: {_tex_state(status)}")
-    if status.kpsewhich:
-        typer.echo(f"kpsewhich cdl.bib: {status.resolves_to or 'not found'}")
-    for line in status.notes:
-        typer.echo(line)
-    if asked:
-        typer.echo("the link was not made (not confirmed); `cdlbib setup` without --ask makes it")
-    if status.state != "linked":
-        typer.echo(f"without a link, this shell line does the same (cdlbib does not write it anywhere): {status.bibinputs_line}")
     typer.echo("available on this computer:")
     for feature in report.features:
         typer.echo(f"  {feature.name}: {'not checked' if feature.available is None else 'yes' if feature.available else 'no'}"
@@ -695,21 +668,21 @@ verification_cli.settle_unsent = settle_unsent
 def fork_wanted(exc):
     """Whether to create the user's fork now. By default it is, after saying so; with --ask the
     user is asked first (no terminal means no)."""
-    if deps.ask():
-        return _confirmed(f"{exc} Create one now?")
-    login = re.match(r"@(\S+) has no fork of ", str(exc))
-    name = exc.upstream.split("/", 1)[1] if exc.upstream and "/" in exc.upstream else "the upstream repository"
-    typer.echo(f"creating your fork {login.group(1)}/{name} ..." if login else f"creating your fork of {exc.upstream} ...")
-    return True
+    return _consented(exc)
+
+
+def _consented(exc):
+    """api.consent, with its question asked at the terminal when it has one to ask."""
+    try:
+        return api.consent(exc, progress=typer.echo)
+    except NeedsConfirmation as ask:
+        return _confirmed(ask.question)
 
 
 def install_wanted(exc):
     """Whether to install the missing package now: by default yes, after saying so; with --ask
     the user is asked first (no terminal means no)."""
-    if deps.ask():
-        return _confirmed(f"{exc.feature} needs '{exc.package}'. Install it now?")
-    typer.echo(f"installing {exc.package} (needed for: {exc.feature}) ...")
-    return True
+    return _consented(exc)
 
 
 def _run_once(argv):
@@ -743,19 +716,31 @@ def main(argv=None):
 def _installing(run):
     """Call ``run``; when it stops for a missing optional package, install the package (after
     a question with --ask) and call it again, once."""
-    for attempt in (1, 2):
-        try:
-            run()
+    def once(allow_fork_creation=False):
+        run()
+
+    allow = None
+    while True:
+        try:   # api.attempt installs and runs again, once; a fork is the send command's own business
+            api.attempt(once, allow_install=allow, allow_fork=False, progress=typer.echo)
             return
-        except MissingDependency as exc:
-            if attempt == 2 or not install_wanted(exc):
-                typer.echo(str(exc), err=True)
+        except NeedsConfirmation as ask:        # --ask: the question is put at the terminal
+            missing = ask.__cause__
+            if not _confirmed(ask.question):
+                typer.echo(str(missing), err=True)
                 raise SystemExit(1)
-            try:
-                deps.install(exc.extra, package=exc.package)
+            try:                                # yes: installed here, and the command is run again, once
+                deps.install(missing.extra, package=missing.package)
             except CdlbibError as failure:
                 typer.echo(str(failure), err=True)
                 raise SystemExit(1)
+            allow = False
+        except MissingDependency as exc:        # still missing after the one installation
+            typer.echo(str(exc), err=True)
+            raise SystemExit(1)
+        except CdlbibError as failure:          # the installation failed
+            typer.echo(str(failure), err=True)
+            raise SystemExit(1)
 
 
 class _interruptible:
