@@ -144,3 +144,42 @@ def test_arxiv_request_terms():
         "start": 0, "max_results": 5, "sortBy": "relevance"}
     assert intake.arxiv_search_params(None, ["van der Walt", "Glöckner, Andreas"])["search_query"] == (
         'au:"van der walt" AND au:glockner')
+
+
+def test_typed_text_cannot_change_a_sources_query(tmp_path, client):
+    """Query syntax typed into a name or a title reaches PubMed and arXiv as plain words."""
+    import re
+    hostile = ['Vaswani"[au] OR all[sb]) OR ("x', "Kahana]) AND (hasabstract", "van der Walt\x00\n", "O'Brien:ti",
+               'x" OR au:"y', "a\\b)(c", "\u202eevil"]
+    for name in hostile:
+        assert re.fullmatch(r"[a-z0-9]+(?: [a-z0-9]+)*", intake._surname(name)), name
+    assert intake._surname("van der Walt\x00\n") == "van der walt"
+    params = intake.arxiv_search_params('need" OR all:electron OR ti:"attention', hostile)
+    for term in params["search_query"].split(" AND "):  # each term: one field tag, then words (quoted if several)
+        assert re.fullmatch(r'ti:[a-z0-9]+|au:[a-z0-9]+|au:"[a-z0-9]+(?: [a-z0-9]+)+"', term), term
+    assert " OR " not in params["search_query"] and "all:" not in params["search_query"]
+    # the same real saved answers: quotes, brackets and a field tag around the words change nothing
+    found = find(library(tmp_path / "lib"), client, title='"Attention" is (all) you [need]', authors=['"Vaswani"'])
+    # Crossref takes free text as a request parameter (no syntax): that one request differs from
+    # the saved one and is refused by the offline transport; PubMed's and arXiv's are the saved ones
+    assert client.requests == 1 and [source for source, _ in found.errors] == ["crossref"]
+    assert [lead["arxiv"] for lead in found if lead.get("arxiv")] == ["1706.03762"]
+    ws = library(tmp_path / "lib2")
+    for year in ("2020 OR 1=1", "20201", "2020[dp] OR all[sb]", "next year"):
+        with pytest.raises(CdlbibError, match="Not a year"):
+            intake.find_candidates(ws, client=client, title="Attention is all you need", year=year)
+    with pytest.raises(CdlbibError, match="Unknown source 'elsewhere'"):
+        intake.find_candidates(ws, client=client, title="Attention is all you need", sources=("elsewhere",))
+
+
+def test_what_is_asked_of_a_source_is_bounded(tmp_path, client):
+    ws = library(tmp_path / "lib")
+    # per_source and limit are clamped before any request: 10**9 records are never asked for
+    found = intake.find_candidates(ws, client=client, authors=["Manning", "Kahana"], per_source=10**9, limit=10**9)
+    assert found == [] and len(found.errors) == 3  # the requests (rows=50) are not in the cache: refused offline
+    assert all("offline" in reason for _, reason in found.errors)
+    long_title = "attention " * 5000
+    assert len(intake._plain(long_title, intake.MAX_QUERY_CHARS)) <= intake.MAX_QUERY_CHARS
+    assert len(intake.arxiv_search_params(long_title, ["a" * 5000])["search_query"]) < 200
+    with pytest.raises(CdlbibError, match="whole number"):
+        intake.find_candidates(ws, client=client, title="Attention is all you need", per_source="many")

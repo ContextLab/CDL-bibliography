@@ -130,3 +130,47 @@ def test_an_entry_the_formatter_cannot_judge_is_written_as_given_and_says_so(tmp
         "title": "A title", "author": "Example, Ada", "year": "2001", "journal": "Memory", "pages": "12-3-4-x"})
     assert any(issue.startswith("The format check could not run on this entry") for issue in proposal.issues)
     assert "\tPages = {12-3-4-x}" in proposal.proposed_raw and proposal.needs_decision and proposal.manual
+
+
+# --- a value cannot change the structure of the entry -------------------------------------------
+
+@pytest.mark.parametrize("value, why", [
+    ("A title}, note = {smuggled", "closing brace with no opening brace"),
+    ("A title}}\n@article{Evil,\n\tTitle = {An entry nobody checked", "closing brace with no opening brace"),
+    ("A title with an {open brace", "opening brace that is never closed"),
+    ("}{", "closing brace with no opening brace"),
+    ("A title ending in a backslash\\", "backslash at the end"),
+    ("A title @article{Evil, title = {x}} inside", "start of a BibTeX entry"),
+    ("A title with a \x00 byte", "control character"),
+])
+def test_a_value_that_would_change_the_entrys_structure_is_refused(tmp_path, value, why):
+    ws = library(tmp_path / "lib")
+    typed = {"title": "A plain title", "author": "Example, Ada", "year": "2001", "journal": "Memory"}
+    for name in ("title", "author", "journal", "note", "doi"):
+        with pytest.raises(CdlbibError, match=f"{name}: the value has .*{why}"):
+            intake.draft_manual(ws, dict(typed, **{name: value}))
+    with pytest.raises(CdlbibError, match=why):
+        intake.draft_manual(ws, typed, prefill={"volume": value})
+    assert intake.structure_problem("A {B}alanced title with {\\\"o} and 100\\% and an @ sign") is None
+    assert ws.bib.read_text(encoding="utf-8") == ""
+
+
+def test_the_rendered_text_reads_back_as_exactly_the_checked_fields(tmp_path):
+    ws = library(tmp_path / "lib")
+    proposal = intake.draft_manual(ws, dict(TYPED, title="Braces {A}nd \"quotes\", commas, = signs and @ signs"))
+    path = tmp_path / "one.bib"
+    path.write_text(proposal.proposed_raw + "\n", encoding="utf-8")
+    (entry,) = load_entries(path).values()
+    fields = {k: v for k, v in entry["fields"].items() if k not in ("ENTRYTYPE", "ID")}
+    good = complete._completion_fields(proposal)
+    assert fields == good and set(fields) == {"author", "journal", "pages", "title", "volume", "year"}
+    # the proof itself: text with a field or an entry that was not checked is refused, not repaired
+    intake._proved(proposal.proposed_raw, "article", good)
+    for raw, why in ((proposal.proposed_raw[:-1] + ",\n\tNote = {smuggled}}", "note"),
+                     (proposal.proposed_raw + "\n\n@article{Evil,\n\tTitle = {x}}", "2 entries"),
+                     (proposal.proposed_raw.replace("{2031}", "{1999}"), "year"),
+                     ("@article{Broken,\n\tTitle = {x", "does not read back")):
+        with pytest.raises(CdlbibError, match=why):
+            intake._proved(raw, "article", good)
+    with pytest.raises(CdlbibError, match="entry type"):
+        intake._proved(proposal.proposed_raw, "book", good)

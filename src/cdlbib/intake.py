@@ -36,7 +36,16 @@ from . import complete, deps
 from .errors import CdlbibError, SecretNotFound
 
 MAX_PAGES = 5               # pages read from a PDF (research.extract_pages reads as many)
-MAX_PAGE_CHARS = 100_000    # text kept per page
+MAX_PAGE_CHARS = 100_000    # text kept per page; reading a page stops there
+MAX_TOTAL_CHARS = 300_000   # text kept over all pages; reading the PDF stops there
+MAX_STREAM_BYTES = 20_000_000   # the most one PDF stream may decompress to in the reading child
+MAX_CHILD_MEMORY = 2_000_000_000    # address-space limit of a child, where the platform accepts one
+MAX_PIXELS = 16_000_000     # the most pixels a page preview may have, decided before it is drawn
+MAX_QUERY_CHARS = 500       # of a typed title; one name is cut at MAX_NAME_CHARS
+MAX_NAME_CHARS = 100
+MAX_AUTHORS = 10
+MAX_PER_SOURCE = 50         # records asked of one source, whatever the caller passes
+MAX_CANDIDATES = 100
 MAX_PDF_BYTES = 50_000_000  # a larger file is not opened
 MAX_OUTPUT_BYTES = 4_000_000    # what the reading child may send back
 MAX_IMAGE_BYTES = 40_000_000    # what the rendering child may send back
@@ -72,19 +81,27 @@ class Candidates(list):
         self.errors = []
 
 
+def _plain(text, limit):
+    """Typed text on one line, without control characters, at most ``limit`` characters."""
+    return " ".join("".join(c if c.isprintable() else " " for c in str(text or "")).split())[:limit].strip()
+
+
 def _surname(name):
     """The surname of one typed name ("Manning", "Jeremy R. Manning", "Manning, J. R."),
-    accent-free and lower-cased; "" when there is none."""
-    from .extra_sources import fold
-    name = " ".join(str(name or "").split())
+    as accent-free lower-case words of letters and digits only ("van der walt"); "" when
+    there is none. Nothing else of the typed text is put into a source's query syntax, so
+    a quote, a bracket, a colon or a field tag in a name cannot change the query."""
+    from .extra_sources import fold, words
+    name = _plain(name, MAX_NAME_CHARS)
     if not name:
         return ""
-    return fold(complete._first_surname(name) or name.split(",")[0].split()[-1])
+    return " ".join(words(fold(complete._first_surname(name) or name.split(",")[0].split()[-1])))
 
 
 def _significant(title, limit=8):
     """Up to ``limit`` title words worth searching for, in title order
-    (``extra_sources.pubmed_title_term``'s choice: no stop words, the longest first)."""
+    (``extra_sources.pubmed_title_term``'s choice: no stop words, the longest first).
+    Words are runs of letters and digits (``extra_sources.words``), nothing else."""
     from .extra_sources import STOPWORDS, words
     found = [w for w in words(title or "") if w not in STOPWORDS and len(w) > 2]
     chosen = sorted(dict.fromkeys(found), key=lambda w: (-len(w), found.index(w)))[:limit]
@@ -125,7 +142,9 @@ def _pubmed_leads(client, title, authors, year, rows):
         return  # one word is not a PubMed title search
     surnames = [s for s in map(_surname, authors) if s]
     terms = [f"{s}[au]" for s in surnames] + [f"{w}[ti]" for w in words]
-    if year and re.fullmatch(r"\d{4}", year):
+    if not terms:
+        return
+    if year:
         terms.append(f"{year}[dp]")
     found = esearch(client, " AND ".join(terms), retmax=rows)
     records = efetch(client, found["pmids"][:rows])[0] if found["pmids"] else {}
@@ -139,7 +158,8 @@ def _pubmed_leads(client, title, authors, year, rows):
 
 def arxiv_search_params(title, authors, rows=PER_SOURCE):
     """The arXiv API request for a title and/or authors: every significant title word in
-    ``ti:``, every surname in ``au:``."""
+    ``ti:``, every surname in ``au:``. Each term is letters, digits and (inside the quotes
+    of a surname of several words) spaces; the query syntax is written here only."""
     terms = [f"ti:{w}" for w in _significant(title)]
     terms += [f'au:"{s}"' if " " in s else f"au:{s}" for s in map(_surname, authors) if s]
     return {"search_query": " AND ".join(terms), "start": 0, "max_results": rows, "sortBy": "relevance"}
@@ -268,16 +288,31 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
     same DOI, arXiv id or PMID are one lead; an arXiv record that names its published DOI
     is merged into that DOI's lead. A lead is kept only when its authors include every
     surname asked for and its title holds the words asked for (or is similar); leads of the
-    asked year come first, then the closest titles. At most ``limit`` are returned.
+    asked year come first, then the closest titles. At most ``limit`` are returned
+    (never more than ``MAX_CANDIDATES``), from at most ``per_source`` records of each source
+    (never more than ``MAX_PER_SOURCE``).
+
+    What was typed is data: it goes to Crossref as request parameters, and into the PubMed
+    and arXiv query syntax only as words of letters and digits (``_surname``,
+    ``_significant``). ``year`` must be four digits.
 
     A source that does not answer is listed in ``.errors`` and the others are still asked.
     A lead is not an entry: build one with ``query_for(lead)`` through ``api.propose_new``.
     """
     from .verification import ProviderError
-    title = " ".join(str(title or "").split()) or None
-    authors = [authors] if isinstance(authors, str) else list(authors or ())
-    authors = [" ".join(str(a).split()) for a in authors if str(a or "").strip()]
+    title = _plain(title, MAX_QUERY_CHARS) or None
+    authors = [authors] if isinstance(authors, str) else list(authors or ())[:MAX_AUTHORS]
+    authors = [a for a in (_plain(a, MAX_NAME_CHARS) for a in authors) if a]
     year = str(year or "").strip() or None
+    if year and not re.fullmatch(r"\d{4}", year):
+        raise CdlbibError(f"Not a year: {_plain(year, 20)!r} (four digits are expected).")
+    try:
+        per_source, limit = max(1, min(int(per_source), MAX_PER_SOURCE)), max(0, min(int(limit), MAX_CANDIDATES))
+    except (TypeError, ValueError) as exc:
+        raise CdlbibError("The number of records to ask for must be a whole number.") from exc
+    unknown = [s for s in sources if s not in _LEADS]
+    if unknown:
+        raise CdlbibError(f"Unknown source {unknown[0]!r}; the sources are {', '.join(_LEADS)}.")
     found = Candidates()
     if not title and not authors:
         raise CdlbibError("Nothing to search for: give a title, one or more authors, or both.")
@@ -315,7 +350,7 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
             ranked.append((score, position, lead))
     ranked.sort(key=lambda item: item[:2])
     index = None
-    for _, _, lead in ranked[:max(0, limit)]:
+    for _, _, lead in ranked[:limit]:
         names = lead.pop("_authors")
         try:
             index = index or _library_index(ws)
@@ -367,13 +402,50 @@ class PdfIntake:
     title_source: str | None = None   # "largest text on page 1" or "PDF metadata"
 
 
-def _child(arguments, timeout):
-    """Run this module's child entry point; (return code, stdout bytes, stderr text)."""
+def _child(arguments, timeout, limit):
+    """Run this module's child entry point and read its output as it comes: (return code,
+    stdout bytes, the end of stderr, whether it wrote more than ``limit`` bytes).
+
+    The output is read in blocks and never beyond ``limit`` (plus one block): a child that
+    writes more is killed at once. A child still running after ``timeout`` seconds is
+    killed and ``subprocess.TimeoutExpired`` is raised. Arguments are passed as an argument
+    list (no shell); stderr goes to a temporary file, of which the first 2000 bytes are read.
+    """
+    import selectors
+    import tempfile
+    import time
     package_parent = str(Path(__file__).resolve().parents[1])
     env = dict(os.environ, PYTHONPATH=os.pathsep.join(p for p in (package_parent, os.environ.get("PYTHONPATH")) if p))
-    done = subprocess.run([sys.executable, "-m", "cdlbib.intake", *arguments], capture_output=True,
-                          timeout=timeout, env=env, stdin=subprocess.DEVNULL)
-    return done.returncode, done.stdout, done.stderr.decode("utf-8", "replace").strip()
+    command = [sys.executable, "-m", "cdlbib.intake", *map(str, arguments)]
+    out, over, deadline = bytearray(), False, time.monotonic() + timeout
+    with tempfile.TemporaryFile() as errors:
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=errors, stdin=subprocess.DEVNULL, env=env)
+        try:
+            with selectors.DefaultSelector() as selector:
+                selector.register(process.stdout, selectors.EVENT_READ)
+                while True:
+                    left = deadline - time.monotonic()
+                    if left <= 0:
+                        raise subprocess.TimeoutExpired(command, timeout)
+                    if not selector.select(left):
+                        continue
+                    block = os.read(process.stdout.fileno(), 65536)
+                    if not block:
+                        break
+                    out += block
+                    if len(out) > limit:
+                        over = True
+                        break
+            if not over:
+                process.wait(max(0.1, deadline - time.monotonic()))
+        finally:
+            if process.poll() is None:
+                process.kill()
+            process.wait()
+            process.stdout.close()
+        errors.seek(0)
+        said = errors.read(2000).decode("utf-8", "replace").strip()
+    return process.returncode, bytes(out), said, over
 
 
 def _identifiers(pages, metadata):
@@ -429,7 +501,13 @@ def read_pdf(path, ocr=True):
 
     Returns a ``PdfIntake`` always, for an existing file: a file that is not a PDF, is
     larger than ``MAX_PDF_BYTES``, is encrypted, cannot be parsed, takes too long or has no
-    text is reported in ``problem``. A PDF with no text is read by ``local_ocr`` when
+    text is reported in ``problem``. The limits are applied before or while the work they
+    bound is done: the size from ``stat`` before the file is read; in the child, a cap on
+    what one PDF stream may decompress to (``MAX_STREAM_BYTES``), text extraction that stops
+    at ``MAX_PAGE_CHARS`` per page and ``MAX_TOTAL_CHARS`` in all (``detail`` then says the
+    text was cut), a CPU limit and, where the platform accepts one, an address-space limit;
+    here, the child's output is read in blocks up to ``MAX_OUTPUT_BYTES`` and the child is
+    killed when it writes more or runs longer than ``READ_TIMEOUT``. A PDF with no text is read by ``local_ocr`` when
     ``pdftoppm`` and ``tesseract`` are installed (``ocr=True``); the result then has
     ``ocr=True`` and no ``problem``. A missing file raises ``CdlbibError``; a missing pypdf
     raises ``MissingDependency``.
@@ -452,19 +530,21 @@ def read_pdf(path, ocr=True):
     intake.sha256 = _hash(path)
     deps.need("pypdf", "research", "Reading PDF files")
     try:
-        code, out, err = _child(["read", str(path)], READ_TIMEOUT)
+        code, out, err, over = _child(["read", path.resolve(), MAX_PAGES, MAX_PAGE_CHARS, MAX_TOTAL_CHARS,
+                                       MAX_STREAM_BYTES], READ_TIMEOUT, MAX_OUTPUT_BYTES)
     except subprocess.TimeoutExpired:
         intake.problem, intake.detail = "timeout", f"Reading the PDF took more than {READ_TIMEOUT} seconds."
         return intake
-    if code != 0 or len(out) > MAX_OUTPUT_BYTES:
+    if over or code != 0:
         intake.problem = "unreadable"
-        intake.detail = ("The PDF reader returned too much text." if code == 0
+        intake.detail = (f"The PDF reader wrote more than {MAX_OUTPUT_BYTES} bytes and was stopped." if over
                          else f"The PDF reader stopped ({err.splitlines()[-1][:300] if err else code}).")
         return intake
     try:
         read = json.loads(out.decode("utf-8"))
-        intake.pages = [{"page": int(p["page"]), "text": str(p["text"])} for p in read["pages"]][:MAX_PAGES]
-        intake.metadata = {str(k): str(v) for k, v in read["metadata"].items()}
+        intake.pages = [{"page": int(p["page"]), "text": str(p["text"])[:MAX_PAGE_CHARS]}
+                        for p in read["pages"][:MAX_PAGES]]
+        intake.metadata = {str(k)[:100]: str(v)[:1000] for k, v in list(read["metadata"].items())[:50]}
         intake.problem, intake.detail = read["problem"], read["detail"]
         intake.title_guess, intake.title_source = read["title_guess"], read["title_source"]
     except (ValueError, KeyError, TypeError, AttributeError):
@@ -492,15 +572,18 @@ def read_pdf(path, ocr=True):
 
 def render_first_page(path, width=800):
     """Page 1 of a PDF as PNG bytes, ``width`` pixels wide (16 to 4000), rendered by
-    pypdfium2 in a child process (``RENDER_TIMEOUT`` seconds). Raises ``MissingDependency``
-    without pypdfium2 and ``CdlbibError`` when the page cannot be drawn."""
+    pypdfium2 in a child process (``RENDER_TIMEOUT`` seconds). The image's size is worked
+    out from the page's size before anything is drawn, and a page that would need more
+    than ``MAX_PIXELS`` pixels is refused; the child's output is read in blocks up to
+    ``MAX_IMAGE_BYTES``. Raises ``MissingDependency`` without pypdfium2 and ``CdlbibError``
+    when the page cannot be drawn."""
     path, width = Path(path), int(width)
     if not 16 <= width <= 4000:
         raise CdlbibError("The preview width must be between 16 and 4000 pixels.")
     try:
+        size = path.stat().st_size
         with open(path, "rb") as handle:
             head = handle.read(1024)
-        size = path.stat().st_size
     except OSError as exc:
         raise CdlbibError(f"The PDF could not be opened: {exc}") from exc
     if b"%PDF-" not in head:
@@ -509,10 +592,12 @@ def render_first_page(path, width=800):
         raise CdlbibError(f"The file is larger than {MAX_PDF_BYTES // 1_000_000} MB; no preview is drawn.")
     deps.need("pypdfium2", "pdf", "the PDF page preview")
     try:
-        code, out, err = _child(["render", str(path), str(width)], RENDER_TIMEOUT)
+        code, out, err, over = _child(["render", path.resolve(), width, MAX_PIXELS], RENDER_TIMEOUT, MAX_IMAGE_BYTES)
     except subprocess.TimeoutExpired:
         raise CdlbibError(f"Drawing the page took more than {RENDER_TIMEOUT} seconds.") from None
-    if code != 0 or not out.startswith(b"\x89PNG\r\n\x1a\n") or len(out) > MAX_IMAGE_BYTES:
+    if over:
+        raise CdlbibError(f"The page image is larger than {MAX_IMAGE_BYTES} bytes; drawing was stopped.")
+    if code != 0 or not out.startswith(b"\x89PNG\r\n\x1a\n"):
         raise CdlbibError("The first page could not be drawn" + (f" ({err.splitlines()[-1][:300]})." if err else "."))
     return out
 
@@ -726,8 +811,93 @@ def _house(entry_type, fields):
     return written, changed, sorted(set(fields) - set(written)), None
 
 
+_ENTRY_SYNTAX = re.compile(r"@\s*[A-Za-z]+\s*[{(]")
+# Text addressed to whoever reads the page for a program rather than to a reader of the paper.
+_INSTRUCTION_LIKE = re.compile(
+    r"(?i)\b(?:ignore|disregard|forget|override)\b.{0,60}\b(?:instructions?|prompts?|rules|above|previous|prior)\b"
+    r"|\bsystem prompt\b|\byou are (?:an? |the )?(?:ai\b|assistant|language model|llm\b|chatbot)"
+    r"|\b(?:set|return|report|output|extract|use)\b.{0,40}\b(?:field|journal|title|authors?|doi|year|volume|pages)\b"
+    r".{0,30}(?:\bto\b|\bas\b|=|:)")
+
+
+def _instruction_lines(pages):
+    """{page: line numbers (from 0)} of the lines that, read with the line before and the
+    line after, look like an instruction to a program reading the page."""
+    found = {}
+    for page in pages:
+        lines = page["text"].splitlines()
+        found[page["page"]] = {i for i in range(len(lines))
+                               if _INSTRUCTION_LIKE.search(" ".join(" ".join(lines[max(0, i - 1):i + 2]).split()))}
+    return found
+
+
+def _quoted_lines(evidence, pages):
+    """(page, line number) of every page line a finding's quotation covers."""
+    texts = {page["page"]: page["text"] for page in pages}
+    spans = [s for s in evidence.get("passages") or [] if s.get("page") in texts and isinstance(s.get("start"), int)]
+    if spans:
+        return {(s["page"], texts[s["page"]].count("\n", 0, s["start"])) for s in spans}
+    quote, text = " ".join(evidence["quote"].split()), texts.get(evidence["page"], "")
+    covered = set()
+    for number, line in enumerate(text.splitlines()):
+        line = " ".join(line.split())
+        if line and (line in quote or quote in line):
+            covered.add((evidence["page"], number))
+    return covered
+
+
+def structure_problem(value):
+    """Why ``value`` cannot be written as one field value, or None. A value may not change
+    the structure of the entry it is written into: its braces must pair up (never closing
+    one it did not open), it may not end in a backslash (which would take the closing
+    brace), hold a control character, or hold the start of an entry (``@type{``)."""
+    depth = 0
+    for char in value:
+        depth += (char == "{") - (char == "}")
+        if depth < 0:
+            return "a closing brace with no opening brace before it"
+    if depth:
+        return "an opening brace that is never closed"
+    if (len(value) - len(value.rstrip("\\"))) % 2:
+        return "a backslash at the end"
+    if any(ord(char) < 32 or ord(char) == 127 for char in value):
+        return "a control character"
+    if _ENTRY_SYNTAX.search(value):
+        return "the start of a BibTeX entry (@type{)"
+    return None
+
+
+def _proved(raw, entry_type, fields):
+    """Refuse (``CdlbibError``) unless ``raw`` reads back, by the library's own reader
+    (``verification.load_entries``), as exactly one entry of ``entry_type`` whose field
+    names and values are exactly ``fields``: the text holds nothing that was not checked."""
+    import tempfile
+    from .verification import load_entries
+    with tempfile.TemporaryDirectory(prefix="cdlbib-draft-") as folder:
+        path = Path(folder) / "rendered.bib"
+        path.write_text(raw + "\n", encoding="utf-8")
+        try:
+            entries = load_entries(path)
+        except ValueError as exc:
+            raise CdlbibError(f"The drafted entry does not read back as BibTeX ({exc}); nothing is proposed.") from exc
+    read = [dict(entry["fields"]) for entry in entries.values()]
+    if len(read) != 1:
+        raise CdlbibError(f"The drafted text reads back as {len(read)} entries, not one; nothing is proposed.")
+    kind = str(read[0].pop("ENTRYTYPE", "")).lower()
+    read[0].pop("ID", None)
+    if kind != entry_type or read[0] != fields:
+        differing = sorted(n for n in set(read[0]) | set(fields) if read[0].get(n) != fields.get(n))
+        raise CdlbibError("The drafted entry does not read back as the fields that were checked "
+                          f"({', '.join(differing) or 'entry type'}); nothing is proposed.")
+
+
 def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
-    """The manual proposal for ``values`` ({field: text}); ``sources`` {field: where from}."""
+    """The manual proposal for ``values`` ({field: text}); ``sources`` {field: where from}.
+
+    The one place a model-read or typed entry is rendered. Every value is refused before
+    rendering when it could change the entry's structure (``structure_problem``), again
+    after the formatter, and the rendered text must read back as exactly the checked
+    fields (``_proved``). Nothing is repaired silently: a refusal is a ``CdlbibError``."""
     entry_type = str(entry_type or "article").strip().lower()
     if not re.fullmatch(r"[a-z]+", entry_type):
         raise CdlbibError(f"Not an entry type: {entry_type!r}")
@@ -740,11 +910,19 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
             raise CdlbibError(f"Not a field name: {name!r}")
         if name == "force":  # the format checker skips an entry that has it; a draft follows the house rules
             raise CdlbibError("A draft cannot have a 'force' field.")
+        problem = structure_problem(value)
+        if problem:
+            raise CdlbibError(f"{name}: the value has {problem}, so it cannot be written as one field; correct it.")
         typed[name] = value
     if not typed:
         raise CdlbibError("There is nothing to draft: no field has a value.")
     given = {name: complete.latex_text(value) for name, value in typed.items()}
     fields, changed, removed, failure = _house(entry_type, given)
+    for name, value in fields.items():
+        problem = structure_problem(value) if isinstance(value, str) else "a value that is not text"
+        if problem or not re.fullmatch(r"[a-z][a-z0-9_-]*", name):
+            raise CdlbibError(f"{name}: after formatting the value has {problem or 'no valid field name'}; "
+                              "nothing is proposed.")
     proposal = ModelProposal(entry_type=entry_type, status="needs_review", manual=True, needs_decision=True,
                              notes=[NO_SOURCE, *notes], unfilled=list(unfilled), doi=fields.get("doi"))
     if failure:
@@ -778,6 +956,7 @@ def _draft(ws, entry_type, values, sources, unfilled, notes, kind):
         proposal.issues.append(f"The key and the duplicate check could not be made ({exc})")
     complete._set_complete(proposal, fields)
     proposal.needs_decision = True
+    _proved(proposal.proposed_raw, entry_type, fields)
     return proposal
 
 
@@ -785,10 +964,15 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     """The proposal for an adapter's ``extract`` answer, checked against the PDF's pages.
 
     A field is kept only when ``research.validate_findings`` finds its quotation on the
-    stated page and the value is literally in the quoted text (the adapter's ``grounding``,
-    else ``source_passages.literal_grounding``), with no role risk flagged for the quoted
-    passage (a receipt date, a copyright line, an affiliation, a reference list). Every
-    other field is ``Unfilled`` with the reason and the model's value. A kept field is a
+    stated page and the value is literally in the quoted text: that is checked here by
+    ``source_passages.literal_grounding`` whatever the answer claims (an adapter's
+    ``grounding`` can only withdraw support, never grant it), with no role risk flagged for
+    the quoted passage (a receipt date, a copyright line, an affiliation, a reference list,
+    or text that reads as an instruction to the reader's program rather than as the paper's
+    own metadata). A value that could change the structure of the entry
+    (``structure_problem``) is not kept either. Every other field is ``Unfilled`` with the
+    reason and the model's value. The PDF's text reaches the model as data and nothing the
+    model returns is used except through these checks. A kept field is a
     ``FieldChange`` whose source names the page and the quotation. The entry is written in
     house format, keyed by ``plan_key`` and checked for duplicates; it has no source record
     (``manual=True``, ``status="needs_review"``) and always needs a decision.
@@ -802,6 +986,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     pages = intake.pages
     flagged = extracted.get("role_risk_fields") if isinstance(extracted.get("role_risk_fields"), dict) else {}
     kept, unfilled = {}, []
+    suspect = _instruction_lines(pages)
     for name, evidence in read.items():
         value = evidence.get("value") if isinstance(evidence, dict) else None
         said = {f"model reading ({route})": value} if isinstance(value, str) and value.strip() else {}
@@ -814,10 +999,19 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
             unfilled.append(complete.Unfilled(name, f"{name}: the model gave no value", {}))
             continue
         quotes = [span["quote"] for span in evidence.get("passages") or []] or [evidence["quote"]]
-        grounded = (evidence["grounding"] == "literal_text_present" if "grounding" in evidence
-                    else literal_grounding(name, value, ["".join(quotes), *quotes]))
-        risks = list(evidence.get("role_risk") or flagged.get(name) or [])
-        if name == "ENTRYTYPE" or not grounded:
+        grounded = (evidence.get("grounding", "literal_text_present") == "literal_text_present"
+                    and literal_grounding(name, value, ["".join(quotes), *quotes]))
+        risks = [r for r in [*(evidence.get("role_risk") or []), *(flagged.get(name) or [])] if isinstance(r, str)]
+        if any(line in suspect.get(page, ()) for page, line in _quoted_lines(evidence, pages)):
+            risks.append("instruction_like_text")
+        risks = list(dict.fromkeys(risks))
+        broken = structure_problem(" ".join(value.split()))
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]*", str(name)):
+            unfilled.append(complete.Unfilled(str(name)[:40], "not kept: not a field name", {}))
+        elif broken:
+            unfilled.append(complete.Unfilled(
+                name, f"{name}: the value has {broken}, so it cannot be written as one field", said))
+        elif name == "ENTRYTYPE" or not grounded:
             unfilled.append(complete.Unfilled(
                 name, f"{name}: the value is not literally in the quoted text (page {evidence['page']}); "
                       "it is the model's interpretation", said))
@@ -963,12 +1157,32 @@ def attach_model_evidence(ws, key, evidence, fingerprint=None, database=None):
 
 # --- the child process --------------------------------------------------------------------------
 
-def _limit_cpu(seconds):
+def _limit(seconds, memory):
+    """Limit this (child) process: CPU seconds, and address space and data size where the
+    platform accepts the limit. Returns the names of the limits that were set. On macOS the
+    memory limits are refused (measured 2026-10-05, macOS 26 arm64: ``setrlimit`` raises
+    ValueError for RLIMIT_AS, RLIMIT_DATA and RLIMIT_RSS), so there the bounds are the ones
+    applied while reading: the stream cap, the text caps, the pixel cap, and the parent's
+    output limit and time limit."""
+    done = []
     try:
         import resource
-        resource.setrlimit(resource.RLIMIT_CPU, (seconds, seconds))
-    except (ImportError, ValueError, OSError):
-        pass  # no CPU limit on this platform; the parent's time limit still applies
+    except ImportError:
+        return done
+    for name, value in (("RLIMIT_CPU", int(seconds)), ("RLIMIT_AS", int(memory)), ("RLIMIT_DATA", int(memory))):
+        try:
+            kind = getattr(resource, name)
+            hard = resource.getrlimit(kind)[1]
+            value = value if hard == resource.RLIM_INFINITY else min(value, hard)
+            resource.setrlimit(kind, (value, hard))
+            done.append(name)
+        except (AttributeError, ValueError, OSError):
+            continue
+    return done
+
+
+class _Enough(Exception):
+    """Raised inside text extraction to stop it at a cap."""
 
 
 def _title_from_runs(runs):
@@ -988,8 +1202,31 @@ def _title_from_runs(runs):
     return None
 
 
-def _read_job(path):
+def _cap_streams(pypdf, stream_bytes):
+    """Lower pypdf's own caps on what one stream may decompress to (and declare, and
+    allocate for an image) to ``stream_bytes``; pypdf refuses a stream that would exceed
+    them while inflating it. Through ``pypdf.overwrite_configuration`` where pypdf has it,
+    else through the module constants older pypdf 6 releases read."""
+    if hasattr(pypdf, "overwrite_configuration"):
+        current = pypdf.get_configuration()
+        names = [n for n in ("maximum_declared_stream_length", "array_based_stream_maximum_output_length",
+                             "jbig2_maximum_output_length", "lzw_maximum_output_length",
+                             "run_length_maximum_output_length", "zlib_maximum_output_length",
+                             "image_maximum_buffer_size", "xmp_maximum_input_length") if hasattr(current, n)]
+        pypdf.overwrite_configuration(**{n: min(getattr(current, n), stream_bytes) for n in names})
+        return
+    import pypdf.filters
+    for name in ("ZLIB_MAX_OUTPUT_LENGTH", "LZW_MAX_OUTPUT_LENGTH", "RUN_LENGTH_MAX_OUTPUT_LENGTH",
+                 "JBIG2_MAX_OUTPUT_LENGTH", "MAX_ARRAY_BASED_STREAM_OUTPUT_LENGTH", "MAX_DECLARED_STREAM_LENGTH",
+                 "FLATE_MAX_BUFFER_SIZE"):
+        if isinstance(getattr(pypdf.filters, name, None), int):
+            setattr(pypdf.filters, name, min(getattr(pypdf.filters, name), stream_bytes))
+
+
+def _read_job(path, max_pages=MAX_PAGES, page_chars=MAX_PAGE_CHARS, total_chars=MAX_TOTAL_CHARS,
+              stream_bytes=MAX_STREAM_BYTES):
     import pypdf
+    _cap_streams(pypdf, stream_bytes)
     out = {"pages": [], "metadata": {}, "title_guess": None, "title_source": None, "problem": None, "detail": None}
     try:
         reader = pypdf.PdfReader(path)
@@ -1001,28 +1238,43 @@ def _read_job(path):
             if not opened:
                 out.update(problem="encrypted", detail="The PDF is encrypted and needs a password.")
                 return out
-        for name, value in (reader.metadata or {}).items():
+        for name, value in list((reader.metadata or {}).items())[:50]:
             if isinstance(value, str) and value.strip():
-                out["metadata"][str(name).lstrip("/").lower()] = " ".join(value.split())[:1000]
-        runs = []
+                out["metadata"][str(name).lstrip("/").lower()[:100]] = " ".join(value[:5000].split())[:1000]
+        runs, total, cut = [], 0, False
+        for number in range(1, max_pages + 1):
+            if number > len(reader.pages) or cut:
+                break
+            pieces, seen = [], 0
 
-        def visit(text, cm, tm, font, size):
-            a = tm[0] * cm[0] + tm[1] * cm[2]
-            b = tm[0] * cm[1] + tm[1] * cm[3]
-            scale = (a * a + b * b) ** 0.5
-            if text and abs(b) <= abs(a) and size and scale:  # upright text only
-                runs.append((text, round(abs(size) * scale, 1)))
+            def visit(text, cm, tm, font, size, first=(number == 1)):
+                nonlocal seen
+                if not text:
+                    return
+                seen += len(text)
+                pieces.append(text)
+                if seen > page_chars or total + seen > total_chars:
+                    raise _Enough()  # stop here: nothing beyond the cap is extracted
+                if first and size:
+                    a = tm[0] * cm[0] + tm[1] * cm[2]
+                    b = tm[0] * cm[1] + tm[1] * cm[3]
+                    scale = (a * a + b * b) ** 0.5
+                    if abs(b) <= abs(a) and scale:  # upright text only
+                        runs.append((text, round(abs(size) * scale, 1)))
 
-        for number, page in enumerate(reader.pages[:MAX_PAGES], 1):
-            contents = page.get_contents()
-            if contents and len(contents.get_data()) > 5_000_000:
-                out.update(pages=[], problem="unreadable", detail="A page's content is too large to read.")
-                return out
-            text = page.extract_text(visitor_text=visit if number == 1 else None) or ""
-            out["pages"].append({"page": number, "text": text[:MAX_PAGE_CHARS]})
+            try:
+                text = reader.pages[number - 1].extract_text(visitor_text=visit) or ""
+            except _Enough:
+                text, cut = "".join(pieces), True
+            text = text[:max(0, min(page_chars, total_chars - total))]
+            total += len(text)
+            out["pages"].append({"page": number, "text": text})
         if not any(p["text"].strip() for p in out["pages"]):
             out.update(problem="no_text", detail="The PDF has no text (a scan).")
             return out
+        if cut:
+            out["detail"] = (f"The PDF's text was cut: at most {page_chars} characters of a page and "
+                             f"{total_chars} in all are read.")
         title = _title_from_runs(runs)
         if title:
             out.update(title_guess=title, title_source="largest text on page 1")
@@ -1046,13 +1298,20 @@ def _png(pixels):
             + chunk(b"IDAT", zlib.compress(rows, 6)) + chunk(b"IEND", b""))
 
 
-def _render_job(path, width):
+def _render_job(path, width, max_pixels=MAX_PIXELS):
+    import math
     import pypdfium2
     document = pypdfium2.PdfDocument(path)
     try:
         page = document[0]
-        bitmap = page.render(scale=width / page.get_width(), rev_byteorder=True)
-        pixels = bitmap.to_numpy()
+        page_width, page_height = page.get_width(), page.get_height()
+        if not (page_width > 0 and page_height > 0):
+            raise ValueError("the page has no size")
+        height = math.ceil(page_height * width / page_width)
+        if width * height > max_pixels:  # decided from the page's size, before anything is drawn
+            raise ValueError(f"the page is {page_width:.0f} x {page_height:.0f} points: {width} pixels wide it would "
+                             f"be {height} pixels high, more than the {max_pixels} pixels a preview may have")
+        pixels = page.render(scale=width / page_width, rev_byteorder=True).to_numpy()
         if pixels.ndim == 2:
             pixels = pixels[:, :, None]
         return _png(pixels)
@@ -1061,21 +1320,26 @@ def _render_job(path, width):
 
 
 def _main(arguments):
-    """The child: ``read PATH`` writes one JSON object, ``render PATH WIDTH`` writes a PNG."""
+    """The child: ``read PATH PAGES PAGE_CHARS TOTAL_CHARS STREAM_BYTES`` writes one JSON
+    object, ``render PATH WIDTH MAX_PIXELS`` writes a PNG. The limits are set first."""
     job = arguments[0] if arguments else ""
     try:
-        if job == "read" and len(arguments) == 2:
-            _limit_cpu(READ_TIMEOUT)
-            sys.stdout.write(json.dumps(_read_job(arguments[1]), ensure_ascii=False))
+        if job == "read" and len(arguments) == 6:
+            _limit(READ_TIMEOUT, MAX_CHILD_MEMORY)
+            sys.stdout.write(json.dumps(_read_job(arguments[1], *map(int, arguments[2:])), ensure_ascii=False))
             return 0
-        if job == "render" and len(arguments) == 3:
-            _limit_cpu(RENDER_TIMEOUT)
-            sys.stdout.buffer.write(_render_job(arguments[1], int(arguments[2])))
+        if job == "render" and len(arguments) == 4:
+            _limit(RENDER_TIMEOUT, MAX_CHILD_MEMORY)
+            sys.stdout.buffer.write(_render_job(arguments[1], int(arguments[2]), int(arguments[3])))
+            return 0
+        if job == "limits" and len(arguments) == 1:  # which limits this platform accepts
+            sys.stdout.write(json.dumps(_limit(READ_TIMEOUT, MAX_CHILD_MEMORY)))
             return 0
     except Exception as exc:  # noqa: BLE001 - the parent reports the last line
         sys.stderr.write(f"{type(exc).__name__}: {str(exc)[:300]}\n")
         return 3
-    sys.stderr.write("usage: python -m cdlbib.intake read PATH | render PATH WIDTH\n")
+    sys.stderr.write("usage: python -m cdlbib.intake read PATH PAGES PAGE_CHARS TOTAL_CHARS STREAM_BYTES"
+                     " | render PATH WIDTH MAX_PIXELS | limits\n")
     return 2
 
 

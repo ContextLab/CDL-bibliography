@@ -6,8 +6,11 @@ PDF leads to are the real responses of tests/fixtures/intake/pdf_lookups.json.gz
 once on 2026-10-05 by tests/fixtures/intake/record.py and replayed through the real client.
 """
 import hashlib
+import json
 import shutil
 import struct
+import subprocess
+import sys
 import zlib
 
 import pytest
@@ -279,3 +282,104 @@ def test_a_source_that_does_not_answer_is_said(tmp_path, made):
     finally:
         empty.cache.close()
     assert not result.matched and "offline" in result.tried[0] and result.tried[0].startswith("doi ")
+
+
+# --- limits are applied before or while the work they bound -------------------------------------
+
+def _bomb(path, megabytes):
+    """A one-page PDF of a few kilobytes whose content stream inflates to ``megabytes`` MB."""
+    import pypdf
+    from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
+    writer = pypdf.PdfWriter()
+    page = writer.add_blank_page(612, 792)
+    font = DictionaryObject({NameObject("/Type"): NameObject("/Font"), NameObject("/Subtype"): NameObject("/Type1"),
+                             NameObject("/BaseFont"): NameObject("/Helvetica")})
+    page[NameObject("/Resources")] = DictionaryObject({NameObject("/Font"): DictionaryObject({NameObject("/F1"): font})})
+    stream = DecodedStreamObject()
+    stream.set_data(b"BT /F1 12 Tf 72 700 Td (A) Tj ET\n" + b" " * (megabytes * 1_000_000))
+    page[NameObject("/Contents")] = writer._add_object(stream.flate_encode())
+    with open(path, "wb") as handle:
+        writer.write(handle)
+    return path
+
+
+def test_a_stream_that_inflates_beyond_the_cap_is_not_inflated(tmp_path, monkeypatch):
+    import time
+    bomb = _bomb(tmp_path / "bomb.pdf", 60)
+    assert bomb.stat().st_size < 200_000  # 60 MB of content in a small file
+    started = time.monotonic()
+    read = intake.read_pdf(bomb)
+    assert read.problem == "unreadable" and read.pages == [] and "LimitReachedError" in read.detail
+    assert time.monotonic() - started < 30
+    # the cap is what stopped it: with the cap above the stream's size the same file is read
+    monkeypatch.setattr(intake, "MAX_STREAM_BYTES", 75_000_000)
+    assert [p["text"].strip() for p in intake.read_pdf(bomb).pages] == ["A"]
+
+
+def test_text_extraction_stops_at_the_caps(made, monkeypatch):
+    whole = intake.read_pdf(made["doi"])
+    assert whole.detail is None and len(whole.pages) == 2 and len(whole.pages[0]["text"]) > 1000
+    monkeypatch.setattr(intake, "MAX_PAGE_CHARS", 200)
+    cut = intake.read_pdf(made["doi"])
+    assert cut.problem is None and "was cut" in cut.detail
+    assert [p["page"] for p in cut.pages] == [1]  # reading stopped there: page 2 was never extracted
+    assert 0 < len(cut.pages[0]["text"]) <= 200 and whole.pages[0]["text"].startswith(cut.pages[0]["text"][:150])
+    monkeypatch.setattr(intake, "MAX_PAGE_CHARS", 100_000)
+    monkeypatch.setattr(intake, "MAX_TOTAL_CHARS", len(whole.pages[0]["text"]) + 50)
+    capped = intake.read_pdf(made["doi"])
+    assert sum(len(p["text"]) for p in capped.pages) <= intake.MAX_TOTAL_CHARS and "was cut" in capped.detail
+    assert capped.pages[0]["text"] == whole.pages[0]["text"] and len(capped.pages[1]["text"]) <= 50
+    # the child's own answer: extraction stopped inside page 1 (the visitor raised), page 2 was not begun
+    code, out, _, over = intake._child(["read", made["doi"], 5, 200, 300_000, 20_000_000], 60, 4_000_000)
+    job = json.loads(out)
+    assert (code, over) == (0, False) and [p["page"] for p in job["pages"]] == [1] and "was cut" in job["detail"]
+
+
+def test_a_child_that_writes_too_much_or_too_long_is_killed(made, monkeypatch):
+    import time
+    arguments = ["read", made["doi"], 5, 100_000, 300_000, 20_000_000]
+    code, out, err, over = intake._child(arguments, 60, 4_000_000)
+    assert (code, over) == (0, False) and out.startswith(b"{")
+    started = time.monotonic()
+    code, out, err, over = intake._child(arguments, 60, 100)
+    assert over and len(out) <= 100 + 65536 and code != 0  # stopped at the limit and killed, not read to the end
+    assert time.monotonic() - started < 30
+    with pytest.raises(subprocess.TimeoutExpired):
+        intake._child(arguments, 0.01, 4_000_000)
+    code, out, err, over = intake._child(["nonsense"], 60, 1000)
+    assert code == 2 and out == b"" and "usage:" in err
+    monkeypatch.setattr(intake, "MAX_OUTPUT_BYTES", 100)
+    read = intake.read_pdf(made["doi"])
+    assert read.problem == "unreadable" and "more than 100 bytes" in read.detail and read.pages == []
+
+
+def test_the_limits_a_child_sets_on_itself():
+    """What the platform accepts, by experiment: the CPU limit everywhere; the memory limits
+    on Linux. macOS refuses them (setrlimit raises), so there the caps above are the bound."""
+    code, out, err, over = intake._child(["limits"], 60, 1000)
+    limits = json.loads(out)
+    assert code == 0 and "RLIMIT_CPU" in limits
+    if sys.platform.startswith("linux"):
+        assert "RLIMIT_AS" in limits
+    else:
+        assert set(limits) <= {"RLIMIT_CPU", "RLIMIT_AS", "RLIMIT_DATA"}
+
+
+def test_a_preview_is_sized_before_it_is_drawn(tmp_path, made, monkeypatch):
+    pytest.importorskip("pypdfium2", reason="pypdfium2 (the 'pdf' extra) is not installed")
+    import pypdf
+    writer = pypdf.PdfWriter()
+    writer.add_blank_page(72, 14400)  # one inch wide, 200 inches high
+    tall = tmp_path / "tall.pdf"
+    with open(tall, "wb") as handle:
+        writer.write(handle)
+    with pytest.raises(CdlbibError, match="it would be 800000 pixels high, more than the 16000000 pixels"):
+        intake.render_first_page(tall, 4000)
+    assert intake.render_first_page(tall, 16)[:8] == b"\x89PNG\r\n\x1a\n"  # 16 x 3200: within the limit
+    monkeypatch.setattr(intake, "MAX_PIXELS", 10_000)
+    with pytest.raises(CdlbibError, match="more than the 10000 pixels"):
+        intake.render_first_page(made["doi"], 300)
+    monkeypatch.setattr(intake, "MAX_PIXELS", 16_000_000)
+    monkeypatch.setattr(intake, "MAX_IMAGE_BYTES", 1000)
+    with pytest.raises(CdlbibError, match="larger than 1000 bytes; drawing was stopped"):
+        intake.render_first_page(made["doi"], 800)
