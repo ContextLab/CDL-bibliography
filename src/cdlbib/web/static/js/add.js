@@ -111,7 +111,7 @@ export async function show(main) {
       ["Text", read.ocr ? "from OCR, which misreads characters" : null]])];
     if (read.problem) facts.unshift(note("bad", read.problem.replaceAll("_", " ") + (read.detail ? ": " + read.detail : "")));
     if (read.identifiers.length) {
-      facts.push(table(["Identifier", "Value", "Page", "Read from"], read.identifiers.map((i) => [i.kind, i.value, i.page === null ? "metadata" : String(i.page), i.quote])));
+      facts.push(table(["Identifier", "Value", "Page", "Read from"], read.identifiers.map((i) => [i.kind, h("span", { class: "nowrap", text: i.value }), i.page === null ? "metadata" : String(i.page), i.quote])));
     } else {
       facts.push(h("p", { class: "muted", text: "No DOI, arXiv id or PMID was read." }));
     }

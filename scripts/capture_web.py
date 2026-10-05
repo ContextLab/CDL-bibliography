@@ -149,8 +149,11 @@ def capture(out, width, height, only):
             size = whole(page)
             page.mouse.move(0, 0)               # nothing is hovered
             target = out / f"web-{name}.png"
-            if part:
-                page.locator(part).first.screenshot(path=str(target))
+            if part:        # that part of the view, with the view's own margin around it
+                box = page.locator(part).first.bounding_box()
+                edge = 12
+                page.screenshot(path=str(target), clip={"x": max(0, box["x"] - edge), "y": max(0, box["y"] - edge),
+                                                        "width": box["width"] + 2 * edge, "height": box["height"] + 2 * edge})
             else:
                 page.screenshot(path=str(target))
             page.set_viewport_size(size)
