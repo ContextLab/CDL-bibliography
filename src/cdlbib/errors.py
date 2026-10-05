@@ -143,7 +143,8 @@ class ExportFailed(CdlbibError):
     characters that cannot be written into a control file), "control_file" (the file LaTeX wrote for
     biber is not of the shape biblatex writes, or declares a source map that runs a regular
     expression), "too_large" (the paper's folder
-    holds more than is copied for a compile), "output" (the output file may not be written)."""
+    holds more than is copied for a compile), "output" (the output file may not be, or could not be,
+    written), "files" (another file could not be read, copied or made)."""
 
     def __init__(self, kind, detail, names=()):
         self.kind, self.detail, self.names = kind, detail, list(names)

@@ -5,6 +5,7 @@ Compiling runs LaTeX on the manuscript's files, as compiling the paper by hand d
 temporary copy, without shell escape, with a time limit per program, and with the search
 paths set here. Nothing here prints or prompts; every failure is an ExportFailed."""
 import contextlib
+import functools
 import html
 import json
 import os
@@ -273,6 +274,21 @@ def _compiled_citations(folder, stem):
     return found
 
 
+def _typed(function):
+    """Every failure of a public function here is an ExportFailed: a file that cannot be read,
+    listed, copied or made (an OSError anywhere below) becomes ExportFailed("files")."""
+    @functools.wraps(function)
+    def wrapped(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except OSError as exc:
+            named = [str(name) for name in (exc.filename, exc.filename2) if name]
+            raise ExportFailed("files", f"A file could not be read or written: {exc.strerror or exc}"
+                               + (f" ({', '.join(named)})" if named else "") + ".", named) from exc
+    return wrapped
+
+
+@_typed
 def main_file(paper, main=None):
     """The paper's main .tex file. ``paper`` is that file or a folder: there it is ``main``,
     else the one .tex file at the top of the folder that has a \\documentclass."""
@@ -298,6 +314,7 @@ def main_file(paper, main=None):
     return found[0].resolve()
 
 
+@_typed
 def engine_for(main, engine=None):
     """The LaTeX program: ``engine`` when given (one of ENGINES; anything else is refused
     before any program runs), else what the source asks for (a `% !TEX program = ...` line;
@@ -393,13 +410,31 @@ def _environment(extra, home):
     """The whole environment of every program run here: PATH and the locale from the user's,
     an empty HOME of the build's own, the three search paths (the build folder, the supplied
     inputs, TeX's own trees), and reading and writing only below the folder a program runs in
-    (openin_any=p, openout_any=p). Nothing else of the user's environment reaches a program:
-    no TEXMFCNF, TEXMFHOME, BIBER_*, PERL5LIB or the like."""
+    (openin_any=p, openout_any=p), and the user's own TeX trees (users_trees). Nothing else of
+    the user's environment reaches a program: no TEXMFCNF, BIBER_*, PERL5LIB or the like."""
     env = {name: os.environ[name] for name in _KEPT_VARIABLES if os.environ.get(name)}
     searched = os.pathsep.join([".", *(f"{folder}//" for folder in extra), ""])
     env.update(HOME=str(home), TEXINPUTS=searched, BSTINPUTS=searched, BIBINPUTS=searched,
                openout_any="p", openin_any="p", max_print_line="1000")
+    env.update(users_trees())
     return env
+
+
+def users_trees():
+    """{TEXMFHOME, TEXMFVAR, TEXMFCONFIG: where they are for the user}, asked of kpsewhich in
+    the user's own environment before it is put aside (TEXMFHOME as tex.trees() resolves it).
+    They are the user's TeX installation, as the distribution is: classes, packages and styles
+    installed there are found, and the font caches there are used. {} without TeX."""
+    kpsewhich, home = tex.trees()
+    if not kpsewhich:
+        return {}
+    found = {"TEXMFHOME": os.pathsep.join(str(tree) for tree in home)}
+    for name in ("TEXMFVAR", "TEXMFCONFIG"):
+        status, out = tex._run([kpsewhich, "-var-value", name])
+        value = out.strip()
+        if status == 0 and value and not any(ord(char) < 32 for char in value):
+            found[name] = value
+    return found
 
 
 @dataclass
@@ -508,6 +543,7 @@ def _latex(build, engine):
 
 # --- citations ----------------------------------------------------------------------------
 
+@_typed
 def cited(paper, main=None, inputs=(), engine=None):
     """What a paper cites. ``paper`` is a .aux or .bcf (used as it is), or a .tex file or a
     folder (``main`` names the main file when the folder has several).
@@ -545,10 +581,11 @@ def cited(paper, main=None, inputs=(), engine=None):
             _latex(build, stated.engine)
             found = _compiled_citations(build.folder, file.stem)
             found.notes += build.notes
-    except ExportFailed as exc:
-        if exc.kind == "resource_name":
+    except (ExportFailed, OSError) as exc:
+        if isinstance(exc, ExportFailed) and exc.kind == "resource_name":
             raise
-        stated.notes.append(f"the paper could not be compiled ({exc.detail.splitlines()[0]}); {SOURCE_NOTE}")
+        why = exc.detail.splitlines()[0] if isinstance(exc, ExportFailed) else f"{exc.strerror or exc}: {exc.filename}"
+        stated.notes.append(f"the paper could not be compiled ({why}); {SOURCE_NOTE}")
         return stated
     found.how, found.sources, found.main, found.folder, found.engine = "compiled", stated.sources, file, file.parent, stated.engine
     return found
@@ -618,6 +655,7 @@ def _elsewhere(found, folder, ws, local_library=True):
     return keys
 
 
+@_typed
 def missing(ws, found, entries=None, folder=None):
     """The cited keys that neither the library nor another bibliography file of the paper has."""
     entries = _entries(ws) if entries is None else entries
@@ -656,6 +694,7 @@ def _frozen_text(ws, found, entries):
     return "\n\n".join(definitions + [entries[key]["raw"] for key in written]) + "\n", written, [k for k in written if k in parents]
 
 
+@_typed
 def writable(ws, out, force=False):
     """Where ``out`` is written (its folder resolved, its name as given), or
     ExportFailed("output"). An export is never written through a symbolic link, onto the
@@ -688,18 +727,25 @@ def writable(ws, out, force=False):
 
 def _write(path, data):
     """Write the file whole: a new temporary file in the same folder (created exclusively, so
-    never through a link), then moved into place, which replaces a link rather than follows it."""
-    handle, temporary = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
+    never through a link), then moved into place, which replaces a link rather than follows it.
+    A folder that cannot be written in, a full disk and the like are ExportFailed("output")."""
+    try:
+        handle, temporary = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
+    except OSError as exc:
+        raise ExportFailed("output", f"Not written: {path} ({exc.strerror or exc}).", [str(path)]) from exc
     try:
         with os.fdopen(handle, "wb") as file:
             file.write(data)
         os.replace(temporary, path)
-    except BaseException:
+    except BaseException as exc:
         with contextlib.suppress(OSError):
             os.unlink(temporary)
+        if isinstance(exc, OSError):
+            raise ExportFailed("output", f"Not written: {path} ({exc.strerror or exc}).", [str(path)]) from exc
         raise
 
 
+@_typed
 def frozen_bib(ws, cited, out, force=False):
     """Write ``out``: the cited entries of the library (all of them for \\nocite{*}), each
     exactly as the library has it, in the library's order, with the entries they inherit from.
@@ -977,8 +1023,8 @@ def own_bcf(data, sources):
     The file must have exactly the shape biblatex writes (_bcf_probe; every element bcf:<name>
     in biblatex's namespace). A new tree is then made from nothing: for each element only the
     names in BCF_SHAPE are copied, with their text; anything else is ExportFailed
-    ("control_file") naming it. The data sources are not copied at all: each bibdata gets
-    ``sources`` (local files, no pattern). A source map's match and replacement, which biber
+    ("control_file") naming it. The data sources are written anew, section by section (a
+    reference section keeps its own list): each must be one of ``sources``, a local file. A source map's match and replacement, which biber
     runs as Perl, must pass safe_match and safe_replace. Option names are those in
     BCF_OPTIONS; citation keys, and the members of a set, pass the key check."""
     import xml.etree.ElementTree as ET
@@ -1054,12 +1100,22 @@ def own_bcf(data, sources):
             kind = local(child)
             if kind not in children:
                 _bcf_refused(f"{name} holds an element it does not hold in a file biblatex writes: {kind}.", [kind])
-            if kind != "datasource":                           # never copied: written below
+            if kind != "datasource":
                 rebuilt(child, fresh)
-        if name == "bibdata":
-            for source in sources:
-                made = ET.SubElement(fresh, space + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"})
-                made.text = source + ".bib"
+                continue
+            # A data source is never copied. Each section keeps its own list, in its order, as
+            # elements made here: one of ``sources`` (the files put in the backend's folder),
+            # a local bibtex file, no pattern, nothing else.
+            source = "".join(child.itertext()).strip()
+            source = source[:-4] if source.lower().endswith(".bib") else source
+            odd = [attribute for attribute, allowed in (("type", ("file",)), ("datatype", ("bibtex",)), ("glob", ("false", "0")))
+                   if child.get(attribute, allowed[0]).lower() not in allowed]
+            odd += [attribute for attribute in child.attrib if attribute not in ("type", "datatype", "glob")]
+            if odd or len(child) or source not in sources or not _NAME.match(source):
+                _bcf_refused(f"a data source of section {element.get('section', '0')} is not one local .bib file the paper "
+                             f"names plainly: {source}" + (f" ({', '.join(odd)})" if odd else "") + ".", [source])
+            made = ET.SubElement(fresh, space + "datasource", {"type": "file", "datatype": "bibtex", "glob": "false"})
+            made.text = source + ".bib"
         return fresh
 
     if local(old) != "controlfile":
@@ -1089,6 +1145,7 @@ def _biber(build, sources, generated):
     return undefined, text
 
 
+@_typed
 def bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=False):
     """Compile the paper's .bbl from the library and write it to ``out`` (default: beside the
     main file, with its name).

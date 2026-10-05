@@ -6,6 +6,7 @@ follows the library through every update. A link is cdlbib's own only while tex-
 cdlbib's data folder records exactly that link path and target; anything else at the path is
 never removed. Nothing here prints, prompts or edits a shell file."""
 import datetime
+import functools
 import json
 import os
 import shutil
@@ -173,6 +174,20 @@ def _why_shadowed(link, winners):
     return notes
 
 
+def _typed(function):
+    """A link, a record or a folder that cannot be read, made or removed (an OSError) is a
+    TexLinkRefused saying which: nothing but a CdlbibError leaves this module."""
+    @functools.wraps(function)
+    def wrapped(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except OSError as exc:
+            named = ", ".join(str(name) for name in (exc.filename, exc.filename2) if name)
+            raise TexLinkRefused(f"The TeX link could not be read or changed: {exc.strerror or exc}"
+                                 + (f" ({named})" if named else "") + ".") from exc
+    return wrapped
+
+
 def bibinputs_line(ws):
     """The shell line that makes TeX search the library's folder for .bib files (the way that
     needs no link). It is only ever shown: cdlbib writes it into no file."""
@@ -182,6 +197,7 @@ def bibinputs_line(ws):
     return f'export BIBINPUTS="{quoted}:${{BIBINPUTS}}"'
 
 
+@_typed
 def status(ws):
     """Where the link is or would be, what is there, and what TeX resolves cdl.bib to now.
     Reads only; runs kpsewhich when it is installed."""
@@ -236,6 +252,7 @@ def _saved_name(link):
     return name
 
 
+@_typed
 def link(ws, replace=False):
     """Make <TEXMFHOME>/bibtex/bib/cdl.bib a link to this library's cdl.bib and return the
     status afterwards (``changes`` lists what was done; nothing, when it was linked already).
@@ -283,6 +300,7 @@ def link(ws, replace=False):
     return after
 
 
+@_typed
 def unlink():
     """Remove cdlbib's link, and only that: a file or link at the path that the record does
     not describe is left where it is."""
