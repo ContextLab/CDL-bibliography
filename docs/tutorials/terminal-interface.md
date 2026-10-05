@@ -69,7 +69,10 @@ From top to bottom:
 
 Actions that read or change the library, ask a lookup service or run a check are jobs.
 They run one at a time, in the order they were started. Typing a search does not wait for
-a running job.
+a running job. Reading an entry's details does: until they are read, the right half shows
+what the table knows of the entry (authors, year, title, venue, DOI, status) and the line
+`The entry's text, issues and evidence load when the running job finishes: ...`. An entry
+that was read before is shown at once.
 
 ## Keys
 
@@ -107,7 +110,8 @@ a running job.
 |-|-|
 |ctrl+p|preview: the diff, the format findings, key change, status that is lost, entries affected|
 |ctrl+r|put the formatter's corrected text into the editor|
-|ctrl+s|save the previewed text|
+|ctrl+s|save the previewed text (the editor takes no typing while it is saved)|
+|ctrl+o|read the entry again from the file (asks before it replaces typed text)|
 |esc|close (asks first when the text was changed)|
 
 **Review**
@@ -244,10 +248,16 @@ tabs:
 
 ![The editor on the left and the preview on the right, with the changed line in the diff and the status now and after saving](../media/tui-edit-preview.svg)
 
-The log then shows `Saved: KEY` and where the file as it was before is kept. A text that
+While the save is under way the editor takes no typing. The log then shows `Saved: KEY`
+and where the file as it was before is kept. A text that
 cannot be saved (a key that is in use, a text that is not one entry, a `Force` field) is
-listed under `Cannot be saved as it is`, and nothing is written. When the entry was
-changed on disk after the preview, the save is refused.
+listed under `Cannot be saved as it is`, and nothing is written.
+
+A save replaces the entry as it was when the editor was opened. When something else
+changed the entry in the file after that, the preview says so (`KEY was changed in the
+file after it was opened here ...`), nothing is saved, and the typed text stays in the
+editor. `ctrl+o` reads the entry again from the file; it asks before it replaces typed
+text.
 
 `esc` closes the editor. When the text was changed, it asks first.
 
@@ -321,7 +331,8 @@ window of 124 columns or more.
 skips it, `A` accepts it and the remaining proposals that need no decision, and `q` stops.
 When a proposal cannot be accepted, the reasons are listed under
 `Cannot be accepted as it stands:`. Accepting writes the entry; it does not verify or
-approve it.
+approve it. When edited text could not be checked, `a`, `s` and `A` ask first whether to
+open the text again or discard it.
 
 An entry read by a model is written with the pages and quotations it was read from. When
 those cannot be stored, the proposal stays on the screen with the reason; `t` tries again
@@ -373,6 +384,8 @@ keychain). Each thing that is missing is listed with how to get it.
 
 `l` links `cdl.bib` into your TeX tree and `x` removes the link. In the form below, name
 a paper and press `b` to write its frozen `.bib`, or `B` to write its compiled `.bbl`.
+For a paper that asks for LuaLaTeX, `B` shows the refusal and asks whether to compile it
+with `lualatex`; it is run only after a yes.
 See [LaTeX setup and export](latex-setup-and-export.md).
 
 ## Themes

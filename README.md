@@ -658,8 +658,9 @@ state: linked: TeX finds this library's cdl.bib from any folder (\bibliography{c
 
 The link names the file's path, so it follows the library through updates.
 
-- `cdlbib setup --check` prints the report and changes nothing. It exits with `1`
-  when `cdl.bib` is not linked.
+- `cdlbib setup --check` prints the report and changes nothing in the TeX tree. As
+  with every command, the library `cdlbib` manages is downloaded or updated first when it
+  is the one in use. It exits with `1` when `cdl.bib` is not linked.
 - `cdlbib setup --remove` removes the link that `cdlbib` made.
 - `cdlbib setup --replace` is for a `cdl.bib` in the TeX tree that `cdlbib` did not
   put there: without it `setup` leaves that file alone and exits with `1`; with it,

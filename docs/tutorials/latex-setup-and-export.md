@@ -93,8 +93,9 @@ the link was not made (not confirmed); `cdlbib setup` without --ask makes it
 
 ## Check, remove or replace the link
 
-`--check` prints the same report and changes nothing. It exits with `1` when `cdl.bib`
-is not linked. Before the link was made:
+`--check` prints the same report and changes nothing in the TeX tree. As with every
+command, the library `cdlbib` manages is downloaded or updated first when it is the one in
+use. It exits with `1` when `cdl.bib` is not linked. Before the link was made:
 
 ```bash
 cdlbib setup --check
