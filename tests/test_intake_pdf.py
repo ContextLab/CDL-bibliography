@@ -112,6 +112,24 @@ def test_a_two_word_title_is_read_and_a_paragraph_never_is(tmp_path):
     assert pdfs.SHORT_AUTHORS.split(",")[0] in read.first_page_text
 
 
+def test_a_title_is_told_by_the_layout_not_by_its_size_rank_or_its_punctuation(tmp_path):
+    # (a) a one-word mark in 20pt above an 11pt title and 10pt text: the title, a tenth above the text
+    logo = pdfs.build_layout("logo", tmp_path)
+    sizes = sorted({size for text, size in _page_one_runs(logo) if text.strip()}, reverse=True)
+    assert sizes[0] > 19 and 10.9 <= sizes[1] <= 11.0 and 9.9 <= sizes[2] <= 10.0     # 11pt is not "more than 1.1 x 10pt"
+    read = intake.read_pdf(logo)
+    assert (read.title_guess, read.title_source) == (pdfs.LOGO_TITLE, "largest text on page 1")
+    # (b) a title page whose title has punctuation in it and most of the page's characters
+    question = pdfs.build_layout("question", tmp_path)
+    runs = [(" ".join(text.split()), size) for text, size in _page_one_runs(question) if text.strip()]
+    assert [text for text, _ in runs] == [pdfs.QUESTION_TITLE, "Uri Zoller"] and runs[0][1] > runs[1][1]
+    assert intake.read_pdf(question).title_guess == pdfs.QUESTION_TITLE
+    # (c) running text in one size, no capital after its full stop: nothing sets a title apart
+    lowercase = pdfs.build_layout("lowercase", tmp_path)
+    assert " ".join(intake.read_pdf(lowercase).first_page_text.split()) == pdfs.LOWERCASE_TEXT
+    assert intake.read_pdf(lowercase).title_guess is None
+
+
 def test_what_may_be_a_title():
     title, body = "Backward learning in paired associates", "The study reported here was carried out. " * 3
     lines = [(body + "\n", size) for size in (10.2, 9.8, 10.0, 10.1, 9.9, 10.2, 9.8)]
@@ -124,9 +142,22 @@ def test_what_may_be_a_title():
     assert intake._title_from_runs([("Abstract\n", 12.0)] + lines) is None
     assert intake._title_from_runs(lines) is None
     assert intake._title_from_runs([(body, 10.0)]) is None                    # a page of one paragraph
-    # a page that carries little but its title: the largest text, unless it reads as sentences
+    # a page that carries little but its title: set apart from the author under it, whatever it says
     assert intake._title_from_runs([(title, 20.0), ("A. N. Author", 12.0)]) == title
-    assert intake._title_from_runs([(title, 10.0)]) == title
+    asked = "Who learns? A study of memory. And of forgetting"
+    assert intake._title_from_runs([(asked, 20.0), ("A. N. Author", 12.0)]) == asked
+    # text with nothing to set it apart is not a title: alone on the page, or all of one size
+    assert intake._title_from_runs([(title, 10.0)]) is None
+    assert intake._title_from_runs([(title + "\n", 10.0), ("A. N. Author\n", 10.0)]) is None
+    assert intake._title_from_runs([("we evaluated ten models. all models were trained on the same corpus.", 10.0)]) is None
+    # a one-word mark set larger is passed over for the title a tenth above the text
+    assert intake._title_from_runs([("ACM\n", 20.0), (title + "\n", 11.0), ("A. N. Author\n", 10.0)] + lines) == title
+    assert intake._title_from_runs([("ACM\n", 20.0), (title + "\n", 10.5), ("A. N. Author\n", 10.0)] + lines) is None
+    # a block of larger text is not a title, nor is a heading that follows a column of text
+    block = [("we set this paragraph larger than the rest of the page\n" * 5, 12.0)]
+    assert intake._title_from_runs(block + lines) is None
+    assert intake._title_from_runs(lines + [("Methods of the second study\n", 12.0)] + lines) is None
+    assert intake._title_from_runs([("Journal of Things 12 (2019)\n", 9.0), (title + "\n", 17.2)] + lines) == title
     assert intake._title_from_runs([]) is None and intake._title_from_runs([("\n", 3156.2)]) is None
     # an image's blank fragment (its matrix makes it "3156pt") is not text and breaks no run
     assert intake._title_from_runs([("Plorbnix 7Q", 17.2), ("\n", 3156.2)] + lines) == "Plorbnix 7Q"
