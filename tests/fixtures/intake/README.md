@@ -13,6 +13,7 @@ with a transport that refuses every request (`tests/intake_support.py`).
 |-|-|-|
 | `searches.json.gz` | `record.py searches` | 18 responses: the Crossref, PubMed (ESearch, EFetch) and arXiv API answers to the five searches in `SEARCHES`, five records per source |
 | `pdf_lookups.json.gz` | `record.py pdfs` | 14 responses: the lookups `intake.propose_from_pdf` makes for the six PDFs of `tests/intake_pdfs.py` (Crossref, Europe PMC, PubMed, and the arXiv, arXiv-page and DataCite documents of arXiv:1706.03762) |
+| `web_searches.json.gz` | `record.py web` | 3 responses, fetched once on 2026-10-05: the Crossref, PubMed (ESearch) and arXiv API answers to the one search of `WEB_SEARCHES`, asked as `api.find_candidates` asks it (ten records per source); replayed by the web interface's tests (`tests/web_support.py`) |
 | `model_extract.json` | `record.py model` | not present: one real answer of the Dartmouth Chat adapter's `extract` phase. It needs a Dartmouth Chat API key; none was available on 2026-10-05, so none was recorded and `tests/test_intake_model.py::test_recorded_model_reading` is skipped until it is |
 
 Alterations, and no other:

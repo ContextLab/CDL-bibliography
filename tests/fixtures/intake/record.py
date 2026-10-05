@@ -2,6 +2,7 @@
 
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py searches
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py pdfs
+    CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py web
     python tests/fixtures/intake/record.py model          (needs the Dartmouth Chat key)
 
 (or add the path of a verification cache whose Crossref requests name the contact, as
@@ -35,12 +36,21 @@ SEARCHES = [
     {"title": "Zzyzxqv qwxzvk plorbnix"},
 ]
 PDFS = ("doi", "arxiv", "title", "titled", "mismatch", "unknown")
+# What the web interface's tests search for through api.find_candidates, which asks each
+# source for intake.PER_SOURCE records (the searches above ask for PER_SOURCE).
+WEB_SEARCHES = [{"title": "Attention is all you need", "authors": ["Vaswani"]}]
 ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
 
 
 def searches(ws, client, folder):
     for search in SEARCHES:
         found = intake.find_candidates(ws, client=client, per_source=PER_SOURCE, **search)
+        print(search, "->", len(found), "leads;", "errors:", found.errors, file=sys.stderr)
+
+
+def web(ws, client, folder):
+    for search in WEB_SEARCHES:
+        found = intake.find_candidates(ws, client=client, **search)
         print(search, "->", len(found), "leads;", "errors:", found.errors, file=sys.stderr)
 
 
@@ -76,7 +86,7 @@ def main(part, contact_source=None):
         client = xs.make_client(folder / "responses.sqlite3", contact=xs.contact_email(contact_source))
         contact = client.contact
         try:
-            {"searches": searches, "pdfs": pdfs}[part](Workspace(folder), client, folder)
+            {"searches": searches, "pdfs": pdfs, "web": web}[part](Workspace(folder), client, folder)
         finally:
             client.cache.close()
         rows = sqlite3.connect(folder / "responses.sqlite3").execute(
@@ -92,7 +102,7 @@ def main(part, contact_source=None):
             response = json.loads(ADDRESS.sub("[address removed]", json.dumps(response, ensure_ascii=False)))
         assert contact not in json.dumps(response) and contact not in json.dumps(request)
         saved.append({"request": request, "response": response})
-    name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz"}[part]
+    name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz", "web": "web_searches.json.gz"}[part]
     with gzip.GzipFile(HERE / name, "wb", mtime=0) as handle:
         handle.write(json.dumps(saved, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8"))
     print(len(saved), "responses saved to", name, file=sys.stderr)

@@ -1334,3 +1334,26 @@ def export_bbl(ws, paper, out=None, inputs=(), main=None, engine=None, force=Fal
     """Compile the paper's .bbl from the library with the paper's own style (export.bbl)."""
     from . import export
     return export.bbl(ws, paper, out=out, inputs=inputs, main=main, engine=engine, force=force)
+
+
+# --- front-end helpers added for the web UI ---
+
+def acceptable(proposal):
+    """May ``proposal`` be accepted as it stands: it is complete, has an entry to write, is
+    no duplicate, is of a type that can be written, and has no issue about its key or its
+    format? The one test every front end applies before it writes an accepted proposal
+    (``needs_decision`` is separate: such a proposal is never accepted with the remaining
+    ones, only by the person looking at it)."""
+    return bool(proposal.complete and proposal.proposed_raw and not proposal.duplicate_of
+                and not proposal.unsupported
+                and not any("already exists in the library" in issue or "does not match the key plan" in issue
+                            or issue.startswith("format:") or "format check could not run" in issue
+                            for issue in proposal.issues))
+
+
+def draft_form():
+    """What a manual-entry form offers: {"types": the entry types a hand-typed draft may
+    have (intake.DRAFT_TYPES), "fields": the field names a reading can fill
+    (intake.MODEL_FIELDS)}. Other field names may be typed too."""
+    from . import intake
+    return {"types": list(intake.DRAFT_TYPES), "fields": list(intake.MODEL_FIELDS)}
