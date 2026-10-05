@@ -59,7 +59,7 @@ def load_bibliography(fname, verbose=True):
         with open(fname, "r") as b:
             bibdata = bp.load(b, parser=parser)
     else:
-        b = get.urlopen(fname).read().decode("utf-8")
+        b = get.build_opener().open(fname).read().decode("utf-8")   # not urlopen: it keeps its first proxies
         bibdata = parser.parse(b)
     printv("done", verbose=verbose)
     return bibdata.get_entry_dict()

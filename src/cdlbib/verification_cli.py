@@ -365,10 +365,11 @@ def reference_bib(reference, directory):
         if not Path(reference).exists():
             raise OSError(f"Reference bibliography not found: {reference}")
         return str(reference)
-    from urllib.request import urlopen
+    from urllib.request import build_opener
     from .helpers import LATEST_BIBFILE
     try:
-        text = urlopen(LATEST_BIBFILE, timeout=60).read().decode("utf-8")
+        # A new opener each time: urlopen keeps the first one, with the proxies of that moment.
+        text = build_opener().open(LATEST_BIBFILE, timeout=60).read().decode("utf-8")
     except OSError as exc:
         raise OSError(f"Cannot download the reference bibliography {LATEST_BIBFILE}: {exc}") from exc
     Path(directory).mkdir(parents=True, exist_ok=True)
