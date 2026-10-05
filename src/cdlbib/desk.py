@@ -362,7 +362,12 @@ def _format(entry, others, bases, definitions=()):
     import io
     from .helpers import check_bib
     from .verification import load_entries
+    from .complete import has_force
+    from .prompts import FORCE_REFUSED
     key, fields = entry["key"], entry["fields"]
+    # The checker skips an entry that carries Force; here that field is itself the finding
+    # (and nothing else it says about the entry can be relied on).
+    forced = [FormatFinding("force", str(fields.get("force")), None, FORCE_REFUSED)] if has_force(fields) else []
     own = _bases({key: entry}).get(key)
     beside = {name: others[name] for name, base in bases.items() if own and base == own and name in others}
     todo = _parents(fields)
@@ -382,16 +387,19 @@ def _format(entry, others, bases, definitions=()):
             formatted = load_entries(out)
             written = formatted.get(mine.get("ID", key)) or formatted.get(key)
         except Exception as exc:  # noqa: BLE001 - check_bib raises plain exceptions on entries it cannot judge
-            return [FormatFinding(None, None, None, f"The format check could not judge this entry "
-                                                    f"({type(exc).__name__}: {exc})")], None
+            said = str(exc)
+            if said.startswith("title: missing: ") and key in said[len("title: missing: "):].split(", "):
+                return forced + [FormatFinding("title", fields.get("title"), None, "title: missing")], None
+            return forced + [FormatFinding(None, None, None, f"The format check could not judge this entry "
+                                                             f"({type(exc).__name__}: {exc})")], None
     findings = [FormatFinding("key" if name == "ID" else name, key if name == "ID" else fields.get(name), value,
                               f"the format checker would write {'the key' if name == 'ID' else name} as {value}")
                 for name, value in sorted(mine.items())]
-    if written is not None and "force" not in fields:
+    if written is not None and not forced:
         findings += [FormatFinding(name, fields[name], None, f"{name} is not a field the library keeps; the format "
                                                              "checker would remove it")
                      for name in sorted(set(fields) - set(written["fields"]))]
-    return findings, written["raw"] if written is not None else None
+    return forced + findings, written["raw"] if written is not None and not forced else None
 
 
 def _detail(entry, result, findings):
@@ -574,6 +582,11 @@ def _plan(original, found, key, raw):
                 raise ValueError("the text must contain exactly one entry and nothing else")
     except (ValueError, UnicodeError) as exc:
         plan.problems.append(f"The edited text cannot be read as one entry: {exc}")
+    else:
+        from .complete import has_force
+        from .prompts import FORCE_REFUSED
+        if has_force(plan.entries[new_key]["fields"]):      # refused for every writer alike (complete.apply too)
+            plan.problems.append(f"{new_key}: {FORCE_REFUSED}")
     return plan
 
 

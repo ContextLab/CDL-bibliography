@@ -1,0 +1,1302 @@
+[
+ {
+  "request": "[\"https://api.crossref.org/works\",{\"query.bibliographic\":\"highly accurate protein structure prediction with alphafold   \",\"rows\":5},false]",
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.3410/f.740477161.793588825",
+       "URL": "https://doi.org/10.3410/f.740477161.793588825",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0003-0019-1735",
+         "affiliation": [
+          {
+           "name": "Bioinformatics and Genomics Programme, Barcelona Supercomputing Centre (BSC) and Institute for Research in Biomedicine (IRB), Spain"
+          }
+         ],
+         "authenticated-orcid": true,
+         "family": "Gabaldón",
+         "given": "Toni",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2021,
+          9,
+          27
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2021,
+          9,
+          27
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2021,
+          10,
+          13
+         ]
+        ]
+       },
+       "publisher": "H1 Connect",
+       "relation": {
+        "is-review-of": [
+         {
+          "asserted-by": "subject",
+          "id": "10.1038/s41586-021-03819-2",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Faculty Opinions recommendation of Highly accurate protein structure prediction with AlphaFold."
+       ],
+       "type": "dataset"
+      },
+      {
+       "DOI": "10.3410/f.740477161.793588722",
+       "URL": "https://doi.org/10.3410/f.740477161.793588722",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0001-7049-6900",
+         "affiliation": [
+          {
+           "name": "Institute of Genetics and Molecular and Cellular Biology (IGBMC), France"
+          }
+         ],
+         "authenticated-orcid": true,
+         "family": "Herault",
+         "given": "Yann",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2021,
+          9,
+          22
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2021,
+          9,
+          22
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2021,
+          10,
+          11
+         ]
+        ]
+       },
+       "publisher": "H1 Connect",
+       "relation": {
+        "is-review-of": [
+         {
+          "asserted-by": "subject",
+          "id": "10.1038/s41586-021-03819-2",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Faculty Opinions recommendation of Highly accurate protein structure prediction with AlphaFold."
+       ],
+       "type": "dataset"
+      },
+      {
+       "DOI": "10.3410/f.740477161.793596551",
+       "URL": "https://doi.org/10.3410/f.740477161.793596551",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0003-1702-0692",
+         "affiliation": [
+          {
+           "name": "Laboratory of Gene Transcription and Proteomics, Montreal Clinical Research Institute, Canada"
+          }
+         ],
+         "authenticated-orcid": true,
+         "family": "Coulombe",
+         "given": "Benoit",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2022,
+          11,
+          16
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2022,
+          11,
+          16
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2022,
+          11,
+          18
+         ]
+        ]
+       },
+       "publisher": "H1 Connect",
+       "relation": {
+        "is-review-of": [
+         {
+          "asserted-by": "subject",
+          "id": "10.1038/s41586-021-03819-2",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Faculty Opinions recommendation of Highly accurate protein structure prediction with AlphaFold."
+       ],
+       "type": "dataset"
+      },
+      {
+       "DOI": "10.3410/f.740477161.793587507",
+       "URL": "https://doi.org/10.3410/f.740477161.793587507",
+       "author": [
+        {
+         "affiliation": [
+          {
+           "name": "Center for the Study of Systems Biology, Georgia Institute of Technology, USA"
+          }
+         ],
+         "family": "Skolnick",
+         "given": "Jeffrey",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2021,
+          7,
+          30
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2021,
+          7,
+          30
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2021,
+          8,
+          17
+         ]
+        ]
+       },
+       "publisher": "H1 Connect",
+       "relation": {
+        "is-review-of": [
+         {
+          "asserted-by": "subject",
+          "id": "10.1038/s41586-021-03819-2",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Faculty Opinions recommendation of Highly accurate protein structure prediction with AlphaFold."
+       ],
+       "type": "dataset"
+      },
+      {
+       "DOI": "10.3410/f.740477161.793588050",
+       "URL": "https://doi.org/10.3410/f.740477161.793588050",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0003-1217-7412",
+         "affiliation": [
+          {
+           "name": "Department of Biological Sciences, University of Pittsburgh, USA"
+          }
+         ],
+         "authenticated-orcid": true,
+         "family": "Berman",
+         "given": "Andrea",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Faculty Opinions – Post-Publication Peer Review of the Biomedical Literature"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2021,
+          8,
+          19
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2021,
+          8,
+          19
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2021,
+          9,
+          2
+         ]
+        ]
+       },
+       "publisher": "H1 Connect",
+       "relation": {
+        "is-review-of": [
+         {
+          "asserted-by": "subject",
+          "id": "10.1038/s41586-021-03819-2",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Faculty Opinions recommendation of Highly accurate protein structure prediction with AlphaFold."
+       ],
+       "type": "dataset"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 4431939
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T10:19:11.620170+00:00",
+   "url": "https://api.crossref.org/works?query.bibliographic=highly+accurate+protein+structure+prediction+with+alphafold+++&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+  }
+ },
+ {
+  "request": "[\"https://api.crossref.org/works\",{\"filter\":\"type:book-chapter,type:journal-article,type:proceedings-article\",\"query.title\":\"Highly accurate protein structure prediction with AlphaFold\",\"rows\":5},false]",
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1038/s41586-021-03819-2",
+       "ISSN": [
+        "0028-0836",
+        "1476-4687"
+       ],
+       "URL": "https://doi.org/10.1038/s41586-021-03819-2",
+       "author": [
+        {
+         "ORCID": "https://orcid.org/0000-0001-6169-6580",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Jumper",
+         "given": "John",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Evans",
+         "given": "Richard",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Pritzel",
+         "given": "Alexander",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0002-3227-1505",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Green",
+         "given": "Tim",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Figurnov",
+         "given": "Michael",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Ronneberger",
+         "given": "Olaf",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Tunyasuvunakool",
+         "given": "Kathryn",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Bates",
+         "given": "Russ",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Žídek",
+         "given": "Augustin",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Potapenko",
+         "given": "Anna",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Bridgland",
+         "given": "Alex",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Meyer",
+         "given": "Clemens",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0003-4271-4418",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Kohl",
+         "given": "Simon A. A.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Ballard",
+         "given": "Andrew J.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Cowie",
+         "given": "Andrew",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Romera-Paredes",
+         "given": "Bernardino",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Nikolov",
+         "given": "Stanislav",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Jain",
+         "given": "Rishub",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0001-9928-3407",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Adler",
+         "given": "Jonas",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Back",
+         "given": "Trevor",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Petersen",
+         "given": "Stig",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Reiman",
+         "given": "David",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Clancy",
+         "given": "Ellen",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Zielinski",
+         "given": "Michal",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0001-8781-9753",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Steinegger",
+         "given": "Martin",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0002-2160-6226",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Pacholska",
+         "given": "Michalina",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Berghammer",
+         "given": "Tamas",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Bodenstein",
+         "given": "Sebastian",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0002-5197-2892",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Silver",
+         "given": "David",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Vinyals",
+         "given": "Oriol",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0002-2401-5691",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Senior",
+         "given": "Andrew W.",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Kavukcuoglu",
+         "given": "Koray",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Kohli",
+         "given": "Pushmeet",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0003-2812-9917",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "Hassabis",
+         "given": "Demis",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Nature"
+       ],
+       "issue": "7873",
+       "issued": {
+        "date-parts": [
+         [
+          2021,
+          7,
+          15
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.nature.com/articles/s41586-021-03819-2.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s41586-021-03819-2",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s41586-021-03819-2.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "583-589",
+       "published": {
+        "date-parts": [
+         [
+          2021,
+          7,
+          15
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2021,
+          7,
+          15
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2021,
+          8,
+          26
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "relation": {
+        "has-review": [
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587441",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793588825",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587548",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793590095",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587546",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587468",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793588050",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793590709",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587507",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587439",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587538",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587604",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793588722",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793596551",
+          "id-type": "doi"
+         },
+         {
+          "asserted-by": "object",
+          "id": "10.3410/f.740477161.793587947",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Highly accurate protein structure prediction with AlphaFold"
+       ],
+       "type": "journal-article",
+       "volume": "596"
+      },
+      {
+       "DOI": "10.1007/978-981-95-7386-8_22",
+       "ISBN": [
+        "9789819573851",
+        "9789819573868"
+       ],
+       "URL": "https://doi.org/10.1007/978-981-95-7386-8_22",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Fushinobu",
+         "given": "Shinya",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Glycoscience: A Global Roadmap 2025 from Japan"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2026
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-981-95-7386-8_22",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "95-97",
+       "published": {
+        "date-parts": [
+         [
+          2026
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2026,
+          5,
+          1
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2026
+         ]
+        ]
+       },
+       "publisher": "Springer Nature Singapore",
+       "title": [
+        "Protein Structure Prediction (AlphaFold)"
+       ],
+       "type": "book-chapter"
+      },
+      {
+       "DOI": "10.1038/s42256-019-0086-4",
+       "ISSN": [
+        "2522-5839"
+       ],
+       "URL": "https://doi.org/10.1038/s42256-019-0086-4",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Wei",
+         "given": "Guo-Wei",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "container-title": [
+        "Nature Machine Intelligence"
+       ],
+       "issue": "8",
+       "issued": {
+        "date-parts": [
+         [
+          2019,
+          8,
+          9
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.nature.com/articles/s42256-019-0086-4.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s42256-019-0086-4",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s42256-019-0086-4.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "336-337",
+       "published": {
+        "date-parts": [
+         [
+          2019,
+          8,
+          9
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2019,
+          8,
+          9
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "title": [
+        "Protein structure prediction beyond AlphaFold"
+       ],
+       "type": "journal-article",
+       "volume": "1"
+      },
+      {
+       "DOI": "10.1109/iccsc56913.2023.10142975",
+       "URL": "https://doi.org/10.1109/iccsc56913.2023.10142975",
+       "author": [
+        {
+         "affiliation": [
+          {
+           "name": "Indian Institute of Science,Dept. of Computational and Data Sciences,Bengaluru,India"
+          }
+         ],
+         "family": "Saha",
+         "given": "Anirban",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [
+          {
+           "name": "Sister Nivedita University,Dept.of CSE,Kolkata,India"
+          }
+         ],
+         "family": "Sarkar",
+         "given": "Indranil",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "2023 2nd International Conference on Computational Systems and Communication (ICCSC)"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2023,
+          3,
+          3
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://xplorestaging.ieee.org/ielx7/10142987/10142969/10142975.pdf?arnumber=10142975",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "page": "1-4",
+       "published": {
+        "date-parts": [
+         [
+          2023,
+          3,
+          3
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2023,
+          3,
+          3
+         ]
+        ]
+       },
+       "publisher": "IEEE",
+       "title": [
+        "Highly Accurate Protein Structure Classification and Prediction"
+       ],
+       "type": "proceedings-article"
+      },
+      {
+       "DOI": "10.1038/s41467-023-43681-6",
+       "ISSN": [
+        "2041-1723"
+       ],
+       "URL": "https://doi.org/10.1038/s41467-023-43681-6",
+       "article-number": "8283",
+       "author": [
+        {
+         "affiliation": [],
+         "family": "Jeppesen",
+         "given": "Mads",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "ORCID": "https://orcid.org/0000-0002-4753-8233",
+         "affiliation": [],
+         "authenticated-orcid": false,
+         "family": "André",
+         "given": "Ingemar",
+         "role": [
+          {
+           "role": "author",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "container-title": [
+        "Nature Communications"
+       ],
+       "issue": "1",
+       "issued": {
+        "date-parts": [
+         [
+          2023,
+          12,
+          13
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://www.nature.com/articles/s41467-023-43681-6.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s41467-023-43681-6",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.nature.com/articles/s41467-023-43681-6.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          2023,
+          12,
+          13
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2023,
+          12,
+          13
+         ]
+        ]
+       },
+       "publisher": "Springer Science and Business Media LLC",
+       "relation": {
+        "has-preprint": [
+         {
+          "asserted-by": "object",
+          "id": "10.1101/2023.06.22.546069",
+          "id-type": "doi"
+         }
+        ]
+       },
+       "title": [
+        "Accurate prediction of protein assembly structure by combining AlphaFold and symmetrical docking"
+       ],
+       "type": "journal-article",
+       "volume": "14"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 3472168
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-05T10:26:27.309065+00:00",
+   "url": "https://api.crossref.org/works?query.title=Highly+accurate+protein+structure+prediction+with+AlphaFold&filter=type%3Abook-chapter%2Ctype%3Ajournal-article%2Ctype%3Aproceedings-article&rows=5&mailto=jeremy.r.manning%40dartmouth.edu"
+  }
+ }
+]

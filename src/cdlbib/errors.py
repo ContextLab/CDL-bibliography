@@ -115,6 +115,19 @@ class PublishRefused(CdlbibError):
         super().__init__(message)
 
 
+class NeedsConfirmation(CdlbibError):
+    """Something a front end must ask the person before the core goes on: installing a
+    missing optional package (``kind`` "install": ``package``, ``extra``, ``feature``) or
+    creating their fork (``kind`` "fork": ``upstream``). ``question`` is the sentence to ask,
+    word for word what the command line asks; the refusal that led here is ``__cause__``.
+    Nothing was installed or created."""
+
+    def __init__(self, kind, question, package=None, extra=None, feature=None, upstream=None):
+        self.kind, self.question = kind, question
+        self.package, self.extra, self.feature, self.upstream = package, extra, feature, upstream
+        super().__init__(question)
+
+
 class CompletionRefused(CdlbibError):
     """A source record that cannot be the record of an entry (a correction, erratum or
     retraction notice); the message says why."""

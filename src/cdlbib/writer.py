@@ -310,6 +310,72 @@ _STAMP = re.compile(r"\d{8}T\d{6}\.\d{6}Z")
 _SHA = re.compile(r"[0-9a-f]{64}")
 
 
+def _records(held, folder, create=False):
+    """The held folder <.bibcheck>/<folder> (None when it is not there and is not to be made);
+    CdlbibError when .bibcheck or it is a link or not a folder."""
+    if not re.fullmatch(r"[a-z][a-z-]{0,40}", folder) or folder == EDITS:
+        raise CdlbibError(f"{folder!r} is not a folder cdlbib keeps records in")
+    try:
+        work = held.bib().sub(held.ws.work.name, create)
+        if work is None:
+            return None
+        held.callback(work.close)
+        kept = work.sub(folder, create)
+        if kept is not None:
+            held.callback(kept.close)
+        return kept
+    except PermissionError:
+        raise
+    except OSError as exc:
+        raise CdlbibError(f"{held.ws.work / folder} is not an ordinary folder, so cdlbib will not keep records "
+                          "there; nothing was changed.") from exc
+
+
+def _record_name(name):
+    if not re.fullmatch(r"[A-Za-z0-9_%+=@,~-][A-Za-z0-9_.%+=@,~-]{0,200}", name):
+        raise CdlbibError(f"{name!r} is not a name a record can be kept under")
+    return name
+
+
+def keep_record(ws, folder, name, data):
+    """Write ``data`` (bytes) as <.bibcheck>/<folder>/<name>, whole and flushed, readable by
+    the user only. Folders are opened once, refusing links; the file is made new and moved
+    into place by name (as every file this module writes)."""
+    with _Held(ws) as held:
+        _records(held, folder, create=True).put(_record_name(name), data)
+    return ws.work / folder / name
+
+
+def records(ws, folder):
+    """{name: bytes} of the ordinary files in <.bibcheck>/<folder> ({} when there is none).
+    Links and anything that is not an ordinary file are passed over."""
+    found = {}
+    if not os.path.lexists(ws.bib.parent):
+        return found
+    with _Held(ws) as held:
+        kept = _records(held, folder)
+        for name in sorted(kept.names()) if kept is not None else ():
+            try:
+                data = kept.read(name)[0]
+            except OSError:
+                continue
+            if data is not None:
+                found[name] = data
+    return found
+
+
+def drop_record(ws, folder, name):
+    """Remove <.bibcheck>/<folder>/<name> (the name itself, never what a link points to), and
+    the folder when that empties it."""
+    with _Held(ws) as held:
+        kept = _records(held, folder)
+        if kept is None:
+            return
+        kept.remove(_record_name(name))
+    with contextlib.suppress(OSError):
+        os.rmdir(ws.work / folder)       # only ever an empty folder (a link in its place is not removed)
+
+
 def _targets(ws):
     return {"bib": ws.bib, "renames": ws.key_renames}
 
