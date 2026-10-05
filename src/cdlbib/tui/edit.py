@@ -49,7 +49,9 @@ class EditScreen(Screen):
         yield Footer()
 
     def on_mount(self):
-        self.query_one("#editor", TextArea).focus()
+        editor = self.query_one("#editor", TextArea)
+        editor.indent_type = "tabs"          # the library's entries are indented with tabs
+        editor.focus()
         self.query_one("#preview", Shown).show(
             "ctrl+p shows what saving would do: the diff, the house-format findings, a key change, "
             "the status the edit loses, other entries it affects.\nctrl+s saves the text that was previewed.")

@@ -66,6 +66,8 @@ KEYS = (
         ("c", "check the selected entry now"),
     )),
     ("Add", (
+        ("esc, then left / right", "from a text box to the row of tab names, and between Search, Identifier, PDF, Manual"),
+        ("enter or down", "on the row of tab names: into the tab"),
         ("ctrl+f", "Search tab: find records for the title, authors and year typed (also enter in a box)"),
         ("space", "Search tab: mark or unmark the selected record"),
         ("enter", "Search tab: propose the marked records (or the selected one); Identifier tab: look them up"),
@@ -165,6 +167,9 @@ class CdlbibApp(App):
     Button:focus { border: tall $accent; text-style: bold; }
     Button.-primary { background: $primary; color: $cdl-on-primary; }
     Button:disabled { color: $cdl-muted; text-style: italic; }
+    TabbedContent { height: 1fr; }
+    ContentSwitcher { height: 1fr; }
+    TabPane { height: 1fr; padding: 0; }
     Tabs { background: $surface; }
     Tab { color: $cdl-muted; }
     Tab.-active { color: $accent; text-style: bold; }

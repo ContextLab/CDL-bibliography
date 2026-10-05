@@ -96,13 +96,13 @@ class AddView(View):
                 yield Shown(id="m-message", classes="message")
                 with Horizontal(classes="form-row"):
                     yield Static("Entry type", classes="form-label")
-                    yield Select([("article", "article")], id="m-type", allow_blank=False, value="article")
+                    yield Select([("article", "article")], id="m-entrytype", allow_blank=False, value="article")
                     yield Button("Draft the entry (ctrl+s)", id="m-draft")
                 yield VerticalScroll(id="manual-form")
 
     def on_mount(self):
         self.query_one("#s-results", DataTable).add_columns(" ", "In library", "Source", "Authors", "Year", "Title",
-                                                            "Journal", "Identifier")
+                                                            "Identifier", "Journal")
         self._search_message()
         self.query_one("#i-message", Shown).show("enter looks the identifiers up and shows each proposal.")
         self._pdf_message("Type the path of a PDF and press enter, or choose it with ctrl+o.")
@@ -127,13 +127,23 @@ class AddView(View):
 
     def _focus_tab(self):
         target = {"add-search": "#s-title", "add-identifier": "#i-ids", "add-pdf": "#p-path",
-                  "add-manual": "#m-type"}[self.tab]
+                  "add-manual": "#m-entrytype"}[self.tab]
         self.query_one(target).focus()
 
     @on(TabbedContent.TabActivated, "#add-tabs")
     def _tab_shown(self, event):
         event.stop()
-        if self.app.active_view == "add":
+        if self.app.active_view == "add" and not self._on_tab_bar():
+            self._focus_tab()
+
+    def _on_tab_bar(self):
+        """Is the cursor on the row of tab names (left and right move between the tabs there)?"""
+        focused = self.app.focused
+        return focused is not None and focused is self.query_one("#add-tabs", TabbedContent).query_one("Tabs")
+
+    def on_key(self, event):
+        if event.key in ("enter", "down") and self._on_tab_bar():
+            event.stop()
             self._focus_tab()
 
     def check_action(self, action, parameters):
@@ -202,8 +212,8 @@ class AddView(View):
             there = lead.get("in_library")
             table.add_row(Text("●" if number in self.marked else " ", colour("accent")),
                           Text(there or "", colour("warning")), ", ".join(lead.get("sources") or [lead.get("source", "")]),
-                          cut(lead.get("authors"), 30), lead.get("year") or "", cut(lead.get("title"), 60),
-                          cut(lead.get("journal"), 28), lead.get("doi") or lead.get("arxiv") or lead.get("pmid") or "",
+                          cut(lead.get("authors"), 26), lead.get("year") or "", cut(lead.get("title"), 48),
+                          lead.get("doi") or lead.get("arxiv") or lead.get("pmid") or "", cut(lead.get("journal"), 30),
                           key=str(number))
         if self.leads:
             table.move_cursor(row=min(position or 0, len(self.leads) - 1))
@@ -232,7 +242,7 @@ class AddView(View):
         leads = [self.leads[number] for number in chosen]
 
         def call(job):
-            return api.propose_new(self.app.ws, [api.candidate_query(lead) for lead in leads], progress=job.progress)
+            return api.propose_new(self.app.ws, [api.candidate_query(lead) for lead in leads])
         self.app.job("look up the chosen record" + ("s" if len(leads) > 1 else ""), call,
                      lambda results: self._proposed(results, self._search_message, "search"),
                      lambda exc: self._search_message([str(exc)], "error"))
@@ -400,8 +410,7 @@ class AddView(View):
             elif value and value.startswith("lead"):
                 lead = result.candidates[int(value[4:]) - 1]
                 self.app.job("look up the chosen record",
-                             lambda job: api.propose_new(self.app.ws, [api.candidate_query(lead)],
-                                                         progress=job.progress),
+                             lambda job: api.propose_new(self.app.ws, [api.candidate_query(lead)]),
                              lambda results: self._proposed(results, lambda lines: self._pdf_message(*lines),
                                                             self.pdf.path.name),
                              lambda exc: self._pdf_message(str(exc), role="error"))
@@ -469,8 +478,8 @@ class AddView(View):
 
     def _form(self, found):
         types, self.fields = found
-        self.query_one("#m-type", Select).set_options([(name, name) for name in types])
-        self.query_one("#m-type", Select).value = types[0]
+        self.query_one("#m-entrytype", Select).set_options([(name, name) for name in types])
+        self.query_one("#m-entrytype", Select).value = types[0]
         form = self.query_one("#manual-form", VerticalScroll)
         for name in self.fields:
             form.mount(Horizontal(Static(name, classes="form-label"), Input(id=f"m-{name}"), classes="form-row"))
@@ -491,7 +500,7 @@ class AddView(View):
         values = {name: self.query_one(f"#m-{name}", Input).value.strip() for name in self.fields}
         read = {name: value for name, value in self.prefill.items() if values.get(name) == value}
         typed = {name: value for name, value in values.items() if value and name not in read}
-        kind = self.query_one("#m-type", Select).value
+        kind = self.query_one("#m-entrytype", Select).value
         if not typed and not read:
             self._manual_message(["Nothing is typed yet."], "warning")
             return
@@ -522,6 +531,6 @@ class RouteScreen(ChoiceScreen):
         for letter, value, _ in self.choices:
             if event.character == letter and value in self.off:
                 event.stop()
+                event.prevent_default()          # ChoiceScreen's own handler is not run for this key
                 self.app.notify("That route is not set up; how to set it up is written above.")
                 return
-        super().on_key(event)

@@ -71,7 +71,9 @@ class TextEditScreen(ModalScreen):
                          classes="hint", id="proposal-editor-hint")
 
     def on_mount(self):
-        self.query_one(TextArea).focus()
+        editor = self.query_one(TextArea)
+        editor.indent_type = "tabs"          # the library's entries are indented with tabs
+        editor.focus()
 
     def action_accept(self):
         self.dismiss(self.query_one(TextArea).text)
@@ -117,7 +119,7 @@ class ProposalScreen(Screen):
         self.busy = True                 # True while a job decides what to show next
         self._batch = None               # (the context manager, the batch); touched by jobs only
         self._backup_said = False
-        self._closing = False
+        self._finishing = False
 
     @property
     def item(self):
@@ -313,7 +315,7 @@ class ProposalScreen(Screen):
     # --- actions -----------------------------------------------------------------------------
 
     def _ready(self):
-        return self.item is not None and not self.busy and not self._closing
+        return self.item is not None and not self.busy and not self._finishing
 
     def _duplicate(self):
         return bool(self.item.duplicate_of and self.item.duplicate_in_library)
@@ -393,7 +395,7 @@ class ProposalScreen(Screen):
         self.app.push_screen(TextEditScreen(original if raw is None else raw, message), edited)
 
     def action_stop(self):
-        if self._closing:
+        if self._finishing:
             return
         if self.item is not None:
             self.stopped = True
@@ -405,9 +407,9 @@ class ProposalScreen(Screen):
         self._finish(dismiss=False)
 
     def _finish(self, dismiss=True):
-        if self._closing:
+        if self._finishing:
             return
-        self._closing = True
+        self._finishing = True
 
         def call(job):
             if self._batch is not None:
