@@ -217,6 +217,8 @@ class _Held(contextlib.ExitStack):
             else:
                 root = self._keep("root", _Folder.at(self.ws.root))
             self._keep("renames", root.sub(target.parent.name, create))
+            if create and self.found["renames"] is None:
+                raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(target.parent))
         return self.found["renames"]
 
     def edits(self, create=False):
@@ -235,6 +237,9 @@ class _Held(contextlib.ExitStack):
                                           "ordinary folder, so cdlbib will not keep or remove copies there; nothing "
                                           "was changed.") from exc
                 if self.found[name] is None:
+                    if create:     # made and gone again before it could be opened: someone is moving it about
+                        raise CdlbibError(f"{self.ws.work} was moved away while it was being used, so no copy "
+                                          "could be kept there; nothing was changed.")
                     return None
         return self.found["edits"]
 
