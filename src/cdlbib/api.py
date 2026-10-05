@@ -687,6 +687,77 @@ def _message(exc):
     return str(exc)
 
 
+# --- reference intake ---
+
+def find_candidates(ws, title=None, authors=(), year=None, mailto=None, database=None, progress=None):
+    """Leads for a title, one or several authors, or both; see intake.find_candidates.
+    A lead becomes an entry only through propose_new([candidate_query(lead)])."""
+    from . import intake
+    return intake.find_candidates(ws, title=title, authors=authors, year=year, mailto=mailto,
+                                  database=database, progress=progress)
+
+
+def candidate_query(candidate):
+    """The query that names a lead by its identifier, for propose_new."""
+    from . import intake
+    return intake.query_for(candidate)
+
+
+def read_pdf(path, ocr=True):
+    """The first pages of a PDF, its identifiers and a title guess; see intake.read_pdf."""
+    from . import intake
+    return intake.read_pdf(path, ocr=ocr)
+
+
+def render_first_page(path, width=800):
+    """Page 1 of a PDF as PNG bytes; see intake.render_first_page."""
+    from . import intake
+    return intake.render_first_page(path, width)
+
+
+def propose_from_pdf(ws, pdf, mailto=None, database=None, progress=None):
+    """The source record of a read PDF, built and checked; see intake.propose_from_pdf."""
+    from . import intake
+    return intake.propose_from_pdf(ws, pdf, mailto=mailto, database=database, progress=progress)
+
+
+def model_routes():
+    """The model routes and whether each is set up; see intake.model_routes."""
+    from . import intake
+    return intake.model_routes()
+
+
+def read_pdf_with_model(ws, pdf, route="dartmouth", progress=None):
+    """A model's reading of a PDF as an unverified proposal; see intake.read_pdf_with_model."""
+    from . import intake
+    return intake.read_pdf_with_model(ws, pdf, route=route, progress=progress)
+
+
+def draft_manual(ws, fields, entry_type="article", prefill=None):
+    """A hand-typed entry in house format, unverified; see intake.draft_manual."""
+    from . import intake
+    return intake.draft_manual(ws, fields, entry_type=entry_type, prefill=prefill)
+
+
+def manual_prefill(pdf, proposal=None):
+    """Fields for a manual form from what was read of a PDF; see intake.prefill_from."""
+    from . import intake
+    return intake.prefill_from(pdf, proposal)
+
+
+def model_evidence(proposal, pdf):
+    """The evidence record of a model-read proposal; see intake.evidence_for."""
+    from . import intake
+    return intake.evidence_for(proposal, pdf)
+
+
+def attach_model_evidence(ws, key, evidence, fingerprint=None, database=None):
+    """Store a model reading's evidence with a written entry; never an approval.
+    See intake.attach_model_evidence."""
+    from . import intake
+    return intake.attach_model_evidence(ws, key, evidence, fingerprint=fingerprint, database=database)
+
+
 class ProposalResults(list):
     """Proposals plus incremental (query/key, reason) errors; successes are retained."""
     def __init__(self):

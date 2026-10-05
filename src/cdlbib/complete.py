@@ -164,6 +164,7 @@ class Proposal:
     complete: bool = False
     notes: list[str] = field(default_factory=list)  # how the record was found; not a problem
     edited_fields: dict | None = None  # strict parsed fields of exact user-edited text
+    manual: bool = False
 
 
 @lru_cache(maxsize=1)
