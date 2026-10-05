@@ -278,6 +278,16 @@ def transaction(ws, *, recovery=False, progress=None):
                 # What this taking of the lock settled, for this library only (never what an
                 # earlier call settled and nobody asked about).
                 _settled.set({**(_settled.get() or {}), owner[1]: said})
+            if not isinstance(lock, contextlib.nullcontext) and os.path.lexists(
+                    Path(ws.work) / "approval-send" / "pending.json"):
+                # Rows a send added to the approvals ledger and never committed (the send was
+                # killed): the ledger is put back, or what could not be put back is said.
+                from .api import settle_approval_send
+                lines, problem = settle_approval_send(ws)
+                name = str(Path(ws.work).resolve())
+                held = dict(_settled.get() or {})
+                held[name] = list(held.get(name, [])) + lines + ([problem] if problem else [])
+                _settled.set(held)
             yield
         finally:
             _owner.reset(token)

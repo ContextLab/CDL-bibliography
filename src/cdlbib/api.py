@@ -1,5 +1,6 @@
 """The front-end boundary. Nothing here prints, prompts or exits."""
 import contextlib
+import os
 import io
 import sys
 import sqlite3
@@ -530,11 +531,12 @@ def approvals_waiting(ws, database=None, entries=None, me=None):
     ([], []) when there is no verification database. The database is asked through a
     read-only connection first, and opened as the verifier opens it only when a stored human
     approval is there to be read. ``entries``: the parsed library, when the caller holds it."""
-    from .verification import Cache, approval_candidates, load_entries, unshared_approvals
+    from .verification import Cache, approval_candidates, ledger_bytes, load_entries, unshared_approvals
     database = Path(database or ws.database)
     if not database.is_file():
         return [], []
     try:
+        ledger_bytes(ws.approvals)       # a link in the place of the ledger or its folder is refused before any read
         entries = entries if entries is not None else load_entries(str(ws.bib))
         try:
             held = sqlite3.connect(database.resolve().as_uri() + "?mode=ro", uri=True, timeout=5)
@@ -577,7 +579,7 @@ def unsent_line(item):
 
 def approval_problems(ws):
     """What is ignored in the approvals ledger the library reads (verification/approvals.jsonl,
-    or the file CDLBIB_APPROVAL_LEDGER names): a sentence for each line that is not a valid
+): a sentence for each line that is not a valid
     row, or for the file when it cannot be read. Such a line approves nothing. [] when all is
     well or there is no ledger."""
     from .verification import approval_ledger, revocation_ledger, scan_approval_ledger
@@ -588,50 +590,154 @@ def _approval_login(row):
     return "@" + str(row["human_review"]["github_login"])
 
 
-def _ledger_approvals(ws, rows, progress=None):
-    """Append ``rows`` to the library's approvals ledger and say so, a line each. Returns the
-    function that takes them out again when they were not committed: the ledger is put back
-    byte for byte as it was (removed when it was not there), unless something else changed
-    it meanwhile or a commit holds the rows."""
+APPROVAL_SEND = "approval-send"          # <.bibcheck>/approval-send/pending.json: the record of rows a send added
+APPROVAL_SEND_RECORD = "pending.json"
+
+
+def _sha(data):
+    import hashlib
+    return None if data is None else hashlib.sha256(data).hexdigest()
+
+
+def _index_entry(ws):
+    """What git's index holds for the approvals ledger ('' when nothing; None when git cannot say)."""
     from . import publish
-    from .verification import append_approvals
+    run = publish._run(["git", "ls-files", "-s", "--", APPROVALS_PATH], cwd=ws.root, check=False)
+    return run.stdout.strip() if run.returncode == 0 else None
+
+
+def _held_by_commit(ws):
+    """Does the commit the checkout is on hold the approvals ledger exactly as the file is now?"""
+    from . import publish
+    blob = publish._run(["git", "rev-parse", "--verify", "--quiet", f"HEAD:{APPROVALS_PATH}"], cwd=ws.root, check=False)
+    now = publish._run(["git", "hash-object", "--no-filters", "--", APPROVALS_PATH], cwd=ws.root, check=False)
+    return blob.returncode == 0 and now.returncode == 0 and blob.stdout.strip() == now.stdout.strip() != ""
+
+
+def _ledger_approvals(ws, rows, progress=None):
+    """Add ``rows`` to the library's approvals ledger and say so, a line each. Before the
+    ledger is touched, a record of what is about to be added is kept durably under
+    <.bibcheck>/approval-send (writer.keep_record), so that ``settle_approval_send`` can put
+    the ledger back whether this process goes on, fails, or is killed. The ledger is read
+    and replaced whole within its folder held open, refusing links (verification.append_approvals)."""
+    import json
+    from . import writer
+    from .verification import approval_lines, ledger_bytes, write_ledger
     if not rows:
-        return lambda: None
-    path = ws.approvals
-    existed = path.exists()
-    before = path.read_bytes() if existed else b""
+        return
     try:
-        written = append_approvals(path, rows)
+        before, mode = ledger_bytes(ws.approvals)
+        text = approval_lines(before, rows)
+        after = (before or b"") + text
+        record = {"before_sha": _sha(before), "after_sha": _sha(after), "appended": text.decode("utf-8"),
+                  "index": _index_entry(ws), "keys": [row["key"] for row in rows]}
+        writer.keep_record(ws, APPROVAL_SEND, APPROVAL_SEND_RECORD, json.dumps(record).encode("utf-8"))
+        write_ledger(ws.approvals, after, mode if mode is not None else 0o644)
     except (OSError, ValueError) as exc:
         raise CdlbibError(f"The approvals could not be added to {APPROVALS_PATH}: {exc}") from exc
     if progress:
         for row in rows:
             progress(f"approval of {row['key']} by {_approval_login(row)}: added to {APPROVALS_PATH}")
 
-    def take_out():
+
+def settle_approval_send(ws):
+    """Settle the rows a send added to the approvals ledger and did not finish with, from the
+    record ``_ledger_approvals`` kept. Returns (lines, problem).
+
+    - No record: ([], None).
+    - The ledger holds exactly what the send left and the commit the checkout is on holds
+      it: the rows were committed; the record is dropped.
+    - The ledger holds exactly what the send left, uncommitted: it is put back byte for byte
+      as it was before (removed when there was none), git's index entry for it is put back
+      as it was, and ``lines`` says so.
+    - The ledger is as it was before: only the record (and the index entry) is settled.
+    - Anything else (another program changed the ledger since, a link is in its place, the
+      record cannot be read): nothing is written to the ledger, the record is dropped, and
+      ``problem`` says what was not put back and which rows the send had added.
+
+    Called when a send fails, and whenever the library's lock is taken (library.transaction),
+    which is how a send that was killed is settled."""
+    import json
+    from . import publish, writer
+    from .verification import ledger_bytes, write_ledger
+    try:
+        raw = writer.records(ws, APPROVAL_SEND).get(APPROVAL_SEND_RECORD)
+    except (OSError, CdlbibError) as exc:
+        return [], f"The record of an unfinished send ({ws.work / APPROVAL_SEND / APPROVAL_SEND_RECORD}) could not be read: {exc}"
+    if raw is None:
+        return [], None
+
+    def drop():
+        with contextlib.suppress(OSError, CdlbibError):
+            writer.drop_record(ws, APPROVAL_SEND, APPROVAL_SEND_RECORD)
+
+    try:
+        record = json.loads(raw.decode("utf-8"))
+        before_sha, after_sha, index, keys = record["before_sha"], record["after_sha"], record["index"], record["keys"]
+        appended = record["appended"].encode("utf-8")
+        if not (isinstance(after_sha, str) and (before_sha is None or isinstance(before_sha, str)) and appended
+                and isinstance(keys, list) and (index is None or isinstance(index, str))):
+            raise ValueError("unexpected contents")
+    except (ValueError, KeyError, TypeError, AttributeError) as exc:
+        drop()
+        return [], (f"A send that did not finish left a record that cannot be read ({exc}); {APPROVALS_PATH} was "
+                    "not touched. Look at it with `git diff -- verification/approvals.jsonl`.")
+    named = ", ".join(str(key) for key in keys)
+    not_put_back = (f"{APPROVALS_PATH} was NOT put back as it was before the send: {{why}}. The send had added the "
+                    f"approval{'s' if len(keys) != 1 else ''} of {named}; the file is left as it is now. Look at it "
+                    "with `git diff -- verification/approvals.jsonl` and remove those lines, or send again.")
+    try:
+        current, mode = ledger_bytes(ws.approvals)
+    except ValueError as exc:
+        drop()
+        return [], not_put_back.format(why=str(exc))
+
+    def index_back():
+        now = _index_entry(ws)
+        if index is None or now is None or now == index:
+            return
+        if index == "":
+            publish._run(["git", "update-index", "--force-remove", "--", APPROVALS_PATH], cwd=ws.root, check=False)
+        else:
+            meta, _, name = index.partition("\t")
+            mode_, blob, _stage = (meta.split() + ["", "", ""])[:3]
+            publish._run(["git", "update-index", "--add", "--cacheinfo", f"{mode_},{blob},{name}"], cwd=ws.root, check=False)
+
+    if _sha(current) == after_sha:
+        if _held_by_commit(ws):
+            drop()
+            return [], None
+        before = current[:len(current) - len(appended)]
+        if not current.endswith(appended) or _sha(before if before_sha is not None else None) != before_sha:
+            drop()
+            return [], not_put_back.format(why="what it held before could not be worked out from the record")
         try:
-            if not path.exists() or path.read_bytes() != before + written or APPROVALS_PATH not in publish.pending(ws):
-                return
-            if existed:
-                path.write_bytes(before)
-            else:
-                path.unlink()
-        except (OSError, CdlbibError):
-            return                       # the reason for the refusal is what is reported; the rows stay, to be sent next time
-        if progress:
-            progress(f"not sent: {APPROVALS_PATH} is as it was before (the approvals stay in the local database)")
-    return take_out
+            write_ledger(ws.approvals, before if before_sha is not None else None, mode)
+        except ValueError as exc:
+            drop()
+            return [], not_put_back.format(why=str(exc))
+        index_back()
+        drop()
+        return [f"not sent: {APPROVALS_PATH} is as it was before (the approvals stay in the local database)"], None
+    if _sha(current) == before_sha:
+        index_back()
+        drop()
+        return [], None
+    drop()
+    return [], not_put_back.format(why="something else changed the file after the send added its rows")
 
 
 def _ledger_rows_since(ws, commit):
     """The rows of the library's approvals ledger that the copy in ``commit`` does not hold."""
     import json
     from . import publish
-    from .verification import read_approval_ledger
-    rows = read_approval_ledger(ws.approvals)
-    if not rows:
-        return []
-    from .verification import approval_digest
+    from .verification import approval_digest, ledger_bytes, scan_approval_ledger
+    try:
+        if ledger_bytes(ws.approvals)[0] is None:
+            return []
+    except ValueError as exc:
+        raise CdlbibError(str(exc)) from exc
+    rows = scan_approval_ledger(ws.approvals)[0]
     held = set()
     for line in (publish.file_at(ws, commit, APPROVALS_PATH) or "").splitlines():
         try:
@@ -640,6 +746,76 @@ def _ledger_rows_since(ws, commit):
         except (ValueError, KeyError, TypeError):
             continue                     # not a row: it holds no approval
     return [row for row in rows if (row["fingerprint"], approval_digest(row["human_review"])) not in held]
+
+
+def _outgoing_ledger(ws):
+    """What the working tree's approvals ledger adds to the copy in the commit the checkout
+    is on, checked: (rows, why not). The ledger only grows: the committed bytes must still be
+    there, first; every added line must be a valid row. ``why not`` is the sentence of the
+    refusal when one of those fails (the rows are then [])."""
+    from . import publish
+    from .verification import ledger_bytes, shared_approval_problem
+    import json
+    try:
+        current, _ = ledger_bytes(ws.approvals)
+    except ValueError as exc:
+        raise CdlbibError(str(exc)) from exc
+    blob = publish._run(["git", "rev-parse", "--verify", "--quiet", f"HEAD:{APPROVALS_PATH}"], cwd=ws.root, check=False)
+    committed = b""
+    if blob.returncode == 0 and blob.stdout.strip():
+        import subprocess
+        from .gitenv import git_env
+        committed = subprocess.run(["git", "cat-file", "blob", blob.stdout.strip()], cwd=ws.root, capture_output=True,
+                                   env=git_env()).stdout
+    if current is None:
+        return [], None                  # removed: there is nothing of anybody's to send in it
+    if current == committed:
+        return [], None
+    if not current.startswith(committed.rstrip(b"\n")):
+        return [], (f"{APPROVALS_PATH} no longer begins with the lines the last commit holds: a line was removed or "
+                    "changed. The ledger is only ever added to. Nothing was changed; put the file back with "
+                    "`git restore verification/approvals.jsonl`, then send again.")
+    rows = []
+    for line in current[len(committed.rstrip(b"\n")):].split(b"\n"):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line.decode("utf-8"))
+            problem = shared_approval_problem(row)
+        except ValueError as exc:
+            problem = f"not valid JSON ({str(exc)[:80]})"
+        if problem:
+            return [], (f"{APPROVALS_PATH} holds a new line that is not a valid approval row ({problem}); a send "
+                        "does not commit it. Nothing was changed. Remove that line, then send again.")
+        rows.append(row)
+    return rows, None
+
+
+def _require_own(rows, me, where):
+    """Refuse (PublishRefused) when a ledger row that is about to be sent was not recorded
+    under the sender ``me``."""
+    from .errors import PublishRefused
+    others = [row for row in rows if not _same_person(row["human_review"], me)]
+    if others:
+        named = "; ".join(f"{row['key']} (recorded under @{row['human_review']['github_login']})" for row in others)
+        raise PublishRefused(
+            f"{APPROVALS_PATH} holds {'a row' if len(others) == 1 else 'rows'} {where} that {me.handle} did not "
+            f"record: {named}. A send adds only the sender's own approvals; nothing was sent. Remove "
+            f"{'that line' if len(others) == 1 else 'those lines'}, then send again.")
+
+
+def _still(me):
+    """The logged-in GitHub user, asked again: PublishRefused unless it is still ``me``."""
+    from .errors import IdentityUnavailable, PublishRefused
+    try:
+        now = _me()
+    except IdentityUnavailable as exc:
+        raise PublishRefused(f"The GitHub login changed during the send: it was {me.handle}, and now nobody is "
+                             f"logged in ({exc}). Nothing was sent.") from exc
+    if now.id != me.id or now.login.lower() != me.login.lower():
+        raise PublishRefused(f"The GitHub login changed during the send: it was {me.handle}, and is now "
+                             f"{now.handle}. Nothing was sent.")
+    return now
 
 
 def _send_evidence(ws, *, reference, database=None):
@@ -701,7 +877,14 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     to be sent the refusal names each. When the send stops before a
     commit holds them, the file is put back as it was (``progress`` receives a line), so a
     refused send leaves the checkout as it was; the approvals stay in the database and the
-    next send adds them again. ``SendResult.approvals`` names the entries whose approvals were
+    next send adds them again. A record of the added rows is kept under .bibcheck/ while
+    the send runs, so a send that is killed is settled the next time the library's lock is
+    taken. When the file cannot be put back (something else changed it meanwhile), nothing
+    is written to it and the refusal says so and names the rows. Rows already in the
+    working tree's ledger and not yet committed must be valid rows recorded under the same
+    login, and the committed lines must be unchanged, or the send is refused before anything
+    is written. gh is asked who is logged in once before the rows are chosen and again
+    before publication; a different answer refuses the send. ``SendResult.approvals`` names the entries whose approvals were
     committed, and the pull request's text names them with their reviewers.
 
     Order: a checkout on no branch refuses; nothing to send refuses; no git author refuses; the
@@ -752,10 +935,17 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
     not_upstream(fork, upstream)
     here = publish.require_branch(ws, base)
     waiting, unsent = approvals_waiting(ws, database=database)
-    if waiting:
+    outgoing, why_not = _outgoing_ledger(ws)
+    if why_not:
+        raise PublishRefused(why_not)
+    me = None
+    if waiting or outgoing:
         # Whose they are decides whether they are sent: only the logged-in user's own. gh is
-        # asked now, and only because an approval waits.
-        waiting, unsent = approvals_waiting(ws, database=database, me=_me())
+        # asked now, once, and only because an approval waits or the ledger already holds
+        # uncommitted rows; that one answer is what every row of this send is held to.
+        me = _me()
+        waiting, unsent = approvals_waiting(ws, database=database, me=me)
+        _require_own(outgoing, me, "not yet committed")
     if progress:
         for problem in approval_problems(ws):
             progress(problem)
@@ -767,20 +957,29 @@ def send(ws, summary=None, reference="github", citations=True, mailto=None, data
         raise PublishRefused(publish.NO_CHANGES + "".join(f"\n{unsent_line(item)}" for item in unsent))
     publish.require_identity(ws)
     # The approvals go into the ledger before the gate, which checks the files as they will
-    # be committed. A send that stops before they are committed takes them out again.
-    take_out = _ledger_approvals(ws, waiting, progress)
+    # be committed. A send that stops before a commit holds them takes them out again; one
+    # that is killed is settled when the library's lock is next taken (settle_approval_send).
     try:
-        return _send(ws, here, not_upstream, [row["key"] for row in waiting],
-                     summary=summary, reference=reference, citations=citations, mailto=mailto, database=database,
-                     progress=progress, bars=bars, report=report, upstream=upstream, base=base, fork=fork,
-                     allow_fork_creation=allow_fork_creation, outfile=outfile, verbose=verbose,
-                     _test_inside_own_fork=_test_inside_own_fork)
-    except BaseException:
-        take_out()
+        _ledger_approvals(ws, waiting, progress)
+        result = _send(ws, here, not_upstream, [row["key"] for row in waiting], me,
+                       summary=summary, reference=reference, citations=citations, mailto=mailto, database=database,
+                       progress=progress, bars=bars, report=report, upstream=upstream, base=base, fork=fork,
+                       allow_fork_creation=allow_fork_creation, outfile=outfile, verbose=verbose,
+                       _test_inside_own_fork=_test_inside_own_fork)
+    except BaseException as exc:
+        lines, problem = settle_approval_send(ws)
+        if progress:
+            for line in lines + ([problem] if problem else []):
+                with contextlib.suppress(Exception):     # the callback may be what failed
+                    progress(line)
+        if problem:
+            raise PublishRefused(f"{exc}\n{problem}") from exc
         raise
+    settle_approval_send(ws)             # the rows are committed: only the record is dropped
+    return result
 
 
-def _send(ws, here, not_upstream, approvals, *, summary, reference, citations, mailto, database, progress, bars,
+def _send(ws, here, not_upstream, approvals, sender, *, summary, reference, citations, mailto, database, progress, bars,
           report, upstream, base, fork, allow_fork_creation, outfile, verbose, _test_inside_own_fork):
     """``send`` from the gate on: the changes are in the working tree (see send)."""
     import datetime
@@ -825,7 +1024,7 @@ def _send(ws, here, not_upstream, approvals, *, summary, reference, citations, m
         return comparison.summary.strip() or "update bibliography", before, accepted_evidence
 
     changes, checked, checked_evidence = gate()
-    me = _me()
+    me = _still(sender) if sender is not None else _me()    # the one the approvals were chosen by, still
     resumed = here.startswith(publish.branch_prefix(me.login))   # sent from here before: same pull request
     if not publish.pending(ws) and not resumed:
         raise PublishRefused(publish.NO_CHANGES)
@@ -883,11 +1082,14 @@ def _send(ws, here, not_upstream, approvals, *, summary, reference, citations, m
         if not allow_fork_creation:
             raise PublishRefused(f"{me.handle} has no fork of {upstream}.", needs_fork=True, upstream=upstream)
         fork, created = publish.create_fork(upstream), True
-    if ws.approvals.is_file():
+    if os.path.lexists(ws.approvals):
         # Approvals the pull request adds for entries it does not change are named in its
-        # text too: the ledger's rows that the upstream's copy does not hold.
+        # text too: the ledger's rows that the upstream's copy does not hold. Every one of
+        # them must be the sender's own, and the sender must still be who was asked.
         added = _ledger_rows_since(ws, publish.upstream_base(ws, f"https://github.com/{upstream}.git", base))
         if added:
+            me = _still(me)
+            _require_own(added, me, f"that {upstream} does not have")
             body = changes + approvals_note(ws, reference=reference, database=database, ledgered=added)
             revalidate()
     files = publish.deliver(ws, branch, changes, f"https://github.com/{fork}.git", target=fork,

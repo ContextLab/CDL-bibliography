@@ -358,13 +358,13 @@ def revoked_view(result, revocation):
 # digest is computed from the row's human_review (a row whose stored digest differs is
 # invalid). Which copy of the file is read decides what a typed row can do:
 #   - the pull request check reads the base revision's copy (verification/check_ci.py names
-#     it through APPROVAL_LEDGER_ENV), and the gate of `cdlbib verify` and `cdlbib send`
-#     reads the reference's copy (verification_cli.reference_approvals): a row counts there
-#     only once it is on the branch the change is compared with;
+#     it with `crossref verify --trusted-approvals`), and the gate of `cdlbib verify` and
+#     `cdlbib send` reads the reference's copy (verification_cli.reference_approvals),
+#     whichever entries it was asked about: a row counts there only once it is on the branch
+#     the change is compared with. No environment variable names a ledger;
 #   - everything else (status, the library views, restore, snapshot) reads the copy beside
 #     the revocation ledger the cache was given: the working tree's, which has the trust of
 #     the checkout itself, as `crossref restore` of a snapshot file has.
-APPROVAL_LEDGER_ENV = "CDLBIB_APPROVAL_LEDGER"
 APPROVAL_LEDGER_NAME = "approvals.jsonl"
 APPROVAL_FIELDS = {"key", "fingerprint", "human_review", "approval_digest", "approved_at", "policy"}
 REVIEW_TEXT_FIELDS = {"reviewer": 200, "github_login": 39, "source": 4000, "note": 8000}   # required; the longest allowed
@@ -400,7 +400,8 @@ def shared_approval_problem(record):
     exactly the six fields; a fingerprint of the current format; a human_review with a
     non-blank reviewer, source and note and a GitHub login (texts of bounded length, an
     integer github_id when there is one, and no other field); a digest that is the digest of
-    that human_review; a time with a zone; and a policy."""
+    that human_review; a time with a zone; a policy; and, as written, no more bytes than a
+    reader accepts in one line."""
     if not isinstance(record, dict):
         return "not a JSON object"
     if set(record) != APPROVAL_FIELDS:
@@ -421,9 +422,16 @@ def shared_approval_problem(record):
         return problem
     if not _DIGEST.fullmatch(record["approval_digest"]) or record["approval_digest"] != approval_digest(review):
         return "approval_digest is not the digest of human_review"
-    moment = _instant(record["approved_at"])
-    if moment is None or "T" not in record["approved_at"]:
-        return "approved_at is not a time"
+    try:
+        moment = datetime.fromisoformat(record["approved_at"].replace("Z", "+00:00"))
+    except ValueError:
+        moment = None
+    if moment is None or "T" not in record["approved_at"] or moment.tzinfo is None:
+        return "approved_at is not a time with a zone"
+    written = len(dumps(record).encode("utf-8")) + 1
+    if written > APPROVAL_ROW_MAX_BYTES:
+        return (f"the row is {written} bytes as written; a line longer than {APPROVAL_ROW_MAX_BYTES} bytes "
+                "is not read")
     return None
 
 
@@ -436,9 +444,6 @@ def approval_ledger(revocations=None):
     REVOCATION_LEDGER): the file the environment names, else approvals.jsonl in the same
     folder. None when no revocation ledger was named: a cache that was not tied to a library
     reads no approvals (the current folder is not asked which library is meant)."""
-    override = os.environ.get(APPROVAL_LEDGER_ENV)
-    if override:
-        return Path(override)
     revocations = revocations if revocations is not None else REVOCATION_LEDGER
     return Path(revocations).with_name(APPROVAL_LEDGER_NAME) if revocations else None
 
@@ -591,20 +596,86 @@ def unshared_approvals(filename, cache, ledger, entries=None):
     return rows, unwritable
 
 
-def append_approvals(ledger, rows):
-    """Append ``rows`` to the approvals ledger, one line each; the lines already there are
-    not touched. Returns the bytes written."""
+def _ledger_folder(ledger, create=False):
+    """The folder of the approvals ledger, opened once and held (writer._Folder), reached
+    from the folder above it by name and refusing a link: None when it is not there and is
+    not to be made. ValueError when it is a link or not a folder."""
+    from .writer import _Folder
+    ledger = Path(ledger)
+    try:
+        above = _Folder.at(ledger.parent.parent)
+    except FileNotFoundError:
+        if not create:
+            return None
+        ledger.parent.parent.mkdir(parents=True, exist_ok=True)
+        above = _Folder.at(ledger.parent.parent)
+    try:
+        return above.sub(ledger.parent.name, create)
+    except OSError as exc:
+        raise ValueError(f"{ledger.parent} is a link or not an ordinary folder; the approvals ledger is not "
+                         "read or written through it. Nothing was changed.") from exc
+    finally:
+        above.close()
+
+
+def ledger_bytes(ledger):
+    """(bytes, permission bits) of the approvals ledger, read through one descriptor from its
+    folder held open; (None, None) when there is none. ValueError when the ledger or its
+    folder is a link, or the ledger is not an ordinary file: nothing is read through a link."""
+    folder = _ledger_folder(ledger)
+    if folder is None:
+        return None, None
+    try:
+        return folder.read(Path(ledger).name)
+    except OSError as exc:
+        raise ValueError(f"{ledger} is a link or not an ordinary file; the approvals ledger is not read or "
+                         "written through it. Nothing was changed.") from exc
+    finally:
+        folder.close()
+
+
+def approval_lines(before, rows):
+    """The bytes that ``rows`` add to a ledger that holds ``before`` (bytes or None), checked:
+    every row valid (which includes its length in bytes as written) and the ledger with them
+    no larger than a reader accepts. ValueError otherwise, naming the limit."""
     for row in rows:
         problem = shared_approval_problem(row)
         if problem:
             raise ValueError(f"Invalid approval record: {problem}")
-    ledger = Path(ledger)
-    ledger.parent.mkdir(parents=True, exist_ok=True)
-    before = ledger.read_bytes() if ledger.exists() else b""
+    before = before or b""
     text = ((b"\n" if before and not before.endswith(b"\n") else b"")
             + "".join(dumps(row) + "\n" for row in rows).encode("utf-8"))
-    with open(ledger, "ab") as stream:
-        stream.write(text)
+    if rows and len(before) + len(text) > APPROVAL_LEDGER_MAX_BYTES:
+        raise ValueError(
+            f"The approvals ledger would be {len(before) + len(text)} bytes with "
+            f"{'this approval' if len(rows) == 1 else 'these approvals'}; a ledger larger than "
+            f"{APPROVAL_LEDGER_MAX_BYTES} bytes is not read. Nothing was changed.")
+    return text
+
+
+def write_ledger(ledger, data, mode=None):
+    """Make the approvals ledger hold exactly ``data`` (None: remove it), whole: prepared
+    beside it and moved into place by name within its folder held open, never through a link."""
+    folder = _ledger_folder(ledger, create=data is not None)
+    if folder is None:
+        return
+    try:
+        folder.put(Path(ledger).name, data, mode)
+    except OSError as exc:
+        raise ValueError(f"{ledger} could not be written ({exc.strerror or exc})") from exc
+    finally:
+        folder.close()
+
+
+def append_approvals(ledger, rows):
+    """Add ``rows`` to the approvals ledger, one line each, after the lines already there
+    (which are kept byte for byte). The ledger is read and replaced whole by name within its
+    folder held open: a link in the place of the folder or the file is refused before
+    anything is read, and there is no half-written line. Returns the bytes added."""
+    before, mode = ledger_bytes(ledger)
+    text = approval_lines(before, rows)
+    if rows:
+        write_ledger(ledger, (before or b"") + text, mode if mode is not None else 0o644)
     return text
 
 
@@ -2553,7 +2624,9 @@ def current_results(filename, cache, entries=None):
 
 
 def validate_output_path(filename, output, cache):
-    """Reports/snapshots must never overwrite the bibliography or working DB."""
+    """Reports/snapshots must never overwrite the bibliography, the working DB, or a ledger
+    of approvals or revocations: the library's own two and the ones this cache reads, by
+    path, through a link, or as another name of the same file."""
     output = Path(output)
     for protected in (Path(filename), cache.path):
         if output.resolve() == protected.resolve() or (
@@ -2561,6 +2634,20 @@ def validate_output_path(filename, output, cache):
         ):
             raise ValueError(
                 "Output path would overwrite the bibliography or verification database"
+            )
+    own = workspace.Workspace.for_bib(filename)
+    ledgers = {own.revocations, own.approvals}
+    named = cache.ledger if cache.ledger is not None else REVOCATION_LEDGER
+    if named:
+        ledgers |= {Path(named), approval_ledger(named)}
+    if cache.approvals:
+        ledgers.add(Path(cache.approvals))
+    for protected in ledgers:
+        if output.resolve() == protected.resolve() or (
+            output.exists() and protected.exists() and output.samefile(protected)
+        ):
+            raise ValueError(
+                "Output path would overwrite a ledger of approvals or revocations"
             )
 
 
@@ -3060,6 +3147,26 @@ def record_approval(cache, fname, key, fingerprint, human_review):
             if problem:
                 raise ValueError(f"This approval could not be shared as a row of the approvals ledger "
                                  f"({problem}). Nothing was recorded.")
+            # The row exactly as a send would write it (the time has now()'s form), in bytes:
+            # a line or a ledger over the reader's limits would be ignored by every other copy.
+            row = {"key": key, "fingerprint": fingerprint, "human_review": human_review,
+                   "approval_digest": approval_digest(human_review), "approved_at": now(), "policy": POLICY}
+            written = len(dumps(row).encode("utf-8")) + 1
+            if written > APPROVAL_ROW_MAX_BYTES:
+                raise ValueError(
+                    f"This approval would be a line of {written} bytes in the approvals ledger; a line longer "
+                    f"than {APPROVAL_ROW_MAX_BYTES} bytes is not read. Shorten the note or the source. Nothing "
+                    "was recorded.")
+            ledger = approval_ledger(cache.ledger) or workspace.Workspace.for_bib(fname).approvals
+            try:
+                held = os.stat(ledger).st_size
+            except OSError:
+                held = 0
+            if held + written > APPROVAL_LEDGER_MAX_BYTES:
+                raise ValueError(
+                    f"The approvals ledger ({ledger}) holds {held} bytes and would be {held + written} with this "
+                    f"approval; a ledger larger than {APPROVAL_LEDGER_MAX_BYTES} bytes is not read. Nothing was "
+                    "recorded.")
         for revocation in cache.revocations():
             # The same rule as for a ledger row (shared_revoked): the revoked review's digest
             # in either form, or its source and note whatever the spacing, case or signer.

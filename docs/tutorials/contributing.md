@@ -63,7 +63,8 @@ sent too. Before the checks, `send` appends one line per approval that is not ye
 database that was recorded under another login is not added, and `send` prints
 `approval of KEY not sent: recorded under @login`. An approval is enough for
 a send; no entry has to change. If the send stops before the commit is made, the lines are
-taken out again and the file is as it was.
+taken out again and the file is as it was, unless another program changed the file in the
+meantime: then `send` leaves it alone and says so.
 
 `send` then commits your changes to `cdl.bib` and to files under `verification/` on a
 new branch, pushes the branch to your fork, and opens the pull request. Other files with

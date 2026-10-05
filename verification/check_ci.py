@@ -3,8 +3,11 @@
 PR snapshots come from the trusted base revision, not the proposed changes.
 PR caches remain scoped to their merge ref; master never restores a PR cache.
 The approvals ledger (verification/approvals.jsonl) is read from the base revision
-too: the checker is pointed at the base's copy (an empty file when the base has
-none) through CDLBIB_APPROVAL_LEDGER, so rows a pull request adds are not read.
+too: the checker is given the base's copy (an empty file when the base has none)
+with --trusted-approvals, so rows a pull request adds are not read. The base
+revision's revocations (verification/revocations.jsonl) are given with
+--trusted-revocations and honoured together with the checkout's own: a pull
+request that removes a revocation line does not undo the revocation.
 
 A push whose previous commit is not in the history (a force-push or rewritten
 history, or a new branch) has no base to compare against. Pushed content is
@@ -74,11 +77,18 @@ def main():
             approvals.write_bytes(git_file(base, "verification/approvals.jsonl"))
         except subprocess.CalledProcessError:
             approvals.write_bytes(b"")
-        os.environ["CDLBIB_APPROVAL_LEDGER"] = str(approvals.resolve())
+        revocations = work / "base-revocations.jsonl"
+        try:
+            revocations.write_bytes(git_file(base, "verification/revocations.jsonl"))
+        except subprocess.CalledProcessError:
+            revocations.write_bytes(b"")
+        trusted_ledgers = ["--trusted-revocations", str(revocations.resolve())]
     elif event != "workflow_dispatch":
         raise ValueError("Unsupported event")
+    else:
+        approvals, trusted_ledgers = None, []
     if snapshot is not None:
-        subprocess.run(command + ["restore", str(snapshot)], check=True)
+        subprocess.run(command + ["restore", str(snapshot)] + trusted_ledgers, check=True)
     verify = command + [
         "verify",
         "cdl.bib",
@@ -87,7 +97,7 @@ def main():
         str(work / "checkpoint.jsonl.gz"),
     ]
     if event != "workflow_dispatch":
-        verify += ["--against", str(base_bib)]
+        verify += ["--against", str(base_bib), "--trusted-approvals", str(approvals.resolve())] + trusted_ledgers
     return subprocess.run(verify).returncode
 
 
