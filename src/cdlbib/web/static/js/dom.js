@@ -36,7 +36,8 @@ export function add(el, ...kids) {
   for (const kid of kids.flat(Infinity)) {
     if (kid === null || kid === undefined || kid === false) continue;
     if (kid instanceof Node) el.append(kid);
-    else if (VERBATIM.has(el.tagName) && (el.tagName !== "PRE" || el.classList.contains("mono"))) el.append(String(kid));
+    // a pre of BibTeX (.mono) is kept as written; a pre of log lines (.log) may wrap inside a path
+    else if (VERBATIM.has(el.tagName) && (el.tagName !== "PRE" || (el.classList.contains("mono") && !el.classList.contains("log")))) el.append(String(kid));
     else el.append(...soft(String(kid)));
   }
   return el;
@@ -94,10 +95,27 @@ export function kv(pairs) {
     .map(([name, value]) => [h("dt", { text: name }), h("dd", null, value)]));
 }
 
+// A table never scrolls sideways. Where its columns do not fit the width it is given, each row
+// is shown as a block instead: the first cell as the row's name, every other cell on a line of
+// its own under its column heading (style sheet: table.grid.stacked). Which of the two it is
+// follows the width of the place, measured on a rule of no height above the table (the table's
+// own height changes with the layout, the rule's does not, so measuring never feeds itself).
 export function table(headers, rows, attrs) {
-  return h("div", { class: "scroll-x" }, h("table", { class: "grid", ...(attrs || {}) },
+  const grid = h("table", { class: "grid", ...(attrs || {}) },
     h("thead", null, h("tr", null, headers.map((text) => h("th", { scope: "col", text })))),
-    h("tbody", null, rows.map((row) => h("tr", null, row.map((cell) => h("td", null, cell)))))));
+    h("tbody", null, rows.map((row) => h("tr", null, row.map((cell, index) =>
+      h("td", headers[index] ? { "data-label": headers[index] } : null, cell))))));
+  const width = h("div", { class: "table-width", "aria-hidden": "true" });
+  const box = h("div", { class: "table-box" }, width, grid);
+  let last = -1;
+  new ResizeObserver(() => {
+    const room = width.clientWidth;
+    if (!room || room === last) return;
+    last = room;
+    grid.classList.remove("stacked");
+    if (grid.offsetWidth > room + 1) grid.classList.add("stacked");
+  }).observe(width);
+  return box;
 }
 
 export function note(kind, ...kids) {
@@ -175,7 +193,7 @@ export function logPane(label) {
     el,
     add(line) {
       el.hidden = false;
-      pre.append(line + "\n");
+      pre.append(...soft(String(line)), "\n");      // a path in a line wraps after a / and not inside a word
       pre.scrollTop = pre.scrollHeight;
     },
     clear() { pre.textContent = ""; el.hidden = true; },

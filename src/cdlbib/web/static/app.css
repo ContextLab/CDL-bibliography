@@ -26,10 +26,10 @@ pre { margin: 0; white-space: pre-wrap; tab-size: 4; }
 button wbr, .tag wbr, .st wbr, th wbr, td:first-child wbr, .nowrap wbr, .vt-row wbr, .vt-head wbr, .queue .item > div wbr,
 #nav wbr, .who wbr, .brand wbr { display: none; }
 /* boxes that scroll sideways show that they do */
-.scroll-x::-webkit-scrollbar, .deep::-webkit-scrollbar, .unbroken::-webkit-scrollbar { height: 8px; }
-.scroll-x::-webkit-scrollbar-thumb, .deep::-webkit-scrollbar-thumb, .unbroken::-webkit-scrollbar-thumb { background: var(--cdl-border); border-radius: 4px; }
+.deep::-webkit-scrollbar, .unbroken::-webkit-scrollbar { height: 8px; }
+.deep::-webkit-scrollbar-thumb, .unbroken::-webkit-scrollbar-thumb { background: var(--cdl-border); border-radius: 4px; }
 details { margin: 8px 0; }
-dl.kv + .row, .scroll-x + .row, ul + .row, .scroll-x + dl.kv, dl.kv + .scroll-x { margin-top: 10px; }
+dl.kv + .row, .table-box + .row, ul + .row, .table-box + dl.kv, dl.kv + .table-box { margin-top: 10px; }
 button[aria-pressed="true"] { background: var(--cdl-primary); color: var(--cdl-on-primary); border-color: var(--cdl-primary); }
 .unbroken { display: inline-block; max-width: 100%; overflow-x: auto; white-space: nowrap; vertical-align: bottom; }
 /* BibTeX text: every line of the entry starts at the left; a line longer than its box continues,
@@ -105,7 +105,7 @@ label.field > * { color: var(--cdl-text); font-size: 15px; }
 .panel { background: var(--cdl-surface); border: 1px solid var(--cdl-border); border-radius: var(--radius); padding: var(--gap); }
 .panel > h2:first-child, .panel > h3:first-child, .card h3, [role="tabpanel"] > h3:first-child { margin-top: 0; }
 .note { border-left: 4px solid var(--cdl-border); padding: 4px 10px; background: var(--cdl-panel); border-radius: 0 var(--radius) var(--radius) 0; }
-.note + .note, .note + .scroll-x, .note + .row { margin-top: 8px; }
+.note + .note, .note + .table-box, .note + .row { margin-top: 8px; }
 .note pre, dialog pre, .alert pre { font: inherit; }
 .note.warn { border-left-color: var(--cdl-warning); }
 .note.bad { border-left-color: var(--cdl-error); }
@@ -132,8 +132,20 @@ table.grid th, table.grid td { text-align: left; vertical-align: top; padding: 4
 table.grid td:first-child, table.grid th, .agrees, .differs, .nowrap { white-space: nowrap; }
 table.grid td.wide { min-width: 16ch; }
 table.grid th { color: var(--cdl-muted); font-weight: 600; font-size: .85rem; }
-.scroll-x { overflow-x: auto; }
+/* A table that does not fit its place is not scrolled sideways: dom.js marks it "stacked" and
+   each row becomes a block, its first cell the row's name and every other cell a line under
+   its column heading. */
+.table-box { min-width: 0; }
+.table-width { height: 0; }
+table.grid.stacked, table.grid.stacked tbody, table.grid.stacked tr, table.grid.stacked td { display: block; }
+table.grid.stacked thead { display: none; }
+table.grid.stacked tr { padding: 6px 0; border-bottom: 1px solid var(--cdl-border); }
+table.grid.stacked td, table.grid.stacked tbody tr td:nth-child(n) { border: 0; padding: 1px 0; min-width: 0; width: auto; white-space: normal; }
+table.grid.stacked td:first-child { font-weight: 600; }
+table.grid.stacked td:empty { display: none; }
+table.grid.stacked td[data-label]:not(:first-child)::before { content: attr(data-label) ": "; color: var(--cdl-muted); font-size: .85rem; font-weight: 600; }
 .differs { color: var(--cdl-warning); font-weight: 600; }
+p.differs { white-space: normal; }      /* a sentence (what a service lacks), not a cell's one word */
 .agrees { color: var(--cdl-success); }
 
 /* tabs */
@@ -185,9 +197,13 @@ table.grid th { color: var(--cdl-muted); font-weight: 600; font-size: .85rem; }
 .beside-page { position: sticky; top: 0; }
 .beside-page .pdf-frame { height: 50vh; min-height: 18em; }
 label.check { display: block; margin-bottom: 8px; }
-table.changes td:last-child, table.changes td:nth-child(4) { white-space: nowrap; }
-/* the two value columns share the free width, and neither is squeezed below a short identifier */
-table.changes td:nth-child(2), table.changes td:nth-child(3) { min-width: 24ch; width: 45%; }
+table.changes td:last-child { white-space: nowrap; }
+/* the two value columns share the free width, and neither is squeezed below a short identifier.
+   Where a source quotes its page (a model reading: "quoted"), it wraps between words and the
+   free width goes to the columns by how much each holds. */
+table.changes td:nth-child(2), table.changes td:nth-child(3) { min-width: 24ch; }
+table.changes:not(.quoted) td:nth-child(2), table.changes:not(.quoted) td:nth-child(3) { width: 45%; }
+table.changes:not(.quoted) td:nth-child(4) { white-space: nowrap; }
 fieldset.names { border: 1px solid var(--cdl-border); border-radius: var(--radius); margin: 8px 0; padding: 8px 12px; }
 fieldset.names li label { margin-right: 12px; }
 [aria-busy="true"] { opacity: .75; }
@@ -214,6 +230,7 @@ dialog .choices button { text-align: left; white-space: normal; }
   .vt-scroll { flex: none; height: calc(var(--row) * 12); }     /* twelve whole rows */      /* the headings and twelve whole rows */
 
   .two, .two.beside { grid-template-columns: minmax(0, 1fr); }
+  .beside-page { position: static; }      /* above its card here: it scrolls away with the page, never over the card */
   .vt-head, .vt-row { grid-template-columns: 11ch 11ch 5ch minmax(0, 1fr); }
   .vt-head > .c-authors, .vt-row > .c-authors, .vt-head > .c-venue, .vt-row > .c-venue { display: none; }
 }

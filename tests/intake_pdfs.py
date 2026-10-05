@@ -133,6 +133,7 @@ _SHORT_PAGE = r"""\documentclass[10pt]{article}
 \usepackage[expansion=true,protrusion=true,stretch=20,shrink=20,step=1]{microtype}
 \begin{document}
 \thispagestyle{empty}
+\noindent\makebox[0pt][r]{\raisebox{-6in}[0pt][0pt]{\rotatebox{90}{\Huge %(stamp)s}}\hspace{3em}}
 \begin{center}
 \includegraphics[width=4.4in,height=1.4in]{logo.png}\par
 \vspace{1em}
@@ -162,8 +163,9 @@ _SHORT_PAGE = r"""\documentclass[10pt]{article}
 
 SHORT_AUTHORS = ("Albrecht Q. Example, Alexandra Sample, Arturo Mensa, Christa Bamforth, Devi Singh Chapel, "
                  "Dario de las Casas, Florent Bressane, Gianni Lengel, Guillermo Lampe, Lucia Saunier, "
-                 "Leo Renard Lavau, Marianne Lachaud, Pietro Stocker, Teun Le Scau, Thibault Lavrile, "
-                 "Tomas Wange, Timo Lacroy, Willem El Sayeed")
+                 "Leo Renard Lavau, Marianne Lachaud, Pietro Stocker, Karl Le Scau, Bruno Lavrile, "
+                 "Hans Lange, Simon Lacroix, Milan El Sahed")
+SHORT_STAMP = "arXiv:9912.99999v1 [cs.CL] 10 Oct 2023"   # set large and turned in the left margin, as arXiv prints it
 
 
 def _logo(path, width=440, height=140):
@@ -186,9 +188,52 @@ def build_short_title(folder, name="short"):
     folder.mkdir(parents=True, exist_ok=True)
     _logo(folder / "logo.png")
     (folder / f"{name}.tex").write_text(
-        _SHORT_PAGE % dict(title=SHORT_TITLE, authors=SHORT_AUTHORS, abstract=SHORT_ABSTRACT, body=_BODY),
+        _SHORT_PAGE % dict(title=SHORT_TITLE, authors=SHORT_AUTHORS, abstract=SHORT_ABSTRACT, body=_BODY,
+                           stamp=SHORT_STAMP),
         encoding="utf-8")
     return _typeset(folder, name)
+
+
+def short_selection():
+    """What a reader of the short-title page would select: the title, each of the eighteen
+    authors, and the year of the arXiv stamp (which is not the work's own year)."""
+    return ([{"field": "title", "value": SHORT_TITLE}]
+            + [{"field": "author", "value": name} for name in SHORT_AUTHORS.split(", ")]
+            + [{"field": "year", "value": "2023", "find": SHORT_STAMP}])
+
+
+def selecting_adapter(path, selection):
+    """A real executable that speaks the research protocol in an adapter's place, without a
+    model: it reads the request it is sent, selects for each item of ``selection`` the
+    line (or two consecutive lines) of page 1 that hold the item's ``find`` text (default:
+    its value), and answers with what the adapters' own code after the model call
+    (``source_passages.materialize``) makes of that selection. The selection is the
+    test's; the copying, the offsets, the grounding and the role flags are the program's."""
+    import json
+    import stat
+    import sys
+    path = Path(path)
+    path.write_text(
+        f"#!{sys.executable}\n"
+        "import json, sys\n"
+        "from cdlbib.source_passages import materialize, numbered_passages\n"
+        "request = json.loads(sys.stdin.read())\n"
+        f"wanted = json.loads({json.dumps(selection)!r})\n"
+        "lines = [p for p in numbered_passages(request['pages']) if p['page'] == 1]\n"
+        "flat = lambda *found: ' '.join(' '.join(p['text'] for p in found).split())\n"
+        "fields = []\n"
+        "for item in wanted:\n"
+        "    find = ' '.join(item.get('find', item['value']).split())\n"
+        "    ids = next(([p['id'] for p in lines[i:i + n]] for n in (1, 2) for i in range(len(lines))\n"
+        "                if find in flat(*lines[i:i + n])), None)\n"
+        "    if ids is None:\n"
+        "        sys.exit('not on page 1: ' + find)\n"
+        "    fields.append({'field': item['field'], 'value': item['value'], 'passage_ids': ids})\n"
+        "answer = materialize({'fields': fields, 'uncertainties': []}, request['pages'])\n"
+        "answer['provider_trace'] = {'provider': 'test selection', 'model': None}\n"
+        "print(json.dumps(answer))\n", encoding="utf-8")
+    path.chmod(path.stat().st_mode | stat.S_IXUSR)
+    return path
 
 
 def encrypted(source, target, user_password="secret", owner_password="owner"):
