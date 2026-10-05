@@ -183,3 +183,77 @@ def test_an_entry_that_changed_on_disk_since_the_preview_is_not_overwritten(ws):
             assert "changed" in T.shown(app, "#edit-message")
             assert ws.bib.read_text(encoding="utf-8") == other
     T.run(journey())
+
+
+def test_quitting_or_switching_views_never_drops_typed_text_without_asking(ws):
+    before = ws.bib.read_bytes()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await T.press(pilot, "ctrl+q")                                   # nothing typed: no question (quit is tested elsewhere)
+            assert app.return_code == 0
+    T.run(journey())
+
+    async def edited():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "e")
+            await change_volume(pilot)
+            await T.press(pilot, "ctrl+q")
+            assert type(app.screen).__name__ == "ConfirmScreen" and app.return_code is None
+            question = T.shown(app, "#question")
+            assert "Quit? This was typed and is not saved" in question and "the edited text of Zoll90" in question
+            await T.press(pilot, "ctrl+q")                                   # asking twice does not answer
+            assert type(app.screen).__name__ == "ConfirmScreen" and app.return_code is None
+            await T.press(pilot, "n")                                        # keep editing: the text is still there
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ZOLL90.replace("{27}", "{28}")
+            await T.press(pilot, "f3")                                       # a view key does not leave the editor
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ZOLL90.replace("{27}", "{28}")
+            await T.press(pilot, "escape", "y")                              # closing asks too (discard)
+
+            await T.press(pilot, "n")                                        # a new entry being typed
+            await T.type_text(pilot, "@book{")
+            await T.press(pilot, "ctrl+q")
+            assert "the new entry being typed" in T.shown(app, "#question")
+            await T.press(pilot, "n")
+            await T.press(pilot, "escape", "y")
+
+            await T.press(pilot, "f4", "escape", "right", "right", "right", "enter")      # the manual form
+            app.screen.query_one("#m-title").focus()
+            await T.type_text(pilot, "A title")
+            await T.press(pilot, "f2")                                       # another view: the form keeps what was typed
+            await T.press(pilot, "f4")
+            assert app.screen.query_one("#m-title").value == "A title"
+            await T.press(pilot, "ctrl+q")
+            assert "the manual form of the Add view (title)" in T.shown(app, "#question")
+            await T.press(pilot, "y")                                        # quit and discard: said, then done
+            assert app.return_code == 0
+    T.run(edited())
+    assert ws.bib.read_bytes() == before
+
+
+def test_a_dialog_with_typed_text_asks_before_it_is_closed(ws):
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            from cdlbib.tui.widgets import PromptScreen
+            answers = []
+            app.push_screen(PromptScreen("Approve Zoll90", [("source", "Source", ""), ("note", "Note", "")]), answers.append)
+            await T.settle(pilot)
+            await T.press(pilot, "escape")                                   # nothing typed: closed
+            assert answers == [None]
+            app.push_screen(PromptScreen("Approve Zoll90", [("source", "Source", ""), ("note", "Note", "")]), answers.append)
+            await T.settle(pilot)
+            await T.type_text(pilot, "the journal")
+            await T.press(pilot, "escape")
+            assert type(app.screen).__name__ == "ConfirmScreen" and "What was typed is not kept" in T.shown(app, "#question")
+            await T.press(pilot, "n")
+            assert type(app.screen).__name__ == "PromptScreen" and app.screen.values()["source"] == "the journal"
+            await T.press(pilot, "ctrl+q")
+            assert "what was typed in “Approve Zoll90”" in T.shown(app, "#question")
+            await T.press(pilot, "n")
+            await T.press(pilot, "escape", "y")
+            assert answers == [None, None] and len(app.screen_stack) == 1
+    T.run(journey())

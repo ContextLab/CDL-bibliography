@@ -10,6 +10,7 @@ from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.widgets import DataTable, Input, TabbedContent, TabPane
 
 from .. import api
+from ..errors import CdlbibError
 from . import render
 from .widgets import Shown, View, mark
 
@@ -51,6 +52,13 @@ class DetailPanes(Vertical):
         self.query_one("#t-issues", Shown).show(render.issues(detail, colour))
         self.query_one("#t-evidence", Shown).show(render.evidence(detail, colour))
 
+    def waiting(self, key, running):
+        """The entry is being read; behind a running job, say which."""
+        self.detail = None
+        text = f"reading {key} ..." + (f"\n(after the running job: {running})" if running else "")
+        for name in ("t-entry", "t-issues", "t-evidence"):
+            self.query_one(f"#{name}", Shown).show(text)
+
     def next_tab(self):
         tabs = self.query_one("#detail", TabbedContent)
         tabs.active = self.TABS[(self.TABS.index(tabs.active) + 1) % len(self.TABS)]
@@ -83,6 +91,7 @@ class LibraryView(View):
         self.shown = 0           # how many of them are in the table
         self.status = None       # the status filter
         self.selected = None     # the key under the cursor
+        self.read = {}           # {key: desk.EntryDetail} read since the library last changed
         self.searched = False
 
     def compose(self) -> ComposeResult:
@@ -107,6 +116,7 @@ class LibraryView(View):
 
     def library_changed(self):
         self._stale = True
+        self.read = {}               # the details read from the library as it was
         self.search()
 
     def recolour(self):
@@ -128,14 +138,18 @@ class LibraryView(View):
         self.action_table()
 
     def search(self):
-        entries, text, status = self.app.entries, self.query_one("#search", Input).value, self.status
-
-        def done(matches):
-            self.matches = matches
-            self.searched = True
-            self._fill(keep=self.selected)
-        self.app.job("search", lambda job: api.search(entries, text, status=status), done, self._search_failed,
-                     key="search", quiet=True)
+        """Filter the summaries that are already loaded. This is the one call into cdlbib.api
+        made on the interface's own thread: api.search over a list is a pure function of that
+        list and the typed text (no file, database, lock or network; the list is replaced, never
+        changed, when the library is read again), so it cannot meet the job that is running,
+        and a search stays usable during a long check or send."""
+        try:
+            self.matches = api.search(self.app.entries, self.query_one("#search", Input).value, status=self.status)
+        except CdlbibError as exc:
+            self._search_failed(exc)
+            return
+        self.searched = True
+        self._fill(keep=self.selected)
 
     def _search_failed(self, exc):
         self.query_one("#counts", Shown).show(Text(str(exc), self.app.colour("error")))
@@ -198,16 +212,23 @@ class LibraryView(View):
         if key == self.selected and self.detail is not None and self.detail.key == key and not self._stale:
             return
         self.selected, self._stale = key, False
+        panes = self.query_one("#library-detail", DetailPanes)
+        if key in self.read:                 # read since the library last changed: shown at once, no job
+            panes.show(self.read[key])
+            return
+        panes.waiting(key, self.app.jobs.busy_label)
 
         def done(detail):
+            self.read[detail.key] = detail
             if detail.key == self.selected:
-                self.query_one("#library-detail", DetailPanes).show(detail)
+                panes.show(detail)
         self.app.job(f"read {key}", lambda job: api.entry(self.app.ws, key), done, key="detail", quiet=True)
 
     _stale = False
 
     def reload_detail(self):
         self._stale = True
+        self.read.pop(self.selected, None)
         if self.selected:
             self._select(self.selected)
 

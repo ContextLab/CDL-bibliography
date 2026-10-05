@@ -181,7 +181,16 @@ class PromptScreen(ModalScreen):
     def action_accept(self):
         self.dismiss(self.values())
 
+    def unsaved(self):
+        typed = {name: value for name, value in self.values().items()
+                 if value != (dict((n, v or "") for n, _, v in self.fields)[name]).strip()}
+        return f"what was typed in “{self.heading}”" if typed else None
+
     def action_cancel(self):
+        if self.unsaved():
+            self.app.confirm(f"Close “{self.heading}”? What was typed is not kept.", lambda: self.dismiss(None),
+                             yes="Close without keeping it", no="Keep editing")
+            return
         self.dismiss(None)
 
     @on(Input.Submitted)

@@ -78,7 +78,14 @@ class TextEditScreen(ModalScreen):
     def action_accept(self):
         self.dismiss(self.query_one(TextArea).text)
 
+    def unsaved(self):
+        return "the edited text of a proposal" if self.query_one(TextArea).text != self.raw else None
+
     def action_cancel(self):
+        if self.unsaved():
+            self.app.confirm("Close the editor? The edited text was not checked and is not kept.",
+                             lambda: self.dismiss(None), yes="Close without keeping it", no="Keep editing")
+            return
         self.dismiss(None)
 
 
@@ -93,6 +100,8 @@ class ProposalScreen(Screen):
         Binding("A", "accept_all", "Accept all remaining"),
         Binding("r", "remove", "Remove the typed duplicate", show=False),
         Binding("k", "keep", "Keep both", show=False),
+        Binding("t", "retry_evidence", "Store the evidence again", show=False),
+        Binding("c", "leave_evidence", "Go on without the evidence", show=False),
         Binding("q", "stop", "Stop"),
         Binding("escape", "stop", "Stop", show=False),
     ]
@@ -104,12 +113,19 @@ class ProposalScreen(Screen):
     ProposalScreen .side { width: 1fr; }
     ProposalScreen .side-title { color: $accent; text-style: bold; }
     ProposalScreen #proposal-actions { height: auto; padding: 0 1; }
+    ProposalScreen #proposal-main { width: 1fr; }
+    ProposalScreen #proposal-pdf { width: 60; }
+    ProposalScreen.narrow #proposal-pdf { display: none; }
     """
 
-    def __init__(self, items, pdf=None, in_library=False, origin=""):
+    PDF_BESIDE = 124                     # columns: in a narrower window the PDF's page is not shown beside
+
+    def __init__(self, items, pdf=None, in_library=False, origin="", page=None):
         super().__init__()
         self.items = list(items)
-        self.pdf = pdf                   # the read PDF a model-read draft came from
+        self.pdf = pdf                   # the read PDF the proposals came from (intake.PdfIntake), if one
+        self.page = page                 # its first page as PNG bytes, when it could be drawn
+        self.pending_evidence = None     # intake.Accepted whose model evidence could not be stored
         self.in_library = in_library     # the proposals complete entries of the library (completion offers)
         self.origin = origin
         self.index = -1
@@ -127,15 +143,22 @@ class ProposalScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Static("Proposal", id="proposal-head", markup=False)
-        with Horizontal(id="sides"):
-            with VerticalScroll(classes="side pane"):
-                yield Static("Typed", classes="side-title")
-                yield Shown(id="typed")
-            with VerticalScroll(classes="side pane"):
-                yield Static("Proposed", classes="side-title")
-                yield Shown(id="proposed")
-        with VerticalScroll(id="findings-pane", classes="pane"):
-            yield Shown(id="findings")
+        with Horizontal(id="proposal-body"):
+            with Vertical(id="proposal-main"):
+                with Horizontal(id="sides"):
+                    with VerticalScroll(classes="side pane"):
+                        yield Static("Typed", classes="side-title")
+                        yield Shown(id="typed")
+                    with VerticalScroll(classes="side pane"):
+                        yield Static("Proposed", classes="side-title")
+                        yield Shown(id="proposed")
+                with VerticalScroll(id="findings-pane", classes="pane"):
+                    yield Shown(id="findings")
+            if self.pdf is not None:             # the PDF's first page stays beside what is proposed from it
+                with VerticalScroll(id="proposal-pdf", classes="pane"):
+                    yield Static(f"First page of {self.pdf.path.name}", classes="side-title", markup=False)
+                    yield Shown(id="pdf-page")
+                    yield Shown(id="pdf-text")
         yield Shown(id="proposal-actions")
         yield Footer()
 
@@ -148,6 +171,24 @@ class ProposalScreen(Screen):
     def recolour(self):
         if self.item is not None and not self.busy:
             self._show()
+
+    def on_resize(self, event):
+        self.set_class(event.size.width < self.PDF_BESIDE, "narrow")
+        if self.item is not None and not self.busy:
+            self._show()
+
+    def _show_pdf(self):
+        if self.pdf is None:
+            return
+        page = self.query_one("#pdf-page", Shown)
+        try:
+            page.show(render.half_blocks(self.page, 54) if self.page else "")
+        except ValueError:
+            page.show("")
+        out = self.app.writer()
+        out.head("Its text")
+        out.line(self.pdf.first_page_text.strip() or "(no text)")
+        self.query_one("#pdf-text", Shown).show(out.text)
 
     # --- moving on ---------------------------------------------------------------------------
 
@@ -256,7 +297,19 @@ class ProposalScreen(Screen):
         self.query_one("#typed", Shown).show(Text((item.typed_raw or "(no typed entry)").expandtabs(4)))
         self.query_one("#proposed", Shown).show(Text((item.proposed_raw or "(no proposed entry)").expandtabs(4)))
         self.query_one("#findings", Shown).show(render.proposal(item, colour))
+        self._show_pdf()
         actions = Text()
+        if self.pending_evidence is not None:
+            held = self.pending_evidence
+            actions.append(f"{held.key} was written, but the model reading's evidence was not stored with it: "
+                           f"{held.evidence_error}\n", colour("error"))
+            actions.append("[t] try storing the evidence again   [c] go on without it (the entry stays written)",
+                           colour("accent"))
+            self.query_one("#proposal-actions", Shown).show(actions)
+            return
+        if self.pdf is not None and self.has_class("narrow"):
+            actions.append(f"(the PDF's first page is shown beside the proposal in a window of {self.PDF_BESIDE} "
+                           "columns or more)\n", colour("muted"))
         if item.duplicate_of and item.duplicate_in_library:
             actions.append("[r] remove this typed duplicate   [k] keep both for the formatter   [q] stop",
                            colour("accent"))
@@ -308,14 +361,44 @@ class ProposalScreen(Screen):
         if what == "accepted":
             if result.evidence_stored:
                 self._say(f"The model reading's evidence is stored with {result.key}; it is not an approval.")
-            elif result.evidence_stored is False:
+            elif result.evidence_stored is False:      # kept on the screen until it is stored or let go
                 self._say(f"The entry was written, but the model evidence was not stored: {result.evidence_error}")
+                self.pending_evidence = result
+                self.busy = False
+                self._show()
+                return
+        self._next()
+
+    def action_retry_evidence(self):
+        held = self.pending_evidence
+        if held is None or self.busy:
+            return
+        self.busy = True
+
+        def stored(_):
+            self.pending_evidence, self.busy = None, False
+            self._say(f"The model reading's evidence is stored with {held.key}; it is not an approval.")
+            self._next()
+
+        def failed(exc):
+            held.evidence_error, self.busy = str(exc), False
+            self._show()
+        self.app.job(f"store the model evidence of {held.key}",
+                     lambda job: api.attach_model_evidence(self.app.ws, held.key, held.evidence, held.fingerprint),
+                     stored, failed)
+
+    def action_leave_evidence(self):
+        held = self.pending_evidence
+        if held is None or self.busy:
+            return
+        self.pending_evidence = None
+        self._say(f"{held.key}: left without its model evidence")
         self._next()
 
     # --- actions -----------------------------------------------------------------------------
 
     def _ready(self):
-        return self.item is not None and not self.busy and not self._finishing
+        return self.item is not None and not self.busy and not self._finishing and self.pending_evidence is None
 
     def _duplicate(self):
         return bool(self.item.duplicate_of and self.item.duplicate_in_library)

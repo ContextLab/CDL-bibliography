@@ -98,8 +98,9 @@ class StateView(View):
             if state.local_commits:
                 out.line(f"commits here that the upstream does not have: {state.local_commits}")
         else:
-            out.line("This library is not the copy cdlbib downloads and manages: updating it, its backups and undo "
-                     "are not offered here (u, b and z are for the managed copy).", "muted")
+            out.line(f"This library was chosen by {prompts.CHOSEN_BY[state.origin]}, so cdlbib does not update it: "
+                     "update (u), backups (b) and undo (z) are for the copy cdlbib downloads and manages, and are "
+                     "not offered here.", "muted")
         out.line(f"branch: {state.branch or '(none)'}")
         if state.pull_request is not None:
             out.line(f"pull request: {state.pull_request.url} ({state.pull_request.state})")
@@ -133,7 +134,9 @@ class StateView(View):
     def _not_managed(self):
         if self.managed:
             return False
-        self.app.notify("This library is not the copy cdlbib manages; its update, backups and undo are not offered here.")
+        self.app.notify(f"This library was chosen by {prompts.CHOSEN_BY[self.app.state.origin]}; update, backups and "
+                        "undo are for the copy cdlbib downloads and manages." if self.app.state is not None
+                        else "The library's state is still being read.")
         return True
 
     # --- update ------------------------------------------------------------------------------

@@ -51,7 +51,11 @@ def ws(tmp_path):
         record_revocation(cache, ws.bib, "Kaha12", "the year was misread", "@fixture")
     finally:
         cache.close()
-    return ws
+    ws.stored = lambda: (ws.bib.read_bytes(), {item.key: api.entry(ws, item.key).result for item in api.entries(ws)})
+    ws.before = ws.stored()
+    yield ws
+    # Browsing, searching and reading details write nothing: the file and every stored result are as they were.
+    assert ws.stored() == ws.before and not (ws.work / "edits").exists()
 
 
 def table_keys(app, selector="#entries"):
@@ -139,6 +143,7 @@ def test_external_evidence_is_shown_with_its_page_quotes_and_never_as_an_approva
             uncertainties=["the issue number is not printed"])))
     finally:
         cache.close()
+    ws.before = ws.stored()                      # what the interface is to leave as it is
 
     async def journey():
         async with T.opened(ws) as pilot:

@@ -59,6 +59,7 @@ class AddView(View):
         self.pdf_result = None       # intake.PdfResult of the lookup
         self.model_proposal = None   # the model's reading of the PDF, when one was made
         self.prefill = {}            # what the manual form was filled with from the PDF
+        self.manual_pdf = None       # the read PDF it was filled from
         self.fields = ()             # the manual form's fields (api.draft_fields)
 
     def compose(self) -> ComposeResult:
@@ -166,7 +167,7 @@ class AddView(View):
 
     # --- the proposals -----------------------------------------------------------------------
 
-    def propose(self, items, message, pdf=None, origin=""):
+    def propose(self, items, message, pdf=None, origin="", page=None):
         """Show the proposals; ``message(lines)`` is told what was done."""
         if not items:
             return
@@ -178,7 +179,7 @@ class AddView(View):
             if result["written"]:
                 self.app.notify("Added: " + ", ".join(result["written"]))
             self.app.refresh_library()
-        self.app.push_screen(ProposalScreen(items, pdf=pdf, origin=origin), closed)
+        self.app.push_screen(ProposalScreen(items, pdf=pdf, origin=origin, page=page), closed)
 
     # --- Search ------------------------------------------------------------------------------
 
@@ -254,7 +255,7 @@ class AddView(View):
     def _proposed(self, results, message, origin, pdf=None):
         for label, reason in results.errors:
             self.app.say(f"{label}: {reason}")
-        self.propose(list(results), message, pdf=pdf, origin=origin)
+        self.propose(list(results), message, pdf=pdf, origin=origin, page=self.pdf_png if pdf is not None else None)
 
     # --- Identifier --------------------------------------------------------------------------
 
@@ -390,7 +391,8 @@ class AddView(View):
             self._pdf_show()
             if result.proposal is not None:
                 self._pdf_message(result.message)
-                self.propose([result.proposal], lambda lines: self._pdf_message(*lines), origin=pdf.path.name)
+                self.propose([result.proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=pdf.path.name,
+                             page=self.pdf_png)
                 return
             self._pdf_message(result.message, role="warning")
             self._no_record(result)
@@ -416,7 +418,7 @@ class AddView(View):
                 self.app.job("look up the chosen record",
                              lambda job: api.propose_new(self.app.ws, [api.candidate_query(lead)]),
                              lambda results: self._proposed(results, lambda lines: self._pdf_message(*lines),
-                                                            self.pdf.path.name),
+                                                            self.pdf.path.name, pdf=self.pdf),
                              lambda exc: self._pdf_message(str(exc), role="error"))
         self.app.push_screen(ChoiceScreen("\n".join([result.message] + [f"  {line}" for line in result.tried]),
                                           choices, wide=True), chosen)
@@ -456,7 +458,8 @@ class AddView(View):
         def done(proposal):
             self.model_proposal = proposal
             self._pdf_message("The model's reading is shown as a proposal; it is unverified.")
-            self.propose([proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=f"{pdf.path.name}, {route}")
+            self.propose([proposal], lambda lines: self._pdf_message(*lines), pdf=pdf, origin=f"{pdf.path.name}, {route}",
+                         page=self.pdf_png)
 
         def failed(exc):
             self._pdf_message(str(exc), "t opens the manual form, filled with what was read.", role="error")
@@ -470,7 +473,7 @@ class AddView(View):
         pdf, proposal = self.pdf, self.model_proposal
 
         def done(prefill):
-            self.prefill = dict(prefill)
+            self.prefill, self.manual_pdf = dict(prefill), pdf
             for name in self.fields:
                 self.query_one(f"#m-{name}", Input).value = self.prefill.get(name, "")
             self._manual_message()
@@ -500,6 +503,11 @@ class AddView(View):
             out.line(line, role)
         self.query_one("#m-message", Shown).show(out.text)
 
+    def unsaved(self):
+        typed = [name for name in self.fields
+                 if self.query_one(f"#m-{name}", Input).value.strip() not in ("", self.prefill.get(name, ""))]
+        return f"the manual form of the Add view ({', '.join(typed)})" if typed else None
+
     def action_draft(self):
         values = {name: self.query_one(f"#m-{name}", Input).value.strip() for name in self.fields}
         read = {name: value for name, value in self.prefill.items() if values.get(name) == value}
@@ -511,9 +519,11 @@ class AddView(View):
 
         def message(lines, role=None):
             self._manual_message(lines, role)
+        beside = self.manual_pdf if self.manual_pdf is self.pdf else None     # the PDF the form was filled from
         self.app.job("draft the typed entry",
                      lambda job: api.draft_manual(self.app.ws, typed, entry_type=kind, prefill=read or None),
-                     lambda proposal: self.propose([proposal], message, origin="manual form"),
+                     lambda proposal: self.propose([proposal], message, pdf=beside, origin="manual form",
+                                                   page=self.pdf_png if beside is not None else None),
                      lambda exc: message([str(exc)], "error"))
 
 

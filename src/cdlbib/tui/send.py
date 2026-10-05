@@ -8,14 +8,14 @@ from textual.containers import Horizontal, VerticalScroll
 from textual.widgets import Button, Input, Static
 
 from .. import api, deps
-from ..errors import CdlbibError, GateFailed, PublishRefused
-from .proposal import ProposalScreen
+from ..errors import GateFailed, PublishRefused
 from .widgets import Shown, View
 
 
 class SendView(View):
     BINDINGS = [
         Binding("s", "send", "Send"),
+        Binding("S", "send(False)", "Send without completion offers", show=False),
         Binding("r", "refresh", "Read the state again"),
         Binding("escape", "leave_box", "Leave the box", show=False),
     ]
@@ -37,6 +37,7 @@ class SendView(View):
         with Horizontal(classes="row"):
             yield Input(placeholder="e.g. Add Zoller 1990", id="send-summary")
             yield Button("Send (s)", id="send-go", variant="primary")
+        yield Static("S sends without the completion offers (the checks still run).", classes="hint")
         with VerticalScroll(classes="pane", id="send-result-pane"):
             yield Shown(id="send-result")
 
@@ -102,61 +103,26 @@ class SendView(View):
         self.result = again
         again()
 
-    def action_send(self):
+    def action_send(self, offers=True):
         if self.sending:
             self.app.notify("A send is already under way.")
             return
         state = self.app.state
         files = ", ".join(state.pending) if state is not None and state.pending else "the changes of this library"
-        self.app.confirm(f"Send {files} as a pull request from your fork?\n\nCompletion is offered for new or edited "
-                         "entries first; then the checks run; nothing is sent unless they pass.",
-                         self.start, yes="Send")
+        first = ("Completion is offered for new or edited entries first; then the checks run"
+                 if offers else "Completion offers are skipped; the checks run")
+        self.app.confirm(f"Send {files} as a pull request from your fork?\n\n{first}; nothing is sent unless they pass.",
+                         lambda: self.start(offers), yes="Send")
 
-    def start(self):
-        """Completion offers, one entry at a time, then the send."""
+    def start(self, offers=True):
+        """Completion offers, one entry at a time (unless skipped), then the send."""
         self.sending = True
-        self._result(lambda out: out.line("Looking for entries a source can complete ...", "muted"))
-        ws, holder = self.app.ws, {}
-
-        def first(job):
-            if ("stop", str(ws.bib)) in self.app.seen:
-                return None
-            holder["offers"] = api.completion_offers(ws, seen=self.app.seen)
-            return next(holder["offers"], None)
-
-        def following(job):
-            return next(holder["offers"], None)
-
-        def unavailable(exc):
-            self.app.say(f"Completion unavailable: {exc}")
+        if not offers:
+            self.app.say("completion offers skipped (as `cdlbib send --no-complete`)")
             self._send()
-
-        def offered(offer):
-            if offer is None:
-                self._send()
-            elif offer.error is not None:
-                self.app.say(f"{offer.key}: completion unavailable: {offer.error}")
-                seen(offer.key, [], False)
-            elif not offer.proposals:
-                seen(offer.key, [], False)
-            else:
-                self.app.push_screen(ProposalScreen(offer.proposals, in_library=True, origin=f"completion of {offer.key}"),
-                                     lambda result: seen(offer.key, (result or {}).get("written", []),
-                                                         bool(result and result["stopped"])))
-
-        def seen(key, written, stopped):
-            def call(job):
-                for name in [key, *written]:
-                    try:
-                        self.app.seen.add((str(ws.bib), name, api.entry(ws, name).fingerprint))
-                    except CdlbibError:      # the entry is gone (renamed or removed): nothing to remember
-                        pass
-                if stopped:
-                    self.app.seen.add(("stop", str(ws.bib)))
-                    return None
-                return next(holder["offers"], None)
-            self.app.job("look for the next entry to complete", call, offered, unavailable, quiet=True)
-        self.app.job("look for entries a source can complete", first, offered, unavailable)
+            return
+        self._result(lambda out: out.line("Looking for entries a source can complete ...", "muted"))
+        self.app.offer_completion(self._send)
 
     def _send(self):
         ws, summary = self.app.ws, self.query_one("#send-summary", Input).value.strip() or None

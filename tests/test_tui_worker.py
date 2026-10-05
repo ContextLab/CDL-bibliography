@@ -57,6 +57,12 @@ class Watch:
         if "." in frame.f_code.co_qualname:
             return                                   # a property of a result (FormatResult.ok): reading data, no call
         me = threading.current_thread().name
+        if me == "MainThread" and frame.f_code.co_name == "search":
+            if event == "call":                    # the one call let through: recorded, and no part of the queue
+                with self.lock:
+                    self.threads.add(me)
+                    self.calls.append((me, frame.f_code.co_qualname))
+            return
         with self.lock:
             if event == "call":
                 inside = [name for name, depth in self.depth.items() if depth and name != me]
@@ -94,9 +100,12 @@ def test_rapid_actions_run_one_at_a_time_and_only_on_the_worker(tmp_path):
             return app.jobs
     with Watch() as watch:
         jobs = T.run(journey())
-    assert watch.threads == {"cdlbib-jobs"}, sorted({call for call in watch.calls if call[0] != "cdlbib-jobs"})
+    # Every call into the core is the worker's, but one: filtering the summaries already loaded
+    # (api.search over a list: a pure function of the list and the typed text).
+    elsewhere = {call for call in watch.calls if call[0] != "cdlbib-jobs"}
+    assert elsewhere == {("MainThread", "search")}, sorted(elsewhere)
     assert watch.other_threads_inside == 0 and jobs.most_active == 1
-    for name in ("prepare", "entries", "library_state", "check_keys", "search", "entry", "review_queue",
+    for name in ("prepare", "entries", "library_state", "check_keys", "entry", "review_queue",
                  "check_format", "preview_edit", "setup_report", "revision"):
         assert name in watch.names, name
     assert watch.names[0] == "prepare"                                  # the first job of all
@@ -104,7 +113,7 @@ def test_rapid_actions_run_one_at_a_time_and_only_on_the_worker(tmp_path):
     assert len(spans) >= 12 and all(later[0] >= earlier[1] for earlier, later in zip(spans, spans[1:]))
     labels = [label for label, _, _ in jobs.history]
     assert labels.count("check Zoll90") == 1 and labels.count("check Kaha12") == 1 and "format check" in labels
-    assert labels.count("search") < 4                                   # a search typed over is not run
+    assert "search" not in labels                                       # a search is not a job: it never waits
     for key in ("Zoll90", "Kaha12"):                                    # the checks did run: each stored a result
         assert api.entry(ws, key).status != "pending" and api.entry(ws, key).result.get("checked_at")
     assert api.entry(ws, "Game62").status == "pending"
@@ -238,3 +247,56 @@ def test_a_missing_package_is_installed_from_inside_the_interface_asked_first_wi
     assert any(line.startswith("installing pypdf (needed for:") for line in seen["log"])
     assert any(line.startswith("installing pypdfium2 (needed for: the PDF page preview)") for line in seen["log"])
     assert "installed pypdfium2" in seen["log"] and seen["most_active"] == 1
+
+
+# --- nothing ends the worker ------------------------------------------------------------------------
+
+def test_a_callback_or_a_progress_line_that_raises_does_not_end_the_worker(tmp_path):
+    ws = T.library(tmp_path / "lib", ZOLL90)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app, seen = pilot.app, []
+
+            def broken(result):
+                raise RuntimeError("the result could not be shown")
+
+            def chatty(job):
+                job.progress(object())                       # a line that is no text is still a line
+                say, job.runner.say = job.runner.say, None   # ... and a log that cannot be written to
+                try:
+                    job.progress("lost")
+                finally:
+                    job.runner.say = say
+                return api.entries(ws)
+            app.job("a job whose callback raises", lambda job: api.entries(ws), broken)
+            app.job("a job whose failure callback raises", lambda job: api.entry(ws, "Nope99"), None, broken)
+            app.job("a job whose log line cannot be written", chatty, lambda found: seen.append(len(found)))
+            app.job("the job after them", lambda job: api.entry(ws, "Zoll90"), lambda detail: seen.append(detail.key))
+            await T.settle(pilot)
+            assert seen == [1, "Zoll90"] and app.jobs.thread.is_alive() and app.jobs.idle
+            assert "error: a job whose callback raises: RuntimeError: the result could not be shown" in app.log_lines
+            assert "error: a job whose failure callback raises: RuntimeError: the result could not be shown" in app.log_lines
+            await T.press(pilot, "c")                                        # and the interface still works
+            assert "check Zoll90" in [label for label, _, _ in app.jobs.history]
+    T.run(journey())
+
+
+def test_a_job_started_from_an_editor_that_was_closed_reports_to_nobody(tmp_path):
+    ws = T.library(tmp_path / "lib", ZOLL90)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            hold = threading.Event()
+            app.job("a long job", lambda job: hold.wait(20))                 # the preview has to wait behind it
+            await pilot.press("e")
+            await pilot.pause(0.3)
+            await pilot.press("ctrl+p", "escape")                            # previewed, then closed before it ran
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ != "EditScreen" and not app.jobs.idle
+            hold.set()
+            await T.settle(pilot)
+            assert "preview the edit of Zoll90" in [label for label, _, _ in app.jobs.history]
+            assert [line for line in app.log_lines if line.startswith("error:")] == [] and app.jobs.thread.is_alive()
+    T.run(journey())
