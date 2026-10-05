@@ -109,3 +109,29 @@ class PublishRefused(CdlbibError):
 class CompletionRefused(CdlbibError):
     """A source record that cannot be the record of an entry (a correction, erratum or
     retraction notice); the message says why."""
+
+
+class TexLinkRefused(CdlbibError):
+    """The path of the TeX link holds a file or link cdlbib did not make; it was left as it
+    is. ``status`` is the tex.TexStatus found."""
+
+    def __init__(self, message, status=None):
+        self.status = status
+        super().__init__(message)
+
+
+class ExportFailed(CdlbibError):
+    """An export for a manuscript could not be made. ``kind`` names the reason; ``detail`` is
+    the text shown; ``names`` the files or citation keys the reason is about.
+
+    Kinds: "no_tex" (a TeX program is not installed), "no_main" / "several_main" (which file
+    is the paper), "no_source" (a .bbl needs the .tex), "resource_name" (a bibliography
+    resource that is not a plain file name), "no_bibliography" (no bibliography command),
+    "no_style" (no \\bibliographystyle and no biblatex), "missing_input" (a .bst, .cls, .sty
+    or .bib that TeX could not find), "undefined_keys" (cited keys in no bibliography),
+    "engine" / "backend" (LaTeX, or BibTeX/biber, stopped with an error), "output" (the
+    output file may not be written)."""
+
+    def __init__(self, kind, detail, names=()):
+        self.kind, self.detail, self.names = kind, detail, list(names)
+        super().__init__(detail)
