@@ -253,9 +253,13 @@ Use `--from FILE` for a UTF-8 file with one query per line. With no query argume
 `add` also reads BibTeX from standard input. Set `CROSSREF_MAILTO` or pass `--mailto`
 so the citation services can identify your requests.
 
-The tool can build journal articles and arXiv preprints from their source records.
-It does not build books, chapters, proceedings papers, software or datasets
-automatically. Enter those yourself and use `verify`. A linked published version
+The tool can build journal articles, arXiv preprints, papers in conference
+proceedings and book chapters from their source records. A chapter is built
+without its book's editors and place of publication, and a proceedings paper
+without a publisher or place: the record does not state them, or the citation
+check has no test for them, and the proposal lists them as unfilled. It does not
+build books, theses, reports, software or datasets automatically. Enter those
+yourself and use `verify`. A linked published version
 is offered when the source records identify one. An identifier or close title
 alone does not establish that a proposal is the work you meant.
 

@@ -1126,15 +1126,20 @@ def test_a_typed_doi_that_is_not_the_records_is_never_replaced():
 
 # --- records that are not built ---------------------------------------------------------------
 
-def test_a_book_chapter_record_is_not_built_and_the_type_is_named():
+def test_a_book_chapter_record_is_not_built_as_an_article_and_the_type_is_named():
+    # Chapters are built since milestone M7 (tests/test_complete_types.py), as @incollection.
+    # A typed @article is never turned into one: the record fills nothing.
     record, mapped = sources("book-chapter")
     assert record["type"] == "book-chapter"
-    typed = {"doi": "10.4324/9781315782379-49"}
+    typed = {"ENTRYTYPE": "article", "doi": "10.4324/9781315782379-49"}
     proposal = complete.build(typed, record, mapped)
-    assert proposal.unsupported == "book-chapter"
+    assert proposal.unsupported == "book-chapter" and proposal.entry_type == "article"
     assert proposal.proposed_raw is None and proposal.changes == [] and proposal.unfilled == []
-    assert proposal.issues == ["A record of type book-chapter is not built automatically; the entry is left as typed"]
+    assert proposal.issues == ["A record of type book-chapter is not built as an entry of type article; "
+                               "the entry is left as typed"]
     assert proposal.needs_decision is False
+    # With no typed type, the record's own type is built.
+    assert complete.build({"doi": "10.4324/9781315782379-49"}, record, mapped).entry_type == "incollection"
 
 
 def test_a_preprint_record_is_not_built_by_the_article_builder():
@@ -1147,11 +1152,19 @@ def test_a_preprint_record_is_not_built_by_the_article_builder():
 
 def test_a_typed_entry_that_is_not_an_article_is_not_built():
     record, mapped = sources("MoheEtal14")
+    for kind in ("book", "phdthesis", "techreport", "misc", "inbook"):
+        proposal = complete.build({"ENTRYTYPE": kind, "ID": "MoheEtal14", "doi": "10.1177/0956797613511257"},
+                                  record, mapped)
+        assert proposal.unsupported == kind and proposal.entry_type == kind
+        assert proposal.proposed_raw is None
+        assert proposal.issues == [f"An entry of type {kind} is not built automatically; the entry is left as typed"]
+    # A type the builder makes (M7), typed over a record of another type: nothing is filled.
     proposal = complete.build({"ENTRYTYPE": "inproceedings", "ID": "MoheEtal14", "doi": "10.1177/0956797613511257"},
                               record, mapped)
-    assert proposal.unsupported == "inproceedings" and proposal.entry_type == "inproceedings"
+    assert proposal.unsupported == "journal-article" and proposal.entry_type == "inproceedings"
     assert proposal.proposed_raw is None
-    assert proposal.issues == ["An entry of type inproceedings is not built automatically; the entry is left as typed"]
+    assert proposal.issues == ["A record of type journal-article is not built as an entry of type inproceedings; "
+                               "the entry is left as typed"]
 
 
 def test_an_erratum_record_is_refused_with_the_reason():
