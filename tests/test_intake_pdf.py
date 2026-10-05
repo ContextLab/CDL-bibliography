@@ -7,6 +7,7 @@ once on 2026-10-05 by tests/fixtures/intake/record.py and replayed through the r
 """
 import hashlib
 import json
+import os
 import shutil
 import struct
 import subprocess
@@ -438,3 +439,95 @@ def test_progress_lines_and_the_ocr_deadline(tmp_path, made):
     assert left == []  # the tools the OCR child started were stopped with it
     done = intake.read_pdf(scan, progress=lines.append)  # within the ordinary limit it is read
     assert done.ocr and done.problem is None and pdfs.MURDOCK_TITLE in done.first_page_text
+
+
+# --- nothing of the paper is left in the temp folder --------------------------------------------
+
+@pytest.fixture
+def temp_root(tmp_path, monkeypatch):
+    """A temp root of this test's own (TMPDIR), so that what a call leaves there can be listed."""
+    import tempfile
+    root = tmp_path / "temp-root"
+    root.mkdir()
+    monkeypatch.setenv("TMPDIR", str(root))
+    monkeypatch.setattr(tempfile, "tempdir", None)  # tempfile reads TMPDIR again
+    assert tempfile.gettempdir() == str(root.resolve()) or tempfile.gettempdir() == str(root)
+    return root
+
+
+def test_no_residue_after_a_normal_run_an_overflow_and_a_parse_deadline(tmp_path, made, temp_root, monkeypatch):
+    import pypdf
+    arguments = ["read", made["doi"], 5, 100_000, 300_000, 20_000_000]
+    # a child that uses its temp location and is given no chance to clean up: its scratch is this call's folder
+    code, out, err, over = intake._child(["limits"], 60, 1000)
+    assert code == 0 and list(temp_root.iterdir()) == []
+    assert intake.read_pdf(made["doi"]).problem is None and list(temp_root.iterdir()) == []       # a normal run
+    assert intake.render_first_page(made["doi"], 200)[:4] == b"\x89PNG" and list(temp_root.iterdir()) == []
+    code, out, err, over = intake._child(arguments, 60, 100)                                       # killed: too much output
+    assert over and list(temp_root.iterdir()) == []
+    writer = pypdf.PdfWriter()
+    for _ in range(40):
+        writer.append(str(made["doi"]))
+    large = tmp_path / "large.pdf"
+    with open(large, "wb") as handle:
+        writer.write(handle)
+    with pytest.raises(subprocess.TimeoutExpired):                                                 # killed: the deadline
+        intake._child(["read", large, 5, 100_000, 300_000, 20_000_000], 0.15, 4_000_000)
+    assert list(temp_root.iterdir()) == []
+    monkeypatch.setattr(intake, "READ_TIMEOUT", 0.15)
+    assert intake.read_pdf(large).problem == "timeout" and list(temp_root.iterdir()) == []
+    with pytest.raises(TypeError):                                                                 # an exception here
+        intake._child(arguments, "soon", 100)
+    assert list(temp_root.iterdir()) == []
+
+
+def test_the_scratch_folder_is_private_is_the_childs_temp_and_goes_with_planted_links(tmp_path, temp_root, monkeypatch):
+    """A child told to say where its temp folder is, to write there and to plant links to
+    things outside: the folder is this call's (0700, under the temp root), and removing it
+    removes the links, not what they point to."""
+    import stat
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "kept.txt").write_text("not the child's", encoding="utf-8")
+    probe = tmp_path / "probe.py"
+    probe.write_text(
+        "import json, os, sys, tempfile\n"
+        "here = tempfile.gettempdir()\n"
+        "made = tempfile.mkdtemp()\n"
+        "open(os.path.join(made, 'page-1.png'), 'w').write('an image of the paper')\n"
+        f"os.symlink({str(outside)!r}, os.path.join(here, 'link-to-folder'))\n"
+        f"os.symlink({str(outside / 'kept.txt')!r}, os.path.join(made, 'link-to-file'))\n"
+        "print(json.dumps({'temp': here, 'made': made, 'mode': oct(os.stat(here).st_mode & 0o777),\n"
+        "                  'env': [os.environ.get(n) for n in ('TMPDIR', 'TEMP', 'TMP', 'CDLBIB_SCRATCH')],\n"
+        "                  'cwd': os.getcwd()}))\n", encoding="utf-8")
+    # the launcher _child uses (this interpreter), replaced by one that runs the probe with the same environment
+    wrapper = tmp_path / "python-running-the-probe"
+    wrapper.write_text(f"#!/bin/sh\nexec {sys.executable} {probe}\n", encoding="utf-8")
+    wrapper.chmod(0o755)
+    monkeypatch.setattr(sys, "executable", str(wrapper))
+    code, out, err, over = intake._child(["limits"], 60, 10_000)
+    monkeypatch.undo()
+    said = json.loads(out)
+    scratch = said["temp"]
+    assert code == 0 and said["mode"] == "0o700" and set(said["env"]) == {scratch} and said["made"].startswith(scratch)
+    assert os.path.realpath(os.path.dirname(scratch)) == os.path.realpath(temp_root)
+    assert os.path.realpath(said["cwd"]) == os.path.realpath(scratch)
+    assert not os.path.exists(scratch) and list(temp_root.iterdir()) == []      # gone, with the image and the links
+    assert (outside / "kept.txt").read_text(encoding="utf-8") == "not the child's"  # what the links named is untouched
+    assert stat.S_ISDIR(outside.stat().st_mode)
+
+
+def test_no_residue_when_ocr_is_killed_at_its_deadline(tmp_path, made, temp_root):
+    if not shutil.which("gs"):
+        pytest.skip("Ghostscript (gs) is not installed: no image-only PDF can be made")
+    if not (shutil.which("pdftoppm") and shutil.which("tesseract")):
+        pytest.skip("pdftoppm and tesseract are not both installed: local_ocr cannot run")
+    import time
+    scan = pdfs.image_only(made["title"], tmp_path / "scan.pdf")
+    assert list(temp_root.iterdir()) == []
+    late = intake.read_pdf(scan, ocr_seconds=1.0)  # long enough for page images to be written, not to finish
+    assert late.problem == "no_text" and "it was stopped" in late.detail
+    time.sleep(0.3)
+    assert list(temp_root.iterdir()) == []
+    done = intake.read_pdf(scan)                   # and after OCR that ran to its end
+    assert done.ocr and list(temp_root.iterdir()) == []
