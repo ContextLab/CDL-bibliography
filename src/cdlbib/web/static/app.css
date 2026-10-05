@@ -186,6 +186,8 @@ table.grid th { color: var(--cdl-muted); font-weight: 600; font-size: .85rem; }
 .beside-page .pdf-frame { height: 50vh; min-height: 18em; }
 label.check { display: block; margin-bottom: 8px; }
 table.changes td:last-child, table.changes td:nth-child(4) { white-space: nowrap; }
+/* the two value columns share the free width, and neither is squeezed below a short identifier */
+table.changes td:nth-child(2), table.changes td:nth-child(3) { min-width: 24ch; width: 45%; }
 fieldset.names { border: 1px solid var(--cdl-border); border-radius: var(--radius); margin: 8px 0; padding: 8px 12px; }
 fieldset.names li label { margin-right: 12px; }
 [aria-busy="true"] { opacity: .75; }
