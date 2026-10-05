@@ -800,38 +800,208 @@ def test_biber_gets_a_control_file_whose_data_sources_are_written_here(ws, tmp_p
     assert failed.value.kind == "resource_name" and "x.bib" in str(failed.value)
 
     honest = paper(tmp_path / "deep" / "honest", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX)
-    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=honest.parent).returncode == 0
-    real = (honest.parent / "main.bcf").read_text(encoding="utf-8")
-    source = '<bcf:datasource type="file" datatype="bibtex" glob="false">cdl.bib</bcf:datasource>'
-    assert source in real
-    crafted = real.replace(source, source
-                           + '<bcf:datasource type="file" datatype="bibtex" glob="false">..&#x2F;..&#47;x.bib</bcf:datasource>'
-                           + '<bcf:datasource type="file" datatype="bibtex"><![CDATA[../../x.bib]]></bcf:datasource>'
-                           + '<bcf:datasource type="remote" datatype="bibtex">https://example.org/x.bib</bcf:datasource>'
-                           + '<bcf:datasource type="file" datatype="bibtex" glob="true">*.bib</bcf:datasource>')
-    option = ('<bcf:option type="singlevalued"><bcf:key>output_directory</bcf:key><bcf:value>' + str(tmp_path)
-              + '</bcf:value></bcf:option><bcf:option type="singlevalued"><bcf:key>logfile</bcf:key><bcf:value>/tmp/x</bcf:value></bcf:option>')
-    marker = '<bcf:options component="biber" type="global">'
-    assert marker in crafted
-    crafted = crafted.replace(marker, marker + option, 1)
-    rewritten = export.own_bcf(crafted.encode("utf-8"), ["cdl"]).decode("utf-8")
-    assert rewritten.count("<bcf:datasource") == 1 and source in rewritten
-    for gone in ("x.bib", "example.org", "glob=\"true\"", "output_directory", "logfile", "CDATA", "&#"):
-        assert gone not in rewritten, gone
-    assert "<bcf:key>output_encoding</bcf:key>" in rewritten and "<bcf:citekey" in rewritten
-    for declared in ('<?xml version="1.0"?><!DOCTYPE x [<!ENTITY e SYSTEM "file:///etc/hosts">]>' + real.split("?>", 1)[1],
-                     real.encode("utf-8").decode("utf-8").replace("<bcf:controlfile", "<!DOCTYPE bcf:controlfile><bcf:controlfile", 1)):
-        with pytest.raises(ExportFailed) as failed:
-            export.own_bcf(declared.encode("utf-8"), ["cdl"])
-        assert failed.value.kind == "backend" and "declaration" in str(failed.value)
-    with pytest.raises(ExportFailed):
-        export.own_bcf(real.replace(">Zoll90<", ">Zo ll90<").encode("utf-8"), ["cdl"])
-    with pytest.raises(ExportFailed):
-        export.own_bcf(b"<notbcf/>", ["cdl"])
-
-    (honest.parent / "main.bcf").unlink()                      # and the real biber accepts the rewritten file
     text = export.bbl(ws, honest).path.read_text(encoding="utf-8")
     assert "\\entry{Zoll90}{article}" in text and "Outside21" not in text
+
+
+def real_bcf(folder, preamble=BIBLATEX, body="\\cite{Zoll90}\n\\printbibliography"):
+    """The control file the real biblatex writes for a paper, as text."""
+    file = paper(folder, body, preamble)
+    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=file.parent).returncode == 0
+    return (file.parent / "main.bcf").read_text(encoding="utf-8")
+
+
+SOURCE = '<bcf:datasource type="file" datatype="bibtex" glob="false">cdl.bib</bcf:datasource>'
+ROOT = '<bcf:controlfile version="3.11" bltxversion="3.21" xmlns:bcf="https://sourceforge.net/projects/biblatex">'
+
+
+def test_the_control_file_for_biber_is_built_anew_from_listed_names(ws, tmp_path):
+    need("pdflatex", "biber")
+    import xml.etree.ElementTree as ET
+    real = real_bcf(tmp_path / "paper")
+    assert SOURCE in real and real.count(ROOT) == 1
+    hidden = SOURCE + ('<bcf:datasource type="file" datatype="bibtex" glob="false">..&#x2F;..&#47;x.bib</bcf:datasource>'
+                       '<bcf:datasource type="file" datatype="bibtex"><![CDATA[../../x.bib]]></bcf:datasource>'
+                       '<bcf:datasource type="remote" datatype="bibtex">https://example.org/x.bib</bcf:datasource>'
+                       '<bcf:datasource type="file" datatype="bibtex" glob="true">*.bib</bcf:datasource>')
+    rewritten = export.own_bcf(real.replace(SOURCE, hidden).encode("utf-8"), ["cdl", "extra"]).decode("utf-8")
+    assert rewritten.count("<bcf:datasource") == 2 and SOURCE in rewritten and SOURCE.replace("cdl.bib", "extra.bib") in rewritten
+    for gone in ("x.bib", "example.org", 'glob="true"', "CDATA", "&#", "<!--"):
+        assert gone not in rewritten, gone
+    # nothing of biblatex's own is lost: the same elements, attributes and text, in the same order
+    def shape(text):
+        return [(element.tag, sorted(element.attrib.items()), (element.text or "").strip())
+                for element in ET.fromstring(text).iter() if not element.tag.endswith("datasource")]
+    assert shape(export.own_bcf(real.encode("utf-8"), ["cdl"]).decode("utf-8")) == shape(real)
+    assert export.own_bcf(real.encode("utf-8"), ["cdl"]).decode("utf-8").count("<bcf:") == real.count("<bcf:")
+
+
+def hostile_bcfs(real, tmp_path):
+    """{what is wrong: the file}: hand-built variants of a real control file."""
+    uri = "https://sourceforge.net/projects/biblatex"
+    option = '<bcf:option type="singlevalued"><bcf:key>{}</bcf:key><bcf:value>{}</bcf:value></bcf:option>'
+    biber = '<bcf:options component="biber" type="global">'
+    section = '<bcf:section number="0">'
+    assert biber in real and section in real and ">Zoll90<" in real
+    return {
+        "another prefix for the same namespace": real.replace("bcf:", "x:").replace("xmlns:x=", "xmlns:x="),
+        "a default namespace": real.replace("<bcf:", "<").replace("</bcf:", "</").replace("xmlns:bcf=", "xmlns="),
+        "a second prefix": real.replace(ROOT, ROOT[:-1] + f' xmlns:y="{uri}">').replace(SOURCE, SOURCE + SOURCE.replace("bcf:", "y:").replace("cdl", "../x")),
+        "a data source in another namespace": real.replace(ROOT, ROOT[:-1] + ' xmlns:o="urn:other">').replace(
+            SOURCE, SOURCE + '<o:datasource type="file">../../x.bib</o:datasource>'),
+        "a data source in no namespace": real.replace(SOURCE, SOURCE + '<datasource type="file">../../x.bib</datasource>'),
+        "an attribute with a namespace": real.replace(SOURCE, SOURCE.replace(' glob="false"', ' glob="false" bcf:glob="true"')),
+        "a processing instruction": real.replace(ROOT, ROOT + '<?biber output_directory="/tmp"?>'),
+        "a document type": real.replace(ROOT, '<!DOCTYPE bcf:controlfile [<!ENTITY e SYSTEM "file:///etc/hosts">]>' + ROOT),
+        "a bare document type": real.replace(ROOT, "<!DOCTYPE bcf:controlfile>" + ROOT),
+        "an unknown element": real.replace(section, '<bcf:tool><bcf:run>touch /tmp/x</bcf:run></bcf:tool>' + section),
+        "a known element in the wrong place": real.replace(section, section + SOURCE),
+        "an unknown attribute": real.replace(section, '<bcf:section number="0" output="/tmp/x">'),
+        "an option that names a folder": real.replace(biber, biber + option.format("output_directory", tmp_path)),
+        "an option biblatex does not pass": real.replace(biber, biber + option.format("tool", "1")),
+        "an option value that is a path": real.replace(biber, biber + option.format("sortlocale", "/tmp/locale.file")),
+        "a key with a space": real.replace(">Zoll90<", ">Zo ll90<"),
+        "a key with a brace": real.replace(">Zoll90<", ">Zo}ll90<"),
+        "a set member with a brace": real.replace('<bcf:citekey order="1" intorder="1">', '<bcf:citekey order="1" intorder="1" type="set" members="A,B}C">'),
+        "a section number that is not one": real.replace(section, '<bcf:section number="0/../x">'),
+        "a source map with a match": real.replace('<bcf:maps datatype="bibtex" level="driver">',
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_match="a(?{ system(1) })"/></bcf:map>'),
+        "a source map with a replacement": real.replace('<bcf:maps datatype="bibtex" level="driver">',
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_matchi="a" map_replace="@{[ system(1) ]}"/></bcf:map>'),
+        "a source map with a list of matches": real.replace('<bcf:maps datatype="bibtex" level="driver">',
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_matches="a,b" map_replace="c,d"/></bcf:map>'),
+        "a source map step this version has not checked": real.replace('<bcf:maps datatype="bibtex" level="driver">',
+            '<bcf:maps datatype="bibtex" level="driver"><bcf:map><bcf:map_step map_field_source="title" map_perl="1"/></bcf:map>'),
+        "a pattern that runs code": real.replace("<bcf:datamodel>", '<bcf:nosorts><bcf:nosort field="title" value="T(?{ system(1) })"/></bcf:nosorts><bcf:datamodel>'),
+        "text where none belongs": real.replace(section, "stray" + section),
+        "a value that is too long": real.replace(">Zoll90<", ">" + "k" * (export.MAX_BCF_VALUE + 1) + "<"),
+        "not a control file": '<bcf:other xmlns:bcf="' + uri + '"/>',
+        "not xml": "\\relax",
+    }
+
+
+def test_a_control_file_that_is_not_of_biblatexs_shape_is_refused(ws, tmp_path):
+    need("pdflatex", "biber")
+    real = real_bcf(tmp_path / "paper")
+    cases = hostile_bcfs(real, tmp_path)
+    assert all(text != real for text in cases.values())
+    for what, text in cases.items():
+        with pytest.raises(ExportFailed) as failed:
+            export.own_bcf(text.encode("utf-8"), ["cdl"])
+        assert failed.value.kind in ("control_file", "citation_key"), (what, str(failed.value))
+        assert "No .bbl was compiled" in str(failed.value) or failed.value.kind == "citation_key", what
+    named = {"an unknown element": "tool", "an unknown attribute": "output", "an option that names a folder": "output_directory",
+             "an option biblatex does not pass": "tool", "a source map with a match": "map_match",
+             "a source map with a replacement": "map_replace", "a source map step this version has not checked": "map_perl",
+             "a source map with a list of matches": "map_matches",
+             "a processing instruction": "biber"}
+    for what, name in named.items():                          # refused by name
+        with pytest.raises(ExportFailed) as failed:
+            export.own_bcf(cases[what].encode("utf-8"), ["cdl"])
+        assert name in failed.value.names and name in str(failed.value), (what, str(failed.value))
+
+    for size, text in ((export.MAX_BCF + 1, real + " " * export.MAX_BCF),
+                       (0, real.replace('<bcf:section number="0">', '<bcf:section number="0">' + "<bcf:citekey>k</bcf:citekey>" * (export.MAX_BCF_ELEMENTS + 1)))):
+        with pytest.raises(ExportFailed) as failed:           # bounded before a tree is built
+            export.own_bcf(text.encode("utf-8"), ["cdl"])
+        assert failed.value.kind == "control_file" and ("larger than" in str(failed.value) or "more than" in str(failed.value))
+
+
+def step_bcf(real, **attributes):
+    written = "".join(f' {name}="{value}"' for name, value in attributes.items())
+    anchor = '<bcf:maps datatype="bibtex" level="driver">'
+    assert anchor in real
+    return real.replace(anchor, anchor + f'<bcf:map><bcf:map_step map_field_source="title"{written}/></bcf:map>', 1).encode("utf-8")
+
+
+HOSTILE_MATCHES = ["T(?{ system('touch X') })", "T(??{ 'a' })", "(?p{ 1 })", "a(*ACCEPT)", "a@{[ system(1) ]}", "a${\\ system(1)}",
+                   "$(", "$ENV", "@x", "a`id`b", "\\N{U+41}", "a\tb", "x" * 501, "$_", "$&amp;"]
+HOSTILE_REPLACEMENTS = ["@{[ system('touch X') ]}", "${\\ system(1)}", "`id`", "$ENV{HOME}", "$x", "$1[0]", "$1{a}", "$1->x", "$12",
+                        "$0", "a;b", "a&quot;.system(1).&quot;", "a{b}", "\\x41", "\\N{U+41}", "\\Lx", "\\", "$", "${10}", "${a}",
+                        "a\nb", "y" * 501, "$1::x", "$1(", "@"]
+SAFE_MATCHES = ["(.+)", "^$1$", "($)", "^$", "forthcoming|inpreparation", "\\\\(mkbib|en)quote\\{.+((\\?|\\!)\\})$", "(?:\\A|[^{])\\K\\.([^\\d}])",
+                "(.+\\s+and\\s+){3,}|and\\s+others\\s*$", "https?://(dx.)?doi.org/(.+)", "x" * 500]
+SAFE_REPLACEMENTS = ["", "$1", "$1$2", "$1.$2", "${1}0", "\\[$1\\]\\\\midsentence$2", "\\\\bibstring\\{$1\\}", "useauthor=false,$1",
+                     "$1 \\\\mkbibemph\\{app\\}", "ed.", "y" * 500]
+
+
+def test_the_grammar_of_source_map_matches_and_replacements(ws, tmp_path):
+    need("pdflatex", "biber")
+    real = real_bcf(tmp_path / "paper")
+    import html
+    for value in HOSTILE_MATCHES:
+        assert not export.safe_match(html.unescape(value)), value
+        for attribute in export.BCF_MATCH_STEPS:
+            with pytest.raises(ExportFailed) as failed:
+                export.own_bcf(step_bcf(real, **{attribute: value.replace("\t", "&#9;")}), ["cdl"])
+            assert failed.value.kind == "control_file" and failed.value.names == [attribute], value
+            assert "biber would run it as Perl" in str(failed.value)
+    for value in HOSTILE_REPLACEMENTS:
+        assert not export.safe_replace(html.unescape(value)), value
+        with pytest.raises(ExportFailed) as failed:
+            export.own_bcf(step_bcf(real, map_match="(.+)", map_replace=value.replace("\n", "&#10;")), ["cdl"])
+        assert failed.value.kind == "control_file" and failed.value.names == ["map_replace"], value
+    for value in SAFE_MATCHES:
+        assert export.safe_match(value), value
+    for value in SAFE_REPLACEMENTS:
+        assert export.safe_replace(value), value
+    rewritten = export.own_bcf(step_bcf(real, map_match="(.+)", map_replace="$1 \\\\emph\\{x\\}"), ["cdl"]).decode("utf-8")
+    assert 'map_match="(.+)"' in rewritten and 'map_replace="$1 \\\\emph\\{x\\}"' in rewritten
+
+
+def test_a_paper_whose_source_map_holds_code_is_refused_and_a_plain_one_works(ws, tmp_path):
+    need("pdflatex", "biber")
+    marker = tmp_path / "ran-a-command"
+    hostile = {"map_match": "\\regexp{T(?{ system('touch " + str(marker) + "') })}",
+               "map_replace": "\\regexp{@{[ system('touch " + str(marker) + "') ]}}"}
+    for number, (name, value) in enumerate(hostile.items()):
+        step = f"match={value}" if name == "map_match" else f"match=\\regexp{{(.+)}}, replace={value}"
+        declared = f"\\DeclareSourcemap{{\\maps[datatype=bibtex]{{\\map{{\\step[fieldsource=title, {step}]}}}}}}"
+        file = paper(tmp_path / f"paper{number}", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + declared)
+        with pytest.raises(ExportFailed) as failed:
+            export.bbl(ws, file)
+        assert failed.value.kind == "control_file" and failed.value.names == [name], str(failed.value)
+        assert "declares a source map whose match or replacement" in str(failed.value) and name in str(failed.value)
+        assert not marker.exists() and not (file.parent / "main.bbl").exists()
+        found = export.cited(file)                            # the frozen .bib needs no biber
+        assert found.keys == ["Zoll90"] and export.frozen_bib(ws, found, tmp_path / f"cited{number}.bib").written == ["Zoll90"]
+
+    plain = ("\\DeclareSourcemap{\\maps[datatype=bibtex]{\\map[overwrite]{\\pertype{article}"
+             "\\step[fieldsource=journal, match=\\regexp{Journal\\s+of\\s+(.+)}, replace=\\regexp{$1.mapped}]"
+             "\\step[fieldset=note, fieldvalue={set by the paper}]}}}")
+    other = paper(tmp_path / "paper b", "\\cite{Zoll90}\n\\printbibliography", BIBLATEX + "\n" + plain)
+    text = export.bbl(ws, other).path.read_text(encoding="utf-8")
+    assert "set by the paper" in text and "Research in Science Teaching.mapped" in text
+
+
+STYLES = [None, "numeric", "authoryear", "alphabetic", "ieee", "nature", "verbose-ibid", "apa", "chicago-authordate",
+          "chicago-notes", "mla", "oxyear", "gost-numeric", "lncs", "vancouver"]
+
+
+@pytest.mark.parametrize("style", STYLES)
+def test_the_bbl_of_each_installed_biblatex_style_is_the_one_biber_makes_by_hand(ws, tmp_path, style):
+    """Each style's own source maps (apa, chicago, mla ... ship matches and replacements) pass the
+    grammar, and the rebuilt control file gives the same .bbl as biblatex's own, with the real biber."""
+    need("pdflatex", "biber", "kpsewhich")
+    if style and not subprocess.run(["kpsewhich", style + ".bbx"], capture_output=True, text=True).stdout.strip():
+        pytest.skip(f"the biblatex style {style} is not installed")
+    options = f"backend=biber,style={style}" if style else "backend=biber"
+    file = paper(tmp_path / "paper", "\\cite{Zoll90} \\cite{FixtB22}\\nocite{FixtA21}\n\\printbibliography",
+                 f"\\usepackage[{options}]{{biblatex}}\n\\addbibresource{{cdl.bib}}")
+    made = export.bbl(ws, file, out=tmp_path / "made.bbl").path.read_text(encoding="utf-8")
+    export.frozen_bib(ws, export.cited(file), tmp_path / "paper" / "cdl.bib")
+    assert run("pdflatex", *FLAGS, "-draftmode", "main.tex", cwd=file.parent).returncode == 0
+    assert run("biber", "main", cwd=file.parent).returncode == 0                # by hand, on biblatex's own file
+    assert made == (tmp_path / "paper" / "main.bbl").read_text(encoding="utf-8")
+    assert all(f"\\entry{{{key}}}{{article}}" in made for key in ("Zoll90", "FixtA21", "FixtB22"))
+
+
+def test_common_style_options_pass(ws, tmp_path):
+    need("pdflatex", "biber")
+    options = "backend=biber,style=authoryear,natbib=true,sorting=ynt,maxbibnames=99,giveninits=true,defernumbers=true,sortcites=true,backref=true"
+    file = paper(tmp_path / "paper", "\\citep{Zoll90} \\citet{FixtB22}\n\\printbibliography",
+                 f"\\usepackage[{options}]{{biblatex}}\n\\addbibresource{{cdl.bib}}")
+    assert "\\entry{FixtB22}{article}" in export.bbl(ws, file).path.read_text(encoding="utf-8")
 
 
 def test_only_regular_files_are_copied_and_a_fifo_does_not_stop_the_export(ws, tmp_path):
