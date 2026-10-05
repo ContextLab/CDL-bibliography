@@ -1385,7 +1385,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
     quotation beside each field is there for the person to compare with the page.
     """
     from .research import validate_findings
-    from .source_passages import REFERENCE_HEADING, role_risks
+    from .source_passages import REFERENCE_HEADING, plain_uncertainty, role_risks, role_words
     from .verification import now
     read = extracted.get("fields") if isinstance(extracted, dict) else None
     if not isinstance(read, dict) or not read:
@@ -1395,7 +1395,7 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         raise CdlbibError(f"Not an entry type a draft can have: {_plain(entry_type, 30)!r}.")
     pages = intake.pages
     flagged = extracted.get("role_risk_fields") if isinstance(extracted.get("role_risk_fields"), dict) else {}
-    kept, unfilled, dropped, doubts = {}, [], 0, {}
+    kept, unfilled, dropped, doubts, stored = {}, [], 0, {}, {}
     for name, evidence in list(read.items())[:50]:
         if name == "ENTRYTYPE":
             unfilled.append(complete.Unfilled("ENTRYTYPE", "ENTRYTYPE: the entry type is chosen by the person, "
@@ -1439,13 +1439,14 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 name, f"{name}: the value is not literally in the quoted text (page {evidence['page']}); "
                       "it is the model's interpretation", said))
         elif risks and not set(risks) <= set(QUESTION_RISKS.get(name, ())):
-            unfilled.append(complete.Unfilled(
-                name, f"{name}: the quoted text (page {evidence['page']}) may play another role "
-                      f"({', '.join(risks)}), so it is not taken as the work's own {name}", said))
+            role = (f"{name}: the quoted text (page {evidence['page']}) may play another role (%s), "
+                    f"so it is not taken as the work's own {name}")
+            unfilled.append(complete.Unfilled(name, role % role_words(risks), said))
+            stored[name] = role % ", ".join(risks)  # evidence keeps the flag names
         else:
             if risks:  # written, as a question the person settles
                 doubts[name] = (f"{name}: the quoted text (page {evidence['page']}) may play another role "
-                                f"({', '.join(risks)}); check that {value} is the work's own {name}")
+                                f"({role_words(risks)}); check that {value} is the work's own {name}")
             kept[name] = {"value": value, "page": evidence["page"], "quote": evidence["quote"],
                           **({"passages": spans} if spans else {}), "derivation": rule}
     if not kept:
@@ -1467,7 +1468,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
                 if addressed_to_a_model(pages) else []))
     proposal = _draft(ws, entry_type, {name: e["value"] for name, e in kept.items()}, sources, unfilled, notes,
                       "model", plain=set(kept), questions=doubts)
-    proposal.issues += [f"model: {u}" for u in uncertainties if not u.startswith(left)]
+    # shown in plain words; the evidence below keeps each sentence, and each flag name, as given
+    proposal.issues += [f"model: {plain_uncertainty(u)}" for u in uncertainties if not u.startswith(left)]
     proposal.evidence = {
         "source": "local PDF read by a language model",
         "pdf_sha256": intake.sha256,
@@ -1476,7 +1478,8 @@ def proposal_from_findings(ws, intake, extracted, route="dartmouth", entry_type=
         "retrieved_at": now(),
         "reviewer": "model-reading:" + route,
         "fields": kept,
-        "unsupported_fields": [{"field": u.field, "reason": u.reason, "values": u.source_values} for u in unfilled],
+        "unsupported_fields": [{"field": u.field, "reason": stored.get(u.field, u.reason), "values": u.source_values}
+                               for u in unfilled],
         "uncertainties": uncertainties,
         "extraction_policy": _plain(extracted.get("extraction_policy"), 60) or None,
         "provider_trace": {"extract": extracted.get("provider_trace")
