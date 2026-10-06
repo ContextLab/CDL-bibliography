@@ -44,6 +44,33 @@ def test_logged_out_gh_refuses(monkeypatch, tmp_path):
         identity.current()
 
 
+def test_a_github_that_cannot_be_reached_is_not_reported_as_nobody_logged_in(monkeypatch, tmp_path):
+    """The real gh, sent to a port of this computer where nothing listens: its failure is a
+    connection error, asked three times, and the refusal does not say to log in."""
+    if not shutil.which("gh"):
+        pytest.skip("gh is not installed here")
+    import socket
+    import time
+    with socket.socket() as probe:                      # a port that was free a moment ago
+        probe.bind(("127.0.0.1", 0))
+        port = probe.getsockname()[1]
+    monkeypatch.setenv("GH_CONFIG_DIR", str(tmp_path))
+    monkeypatch.setenv("GH_TOKEN", "not-a-real-token")   # so that gh makes the request at all
+    for name in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY", "all_proxy"):
+        monkeypatch.setenv(name, f"http://127.0.0.1:{port}")
+    monkeypatch.delenv("NO_PROXY", raising=False)
+    monkeypatch.delenv("no_proxy", raising=False)
+    monkeypatch.setattr(identity, "PAUSES", (0.2, 0.2))
+    asked = []
+    real = identity._ask
+    monkeypatch.setattr(identity, "_ask", lambda timeout: asked.append(time.monotonic()) or real(timeout))
+    with pytest.raises(IdentityUnavailable) as caught:
+        identity.current()
+    assert "GitHub did not answer who is logged in (3 requests through gh failed" in str(caught.value)
+    assert "No GitHub user is logged in" not in str(caught.value) and "gh auth login" not in str(caught.value)
+    assert len(asked) == 3
+
+
 def test_approve_without_identity_writes_nothing(monkeypatch, tmp_path):
     bib = tmp_path / "lib.bib"
     bib.write_text(ZOLL90 + "\n", encoding="utf-8")
