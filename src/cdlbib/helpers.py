@@ -101,27 +101,38 @@ def match(names, template):
 
 
 def remove_curlies(s, join=""):  # only removes *matching* curly braces
+    """``s`` without its matching braces. The spaces directly inside the first matched pair
+    are replaced by ``join``; a space inside any other matched pair is dropped (with ``join``
+    a space, so is one inside a pair nested in the first).
+
+    One pass with a stack, in time proportional to the length. It gives what the earlier
+    form gave, which removed the first matched pair and called itself on the result: that
+    form exhausted the call stack on a value with a thousand pairs and took time in
+    proportion to the square of the length."""
+    if "{" not in s or "}" not in s:
+        return s
+    closes, stack = {}, []
     for i, c in enumerate(s):
         if c == "{":
-            j = i
-
-            curly_count = 1
-            while j < len(s) - 1:
-                j += 1
-                if s[j] == "{":
-                    curly_count += 1
-
-                if s[j] == "}":
-                    curly_count -= 1
-
-                if curly_count == 0:
-                    break
-
-            if curly_count == 0:
-                return remove_curlies(
-                    s[:i] + join.join(s[(i + 1) : j].split(" ")) + s[(j + 1) :]
-                )
-    return s
+            stack.append(i)
+        elif c == "}" and stack:
+            closes[stack.pop()] = i
+    if not closes:
+        return s
+    first = min(closes)
+    first_close, closers = closes[first], set(closes.values())
+    out, depth = [], 0
+    for i, c in enumerate(s):
+        if i in closes:
+            depth += 1
+        elif i in closers:
+            depth -= 1
+        elif c == " " and depth:
+            if first < i < first_close:
+                out.append(join if join != " " or depth == 1 else "")
+        else:
+            out.append(c)
+    return "".join(out)
 
 
 @functools.lru_cache(maxsize=65536)  # a pure function of its text; format_title calls it per list word
@@ -1057,7 +1068,7 @@ def _numbers_a_meeting(rest):
     the title's wording and numbers nothing."""
     if not rest.startswith(" "):
         return False
-    for word in rest.split():
+    for word in rest[:MEETING_WINDOW].split():
         core = word.strip(",;:.()").lower()
         if core in MEETING_NOUNS:
             return True
@@ -1074,14 +1085,31 @@ def _meeting_ordinals(text):
 
     def write(match):
         number = value(match)
-        if number is None or not _numbers_a_meeting(text[match.end():]):
+        if number is None or not _numbers_a_meeting(text[match.end():match.end() + MEETING_WINDOW]):
             return match[0]
         return house_ordinal(number)
     return pattern.sub(write, text)
 
 
 # A part of a word given with two or more capitals ("NAACL", "MobiSys", "IEEE/CVF", "McGaugh").
-_TWO_CAPITALS = re.compile(r"[A-Za-z0-9/&+.']*[A-Z][A-Za-z0-9/&+.']*[A-Z][A-Za-z0-9/&+.']*")
+_WORD_PART = re.compile(r"[A-Za-z0-9/&+.']+")   # one character class, one quantifier: read in one pass
+# The two rules read names of at most this many characters; a longer value is no name of a book
+# or of proceedings, and is formatted without them (format_journal_name alone).
+MAX_RULE_LENGTH = 2000
+# How far after an ordinal word the word that names the meeting is looked for.
+MEETING_WINDOW = 160
+
+
+def _two_capitals(part):
+    """Whether ``part`` is letters, digits and ``/&+.'`` only and has two or more capitals
+    ("NAACL", "MobiSys", "IEEE/CVF", "McGaugh"). The characters are checked by one pattern of
+    one class and the capitals are counted, so the time is in proportion to the length."""
+    return bool(_WORD_PART.fullmatch(part)) and sum("A" <= c <= "Z" for c in part) >= 2
+
+
+@functools.lru_cache(maxsize=None)
+def _caps_words():
+    return frozenset(str(f).lower() for f in force_caps)
 
 
 def _acronym_parts(name):
@@ -1091,16 +1119,16 @@ def _acronym_parts(name):
     does a name the journal list knows by an alias. A word that is braced or holds a command
     already, a caps.txt word (alone or in a "/" compound, which keeps its caps.txt form) and a
     name with an elided prefix ("O'Reilly") are left to format_journal_name."""
-    if not re.search(r"[a-z]", remove_curlies(name)) or isinstance(journal_key.get(name.lower()), str):
+    if not re.search(r"[a-z]", re.sub(r"\\[A-Za-z]+", "", name)) or isinstance(journal_key.get(name.lower()), str):
         return name, []
     parts = []
 
     def listed(text):
-        return any(f.lower() == remove_non_letters(text.lower()) for f in force_caps)
+        return remove_non_letters(text.lower()) in _caps_words()
 
     def mask(part):
         pre, core, suf = strip_leading_trailing_non_letters(part)
-        if (not core or not _TWO_CAPITALS.fullmatch(core) or re.fullmatch(r"[A-Z]'[A-Z][a-z]+", core)
+        if (not core or not _two_capitals(core) or re.fullmatch(r"[A-Z]'[A-Z][a-z]+", core)
                 or listed(core) or compound_acronym(core, force_caps)):
             return part
         parts.append(core)
@@ -1111,7 +1139,7 @@ def _acronym_parts(name):
         # format_journal_name formats such a word part by part in lower case, and would give
         # the braces back holding "nlp".
         found = re.fullmatch(r"([^A-Za-z{}\\]*)\{([^{}\\]+)\}([^A-Za-z{}\\]*)", part)
-        if not found or not _TWO_CAPITALS.fullmatch(found[2]) or listed(found[2]):
+        if not found or not _two_capitals(found[2]) or listed(found[2]):
             return part
         parts.append(found[2])
         return f"{found[1]}{{qzq{len(parts) - 1}}}{found[3]}"
@@ -1141,6 +1169,8 @@ def format_booktitle(name):
       Conference") likewise. No ordinal is made from a cardinal, and an ordinal word that is
       part of a title's wording ("Second Language Acquisition") is not rewritten.
     """
+    if len(name) > MAX_RULE_LENGTH:
+        return format_journal_name(name)
     masked, parts = _acronym_parts(name)
     formatted = format_journal_name(masked)
     for index, part in enumerate(parts):
@@ -1164,11 +1194,17 @@ def format_edition(value):
     r"""The format checker's formatter for ``edition``: an ordinal, as a word or a plain
     numeral, is written as a numeral with a superscript suffix ("Second", "2nd" ->
     ``2\textsuperscript{nd}``). In this field an ordinal is the number of the edition wherever
-    it stands. Everything else stays as written ("Rev. and expanded"); a cardinal is not made
-    an ordinal."""
+    it stands. An ordinal followed by nothing but the word for an edition ("Second edition",
+    "2nd ed.") is written as the ordinal alone, as the library's editions are and as the
+    research route writes them (``research_forms.normalise_edition``). Everything else stays
+    as written ("Rev. and expanded"); a cardinal is not made an ordinal."""
+    if len(value) > MAX_RULE_LENGTH:
+        return value
     pattern, number = _ordinal_words()
     text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), value)
-    return _plain_ordinals(text)
+    text = _plain_ordinals(text)
+    alone = re.fullmatch(r"\s*(\d+\\textsuperscript\{(?:st|nd|rd|th)\})\s+(?:ed\.?|edn\.?|edition)\s*", text, re.I)
+    return alone[1] if alone else text
 
 
 # rearrange author name (first middle last suffix)

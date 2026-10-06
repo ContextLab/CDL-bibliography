@@ -123,6 +123,10 @@ def test_the_three_spellings_of_an_ordinal_compare_equal_and_a_wrong_suffix_does
     ("Rev. and expanded", "Rev. and expanded"),      # HeatEtal93, the one edition of the library that is no ordinal
     ("2", "2"), ("Two", "Two"), ("3th", "3th"),      # a cardinal, and a wrong suffix, are left as written
     ("Revised 2nd", "Revised 2\\textsuperscript{nd}"),
+    # An ordinal with nothing but the word for an edition after it is the ordinal alone.
+    ("Second edition", "2\\textsuperscript{nd}"), ("2nd ed.", "2\\textsuperscript{nd}"),
+    ("3\\textsuperscript{rd} Edition", "3\\textsuperscript{rd}"),
+    ("Revised 2nd edition", "Revised 2\\textsuperscript{nd} edition"), ("2 edition", "2 edition"),
 ])
 def test_an_edition_is_written_as_the_library_writes_it(given, written):
     assert helpers.format_edition(given) == written and helpers.format_edition(written) == written
@@ -300,3 +304,60 @@ def test_the_command_passes_the_library_and_names_the_listed_entries(tmp_path):
     start = lines.index("4 entries are written in a form a house rule now changes; left as written, and no error, "
                         "until the owner approves the change:")
     assert [line.split(":")[0] for line in lines[start + 1:start + 5]] == [item["key"] for item in PENDING]
+
+
+# --- long and hostile input ---------------------------------------------------------------------------
+
+LONG = 50_000
+
+
+def hostile():
+    """Long inputs of the kinds that make a careless pattern slow: one piece repeated, alone,
+    with a tail that matches nothing, and with a character in the middle that breaks the run."""
+    pieces = ("A.", "twenty-", " ", "1", "first ", "AB", "{AB}-", "30th ", "A", "Twenty-First ", "(", "th")
+    for piece in pieces:
+        text = piece * (LONG // len(piece))
+        yield repr(piece), text
+        yield repr(piece) + " and a tail", text + "!~"
+        yield repr(piece) + " broken in the middle", text[:LONG // 2] + "#" + text[LONG // 2:]
+
+
+def test_the_rules_read_long_hostile_input_in_time_proportional_to_its_length():
+    """Titles come from registry records and from what a person types. Each rule added for
+    ordinals and acronyms, and each pattern the same change added or relies on elsewhere, reads
+    50,000 characters of every hostile kind well within a second (each takes hundredths)."""
+    import re
+    import time
+    from cdlbib import acl_review, texinstall, verification
+    rules = {"acronyms": helpers._acronym_parts, "plain ordinals": helpers._plain_ordinals,
+             "meeting ordinals": helpers._meeting_ordinals, "two capitals": helpers._two_capitals,
+             "meeting window": helpers._numbers_a_meeting,
+             "ordinal_form": verification.ordinal_form, "anthology pages": acl_review.pages,
+             "version": texinstall._VERSION.search, "pages": lambda text: re.fullmatch(r"\d+(?:--\d+)?", text)}
+    slowest = (0.0, "", "")
+    for kind, text in hostile():
+        assert len(text) >= LONG - 20
+        for name, rule in rules.items():
+            started = time.perf_counter()
+            rule(text)
+            slowest = max(slowest, (time.perf_counter() - started, name, kind))
+    assert slowest[0] < 1.0, slowest
+
+
+def test_a_value_too_long_to_be_a_name_is_formatted_without_the_two_rules():
+    import time
+    assert helpers.MAX_RULE_LENGTH == 2000
+    name = "Proceedings of the 30th NAACL Conference"
+    long_name = name + " and" * 500
+    assert len(long_name) > helpers.MAX_RULE_LENGTH
+    assert helpers.format_booktitle(long_name) == helpers.format_journal_name(long_name)
+    assert "textsuperscript" not in helpers.format_booktitle(long_name)
+    assert helpers.format_edition("2nd " * 600) == "2nd " * 600
+    # At the longest length the rules read, every hostile kind is formatted at once; beyond
+    # it the formatter is the one every journal name already goes through.
+    for kind, text in hostile():
+        started = time.perf_counter()
+        helpers.format_booktitle(text[:helpers.MAX_RULE_LENGTH])
+        helpers.format_edition(text[:helpers.MAX_RULE_LENGTH])
+        assert time.perf_counter() - started < 1.0, kind
+        assert helpers.format_booktitle(text) == helpers.format_journal_name(text), kind

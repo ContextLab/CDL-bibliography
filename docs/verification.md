@@ -816,7 +816,8 @@ the builder uses the same formatter, so a built name is in the form the check ac
 |`the 3th Workshop` (a numeral with the wrong suffix)|unchanged|
 |`NAACL-HLT`, `(MobiSys)`, `IEEE/CVF`, `ACM SIGKDD`|`{NAACL}-{HLT}`, `({MobiSys})`, `{IEEE/CVF}`, `{ACM} {SIGKDD}`|
 |a name given wholly in capitals|formatted as before: no acronym is read in it|
-|edition `Second`, `2nd`|`2\textsuperscript{nd}`|
+|edition `Second`, `2nd`, `Second edition`, `2nd ed.`|`2\textsuperscript{nd}`|
+|edition `2` (a cardinal), `3th` (a wrong suffix)|unchanged (the research route's own normaliser, `research_forms.normalise_edition`, writes both as ordinals)|
 
 An ordinal word counts as numbering a meeting when the next word names a meeting
 (conference, workshop, symposium, meeting, congress, colloquium, convention, seminar,
