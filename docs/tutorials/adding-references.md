@@ -276,12 +276,18 @@ cdlbib add 10.18653/v1/N19-1423
 The session ended:
 
 ```text
+pages: None -> 4171--4186 (source: acl-anthology)
+title: None -> {BERT}: pre-training of deep bidirectional transformers for language understanding (source: crossref)
+year: None -> 2019 (source: crossref)
 Verification: metadata_verified
-pages: 10.18653/v1/n19-1423 is an ACL Anthology paper; the Anthology's record outranks Crossref's page range and was not read, so the pages are not confirmed
 [a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
 Your choice [a/e/s/A/q]: a
 Added: DevlEtal19
 ```
+
+This is a paper of the ACL Anthology, so its pages are read from the Anthology's own
+record (`source: acl-anthology`), which the citation check reads too. If the Anthology
+cannot be read, the pages Crossref gives are proposed as a question to decide.
 
 The entry written to `cdl.bib`:
 
@@ -306,8 +312,8 @@ each:
 
 ```text
 Unfilled booktitle: booktitle: no single registry title
-Unfilled address: address: no source record states it
 Unfilled editor: editor: no source record states it
+Unfilled address: address: no source record states it
 Verification: needs_review
 This status comes from the first check only; `cdlbib verify` runs the full check.
 No unambiguous, fully supported metadata match
@@ -325,8 +331,8 @@ editor, the display showed the new field and the entry was accepted:
 
 ```text
 booktitle: None -> Computer Vision -- {ECCV} 2014 (source: user edit)
-Unfilled address: address: no source record states it
 Unfilled editor: editor: no source record states it
+Unfilled address: address: no source record states it
 Verification: metadata_verified
 This status comes from the first check only; `cdlbib verify` runs the full check.
 [a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
