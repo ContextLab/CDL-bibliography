@@ -1563,13 +1563,19 @@ def test_help_says_what_is_checked_when_uv_is_downloaded(box):
     assert "UV_VERSION_HERE" not in out
 
 
+def fetched(address):
+    """The bytes at an address (uv's site answers 403 to urllib's default User-Agent)."""
+    request = urllib.request.Request(address, headers={"User-Agent": "cdlbib-install-tests"})
+    with urllib.request.urlopen(request, timeout=60) as reply:
+        return reply.read()
+
+
 @download_uv
 def test_the_digest_in_the_script_is_the_digest_of_the_installer_on_uvs_site(online):
     """The live file. It also still does what install.sh relies on: it carries a SHA-256 for
     each archive, compares the archive with it (skipping that without a sha256sum command),
     and honours UV_UNMANAGED_INSTALL."""
-    with urllib.request.urlopen(UV_INSTALLER, timeout=60) as reply:
-        body = reply.read()
+    body = fetched(UV_INSTALLER)
     assert hashlib.sha256(body).hexdigest() == UV_INSTALLER_SHA256
     text = body.decode("utf-8")
     assert f'APP_VERSION="{UV_VERSION}"' in text and "UV_UNMANAGED_INSTALL" in text
@@ -1584,8 +1590,7 @@ def test_the_genuine_installer_with_one_line_added_is_refused(box, online):
         pytest.skip("curl is not installed")
     changed = box.root / "changed" / "install.sh"
     changed.parent.mkdir()
-    with urllib.request.urlopen(UV_INSTALLER, timeout=60) as reply:
-        changed.write_bytes(reply.read() + f'\necho ran > "{changed.parent}/RAN"\n'.encode())
+    changed.write_bytes(fetched(UV_INSTALLER) + f'\necho ran > "{changed.parent}/RAN"\n'.encode())
     out = box.with_old_python().run(env=box.env(CDLBIB_UV_INSTALLER=str(changed)))
     assert out.returncode == 1 and "It was not run. Nothing was installed." in out.stderr, out.stdout + out.stderr
     assert not (changed.parent / "RAN").exists() and box.files() == set() and box.leftovers() == []
