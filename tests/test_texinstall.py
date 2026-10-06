@@ -340,7 +340,12 @@ def test_what_is_shown_of_a_program_is_printable_and_a_version_is_digits_and_dot
         monkeypatch.setenv("PATH", os.pathsep.join([str(folder), "/usr/bin", "/bin"]))
         assert texinstall.version("biber") == expected, label
         feature = {item.name: item for item in api.features()}["biber"]
-        assert feature.version == (f"biber {expected}" if expected else "") and "\x1b" not in repr(api.as_data(feature))
+        # Beside biber's version stands the one of the biblatex that the kpsewhich on this
+        # PATH finds: none where TeX is not in /usr/bin (macOS), the system's where it is (Linux).
+        biblatex = texinstall.biblatex_version()
+        assert re.fullmatch(r"(\d+(\.\d+)+)?", biblatex), biblatex
+        shown = ", ".join(part for part in (f"biber {expected}" if expected else "", f"biblatex {biblatex}" if biblatex else "") if part)
+        assert feature.version == shown and "\x1b" not in repr(api.as_data(feature))
     assert marker.exists()                                    # the programs really ran
 
     hostile = "ok \x1b[2J\x1b]0;title\x07\x00 line\r\nnext\ttab ‮ end"

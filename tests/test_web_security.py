@@ -240,7 +240,9 @@ def test_an_oversize_body_is_refused_before_it_is_read(site):
 @pytest.mark.parametrize("body", ['[]', '"text"', '42', 'null', '{"key": NaN}', '{"raw": Infinity}', '{', '', '\xff\xfe',
                                   '{"key": null, "raw": ' + "[" * 40 + "]" * 40 + '}',
                                   '{"a":' * 30 + '1' + '}' * 30,
-                                  "[" * 200_000])
+                                  # A short id: pytest puts the test's id in the PYTEST_CURRENT_TEST variable, and
+                                  # Linux starts no program with a variable longer than 128 KiB.
+                                  pytest.param("[" * 200_000, id="200000 opening brackets")])
 def test_json_that_is_not_a_shallow_object_is_refused(site, body):
     response = site.raw("POST", "/api/edit/preview", site.headers(post=True, **{"Content-Type": "application/json"}),
                         data=body.encode("latin-1"))
