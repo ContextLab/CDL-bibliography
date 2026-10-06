@@ -11,7 +11,7 @@ from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Button, Checkbox, DataTable, Input, Select, Static, TabbedContent, TabPane
+from textual.widgets import Button, DataTable, Input, Select, Static, TabbedContent, TabPane
 
 from .. import api
 from . import render
@@ -22,6 +22,7 @@ from .widgets import ChoiceScreen, FilePicker, Shown, Table, View, fill_table
 class AddView(View):
     BINDINGS = [
         Binding("ctrl+f", "find", "Find records", priority=True),
+        Binding("ctrl+b", "book", "Book search on/off", priority=True),
         Binding("space", "mark", "Mark", show=False),
         Binding("ctrl+o", "browse", "Choose a PDF", priority=True),
         Binding("l", "lookup", "Look up"),
@@ -36,6 +37,7 @@ class AddView(View):
     AddView #manual-form { height: 1fr; }
     AddView #s-year { width: 8; margin-right: 2; }
     AddView #s-authors { margin-right: 2; }
+    AddView #s-book { margin-right: 2; }
     AddView #p-path { margin-right: 2; }
     AddView .form-label.short { width: 5; }
     AddView #m-entrytype { margin-right: 2; }
@@ -64,8 +66,7 @@ class AddView(View):
                     yield Input(placeholder="surnames, separated by ;", id="s-authors")
                     yield Static("Year", classes="form-label short")
                     yield Input(placeholder="year", id="s-year")
-                    yield Checkbox("Book", id="s-book", tooltip="Search the Library of Congress catalogue for a book "
-                                                                "(needs the title and an author)")
+                    yield Button(Text(self.BOOK[False]), id="s-book")
                     yield Button("Find (ctrl+f)", id="s-find")
                 yield Shown(id="s-message", classes="message")
                 yield Table(id="s-results", cursor_type="row")
@@ -95,6 +96,17 @@ class AddView(View):
                     yield Select([("article", "article")], id="m-entrytype", allow_blank=False, value="article")
                     yield Button("Draft the entry (ctrl+s)", id="m-draft")
                 yield VerticalScroll(id="manual-form")
+
+    # The Book switch of the Search tab, written as the Setup view writes its own: a labelled
+    # one-line button, with no box drawn around it.
+    BOOK = {False: "[ ] Book", True: "[x] Book"}       # its key, ctrl+b, is in the footer and in F1's list
+    book = False
+
+    def action_book(self):
+        """Search for a book (the Library of Congress catalogue, by title and author), or not."""
+        self.book = not self.book
+        self.query_one("#s-book", Button).label = Text(self.BOOK[self.book])
+        self._search_message()
 
     def on_mount(self):
         self._fill_leads()
@@ -153,7 +165,7 @@ class AddView(View):
 
     @on(Button.Pressed)
     def _pressed(self, event):
-        {"s-find": self.action_find, "p-browse": self.action_browse, "p-lookup": self.action_lookup,
+        {"s-find": self.action_find, "s-book": self.action_book, "p-browse": self.action_browse, "p-lookup": self.action_lookup,
          "p-open": self.action_open_pdf, "p-model": self.action_model, "p-manual": self.action_manual,
          "m-draft": self.action_draft}[event.button.id]()
 
@@ -177,8 +189,11 @@ class AddView(View):
 
     def _search_message(self, lines=None, role=None):
         out = self.app.writer()
-        for line in lines or ["Type a title, authors, or both, and press enter. The records found are leads: "
-                              "choosing one looks it up and shows the proposed entry."]:
+        for line in lines or [("Book search: type the book's title and an author, and press enter. The Library of "
+                               "Congress catalogue is searched; each edition is a lead of its own."
+                               if self.book else
+                               "Type a title, authors, or both, and press enter. The records found are leads: "
+                               "choosing one looks it up and shows the proposed entry.")]:
             out.line(line, role)
         self.query_one("#s-message", Shown).show(out.text)
 
@@ -190,7 +205,7 @@ class AddView(View):
         title = self.query_one("#s-title", Input).value.strip() or None
         authors = [name.strip() for name in self.query_one("#s-authors", Input).value.split(";") if name.strip()]
         year = self.query_one("#s-year", Input).value.strip() or None
-        book = self.query_one("#s-book", Checkbox).value
+        book = self.book
 
         def done(found):
             self.leads, self.marked, self.search_errors = list(found), set(), list(found.errors)

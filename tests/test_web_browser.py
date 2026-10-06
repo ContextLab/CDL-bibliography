@@ -1155,6 +1155,11 @@ def _walk(visit, page, pdf, long_pdf=None):
     yield "review, an entry"
     visit.nav("add")
     yield "add, search"
+    switch = page.get_by_label("A book: search the Library of Congress catalogue (needs the title and an author)")
+    expect(switch).not_to_be_checked()               # a search is for a paper unless said otherwise
+    switch.check()
+    yield "add, search for a book"
+    switch.uncheck()
     page.click("role=tab[name='Identifiers']")
     page.fill("#add-identifiers", pdfs.ZOLLER_DOI)
     page.click("button:has-text('Look up')")

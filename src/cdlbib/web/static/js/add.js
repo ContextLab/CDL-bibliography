@@ -64,7 +64,7 @@ export async function show(main) {
     const book = h("input", { type: "checkbox", id: "add-book" });
     const out = h("div", { "aria-live": "polite" });
     add(panel, field("Title (or part of it)", title), field("Authors (separate several with ;)", authors), field("Year (optional)", year),
-      h("label", { for: "add-book" }, book, " A book: search the Library of Congress catalogue (needs the title and an author)"),
+      h("label", { class: "check" }, book, " A book: search the Library of Congress catalogue (needs the title and an author)"),
       h("div", { class: "row" }, button("Search", (event) => run(event.currentTarget, async () => {
         log.clear();
         const found = await post("/api/add/search", { title: title.value.trim(), authors: authors.value.split(";").map((name) => name.trim()).filter(Boolean),
