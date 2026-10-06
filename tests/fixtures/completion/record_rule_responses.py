@@ -34,6 +34,18 @@ DOIS = (
     "10.18653/v1/d19-1410",                # ReimGure19: the Anthology's record is read for the pages
     "10.18653/v1/d19-6607",                # ClanEtal19: an ordinal word in the proceedings' name; an Anthology paper
     "10.1117/12.2309486",                  # not in the library: a paper in proceedings whose record names editors
+    # The chapters of type_responses.json: the lookup of each one's BOOK record by the chapter's
+    # ISBNs (Crossref's records of a book type, then the Library of Congress), for its editors.
+    "10.1093/oxfordhb/9780190917982.013.2",   # KahaEtal24
+    "10.1093/oxfordhb/9780190917982.013.38",  # Mann24
+    "10.1515/9781400882618-002",              # Klee56
+    "10.1016/b978-0-12-108550-6.50010-0",     # BobrNorm75
+    "10.1007/978-0-387-21579-2_9",            # Scha03
+    "10.1007/978-1-4684-1083-9_9",            # AherBeat81
+    # Two chapters of tests/test_complete_booktitle.py (their records are in
+    # tests/fixtures/intake/chapters.json.gz too): the catalogue side of the same lookup.
+    "10.1007/978-3-031-20910-9_48",           # Mann23
+    "10.1016/s0166-4115(08)60886-9",          # MayeEtal92b
 )
 # That paper typed as built, with the volume's editors as its record names them.
 PAPER_EDITORS = "J Zhou and P Radeva and D Nikolaev and A Verikas"
@@ -66,6 +78,10 @@ def main(cache_path):
     with tempfile.TemporaryDirectory() as folder:
         paper = built["10.1117/12.2309486"].proposed_raw
         typed = [CHAPTER.replace("EDITORS", editors) for editors in EDITORS]
+        # Library chapters typed as the frozen library has them (with their editors), for the
+        # verifier's own lookup of the book's record.
+        frozen = load_entries(HERE.parent / "cdl-prewave1-2026-09-26.bib")
+        typed += [frozen[key]["raw"] for key in ("KahaEtal24", "Klee56", "Scha03", "BobrNorm75")]
         typed.append(paper.replace("\tPages = ", "\tEditor = {" + PAPER_EDITORS + "},\n\tPages = "))
         for text in typed:
             path = Path(folder) / "typed.bib"

@@ -412,12 +412,30 @@ def _editor(record, typed):
     house name form the authors are written in (``correction_proposals.source_authors``;
     the format checker's ``reformat_author``). The verifier compares an ``editor`` field with
     the same list by the authors' rules (``verification.compare_record``). A record that
-    names no editor fills nothing: most chapter records do not name the book's editors."""
+    names no editor fills nothing: most chapter records do not name the book's editors.
+
+    When the chapter's record names none, the editors are those of the book's own record
+    (owner decision 2026-10-06), which ``propose`` looks up and keeps in the record
+    (``container_titles.book_editors``): the book-type Crossref record, then the Library of
+    Congress record, with the chapter's ISBN. No such record, one that names no editors, or
+    two that disagree, fills nothing and gives the reason."""
+    from .container_titles import BOOK_RECORD, valid_book_editors
     from .helpers import reformat_author
-    people = record.get("editor") or []
+    people, label = record.get("editor") or [], "crossref"
+    looked = record.get(BOOK_RECORD) if isinstance(record.get(BOOK_RECORD), dict) else None
+    if not people and looked:
+        book = valid_book_editors(record)
+        if not book:
+            shown = {s.get("source"): _people_text(s.get("editor")) for s in looked.get("sources") or []
+                     if isinstance(s, dict) and s.get("editor")}
+            raise _Hold("editor: " + str(looked.get("reason") or "the book's record could not be used"), shown,
+                        disagreement=bool(looked.get("disagreement")))
+        people = book[0]
+        label = ("crossref (the book's own Crossref record)" if book[1]["source"] == "crossref-book-record"
+                 else "loc-catalogue (the book's Library of Congress record)")
     if not people:
         return None
-    values = {"crossref": _people_text(people)}
+    values = {label.split(" ")[0]: _people_text(people)}
     try:
         value = cp.source_authors({"author": people}, typed or None)
     except ValueError as exc:
@@ -426,7 +444,7 @@ def _editor(record, typed):
         value, doubts = _written("editor", value, reformat_author)
     except _Hold as hold:
         raise _Hold(hold.reason, values)
-    return _Value(value, "crossref", values, _family_question(people, "editor") + doubts)
+    return _Value(value, label, values, _family_question(people, "editor") + doubts)
 
 
 def _journal(record):
@@ -2360,6 +2378,15 @@ def _propose(query, client, cache, ws=None, announce=None, allow_model=None):
                                                       allow_model=allow_model)
                 if resolution is not None and resolution.chosen:
                     record = dict(record, **{"container-title": [resolution.chosen]})
+            if (found.source != "pubmed" and record.get("type") == KINDS["incollection"].record
+                    and not record.get("editor")
+                    and str(typed.get("ENTRYTYPE") or "incollection").lower() == "incollection"):
+                # A chapter's editors are those of the book's own record (``_editor``), found
+                # by the lookup that settles the book's title.
+                from .container_titles import BOOK_RECORD, book_editors
+                looked = book_editors(record, client, cache)
+                if looked:
+                    record = dict(record, **{BOOK_RECORD: looked})
             anthology = None
             record_doi = record.get("DOI")
             if (record.get("type") == KINDS["inproceedings"].record and isinstance(record_doi, str)

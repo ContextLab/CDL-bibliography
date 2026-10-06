@@ -155,7 +155,7 @@ Deletion removes an entry from the current report. Identical content under anoth
 
 Fingerprint format `v2` is distinct from comparison `POLICY=2`. The upgrade retains the legacy hash calculation solely to recognize exact existing reviews. On an exact match, cache lookup appends a migrated row with the original policy, evidence and check time, plus `fingerprint_migration` provenance. It never relabels an edited entry. Run `status` before key renames when upgrading an old database; a legacy hash alone cannot establish that a renamed entry is otherwise unchanged. Two separate indexed queries avoid scanning the entire bibliography history for each lookup.
 
-`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. Revision 31 compares an `editor` field with the record's editors ([Editors](#editors-resolver-31)). A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
+`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. Revision 31 compares an `editor` field with the record's editors ([Editors](#editors-resolvers-31-and-32)); revision 32 compares a chapter's editors with the book's own record. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
 
 Acceptance-restricting changes require a new `POLICY` or an explicit audit that reopens every affected approval. A policy mismatch invalidates cached reviews, including human decisions. Additive resolver improvements use `RESOLVER_VERSION` to revisit unresolved saved evidence once while preserving supported approvals and their original check times. Query-only changes do not invalidate already supported reviews. HTTP responses can be reused while applying revised comparisons.
 
@@ -418,7 +418,7 @@ Tests: `tests/test_approval_ledger.py`, and
 
 - Crossref deposits can be incomplete or incorrect. A metadata match is not independent corroboration from the PDF.
 - The Crossref comparison supports `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types (software and data in DataCite, repository preprints, catalogue books) need one of the other routes, and a field no route verifies blocks approval (`no deterministic verifier for this field`).
-- Crossref keeps a book's editors on the book's record. Few chapter records repeat them (79 of the 6,573 chapter records among the saved candidates of the 2026-09-30 baseline; 63 of 2,364 proceedings-paper records, nearly all of them SPIE's), so an `editor` field is seldom verified from Crossref ([Editors](#editors-resolver-31)).
+- Crossref keeps a book's editors on the book's record. Few chapter records repeat them (79 of the 6,573 chapter records among the saved candidates of the 2026-09-30 baseline; 63 of 2,364 proceedings-paper records, nearly all of them SPIE's), so an `editor` field is seldom verified from Crossref ([Editors](#editors-resolvers-31-and-32)).
 - A finite candidate set cannot establish global uniqueness. Exact title/author competitors among retrieved records block approval.
 - Initials agree with given names but do not establish personal identity. Use human source review for the stronger gate.
 - Direct Crossref publication dates must collapse to a single year, with one exception (resolver 28): when Crossref's print date and its issued date both equal the cited year, a later online/digitization date does not block, provided no linked PubMed, JATS or publisher record contradicts the print year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
@@ -815,7 +815,7 @@ every creator is compared in order. The SfN route can confirm a meeting abstract
 under the lab's rules conference abstracts are dropped from `cdl.bib` (see
 [Decision rules](#decision-rules-for-what-the-library-contains)).
 
-## Editors (resolver 31)
+## Editors (resolvers 31 and 32)
 
 Owner decision, 2026-10-06. The Crossref comparison (`verification.compare_record`)
 compares an entry's `editor` field with the record's `editor` list exactly as it compares
@@ -841,8 +841,52 @@ auto-review --offline` gives the same status for every entry before and after th
 since the baseline was saved), with every saved result byte for byte the same.
 
 The entry builder (`complete.build`) writes a chapter's `Editor` from the chapter's own
-record when the record names editors, in the house name form, and lists the editors as
-unfilled otherwise. It does not fill the editors of a proceedings paper.
+record when the record names editors, in the house name form. It does not fill the
+editors of a proceedings paper.
+
+### A chapter's editors from the book's record (resolver 32)
+
+Owner decision, 2026-10-06: a chapter's editors come from the book's record. Of the 227
+chapters of the library with an `Editor` field, 122 have their accepted Crossref chapter
+record saved, and none of those records names an editor.
+
+`container_titles.book_editors` finds the book by the lookup that settles a chapter's book
+title, and no other: for each of the chapter's ISBNs, Crossref's records of a book type
+(`book`, `edited-book`, `monograph`, `reference-book`; never a series) and then the Library
+of Congress record, each taken only when its title is one of the chapter record's container
+titles. The requests, the cache and the bounds are those of that lookup.
+
+|Found|Editors|
+|-|-|
+|one record of the book names editors|those editors|
+|both name editors and agree (compared as a byline is compared with a source)|Crossref's|
+|both name editors and disagree|none: "the book's Crossref record and its Library of Congress record name different editors, and neither is chosen"|
+|a record of the book that names no editors (or one the catalogue check's grammar does not read)|none: "the book's own record names no editors"|
+|no ISBN on the chapter's record, or no record with it under the book's title|none, with that reason|
+
+The builder keeps what was found in the chapter's record under `book-record` and writes
+`Editor` from it. The verifier does the same for a chapter cited with editors whose record
+names none, when nothing else in the comparison is amiss (`verify_entry`): it looks the book
+up, keeps what it found in the candidate's saved record, and `compare_record` compares the
+entry's editors with it by the authors' rules. The saved evidence is judged again on every
+comparison (`container_titles.valid_book_editors`): it counts only if it was found under one
+of the chapter record's own ISBNs and a title that is one of its container titles, names
+the source its editors came from, and records no disagreement. Offline reassessment
+therefore needs no request. The issue for a mismatch ends "(the book's own record)".
+
+Additive, so `RESOLVER_VERSION` 32 and the same `POLICY`: before it, such an entry had the
+issue that its record names no editors. The offline recomputation over the baseline gives
+every entry the status it had (the four book titles the owner had rewritten that day are
+`pending`, as edited entries are). From saved records alone, 7 of the 227 chapters have a
+saved record of their book that confirms their editors (Mann23, KahaEtal24, Mann24,
+OReiEtal99, OhrtGron99, HealPark01, RoedEtal01a); for 3 the saved book record names the same
+people without the middle initials the entry gives, which the name rules do not accept
+(HashEtal08, BravEtal08, KaneEtal08); 92 have no saved chapter record, 7 a chapter record
+without an ISBN, and for 118 no record of the book was ever saved. For eight chapters of the
+library the book was looked up for the tests (KahaEtal24, Mann24, Klee56, BobrNorm75, Scha03,
+AherBeat81, Mann23, MayeEtal92b): a record of the book named editors for all eight, six from
+Crossref and two from the Library of Congress, and they are the library's editors for the
+five of them whose library entry has any.
 
 ## Ordinals and acronyms in book titles (2026-10-06)
 

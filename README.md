@@ -397,9 +397,16 @@ state is left out and listed in the proposal as unfilled:
 
 - A chapter is built without a place of publication, and a proceedings paper
   without a publisher, place or editors.
-- A chapter's editors are written when the chapter's own Crossref record names
-  them. Most chapter records do not (Crossref keeps a book's editors on the
-  book's record), and the editors are then listed as unfilled.
+- A chapter's editors are those of the book's own record. Crossref keeps a
+  book's editors on the book's record, not the chapter's, so the tool looks the
+  book up by the chapter's ISBN: Crossref's record of the book, then the Library
+  of Congress record (the same lookup that settles the book's title). The
+  editors are written in the house name form, and the proposal says which record
+  they came from. They are left unfilled, with the reason, when the chapter's
+  record has no ISBN, no record of the book is found, the record names no
+  editors, or the two records name different editors. A series' editors are
+  never used. (The rare chapter record that names editors itself is used as it
+  is.)
 - A chapter's publisher is left out when the format check would write the
   registry's name as another name: the registry names the current depositor
   ("Springer US", "Springer New York"), which may not be the publisher printed
@@ -721,7 +728,7 @@ cdlbib crossref status cdl.bib --keys manuscript-keys.txt
 
 The checker first looks up the entry's DOI in Crossref. If there's no DOI, it searches Crossref by title and authors and compares the top candidates. A close title alone is never enough: to be verified, the entry's title, full author list (in order), year, and venue must match the source, and so must every other field the entry has (volume, issue, pages, publisher, DOI, and so on). If a DOI points to a different paper, the conflict is reported.
 
-The editors of a chapter, a proceedings paper or a book are compared the way authors are: the entry's `editor` field must be the record's whole list of editors, in order, by the same name rules. An entry with editors that the record does not name, or names differently, is `needs_review` and the result says which. An entry without an `editor` field is not asked for one. Ordinals compare equal however they are spelled ("Thirtieth", "30th", `30\textsuperscript{th}`).
+The editors of a chapter, a proceedings paper or a book are compared the way authors are: the entry's `editor` field must be the record's whole list of editors, in order, by the same name rules. For a chapter whose own record names no editors, the record is the book's own, found by the chapter's ISBN as the builder finds it. An entry with editors that the record does not name, or names differently, is `needs_review` and the result says which. An entry without an `editor` field is not asked for one. Ordinals compare equal however they are spelled ("Thirtieth", "30th", `30\textsuperscript{th}`).
 
 When Crossref can't settle an entry, the checker tries the other free sources in turn: PubMed records (through Europe PMC), the publisher's own front matter in open-access full text, library catalogues for books, preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite for software and datasets, the ACL Anthology, and the Society for Neuroscience abstract archive (which can identify an abstract, though [abstracts themselves aren't kept](#what-belongs-in-cdlbib)). Each source is only trusted for what it actually records. For example, a preprint server's record can verify a preprint but not the journal version.
 

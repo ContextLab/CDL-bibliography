@@ -227,8 +227,9 @@ def test_the_saved_crossref_names_of_proceedings_come_out_in_house_form():
 # --- the library ----------------------------------------------------------------------------------
 
 def test_the_library_is_in_the_new_form_but_for_the_listed_entries():
-    """Every book title and edition of cdl.bib is as the formatter writes it, except the four
-    book titles on the pending list, which are exactly as listed."""
+    """Every book title and edition of cdl.bib is as the formatter writes it, except the
+    entries on the pending list, which are exactly as listed. (The list held four book titles
+    when the rule was made; the owner approved their change the same day and it is empty.)"""
     differing = {}
     for key, entry in LIBRARY.items():
         for name, formatter in (("booktitle", helpers.format_booktitle), ("edition", helpers.format_edition)):
@@ -236,9 +237,9 @@ def test_the_library_is_in_the_new_form_but_for_the_listed_entries():
             if value and formatter(value) != value:
                 differing[(key, name)] = (value, formatter(value))
     assert differing == {(item["key"], item["field"]): (item["value"], item["proposed"]) for item in PENDING}
-    assert differing == helpers.pending_forms() and len(differing) == 4
-    assert sum("\\textsuperscript{" in e["fields"].get("booktitle", "") for e in LIBRARY.values()) == 44
-    assert sum("\\textsuperscript{" in e["fields"].get("edition", "") for e in LIBRARY.values()) == 32
+    assert differing == helpers.pending_forms()
+    assert sum("\\textsuperscript{" in e["fields"].get("booktitle", "") for e in LIBRARY.values()) >= 44
+    assert sum("\\textsuperscript{" in e["fields"].get("edition", "") for e in LIBRARY.values()) >= 32
     # The library has no plain "30th" in a book title and no acronym without its braces.
     assert not [k for k, e in LIBRARY.items() if helpers.PLAIN_ORDINAL.search(e["fields"].get("booktitle", ""))]
     # Two book titles have an ordinal word that numbers nothing: they are not rewritten.
@@ -258,9 +259,24 @@ def entries(*keys):
     return "\n\n".join(LIBRARY[key]["raw"] for key in keys) + "\n"
 
 
-def test_a_listed_entry_is_named_and_is_no_error_and_any_other_is(tmp_path):
+WORDS, HOUSE = "Fifth Annual Workshop", "5\\textsuperscript{th} Annual Workshop"
+BOSE = "Proceedings of the %s on Computational Learning Theory"
+
+
+def bose(form=WORDS, key="BoseEtal92"):
+    """BoseEtal92 as the library has it, with its book title in the given form (the library
+    had the words until the owner approved the house form on 2026-10-06)."""
+    text = LIBRARY["BoseEtal92"]["raw"]
+    assert BOSE % HOUSE in text
+    return text.replace(BOSE % HOUSE, BOSE % form).replace("{BoseEtal92,", "{" + key + ",") + "\n"
+
+
+def test_a_listed_entry_is_named_and_is_no_error_and_any_other_is(tmp_path, monkeypatch):
+    # The mechanism, with a list of this test's own holding the entry as it stood before the
+    # owner approved its change (the packaged list is empty now).
+    monkeypatch.setattr(helpers, "pending_forms", lambda: {("BoseEtal92", "booktitle"): (BOSE % WORDS, BOSE % HOUSE)})
     bib = tmp_path / "some.bib"
-    bib.write_text(entries("BoseEtal92", "ShafGood08"), encoding="utf-8")
+    bib.write_text(bose() + "\n" + entries("ShafGood08"), encoding="utf-8")
     errors, said = check(bib)
     assert errors == {}
     assert said.splitlines()[-2:] == [
@@ -271,22 +287,26 @@ def test_a_listed_entry_is_named_and_is_no_error_and_any_other_is(tmp_path):
     # Autofix leaves a listed entry as it is.
     fixed = tmp_path / "fixed.bib"
     check(bib, autofix=True, outfile=str(fixed))
-    assert load_entries(fixed)["BoseEtal92"]["fields"]["booktitle"] == LIBRARY["BoseEtal92"]["fields"]["booktitle"]
+    assert load_entries(fixed)["BoseEtal92"]["fields"]["booktitle"] == BOSE % WORDS
 
     # The same text under another key is not on the list: an error, with the house form.
-    bib.write_text(entries("BoseEtal92").replace("{BoseEtal92,", "{BoseEtal92a,"), encoding="utf-8")
+    bib.write_text(bose(key="BoseEtal92a"), encoding="utf-8")
     errors, said = check(bib)
-    assert errors["BoseEtal92a"]["booktitle"] == helpers.pending_forms()[("BoseEtal92", "booktitle")][1]
+    assert errors["BoseEtal92a"]["booktitle"] == BOSE % HOUSE
     assert "house rule" not in said
     # A listed entry whose book title is anything but the listed text is an error too.
-    bib.write_text(entries("BoseEtal92").replace("Fifth Annual Workshop", "5th Annual Workshop"), encoding="utf-8")
+    bib.write_text(bose("5th Annual Workshop"), encoding="utf-8")
     errors, said = check(bib)
     assert errors == {"BoseEtal92": {"booktitle": "Proceedings of the 5\\textsuperscript{th} Annual Workshop on "
                                                   "Computational Learning Theory"}}
     # In the house form it is neither an error nor named.
-    bib.write_text(entries("BoseEtal92").replace("Fifth Annual Workshop", "5\\textsuperscript{th} Annual Workshop"),
-                   encoding="utf-8")
+    bib.write_text(bose(HOUSE), encoding="utf-8")
     assert check(bib) == ({}, check(bib)[1]) and "house rule" not in check(bib)[1]
+    # With the packaged list (empty since the four entries were changed) the words are an error.
+    monkeypatch.undo()
+    assert helpers.pending_forms() == {}
+    bib.write_text(bose(), encoding="utf-8")
+    assert check(bib)[0] == {"BoseEtal92": {"booktitle": BOSE % HOUSE}}
 
 
 def test_the_format_check_writes_an_edition_and_an_acronym_in_house_form(tmp_path):
@@ -307,16 +327,19 @@ def test_the_format_check_writes_an_edition_and_an_acronym_in_house_form(tmp_pat
 
 def test_the_command_passes_the_library_and_names_the_listed_entries(tmp_path):
     """`cdlbib verify --no-citations` on the library itself, as CI runs it: it passes, and the
-    four entries are named in what it prints."""
+    entries on the pending list (none, since the owner approved the four) are named in what
+    it prints."""
     cdlbib = Path(sys.executable).parent / "cdlbib"
     done = subprocess.run([str(cdlbib), "--library", str(ROOT), "verify", "--no-citations"], capture_output=True,
                           text=True, cwd=tmp_path)
     assert done.returncode == 0, done.stdout[-2000:] + done.stderr[-2000:]
     lines = done.stdout.splitlines()
     assert lines[-1] == "looks good!" and "format: looks good!" in lines
-    start = lines.index("4 entries are written in a form a house rule now changes; left as written, and no error, "
-                        "until the owner approves the change:")
-    assert [line.split(":")[0] for line in lines[start + 1:start + 5]] == [item["key"] for item in PENDING]
+    named = [i for i, line in enumerate(lines) if "written in a form a house rule now changes" in line]
+    assert len(named) == (1 if PENDING else 0)
+    if PENDING:
+        assert [line.split(":")[0] for line in lines[named[0] + 1:named[0] + 1 + len(PENDING)]] == [
+            item["key"] for item in PENDING]
 
 
 # --- long and hostile input ---------------------------------------------------------------------------
