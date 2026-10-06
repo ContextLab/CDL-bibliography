@@ -586,6 +586,51 @@ reviews accept only the exact ordinary or year-refined query derived from the
 current citation. Explicit edition numbers compare across standard numeric and
 English ordinal spellings; a missing or qualified edition is not inferred.
 
+### Books built from catalogue records
+
+`cdlbib add` builds a `@book` from one MARC record of the same catalogue
+(`cdlbib.book_build`). The request is the catalogue check's
+(`catalogue_discovery.fetch_query`: the same endpoint, pacing and response cache); the
+query is `bath.isbn="…"` or `bath.lccn="…"` for a standard number, and the check's own
+title/author query for a title search, so the check later reads the same saved response.
+The record is read by the check's grammar (`catalogue_review.parse_edition`) and each
+built field is kept only when the check's comparison (`catalogue_review.compare_edition`)
+accepts it for that record. The proposal's status comes from the verifier: the first
+check, then `catalogue_review.review_book`, the function `run_catalogue_review` also
+calls. No approval is recorded, and a written book is verified by `verify` through the
+catalogue route like any other book.
+
+| Field | Written from | Not written when |
+|-|-|-|
+| `title` | 245 `$a` and `$b`, through the title formatter; a capitalised word after the first is braced | the record's title has markup |
+| `author` / `editor` | the people the grammar reads, as initials and surname | the byline is incomplete or corporate (the grammar then reads no record) |
+| `year` | 008 date 1 (the grammar requires the transcribed date to agree) | |
+| `publisher` | the transcribed publisher, through the publisher formatter; the first of two is written as a question | the check does not accept the formatted name |
+| `address` | the publisher's first place; with the state's two-letter code when 008/15-17 names one of the states the check compares | the check does not accept the formatted place |
+| `edition` | a numbered statement, as `2\textsuperscript{nd}` | the statement is not a number the check's edition comparison reads ("Rev. ed."). The catalogue's older "2d ed." and "3d ed." are read as the second and third edition since 2026-10-06; the entry then stays `needs_review` |
+
+A search that returns several records is answered with the records and builds none. No
+DOI and no ISBN are written: the catalogue route is for a book without a supplied DOI, and
+an ISBN is not a house field.
+
+### A chapter record with two container titles
+
+When a `book-chapter` record has two container titles, `cdlbib.container_titles` chooses
+between them and can produce no other string: (1) a Crossref record of a book type with
+one of the chapter's ISBNs whose title is one of the two; (2) the Library of Congress
+record with one of those ISBNs whose transcribed title is one of the two; (3) only when
+both answered and neither decides, and a model route is set up: the `extract` phase of the
+research adapter reads the lines of the chapter's page at its publisher that mention
+either title. The page is fetched from `doi.org` and the fixed publisher hosts of
+`publisher_corrections` only, over HTTPS, each redirect checked before it is followed.
+The model's choice counts only when its book title is one of the two, its passages are
+lines of that page, one of them holds the chosen title without the other, and none holds
+the other alone. The result is recorded on the proposal (`choices`: the record or, for a
+model, the route, model, URL, quoted line and document hash), a model-assisted choice
+makes the proposal need a decision, and the entry is verified afterwards by the ordinary
+route. The verifier accepts either container title of such a record, so it does not
+confirm the choice.
+
 ### Local PDF discovery
 
 To index a user-provided paper folder without changing it:

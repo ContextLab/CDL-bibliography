@@ -77,7 +77,7 @@ export async function show(main) {
   // --- identifiers ---
   function identifierTab(panel) {
     const text = h("textarea", { id: "add-identifiers", rows: "4", spellcheck: "false" });
-    add(panel, field("DOIs, PMIDs or arXiv ids, one per line", text),
+    add(panel, field("DOIs, PMIDs, arXiv ids, or a book's ISBN or LCCN (ISBN 978…, LCCN 2012007685), one per line", text),
       h("div", { class: "row" }, button("Look up", (event) => run(event.currentTarget, async () => {
         log.clear();
         took(await post("/api/add/identifiers", { queries: text.value.split("\n").map((line) => line.trim()).filter(Boolean) }, log.add));

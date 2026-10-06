@@ -127,6 +127,9 @@ def test_the_three_spellings_of_an_ordinal_compare_equal_and_a_wrong_suffix_does
     ("Second edition", "2\\textsuperscript{nd}"), ("2nd ed.", "2\\textsuperscript{nd}"),
     ("3\\textsuperscript{rd} Edition", "3\\textsuperscript{rd}"),
     ("Revised 2nd edition", "Revised 2\\textsuperscript{nd} edition"), ("2 edition", "2 edition"),
+    # A library catalogue's older abbreviation ("2d ed.", "3d ed."); "12d" and "4d" abbreviate nothing.
+    ("2d ed.", "2\\textsuperscript{nd}"), ("3d ed", "3\\textsuperscript{rd}"), ("22d ed.", "22\\textsuperscript{nd}"),
+    ("12d ed.", "12d ed."), ("4d ed", "4d ed"), ("Rev. ed.", "Rev. ed."),
 ])
 def test_an_edition_is_written_as_the_library_writes_it(given, written):
     assert helpers.format_edition(given) == written and helpers.format_edition(written) == written
@@ -140,6 +143,16 @@ def test_an_edition_is_written_as_the_library_writes_it(given, written):
      "2017 {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})"),
     ("Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)",
      "Proceedings of the 2\\textsuperscript{nd} Workshop on Fact Extraction and {VERification} ({FEVER})"),
+    # Crossref's book title of 10.1007/978-3-319-10590-1_53 (an en dash, an acronym, a year): the
+    # formatter wrote "Eccv" before this rule.
+    ("Computer Vision – ECCV 2014", "Computer Vision – {ECCV} 2014"),
+    ("Computer Vision -- ECCV 2014", "Computer Vision -- {ECCV} 2014"),
+    # All-capital and mixed forms: each keeps the capitals it is given with.
+    ("Proceedings of EMNLP", "Proceedings of {EMNLP}"), ("Proceedings of ACM SIGIR", "Proceedings of {ACM} {SIGIR}"),
+    ("ICML'19 Workshop on Learning", "{ICML}'19 Workshop on Learning"),
+    ("NeurIPS 2019 Workshops", "{NeurIPS} 2019 Workshops"),
+    ("2019 IEEE/CVF International Conference on Computer Vision (ICCV)",
+     "2019 {IEEE/CVF} International Conference on Computer Vision ({ICCV})"),
     # Forms the library has, given without their braces.
     ("Proceedings of the 23rd ACM National Conference", "Proceedings of the 23\\textsuperscript{rd} {ACM} National Conference"),
     ("Proceedings of the 11th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining",

@@ -1,0 +1,110 @@
+{
+ "doi": "10.1007/978-3-031-20910-9_48",
+ "page": {
+  "document_sha256": "e69af7b55f7bd7470a534f5048eb90df6e8a1e44f266ef533ababfc53682681e",
+  "lines": [
+   "meta citation_inbook_title: Intracranial EEG",
+   "meta citation_title: How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?",
+   "How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data? | Springer Nature Link",
+   "Cart",
+   "Home",
+   "Intracranial EEG",
+   "Chapter",
+   "How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?",
+   "Save chapter",
+   "View saved research",
+   "Intracranial EEG",
+   "Jeremy R. Manning4",
+   "Part of the book series: Studies in Neuroscience, Psychology and Behavioral Economics ((SNPBE))",
+   "2040 Accesses",
+   "2 Citations",
+   "Pouget A, Dayan P, Zemel R (2000) Information processing with population codes. Nat Rev Neurosci 1:125–132",
+   "Article PubMed Google Scholar",
+   "Proix T, Saa JD, Christen A, Martin S, Pasley BN, Knight RT, Tian X, Poeppel D, Doyle WK, Devinsky O, Arnal LH, Mégevand P, Giraud AL (2022) Imagined speech can be decoded from low- and cross-frequency intracranial EEG features. Nat Commun 13. https://doi.org/10.1038/s41467-021-27725-3",
+   "Quiroga RQ, Reddy L, Kreiman G, Koch C, Fried I (2005) Invariant visual representation by single neurons in the human brain. Nature 435:1102–1107",
+   "Article PubMed Google Scholar",
+   "Wilpon JG, Rabiner LR, Lee CH, Goldman ER (1990) Automatic recognition of keywords in unconstrained speech using hidden Markov models. IEEE Trans Acoust Speech Signal Process 38:1870–1878",
+   "Article Google Scholar",
+   "Xie T, Cheong JH, Manning JR, Brandt AM, Aronson JP, Jobst BC, Bujarski KA, Chang LJ (2021) Minimal functional alignment of ventromedial prefrontal cortex intracranial EEG signals during naturalistic viewing. bioRxiv. https://doi.org/10.1101/2021.05.10.443308",
+   "Yacoub E, Harel N, Uğurbil K (2008) High-field fMRI unveils orientation columns in humans. Proc Nat Acad Sci, USA 105:10607–10612",
+   "Article PubMed Google Scholar",
+   "About this chapter",
+   "Cite this chapter",
+   "Manning, J.R. (2023). How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?. In: Axmacher, N. (eds) Intracranial EEG. Studies in Neuroscience, Psychology and Behavioral Economics. Springer, Cham. https://doi.org/10.1007/978-3-031-20910-9_48",
+   "Download citation",
+   ".RIS"
+  ],
+  "retrieved_at": "2026-10-06T16:34:32.777267+00:00",
+  "url": "https://link.springer.com/chapter/10.1007/978-3-031-20910-9_48"
+ },
+ "reading": {
+  "extracted": {
+   "extraction_policy": "source-passages-1",
+   "fields": {
+    "booktitle": {
+     "grounding": "literal_text_present",
+     "page": 1,
+     "passages": [
+      {
+       "end": 45,
+       "id": "p1l1",
+       "page": 1,
+       "quote": "meta citation_inbook_title: Intracranial EEG\n",
+       "start": 0
+      },
+      {
+       "end": 292,
+       "id": "p1l6",
+       "page": 1,
+       "quote": "Intracranial EEG\n",
+       "start": 275
+      },
+      {
+       "end": 438,
+       "id": "p1l11",
+       "page": 1,
+       "quote": "Intracranial EEG\n",
+       "start": 421
+      },
+      {
+       "end": 2122,
+       "id": "p1l28",
+       "page": 1,
+       "quote": "Manning, J.R. (2023). How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?. In: Axmacher, N. (eds) Intracranial EEG. Studies in Neuroscience, Psychology and Behavioral Economics. Springer, Cham. https://doi.org/10.1007/978-3-031-20910-9_48\n",
+       "start": 1847
+      }
+     ],
+     "quote": "meta citation_inbook_title: Intracranial EEG\n",
+     "role_risk": [],
+     "value": "Intracranial EEG"
+    }
+   },
+   "provider_trace": {
+    "model": "zai-org.glm-5.3",
+    "provider": "dartmouth"
+   },
+   "source_text_sha256": "f779f1193d95b8dce04fa5b25de8c00718d739f50b7814ed5e8b343a5e1fe593"
+  },
+  "retrieved_at": "2026-10-06T16:37:19.948176+00:00",
+  "route": "dartmouth"
+ },
+ "record": {
+  "DOI": "10.1007/978-3-031-20910-9_48",
+  "ISBN": [
+   "9783031209093",
+   "9783031209109"
+  ],
+  "container-title": [
+   "Studies in Neuroscience, Psychology and Behavioral Economics",
+   "Intracranial EEG"
+  ],
+  "title": [
+   "How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?"
+  ],
+  "type": "book-chapter"
+ },
+ "titles": [
+  "Studies in Neuroscience, Psychology and Behavioral Economics",
+  "Intracranial EEG"
+ ]
+}

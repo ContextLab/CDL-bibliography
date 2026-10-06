@@ -46,7 +46,7 @@ As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been c
 | DOI/PMID/arXiv and title-with-author lookup; review, edit or skip source-supported entries | `cdlbib add`; web: Add |
 | Search by title, authors or both, with a list of candidates to choose from | web: Add, "Search" tab |
 | PDF intake: the first page beside what was read, lookup of the source record, reading with a language model, and a manual-entry form filled from the PDF | web: Add, "PDF" and "Manual" tabs |
-| Entries built from source records: journal articles, arXiv preprints, papers in conference proceedings and book chapters | `cdlbib add`; web: Add |
+| Entries built from source records: journal articles, arXiv preprints, papers in conference proceedings, book chapters, and books (from Library of Congress catalogue records) | `cdlbib add`; web: Add |
 | House-format and citation checks, source evidence, GitHub-attributed human approvals and revocations | `cdlbib verify`, `cdlbib crossref`; web: Check, Library, Review |
 | Contributions through your own fork and an opened or updated PR | `cdlbib send`; web: Send |
 | System-wide LaTeX setup: one link in your TeX tree | `cdlbib setup`; web: Setup |
@@ -382,6 +382,9 @@ cdlbib add 10.1002/tea.3660271011
 cdlbib add PMID:13896567
 cdlbib add arXiv:2208.02957
 cdlbib add "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)" --author Zoller --year 1990
+cdlbib add "ISBN 9780195333244"
+cdlbib add "LCCN 2012007685"
+cdlbib add --book "Numerical optimization" --author Nocedal --year 2006
 ```
 
 Use `--from FILE` for a UTF-8 file with one query per line. With no query arguments,
@@ -411,8 +414,32 @@ state is left out and listed in the proposal as unfilled:
   sometimes wrong. If the Anthology cannot be read, Crossref's pages are
   proposed as a question.
 
-It does not
-build books, theses, reports, software or datasets automatically. Enter those
+A book is built from its Library of Congress catalogue record, the record the
+accuracy check verifies books against. Give its ISBN, its LCCN, or `--book` with
+the title and `--author` (the first author, or the first editor of an edited
+volume). The proposal's source is `loc-catalogue`. Editions are separate works: when
+the catalogue has several records for what you gave, they are listed with their
+year, publisher and edition for you to choose from, and none is taken for you
+(adding `--year` picks the edition only when exactly one record has that year).
+Only what the check can verify is written: a record the check cannot read (for
+example one whose byline ends in "et al.") gives no entry, and an edition
+statement that is not a number ("Rev. ed.") is left out and listed as unfilled, so
+that entry stays unverified. A book entry typed by hand, and a book's Crossref
+record (a DOI), are not completed.
+
+Some chapter records name two titles for where the chapter appeared: the book and
+the series the book is in, in no particular order. The tool looks up the book's
+own Crossref record, and then its catalogue record, by the chapter's ISBNs, and
+writes the title that record gives the book. When neither record settles it and a
+model route is set up (see [API keys](docs/tutorials/api-keys.md)), the tool says
+so and has the model read the chapter's page at its publisher; `--ask` makes it
+ask you first. The model can only pick one of the record's two titles, and only
+when a line it quotes from the page contains that title without the other. Such a
+choice is marked "model-assisted", the proposal then waits for your decision, and
+it is not a verification. Without a model route the book title is left unfilled,
+as before, with the reason.
+
+The tool does not build theses, reports, software or datasets automatically. Enter those
 yourself and use `verify`. A linked published version
 is offered when the source records identify one. An identifier or close title
 alone does not establish that a proposal is the work you meant.

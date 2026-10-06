@@ -68,7 +68,7 @@ class AddView(View):
                 yield Shown(id="s-message", classes="message")
                 yield Table(id="s-results", cursor_type="row")
             with TabPane("Identifier", id="add-identifier"):
-                yield Static("DOI, PMID or arXiv id; several separated by spaces, commas or semicolons",
+                yield Static("DOI, PMID, arXiv id, or a book's ISBN:… or LCCN:…; several separated by spaces, commas or semicolons",
                              classes="label")
                 with Horizontal(classes="form-row"):
                     yield Input(placeholder="10.1002/tea.3660271011, 1706.03762", id="i-ids")
@@ -206,7 +206,7 @@ class AddView(View):
         rows = [(Text("●" if number in self.marked else " ", colour("accent")),
                  lead.get("in_library") or "", ", ".join(lead.get("sources") or [lead.get("source", "")]),
                  lead.get("authors") or "", lead.get("year") or "", lead.get("title") or "",
-                 lead.get("doi") or lead.get("arxiv") or lead.get("pmid") or "")
+                 api.candidate_identifier(lead))
                 for number, lead in enumerate(self.leads)]
         fill_table(table, [(" ", 1), ("In library", 12), ("Source", 16), ("Authors", 2.0), ("Year", 4), ("Title", 4.0),
                            ("Identifier", 3.0)], rows, [str(number) for number in range(len(rows))])
@@ -238,7 +238,7 @@ class AddView(View):
         leads = [self.leads[number] for number in chosen]
 
         def call(job):
-            return api.propose_new(self.app.ws, [api.candidate_query(lead) for lead in leads])
+            return api.propose_new(self.app.ws, [api.candidate_query(lead) for lead in leads], announce=job.progress)
         self.app.job("look up the chosen record" + ("s" if len(leads) > 1 else ""), call,
                      lambda results: self._proposed(results, self._search_message, "search"),
                      lambda exc: self._search_message([str(exc)], "error"))

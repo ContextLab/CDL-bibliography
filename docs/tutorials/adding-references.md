@@ -16,6 +16,8 @@ author, from a PDF, or typed by hand. The [README](../../README.md#add) describe
 |Way to add|Command line|Web interface (`cdlbib web`, **Add** view)|
 |-|-|-|
 |DOI, PMID or arXiv identifier|`cdlbib add IDENTIFIER`|"Identifiers" tab|
+|A book, by ISBN or LCCN|`cdlbib add "ISBN 9780195333244"`, `cdlbib add "LCCN 2012007685"`|"Identifiers" tab|
+|A book, by title and first author|`cdlbib add --book "TITLE" --author NAME [--year YEAR]`|"Search" tab (catalogue records are among the leads)|
 |Title, with author and year|`cdlbib add "TITLE" --author NAME --year YEAR`|"Search" tab|
 |Authors without a title|not available|"Search" tab|
 |PDF|not available|"PDF" tab|
@@ -264,8 +266,10 @@ a person who has checked it against the source ([Human review](human-review.md))
 ## Which kinds of entry are built
 
 `cdlbib` builds journal articles, arXiv preprints, papers in conference proceedings and
-book chapters from their source records. It does not build books, theses, reports,
-software or datasets; the [README](../../README.md#add) has the full statement.
+book chapters from their source records, and books from their Library of Congress
+catalogue records. It does not build theses, reports, software or datasets; the
+[README](../../README.md#add) has the full statement. The output in the two subsections
+on books and on a chapter's book title was recorded on October 6, 2026.
 
 A paper in conference proceedings, added to a library without it:
 
@@ -307,17 +311,27 @@ A book chapter:
 cdlbib add 10.1007/978-3-319-10590-1_53
 ```
 
-The proposal lists the fields that the source record did not fill, with the reason for
-each:
+This chapter's record names two titles for the place it appeared in: the series
+("Lecture Notes in Computer Science") and the book. The tool looks up the book's own
+record and writes the title that record gives the book. The proposal says where the title
+came from, and lists the fields that no source record filled, with the reason for each:
 
 ```text
-Unfilled booktitle: booktitle: no single registry title
+booktitle: None -> Computer Vision -- {ECCV} 2014 (source: crossref (the book's own Crossref record))
 Unfilled editor: editor: no source record states it
 Unfilled address: address: no source record states it
-Verification: needs_review
-This status comes from the first check only; `cdlbib verify` runs the full check.
-No unambiguous, fully supported metadata match
-crossref 10.1007/978-3-319-10590-1_53: booktitle: missing evidence or mismatch
+Verification: metadata_verified
+booktitle: the record names two titles, "Lecture Notes in Computer Science" and "Computer Vision – ECCV 2014"; "Computer Vision – ECCV 2014" is taken as the book's. The book's own Crossref record (10.1007/978-3-319-10590-1, ISBN 9783319105895) has the title "Computer Vision – ECCV 2014" and names "Lecture Notes in Computer Science" as its series.
+```
+
+The acronym keeps its capitals, in braces. Press `e` to correct a value in your editor;
+the edited entry is checked again before you can accept it.
+
+When no record of the book settles which title is the book's, the book title is left
+unfilled and the reason is given, for example:
+
+```text
+Unfilled booktitle: booktitle: no single registry title: no record of the book says which is its title; no model route is set up, so no model was asked. To have a model read the publisher's page for it, set up a model route (`cdlbib setup` lists them; Dartmouth Chat is the default) and run the lookup again.
 ```
 
 A chapter needs its book's title. Answering `a` before the title is filled in prints:
@@ -326,21 +340,63 @@ A chapter needs its book's title. Answering `a` before the title is filled in pr
 Cannot accept: complete required fields and resolve duplicate or unsupported entries first.
 ```
 
-After `e` and adding the line `Booktitle = {Computer Vision -- {ECCV} 2014},` in the
-editor, the display showed the new field and the entry was accepted:
+With a model route set up, the command first prints a line that says a model is being
+asked (one request, which can take a few minutes), or, with `cdlbib --ask add ...`, asks
+you first. The model may only pick one of the record's two titles, from a line of the
+publisher's page that it quotes. The proposal then shows the source as
+`crossref (model-assisted choice)` with the quoted line and the page's address, and waits
+for your decision. It is not a verification.
 
-```text
-booktitle: None -> Computer Vision -- {ECCV} 2014 (source: user edit)
-Unfilled editor: editor: no source record states it
-Unfilled address: address: no source record states it
-Verification: metadata_verified
-This status comes from the first check only; `cdlbib verify` runs the full check.
-[a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
-Your choice [a/e/s/A/q]: a
-Added: ZeilFerg14
+### A book
+
+```bash
+cdlbib add "ISBN 9780195333244"
 ```
 
-For the DOI of a book, nothing is proposed:
+The proposal is built from the book's Library of Congress record, and every field names
+that source:
+
+```text
+Proposed:
+@book{Kaha12,
+	Address = {New York, {NY}},
+	Author = {M J Kahana},
+	Publisher = {Oxford University Press},
+	Title = {Foundations of human memory},
+	Year = {2012}}
+address: None -> New York, {NY} (source: loc-catalogue)
+author: None -> M J Kahana (source: loc-catalogue)
+publisher: None -> Oxford University Press (source: loc-catalogue)
+title: None -> Foundations of human memory (source: loc-catalogue)
+year: None -> 2012 (source: loc-catalogue)
+Verification: metadata_verified
+Built from the Library of Congress catalogue record LCCN 2012007685 (ISBN 9780195333244, 0195333241).
+```
+
+`cdlbib add "LCCN 2012007685"` gives the same proposal. By title, name the first author
+(or the first editor) as well:
+
+```bash
+cdlbib add --book "Numerical optimization" --author Nocedal
+```
+
+The catalogue has two editions of this book, so nothing is proposed until you choose one:
+
+```text
+Verification: not checked
+2 catalogue records match the title and the first author: editions are distinct works, and one has to be chosen.
+```
+
+At a terminal the two records are listed with their year, publisher, edition and LCCN.
+Adding `--year 2006` builds the second edition, because one record has that year. In the
+web and terminal interfaces, type `ISBN 9780195333244` or `LCCN:2012007685` in the
+Identifier tab; a search by title and author in the Search tab lists catalogue records
+among the leads, with `loc-catalogue` as their source.
+
+A book whose catalogue record the accuracy check cannot read gives no entry, and the
+message says why; enter it by hand ([Typing an entry by hand](#typing-an-entry-by-hand)).
+
+For the DOI of a book, nothing is proposed (use its ISBN or LCCN instead):
 
 ```bash
 cdlbib add 10.1093/acprof:oso/9780195140132.001.0001

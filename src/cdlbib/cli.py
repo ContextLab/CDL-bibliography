@@ -153,7 +153,10 @@ def decide(proposals, *, recheck=None, choose_candidate=None, session=None):
     for item in proposals:
         if terminal and item.candidates and choose_candidate:
             for number, candidate in enumerate(item.candidates, 1):
-                typer.echo(f"[{number}] {candidate.get('authors', '')} {candidate.get('year', '')}: {candidate.get('title', '')} {candidate.get('doi') or candidate.get('arxiv') or ''}")
+                shown = api.candidate_identifier(candidate) if candidate.get('lccn') else (candidate.get('doi') or candidate.get('arxiv') or '')
+                if candidate.get('lccn') and candidate.get('journal'):     # a book: its publisher and edition tell editions apart
+                    shown = f"({candidate['journal']}) {shown}"
+                typer.echo(f"[{number}] {candidate.get('authors', '')} {candidate.get('year', '')}: {candidate.get('title', '')} {shown}")
             letters = ['0'] + [str(n) for n in range(1, len(item.candidates) + 1)]
             choice = _chosen('[0] none of these', letters)
             if choice == '0':
@@ -250,6 +253,8 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
         per_source: int = typer.Option(None, '--per-source', hidden=True,
                                        help="With an author search: records asked of each source (default 10)."),
         pdf: Path = typer.Option(None, '--pdf', help="A PDF of the paper: its identifier or title is read from it."),
+        book: bool = typer.Option(False, '--book', help="The title is a book's: look it up, with --author (and "
+                                  "--year), in the Library of Congress catalogue. An ISBN or LCCN needs no flag."),
         database: str = typer.Option(None, '--database'),
         mailto: str = typer.Option(None, '--mailto', envvar='CROSSREF_MAILTO')):
     """Look up entries, then accept, edit or skip each proposal."""
@@ -263,7 +268,7 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
         inputs = list(queries or [])
         if from_file:
             inputs.extend(line.strip() for line in from_file.read_text(encoding='utf-8').splitlines() if line.strip())
-        parsed = [Query.parse(text, author=author, year=year) for text in inputs]
+        parsed = [Query.parse(text, author=author, year=year, book=book) for text in inputs]
         if pdf is not None:
             if parsed:
                 raise typer.BadParameter('--pdf is given by itself: one PDF, and no other query')
@@ -302,9 +307,13 @@ def add(ctx: typer.Context, queries: list[str] = typer.Argument(None),
                 results = found
             else:
                 try:
-                    results = api.propose_new(ws, [query], mailto=mailto, database=database)
+                    results = api.propose_new(ws, [query], mailto=mailto, database=database, announce=typer.echo)
+                    asked = next((q for q in map(api.model_question, results) if q), None)
+                    if asked and sys.stdin.isatty() and typer.confirm(asked, default=False):      # --ask
+                        results = api.propose_new(ws, [query], mailto=mailto, database=database,
+                                                  announce=typer.echo, allow_model=True)
                 except CdlbibError as exc:
-                    typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv}: {exc}')
+                    typer.echo(f'{query.title or query.doi or query.pmid or query.arxiv or query.isbn or query.lccn}: {exc}')
                     failures = True
                     continue
                 failures |= bool(results.errors)

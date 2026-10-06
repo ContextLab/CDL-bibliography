@@ -58,7 +58,7 @@ TITLE_PAGES = 4             # a record's title is looked for on these first page
 MODEL_PAGES = 2             # the pages a model is given (the front matter)
 CANDIDATE_LIMIT = 20
 PER_SOURCE = 10
-SOURCES = ("crossref", "pubmed", "arxiv")
+SOURCES = ("crossref", "pubmed", "arxiv", "loc-catalogue")
 ARXIV_API = "https://export.arxiv.org/api/query"
 DARTMOUTH_KEY_PAGE = "https://rc.dartmouth.edu/ai/online-resources/connecting-ai-clients/"
 ADAPTERS = {"dartmouth": "cdlbib-adapter-dartmouth", "openai": "cdlbib-adapter-openai"}
@@ -208,7 +208,15 @@ def _arxiv_leads(client, title, authors, year, rows):
         yield lead, " and ".join(names) or None
 
 
-_LEADS = {"crossref": _crossref_leads, "pubmed": _pubmed_leads, "arxiv": _arxiv_leads}
+def _catalogue_leads(client, title, authors, year, rows):
+    """Books: the Library of Congress records for the title and the first author, asked as
+    the catalogue check asks (``book_build.leads``). Asked only when both were given."""
+    from . import book_build
+    yield from book_build.leads(client, title, authors, year, rows)
+
+
+_LEADS = {"crossref": _crossref_leads, "pubmed": _pubmed_leads, "arxiv": _arxiv_leads,
+          "loc-catalogue": _catalogue_leads}
 
 
 def _merge_keys(lead):
@@ -292,7 +300,10 @@ class _Client:
 
 def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CANDIDATE_LIMIT,
                     per_source=PER_SOURCE, sources=SOURCES, mailto=None, database=None, progress=None):
-    """Leads for a title, one or several authors, or both, from Crossref, PubMed and arXiv.
+    """Leads for a title, one or several authors, or both, from Crossref, PubMed and arXiv,
+    and, for a title with an author, books from the Library of Congress catalogue (each a
+    lead with ``source`` "loc-catalogue", its ``lccn``, and its publisher and edition in
+    ``journal``: editions are separate leads, never merged).
 
     Each lead has the shape of ``complete._summary`` (``authors``, ``year``, ``journal``,
     ``doi``, ``title``, ``type``, ``source``, and ``pmid``/``arxiv`` when known) plus
@@ -378,7 +389,7 @@ def query_for(candidate):
     """The ``complete.Query`` for a chosen lead: what ``api.propose_new`` is given. The rule
     is ``complete.Query.from_candidate`` (the one shared rule): the identifier of the source
     the lead came from (an arXiv lead: its arXiv id), otherwise the DOI, then the PMID, then
-    the title. CdlbibError when the lead has none of them."""
+    the title; a catalogue record by its LCCN. CdlbibError when the lead has none of them."""
     try:
         return complete.Query.from_candidate(candidate)
     except ValueError as exc:

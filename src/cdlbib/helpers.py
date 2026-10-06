@@ -1190,6 +1190,16 @@ def pending_forms():
     return {(item["key"], item["field"]): (item["value"], item["proposed"]) for item in listed}
 
 
+# "2d", "3d", "22d": a library catalogue's older abbreviation of 2nd, 3rd, 22nd ("2d ed.").
+_CATALOGUE_ORDINAL = re.compile(r"(?<![\w\\{])(\d{1,3})d(?![\w}])")
+
+
+def _catalogue_ordinal(match):
+    number = int(match[1])
+    written = house_ordinal(number)
+    return written if match[1] == str(number) and written.endswith(("{nd}", "{rd}")) else match[0]
+
+
 def format_edition(value):
     r"""The format checker's formatter for ``edition``: an ordinal, as a word or a plain
     numeral, is written as a numeral with a superscript suffix ("Second", "2nd" ->
@@ -1202,7 +1212,7 @@ def format_edition(value):
         return value
     pattern, number = _ordinal_words()
     text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), value)
-    text = _plain_ordinals(text)
+    text = _plain_ordinals(_CATALOGUE_ORDINAL.sub(_catalogue_ordinal, text))
     alone = re.fullmatch(r"\s*(\d+\\textsuperscript\{(?:st|nd|rd|th)\})\s+(?:ed\.?|edn\.?|edition)\s*", text, re.I)
     return alone[1] if alone else text
 

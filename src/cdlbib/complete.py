@@ -204,6 +204,9 @@ class Proposal:
     notes: list[str] = field(default_factory=list)  # how the record was found; not a problem
     edited_fields: dict | None = None  # strict parsed fields of exact user-edited text
     manual: bool = False
+    # Choices made between values a record leaves open, each with what decided it
+    # (container_titles.apply: which of a chapter record's two container titles is the book's).
+    choices: list[dict] = field(default_factory=list)
 
 
 @lru_cache(maxsize=1)
@@ -1069,13 +1072,25 @@ def build(typed_fields, record, corroborating=None, anthology=None):
     return proposal
 
 
+def required_fields(entry_type, fields=None):
+    """The fields an entry of ``entry_type`` must have to be accepted without a decision:
+    ``KINDS`` for the types built from a Crossref record; for a book, its title, its year and
+    its authors (the editors, when ``fields`` has editors and no author: an edited volume).
+    Any other type is held to the article's."""
+    kind = str(entry_type or "").lower()
+    if kind == "book":
+        edited = fields is not None and not fields.get("author") and fields.get("editor")
+        return ("editor" if edited else "author", "title", "year")
+    return KINDS.get(kind, KINDS["article"]).required
+
+
 def _set_complete(proposal, fields):
     """Set ``Proposal.complete``: the entry has a key and every required field of its type
-    (``KINDS``; a type the builder does not make is held to the article's), and none of
+    (``required_fields``), and none of
     them is a question. An entry that is not complete needs a decision. The one rule, for
     every builder (``build``, ``build_arxiv`` and ``propose`` when it rewrites the text)."""
     asked = {c.field for c in proposal.changes if c.kind == "question"}
-    required = KINDS.get(str(proposal.entry_type or "").lower(), KINDS["article"]).required
+    required = required_fields(proposal.entry_type, fields)
     proposal.complete = bool((proposal.key_typed or proposal.key_proposed)
                              and all(fields.get(name) and name not in asked for name in required))
     if not proposal.complete:
@@ -1159,13 +1174,24 @@ class Query:
     key: str | None = None   # its key
     fields: dict | None = None  # its fields (with ENTRYTYPE and ID), as load_entries gives them
     notes: list[str] = field(default_factory=list)  # what was done to the text to read it
+    isbn: str | None = None  # a book, looked up in the Library of Congress catalogue (book_build)
+    lccn: str | None = None  # the same, by the Library's control number
+    book: bool = False       # the title and author are a book's: the catalogue is searched
 
     @classmethod
-    def parse(cls, text, author=None, year=None):
-        """A DOI or DOI link, ``PMID:123`` or a PubMed link, an arXiv id, link or DOI;
-        anything else is the words of a title."""
+    def parse(cls, text, author=None, year=None, book=False):
+        """A DOI or DOI link, ``PMID:123`` or a PubMed link, an arXiv id, link or DOI, an
+        ISBN (``ISBN 978...``, or a bare ISBN-13), ``LCCN 2012007685``; anything else is the
+        words of a title (a book's, with ``book``)."""
+        from .book_build import isbn_text, lccn_text
         text = " ".join(str(text or "").split())
         author, year = (author or "").strip() or None, str(year or "").strip() or None
+        if isbn_text(text):
+            return cls(isbn=isbn_text(text), book=True)
+        if lccn_text(text):
+            return cls(lccn=lccn_text(text), book=True)
+        if book:
+            return cls(title=text or None, author=author, year=year, book=True)
         pmid = _PMID_TEXT.fullmatch(text)
         if pmid:
             return cls(pmid=pmid[1], author=author, year=year)
@@ -1184,7 +1210,9 @@ class Query:
         ``pmid``, ``arxiv``, ``title``): the one rule every front end uses. The identifier of
         the source the candidate came from: an arXiv lead by its arXiv id; anything else by
         its DOI, else its PMID, else an arXiv id, else its title. ValueError when it has
-        none of them."""
+        none of them. A catalogue record (``source`` "loc-catalogue") by its LCCN."""
+        if candidate.get("source") == "loc-catalogue" and candidate.get("lccn"):
+            return cls(lccn=str(candidate["lccn"]), book=True)
         arxiv = str(candidate.get("arxiv") or "").strip()
         if arxiv and candidate.get("source") == "arxiv":
             return cls(arxiv=_arxiv_text(arxiv) or arxiv)
@@ -2224,6 +2252,9 @@ def checked(proposal, client, arxiv_raw=None):
                                         "retrieved_at": response["retrieved_at"], "request_url": response["url"]}
                                        for raw in indexed[doi]]
                 result = reassess(entry, dict(result, candidates=candidates, attempts=attempts))
+                # As the gate does next for a book (catalogue_review.run_catalogue_review).
+                from .book_build import catalogue_check
+                result = catalogue_check(entry, result, client)
             if result["status"] not in ACCEPTED:
                 result = _anthology_checked(entry, client, result)
     except ProviderError as exc:
@@ -2247,7 +2278,7 @@ def checked(proposal, client, arxiv_raw=None):
     return proposal
 
 
-def _propose(query, client, cache, ws=None):
+def _propose(query, client, cache, ws=None, announce=None, allow_model=None):
     """Find the work, build the entry, and have it checked. Returns a ``Proposal`` always:
 
     - no record (an unresolved DOI, nothing found, several candidates): the entry is left
@@ -2263,10 +2294,20 @@ def _propose(query, client, cache, ws=None):
     is a ``question``. A PMID whose PubMed record has no DOI is built from that record
     alone (``record_source`` "pubmed"). A status that is not an accepted one comes with
     the ``FIRST_CHECK`` note.
+
+    A book (a query with an ISBN, an LCCN, or ``book``) is built from its Library of Congress
+    record (``book_build``). A chapter whose record names two container titles has the book's
+    title looked for (``container_titles.resolve``): ``announce`` is told before a model is
+    asked, and ``allow_model`` is the person's answer when they asked to be asked first.
     """
     from .verification import ProviderError
     typed = dict(query.fields) if query.fields else ({"doi": query.doi} if query.doi else {})
     kind = str(typed.get("ENTRYTYPE") or "article").lower()
+    if (query.isbn or query.lccn or query.book) and not query.fields:
+        # A book: built from its Library of Congress record and checked like any entry.
+        from .book_build import propose_book
+        proposal = propose_book(query, client, cache if cache is not None else client.cache)
+        return checked(proposal, client) if proposal.proposed_raw else proposal
     if kind not in KINDS:
         proposal = build(typed, {})
         proposal.typed_raw = query.raw
@@ -2300,19 +2341,31 @@ def _propose(query, client, cache, ws=None):
             given = typed.pop("doi")
         else:
             cut = ""
+    resolution = None
     try:
         if found.source == "arxiv":
             proposal = build_arxiv(typed, found.record)
         else:
+            record = found.record
+            if found.source != "pubmed" and not typed.get("booktitle"):
+                # A series title and a book title, in no stated order: which is the book's is
+                # looked for, and the entry is then built from the record with that one title.
+                from . import container_titles
+                resolution = container_titles.resolve(record, client, cache, announce=announce,
+                                                      allow_model=allow_model)
+                if resolution is not None and resolution.chosen:
+                    record = dict(record, **{"container-title": [resolution.chosen]})
             anthology = None
-            record_doi = found.record.get("DOI")
-            if (found.record.get("type") == KINDS["inproceedings"].record and isinstance(record_doi, str)
+            record_doi = record.get("DOI")
+            if (record.get("type") == KINDS["inproceedings"].record and isinstance(record_doi, str)
                     and str(typed.get("ENTRYTYPE") or "inproceedings").lower() == "inproceedings"):
                 # An ACL Anthology paper: its pages are the Anthology's (``_proceedings_pages``).
                 anthology = anthology_record(client, cache if cache is not None else client.cache, record_doi)
-            proposal = build(typed, found.record, found.corroborating, anthology)
+            proposal = build(typed, record, found.corroborating, anthology)
             if found.source == "pubmed":
                 _renamed_pubmed(proposal)
+            if resolution is not None and proposal.proposed_raw is not None:
+                container_titles.apply(proposal, resolution)
     except CompletionRefused as exc:
         return as_typed([found.note, str(exc)], found.candidates)
     proposal.typed_raw = query.raw
@@ -2489,7 +2542,9 @@ def plan_key(ws, fields, batch=()):
 
 def _key_plan(fields, entries):
     from .helpers import authors2key, check_key_suffixes, key_names
-    base = authors2key(fields['author'], fields['year'])
+    # The names a key is built from: the authors, or the editors of an edited volume
+    # (helpers.key_names).
+    base = authors2key(fields.get('author') or fields['editor'], fields['year'])
     related = {}
     for (key, data), names in zip(entries.items(), key_names(entries)):
         if names.strip() and data.get('year') and authors2key(names, data['year']) == base:
@@ -2520,7 +2575,7 @@ def _plan_proposal(ws, proposal, query, batch):
         proposal.needs_decision = True
         return proposal
     fields = _completion_fields(proposal)
-    if fields.get('author') and fields.get('year'):
+    if (fields.get('author') or (fields.get('editor') and proposal.record_source == 'loc-catalogue')) and fields.get('year'):
         # Updating an exact typed library entry must not reserve that entry twice.
         reserved = _reservations(ws, batch)
         if query.key in entries and query.raw == entries[query.key]['raw']:
@@ -2550,14 +2605,14 @@ def _library_entries(ws):
     return load_entries(ws.bib) if ws.bib.read_text(encoding="utf-8-sig").strip() else {}
 
 
-def propose(query, client, cache, ws=None, batch=()):
+def propose(query, client, cache, ws=None, batch=(), announce=None, allow_model=None):
     """Find, build and check (see ``_propose``); optionally attach local key previews.
 
     ``ws`` is explicit, never discovered/downloaded. ``batch`` explicitly reserves earlier
     proposals for this preview, not for writing; the writer must replan accepted entries.
     """
     batch = tuple(batch)
-    proposal = _propose(query, client, cache, ws=ws)
+    proposal = _propose(query, client, cache, ws=ws, announce=announce, allow_model=allow_model)
     return _plan_proposal(ws, proposal, query, batch) if ws is not None else proposal
 
 

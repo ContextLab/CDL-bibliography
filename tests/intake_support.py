@@ -23,8 +23,8 @@ def saved(name):
     return json.loads(gzip.open(FIXTURES / name).read().decode("utf-8"))
 
 
-def offline_client(folder, *names):
-    client = xs.make_client(Path(folder) / "responses.sqlite3", contact=CONTACT, offline=True)
+def load_saved(client, *names):
+    """Put the saved responses of the named fixture files into ``client``'s response cache."""
     for name in names:
         for item in saved(name):
             request = item["request"]
@@ -33,6 +33,24 @@ def offline_client(folder, *names):
                 request = dumps([url, {k: CONTACT if v == "CONTACT" else v for k, v in params.items()}, xml])
             client.cache.save_response(request, item["response"])
     return client
+
+
+def offline_client(folder, *names):
+    client = xs.make_client(Path(folder) / "responses.sqlite3", contact=CONTACT, offline=True)
+    return load_saved(client, *names)
+
+
+def seeded_library(folder, *names):
+    """A library of its own in ``folder`` whose own response cache holds the named fixture
+    files: what the api's functions and the gate read when no database is named."""
+    ws = library(folder)
+    ws.work.mkdir(parents=True, exist_ok=True)
+    client = xs.make_client(ws.database, contact=CONTACT, offline=True)
+    try:
+        load_saved(client, *names)
+    finally:
+        client.cache.close()
+    return ws
 
 
 def library(folder, *entries):

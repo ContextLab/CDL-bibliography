@@ -740,6 +740,51 @@ table, and `check_bib(autofix=True)` of cdl.bib). The list of rows is frozen in
 | proc. intl. conference on learning and development (icdl) | retarget | proceedings of the international conference on learning and development | proceedings of the international conference on development and learning | ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name. |
 | mathematics $+$ physics | retarget | mathematics$+$ physics | mathematics $+$ physics | Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'. |
 
+## Books from catalogue records; a chapter's two container titles (user, 2026-10-06)
+
+User, 2026-10-06: "the builder creates book entries from Library of Congress records, which
+the checker already uses." Applied (`cdlbib.book_build`):
+
+- **One source for building and checking.** A `@book` is built from one MARC record of the
+  Library of Congress SRU catalogue, fetched by the catalogue check's own request function
+  and cache, read by its grammar (`catalogue_review.parse_edition`), and each built field is
+  kept only when its comparison (`catalogue_review.compare_edition`) accepts it. A record the
+  grammar does not read gives no entry. A built book is a proposal; its status is the
+  verifier's, and nothing records an approval.
+- **Asked for by** ISBN (`bath.isbn`), LCCN (`bath.lccn`), or title and first author (the
+  check's title/author query). Several records are listed as candidates and none is taken;
+  a given year picks an edition only when exactly one record with the title has it.
+- **Not changed:** the formatter; a typed `@book` entry and a book's Crossref record are
+  still not completed.
+- **Found while building, not decided:** the publisher is written as the catalogue
+  transcribes it ("L Erlbaum Associates"); of two publishers the first is written as a
+  question (the library cites Tulv83 by the second); an edition statement that is not a
+  number is not written, and that entry stays `needs_review`. (LC's older "2d ed." was not
+  written either when this was built; it is read as the second edition since the ordinal
+  rule below.)
+
+User, 2026-10-06, on a chapter record that gives a series title and a book title in no
+stated order: "Try to resolve automatically through llm-driven web search." Applied
+(`cdlbib.container_titles`):
+
+- **Records first.** The book's own Crossref record (a book-type record with one of the
+  chapter's ISBNs), then its Library of Congress record: the title either gives the book is
+  taken. In the frozen library this decides Scha03, Mann23 and MayeEtal92b. Crossref's
+  `/journals/{ISSN}` does not know book-series ISSNs (404 for 0079-6123, 1569-7339 and
+  0930-0325), so the series' ISSN decides nothing.
+- **Then a model, only to choose between the two titles.** When both record sources
+  answered and neither decides, and a model route is set up, the adapter's `extract` phase
+  reads the lines of the chapter's page at its publisher that mention either title. The
+  choice counts only when the model's book title is one of the two, a line it selected holds
+  that title without the other, and none holds the other alone. It is announced before it
+  runs (`--ask`: asked first), recorded with route, model, URL and quoted line, marked
+  model-assisted, makes the proposal need a decision, and is not a verification.
+- **Limits found.** The page is fetched from `doi.org` and the fixed publisher hosts of
+  `publisher_corrections` only; Elsevier's landing page (the publisher of the chapters the
+  records do not decide, e.g. 10.1016/s0079-6123(03)45022-x) gives no readable text there,
+  so those stay unfilled with the reason. The verifier accepts either container title of
+  such a record, so it does not confirm the choice.
+
 ## Builder and format rules (owner, 2026-10-06)
 
 Decisions of the owner on 2026-10-06, as given to Claude in the task brief of that day (the
@@ -769,9 +814,16 @@ the brief). What was built for each is in [verification.md](verification.md#edit
   (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96). Their data is NOT changed: they are listed in
   `src/cdlbib/data/pending_house_forms.json` and the format check names them without failing,
   until the owner approves the change.
+  A library catalogue's older "2d ed." and "3d ed." are read as the second and third edition,
+  by the format check and by the catalogue check's edition comparison
+  (`catalogue_review.normalized_edition`), so the book builder writes them; "Rev. ed." is
+  still not written. The format check leaves an edition "2" (a cardinal) and "3th" (a wrong
+  suffix) as written; the research route's own normaliser writes both as ordinals.
 - **Acronyms in the titles of books and proceedings keep their capitals, in braces**
   (`{IEEE}`, `{ACM}`). Applied to `booktitle`: a word given with two or more capitals is
-  braced as given. No existing entry is changed by it.
+  braced as given ("Computer Vision -- {ECCV} 2014", which the formatter wrote "Eccv"). No
+  existing entry is changed by it. A value over 2,000 characters is formatted without the
+  two rules, and the rules read long input in time proportional to its length.
 - **ACL Anthology pages come from the Anthology.** The builder reads the Anthology's own
   record through the Anthology check's client and cache and fills the pages from it; when it
   cannot be read, Crossref's pages are proposed as a question, as before.
