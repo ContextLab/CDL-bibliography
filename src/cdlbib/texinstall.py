@@ -22,7 +22,8 @@ What is run, and how:
 - Of what a program prints, at most MAX_OUTPUT bytes are kept; of a file, at most MAX_FILE
   bytes are read, and only from a regular file.
 - Text from a program or a file that is shown to a person passes shown(): printable
-  characters only, of a bounded length. A version is digits and dots, or it is not reported."""
+  characters only, of a bounded length. A version is digits and dots, with at most one
+  lower-case letter at its end ("0.99e"), or it is not reported."""
 import functools
 import os
 import re
@@ -52,7 +53,9 @@ MAX_OUTPUT = 64_000              # bytes kept of what one program prints
 MAX_FILE = 200_000               # bytes read of one file
 MAX_SHOWN = 2000                 # characters of a program's output shown to a person
 MAX_PATH = 1024                  # characters of a path a program names
-_VERSION = re.compile(r"(?<![\w.])(\d{1,4}(?:\.\d{1,4}){1,3})(?![.\d])")
+# A version: digits and dots, and one lower-case letter after them when the version ends there
+# ("0.99e" of "BibTeX 0.99e (TeX Live 2026)"; of "2.19beta" the "2.19", as before).
+_VERSION = re.compile(r"(?<![\w.])(\d{1,4}(?:\.\d{1,4}){1,3}(?:[a-z](?![\w.]))?)(?![.\d])")
 # All a program run here gets of the user's environment: where programs are, where the user's
 # files are (a package manager keeps its cache there), the locale, and the proxy for a download.
 KEPT = ("HOME", "TMPDIR", "LANG", "LC_ALL", "LC_CTYPE", "http_proxy", "https_proxy", "ftp_proxy", "no_proxy",
@@ -325,9 +328,9 @@ def _version(path, stamp):
 
 
 def version(program):
-    """The version ``program --version`` reports, as digits and dots ("2.22"; of "0.99d" the
-    "0.99"), or "" when the program is not installed or reports none. Asked once per file as
-    it is now (its path, size and time)."""
+    """The version ``program --version`` reports: digits and dots, and the one lower-case
+    letter a version may end in ("2.22", "0.99e"), or "" when the program is not installed or
+    reports none. Asked once per file as it is now (its path, size and time)."""
     path = which(program)
     if not path:
         return ""

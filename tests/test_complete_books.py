@@ -288,9 +288,15 @@ def test_an_edition_that_is_not_a_number_is_built_without_it_and_stays_unverifie
                                "loc-catalogue : edition: missing evidence or mismatch"]
     assert complete.FIRST_CHECK in proposal.notes
     assert book_build._edition_house("Rev. ed") is None and book_build._edition_house("2nd ed") == "2\\textsuperscript{nd}"
-    # The older catalogue form "2d ed." is not one the check's edition comparison reads as a number
-    # (catalogue_review.normalized_edition), so it is not written either.
-    assert catalogue_review.normalized_edition("2d ed") == "2d ed" and book_build._edition_house("2d ed") is None
+    # The older catalogue form "2d ed." is the second edition (owner decision 2026-10-06 on ordinals):
+    # the check's edition comparison reads it as the number, and it is written in the house form.
+    # "12d" and "4d" abbreviate no ordinal and stay unread.
+    assert catalogue_review.normalized_edition("2d ed") == "2"
+    assert catalogue_review.normalized_edition("2d ed.") == catalogue_review.normalized_edition("2\\textsuperscript{nd}")
+    assert book_build._edition_house("2d ed") == "2\\textsuperscript{nd}"
+    assert book_build._edition_house("3d ed.") == "3\\textsuperscript{rd}"
+    assert book_build._edition_house("22d ed") == "22\\textsuperscript{nd}"
+    assert book_build._edition_house("12d ed") is None and book_build._edition_house("4d ed") is None
     assert book_build._edition_house("Third edition") == "3\\textsuperscript{rd}"
     assert book_build._edition_house("11th ed.") == "11\\textsuperscript{th}"
     assert client.requests == 0

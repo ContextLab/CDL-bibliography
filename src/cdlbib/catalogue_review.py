@@ -55,11 +55,13 @@ def normalized_edition(value):
              'sixth': 6, 'seventh': 7, 'eighth': 8, 'ninth': 9, 'tenth': 10}
     if text in words:
         return str(words[text])
-    match = re.fullmatch(r'([1-9]\d?)(st|nd|rd|th)?', text)
+    # "2d", "3d", "22d": the catalogue's older abbreviation of "2nd", "3rd", "22nd" (owner
+    # decision 2026-10-06 on ordinals). Only where the full suffix is nd or rd.
+    match = re.fullmatch(r'([1-9]\d?)(st|nd|rd|th|d)?', text)
     if match:
         number = int(match[1])
         suffix = 'th' if 11 <= number % 100 <= 13 else {1:'st',2:'nd',3:'rd'}.get(number % 10, 'th')
-        if match[2] in (None, suffix):
+        if match[2] in (None, suffix) or (match[2] == 'd' and suffix in ('nd', 'rd')):
             return str(number)
     return normalized(value).rstrip('.')
 

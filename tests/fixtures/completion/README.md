@@ -192,3 +192,29 @@ the bibliographic search for the bare title "Highly accurate protein structure p
 with AlphaFold" (its five results are recommendations of the paper, not the paper), and the
 title search among chapters, journal articles and proceedings papers that follows it (its
 first result is the paper, `10.1038/s41586-021-03819-2`).
+
+## `rule_responses.json`
+
+The lookups of `tests/test_complete_rules.py` (a chapter's editors, ordinals in the name of
+proceedings, the pages of an ACL Anthology paper): 8 responses, each requested once on
+2026-10-06 through `cdlbib.verification.PoliteClient`, in the form of `responses.json`.
+`record_rule_responses.py` beside this file is the script that made it: it fills an empty
+cache with `responses.json`, `type_responses.json` and what an earlier run of the script
+saved, runs `cdlbib.complete.propose` on the queries below, and writes out every response
+the client fetched. The `request` of an API response is the client's cache key (a list); the
+`request` of a document is the Anthology check's cache key, a string
+(`acl-source-v1:<url>`), and its `response` is the document as that check caches it (`url`,
+`body`, `document_sha256`, `retrieved_at`). One alteration: the contact address is removed
+from each saved URL. No body holds an e-mail address.
+
+| Request (address removed) | Work | Why |
+|-|-|-|
+| `api.crossref.org/works/10.1515%2F9783110858778-003` | M. Minsky, "A Framework For Representing Knowledge", in Frame Conceptions and Text Understanding (1979); not the library's `Mins75`, which cites another book | a chapter whose own record names the book's editor |
+| `api.crossref.org/works/10.1093%2Fmed%2F9780197549469.003.0016` | a chapter of Jasper's Basic Mechanisms of the Epilepsies (2024); not in the library | a chapter record with four editors, one with a particle |
+| `api.crossref.org/works/10.1117%2F12.2309486` | a paper of the Tenth International Conference on Machine Vision (SPIE, 2018); not in the library | a proceedings record that names the volume's editors; an ordinal word in the name |
+| `api.crossref.org/works/10.18653%2Fv1%2Fd19-6607` | `ClanEtal19` | an ordinal word in the name of proceedings ("the Second Workshop") |
+| `aclanthology.org/D19-1410.bib` | `ReimGure19` | the Anthology's record, whose pages (3982--3992) differ from Crossref's (3980-3990) |
+| `aclanthology.org/D19-6607.bib` | `ClanEtal19` | the Anthology's record of the same paper |
+| `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"` (2 requests) | `ReimGure19` and the Minsky chapter | the PubMed side of each entry the Crossref comparison did not accept at first (no result) |
+
+The Crossref record of `ReimGure19` (10.18653/v1/d19-1410) is in `type_responses.json`.

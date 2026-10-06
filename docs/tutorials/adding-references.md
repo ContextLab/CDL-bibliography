@@ -280,12 +280,18 @@ cdlbib add 10.18653/v1/N19-1423
 The session ended:
 
 ```text
+pages: None -> 4171--4186 (source: acl-anthology)
+title: None -> {BERT}: pre-training of deep bidirectional transformers for language understanding (source: crossref)
+year: None -> 2019 (source: crossref)
 Verification: metadata_verified
-pages: 10.18653/v1/n19-1423 is an ACL Anthology paper; the Anthology's record outranks Crossref's page range and was not read, so the pages are not confirmed
 [a] accept   [e] edit   [s] skip   [A] accept all remaining   [q] stop
 Your choice [a/e/s/A/q]: a
 Added: DevlEtal19
 ```
+
+This is a paper of the ACL Anthology, so its pages are read from the Anthology's own
+record (`source: acl-anthology`), which the citation check reads too. If the Anthology
+cannot be read, the pages Crossref gives are proposed as a question to decide.
 
 The entry written to `cdl.bib`:
 
@@ -311,16 +317,15 @@ record and writes the title that record gives the book. The proposal says where 
 came from, and lists the fields that no source record filled, with the reason for each:
 
 ```text
-booktitle: None -> Computer Vision -- Eccv 2014 (source: crossref (the book's own Crossref record))
-Unfilled address: address: no source record states it
+booktitle: None -> Computer Vision -- {ECCV} 2014 (source: crossref (the book's own Crossref record))
 Unfilled editor: editor: no source record states it
+Unfilled address: address: no source record states it
 Verification: metadata_verified
 booktitle: the record names two titles, "Lecture Notes in Computer Science" and "Computer Vision – ECCV 2014"; "Computer Vision – ECCV 2014" is taken as the book's. The book's own Crossref record (10.1007/978-3-319-10590-1, ISBN 9783319105895) has the title "Computer Vision – ECCV 2014" and names "Lecture Notes in Computer Science" as its series.
 ```
 
-The formatter wrote the acronym as "Eccv". Press `e` to correct a value in your editor
-(here, `Booktitle = {Computer Vision -- {ECCV} 2014},`); the edited entry is checked again
-before you can accept it.
+The acronym keeps its capitals, in braces. Press `e` to correct a value in your editor;
+the edited entry is checked again before you can accept it.
 
 When no record of the book settles which title is the book's, the book title is left
 unfilled and the reason is given, for example:

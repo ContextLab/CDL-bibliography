@@ -1,0 +1,571 @@
+[
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1515%2F9783110858778-003",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1515/9783110858778-003",
+     "ISBN": [
+      "9783110858778"
+     ],
+     "URL": "https://doi.org/10.1515/9783110858778-003",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Minsky",
+       "given": "M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Frame Conceptions and Text Understanding"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Metzing",
+       "given": "Dieter",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://www.degruyter.com/view/books/9783110858778/9783110858778-003/9783110858778-003.xml",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.degruyter.com/document/doi/10.1515/9783110858778-003/pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1-25",
+     "published": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "publisher": "De Gruyter",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "A Framework For Representing Knowledge"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:22.899255+00:00",
+   "url": "https://api.crossref.org/works/10.1515%2F9783110858778-003"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1093%2Fmed%2F9780197549469.003.0016",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1093/med/9780197549469.003.0016",
+     "ISBN": [
+      "0197549462",
+      "9780197549469",
+      "9780197549490"
+     ],
+     "URL": "https://doi.org/10.1093/med/9780197549469.003.0016",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Merricks",
+       "given": "Edward M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Schevon",
+       "given": "Catherine A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Jasper's Basic Mechanisms of the Epilepsies"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Avoli",
+       "given": "Massimo",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "de Curtis",
+       "given": "Marco",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Bernard",
+       "given": "Christophe",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Soltesz",
+       "given": "Ivan",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://academic.oup.com/book/57972/chapter/476207839",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "325-350",
+     "published": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "publisher": "Oxford University PressNew York",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Human Single-Neuron Recordings in Epilepsy"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:23.999008+00:00",
+   "url": "https://api.crossref.org/works/10.1093%2Fmed%2F9780197549469.003.0016"
+  }
+ },
+ {
+  "request": "acl-source-v1:https://aclanthology.org/D19-1410.bib",
+  "response": {
+   "body": "@inproceedings{reimers-gurevych-2019-sentence,\n    title = \"Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks\",\n    author = \"Reimers, Nils  and\n      Gurevych, Iryna\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1410/\",\n    doi = \"10.18653/v1/D19-1410\",\n    pages = \"3982--3992\"\n}\n\n",
+   "document_sha256": "87982968ae942aacbfea0637807abb8f8fbb4d534f9fd16447eb0b817774c44b",
+   "retrieved_at": "2026-10-06T16:32:25.539923+00:00",
+   "url": "https://aclanthology.org/D19-1410.bib"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.18653/v1/d19-1410\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.18653/v1/d19-1410\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:33.900704+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.18653%2Fv1%2Fd19-1410%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-6607",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.18653/v1/d19-6607",
+     "URL": "https://doi.org/10.18653/v1/d19-6607",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Clancy",
+       "given": "Ryan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Ilyas",
+       "given": "Ihab F.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Lin",
+       "given": "Jimmy",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "page": "39-46",
+     "published": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "publisher": "Association for Computational Linguistics",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Scalable Knowledge Graph Construction from Text Collections"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:34.458310+00:00",
+   "url": "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-6607"
+  }
+ },
+ {
+  "request": "acl-source-v1:https://aclanthology.org/D19-6607.bib",
+  "response": {
+   "body": "@inproceedings{clancy-etal-2019-scalable,\n    title = \"Scalable Knowledge Graph Construction from Text Collections\",\n    author = \"Clancy, Ryan  and\n      Ilyas, Ihab F.  and\n      Lin, Jimmy\",\n    editor = \"Thorne, James  and\n      Vlachos, Andreas  and\n      Cocarascu, Oana  and\n      Christodoulopoulos, Christos  and\n      Mittal, Arpit\",\n    booktitle = \"Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-6607/\",\n    doi = \"10.18653/v1/D19-6607\",\n    pages = \"39--46\"\n}\n\n",
+   "document_sha256": "f4aa9c7871794d406a1e1f8033a34239fa6230d4d8751a7358a9acc67c727272",
+   "retrieved_at": "2026-10-06T16:32:35.614122+00:00",
+   "url": "https://aclanthology.org/D19-6607.bib"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1515/9783110858778-003\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1515/9783110858778-003\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:43.423853+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1515%2F9783110858778-003%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1117%2F12.2309486",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1117/12.2309486",
+     "URL": "https://doi.org/10.1117/12.2309486",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Debayle",
+       "given": "Johan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Hatami",
+       "given": "Nima",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Gavet",
+       "given": "Yann",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Tenth International Conference on Machine Vision (ICMV 2017)"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Zhou",
+       "given": "Jianhong",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Radeva",
+       "given": "Petia",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Nikolaev",
+       "given": "Dmitry",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Verikas",
+       "given": "Antanas",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "page": "23",
+     "published": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "publisher": "SPIE",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Classification of time-series images using deep convolutional neural networks"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:47:12.425393+00:00",
+   "url": "https://api.crossref.org/works/10.1117%2F12.2309486"
+  }
+ }
+]

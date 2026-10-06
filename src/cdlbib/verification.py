@@ -1510,8 +1510,11 @@ def ordinal_form(text):
     Applied to already-normalized (lowercase) text: 'thirtieth' -> '30th',
     'twenty-fourth'/'twenty fourth' -> '24th'. Numeric ordinals are left as written,
     so a wrong suffix ('3th') never equals '3rd' or 'third'. Cardinals ('thirty')
-    are unchanged.
+    are unchanged. The house form (owner decision 2026-10-06: a numeral with a
+    superscript suffix, '30\\textsuperscript{th}') reads as '30th', as ``normalized``
+    reads it, so the three spellings of one ordinal compare equal.
     """
+    text = HOUSE_ORDINAL.sub(r"\1\2", text)
     text = _COMPOUND_ORDINAL.sub(lambda m: numeric_ordinal(_ORDINAL_TENS[m[1]] + _ORDINAL_UNITS[m[2]]), text)
     return _SIMPLE_ORDINAL.sub(lambda m: numeric_ordinal(_ORDINAL_WORDS[m[1]]), text)
 
@@ -1969,10 +1972,18 @@ def collapse_repeated_byline(people):
     return people[:half], REPEATED_BYLINE
 
 
-def author_evidence(value, people):
+def author_evidence(value, people, role="author"):
+    """Whether the byline ``value`` is ``people`` (a source's list): complete, in order,
+    each name by the name rules. ``role``: "author", or "editor" for an ``editor`` field
+    against a record's editors; the rules are the same and only the wording names the role."""
+    def said(text):
+        if role == "author":
+            return text
+        return text.replace("Author", role.capitalize()).replace("author", role)
+
     names = split_authors(value)
     if not value or not people or len(names) != len(people):
-        return False, "Missing authors or different author counts"
+        return False, said("Missing authors or different author counts")
     for name, person in zip(names, people):
         if name.startswith("{") and name.endswith("}"):
             if not normalized(name) or normalized(name) != normalized(
@@ -1980,15 +1991,15 @@ def author_evidence(value, people):
             ):
                 return (
                     False,
-                    "Corporate author differs or is not represented as an organization",
+                    said("Corporate author differs or is not represented as an organization"),
                 )
             continue
         parts = splitname(name, strict_mode=True)
         family = " ".join(parts["von"] + parts["last"])
         if normalized(family) != normalized(person.get("family", "")):
-            return False, "Author surnames/order differ"
+            return False, said("Author surnames/order differ")
         if not same_suffix(" ".join(parts["jr"]), source_name_suffix(person.get("suffix", ""))):
-            return False, "Author suffix differs"
+            return False, said("Author suffix differs")
         given = without_suffix_tokens(given_name_tokens(" ".join(parts["first"])))
         actual = without_suffix_tokens(given_name_tokens(person.get("given", "")))
         if not given or len(given) != len(actual):
@@ -1997,10 +2008,10 @@ def author_evidence(value, people):
             # Initials are allowed only when explicitly supplied by the citation;
             # do not collapse two conflicting full names or omit middle initials.
             if not given_token_matches(a, b):
-                return False, "Author given names differ"
+                return False, said("Author given names differ")
     return (
         True,
-        "Complete author list in order; citation initials agree with source names",
+        said("Complete author list in order; citation initials agree with source names"),
     )
 
 
@@ -2287,6 +2298,13 @@ def rival_blocks(fields, selected, rival):
 ORDINAL_FIELDS = {"title", "journal", "booktitle", "publisher"}
 
 
+# Entry types whose ``editor`` field is compared with the record's editors (owner decision
+# 2026-10-06): Crossref's ``editor`` on a chapter, a paper in proceedings or a book names the
+# editors of the volume. An ``editor`` field on any other type still has no check.
+EDITOR_KINDS = {"incollection", "inproceedings", "book"}
+NO_SOURCE_EDITORS = "editor: the citation names editors and the source record names none"
+
+
 def normalize_book_publisher(value):
     """Book publishers: typography normalization plus undotted initials."""
     return publisher_initials(normalized(value))
@@ -2366,6 +2384,22 @@ def compare_record(fields, record, doi_alias=None):
         evidence["author"]["source_detail"] = repeated
     if not authors_ok:
         issues.append("author: " + detail)
+    checks_editors = "editor" in fields and kind in EDITOR_KINDS
+    if checks_editors:
+        # The citation's editors against the record's, as the authors are compared: the whole
+        # list, in order, by the same name rules. An entry with no editor field is not asked
+        # for one, whatever the record names.
+        listed = record.get("editor") or []
+        editors, repeated_editors = collapse_repeated_byline(listed)
+        try:
+            editors_ok, detail = author_evidence(fields["editor"], editors, role="editor")
+        except (ValueError, KeyError, TypeError, AttributeError) as exc:
+            editors_ok, detail = False, str(exc)
+        evidence["editor"] = {"local": fields["editor"], "source": listed, "match": editors_ok, "detail": detail}
+        if repeated_editors:
+            evidence["editor"]["source_detail"] = repeated_editors
+        if not editors_ok:
+            issues.append("editor: " + detail if listed else NO_SOURCE_EDITORS)
     years = set()
     for date in ("published", "published-print", "published-online", "issued"):
         for parts in record.get(date, {}).get("date-parts", []):
@@ -2477,6 +2511,8 @@ def compare_record(fields, record, doi_alias=None):
         "issn",
         "force",
     }
+    if checks_editors:
+        covered.add("editor")
     for field in sorted(set(fields) - covered):
         issues.append(f"{field}: no deterministic verifier for this field")
     if record.get("update-to") or record.get("updated-by"):

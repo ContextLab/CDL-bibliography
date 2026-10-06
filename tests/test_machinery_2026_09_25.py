@@ -210,7 +210,9 @@ def test_mann24_volume_pack_is_not_part_of_the_book_title():
     record = crossref(previous, "10.1093/oxfordhb/9780190917982.013.38")["record"]
     evidence, issues = v.compare_record(entry["fields"], record)
     assert evidence["booktitle"]["match"]
-    assert issues == ["editor: no deterministic verifier for this field"]  # no editor checker yet
+    # Editors are compared since 2026-10-06 (resolver 31); this chapter's record names none.
+    assert "editor" not in record
+    assert issues == ["editor: the citation names editors and the source record names none"]
     assert not v.compare_record(edited(entry, booktitle="The {Oxford} Handbook of Human Memory, Volume 1")["fields"],
                                 record)[0]["booktitle"]["match"]
 
@@ -267,8 +269,10 @@ def test_kleene56_series_number_is_the_only_difference():
     record = crossref(previous, "10.1515/9781400882618-002")["record"]
     evidence, issues = v.compare_record(entry["fields"], record)
     assert evidence["booktitle"]["match"]
-    assert issues == ["address: no deterministic verifier for this field",
-                      "editor: no deterministic verifier for this field"]
+    # Editors are compared since 2026-10-06 (resolver 31); this chapter's record names none.
+    assert "editor" not in record
+    assert issues == ["editor: the citation names editors and the source record names none",
+                      "address: no deterministic verifier for this field"]
     assert not v.compare_record(edited(entry, booktitle="Automata Studies II")["fields"], record)[0]["booktitle"]["match"]
 
 
