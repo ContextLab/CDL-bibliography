@@ -108,15 +108,36 @@ def _key(text):
         return ""
 
 
+def verifier_verdict(cited, source):
+    """What the verifier itself says of ``cited`` as the book title of a chapter whose record
+    names ``source``: True (it accepts it), False (it finds a mismatch) or None (it cannot
+    say: a title it does not read, or no title). This IS the verifier: the answer is read
+    from ``verification.compare_record``'s own evidence for the ``booktitle`` field of an
+    ``@incollection`` against a ``book-chapter`` record, with every form that check accepts
+    (case, braces, typography, an ordinal the formatter rewrote, a series number or
+    volume-pack tail of the record). It is the single comparison of this module: whether two
+    titles are the same, whether a line's title is the book's, whether saved editor evidence
+    is about the cited book, and whether an entry's book title is still the one a model
+    chose are all asked here and nowhere else."""
+    from .verification import compare_record
+    if not isinstance(cited, str) or not isinstance(source, str) or not cited.strip() or not source.strip():
+        return None
+    if not _key(cited) or not _key(source):          # one of them is not a title the verifier reads
+        return None
+    try:
+        evidence, _ = compare_record({"ENTRYTYPE": "incollection", "booktitle": cited},
+                                     {"type": "book-chapter", "container-title": [source]})
+        found = evidence.get("booktitle")
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return None
+    return bool(found["match"]) if isinstance(found, dict) and "match" in found else None
+
+
 def title_is(cited, source):
-    """Whether ``cited`` is the book title ``source``, by the verifier's own rule for a cited
-    book title against a record's (``compare_record``: equal as ``verification.normalized``
-    reads them, or equal once the record's series number or volume-pack tail is taken off,
-    ``verification.book_title_forms``). Every "is this title that title" of this module is
-    this function; nothing here compares titles in another way."""
-    from .verification import book_title_forms
-    target = _key(cited)
-    return bool(target) and target in {_key(source), _key(book_title_forms(str(source or "")))}
+    """Whether the verifier accepts ``cited`` as the book title ``source`` (``verifier_verdict``
+    is True). False also when it cannot say: use ``verifier_verdict`` where "cannot say" must
+    not be read as "different"."""
+    return verifier_verdict(cited, source) is True
 
 
 def same_title(one, two):
@@ -426,7 +447,6 @@ def valid_book_editors(record, booktitle=None):
     found = record.get(BOOK_RECORD) if isinstance(record, dict) else None
     if not isinstance(found, dict) or found.get("disagreement") or not isinstance(found.get("editor"), list):
         return None
-    from .verification import book_title_forms
     venues = [v for v in record.get("container-title") or [] if isinstance(v, str)]
     cited = booktitle if booktitle is not None else found.get("booktitle")
     # The container titles of the chapter that the cited book title is, by the verifier's own
@@ -1120,14 +1140,29 @@ def apply(proposal, resolution):
 MODEL_CHOICE = "model-assisted-choice"     # ``kind`` of the external evidence stored with such an entry
 
 
+def still_chosen(booktitle, choice):
+    """Whether an entry whose book title is ``booktitle`` still carries the model's choice.
+    False in one case only: the verifier itself says ``booktitle`` is a different title from
+    the one the model chose (``verifier_verdict`` is False for the chosen registry title, and
+    for the form of it that was written). A title the verifier takes for the same one in
+    another form (case, braces, spacing, a final full stop, an ordinal rewritten) is still
+    the choice, and so is anything the verifier cannot judge: the mark is kept unless the
+    title was plainly changed."""
+    if not isinstance(booktitle, str) or not booktitle.strip():
+        return False                       # no book title at all: there is nothing the choice is about
+    verdicts = [verifier_verdict(booktitle, str(choice.get(name) or "")) for name in ("chosen", "written")
+                if choice.get(name)]
+    return not verdicts or not all(verdict is False for verdict in verdicts)
+
+
 def model_choice(proposal, booktitle=None):
-    """The model-assisted choice a proposal carries (its record in ``choices``), or None. The
-    choice is bound to the exact book title it wrote (``written``): with ``booktitle`` (the
-    book title of the entry as it will be written) it is returned only when that is still the
-    value, so a person who typed another title has dropped the choice, and nothing else has."""
+    """The model-assisted choice a proposal carries (its record in ``choices``), or None.
+    With ``booktitle`` (the book title of the entry as it will be written) it is returned
+    unless the person changed the title to a different one (``still_chosen``, which is the
+    verifier's judgement and no other)."""
     choice = next((c for c in getattr(proposal, "choices", None) or []
-                   if c.get("field") == "booktitle" and c.get("model_assisted") and c.get("chosen")), None)
-    if choice is None or (booktitle is not None and booktitle != choice.get("written")):
+                   if isinstance(c, dict) and c.get("field") == "booktitle" and c.get("model_assisted")), None)
+    if choice is None or (booktitle is not None and not still_chosen(booktitle, choice)):
         return None
     return choice
 
@@ -1141,7 +1176,10 @@ def restate(proposal, fields):
     if carried is None:
         return proposal
     if model_choice(proposal, (fields or {}).get("booktitle")) is None:
+        # The one way a choice leaves a proposal: the person typed a book title the verifier says is another.
         proposal.choices = [c for c in proposal.choices if c is not carried]
+        proposal.notes.append(f"booktitle: you changed the book title a model had chosen (\"{carried.get('chosen')}\"); "
+                              "the title is now yours, and the entry is checked as any other")
         return proposal
     said = (f"booktitle: \"{carried['chosen']}\" was chosen between the record's two titles with a model "
             f"({carried.get('route')}), from the line \"{carried.get('quote')}\" of {carried.get('url')}. " + UNCONFIRMED)
@@ -1155,6 +1193,7 @@ def _choice_evidence(choice):
     return {"kind": MODEL_CHOICE, "summary": "booktitle chosen with a model, unconfirmed",
             "statement": UNCONFIRMED, "model_assisted": True, "confirmed": False,
             "reviewer": f"model:{choice.get('route')}", "booktitle": choice.get("written"),
+            "single_comparison": "container_titles.verifier_verdict",
             "fields": {"booktitle": {"value": choice.get("chosen"), "quote": choice.get("quote"),
                                      "page": choice.get("url")}},
             **{k: choice.get(k) for k in ("route", "model", "url", "quote", "document_sha256", "chosen", "other",
@@ -1167,7 +1206,7 @@ def _put_choice(cache, bibliography, entry, choice):
     this exact entry is left as it is."""
     from .errors import CdlbibError
     from .verification import outcome
-    if entry["fields"].get("booktitle") != choice.get("written") or not choice.get("written"):
+    if not still_chosen(entry["fields"].get("booktitle"), choice):
         raise CdlbibError(f"{entry['key']}: the book title is not the one the model-assisted choice wrote; "
                           "the mark is for that title only.")
     previous = cache.get(bibliography, entry)
