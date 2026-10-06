@@ -45,7 +45,9 @@ EPMC_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 # (Not raised for the 2026-09-30 surname rule: it only withdraws a resolution, so no
 # unresolved entry can gain from a revisit; apply-2026-09-30-surnames rechecked every
 # accepted entry instead.)
-RESOLVER_VERSION = 30  # 30: verification/machinery-2026-09-25 PR-test fixes. 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
+RESOLVER_VERSION = 31  # 31: an ``editor`` field is compared with the record's editors (owner decision 2026-10-06; additive: an
+#     entry with an editor field was never accepted from a Crossref record before, so no approval is restricted).
+#     30: verification/machinery-2026-09-25 PR-test fixes. 29: verification/apply-2026-09-25 stage 1 rules (suffixes ignored; catalogue
 #     publisher same-firm variants). 28: verification/phase0-2026-09-22 rules
 EPMC_FIELDS = {
     "id",

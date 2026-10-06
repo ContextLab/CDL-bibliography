@@ -25,7 +25,8 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 
 from .preprint_review import checked_body, fetch_document, people
-from .verification import author_evidence, normalize_doi, normalize_title, normalized, outcome, split_authors
+from .verification import (author_evidence, normalize_doi, normalize_title, normalized, ordinal_form, outcome,
+                           split_authors)
 from .osf_review import classify, run_route
 
 ACL_POLICY = '1'
@@ -166,7 +167,9 @@ def assess_acl(fields, raw):
         forms = house_booktitle(item['booktitle'])
         cited = fields.get('booktitle') or (fields.get('journal') if fields.get('ENTRYTYPE') == 'article' else None)
         try:
-            venue_ok = bool(cited) and normalized(cited) in {normalized(f) for f in forms}
+            # The three spellings of an ordinal compare equal, as in every other venue
+            # comparison (verification.ordinal_form): "Second", "2nd", "2\textsuperscript{nd}".
+            venue_ok = bool(cited) and ordinal_form(normalized(cited)) in {ordinal_form(normalized(f)) for f in forms}
         except ValueError:
             venue_ok = False
         check('booktitle', {'anthology': item['booktitle'], 'house': forms[0]}, venue_ok, forms[0])
