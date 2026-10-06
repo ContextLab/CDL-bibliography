@@ -53,7 +53,7 @@ available on this computer:
   git: yes (/usr/bin/git)
   gh login: yes (@you)
   TeX: yes (/opt/homebrew/bin/kpsewhich)
-  bibtex: yes (/opt/homebrew/bin/bibtex; 0.99)
+  bibtex: yes (/opt/homebrew/bin/bibtex; 0.99e)
   biber: yes (/opt/homebrew/bin/biber; biber 2.22, biblatex 3.21)
   pypdf: yes (installed)
 ```

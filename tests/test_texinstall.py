@@ -64,7 +64,10 @@ def test_the_versions_are_the_ones_the_programs_report():
     need("biber", "bibtex", "kpsewhich")
     said = subprocess.run(["biber", "--version"], capture_output=True, text=True).stdout
     assert texinstall.version("biber") and said.strip().endswith(texinstall.version("biber"))
-    assert re.fullmatch(r"\d+\.\d+", texinstall.version("bibtex"))                  # digits and dots: 0.99 of "0.99d"
+    said = subprocess.run(["bibtex", "--version"], capture_output=True, text=True).stdout
+    # digits and dots, and the letter the version ends in: "0.99e" of "BibTeX 0.99e (TeX Live 2026)"
+    assert re.fullmatch(r"\d+\.\d+[a-z]?", texinstall.version("bibtex"))
+    assert re.match(r"BibTeX " + re.escape(texinstall.version("bibtex")) + r"(?![\w.])", said)
     assert texinstall.version("bibtex") in subprocess.run(["bibtex", "--version"], capture_output=True, text=True).stdout
     assert texinstall.version("a-program-that-is-not-installed") == ""
     sty = subprocess.run(["kpsewhich", "biblatex.sty"], capture_output=True, text=True).stdout.strip()
@@ -326,14 +329,25 @@ def test_what_a_program_prints_and_what_a_file_holds_is_read_up_to_a_limit(tmp_p
 
 def test_what_is_shown_of_a_program_is_printable_and_a_version_is_digits_and_dots(tmp_path, monkeypatch):
     """Real programs called biber that print terminal escape sequences: the version is the
-    digits and dots or nothing, in the report and on the command line."""
+    digits and dots (and the one lower-case letter a version may end in) or nothing, in the
+    report and on the command line."""
     marker = tmp_path / "ran"
     cases = {"plain": ("biber version: 2.19\\n", "2.19"),
              "escapes after": ("biber version: 2.20\\033[2J\\033]0;title\\007\\n", "2.20"),
              "escapes inside": ("biber version: \\033[31m2\\033[0m.21\\n", ""),
              "no version": ("\\033]0;owned\\007 rm -rf\\n", ""),
              "very long": ("biber version: " + "9" * 300 + ".1\\n", ""),
-             "second line": ("hello\\nbiber version: 2.22\\n", "")}
+             "second line": ("hello\\nbiber version: 2.22\\n", ""),
+             # one lower-case letter at the end of a version is part of it (BibTeX 0.99e); nothing else is
+             "a letter": ("BibTeX 0.99e (TeX Live 2026/Homebrew)\\n", "0.99e"),
+             "a letter at the end": ("biber version: 2.19a\\n", "2.19a"),
+             "two letters": ("biber version: 2.19ab\\n", "2.19"),
+             "a word": ("biber version: 2.19beta\\n", "2.19"),
+             "a capital": ("biber version: 2.19E\\n", "2.19"),
+             "a letter and a digit": ("biber version: 2.19e7\\n", "2.19"),
+             "a letter and more": ("biber version: 2.19e.1\\n", "2.19"),
+             "a letter and an escape": ("biber version: 2.19e\\033[2J\\n", "2.19e"),
+             "a letter alone": ("biber version: e\\n", "")}
     for label, (says, expected) in cases.items():
         folder = tmp_path / label
         decoy(folder, "biber", marker, says=says)
