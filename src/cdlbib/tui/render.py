@@ -142,7 +142,9 @@ def evidence(detail, colour):
                  "  " + "  ".join(f"{name}={_value(value)}" for name, value in attempt.items()),
                  "muted" if attempt is None else None)
     if detail.external_evidence:
-        out.head("External evidence (PDF or model reading; not an approval)")
+        out.head("Book title chosen with a model, unconfirmed (not an approval)"
+                 if detail.external_evidence.get("kind") == "model-assisted-choice"
+                 else "External evidence (PDF or model reading; not an approval)")
         _record(out, detail.external_evidence)
     out.head("Human review")
     if detail.human_review:

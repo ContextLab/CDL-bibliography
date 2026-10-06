@@ -75,7 +75,9 @@ function evidenceTab(panel, detail) {
     result.revoked_approval.human_review ? approval(result.revoked_approval.human_review) : null);
   }
   if (result.external_evidence) {
-    add(panel, h("h3", { text: "Model reading of a PDF (evidence, not an approval)" }), modelEvidence(result.external_evidence));
+    add(panel, h("h3", { text: result.external_evidence.kind === "model-assisted-choice"
+      ? "Book title chosen with a model, unconfirmed (evidence, not an approval)"
+      : "Model reading of a PDF (evidence, not an approval)" }), modelEvidence(result.external_evidence));
   }
   const candidates = result.candidates || [];
   add(panel, h("h3", { text: "Source records compared (" + candidates.length + ")" }));

@@ -614,15 +614,29 @@ catalogue route like any other book.
 An answer to an ISBN or LCCN query is used only for the records that carry that number
 themselves (MARC 020 `$a`, the ten- and thirteen-digit forms of one ISBN counting as the
 same; MARC 010, normalised): an answer that echoes the query and holds another record is
-refused. The proposal keeps the record it was built from (`choices`: its catalogue id,
-LCCN, ISBNs, and the field that matched), and the catalogue check's verdict counts for the
-proposal only when it accepts that same record.
+refused, and so is the one matching record of an answer the catalogue cut short (it
+counts more records than it returned): the rest was not seen. The proposal keeps the record it was built from (`choices`: its catalogue id,
+LCCN, ISBNs, and the field that matched), and the proposal is verified only by the
+catalogue check's acceptance of that same record: an acceptance that came any other way
+(another source, another record) is put to the catalogue check before it is returned.
 
 Catalogue text is plain text. Before house braces are added it is escaped for TeX
 (`book_build.plain_source`, using the escaper of `intake`): `%`, `&`, `#` and `_`. The
 verifier compares the escaped field as equal to the record. A string with a backslash, a
 dollar sign, `~` or `^` is not written (the verifier does not read their TeX forms), and a
 name with any such character is not written either; the field is listed as unfilled.
+
+The same two layers and proof hold for every builder (`complete.build`,
+`complete.build_arxiv`): each value a source fills goes through
+`book_build.finished_source` (nothing that changes the entry's structure, no command but
+the house's own, no `~ ^ $`, `% & # _` escaped; a DOI may hold none of these), a list of
+names with a character TeX reads as a command, a control character or the word "and" in
+a name is not written, and the rendered entry must read back as one entry of its type
+with exactly its fields (`intake._proved`). Before 2026-10-06 the article, proceedings
+and chapter builders refused markup in a journal, book title or publisher and in names
+(`< > { } \ $`), constrained volume, number and pages by pattern, and wrote a title as
+the formatter returned it: a `%`, an unbalanced brace or a command in a Crossref title
+reached the entry. None of the 109 saved records of the tests is built differently.
 
 A search that returns several records is answered with the records and builds none. No
 DOI and no ISBN are written: the catalogue route is for a book without a supplied DOI, and
@@ -645,13 +659,21 @@ The host is resolved once to refuse private addresses and again by the connectio
 connection is not pinned to the first answer, and what bounds this is that the host is
 one of the fixed public hosts and its certificate is verified, so another address cannot
 complete the TLS handshake and receives no request. One deadline covers the whole
-resolution, and it is enforced while bodies are read: the page, the catalogue's answer
-and Crossref's book lookup are each read from the socket in bounded steps with the clock
-checked before every step and a byte limit, and cancelled when either is passed.
+resolution and is a hard one for the caller: each retrieval (the page, the catalogue's
+answer, Crossref's book lookup) runs on a thread of its own, and at the deadline the
+caller is released with "no answer within N seconds" whatever that thread is doing: a
+host lookup, a connection, waiting for headers, reading a chunk-size line or a body. The
+connection is then shut down. What is not bounded is the abandoned thread itself: a host
+lookup that the system resolver does not return from keeps its thread until it does (a
+hard stop of that would need a child process). A body is limited twice, as received and
+as unpacked: only gzip and deflate are asked for, and the decompressor is stopped at the
+limit, so a small compressed answer cannot become a large one.
 The model's choice counts only when its book title is one of the two and its passages lie
 on that page; what is judged is every whole line a passage touches, never the part of a
 line the model selected: one of those lines must hold the chosen title without the other,
-and none may hold the other alone. The result is recorded on the proposal (`choices`: the record or, for a
+and none may hold the other alone. A block of the page longer than 500 characters is cut
+to that length, and a line of that length is not taken as evidence for a title: what was
+cut may have named the other one. The result is recorded on the proposal (`choices`: the record or, for a
 model, the route, model, URL, quoted line and document hash), a model-assisted choice
 makes the proposal need a decision, and the entry is verified afterwards by the ordinary
 route. The verifier accepts either container title of such a record, so an entry with a
@@ -659,12 +681,17 @@ model-assisted title can read `metadata_verified` without the choice having been
 confirmed. The proposal therefore keeps saying, in its issues (shown by the command line,
 the terminal interface and the web interface) and in `choices` (`model_assisted: true`,
 `confirmed: false`), that the choice is model-assisted and unconfirmed, and it is never
-accepted without the person's decision. Once the entry is written, the library holds
-only the entry: the gate's stored result does not carry that mark.
+accepted without the person's decision. When such an entry is written, the mark is
+stored with it (`container_titles.keep_model_choice`): the entry's result is
+`needs_review` with the choice as its external evidence (kind `model-assisted-choice`:
+route, model, URL, quoted line, page hash), the record a model reading of a PDF uses. No
+automatic check accepts an entry that carries it; `crossref status` and the Library and
+Review views show "booktitle chosen with a model, unconfirmed" until a person approves
+the entry.
 
 A chapter's editors, when its own record names none, are taken from the book's record by
 the same lookups (`container_titles.book_editors`). Every record of the book in an answer
-is read, not the first; records that name different editors, an answer Crossref cut short
+under every one of the chapter's ISBNs is read, not the first; records that name different editors, an answer Crossref cut short
 (it counts more records than it returned), or an editor list with a member that is not a
 person decide nothing. The source records are kept, and each comparison reads them again:
 the record must be of a book type (never a series), carry one of the chapter's ISBNs, and

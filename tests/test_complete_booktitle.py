@@ -40,7 +40,7 @@ NO_ROUTE = {}     # an explicit configuration with no key: the keychain is not r
 
 @pytest.fixture
 def client(tmp_path):
-    client = offline_client(tmp_path / "cache", "chapters.json.gz")
+    client = offline_client(tmp_path / "cache", "chapters.json.gz", "book_isbns.json.gz")
     # The catalogue side of each chapter's book lookup (for the book's editors), recorded with
     # the builder-rules responses (tests/fixtures/completion/rule_responses.json).
     for item in json.loads((ROOT / "tests/fixtures/completion/rule_responses.json").read_text(encoding="utf-8")):
@@ -512,7 +512,7 @@ def test_every_hop_is_checked_and_a_redirect_to_a_private_address_is_never_follo
                 guarded.get("https://link.springer.com/chapter/x", **options)
         # and nothing at all once the time allowed is over
         late = ct._CheckedSession(inner, time.monotonic() - 1)
-        with pytest.raises(ct.UnsafeURL, match="the time allowed"):
+        with pytest.raises(ct.UnsafeURL, match="no answer within 1 seconds; nothing was asked"):
             late.get("https://link.springer.com/chapter/x", allow_redirects=False)
         assert inner.urls == []
     finally:
@@ -629,7 +629,7 @@ def test_a_server_that_drips_bytes_is_cut_off_at_the_deadline(tmp_path):
     with _Server(drip) as server:
         started = time.monotonic()
         guarded = ct._DeadlineSession(_plain_session(), started + 1.5, 10**6)
-        with pytest.raises(ct.OutOfTime, match="the time allowed for this retrieval is over; it was cancelled"):
+        with pytest.raises(ct.OutOfTime, match="no answer within [12] seconds; the request was cancelled"):
             guarded.get(server.url + "/page", timeout=(5, 15), allow_redirects=False)
         assert 1.2 < time.monotonic() - started < 4          # at the deadline, not after the minute the body takes
         # the same through the paced client's own session, as the Crossref book lookup and the catalogue are read:
@@ -641,7 +641,7 @@ def test_a_server_that_drips_bytes_is_cut_off_at_the_deadline(tmp_path):
             started = time.monotonic()
             with ct.within(client, started + 1.5):
                 assert isinstance(client.session, ct._DeadlineSession)
-                with pytest.raises(ct.ProviderError, match="the time allowed"):
+                with pytest.raises(ct.ProviderError, match="no answer within [12] seconds"):
                     client.get(server.url + "/works", {"rows": 5})
             assert client.session is own and time.monotonic() - started < 4
             assert [path.split("?")[0] for path, _ in server.seen if path.startswith("/")] == ["/page", "/works"]
@@ -808,3 +808,139 @@ def test_a_catalogue_answer_for_a_books_isbn_must_hold_a_record_with_that_isbn(t
         assert list(ct.catalogue_books(books, books.cache, record)) == [] and books.requests == 0
     finally:
         books.cache.close()
+
+
+# --- re-review of 2026-10-06: a hard deadline, cut lines, and the mark that stays --------------------
+
+def test_the_deadline_holds_before_headers_inside_chunk_framing_and_against_a_small_gzip_that_inflates(tmp_path):
+    """Three real servers that an inactivity timeout does not catch: one never sends its
+    headers, one drips a chunk-extension line (read inside the HTTP library, before any body
+    byte is handed over), one sends 300 KB of gzip that unpacks to 300 MB."""
+    import time
+    import zlib
+
+    def answer(request):
+        if request.path.startswith("/silent"):
+            time.sleep(20)                                   # connected, and no status line
+        elif request.path.startswith("/chunk"):
+            request.send_response(200)
+            request.send_header("Transfer-Encoding", "chunked")
+            request.end_headers()
+            request.wfile.write(b"5;ext=")
+            for _ in range(100):                             # the extension of the first chunk-size line, forever
+                request.wfile.write(b"x")
+                request.wfile.flush()
+                time.sleep(0.2)
+        else:
+            packer = zlib.compressobj(9, zlib.DEFLATED, 31)
+            body = b"".join(packer.compress(b"\0" * 1_000_000) for _ in range(300)) + packer.flush()
+            assert len(body) < 400_000
+            request.send_response(200)
+            request.send_header("Content-Encoding", "gzip")
+            request.send_header("Content-Length", str(len(body)))
+            request.end_headers()
+            request.wfile.write(body)
+
+    with _Server(answer) as server:
+        for path in ("/silent", "/chunk"):
+            started = time.monotonic()
+            guarded = ct._DeadlineSession(_plain_session(), started + 1.5, 10**6)
+            with pytest.raises(ct.OutOfTime, match="no answer within [12] seconds; the request was cancelled"):
+                guarded.get(server.url + path, timeout=(5, 15))
+            assert 1.2 < time.monotonic() - started < 3.5, path           # released at the deadline
+        started = time.monotonic()
+        guarded = ct._DeadlineSession(_plain_session(), started + 30, 1_000_000)
+        with pytest.raises(ct.OutOfTime, match="larger than 1000000 bytes when it is unpacked"):
+            guarded.get(server.url + "/bomb", timeout=(5, 15))
+        assert time.monotonic() - started < 10
+        sent = [headers.get("Accept-Encoding") for path, headers in server.seen if path.startswith("/")]
+        assert sent == ["gzip, deflate"] * 3                              # nothing else is asked for
+    # an encoding that was not asked for is not unpacked at all
+    with pytest.raises(ct.OutOfTime, match="an encoding that was not asked for"):
+        ct._inflater("br")
+    # anything else that the bounded work does is released at the deadline too (a host lookup, for one)
+    started = time.monotonic()
+    with pytest.raises(ct.OutOfTime, match="no answer within 1 seconds"):
+        ct.timed(started + 0.5, 1, lambda: time.sleep(10))
+    assert time.monotonic() - started < 2
+    assert ct.timed(time.monotonic() + 5, 5, lambda: "done") == "done"
+    with pytest.raises(KeyError):
+        ct.timed(time.monotonic() + 5, 5, lambda: {}["missing"])
+
+
+def test_a_line_that_was_cut_is_no_evidence_for_a_title():
+    """The re-review's case: one paragraph names the series, 500 characters of filler, then
+    the book. The page's lines are cut at 500 characters, so the book's name is gone from
+    the line that is judged: such a line cannot make the series the book."""
+    titles = ("Series Title", "Actual Book")
+    block = "Series: Series Title " + "filler " * 80 + "; book: Actual Book"
+    (line,) = ct.page_lines(f"<html><body><p>{block}</p></body></html>")
+    assert len(line) == ct.LINE_CHARS == 500 and "Actual Book" not in line and "Series Title" in line
+    pages = [{"page": 1, "text": line + "\n"}]
+    digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    start = line.index("Series Title")
+    reading = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": start, "end": start + 12, "quote": "Series Title"}]}}}
+    with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+        ct.choice_from_reading(titles, pages, reading)
+    # the same words in a line that is whole are evidence, as before
+    whole = [{"page": 1, "text": "Book series: Other\nPart of the book: Series Title\n"}]
+    digest = hashlib.sha256(json.dumps(whole, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    at = whole[0]["text"].index("Series Title")
+    good = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": at, "end": at + 12, "quote": "Series Title"}]}}}
+    assert ct.choice_from_reading(titles, whole, good)[0] == "Series Title"
+    # none of the recorded reading's own lines was cut
+    assert all(len(line) < ct.LINE_CHARS for line in RECORDED["page"]["lines"] if BOOK in line and SERIES not in line)
+
+
+def test_a_model_assisted_title_stays_marked_after_the_entry_is_written(client, tmp_path):
+    from cdlbib import api, auto_review
+    from cdlbib.verification import Cache, record_approval
+    from intake_support import library
+    titles, _ = recorded_cache(client)
+    record = record_of(client, MANN23)
+    found = ct.from_model(client, client.cache, record, titles, environ=NO_ROUTE)
+    proposal = complete.build({}, dict(record, **{"container-title": [found.chosen]}))
+    ct.apply(proposal, found)
+    ws = library(tmp_path / "lib")
+    proposal = complete._plan_proposal(ws, complete.checked(proposal, client), complete.Query(), ())
+    assert proposal.status == "metadata_verified" and ct.model_choice(proposal)["chosen"] == BOOK
+    done = api.apply_proposals(ws, [proposal])
+    assert done.written == ["Mann23"]
+    assert done.notes[-1] == "Mann23: booktitle chosen with a model, unconfirmed; the entry needs a person's review"
+    entry = load_entries(ws.bib)["Mann23"]
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        stored = cache.get(ws.bib, entry)
+        # the verifier would accept this entry (it accepts either title); the stored result does not say so
+        assert stored["status"] == "needs_review"
+        assert stored["issues"] == ["booktitle chosen with a model, unconfirmed: human confirmation required"]
+        kept = stored["external_evidence"]
+        assert (kept["kind"], kept["summary"], kept["model_assisted"], kept["confirmed"]) == (
+            ct.MODEL_CHOICE, "booktitle chosen with a model, unconfirmed", True, False)
+        assert (kept["route"], kept["model"], kept["chosen"], kept["other"]) == ("dartmouth", "zai-org.glm-5.3", BOOK, SERIES)
+        assert kept["url"] == RECORDED["page"]["url"] and kept["document_sha256"] == RECORDED["page"]["document_sha256"]
+        assert kept["quote"] == "meta citation_inbook_title: Intracranial EEG / Intracranial EEG"
+        assert kept["fields"]["booktitle"] == {"value": BOOK, "quote": kept["quote"], "page": kept["url"]}
+        # judged again from what is saved (as every later check does), it is still not accepted
+        again = auto_review.reassess(entry, stored)
+        assert again["status"] == "needs_review" and again["external_evidence"] == kept
+        # what the views read
+        detail = api.entry(ws, "Mann23")
+        assert detail.status == "needs_review" and detail.external_evidence["summary"].startswith("booktitle chosen with a model")
+        assert api.status(ws).counts.get("needs_review") == 1 if hasattr(api.status(ws), "counts") else True
+        # a person's approval stands, and the mark is not put over it
+        record_approval(cache, ws.bib, "Mann23", entry["fingerprint"], dict(
+            reviewer="@fixture", source="the publisher's page", note="title checked", github_login="fixture", github_id=1))
+    finally:
+        cache.close()
+    after = ct.keep_model_choice(ws, "Mann23", entry["fingerprint"], ct.model_choice(proposal))
+    assert after["status"] == "human_verified"
+    # a proposal with no model-assisted choice stores nothing of the kind
+    assert ct.model_choice(complete.build({}, record)) is None
+    from cdlbib.errors import CdlbibError
+    with pytest.raises(CdlbibError, match="is not the entry that was written"):
+        ct.keep_model_choice(ws, "Mann23", "another-fingerprint", ct.model_choice(proposal))

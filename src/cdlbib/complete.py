@@ -268,6 +268,43 @@ def _written(name, value, formatter):
     raise _Hold(f"{name}: the {name} formatter changes the built text", {})
 
 
+def _plain_people(name, people):
+    from .book_build import plain_people
+    plain_people(name, [p for p in people if isinstance(p, dict)])
+
+
+def _guarded(name, outcome):
+    """A maker's value as it may be written, or ``_Hold``: the source guard every builder's
+    every field goes through before it reaches an entry (``book_build.finished_source``:
+    nothing that changes the entry's structure, no command but the house's own, ``% & # _``
+    escaped)."""
+    from .book_build import finished_source
+    if outcome is None:
+        return None
+    try:
+        value = finished_source(name, outcome.value)
+    except ValueError as exc:
+        raise _Hold(str(exc), {k: str(v)[:200] for k, v in outcome.values.items()})
+    if value == outcome.value:
+        return outcome
+    return _Value(value, outcome.source, outcome.values, outcome.doubts)
+
+
+def _proved_or_held(proposal, kind, key, fields):
+    """Set ``proposal.proposed_raw`` to the rendered entry when it reads back as exactly one
+    entry of ``kind`` with exactly ``fields`` (``intake._proved``, as for an entry read from
+    a PDF or by a model); otherwise nothing is proposed, and the reason is an issue."""
+    from .book_build import proved
+    raw = render(kind, key, fields)
+    try:
+        proposal.proposed_raw = proved(raw, fields, kind)
+    except ValueError as exc:
+        proposal.proposed_raw = None
+        proposal.issues.append(f"The built entry would not be one plainly written entry ({exc}); nothing is proposed")
+        proposal.needs_decision = True
+    return proposal
+
+
 def _text(value):
     """A registry string on one line (a deposited line break is white space)."""
     return " ".join(str(value or "").split())
@@ -391,6 +428,7 @@ def _author(record, mapped, typed):
         return None
     values = {source: _people_text(people)}
     try:
+        _plain_people("author", people)
         value = cp.source_authors({"author": people}, typed or None)
     except ValueError as exc:
         raise _Hold(str(exc), values)
@@ -437,9 +475,10 @@ def _editor(record, typed):
         return None
     values = {label.split(" ")[0]: _people_text(people)}
     try:
+        _plain_people("editor", people)
         value = cp.source_authors({"author": people}, typed or None)
     except ValueError as exc:
-        raise _Hold("editor: " + str(exc).replace("author", "editor"), values)
+        raise _Hold(("" if str(exc).startswith("editor: ") else "editor: ") + str(exc).replace("author", "editor"), values)
     try:
         value, doubts = _written("editor", value, reformat_author)
     except _Hold as hold:
@@ -991,6 +1030,8 @@ def build(typed_fields, record, corroborating=None, anthology=None):
             elif record_doi:
                 try:
                     normalize_doi(record_doi)  # a usable DOI; written as the record gives it
+                    from .book_build import finished_source
+                    finished_source("doi", record_doi)
                 except ValueError as exc:
                     proposal.unfilled.append(Unfilled(name, str(exc), {"crossref": record_doi}))
                 else:
@@ -998,7 +1039,7 @@ def build(typed_fields, record, corroborating=None, anthology=None):
                     proposal.changes.append(FieldChange(name, None, record_doi, "crossref", "filled"))
             continue
         try:
-            outcome = makers[name]()
+            outcome = _guarded(name, makers[name]())
         except _Hold as hold:
             if hold.disagreement and not (had and name == "year"):
                 # Sources that disagree are for a person to settle, whatever the field.
@@ -1085,7 +1126,7 @@ def build(typed_fields, record, corroborating=None, anthology=None):
     if not proposal.key_typed and not proposal.key_proposed:
         proposal.unfilled.append(Unfilled("ID", "a key needs the authors and the year", {}))
     proposal.doi = fields.get("doi") or proposal.doi
-    proposal.proposed_raw = render(kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
+    _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
     _set_complete(proposal, fields)
     return proposal
 
@@ -2067,7 +2108,7 @@ def build_arxiv(typed_fields, raw):
     for name in _ARXIV_BUILT:
         had = typed.get(name)
         try:
-            outcome = makers[name]()
+            outcome = _guarded(name, makers[name]())
         except _Hold as hold:
             held = Unfilled(name, hold.reason, {_renamed(k): v for k, v in hold.values.items()})
             if had:
@@ -2133,7 +2174,7 @@ def build_arxiv(typed_fields, raw):
     if not proposal.key_typed and not proposal.key_proposed:
         proposal.unfilled.append(Unfilled("ID", "a key needs the authors and the year", {}))
     proposal.doi = fields.get("doi") or proposal.doi
-    proposal.proposed_raw = render(kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
+    _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
     _set_complete(proposal, fields)
     return proposal
 
@@ -2270,13 +2311,14 @@ def checked(proposal, client, arxiv_raw=None):
                                         "retrieved_at": response["retrieved_at"], "request_url": response["url"]}
                                        for raw in indexed[doi]]
                 result = reassess(entry, dict(result, candidates=candidates, attempts=attempts))
-                # As the gate does next for a book (catalogue_review.run_catalogue_review).
-                from .book_build import catalogue_check
-                built = next((c for c in proposal.choices if c.get("field") == "record" and c.get("by") == "loc-catalogue"),
-                             None) if proposal.edited_fields is None else None
-                result = catalogue_check(entry, result, client, record_id=(built or {}).get("record_id"))
             if result["status"] not in ACCEPTED:
                 result = _anthology_checked(entry, client, result)
+            # As the gate does next for a book (catalogue_review.run_catalogue_review). An entry built
+            # from one catalogue record is held to that record, whatever accepted it before this.
+            from .book_build import catalogue_check
+            built = next((c for c in proposal.choices if c.get("field") == "record" and c.get("by") == "loc-catalogue"),
+                         None) if proposal.edited_fields is None else None
+            result = catalogue_check(entry, result, client, record_id=(built or {}).get("record_id"))
     except ProviderError as exc:
         proposal.status = LOOKUP_FAILED
         add(f"The proposed entry could not be verified: a source did not answer ({exc})")

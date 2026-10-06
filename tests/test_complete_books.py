@@ -838,3 +838,74 @@ def test_a_name_with_and_or_braces_is_not_written(client, tmp_path):
     for person in record_people:
         assert any(book_build._SPECIAL.search(person[p]) or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", person[p])
                    for p in ("given", "family")), person
+
+
+# --- re-review of 2026-10-06, item 6: a cut answer, and an entry accepted some other way -------------
+
+def _cut_answer(client, isbn):
+    """An answer to an ISBN query that the catalogue cut short: it counts eleven records and
+    returns ten, of which one (Kahana's real record, given this ISBN) carries the number."""
+    import hashlib
+    import re
+    saved = dict(client.cache.response('loc-sru-v1:10:bath.isbn="9780195333244"', 10**9))
+    raw = saved["raw_xml"]
+    (wrapper,) = re.findall(r"<zs:record>.*?</zs:record>", raw, re.S)
+    records = []
+    for position in range(1, 11):
+        one = wrapper.replace("<zs:recordPosition>1<", f"<zs:recordPosition>{position}<")
+        one = one.replace(">17200404<", f">{17200404 + position - 1}<")
+        if position == 1:
+            one = one.replace("9780195333244", isbn)
+        else:                      # the others are records of other books: they carry other numbers
+            one = one.replace("9780195333244", "9780387303031").replace("0195333241", "0387303030")
+        records.append(one)
+    raw = raw.replace(wrapper, "".join(records)).replace("<zs:numberOfRecords>1<", "<zs:numberOfRecords>11<")
+    query = f'bath.isbn="{isbn}"'
+    raw = raw.replace('bath.isbn="9780195333244"', query).replace("bath.isbn=&quot;9780195333244&quot;",
+                                                                 f"bath.isbn=&quot;{isbn}&quot;")
+    saved.update(raw_xml=raw, query=query, document_sha256=hashlib.sha256(raw.encode()).hexdigest())
+    client.cache.save_response("loc-sru-v1:10:" + query, saved)
+    parsed = catalogue_review.parse_search(raw, query)
+    assert parsed["truncated"] and len(parsed["records"]) == 10
+    return parsed
+
+
+def test_one_matching_record_in_a_cut_answer_is_not_the_only_one(client, tmp_path):
+    parsed = _cut_answer(client, "9781439840955")
+    assert sum(bool(book_build.matched_identifier(xml, isbn="9781439840955")) for xml in parsed["records"]) == 1
+    proposal = book(client, "ISBN 9781439840955")
+    assert proposal.proposed_raw is None and proposal.status is None and proposal.needs_decision
+    assert proposal.issues == [
+        "The catalogue's answer for the ISBN 9781439840955 was cut short, so the record in it cannot be taken as "
+        "the only one with that number; nothing is proposed. The catalogue lists more records than the ten it "
+        "returned; give the ISBN or the LCCN."]
+    assert len(proposal.candidates) == 1                    # the one record that carries the number is shown, not built
+    typed = "@book{Gelm14,\n\tIsbn = {9781439840955},\n\tTitle = {Bayesian data analysis}}"
+    left = complete.propose(complete.Query.from_entry(typed_book(tmp_path, typed)), client, client.cache)
+    assert left.proposed_raw is None and "one has to be chosen; the entry is left as typed" in left.issues[0]
+    assert client.requests == 0
+
+
+def test_an_acceptance_that_is_not_the_catalogues_of_the_built_record_is_put_to_the_catalogue_check(client, tmp_path):
+    entry = typed_book(tmp_path, KAHA12)
+    elsewhere = {"status": "metadata_verified", "accepted_source": "crossref", "accepted_doi": "10.1093/x", "issues": [],
+                 "candidates": [], "attempts": []}
+    # with no record to hold it to, an accepted result is returned as it is (as before)
+    assert book_build.catalogue_check(entry, dict(elsewhere), client) == elsewhere
+    # an entry built from record 17200404: an acceptance by another source is not the answer; the catalogue's is
+    held = book_build.catalogue_check(entry, dict(elsewhere), client, record_id="17200404")
+    assert (held["status"], held["accepted_source"], held["accepted_record_id"]) == (
+        "metadata_verified", "loc-catalogue", "17200404")
+    # ... and when the catalogue accepts another record than the one it was built from, it is not verified
+    for accepted in (elsewhere, {"status": "metadata_verified", "accepted_source": "loc-catalogue",
+                                 "accepted_record_id": "17200404", "issues": [], "candidates": [], "attempts": []}):
+        other = book_build.catalogue_check(entry, dict(accepted), client, record_id="999")
+        assert other["status"] == "needs_review" and "not to the record it was built from (999)" in other["issues"][0]
+    # the same acceptance, of the same record, is returned without another look
+    same = {"status": "metadata_verified", "accepted_source": "loc-catalogue", "accepted_record_id": "17200404",
+            "issues": [], "candidates": [], "attempts": []}
+    assert book_build.catalogue_check(entry, dict(same), client, record_id="17200404") == same
+    import inspect
+    source = inspect.getsource(complete.checked)
+    assert source.index("catalogue_check(entry, result, client, record_id=") > source.index("_anthology_checked")
+    assert client.requests == 0

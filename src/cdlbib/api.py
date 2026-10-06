@@ -1347,9 +1347,31 @@ def propose(ws, keys=None, reference='github', mailto=None, database=None, progr
 
 
 def apply_proposals(ws, accepted, *, batch=None):
-    """Write only the explicitly accepted proposals; see complete.apply."""
+    """Write only the explicitly accepted proposals; see complete.apply.
+
+    An accepted proposal whose book title was chosen with a model (container_titles) keeps
+    that mark after it is written: the entry's stored result becomes ``needs_review`` with
+    the choice as external evidence (container_titles.keep_model_choice), so the Library and
+    Review views and `crossref status` show "booktitle chosen with a model, unconfirmed"
+    until a person approves the entry. A mark that could not be stored is said in
+    ``Applied.notes``."""
+    from . import container_titles
     from .complete import apply
-    return apply(ws, accepted, batch=batch)
+    from .verification import load_entries
+    accepted = list(accepted)
+    done = apply(ws, accepted, batch=batch)
+    marked = [(outcome.key, container_titles.model_choice(accepted[outcome.index])) for outcome in done.outcomes
+              if outcome.status == "written" and container_titles.model_choice(accepted[outcome.index])]
+    if marked:
+        entries = load_entries(ws.bib)
+        for key, choice in marked:
+            try:
+                container_titles.keep_model_choice(ws, key, entries[key]["fingerprint"], choice)
+                done.notes.append(f"{key}: booktitle chosen with a model, unconfirmed; the entry needs a person's review")
+            except (CdlbibError, KeyError) as exc:
+                done.notes.append(f"{key}: the model-assisted mark could not be stored ({exc}); the booktitle was "
+                                  "chosen with a model and is unconfirmed")
+    return done
 
 
 def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fields=()):
