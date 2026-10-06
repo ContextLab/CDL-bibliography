@@ -33,6 +33,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ".[research,pdf,tui]" pytest pytest-asyncio uv playwright
+          python -m playwright install --with-deps chromium
+      # The tests of tests/test_texinstall.py that install biber and bibtex for real: they
+      # download TinyTeX's TeX Live and then biber with its tlmgr (about 140 MB) into pytest's
+      # temporary folder. They run here, before the system's TeX is installed: their PATH is
+      # the tests' TeX Live, /usr/bin and /bin, and they assert that biber and bibtex are
+      # absent until installed, which the apt packages below (/usr/bin/biber, /usr/bin/bibtex)
+      # would contradict. The other tests of the file skip here (no TeX yet) and run in the
+      # full run below. tlmgr is a Perl script and downloads with wget or curl; the runner
+      # image has all three.
+      - name: run the tests that install biber and bibtex for real
+        env:
+          CDLBIB_TEST_TEX_INSTALL: '1'
+        run: |
+          for program in biber bibtex kpsewhich; do
+            if command -v "$program"; then
+              echo "$program is already on this runner: the installation tests need a computer without it"
+              exit 1
+            fi
+          done
+          command -v perl
+          command -v wget || command -v curl
+          python -m pytest -q -rs tests/test_texinstall.py
       # The setup, export and PDF-intake tests run the real programs and skip without them:
       # kpsewhich, pdflatex, latex, xelatex, lualatex, bibtex and biber; Ghostscript (gs);
       # pdftoppm (poppler-utils) and tesseract. The TeX packages hold what the tests'
@@ -53,11 +79,6 @@ jobs:
           done
           pdflatex --version | head -n 1
           biber --version
-      - name: install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install ".[research,pdf,tui]" pytest pytest-asyncio uv playwright
-          python -m playwright install --with-deps chromium
       - name: run pytest
         run : |
           cdlbib verify --no-citations

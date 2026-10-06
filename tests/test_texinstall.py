@@ -644,6 +644,10 @@ def texlive(tmp_path_factory):
     archive.unlink()
     (bin_folder,) = [path for path in (folder / "TinyTeX" / "bin").iterdir() if path.is_dir()]
     env = dict(os.environ, PATH=os.pathsep.join([str(bin_folder), "/usr/bin", "/bin"]))
+    # The release's tlmgr is older than the repository's once the repository has moved on, and
+    # then refuses every installation ("tlmgr itself needs to be updated"): it is updated first.
+    updated = subprocess.run([str(bin_folder / "tlmgr"), "update", "--self"], env=env, capture_output=True, text=True)
+    assert updated.returncode == 0, updated.stdout[-1500:] + updated.stderr[-1500:]
     done = subprocess.run([str(bin_folder / "tlmgr"), "install", "biblatex", "logreq"], env=env, capture_output=True, text=True)
     assert done.returncode == 0 and (folder / "TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty").is_file(), done.stderr[-1500:]
     assert (bin_folder / "pdflatex").exists() and (bin_folder / "bibtex").exists() and not (bin_folder / "biber").exists()
