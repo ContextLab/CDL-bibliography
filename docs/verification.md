@@ -917,13 +917,24 @@ The comparison reads the three spellings of an ordinal as equal (`verification.o
 which reads the superscript form too), in the Crossref comparison and, since this change, in
 the ACL Anthology check's comparison of the proceedings' name.
 
-Four book titles of `cdl.bib` were written with an ordinal word that numbers a meeting
-before the rule. They are listed with their present and proposed text in
-`src/cdlbib/data/pending_house_forms.json`. The format check prints them on every run and
-does not count them as errors while each is exactly as listed; `--autofix` does not change
-them. Every other entry, and a listed entry whose text is anything else, is held to the rule.
-Changing the four entries changes their text, so their saved results would no longer apply
-and they would be verified again.
+LaTeX in a name is read as spans of the text as given and put back after the word rules
+have run (`helpers._restore_spans`, for every field `format_journal_name` formats): the
+name of a command, the braced arguments of a command of two letters or more, mathematics
+between dollar signs, and a braced group that holds a capital and is not a caps-list word.
+Accents are left to the word rules as before. The acronym rule braces the given text in
+place; it puts no placeholder into the name. Comparing the formatter before and after this
+on every Journal, Booktitle, Publisher, Address and Edition of `cdl.bib` and of the frozen
+library fixture, and on every key of the three alias tables (16,922 values), no result
+differs.
+
+Entries already in the library that a new house rule would change can be held on a list,
+`src/cdlbib/data/pending_house_forms.json`, each with its present and its proposed text. The
+format check prints a listed entry on every run and does not count it as an error while it
+is exactly as listed; `--autofix` does not change it. Every other entry, and a listed entry
+whose text is anything else, is held to the rule. The list is empty. The ordinal rule
+changed four book titles (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96), which were held on
+the list and then rewritten in `cdl.bib` on 2026-10-06 with the owner's approval. Their
+text changed, so their saved results no longer apply until they are approved again.
 
 ## Builder rules left as built (2026-10-06)
 
