@@ -229,6 +229,15 @@ def _own_lock(folder, progress=None):
                     os.close(descriptor)
 
 
+def _lock_name(folder):
+    """The name a lock's folder is known by in this process: the folder that holds it,
+    resolved, and its own name as written. The folder itself is not resolved: it is the one
+    another program may be swapping for a link at this moment (resolving it then can fail
+    with FileNotFoundError, between finding the link and reading it), and a link there is
+    refused by the lock in any case."""
+    return str(folder.parent.resolve() / folder.name)
+
+
 @contextlib.contextmanager
 def transaction(ws, *, recovery=False, progress=None):
     """Hold the write lock of the library ``ws`` is. The managed library's is the lock of the
@@ -239,7 +248,7 @@ def transaction(ws, *, recovery=False, progress=None):
     from .api import is_managed
     managed = is_managed(ws)
     folder = home() if managed else Path(ws.work)
-    owner = (os.getpid(), str(folder.resolve()))
+    owner = (os.getpid(), _lock_name(folder))
     if owner in _owner.get():
         yield
         return
@@ -284,7 +293,7 @@ def transaction(ws, *, recovery=False, progress=None):
                 # killed): the ledger is put back, or what could not be put back is said.
                 from .api import settle_approval_send
                 lines, problem = settle_approval_send(ws)
-                name = str(Path(ws.work).resolve())
+                name = _lock_name(Path(ws.work))
                 held = dict(_settled.get() or {})
                 held[name] = list(held.get(name, [])) + lines + ([problem] if problem else [])
                 _settled.set(held)
@@ -302,7 +311,7 @@ def settled(ws):
     """The lines saying which interrupted write to the library ``ws`` was settled when its
     lock was last taken (transaction); asking empties the list."""
     held = dict(_settled.get() or {})
-    said = held.pop(str(Path(ws.work).resolve()), [])
+    said = held.pop(_lock_name(Path(ws.work)), [])
     _settled.set(held)
     return list(said)
 
