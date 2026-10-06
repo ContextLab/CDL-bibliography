@@ -377,10 +377,19 @@ class _Folder:
             self._let_go(made)
             return
         self._rename(made, onto, 0)
-        placed = self.is_file_of(onto, fd) is not None
         kind, out = self.look(made)
         try:
-            if kind == "file" and expected is ANY_FILE:
+            # First the quick question, so that another program's save goes back at once: is
+            # what came out another file than the one that was read? (The file made stands
+            # unconfirmed until this is answered; reading a whole file first would keep it
+            # there longer, for a program that reads the bibliography just then.)
+            another = (kind == "file" and read_fd is not None
+                       and (os.fstat(out).st_dev, os.fstat(out).st_ino)
+                       != (os.fstat(read_fd).st_dev, os.fstat(read_fd).st_ino))
+            placed = self.is_file_of(onto, fd) is not None
+            if another:
+                good = False
+            elif kind == "file" and expected is ANY_FILE:
                 good = True
             elif kind == "file" and isinstance(expected, bytes):
                 data, stable, _ = _read_fd(out)
