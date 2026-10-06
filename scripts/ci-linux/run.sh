@@ -50,9 +50,13 @@ if [ "$dirty" = yes ]; then
 fi
 
 # The checkout is copied inside, so that the user there owns it and nothing here is written.
-docker run --rm --cpus "$cpus" -e CI=true ${options[@]+"${options[@]}"} -v "$checkout/repo:/checkout:ro" cdlbib-ci-linux \
+# /fs/tmpfs (memory) and /fs/volume (a Docker volume: ext4 in Docker Desktop) are two more file
+# systems to point pytest's --basetemp at; the home folder and /tmp are Docker's overlayfs.
+docker run --rm --cpus "$cpus" -e CI=true ${options[@]+"${options[@]}"} -v "$checkout/repo:/checkout:ro" \
+  --tmpfs /fs/tmpfs:exec,mode=1777 -v /fs/volume cdlbib-ci-linux \
   bash -c '
     set -eu
+    sudo chmod 1777 /fs/volume
     export PATH="/opt/python/'"$python"'/bin:$PATH"
     cp -a /checkout "$HOME/repo" && cd "$HOME/repo"
     export CROSSREF_MAILTO="$(cat .github/actions/crossref-contact/mailto.txt)"
