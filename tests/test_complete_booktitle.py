@@ -230,7 +230,14 @@ def test_the_recorded_page_and_what_the_model_was_given(client):
     assert not any("@" in line for line in lines)                              # addresses were removed before it was read
     (page,) = ct.pages_for(RECORDED["page"], tuple(RECORDED["titles"]))
     given = page["text"].splitlines()
-    assert 0 < len(given) <= ct.MAX_LINES and len(given) < len(lines)           # only the lines about the two titles
+    # the fixture holds the lines the model was given and no other line of the page: the lines about the
+    # two titles, each with two lines of context (their hash is the one the reading names)
+    assert given == lines and len(lines) == 30 <= ct.MAX_LINES
+    assert RECORDED["reading"]["extracted"]["source_text_sha256"] == hashlib.sha256(
+        json.dumps([page], ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    assert set(RECORDED["reading"]["extracted"]["provider_trace"]) == {"provider", "model"}       # no response id
+    assert set(RECORDED["reading"]["extracted"]["fields"]) == {"booktitle"}
+    assert "?" not in RECORDED["page"]["url"] and "#" not in RECORDED["page"]["url"]
     assert ct.lines_about(["nothing", "about", "either"], RECORDED["titles"]) == []
     assert ct.checked_url(RECORDED["page"]["url"], resolve=False) == RECORDED["page"]["url"]
     html = ('<html><head><title>T</title><meta name="citation_inbook_title" content="A Book"><script>var x = '

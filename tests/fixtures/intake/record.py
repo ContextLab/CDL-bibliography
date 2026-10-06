@@ -162,8 +162,30 @@ def booktitle(route="dartmouth", contact_source=None):
     if reading is None:
         raise SystemExit("no reading was returned; nothing saved")
     (HERE / "booktitle_model.json").write_text(json.dumps(
-        {"doi": BOOKTITLE_DOI, "titles": list(titles), "record": record, "page": page, "reading": reading},
+        minimal_booktitle(BOOKTITLE_DOI, titles, record, page, pages, reading),
         ensure_ascii=False, sort_keys=True, indent=1) + "\n", encoding="utf-8")
+
+
+def minimal_booktitle(doi, titles, record, page, pages, reading):
+    """What the replay needs and no more (README.md lists what is left out): of the page, the
+    lines the model was given (their hash is the reading's), its address without a query or
+    fragment, and its hash; of the reading, the book title with its passages; of the record,
+    what names the work and its two titles."""
+    from urllib.parse import urlsplit
+    extracted = reading["extracted"]
+    trace = extracted.get("provider_trace") or {}
+    parts = urlsplit(page["url"])
+    kept = {"doi": doi, "titles": list(titles),
+            "record": {k: record[k] for k in ("DOI", "type", "container-title", "ISBN", "title") if k in record},
+            "page": {"url": f"{parts.scheme}://{parts.netloc}{parts.path}", "lines": pages[0]["text"].splitlines(),
+                     "document_sha256": page["document_sha256"], "retrieved_at": page["retrieved_at"]},
+            "reading": {"route": reading["route"], "retrieved_at": reading["retrieved_at"], "extracted": {
+                "fields": {"booktitle": extracted["fields"]["booktitle"]},
+                "source_text_sha256": extracted["source_text_sha256"],
+                "extraction_policy": extracted.get("extraction_policy"),
+                "provider_trace": {"provider": trace.get("provider"), "model": trace.get("model")}}}}
+    assert not ADDRESS.search(json.dumps(kept, ensure_ascii=False))
+    return kept
 
 
 def _append(name, saved):
