@@ -1166,6 +1166,13 @@ def candidate_query(candidate):
     return intake.query_for(candidate)
 
 
+def candidate_identifier(candidate):
+    """The identifier shown beside a lead or a candidate: its DOI, else its arXiv id, else
+    its PMID, else (a catalogue record) ``LCCN <number>``; "" when it has none."""
+    return str(candidate.get("doi") or candidate.get("arxiv") or candidate.get("pmid")
+               or (candidate.get("lccn") and f"LCCN {candidate['lccn']}") or "")
+
+
 def read_pdf(path, ocr=True, progress=None, ocr_seconds=None, name=None):
     """The first pages of a PDF, its identifiers and a title guess; see intake.read_pdf."""
     from . import intake
@@ -1242,7 +1249,8 @@ class ProposalResults(list):
         self.errors = []
 
 
-def _proposals(ws, queries, mailto=None, database=None, progress=None, client=None):
+def _proposals(ws, queries, mailto=None, database=None, progress=None, client=None, announce=None,
+               allow_model=None):
     from . import complete, extra_sources
     from .verification import ProviderError
     results = ProposalResults()
@@ -1258,7 +1266,8 @@ def _proposals(ws, queries, mailto=None, database=None, progress=None, client=No
         for label, query in queries:
             try:
                 query = query if isinstance(query, complete.Query) else complete.Query.parse(query)
-                proposal = complete.propose(query, client, client.cache, ws=ws, batch=results)
+                proposal = complete.propose(query, client, client.cache, ws=ws, batch=results,
+                                            announce=announce or progress, allow_model=allow_model)
                 results.append(proposal)
                 if proposal_failed(proposal):
                     results.errors.append((label, '; '.join(proposal.issues)))
@@ -1277,12 +1286,29 @@ def _proposals(ws, queries, mailto=None, database=None, progress=None, client=No
             client.cache.close()
 
 
-def propose_new(ws, queries, mailto=None, database=None, progress=None):
+def propose_new(ws, queries, mailto=None, database=None, progress=None, announce=None, allow_model=None):
     """Find/build/check queries; list-compatible result.errors retains per-query failures.
 
-    Nothing is written or approved. ``progress`` receives one line per processed query.
+    A query is a DOI, a PMID, an arXiv id, a title, or, for a book, an ISBN or an LCCN (built
+    from the book's Library of Congress record; ``complete.Query.parse``). Nothing is written
+    or approved. ``progress`` receives one line per processed query.
+
+    Optional work is announced, then done: when a chapter's record names two container titles
+    and no record of the book says which is the book's, a model route that is set up is asked
+    (container_titles), and ``announce`` (default: ``progress``) is told first. When the user
+    asked to be asked (--ask), nothing is asked of a model unless ``allow_model`` is True;
+    ``model_question`` gives the question to put for a proposal that stopped there.
     """
-    return _proposals(ws, ((str(query), query) for query in queries), mailto, database, progress)
+    return _proposals(ws, ((str(query), query) for query in queries), mailto, database, progress,
+                      announce=announce, allow_model=allow_model)
+
+
+def model_question(proposal):
+    """The question to put before a model is asked for ``proposal`` (it was not, because the
+    user asked to be asked first), or None. On a yes, propose the same query again with
+    ``allow_model=True``."""
+    return next((choice["question"] for choice in getattr(proposal, "choices", ()) or ()
+                 if choice.get("question")), None)
 
 
 def completion_keys(ws, keys=None, reference='github', database=None):
@@ -1407,7 +1433,10 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
         # entry a person typed (a manual proposal) is theirs to write in any type the manual form offers.
         from .intake import DRAFT_TYPES
         kind = str(fields['ENTRYTYPE']).lower()
-        if kind not in complete.KINDS and not (getattr(proposal, 'manual', False) and kind in DRAFT_TYPES):
+        # A book built from its catalogue record stays a book the builder made when it is edited.
+        built_book = kind == 'book' and proposal.record_source == 'loc-catalogue' and not proposal.unsupported
+        if kind not in complete.KINDS and not built_book and not (
+                getattr(proposal, 'manual', False) and kind in DRAFT_TYPES):
             item.unsupported = fields['ENTRYTYPE']
             item.needs_decision = True
         path = database or ws.database
@@ -1990,7 +2019,7 @@ def why_not_acceptable(proposal):
                 fields = complete._completion_fields(proposal)
         asked = {change.field for change in proposal.changes if change.kind == "question"}
         kind = str(proposal.entry_type or "article").lower()
-        required = complete.KINDS.get(kind, complete.KINDS["article"]).required
+        required = complete.required_fields(kind, fields)
         if not (proposal.key_typed or proposal.key_proposed):
             reasons.append("it has no key yet (a key is made from the authors and the year)")
         for name in required:

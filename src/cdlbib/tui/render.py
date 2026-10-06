@@ -257,8 +257,10 @@ def proposal(item, colour):
 
 
 def lead(candidate):
-    return (f"{candidate.get('authors', '')} {candidate.get('year', '')}: {candidate.get('title', '')} "
-            f"{candidate.get('doi') or candidate.get('arxiv') or ''}").strip()
+    shown = candidate.get('doi') or candidate.get('arxiv') or ''
+    if candidate.get('lccn'):     # a book: its publisher and edition tell editions apart
+        shown = (f"({candidate['journal']}) " if candidate.get('journal') else '') + f"LCCN {candidate['lccn']}"
+    return f"{candidate.get('authors', '')} {candidate.get('year', '')}: {candidate.get('title', '')} {shown}".strip()
 
 
 # --- what was read from a PDF --------------------------------------------------------------------
