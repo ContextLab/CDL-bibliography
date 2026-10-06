@@ -100,14 +100,21 @@ its own, and ends by running `cdlbib --version`:
 |On the computer|What the script does|
 |-|-|
 |`uv` 0.5.0 or later is on `PATH`|uses it: `uv tool install`|
-|no `uv`, or an older one|prints one line saying so, downloads uv's installer (`https://astral.sh/uv/install.sh`) to a temporary file, and runs it so that `uv` goes into `~/.local/share/cdlbib/uv/` (`$XDG_DATA_HOME/cdlbib/uv/` when that variable is set); an older `uv` on `PATH` is left as it is|
+|no `uv`, or an older one|prints one line saying so, downloads the installer of one version of uv (`https://astral.sh/uv/VERSION/install.sh`, the version named by `UV_VERSION` in `install.sh`) to a temporary file, compares its SHA-256 with the one written in `install.sh`, and only then runs it, so that `uv` goes into `~/.local/share/cdlbib/uv/` (`$XDG_DATA_HOME/cdlbib/uv/` when that variable is set); an older `uv` on `PATH` is left as it is|
 |no Python 3.11, 3.12 or 3.13 (the versions the package is tested on; the script uses no other)|prints one line saying so; `uv` downloads a Python into its own folder. The Python already installed and the default `python` are not changed|
 
 The commands go into `~/.local/bin/` (the folder `uv tool dir --bin` prints). When that
 folder is not on `PATH`, the script prints the line to add for your shell; it does not
 edit a shell profile. It does not use `sudo`. Running it again upgrades or repairs the
-installation in place; an optional package that `cdlbib` installed later (see below) is
+installation; an optional package that `cdlbib` installed later (see below) is
 then removed and is installed again the next time it is needed.
+
+While the installed `cdlbib` runs, a new run keeps it until the new version has been
+installed beside it (in the temporary folder) and `cdlbib --version` has run there. When
+the new version cannot be installed (the index cannot be reached, the checkout does not
+build), the script ends with an error and the installed command still works. With
+`--no-uv` the same holds because `pip` downloads and builds everything before it changes
+the environment. An installation whose command does not run is removed and installed again.
 
 |Option|Effect|
 |-|-|
@@ -117,7 +124,7 @@ then removed and is installed again the next time it is needed.
 |`--pypi`|installs `cdlbib` from PyPI (for when it is published there)|
 |`--ask`|asks before downloading `uv` and before installing; without a terminal it installs nothing and prints the commands|
 |`--no-uv`|downloads no `uv`: uses a `uv` on `PATH`, else makes a virtual environment in `~/.local/share/cdlbib/venv/` with the newest Python from 3.11 to 3.13 on `PATH` and links the commands into `~/.local/bin/`; else prints what to install|
-|`--uninstall`|removes what the script installed|
+|`--uninstall`|removes what the script installed, as recorded in `~/.local/share/cdlbib/install-state` (`uv`'s tool directory, the folder of the commands and the `uv` that was used), whatever `UV_TOOL_DIR` is now; when that cannot be done (no `uv`, or `uv` fails) it removes nothing else, keeps the record, says what to do and ends with an error|
 |`--help`|prints the options|
 
 With the piped form, options follow `sh -s --`, for example
@@ -131,15 +138,39 @@ with `-I`, and both run in a temporary folder that is removed at the end. A chec
 the source only when the script is run as a file that lies in it.
 
 From a checkout, the script builds a wheel in the temporary folder, keeps it in
-`~/.local/share/cdlbib/dist/` (replacing the one of an earlier run) and installs that file.
+`~/.local/share/cdlbib/dist/` and installs that file; the wheel of an earlier run is
+replaced only after the new version has run.
 `uv` records that file as the tool's source, so `uv tool upgrade cdlbib` changes nothing;
 running the script again upgrades. The build leaves `build/` and `src/cdlbib.egg-info/`
 in the checkout. `--uninstall` removes the wheel.
 
 The installer of `uv` is run with `UV_UNMANAGED_INSTALL` set to the script's folder and
-`UV_NO_MODIFY_PATH=1`. The script reads the installer's version first and does not run
-one older than 0.5.0. `CDLBIB_UV_INSTALLER=https://astral.sh/uv/VERSION/install.sh`
-selects the installer of one version of `uv`.
+`UV_NO_MODIFY_PATH=1`. What is checked when `uv` is downloaded:
+
+|What|Check|
+|-|-|
+|the installer (`https://astral.sh/uv/VERSION/install.sh`)|its SHA-256 must equal `UV_INSTALLER_SHA256` in `install.sh`; otherwise it is not run, nothing is installed, and the message says how to install `uv` by hand|
+|the archive of `uv` that the installer downloads|the installer carries the SHA-256 of the archive for each platform and compares the download with it before unpacking. It skips that comparison when no `sha256sum` command is found, so the script puts one on the installer's `PATH` (made from `sha256sum`, `shasum` or `openssl`) and installs nothing when none of the three is installed|
+|the `uv` that results|must report the version `UV_VERSION`|
+
+Not checked: signatures (none is verified; the SHA-256 in `install.sh` was read from
+`astral.sh` when the version was chosen), a `uv` that is already installed, and the Python
+and the packages that `uv` downloads (`uv` applies its own checks to those).
+
+`UV_VERSION` and `UV_INSTALLER_SHA256` are in one marked block near the top of
+`install.sh`. To move to another version of `uv`: read the new installer (it must still
+honour `UV_UNMANAGED_INSTALL` and compare the archive with a checksum it carries), set
+`UV_VERSION`, set `UV_INSTALLER_SHA256` to what this prints (on Linux `sha256sum` in place
+of `shasum -a 256`), and run the tests with `CDLBIB_TEST_INSTALL_UV_DOWNLOAD=1`:
+
+```bash
+curl --proto '=https' --tlsv1.2 -fsSL https://astral.sh/uv/VERSION/install.sh | shasum -a 256
+```
+
+`CDLBIB_UV_INSTALLER` (used by the tests) names another place to read the installer from,
+an address of the form `https://astral.sh/uv/VERSION/install.sh` or the full path of a
+file. The SHA-256 comparison applies to that file too, and no environment variable changes
+the expected digest.
 
 ### By hand
 

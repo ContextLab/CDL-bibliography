@@ -37,7 +37,12 @@ curl -LsSf https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/
 or, from a checkout of the repository, `sh install.sh`. The script installs `cdlbib`
 with [uv](https://docs.astral.sh/uv/) in an environment of its own. When `uv` is missing
 it says so and downloads it into `~/.local/share/cdlbib/uv/`; when no Python 3.11, 3.12
-or 3.13 is installed, `uv` downloads one into its own folder. The Python already installed
+or 3.13 is installed, `uv` downloads one into its own folder. The `uv` that is downloaded
+is one version, named by `UV_VERSION` in `install.sh`: its installer is run only when its
+SHA-256 equals `UV_INSTALLER_SHA256` in `install.sh`, and that installer compares the
+archive of `uv` with a SHA-256 it carries before unpacking it. No signature is verified.
+To move to another version, set both values (the README's "Installation" section has the
+command that prints the digest). The Python already installed
 is not changed, no shell profile is edited and `sudo` is not used. `--ask` asks first,
 `--no-uv` downloads no `uv`, `--uninstall` removes what the script installed, and
 `--help` lists the options.
