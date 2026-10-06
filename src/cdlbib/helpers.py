@@ -997,6 +997,180 @@ def unbrace_ordinary(word, inside):
     return m[1] + m[2] + m[3]
 
 
+# --- book and proceedings titles: house ordinals and acronyms (owner decisions 2026-10-06) ---------
+#
+# Ordinals are written as a numeral with a superscript suffix, the form the library already
+# uses: ``30\textsuperscript{th}``. An acronym keeps its capitals, protected by braces
+# (``{IEEE}``, ``{ACM}``), as capitals are protected elsewhere in the library.
+
+# A plain numeric ordinal ("30th"), not already inside braces or a command.
+PLAIN_ORDINAL = re.compile(r"(?<![\w\\{])(\d+)(st|nd|rd|th)(?![\w}])", re.I)
+# Words that may stand between the number of a meeting and the word that names the meeting:
+# "the Fifth Annual Workshop", "the Twenty-Third Annual International Conference".
+MEETING_QUALIFIERS = ("annual", "biennial", "biannual", "triennial", "international", "national", "joint",
+                      "european", "asian", "pacific", "world", "regional")
+MEETING_NOUNS = ("conference", "conferences", "workshop", "workshops", "symposium", "symposia", "meeting",
+                 "meetings", "congress", "colloquium", "convention", "seminar", "forum")
+
+
+def house_ordinal(number):
+    r"""30 -> ``30\textsuperscript{th}``, 21 -> ``21\textsuperscript{st}``, 112 -> ``112\textsuperscript{th}``."""
+    from .verification import numeric_ordinal
+    text = numeric_ordinal(number)
+    digits = str(number)
+    return digits + "\\textsuperscript{" + text[len(digits):] + "}"
+
+
+def _plain_ordinals(text):
+    """``30th`` -> ``30\\textsuperscript{th}``. A numeral with the wrong suffix ("3th") is not an
+    ordinal anyone can vouch for and is left as written; a cardinal ("30") is never touched."""
+    from .verification import numeric_ordinal
+
+    def write(match):
+        number = int(match[1])
+        if numeric_ordinal(number) != str(number) + match[2].lower() or match[1] != str(number):
+            return match[0]
+        return house_ordinal(number)
+    return PLAIN_ORDINAL.sub(write, text)
+
+
+def _ordinal_words():
+    """A pattern for one ordinal word or compound ("Fifth", "Twenty-Third", "twenty third"), with
+    the tens word in group 1 and the ordinal word in group 2, and its value."""
+    from .verification import _ORDINAL_TENS, _ORDINAL_UNITS, _ORDINAL_WORDS
+    words = "|".join(sorted(_ORDINAL_WORDS, key=len, reverse=True))
+    pattern = re.compile(r"(?<![\w\\{-])(?:(" + "|".join(_ORDINAL_TENS) + r")[- ])?(" + words + r")(?![\w}-])", re.I)
+
+    def value(match):
+        tens, word = (match[1] or "").lower(), match[2].lower()
+        if tens:
+            return _ORDINAL_TENS[tens] + _ORDINAL_UNITS[word] if word in _ORDINAL_UNITS else None
+        return _ORDINAL_WORDS[word]
+    return pattern, value
+
+
+def _numbers_a_meeting(rest):
+    """Whether the text after an ordinal word shows the ordinal to be the number of a meeting:
+    the next word names a meeting ("Second Workshop"), with nothing between them but words of
+    MEETING_QUALIFIERS and braced acronyms ("Fourth Annual {USENIX} {Tcl/Tk} Workshop"). The
+    ordinal of "Second Language Acquisition" or "Twenty-First-Century University" is part of
+    the title's wording and numbers nothing."""
+    if not rest.startswith(" "):
+        return False
+    for word in rest.split():
+        core = word.strip(",;:.()").lower()
+        if core in MEETING_NOUNS:
+            return True
+        if core in MEETING_QUALIFIERS or re.fullmatch(r"\(?\{[^{}\s]+\}(?:-\{[^{}\s]+\})*\)?[,;:.]?", word):
+            continue
+        return False
+    return False
+
+
+def _meeting_ordinals(text):
+    """An ordinal word that numbers a meeting, as a house ordinal: "the Fifth Annual Workshop" ->
+    ``the 5\\textsuperscript{th} Annual Workshop``. Any other ordinal word stays as written."""
+    pattern, value = _ordinal_words()
+
+    def write(match):
+        number = value(match)
+        if number is None or not _numbers_a_meeting(text[match.end():]):
+            return match[0]
+        return house_ordinal(number)
+    return pattern.sub(write, text)
+
+
+# A part of a word given with two or more capitals ("NAACL", "MobiSys", "IEEE/CVF", "McGaugh").
+_TWO_CAPITALS = re.compile(r"[A-Za-z0-9/&+.']*[A-Z][A-Za-z0-9/&+.']*[A-Z][A-Za-z0-9/&+.']*")
+
+
+def _acronym_parts(name):
+    """``name`` with a lower-case placeholder (``{qzq0}``, ...) in place of each part of a word
+    given with two or more capitals, and the parts in order. A name given without one
+    lower-case letter says nothing about which of its words are acronyms and has no parts; so
+    does a name the journal list knows by an alias. A word that is braced or holds a command
+    already, a caps.txt word (alone or in a "/" compound, which keeps its caps.txt form) and a
+    name with an elided prefix ("O'Reilly") are left to format_journal_name."""
+    if not re.search(r"[a-z]", remove_curlies(name)) or isinstance(journal_key.get(name.lower()), str):
+        return name, []
+    parts = []
+
+    def listed(text):
+        return any(f.lower() == remove_non_letters(text.lower()) for f in force_caps)
+
+    def mask(part):
+        pre, core, suf = strip_leading_trailing_non_letters(part)
+        if (not core or not _TWO_CAPITALS.fullmatch(core) or re.fullmatch(r"[A-Z]'[A-Z][a-z]+", core)
+                or listed(core) or compound_acronym(core, force_caps)):
+            return part
+        parts.append(core)
+        return f"{pre}{{qzq{len(parts) - 1}}}{suf}"
+
+    def keep(part):
+        # A braced acronym beside an unbraced part of a hyphenated word ("Tongue-{NLP}"):
+        # format_journal_name formats such a word part by part in lower case, and would give
+        # the braces back holding "nlp".
+        found = re.fullmatch(r"([^A-Za-z{}\\]*)\{([^{}\\]+)\}([^A-Za-z{}\\]*)", part)
+        if not found or not _TWO_CAPITALS.fullmatch(found[2]) or listed(found[2]):
+            return part
+        parts.append(found[2])
+        return f"{found[1]}{{qzq{len(parts) - 1}}}{found[3]}"
+
+    words = []
+    for word in name.split(" "):
+        if "\\" in word:
+            words.append(word)
+        elif "{" in word or "}" in word:
+            pieces = word.split("-")
+            mixed = len(pieces) > 1 and any("{" not in piece for piece in pieces)
+            words.append("-".join(keep(piece) for piece in pieces) if mixed else word)
+        else:
+            words.append("-".join(mask(part) for part in word.split("-")))
+    return " ".join(words), parts
+
+
+def format_booktitle(name):
+    r"""The format checker's formatter for ``booktitle``: format_journal_name, and the two house
+    rules for the titles of books and proceedings (owner decisions 2026-10-06).
+
+    - A part of a word given with two or more capitals keeps them, in braces: "NAACL-HLT" ->
+      "{NAACL}-{HLT}", "(MobiSys)" -> "({MobiSys})", "IEEE/CVF" -> "{IEEE/CVF}" (see
+      ``_acronym_parts`` for what is left alone).
+    - Ordinals are numerals with a superscript suffix: "30th" -> ``30\textsuperscript{th}``
+      wherever it stands, and an ordinal word that numbers a meeting ("the Thirtieth Annual
+      Conference") likewise. No ordinal is made from a cardinal, and an ordinal word that is
+      part of a title's wording ("Second Language Acquisition") is not rewritten.
+    """
+    masked, parts = _acronym_parts(name)
+    formatted = format_journal_name(masked)
+    for index, part in enumerate(parts):
+        formatted = formatted.replace(f"{{qzq{index}}}", "{" + part + "}")
+    return _meeting_ordinals(_plain_ordinals(formatted))
+
+
+@functools.lru_cache(maxsize=None)
+def pending_forms():
+    """{(key, field): (value, proposed)} from data/pending_house_forms.json: entries of the
+    library written the way a house rule decided later now changes. The format check
+    (``check_bib``) names such an entry and does not count it as an error while its value is
+    exactly ``value`` and the formatter's is exactly ``proposed``. The rule holds for every
+    other entry, and for a listed entry as soon as its value is anything else."""
+    import json
+    listed = json.loads(data_path("pending_house_forms.json").read_text(encoding="utf-8"))["entries"]
+    return {(item["key"], item["field"]): (item["value"], item["proposed"]) for item in listed}
+
+
+def format_edition(value):
+    r"""The format checker's formatter for ``edition``: an ordinal, as a word or a plain
+    numeral, is written as a numeral with a superscript suffix ("Second", "2nd" ->
+    ``2\textsuperscript{nd}``). In this field an ordinal is the number of the edition wherever
+    it stands. Everything else stays as written ("Rev. and expanded"); a cardinal is not made
+    an ordinal."""
+    pattern, number = _ordinal_words()
+    text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), value)
+    return _plain_ordinals(text)
+
+
 # rearrange author name (first middle last suffix)
 # get rid of (any number of) clumped initials:
 # AA --> A A
@@ -1446,7 +1620,12 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
 
     # check book titles
     fix_dict["booktitle"] = check_entries(
-        "booktitle", bd, [format_journal_name(b) for b in book_titles], verbose=verbose
+        "booktitle", bd, [format_booktitle(b) for b in book_titles], verbose=verbose
+    )
+
+    # check editions
+    fix_dict["edition"] = check_entries(
+        "edition", bd, [format_edition(e) for e in get_vals(bd, "edition")], verbose=verbose
     )
 
     # check article titles
@@ -1482,6 +1661,18 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
         ],
         verbose=verbose,
     )
+
+    # Entries written the way a house rule decided later now changes (pending_forms) are
+    # named on every run and are not errors: nothing here, and no autofix, changes them.
+    waiting = pending_forms()
+    held = [(k, i) for k in fix_dict for i in fix_dict[k] if waiting.get((i[0], k)) == (i[1], i[2])]
+    for k, i in held:
+        fix_dict[k].remove(i)
+    if held:
+        print(f"{len(held)} entr{'y is' if len(held) == 1 else 'ies are'} written in a form a house rule now "
+              "changes; left as written, and no error, until the owner approves the change:")
+        for k, i in held:
+            print(f'{i[0]}: \t{k} "{i[1]}" would be "{i[2]}"')
 
     # reorganize fix_dict by key
     fields = fix_dict.keys()
