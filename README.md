@@ -74,12 +74,94 @@ formatter. The older fuzzy-matching verifier and its `--workers` option are reti
 
 `cdlbib` is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
 
-Install with Python 3.11 or later:
+`cdlbib` needs Python 3.11 or later. It is not on PyPI yet.
+
+### With the install script (macOS and Linux)
+
+From a checkout of the repository:
 
 ```bash
-python -m pip install cdlbib
-cdlbib --help
+sh install.sh
 ```
+
+Without a checkout:
+
+```bash
+curl -LsSf https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/install.sh | sh
+```
+
+The second form, and the commands below that name the GitHub repository, need the
+package to be on the repository's `master` branch. From a checkout of a branch that has
+the package, `sh install.sh` installs that checkout.
+
+The script installs `cdlbib` with [uv](https://docs.astral.sh/uv/), in an environment of
+its own, and ends by running `cdlbib --version`:
+
+|On the computer|What the script does|
+|-|-|
+|`uv` 0.5.0 or later is on `PATH`|uses it: `uv tool install`|
+|no `uv`, or an older one|prints one line saying so, downloads uv's installer (`https://astral.sh/uv/install.sh`) to a temporary file, and runs it so that `uv` goes into `~/.local/share/cdlbib/uv/` (`$XDG_DATA_HOME/cdlbib/uv/` when that variable is set); an older `uv` on `PATH` is left as it is|
+|no Python 3.11 or later|prints one line saying so; `uv` downloads a Python into its own folder. The Python already installed and the default `python` are not changed|
+
+The commands go into `~/.local/bin/` (the folder `uv tool dir --bin` prints). When that
+folder is not on `PATH`, the script prints the line to add for your shell; it does not
+edit a shell profile. It does not use `sudo`. Running it again upgrades or repairs the
+installation in place; an optional package that `cdlbib` installed later (see below) is
+then removed and is installed again the next time it is needed.
+
+|Option|Effect|
+|-|-|
+|`--extras research,pdf,tui`|also installs these optional extras (default: none)|
+|`--ref NAME`|installs that branch, tag or commit of the GitHub repository|
+|`--repo URL`|installs from another `https` git repository|
+|`--pypi`|installs `cdlbib` from PyPI (for when it is published there)|
+|`--ask`|asks before downloading `uv` and before installing; without a terminal it installs nothing and prints the commands|
+|`--no-uv`|downloads no `uv`: uses a `uv` on `PATH`, else makes a virtual environment in `~/.local/share/cdlbib/venv/` with the newest Python 3.11+ on `PATH` and links the commands into `~/.local/bin/`; else prints what to install|
+|`--uninstall`|removes what the script installed|
+|`--help`|prints the options|
+
+With the piped form, options follow `sh -s --`, for example
+`curl -LsSf https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/install.sh | sh -s -- --extras tui`.
+
+The script takes no program and no settings from the folder it is started in. Entries of
+`PATH` that are not absolute paths, that cannot be entered, or that are that folder or
+the checkout are not searched, by the script or by the programs it starts. `uv` runs with
+`--no-config` (a `uv.toml` is not read; `uv`'s environment variables still apply), Python
+with `-I`, and both run in a temporary folder that is removed at the end. A checkout is
+the source only when the script is run as a file that lies in it.
+
+When the path of the checkout has a character other than letters, digits and `. _ ~ / -`
+(a space, for example), `uv` is given the checkout through a link in the temporary folder.
+`uv tool upgrade cdlbib` then cannot find the source later; running the script again
+upgrades.
+
+### By hand
+
+Any of these, with Python 3.11 or later available:
+
+```bash
+uv tool install --python ">=3.11" "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+pipx install --python python3.11 "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+python3.11 -m pip install "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+```
+
+`pipx` and `pip` need a Python 3.11 or later to be installed already (`python3.11` above
+stands for it); `uv` downloads one when there is none. Once `cdlbib` is published on
+PyPI, the same commands take `cdlbib` in place of the quoted text, for example
+`python3.11 -m pip install cdlbib`.
+
+### "requires a different Python"
+
+```text
+ERROR: Package 'cdlbib' requires a different Python: 3.9.13 not in '>=3.11'
+```
+
+This message comes from `pip` when the Python it belongs to (here 3.9.13) is older than
+3.11. `pip` installs into its own Python, so the remedy is a newer Python, not a newer
+`pip`. The install script does not use the default Python: `uv` finds a Python 3.11 or
+later, or downloads one, and puts `cdlbib` into an environment made with it.
+
+### The library
 
 Git must be installed for the managed download and updates. No manual clone is needed.
 `--help` and `--version` do not download a library. When a command needs a library
@@ -117,7 +199,8 @@ that only some features need:
 |`pdf`|`pypdfium2`|showing the first page of a PDF as an image in the web interface|
 |`tui`|`textual`|the terminal interface (`cdlbib tui`)|
 
-Install them ahead of time with `python -m pip install "cdlbib[research,pdf,tui]"`, or
+Install them ahead of time with `sh install.sh --extras research,pdf,tui` (by hand: put
+`cdlbib[research,pdf,tui]` in place of `cdlbib` in the commands above), or
 not at all: if an optional package is missing when a command needs it, the tool
 prints a line saying so and installs it, for example
 
@@ -890,6 +973,13 @@ is skipped, and the skip names the program. CI installs these programs
 `tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
 (TinyTeX) and biber, about 140 MB, into pytest's temporary folder, and run only with
 `CDLBIB_TEST_TEX_INSTALL=1`.
+
+`tests/test_install_script.py` runs `install.sh` with a home folder, a `PATH` and caches
+of its own in pytest's temporary folder; the tests that install download the package's
+dependencies from PyPI and are skipped without a network connection. The tests that
+download `uv` itself run only with `CDLBIB_TEST_INSTALL_UV_DOWNLOAD=1`, and the two that
+install from a git repository also need `CDLBIB_TEST_INSTALL_REPO` and
+`CDLBIB_TEST_INSTALL_REF` (a repository and a branch that hold the package).
 
 Almost all tests use saved copies of real source records, so they run offline. Tests in `tests/test_machinery_2026_09_25.py`, `tests/test_api.py` and `tests/test_publish.py` check new entries against the live Crossref API, so they need `CROSSREF_MAILTO` and a network connection, and can fail temporarily if Crossref is down. Without `CROSSREF_MAILTO` (or a local `.bibcheck` cache that recorded a contact address), they fail with a message saying to set it. Tests in `tests/test_identity.py`, `tests/test_revoke_ledger.py` and `tests/test_publish.py` that need a GitHub login are skipped when `gh` is not installed or not logged in. The tests in `tests/test_publish.py` that open a pull request do so only inside your own fork of this repository, on its `cdlbib-test-base` branch, and are skipped when you have no fork. Tests that fetch evidence pages save them in a temporary directory (the suite sets `BIBCHECK_RESEARCH_BODIES`), never in your `.bibcheck/` cache. The tests in `tests/test_pdf_evidence.py` that read PDFs from a local paper library are skipped when it isn't available. `cdlbib verify --no-citations` runs the formatting check on `cdl.bib`.
 

@@ -227,9 +227,34 @@ def test_help_names_every_option(box):
 
 def test_unknown_option_and_bad_values_stop_before_anything_is_done(box):
     for args, said in ((("--bogus",), "unknown option: --bogus"),
-                       (("--extras", "tui; rm -rf x"), "--extras takes names separated by commas"),
+                       (("--extras", "tui; rm -rf x"), "--extras takes research, pdf and tui"),
+                       (("--extras", "tui,evil"), "--extras takes research, pdf and tui"),
+                       (("--extras", "tui]"), "--extras takes research, pdf and tui"),
+                       (("--extras", "tui] @ https://example.org/x#"), "--extras takes research, pdf and tui"),
+                       (("--extras", "TUI"), "--extras takes research, pdf and tui"),
+                       (("--extras", "tui,"), "--extras takes research, pdf and tui"),
+                       (("--extras", ",tui"), "--extras takes research, pdf and tui"),
+                       (("--extras", "tui,,pdf"), "--extras takes research, pdf and tui"),
+                       (("--extras", "--with"), "--extras takes research, pdf and tui"),
+                       (("--extras=*",), "--extras takes research, pdf and tui"),
                        (("--ref", "a b"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "-x"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "--upload-pack=x"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "a..b"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "main#egg=other"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "main ; python_version<'3'"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "x@y"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "x[y]"), "--ref takes a branch, tag or commit name"),
+                       (("--ref", "a\nb"), "--ref takes a branch, tag or commit name"),
+                       (("--ref=*",), "--ref takes a branch, tag or commit name"),
                        (("--repo", "http://example.org/x"), "--repo takes the https address"),
+                       (("--repo", "https://example.org/x y"), "--repo takes the https address"),
+                       (("--repo", "https://example.org/x#egg=y"), "--repo takes the https address"),
+                       (("--repo", "https://user@example.org/x"), "--repo takes the https address"),
+                       (("--repo", "https://example.org/../x"), "--repo takes the https address"),
+                       (("--repo", "https://-example.org/x"), "--repo takes the https address"),
+                       (("--repo", "-https://example.org/x"), "--repo takes the https address"),
+                       (("--repo", "file:///etc"), "--repo takes the https address"),
                        (("--pypi", "--ref", "master"), "--pypi cannot be used together"),
                        (("--extras",), "--extras needs a value")):
         out = box.with_uv().run(*args)
@@ -260,8 +285,10 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
                line.endswith("/uv-install.sh' https://astral.sh/uv/install.sh") for line in lines), out.stdout
     assert any(line.startswith(f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={own_uv}' '{box.programs}/sh' ")
                for line in lines), out.stdout
+    assert "The path of the checkout has characters that uv does not take in a requirement" in out.stdout
+    assert any(line.startswith(f"+ ln -s '{box.checkout}' '") and line.endswith("/src'") for line in lines), out.stdout
     assert (f"+ '{own_uv}/uv' --no-config tool install --python '>=3.11' --with pip --force "
-            f"--reinstall-package cdlbib '{box.checkout}[tui]'") in lines, out.stdout
+            "--reinstall-package cdlbib -- './src[tui]'") in lines, out.stdout
     assert lines[-1] == "Nothing was installed. Run the script without --ask, or in a terminal, to install."
     assert box.files() == set() and box.leftovers() == []
 
@@ -271,7 +298,7 @@ def test_ask_without_a_terminal_and_uv_present_prints_the_one_command(box):
     out = box.with_uv().run("--ask")
     assert out.returncode == 1, out.stdout + out.stderr
     assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
-            f"--reinstall-package cdlbib '{box.checkout}'") in out.stdout.splitlines()
+            "--reinstall-package cdlbib -- ./src") in out.stdout.splitlines()
     assert "astral.sh" not in out.stdout and box.files() == set()
 
 
@@ -792,7 +819,7 @@ def test_piped_script_in_a_hostile_folder_never_takes_the_folder_as_its_source(b
         assert out.returncode == 1, out.stdout + out.stderr
         assert "Installing cdlbib from https://github.com/ContextLab/CDL-bibliography." in out.stdout
         assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
-                "--reinstall-package cdlbib 'cdlbib @ git+https://github.com/ContextLab/CDL-bibliography'"
+                "--reinstall-package cdlbib -- 'cdlbib @ git+https://github.com/ContextLab/CDL-bibliography'"
                 ) in out.stdout.splitlines()
         assert str(folder) not in out.stdout + out.stderr
     nothing_ran(folder)
@@ -867,3 +894,120 @@ def test_piped_script_in_a_hostile_folder_installs_from_the_repository(box, onli
     assert "downloading uv with its installer" in out.stdout and "Installed: cdlbib " in out.stdout
     assert box.installed().startswith("cdlbib ") and box.installed() != "cdlbib 6.6.6"
     nothing_ran(folder)
+
+
+# --- paths, extras and names that could be read as something else ------------------------------
+
+def awkward_checkout(box, plain=False):
+    """The checkout moved to a path with a space, #, @, ;, [x] and a folder that starts with a
+    dash (or, with plain, to a path of letters only, under a link so that it is short)."""
+    if plain:
+        folder = box.root.parent / "plain" / "checkout"
+    else:
+        folder = box.root / "-dash folder" / "a #b @ c;d [x]" / "check out"
+    folder.parent.mkdir(parents=True)
+    shutil.move(box.checkout, folder)
+    box.checkout = folder
+    return folder
+
+
+@need_uv
+def test_checkout_whose_path_could_be_read_as_a_requirement_is_installed_with_uv(box, online):
+    folder = awkward_checkout(box)
+    box.with_uv().with_python()
+    out = ok(box.run("--extras", "tui"))
+    assert f"Installing cdlbib from the checkout {folder}." in out
+    assert "The path of the checkout has characters that uv does not take in a requirement" in out
+    assert "--reinstall-package cdlbib -- './src[tui]'" in out
+    assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
+    python = str(box.tool / "bin" / "python")
+    code = ("import textual, cdlbib, importlib.metadata as m, pathlib\n"
+            "print(pathlib.Path(cdlbib.__file__).parent.parent.name, m.version('cdlbib'))")
+    assert subprocess.run([python, "-c", code], env=box.env(), cwd=box.tmp, capture_output=True,
+                          text=True).stdout.strip() == "site-packages 2.0.0"
+    box.set_version("2.0.1")
+    assert "Installed: cdlbib 2.0.1" in ok(box.run("--extras", "tui")) and box.leftovers() == []
+    ok(box.run("--uninstall"))
+    assert not box.tool.exists()
+
+
+def test_checkout_whose_path_could_be_read_as_a_requirement_is_installed_with_pip(box, online):
+    """--no-uv: pip gets a file:// address in which every such character is written as %XX."""
+    folder = awkward_checkout(box)
+    box.with_python()
+    out = ok(box.run("--no-uv", "--extras", "tui,pdf"))
+    assert f"Installing cdlbib from the checkout {folder}." in out
+    encoded = "/-dash%20folder/a%20%23b%20%40%20c%3bd%20%5bx%5d/check%20out"
+    (line,) = [line for line in out.splitlines() if " -m pip install " in line]
+    assert line.endswith(f"{encoded}'") and " -- 'cdlbib[tui,pdf] @ file:///" in line, line
+    assert "#" not in line.split(" -- ")[1] and ";" not in line.split(" -- ")[1]
+    assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
+    python = str(box.data / "venv" / "bin" / "python")
+    assert subprocess.run([python, "-c", "import textual, pypdfium2"], env=box.env(), cwd=box.tmp).returncode == 0
+    box.set_version("2.0.1")
+    assert "Installed: cdlbib 2.0.1" in ok(box.run("--no-uv", "--extras", "tui,pdf"))
+
+
+@need_uv
+def test_checkout_with_a_plain_path_is_named_to_uv_by_its_address(box, online):
+    """Letters, digits and . _ ~ / - only: uv gets `cdlbib @ file://PATH`, which its receipt
+    keeps, so the tool can also be upgraded with uv itself."""
+    folder = awkward_checkout(box, plain=True)
+    if any(character in str(folder) for character in " #@;[]"):
+        pytest.skip("the temporary folder of this run has no plain path")
+    out = ok(box.with_uv().with_python().run("--extras", "pdf"))
+    assert f"--reinstall-package cdlbib -- 'cdlbib[pdf] @ file://{folder}'" in out
+    assert "through a link" not in out and box.installed() == "cdlbib 2.0.0"
+    assert f'directory = "{folder}"' in (box.tool / "uv-receipt.toml").read_text()
+
+
+# --- PATH entries that cannot be decided are left out --------------------------------------------
+
+def test_path_entries_that_reach_the_current_folder_by_a_link_or_dots_are_not_searched(box):
+    """The hostile folder is on PATH as a link to it, through "..", through a link to a link,
+    and with a trailing slash; a broken link and a file are on PATH too. None is searched:
+    git and curl are reported missing although programs of those names lie in the folder."""
+    folder = hostile_folder(box.root / "hostile folder")
+    links = box.root / "links"
+    links.mkdir()
+    os.symlink(folder, links / "to-folder")
+    os.symlink(links / "to-folder", links / "to-link")
+    os.symlink(links / "nowhere", links / "broken")
+    (links / "a-file").write_text("")
+    entries = [f"{links}/to-folder", f"{links}/to-link", f"{folder}/../{folder.name}", f"{folder}/", f"{folder}/.",
+               f"{links}/broken", f"{links}/a-file", f"{folder}//", ".", "", "..//" + folder.name]
+    for entry in entries:
+        for path in (f"{entry}:{box.programs}", f"{box.programs}:{entry}"):
+            out = piped(box, folder, path=path)
+            assert out.returncode == 1 and "git is needed to install from" in out.stderr, (entry, out.stdout + out.stderr)
+            out = piped(box, folder, "--pypi", path=path)
+            assert out.returncode == 1 and "neither curl nor wget is installed" in out.stderr, (entry, out.stderr)
+    nothing_ran(folder)
+    assert box.files() == set()
+
+
+def test_a_path_with_nothing_usable_stops_the_script(box):
+    folder = hostile_folder(box.root / "hostile folder")
+    for path in (".", ":", f"{folder}", f".:{folder}:relative/bin:{box.root}/missing"):
+        out = piped(box, folder, "--help", path=path)
+        assert out.returncode == 1 and "no folder of PATH can be used" in out.stderr, (path, out.stdout + out.stderr)
+        out = piped(box, folder, path=path)
+        assert out.returncode == 1 and "no folder of PATH can be used" in out.stderr, (path, out.stdout + out.stderr)
+    nothing_ran(folder)
+
+
+@need_uv
+def test_programs_run_by_the_script_get_a_path_without_the_current_folder(box, online):
+    """uv builds the package by running Python and the build backend; with "." first on PATH
+    and decoys named python3, sh and git in the current folder, none of them is run, by the
+    script or by what it starts. The script file is named by a path through a link."""
+    folder = hostile_folder(box.root / "hostile folder")
+    os.symlink(box.checkout, folder / "link to checkout")
+    box.with_uv().with_python()
+    out = subprocess.run(["/bin/sh", "link to checkout/install.sh", "--extras", "research"],
+                         env=box.env(PATH=f".:{folder}:{box.programs}:./"), cwd=folder, stdin=subprocess.DEVNULL,
+                         capture_output=True, text=True, timeout=1800, start_new_session=True)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert f"Installing cdlbib from the checkout {box.checkout}." in out.stdout
+    assert box.installed() == "cdlbib 2.0.0"
+    assert not (folder / "RAN").exists(), (folder / "RAN").read_text()

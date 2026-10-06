@@ -28,9 +28,42 @@ recording reviews and for sending changes.
 
 ## Install
 
+With the install script (macOS and Linux), which works whatever the default Python is:
+
 ```bash
-python -m pip install cdlbib
+curl -LsSf https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/install.sh | sh
 ```
+
+or, from a checkout of the repository, `sh install.sh`. The script installs `cdlbib`
+with [uv](https://docs.astral.sh/uv/) in an environment of its own. When `uv` is missing
+it says so and downloads it into `~/.local/share/cdlbib/uv/`; when no Python 3.11 or
+later is installed, `uv` downloads one into its own folder. The Python already installed
+is not changed, no shell profile is edited and `sudo` is not used. `--ask` asks first,
+`--no-uv` downloads no `uv`, `--uninstall` removes what the script installed, and
+`--help` lists the options.
+
+By hand, with Python 3.11 or later available:
+
+```bash
+uv tool install --python ">=3.11" "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+pipx install --python python3.11 "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+python3.11 -m pip install "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+```
+
+These commands and the `curl` form need the package to be on the repository's `master`
+branch. Once `cdlbib` is published on PyPI, the same commands take `cdlbib` in place of
+the quoted text (for example `python3.11 -m pip install cdlbib`), and the script takes
+`--pypi`.
+
+`pip` prints
+
+```text
+ERROR: Package 'cdlbib' requires a different Python: 3.9.13 not in '>=3.11'
+```
+
+when the Python it belongs to (here 3.9.13) is older than 3.11. The install script does
+not use the default Python: `uv` finds a Python 3.11 or later, or downloads one, and
+puts `cdlbib` into an environment made with it.
 
 The tool downloads the bibliography on first use and checks for updates when commands
 run. See the [README](https://github.com/ContextLab/CDL-bibliography/blob/master/README.md#installation)

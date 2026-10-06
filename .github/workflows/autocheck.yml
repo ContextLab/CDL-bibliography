@@ -67,6 +67,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Before setup-python: the runner's own programs, as a new user would have them.
+      - name: install.sh installs a working cdlbib from the checkout, twice, and removes it
+        run: |
+          sh install.sh
+          "$HOME/.local/bin/cdlbib" --version
+          sh install.sh
+          (cd /tmp && "$HOME/.local/bin/cdlbib" --version)
+          sh install.sh --uninstall
+          test ! -e "$HOME/.local/bin/cdlbib"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

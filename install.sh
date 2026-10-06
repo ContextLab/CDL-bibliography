@@ -81,38 +81,89 @@ say() { printf '%s\n' "$*"; }
 warn() { printf '%s\n' "$*" >&2; }
 die() { warn "install.sh: $*"; exit 1; }
 
-# PATH without the entries that are not absolute folders ("", "." and other relative ones),
-# and without the folder the script was started in and the checkout: no program is taken
-# from there, by this script or by a program it runs. Only shell builtins are used here.
+# The physical path of a folder (links and ".." resolved); fails when it cannot be entered.
+physical() {
+    (CDPATH='' cd -P -- "$1" 2>/dev/null && pwd -P)
+}
+
+# A new PATH, for this script and for every program it runs: the physical paths of the
+# entries of the given PATH that could be resolved. An entry is left out when it is not an
+# absolute path ("", ".", a relative name), when it cannot be entered, or when it is, after
+# resolving links and "..", the folder the script was started in or the checkout. Whatever
+# cannot be decided is left out. Only shell builtins are used here.
 safe_path() {
     kept=""
     old_ifs=$IFS
     set -f
     IFS=:
-    for entry in ${PATH:-}; do
+    for entry in $user_path; do
         case $entry in
             /*) ;;
             *) continue ;;
         esac
-        real=$(CDPATH='' cd -P -- "$entry" 2>/dev/null && pwd -P) || real=$entry
+        real=$(physical "$entry") || continue
+        case $real in
+            /*) ;;
+            *) continue ;;
+        esac
         if [ "$real" = "$started_in" ] || [ "$real" = "$checkout" ]; then
             continue
         fi
-        kept="$kept${kept:+:}$entry"
+        case ":$kept:" in
+            *":$real:"*) continue ;;
+        esac
+        case $real in
+            *:*) continue ;;
+        esac
+        kept="$kept${kept:+:}$real"
     done
     IFS=$old_ifs
     set +f
     PATH=$kept
     export PATH
+    hash -r 2>/dev/null || true
 }
 
-# The absolute path of a program on PATH; fails when there is none.
+usable_path() {
+    [ -n "$PATH" ] || die "no folder of PATH can be used: entries that are not absolute paths, that cannot be entered, the folder the script is started in and the checkout are not searched."
+}
+
+# The full path of a program on PATH. Fails (the program counts as not installed) when
+# the answer is not the absolute path of an executable file, or when its folder is, or
+# cannot be shown not to be, the folder the script was started in or the checkout.
 program() {
     found=$(command -v "$1" 2>/dev/null) || return 1
     case $found in
-        /*) printf '%s\n' "$found" ;;
+        /*) ;;
         *) return 1 ;;
     esac
+    if [ ! -f "$found" ] || [ ! -x "$found" ]; then
+        return 1
+    fi
+    where=$(physical "${found%/*}/") || return 1
+    if [ "$where" = "$started_in" ] || [ "$where" = "$checkout" ]; then
+        return 1
+    fi
+    printf '%s\n' "$found"
+}
+
+# A path as the path of a file:// address: every byte that is not a letter, a digit or one
+# of . _ ~ / - is written as %XX, so nothing in it can be read as part of a requirement.
+url_path() {
+    case $1 in
+        *[!A-Za-z0-9._~/-]*) ;;
+        *) printf '%s\n' "$1"; return 0 ;;
+    esac
+    encoded=""
+    for byte in $(printf '%s' "$1" | od -An -v -tx1); do
+        case $byte in
+            2d|2e|2f|5f|7e|3[0-9]|4[1-9a-f]|5[0-9a]|6[1-9a-f]|7[0-9a])
+                # shellcheck disable=SC2059
+                encoded="$encoded$(printf "\\$(printf '%03o' "0x$byte")")" ;;
+            *) encoded="$encoded%$byte" ;;
+        esac
+    done
+    printf '%s\n' "$encoded"
 }
 
 # Is the file $1 the pyproject.toml of this package? (Read with the shell itself.)
@@ -370,8 +421,21 @@ uv_tool_install() {
     # also when uv is not on PATH. --no-config: no uv.toml or pyproject.toml of any folder
     # (or of the user) changes what is installed or from where; uv's environment variables
     # still apply.
+    uv_spec=$spec
+    if [ "$source" = local ]; then
+        case $checkout in
+            *[!A-Za-z0-9._~/-]*)
+                # uv cannot read a requirement whose address has such a character, however
+                # it is written. The checkout is reached through a link with a fixed name in
+                # the temporary folder, which is the folder uv runs in.
+                say "The path of the checkout has characters that uv does not take in a requirement: it is installed through a link in the temporary folder. (\`uv tool upgrade\` will not find it later; run this script again to upgrade.)"
+                [ "$dry" = 1 ] || rm -f "$tmp/src"
+                run ln -s "$checkout" "$tmp/src"
+                uv_spec=./src$bracket ;;
+        esac
+    fi
     run "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
-        --reinstall-package "$PACKAGE" "$spec"
+        --reinstall-package "$PACKAGE" -- "$uv_spec"
 }
 
 main() {
@@ -385,9 +449,14 @@ main() {
     action=install
     tmp=""
     checkout=""
-    started_in=$(pwd -P 2>/dev/null) || started_in=""
     user_path=${PATH:-}
+    started_in=$(pwd -P 2>/dev/null) || started_in=""
+    case $started_in in
+        /*) ;;
+        *) die "the current folder could not be determined; start the script from a folder that exists." ;;
+    esac
     safe_path
+    usable_path
 
     while [ $# -gt 0 ]; do
         case $1 in
@@ -411,16 +480,29 @@ main() {
         esac
         shift
     done
+    # Only these three extras, and only names for --ref and --repo that cannot be read as
+    # anything else inside a requirement or on a command line.
+    old_ifs=$IFS
+    set -f
+    IFS=,
+    for extra in $extras; do
+        case $extra in
+            research|pdf|tui) ;;
+            *) IFS=$old_ifs; die "--extras takes research, pdf and tui, separated by commas (got: $extras)." ;;
+        esac
+    done
+    IFS=$old_ifs
+    set +f
     case $extras in
-        *[!a-z0-9,_-]*) die "--extras takes names separated by commas, for example: research,pdf,tui" ;;
+        ,*|*,|*,,*) die "--extras takes research, pdf and tui, separated by commas (got: $extras)." ;;
     esac
     case $ref in
-        *[!A-Za-z0-9._/-]*) die "--ref takes a branch, tag or commit name." ;;
+        -*|*..*|*[!A-Za-z0-9._/-]*) die "--ref takes a branch, tag or commit name: letters, digits and . _ / - (not starting with -, without ..)." ;;
     esac
     case $repo in
         '') ;;
-        *[!A-Za-z0-9._/:~-]*) die "--repo takes the https address of a git repository." ;;
-        https://?*) REPOSITORY=$repo ;;
+        *..*|*[!A-Za-z0-9._/:~-]*) die "--repo takes the https address of a git repository." ;;
+        https://[A-Za-z0-9]*) REPOSITORY=$repo ;;
         *) die "--repo takes the https address of a git repository." ;;
     esac
     if [ "$pypi" = 1 ] && [ -n "$ref$repo" ]; then
@@ -475,6 +557,7 @@ main() {
         fi
     fi
     safe_path
+    usable_path
     # Everything from here on is named by its full path and runs outside the folder the
     # script was started in, so that no file there (pyproject.toml, uv.toml, .python-version,
     # pip.conf, setup.cfg, sitecustomize.py) can steer uv, pip or Python.
@@ -495,7 +578,9 @@ main() {
         from="PyPI"
     elif [ -n "$checkout" ] && [ -z "$ref$repo" ]; then
         source=local
-        spec=$checkout$bracket
+        # The checkout is named by a file:// address, never by its path inside the
+        # requirement: a path with a space, #, @, ; or [ cannot be read as something else.
+        spec="$PACKAGE$bracket @ file://$(url_path "$checkout")"
         from="the checkout $checkout"
     else
         source=git
@@ -624,7 +709,7 @@ print(os.path.realpath(sys.executable))')
                     run "$real" -I -m venv "$venv"
                 fi
             fi
-            run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade "$spec"
+            run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade -- "$spec"
             run mkdir -p "$bin_dir"
             if [ "$dry" = 1 ]; then
                 say "+ ln -sf $(quoted "$venv/bin/$PACKAGE") $(quoted "$bin_dir/$PACKAGE")   (and each other command of the package)"
