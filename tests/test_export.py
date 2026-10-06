@@ -812,14 +812,23 @@ def real_bcf(folder, preamble=BIBLATEX, body="\\cite{Zoll90}\n\\printbibliograph
 
 
 SOURCE = '<bcf:datasource type="file" datatype="bibtex" glob="false">cdl.bib</bcf:datasource>'
-ROOT = '<bcf:controlfile version="3.11" bltxversion="3.21" xmlns:bcf="https://sourceforge.net/projects/biblatex">'
+
+
+def root_of(real):
+    """The opening tag of a control file the installed biblatex wrote: its own two version
+    numbers (they differ from one TeX distribution to the next) and the one namespace."""
+    import re
+    tags = re.findall(r'<bcf:controlfile version="\d+\.\d+" bltxversion="\d+\.\d+" '
+                      r'xmlns:bcf="https://sourceforge\.net/projects/biblatex">', real)
+    assert len(tags) == 1 and real.count("<bcf:controlfile") == 1, real[:300]
+    return tags[0]
 
 
 def test_the_control_file_for_biber_is_built_anew_from_listed_names(ws, tmp_path):
     need("pdflatex", "biber")
     import xml.etree.ElementTree as ET
     real = real_bcf(tmp_path / "paper")
-    assert SOURCE in real and real.count(ROOT) == 1
+    assert SOURCE in real and real.count(root_of(real)) == 1
     rewritten = export.own_bcf(real.encode("utf-8"), ["cdl", "extra"]).decode("utf-8")
     assert rewritten.count("<bcf:datasource") == 1 and SOURCE in rewritten and "<!--" not in rewritten
     # nothing of biblatex's own is lost: the same elements, attributes and text, in the same order
@@ -876,6 +885,7 @@ def hostile_bcfs(real, tmp_path):
     biber = '<bcf:options component="biber" type="global">'
     section = '<bcf:section number="0">'
     assert biber in real and section in real and ">Zoll90<" in real
+    ROOT = root_of(real)
     return {
         "another prefix for the same namespace": real.replace("bcf:", "x:").replace("xmlns:x=", "xmlns:x="),
         "a default namespace": real.replace("<bcf:", "<").replace("</bcf:", "</").replace("xmlns:bcf=", "xmlns="),

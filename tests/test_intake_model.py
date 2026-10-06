@@ -57,6 +57,17 @@ def unknown(tmp_path_factory):
     return intake.read_pdf(pdfs.build("unknown", tmp_path_factory.mktemp("pdfs")))
 
 
+def journal_line(read):
+    """The journal line of the typeset PDF as it was read from it. After the italic journal
+    name TeX sets a small space (the italic correction), which the text of one TeX
+    distribution's PDF gives as a space before the comma and another's does not: a quotation
+    is of what was read, so the tests take the line from the page."""
+    import re
+    lines = re.findall(r"Annals of Improbable Lattices ?, vol\. 12 \(2019\) 45–67", " ".join(read.pages[0]["text"].split()))
+    assert len(lines) == 1, read.pages[0]["text"]
+    return lines[0]
+
+
 @pytest.fixture
 def reading(unknown):
     """What the Dartmouth adapter returns for SELECTED (its code after the model call)."""
@@ -149,7 +160,7 @@ def test_only_fields_whose_quotation_supports_them_are_kept(tmp_path, unknown, r
     assert proposal.key_proposed == "ExamSamp19" and proposal.renames == {} and proposal.duplicate_of is None
     assert proposal.notes[0] == intake.NO_SOURCE and "unknown.pdf" in proposal.notes[1]
     # each kept field: a FieldChange whose source names the page and quotes it
-    line = "Annals of Improbable Lattices, vol. 12 (2019) 45–67"
+    line = journal_line(unknown)
     assert {c.field: (c.typed, c.proposed, c.source, c.kind) for c in proposal.changes} == {
         "author": (None, "Ada Q Example and Bo R Sample", 'model reading, p.1: "Ada Q. Example and Bo R. Sample"', "filled"),
         "journal": (None, "Annals of Improbable Lattices", f'model reading, p.1: "{line}"', "filled"),
@@ -201,10 +212,13 @@ def test_an_answer_with_page_and_quote_only_is_grounded_here(tmp_path, unknown):
         "title": {"value": "Plorbnix dynamics in zzyzxqv lattices under qwxzvk", "page": 1,
                   "quote": "Plorbnix dynamics in zzyzxqv lattices under qwxzvk"},
         "author": {"value": "Ada Q. Example and Bo R. Sample", "page": 1, "quote": "Ada Q. Example and Bo R. Sample"},
-        "year": {"value": "2030", "page": 1, "quote": "Annals of Improbable Lattices, vol. 12 (2019)"},  # misread
+        "year": {"value": "2030", "page": 1, "quote": journal_line(unknown).removesuffix(" 45–67")},  # misread
     }, "uncertainties": [], "provider_trace": {"provider": "openai", "model": "some-model"}}
+    assert answer["fields"]["year"]["quote"].endswith("vol. 12 (2019)")
     proposal = intake.proposal_from_findings(library(tmp_path / "lib"), unknown, answer, "openai")
     assert {c.field for c in proposal.changes} == {"author", "title"}
+    # the quotation is on the page; it is the value that it does not hold
+    assert ["not literally in the quoted text" in u.reason for u in proposal.unfilled if u.field == "year"] == [True]
     assert [(u.field, u.source_values) for u in proposal.unfilled if u.field == "year"] == [
         ("year", {"model reading (openai)": "2030"})]
     assert intake.evidence_for(proposal, unknown)["reviewer"] == "model-reading:openai"

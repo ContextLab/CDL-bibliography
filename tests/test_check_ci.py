@@ -22,15 +22,37 @@ def clone(tmp_path_factory):
         subprocess.run(["git", "config", k, v], cwd=repo, check=True)
     # The saved results are a snapshot: entries added to cdl.bib since it was last saved (a
     # pull request that only adds references) have none yet. These tests are about what the
-    # script does with a library and the results saved for it, so the clone's cdl.bib is the
-    # one of the commit that last saved them.
-    saved = subprocess.run(["git", "log", "-1", "--format=%H", "--", "verification/baseline.jsonl.gz"], cwd=repo,
-                           check=True, capture_output=True, text=True).stdout.strip()
-    assert saved, "no commit saved verification/baseline.jsonl.gz"
-    subprocess.run(["git", "checkout", "-q", saved, "--", "cdl.bib"], cwd=repo, check=True)
-    if subprocess.run(["git", "status", "--porcelain", "cdl.bib"], cwd=repo, check=True, capture_output=True,
-                      text=True).stdout.strip():
-        subprocess.run(["git", "commit", "-q", "-m", "cdl.bib as it was when the results were last saved", "cdl.bib"],
+    # script does with a library and the results saved for it, so the clone's cdl.bib holds
+    # exactly the entries whose present text has a saved result in the committed snapshot.
+    # (Read from the snapshot itself, not from the history: actions/checkout fetches one
+    # commit, and there the commit that last saved the snapshot cannot be asked for.)
+    # The snapshot is restored by the command the script itself runs, then asked entry by entry.
+    import shutil
+    from cdlbib import verification
+    from cdlbib.workspace import Workspace
+    bib = repo / "cdl.bib"
+    sibling = Path(sys.executable).parent / "cdlbib"
+    subprocess.run([str(sibling) if sibling.exists() else shutil.which("cdlbib"), "crossref", "restore",
+                    "verification/baseline.jsonl.gz"], cwd=repo, check=True, capture_output=True)
+    cache = verification.Cache(Workspace.for_bib(str(bib)).database, approvals=False)
+    try:
+        entries = verification.load_entries(str(bib))
+        saved = {key: cache.stored(str(bib), entry) for key, entry in entries.items()}
+    finally:
+        cache.close()
+    without = [key for key, result in saved.items() if result is None or result["status"] == "pending"]
+    assert len(without) < len(entries) / 10, f"{len(without)} of {len(entries)} entries have no saved result"
+    if without:
+        text = bib.read_bytes().decode("utf-8")
+        for key in without:
+            raw = entries[key]["raw"]
+            assert text.count(raw) == 1, key
+            text = text.replace(raw, "")
+        bib.write_bytes(text.encode("utf-8"))
+        kept = verification.load_entries(str(bib))
+        assert set(kept) == set(entries) - set(without)
+        assert all(kept[key]["fingerprint"] == entries[key]["fingerprint"] for key in kept)
+        subprocess.run(["git", "commit", "-q", "-m", "cdl.bib: the entries the saved results are for", "cdl.bib"],
                        cwd=repo, check=True)
     return repo
 

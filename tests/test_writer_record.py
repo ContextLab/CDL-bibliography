@@ -9,6 +9,7 @@ every file byte for byte as it was. Real files and processes; no mocks.
 import hashlib
 import json
 import os
+import stat
 from pathlib import Path
 
 import pytest
@@ -234,8 +235,13 @@ def test_paths_swapped_for_links_while_writes_run_never_reach_outside_the_librar
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     done = refused = 0
     try:
-        for number in range(150):
-            year = str(1900 + number)
+        # At least 150 saves, and on until three have completed: where a save takes a fraction
+        # of a millisecond (Linux) nearly every one meets a swap and is refused, and 150 can
+        # pass with a single one completed.
+        for number in range(3000):
+            if number >= 150 and done >= 3:
+                break
+            year = str(1000 + number)
             current = load_entries(ws.bib)["Kaha12"]
             try:
                 applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", year), current["fingerprint"])
@@ -252,8 +258,212 @@ def test_paths_swapped_for_links_while_writes_run_never_reach_outside_the_librar
         out, err = swapper.communicate(timeout=30)
     assert swapper.returncode == 0 and int(out.split()[1]) > 50, out + err
     print("saves completed:", done, "refused:", refused, "swapper", out.strip())
-    assert done >= 1 and done + refused == 150, (done, refused)
+    assert done >= 3 and done + refused >= 150, (done, refused)
     assert everything(outside) == apart and victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
     final = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", "2050"), load_entries(ws.bib)["Kaha12"]["fingerprint"])
     assert final.written == ["Kaha12"] and "Year = {2050}" in ws.bib.read_text(encoding="utf-8")
     assert everything(outside) == apart
+
+
+def test_a_link_given_the_inode_number_of_a_removed_prepared_file_is_not_taken_for_it(tmp_path):
+    """Linux file systems give the inode number of a removed file to the next thing made, so
+    a link put where a prepared file stood can carry its (device, inode). The writer holds
+    the prepared file open, so the number is not free to give, and what the name is now is
+    not taken for the file: the move is refused and nothing becomes a link. (On a file system
+    that does not reuse numbers the link differs anyway; the refusal is the same.)"""
+    library = tmp_path / "library"
+    library.mkdir()
+    victim = tmp_path / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+    (library / "cdl.bib").write_bytes(b"as it was\n")
+    for attempt in range(50):
+        folder = writer._Folder.at(library)
+        try:
+            name, identity = folder.new(".cdl.bib-", b"new text\n")
+            made = os.stat(library / name)
+            os.unlink(library / name)
+            os.symlink(victim, library / name)
+            link = os.lstat(library / name)
+            assert (link.st_dev, link.st_ino) != (made.st_dev, made.st_ino), "the link was given the open file's number"
+            with pytest.raises(OSError, match="replaced by something else"):
+                folder.move(name, "cdl.bib", identity)
+            assert folder.identity(name) != identity
+        finally:
+            os.unlink(library / name)
+            folder.close()
+        assert not (library / "cdl.bib").is_symlink() and (library / "cdl.bib").read_bytes() == b"as it was\n"
+    assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
+
+
+def exchanged(library, target_now):
+    """A real folder as it stands straight after the writer's exchange, with ``target_now``
+    (a function of the library and the prepared file's name) having put something else in
+    the bibliography's place since: (the folder, the name the file that was read now has,
+    the prepared file's identity, the stamp of the file read, the descriptor held on it,
+    the stack that closes it)."""
+    import contextlib
+    bib = library / "cdl.bib"
+    bib.write_bytes(b"as it was read\n")
+    os.chmod(bib, 0o644)             # whatever the umask is
+    folder, keep = writer._Folder.at(library), contextlib.ExitStack()
+    name, identity = folder.new(".cdl.bib-", b"the new text\n", 0o644)
+    previous, seen, read_fd = folder.read_held("cdl.bib", keep)
+    assert previous == b"as it was read\n" and folder.exchange(name, "cdl.bib")
+    assert folder.identity("cdl.bib") == identity and folder.stamp(name) == seen
+    target_now(library, name)
+    return folder, name, identity, seen, read_fd, keep
+
+
+def test_a_save_another_program_makes_just_after_the_exchange_is_left_in_place(tmp_path):
+    """The other program read the bibliography before the exchange and saves (by rename)
+    just after it, before the writer has looked: its save is the newest and stays. The write
+    is refused as changed; the file that was read is not put back over that save."""
+    def saved_by_another(library, name):
+        (library / "cdl.bib.editor").write_bytes(b"as it was read\n% saved by the other program\n")
+        os.replace(library / "cdl.bib.editor", library / "cdl.bib")
+    library = tmp_path / "library"
+    library.mkdir()
+    folder, name, identity, seen, read_fd, keep = exchanged(library, saved_by_another)
+    with keep:
+        with pytest.raises(writer._Changed):
+            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
+    folder.close()
+    assert (library / "cdl.bib").read_bytes() == b"as it was read\n% saved by the other program\n"
+
+
+@pytest.mark.parametrize("aside", ["kept", "removed", "a link too"])
+def test_a_link_found_in_the_bibliographys_place_after_the_exchange_is_not_left_there(tmp_path, aside):
+    """The bibliography's name holds a link to a file outside when the writer looks (the
+    prepared name was swapped for it). The file that was read is exchanged back; when it was
+    removed or swapped too while it stood aside, its text is written again. Either way the
+    write is refused, the bibliography is an ordinary file with what was read, and the file
+    outside is untouched."""
+    victim = tmp_path / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+
+    def swapped(library, name):
+        os.unlink(library / "cdl.bib")
+        os.symlink(victim, library / "cdl.bib")
+        if aside != "kept":
+            os.unlink(library / name)
+        if aside == "a link too":
+            os.symlink(victim, library / name)
+    library = tmp_path / "library"
+    library.mkdir()
+    folder, name, identity, seen, read_fd, keep = exchanged(library, swapped)
+    with keep:
+        with pytest.raises(writer._Changed):
+            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
+    folder.remove(name)
+    folder.close()
+    bib = library / "cdl.bib"
+    assert not bib.is_symlink() and bib.read_bytes() == b"as it was read\n" and oct(bib.stat().st_mode & 0o777) == "0o644"
+    assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n" and not victim.is_symlink()
+    assert sorted(item.name for item in library.iterdir()) == ["cdl.bib"]
+
+
+def special_bits(path, wanted=(stat.S_ISUID, stat.S_ISGID, stat.S_ISVTX)):
+    """Set on ``path`` each of the special mode bits this system lets its owner set on an
+    ordinary file; returns those that it kept."""
+    for bit in wanted:
+        before = stat.S_IMODE(os.stat(path).st_mode)
+        try:
+            os.chmod(path, before | bit)
+        except OSError:
+            os.chmod(path, before)
+    return stat.S_IMODE(os.stat(path).st_mode) & 0o7000
+
+
+@pytest.mark.parametrize("permissions", [0o640, 0o600, 0o664])
+def test_a_written_file_keeps_its_permission_bits_and_no_special_bit(ws, permissions):
+    """A bibliography that is set-user-ID, set-group-ID or sticky (whichever the system lets
+    its owner set): after a save it has the same permission bits, no wider for group or
+    others, and none of the special bits. The same for the key-rename ledger written with it,
+    and for the copy and the record kept in .bibcheck (readable by the owner only)."""
+    os.chmod(ws.bib, permissions)
+    kept = special_bits(ws.bib)
+    assert kept, "this system set none of the special bits"
+    assert stat.S_IMODE(os.stat(ws.bib).st_mode) == permissions | kept
+    applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", "1999"), load_entries(ws.bib)["Kaha12"]["fingerprint"])
+    assert applied.written == ["Kaha12"] and "Year = {1999}" in ws.bib.read_text(encoding="utf-8")
+    assert stat.S_IMODE(os.stat(ws.bib).st_mode) == permissions
+    copies = list((ws.work / writer.EDITS).iterdir())
+    assert copies and all(stat.S_IMODE(os.lstat(copy).st_mode) == 0o600 for copy in copies)
+    # the ledger of approvals goes through the same primitive
+    from cdlbib import verification
+    ledger = ws.root / "verification" / "approvals.jsonl"
+    verification.write_ledger(ledger, b"", permissions)
+    assert special_bits(ledger) == kept
+    before, mode = verification.ledger_bytes(ledger)
+    assert mode == permissions                                   # read from the descriptor, permission bits only
+    verification.write_ledger(ledger, b"\n", mode)
+    assert stat.S_IMODE(os.stat(ledger).st_mode) == permissions
+    verification.write_ledger(ledger, b"", 0o7777)               # asked for outright: still permission bits only
+    assert stat.S_IMODE(os.stat(ledger).st_mode) == 0o777
+
+
+def test_text_put_back_after_a_swap_has_the_permission_bits_of_the_file_read_and_no_special_bit(tmp_path):
+    victim = tmp_path / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+    os.chmod(victim, 0o666)
+    kept = []
+
+    def swapped(library, name):
+        os.chmod(library / name, 0o640)                           # the file that was read, standing aside
+        kept.append(special_bits(library / name))
+        read_mode.append(stat.S_IMODE(os.stat(library / name).st_mode))
+        os.unlink(library / "cdl.bib")
+        os.symlink(victim, library / "cdl.bib")                   # a link to a file open to everyone
+        os.unlink(library / name)
+    read_mode = []
+    library = tmp_path / "library"
+    library.mkdir()
+    folder, name, identity, seen, read_fd, keep = exchanged(library, swapped)
+    assert kept[0] and read_mode == [0o640 | kept[0]]
+    with keep:
+        with pytest.raises(writer._Changed):
+            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
+    folder.close()
+    bib = library / "cdl.bib"
+    assert not bib.is_symlink() and bib.read_bytes() == b"as it was read\n"
+    assert stat.S_IMODE(os.stat(bib).st_mode) == 0o640
+    assert stat.S_IMODE(os.stat(victim).st_mode) == 0o666 and victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
+
+
+def test_a_name_is_never_taken_by_a_plain_rename(tmp_path):
+    """The two flagged renames, on this file system: a name in use is not taken without an
+    exchange, an exchange leaves both files, and a file system without them is refused by
+    name (ENOTSUP with the message), never renamed another way."""
+    import errno
+    library = tmp_path / "library"
+    library.mkdir()
+    (library / "there").write_bytes(b"there\n")
+    folder = writer._Folder.at(library)
+    try:
+        assert writer._exchange() is not None, "this system has no renameat2 / renameatx_np"
+        name, identity = folder.new(".made-", b"made\n")
+        with pytest.raises(FileExistsError):
+            folder.move(name, "there", identity, replace=False)
+        assert (library / "there").read_bytes() == b"there\n" and (library / name).read_bytes() == b"made\n"
+        assert folder.move(name, "free", identity, replace=False) and (library / "free").read_bytes() == b"made\n"
+        name, identity = folder.new(".made-", b"made again\n")
+        assert folder.exchange(name, "there")
+        assert (library / "there").read_bytes() == b"made again\n" and (library / name).read_bytes() == b"there\n"
+        assert folder.is_made(name, "there") and not folder.is_made(name)
+        folder.remove(name)
+        # A file system without the call answers as the system does for flags it cannot honour
+        # (here: both at once). That is refused by name, and nothing is renamed.
+        calls = writer._exchange()
+        made, identity = folder.new(".made-", b"x\n")
+        with pytest.raises(OSError) as refused:
+            folder._rename(made, "there", 0, flags=calls[1] | calls[2])
+        assert refused.value.errno == errno.ENOTSUP and refused.value.strerror == writer.NO_ATOMIC_RENAME
+        assert (library / "there").read_bytes() == b"made again\n" and (library / made).read_bytes() == b"x\n"
+        with pytest.raises(OSError) as refused:
+            folder._rename(made, "missing folder/there", 0)
+        assert refused.value.errno == errno.ENOENT
+        folder.remove(made)
+        assert sorted(item.name for item in library.iterdir()) == ["free", "there"]
+    finally:
+        folder.close()
+    assert "does not replace the file" in writer.NO_ATOMIC_RENAME and "Nothing was written" in writer.NO_ATOMIC_RENAME

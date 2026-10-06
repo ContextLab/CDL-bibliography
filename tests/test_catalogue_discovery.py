@@ -59,7 +59,10 @@ def test_truncation_is_retained_and_zero_is_valid():
     assert parse_search(empty, FIXTURE['query']) == {'total_records': 0, 'truncated': False, 'records': []}
 
 
-@pytest.mark.parametrize('status,body', [(429, ''), (503, ''), (200, '<html>Unavailable</html>'), (200, 'x' * 2_000_001)])
+@pytest.mark.parametrize('status,body', [(429, ''), (503, ''), (200, '<html>Unavailable</html>'),
+                                         # A short id: the test's id goes into the PYTEST_CURRENT_TEST variable, and
+                                         # Linux starts no program with a variable longer than 128 KiB.
+                                         pytest.param(200, 'x' * 2_000_001, id='200-a body over the size limit')])
 def test_failed_requests_are_not_cached_and_pacing_is_restored(tmp_path, status, body):
     cache = Cache(tmp_path / 'cache.sqlite3')
     response = SimpleNamespace(status_code=status, headers={'Retry-After': '60'}, url='https://lx2.loc.gov/sru/lcdb',
