@@ -213,35 +213,85 @@ def _braced_title(title, skip=()):
     words = title.split(" ")
     out = []
     for index, word in enumerate(words):
-        found = re.fullmatch(r"([^\w]*)(\w[\w'’.\-&]*?)([^\w]*)", word)
+        # ``title`` is escaped text (``plain_source``): an escaped character is part of its word
+        found = re.fullmatch(r"([^\w\\]*)((?:\\[&%#_]|[\w'’.\-])+?)((?:\\[&%#_]|[^\w\\])*)", word)
         # The first word is capitalised by position; a capital further inside it ("R&D", "fMRI")
         # is the word's own, and the word is protected like any other.
         capital = found and any(c.isupper() for c in (found[2][1:] if not index else found[2]))
-        if index not in skip and capital and not re.search(r"[{}\\$]", word):
+        if index not in skip and capital and not re.search(r"[{}$]", word):
             word = found[1] + "{" + found[2] + "}" + found[3]
         out.append(word)
     return " ".join(out)
 
 
-# Characters TeX reads as commands in plain text. A catalogue (or registry) string is plain
-# text: before it is given house braces or commands it goes through ``plain_source``.
-_UNREADABLE = re.compile(r"[~^]")
-_SPECIAL = re.compile(r"[%&#_~^$\\{}]")
+# A catalogue (or registry) string is plain text, and it is hostile until shown otherwise.
+# Two layers, both of which must hold for every textual field written from a source:
+# ``plain_source`` refuses what is not plain text and escapes the rest; ``checked_value``
+# refuses a finished value (after the formatter and the house braces) that could change the
+# structure of the entry. ``proved`` then reads the whole entry back.
+_UNREADABLE = re.compile(r"[~^$<>]")
+_SPECIAL = re.compile(r"[%&#_~^$\\{}<>@]")
+MAX_FIELD = 2000     # characters of one source value; a longer one is not a title, a name or a place
 
 
 def plain_source(name, text):
-    """A plain source string as TeX text: ``% & # _`` escaped (``intake.escape_plain``, the
-    package's one escaper, used for PDF and model text too). ``ValueError`` for a string with
-    a backslash, a brace or a dollar sign (not plain text) and for one with ``~`` or ``^``:
-    their TeX forms are commands the verifier does not read, so the field could not be
-    checked. Braces that are already in ``text`` must be the caller's own (the house
-    protection of a word), added before this is called."""
-    from .intake import escape_plain
-    bare = re.sub(r"[{}]", "", text)
-    if re.search(r"[\\$<>]", bare) or _UNREADABLE.search(bare):
+    """A plain source string as TeX text, or ``ValueError`` with the reason.
+
+    Refused (the first layer; nothing is repaired): a value that is not a string or is
+    longer than ``MAX_FIELD``; a backslash, a brace, ``^^`` or a control character, a line
+    break among them (``intake.plain_text_problem``, the rule for text read from a PDF or by
+    a model: a source brings text, never markup); ``$ ~ ^ < >``, whose TeX forms the
+    verifier does not read; and ``@``. Escaped: ``% & # _`` (``intake.escape_plain``, the
+    package's one escaper). The result is checked again by ``checked_value``."""
+    from .intake import escape_plain, plain_text_problem
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError(f"{name}: the source gives no text")
+    if len(text) > MAX_FIELD:
+        raise ValueError(f"{name}: the source value is {len(text)} characters long; it is not written")
+    problem = plain_text_problem(name, text)
+    if problem:
+        raise ValueError(f"{name}: the source value has {problem}; it is not written")
+    if _UNREADABLE.search(text) or "@" in text:
         raise ValueError(f"{name}: the source text has a character with no plain TeX form the check reads "
-                         "(a backslash, a dollar sign, ~ or ^)")
-    return escape_plain(name, text)
+                         "($, ~, ^, <, > or @); it is not written")
+    return checked_value(name, escape_plain(name, text))
+
+
+# The only commands a value built here may hold: the escapes of ``plain_source``, the house
+# ordinal, and the house accents ``complete.latex_text`` writes for a non-ASCII letter.
+_HOUSE_COMMAND = re.compile(r"""\\(?:[&%#_]|textsuperscript\{(?:st|nd|rd|th)\}|["'`^~=.][A-Za-z]|[cvuHrkdb]\{[A-Za-z]\}"""
+                            r"""|(?:o|O|l|L|ss|ae|AE|oe|OE|aa|AA|i)\})""")
+
+
+def checked_value(name, value):
+    """``value``, a finished field value, or ``ValueError`` (the second layer). It may not
+    change the structure of the entry it is written into (``intake.structure_problem``:
+    paired braces, no final backslash, no control character or line break, no ``@type{``, no
+    ``^^``), may not be longer than twice ``MAX_FIELD``, and may hold no command other than
+    the ones this module writes itself: nothing TeX would execute."""
+    from .intake import structure_problem
+    if not isinstance(value, str) or len(value) > 2 * MAX_FIELD:
+        raise ValueError(f"{name}: the value is too long to be written")
+    problem = structure_problem(value)
+    if problem:
+        raise ValueError(f"{name}: the value has {problem}; it is not written")
+    if "\\" in _HOUSE_COMMAND.sub("", value) or "@" in value:
+        raise ValueError(f"{name}: the value holds a TeX command or an @ that this builder does not write; "
+                         "it is not written")
+    return value
+
+
+def proved(raw, fields):
+    """``raw``, an assembled ``@book``, or ``ValueError``: it must read back as exactly one
+    entry with exactly ``fields`` (``intake._proved``: the library's reader and the strict
+    scanner both, as for an entry read from a PDF or by a model)."""
+    from .errors import CdlbibError
+    from .intake import _proved
+    try:
+        _proved(raw, "book", dict(fields))
+    except CdlbibError as exc:
+        raise ValueError(str(exc)) from None
+    return raw
 
 
 def _after_article(title):
@@ -304,8 +354,11 @@ def build_book(xml, key_typed=None):
     def write(name, value, formatter, raw):
         try:
             written, doubts = _written(name, value, formatter)
+            checked_value(name, written)          # the second layer: what the formatter and the braces made of it
         except _Hold as held:
             return hold(name, held.reason, raw)
+        except ValueError as exc:
+            return hold(name, str(exc), raw)
         fields[name], stated[name] = written, raw
         if doubts:
             proposal.issues.extend(doubts)
@@ -319,21 +372,21 @@ def build_book(xml, key_typed=None):
         try:
             return plain_source(name, text)
         except ValueError as exc:
-            hold(name, str(exc), raw)
+            hold(name, str(exc), str(raw)[:200])
             return None
 
     title = record["title"][0]
-    if re.search(r"[<>{}\\$]", title) or _UNREADABLE.search(title):
-        hold("title", "title: no plain catalogue title", title)
+    escaped = plain("title", title, title)
+    if escaped is None:
+        pass
     elif _title_case(title):
-        write("title", format_title(plain_source("title", title)), format_title, title)
+        write("title", format_title(escaped), format_title, title)
         proposal.issues.append("title: the catalogue record capitalises every word of the title, so no proper "
                                "noun could be told from it; brace the proper nouns")
         proposal.needs_decision = True
     else:
         doubtful = _after_article(title) if not record.get("author") else None
-        write("title", format_title(plain_source("title", _braced_title(title, skip=(1,) if doubtful else ()))),
-              format_title, title)
+        write("title", format_title(_braced_title(escaped, skip=(1,) if doubtful else ())), format_title, title)
         if doubtful:
             proposal.issues.append(f"title: the record capitalises {doubtful!r} after the opening article, as the "
                                    "cataloguing rule does for a book entered under its title; it is written in "
@@ -344,10 +397,12 @@ def build_book(xml, key_typed=None):
         if not people:
             continue
         said = complete._people_text(people)
-        if any(_SPECIAL.search(str(p.get(part) or "")) for p in people for part in ("given", "family")):
+        if any(not isinstance(p.get(part), str) or _SPECIAL.search(p[part]) or len(p[part]) > 200
+               or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", p[part])
+               for p in people for part in ("given", "family")):
             # A name is written as initials and a surname, never escaped: one with a character
             # TeX reads as a command is not written at all.
-            hold(name, f"{name}: a name in the record has a character that is not plain text in TeX", said)
+            hold(name, f"{name}: a name in the record has a character that is not plain text in TeX", said[:200])
             continue
         try:
             value = cp.source_authors({"author": [{"given": p["given"], "family": p["family"]} for p in people]})
@@ -412,7 +467,11 @@ def build_book(xml, key_typed=None):
         proposal.key_proposed = authors2key(names, year)
     else:
         hold("ID", "a key needs the authors (or, for an edited volume, the editors) and the year")
-    proposal.proposed_raw = complete.render("book", key_typed or proposal.key_proposed or complete.NO_KEY, fields)
+    key = key_typed or proposal.key_proposed or complete.NO_KEY
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9]{0,60}", key) or not re.fullmatch(r"[1-9]\d{3}", fields["year"]):
+        raise ValueError("the key or the year is not in the form an entry is written with")
+    # The whole entry is read back: one entry, these fields and no other (ValueError when not).
+    proposal.proposed_raw = proved(complete.render("book", key, fields), fields)
     complete._set_complete(proposal, fields)
     proposal.notes.insert(0, f"Built from the {SOURCE_NAME} record "
                           + (f"LCCN {lead['lccn']}" if lead["lccn"] else lead["record_id"])
@@ -731,7 +790,12 @@ def propose_typed_book(query, client, cache):
     if names and fields.get("year"):
         from .helpers import authors2key
         proposal.key_proposed = authors2key(names, fields["year"])
-    proposal.proposed_raw = complete.render("book", query.key or proposal.key_proposed or complete.NO_KEY, fields)
+    try:      # typed values are the person's own; the completed entry must still be one entry with these fields
+        proposal.proposed_raw = proved(
+            complete.render("book", query.key or proposal.key_proposed or complete.NO_KEY, fields), fields)
+    except ValueError as exc:
+        return nothing([f"The completed entry would not read back as one entry with the fields shown ({exc}); "
+                        "the entry is left as typed"])
     complete._set_complete(proposal, fields)
     asked_isbn = isbn_text("ISBN " + str(typed.get("isbn") or "").split(",")[0].strip()) if typed.get("isbn") else None
     asked_lccn = lccn_text("LCCN " + str(typed.get("lccn") or "")) if typed.get("lccn") else None

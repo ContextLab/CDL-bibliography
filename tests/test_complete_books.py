@@ -682,7 +682,11 @@ def test_characters_tex_reads_as_commands_are_escaped_and_the_check_still_agrees
     evidence, issues = catalogue_review.compare_edition(dict(fields), record, xml)
     assert issues == [] and evidence["title"]["match"] and evidence["publisher"]["match"]
     assert book_build.plain_source("title", "100% & #1_a") == "100\\% \\& \\#1\\_a"
-    assert book_build.plain_source("title", "{Gestalt} & co") == "{Gestalt} \\& co"       # the caller's own braces stay
+    # a brace in source text is never taken for the builder's own: house braces are added after escaping
+    with pytest.raises(ValueError, match="a backslash or a brace"):
+        book_build.plain_source("title", "{Gestalt} & co")
+    assert book_build._braced_title(book_build.plain_source("title", "Essays on Gestalt & R&D")) == (
+        "Essays on {Gestalt} \\& {R\\&D}")
 
 
 def test_text_with_no_plain_tex_form_is_not_written(client):
@@ -701,3 +705,136 @@ def test_text_with_no_plain_tex_form_is_not_written(client):
     assert "Author" not in named.proposed_raw and named.unfilled[0] == complete.Unfilled(
         "author", "author: a name in the record has a character that is not plain text in TeX",
         {"loc-catalogue": "Michael Jacob Kah%ana"})
+
+
+# --- security review of 2026-10-06: escaping and refusal are two layers, and the entry is read back ---
+
+ALLOWED_FIELDS = {"address", "author", "edition", "editor", "publisher", "title", "year"}
+HOSTILE = [
+    "Title}, Note = {x",
+    "}\n@misc{evil, title={x}}",
+    "x}\n\n@misc{evil,\n\ttitle = {x}}\n@book{again",
+    "\\input{/etc/passwd}",
+    "\\write18{rm -rf ~}",
+    "\\immediate\\write18{id}",
+    "100%\nNote = {x},",
+    "an opening { brace",
+    "a closing } brace",
+    "ends in a backslash\\",
+    "^^5cinput",
+    "tab\there",
+    "nul\x00here",
+    "@string{x = y}",
+    "A" * 100_000,
+    "$\\backslash$",
+]
+
+
+def _xml_text(text):
+    from xml.sax.saxutils import escape
+    return escape(text).replace("\x00", "&#0;") if "\x00" not in text else None
+
+
+def _sound(proposal, tmp_path):
+    """What must hold for any entry the builder returns, whatever the record said."""
+    import re
+    raw = proposal.proposed_raw
+    assert raw.count("@") == 1 and raw.startswith("@book{") and raw.endswith("}")
+    kind, key, scanned = intake.scan_entry(raw)                    # the strict scanner: one entry, plainly written
+    assert kind == "book" and set(scanned) <= ALLOWED_FIELDS, scanned
+    path = tmp_path / "back.bib"
+    path.write_text(raw + "\n", encoding="utf-8")
+    (entry,) = load_entries(path).values()                         # the library's own reader: exactly one entry
+    assert set(entry["fields"]) - {"ENTRYTYPE", "ID"} == set(scanned)
+    assert {k: v for k, v in entry["fields"].items() if k not in ("ENTRYTYPE", "ID")} == scanned
+    for name, value in scanned.items():
+        left = book_build._HOUSE_COMMAND.sub("", value)
+        assert "\\" not in left and "@" not in value, (name, value)         # no command TeX would run
+        assert intake.structure_problem(value) is None and len(value) <= 2 * book_build.MAX_FIELD
+        assert not re.search(r"(?<!\\)[%&#_~^$]", left), (name, value)
+    return scanned
+
+
+@pytest.mark.parametrize("field, original", [("title", "Foundations of human memory"),
+                                             ("publisher", "Oxford University Press"),
+                                             ("address", "New York :")])
+@pytest.mark.parametrize("hostile", HOSTILE, ids=[repr(h[:24]) for h in HOSTILE])
+def test_a_hostile_value_in_a_record_never_changes_the_structure_of_the_entry(client, tmp_path, field, original, hostile):
+    """The real record of Kahana 2012 with one transcribed value replaced, through the real
+    builder: the field is left unfilled with the reason, or the record is not read at all
+    (the check's grammar refuses it). Never a second entry, an extra field, or a command."""
+    text = _xml_text(hostile)
+    if text is None:
+        pytest.skip("a NUL cannot be written in XML at all: the catalogue cannot send it")
+    xml = _altered(client, **{original: text + (" :" if field == "address" else "")})
+    try:
+        built = book_build.build_book(xml)
+    except ValueError:
+        return                                                    # the check's grammar does not read such a record
+    scanned = _sound(built, tmp_path)
+    assert field not in scanned                                   # the hostile value is not written in any form
+    (missing,) = [u for u in built.unfilled if u.field == field]
+    assert missing.reason.startswith(field + ": ") and "it is not written" in missing.reason
+    assert all(len(v) <= 200 for v in missing.source_values.values())          # nor is 100,000 characters of it kept
+    assert "evil" not in built.proposed_raw and "Note" not in built.proposed_raw and "passwd" not in built.proposed_raw
+    if field != "title":
+        assert scanned["title"] == "Foundations of human memory"              # the rest of the entry is as it was
+
+
+def test_the_two_layers_each_refuse_on_their_own(client, tmp_path):
+    # layer 1: what is not plain text is refused, never repaired; what is plain is escaped
+    for hostile in HOSTILE:
+        with pytest.raises(ValueError):
+            book_build.plain_source("title", hostile)
+    assert book_build.plain_source("title", "100% of R&D, #1 in snake_case") == "100\\% of R\\&D, \\#1 in snake\\_case"
+    assert book_build.plain_source("title", "100% of it")[3] == "\\"            # the % cannot open a comment
+    # layer 2: a finished value is refused whatever produced it
+    for bad in ("x}, Note = {y", "{open", "close}", "ends\\", "a\nb", "\\input{x}", "\\write18{x}", "@misc{a", "a^^5cb",
+                "\\textbf{x}", "x" * (2 * book_build.MAX_FIELD + 1), "mail@host"):
+        with pytest.raises(ValueError):
+            book_build.checked_value("title", bad)
+    for good in ("100\\% {R\\&D} notes", "New York, {NY}", "2\\textsuperscript{nd}", "Gl{\\\"o}ckner and {\\o}rsted",
+                 "Fran{\\c{c}}ois"):
+        assert book_build.checked_value("title", good) == good
+    # the proof: an assembled entry must read back as exactly its fields
+    fields = {"title": "A book", "year": "2012"}
+    good = complete.render("book", "Key12", fields)
+    assert book_build.proved(good, fields) == good
+    for raw in (good.replace("{A book}", "{A book},\n\tNote = {x}"), good + "\n@misc{evil,\n\tTitle = {x}}",
+                good.replace("A book", "A book}, Note = {x"), good.replace("@book", "@misc")):
+        with pytest.raises(ValueError):
+            book_build.proved(raw, fields)
+    # the builder uses all three, and writes no source value by any other way
+    import inspect
+    source = inspect.getsource(book_build.build_book)
+    assert "plain(\"title\"" in source and "plain(\"publisher\"" in source and "plain(\"address\"" in source
+    assert "checked_value(name, written)" in source and "proved(complete.render(" in source
+    assert 'r"[1-9]\\d{3}", fields["year"]' in source                              # the year is a pattern, not text
+    assert "proved(" in inspect.getsource(book_build.propose_typed_book)
+    from cdlbib import container_titles
+    assert "render(" not in inspect.getsource(container_titles)                     # it writes no entry at all
+
+
+def test_a_name_with_and_or_braces_is_not_written(client, tmp_path):
+    hostile = [("Kahana, Michael J.", "Kahana and {Evil}, Michael J."), ("Kahana, Michael J.", "Kahana} and {x, Michael J."),
+               ("Kahana, Michael J.", "Kahana, Michael and Mallory"), ("Kahana, Michael J.", "Kahana\\input, Michael J.")]
+    for old, new in hostile:
+        for byline in ("Michael Jacob Kahana", None):
+            swap = {old: _xml_text(new)}
+            if byline:        # with the transcribed byline changed to agree, so that the grammar reads the record
+                given, family = new.split(", ")[1], new.split(", ")[0]
+                swap[byline] = _xml_text(f"{given} {family}")
+            try:
+                built = book_build.build_book(_altered(client, **swap))
+            except ValueError:
+                continue                                           # the check's grammar does not read the record
+            scanned = _sound(built, tmp_path)
+            assert "author" not in scanned and "Evil" not in built.proposed_raw and "Mallory" not in built.proposed_raw
+            assert [u.field for u in built.unfilled][:1] == ["author"]
+    # the name guard itself, on people as the grammar hands them over
+    record_people = [{"given": "Michael and Mallory", "family": "Kahana"}, {"given": "M", "family": "Kah{ana"},
+                     {"given": "M", "family": "and"}, {"given": "M\nJ", "family": "Kahana"}]
+    import re
+    for person in record_people:
+        assert any(book_build._SPECIAL.search(person[p]) or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", person[p])
+                   for p in ("given", "family")), person
