@@ -2396,7 +2396,7 @@ def compare_record(fields, record, doi_alias=None):
             # of the book's own record, when one was found for this chapter by the rule of
             # container_titles.book_editors and is kept in the record (resolver 32).
             from .container_titles import valid_book_editors
-            book = valid_book_editors(record)
+            book = valid_book_editors(record, fields.get("booktitle"))
             if book:
                 listed = book[0]
         editors, repeated_editors = collapse_repeated_byline(listed)

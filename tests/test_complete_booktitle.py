@@ -294,13 +294,25 @@ def test_a_model_assisted_choice_is_marked_needs_a_decision_and_the_verifier_sti
     assert len(proposal.issues) == 1 and proposal.issues[0].startswith(
         'booktitle: the record names two titles, "Studies in Neuroscience, Psychology and Behavioral Economics" and '
         '"Intracranial EEG"; "Intracranial EEG" is taken as the book\'s. Model-assisted choice (dartmouth, ')
-    assert proposal.issues[0].endswith("This is not a verification. Check the title against the page before accepting.")
+    assert proposal.issues[0].endswith("This is not a verification. " + ct.UNCONFIRMED)
+    assert "does not confirm this choice" in ct.UNCONFIRMED and "Model-assisted and unconfirmed" in ct.UNCONFIRMED
     (choice,) = proposal.choices
     assert choice["by"] == "model" and choice["model_assisted"] is True and choice["chosen"] == BOOK
+    assert choice["confirmed"] is False and choice["statement"] == ct.UNCONFIRMED
     assert choice["quote"] and choice["url"].startswith("https://link.springer.com/")
     # the entry is checked by the verifier like any other; its status is the verifier's
     checked = complete.checked(proposal, client)
     assert checked.status == "metadata_verified" and checked.needs_decision and client.requests == 0
+    # The verifier accepts either container title, so that status says nothing about the choice: the
+    # proposal and its stored record go on saying it is model-assisted and unconfirmed, in what every
+    # interface shows (the issues) and in what is serialised (choices).
+    assert any(ct.UNCONFIRMED in issue for issue in checked.issues) and checked.choices[0]["confirmed"] is False
+    series = complete.build({}, dict(record, **{"container-title": [SERIES]}))        # the other title verifies too
+    assert complete.checked(series, client).status == "metadata_verified"
+    from cdlbib import api
+    data = api.as_data(checked)
+    assert data["choices"][0]["model_assisted"] is True and data["choices"][0]["confirmed"] is False
+    assert any("Model-assisted and unconfirmed" in issue for issue in data["issues"])
 
 
 def test_the_model_can_only_choose_one_of_the_two_titles(client):
@@ -384,10 +396,10 @@ def test_the_hosts_a_page_is_fetched_from_are_a_fixed_list_that_no_record_extend
     found = ct.resolve(hostile, client, allow_model=False)
     assert found.chosen == BOOK and set(ct.PAGE_HOSTS) == before
     import inspect
-    assert list(inspect.signature(ct.fetch_page).parameters) == ["doi", "session", "deadline"]
+    assert list(inspect.signature(ct.fetch_page).parameters) == ["doi", "deadline"]       # no session is taken
     assert not hasattr(ct, "_domains")
     source = inspect.getsource(ct.from_model)
-    assert "fetch_page(doi)" in source and "record.get(\"link\")" not in inspect.getsource(ct)
+    assert "fetch_page(doi, deadline=deadline)" in source and "record.get(\"link\")" not in inspect.getsource(ct)
 
 
 HOSTILE_URLS = [
@@ -528,16 +540,11 @@ def test_the_fetch_refuses_a_doi_that_leads_off_the_list_and_the_bounds_come_fir
     own = inspect.getsource(ct.fetch_page)
     assert "get_source(guarded" in own and "max_redirects=PAGE_REDIRECTS" in own and ".content" not in own
     assert (ct.PAGE_REDIRECTS, ct.PAGE_SECONDS, ct.MAX_LINES, ct.MAX_PAGE_LINES) == (6, 120, 150, 5000)
-    # a deadline that has passed: nothing is asked, whatever the DOI
-    asked = _Counting()
-    with pytest.raises(ValueError, match="the page is not fetched: the time allowed for reading the page is over"):
-        ct.fetch_page("10.1007/978-3-031-20910-9_48", session=asked, deadline=time.monotonic() - 1)
-    assert asked.urls == []
     # the DOI goes into the first URL as a path and nothing else: it cannot name another host
+    from urllib.parse import quote
     for doi in ("10.1007/x@evil.example", "10.1007/../../evil.example", "10.1007/x#@evil.example", "10.1007/x?u=1"):
-        with pytest.raises(ValueError):
-            ct.fetch_page(doi, session=asked, deadline=time.monotonic() - 1)
-    assert asked.urls == []
+        assert ct.checked_url("https://doi.org/" + quote(doi, safe="/"), resolve=False).startswith("https://doi.org/10.1007/")
+    # (that a deadline holds while a body is being sent is tested with a real server below)
     # a page is cut while it is parsed, not after: lines, their length, and the metadata lines
     many = "<html><body>" + "".join(f"<p>line {n}</p>" for n in range(ct.MAX_PAGE_LINES + 500)) + "</body></html>"
     assert len(ct.page_lines(many)) == ct.MAX_PAGE_LINES
@@ -561,3 +568,243 @@ def test_a_resolution_that_ran_out_of_time_asks_no_model(tmp_path, monkeypatch):
         assert found.reason.startswith("the record lookups took longer than the time allowed")
     finally:
         saved.cache.close()
+
+
+# --- review of 2026-10-06, items 9-11: time, credentials, whole lines ----------------------------
+
+class _Server:
+    """A real local HTTP server for one test: what it is asked, and what it answers, are real."""
+
+    def __init__(self, handler):
+        import http.server
+        import threading
+        self.seen = []
+        outer = self
+
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                outer.seen.append((self.path, dict(self.headers)))
+                try:
+                    handler(self)
+                except (BrokenPipeError, ConnectionResetError):
+                    outer.seen.append(("closed by the client", {}))
+
+            def log_message(self, *args):
+                pass
+
+        self.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.url = f"http://127.0.0.1:{self.server.server_address[1]}"
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.server.shutdown()
+        self.server.server_close()
+
+
+def _plain_session():
+    import requests
+    session = requests.Session()
+    session.trust_env = False
+    return session
+
+
+def test_a_server_that_drips_bytes_is_cut_off_at_the_deadline(tmp_path):
+    """The server sends its headers at once and then one byte every 0.2 s for a minute: no
+    single read ever times out. The retrieval still ends at the deadline."""
+    import time
+
+    def drip(request):
+        request.send_response(200)
+        request.send_header("Content-Type", "text/html")
+        request.send_header("Content-Length", "100000")
+        request.end_headers()
+        for _ in range(300):
+            request.wfile.write(b"x")
+            request.wfile.flush()
+            time.sleep(0.2)
+
+    with _Server(drip) as server:
+        started = time.monotonic()
+        guarded = ct._DeadlineSession(_plain_session(), started + 1.5, 10**6)
+        with pytest.raises(ct.OutOfTime, match="the time allowed for this retrieval is over; it was cancelled"):
+            guarded.get(server.url + "/page", timeout=(5, 15), allow_redirects=False)
+        assert 1.2 < time.monotonic() - started < 4          # at the deadline, not after the minute the body takes
+        # the same through the paced client's own session, as the Crossref book lookup and the catalogue are read:
+        # one request, cancelled, and not asked again
+        from cdlbib import extra_sources as xs
+        client = xs.make_client(tmp_path / "live.sqlite3", contact="valid@example.org")
+        try:
+            own = client.session
+            started = time.monotonic()
+            with ct.within(client, started + 1.5):
+                assert isinstance(client.session, ct._DeadlineSession)
+                with pytest.raises(ct.ProviderError, match="the time allowed"):
+                    client.get(server.url + "/works", {"rows": 5})
+            assert client.session is own and time.monotonic() - started < 4
+            assert [path.split("?")[0] for path, _ in server.seen if path.startswith("/")] == ["/page", "/works"]
+            # nothing at all is asked once the deadline has passed
+            with ct.within(client, time.monotonic() - 1):
+                with pytest.raises(ct.ProviderError, match="nothing was asked"):
+                    client.get(server.url + "/again", {})
+            assert not any(path.startswith("/again") for path, _ in server.seen)
+        finally:
+            client.cache.close()
+
+
+def test_a_body_over_the_limit_is_given_up_while_it_is_read_and_a_good_one_is_read_whole(tmp_path):
+    import gzip
+    import time
+    sent = {"bytes": 0}
+
+    def answer(request):
+        if request.path.startswith("/big"):
+            request.send_response(200)
+            request.send_header("Content-Length", str(50_000_000))
+            request.end_headers()
+            for _ in range(50_000):
+                request.wfile.write(b"y" * 1000)
+                sent["bytes"] += 1000
+        else:
+            body = gzip.compress(json.dumps({"message": {"items": [{"title": ["A"]}], "total-results": 1}}).encode())
+            request.send_response(200)
+            request.send_header("Content-Type", "application/json")
+            request.send_header("Content-Encoding", "gzip")
+            request.send_header("Content-Length", str(len(body)))
+            request.end_headers()
+            request.wfile.write(body)
+
+    with _Server(answer) as server:
+        guarded = ct._DeadlineSession(_plain_session(), time.monotonic() + 30, 100_000)
+        with pytest.raises(ct.OutOfTime, match="the answer is larger than 100000 bytes; it was cancelled"):
+            guarded.get(server.url + "/big", timeout=(5, 15))
+        time.sleep(0.3)
+        assert sent["bytes"] < 20_000_000                    # the server was stopped long before its 50 MB
+        read = guarded.get(server.url + "/small", timeout=(5, 15))
+        assert read.status_code == 200 and read.json() == {"message": {"items": [{"title": ["A"]}], "total-results": 1}}
+        assert b"".join(read.iter_content(7)) == read.content and "total-results" in read.text
+    assert (ct.PAGE_BYTES, ct.RECORD_BYTES, ct.RESOLVE_SECONDS, ct.PAGE_SECONDS) == (2_000_000, 4_000_000, 900, 120)
+    import inspect
+    assert "within(client, deadline)" in inspect.getsource(ct.resolve)
+    assert "within(client, deadline)" in inspect.getsource(ct.book_editors)
+    from cdlbib import book_build
+    assert "within(client" in inspect.getsource(book_build.find_records)
+
+
+def test_the_page_session_carries_no_credentials(tmp_path, monkeypatch):
+    """A .netrc with a login for the server is real, and a default requests session sends it;
+    the session a page is fetched with does not, and takes none from its caller."""
+    import requests
+    netrc = tmp_path / "netrc"
+    netrc.write_text("machine 127.0.0.1 login someone password a-secret-that-must-not-travel\n", encoding="utf-8")
+    netrc.chmod(0o600)
+    monkeypatch.setenv("NETRC", str(netrc))
+    monkeypatch.setenv("HTTPS_PROXY", "http://127.0.0.1:1")
+    monkeypatch.setenv("REQUESTS_CA_BUNDLE", str(tmp_path / "no-such-bundle.pem"))
+
+    def answer(request):
+        request.send_response(200)
+        request.send_header("Set-Cookie", "session=abc")
+        request.send_header("Content-Length", "2")
+        request.end_headers()
+        request.wfile.write(b"ok")
+
+    with _Server(answer) as server:
+        with requests.Session() as default:
+            default.get(server.url + "/default", timeout=5)
+        session = ct.page_session()
+        assert session.trust_env is False and session.auth is None and session.cert is None
+        assert session.proxies == {} and session.verify is True and len(session.cookies) == 0
+        assert "Authorization" not in session.headers
+        session.get(server.url + "/page", timeout=5)
+        seen = {path: headers for path, headers in server.seen}
+        assert seen["/default"]["Authorization"].startswith("Basic ")            # the hazard is real
+        assert "Authorization" not in seen["/page"] and "Cookie" not in seen["/page"]
+        assert len(ct.page_session().cookies) == 0                                 # and each fetch starts with no cookie
+        session.close()
+    # nothing of the caller's is accepted on a hop: credentials, cookies, a proxy, other headers
+    import time
+    guarded = ct._CheckedSession(ct.page_session(), time.monotonic() + 30)
+    for extra in ({"auth": ("u", "p")}, {"cookies": {"a": "b"}}, {"proxies": {"https": "http://127.0.0.1:1"}},
+                  {"headers": {"Authorization": "Bearer x"}}, {"headers": {"Cookie": "a=b"}}, {"cert": "client.pem"}):
+        with pytest.raises(ct.UnsafeURL, match="would carry credentials or other data"):
+            guarded.get("https://link.springer.com/chapter/x", allow_redirects=False, **extra)
+    assert guarded.asked == []
+    import inspect
+    assert "page_session()" in inspect.getsource(ct.fetch_page) and "session=None" not in inspect.getsource(ct.fetch_page)
+    assert "TLS handshake" in ct.page_session.__doc__ and "proxy policy" in ct.page_session.__doc__
+
+
+def test_a_slice_of_a_line_is_judged_as_the_whole_line():
+    """The review's case: one line names the book and the series; offsets that select only
+    the series title out of it must not make the series the book."""
+    titles = ("Series Title", "Actual Book")
+    text = "Book: Actual Book; series: Series Title\n"
+    pages = [{"page": 1, "text": text}]
+    digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+
+    def reading(value, start, end):
+        return {"source_text_sha256": digest, "fields": {"booktitle": {
+            "value": value, "grounding": "literal_text_present", "role_risk": [],
+            "passages": [{"page": 1, "start": start, "end": end, "quote": text[start:end]}]}}}
+
+    start = text.index("Series Title")
+    for value, (a, b) in (("Series Title", (start, start + len("Series Title"))),
+                          ("Actual Book", (text.index("Actual Book"), text.index("Actual Book") + len("Actual Book"))),
+                          ("Series Title", (0, len(text)))):
+        with pytest.raises(ValueError) as caught:
+            ct.choice_from_reading(titles, pages, reading(value, a, b))
+        assert str(caught.value) == ("no quoted line contains the chosen title without the other, so the lines do "
+                                     "not say which is the book's"), (value, a, b)
+    # a slice of a line that holds the chosen title alone is still good, and what is quoted is the whole line
+    two = [{"page": 1, "text": "Part of the book: Actual Book\nBook series: Series Title\n"}]
+    digest = hashlib.sha256(json.dumps(two, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    at = two[0]["text"].index("Actual")
+    good = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Actual Book", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": at, "end": at + 6, "quote": "Actual"}]}}}
+    assert ct.choice_from_reading(titles, two, good) == ("Actual Book", "Part of the book: Actual Book")
+    # offsets that are not offsets
+    for start, end in ((-1, 5), (5, 5), (0, 10_000), ("0", 5)):
+        bad = {"source_text_sha256": digest, "fields": {"booktitle": {
+            "value": "Actual Book", "grounding": "literal_text_present", "role_risk": [],
+            "passages": [{"page": 1, "start": start, "end": end, "quote": "x"}]}}}
+        with pytest.raises(ValueError, match="not lines of the page"):
+            ct.choice_from_reading(titles, two, bad)
+
+
+# --- item 6: the record must carry the number asked for ------------------------------------------
+
+def _hostile(client, genuine_query, asked_query):
+    """The catalogue's real answer to ``genuine_query``, saved as its answer to ``asked_query``
+    with the echoed query rewritten: an answer that echoes what was asked and holds another
+    record. Its hash is the hash of what is saved, as a hostile answer's would be."""
+    saved = dict(client.cache.response("loc-sru-v1:10:" + genuine_query, 10**9))
+    raw = saved["raw_xml"].replace(genuine_query.replace('"', "&quot;"), asked_query.replace('"', "&quot;")).replace(
+        genuine_query, asked_query)
+    assert asked_query in raw.replace("&quot;", '"')
+    saved.update(raw_xml=raw, query=asked_query, document_sha256=hashlib.sha256(raw.encode()).hexdigest())
+    client.cache.save_response("loc-sru-v1:10:" + asked_query, saved)
+
+
+def test_a_catalogue_answer_for_a_books_isbn_must_hold_a_record_with_that_isbn(tmp_path):
+    books = offline_client(tmp_path / "books", "books.json.gz", "chapters.json.gz")
+    try:
+        record = record_of(books, SCHA03)
+        titles = ct.two_titles(record)
+        genuine = ct.from_catalogue(books, books.cache, record, titles)
+        assert genuine.chosen == "Nonlinear Estimation and Classification"
+        assert genuine.evidence["matched"] == {"field": "020", "value": "9780387954714", "asked": "9780387954714"}
+        assert ct.from_crossref(books, record, titles).evidence["matched"] == {
+            "field": "ISBN", "value": ["9780387954714", "9780387215792"], "asked": "9780387954714"}
+        # another book's record (Kahana 2012), returned for the chapter's ISBNs with the query echoed, and
+        # titled like the series: without the check it would make the series the book
+        for isbn in ("9780387954714", "9780387215792"):
+            _hostile(books, 'bath.isbn="9780195333244"', f'bath.isbn="{isbn}"')
+        series_like = ("Foundations of human memory", "Nonlinear Estimation and Classification")
+        assert ct.from_catalogue(books, books.cache, dict(record, **{"container-title": list(series_like)}), series_like) is None
+        assert list(ct.catalogue_books(books, books.cache, record)) == [] and books.requests == 0
+    finally:
+        books.cache.close()

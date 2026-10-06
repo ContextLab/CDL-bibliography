@@ -516,10 +516,39 @@ def test_saved_book_evidence_is_judged_again_and_never_taken_from_another_book_o
     none = ["editor: the citation names editors and the source record names none"]
     # evidence found under an ISBN that is not the chapter's, under another title, or altered after it was found
     other_isbn = dict(found, sources=[dict(found["sources"][0], isbn="9780387954714")])
-    other_title = dict(found, sources=[dict(found["sources"][0], title="Oxford Handbooks Online", names=["Oxford Handbooks Online"])])
+    # Since the review of 2026-10-06 the evidence is read again from the source record kept with it
+    # (sources[..]["record"]), never from the summary beside it: a summary altered alone changes nothing,
+    # and a source record of another title, of a series type, or with a malformed editor list is refused.
+    kept = found["sources"][0]["record"]
+    assert kept["type"] == "edited-book" and kept["editor"]
+    summary_only = dict(found, sources=[dict(found["sources"][0], title="Oxford Handbooks Online", names=["Oxford Handbooks Online"])])
+    assert compare_record(fields, dict(record, **{container_titles.BOOK_RECORD: summary_only}))[1] == []
+    other_title = dict(found, sources=[dict(found["sources"][0], record=dict(kept, title=["Oxford Handbooks Online"]))])
+    a_series = dict(found, sources=[dict(found["sources"][0], record=dict(kept, type="book-series"))])
+    malformed = dict(found, sources=[dict(found["sources"][0], record=dict(kept, editor=kept["editor"][:1] + ["Wagner"]))])
+    shortened = dict(found, editor=found["editor"][:1],
+                     sources=[dict(found["sources"][0], record=dict(kept, editor=kept["editor"][:1] + [None]))])
+    no_record = dict(found, sources=[{k: v for k, v in found["sources"][0].items() if k != "record"}])
     altered = dict(found, editor=[{"given": "Someone", "family": "Else"}])
-    for bad in (other_isbn, other_title, altered, {"editor": found["editor"]}, "Kahana and Wagner"):
-        assert compare_record(fields, dict(record, **{container_titles.BOOK_RECORD: bad}))[1] == none
+    for bad in (other_isbn, other_title, a_series, malformed, shortened, no_record, altered, {"editor": found["editor"]},
+                "Kahana and Wagner"):
+        assert compare_record(fields, dict(record, **{container_titles.BOOK_RECORD: bad}))[1] == none, bad
+    # the review's own case: a chapter with a series title and a book title, the entry citing the book,
+    # and "evidence" that is a series record named by the series title
+    two = dict(record, **{"container-title": ["Series Title", "Actual Book"]})
+    series_evidence = {"editor": found["editor"], "by": "crossref-book-record", "booktitle": "Series Title", "sources": [
+        dict(found["sources"][0], type="book-series", names=["Series Title"], title="Series Title", booktitle="Series Title",
+             record=dict(kept, type="book-series", title=["Series Title"]))]}
+    assert none[0] in compare_record(dict(fields, booktitle="Actual Book"),
+                                     dict(two, **{container_titles.BOOK_RECORD: series_evidence}))[1]
+    # ... and even a record of a book type named by the series title is not evidence for the cited book
+    book_named_series = {"editor": found["editor"], "by": "crossref-book-record", "booktitle": "Series Title", "sources": [
+        dict(found["sources"][0], record=dict(kept, title=["Series Title"]))]}
+    assert none[0] in compare_record(dict(fields, booktitle="Actual Book"),
+                                     dict(two, **{container_titles.BOOK_RECORD: book_named_series}))[1]
+    # a malformed editor list is no evidence when it is found, either
+    assert container_titles._people([{"given": "M", "family": "Kahana"}, "Wagner"]) is None
+    assert container_titles._people("Kahana") is None and container_titles._people([{"given": "M"}]) is None
     # a record that is not of a book type is never read (a series has the type book-series)
     assert "book-series" not in container_titles.BOOK_TYPES
     # an entry of another type is not given a book's editors
@@ -528,3 +557,56 @@ def test_saved_book_evidence_is_judged_again_and_never_taken_from_another_book_o
     # and an entry without an editor field is compared as before, whatever was found
     bare = {k: v for k, v in fields.items() if k != "editor"}
     assert compare_record(bare, good) == compare_record(bare, record)
+
+
+# --- review of 2026-10-06, item 7: every matching record of an answer, and a whole answer ---------
+
+def _crossref_books_answer(client, isbn):
+    from cdlbib import container_titles
+    from cdlbib.verification import dumps
+    params = {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in container_titles.BOOK_TYPES), "rows": 5}
+    identity = dumps([container_titles.WORKS, params, False])
+    return identity, deepcopy(client.cache.response(identity, 10**9))
+
+
+def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_editors_undecided(client):
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    whole = container_titles.book_editors(record, client)
+    assert [p["family"] for p in whole["editor"]] == ["Kahana", "Wagner"] and "reason" not in whole
+    identity, answer = _crossref_books_answer(client, "9780190917982")
+    (item,) = answer["body"]["message"]["items"]
+    # the same answer with a second record of the book that names other editors (the first one found would
+    # have been taken, and the second never read)
+    second = dict(deepcopy(item), DOI="10.1093/oxfordhb/9780190917982.001.0002",
+                  editor=[{"given": "Someone", "family": "Else"}])
+    two = deepcopy(answer)
+    two["body"]["message"].update(items=[item, second])
+    two["body"]["message"]["total-results"] = 2
+    client.cache.save_response(identity, two)
+    found = container_titles.book_editors(record, client)
+    assert "editor" not in found and found["disagreement"] is True and len(found["sources"]) == 2
+    assert found["reason"] == "the 2 records found for the book name different editors, and none is chosen"
+    assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None
+    # two records that agree are evidence, and each is kept with its source record
+    agreeing = deepcopy(two)
+    agreeing["body"]["message"]["items"][1]["editor"] = deepcopy(item["editor"])
+    client.cache.save_response(identity, agreeing)
+    both = container_titles.book_editors(record, client)
+    assert [p["family"] for p in both["editor"]] == ["Kahana", "Wagner"] and all("record" in s for s in both["sources"])
+    # an answer Crossref cut short (it counts more records than it returned) decides nothing
+    short = deepcopy(answer)
+    short["body"]["message"]["total-results"] = 9
+    client.cache.save_response(identity, short)
+    cut = container_titles.book_editors(record, client)
+    assert "editor" not in cut and cut["reason"] == (
+        "Crossref counts 9 book records with the ISBN 9780190917982 and returned 1; the editors are not taken from "
+        "an incomplete answer")
+    # a list with a member that is no person is no evidence, whoever else is in it
+    broken = deepcopy(answer)
+    broken["body"]["message"]["items"][0]["editor"] = item["editor"][:1] + ["Wagner"]
+    client.cache.save_response(identity, broken)
+    bad = container_titles.book_editors(record, client)
+    assert "editor" not in bad and "is not well formed" in bad["reason"]
+    client.cache.save_response(identity, answer)
+    assert container_titles.book_editors(record, client)["editor"] == whole["editor"] and client.requests == 0

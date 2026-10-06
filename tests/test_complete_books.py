@@ -588,3 +588,116 @@ def test_add_at_the_command_line_shows_the_catalogue_as_the_source(tmp_path, off
     assert "Verification: metadata_verified" in out and "Added: Kaha12" in out
     assert "Built from the Library of Congress catalogue record LCCN 2012007685" in out
     assert ws.bib.read_text(encoding="utf-8").strip() == KAHA12
+
+
+# --- review of 2026-10-06, item 6: the record must carry the number asked for --------------------
+
+def _hostile(client, genuine_query, asked_query):
+    """The catalogue's real answer to ``genuine_query``, saved as its answer to ``asked_query``
+    with the echoed query rewritten: an answer that echoes what was asked and holds another record."""
+    import hashlib
+    saved = dict(client.cache.response("loc-sru-v1:10:" + genuine_query, 10**9))
+    raw = saved["raw_xml"].replace(genuine_query.replace('"', "&quot;"), asked_query.replace('"', "&quot;")).replace(
+        genuine_query, asked_query)
+    saved.update(raw_xml=raw, query=asked_query, document_sha256=hashlib.sha256(raw.encode()).hexdigest())
+    client.cache.save_response("loc-sru-v1:10:" + asked_query, saved)
+
+
+def test_an_answer_that_echoes_the_isbn_and_holds_another_book_is_not_used(client, tmp_path):
+    # Kahana's record, returned for the ISBN of Nocedal and Wright's second edition (a valid ISBN).
+    _hostile(client, 'bath.isbn="9780195333244"', 'bath.isbn="9780387303031"')
+    proposal = book(client, "ISBN 9780387303031")
+    assert proposal.proposed_raw is None and proposal.status is None and proposal.needs_decision
+    assert proposal.issues == ["The catalogue's answer for the ISBN 9780387303031 holds 1 record, none of which "
+                               "carries that number itself; it is not used; nothing is proposed"]
+    _hostile(client, 'bath.lccn="10032396"', 'bath.lccn="2012007685"')
+    wrong = book(client, "LCCN 2012007685")
+    assert wrong.proposed_raw is None and "none of which carries that number itself" in wrong.issues[0]
+    # a typed book with that ISBN is left as typed for the same reason
+    typed = "@book{NoceWrig06,\n\tIsbn = {9780387303031},\n\tTitle = {Numerical optimization}}"
+    left = complete.propose(complete.Query.from_entry(typed_book(tmp_path, typed)), client, client.cache)
+    assert left.proposed_raw is None and left.issues[0].endswith("it is not used; the entry is left as typed")
+    assert client.requests == 0
+
+
+def test_the_record_built_from_is_kept_with_its_own_matching_field_and_the_check_is_held_to_it(client, tmp_path):
+    thirteen = book(client, "ISBN 9780195333244")
+    (built,) = thirteen.choices
+    assert built == {"field": "record", "by": "loc-catalogue", "record_id": "17200404", "lccn": "2012007685",
+                     "isbns": ["9780195333244", "0195333241"],
+                     "matched": {"field": "020", "value": "9780195333244", "asked": "9780195333244"}}
+    by_lccn = book(client, "LCCN 10032396")
+    assert by_lccn.choices[0]["matched"] == {"field": "010", "value": "10032396", "asked": "10032396"}
+    assert book(client, "Organization of memory", author="Tulving").choices[0]["matched"] is None     # no number was asked
+    # the two lengths of one ISBN are the same number; another number is not
+    response = client.cache.response('loc-sru-v1:10:bath.isbn="9780195333244"', 10**9)
+    (xml,) = catalogue_review.parse_search(response["raw_xml"], 'bath.isbn="9780195333244"')["records"]
+    assert book_build.record_isbns(xml) == ["9780195333244", "0195333241"]
+    assert book_build.matched_identifier(xml, isbn="0195333241")["value"] == "0195333241"
+    assert book_build.same_isbn("0195333241", "9780195333244") and book_build.same_isbn("9780195333244", "0195333241")
+    assert not book_build.same_isbn("9780195333244", "9780387303031")
+    assert not book_build.same_isbn("9780195333245", "9780195333245")              # a wrong check digit is no ISBN
+    assert book_build.matched_identifier(xml, isbn="9780387303031") is None
+    assert book_build.matched_identifier(xml, lccn="2012007685") and not book_build.matched_identifier(xml, lccn="10032396")
+    # the check's answer counts only for the record the entry was built from
+    entry = typed_book(tmp_path, KAHA12)
+    open_result = {"status": "needs_review", "issues": [], "candidates": [], "attempts": []}
+    same = book_build.catalogue_check(entry, dict(open_result), client, record_id="17200404")
+    assert same["status"] == "metadata_verified" and same["accepted_record_id"] == "17200404"
+    other = book_build.catalogue_check(entry, dict(open_result), client, record_id="999")
+    assert other["status"] == "needs_review" and other["issues"] == [
+        "The catalogue check matched the entry to record 17200404, not to the record it was built from (999); it is "
+        "not taken as verified"]
+    assert "accepted_record_id" not in other and client.requests == 0
+
+
+# --- item 8: plain source text is escaped before house braces are added ---------------------------
+
+def _altered(client, **swap):
+    """Kahana's real record with some of its transcribed text replaced."""
+    response = client.cache.response('loc-sru-v1:10:bath.isbn="9780195333244"', 10**9)
+    (xml,) = catalogue_review.parse_search(response["raw_xml"], 'bath.isbn="9780195333244"')["records"]
+    for old, new in swap.items():
+        assert old in xml
+        xml = xml.replace(old, new)
+    return xml
+
+
+def test_characters_tex_reads_as_commands_are_escaped_and_the_check_still_agrees(client, tmp_path):
+    xml = _altered(client, **{"Foundations of human memory": "100% human memory: R&amp;D notes on C# and snake_case",
+                              "Oxford University Press": "A&amp;B Press"})
+    built = book_build.build_book(xml)
+    assert "\tTitle = {100\\% human memory: {R\\&D} notes on {C}\\# and snake\\_case}" in built.proposed_raw
+    assert "\tPublisher = {{A\\&B} Press}" in built.proposed_raw            # and "B" is not lowered after the ampersand
+    assert built.unfilled == [] and not built.needs_decision
+    # no unescaped special character is left in any field of the entry
+    import re
+    fields = fields_of(built.proposed_raw, tmp_path)
+    for name, value in fields.items():
+        assert not re.search(r"(?<!\\)[%&#_~^$]", value), (name, value)
+    # the text reads back as exactly these fields through the strict scanner (nothing was cut at the %)
+    assert {k.lower(): v for k, v in intake.scan_entry(built.proposed_raw)[2].items()}["title"] == fields["title"]
+    # and the catalogue check compares the escaped fields as equal to the record's plain text
+    record = catalogue_review.parse_edition(xml)
+    evidence, issues = catalogue_review.compare_edition(dict(fields), record, xml)
+    assert issues == [] and evidence["title"]["match"] and evidence["publisher"]["match"]
+    assert book_build.plain_source("title", "100% & #1_a") == "100\\% \\& \\#1\\_a"
+    assert book_build.plain_source("title", "{Gestalt} & co") == "{Gestalt} \\& co"       # the caller's own braces stay
+
+
+def test_text_with_no_plain_tex_form_is_not_written(client):
+    for text in ("x ~ y", "x^2", "a \\textbf{b}", "cost $5"):
+        with pytest.raises(ValueError):
+            book_build.plain_source("title", text)
+    tilde = book_build.build_book(_altered(client, **{"Foundations of human memory": "Memory ~ a history"}))
+    assert "Title" not in tilde.proposed_raw and tilde.needs_decision and not tilde.complete
+    assert [u.field for u in tilde.unfilled] == ["title"] and "Memory ~ a history" in tilde.unfilled[0].source_values.values()
+    caret = book_build.build_book(_altered(client, **{"Oxford University Press": "X^2 Press"}))
+    assert "Publisher" not in caret.proposed_raw and caret.unfilled[0].field == "publisher"
+    assert caret.unfilled[0].reason.startswith("publisher: the source text has a character with no plain TeX form")
+    # a name is never escaped: one with such a character is not written
+    named = book_build.build_book(_altered(client, **{"Kahana, Michael J.": "Kah%ana, Michael J.",
+                                                     "Michael Jacob Kahana": "Michael Jacob Kah%ana"}))
+    assert "Author" not in named.proposed_raw and named.unfilled[0] == complete.Unfilled(
+        "author", "author: a name in the record has a character that is not plain text in TeX",
+        {"loc-catalogue": "Michael Jacob Kah%ana"})
