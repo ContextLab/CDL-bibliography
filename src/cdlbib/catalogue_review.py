@@ -1007,6 +1007,39 @@ def propose_corrections(fields, result):
                          'catalogue_url': candidate['url']}}
 
 
+def review_book(cache, client, fields):
+    """The catalogue searches and the assessment of one book, exactly as the catalogue
+    review makes them: the title/author search; the same search without diacritics when
+    the first finds nothing; one refinement by the cited year when several editions (or a
+    truncated list) leave the choice open. Returns ``(response, result, attempts,
+    queries)``. ``run_catalogue_review`` stores what this returns; the reference builder
+    (``book_build``) calls it for a built book, so both judge an entry by one rule."""
+    response = fetch_search(cache, client, fields)
+    result = assess_catalogue(fields, response)
+    attempts = [{'source': 'loc-catalogue', 'url': response['url']}]
+    queries = [response['query']]
+    discovery_options = {}
+    if (response.get('total_records') == 0
+            and search_query(fields, fold_diacritics=True) != response['query']):
+        discovery_options = {'fold_diacritics': True}
+        response = fetch_search(cache, client, fields, **discovery_options)
+        result = assess_catalogue(fields, response)
+        attempts.append({'source': 'loc-catalogue', 'url': response['url']})
+        queries.append(response['query'])
+    if (result['status'] != 'metadata_verified'
+            and (len(result['candidates']) > 1 or response.get('truncated'))
+            and re.fullmatch(r'[1-9]\d{3}', str(fields.get('year', '')))):
+        refined = fetch_search(cache, client, fields, include_year=True, **discovery_options)
+        narrowed = assess_catalogue(fields, refined)
+        attempts.append({'source': 'loc-catalogue', 'url': refined['url']})
+        queries.append(refined['query'])
+        # An empty refinement is not proof that the broader
+        # edition evidence was wrong. Keep those discovery leads.
+        if narrowed['candidates'] and not refined.get('truncated'):
+            response, result = refined, narrowed
+    return response, result, attempts, queries
+
+
 def run_catalogue_review(filename, cache, client, report, limit=None, snapshot=None, keys=None):
     validate_output_path(filename, report, cache)
     if snapshot:
@@ -1029,29 +1062,7 @@ def run_catalogue_review(filename, cache, client, report, limit=None, snapshot=N
                     continue
                 if limit is not None and count >= limit:
                     break
-                response = fetch_search(cache, client, fields)
-                result = assess_catalogue(fields, response)
-                attempts = [{'source': 'loc-catalogue', 'url': response['url']}]
-                queries = [response['query']]
-                discovery_options = {}
-                if (response.get('total_records') == 0
-                        and search_query(fields, fold_diacritics=True) != response['query']):
-                    discovery_options = {'fold_diacritics': True}
-                    response = fetch_search(cache, client, fields, **discovery_options)
-                    result = assess_catalogue(fields, response)
-                    attempts.append({'source': 'loc-catalogue', 'url': response['url']})
-                    queries.append(response['query'])
-                if (result['status'] != 'metadata_verified'
-                        and (len(result['candidates']) > 1 or response.get('truncated'))
-                        and re.fullmatch(r'[1-9]\d{3}', str(fields.get('year', '')))):
-                    refined = fetch_search(cache, client, fields, include_year=True, **discovery_options)
-                    narrowed = assess_catalogue(fields, refined)
-                    attempts.append({'source': 'loc-catalogue', 'url': refined['url']})
-                    queries.append(refined['query'])
-                    # An empty refinement is not proof that the broader
-                    # edition evidence was wrong. Keep those discovery leads.
-                    if narrowed['candidates'] and not refined.get('truncated'):
-                        response, result = refined, narrowed
+                response, result, attempts, queries = review_book(cache, client, fields)
                 result['candidates'] = [c for c in previous.get('candidates', []) if c.get('source') != 'loc-catalogue'] + result['candidates']
                 result['attempts'] = previous.get('attempts', []) + attempts
                 for name in ('auto_review', 'discovery_review', 'research_attempt'):

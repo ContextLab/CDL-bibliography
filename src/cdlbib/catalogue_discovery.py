@@ -83,10 +83,27 @@ def parse_search(xml, query, limit=10):
     return {"total_records": int(total), "truncated": int(total) > limit, "records": records}
 
 
+def identifier_query(kind, value):
+    """The catalogue query for one standard number: ``kind`` "isbn" (digits, with a final X
+    for an ISBN-10) or "lccn" (the normalised control number: an optional prefix of letters,
+    then digits). Only such a value is ever put into the query."""
+    if kind not in ("isbn", "lccn") or not re.fullmatch(
+            r"\d{9}[\dX]|\d{13}" if kind == "isbn" else r"[a-z]{0,3}\d{8,10}", str(value)):
+        raise ValueError("Catalogue lookup requires a well-formed ISBN or LCCN")
+    return f'bath.{kind}="{value}"'
+
+
 def fetch_search(cache, client, fields, limit=10, *, include_year=False, fold_diacritics=False):
+    query = search_query(fields, include_year=include_year, fold_diacritics=fold_diacritics)
+    return fetch_query(cache, client, query, limit)
+
+
+def fetch_query(cache, client, query, limit=10):
+    """One paced, cached SRU search for ``query`` (a title/author search of
+    ``search_query`` or a standard-number search of ``identifier_query``): the request,
+    the cache entry and the saved envelope are the same for both."""
     if not 1 <= limit <= 50:
         raise ValueError("Catalogue result limit must be between 1 and 50")
-    query = search_query(fields, include_year=include_year, fold_diacritics=fold_diacritics)
     identity = f"loc-sru-v1:{limit}:{query}"
     saved = cache.response(identity, 30 * 86400)
     if saved is not None and not client.refresh:
