@@ -50,7 +50,7 @@ if [ "$dirty" = yes ]; then
 fi
 
 # The checkout is copied inside, so that the user there owns it and nothing here is written.
-docker run --rm --cpus "$cpus" -e CI=true "${options[@]}" -v "$checkout/repo:/checkout:ro" cdlbib-ci-linux \
+docker run --rm --cpus "$cpus" -e CI=true ${options[@]+"${options[@]}"} -v "$checkout/repo:/checkout:ro" cdlbib-ci-linux \
   bash -c '
     set -eu
     export PATH="/opt/python/'"$python"'/bin:$PATH"
