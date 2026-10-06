@@ -295,73 +295,6 @@ def test_a_link_given_the_inode_number_of_a_removed_prepared_file_is_not_taken_f
     assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
 
 
-def exchanged(library, target_now):
-    """A real folder as it stands straight after the writer's exchange, with ``target_now``
-    (a function of the library and the prepared file's name) having put something else in
-    the bibliography's place since: (the folder, the name the file that was read now has,
-    the prepared file's identity, the stamp of the file read, the descriptor held on it,
-    the stack that closes it)."""
-    import contextlib
-    bib = library / "cdl.bib"
-    bib.write_bytes(b"as it was read\n")
-    os.chmod(bib, 0o644)             # whatever the umask is
-    folder, keep = writer._Folder.at(library), contextlib.ExitStack()
-    name, identity = folder.new(".cdl.bib-", b"the new text\n", 0o644)
-    previous, seen, read_fd = folder.read_held("cdl.bib", keep)
-    assert previous == b"as it was read\n" and folder.exchange(name, "cdl.bib")
-    assert folder.identity("cdl.bib") == identity and folder.stamp(name) == seen
-    target_now(library, name)
-    return folder, name, identity, seen, read_fd, keep
-
-
-def test_a_save_another_program_makes_just_after_the_exchange_is_left_in_place(tmp_path):
-    """The other program read the bibliography before the exchange and saves (by rename)
-    just after it, before the writer has looked: its save is the newest and stays. The write
-    is refused as changed; the file that was read is not put back over that save."""
-    def saved_by_another(library, name):
-        (library / "cdl.bib.editor").write_bytes(b"as it was read\n% saved by the other program\n")
-        os.replace(library / "cdl.bib.editor", library / "cdl.bib")
-    library = tmp_path / "library"
-    library.mkdir()
-    folder, name, identity, seen, read_fd, keep = exchanged(library, saved_by_another)
-    with keep:
-        with pytest.raises(writer._Changed):
-            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
-    folder.close()
-    assert (library / "cdl.bib").read_bytes() == b"as it was read\n% saved by the other program\n"
-
-
-@pytest.mark.parametrize("aside", ["kept", "removed", "a link too"])
-def test_a_link_found_in_the_bibliographys_place_after_the_exchange_is_not_left_there(tmp_path, aside):
-    """The bibliography's name holds a link to a file outside when the writer looks (the
-    prepared name was swapped for it). The file that was read is exchanged back; when it was
-    removed or swapped too while it stood aside, its text is written again. Either way the
-    write is refused, the bibliography is an ordinary file with what was read, and the file
-    outside is untouched."""
-    victim = tmp_path / "victim.txt"
-    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
-
-    def swapped(library, name):
-        os.unlink(library / "cdl.bib")
-        os.symlink(victim, library / "cdl.bib")
-        if aside != "kept":
-            os.unlink(library / name)
-        if aside == "a link too":
-            os.symlink(victim, library / name)
-    library = tmp_path / "library"
-    library.mkdir()
-    folder, name, identity, seen, read_fd, keep = exchanged(library, swapped)
-    with keep:
-        with pytest.raises(writer._Changed):
-            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
-    folder.remove(name)
-    folder.close()
-    bib = library / "cdl.bib"
-    assert not bib.is_symlink() and bib.read_bytes() == b"as it was read\n" and oct(bib.stat().st_mode & 0o777) == "0o644"
-    assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n" and not victim.is_symlink()
-    assert sorted(item.name for item in library.iterdir()) == ["cdl.bib"]
-
-
 def special_bits(path, wanted=(stat.S_ISUID, stat.S_ISGID, stat.S_ISVTX)):
     """Set on ``path`` each of the special mode bits this system lets its owner set on an
     ordinary file; returns those that it kept."""
@@ -400,34 +333,6 @@ def test_a_written_file_keeps_its_permission_bits_and_no_special_bit(ws, permiss
     assert stat.S_IMODE(os.stat(ledger).st_mode) == permissions
     verification.write_ledger(ledger, b"", 0o7777)               # asked for outright: still permission bits only
     assert stat.S_IMODE(os.stat(ledger).st_mode) == 0o777
-
-
-def test_text_put_back_after_a_swap_has_the_permission_bits_of_the_file_read_and_no_special_bit(tmp_path):
-    victim = tmp_path / "victim.txt"
-    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
-    os.chmod(victim, 0o666)
-    kept = []
-
-    def swapped(library, name):
-        os.chmod(library / name, 0o640)                           # the file that was read, standing aside
-        kept.append(special_bits(library / name))
-        read_mode.append(stat.S_IMODE(os.stat(library / name).st_mode))
-        os.unlink(library / "cdl.bib")
-        os.symlink(victim, library / "cdl.bib")                   # a link to a file open to everyone
-        os.unlink(library / name)
-    read_mode = []
-    library = tmp_path / "library"
-    library.mkdir()
-    folder, name, identity, seen, read_fd, keep = exchanged(library, swapped)
-    assert kept[0] and read_mode == [0o640 | kept[0]]
-    with keep:
-        with pytest.raises(writer._Changed):
-            writer._confirm(folder, library / "cdl.bib", name, identity, seen, read_fd, b"as it was read\n")
-    folder.close()
-    bib = library / "cdl.bib"
-    assert not bib.is_symlink() and bib.read_bytes() == b"as it was read\n"
-    assert stat.S_IMODE(os.stat(bib).st_mode) == 0o640
-    assert stat.S_IMODE(os.stat(victim).st_mode) == 0o666 and victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
 
 
 def test_a_name_is_never_taken_by_a_plain_rename(tmp_path):

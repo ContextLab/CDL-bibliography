@@ -14,6 +14,17 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# The entries of the committed cdl.bib that have no saved result yet in the committed snapshot
+# (verification/baseline.jsonl.gz), each for a known reason. The clone the tests run in is the
+# committed library without exactly these.
+NO_SAVED_RESULT = {
+    # added by ContextLab#97, after the snapshot was last saved
+    "Krak06", "NielEtal03", "SoloEtal21", "RobeZadr14", "BlagEtal04", "ZadrDond00",
+    # their book titles were edited (approved by the owner, 2026-10-06), which gave them new fingerprints
+    "ClanEtal19", "BoseEtal92", "SilbEtal01", "Beaz96",
+}
+
+
 @pytest.fixture(scope="module")
 def clone(tmp_path_factory):
     repo = tmp_path_factory.mktemp("ci") / "repo"
@@ -40,8 +51,15 @@ def clone(tmp_path_factory):
         saved = {key: cache.stored(str(bib), entry) for key, entry in entries.items()}
     finally:
         cache.close()
-    without = [key for key, result in saved.items() if result is None or result["status"] == "pending"]
-    assert len(without) < len(entries) / 10, f"{len(without)} of {len(entries)} entries have no saved result"
+    without = sorted(key for key, result in saved.items() if result is None or result["status"] == "pending")
+    # Exactly the entries known to have no saved result, by name: any other entry without one
+    # (an approved entry that was edited, a new entry nobody has listed) fails here instead of
+    # being taken out of the library the tests then check.
+    assert without == sorted(NO_SAVED_RESULT), (
+        "The entries of the committed cdl.bib without a saved result in verification/baseline.jsonl.gz are not "
+        f"the ones listed in NO_SAVED_RESULT. Not listed: {sorted(set(without) - set(NO_SAVED_RESULT))}; listed "
+        f"but saved (or gone): {sorted(set(NO_SAVED_RESULT) - set(without))}. Refresh the baseline (cdlbib "
+        "crossref snapshot, after verifying them), or extend or shorten the list in tests/test_check_ci.py.")
     if without:
         text = bib.read_bytes().decode("utf-8")
         for key in without:
