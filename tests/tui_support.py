@@ -194,10 +194,17 @@ async def until(pilot, condition, timeout=180.0, what="the expected state"):
             raise AssertionError(f"{what} was not reached in {timeout} s; log: {pilot.app.log_lines[-10:]}")
 
 
-def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=180.0):
+def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=180.0, settle=0.5):
     """Run ``command`` with a real pseudo-terminal as its stdin, stdout and stderr. ``steps``:
     [(text to wait for in what is written after the keys before it, bytes to type then)]. Returns (exit status, everything
-    it wrote). The process is killed when a text does not appear in ``timeout`` seconds."""
+    it wrote). The process is killed when a text does not appear in ``timeout`` seconds.
+
+    Keys are typed as a person types them: once the awaited text is there, the program has
+    read every key typed before, and it has written nothing more for ``settle`` seconds. A
+    screen is drawn in several writes, and the text awaited after a key can be in what the
+    program was still drawing when the key was typed (the footer under a dialog); typed at
+    once, Esc and the next key would then be read together, which a terminal program must
+    take for one key (Alt with that key), so neither would act."""
     import fcntl
     import pty
     import select
@@ -208,11 +215,16 @@ def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=18
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", size[0], size[1], 0, 0))
     process = subprocess.Popen(command, stdin=slave, stdout=slave, stderr=slave, cwd=cwd, close_fds=True,
                                env=dict(env or os.environ, TERM="xterm-256color", LINES=str(size[0]), COLUMNS=str(size[1])))
-    os.close(slave)
-    seen, steps, deadline, since = b"", list(steps), time.monotonic() + timeout, 0
+    def unread():                       # bytes typed that the program has not read yet
+        try:
+            return struct.unpack("i", fcntl.ioctl(slave, termios.FIONREAD, b"\0\0\0\0"))[0]
+        except OSError:
+            return 0
+    seen, steps, deadline, since, quiet_since = b"", list(steps), time.monotonic() + timeout, 0, time.monotonic()
     try:
         while True:
-            if steps and steps[0][0].encode() in seen[since:]:     # written after the last keys were typed
+            if (steps and steps[0][0].encode() in seen[since:]     # written after the last keys were typed
+                    and time.monotonic() - quiet_since >= settle and not unread()):
                 os.write(master, steps.pop(0)[1])
                 seen += b"\n<typed>\n"
                 since = len(seen)
@@ -224,6 +236,7 @@ def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=18
                     chunk = b""
                 if chunk:
                     seen += chunk
+                    quiet_since = time.monotonic()
                     continue
             if process.poll() is not None:
                 break
@@ -237,6 +250,7 @@ def at_a_terminal(command, steps, env=None, cwd=None, size=(40, 140), timeout=18
             process.kill()
             process.wait()
         os.close(master)
+        os.close(slave)
 
 
 def changes(app):

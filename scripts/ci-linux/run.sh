@@ -50,9 +50,11 @@ if [ "$dirty" = yes ]; then
 fi
 
 # The checkout is copied inside, so that the user there owns it and nothing here is written.
+# --init: a first process that collects the children of programs that have ended, as the
+# runner's has (without it a killed grandchild stays in the process table and looks alive).
 # /fs/tmpfs (memory) and /fs/volume (a Docker volume: ext4 in Docker Desktop) are two more file
 # systems to point pytest's --basetemp at; the home folder and /tmp are Docker's overlayfs.
-docker run --rm --cpus "$cpus" -e CI=true ${options[@]+"${options[@]}"} -v "$checkout/repo:/checkout:ro" \
+docker run --rm --init --cpus "$cpus" -e CI=true ${options[@]+"${options[@]}"} -v "$checkout/repo:/checkout:ro" \
   --tmpfs /fs/tmpfs:exec,mode=1777 -v /fs/volume cdlbib-ci-linux \
   bash -c '
     set -eu

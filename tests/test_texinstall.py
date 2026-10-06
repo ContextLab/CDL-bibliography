@@ -672,6 +672,29 @@ def download(url, target, limit=TINYTEX_MAX_BYTES, seconds=TINYTEX_SECONDS):
     return size
 
 
+PROGRAMS = []                        # the folders of the system's programs, for a PATH after the tests' TeX Live
+
+
+def programs_without_tex(bin_folder, links):
+    """The folders that give a PATH the system's programs (perl, curl, tar ...) and no TeX
+    program: /usr/bin and /bin where no TeX is installed in them (macOS); where one is
+    (Ubuntu's packages put pdflatex, kpsewhich and biber in /usr/bin), a folder of links to
+    every program of theirs that is not a TeX Live's: not one the tests' TeX Live has under
+    the same name, not biber, and not a file of the system's TeX Live."""
+    folders = ["/usr/bin", "/bin"]
+    tex = {item.name for item in bin_folder.iterdir()} | {"biber", "bibtex", "kpsewhich", "tlmgr", "pdflatex", "xelatex", "lualatex"}
+    if not any(shutil.which(name, path=os.pathsep.join(folders)) for name in tex):
+        return folders
+    for folder in folders:
+        for item in sorted(Path(folder).iterdir()):
+            target = os.path.realpath(item)
+            if item.name in tex or "/texlive/" in target or "/texmf" in target or os.path.lexists(links / item.name):
+                continue
+            os.symlink(item, links / item.name)
+    assert (links / "perl").exists() and not any((links / name).exists() for name in tex)
+    return [str(links)]
+
+
 @pytest.fixture(scope="module")
 def texlive(tmp_path_factory):
     """A TeX Live this user owns, with LaTeX, bibtex and biblatex but no biber: its bin folder.
@@ -688,14 +711,17 @@ def texlive(tmp_path_factory):
     with tarfile.open(archive) as packed:
         packed.extractall(folder, filter="tar")
     archive.unlink()
-    (bin_folder,) = [path for path in (folder / "TinyTeX" / "bin").iterdir() if path.is_dir()]
-    env = dict(os.environ, PATH=os.pathsep.join([str(bin_folder), "/usr/bin", "/bin"]))
+    (tree,) = [path for path in folder.iterdir() if path.is_dir()]       # TinyTeX on macOS, .TinyTeX on Linux
+    assert tree.name in ("TinyTeX", ".TinyTeX"), tree
+    (bin_folder,) = [path for path in (tree / "bin").iterdir() if path.is_dir()]
+    PROGRAMS[:] = programs_without_tex(bin_folder, tmp_path_factory.mktemp("programs"))
+    env = dict(os.environ, PATH=os.pathsep.join([str(bin_folder), *PROGRAMS]))
     # Even the newest release's tlmgr can be older than the repository's (the release is
     # monthly, the repository daily), and tlmgr then installs nothing until it has updated itself.
     done = subprocess.run([str(bin_folder / "tlmgr"), "update", "--self"], env=env, capture_output=True, text=True)
     assert done.returncode == 0, f"TinyTeX {tag}: tlmgr update --self: " + (done.stdout + done.stderr)[-1500:]
     done = subprocess.run([str(bin_folder / "tlmgr"), "install", "biblatex", "logreq"], env=env, capture_output=True, text=True)
-    assert done.returncode == 0 and (folder / "TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty").is_file(), done.stderr[-1500:]
+    assert done.returncode == 0 and (tree / "texmf-dist/tex/latex/biblatex/biblatex.sty").is_file(), done.stderr[-1500:]
     assert (bin_folder / "pdflatex").exists() and (bin_folder / "bibtex").exists() and not (bin_folder / "biber").exists()
     return bin_folder
 
@@ -703,7 +729,8 @@ def texlive(tmp_path_factory):
 @pytest.fixture
 def on_texlive(texlive, texenv, monkeypatch):
     """This process, and every program it starts, sees only the tests' TeX Live."""
-    monkeypatch.setenv("PATH", os.pathsep.join([str(texlive), "/usr/bin", "/bin"]))
+    monkeypatch.setenv("PATH", os.pathsep.join([str(texlive), *PROGRAMS]))
+    assert shutil.which("kpsewhich") == str(texlive / "kpsewhich") and shutil.which("biber") in (None, str(texlive / "biber"))
     texinstall.version.cache_clear()
     yield texlive
     texinstall.version.cache_clear()
@@ -714,7 +741,10 @@ def test_user_mode_of_tlmgr_does_not_install_biber(on_texlive, tmp_path):
     tree = tmp_path / "user tree"
     env = dict(os.environ, TEXMFHOME=str(tree))
     assert subprocess.run(["tlmgr", "--usermode", "init-usertree"], env=env, capture_output=True, text=True).returncode == 0
-    said = subprocess.run(["tlmgr", "--usermode", "install", "biber"], env=env, capture_output=True, text=True)
+    for attempt in range(3):         # mirror.ctan.org sends each request to another mirror, and one can be out of reach
+        said = subprocess.run(["tlmgr", "--usermode", "install", "biber"], env=env, capture_output=True, text=True)
+        if "could not get texlive.tlpdb" not in said.stdout + said.stderr:
+            break
     assert "package biber is not relocatable, cannot install it in user mode" in said.stdout + said.stderr
     assert shutil.which("biber") is None and not list(tree.rglob("biber*"))
 
