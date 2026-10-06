@@ -15,10 +15,12 @@ log at the bottom of the window.
 
 ## 1. Install
 
-`cdlbib` needs Python 3.11 or later:
+`cdlbib` needs Python 3.11 or later. From a checkout of the repository, the install
+script installs it whatever the default Python is (the other ways are in the
+[README](../../README.md#installation)):
 
 ```bash
-python -m pip install cdlbib
+sh install.sh
 cdlbib --version
 ```
 
