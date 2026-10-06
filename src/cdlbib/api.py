@@ -1147,15 +1147,17 @@ def _message(exc):
 # --- reference intake ---
 
 def find_candidates(ws, title=None, authors=(), year=None, mailto=None, database=None, progress=None,
-                    limit=None, per_source=None):
+                    limit=None, per_source=None, book=False):
     """Leads for a title, one or several authors, or both; see intake.find_candidates.
     A lead becomes an entry only through propose_new([candidate_query(lead)]). ``limit``
     (leads returned; default intake.CANDIDATE_LIMIT) and ``per_source`` (records asked of
     each source; default intake.PER_SOURCE) are intake's own, and bounded there: never more
-    than intake.MAX_CANDIDATES and intake.MAX_PER_SOURCE, whatever is passed."""
+    than intake.MAX_CANDIDATES and intake.MAX_PER_SOURCE, whatever is passed. ``book``: the
+    person is looking for a book, so the Library of Congress catalogue is asked (and only
+    it); otherwise the catalogue is asked only when the other sources found nothing."""
     from . import intake
     return intake.find_candidates(ws, title=title, authors=authors, year=year, mailto=mailto,
-                                  database=database, progress=progress,
+                                  database=database, progress=progress, book=bool(book),
                                   limit=intake.CANDIDATE_LIMIT if limit is None else limit,
                                   per_source=intake.PER_SOURCE if per_source is None else per_source)
 

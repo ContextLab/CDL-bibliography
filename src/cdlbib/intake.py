@@ -58,7 +58,8 @@ TITLE_PAGES = 4             # a record's title is looked for on these first page
 MODEL_PAGES = 2             # the pages a model is given (the front matter)
 CANDIDATE_LIMIT = 20
 PER_SOURCE = 10
-SOURCES = ("crossref", "pubmed", "arxiv", "loc-catalogue")
+SOURCES = ("crossref", "pubmed", "arxiv")
+CATALOGUE = "loc-catalogue"   # asked for a book, or when SOURCES found nothing (find_candidates)
 ARXIV_API = "https://export.arxiv.org/api/query"
 DARTMOUTH_KEY_PAGE = "https://rc.dartmouth.edu/ai/online-resources/connecting-ai-clients/"
 ADAPTERS = {"dartmouth": "cdlbib-adapter-dartmouth", "openai": "cdlbib-adapter-openai"}
@@ -299,11 +300,17 @@ class _Client:
 
 
 def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CANDIDATE_LIMIT,
-                    per_source=PER_SOURCE, sources=SOURCES, mailto=None, database=None, progress=None):
+                    per_source=PER_SOURCE, sources=None, mailto=None, database=None, progress=None, book=False):
     """Leads for a title, one or several authors, or both, from Crossref, PubMed and arXiv,
     and, for a title with an author, books from the Library of Congress catalogue (each a
     lead with ``source`` "loc-catalogue", its ``lccn``, and its publisher and edition in
     ``journal``: editions are separate leads, never merged).
+
+    The catalogue is asked in two cases only (owner's decision 2026-10-06): ``book`` is true
+    (the person is looking for a book: then it is the one source asked), or the three other
+    sources gave no lead for a title with an author (``progress`` is then told that it was
+    asked because nothing else was found). A search for a paper that finds leads makes no
+    catalogue request. ``sources`` names the sources explicitly instead.
 
     Each lead has the shape of ``complete._summary`` (``authors``, ``year``, ``journal``,
     ``doi``, ``title``, ``type``, ``source``, and ``pmid``/``arxiv`` when known) plus
@@ -334,6 +341,8 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
         per_source, limit = max(1, min(int(per_source), MAX_PER_SOURCE)), max(0, min(int(limit), MAX_CANDIDATES))
     except (TypeError, ValueError) as exc:
         raise CdlbibError("The number of records to ask for must be a whole number.") from exc
+    fallback = sources is None and not book and bool(title and authors)
+    sources = ((CATALOGUE,) if book else SOURCES) if sources is None else tuple(sources)
     unknown = [s for s in sources if s not in _LEADS]
     if unknown:
         raise CdlbibError(f"Unknown source {unknown[0]!r}; the sources are {', '.join(_LEADS)}.")
@@ -343,7 +352,14 @@ def find_candidates(ws, title=None, authors=(), year=None, client=None, limit=CA
     surnames = [s for s in map(_surname, authors) if s]
     merged, order = {}, []
     with _Client(ws, client, mailto, database) as client:
-        for source in sources:
+        for source in list(sources) + ([None] if fallback else []):
+            if source is None:       # after the other sources: the catalogue, when they gave no lead
+                if any(_relevance(lead, title, surnames, year) is not None for lead in order):
+                    break
+                source = CATALOGUE
+                if progress:
+                    progress(f"{source}: asked for a book, because Crossref, PubMed and arXiv gave no record "
+                             "for this title and author")
             try:
                 leads = list(_LEADS[source](client, title, authors, year, per_source))
             except (ProviderError, ValueError, KeyError, TypeError, AttributeError) as exc:

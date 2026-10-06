@@ -800,20 +800,22 @@ the brief). What was built for each is in [verification.md](verification.md#edit
   field; the 6,117 that differ are of entries with one, and differ only in the editor issue).
   `RESOLVER_VERSION` 31; `POLICY` unchanged, because no entry with an `editor` field was ever
   accepted through this comparison. What Claude found: Crossref rarely carries a book's
-  editors on the chapter's record (79 of 6,573 saved chapter candidates), so most chapters are
-  still built without editors; of the proceedings records that carry editors nearly all are
+  editors on the chapter's record (79 of the 6,573 chapter-type records among all saved search
+  candidates; of the library's 236 chapters, the accepted Crossref record is saved for 122 and
+  none of those lists editors), so chapters are still built without editors from that record; of the proceedings records that carry editors nearly all are
   SPIE's.
 - **Ordinals: "numerals with superscript"** (the brief's quotation of the owner's choice), the
   form the library uses: `30\textsuperscript{th}`. This extends the rule of 2026-09-25 ("Proper
   ordinals everywhere", which names numeric ordinals) to ordinal words. Applied to `booktitle`
-  and `edition`. Claude's reading, not confirmed by the owner: an ordinal word is rewritten
-  only when it numbers a meeting ("the Fifth Annual Workshop"); "The Handbook of Second
+  and `edition`. An ordinal word is rewritten
+  only when it numbers a meeting (confirmed by the owner on 2026-10-06) ("the Fifth Annual Workshop"); "The Handbook of Second
   Language Acquisition" (KrolSund03) and "... in the Twenty-First-Century University" (Hara96)
   are not rewritten. The library had 44 book titles and 32 editions in the superscript form,
   no plain "30th", and six book titles with an ordinal word; the rule changes four of them
-  (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96). Their data is NOT changed: they are listed in
-  `src/cdlbib/data/pending_house_forms.json` and the format check names them without failing,
-  until the owner approves the change.
+  (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96). The owner approved the change on 2026-10-06 and the four were rewritten in cdl.bib that day;
+  an edit ends an entry's saved result, and the owner re-approves the four. The mechanism that
+  listed them (`src/cdlbib/data/pending_house_forms.json`, named by the format check without
+  failing) remains, with an empty list.
   A library catalogue's older "2d ed." and "3d ed." are read as the second and third edition,
   by the format check and by the catalogue check's edition comparison
   (`catalogue_review.normalized_edition`), so the book builder writes them; "Rev. ed." is
@@ -836,3 +838,20 @@ the brief). What was built for each is in [verification.md](verification.md#edit
   tests need a computer without `/usr/bin/biber`). Their TeX Live's package manager is now
   updated before anything is installed with it: the pinned TinyTeX release's `tlmgr` had fallen
   behind the package repository and refused every installation.
+
+User, 2026-10-06 (later), on three questions the work above raised:
+
+- **The catalogue in a title-and-author search:** "only when it's a book OR when other
+  searches fail". `find_candidates` asks the Library of Congress when the person says the
+  work is a book (`add --book`, the Book switch of the Search tab), and then asks nothing
+  else; otherwise only when Crossref, PubMed and arXiv gave no lead, and the progress lines
+  say that this is why. A paper search that finds leads makes no catalogue request.
+- **Chapters with no ISBN whose publisher page cannot be read (Elsevier):** staying
+  unfilled is accepted. The reason shown says that no record decides, why no model was
+  asked, and that the book title is to be typed in.
+- **Typed book entries:** "Yes, complete typed book entries from catalogue". A typed `@book`
+  is completed from its catalogue record (by `isbn`/`lccn`, else title and first author,
+  the typed year or edition choosing among editions; several editions are candidates). A
+  typed value the record does not agree with is a question and is not overwritten. A typed
+  book with a DOI is left as typed: the catalogue route is for a book without a supplied
+  DOI, and Crossref's record of a book has no edition and no place to build from.

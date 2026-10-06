@@ -163,7 +163,7 @@ def test_without_a_model_route_the_book_title_stays_unfilled_and_says_how_to_ena
     declined = propose(client, WHIT04, allow_model=False)
     assert unfilled(declined, "booktitle") == complete.Unfilled(
         "booktitle", "booktitle: no single registry title: no record of the book says which is its title; a model "
-        "was not asked: it was declined",
+        "was not asked: it was declined. The book title is left unfilled: type it in",
         {"crossref": "Progress in Brain Research; Acetylcholine in the Cerebral Cortex"})
     assert "Booktitle" not in declined.proposed_raw and declined.choices == []
     assert declined.status == "needs_review" and declined.needs_decision and not declined.complete

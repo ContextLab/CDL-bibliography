@@ -739,3 +739,28 @@ def test_a_book_is_added_by_its_isbn_and_its_source_is_the_catalogue(tmp_path):
             await T.press(pilot, "a")
             assert ws.bib.read_text(encoding="utf-8").strip() == kaha12 and "Added: Kaha12" in app.log_lines
     T.run(journey())
+
+
+def test_the_search_tab_asks_the_catalogue_when_book_is_ticked(tmp_path):
+    ws = T.library(tmp_path / "books")
+    ws.bib.write_text("", encoding="utf-8")
+    T.seed_responses(ws, T.ROOT / "tests/fixtures/intake/books.json.gz")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 0)
+            from textual.widgets import Checkbox, Input
+            app.screen.query_one("#s-title", Input).value = "Numerical optimization"
+            app.screen.query_one("#s-authors", Input).value = "Nocedal"
+            box = app.screen.query_one("#s-book", Checkbox)
+            assert box.value is False                      # a search is for a paper unless said otherwise
+            box.value = True
+            await pilot.pause()
+            app.screen.query_one("#s-title", Input).focus()
+            await T.press(pilot, "enter")
+            await T.until(pilot, lambda: "2 records found" in T.shown(app, "#s-message"))
+            text = T.screen_text(app)
+            assert "loc-catalogue" in text and "LCCN 2006923897" in text and "LCCN 99013263" in text
+            assert "did not answer" not in T.shown(app, "#s-message")      # nothing but the catalogue was asked
+    T.run(journey())

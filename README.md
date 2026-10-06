@@ -424,8 +424,16 @@ year, publisher and edition for you to choose from, and none is taken for you
 Only what the check can verify is written: a record the check cannot read (for
 example one whose byline ends in "et al.") gives no entry, and an edition
 statement that is not a number ("Rev. ed.") is left out and listed as unfilled, so
-that entry stays unverified. A book entry typed by hand, and a book's Crossref
-record (a DOI), are not completed.
+that entry stays unverified. A `@book` entry typed by hand is completed from the
+catalogue in the same way: by its `isbn` or `lccn` field if it has one, else by its
+title and first author, with a typed year or edition choosing among editions; a
+typed value the record does not agree with is shown as a question and is never
+overwritten. A typed book with a DOI, and the DOI of a book given to `add`, are
+not completed: Crossref's record of a book states no edition and no place.
+
+A search by title and author for a paper does not ask the catalogue. It is asked
+when you say the work is a book (`--book`, or the "book" switch of the Search tab
+in the interfaces), or when Crossref, PubMed and arXiv found nothing.
 
 Some chapter records name two titles for where the chapter appeared: the book and
 the series the book is in, in no particular order. The tool looks up the book's

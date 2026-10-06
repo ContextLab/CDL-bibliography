@@ -61,12 +61,14 @@ export async function show(main) {
     const title = h("input", { type: "text", id: "add-title" });
     const authors = h("input", { type: "text", id: "add-authors" });
     const year = h("input", { type: "text", id: "add-year", inputmode: "numeric", maxlength: "4" });
+    const book = h("input", { type: "checkbox", id: "add-book" });
     const out = h("div", { "aria-live": "polite" });
     add(panel, field("Title (or part of it)", title), field("Authors (separate several with ;)", authors), field("Year (optional)", year),
+      h("label", { for: "add-book" }, book, " A book: search the Library of Congress catalogue (needs the title and an author)"),
       h("div", { class: "row" }, button("Search", (event) => run(event.currentTarget, async () => {
         log.clear();
         const found = await post("/api/add/search", { title: title.value.trim(), authors: authors.value.split(";").map((name) => name.trim()).filter(Boolean),
-          year: year.value.trim() }, log.add);
+          year: year.value.trim(), book: book.checked }, log.add);
         clear(out, h("h3", { text: "Candidates (" + found.items.length + ")" }),
           found.errors.length ? note("warn", list(found.errors.map(([source, why]) => source + ": " + why))) : null,
           leads(found.items, found.search));

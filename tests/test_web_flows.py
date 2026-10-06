@@ -757,6 +757,15 @@ def test_add_a_book_by_its_lccn_then_accept(tmp_path, monkeypatch):
         # the book that is in the library already is a duplicate, by its ISBN's record
         again = site.ok("post", "/api/add/identifiers", {"queries": ["ISBN 9780195333244"]})["proposals"][0]
         assert again["duplicate_of"] == "Kaha12" and again["acceptable"] is False
+        # a search marked as a book asks the catalogue, and the editions are separate leads
+        lines = []
+        found = site.ok("post", "/api/add/search", {"title": "Numerical optimization", "authors": ["Nocedal"],
+                                                    "year": "", "book": True}, lines)
+        assert lines == ["loc-catalogue: 2 records"] and found["errors"] == []
+        assert [(lead["source"], lead["lccn"], lead["journal"]) for lead in found["items"]] == [
+            ("loc-catalogue", "2006923897", "Springer, 2nd ed"), ("loc-catalogue", "99013263", "Springer")]
+        picked = site.ok("post", "/api/add/choose", {"search": found["search"], "index": 0})["proposals"][0]
+        assert picked["key_proposed"] == "NoceWrig06" and picked["status"] == "metadata_verified"
         # a number the catalogue does not have: nothing is proposed, and it says so
         two = site.ok("post", "/api/add/identifiers", {"queries": ["LCCN 2099123456"]})["proposals"][0]
         assert two["proposed_raw"] is None and "No Library of Congress catalogue record has the LCCN" in two["issues"][0]

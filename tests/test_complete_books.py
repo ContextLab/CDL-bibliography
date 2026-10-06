@@ -267,7 +267,14 @@ def test_catalogue_records_are_leads_of_a_search_with_their_edition(tmp_path, cl
     # the same work by title and surnames: both editions are flagged, and the person sees which is which
     assert [lead["in_library"] for lead in found] == ["NoceWrig06", "NoceWrig06"]
     assert intake.query_for(found[1]) == complete.Query(lccn="99013263", book=True)
-    assert "loc-catalogue" in intake.SOURCES
+    # asking for a book asks the catalogue and nothing else (no Crossref, PubMed or arXiv answer is saved
+    # for this search: a request to one of them would be refused and listed in ``errors``)
+    lines = []
+    asked = intake.find_candidates(ws, client=client, title="Numerical optimization", authors=["Nocedal"], book=True,
+                                   progress=lines.append)
+    assert [lead["lccn"] for lead in asked] == ["2006923897", "99013263"] and asked.errors == []
+    assert lines == ["loc-catalogue: 2 records"] and client.requests == 0
+    assert intake.SOURCES == ("crossref", "pubmed", "arxiv") and intake.CATALOGUE == "loc-catalogue"
     # the catalogue is asked only for a title together with an author
     assert list(book_build.leads(client, "Numerical optimization", [], None, 10)) == []
     assert list(book_build.leads(client, None, ["Nocedal"], None, 10)) == []
@@ -343,13 +350,160 @@ def test_the_catalogue_not_answering_is_a_failed_lookup_and_nothing_is_proposed(
         client.cache.close()
 
 
-def test_a_crossref_record_of_a_book_is_still_not_built_and_a_typed_book_is_left_as_typed():
+def test_a_crossref_record_of_a_book_is_still_not_built():
     # Crossref's record of a book states no edition and no place: it fills nothing, as before.
     assert "book" not in complete.KINDS
     proposal = complete.build({}, {"type": "book", "DOI": "10.1201/b16018", "title": ["Bayesian Data Analysis"]})
     assert proposal.unsupported == "book" and proposal.proposed_raw is None
-    typed = complete.build({"ENTRYTYPE": "book", "ID": "GelmEtal13"}, {})
-    assert typed.unsupported == "book" and typed.proposed_raw is None
+
+
+# --- a search for a paper does not ask the catalogue; a search that finds nothing does -----------
+
+def test_a_paper_search_that_finds_leads_makes_no_catalogue_request(tmp_path):
+    # searches.json.gz holds no catalogue answer: a request to lx2.loc.gov would be refused by the
+    # transport, counted in ``requests`` and named in ``errors``.
+    saved = offline_client(tmp_path / "papers", "searches.json.gz")
+    try:
+        assert not saved.cache.db.execute("SELECT count(*) FROM responses WHERE request LIKE 'loc-sru%'").fetchone()[0]
+        lines = []
+        found = intake.find_candidates(library(tmp_path / "lib"), client=saved, per_source=5,
+                                       title="Attention is all you need", authors=["Vaswani"], progress=lines.append)
+        assert found and found.errors == [] and saved.requests == 0
+        assert [line.split(":")[0] for line in lines] == ["crossref", "pubmed", "arxiv"]       # and no fourth source
+        assert not any(lead["source"] == "loc-catalogue" for lead in found)
+        # asked for as a book, the same search does go to the catalogue, and to nothing else
+        booked = intake.find_candidates(library(tmp_path / "lib2"), client=saved, per_source=5, book=True,
+                                        title="Attention is all you need", authors=["Vaswani"])
+        assert booked == [] and saved.requests == 1
+        assert booked.errors == [("loc-catalogue", "offline: request to lx2.loc.gov refused")]
+    finally:
+        saved.cache.close()
+
+
+def test_the_catalogue_is_asked_when_the_paper_sources_give_no_lead(tmp_path):
+    # Tulving and Donaldson 1972: Crossref's five records are other works, PubMed and arXiv have none.
+    saved = offline_client(tmp_path / "fallback", "typed_books.json.gz")
+    try:
+        lines = []
+        found = intake.find_candidates(library(tmp_path / "lib"), client=saved, per_source=5,
+                                       title="Organization of memory", authors=["Tulving"], progress=lines.append)
+        assert lines == ["crossref: 5 records", "pubmed: 0 records", "arxiv: 0 records",
+                         "loc-catalogue: asked for a book, because Crossref, PubMed and arXiv gave no record for "
+                         "this title and author", "loc-catalogue: 1 record"]
+        assert [(lead["source"], lead["lccn"], lead["year"]) for lead in found] == [("loc-catalogue", "73182647", "1972")]
+        assert found.errors == [] and saved.requests == 0
+        # a title alone, or authors alone, never goes to the catalogue: its search needs both
+        alone = intake.find_candidates(library(tmp_path / "lib2"), client=saved, per_source=5, title="Zzyzxqv qwxzvk")
+        assert all(source != "loc-catalogue" for source, _ in alone.errors) and len(alone.errors) == 3
+    finally:
+        saved.cache.close()
+
+
+# --- a typed @book is completed (owner's decision 2026-10-06) -------------------------------------
+
+def typed_book(tmp_path, raw):
+    path = tmp_path / "typed.bib"
+    path.write_text(raw + "\n", encoding="utf-8")
+    return next(iter(load_entries(path).values()))
+
+
+def test_a_typed_book_with_an_isbn_is_completed_field_by_field(client, tmp_path):
+    raw = "@book{Kaha12,\n\tIsbn = {9780195333244},\n\tTitle = {Foundations of human memory}}"
+    proposal = complete.propose(complete.Query.from_entry(typed_book(tmp_path, raw)), client, client.cache)
+    assert proposal.proposed_raw == KAHA12 and proposal.typed_raw == raw and proposal.key_typed == "Kaha12"
+    assert [(c.field, c.typed, c.proposed, c.source, c.kind) for c in proposal.changes] == [
+        ("address", None, "New York, {NY}", "loc-catalogue", "filled"),
+        ("author", None, "M J Kahana", "loc-catalogue", "filled"),
+        ("publisher", None, "Oxford University Press", "loc-catalogue", "filled"),
+        ("title", "Foundations of human memory", "Foundations of human memory", "typed", "kept"),
+        ("year", None, "2012", "loc-catalogue", "filled"),
+        ("isbn", "9780195333244", None, "not a house field", "dropped")]
+    assert proposal.status == "metadata_verified" and proposal.complete and not proposal.needs_decision
+    assert proposal.unsupported is None and api.worth_showing(proposal) and client.requests == 0
+
+
+def test_a_typed_book_with_two_editions_is_given_the_candidates_and_nothing_is_written(tmp_path, offline):
+    raw = "@book{NoceWrig06,\n\tAuthor = {J Nocedal and S J Wright},\n\tTitle = {Numerical optimization}}"
+    ws = seeded_library(tmp_path / "lib", "books.json.gz")
+    ws.bib.write_text(raw + "\n", encoding="utf-8")
+    (proposal,) = api.propose(ws, keys=["NoceWrig06"], reference=None, mailto=CONTACT)
+    assert proposal.proposed_raw is None and proposal.typed_raw == raw and proposal.needs_decision
+    assert proposal.issues == ["2 catalogue records may be this book (the title and the first author): editions are "
+                               "distinct works, and one has to be chosen; the entry is left as typed."]
+    assert [(c["year"], c["lccn"], c["journal"]) for c in proposal.candidates] == [
+        ("2006", "2006923897", "Springer, 2nd ed"), ("1999", "99013263", "Springer")]
+    assert not api.acceptable(proposal) and ws.bib.read_text(encoding="utf-8") == raw + "\n"
+    # the typed year, or the typed edition, chooses among the editions; the person's choice does too
+    for line in ("\tYear = {2006}", "\tEdition = {2\\textsuperscript{nd}}"):
+        ws.bib.write_text(raw[:-1] + ",\n" + line + "}\n", encoding="utf-8")
+        (dated,) = api.propose(ws, keys=["NoceWrig06"], reference=None, mailto=CONTACT)
+        assert dated.proposed_raw == NOCEWRIG06 and dated.status == "metadata_verified", line
+    ws.bib.write_text(raw + "\n", encoding="utf-8")
+    chosen = api.choose_candidate(ws, proposal, proposal.candidates[0], mailto=CONTACT, in_library=True)
+    assert chosen.proposed_raw == NOCEWRIG06 and chosen.typed_raw == raw and chosen.status == "metadata_verified"
+    assert {c.field: c.kind for c in chosen.changes} == {"address": "filled", "author": "kept", "edition": "filled",
+                                                         "publisher": "filled", "title": "kept", "year": "filled"}
+    done = api.apply_proposals(ws, [chosen])
+    assert done.written == ["NoceWrig06"] and ws.bib.read_text(encoding="utf-8").strip() == NOCEWRIG06
+
+
+def test_a_typed_year_that_is_not_the_records_is_a_question_and_is_not_overwritten(tmp_path):
+    saved = offline_client(tmp_path / "typed", "typed_books.json.gz", "books.json.gz")
+    try:
+        raw = ("@book{Galt84,\n\tAuthor = {F Galton},\n\tLccn = {10032396},\n"
+               "\tTitle = {Inquiries into human faculty and its development},\n\tYear = {1884}}")
+        proposal = complete.propose(complete.Query.from_entry(typed_book(tmp_path, raw)), saved, saved.cache)
+        assert "\tYear = {1884}}" in proposal.proposed_raw and "1883" not in proposal.proposed_raw
+        assert change(proposal, "year") == complete.FieldChange("year", "1884", "1883", "loc-catalogue", "question")
+        assert {c.field: c.kind for c in proposal.changes} == {
+            "address": "filled", "author": "kept", "publisher": "filled", "title": "kept", "year": "question",
+            "lccn": "dropped"}
+        assert proposal.issues == [
+            "year: the typed value '1884' is not what the catalogue record has ('1883'); the typed value is kept "
+            "until this is decided", "No unique, fully matching catalogue edition",
+            "loc-catalogue : year: missing evidence or mismatch"]
+        assert proposal.status == "needs_review" and proposal.needs_decision and not proposal.complete
+        assert not api.acceptable(proposal) and saved.requests == 0
+    finally:
+        saved.cache.close()
+
+
+def test_a_typed_book_that_is_complete_already_gives_nothing_to_decide_and_is_then_verified(tmp_path, offline):
+    ws = seeded_library(tmp_path / "lib", "books.json.gz")
+    ws.bib.write_text(KAHA12 + "\n", encoding="utf-8")
+    assert api.completion_due(ws, reference=None).keys == ["Kaha12"]         # new, and not yet verified
+    (proposal,) = api.propose(ws, keys=["Kaha12"], reference=None, mailto=CONTACT)
+    assert proposal.proposed_raw == KAHA12 and {c.kind for c in proposal.changes} == {"kept"}
+    assert proposal.status == "metadata_verified" and proposal.complete and not proposal.needs_decision
+    assert not api.worth_showing(proposal)                                   # so no offer is made for it
+    offers = list(api.completion_offers(ws, reference=None, mailto=CONTACT))
+    assert [(offer.key, offer.proposals, offer.error) for offer in offers] == [("Kaha12", [], None)]
+    # a typed book with only its ISBN: offered, accepted, written over the typed text, verified by the gate
+    typed = "@book{Kaha12,\n\tIsbn = {9780195333244},\n\tTitle = {Foundations of human memory}}"
+    ws.bib.write_text(typed + "\n", encoding="utf-8")
+    (offer,) = list(api.completion_offers(ws, reference=None, mailto=CONTACT))
+    (completed,) = offer.proposals
+    assert completed.proposed_raw == KAHA12 and api.acceptable(completed)
+    assert api.apply_proposals(ws, [completed]).written == ["Kaha12"]
+    assert ws.bib.read_text(encoding="utf-8").strip() == KAHA12
+    check = api.check_keys(ws, ["Kaha12"], mailto=CONTACT)
+    assert check.ok and check.citations.checked["Kaha12"]["accepted_source"] == "loc-catalogue"
+    assert api.completion_due(ws, reference=None).keys == []
+
+
+def test_a_typed_book_with_a_doi_or_without_enough_to_find_it_is_left_as_typed_and_says_why(client, tmp_path):
+    gelman = complete.propose(complete.Query.from_entry(FROZEN["GelmEtal13"]), client, client.cache)
+    assert gelman.proposed_raw is None and gelman.unsupported is None and gelman.status is None
+    assert gelman.issues == [
+        "A book with a DOI is not completed: the catalogue check is for a book without a supplied DOI, and "
+        "Crossref's record of a book states no edition and no place of publication. The entry is left as typed; "
+        "`cdlbib verify` checks it against Crossref"]
+    bare = complete.propose(complete.Query.from_entry(typed_book(tmp_path, "@book{X20,\n\tYear = {2020}}")),
+                            client, client.cache)
+    assert bare.proposed_raw is None and bare.issues == [
+        "A typed book is looked up by its ISBN or LCCN, or by its title together with its authors or editors; the "
+        "entry has neither; the entry is left as typed"]
+    assert client.requests == 0
 
 
 # --- build, write, verify ------------------------------------------------------------------------
