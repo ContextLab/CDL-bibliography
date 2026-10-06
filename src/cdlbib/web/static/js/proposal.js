@@ -6,7 +6,7 @@ import { h, clear, button, field, list, table, note, status, kv, showError, anno
 
 export function candidateLine(lead) {
   return [lead.authors, lead.year].filter(Boolean).join(" ") + ": " + (lead.title || "(no title)")
-    + [lead.journal, lead.doi || lead.arxiv || lead.pmid].filter(Boolean).map((part) => " · " + part).join("");
+    + [lead.journal, lead.doi || lead.arxiv || lead.pmid || (lead.lccn && "LCCN " + lead.lccn)].filter(Boolean).map((part) => " · " + part).join("");
 }
 
 export function appliedLines(done, verb) {

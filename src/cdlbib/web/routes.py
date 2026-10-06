@@ -445,7 +445,7 @@ def add_choose(app, a, say):
 def add_identifiers(app, a, say):
     queries = [text.strip() for text in a["queries"] if text.strip()]
     if not queries:
-        raise Bad("queries: give at least one DOI, PMID, arXiv id or title")
+        raise Bad("queries: give at least one DOI, PMID, arXiv id, ISBN, LCCN or title")
     return kept(app, api.propose_new(app.ws, queries, progress=say))
 
 

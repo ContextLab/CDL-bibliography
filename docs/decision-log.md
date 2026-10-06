@@ -739,3 +739,46 @@ table, and `check_bib(autofix=True)` of cdl.bib). The list of rows is frozen in
 | engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee | retarget | ieee conference on engineering in medicine, biology, and society | annual international conference of the ieee engineering in medicine and biology society | Same as the EMBC 2010 row: old target mis-expands 'Engineering in Medicine and Biology Society'. |
 | proc. intl. conference on learning and development (icdl) | retarget | proceedings of the international conference on learning and development | proceedings of the international conference on development and learning | ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name. |
 | mathematics $+$ physics | retarget | mathematics$+$ physics | mathematics $+$ physics | Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'. |
+
+## Books from catalogue records; a chapter's two container titles (user, 2026-10-06)
+
+User, 2026-10-06: "the builder creates book entries from Library of Congress records, which
+the checker already uses." Applied (`cdlbib.book_build`):
+
+- **One source for building and checking.** A `@book` is built from one MARC record of the
+  Library of Congress SRU catalogue, fetched by the catalogue check's own request function
+  and cache, read by its grammar (`catalogue_review.parse_edition`), and each built field is
+  kept only when its comparison (`catalogue_review.compare_edition`) accepts it. A record the
+  grammar does not read gives no entry. A built book is a proposal; its status is the
+  verifier's, and nothing records an approval.
+- **Asked for by** ISBN (`bath.isbn`), LCCN (`bath.lccn`), or title and first author (the
+  check's title/author query). Several records are listed as candidates and none is taken;
+  a given year picks an edition only when exactly one record with the title has it.
+- **Not changed:** the formatter; a typed `@book` entry and a book's Crossref record are
+  still not completed.
+- **Found while building, not decided:** the publisher is written as the catalogue
+  transcribes it ("L Erlbaum Associates"); of two publishers the first is written as a
+  question (the library cites Tulv83 by the second); an edition statement that is not a
+  number, or is LC's older "2d ed.", is not written, and that entry stays `needs_review`.
+
+User, 2026-10-06, on a chapter record that gives a series title and a book title in no
+stated order: "Try to resolve automatically through llm-driven web search." Applied
+(`cdlbib.container_titles`):
+
+- **Records first.** The book's own Crossref record (a book-type record with one of the
+  chapter's ISBNs), then its Library of Congress record: the title either gives the book is
+  taken. In the frozen library this decides Scha03, Mann23 and MayeEtal92b. Crossref's
+  `/journals/{ISSN}` does not know book-series ISSNs (404 for 0079-6123, 1569-7339 and
+  0930-0325), so the series' ISSN decides nothing.
+- **Then a model, only to choose between the two titles.** When both record sources
+  answered and neither decides, and a model route is set up, the adapter's `extract` phase
+  reads the lines of the chapter's page at its publisher that mention either title. The
+  choice counts only when the model's book title is one of the two, a line it selected holds
+  that title without the other, and none holds the other alone. It is announced before it
+  runs (`--ask`: asked first), recorded with route, model, URL and quoted line, marked
+  model-assisted, makes the proposal need a decision, and is not a verification.
+- **Limits found.** The page is fetched from `doi.org` and the fixed publisher hosts of
+  `publisher_corrections` only; Elsevier's landing page (the publisher of the chapters the
+  records do not decide, e.g. 10.1016/s0079-6123(03)45022-x) gives no readable text there,
+  so those stay unfilled with the reason. The verifier accepts either container title of
+  such a record, so it does not confirm the choice.

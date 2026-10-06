@@ -707,3 +707,35 @@ def test_edited_text_that_could_not_be_checked_is_not_passed_over_by_accept_skip
             assert name(app) != "ProposalScreen"
     T.run(discarded())
     assert GAME62 in ws.bib.read_text(encoding="utf-8")                      # the proposal as it was shown
+
+
+# --- a book, by its ISBN (owner's decision 2026-10-06) ----------------------------------------------
+
+def test_a_book_is_added_by_its_isbn_and_its_source_is_the_catalogue(tmp_path):
+    """The lookups are the real Library of Congress and Crossref answers of
+    tests/fixtures/intake/books.json.gz, replayed with the network refused."""
+    ws = T.library(tmp_path / "books")
+    ws.bib.write_text("", encoding="utf-8")
+    T.seed_responses(ws, T.ROOT / "tests/fixtures/intake/books.json.gz")
+    kaha12 = ("@book{Kaha12,\n\tAddress = {New York, {NY}},\n\tAuthor = {M J Kahana},\n"
+              "\tPublisher = {Oxford University Press},\n\tTitle = {Foundations of human memory},\n\tYear = {2012}}")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 1)
+            assert "ISBN:" in T.screen_text(app) and "LCCN:" in T.screen_text(app)      # the tab says what it takes
+            await T.type_text(pilot, "ISBN:9780195333244")
+            await T.press(pilot, "enter")
+            assert name(app) == "ProposalScreen"
+            assert T.shown(app, "#proposed") == kaha12.expandtabs(4)
+            table = T.changes(app)
+            assert table["author"] == ("", "M J Kahana", "loc-catalogue", "filled")
+            assert {row[2] for row in table.values()} == {"loc-catalogue"}              # every field: the catalogue
+            findings = T.shown(app, "#findings")
+            assert "Verification: metadata_verified" in findings
+            assert "Built from the Library of Congress catalogue record LCCN 2012007685" in findings
+            assert ws.bib.read_text(encoding="utf-8") == ""
+            await T.press(pilot, "a")
+            assert ws.bib.read_text(encoding="utf-8").strip() == kaha12 and "Added: Kaha12" in app.log_lines
+    T.run(journey())
