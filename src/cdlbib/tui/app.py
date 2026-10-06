@@ -71,6 +71,7 @@ KEYS = (
         ("esc, then left / right", "from a text box to the row of tab names, and between Search, Identifier, PDF, Manual"),
         ("enter or down", "on the row of tab names: into the tab"),
         ("ctrl+f", "Search tab: find records for the title, authors and year typed (also enter in a box)"),
+        ("ctrl+b", "Search tab: switch the book search on or off ([x] Book: the Library of Congress catalogue)"),
         ("space", "Search tab: mark or unmark the selected record"),
         ("enter", "Search tab: propose the marked records (or the selected one); Identifier tab: look them up"),
         ("ctrl+o", "PDF tab: choose the file from the folder tree"),

@@ -750,17 +750,49 @@ def test_the_search_tab_asks_the_catalogue_when_book_is_ticked(tmp_path):
         async with T.opened(ws) as pilot:
             app = pilot.app
             await add_tab(pilot, 0)
-            from textual.widgets import Checkbox, Input
+            from textual.widgets import Input
+            row = next(line for line in T.screen_text(app).splitlines() if "Find (ctrl+f)" in line)
+            assert "[ ] Book" in row and row.index("Year") < row.index("[ ] Book") < row.index("Find (ctrl+f)")
+            assert "Book search on/off" in T.screen_text(app).splitlines()[-1]          # its key, in the footer
             app.screen.query_one("#s-title", Input).value = "Numerical optimization"
             app.screen.query_one("#s-authors", Input).value = "Nocedal"
-            box = app.screen.query_one("#s-book", Checkbox)
-            assert box.value is False                      # a search is for a paper unless said otherwise
-            box.value = True
-            await pilot.pause()
+            await T.press(pilot, "ctrl+b")                 # a search is for a paper unless said otherwise
+            row = next(line for line in T.screen_text(app).splitlines() if "Find (ctrl+f)" in line)
+            assert "[x] Book" in row and "Book search: type the book's title" in T.shown(app, "#s-message")
             app.screen.query_one("#s-title", Input).focus()
             await T.press(pilot, "enter")
             await T.until(pilot, lambda: "2 records found" in T.shown(app, "#s-message"))
             text = T.screen_text(app)
             assert "loc-catalogue" in text and "LCCN 2006923897" in text and "LCCN 99013263" in text
             assert "did not answer" not in T.shown(app, "#s-message")      # nothing but the catalogue was asked
+    T.run(journey())
+
+
+@pytest.mark.parametrize("columns", [132, 100])
+def test_the_search_row_is_whole_and_labelled_at_both_widths(tmp_path, columns):
+    """The Book switch is a labelled one-line control like the Setup view's, with no box drawn
+    round it: the row holds Authors, Year, the switch and Find on one line, nothing cut."""
+    ws = T.library(tmp_path / "row")
+    ws.bib.write_text("", encoding="utf-8")
+
+    async def journey():
+        async with T.opened(ws, size=(columns, 40)) as pilot:
+            app = pilot.app
+            await add_tab(pilot, 0)
+            for label in ("[ ] Book", "[x] Book"):
+                lines = T.screen_text(app).splitlines()
+                (row,) = [line for line in lines if "Find (ctrl+f)" in line]
+                assert row.split()[0] == "Authors" and label in row and "Year" in row, row
+                assert row.index("Year") < row.index(label) < row.index("Find (ctrl+f)")
+                assert len(row.rstrip()) <= columns and row.rstrip().endswith("Find (ctrl+f)")
+                assert not any(mark in row for mark in "▔▁▊▎│┃╭╮╰╯┌┐└┘")          # no border drawn in the row
+                around = lines[lines.index(row) - 1] + lines[lines.index(row) + 1]
+                assert not any(mark in around for mark in "▔▁▊▎│┃╭╮╰╯┌┐└┘")       # nor above or below it
+                box = app.screen.query_one("#s-book")
+                assert box.region.height == 1 and box.region.width >= len(label)
+                assert "Book search on/off" in lines[-1]
+                await T.press(pilot, "ctrl+b")
+            from cdlbib.tui.app import KEYS                                        # F1's list names the key
+            assert ("ctrl+b", "Search tab: switch the book search on or off ([x] Book: the Library of Congress "
+                              "catalogue)") in [pair for _, keys in KEYS for pair in keys]
     T.run(journey())

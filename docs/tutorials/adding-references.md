@@ -395,8 +395,9 @@ Verification: not checked
 At a terminal the two records are listed with their year, publisher, edition and LCCN.
 Adding `--year 2006` builds the second edition, because one record has that year. In the
 web and terminal interfaces, type `ISBN 9780195333244` or `LCCN:2012007685` in the
-Identifier tab, or tick "A book" ("Book" in the terminal interface) in the Search tab to
-search the catalogue by title and author. A search that is not marked as a book asks the
+Identifier tab, or switch the book search on in the Search tab (the box "A book: search
+the Library of Congress catalogue" in the web interface; `ctrl+b`, shown as
+`[x] Book`, in the terminal interface) to search the catalogue by title and author. A search that is not marked as a book asks the
 catalogue only when Crossref, PubMed and arXiv gave no record for the title and author,
 and the progress lines say so.
 

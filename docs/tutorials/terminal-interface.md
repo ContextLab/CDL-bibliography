@@ -135,6 +135,7 @@ that was read before is shown at once.
 |esc, then left / right|from a text box to the row of tab names, and between Search, Identifier, PDF, Manual|
 |enter or down|on the row of tab names: into the tab|
 |ctrl+f|Search tab: find records for the title, authors and year typed (also enter in a box)|
+|ctrl+b|Search tab: switch the book search on or off (`[x] Book` / `[ ] Book`)|
 |space|Search tab: mark or unmark the selected record|
 |enter|Search tab: propose the marked records (or the selected one); Identifier tab: look them up|
 |ctrl+o|PDF tab: choose the file from the folder tree|
@@ -307,9 +308,16 @@ To change tabs, press `esc`, then `left` or `right`, then `enter`.
 - **Search**: type a title, authors separated by `;`, a year, or several of these, and
   press `enter`. The records found are listed with their sources, and with the key of the
   library entry that is the same work when there is one. `enter` on a record looks it up
-  and shows the proposal; `space` marks several first.
-- **Identifier**: type one or several DOIs, PMIDs or arXiv identifiers, separated by
-  spaces, commas or semicolons, and press `enter`.
+  and shows the proposal; `space` marks several first. For a book, press `ctrl+b`: the
+  switch beside the year reads `[x] Book`, and the search then asks the Library
+  of Congress catalogue for the title and the first author (both are needed) and nothing
+  else. Each edition is a record of its own, with its LCCN as identifier. With the switch
+  off, the catalogue is asked only when Crossref, PubMed and arXiv found nothing.
+
+  ![The Search tab with the Book switch on: "Numerical optimization" and "Nocedal" typed, the switch reading "[x] Book" between the year and the Find button, and two records from loc-catalogue, of 2006 and 1999, each with its LCCN](../media/tui-add-search-book.png)
+- **Identifier**: type one or several DOIs, PMIDs or arXiv identifiers, or a book's
+  `ISBN:9780195333244` or `LCCN:2012007685`, separated by spaces, commas or semicolons,
+  and press `enter`.
 - **PDF**: type the path of a PDF and press `enter`, or choose the file with `ctrl+o`.
   The view shows the text read from the PDF: the identifiers found in it, each with its
   page and the line it was read from, the title read, and the text of the first page.

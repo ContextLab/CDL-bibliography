@@ -9,7 +9,7 @@ anything of cdlbib runs, so neither the user's library, their TeX tree nor the r
 is read or written. Lookups are the test suite's saved responses, with the network refused.
 
 Writes tui-library.png, tui-detail-evidence.png, tui-edit-preview.png, tui-review-approve.png,
-tui-add-search.png, tui-proposal.png, tui-add-pdf.png and tui-proposal-pdf.png (when pdflatex is
+tui-add-search.png, tui-add-search-book.png, tui-proposal.png, tui-add-pdf.png and tui-proposal-pdf.png (when pdflatex is
 installed), tui-send.png, tui-update-question.png, tui-setup.png and tui-library-light.png.
 
 Each picture is the interface's own screenshot (Textual's SVG export), drawn by headless
@@ -114,7 +114,8 @@ def main(out):
         ws = api.ensure_library()
         if folder.resolve() not in ws.root.resolve().parents:        # never anything but this run's own library
             raise SystemExit(f"refusing to go on: the library in use is {ws.root}, not one under {folder}")
-        T.seed_responses(ws, T.COMPLETION, T.PDF_LOOKUPS, T.TUI_SEARCH)
+        T.seed_responses(ws, T.COMPLETION, T.PDF_LOOKUPS, T.TUI_SEARCH,
+                         ROOT / "tests/fixtures/intake/books.json.gz")       # a book search, for one still
         api.check_keys(ws, ["Game62", "Zoll90"], mailto=T.CONTACT)     # the real gate, over the saved responses
         os.environ.update(T.refused_network())                         # after the clone: no source can be asked
         os.environ["NO_PROXY"] = os.environ["no_proxy"] = "api.github.com"   # gh may still say who is logged in
@@ -178,6 +179,15 @@ async def journey(T, ws, out, pdf):
         await T.press(pilot, "enter")
         shot("proposal")
         await T.press(pilot, "q")
+
+        from textual.widgets import Input                              # the same tab, searching for a book
+        app.screen.query_one("#s-title", Input).value = "Numerical optimization"
+        app.screen.query_one("#s-authors", Input).value = "Nocedal"
+        await T.press(pilot, "ctrl+b")
+        app.screen.query_one("#s-title", Input).focus()
+        await T.press(pilot, "enter")
+        shot("add-search-book")
+        await T.press(pilot, "ctrl+b")
 
         if pdf is not None:                                            # add: a PDF, read and drawn
             await T.press(pilot, "escape", "right", "right", "enter")
