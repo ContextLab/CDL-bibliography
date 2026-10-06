@@ -814,103 +814,185 @@ def drop_added_country(name, target):
     return None if kept.lower() == name.lower() else kept
 
 
-# LaTeX in a name is case-sensitive, and the word rules below work on the name in lower case.
-# The parts of a name that those rules must not re-case are read as spans of the text as it
-# was given and put back, each in its place, once the rules have run:
-#   - the name of a command ("\LaTeX", "\O", "\textsuperscript"): always;
-#   - the braced arguments that follow a command whose name is two letters or more
-#     ("\emph{Drosophila}"), except the letters "\ae \oe \aa \ss" and their capitals;
-#   - mathematics between dollar signs ("$L_p$");
-#   - a braced group holding a capital ("{NLP}" in "Tongue-{NLP}") that is not a word of the
-#     caps list (whose caps-list form the rules write).
-# Accents ("\"o", "{\'e}") are control symbols, not names, and are left to the rules as before.
-_LETTER_COMMANDS = frozenset(("ae", "oe", "aa", "ss", "AE", "OE", "AA", "SS"))
-MAX_SPAN_NAME = 5000   # a longer value is not read for spans
+# LaTeX in a name is case-sensitive, and the word rules below re-case words. A name is therefore
+# read ONCE, left to right, into tokens, and the rules are applied to plain tokens only; the
+# opaque tokens are written out exactly as they were given, and the result is the tokens put
+# together again. Nothing is looked for in a re-cased copy of the text.
+#
+# Opaque tokens:
+#   - a control sequence with the optional "[...]" and braced arguments that follow it
+#     ("\LaTeX", "\emph{Drosophila}", "\textcolor[RGB]{0,0,0}{Title}", an accent "\"{o}" or "\'e");
+#   - a braced group that holds a group, a command, mathematics or a space
+#     ("{\"o}", "{{Mixed} Case}", "{Lopes da Silva}");
+#   - mathematics: "$...$" and "\(...\)".
+# Plain: everything else, with an escaped character ("\{", "\}", "\$", "\%", "\&", "\_", "\#")
+# read as that character, and a braced group of one word without a command ("{IEEE}",
+# "{University}", "{Tcl/Tk}"), which the word rules own (the caps list, unbrace_ordinary).
+#
+# A value whose braces or mathematics do not balance is not formatted at all: the formatters
+# return it unchanged, and the format check reports it (``unformattable``). So is a value of
+# more than MAX_NAME_LENGTH characters. Nothing is guessed about either.
+MAX_NAME_LENGTH = 5000
+_ESCAPED = frozenset("{}$%&_#,;")
 
 
-def _opaque_spans(text, caps):
-    """The opaque spans of ``text`` in order, as (start, end): see above. One pass; a span
-    never holds another, and every brace counted is matched within its own span."""
-    spans, i, size = [], 0, len(text)
+class Unbalanced(ValueError):
+    """Braces or mathematics that do not balance: the value has no reading as tokens."""
+
+
+def name_tokens(text):
+    """``text`` as [(opaque, text), ...] in order (see above); the texts joined are ``text``.
+    One pass: every character is looked at once, whatever the input. Raises ``Unbalanced``."""
+    tokens, plain, i, size = [], [], 0, len(text)
+    last_bracket = text.rfind("]")
+
+    def group(at):
+        """The index after the brace group opening at ``at`` (nested groups included)."""
+        depth, k = 0, at
+        while k < size:
+            ch = text[k]
+            if ch == "\\":
+                k += 2
+                continue
+            depth += (ch == "{") - (ch == "}")
+            k += 1
+            if depth == 0:
+                return k
+        raise Unbalanced("a brace that is never closed")
+
+    def opaque(end):
+        nonlocal i
+        if plain:
+            tokens.append((False, "".join(plain)))
+            plain.clear()
+        tokens.append((True, text[i:end]))
+        i = end
+
     while i < size:
-        c = text[i]
-        if c == "\\":
-            j = i + 1
-            while j < size and (text[j].isascii() and text[j].isalpha()):
-                j += 1
-            if j == i + 1:           # a control symbol (an accent, an escaped character): two characters
-                i += 2
-                if text[i:i + 1] == "{" and text[i + 2:i + 3] == "}":    # and the letter it accents: \"{O}
-                    i += 3
-                continue
-            if j - i - 1 >= 2 and text[i + 1:j] not in _LETTER_COMMANDS:
-                while j < size and text[j] == "{":       # its braced arguments, each balanced
-                    depth, k = 0, j
-                    while k < size:
-                        depth += (text[k] == "{") - (text[k] == "}")
-                        k += 1
-                        if depth == 0:
-                            break
-                    if depth:
+        ch = text[i]
+        if ch == "\\":
+            following = text[i + 1:i + 2]
+            if following == "(":
+                close = text.find("\\)", i + 2)
+                if close < 0:
+                    raise Unbalanced("mathematics that is never closed")
+                opaque(close + 2)
+            elif following.isascii() and following.isalpha():
+                j = i + 2
+                while j < size and text[j].isascii() and text[j].isalpha():
+                    j += 1
+                while j < size:                     # its arguments: "[...]" and braced groups
+                    if text[j] == "{":
+                        j = group(j)
+                    elif text[j] == "[" and j < last_bracket:
+                        j = text.index("]", j) + 1
+                    else:
                         break
-                    j = k
-            spans.append((i, j))
-            i = j
-        elif c == "$":
-            j = text.find("$", i + 1)
-            if j < 0:
-                i += 1
-                continue
-            spans.append((i, j + 1))
-            i = j + 1
-        elif c == "{":
-            j = i + 1
-            while j < size and text[j] not in "{}\\$":
-                j += 1
-            inner = text[i + 1:j]
-            if (j < size and text[j] == "}" and inner != inner.lower()
-                    and remove_non_letters(inner.lower()) not in caps):
-                spans.append((i, j + 1))
-                i = j + 1
+                opaque(j)
+            elif following == "" or following in _ESCAPED or following == "\\":
+                plain.append(text[i:i + 2])       # an escaped character is that character
+                i += 2
+            else:                                   # an accent: the symbol and the letter it marks
+                j = i + 2
+                if text[j:j + 1] == "{":
+                    j = group(j)
+                elif j < size and text[j].isalnum():
+                    j += 1
+                opaque(j)
+        elif ch == "$":
+            close = text.find("$", i + 1)
+            while close > 0 and text[close - 1] == "\\":
+                close = text.find("$", close + 1)
+            if close < 0:
+                raise Unbalanced("mathematics that is never closed")
+            opaque(close + 1)
+        elif ch == "{":
+            j = group(i)
+            inner = text[i + 1:j - 1]
+            if any(c in inner for c in "{}$ ") or "\\" in inner.replace("\\&", ""):
+                opaque(j)
             else:
-                i += 1
+                plain.append(text[i:j])            # a braced word: the word rules own it
+                i = j
+        elif ch == "}":
+            raise Unbalanced("a brace that closes nothing")
         else:
+            plain.append(ch)
             i += 1
-    return spans
+    if plain:
+        tokens.append((False, "".join(plain)))
+    return tokens
 
 
-def _restore_spans(given, formatted, force_caps=force_caps):
-    """``formatted`` with each opaque span of ``given`` as it was given. The spans are looked
-    for in order, each after the one before it, by their text without regard to case; one the
-    rules did not carry over as it stood (an alias wrote another name) is left as formatted."""
-    if len(given) > MAX_SPAN_NAME or not any(c in given for c in "\\${"):
-        return formatted
-    caps = _caps_words() if force_caps is globals()["force_caps"] else frozenset(str(f).lower() for f in force_caps)
-    lowered, out, cursor = formatted.lower(), [], 0
-    for start, end in _opaque_spans(given, caps):
-        span = given[start:end]
-        at = lowered.find(span.lower(), cursor)
-        if at < 0:
+def unformattable(value):
+    """Why ``value`` cannot be formatted (and is left unchanged by every formatter here), or
+    None: it is longer than MAX_NAME_LENGTH, or its braces or mathematics do not balance."""
+    if len(value) > MAX_NAME_LENGTH:
+        return f"longer than {MAX_NAME_LENGTH} characters"
+    try:
+        name_tokens(value)
+    except Unbalanced as exc:
+        return str(exc)
+    return None
+
+
+def _token_words(tokens):
+    """The words of a tokenised name: each a list of (opaque, text) parts. Words are divided
+    by the spaces of plain tokens only (a space inside an opaque token divides nothing)."""
+    words, current = [], []
+    for is_opaque, text in tokens:
+        if is_opaque:
+            current.append((True, text))
             continue
-        out.append(formatted[cursor:at])
-        out.append(span)
-        cursor = at + len(span)
-    out.append(formatted[cursor:])
-    restored = "".join(out)
-    # A word whose command the rules did not carry over whole ("\O" read as the letter O of the
-    # caps list) is kept as it was given: no rule may change the name of a command.
-    names = re.compile(r"\\[A-Za-z]+")
-    if names.findall(restored) != names.findall(given):
-        before, after = given.split(" "), restored.split(" ")
-        if len(before) == len(after):
-            restored = " ".join(old if "\\" in old and names.findall(old) != names.findall(new) else new
-                                for old, new in zip(before, after))
-    return restored
+        pieces = text.split(" ")
+        for index, piece in enumerate(pieces):
+            if index:
+                words.append(current)
+                current = []
+            if piece:
+                current.append((False, piece))
+    words.append(current)
+    return words
+
+
+def _mixed_word(parts, inside):
+    """A word that holds an opaque token: the opaque tokens as given, and the plain text
+    between them in lower case with a capital where the word rules put one for any word (the
+    first letter of the word and of each hyphenated part, when a letter stands there). A word
+    of the uncaps list inside a name gets no capital, as any such word."""
+    whole = "".join(text for _, text in parts)
+    capitals = not (inside and whole.lower() in uncaps)
+    out, at_start = [], True
+    for is_opaque, text in parts:
+        if is_opaque:
+            out.append(text)
+            at_start = False
+            continue
+        k = 0
+        while k < len(text):
+            ch = text[k]
+            if ch == "\\":                          # an escaped character: itself
+                out.append(text[k:k + 2])
+                k += 2
+                at_start = False
+                continue
+            if ch.isalpha():
+                out.append(ch.upper() if at_start and capitals else ch.lower())
+                at_start = False
+            else:
+                out.append(ch)
+                at_start = ch == "-" or (at_start and ch in "([")
+            k += 1
+    return "".join(out)
 
 
 def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initials=False,
-                        drop_countries=None):
+                        drop_countries=None, acronyms=False, ordinals=False):
     """Format a journal, booktitle, publisher or address name.
+
+    The name is read into tokens once (``name_tokens``) and the word rules are applied to its
+    plain words only; a value that cannot be read (``unformattable``) is returned unchanged.
+    ``acronyms`` and ``ordinals``: the two rules of a book title (``format_booktitle``).
 
     ``drop_countries`` (addresses; default: on exactly when ``key`` is address_key):
     an alias target never adds a country the name does not print (see
@@ -924,7 +1006,8 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     word-capitalizing rule used to turn "W.H. Freeman" into "W.h. Freeman" (Marr82),
     and force_caps braced undotted initials ("{W} {H} Freeman").
     """
-    given_name = n
+    if unformattable(n):
+        return n
     # The legacy spreadsheet contains aliases that erase a historical title,
     # monograph designation, or journal section. Formatting cannot establish
     # that publication identity; retain those words for source verification.
@@ -962,14 +1045,24 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
     cuts_suffix = alias is not None and re.fullmatch(
         re.escape(alias.lower()) + r"-\w[\w ]*", n.lower()) is not None
     aliased = n.lower() not in preserve_identity and alias is not None and not cuts_suffix
+    mixed, name_has_lower = {}, False
     if aliased:
         n = alias
         as_given = n.split(" ")
+        words = n.split(" ")
     else:
-        as_given = n.split(" ")  # before lowercasing: dotted initials keep their capitals
-        n = n.lower()
-
-    words = n.split(" ")
+        # The name is read into tokens once; a word that holds an opaque token is written by
+        # _mixed_word and none of the word rules below is applied to it.
+        token_words = _token_words(name_tokens(n))
+        as_given = ["".join(text for _, text in parts) for parts in token_words]  # dotted initials keep their capitals
+        mixed = {i: parts for i, parts in enumerate(token_words) if any(o for o, _ in parts)}
+        name_has_lower = any(c.islower() for i, w in enumerate(as_given) if i not in mixed for c in w)
+        if acronyms and name_has_lower:
+            # Book titles: a part of a plain word given with two or more capitals is braced as given.
+            as_given = [w if i in mixed or any(c in w for c in "{}\\$") else "-".join(_braced_acronym(q) for q in w.split("-"))
+                        for i, w in enumerate(as_given)]
+        words = [w.lower() for w in as_given]
+        n = " ".join(words)
     # next line isn't working...
     # words = ['-'.join([format_journal_name(x) for x in w.split('-')]) if len(w.split('-')) > 1 else w for w in words] #deal with hyphens
 
@@ -982,6 +1075,9 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
         city_words = len(n.split(",")[0].split(" "))
 
     for i, w in enumerate(words):
+        if i in mixed:
+            words[i] = _mixed_word(mixed[i], i > 0)
+            continue
         if dotted_initials and DOTTED_INITIALS.fullmatch(as_given[i]):
             words[i] = " ".join(re.findall(r"[A-Z]", as_given[i]))
             continue
@@ -1057,10 +1153,11 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
 
             # deal with hyphens
             if len(w.split("-")) > 1:
+                # each part as it was given, so that a braced part keeps what it holds
                 words[i] = "-".join(
                     format_journal_name(c, key=key, force_caps=force_caps,
                                         drop_countries=drop_countries)
-                    for c in w.split("-")
+                    for c in (w if aliased else as_given[i]).split("-")
                 )
 
             if (i > 0) and (w.lower() in uncaps):
@@ -1073,8 +1170,22 @@ def format_journal_name(n, key=journal_key, force_caps=force_caps, dotted_initia
                     and re.fullmatch(r"[A-Z]'[a-z]+\W*", words[i]):
                 words[i] = words[i][:2] + words[i][2].upper() + words[i][3:]
     for i, w in enumerate(words):
-        words[i] = "-".join(unbrace_ordinary(part, i > 0) for part in w.split("-"))
-    return _restore_spans(given_name, " ".join(words), force_caps)
+        if i not in mixed:
+            words[i] = "-".join(unbrace_ordinary(part, i > 0) for part in w.split("-"))
+    if ordinals:
+        # House ordinals, in the runs of words that hold no opaque token.
+        out, run = [], []
+        for i, w in enumerate(words + [None]):
+            if w is not None and i not in mixed:
+                run.append(w)
+                continue
+            if run:
+                out.append(_meeting_ordinals(_plain_ordinals(" ".join(run))))
+                run = []
+            if w is not None:
+                out.append(w)
+        return " ".join(out)
+    return " ".join(words)
 
 
 # A braced word that is only ordinary title-case capitalization: a capital, then lower-case
@@ -1188,9 +1299,6 @@ def _meeting_ordinals(text):
 
 # A part of a word given with two or more capitals ("NAACL", "MobiSys", "IEEE/CVF", "McGaugh").
 _WORD_PART = re.compile(r"[A-Za-z0-9/&+.']+")   # one character class, one quantifier: read in one pass
-# The two rules read names of at most this many characters; a longer value is no name of a book
-# or of proceedings, and is formatted without them (format_journal_name alone).
-MAX_RULE_LENGTH = 2000
 # How far after an ordinal word the word that names the meeting is looked for.
 MEETING_WINDOW = 160
 
@@ -1207,27 +1315,16 @@ def _caps_words():
     return frozenset(str(f).lower() for f in force_caps)
 
 
-def _braced_acronyms(name):
-    """``name`` with each part of a word given with two or more capitals in braces, as given:
-    "NAACL-HLT" -> "{NAACL}-{HLT}", "Tongue-NLP" -> "Tongue-{NLP}". format_journal_name then
-    keeps a braced group that holds a capital as it stands (``_restore_spans``). A name given
-    without one lower-case letter says nothing about which of its words are acronyms and is
-    left alone; so is a name the journal list knows by an alias. A word that holds a brace, a
-    command or mathematics already, a caps.txt word (alone or in a "/" compound, which keeps
-    its caps.txt form) and a name with an elided prefix ("O'Reilly") are left to
-    format_journal_name."""
-    if not re.search(r"[a-z]", re.sub(r"\\[A-Za-z]+", "", name)) or isinstance(journal_key.get(name.lower()), str):
-        return name
-
-    def brace(part):
-        pre, core, suf = strip_leading_trailing_non_letters(part)
-        if (not core or not _two_capitals(core) or re.fullmatch(r"[A-Z]'[A-Z][a-z]+", core)
-                or remove_non_letters(core.lower()) in _caps_words() or compound_acronym(core, force_caps)):
-            return part
-        return pre + "{" + core + "}" + suf
-
-    return " ".join(word if any(c in word for c in "{}\\$") else "-".join(brace(part) for part in word.split("-"))
-                    for word in name.split(" "))
+def _braced_acronym(part):
+    """A hyphen-part of a plain word, in braces as given when it has two or more capitals:
+    "NAACL" -> "{NAACL}", "(MobiSys)" -> "({MobiSys})". A caps.txt word (alone or in a "/"
+    compound, which keeps its caps.txt form) and a name with an elided prefix ("O'Reilly")
+    are left to the word rules."""
+    pre, core, suf = strip_leading_trailing_non_letters(part)
+    if (not core or not _two_capitals(core) or re.fullmatch(r"[A-Z]'[A-Z][a-z]+", core)
+            or remove_non_letters(core.lower()) in _caps_words() or compound_acronym(core, force_caps)):
+        return part
+    return pre + "{" + core + "}" + suf
 
 
 def format_booktitle(name):
@@ -1236,15 +1333,13 @@ def format_booktitle(name):
 
     - A part of a word given with two or more capitals keeps them, in braces: "NAACL-HLT" ->
       "{NAACL}-{HLT}", "(MobiSys)" -> "({MobiSys})", "IEEE/CVF" -> "{IEEE/CVF}" (see
-      ``_braced_acronyms`` for what is left alone).
+      ``_braced_acronym`` for what is left alone).
     - Ordinals are numerals with a superscript suffix: "30th" -> ``30\textsuperscript{th}``
       wherever it stands, and an ordinal word that numbers a meeting ("the Thirtieth Annual
       Conference") likewise. No ordinal is made from a cardinal, and an ordinal word that is
       part of a title's wording ("Second Language Acquisition") is not rewritten.
     """
-    if len(name) > MAX_RULE_LENGTH:
-        return format_journal_name(name)
-    return _meeting_ordinals(_plain_ordinals(format_journal_name(_braced_acronyms(name))))
+    return format_journal_name(name, acronyms=True, ordinals=True)
 
 
 @functools.lru_cache(maxsize=None)
@@ -1277,11 +1372,15 @@ def format_edition(value):
     "2nd ed.") is written as the ordinal alone, as the library's editions are and as the
     research route writes them (``research_forms.normalise_edition``). Everything else stays
     as written ("Rev. and expanded"); a cardinal is not made an ordinal."""
-    if len(value) > MAX_RULE_LENGTH:
+    if unformattable(value):
         return value
     pattern, number = _ordinal_words()
-    text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), value)
-    text = _plain_ordinals(_CATALOGUE_ORDINAL.sub(_catalogue_ordinal, text))
+
+    def plain(text):
+        text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), text)
+        return _plain_ordinals(_CATALOGUE_ORDINAL.sub(_catalogue_ordinal, text))
+    # the ordinal rules on the plain tokens only; what a command or a group holds is not read
+    text = "".join(part if is_opaque else plain(part) for is_opaque, part in name_tokens(value))
     alone = re.fullmatch(r"\s*(\d+\\textsuperscript\{(?:st|nd|rd|th)\})\s+(?:ed\.?|edn\.?|edition)\s*", text, re.I)
     return alone[1] if alone else text
 
@@ -1727,6 +1826,20 @@ def check_bib(bibfile, autofix=False, outfile=None, verbose=True):
 
     # check page numbers: correctable formatting
     fix_dict["pages"] = check_entries("pages", bd, target_pages, verbose=verbose)
+
+    # A name that cannot be read into tokens (braces or mathematics that do not balance, or a
+    # value too long to be a name) is not formatted and not guessed at: it is reported, as an
+    # ambiguous page range is.
+    unread = []
+    for i in ids:
+        if "force" in bd[i]:
+            continue
+        for name in ("journal", "booktitle", "publisher", "address", "edition"):
+            why = unformattable(str(bd[i].get(name) or ""))
+            if why:
+                unread.append(f"{i}: {name}: {why}")
+    if unread:
+        raise Exception("The following fields cannot be formatted: \n" + "\n".join(unread))
 
     # check journal names
     fix_dict["journal"] = check_entries(
