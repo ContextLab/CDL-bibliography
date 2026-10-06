@@ -3,8 +3,8 @@
 What is real here, and what is not there:
 
 - ``test_real_dartmouth_reading`` makes one real run of the installed Dartmouth adapter
-  (free-model check included) when ``secrets.get`` finds a key; otherwise it is skipped
-  with the reason.
+  (free-model check included) when ``CDLBIB_TEST_LIVE_MODEL=1`` is set and ``secrets.get``
+  finds a key; otherwise it is skipped with the reason.
 - ``test_recorded_model_reading`` replays a real adapter answer recorded by
   ``tests/fixtures/intake/record.py model`` on 2026-10-05 (``model_extract.json``); nothing
   in it was written by hand.
@@ -25,6 +25,7 @@ from cdlbib.errors import CdlbibError, SecretNotFound
 from cdlbib.source_passages import materialize
 from cdlbib.verification import ACCEPTED, Cache, current_results, load_entries, outcome
 
+import conftest
 import intake_pdfs as pdfs
 from intake_support import FIXTURES, library
 
@@ -845,6 +846,7 @@ def test_recorded_model_reading(tmp_path):
     assert intake.evidence_for(proposal, read)["provider_trace"]["extract"]["provider"] == saved["route"]
 
 
+@conftest.live_model
 @needs_pdflatex
 def test_real_dartmouth_reading(tmp_path, unknown):
     problem = _dartmouth_key_problem()

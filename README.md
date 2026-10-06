@@ -978,7 +978,10 @@ is skipped, and the skip names the program. CI installs these programs
 ([autocheck.yml](.github/workflows/autocheck.yml)). The tests in
 `tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
 (TinyTeX) and biber, about 140 MB, into pytest's temporary folder, and run only with
-`CDLBIB_TEST_TEX_INSTALL=1`.
+`CDLBIB_TEST_TEX_INSTALL=1`. The three tests that call the live Dartmouth Chat service (in
+`tests/test_intake_model.py`, `tests/test_tui_add.py` and `tests/test_web_flows.py`) run only
+with `CDLBIB_TEST_LIVE_MODEL=1` and a Dartmouth Chat key; a recorded real answer is replayed
+by `tests/test_intake_model.py` in every run.
 
 `tests/test_install_script.py` runs `install.sh` with a home folder, a `PATH` and caches
 of its own in pytest's temporary folder; the tests that install download the package's

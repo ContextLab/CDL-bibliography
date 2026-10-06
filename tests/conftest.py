@@ -217,3 +217,10 @@ def usable_keychain():
     problem = keychain_problem()
     if problem:
         pytest.skip("no system keychain is available: " + problem)
+
+
+# The tests that call a live model service run only when asked for: the service's answer time
+# varies from under a minute to no answer within the adapter's limit, which is no finding
+# about this code. A recorded real answer is replayed by tests/test_intake_model.py always.
+live_model = pytest.mark.skipif(os.environ.get("CDLBIB_TEST_LIVE_MODEL") != "1",
+                                reason="calls the live Dartmouth Chat service (minutes; it can time out); set CDLBIB_TEST_LIVE_MODEL=1 to run")

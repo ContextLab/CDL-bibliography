@@ -410,6 +410,7 @@ def test_a_route_that_is_set_up_is_listed_without_the_steps_to_set_it_up(ws, tmp
     T.run(journey())
 
 
+@conftest.live_model
 @needs_pdflatex
 @needs_pypdf
 def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(ws, tmp_path, monkeypatch):

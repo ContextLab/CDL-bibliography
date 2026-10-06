@@ -459,6 +459,7 @@ def test_a_model_reading_is_accepted_with_its_evidence_and_is_no_approval(site, 
     assert "ExamSamp19" in [item["key"] for item in site.ok("get", "/api/review-queue", all="1")["entries"]]
 
 
+@conftest.live_model
 def test_a_real_model_reading_through_the_server(tmp_path, monkeypatch, made):
     from cdlbib import secrets
     from cdlbib.errors import SecretNotFound
