@@ -782,3 +782,20 @@ stated order: "Try to resolve automatically through llm-driven web search." Appl
   records do not decide, e.g. 10.1016/s0079-6123(03)45022-x) gives no readable text there,
   so those stay unfilled with the reason. The verifier accepts either container title of
   such a record, so it does not confirm the choice.
+
+User, 2026-10-06 (later), on three questions the work above raised:
+
+- **The catalogue in a title-and-author search:** "only when it's a book OR when other
+  searches fail". `find_candidates` asks the Library of Congress when the person says the
+  work is a book (`add --book`, the Book switch of the Search tab), and then asks nothing
+  else; otherwise only when Crossref, PubMed and arXiv gave no lead, and the progress lines
+  say that this is why. A paper search that finds leads makes no catalogue request.
+- **Chapters with no ISBN whose publisher page cannot be read (Elsevier):** staying
+  unfilled is accepted. The reason shown says that no record decides, why no model was
+  asked, and that the book title is to be typed in.
+- **Typed book entries:** "Yes, complete typed book entries from catalogue". A typed `@book`
+  is completed from its catalogue record (by `isbn`/`lccn`, else title and first author,
+  the typed year or edition choosing among editions; several editions are candidates). A
+  typed value the record does not agree with is a question and is not overwritten. A typed
+  book with a DOI is left as typed: the catalogue route is for a book without a supplied
+  DOI, and Crossref's record of a book has no edition and no place to build from.

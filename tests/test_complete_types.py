@@ -440,10 +440,12 @@ def test_a_record_of_a_type_that_is_not_built_is_named(client, doi, named, key):
     assert client.requests == 0
 
 
-@pytest.mark.parametrize("key", ["GelmEtal13", "Spee22", "Mann11", "Shan20"])
+@pytest.mark.parametrize("key", ["Spee22", "Mann11", "Shan20"])
 def test_a_typed_entry_of_a_type_that_is_not_built_makes_no_lookup(client, key):
+    # Until 2026-10-06 a typed @book (GelmEtal13) was among these; by the owner's decision of that day a
+    # typed book is completed from its catalogue record (tests/test_complete_books.py).
     kind = LIBRARY[key]["fields"]["ENTRYTYPE"]
-    assert kind in ("book", "misc", "phdthesis", "techreport")
+    assert kind in ("misc", "phdthesis", "techreport")
     proposal = complete.propose(complete.Query.from_entry(LIBRARY[key]), client, client.cache)
     assert proposal.unsupported == kind and proposal.proposed_raw is None and proposal.typed_raw == library(key)
     assert proposal.issues == [f"An entry of type {kind} is not built automatically; the entry is left as typed"]

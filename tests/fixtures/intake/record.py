@@ -8,7 +8,7 @@
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py tui
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py books
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py chapters
-    CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py catalogue
+    CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py typed
     python tests/fixtures/intake/record.py booktitle      (needs the Dartmouth Chat key)
 
 (or add the path of a verification cache whose Crossref requests name the contact, as
@@ -122,21 +122,32 @@ def books(ws, client, folder):
     print("gate:", {key: found["status"] for key, found in check.citations.checked.items()}, file=sys.stderr)
 
 
+# A typed @book whose year is not the record's (tests/test_complete_books.py), and a search for a
+# book that Crossref, PubMed and arXiv give no lead for, so that the catalogue is asked.
+TYPED_BOOK = ("@book{Galt84,\n\tAuthor = {F Galton},\n\tLccn = {10032396},\n"
+              "\tTitle = {Inquiries into human faculty and its development},\n\tYear = {1884}}")
+FALLBACK_SEARCH = {"title": "Organization of memory", "authors": ["Tulving"]}
+
+
+def typed(ws, client, folder):
+    from cdlbib import api, complete
+    from cdlbib.verification import load_entries
+    path = folder / "typed.bib"
+    path.write_text(TYPED_BOOK + "\n", encoding="utf-8")
+    entry = next(iter(load_entries(path).values()))
+    result = api._proposals(ws, [("Galt84", complete.Query.from_entry(entry))], client=client)[0]
+    print("typed ->", result.status, result.issues, file=sys.stderr)
+    lines = []
+    found = intake.find_candidates(ws, client=client, progress=lines.append, per_source=PER_SOURCE, **FALLBACK_SEARCH)
+    print(FALLBACK_SEARCH, "->", [(lead["source"], lead["year"]) for lead in found], found.errors, lines, file=sys.stderr)
+
+
 def chapters(ws, client, folder):
     from cdlbib import api, complete
     for doi in CHAPTERS:
         result = api._proposals(ws, [(doi, complete.Query.parse(doi))], client=client, allow_model=False)[0]
         print(doi, "->", result.key_proposed, result.status, [u.reason for u in result.unfilled if u.field == "booktitle"],
               file=sys.stderr)
-
-
-def catalogue(ws, client, folder):
-    """The Library of Congress answers to the searches of SEARCHES and WEB_SEARCHES that give
-    a title and an author (the only ones the catalogue is asked)."""
-    for search in SEARCHES + WEB_SEARCHES:
-        if search.get("title") and search.get("authors"):
-            found = intake.find_candidates(ws, client=client, sources=("loc-catalogue",), **search)
-            print(search, "->", len(found), "catalogue leads;", "errors:", found.errors, file=sys.stderr)
 
 
 def booktitle(route="dartmouth", contact_source=None):
@@ -188,16 +199,6 @@ def minimal_booktitle(doi, titles, record, page, pages, reading):
     return kept
 
 
-def _append(name, saved):
-    """Add the saved responses a fixture file does not hold yet (by request)."""
-    held = json.loads(gzip.open(HERE / name).read().decode("utf-8"))
-    known = {json.dumps(item["request"], sort_keys=True) for item in held}
-    new = [item for item in saved if json.dumps(item["request"], sort_keys=True) not in known]
-    with gzip.GzipFile(HERE / name, "wb", mtime=0) as handle:
-        handle.write(json.dumps(held + new, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8"))
-    print(len(new), "responses added to", name, file=sys.stderr)
-
-
 def model(route="dartmouth"):
     """One real ``extract`` run of the route's adapter on the first pages of the ``unknown``
     PDF, saved with the pages it was given (``model_extract.json``). Needs the route's key."""
@@ -227,7 +228,7 @@ def main(part, contact_source=None, route=None):
         contact = client.contact
         try:
             {"searches": searches, "pdfs": pdfs, "web": web, "tui": tui, "books": books, "chapters": chapters,
-             "catalogue": catalogue}[part](Workspace(folder), client, folder)
+             "typed": typed}[part](Workspace(folder), client, folder)
         finally:
             client.cache.close()
         rows = sqlite3.connect(folder / "responses.sqlite3").execute(
@@ -244,11 +245,8 @@ def main(part, contact_source=None, route=None):
             response = json.loads(ADDRESS.sub("[address removed]", json.dumps(response, ensure_ascii=False)))
         assert contact not in json.dumps(response) and contact not in json.dumps(request)
         saved.append({"request": request, "response": response})
-    if part == "catalogue":       # added to the files of the searches they belong to; nothing else in them changes
-        _append("searches.json.gz", saved)
-        return _append("web_searches.json.gz", [item for item in saved if "attention" in str(item["request"])])
     name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz", "web": "web_searches.json.gz",
-            "tui": "tui_search.json.gz", "books": "books.json.gz", "chapters": "chapters.json.gz"}[part]
+            "tui": "tui_search.json.gz", "books": "books.json.gz", "chapters": "chapters.json.gz", "typed": "typed_books.json.gz"}[part]
     with gzip.GzipFile(HERE / name, "wb", mtime=0) as handle:
         handle.write(json.dumps(saved, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8"))
     print(len(saved), "responses saved to", name, file=sys.stderr)

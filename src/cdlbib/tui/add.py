@@ -11,7 +11,7 @@ from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, VerticalScroll
-from textual.widgets import Button, DataTable, Input, Select, Static, TabbedContent, TabPane
+from textual.widgets import Button, Checkbox, DataTable, Input, Select, Static, TabbedContent, TabPane
 
 from .. import api
 from . import render
@@ -64,6 +64,8 @@ class AddView(View):
                     yield Input(placeholder="surnames, separated by ;", id="s-authors")
                     yield Static("Year", classes="form-label short")
                     yield Input(placeholder="year", id="s-year")
+                    yield Checkbox("Book", id="s-book", tooltip="Search the Library of Congress catalogue for a book "
+                                                                "(needs the title and an author)")
                     yield Button("Find (ctrl+f)", id="s-find")
                 yield Shown(id="s-message", classes="message")
                 yield Table(id="s-results", cursor_type="row")
@@ -188,6 +190,7 @@ class AddView(View):
         title = self.query_one("#s-title", Input).value.strip() or None
         authors = [name.strip() for name in self.query_one("#s-authors", Input).value.split(";") if name.strip()]
         year = self.query_one("#s-year", Input).value.strip() or None
+        book = self.query_one("#s-book", Checkbox).value
 
         def done(found):
             self.leads, self.marked, self.search_errors = list(found), set(), list(found.errors)
@@ -197,7 +200,7 @@ class AddView(View):
             if self.leads:
                 self.query_one("#s-results", DataTable).focus()
         self.app.job("find records", lambda job: api.find_candidates(self.app.ws, title=title, authors=authors,
-                                                                     year=year, progress=job.progress),
+                                                                     year=year, progress=job.progress, book=book),
                      done, lambda exc: self._search_message([str(exc)], "error"))
 
     def _fill_leads(self):

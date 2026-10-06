@@ -427,7 +427,7 @@ def identity(app, a, say):
 
 def add_search(app, a, say):
     found = api.find_candidates(app.ws, title=a["title"] or None, authors=a["authors"], year=a["year"] or None,
-                                progress=say)
+                                progress=say, book=a["book"])
     data = api.intake_data(found)
     data["search"] = app.store.put("search", {"leads": list(found), "pdf": None})
     return data
@@ -858,7 +858,7 @@ def _routes():
         # adding
         Route(P, "/api/add/search", "find_candidates", add_search,
               with_install(title=Text(500, optional=True), authors=Texts(10, Text(100)),
-                           year=Text(4, r"\d{4}|", optional=True))),
+                           year=Text(4, r"\d{4}|", optional=True), book=Flag())),
         Route(P, "/api/add/choose", "candidate_query, propose_new", add_choose,
               with_install(search=Ident(), index=Whole(0, 1000))),
         Route(P, "/api/add/identifiers", "propose_new", add_identifiers, with_install(queries=Texts(50, Text(600)))),

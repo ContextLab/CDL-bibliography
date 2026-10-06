@@ -2231,6 +2231,11 @@ def _propose(query, client, cache, ws=None, announce=None, allow_model=None):
         from .book_build import propose_book
         proposal = propose_book(query, client, cache if cache is not None else client.cache)
         return checked(proposal, client) if proposal.proposed_raw else proposal
+    if kind == "book" and query.fields:
+        # A typed @book: completed from its Library of Congress record (owner, 2026-10-06).
+        from .book_build import propose_typed_book
+        proposal = propose_typed_book(query, client, cache if cache is not None else client.cache)
+        return checked(proposal, client) if proposal.proposed_raw else proposal
     if kind not in KINDS:
         proposal = build(typed, {})
         proposal.typed_raw = query.raw

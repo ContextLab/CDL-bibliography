@@ -484,3 +484,128 @@ def leads(client, title, authors, year, rows):
         names = lead.pop("_authors")
         if lead["lccn"]:   # a record without a control number cannot be asked for again
             yield lead, names
+
+
+# --- a typed @book -----------------------------------------------------------------------------------
+
+def _typed_record(typed, client, cache, query=None):
+    """The catalogue records a typed ``@book`` may be, as ``(records, chosen index or None,
+    how it was found, note)``. Its ``isbn`` or ``lccn`` field names the record; otherwise the
+    title and the first author (or editor) are searched and the records that carry the title
+    are narrowed by the typed year and the typed edition. One record is chosen only when it
+    is the only one left; a typed year or edition that no record has narrows nothing when a
+    single record carries the title (the difference is then shown as a question)."""
+    from .catalogue_review import normalized_edition
+    from .complete import Query
+    isbn = isbn_text("ISBN " + str(typed.get("isbn") or "").split(",")[0].strip()) if typed.get("isbn") else None
+    lccn = lccn_text("LCCN " + str(typed.get("lccn") or "")) if typed.get("lccn") else None
+    if query is not None and (query.isbn or query.lccn):      # the record the person chose among the candidates
+        isbn, lccn = query.isbn, query.lccn
+    if isbn or lccn:
+        records, how, truncated = find_records(Query(isbn=isbn, lccn=None if isbn else lccn, book=True), client, cache)
+        return records, (0 if len(records) == 1 else None), how, truncated, range(len(records))
+    names = typed.get("author") or typed.get("editor") or ""
+    if not typed.get("title") or not names:
+        raise ValueError("A typed book is looked up by its ISBN or LCCN, or by its title together with its authors "
+                         "or editors; the entry has neither")
+    records, how, truncated = find_records(Query(title=typed["title"], author=names, book=True), client, cache)
+    titled = [i for i, xml in enumerate(records) if _same_title(typed["title"], xml)]
+    left = titled
+    if len(left) > 1 and typed.get("year"):
+        left = [i for i in left if summary(records[i])["year"] == str(typed["year"]).strip()]
+    if len(left) > 1 and typed.get("edition"):
+        left = [i for i in left if summary(records[i])["edition"]
+                and normalized_edition(summary(records[i])["edition"]) == normalized_edition(typed["edition"])]
+    chosen = left[0] if len(left) == 1 and not truncated else None
+    return records, chosen, how, truncated, (left or titled)
+
+
+def propose_typed_book(query, client, cache):
+    """The completion of a typed ``@book`` from its Library of Congress record: a
+    ``Proposal`` in which every field is ``kept`` (typed, and the catalogue check accepts it
+    for the record, or the record says nothing of it), ``changed`` (typed, right, and written
+    in house format), ``filled`` (not typed; the record's value), a ``question`` (typed, and
+    the check does not accept it for the record: the typed value stays in the text and the
+    record's is shown beside it) or ``dropped`` (not a house field). Nothing typed is
+    overwritten. Several editions are candidates and nothing is proposed. A typed DOI makes
+    the entry one the catalogue check does not judge (it is for a book without a supplied
+    DOI) and Crossref's record of a book states no edition and no place, so such an entry is
+    left as typed, and that is said."""
+    from . import complete
+    from .catalogue_review import compare_edition, parse_edition
+    from .complete import FieldChange, LOOKUP_FAILED, Proposal, Unfilled
+    typed = {(k if k in ("ENTRYTYPE", "ID") else k.lower()): v for k, v in (query.fields or {}).items()
+             if v is not None and str(v) != ""}
+
+    def nothing(reasons, candidates=(), status=None):
+        return Proposal(key_typed=query.key, typed_raw=query.raw, entry_type="book", record_source=SOURCE,
+                        status=status, issues=[r for r in reasons if r], doi=typed.get("doi"),
+                        candidates=[_shown(c) for c in candidates], needs_decision=True)
+
+    if typed.get("doi"):
+        return nothing(["A book with a DOI is not completed: the catalogue check is for a book without a supplied "
+                        "DOI, and Crossref's record of a book states no edition and no place of publication. The "
+                        "entry is left as typed; `cdlbib verify` checks it against Crossref"])
+    try:
+        records, chosen, how, truncated, shown = _typed_record(typed, client, cache, query)
+    except ProviderError as exc:
+        return nothing([f"The lookup failed: the {SOURCE_NAME} did not answer ({exc}); the entry is left as typed"],
+                       status=LOOKUP_FAILED)
+    except ValueError as exc:
+        return nothing([f"{exc}; the entry is left as typed"])
+    more = " The catalogue lists more records than the ten it returned; add the ISBN or the LCCN." if truncated else ""
+    if not records:
+        return nothing([f"No {SOURCE_NAME} record has {how}; the entry is left as typed" + more])
+    if chosen is None:
+        leads_ = [summary(records[i]) for i in shown] or [summary(xml) for xml in records]
+        return nothing([f"{len(leads_)} catalogue record{'s' if len(leads_) != 1 else ''} may be this book ({how}): "
+                        "editions are distinct works, and one has to be chosen; the entry is left as typed." + more],
+                       leads_)
+    xml = records[chosen]
+    lead = summary(xml)
+    try:
+        built = build_book(xml, key_typed=query.key)
+        record = parse_edition(xml)
+    except (ValueError, KeyError, TypeError, ET.ParseError) as exc:
+        named = f"LCCN {lead['lccn']}" if lead["lccn"] else f"record {lead['record_id']}"
+        return nothing([f"The catalogue record {named} (\"{lead['title']}\", {lead['year']}) is not one the "
+                        f"catalogue check reads ({exc}); the entry is left as typed and needs a human check"])
+    source = {c.field: c for c in built.changes}
+    keep = set(complete._field_order())
+    house = {k: v for k, v in typed.items() if k in keep and k not in ("ENTRYTYPE", "ID")}
+    evidence, _ = compare_edition(dict(house, ENTRYTYPE="book"), record, xml)
+    proposal = Proposal(key_typed=query.key, typed_raw=query.raw, entry_type="book", record_source=SOURCE,
+                        notes=list(built.notes), issues=list(built.issues), needs_decision=built.needs_decision)
+    fields, dropped = {}, []
+    for name in sorted(set(house) | set(source)):
+        had, change = house.get(name), source.get(name)
+        if had is None:                                   # not typed: the record's value
+            fields[name] = change.proposed
+            proposal.changes.append(FieldChange(name, None, change.proposed, SOURCE, change.kind))
+            continue
+        formed = complete._house_form(name, had)
+        accepted = had == (change.proposed if change else None) or bool(evidence.get(name, {}).get("match"))
+        if change is None or accepted:                    # the record is silent, or the check accepts what was typed
+            fields[name] = formed
+            proposal.changes.append(FieldChange(name, had, formed, "typed" if formed == had else "house format",
+                                                "kept" if formed == had else "changed"))
+        else:                                             # the check does not accept it: asked, never overwritten
+            fields[name] = had
+            proposal.changes.append(FieldChange(name, had, change.proposed, SOURCE, "question"))
+            proposal.issues.append(f"{name}: the typed value {had!r} is not what the catalogue record has "
+                                   f"({change.proposed!r}); the typed value is kept until this is decided")
+            proposal.needs_decision = True
+    for name in sorted(k for k in typed if k not in keep and k not in ("ENTRYTYPE", "ID")):
+        dropped.append(FieldChange(name, typed[name], None, "not a house field", "dropped"))
+    # what the record states and the entry does not have, as the builder listed it
+    proposal.unfilled = [Unfilled(u.field, u.reason, u.source_values) for u in built.unfilled if u.field not in fields]
+    order = complete._field_order()
+    proposal.changes.sort(key=lambda c: order.index(c.field))
+    proposal.changes += dropped
+    names = fields.get("author") or fields.get("editor")
+    if names and fields.get("year"):
+        from .helpers import authors2key
+        proposal.key_proposed = authors2key(names, fields["year"])
+    proposal.proposed_raw = complete.render("book", query.key or proposal.key_proposed or complete.NO_KEY, fields)
+    complete._set_complete(proposal, fields)
+    return proposal

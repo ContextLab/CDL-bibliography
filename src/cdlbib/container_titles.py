@@ -473,7 +473,8 @@ def from_model(client, cache, record, titles, announce=None, allow_model=None, e
             cache.save_response("book-title-page-v1:" + doi, page)
             pages = pages_for(page, titles)
         if not pages:
-            return Resolution(titles, reason=f"the publisher's page ({page['url']}) names neither title, "
+            return Resolution(titles, reason=f"the publisher's page ({page['url']}) gives no text that names "
+                                             "either title (some publishers' pages cannot be read by a program), "
                                              "so no model was asked")
         from .intake import _adapter
         try:
@@ -541,7 +542,8 @@ def apply(proposal, resolution):
     if resolution is None:
         return proposal
     if not resolution.chosen:
-        proposal.unfilled = [Unfilled(u.field, u.reason + ": " + resolution.reason, u.source_values)
+        proposal.unfilled = [Unfilled(u.field, u.reason + ": " + resolution.reason.rstrip(".")
+                                      + ". The book title is left unfilled: type it in", u.source_values)
                              if u.field == "booktitle" and resolution.reason else u for u in proposal.unfilled]
         if resolution.question:
             proposal.choices.append({"field": "booktitle", "by": None, "titles": list(resolution.titles),

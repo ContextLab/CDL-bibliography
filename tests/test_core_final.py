@@ -204,9 +204,16 @@ def two_pdfs(tmp_path_factory):
 
 
 @needs_pdflatex
-def test_a_pdf_replaced_while_it_is_read_never_gives_text_of_one_file_under_the_hash_of_another(two_pdfs, tmp_path):
+def test_a_pdf_replaced_while_it_is_read_never_gives_text_of_one_file_under_the_hash_of_another(two_pdfs, tmp_path,
+                                                                                               monkeypatch):
     """A second real process keeps replacing the path with one PDF, then the other. Every
     reading's SHA-256 is one of the two files', and the title read is that file's title."""
+    import tempfile
+    # The copies read_pdf makes go to a temporary folder of this test's own: the shared one may hold the
+    # copy another process is reading at this moment (seen on 2026-10-06), which is no finding about this code.
+    own = tmp_path / "tmp"
+    own.mkdir()
+    monkeypatch.setattr(tempfile, "tempdir", str(own))
     first, second = two_pdfs
     known = {hashlib.sha256(first.read_bytes()).hexdigest(): pdfs.ZOLLER_TITLE.replace("'", "’"),
              hashlib.sha256(second.read_bytes()).hexdigest(): pdfs.UNKNOWN_TITLE}
@@ -234,8 +241,9 @@ print(turn)
         stop.write_text("stop", encoding="utf-8")
         turns = int(swapper.communicate(timeout=30)[0])
     assert turns > 20 and seen
-    import tempfile
-    assert not list(Path(tempfile.gettempdir()).glob("cdlbib-pdf-copy-*/paper.pdf"))      # the copies are removed
+    assert Path(tempfile.gettempdir()) == own
+    assert not list(own.glob("cdlbib-pdf-copy-*/paper.pdf"))      # the copies are removed
+    assert not list(own.glob("cdlbib-pdf-copy-*"))                # and so are their folders
 
 
 @needs_pdflatex

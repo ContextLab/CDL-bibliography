@@ -17,7 +17,8 @@ author, from a PDF, or typed by hand. The [README](../../README.md#add) describe
 |-|-|-|
 |DOI, PMID or arXiv identifier|`cdlbib add IDENTIFIER`|"Identifiers" tab|
 |A book, by ISBN or LCCN|`cdlbib add "ISBN 9780195333244"`, `cdlbib add "LCCN 2012007685"`|"Identifiers" tab|
-|A book, by title and first author|`cdlbib add --book "TITLE" --author NAME [--year YEAR]`|"Search" tab (catalogue records are among the leads)|
+|A book, by title and first author|`cdlbib add --book "TITLE" --author NAME [--year YEAR]`|"Search" tab, with "A book" ticked|
+|A `@book` typed into `cdl.bib`|completed before `cdlbib verify` and `cdlbib send`, or with `cdlbib add --from`|completion offers|
 |Title, with author and year|`cdlbib add "TITLE" --author NAME --year YEAR`|"Search" tab|
 |Authors without a title|not available|"Search" tab|
 |PDF|not available|"PDF" tab|
@@ -326,8 +327,12 @@ When no record of the book settles which title is the book's, the book title is 
 unfilled and the reason is given, for example:
 
 ```text
-Unfilled booktitle: booktitle: no single registry title: no record of the book says which is its title; no model route is set up, so no model was asked. To have a model read the publisher's page for it, set up a model route (`cdlbib setup` lists them; Dartmouth Chat is the default) and run the lookup again.
+Unfilled booktitle: booktitle: no single registry title: no record of the book says which is its title; no model route is set up, so no model was asked. To have a model read the publisher's page for it, set up a model route (`cdlbib setup` lists them; Dartmouth Chat is the default) and run the lookup again. The book title is left unfilled: type it in
 ```
+
+This is also what happens, with a model route set up, for a chapter whose record has no
+ISBN and whose publisher's page cannot be read by a program (Elsevier's, for one): the
+reason then says that the page gave no text that names either title.
 
 A chapter needs its book's title. Answering `a` before the title is filled in prints:
 
@@ -385,8 +390,20 @@ Verification: not checked
 At a terminal the two records are listed with their year, publisher, edition and LCCN.
 Adding `--year 2006` builds the second edition, because one record has that year. In the
 web and terminal interfaces, type `ISBN 9780195333244` or `LCCN:2012007685` in the
-Identifier tab; a search by title and author in the Search tab lists catalogue records
-among the leads, with `loc-catalogue` as their source.
+Identifier tab, or tick "A book" ("Book" in the terminal interface) in the Search tab to
+search the catalogue by title and author. A search that is not marked as a book asks the
+catalogue only when Crossref, PubMed and arXiv gave no record for the title and author,
+and the progress lines say so.
+
+A `@book` entry you typed into `cdl.bib` is completed the same way when entries are
+completed (before `cdlbib verify` and `cdlbib send`, and in the completion offers of the
+interfaces). Its record is found by an `isbn` or `lccn` field if it has one (the field is
+not kept: it is not a house field), otherwise by its title and first author, with the
+typed year or edition choosing among editions. Each field is shown as kept, filled, or,
+when what you typed is not what the record has, as a question: the typed value stays until
+you decide. With several editions and nothing typed that tells them apart, the records
+are listed and the entry is left as typed. A typed book that has a DOI is not completed
+(the catalogue check is for books without one); `cdlbib verify` checks it against Crossref.
 
 A book whose catalogue record the accuracy check cannot read gives no entry, and the
 message says why; enter it by hand ([Typing an entry by hand](#typing-an-entry-by-hand)).
