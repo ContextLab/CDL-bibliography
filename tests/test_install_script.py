@@ -1318,17 +1318,21 @@ def test_a_source_that_cannot_be_installed_leaves_the_working_uv_installation_as
     assert again.returncode == 1 and box.installed() == "cdlbib 2.0.0", again.stdout + again.stderr
 
 
-@pytest.mark.parametrize("how", FAILURES[1:])
+@pytest.mark.parametrize("how", FAILURES)
 def test_a_source_that_cannot_be_installed_leaves_the_working_virtual_environment_as_it_was(box, online, how):
-    """--no-uv: pip builds and downloads everything before it takes the installed version out
-    of the environment. (With an index that cannot be reached, `pip install --upgrade cdlbib`
-    finds the installed version sufficient and succeeds, so that case is not one of these.)"""
+    """--no-uv. With an index that cannot be reached, `pip install --upgrade cdlbib` finds the
+    installed version sufficient and ends with success; the script fetches the package from
+    the index first, so that it does not report an installation that did not happen."""
     box.with_python()
     ok(box.run("--no-uv"))
     files, state = box.files(), (box.data / "install-state").read_text()
     args, env = break_the_source(box, how)
     out = box.run("--no-uv", *args, env=env)
     assert out.returncode == 1, out.stdout + out.stderr
+    if how == "the index cannot be reached":
+        assert ("the index could not be reached or has no cdlbib, so nothing was installed or updated."
+                in out.stderr), out.stderr
+        assert "Installed:" not in out.stdout
     assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
             in out.stderr), out.stdout + out.stderr
     assert box.installed() == "cdlbib 2.0.0"
@@ -1418,7 +1422,8 @@ def test_installing_again_with_another_tool_directory_stops_and_changes_nothing(
     out = box.run(env=box.env(UV_TOOL_DIR=str(other / "tools"), UV_TOOL_BIN_DIR=str(other / "bin")))
     assert out.returncode == 1, out.stdout + out.stderr
     assert f"this script installed cdlbib into uv's tool directory {box.tool.parent}" in out.stderr
-    assert "Nothing was changed." in out.stderr and "--uninstall" in out.stderr
+    assert "Nothing was changed." in out.stderr and "To move it on purpose, run this" in out.stderr
+    assert "--uninstall" in out.stderr and "then run it again with the new settings." in out.stderr
     assert not other.exists() and box.files() == files and (box.data / "install-state").read_text() == state
     assert box.installed() == "cdlbib 2.0.0"
 
@@ -1627,3 +1632,255 @@ def test_an_archive_of_uv_with_another_digest_is_refused_by_the_installer(box, o
     assert not (tmp_path / "RAN").exists(), "a program from the archive was run"
     assert not (box.data / "uv" / "uv").exists() and not (box.bin / "cdlbib").exists()
     assert box.leftovers() == []
+
+
+# --- a failure in the last phase, after the new version has been tried beside the old one ------------
+
+def own_files(box):
+    """box.files() without the lock file uv keeps beside its tools once it has asked an index."""
+    return {name for name in box.files() if not name.startswith(".local/share/uv/credentials/")}
+
+
+def nothing_set_aside(box):
+    assert not (box.data / "kept").exists() and not (box.data / "kept.done").exists()
+    assert not (box.data / "venv.kept").exists()
+    assert not (box.tool.parent / "cdlbib-kept-by-install-sh").exists()
+    assert not [path.name for path in box.bin.iterdir() if path.name.endswith(".new")]
+
+
+def uv_that_fails_the_live_installation(box, damage):
+    """The uv of the box becomes a program that runs the real uv for everything except the
+    installation into the live tool directory (the one with --reinstall-package; the trial
+    beside it has none): that one fails, at once or after the real uv has replaced the
+    environment and the program has then deleted its packages and its command."""
+    real = os.path.realpath(box.programs / "uv")
+    (box.programs / "uv").unlink()
+    after = (f'"{real}" "$@"\nrm -rf "$UV_TOOL_DIR/cdlbib/lib"\nrm -f "$UV_TOOL_BIN_DIR/cdlbib"\n'
+             if damage == "after replacing and breaking the environment" else "")
+    (box.programs / "uv").write_text(
+        '#!/bin/sh\ncase " $* " in\n  *" tool install "*" --reinstall-package "*)\n'
+        f'{after}    echo "this uv fails the installation into the live tool directory" >&2\n    exit 1 ;;\nesac\n'
+        f'exec "{real}" "$@"\n')
+    (box.programs / "uv").chmod(0o755)
+    return real
+
+
+def real_uv_again(box, real):
+    (box.programs / "uv").unlink()
+    os.symlink(real, box.programs / "uv")
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("damage", ["at once", "after replacing and breaking the environment"])
+@pytest.mark.parametrize("change", ["a new version", "the same version with other content"])
+def test_a_live_installation_that_fails_after_the_trial_puts_the_old_one_back(box, online, change, damage, shell):
+    """codex round 4, item 12. The trial beside the installed version succeeds; the
+    installation into the live tool directory then fails. The environment, the wheel (also
+    one of the same name), the command links and the state file are what they were."""
+    box.with_uv().with_python()
+    ok(box.run(shell=shell))
+    wheel = box.data / "dist" / "cdlbib-2.0.0-py3-none-any.whl"
+    state = box.data / "install-state"
+    before = (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool), listing(box.bin),
+              {name: os.readlink(box.bin / name) for name in COMMANDS})
+    if change == "a new version":
+        box.set_version("2.0.1")
+    else:
+        (box.checkout / "src" / "cdlbib" / "added_for_the_test.py").write_text("VALUE = 1\n")
+    real = uv_that_fails_the_live_installation(box, damage)
+    out = box.run(shell=shell)
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert "it is kept until the new version has been installed beside it and has run" in out.stdout
+    assert "this uv fails the installation into the live tool directory" in out.stderr
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0"
+    after = (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool), listing(box.bin),
+             {name: os.readlink(box.bin / name) for name in COMMANDS})
+    for name, was, now in zip(("files", "state", "wheel", "environment", "bin", "links"), before, after):
+        assert was == now, name
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.0-py3-none-any.whl"]
+    nothing_set_aside(box)
+    assert box.leftovers() == []
+    python = str(box.tool / "bin" / "python")
+    assert subprocess.run([python, "-I", "-c", "import cdlbib.added_for_the_test"], env=box.env(),
+                          capture_output=True).returncode != 0
+
+    real_uv_again(box, real)
+    out = ok(box.run(shell=shell))
+    if change == "a new version":
+        assert "Installed: cdlbib 2.0.1" in out and box.installed() == "cdlbib 2.0.1"
+        assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.1-py3-none-any.whl"]
+    else:
+        assert subprocess.run([python, "-I", "-c", "import cdlbib.added_for_the_test"], env=box.env(),
+                              capture_output=True).returncode == 0
+        assert digest(wheel) != before[2]
+    nothing_set_aside(box)
+
+
+@need_uv
+@pytest.mark.parametrize("damage", ["at once", "after replacing and breaking the environment"])
+def test_a_change_from_the_virtual_environment_to_uv_that_fails_leaves_the_virtual_environment(box, online, damage):
+    box.with_python()
+    ok(box.run("--no-uv"))
+    venv, state = box.data / "venv", box.data / "install-state"
+    before = (own_files(box), state.read_bytes(), {name: os.readlink(box.bin / name) for name in COMMANDS})
+    box.with_uv()
+    real = uv_that_fails_the_live_installation(box, damage)
+    out = box.run()
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0" and not box.tool.exists()
+    assert (own_files(box) - {name for name in own_files(box) if name.startswith(".local/share/uv/")
+                              or name.startswith(".local/share/cdlbib/dist/")},
+            state.read_bytes(), {name: os.readlink(box.bin / name) for name in COMMANDS}) == before
+    assert all(os.readlink(box.bin / name) == str(venv / "bin" / name) for name in COMMANDS)
+    assert not list((box.data / "dist").glob("*.whl")), "a wheel was left for an installation that is not there"
+    nothing_set_aside(box)
+    real_uv_again(box, real)
+    out = ok(box.run())
+    assert "Replacing the earlier installation (made with venv)." in out and "installed with uv" in out
+    assert not venv.exists() and box.installed() == "cdlbib 2.0.0"
+    assert recorded_state(box)["method"] == "uv" and "venv_bin" not in recorded_state(box)
+
+
+@need_uv
+def test_a_change_from_uv_to_the_virtual_environment_that_fails_among_the_links_leaves_uvs_commands(box, online):
+    """The new links are made one by one. Here the program that puts them in place (mv) fails
+    at the second link, when the first already leads to the virtual environment: all the
+    links lead to uv's environment again, and the new virtual environment is gone."""
+    box.with_uv().with_python()
+    ok(box.run())
+    state = box.data / "install-state"
+    before = (own_files(box), state.read_bytes(), tree(box.tool), {name: os.readlink(box.bin / name) for name in COMMANDS})
+    (box.programs / "uv").unlink()
+    real = os.path.realpath(box.programs / "mv")
+    count = box.root / "moves into bin"
+    (box.programs / "mv").unlink()
+    (box.programs / "mv").write_text(
+        '#!/bin/sh\nfor last in "$@"; do :; done\n'
+        f'case $last in\n  "{box.bin}"/*)\n    echo x >> "{count}"\n'
+        f'    if [ "$(wc -l < "{count}")" -ge 2 ]; then echo "this mv fails at the second link" >&2; exit 1; fi ;;\nesac\n'
+        f'exec "{real}" "$@"\n')
+    (box.programs / "mv").chmod(0o755)
+    out = box.run("--no-uv")
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert "this mv fails at the second link" in out.stderr and count.read_text() == "x\nx\n"
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0" and not (box.data / "venv").exists()
+    assert (own_files(box), state.read_bytes(), tree(box.tool),
+            {name: os.readlink(box.bin / name) for name in COMMANDS}) == before
+    nothing_set_aside(box)
+
+    (box.programs / "mv").unlink()
+    os.symlink(real, box.programs / "mv")
+    out = ok(box.run("--no-uv"))
+    assert "Replacing the earlier installation (made with uv)." in out and "installed with venv" in out
+    assert box.installed() == "cdlbib 2.0.0" and not box.tool.exists() and not (box.data / "dist").exists()
+    assert all(os.readlink(box.bin / name) == str(box.data / "venv" / "bin" / name) for name in COMMANDS)
+    assert recorded_state(box) == {"method": "venv", "bin": str(box.bin), "venv_bin": str(box.bin)}
+
+
+def test_a_new_version_that_does_not_run_leaves_the_virtual_environment_as_it_was(box, online):
+    """--no-uv, where pip changes the environment in place: the new version installs, and its
+    command fails. The copy of the environment that was set aside is put back."""
+    box.with_python()
+    ok(box.run("--no-uv"))
+    state = box.data / "install-state"
+    before = (box.files(), state.read_bytes())
+    box.set_version("2.0.1")
+    module = box.checkout / "src" / "cdlbib" / "__init__.py"
+    good = module.read_text(encoding="utf-8")
+    module.write_text(good + "\nraise SystemExit(3)\n", encoding="utf-8")
+    out = box.run("--no-uv")
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert "was installed but 'cdlbib --version' failed." in out.stderr
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0" and (box.files(), state.read_bytes()) == before
+    nothing_set_aside(box)
+    module.write_text(good, encoding="utf-8")
+    assert "Installed: cdlbib 2.0.1" in ok(box.run("--no-uv")) and box.installed() == "cdlbib 2.0.1"
+    nothing_set_aside(box)
+
+
+@need_uv
+def test_a_new_version_that_does_not_run_is_never_put_in_the_place_of_uvs_tool(box, online):
+    """With uv the same new version fails beside the installed one, which is not touched."""
+    box.with_uv().with_python()
+    ok(box.run())
+    environment, state = tree(box.tool), (box.data / "install-state").read_bytes()
+    box.set_version("2.0.1")
+    module = box.checkout / "src" / "cdlbib" / "__init__.py"
+    module.write_text(module.read_text(encoding="utf-8") + "\nraise SystemExit(3)\n", encoding="utf-8")
+    out = box.run()
+    assert out.returncode == 1 and "runs as before" in out.stderr, out.stdout + out.stderr
+    assert "--reinstall-package" not in out.stdout
+    assert box.installed() == "cdlbib 2.0.0" and tree(box.tool) == environment
+    assert (box.data / "install-state").read_bytes() == state
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.0-py3-none-any.whl"]
+    nothing_set_aside(box)
+
+
+@need_uv
+def test_a_run_killed_without_warning_during_the_live_installation_is_undone_by_the_next_run(box, online):
+    """SIGKILL (which no script can catch) to the whole process group as soon as the live
+    `uv tool install` is printed: the old environment is still set aside. The next run puts
+    it back before anything else; here that run's own source cannot be built, so what is
+    left is the old installation, complete."""
+    box.with_uv().with_python()
+    ok(box.run())
+    wheel = box.data / "dist" / "cdlbib-2.0.0-py3-none-any.whl"
+    state = box.data / "install-state"
+    before = (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool))
+    box.set_version("2.0.1")
+    process = subprocess.Popen(box.command(), env=box.env(), cwd=box.root, stdin=subprocess.DEVNULL,
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, start_new_session=True)
+    for line in process.stdout:
+        if line.startswith("+ ") and " --reinstall-package " in line:
+            os.killpg(process.pid, signal.SIGKILL)
+            break
+    process.stdout.read()
+    assert process.wait(timeout=120) == -signal.SIGKILL
+    assert (box.data / "kept" / "where").is_file()
+    assert (box.tool.parent / "cdlbib-kept-by-install-sh").is_dir()
+    for path in box.tmp.iterdir():          # the killed run could not remove its temporary folder
+        shutil.rmtree(path)
+
+    project = box.checkout / "pyproject.toml"
+    project.write_text(project.read_text(encoding="utf-8") + "\n[[[ this line is not TOML\n", encoding="utf-8")
+    out = box.run()
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert ("An earlier run was stopped while it replaced the installation: the installation that was there "
+            "is put back.") in out.stdout
+    assert box.installed() == "cdlbib 2.0.0"
+    assert (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool)) == before
+    nothing_set_aside(box)
+
+
+# --- two names of one tool directory ----------------------------------------------------------------
+
+@need_uv
+def test_another_name_of_the_same_tool_directory_is_the_same_installation(box, online):
+    """codex round 4, N6. UV_TOOL_DIR and UV_TOOL_BIN_DIR name the folders of the installation
+    through links: it is the same installation, it is upgraded, and the state file records
+    the folders by their physical paths."""
+    box.with_uv().with_python()
+    ok(box.run())
+    alias = box.root / "other names"
+    alias.mkdir()
+    os.symlink(box.tool.parent, alias / "tools")
+    os.symlink(box.bin, alias / "bin")
+    elsewhere = box.env(UV_TOOL_DIR=str(alias / "tools"), UV_TOOL_BIN_DIR=str(alias / "bin"))
+    box.set_version("2.0.1")
+    out = ok(box.run(env=elsewhere))
+    assert "Installed: cdlbib 2.0.1" in out and box.installed() == "cdlbib 2.0.1"
+    assert recorded_state(box)["tool_dir"] == str(box.tool.parent) and recorded_state(box)["tool_bin"] == str(box.bin)
+    assert "Installed: cdlbib 2.0.1" in ok(box.run())
+    (alias / "tools").unlink()
+    (alias / "bin").unlink()
+    assert "Removed cdlbib." in ok(box.run("--uninstall", env=elsewhere))
+    assert not box.tool.exists() and not box.data.exists()

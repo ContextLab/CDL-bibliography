@@ -18,18 +18,22 @@
 #     The Python already on the computer and the default `python` are not changed.
 # With --no-uv nothing but the package is downloaded: an installed uv is used, else a
 # virtual environment is made with the newest Python from 3.11 to 3.13 on PATH.
-# Running it again upgrades or repairs the installation. A command that runs is left as it
-# is until the new version has been installed beside it and has run; only an installation
-# whose command does not run is removed first.
+# Running it again upgrades or repairs the installation. Over a command that runs, the new
+# version is first installed and run beside it; the installed one is then set aside, and put
+# back if the installation into its place fails. Only an installation whose command does
+# not run is removed first.
 #
 # It never uses sudo, never edits a shell profile, and writes only to:
 #   ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/   install-state (what was installed, where,
 #                                                  and with which uv), uv/ (a downloaded uv),
+#                                                  kept/ and venv.kept/ (the installation that
+#                                                  is being replaced, until the new one runs),
 #                                                  dist/ (the wheel built from a checkout),
 #                                                  venv/ (--no-uv without uv)
 #   the checkout, when it is the source: build/ and src/cdlbib.egg-info/ (the build's own)
 #   ${XDG_BIN_HOME:-$HOME/.local/bin}/             links to the commands (--no-uv without uv)
 #   the folders of uv: `uv tool dir`, `uv tool dir --bin`, `uv python dir`, `uv cache dir`
+#     (in `uv tool dir`, cdlbib-kept-by-install-sh/ is the environment that is being replaced)
 #   a temporary folder, removed when the script ends
 #
 # The folder the script is started in is never a source of programs or settings: PATH
@@ -68,6 +72,7 @@ UV_INSTALLER=https://astral.sh/uv/$UV_VERSION/install.sh
 UV_MANUAL=https://docs.astral.sh/uv/getting-started/installation/
 UV_MINIMUM=0.5.0    # the first uv whose installer takes UV_UNMANAGED_INSTALL; `uv tool install`
                     # has --with, --force and --reinstall-package, and `uv tool dir` has --bin
+KEPT_TOOL=$PACKAGE-kept-by-install-sh    # uv's environment while a new one takes its place
 PYTHON_REQUEST='>=3.11,<3.14'    # the versions the package's tests run on
 
 usage() {
@@ -118,10 +123,14 @@ ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/venv with the newest Python from 3.1
 with links in ${XDG_BIN_HOME:-$HOME/.local/bin}.
 
 Running the script again upgrades or repairs the installation. While the installed
-command runs, it is kept until the new version has been installed beside it (in a
-temporary folder) and has run there; when the new version cannot be installed, the script
-stops with an error and the old command still works. An installation whose command does
-not run is removed and installed again.
+command runs, the new version is first installed beside it (in a temporary folder) and
+run there. uv cannot put one environment in the place of another in a single step, so the
+replacement is made restorable instead: the installed environment, its wheel, the command
+links and the state file are set aside, and they are put back when the installation into
+their place fails or its `cdlbib --version` does not run (by this run, or by the next one
+when this one was killed). The script then ends with an error and the old command works.
+With --no-uv a copy of the virtual environment is set aside in the same way. An
+installation whose command does not run is removed and installed again.
 
 --uninstall removes the installation recorded in
 ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/install-state (uv's tool directory, the folder
@@ -406,6 +415,13 @@ for entry in distribution("cdlbib").entry_points:
         print(entry.name)'
 }
 
+# Are $1 and $2 the same folder? By their physical paths when both can be entered, else by name.
+same_folder() {
+    one=$(physical "$1") || one=$1
+    other=$(physical "$2") || other=$2
+    [ "$one" = "$other" ]
+}
+
 # Remove the links in the folder $1 that lead into $2 (a path that ends with a slash).
 remove_links() {
     for link in "$1"/*; do
@@ -579,6 +595,7 @@ uninstall() {
         say "The uv that this script downloaded is removed. Pythons and cached files that uv"
         say "downloaded stay in uv's own folders (${XDG_DATA_HOME:-$HOME/.local/share}/uv and ${XDG_CACHE_HOME:-$HOME/.cache}/uv)."
     fi
+    rm -rf "$keep" "$keep.done" "$home_dir/venv.kept" || die "$keep could not be removed."
     rm -f "$state" "$state.new" || die "$state could not be removed."
     rmdir "$home_dir" 2>/dev/null || true
     if [ "$removed" = 1 ]; then
@@ -726,12 +743,216 @@ command_runs() {
     [ -n "$command_dir" ] && [ -x "$command_dir/$PACKAGE" ] && "$command_dir/$PACKAGE" --version >/dev/null 2>&1
 }
 
-# Stop after a step failed, saying what became of the installation that was there.
+# ---- Replacing an installation that works ---------------------------------------------------
+# uv has no way to put a finished environment in the place of another in one step, and a
+# virtual environment cannot be renamed. So the replacement is made restorable: what is
+# there is set aside first, and put back when any later step fails, when the script is
+# stopped by a signal, or (after a stop that could not be caught) by the next run.
+#   $keep/where      what was set aside and where it belongs (written before anything moves)
+#   $keep/state      the state file as it was
+#   $keep/bin/       copies of the command links as they were
+#   $keep/WHEEL      the wheel of the same name as the new one (moved)
+#   TOOLS/cdlbib-kept-by-install-sh   uv's environment (renamed inside uv's tool directory)
+#   $home_dir/venv.kept               a copy of the virtual environment
+# "$keep" renamed to "$keep.done" is the moment the new installation counts; what was set
+# aside is deleted after that.
+
+kept_value() {
+    sed -n "s/^$2=//p" "$1/where" 2>/dev/null | sed -n 1p
+}
+
+# Copy into $keep/bin the entry $1 of the command folder, when it is there.
+keep_link() {
+    if [ -e "$command_dir/$1" ] || [ -L "$command_dir/$1" ]; then
+        if [ ! -e "$keep/bin/$1" ] && [ ! -L "$keep/bin/$1" ]; then
+            cp -P -p "$command_dir/$1" "$keep/bin/$1" || return 1
+        fi
+    fi
+    return 0
+}
+
+# Start: $1 is uv's tool directory when its environment will be replaced (else empty), $2
+# the name of the new wheel (or empty), $3 what happens to the virtual environment: "new"
+# (there is none, one will be made), "copy" (it will be changed in place) or "same".
+keep_begin() {
+    rm -rf "$keep" "$home_dir/venv.kept" || return 1
+    mkdir -p "$keep/bin" || return 1
+    k_had_tool=0
+    k_had_wheel=0
+    k_had_state=0
+    if [ -n "$1" ] && { [ -e "$1/$PACKAGE" ] || [ -L "$1/$PACKAGE" ]; }; then k_had_tool=1; fi
+    if [ -n "$2" ] && [ -f "$dist_dir/$2" ]; then k_had_wheel=1; fi
+    if [ -f "$state" ]; then
+        k_had_state=1
+        cp -p "$state" "$keep/state" || return 1
+    fi
+    # The command links as they are: the command itself, and every link that leads into
+    # uv's environment or into the virtual environment.
+    keep_link "$PACKAGE" || return 1
+    for link in "$command_dir"/*; do
+        [ -L "$link" ] || continue
+        case $(readlink "$link") in
+            "$venv/bin/"*) keep_link "${link##*/}" || return 1 ;;
+            *)
+                if [ -n "$1" ]; then
+                    case $(readlink "$link") in
+                        "$1/$PACKAGE/"*|"$rec_tool_dir/$PACKAGE/"*) keep_link "${link##*/}" || return 1 ;;
+                    esac
+                fi ;;
+        esac
+    done
+    {
+        say "tools=$1"
+        say "had_tool=$k_had_tool"
+        say "bin=$command_dir"
+        say "wheel=$2"
+        say "had_wheel=$k_had_wheel"
+        say "had_state=$k_had_state"
+        say "venv=$3"
+    } >"$keep/where.new" || return 1
+    mv -f "$keep/where.new" "$keep/where" || return 1
+    keeping=1
+    if [ "$k_had_tool" = 1 ]; then
+        rm -rf "${1:?}/$KEPT_TOOL" || return 1
+        mv "$1/$PACKAGE" "$1/$KEPT_TOOL" || return 1
+    fi
+    if [ "$k_had_wheel" = 1 ]; then
+        mv "$dist_dir/$2" "$keep/$2" || return 1
+    fi
+    if [ "$3" = copy ]; then
+        cp -R -P -p "$venv" "$home_dir/venv.kept" || return 1
+        say "venv_copied=1" >>"$keep/where" || return 1
+    fi
+    return 0
+}
+
+# Put back what $keep holds. Only what the files there say is used, so this also works in
+# a later run. Fails when something could not be put back ($keep then stays).
+keep_restore() {
+    keeping=0
+    if [ ! -f "$keep/where" ]; then
+        rm -rf "$keep"
+        return
+    fi
+    k_tools=$(kept_value "$keep" tools)
+    k_bin=$(kept_value "$keep" bin)
+    k_wheel=$(kept_value "$keep" wheel)
+    case $k_tools in
+        /*)
+            if [ "$(kept_value "$keep" had_tool)" != 1 ]; then
+                rm -rf "${k_tools:?}/$PACKAGE" || return 1
+            elif [ -e "$k_tools/$KEPT_TOOL" ] || [ -L "$k_tools/$KEPT_TOOL" ]; then
+                rm -rf "${k_tools:?}/$PACKAGE" || return 1
+                mv "$k_tools/$KEPT_TOOL" "$k_tools/$PACKAGE" || return 1
+            fi ;;
+    esac
+    if [ -n "$k_wheel" ]; then
+        if [ "$(kept_value "$keep" had_wheel)" != 1 ]; then
+            rm -f "$dist_dir/$k_wheel" || return 1
+        elif [ -f "$keep/$k_wheel" ]; then
+            mv -f "$keep/$k_wheel" "$dist_dir/$k_wheel" || return 1
+        fi
+    fi
+    rm -rf "$dist_dir/.new" || return 1
+    case $(kept_value "$keep" venv) in
+        new) rm -rf "$venv" || return 1 ;;
+        copy)
+            if [ "$(kept_value "$keep" venv_copied)" = 1 ] && [ -d "$home_dir/venv.kept" ]; then
+                rm -rf "$venv" || return 1
+                mv "$home_dir/venv.kept" "$venv" || return 1
+            fi ;;
+    esac
+    rm -rf "$home_dir/venv.kept" || return 1
+    case $k_bin in
+        /*)
+            # Links that the stopped run made and that were not there before.
+            for link in "$k_bin"/*; do
+                [ -L "$link" ] || continue
+                if [ -e "$keep/bin/${link##*/}" ] || [ -L "$keep/bin/${link##*/}" ]; then
+                    continue
+                fi
+                case $(readlink "$link") in
+                    "$venv/bin/"*) [ -e "$link" ] || rm -f "$link" || return 1 ;;
+                    *)
+                        case $k_tools in
+                            /*)
+                                case $(readlink "$link") in
+                                    "$k_tools/$PACKAGE/"*) [ -e "$link" ] || rm -f "$link" || return 1 ;;
+                                esac ;;
+                        esac ;;
+                esac
+            done
+            for saved in "$keep/bin"/*; do
+                if [ -e "$saved" ] || [ -L "$saved" ]; then
+                    rm -f "$k_bin/${saved##*/}" || return 1
+                    cp -P -p "$saved" "$k_bin/${saved##*/}" || return 1
+                fi
+            done
+            rm -f "$k_bin"/."$PACKAGE"*.new 2>/dev/null || true ;;
+    esac
+    if [ "$(kept_value "$keep" had_state)" = 1 ]; then
+        if [ -f "$keep/state" ]; then
+            cp -p "$keep/state" "$state.new" || return 1
+            mv -f "$state.new" "$state" || return 1
+        fi
+    else
+        rm -f "$state" || return 1
+    fi
+    rm -f "$state.new"
+    rm -rf "$keep"
+}
+
+# Delete what was set aside by a replacement that is complete ($keep.done).
+keep_discard() {
+    [ -d "$keep.done" ] || return 0
+    k_tools=$(kept_value "$keep.done" tools)
+    case $k_tools in
+        /*) rm -rf "${k_tools:?}/$KEPT_TOOL" || return 1 ;;
+    esac
+    rm -rf "$home_dir/venv.kept" "$keep.done"
+}
+
+# The new installation is in place and has run: from here on it is the installation.
+keep_commit() {
+    [ "$keeping" = 1 ] || return 0
+    rm -rf "$keep.done" || return 1
+    mv "$keep" "$keep.done" || return 1
+    keeping=0
+    keep_discard
+}
+
+# What a run that was stopped without warning left: finish its deletion, or put back
+# what it had set aside.
+keep_recover() {
+    keep_discard || die "what an earlier run set aside ($keep.done) could not be removed."
+    if [ -d "$keep" ]; then
+        say "An earlier run was stopped while it replaced the installation: the installation that was there is put back."
+        keep_restore || die "the installation that an earlier run set aside could not be put back (see $keep)."
+    fi
+}
+
+# Stop after a step failed. An installation that was set aside is put back first; the
+# message says what became of the installation that was there.
 failed() {
+    if [ "$keeping" = 1 ]; then
+        if ! keep_restore; then
+            die "$1 The installation that was there could not be put back; run this script again, which tries once more (what was set aside is in $keep)."
+        fi
+    fi
     if [ "$working" = 1 ] && command_runs; then
         die "$1 The installation that was there is unchanged: $command_dir/$PACKAGE runs as before."
     fi
     die "$1 No working $PACKAGE was installed."
+}
+
+# At the end of the script, however it ends.
+finish() {
+    if [ "${keeping:-0}" = 1 ]; then
+        keep_restore || warn "install.sh: the installation that was there could not be put back; run this script again, which tries once more."
+    fi
+    if [ -n "$tmp" ] && [ "$dry" != 1 ]; then
+        rm -rf "$tmp"
+    fi
 }
 
 main() {
@@ -849,7 +1070,11 @@ main() {
     dist_dir=$home_dir/dist
     state=$home_dir/install-state
 
-    trap 'if [ -n "$tmp" ] && [ "$dry" != 1 ]; then rm -rf "$tmp"; fi' EXIT
+    keep=$home_dir/kept
+    keeping=0
+    working=0
+    command_dir=""
+    trap finish EXIT
     trap 'exit 130' INT
     trap 'exit 143' TERM HUP
 
@@ -879,6 +1104,7 @@ main() {
     done
 
     if [ "$action" = uninstall ]; then
+        keep_recover
         uninstall
         exit 0
     fi
@@ -968,14 +1194,17 @@ main() {
     fi
     confirm "Install $PACKAGE with $method?"
 
-    # What is there now. A command that runs is kept until the new version is known to
-    # work; only a command that does not run counts as a broken installation.
+    # What is there now. A command that runs is kept until the new version is in place and
+    # has run; only a command that does not run counts as a broken installation.
+    if [ "$dry" != 1 ]; then
+        keep_recover
+    fi
     read_state
     tools=""
     command_dir=""
     working=0
     wheel=""
-    old_venv_bin=""
+    old_venv_bin=$rec_venv_bin
     if [ "$dry" != 1 ]; then
         if [ "$method" = uv ]; then
             env=$(program env) || die "env was not found on PATH."
@@ -985,14 +1214,17 @@ main() {
                 /*:/*) ;;
                 *) die "uv named a tool directory or a command folder that is not a full path ($tools, $command_dir). Nothing was installed." ;;
             esac
-            # One installation per record: an installation recorded elsewhere is not
-            # left behind without a record.
+            # One installation per record: an installation recorded in another place is
+            # not left behind without a record. Two names of one folder (a link, "..") are
+            # one place: the folders are compared by their physical paths.
             if [ "$has_uv" = 1 ] && [ -n "$rec_tool_dir" ] && [ -e "$rec_tool_dir/$PACKAGE" ]; then
-                if [ "$rec_tool_dir" != "$tools" ] || [ "$rec_tool_bin" != "$command_dir" ]; then
+                if ! same_folder "$rec_tool_dir" "$tools" || ! same_folder "$rec_tool_bin" "$command_dir"; then
                     warn "install.sh: this script installed $PACKAGE into uv's tool directory $rec_tool_dir (commands in"
                     warn "$rec_tool_bin); uv's tool directory is now $tools (commands in $command_dir)."
-                    warn "Nothing was changed. Either run this script with UV_TOOL_DIR=$rec_tool_dir and"
-                    warn "UV_TOOL_BIN_DIR=$rec_tool_bin, or remove that installation first with --uninstall."
+                    warn "Nothing was changed. To keep the installation where it is, run this script with"
+                    warn "UV_TOOL_DIR=$rec_tool_dir and UV_TOOL_BIN_DIR=$rec_tool_bin. To move it on purpose, run this"
+                    warn "script with --uninstall (it removes the recorded installation whatever those variables"
+                    warn "are now), then run it again with the new settings."
                     exit 1
                 fi
             fi
@@ -1002,19 +1234,22 @@ main() {
         if command_runs; then
             working=1
         fi
-        # Recorded before the work starts, so that --uninstall also removes an unfinished
-        # installation. An installation by the other route stays recorded until it is removed.
         if [ "$method" = uv ]; then
             has_uv=1
             rec_uv=$uv
-            rec_tool_dir=$tools
-            rec_tool_bin=$command_dir
+            # Recorded by their physical paths, which stay true when a link to them goes.
+            rec_tool_dir=$(physical "$tools") || rec_tool_dir=$tools
+            rec_tool_bin=$(physical "$command_dir") || rec_tool_bin=$command_dir
         else
-            old_venv_bin=$rec_venv_bin
             has_venv=1
             rec_venv_bin=$bin_dir
         fi
-        write_state || die "$state could not be written. Nothing was installed."
+        # With nothing that works to keep, the destination is recorded before the work
+        # starts, so that --uninstall also removes an unfinished installation. Over an
+        # installation that works, the state file is left as it is until the new one runs.
+        if [ "$working" != 1 ]; then
+            write_state || die "$state could not be written. Nothing was installed."
+        fi
     fi
 
     case $method in
@@ -1037,8 +1272,7 @@ main() {
                 # the checkout in the temporary folder and put into a folder of the user's own,
                 # and that file is what uv installs and records. uv runs inside that folder and
                 # is given the file's name only, so no path is part of the requirement. The new
-                # wheel lies in dist/.new until the new version has run; the wheel of the
-                # installed version is not touched before that.
+                # wheel lies in dist/.new until the new version has run beside the installed one.
                 run "$uv" --no-config build --wheel --python "$PYTHON_REQUEST" --out-dir "$tmp/dist" -- "$checkout" \
                     || failed "uv could not build a wheel from $checkout (its message is above)."
                 if [ "$dry" = 1 ]; then
@@ -1064,6 +1298,10 @@ main() {
                             rm -rf "$dist_dir/.new"
                             failed "The new version could not be installed (uv's message is above)."
                         fi
+                        # The installed environment, its wheel of the same name, the command
+                        # links and the state file are set aside; they come back if anything
+                        # from here on fails.
+                        keep_begin "$tools" "$wheel" same || failed "The installed version could not be set aside."
                     fi
                     mv -f "$dist_dir/.new/$wheel" "$dist_dir/$wheel" || failed "the wheel could not be moved into $dist_dir."
                     rmdir "$dist_dir/.new" || failed "$dist_dir/.new could not be removed."
@@ -1074,17 +1312,18 @@ main() {
             else
                 if [ "$working" = 1 ]; then
                     staged_install "$tmp" "$spec" || failed "The new version could not be installed (uv's message is above)."
+                    keep_begin "$tools" "" same || failed "The installed version could not be set aside."
                 fi
                 install_in=$tmp
                 requirement=$spec
                 say "+ $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "$spec")"
             fi
             if [ "$dry" != 1 ] && ! tool_install "$install_in" "$requirement"; then
-                if command_runs; then
-                    die "uv could not install $PACKAGE (its message is above). The installation that was there still runs: $command_dir/$PACKAGE."
+                if [ "$working" = 1 ]; then
+                    failed "uv could not install $PACKAGE (its message is above)."
                 fi
-                # No command that runs: what an interrupted run left behind can stop uv, so
-                # the tool is removed and installed from nothing, once.
+                # Nothing that ran was there: what an interrupted run left behind can stop
+                # uv, so the tool is removed and installed from nothing, once.
                 say "Trying again after removing the unfinished $PACKAGE tool."
                 "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
                 rm -rf "${tools:?}/$PACKAGE" || die "$tools/$PACKAGE could not be removed."
@@ -1097,6 +1336,16 @@ raise SystemExit(0 if (3, 11) <= sys.version_info[:2] <= (3, 13) else 1)' 2>/dev
                 # Not a working environment (an interrupted run, or its Python is gone).
                 run rm -rf "$venv" || die "$venv could not be removed."
             fi
+            if [ "$dry" != 1 ] && [ "$working" = 1 ]; then
+                # pip changes the environment in place, so a copy of it is set aside (or, when
+                # there is none yet, the new one is removed again if anything fails), with
+                # the command links and the state file.
+                if [ -x "$venv/bin/python" ]; then
+                    keep_begin "" "" copy || failed "The installed version could not be set aside."
+                else
+                    keep_begin "" "" new || failed "The installed version could not be set aside."
+                fi
+            fi
             if [ ! -x "$venv/bin/python" ]; then
                 run mkdir -p "$home_dir" || failed "$home_dir could not be made."
                 if ! run "$python" -I -m venv "$venv"; then
@@ -1108,8 +1357,13 @@ print(os.path.realpath(sys.executable))') || failed "$python could not make a vi
                     run "$real" -I -m venv "$venv" || failed "$real could not make a virtual environment in $venv."
                 fi
             fi
-            # pip downloads and builds everything before it takes the installed version out
-            # of the environment, so a source that cannot be installed leaves it as it was.
+            if [ "$source" = pypi ]; then
+                # `pip install --upgrade` is content with the installed version when the index
+                # cannot be reached, and would report success with nothing installed or
+                # updated. The package is fetched from the index first, which fails then.
+                run "$venv/bin/python" -I -m pip download --disable-pip-version-check --no-deps --dest "$tmp/from-index" -- "$PACKAGE" \
+                    || failed "pip could not get $PACKAGE from the package index (its message is above): the index could not be reached or has no $PACKAGE, so nothing was installed or updated."
+            fi
             run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade -- "$spec" \
                 || failed "pip could not install $PACKAGE (its message is above)."
             run mkdir -p "$bin_dir" || failed "$bin_dir could not be made."
@@ -1118,25 +1372,25 @@ print(os.path.realpath(sys.executable))') || failed "$python could not make a vi
             else
                 "$venv/bin/$PACKAGE" --version >/dev/null || failed "$venv/bin/$PACKAGE was installed but '$PACKAGE --version' failed."
                 names=$(console_scripts "$venv/bin/python") || failed "the commands of $PACKAGE could not be listed."
-                # The new environment runs: an earlier installation made with uv goes now.
-                if [ "$has_uv" = 1 ]; then
-                    say "Replacing the earlier installation (made with uv)."
-                    if remove_uv_install; then
-                        has_uv=0
-                        rm -rf "$dist_dir" || die "$dist_dir could not be removed."
-                    else
-                        warn "install.sh: the earlier installation stays recorded in $state; --uninstall will try again."
-                    fi
-                fi
                 for name in $names; do
                     if [ -e "$bin_dir/$name" ] && [ ! -L "$bin_dir/$name" ]; then
-                        die "$bin_dir/$name exists and is not a link; it was left alone. Move it away, then run this script again."
+                        failed "$bin_dir/$name exists and is not a link; it was left alone. Move it away, then run this script again."
                     fi
-                    run ln -sf "$venv/bin/$name" "$bin_dir/$name" || die "the link $bin_dir/$name could not be made."
+                    if [ "$keeping" = 1 ]; then
+                        keep_link "$name" || failed "the link $bin_dir/$name could not be set aside."
+                    fi
                 done
-                if [ -n "$old_venv_bin" ] && [ "$old_venv_bin" != "$bin_dir" ]; then
-                    remove_links "$old_venv_bin" "$venv/bin/" || die "the links in $old_venv_bin could not be removed."
-                fi
+                # Each new link is made under another name and renamed over the old one, so
+                # at every moment the command is the old one or the new one.
+                for name in $names; do
+                    if [ -L "$bin_dir/$name" ] && [ "$(readlink "$bin_dir/$name")" = "$venv/bin/$name" ]; then
+                        continue
+                    fi
+                    say "+ ln -sf $(quoted "$venv/bin/$name") $(quoted "$bin_dir/$name")"
+                    rm -f "$bin_dir/.$name.new" || failed "$bin_dir/.$name.new could not be removed."
+                    ln -s "$venv/bin/$name" "$bin_dir/.$name.new" || failed "the link $bin_dir/$name could not be made."
+                    mv -f "$bin_dir/.$name.new" "$bin_dir/$name" || failed "the link $bin_dir/$name could not be put in place."
+                done
             fi ;;
     esac
 
@@ -1145,9 +1399,14 @@ print(os.path.realpath(sys.executable))') || failed "$python could not make a vi
         exit 1
     fi
 
-    version=$("$command_dir/$PACKAGE" --version) || die "$command_dir/$PACKAGE was installed but '$PACKAGE --version' failed."
-    # The new version runs. What it replaced goes now: older wheels, and an installation
-    # made by the other route.
+    # The new installation, run from where it stays. Until this has succeeded and the state
+    # file is written, a failure puts back what was there.
+    version=$("$command_dir/$PACKAGE" --version) || failed "$command_dir/$PACKAGE was installed but '$PACKAGE --version' failed."
+    write_state || failed "$state could not be written."
+    keep_commit || die "what was set aside ($keep) could not be removed; the new installation is in place."
+
+    # What the new installation replaced goes now: older wheels, and an installation made
+    # by the other route (its commands already lead to the new one).
     if [ "$method" = uv ]; then
         if [ -n "$wheel" ]; then
             for old in "$dist_dir"/*.whl; do
@@ -1160,9 +1419,28 @@ print(os.path.realpath(sys.executable))') || failed "$python could not make a vi
             say "Replacing the earlier installation (made with venv)."
             remove_venv_install || die "the earlier virtual environment $venv could not be removed; it stays recorded in $state."
             has_venv=0
+            write_state || die "$state could not be written."
+        fi
+    else
+        if [ "$has_uv" = 1 ]; then
+            say "Replacing the earlier installation (made with uv)."
+            # Not with `uv tool uninstall`: that deletes the commands by name, and they are
+            # the new links now. uv's tool is its environment folder, which is removed, and
+            # links that still lead into it.
+            case $rec_tool_dir in
+                /*)
+                    run rm -rf "${rec_tool_dir:?}/$PACKAGE" || die "$rec_tool_dir/$PACKAGE could not be removed; it stays recorded in $state."
+                    remove_links "$rec_tool_bin" "$rec_tool_dir/$PACKAGE/" || die "the links in $rec_tool_bin could not be removed." ;;
+                *) warn "install.sh: $state does not say where uv's tool is; it was left in place." ;;
+            esac
+            rm -rf "$dist_dir" || die "$dist_dir could not be removed."
+            has_uv=0
+            write_state || die "$state could not be written."
+        fi
+        if [ -n "$old_venv_bin" ] && [ "$old_venv_bin" != "$bin_dir" ]; then
+            remove_links "$old_venv_bin" "$venv/bin/" || die "the links in $old_venv_bin could not be removed."
         fi
     fi
-    write_state || die "$state could not be written."
     say ""
     say "Installed: $version"
     say "Command:   $command_dir/$PACKAGE (installed with $method)"
