@@ -8,17 +8,23 @@
 # cdlbib needs Python 3.11 or later. The script installs it with `uv tool install`, into an
 # environment of its own:
 #   - uv is used where it is found (version 0.5.0 or later);
-#   - when uv is missing (or older), the script says so and downloads uv with uv's own
-#     installer (https://astral.sh/uv/install.sh) into a folder of its own;
+#   - when uv is missing (or older), the script says so and downloads one pinned version of
+#     uv with uv's own installer (https://astral.sh/uv/VERSION/install.sh) into a folder of
+#     its own. The installer is run only when its SHA-256 is the one written in this script
+#     (see UV_VERSION below); the installer in turn carries the SHA-256 of the archive of uv
+#     for each platform and compares the archive it downloads before unpacking it;
 #   - the environment is made with a Python 3.11, 3.12 or 3.13 (the versions the package is
 #     tested on); when none is installed, uv downloads one into uv's own folder.
 #     The Python already on the computer and the default `python` are not changed.
 # With --no-uv nothing but the package is downloaded: an installed uv is used, else a
 # virtual environment is made with the newest Python from 3.11 to 3.13 on PATH.
-# Running it again upgrades or repairs the installation in place.
+# Running it again upgrades or repairs the installation. A command that runs is left as it
+# is until the new version has been installed beside it and has run; only an installation
+# whose command does not run is removed first.
 #
 # It never uses sudo, never edits a shell profile, and writes only to:
-#   ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/   install-state, uv/ (a downloaded uv),
+#   ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/   install-state (what was installed, where,
+#                                                  and with which uv), uv/ (a downloaded uv),
 #                                                  dist/ (the wheel built from a checkout),
 #                                                  venv/ (--no-uv without uv)
 #   the checkout, when it is the source: build/ and src/cdlbib.egg-info/ (the build's own)
@@ -43,13 +49,29 @@ export NO_COLOR
 
 PACKAGE=cdlbib
 REPOSITORY=https://github.com/ContextLab/CDL-bibliography
-UV_INSTALLER=https://astral.sh/uv/install.sh
+
+# ---- THE uv THAT THIS SCRIPT DOWNLOADS: the one place to change -------------------------
+# Used only when no uv (0.5.0 or later) is installed. The installer of exactly this version
+# is downloaded, and it is run only when its SHA-256 is the one below. To move to another
+# version of uv:
+#   1. read the release notes and the new installer (https://astral.sh/uv/NEW/install.sh);
+#      it must still honour UV_UNMANAGED_INSTALL and UV_NO_MODIFY_PATH, and still compare
+#      the archive it downloads with a checksum it carries (its verify_checksum);
+#   2. set UV_VERSION, and set UV_INSTALLER_SHA256 to what this prints (on Linux: sha256sum
+#      in place of shasum -a 256):
+#        curl --proto '=https' --tlsv1.2 -fsSL https://astral.sh/uv/NEW/install.sh | shasum -a 256
+#   3. run: CDLBIB_TEST_INSTALL_UV_DOWNLOAD=1 python -m pytest tests/test_install_script.py
+UV_VERSION=0.12.23
+UV_INSTALLER_SHA256=b8e6c43099ee9f9a550984d3ad56948457c689e7a99c090b35377234ac241491
+# -----------------------------------------------------------------------------------------
+UV_INSTALLER=https://astral.sh/uv/$UV_VERSION/install.sh
+UV_MANUAL=https://docs.astral.sh/uv/getting-started/installation/
 UV_MINIMUM=0.5.0    # the first uv whose installer takes UV_UNMANAGED_INSTALL; `uv tool install`
                     # has --with, --force and --reinstall-package, and `uv tool dir` has --bin
 PYTHON_REQUEST='>=3.11,<3.14'    # the versions the package's tests run on
 
 usage() {
-    cat <<'EOF'
+    sed "s/UV_VERSION_HERE/$UV_VERSION/g" <<'EOF'
 Install the cdlbib command (macOS and Linux). cdlbib needs Python 3.11 or later; this
 script installs it into an environment of its own, so the default Python does not matter.
 
@@ -73,17 +95,41 @@ Options:
 Source: the checkout this script sits in (when run as a file from one and none of
 --ref, --repo and --pypi is given); otherwise the GitHub repository; with --pypi, PyPI.
 
-How: with `uv tool install`. A uv on PATH (0.5.0 or later) is used; when there is none,
-the script says so and downloads uv with its installer (https://astral.sh/uv/install.sh)
-into ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/uv. The environment is made with a
+How: with `uv tool install`. A uv on PATH (0.5.0 or later) is used as it is; when there
+is none, the script says so and downloads uv UV_VERSION_HERE with its installer
+(https://astral.sh/uv/UV_VERSION_HERE/install.sh) into
+${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/uv. The environment is made with a
 Python 3.11, 3.12 or 3.13; when none is installed, uv downloads one into its own folder.
 The default python is not changed.
+
+What is checked when uv is downloaded:
+  - the installer: its SHA-256 must be the one written in this script for that version
+    (UV_INSTALLER_SHA256). Otherwise it is not run and nothing is installed.
+  - the archive of uv: the installer carries the SHA-256 of the archive for each platform
+    and compares the archive it downloads before unpacking it. It skips that comparison
+    when there is no sha256sum command, so this script gives it one (made from sha256sum,
+    shasum or openssl, whichever is installed) and installs nothing when none is found.
+  - the uv that results must report version UV_VERSION_HERE.
+Not checked: signatures (none is verified; the SHA-256 in this script was read from
+astral.sh when the version was chosen), a uv that is already installed, and the Python
+and the packages that uv downloads (uv applies its own checks to those).
 With --no-uv and no uv, a virtual environment is made in
 ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/venv with the newest Python from 3.11 to 3.13 on PATH,
 with links in ${XDG_BIN_HOME:-$HOME/.local/bin}.
 
-Running the script again upgrades or repairs the installation in place. It never uses
-sudo and never edits a shell profile.
+Running the script again upgrades or repairs the installation. While the installed
+command runs, it is kept until the new version has been installed beside it (in a
+temporary folder) and has run there; when the new version cannot be installed, the script
+stops with an error and the old command still works. An installation whose command does
+not run is removed and installed again.
+
+--uninstall removes the installation recorded in
+${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/install-state (uv's tool directory, the folder
+of the commands, and the uv that was used), whatever UV_TOOL_DIR is now. When that cannot
+be done (no uv, or uv fails), nothing else is removed, the record is kept and the script
+ends with an error that says what to do.
+
+It never uses sudo and never edits a shell profile.
 EOF
 }
 
@@ -360,65 +406,196 @@ for entry in distribution("cdlbib").entry_points:
         print(entry.name)'
 }
 
-remove_venv_install() {
-    old_bin=$(state_value bin)
-    for link in "${old_bin:-$bin_dir}"/*; do
+# Remove the links in the folder $1 that lead into $2 (a path that ends with a slash).
+remove_links() {
+    for link in "$1"/*; do
         [ -L "$link" ] || continue
         case $(readlink "$link") in
-            "$venv/bin/"*) run rm -f "$link" ;;
+            "$2"*) run rm -f "$link" || return 1 ;;
         esac
     done
-    if [ -d "$venv" ]; then
-        run rm -rf "$venv"
-    fi
-}
-
-# Remove an installation this script made (recorded in the state file), and only that.
-remove_installed() {
-    case $(state_value method) in
-        uv)
-            old_uv=$(state_value uv)
-            case $old_uv in
-                /*) [ -x "$old_uv" ] || old_uv="" ;;
-                *) old_uv="" ;;
-            esac
-            [ -n "$old_uv" ] || old_uv=$(program uv) || old_uv=""
-            if [ -z "$old_uv" ]; then
-                warn "install.sh: uv was not found, so its $PACKAGE tool was left in place."
-            elif "$old_uv" --no-config tool list 2>/dev/null | grep -q "^$PACKAGE "; then
-                run "$old_uv" --no-config tool uninstall "$PACKAGE" || warn "install.sh: uv did not uninstall $PACKAGE."
-            fi
-            rm -rf "$dist_dir" ;;
-        venv)
-            remove_venv_install ;;
-        *)
-            return 1 ;;
-    esac
-    rm -f "$state"
     return 0
 }
 
+# What the state file records, read into rec_*. It can hold two installations at once (one
+# made with uv, one in the virtual environment) while one is replacing the other.
+#   method=uv|venv   the route of the latest run        bin=      the folder of its commands
+#   uv=              the uv that installed the tool     tool_dir= uv's tool directory then
+#   tool_bin=        the folder uv put the commands in  venv_bin= the folder of the links to
+#                                                                 the virtual environment
+# A file of an earlier version of this script has only method, bin and uv: the tool
+# directory is then read from where the command link leads, and is unknown without it.
+read_state() {
+    rec_method=$(state_value method)
+    rec_uv=$(state_value uv)
+    rec_tool_dir=$(state_value tool_dir)
+    rec_tool_bin=$(state_value tool_bin)
+    rec_venv_bin=$(state_value venv_bin)
+    has_uv=0
+    has_venv=0
+    if [ -n "$rec_tool_dir$rec_tool_bin" ]; then
+        has_uv=1
+    elif [ "$rec_method" = uv ]; then
+        has_uv=1
+        rec_tool_bin=$(state_value bin)
+        if [ -L "$rec_tool_bin/$PACKAGE" ]; then
+            target=$(readlink "$rec_tool_bin/$PACKAGE") || target=""
+            case $target in
+                /*/"$PACKAGE"/bin/"$PACKAGE") rec_tool_dir=${target%/"$PACKAGE"/bin/"$PACKAGE"} ;;
+            esac
+        fi
+    fi
+    if [ -n "$rec_venv_bin" ]; then
+        has_venv=1
+    elif [ "$rec_method" = venv ]; then
+        has_venv=1
+        rec_venv_bin=$(state_value bin)
+        [ -n "$rec_venv_bin" ] || rec_venv_bin=$bin_dir
+    fi
+}
+
+# Write the state file from method, command_dir and rec_* (to a new file, then moved).
+write_state() {
+    mkdir -p "$home_dir" || return 1
+    {
+        say "method=$method"
+        say "bin=$command_dir"
+        if [ "$has_uv" = 1 ]; then
+            say "uv=$rec_uv"
+            say "tool_dir=$rec_tool_dir"
+            say "tool_bin=$rec_tool_bin"
+        fi
+        if [ "$has_venv" = 1 ]; then
+            say "venv_bin=$rec_venv_bin"
+        fi
+    } >"$state.new" || return 1
+    mv -f "$state.new" "$state"
+}
+
+# Remove the virtual environment of this script and the links to it.
+remove_venv_install() {
+    remove_links "${rec_venv_bin:-$bin_dir}" "$venv/bin/" || return 1
+    if [ -d "$venv" ]; then
+        run rm -rf "$venv" || return 1
+    fi
+    return 0
+}
+
+by_hand() {
+    warn "To remove it by hand: delete the folder $rec_tool_dir/$PACKAGE and the links to it in"
+    warn "$rec_tool_bin, then run this script with --uninstall again. Or install uv ($UV_MANUAL)"
+    warn "and run this script with --uninstall again."
+}
+
+# Remove the uv tool that the state file records: the one in the recorded tool directory,
+# with its commands in the recorded folder, whatever UV_TOOL_DIR and UV_TOOL_BIN_DIR are
+# now. Fails, having changed nothing, when that cannot be done.
+remove_uv_install() {
+    case $rec_tool_dir:$rec_tool_bin in
+        /*:/*) ;;
+        *)
+            warn "install.sh: $state does not say which tool directory of uv holds $PACKAGE (it was written by an"
+            warn "earlier version of this script, and ${rec_tool_bin:-the command folder}/$PACKAGE does not lead to one), so nothing of uv's was removed."
+            warn "Remove the tool with the uv that installed it (uv tool uninstall $PACKAGE), delete"
+            warn "$state, then run this script with --uninstall again."
+            return 1 ;;
+    esac
+    if [ ! -e "$rec_tool_dir/$PACKAGE" ] && [ ! -L "$rec_tool_dir/$PACKAGE" ]; then
+        # Not there (an installation that never got that far, or removed with uv by hand):
+        # only links that lead to where it was are left to remove.
+        remove_links "$rec_tool_bin" "$rec_tool_dir/$PACKAGE/"
+        return
+    fi
+    old_uv=""
+    path_uv=$(program uv) || path_uv=""
+    for candidate in "$rec_uv" "$path_uv" "$own_uv_dir/uv"; do
+        case $candidate in
+            /*) ;;
+            *) continue ;;
+        esac
+        if [ -f "$candidate" ] && [ -x "$candidate" ] && uv_new_enough "$candidate"; then
+            old_uv=$candidate
+            break
+        fi
+    done
+    env=$(program env) || env=""
+    if [ -z "$old_uv" ] || [ -z "$env" ]; then
+        warn "install.sh: $PACKAGE is installed as a uv tool in $rec_tool_dir/$PACKAGE, and the uv that installed it"
+        warn "(${rec_uv:-not recorded}) was not found, nor another uv $UV_MINIMUM or later: the tool was left in place."
+        by_hand
+        return 1
+    fi
+    if ! run "$env" UV_TOOL_DIR="$rec_tool_dir" UV_TOOL_BIN_DIR="$rec_tool_bin" "$old_uv" --no-config tool uninstall "$PACKAGE"; then
+        if [ -f "$rec_tool_dir/$PACKAGE/uv-receipt.toml" ]; then
+            warn "install.sh: uv did not uninstall $PACKAGE from $rec_tool_dir (its message is above): the tool was left in place."
+            by_hand
+            return 1
+        fi
+        # No receipt: an environment that a run of this script did not finish, which uv
+        # does not count as a tool.
+        if ! run rm -rf "${rec_tool_dir:?}/$PACKAGE"; then
+            warn "install.sh: $rec_tool_dir/$PACKAGE could not be removed."
+            by_hand
+            return 1
+        fi
+    fi
+    if [ -e "$rec_tool_dir/$PACKAGE" ] || [ -L "$rec_tool_dir/$PACKAGE" ]; then
+        if [ -f "$rec_tool_dir/$PACKAGE/uv-receipt.toml" ]; then
+            warn "install.sh: uv reported success, and $rec_tool_dir/$PACKAGE is still there."
+            by_hand
+            return 1
+        fi
+        if ! run rm -rf "${rec_tool_dir:?}/$PACKAGE"; then
+            warn "install.sh: $rec_tool_dir/$PACKAGE could not be removed."
+            by_hand
+            return 1
+        fi
+    fi
+    remove_links "$rec_tool_bin" "$rec_tool_dir/$PACKAGE/"
+}
+
 uninstall() {
+    read_state
     removed=0
-    if remove_installed; then
+    # uv's tool first: when it cannot be removed, nothing else is, and the record stays.
+    if [ "$has_uv" = 1 ]; then
+        if ! remove_uv_install; then
+            warn "install.sh: nothing else was removed, and the record $state is kept."
+            exit 1
+        fi
+        removed=1
+    fi
+    if [ "$has_venv" = 1 ]; then
+        remove_venv_install || die "the virtual environment $venv could not be removed; the record $state is kept."
         removed=1
     fi
     if [ -d "$dist_dir" ]; then
-        run rm -rf "$dist_dir"
+        run rm -rf "$dist_dir" || die "$dist_dir could not be removed; the record $state is kept."
         removed=1
     fi
     if [ -d "$own_uv_dir" ]; then
-        run rm -rf "$own_uv_dir"
+        run rm -rf "$own_uv_dir" || die "$own_uv_dir could not be removed; the record $state is kept."
         removed=1
         say "The uv that this script downloaded is removed. Pythons and cached files that uv"
         say "downloaded stay in uv's own folders (${XDG_DATA_HOME:-$HOME/.local/share}/uv and ${XDG_CACHE_HOME:-$HOME/.cache}/uv)."
     fi
+    rm -f "$state" "$state.new" || die "$state could not be removed."
     rmdir "$home_dir" 2>/dev/null || true
     if [ "$removed" = 1 ]; then
         say "Removed $PACKAGE."
     else
         say "Nothing to remove: this script has no installation of $PACKAGE here."
     fi
+}
+
+# The SHA-256 of the file $1 as 64 hexadecimal digits, with the program found by
+# install_uv; nothing when it could not be computed.
+sha256_of() {
+    case $digest_with in
+        sha256sum) "$digest_tool" "$1" ;;
+        shasum) "$digest_tool" -a 256 "$1" ;;
+        openssl) "$digest_tool" dgst -sha256 -r "$1" ;;
+    esac 2>/dev/null | sed -n '1s/^\([0-9a-f]\{64\}\)[ *].*$/\1/p'
 }
 
 install_uv() {
@@ -429,73 +606,132 @@ install_uv() {
     if [ -z "$curl$wget" ]; then
         warn "install.sh: uv has to be downloaded, and neither curl nor wget is installed."
         warn "Nothing was installed. Install curl or wget, or uv itself"
-        warn "(https://docs.astral.sh/uv/getting-started/installation/), then run this script again."
+        warn "($UV_MANUAL), then run this script again."
         exit 1
     fi
     if [ -z "$curl" ] && ! "$wget" --help 2>&1 | grep -q -e '--https-only'; then
         die "this wget cannot be limited to https. Install curl, then run this script again."
     fi
-    say "$1: downloading uv with its installer ($UV_INSTALLER, saved to a temporary file and run with sh) into $own_uv_dir; no shell profile is changed."
+    digest_tool=""
+    for digest_with in sha256sum shasum openssl; do
+        if digest_tool=$(program "$digest_with"); then
+            break
+        fi
+        digest_tool=""
+    done
+    if [ -z "$digest_tool" ]; then
+        warn "install.sh: uv has to be downloaded, and what is downloaded cannot be checked: none of"
+        warn "sha256sum, shasum and openssl is installed. Nothing was installed. Install one of"
+        warn "them, or uv itself ($UV_MANUAL), then run this script again."
+        exit 1
+    fi
+    case $tmp in
+        *:*) die "the temporary folder $tmp has a colon in its name, so it cannot be put on PATH for uv's installer. Set TMPDIR to another folder. Nothing was installed." ;;
+    esac
+    say "$1: downloading uv $UV_VERSION with its installer ($UV_INSTALLER, saved to a temporary file, checked against the SHA-256 in this script and run with sh) into $own_uv_dir; no shell profile is changed."
     confirm "Download and run the uv installer?"
-    download "$UV_INSTALLER" "$tmp/uv-install.sh"
-    if [ "$dry" != 1 ] && ! installer_new_enough "$tmp/uv-install.sh"; then
-        die "the file from $UV_INSTALLER is not the installer of uv $UV_MINIMUM or later (older installers change shell profiles): it was not run. Nothing was installed."
+    case $UV_INSTALLER in
+        /*) run cp -- "$UV_INSTALLER" "$tmp/uv-install.sh" || die "$UV_INSTALLER could not be read. Nothing was installed." ;;
+        *) download "$UV_INSTALLER" "$tmp/uv-install.sh" || die "the installer of uv could not be downloaded from $UV_INSTALLER. Nothing was installed. Try again later, or install uv by hand ($UV_MANUAL)." ;;
+    esac
+    if [ "$dry" != 1 ]; then
+        # Nothing of the file is run, and no line of it is acted on, before this comparison.
+        found=$(sha256_of "$tmp/uv-install.sh") || found=""
+        if [ "$found" != "$UV_INSTALLER_SHA256" ]; then
+            warn "install.sh: the file from $UV_INSTALLER is not the installer of uv $UV_VERSION that this script"
+            warn "was written for: its SHA-256 is ${found:-unknown}"
+            warn "and $UV_INSTALLER_SHA256 is expected."
+            warn "It was not run. Nothing was installed. Install uv by hand ($UV_MANUAL),"
+            warn "then run this script again; or run it with --no-uv, which uses a Python 3.11 to 3.13 on PATH."
+            exit 1
+        fi
+        if ! installer_new_enough "$tmp/uv-install.sh"; then
+            die "the file from $UV_INSTALLER is not the installer of uv $UV_MINIMUM or later (older installers change shell profiles): it was not run. Nothing was installed."
+        fi
+        # The installer compares the archive of uv with the SHA-256 it carries, and skips
+        # that when no command named sha256sum is found. It gets one, first on its PATH.
+        mkdir "$tmp/checked" || die "$tmp/checked could not be made. Nothing was installed."
+        {
+            say '#!/bin/sh'
+            case $digest_with in
+                sha256sum) say "exec $(quoted "$digest_tool") \"\$@\"" ;;
+                shasum) say "exec $(quoted "$digest_tool") -a 256 \"\$@\"" ;;
+                openssl) say 'for last in "$@"; do :; done'
+                         say "exec $(quoted "$digest_tool") dgst -sha256 -r \"\$last\"" ;;
+            esac
+        } >"$tmp/checked/sha256sum" || die "$tmp/checked/sha256sum could not be written. Nothing was installed."
+        chmod 700 "$tmp/checked/sha256sum" || die "$tmp/checked/sha256sum could not be made executable. Nothing was installed."
+        say "The installer checks the archive of uv against the SHA-256 it carries (computed with $digest_tool)."
     fi
     # UV_UNMANAGED_INSTALL: uv goes into that folder and nowhere else, no shell profile and
     # no environment setting is changed, and no update record is written. UV_NO_MODIFY_PATH
     # says the same about profiles once more. Variables that would send uv elsewhere are
     # not passed on.
     unset UV_INSTALL_DIR CARGO_DIST_FORCE_INSTALL_DIR
-    run "$env" UV_UNMANAGED_INSTALL="$own_uv_dir" UV_NO_MODIFY_PATH=1 INSTALLER_NO_MODIFY_PATH=1 "$shell" "$tmp/uv-install.sh"
+    script_path=$PATH
+    if [ "$dry" != 1 ]; then
+        PATH=$tmp/checked:$PATH
+    fi
+    if ! run "$env" UV_UNMANAGED_INSTALL="$own_uv_dir" UV_NO_MODIFY_PATH=1 INSTALLER_NO_MODIFY_PATH=1 "$shell" "$tmp/uv-install.sh"; then
+        PATH=$script_path
+        die "the installer of uv failed (its message is above). Nothing was installed. Try again later, or install uv by hand ($UV_MANUAL)."
+    fi
+    PATH=$script_path
     uv=$own_uv_dir/uv
-    if [ "$dry" != 1 ] && ! uv_new_enough "$uv"; then
-        die "the uv installer did not leave a working uv in $own_uv_dir."
+    if [ "$dry" != 1 ]; then
+        case $("$uv" --version 2>/dev/null) in
+            "uv $UV_VERSION"|"uv $UV_VERSION "*) ;;
+            *) die "the uv installer did not leave a working uv $UV_VERSION in $own_uv_dir." ;;
+        esac
     fi
 }
 
-uv_tool_install() {
-    # --force replaces commands that are already there (an earlier or interrupted run);
-    # --reinstall-package installs cdlbib again from the source, so a changed checkout or
-    # branch is picked up, while the other packages are only brought up to date.
-    # pip goes into the environment so that cdlbib can install an optional extra later,
-    # also when uv is not on PATH. --no-config: no uv.toml or pyproject.toml of any folder
-    # (or of the user) changes what is installed or from where; uv's environment variables
-    # still apply.
-    if [ "$source" != local ]; then
-        run "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
-            --reinstall-package "$PACKAGE" -- "$spec"
-        return
+# `uv tool install` of the package, run in the folder $1 with the requirement $2.
+# --force replaces commands that are already there (an earlier or interrupted run);
+# --reinstall-package installs cdlbib again from the source, so a changed checkout or
+# branch is picked up, while the other packages are only brought up to date.
+# pip goes into the environment so that cdlbib can install an optional extra later,
+# also when uv is not on PATH. --no-config: no uv.toml or pyproject.toml of any folder
+# (or of the user) changes what is installed or from where; uv's environment variables
+# still apply.
+tool_install() {
+    (cd "$1" && "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
+        --reinstall-package "$PACKAGE" -- "$2")
+}
+
+# The same installation made beside the one that is there: into a tool directory in the
+# temporary folder, where its command is then run. Nothing of the installed one is touched.
+# What uv prints is shown only when this fails.
+staged_install() {
+    stage=$tmp/stage
+    say "The installed $PACKAGE runs: it is kept until the new version has been installed beside it and has run."
+    say "+ cd $(quoted "$1") && $(quoted "$env" UV_TOOL_DIR="$stage/tools" UV_TOOL_BIN_DIR="$stage/bin" "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force -- "$2")"
+    rm -rf "$stage" || return 1
+    mkdir "$stage" || return 1
+    if ! (cd "$1" && "$env" UV_TOOL_DIR="$stage/tools" UV_TOOL_BIN_DIR="$stage/bin" "$uv" --no-config tool install \
+            --python "$PYTHON_REQUEST" --with pip --force -- "$2") >"$stage/log" 2>&1; then
+        cat "$stage/log" >&2
+        return 1
     fi
-    # A checkout is never named to `uv tool install`: uv records where a tool came from and
-    # `uv tool upgrade` installs from there again. A wheel is built from the checkout in
-    # the temporary folder, put into a folder of the user's own (replacing the one of an
-    # earlier run), and that file is what uv installs and records. uv runs inside that
-    # folder and is given the file's name only, so no path is part of the requirement.
-    run "$uv" --no-config build --wheel --python "$PYTHON_REQUEST" --out-dir "$tmp/dist" -- "$checkout"
-    if [ "$dry" = 1 ]; then
-        say "+ cp $(quoted "$tmp/dist/$PACKAGE-VERSION-py3-none-any.whl") $(quoted "$dist_dir/")"
-        say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "./$PACKAGE-VERSION-py3-none-any.whl$bracket")"
-        return
+    say "+ $(quoted "$stage/bin/$PACKAGE" --version)"
+    if ! "$stage/bin/$PACKAGE" --version >"$stage/log" 2>&1; then
+        cat "$stage/log" >&2
+        return 1
     fi
-    set -- "$tmp/dist/$PACKAGE"-*.whl
-    if [ $# -ne 1 ] || [ ! -f "$1" ]; then
-        die "uv built no wheel of $PACKAGE in $tmp/dist."
+    rm -rf "$stage"
+}
+
+# Does the installed command run?
+command_runs() {
+    [ -n "$command_dir" ] && [ -x "$command_dir/$PACKAGE" ] && "$command_dir/$PACKAGE" --version >/dev/null 2>&1
+}
+
+# Stop after a step failed, saying what became of the installation that was there.
+failed() {
+    if [ "$working" = 1 ] && command_runs; then
+        die "$1 The installation that was there is unchanged: $command_dir/$PACKAGE runs as before."
     fi
-    wheel=${1##*/}
-    case $wheel in
-        *[!A-Za-z0-9._-]*) die "the wheel that was built has an unexpected name: $wheel" ;;
-    esac
-    mkdir -p "$dist_dir"
-    chmod 700 "$dist_dir"
-    cp "$1" "$dist_dir/.new"
-    mv -f "$dist_dir/.new" "$dist_dir/$wheel"
-    for old in "$dist_dir"/*.whl; do
-        [ "$old" = "$dist_dir/$wheel" ] || rm -f "$old"
-    done
-    rm -rf "$tmp/dist"
-    say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "./$wheel$bracket")"
-    (cd "$dist_dir" && "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
-        --reinstall-package "$PACKAGE" -- "./$wheel$bracket")
+    die "$1 No working $PACKAGE was installed."
 }
 
 main() {
@@ -569,12 +805,19 @@ main() {
         die "--pypi cannot be used together with --ref or --repo."
     fi
 
-    # CDLBIB_UV_INSTALLER names the installer of one version of uv, on uv's own site only.
+    # CDLBIB_UV_INSTALLER (for the tests of this script) names another place to read the
+    # installer of uv from: an address on uv's own site, or a file. It changes where the
+    # bytes come from and nothing else: the file is run only when its SHA-256 is
+    # UV_INSTALLER_SHA256, like the one from the usual address. No setting of the
+    # environment changes that digest or switches the comparison off.
     case ${CDLBIB_UV_INSTALLER:-} in
         '') ;;
-        *..*|*[!A-Za-z0-9./:-]*) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh." ;;
+        /*)
+            [ -f "$CDLBIB_UV_INSTALLER" ] || die "CDLBIB_UV_INSTALLER names a file that does not exist."
+            UV_INSTALLER=$CDLBIB_UV_INSTALLER ;;
+        *..*|*[!A-Za-z0-9./:-]*) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh, or the full path of a file." ;;
         https://astral.sh/uv/[0-9]*/install.sh) UV_INSTALLER=$CDLBIB_UV_INSTALLER ;;
-        *) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh." ;;
+        *) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh, or the full path of a file." ;;
     esac
 
     os=$(uname -s 2>/dev/null) || os=unknown
@@ -725,22 +968,53 @@ main() {
     fi
     confirm "Install $PACKAGE with $method?"
 
-    # An earlier installation by the other route is removed first, so only one is left.
-    previous=$(state_value method)
-    if [ "$dry" != 1 ] && [ -n "$previous" ] && [ "$previous" != "$method" ]; then
-        say "Replacing the earlier installation (made with $previous)."
-        remove_installed || true
-    fi
-
-    # Recorded before the work starts, so that --uninstall also removes an unfinished one.
+    # What is there now. A command that runs is kept until the new version is known to
+    # work; only a command that does not run counts as a broken installation.
+    read_state
+    tools=""
+    command_dir=""
+    working=0
+    wheel=""
+    old_venv_bin=""
     if [ "$dry" != 1 ]; then
-        if [ "$method" = uv ]; then command_dir=$("$uv" --no-config tool dir --bin); else command_dir=$bin_dir; fi
-        mkdir -p "$home_dir"
-        {
-            say "method=$method"
-            say "bin=$command_dir"
-            if [ "$method" = uv ]; then say "uv=$uv"; fi
-        } >"$state"
+        if [ "$method" = uv ]; then
+            env=$(program env) || die "env was not found on PATH."
+            tools=$("$uv" --no-config tool dir) || die "uv did not name its tool directory. Nothing was installed."
+            command_dir=$("$uv" --no-config tool dir --bin) || die "uv did not name the folder of its commands. Nothing was installed."
+            case $tools:$command_dir in
+                /*:/*) ;;
+                *) die "uv named a tool directory or a command folder that is not a full path ($tools, $command_dir). Nothing was installed." ;;
+            esac
+            # One installation per record: an installation recorded elsewhere is not
+            # left behind without a record.
+            if [ "$has_uv" = 1 ] && [ -n "$rec_tool_dir" ] && [ -e "$rec_tool_dir/$PACKAGE" ]; then
+                if [ "$rec_tool_dir" != "$tools" ] || [ "$rec_tool_bin" != "$command_dir" ]; then
+                    warn "install.sh: this script installed $PACKAGE into uv's tool directory $rec_tool_dir (commands in"
+                    warn "$rec_tool_bin); uv's tool directory is now $tools (commands in $command_dir)."
+                    warn "Nothing was changed. Either run this script with UV_TOOL_DIR=$rec_tool_dir and"
+                    warn "UV_TOOL_BIN_DIR=$rec_tool_bin, or remove that installation first with --uninstall."
+                    exit 1
+                fi
+            fi
+        else
+            command_dir=$bin_dir
+        fi
+        if command_runs; then
+            working=1
+        fi
+        # Recorded before the work starts, so that --uninstall also removes an unfinished
+        # installation. An installation by the other route stays recorded until it is removed.
+        if [ "$method" = uv ]; then
+            has_uv=1
+            rec_uv=$uv
+            rec_tool_dir=$tools
+            rec_tool_bin=$command_dir
+        else
+            old_venv_bin=$rec_venv_bin
+            has_venv=1
+            rec_venv_bin=$bin_dir
+        fi
+        write_state || die "$state could not be written. Nothing was installed."
     fi
 
     case $method in
@@ -748,55 +1022,121 @@ main() {
             if [ "$dry" != 1 ] && ! "$uv" --no-config python find "$PYTHON_REQUEST" >/dev/null 2>&1; then
                 say "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder ($("$uv" --no-config python dir)); the default python is not changed."
             fi
-            # An environment that does not work (an interrupted run, deleted files) is
-            # removed first, so that the result is the same as a first installation.
-            tools=$("$uv" --no-config tool dir 2>/dev/null) || tools=""
-            case $tools in
-                /*)
-                    if [ "$dry" != 1 ] && [ -e "$tools/$PACKAGE" ] && ! "$tools/$PACKAGE/bin/python" -I -c 'import pip, cdlbib' >/dev/null 2>&1; then
-                        say "The $PACKAGE tool in $tools is incomplete: it is removed and installed again."
-                        "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
-                        rm -rf "${tools:?}/$PACKAGE"
-                    fi ;;
-            esac
-            if ! uv_tool_install; then
-                # What an interrupted run left behind can stop uv; start from nothing, once.
+            # An installation whose command does not run (an interrupted run, deleted files)
+            # is removed first, so that the result is the same as a first installation.
+            if [ "$dry" != 1 ] && [ "$working" != 1 ]; then
+                if [ -e "$tools/$PACKAGE" ] || [ -L "$tools/$PACKAGE" ]; then
+                    say "The $PACKAGE tool in $tools does not run: it is removed and installed again."
+                    "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
+                    rm -rf "${tools:?}/$PACKAGE" || die "$tools/$PACKAGE could not be removed."
+                fi
+            fi
+            if [ "$source" = local ]; then
+                # A checkout is never named to `uv tool install`: uv records where a tool came
+                # from and `uv tool upgrade` installs from there again. A wheel is built from
+                # the checkout in the temporary folder and put into a folder of the user's own,
+                # and that file is what uv installs and records. uv runs inside that folder and
+                # is given the file's name only, so no path is part of the requirement. The new
+                # wheel lies in dist/.new until the new version has run; the wheel of the
+                # installed version is not touched before that.
+                run "$uv" --no-config build --wheel --python "$PYTHON_REQUEST" --out-dir "$tmp/dist" -- "$checkout" \
+                    || failed "uv could not build a wheel from $checkout (its message is above)."
+                if [ "$dry" = 1 ]; then
+                    say "+ cp $(quoted "$tmp/dist/$PACKAGE-VERSION-py3-none-any.whl") $(quoted "$dist_dir/")"
+                    say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "./$PACKAGE-VERSION-py3-none-any.whl$bracket")"
+                else
+                    set -- "$tmp/dist/$PACKAGE"-*.whl
+                    if [ $# -ne 1 ] || [ ! -f "$1" ]; then
+                        failed "uv built no wheel of $PACKAGE in $tmp/dist."
+                    fi
+                    wheel=${1##*/}
+                    case $wheel in
+                        *[!A-Za-z0-9._-]*) failed "the wheel that was built has an unexpected name: $wheel." ;;
+                    esac
+                    mkdir -p "$dist_dir" || failed "$dist_dir could not be made."
+                    chmod 700 "$dist_dir" || failed "$dist_dir could not be made private."
+                    rm -rf "$dist_dir/.new" || failed "$dist_dir/.new could not be removed."
+                    mkdir "$dist_dir/.new" || failed "$dist_dir/.new could not be made."
+                    cp "$1" "$dist_dir/.new/$wheel" || failed "the wheel could not be copied into $dist_dir."
+                    rm -rf "$tmp/dist" || failed "$tmp/dist could not be removed."
+                    if [ "$working" = 1 ]; then
+                        if ! staged_install "$dist_dir/.new" "./$wheel$bracket"; then
+                            rm -rf "$dist_dir/.new"
+                            failed "The new version could not be installed (uv's message is above)."
+                        fi
+                    fi
+                    mv -f "$dist_dir/.new/$wheel" "$dist_dir/$wheel" || failed "the wheel could not be moved into $dist_dir."
+                    rmdir "$dist_dir/.new" || failed "$dist_dir/.new could not be removed."
+                    install_in=$dist_dir
+                    requirement=./$wheel$bracket
+                    say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "$requirement")"
+                fi
+            else
+                if [ "$working" = 1 ]; then
+                    staged_install "$tmp" "$spec" || failed "The new version could not be installed (uv's message is above)."
+                fi
+                install_in=$tmp
+                requirement=$spec
+                say "+ $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "$spec")"
+            fi
+            if [ "$dry" != 1 ] && ! tool_install "$install_in" "$requirement"; then
+                if command_runs; then
+                    die "uv could not install $PACKAGE (its message is above). The installation that was there still runs: $command_dir/$PACKAGE."
+                fi
+                # No command that runs: what an interrupted run left behind can stop uv, so
+                # the tool is removed and installed from nothing, once.
                 say "Trying again after removing the unfinished $PACKAGE tool."
                 "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
-                tools=$("$uv" --no-config tool dir)
-                case $tools in
-                    /*) rm -rf "${tools:?}/$PACKAGE" ;;
-                esac
-                uv_tool_install
+                rm -rf "${tools:?}/$PACKAGE" || die "$tools/$PACKAGE could not be removed."
+                tool_install "$install_in" "$requirement" \
+                    || die "uv could not install $PACKAGE (its message is above). No working $PACKAGE was installed; run this script again when the cause is gone."
             fi ;;
         venv)
             if [ "$dry" != 1 ] && [ -d "$venv" ] && ! "$venv/bin/python" -I -c 'import sys, pip
 raise SystemExit(0 if (3, 11) <= sys.version_info[:2] <= (3, 13) else 1)' 2>/dev/null; then
                 # Not a working environment (an interrupted run, or its Python is gone).
-                run rm -rf "$venv"
+                run rm -rf "$venv" || die "$venv could not be removed."
             fi
             if [ ! -x "$venv/bin/python" ]; then
-                run mkdir -p "$home_dir"
+                run mkdir -p "$home_dir" || failed "$home_dir could not be made."
                 if ! run "$python" -I -m venv "$venv"; then
                     # A Python that is reached through a link in another folder can fail
                     # here; the program the link leads to is tried once.
-                    rm -rf "$venv"
+                    rm -rf "$venv" || failed "$venv could not be removed."
                     real=$("$python" -I -B -c 'import os, sys
-print(os.path.realpath(sys.executable))')
-                    run "$real" -I -m venv "$venv"
+print(os.path.realpath(sys.executable))') || failed "$python could not make a virtual environment."
+                    run "$real" -I -m venv "$venv" || failed "$real could not make a virtual environment in $venv."
                 fi
             fi
-            run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade -- "$spec"
-            run mkdir -p "$bin_dir"
+            # pip downloads and builds everything before it takes the installed version out
+            # of the environment, so a source that cannot be installed leaves it as it was.
+            run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade -- "$spec" \
+                || failed "pip could not install $PACKAGE (its message is above)."
+            run mkdir -p "$bin_dir" || failed "$bin_dir could not be made."
             if [ "$dry" = 1 ]; then
                 say "+ ln -sf $(quoted "$venv/bin/$PACKAGE") $(quoted "$bin_dir/$PACKAGE")   (and each other command of the package)"
             else
-                for name in $(console_scripts "$venv/bin/python"); do
+                "$venv/bin/$PACKAGE" --version >/dev/null || failed "$venv/bin/$PACKAGE was installed but '$PACKAGE --version' failed."
+                names=$(console_scripts "$venv/bin/python") || failed "the commands of $PACKAGE could not be listed."
+                # The new environment runs: an earlier installation made with uv goes now.
+                if [ "$has_uv" = 1 ]; then
+                    say "Replacing the earlier installation (made with uv)."
+                    if remove_uv_install; then
+                        has_uv=0
+                        rm -rf "$dist_dir" || die "$dist_dir could not be removed."
+                    else
+                        warn "install.sh: the earlier installation stays recorded in $state; --uninstall will try again."
+                    fi
+                fi
+                for name in $names; do
                     if [ -e "$bin_dir/$name" ] && [ ! -L "$bin_dir/$name" ]; then
                         die "$bin_dir/$name exists and is not a link; it was left alone. Move it away, then run this script again."
                     fi
-                    run ln -sf "$venv/bin/$name" "$bin_dir/$name"
+                    run ln -sf "$venv/bin/$name" "$bin_dir/$name" || die "the link $bin_dir/$name could not be made."
                 done
+                if [ -n "$old_venv_bin" ] && [ "$old_venv_bin" != "$bin_dir" ]; then
+                    remove_links "$old_venv_bin" "$venv/bin/" || die "the links in $old_venv_bin could not be removed."
+                fi
             fi ;;
     esac
 
@@ -806,6 +1146,23 @@ print(os.path.realpath(sys.executable))')
     fi
 
     version=$("$command_dir/$PACKAGE" --version) || die "$command_dir/$PACKAGE was installed but '$PACKAGE --version' failed."
+    # The new version runs. What it replaced goes now: older wheels, and an installation
+    # made by the other route.
+    if [ "$method" = uv ]; then
+        if [ -n "$wheel" ]; then
+            for old in "$dist_dir"/*.whl; do
+                if [ "$old" != "$dist_dir/$wheel" ] && [ -f "$old" ]; then
+                    rm -f "$old" || die "$old could not be removed."
+                fi
+            done
+        fi
+        if [ "$has_venv" = 1 ]; then
+            say "Replacing the earlier installation (made with venv)."
+            remove_venv_install || die "the earlier virtual environment $venv could not be removed; it stays recorded in $state."
+            has_venv=0
+        fi
+    fi
+    write_state || die "$state could not be written."
     say ""
     say "Installed: $version"
     say "Command:   $command_dir/$PACKAGE (installed with $method)"

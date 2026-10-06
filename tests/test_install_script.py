@@ -28,6 +28,7 @@ compared before and after each test and before and after the module: shell profi
 
 Run on macOS only so far. On Linux the script has been run by nothing but the step in
 .github/workflows/autocheck.yml; these tests have not been run there."""
+import hashlib
 import os
 import platform
 import pty
@@ -69,11 +70,17 @@ SYSTEM = "/usr/bin:/bin:/usr/sbin:/sbin"
 # What a shell script, uv's installer, pip and a Python build may call. Linked one by one,
 # so that the PATH of a test holds no Python, no uv and no git unless the test adds it.
 SYSTEM_TOOLS = ("sh awk base64 basename cat chmod cp cut date dirname env expr false find getconf grep gzip head "
-                "id install ld ldd ln ls mkdir mktemp mv od readlink rm rmdir sed sleep sort sw_vers tail tar tee "
+                "id install ld ldd ln ls mkdir mktemp mv od readlink rm rmdir sed sha256sum shasum sleep sort sw_vers tail "
+                "tar tee "
                 "touch tr true uname uniq wc which xargs xcode-select").split()
 COMMANDS = ("cdlbib", "cdlbib-adapter-dartmouth", "cdlbib-adapter-openai")
 DOWNLOAD_UV = os.environ.get("CDLBIB_TEST_INSTALL_UV_DOWNLOAD") == "1"
 download_uv = pytest.mark.skipif(not DOWNLOAD_UV, reason="downloads uv; set CDLBIB_TEST_INSTALL_UV_DOWNLOAD=1 to run")
+# The one version of uv that install.sh downloads, and the SHA-256 of its installer, as
+# written in the script.
+UV_VERSION = re.search(r"^UV_VERSION=(\S+)$", SCRIPT.read_text(encoding="utf-8"), re.M).group(1)
+UV_INSTALLER_SHA256 = re.search(r"^UV_INSTALLER_SHA256=([0-9a-f]{64})$", SCRIPT.read_text(encoding="utf-8"), re.M).group(1)
+UV_INSTALLER = f"https://astral.sh/uv/{UV_VERSION}/install.sh"
 SHELLS = sorted({os.path.realpath(found) for found in ("/bin/sh", shutil.which("dash", path=SYSTEM)) if found})
 
 
@@ -379,7 +386,7 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
     lines = out.stdout.splitlines()
     assert "--ask was given and there is no terminal to ask on: nothing is installed." in lines
     assert any(line.startswith(f"+ '{box.programs}/curl' --proto '=https' --tlsv1.2 -fsSL -o '") and
-               line.endswith("/uv-install.sh' https://astral.sh/uv/install.sh") for line in lines), out.stdout
+               line.endswith(f"/uv-install.sh' {UV_INSTALLER}") for line in lines), out.stdout
     assert any(line.startswith(f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={own_uv}' 'UV_NO_MODIFY_PATH=1' "
                                f"'INSTALLER_NO_MODIFY_PATH=1' '{box.programs}/sh' ") for line in lines), out.stdout
     assert any(line.startswith(f"+ '{own_uv}/uv' --no-config build --wheel --python '>=3.11,<3.14' --out-dir '")
@@ -712,10 +719,17 @@ def test_no_uv_and_no_usable_python_downloads_uv_once(box, online, shell):
     interrupted download left unusable is downloaded again; --uninstall removes the uv."""
     box.link("curl")
     box.with_old_python()
-    out = ok(box.run(shell=shell))
+    first = box.run(shell=shell)
+    out = ok(first)
     own_uv = box.data / "uv" / "uv"
-    assert (f"uv was not found: downloading uv with its installer (https://astral.sh/uv/install.sh, saved to a "
-            f"temporary file and run with sh) into {box.data / 'uv'}; no shell profile is changed.") in out
+    assert (f"uv was not found: downloading uv {UV_VERSION} with its installer ({UV_INSTALLER}, saved to a "
+            f"temporary file, checked against the SHA-256 in this script and run with sh) into {box.data / 'uv'}; "
+            "no shell profile is changed.") in out
+    assert "The installer checks the archive of uv against the SHA-256 it carries" in out
+    assert "skipping sha256 checksum verification" not in first.stdout + first.stderr
+    assert "no checksums to verify" not in first.stdout + first.stderr
+    assert subprocess.run([str(own_uv), "--version"], capture_output=True, text=True,
+                          env=BARE).stdout.startswith(f"uv {UV_VERSION}")
     assert "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
     assert (f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={box.data / 'uv'}' 'UV_NO_MODIFY_PATH=1' "
@@ -787,7 +801,7 @@ def test_an_older_uv_on_path_is_left_as_it_is(box, online, tmp_path):
     venv_route = ok(box.run("--no-uv"))
     assert "installed with venv" in venv_route and "astral.sh" not in venv_route
     out = ok(box.run())
-    assert f"{box.programs}/uv is older than uv 0.5.0 and is left as it is: downloading uv with its installer" in out
+    assert f"{box.programs}/uv is older than uv 0.5.0 and is left as it is: downloading uv {UV_VERSION} with its installer" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
     assert os.path.getsize(program) == size
     assert subprocess.run([program, "--version"], capture_output=True, text=True,
@@ -1011,7 +1025,7 @@ def test_piped_script_in_a_hostile_folder_installs_from_the_repository(box, onli
     more = {"DEVELOPER_DIR": "/Library/Developer/CommandLineTools"} if sys.platform == "darwin" else {}
     out = piped(box, folder, "--repo", repo, "--ref", ref, **more)
     assert out.returncode == 0, out.stdout + out.stderr
-    assert "downloading uv with its installer" in out.stdout and "Installed: cdlbib " in out.stdout
+    assert f"downloading uv {UV_VERSION} with its installer" in out.stdout and "Installed: cdlbib " in out.stdout
     assert box.installed().startswith("cdlbib ") and box.installed() != "cdlbib 6.6.6"
     nothing_ran(folder)
 
@@ -1156,14 +1170,17 @@ def test_uv_with_an_old_default_python_makes_the_environment_with_3_11_to_3_13(b
 @download_uv
 def test_installer_of_a_uv_older_than_the_minimum_is_downloaded_but_never_run(box, online):
     """CDLBIB_UV_INSTALLER names the installer of uv 0.4.0, which ignores UV_UNMANAGED_INSTALL,
-    installs into ~/.cargo/bin and edits shell profiles. install.sh reads its version and
-    refuses: nothing at all is written into the home folder of the test."""
+    installs into ~/.cargo/bin and edits shell profiles. It is not the installer whose SHA-256
+    is written in install.sh, so it is refused: nothing at all is written into the home folder
+    of the test."""
     if not box.link("curl"):
         pytest.skip("curl is not installed")
     out = box.run(env=box.env(CDLBIB_UV_INSTALLER="https://astral.sh/uv/0.4.0/install.sh"))
     assert out.returncode == 1, out.stdout + out.stderr
-    assert ("the file from https://astral.sh/uv/0.4.0/install.sh is not the installer of uv 0.5.0 or later "
-            "(older installers change shell profiles): it was not run. Nothing was installed.") in out.stderr
+    assert (f"the file from https://astral.sh/uv/0.4.0/install.sh is not the installer of uv {UV_VERSION} that "
+            "this script") in out.stderr
+    assert f"and {UV_INSTALLER_SHA256} is expected." in out.stderr
+    assert "It was not run. Nothing was installed." in out.stderr
     assert "UV_UNMANAGED_INSTALL=" not in out.stdout
     assert box.files() == set() and box.leftovers() == []
     assert not (box.home / ".cargo").exists() and not (box.home / ".zshrc").exists()
@@ -1228,3 +1245,380 @@ def test_programs_run_by_the_script_get_a_path_without_the_current_folder(box, o
     assert f"Installing cdlbib from the checkout {box.checkout}." in out.stdout
     assert box.installed() == "cdlbib 2.0.0"
     assert not (folder / "RAN").exists(), (folder / "RAN").read_text()
+
+
+# --- a run that fails leaves a working installation as it was ------------------------------------
+
+def refused_address():
+    """An index address on this computer that nothing listens on: connections are refused."""
+    with socket.socket() as probe:
+        probe.bind(("127.0.0.1", 0))
+        port = probe.getsockname()[1]
+    return f"http://127.0.0.1:{port}/simple"
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def break_the_source(box, how):
+    """Make the source something that cannot be installed; the arguments and the environment
+    of the run that will fail."""
+    if how == "the index cannot be reached":
+        address = refused_address()
+        return ("--pypi",), box.env(UV_DEFAULT_INDEX=address, UV_INDEX_URL=address, PIP_INDEX_URL=address,
+                                    UV_HTTP_TIMEOUT="5", PIP_RETRIES="0", PIP_DEFAULT_TIMEOUT="5")
+    box.set_version("2.0.1")
+    project = box.checkout / "pyproject.toml"
+    text = project.read_text(encoding="utf-8")
+    if how == "the build of the checkout fails":
+        project.write_text(text + "\n[[[ this line is not TOML\n", encoding="utf-8")
+    else:
+        assert how == "a dependency of the checkout does not exist"
+        assert "\ndependencies = [\n" in text
+        project.write_text(text.replace("\ndependencies = [\n", "\ndependencies = [\n"
+                                        '    "cdlbib-no-such-distribution-for-the-install-tests==99",\n', 1),
+                           encoding="utf-8")
+    return (), box.env()
+
+
+FAILURES = ["the index cannot be reached", "the build of the checkout fails",
+            "a dependency of the checkout does not exist"]
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("how", FAILURES)
+def test_a_source_that_cannot_be_installed_leaves_the_working_uv_installation_as_it_was(box, online, how, shell):
+    """codex round 3, item 12. Before the fix a failed `uv tool install` was answered by
+    uninstalling the tool and removing its environment, and the wheel of the installed
+    version was replaced before the new one was known to install."""
+    box.with_uv().with_python()
+    ok(box.run(shell=shell))
+    wheel = box.data / "dist" / "cdlbib-2.0.0-py3-none-any.whl"
+    def files():       # uv keeps a lock file of its own beside its tools once it has asked an index
+        return {name for name in box.files() if not name.startswith(".local/share/uv/credentials/")}
+    before, state, wheel_digest = files(), (box.data / "install-state").read_text(), digest(wheel)
+    environment = tree(box.tool / "lib")
+    args, env = break_the_source(box, how)
+    out = box.run(*args, shell=shell, env=env)
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert "Trying again after removing" not in out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0"
+    for command in COMMANDS:
+        assert (box.bin / command).exists()
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.0-py3-none-any.whl"] and digest(wheel) == wheel_digest
+    assert tree(box.tool / "lib") == environment, "the environment of the installed version was changed"
+    assert files() == before and (box.data / "install-state").read_text() == state
+    assert box.leftovers() == []
+    # And a second failing run, which before the fix left no command at all.
+    again = box.run(*args, shell=shell, env=env)
+    assert again.returncode == 1 and box.installed() == "cdlbib 2.0.0", again.stdout + again.stderr
+
+
+@pytest.mark.parametrize("how", FAILURES[1:])
+def test_a_source_that_cannot_be_installed_leaves_the_working_virtual_environment_as_it_was(box, online, how):
+    """--no-uv: pip builds and downloads everything before it takes the installed version out
+    of the environment. (With an index that cannot be reached, `pip install --upgrade cdlbib`
+    finds the installed version sufficient and succeeds, so that case is not one of these.)"""
+    box.with_python()
+    ok(box.run("--no-uv"))
+    files, state = box.files(), (box.data / "install-state").read_text()
+    args, env = break_the_source(box, how)
+    out = box.run("--no-uv", *args, env=env)
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert (f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before."
+            in out.stderr), out.stdout + out.stderr
+    assert box.installed() == "cdlbib 2.0.0"
+    assert box.files() == files and (box.data / "install-state").read_text() == state and box.leftovers() == []
+
+
+@need_uv
+def test_a_first_installation_that_fails_installs_nothing_and_the_next_run_installs(box, online):
+    """Nothing is there to keep: the run stops with an error, and a run with the source put
+    right installs."""
+    box.with_uv().with_python()
+    project = box.checkout / "pyproject.toml"
+    good = project.read_text(encoding="utf-8")
+    break_the_source(box, "a dependency of the checkout does not exist")
+    out = box.run()
+    assert out.returncode == 1 and "No working cdlbib was installed" in out.stderr, out.stdout + out.stderr
+    assert not (box.bin / "cdlbib").exists() and box.leftovers() == []
+    project.write_text(good, encoding="utf-8")
+    assert "Installed: cdlbib 2.0.0" in ok(box.run()) and box.installed() == "cdlbib 2.0.0"
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.0-py3-none-any.whl"]
+
+
+@need_uv
+def test_a_broken_installation_is_repaired_and_a_working_one_is_kept_until_the_new_version_runs(box, online):
+    """The command does not run (its environment's packages are gone): that installation is
+    removed and installed again. The upgrade after it is made beside the installed version
+    first, and only the new wheel is left at the end."""
+    box.with_uv().with_python()
+    ok(box.run())
+    shutil.rmtree(box.tool / "lib")
+    broken = subprocess.run([str(box.bin / "cdlbib"), "--version"], env=box.env(), cwd=box.tmp, capture_output=True)
+    assert broken.returncode != 0
+    out = ok(box.run())
+    assert f"The cdlbib tool in {box.tool.parent} does not run: it is removed and installed again." in out
+    assert "it is kept until the new version" not in out
+    assert box.installed() == "cdlbib 2.0.0"
+    box.set_version("2.0.1")
+    out = ok(box.run())
+    assert "The installed cdlbib runs: it is kept until the new version has been installed beside it and has run." in out
+    assert "Installed: cdlbib 2.0.1" in out and box.installed() == "cdlbib 2.0.1"
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.1-py3-none-any.whl"] and box.leftovers() == []
+
+
+# --- --uninstall removes the installation that was recorded, and only that -------------------------
+
+def recorded_state(box):
+    return dict(line.split("=", 1) for line in (box.data / "install-state").read_text().splitlines())
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+def test_uninstall_removes_the_recorded_tool_and_not_the_one_of_another_tool_directory(box, online, shell):
+    """codex round 3, item 13. The script installs into one tool directory of uv; a second,
+    unrelated cdlbib is installed with uv itself into another one. --uninstall, run with
+    UV_TOOL_DIR and UV_TOOL_BIN_DIR naming the other one, removes the script's and leaves the
+    other. Before the fix it removed the other and left its own."""
+    box.with_uv().with_python()
+    ok(box.run(shell=shell))
+    assert recorded_state(box) == {"method": "uv", "bin": str(box.bin), "uv": str(box.programs / "uv"),
+                                   "tool_dir": str(box.tool.parent), "tool_bin": str(box.bin)}
+    other = box.root / "another"
+    elsewhere = box.env(UV_TOOL_DIR=str(other / "tools"), UV_TOOL_BIN_DIR=str(other / "bin"))
+    made = subprocess.run([str(box.programs / "uv"), "--no-config", "tool", "install", "--python", ">=3.11,<3.14",
+                           "--", "./cdlbib-2.0.0-py3-none-any.whl"], env=elsewhere, cwd=box.data / "dist",
+                          capture_output=True, text=True, timeout=900)
+    assert made.returncode == 0, made.stdout + made.stderr
+    assert (other / "tools" / "cdlbib" / "uv-receipt.toml").is_file() and (other / "bin" / "cdlbib").exists()
+
+    out = ok(box.run("--uninstall", shell=shell, env=elsewhere))
+    assert "Removed cdlbib." in out
+    assert not box.tool.exists() and not [command for command in COMMANDS if (box.bin / command).exists()]
+    assert not box.data.exists()
+    assert (other / "tools" / "cdlbib" / "uv-receipt.toml").is_file()
+    still = subprocess.run([str(other / "bin" / "cdlbib"), "--version"], env=box.env(), cwd=box.tmp,
+                           capture_output=True, text=True, timeout=120)
+    assert still.returncode == 0 and still.stdout.strip() == "cdlbib 2.0.0", still.stdout + still.stderr
+    assert "Nothing to remove" in ok(box.run("--uninstall", shell=shell, env=elsewhere))
+    assert (other / "bin" / "cdlbib").exists()
+
+
+@need_uv
+def test_installing_again_with_another_tool_directory_stops_and_changes_nothing(box, online):
+    box.with_uv().with_python()
+    ok(box.run())
+    files, state = box.files(), (box.data / "install-state").read_text()
+    other = box.root / "another"
+    out = box.run(env=box.env(UV_TOOL_DIR=str(other / "tools"), UV_TOOL_BIN_DIR=str(other / "bin")))
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert f"this script installed cdlbib into uv's tool directory {box.tool.parent}" in out.stderr
+    assert "Nothing was changed." in out.stderr and "--uninstall" in out.stderr
+    assert not other.exists() and box.files() == files and (box.data / "install-state").read_text() == state
+    assert box.installed() == "cdlbib 2.0.0"
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+def test_uninstall_that_cannot_be_done_keeps_the_record_and_everything_else(box, online, shell):
+    """No uv at all, then a uv that fails (the tool directory cannot be written): each time the
+    script ends with an error, says what to do, and the tool, the wheel and the record are as
+    they were. With uv working again the same command removes everything; once more is a no-op."""
+    if os.getuid() == 0:
+        pytest.skip("a folder cannot be closed to root")
+    box.with_uv().with_python()
+    ok(box.run(shell=shell))
+    files, state = box.files(), (box.data / "install-state").read_text()
+
+    (box.programs / "uv").unlink()
+    out = box.run("--uninstall", shell=shell)
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert f"cdlbib is installed as a uv tool in {box.tool}" in out.stderr and "was not found" in out.stderr
+    assert f"To remove it by hand: delete the folder {box.tool} and the links to it in" in out.stderr
+    assert f"nothing else was removed, and the record {box.data}/install-state is kept." in out.stderr
+    assert box.files() == files and (box.data / "install-state").read_text() == state
+    assert box.installed() == "cdlbib 2.0.0"
+
+    box.with_uv()
+    folders = [box.tool.parent, box.tool, *(path for path in box.tool.rglob("*") if path.is_dir() and not path.is_symlink())]
+    modes = {folder: folder.stat().st_mode & 0o7777 for folder in folders}
+    for folder in folders:      # nothing in uv's tool can be deleted
+        folder.chmod(0o500)
+    try:
+        out = box.run("--uninstall", shell=shell)
+    finally:
+        for folder, mode in modes.items():
+            folder.chmod(mode)
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert f"uv did not uninstall cdlbib from {box.tool.parent}" in out.stderr
+    assert f"nothing else was removed, and the record {box.data}/install-state is kept." in out.stderr
+    assert (box.data / "install-state").read_text() == state and box.tool.is_dir()
+    assert box.files() == files and box.installed() == "cdlbib 2.0.0"
+
+    out = ok(box.run("--uninstall", shell=shell))
+    assert "Removed cdlbib." in out and not box.tool.exists() and not box.data.exists()
+    assert not [command for command in COMMANDS if (box.bin / command).exists()]
+    files = box.files()
+    second = ok(box.run("--uninstall", shell=shell))
+    assert "Nothing to remove" in second and box.files() == files
+
+
+@need_uv
+def test_a_record_of_the_earlier_form_is_uninstalled_through_the_command_link(box, online):
+    """A state file written before the tool directory was recorded (method, bin and uv only):
+    the tool directory is read from where the command link leads. Without that link there is
+    no telling which tool directory it was: nothing is removed and the record is kept."""
+    box.with_uv().with_python()
+    ok(box.run())
+    state = box.data / "install-state"
+    earlier = f"method=uv\nbin={box.bin}\nuv={box.programs / 'uv'}\n"
+    state.write_text(earlier)
+    link = box.bin / "cdlbib"
+    target = os.readlink(link)
+    link.unlink()
+    out = box.run("--uninstall")
+    assert out.returncode == 1 and "does not say which tool directory of uv holds cdlbib" in out.stderr, out.stderr
+    assert state.read_text() == earlier and box.tool.is_dir()
+    os.symlink(target, link)
+    assert "Removed cdlbib." in ok(box.run("--uninstall"))
+    assert not box.tool.exists() and not box.data.exists() and not link.exists()
+
+
+# --- what is downloaded is checked before it is run --------------------------------------------------
+
+DIGEST_TOOLS = ("sha256sum", "shasum", "openssl")
+
+
+def only_digest_tool(box, tool):
+    """The PATH of the box has this one program to compute a SHA-256 with (or none)."""
+    for name in DIGEST_TOOLS:
+        if (box.programs / name).is_symlink():
+            (box.programs / name).unlink()
+    if tool != "none" and not box.link(tool):
+        pytest.skip(f"this computer has no {tool}")
+
+
+def planted_installer(box):
+    """A file that would pass for an installer of uv by its version line and its mention of
+    UV_UNMANAGED_INSTALL (all that was looked at before the fix); run, it writes RAN."""
+    planted = box.root / "planted" / "install.sh"
+    planted.parent.mkdir()
+    planted.write_text(f'#!/bin/sh\nAPP_VERSION="{UV_VERSION}"\n# UV_UNMANAGED_INSTALL\n'
+                       f'echo ran > "{planted.parent}/RAN"\nmkdir -p "$UV_UNMANAGED_INSTALL"\n'
+                       f'printf \'#!/bin/sh\\necho "uv {UV_VERSION}"\\n\' > "$UV_UNMANAGED_INSTALL/uv"\n'
+                       'chmod 755 "$UV_UNMANAGED_INSTALL/uv"\nexit 1\n')
+    return planted
+
+
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("tool", DIGEST_TOOLS)
+def test_an_installer_of_uv_with_another_digest_is_refused_and_never_run(box, tool, shell):
+    """codex round 3, item 14, without the network: the file the installer is read from is not
+    the one whose SHA-256 is written in install.sh. It is not run, with each of the programs
+    the digest can be computed with, and the message names the digest found, the one expected
+    and how to install uv by hand. Naming another digest or version in the environment
+    changes nothing."""
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    only_digest_tool(box, tool)
+    planted = planted_installer(box)
+    for more in ({}, {"UV_INSTALLER_SHA256": digest(planted), "UV_VERSION": "9.9.9", "UV_INSTALLER": str(planted),
+                      "CDLBIB_UV_INSTALLER_SHA256": digest(planted)}):
+        out = box.with_old_python().run(shell=shell, env=box.env(CDLBIB_UV_INSTALLER=str(planted), **more))
+        assert out.returncode == 1, out.stdout + out.stderr
+        assert f"is not the installer of uv {UV_VERSION} that this script" in out.stderr, out.stderr
+        assert f"its SHA-256 is {digest(planted)}" in out.stderr and f"and {UV_INSTALLER_SHA256} is expected." in out.stderr
+        assert "It was not run. Nothing was installed. Install uv by hand" in out.stderr
+        assert "https://docs.astral.sh/uv/getting-started/installation/" in out.stderr
+        assert "UV_UNMANAGED_INSTALL=" not in out.stdout
+        assert not (planted.parent / "RAN").exists(), "the planted installer was run"
+        assert box.files() == set() and box.leftovers() == []
+
+
+def test_without_a_program_to_compute_a_digest_nothing_is_downloaded(box):
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    only_digest_tool(box, "none")
+    planted = planted_installer(box)
+    out = box.with_old_python().run(env=box.env(CDLBIB_UV_INSTALLER=str(planted)))
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert "what is downloaded cannot be checked: none of" in out.stderr and "sha256sum, shasum and openssl" in out.stderr
+    assert "+ " not in out.stdout and not (planted.parent / "RAN").exists()
+    assert box.files() == set() and box.leftovers() == []
+
+
+def test_help_says_what_is_checked_when_uv_is_downloaded(box):
+    out = ok(box.run("--help"))
+    assert f"downloads uv {UV_VERSION} with its installer" in out
+    assert f"(https://astral.sh/uv/{UV_VERSION}/install.sh)" in out
+    for said in ("What is checked when uv is downloaded:", "its SHA-256 must be the one written in this script",
+                 "the installer carries the SHA-256 of the archive for each platform",
+                 "Not checked: signatures"):
+        assert said in out, said
+    assert "UV_VERSION_HERE" not in out
+
+
+@download_uv
+def test_the_digest_in_the_script_is_the_digest_of_the_installer_on_uvs_site(online):
+    """The live file. It also still does what install.sh relies on: it carries a SHA-256 for
+    each archive, compares the archive with it (skipping that without a sha256sum command),
+    and honours UV_UNMANAGED_INSTALL."""
+    with urllib.request.urlopen(UV_INSTALLER, timeout=60) as reply:
+        body = reply.read()
+    assert hashlib.sha256(body).hexdigest() == UV_INSTALLER_SHA256
+    text = body.decode("utf-8")
+    assert f'APP_VERSION="{UV_VERSION}"' in text and "UV_UNMANAGED_INSTALL" in text
+    assert 'verify_checksum "$_file" "$_checksum_style" "$_checksum_value"' in text
+    assert len(re.findall(r'_checksum_style="sha256"\n\s+_checksum_value="[0-9a-f]{64}"', text)) >= 10
+    assert "if ! check_cmd sha256sum; then" in text
+
+
+@download_uv
+def test_the_genuine_installer_with_one_line_added_is_refused(box, online):
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    changed = box.root / "changed" / "install.sh"
+    changed.parent.mkdir()
+    with urllib.request.urlopen(UV_INSTALLER, timeout=60) as reply:
+        changed.write_bytes(reply.read() + f'\necho ran > "{changed.parent}/RAN"\n'.encode())
+    out = box.with_old_python().run(env=box.env(CDLBIB_UV_INSTALLER=str(changed)))
+    assert out.returncode == 1 and "It was not run. Nothing was installed." in out.stderr, out.stdout + out.stderr
+    assert not (changed.parent / "RAN").exists() and box.files() == set() and box.leftovers() == []
+
+
+@download_uv
+@pytest.mark.parametrize("tool", DIGEST_TOOLS)
+def test_an_archive_of_uv_with_another_digest_is_refused_by_the_installer(box, online, tool, tmp_path):
+    """The genuine installer, told (by its own setting INSTALLER_DOWNLOAD_URL) to fetch the
+    archive of uv from a folder that holds another file under that name: it compares the
+    archive with the SHA-256 it carries and stops before unpacking, whichever program the
+    script made its sha256sum from. No uv is left and nothing of the archive runs."""
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    only_digest_tool(box, tool)
+    machine = {"arm64": "aarch64", "aarch64": "aarch64", "x86_64": "x86_64", "AMD64": "x86_64"}[platform.machine()]
+    targets = ([f"{machine}-apple-darwin"] if sys.platform == "darwin" else
+               [f"{machine}-unknown-linux-gnu", f"{machine}-unknown-linux-musl"])
+    mirror = tmp_path / "mirror"
+    mirror.mkdir()
+    for target in targets:
+        inside = tmp_path / f"uv-{target}"
+        inside.mkdir()
+        for name in ("uv", "uvx"):
+            (inside / name).write_text(f'#!/bin/sh\necho ran >> "{tmp_path}/RAN"\necho "uv {UV_VERSION}"\n')
+            (inside / name).chmod(0o755)
+        with tarfile.open(mirror / f"uv-{target}.tar.gz", "w:gz") as tar:
+            tar.add(inside, arcname=f"uv-{target}")
+    out = box.with_old_python().run(env=box.env(INSTALLER_DOWNLOAD_URL=f"file://{mirror}"))
+    said = out.stdout + out.stderr
+    assert out.returncode == 1, said
+    assert "checksum mismatch" in said and "the installer of uv failed" in out.stderr, said
+    assert "skipping sha256 checksum verification" not in said
+    assert not (tmp_path / "RAN").exists(), "a program from the archive was run"
+    assert not (box.data / "uv" / "uv").exists() and not (box.bin / "cdlbib").exists()
+    assert box.leftovers() == []
