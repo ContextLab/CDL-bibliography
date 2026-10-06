@@ -365,7 +365,9 @@ def test_the_rules_read_long_hostile_input_in_time_proportional_to_its_length():
     import re
     import time
     from cdlbib import acl_review, texinstall, verification
-    rules = {"acronyms": helpers._acronym_parts, "plain ordinals": helpers._plain_ordinals,
+    rules = {"acronyms": helpers._braced_acronyms,
+             "opaque spans": lambda text: helpers._opaque_spans(text, frozenset()),
+             "restored spans": lambda text: helpers._restore_spans(text, text.lower()), "plain ordinals": helpers._plain_ordinals,
              "meeting ordinals": helpers._meeting_ordinals, "two capitals": helpers._two_capitals,
              "meeting window": helpers._numbers_a_meeting,
              "ordinal_form": verification.ordinal_form, "anthology pages": acl_review.pages,
@@ -397,3 +399,115 @@ def test_a_value_too_long_to_be_a_name_is_formatted_without_the_two_rules():
         helpers.format_edition(text[:helpers.MAX_RULE_LENGTH])
         assert time.perf_counter() - started < 1.0, kind
         assert helpers.format_booktitle(text) == helpers.format_journal_name(text), kind
+
+
+# --- LaTeX in a name is not re-cased, and no text of a name is mistaken for the formatter's own ------
+
+FROZEN = load_entries(ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib")
+COMMAND = __import__("re").compile(r"\\[A-Za-z]+")
+
+
+def publisher(name):
+    return helpers.format_journal_name(name, key=helpers.publisher_key, dotted_initials=True)
+
+
+FORMATTERS = {"booktitle": helpers.format_booktitle, "edition": helpers.format_edition,
+              "journal": helpers.format_journal_name, "publisher": publisher}
+
+
+def balanced(text):
+    depth = 0
+    for char in text:
+        depth += (char == "{") - (char == "}")
+        if depth < 0:
+            return False
+    return depth == 0
+
+
+@pytest.mark.parametrize("given, written", [
+    # Text that looks like a placeholder is text: it is neither replaced nor does it replace anything.
+    ("{qzq0} ABCD Research", "{qzq0} {ABCD} Research"),
+    ("{qzq1} Workshop on NLP and {qzq0} Systems", "{qzq1} Workshop on {NLP} and {qzq0} Systems"),
+    # The name of a command keeps its case.
+    ("\\LaTeX Workshop", "\\LaTeX Workshop"), ("The \\TeX Book of ABCD", "The \\TeX Book of {ABCD}"),
+    ("\\O resund Studies", "\\O Resund Studies"),
+    # A command of two letters or more keeps its braced arguments as given; so does mathematics.
+    ("Studies in \\emph{Drosophila} Biology", "Studies in \\emph{Drosophila} Biology"),
+    ("Proceedings of the \\textit{ACM} Meeting", "Proceedings of the \\textit{ACM} Meeting"),
+    ("On $L_p$ Spaces and ABCD", "On $L_p$ Spaces and {ABCD}"),
+    ("The 30\\textsuperscript{th} and the 31st Meeting", "The 30\\textsuperscript{th} and the 31\\textsuperscript{st} Meeting"),
+    # A braced group with a capital beside an unbraced part of a hyphenated word.
+    ("Workshop on Tongue-{NLP} Systems", "Workshop on Tongue-{NLP} Systems"),
+    # Accents and caps-list words are the rules' own, as before.
+    ('S{\\"{a}}mtliche Werke', 'S{\\"{a}}mtliche Werke'), ("{Ieee} Workshop", "{IEEE} Workshop"),
+    ("Harvard {University} Press", "Harvard University Press"),
+])
+def test_commands_mathematics_and_braced_capitals_are_kept_as_given(given, written):
+    assert helpers.format_booktitle(given) == written
+    assert helpers.format_booktitle(written) == written
+    assert COMMAND.findall(written) == COMMAND.findall(given) or "31st" in given
+
+
+def test_the_journal_formatter_keeps_a_command_too():
+    # The fault was the shared formatter's: every caller has the fix.
+    assert helpers.format_journal_name("\\LaTeX Journal of \\emph{Drosophila}") == "\\LaTeX Journal of \\emph{Drosophila}"
+    assert publisher("\\TeX Users Group") == "\\TeX Users Group"
+    assert helpers.format_journal_name("Journal of $H_2O$ Research") == "Journal of $H_2O$ Research"
+    assert helpers.format_journal_name("Proceedings of the 30\\textsuperscript{th} Meeting") == (
+        "Proceedings of the 30\\textsuperscript{th} Meeting")
+
+
+def library_values():
+    for name, library in (("cdl.bib", LIBRARY), ("frozen", FROZEN)):
+        for key, entry in library.items():
+            for field, formatter in FORMATTERS.items():
+                value = entry["fields"].get(field)
+                if value:
+                    yield name, key, field, value, formatter
+
+
+def test_properties_of_the_formatters_over_every_value_of_both_libraries():
+    """Every Booktitle, Edition, Journal and Publisher of cdl.bib and of the frozen library
+    fixture, through its formatter: formatting twice is formatting once; no command changes
+    its name; balanced braces stay balanced; no brace is doubled; and every value of cdl.bib
+    is left exactly as it is."""
+    seen = 0
+    for name, key, field, value, formatter in library_values():
+        once = formatter(value)
+        where = (name, key, field, value, once)
+        seen += 1
+        assert formatter(once) == once, where
+        if name == "cdl.bib":
+            assert once == value, where
+        aliased = field in ("journal", "booktitle") and isinstance(helpers.journal_key.get(value.lower()), str)
+        aliased = aliased or (field == "publisher" and isinstance(helpers.publisher_key.get(value.lower()), str))
+        if not aliased:
+            # (the one command a rule may add is the house ordinal's own)
+            assert [c for c in COMMAND.findall(once) if c != "\\textsuperscript"] == [
+                c for c in COMMAND.findall(value) if c != "\\textsuperscript"], where
+        if balanced(value):
+            assert balanced(once), where
+        assert once.count("{{") <= value.count("{{") and once.count("}}") <= value.count("}}"), where
+    assert seen > 13000
+
+
+def test_the_same_properties_hold_for_names_with_commands_put_in():
+    """The library's own names with a command, mathematics or a braced capital put into them:
+    what was put in comes out as it went in, and the properties above hold."""
+    inserts = ("\\LaTeX", "\\emph{Homo sapiens}", "$E=mc^2$", "{NLP}", "{qzq0}", "\\textbf{ABC}", "\\O")
+    names = sorted({e["fields"]["booktitle"] for e in LIBRARY.values() if e["fields"].get("booktitle")})[:120]
+    for index, name in enumerate(names):
+        if isinstance(helpers.journal_key.get(name.lower()), str):
+            continue
+        words = name.split(" ")
+        insert = inserts[index % len(inserts)]
+        for place in (0, len(words) // 2, len(words)):
+            given = " ".join(words[:place] + [insert] + words[place:])
+            if isinstance(helpers.journal_key.get(given.lower()), str):
+                continue
+            once = helpers.format_booktitle(given)
+            assert insert in once.split(" ") or insert.split(" ")[0] in once.split(" "), (given, once)
+            assert insert in once, (given, once)
+            assert helpers.format_booktitle(once) == once, (given, once)
+            assert COMMAND.findall(once) == COMMAND.findall(given), (given, once)
+            assert balanced(once) and once.count("{{") <= given.count("{{"), (given, once)
