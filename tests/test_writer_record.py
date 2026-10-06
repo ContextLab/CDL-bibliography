@@ -304,6 +304,7 @@ def exchanged(library, target_now):
     import contextlib
     bib = library / "cdl.bib"
     bib.write_bytes(b"as it was read\n")
+    os.chmod(bib, 0o644)             # whatever the umask is
     folder, keep = writer._Folder.at(library), contextlib.ExitStack()
     name, identity = folder.new(".cdl.bib-", b"the new text\n", 0o644)
     previous, seen, read_fd = folder.read_held("cdl.bib", keep)
