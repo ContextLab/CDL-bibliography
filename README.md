@@ -109,12 +109,21 @@ edit a shell profile. It does not use `sudo`. Running it again upgrades or repai
 installation; an optional package that `cdlbib` installed later (see below) is
 then removed and is installed again the next time it is needed.
 
-While the installed `cdlbib` runs, a new run keeps it until the new version has been
-installed beside it (in the temporary folder) and `cdlbib --version` has run there. When
-the new version cannot be installed (the index cannot be reached, the checkout does not
-build), the script ends with an error and the installed command still works. With
-`--no-uv` the same holds because `pip` downloads and builds everything before it changes
-the environment. An installation whose command does not run is removed and installed again.
+While the installed `cdlbib` runs, a new run first installs the new version beside it (in
+the temporary folder) and runs `cdlbib --version` there. `uv` cannot put one environment
+in the place of another in a single step, so the replacement is restorable rather than
+atomic: the installed environment (renamed to `cdlbib-kept-by-install-sh` in `uv`'s tool
+directory), its wheel, the command links and the state file are set aside in
+`~/.local/share/cdlbib/kept/`, and are put back when the installation into their place
+fails or its `cdlbib --version` does not run. A run that was killed is undone by the next
+run. With `--no-uv` a copy of the virtual environment is set aside in the same way, and
+`--no-uv --pypi` fetches the package from the index first, so an index that cannot be
+reached is an error. In each case the script ends with an error and the installed command
+still works. An installation whose command does not run is removed and installed again.
+
+A changed `UV_TOOL_DIR` or `UV_TOOL_BIN_DIR` that names the same folders (through a link)
+is the same installation. When they name other folders, the script changes nothing and
+says so; to move the installation, run `--uninstall`, then install with the new settings.
 
 |Option|Effect|
 |-|-|
@@ -139,7 +148,7 @@ the source only when the script is run as a file that lies in it.
 
 From a checkout, the script builds a wheel in the temporary folder, keeps it in
 `~/.local/share/cdlbib/dist/` and installs that file; the wheel of an earlier run is
-replaced only after the new version has run.
+deleted only after the new version has run from its final place.
 `uv` records that file as the tool's source, so `uv tool upgrade cdlbib` changes nothing;
 running the script again upgrades. The build leaves `build/` and `src/cdlbib.egg-info/`
 in the checkout. `--uninstall` removes the wheel.
