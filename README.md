@@ -1006,8 +1006,9 @@ the web interface use Playwright's Chromium. A test whose program is not install
 is skipped, and the skip names the program. CI installs these programs
 ([autocheck.yml](.github/workflows/autocheck.yml)). The tests in
 `tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
-(TinyTeX) and biber, about 140 MB, into pytest's temporary folder, and run only with
-`CDLBIB_TEST_TEX_INSTALL=1`. The three tests that call the live Dartmouth Chat service (in
+(the newest TinyTeX release at the time of the run, found from the redirect of its
+"latest release" page) and biber, about 140 MB, into pytest's temporary folder, and run only
+with `CDLBIB_TEST_TEX_INSTALL=1`. The three tests that call the live Dartmouth Chat service (in
 `tests/test_intake_model.py`, `tests/test_tui_add.py` and `tests/test_web_flows.py`) run only
 with `CDLBIB_TEST_LIVE_MODEL=1` and a Dartmouth Chat key; a recorded real answer is replayed
 by `tests/test_intake_model.py` in every run.

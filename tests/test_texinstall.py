@@ -22,6 +22,7 @@ import subprocess
 import sys
 import tarfile
 import threading
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -612,29 +613,87 @@ def test_a_value_with_the_lang_attribute_of_the_older_schemas_is_passed_on(ws, t
 
 # --- a real installation, into a TeX Live of the tests' own ------------------------------------------
 
-TINYTEX = "https://github.com/rstudio/tinytex-releases/releases/download/v2026.10/TinyTeX-1-{system}-v2026.10.tar.xz"
+# The newest TinyTeX release is found when the tests run, not pinned here: the page of the
+# latest release redirects to its tag, which is read from the Location header without
+# following it (no API, so no token and no API rate limit).
+TINYTEX_LATEST = "https://github.com/rstudio/tinytex-releases/releases/latest"
+TINYTEX_TAG = "https://github.com/rstudio/tinytex-releases/releases/tag/"
+TINYTEX = "https://github.com/rstudio/tinytex-releases/releases/download/{tag}/TinyTeX-1-{system}-{tag}.tar.xz"
+TINYTEX_MAX_BYTES = 600 * 1024 * 1024
+TINYTEX_SECONDS = 600
+FOUND = {}                           # "tag": the release the texlive fixture installed
 SYSTEMS = {("Darwin", "arm64"): "darwin", ("Darwin", "x86_64"): "darwin", ("Linux", "x86_64"): "linux-x86_64",
            ("Linux", "aarch64"): "linux-arm64"}
 installs = pytest.mark.skipif(os.environ.get("CDLBIB_TEST_TEX_INSTALL") != "1",
                               reason="downloads a TeX Live and biber (about 140 MB); set CDLBIB_TEST_TEX_INSTALL=1 to run")
 
 
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
+class _HttpsRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, fp, code, msg, headers, newurl):
+        if not newurl.startswith("https://"):
+            raise urllib.error.URLError(f"redirected to something that is not https: {newurl[:200]!r}")
+        return super().redirect_request(request, fp, code, msg, headers, newurl)
+
+
+def newest_tinytex():
+    """The tag of the newest TinyTeX release ("v2026.10"): the Location that github.com's
+    page of the latest release redirects to, not followed. Fails, naming what was received,
+    when that is not a redirect to a tag of the form vYYYY.MM or vYYYY.MM.N."""
+    try:
+        reply = urllib.request.build_opener(_NoRedirect).open(
+            urllib.request.Request(TINYTEX_LATEST, method="HEAD"), timeout=60)
+    except urllib.error.HTTPError as answer:              # a redirect that is not followed arrives as this
+        reply = answer
+    location = reply.headers.get("Location") or ""
+    tag = location[len(TINYTEX_TAG):] if location.startswith(TINYTEX_TAG) else ""
+    if reply.status not in (301, 302) or not re.fullmatch(r"v\d{4}\.\d{2}(\.\d+)?", tag):
+        pytest.fail(f"The newest TinyTeX release could not be read from {TINYTEX_LATEST}: it answered "
+                    f"{reply.status} with Location {location[:300]!r}, not a redirect to {TINYTEX_TAG}vYYYY.MM")
+    return tag
+
+
+def download(url, target, limit=TINYTEX_MAX_BYTES, seconds=TINYTEX_SECONDS):
+    """Save ``url`` (https at github.com, redirected over https only) as ``target``: at most
+    ``limit`` bytes in at most ``seconds``."""
+    import time
+    assert url.startswith("https://github.com/")
+    started, size = time.monotonic(), 0
+    with urllib.request.build_opener(_HttpsRedirect).open(url, timeout=60) as reply, open(target, "wb") as out:
+        while chunk := reply.read(1 << 20):
+            size += len(chunk)
+            if size > limit or time.monotonic() - started > seconds:
+                pytest.fail(f"{url} is larger than {limit} bytes or took longer than {seconds} seconds")
+            out.write(chunk)
+    return size
+
+
 @pytest.fixture(scope="module")
 def texlive(tmp_path_factory):
     """A TeX Live this user owns, with LaTeX, bibtex and biblatex but no biber: its bin folder.
-    TinyTeX's release of TeX Live 2026; tlmgr refuses to install from a later year's repository."""
+    The newest TinyTeX release at the time of the run (``newest_tinytex``; FOUND["tag"]), so
+    its tlmgr and the repository it installs from are of the same year, and a biber or
+    biblatex newer than the ones this package was checked with shows up here first."""
     system = SYSTEMS.get((platform.system(), platform.machine()))
     if not system:
         pytest.skip(f"no TinyTeX is published for {platform.system()} {platform.machine()}")
+    FOUND["tag"] = tag = newest_tinytex()
     folder = tmp_path_factory.mktemp("texlive")
     archive = folder / "tinytex.tar.xz"
-    with urllib.request.urlopen(TINYTEX.format(system=system), timeout=600) as reply, open(archive, "wb") as out:
-        shutil.copyfileobj(reply, out)
+    download(TINYTEX.format(tag=tag, system=system), archive)
     with tarfile.open(archive) as packed:
         packed.extractall(folder, filter="tar")
     archive.unlink()
     (bin_folder,) = [path for path in (folder / "TinyTeX" / "bin").iterdir() if path.is_dir()]
     env = dict(os.environ, PATH=os.pathsep.join([str(bin_folder), "/usr/bin", "/bin"]))
+    # Even the newest release's tlmgr can be older than the repository's (the release is
+    # monthly, the repository daily), and tlmgr then installs nothing until it has updated itself.
+    done = subprocess.run([str(bin_folder / "tlmgr"), "update", "--self"], env=env, capture_output=True, text=True)
+    assert done.returncode == 0, f"TinyTeX {tag}: tlmgr update --self: " + (done.stdout + done.stderr)[-1500:]
     done = subprocess.run([str(bin_folder / "tlmgr"), "install", "biblatex", "logreq"], env=env, capture_output=True, text=True)
     assert done.returncode == 0 and (folder / "TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty").is_file(), done.stderr[-1500:]
     assert (bin_folder / "pdflatex").exists() and (bin_folder / "bibtex").exists() and not (bin_folder / "biber").exists()
@@ -744,6 +803,13 @@ def test_the_terminal_interfaces_worker_asks_then_installs_biber(on_texlive, ws,
         said, asked, ended = attempt(True)
     finally:
         deps.set_ask(False)
+    if isinstance(ended.get("failed"), ExportFailed) and ended["failed"].kind == "control_file":
+        # The early warning this test is for: the refusal names the biblatex and biber found.
+        pytest.fail(f"The newest TinyTeX ({FOUND['tag']}) brings a biblatex and biber whose control file cdlbib "
+                    f"refuses (biber {texinstall.version('biber') or 'unknown'}, biblatex "
+                    f"{texinstall.biblatex_version() or 'unknown'}). The names passed on to biber "
+                    f"(src/cdlbib/export.py) have to be derived again for them (scripts/bcf_schema_names.py). "
+                    f"The refusal: {ended['failed']}")
     assert asked == [question] and "failed" not in ended, ended
     assert shutil.which("biber") == str(on_texlive / "biber") and ended["made"].backend == "biber"
     assert "\\entry{Zoll90}" in file.with_suffix(".bbl").read_text(encoding="utf-8")
