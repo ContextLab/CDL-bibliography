@@ -256,11 +256,12 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
     own_uv = box.data / "uv"
     lines = out.stdout.splitlines()
     assert "--ask was given and there is no terminal to ask on: nothing is installed." in lines
-    assert any(line.startswith("+ curl --proto '=https' --tlsv1.2 -fsSL -o '") and
+    assert any(line.startswith(f"+ '{box.programs}/curl' --proto '=https' --tlsv1.2 -fsSL -o '") and
                line.endswith("/uv-install.sh' https://astral.sh/uv/install.sh") for line in lines), out.stdout
-    assert any(line.startswith(f"+ env 'UV_UNMANAGED_INSTALL={own_uv}' sh ") for line in lines), out.stdout
-    assert (f"+ cd '{box.checkout}' && '{own_uv}/uv' tool install --python '>=3.11' --with pip --force "
-            "--reinstall-package cdlbib '.[tui]'") in lines, out.stdout
+    assert any(line.startswith(f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={own_uv}' '{box.programs}/sh' ")
+               for line in lines), out.stdout
+    assert (f"+ '{own_uv}/uv' --no-config tool install --python '>=3.11' --with pip --force "
+            f"--reinstall-package cdlbib '{box.checkout}[tui]'") in lines, out.stdout
     assert lines[-1] == "Nothing was installed. Run the script without --ask, or in a terminal, to install."
     assert box.files() == set() and box.leftovers() == []
 
@@ -269,8 +270,8 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
 def test_ask_without_a_terminal_and_uv_present_prints_the_one_command(box):
     out = box.with_uv().run("--ask")
     assert out.returncode == 1, out.stdout + out.stderr
-    assert (f"+ cd '{box.checkout}' && '{box.programs}/uv' tool install --python '>=3.11' --with pip --force "
-            "--reinstall-package cdlbib .") in out.stdout.splitlines()
+    assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
+            f"--reinstall-package cdlbib '{box.checkout}'") in out.stdout.splitlines()
     assert "astral.sh" not in out.stdout and box.files() == set()
 
 
@@ -606,7 +607,7 @@ def test_a_run_killed_during_the_download_of_uv_leaves_no_temporary_file_and_is_
     process = subprocess.Popen(box.command(), env=box.env(), cwd=box.root, stdin=subprocess.DEVNULL,
                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, start_new_session=True)
     for line in process.stdout:
-        if line.startswith("+ env ") and "uv-install.sh" in line:
+        if line.startswith("+ ") and "UV_UNMANAGED_INSTALL=" in line:
             assert [name for name in box.leftovers() if name.startswith("cdlbib-install.")]
             os.killpg(process.pid, signal.SIGTERM)
             break
@@ -667,3 +668,202 @@ def test_git_source_from_a_repository_and_branch(box, online):
     assert out.returncode == 0, out.stdout + out.stderr
     assert f"Installing cdlbib from {repo} ({ref})." in out.stdout and "Installed: cdlbib " in out.stdout
     assert box.installed().startswith("cdlbib ")
+
+
+# --- a hostile current folder ----------------------------------------------------------------
+
+DECOYS = ("uv", "python3", "python3.13", "python", "git", "curl", "wget", "sh", "env", "sed", "grep", "mkdir", "rm",
+          "mktemp", "cat", "uname", "pip", "pip3")
+PLANTED = [".python-version", "decoy.py", "ensurepip.py", "importlib.py", "pip.conf", "pip.py", "pyproject.toml",
+           "setup.cfg", "sitecustomize.py", "usercustomize.py", "uv.toml", "venv.py"]
+
+
+def hostile_folder(folder):
+    """A folder that tries to steer the installation when the script is started in it: programs
+    with the names the script uses (each one, if run, writes its name into RAN and fails), a
+    pyproject.toml of another "cdlbib", and the files that uv, pip and Python read from a
+    current folder."""
+    folder.mkdir(parents=True, exist_ok=True)
+    for name in DECOYS:
+        decoy = folder / name
+        decoy.write_text(f'#!/bin/sh\necho "{name} $*" >> "{folder}/RAN"\nexit 97\n')
+        decoy.chmod(0o755)
+    (folder / "pyproject.toml").write_text(
+        '[build-system]\nrequires = ["setuptools>=77"]\nbuild-backend = "setuptools.build_meta"\n\n'
+        '[project]\nname = "cdlbib"\nversion = "6.6.6"\n\n[project.scripts]\ncdlbib = "decoy:main"\n\n'
+        '[tool.uv]\nindex-url = "https://127.0.0.1:9/simple"\n')
+    (folder / "decoy.py").write_text(f'def main():\n    open(r"{folder}/RAN", "a").write("decoy package\\n")\n')
+    (folder / "uv.toml").write_text('index-url = "https://127.0.0.1:9/simple"\npython-preference = "only-system"\n')
+    (folder / ".python-version").write_text("3.9\n")
+    (folder / "pip.conf").write_text("[global]\nindex-url = https://127.0.0.1:9/simple\n")
+    (folder / "setup.cfg").write_text("[metadata]\nname = cdlbib\nversion = 6.6.6\n")
+    for name in ("sitecustomize.py", "usercustomize.py", "pip.py", "venv.py", "ensurepip.py", "importlib.py"):
+        (folder / name).write_text(f'open(r"{folder}/RAN", "a").write("{name}\\n")\n')
+    return folder
+
+
+def hostile_paths(box, folder):
+    """The PATH values that would find the folder's programs: ".", an empty entry (which a
+    shell reads as the current folder), a relative name, and the folder's own full path."""
+    return {"dot first": f".:{box.programs}", "empty entry first": f":{box.programs}",
+            "empty entry last": f"{box.programs}:", "its full path first": f"{folder}:{box.programs}",
+            "a relative folder first": f"../{folder.name}:{box.programs}"}
+
+
+def nothing_ran(folder):
+    ran = folder / "RAN"
+    assert not ran.exists(), "from the current folder ran: " + ran.read_text()
+    assert sorted(path.name for path in folder.iterdir() if path.name not in DECOYS + ("install.sh",)) == PLANTED, \
+        "the run wrote into the current folder"
+
+
+@need_uv
+@pytest.mark.parametrize("path", ["dot first", "empty entry first", "empty entry last", "its full path first",
+                                  "a relative folder first"])
+def test_script_file_started_in_a_hostile_folder_installs_the_checkout_with_the_real_programs(box, online, path):
+    """`sh "/the checkout/install.sh"` from a folder of decoys: the source is the folder the
+    script file is in, never the current one, and no program of the current folder runs."""
+    folder = hostile_folder(box.root / "hostile folder")
+    box.with_uv().with_python()
+    env = box.env(PATH=hostile_paths(box, folder)[path])
+    out = subprocess.run(box.command(), env=env, cwd=folder, stdin=subprocess.DEVNULL, capture_output=True,
+                         text=True, timeout=1800, start_new_session=True)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert f"Installing cdlbib from the checkout {box.checkout}." in out.stdout
+    assert f"+ '{box.programs}/uv' --no-config tool install" in out.stdout
+    assert "Installed: cdlbib 2.0.0" in out.stdout and box.installed() == "cdlbib 2.0.0"
+    nothing_ran(folder)
+
+
+def test_script_file_named_by_a_relative_path_uses_its_own_folder_not_the_current_one(box, online):
+    """`sh "../the checkout/install.sh" --no-uv` from the hostile folder: a virtual environment
+    made by the real Python, with pip run outside the folder (its sitecustomize.py, pip.py,
+    pip.conf and setup.cfg are not read)."""
+    folder = hostile_folder(box.root / "hostile folder")
+    box.with_python()
+    out = subprocess.run(["/bin/sh", "../the checkout/install.sh", "--no-uv"], env=box.env(PATH=f".:{box.programs}"),
+                         cwd=folder, stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=1800,
+                         start_new_session=True)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert f"Installing cdlbib from the checkout {box.checkout}." in out.stdout
+    assert "installed with venv" in out.stdout and box.installed() == "cdlbib 2.0.0"
+    nothing_ran(folder)
+
+
+@need_uv
+def test_decoys_inside_the_checkout_itself_are_not_run(box, online):
+    """`sh install.sh` inside the checkout, with "." on PATH and programs named uv and python3
+    lying in the checkout: the checkout is the source, and its folder is not searched."""
+    for name in DECOYS:
+        decoy = box.checkout / name
+        decoy.write_text(f'#!/bin/sh\necho "{name} $*" >> "{box.checkout}/RAN"\nexit 97\n')
+        decoy.chmod(0o755)
+    box.with_uv().with_python()
+    for path in (f".:{box.programs}", f"{box.checkout}:{box.programs}"):
+        out = subprocess.run(["/bin/sh", "install.sh"], env=box.env(PATH=path), cwd=box.checkout,
+                             stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=1800,
+                             start_new_session=True)
+        assert out.returncode == 0, out.stdout + out.stderr
+        assert f"+ '{box.programs}/uv' --no-config tool install" in out.stdout
+        assert box.installed() == "cdlbib 2.0.0"
+        assert not (box.checkout / "RAN").exists(), (box.checkout / "RAN").read_text()
+
+
+def piped(box, folder, *args, path=None, **env):
+    """`sh < install.sh` (as `curl ... | sh` runs it), started in a folder."""
+    with open(SCRIPT, "rb") as script:
+        return subprocess.run(["/bin/sh", "-s", "--", *args], stdin=script, cwd=folder,
+                              env=box.env(PATH=path or f".:{box.programs}", **env),
+                              capture_output=True, text=True, timeout=1800, start_new_session=True)
+
+
+@need_uv
+def test_piped_script_in_a_hostile_folder_never_takes_the_folder_as_its_source(box):
+    """The folder has a pyproject.toml named cdlbib and even a file called install.sh. Read
+    from a pipe, the script's source is the repository; with --ask and no terminal it prints
+    the one command, which names the repository and the real uv."""
+    folder = hostile_folder(box.root / "hostile folder")
+    shutil.copy2(SCRIPT, folder / "install.sh")
+    box.with_uv().with_python()
+    box.link("git")
+    more = {"DEVELOPER_DIR": "/Library/Developer/CommandLineTools"} if sys.platform == "darwin" else {}
+    for path in hostile_paths(box, folder).values():
+        out = piped(box, folder, "--ask", path=path, **more)
+        assert out.returncode == 1, out.stdout + out.stderr
+        assert "Installing cdlbib from https://github.com/ContextLab/CDL-bibliography." in out.stdout
+        assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
+                "--reinstall-package cdlbib 'cdlbib @ git+https://github.com/ContextLab/CDL-bibliography'"
+                ) in out.stdout.splitlines()
+        assert str(folder) not in out.stdout + out.stderr
+    nothing_ran(folder)
+    assert box.files() == set()
+
+
+def test_piped_script_in_a_hostile_folder_does_not_use_its_git_or_its_curl(box):
+    """No real git on PATH, and a program called git in the current folder: git is reported
+    missing. With --pypi (no git needed) and no real curl: curl is reported missing."""
+    folder = hostile_folder(box.root / "hostile folder")
+    for path in hostile_paths(box, folder).values():
+        out = piped(box, folder, path=path)
+        assert out.returncode == 1 and "git is needed to install from" in out.stderr, out.stdout + out.stderr
+        out = piped(box, folder, "--pypi", path=path)
+        assert out.returncode == 1 and "neither curl nor wget is installed" in out.stderr, out.stdout + out.stderr
+    nothing_ran(folder)
+    assert box.files() == set() and box.leftovers() == []
+
+
+@need_uv
+def test_configuration_files_above_the_temporary_folder_and_in_the_users_folder_do_not_steer_uv(box, online):
+    """uv reads uv.toml from the folder it runs in, the folders above it, and the user's
+    configuration folder. The script runs uv with --no-config in a fresh folder: an index
+    address that cannot be reached, written in those places, changes nothing."""
+    bad = 'index-url = "https://127.0.0.1:9/simple"\n'
+    (box.tmp / "uv.toml").write_text(bad)
+    (box.home / ".config" / "uv").mkdir(parents=True)
+    (box.home / ".config" / "uv" / "uv.toml").write_text(bad)
+    out = ok(box.with_uv().with_python().run("--extras", "pdf"))
+    assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
+    assert box.leftovers() == ["uv.toml"]
+
+
+def test_the_temporary_folder_is_private_and_not_predictable(box):
+    """Seen while the script waits at the --ask question, before anything is downloaded."""
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    names = []
+    for _ in range(2):
+        master, slave = pty.openpty()
+        process = subprocess.Popen(box.command("--ask"), env=box.env(), cwd=box.root, stdin=slave, stdout=slave,
+                                   stderr=slave, start_new_session=True)
+        os.close(slave)
+        seen = b""
+        while b"[y/N]" not in seen:
+            seen += os.read(master, 4096)
+        (made,) = [path for path in box.tmp.iterdir() if path.name.startswith("cdlbib-install.")]
+        assert made.is_dir() and not made.is_symlink() and made.stat().st_mode & 0o777 == 0o700
+        assert made.stat().st_uid == os.getuid()
+        names.append(made.name)
+        os.write(master, b"n\n")
+        assert process.wait(timeout=60) == 1
+        os.close(master)
+        assert box.leftovers() == []
+    assert names[0] != names[1] and "XXXXXX" not in names[0] + names[1]
+
+
+@download_uv
+def test_piped_script_in_a_hostile_folder_installs_from_the_repository(box, online):
+    """The whole of `curl ... | sh` from a hostile folder, for real: nothing but curl and git
+    on PATH (and the decoys in the current folder), so uv is downloaded, and the package comes
+    from the repository named by CDLBIB_TEST_INSTALL_REPO and CDLBIB_TEST_INSTALL_REF."""
+    repo, ref = os.environ.get("CDLBIB_TEST_INSTALL_REPO"), os.environ.get("CDLBIB_TEST_INSTALL_REF")
+    if not repo or not ref:
+        pytest.skip("set CDLBIB_TEST_INSTALL_REPO and CDLBIB_TEST_INSTALL_REF to a repository and branch with the package")
+    folder = hostile_folder(box.root / "hostile folder")
+    box.link("curl")
+    box.link("git")
+    more = {"DEVELOPER_DIR": "/Library/Developer/CommandLineTools"} if sys.platform == "darwin" else {}
+    out = piped(box, folder, "--repo", repo, "--ref", ref, **more)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert "downloading uv with its installer" in out.stdout and "Installed: cdlbib " in out.stdout
+    assert box.installed().startswith("cdlbib ") and box.installed() != "cdlbib 6.6.6"
+    nothing_ran(folder)

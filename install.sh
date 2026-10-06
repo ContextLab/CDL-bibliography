@@ -22,6 +22,12 @@
 #   ${XDG_BIN_HOME:-$HOME/.local/bin}/             links to the commands (--no-uv without uv)
 #   the folders of uv: `uv tool dir`, `uv tool dir --bin`, `uv python dir`, `uv cache dir`
 #   a temporary folder, removed when the script ends
+#
+# The folder the script is started in is never a source of programs or settings: PATH
+# entries that are not absolute folders, that folder and the checkout are not searched;
+# every program is run by its full path; uv, pip and Python run in a fresh temporary
+# folder, uv with --no-config and Python with -I. A checkout is the source only when this
+# script is a file in it; read from a pipe, the source is the repository.
 # Run with --help for the options.
 
 set -eu
@@ -74,7 +80,51 @@ EOF
 say() { printf '%s\n' "$*"; }
 warn() { printf '%s\n' "$*" >&2; }
 die() { warn "install.sh: $*"; exit 1; }
-have() { command -v "$1" >/dev/null 2>&1; }
+
+# PATH without the entries that are not absolute folders ("", "." and other relative ones),
+# and without the folder the script was started in and the checkout: no program is taken
+# from there, by this script or by a program it runs. Only shell builtins are used here.
+safe_path() {
+    kept=""
+    old_ifs=$IFS
+    set -f
+    IFS=:
+    for entry in ${PATH:-}; do
+        case $entry in
+            /*) ;;
+            *) continue ;;
+        esac
+        real=$(CDPATH='' cd -P -- "$entry" 2>/dev/null && pwd -P) || real=$entry
+        if [ "$real" = "$started_in" ] || [ "$real" = "$checkout" ]; then
+            continue
+        fi
+        kept="$kept${kept:+:}$entry"
+    done
+    IFS=$old_ifs
+    set +f
+    PATH=$kept
+    export PATH
+}
+
+# The absolute path of a program on PATH; fails when there is none.
+program() {
+    found=$(command -v "$1" 2>/dev/null) || return 1
+    case $found in
+        /*) printf '%s\n' "$found" ;;
+        *) return 1 ;;
+    esac
+}
+
+# Is the file $1 the pyproject.toml of this package? (Read with the shell itself.)
+is_package() {
+    [ -f "$1" ] || return 1
+    while IFS= read -r text || [ -n "$text" ]; do
+        case $text in
+            'name = "cdlbib"') return 0 ;;
+        esac
+    done <"$1"
+    return 1
+}
 
 # One line that a person can paste into a shell: the arguments, quoted where needed.
 quoted() {
@@ -93,14 +143,6 @@ quoted() {
 run() {
     say "+ $(quoted "$@")"
     [ "$dry" = 1 ] || "$@"
-}
-
-# The same, inside a folder.
-run_in() {
-    folder=$1
-    shift
-    say "+ cd $(quoted "$folder") && $(quoted "$@")"
-    [ "$dry" = 1 ] || (cd "$folder" && "$@")
 }
 
 # With --ask: a yes/no question on the terminal. Without --ask: yes.
@@ -154,9 +196,9 @@ find_python() {
     python=""
     best=0
     for name in python3.14 python3.13 python3.12 python3.11 python3 python; do
-        candidate=$(command -v "$name" 2>/dev/null) || continue
+        candidate=$(program "$name") || continue
         usable "$candidate" || continue
-        minor=$("$candidate" -B -c 'import sys
+        minor=$("$candidate" -I -B -c 'import sys
 v = sys.version_info
 print(v[1] if v[0] == 3 and v[1] >= 11 and v.releaselevel == "final" else 0)' 2>/dev/null) || continue
         case $minor in
@@ -173,13 +215,13 @@ print(v[1] if v[0] == 3 and v[1] >= 11 and v.releaselevel == "final" else 0)' 2>
 # Can $python make a virtual environment with pip in it? (Debian and Ubuntu keep that in
 # the separate package python3-venv.)
 can_venv() {
-    "$python" -B -c 'import venv, ensurepip' >/dev/null 2>&1
+    "$python" -I -B -c 'import venv, ensurepip' >/dev/null 2>&1
 }
 
 need_git() {
     [ "$source" = git ] || return 0
-    found=$(command -v git 2>/dev/null) || found=""
-    if [ -z "$found" ] || ! usable "$found"; then
+    git=$(program git) || git=""
+    if [ -z "$git" ] || ! usable "$git"; then
         warn "install.sh: git is needed to install from $REPOSITORY and was not found."
         warn "Install git (macOS: xcode-select --install; Debian/Ubuntu: apt-get install git;"
         warn "Fedora: dnf install git), then run this script again."
@@ -193,10 +235,10 @@ download() {
         https://*) ;;
         *) die "refusing to download $1: not an https address." ;;
     esac
-    if have curl; then
-        run curl --proto '=https' --tlsv1.2 -fsSL -o "$2" "$1"
+    if [ -n "$curl" ]; then
+        run "$curl" --proto '=https' --tlsv1.2 -fsSL -o "$2" "$1"
     else
-        run wget --https-only -q -O "$2" "$1"
+        run "$wget" --https-only -q -O "$2" "$1"
     fi
 }
 
@@ -206,7 +248,7 @@ state_value() {
 }
 
 path_line() {
-    case ":${PATH:-}:" in
+    case ":$user_path:" in
         *":$1:"*) return 0 ;;
     esac
     shown=$1
@@ -234,7 +276,7 @@ path_line() {
 
 # The console commands of the installed package, one per line.
 console_scripts() {
-    "$1" -c 'from importlib.metadata import distribution
+    "$1" -I -c 'from importlib.metadata import distribution
 for entry in distribution("cdlbib").entry_points:
     if entry.group == "console_scripts":
         print(entry.name)'
@@ -258,11 +300,15 @@ remove_installed() {
     case $(state_value method) in
         uv)
             old_uv=$(state_value uv)
-            [ -x "$old_uv" ] || old_uv=$(command -v uv 2>/dev/null) || old_uv=""
+            case $old_uv in
+                /*) [ -x "$old_uv" ] || old_uv="" ;;
+                *) old_uv="" ;;
+            esac
+            [ -n "$old_uv" ] || old_uv=$(program uv) || old_uv=""
             if [ -z "$old_uv" ]; then
                 warn "install.sh: uv was not found, so its $PACKAGE tool was left in place."
-            elif "$old_uv" tool list 2>/dev/null | grep -q "^$PACKAGE "; then
-                run "$old_uv" tool uninstall "$PACKAGE" || warn "install.sh: uv did not uninstall $PACKAGE."
+            elif "$old_uv" --no-config tool list 2>/dev/null | grep -q "^$PACKAGE "; then
+                run "$old_uv" --no-config tool uninstall "$PACKAGE" || warn "install.sh: uv did not uninstall $PACKAGE."
             fi ;;
         venv)
             remove_venv_install ;;
@@ -293,32 +339,26 @@ uninstall() {
 }
 
 install_uv() {
-    if ! have curl && ! have wget; then
+    curl=$(program curl) || curl=""
+    wget=$(program wget) || wget=""
+    shell=$(program sh) || die "sh was not found on PATH."
+    env=$(program env) || die "env was not found on PATH."
+    if [ -z "$curl$wget" ]; then
         warn "install.sh: uv has to be downloaded, and neither curl nor wget is installed."
         warn "Nothing was installed. Install curl or wget, or uv itself"
         warn "(https://docs.astral.sh/uv/getting-started/installation/), then run this script again."
         exit 1
     fi
-    if ! have curl && ! wget --help 2>&1 | grep -q -e '--https-only'; then
+    if [ -z "$curl" ] && ! "$wget" --help 2>&1 | grep -q -e '--https-only'; then
         die "this wget cannot be limited to https. Install curl, then run this script again."
     fi
     say "$1: downloading uv with its installer ($UV_INSTALLER, saved to a temporary file and run with sh) into $own_uv_dir; no shell profile is changed."
     confirm "Download and run the uv installer?"
     download "$UV_INSTALLER" "$tmp/uv-install.sh"
-    run env UV_UNMANAGED_INSTALL="$own_uv_dir" sh "$tmp/uv-install.sh"
+    run "$env" UV_UNMANAGED_INSTALL="$own_uv_dir" "$shell" "$tmp/uv-install.sh"
     uv=$own_uv_dir/uv
     if [ "$dry" != 1 ] && ! uv_new_enough "$uv"; then
         die "the uv installer did not leave a working uv in $own_uv_dir."
-    fi
-}
-
-# Run an installer on $spec; a checkout is installed from inside its folder, so that a
-# path with spaces or brackets is never part of the requirement.
-install_spec() {
-    if [ "$source" = local ]; then
-        run_in "$checkout" "$@" "$spec"
-    else
-        run "$@" "$spec"
     fi
 }
 
@@ -327,9 +367,11 @@ uv_tool_install() {
     # --reinstall-package builds cdlbib again from the source, so a changed checkout or
     # branch is picked up, while the other packages are only brought up to date.
     # pip goes into the environment so that cdlbib can install an optional extra later,
-    # also when uv is not on PATH.
-    install_spec "$uv" tool install --python "$PYTHON_REQUEST" --with pip --force \
-        --reinstall-package "$PACKAGE"
+    # also when uv is not on PATH. --no-config: no uv.toml or pyproject.toml of any folder
+    # (or of the user) changes what is installed or from where; uv's environment variables
+    # still apply.
+    run "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
+        --reinstall-package "$PACKAGE" "$spec"
 }
 
 main() {
@@ -342,6 +384,10 @@ main() {
     extras=""
     action=install
     tmp=""
+    checkout=""
+    started_in=$(pwd -P 2>/dev/null) || started_in=""
+    user_path=${PATH:-}
+    safe_path
 
     while [ $# -gt 0 ]; do
         case $1 in
@@ -413,20 +459,35 @@ main() {
     trap 'exit 130' INT
     trap 'exit 143' TERM HUP
 
+    # What to install. A checkout is the source only when this script is a file named
+    # install.sh and the folder that file is in (its physical path) holds the package's
+    # pyproject.toml. The folder the script was started in is never looked at: a script
+    # read from a pipe has no file, so its source is the repository.
+    case $0 in
+        */install.sh) script_dir=${0%/*} ;;
+        install.sh) script_dir=. ;;
+        *) script_dir="" ;;
+    esac
+    if [ -n "$script_dir" ] && [ -f "$0" ]; then
+        checkout=$(CDPATH='' cd -P -- "${script_dir:-/}" 2>/dev/null && pwd -P) || checkout=""
+        if ! is_package "$checkout/pyproject.toml"; then
+            checkout=""
+        fi
+    fi
+    safe_path
+    # Everything from here on is named by its full path and runs outside the folder the
+    # script was started in, so that no file there (pyproject.toml, uv.toml, .python-version,
+    # pip.conf, setup.cfg, sitecustomize.py) can steer uv, pip or Python.
+    cd /
+    for name in sed grep mkdir rm mktemp; do
+        program "$name" >/dev/null || die "$name was not found on PATH (${PATH:-empty}). Folders that are not absolute paths, the folder the script is started in and the checkout are not searched."
+    done
+
     if [ "$action" = uninstall ]; then
         uninstall
         exit 0
     fi
 
-    # What to install.
-    checkout=""
-    case $0 in
-        */install.sh) checkout=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) ;;
-        install.sh) checkout=$(pwd) ;;
-    esac
-    if [ -n "$checkout" ] && ! grep -q '^name = "cdlbib"$' "$checkout/pyproject.toml" 2>/dev/null; then
-        checkout=""
-    fi
     bracket=${extras:+[$extras]}
     if [ "$pypi" = 1 ]; then
         source=pypi
@@ -434,7 +495,7 @@ main() {
         from="PyPI"
     elif [ -n "$checkout" ] && [ -z "$ref$repo" ]; then
         source=local
-        spec=.$bracket
+        spec=$checkout$bracket
         from="the checkout $checkout"
     else
         source=git
@@ -453,12 +514,12 @@ main() {
     uv=""
     method=uv
     why="uv was not found"
-    found=$(command -v uv 2>/dev/null) || found=""
-    if [ -n "$found" ]; then
-        if uv_new_enough "$found"; then
-            uv=$found
+    path_uv=$(program uv) || path_uv=""
+    if [ -n "$path_uv" ]; then
+        if uv_new_enough "$path_uv"; then
+            uv=$path_uv
         else
-            why="$found is older than uv $UV_MINIMUM and is left as it is"
+            why="$path_uv is older than uv $UV_MINIMUM and is left as it is"
         fi
     fi
     if [ -z "$uv" ] && [ -x "$own_uv_dir/uv" ] && uv_new_enough "$own_uv_dir/uv"; then
@@ -492,8 +553,10 @@ main() {
         tmp=${TMPDIR:-/tmp}/cdlbib-install.XXXXXX
     else
         tmp=$(mktemp -d "${TMPDIR:-/tmp}/cdlbib-install.XXXXXX")
+        chmod 700 "$tmp"
         TMPDIR=$tmp
         export TMPDIR
+        cd "$tmp"
     fi
     if [ -z "$uv" ] && [ "$method" = uv ]; then
         install_uv "$why"
@@ -509,7 +572,7 @@ main() {
 
     # Recorded before the work starts, so that --uninstall also removes an unfinished one.
     if [ "$dry" != 1 ]; then
-        if [ "$method" = uv ]; then command_dir=$("$uv" tool dir --bin); else command_dir=$bin_dir; fi
+        if [ "$method" = uv ]; then command_dir=$("$uv" --no-config tool dir --bin); else command_dir=$bin_dir; fi
         mkdir -p "$home_dir"
         {
             say "method=$method"
@@ -520,37 +583,48 @@ main() {
 
     case $method in
         uv)
-            if [ "$dry" != 1 ] && ! "$uv" python find "$PYTHON_REQUEST" >/dev/null 2>&1; then
-                say "No Python 3.11 or later was found: uv downloads one into its own folder ($("$uv" python dir)); the default python is not changed."
+            if [ "$dry" != 1 ] && ! "$uv" --no-config python find "$PYTHON_REQUEST" >/dev/null 2>&1; then
+                say "No Python 3.11 or later was found: uv downloads one into its own folder ($("$uv" --no-config python dir)); the default python is not changed."
             fi
+            # An environment that does not work (an interrupted run, deleted files) is
+            # removed first, so that the result is the same as a first installation.
+            tools=$("$uv" --no-config tool dir 2>/dev/null) || tools=""
+            case $tools in
+                /*)
+                    if [ "$dry" != 1 ] && [ -e "$tools/$PACKAGE" ] && ! "$tools/$PACKAGE/bin/python" -I -c 'import pip, cdlbib' >/dev/null 2>&1; then
+                        say "The $PACKAGE tool in $tools is incomplete: it is removed and installed again."
+                        "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
+                        rm -rf "${tools:?}/$PACKAGE"
+                    fi ;;
+            esac
             if ! uv_tool_install; then
                 # What an interrupted run left behind can stop uv; start from nothing, once.
                 say "Trying again after removing the unfinished $PACKAGE tool."
-                "$uv" tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
-                tools=$("$uv" tool dir)
+                "$uv" --no-config tool uninstall "$PACKAGE" >/dev/null 2>&1 || true
+                tools=$("$uv" --no-config tool dir)
                 case $tools in
                     /*) rm -rf "${tools:?}/$PACKAGE" ;;
                 esac
                 uv_tool_install
             fi ;;
         venv)
-            if [ "$dry" != 1 ] && [ -d "$venv" ] && ! "$venv/bin/python" -c 'import sys, pip
+            if [ "$dry" != 1 ] && [ -d "$venv" ] && ! "$venv/bin/python" -I -c 'import sys, pip
 raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' 2>/dev/null; then
                 # Not a working environment (an interrupted run, or its Python is gone).
                 run rm -rf "$venv"
             fi
             if [ ! -x "$venv/bin/python" ]; then
                 run mkdir -p "$home_dir"
-                if ! run "$python" -m venv "$venv"; then
+                if ! run "$python" -I -m venv "$venv"; then
                     # A Python that is reached through a link in another folder can fail
                     # here; the program the link leads to is tried once.
                     rm -rf "$venv"
-                    real=$("$python" -B -c 'import os, sys
+                    real=$("$python" -I -B -c 'import os, sys
 print(os.path.realpath(sys.executable))')
-                    run "$real" -m venv "$venv"
+                    run "$real" -I -m venv "$venv"
                 fi
             fi
-            install_spec "$venv/bin/python" -m pip install --disable-pip-version-check --upgrade
+            run "$venv/bin/python" -I -m pip install --disable-pip-version-check --upgrade "$spec"
             run mkdir -p "$bin_dir"
             if [ "$dry" = 1 ]; then
                 say "+ ln -sf $(quoted "$venv/bin/$PACKAGE") $(quoted "$bin_dir/$PACKAGE")   (and each other command of the package)"
