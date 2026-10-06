@@ -728,3 +728,37 @@ def test_an_approval_that_waits_is_listed_and_a_send_of_it_alone_is_not_nothing_
     assert not site.ws.approvals.exists() and git("status", "--porcelain", "--untracked-files=no") == ""
     assert git("rev-parse", "HEAD") == head and git("branch", "--list") == "* master"
     assert site.ok("get", "/api/state")["approvals"] == [{"key": "Game62", "login": "octocat"}]     # it still waits
+
+
+# --- a book, by its LCCN (owner's decision 2026-10-06) ----------------------------------------------
+
+def test_add_a_book_by_its_lccn_then_accept(tmp_path, monkeypatch):
+    """The lookups are the real Library of Congress and Crossref answers of
+    tests/fixtures/intake/books.json.gz, replayed with the network refused."""
+    web.isolate(monkeypatch, tmp_path / "env")
+    ws = web.make_library(tmp_path / "library", KAHA12, GAME62)
+    web.seed(ws, "books.json.gz")
+    running, site = web.start(ws)
+    try:
+        lines = []
+        found = site.ok("post", "/api/add/identifiers", {"queries": ["LCCN 10032396"]}, lines)
+        assert found["errors"] == [] and lines == ["LCCN 10032396: metadata_verified"]
+        (proposal,) = found["proposals"]
+        assert proposal["entry_type"] == "book" and proposal["record_source"] == "loc-catalogue"
+        assert proposal["key_proposed"] == "Galt83" and proposal["status"] == "metadata_verified"
+        assert proposal["proposed_raw"] == (
+            "@book{Galt83,\n\tAddress = {London},\n\tAuthor = {F Galton},\n\tPublisher = {Macmillan},\n"
+            "\tTitle = {Inquiries into human faculty and its development},\n\tYear = {1883}}")
+        assert {change["source"] for change in proposal["changes"]} == {"loc-catalogue"}
+        assert proposal["acceptable"] is True and proposal["why_not"] == [] and proposal["choices"] == []
+        assert proposal["notes"] == ["Built from the Library of Congress catalogue record LCCN 10032396."]
+        done = site.ok("post", "/api/proposal/accept", {"proposal": proposal["id"]})
+        assert done["written"] == ["Galt83"] and keys(ws) == ["Kaha12", "Game62", "Galt83"]
+        # the book that is in the library already is a duplicate, by its ISBN's record
+        again = site.ok("post", "/api/add/identifiers", {"queries": ["ISBN 9780195333244"]})["proposals"][0]
+        assert again["duplicate_of"] == "Kaha12" and again["acceptable"] is False
+        # a number the catalogue does not have: nothing is proposed, and it says so
+        two = site.ok("post", "/api/add/identifiers", {"queries": ["LCCN 2099123456"]})["proposals"][0]
+        assert two["proposed_raw"] is None and "No Library of Congress catalogue record has the LCCN" in two["issues"][0]
+    finally:
+        running.stop()

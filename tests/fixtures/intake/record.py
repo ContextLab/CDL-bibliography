@@ -151,7 +151,7 @@ def booktitle(route="dartmouth", contact_source=None):
         try:
             record = client.crossref_doi(normalize_doi(BOOKTITLE_DOI))["body"]["message"]
             titles = ct.two_titles(record)
-            page = ct.fetch_page(normalize_doi(BOOKTITLE_DOI), record)
+            page = ct.fetch_page(normalize_doi(BOOKTITLE_DOI))
             page["lines"] = [ADDRESS.sub("[address removed]", line) for line in page["lines"]]
             client.cache.save_response("book-title-page-v1:" + normalize_doi(BOOKTITLE_DOI), page)
             found = ct.from_model(client, client.cache, record, titles, announce=lambda line: print(line, file=sys.stderr))

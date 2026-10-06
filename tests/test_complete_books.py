@@ -23,7 +23,7 @@ import pytest
 from cdlbib import api, book_build, catalogue_review, complete, intake
 from cdlbib.verification import Cache, load_entries
 
-from intake_support import CONTACT, library, offline_client, saved
+from intake_support import CONTACT, library, offline_client, seeded_library
 from test_complete_cli import ADD, refused_network, terminal
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -356,23 +356,7 @@ def offline(monkeypatch):
 
 def seeded(tmp_path):
     """A library of its own whose response cache holds the saved lookups."""
-    ws = library(tmp_path / "lib")
-    ws.work.mkdir(parents=True, exist_ok=True)
-    client = offline_client(tmp_path / "seed")
-    client.cache.close()
-    from cdlbib import extra_sources as xs
-    from cdlbib.verification import dumps
-    client = xs.make_client(ws.database, contact=CONTACT, offline=True)
-    try:
-        for item in saved("books.json.gz"):
-            request = item["request"]
-            if isinstance(request, list):
-                url, params, xml = request
-                request = dumps([url, {k: CONTACT if v == "CONTACT" else v for k, v in params.items()}, xml])
-            client.cache.save_response(request, item["response"])
-    finally:
-        client.cache.close()
-    return ws
+    return seeded_library(tmp_path / "lib", "books.json.gz")
 
 
 def test_a_built_book_is_written_and_the_gate_verifies_it_by_its_catalogue_route(tmp_path, offline):

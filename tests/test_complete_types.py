@@ -1,6 +1,7 @@
 """Entry completion beyond journal articles (issue #95, milestone M7): papers in proceedings
 (``@inproceedings`` from a Crossref ``proceedings-article``) and chapters (``@incollection``
-from a ``book-chapter``), and the types that stay unbuilt.
+from a ``book-chapter``), and the types that stay unbuilt from a Crossref record. (A book is
+built from its Library of Congress record since 2026-10-06: tests/test_complete_books.py.)
 
 Nothing here is invented. Every lookup is a real response fetched once on 2026-10-05 and
 saved in tests/fixtures/completion/type_responses.json (the README beside it lists each
@@ -75,7 +76,8 @@ def test_the_built_types_are_the_pairings_the_verifier_accepts():
     source = inspect.getsource(compare_record)
     for name, kind in complete.KINDS.items():
         assert f'"{name}": "{kind.record}"' in source
-    # A book is the verifier's fourth pairing and is not built: see the tests of books below.
+    # A book is the verifier's fourth pairing and is not built from a Crossref record: see the tests of
+    # books below. It is built from its catalogue record (book_build; tests/test_complete_books.py).
     assert '"book": "book"' in source and "book" not in complete.KINDS
     # Nothing a chapter or a paper is built with is a field the verifier cannot check.
     covered = {"title", "author", "year", "journal", "booktitle", "volume", "number", "pages", "publisher", "doi"}
@@ -234,20 +236,26 @@ def test_a_series_number_after_a_book_title_is_not_part_of_it(client):
     assert proposal.status == "metadata_verified" and proposal.unfilled == [ADDRESS, EDITOR]
 
 
-def test_a_record_that_names_a_series_and_a_book_fills_no_book_title(client):
-    # Scha03: the record does not say which of its two container titles is the book.
+def test_a_record_that_names_a_series_and_a_book_has_the_book_title_looked_up(client):
+    # Scha03: the record does not say which of its two container titles is the book. Until 2026-10-06 the
+    # book title was left unfilled ("booktitle: no single registry title"); by the owner's decision of that
+    # day it is looked for, first in the book's own Crossref record (container_titles;
+    # tests/test_complete_booktitle.py). That record's saved response is added to this client's cache.
+    from intake_support import load_saved
+    load_saved(client, "chapters.json.gz")
     record = record_of("10.1007/978-0-387-21579-2_9")
     assert record["container-title"] == ["Lecture Notes in Statistics", "Nonlinear Estimation and Classification"]
     proposal = propose(client, "10.1007/978-0-387-21579-2_9")
-    assert proposal.proposed_raw == without(library("Scha03"), "Booktitle")
-    assert unfilled(proposal, "booktitle") == complete.Unfilled(
-        "booktitle", "booktitle: no single registry title",
-        {"crossref": "Lecture Notes in Statistics; Nonlinear Estimation and Classification"})
+    assert proposal.proposed_raw == library("Scha03")
+    assert change(proposal, "booktitle") == complete.FieldChange(
+        "booktitle", None, "Nonlinear Estimation and Classification", "crossref (the book's own Crossref record)",
+        "filled")
+    assert "booktitle" not in {u.field for u in proposal.unfilled}
     # The publisher formatter turns "Springer New York" into "Springer", which is not the
     # name the verifier would compare: it is not written (the library's entry has none).
     assert unfilled(proposal, "publisher") == complete.Unfilled(
         "publisher", "publisher: formatter changes the registry name", {"crossref": "Springer New York"})
-    assert proposal.complete is False and proposal.needs_decision is True and proposal.status == "needs_review"
+    assert proposal.complete is True and proposal.needs_decision is False and proposal.status == "metadata_verified"
     # Typed with its book title, as the library has it: every field is kept, and it is verified.
     typed = complete.propose(complete.Query.from_entry(LIBRARY["Scha03"]), client, client.cache)
     assert typed.proposed_raw == library("Scha03") and {c.kind for c in typed.changes} == {"kept"}
