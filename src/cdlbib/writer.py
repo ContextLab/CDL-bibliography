@@ -9,8 +9,35 @@ descriptor, refusing links: nothing is checked by path and then used by path. A 
 ignores the lock and saves cdl.bib itself while a write is under way is not written over:
 the file is exchanged with the prepared one in a single step after the backups are made, and
 what it held at that step is compared with what the writer read; anything else is exchanged
-back and the write refused (where the system has no exchange call, the file is read again
-just before it is replaced, which leaves the instant between the two). Before the first move:
+back and the write refused; and a save the other program makes over the new text in the
+instant after the exchange is left as it is (the check is two stat calls, made before the
+folder is flushed to the disk: on Linux that flush takes long enough for another program's
+save to land in it). Where the system has no exchange call, the file is read again just
+before it is replaced, which leaves the instant between the two.
+
+What is guaranteed against a program that swaps paths for links while a write runs, on macOS
+and on Linux alike (the exchange is renameatx_np with RENAME_SWAP on macOS and renameat2 with
+RENAME_EXCHANGE on Linux, both from the C library; a file system without it, or another
+system, gets the plain replacement described above):
+
+- nothing outside the folders held open is read, written, replaced or removed: a link is
+  never followed, whenever it is put in place;
+- a name is taken for the file the writer made or read only while the writer holds that file
+  open. (device, inode) alone does not say so: Linux file systems give a removed file's inode
+  number to the next file or link made, so a link swapped in for a prepared file can carry
+  the prepared file's number. macOS's APFS does not reuse numbers; the writer does not rely
+  on that;
+- a write returns as done only when the bibliography is the file the writer prepared. The
+  system renames by name, so a link swapped in for the prepared file in the instant before
+  the exchange can stand as the bibliography for the two stat calls that follow; it is found
+  there, the file that was read is exchanged back, or, when that file was taken away
+  meanwhile, its text is written again, and the write is refused. A write that is refused
+  leaves an ordinary file holding what was read, never a link.
+
+A program that can write in the library's folder can of course replace cdl.bib itself at any
+time; no writer can prevent that, and the next write refuses a bibliography that is a link.
+
+Before the first move:
 
 - the managed library takes its command checkpoint (library.completion_checkpoint) and
   records the write as in progress (library._mark); a writer killed part-way is announced by
@@ -80,6 +107,13 @@ def _sha(data):
 # and read through that one descriptor, and created, replaced and removed relative to the
 # folder's descriptor. Swapping a path for a link between a check and a use therefore cannot
 # send a write or a removal anywhere else.
+#
+# "Is this name still the file I made (or read)?" is asked by (device, inode, kind of file),
+# and only while a descriptor on that file is held open. The descriptor is what makes the
+# answer true: a file system may give the inode number of a removed file to the next thing
+# made (ext4 and tmpfs on Linux do so at once; APFS on macOS does not reuse them), so a link
+# put where a removed file stood can carry its number. A file with an open descriptor is not
+# gone, and its number is nobody else's.
 
 _OPEN = os.O_CLOEXEC | os.O_NOFOLLOW
 
@@ -89,6 +123,7 @@ class _Folder:
 
     def __init__(self, path, fd):
         self.path, self.fd = Path(path), fd
+        self._made = {}      # the name of a file made here: a descriptor held on it while the name is used
 
     @classmethod
     def at(cls, path):
@@ -106,7 +141,14 @@ class _Folder:
             return None
 
     def close(self):
+        for name in list(self._made):
+            self._let_go(name)
         os.close(self.fd)
+
+    def _let_go(self, name):
+        fd = self._made.pop(name, None)
+        if fd is not None:
+            os.close(fd)
 
     def read(self, name):
         """(the bytes, the permission bits) of the ordinary file ``name``, through one
@@ -122,13 +164,34 @@ class _Folder:
                 raise OSError(errno.EINVAL, 'not an ordinary file', str(self.path / name))
             return stream.read(), found.st_mode & 0o777
 
+    def read_held(self, name, keep):
+        """(the bytes, the stamp) of the ordinary file ``name``, read through one descriptor
+        that stays open until ``keep`` (an ExitStack) closes, and that descriptor; (None,
+        None, None) when there is none. While it is open, a name whose ``stamp`` is this one
+        is this very file, not written since it was read. OSError when it is a link or not an
+        ordinary file."""
+        try:
+            fd = os.open(name, os.O_RDONLY | os.O_NONBLOCK | _OPEN, dir_fd=self.fd)
+        except FileNotFoundError:
+            return None, None, None
+        keep.callback(os.close, fd)
+        if not stat.S_ISREG(os.fstat(fd).st_mode):
+            raise OSError(errno.EINVAL, 'not an ordinary file', str(self.path / name))
+        data = b''
+        while chunk := os.read(fd, 1 << 20):
+            data += chunk
+        found = os.fstat(fd)
+        return data, (found.st_dev, found.st_ino, stat.S_IFMT(found.st_mode), found.st_mtime_ns, found.st_size), fd
+
     def identity(self, name):
-        """(device, inode) of what ``name`` is now (a link is itself); None when not there."""
+        """(device, inode, kind of file) of what ``name`` is now (a link is itself); None when
+        not there. It says which file a name is only while a descriptor is held on the file
+        it is compared with (see above)."""
         try:
             found = os.stat(name, dir_fd=self.fd, follow_symlinks=False)
         except FileNotFoundError:
             return None
-        return found.st_dev, found.st_ino
+        return found.st_dev, found.st_ino, stat.S_IFMT(found.st_mode)
 
     def ordinary(self, name):
         """Is ``name`` an ordinary file now (not a link, a folder, or absent)?"""
@@ -138,17 +201,19 @@ class _Folder:
             return False
 
     def stamp(self, name):
-        """(device, inode, mtime_ns, size) of what ``name`` is now; None when not there. It
-        changes when the file is replaced by another, and when it is written in place."""
+        """(device, inode, kind of file, mtime_ns, size) of what ``name`` is now; None when
+        not there. It changes when the file is replaced by another (as ``identity``), and
+        when it is written in place."""
         try:
             found = os.stat(name, dir_fd=self.fd, follow_symlinks=False)
         except FileNotFoundError:
             return None
-        return found.st_dev, found.st_ino, found.st_mtime_ns, found.st_size
+        return found.st_dev, found.st_ino, stat.S_IFMT(found.st_mode), found.st_mtime_ns, found.st_size
 
     def new(self, prefix, data, mode=None):
         """Make a file that was not there, write ``data`` to it and flush it to the disk.
-        Returns (its name, its identity)."""
+        Returns (its name, its identity). A descriptor on the file is held until the name is
+        moved or removed (or the folder closed), so that its identity is no other file's."""
         while True:
             name = prefix + secrets.token_hex(6)
             try:
@@ -164,10 +229,11 @@ class _Folder:
                     os.fchmod(stream.fileno(), mode)
                 os.fsync(stream.fileno())
                 found = os.fstat(stream.fileno())
+                self._made[name] = os.dup(stream.fileno())
         except BaseException:
             self.remove(name)
             raise
-        return name, (found.st_dev, found.st_ino)
+        return name, (found.st_dev, found.st_ino, stat.S_IFMT(found.st_mode))
 
     def move(self, name, onto, identity):
         """Put the file made here as ``name`` in the place of ``onto``, both by name in this
@@ -178,24 +244,30 @@ class _Folder:
         os.replace(name, onto, src_dir_fd=self.fd, dst_dir_fd=self.fd)
         with contextlib.suppress(OSError):
             os.fsync(self.fd)
-        return self.identity(onto) == identity
+        placed = self.identity(onto) == identity
+        self._let_go(name)
+        return placed
 
     def exchange(self, name, onto):
         """Exchange the two names in this folder in one step (each then names what the other
         named), so that what ``onto`` held can be looked at after the fact and put back.
-        False, with nothing done, where the system or the file system has no such call."""
+        False, with nothing done, where the system or the file system has no such call. The
+        folder is not flushed to the disk here (``flush``): the caller looks first, at once."""
         swap = _exchange()
         if swap is None:
             return False
         call, flag = swap
         if call(self.fd, os.fsencode(name), self.fd, os.fsencode(onto), flag) == 0:
-            with contextlib.suppress(OSError):
-                os.fsync(self.fd)
             return True
         code = ctypes.get_errno()
         if code in (errno.ENOSYS, errno.EINVAL, errno.ENOTSUP, errno.EOPNOTSUPP):
             return False
         raise OSError(code, os.strerror(code), str(self.path / onto))
+
+    def flush(self):
+        """Flush the folder's names to the disk (where the system does that for a folder)."""
+        with contextlib.suppress(OSError):
+            os.fsync(self.fd)
 
     def put(self, name, data, mode=None):
         """Replace ``name`` with ``data`` whole (None: remove it)."""
@@ -213,8 +285,11 @@ class _Folder:
 
     def remove(self, name):
         """Remove the name (a link itself, never what it points to)."""
-        with contextlib.suppress(FileNotFoundError):
-            os.unlink(name, dir_fd=self.fd)
+        try:
+            with contextlib.suppress(FileNotFoundError):
+                os.unlink(name, dir_fd=self.fd)
+        finally:
+            self._let_go(name)
 
     def names(self):
         return os.listdir(self.fd)
@@ -552,6 +627,67 @@ def _prune(held):
                     edits.remove(name)
 
 
+def _put_back(folder, target, previous, mode):
+    """Make ``target`` hold ``previous`` again (an ordinary file with the permission bits
+    ``mode``) where a link or nothing was left in its place. CdlbibError when even that is
+    undone as it is made."""
+    try:
+        folder.put(target.name, previous, mode)
+    except OSError as exc:
+        raise CdlbibError(f"{target} was swapped for something that is not a file while it was being written, and "
+                          f"could not be put back ({exc.strerror or exc}); look at it before anything else is done. "
+                          "Its text from before this write is in the copy taken for it.") from exc
+
+
+def _confirm(folder, target, name, identity, seen, read_fd, previous):
+    """Straight after ``name`` (the prepared file, of ``identity``) and ``target`` were
+    exchanged: look at what the two names are now. The file that came out must be the very
+    file that was read (``seen``: its stamp, ``read_fd``: the descriptor still held on it),
+    and the target the prepared file. That takes two stat calls, so the new text stands
+    unconfirmed for an instant only (the folder is flushed to the disk after this, not
+    before). Returns when the write stands; otherwise leaves the newest save of anyone else
+    in place, or the text that was read, and raises _Changed:
+
+    - something else came out (another program saved between the reading and the exchange):
+      the two are exchanged back, so that save stays; and should the other program have
+      saved once more over the new text in that instant, its newest save is the one left;
+    - the target is no longer the prepared file though the file that was read came out:
+      another program saved over the new text in that instant, and its save (an ordinary
+      file) is left as it is: exchanging back would discard it;
+    - the target is a link, or nothing: the prepared name was swapped for it just before the
+      exchange (it is exchanged back), or the file that stood aside was taken away before it
+      could come back (its text, ``previous``, is written again). No save of anyone leaves a
+      link or nothing, so neither is kept."""
+    placed = folder.identity(target.name) == identity
+    out = folder.stamp(name)
+    if placed and out is None:
+        # What came out was removed at once by something else. When the file that was read is
+        # the one now without a name, and it was not written, nothing was lost.
+        left = os.fstat(read_fd)
+        if left.st_nlink == 0 and (left.st_mtime_ns, left.st_size) == seen[3:]:
+            out = seen
+    if placed and out == seen:
+        folder.flush()
+        return
+    try:
+        if placed or not folder.ordinary(target.name):
+            try:
+                folder.exchange(name, target.name)
+            except FileNotFoundError:
+                came_back = False
+            else:
+                came_back = True
+                # The new text was in place and is not what came back: the other program saved
+                # once more over it, and that newest save (an ordinary file) is the one to leave.
+                if placed and folder.identity(name) != identity and folder.ordinary(name):
+                    folder.exchange(name, target.name)
+            if not came_back or not folder.ordinary(target.name):
+                _put_back(folder, target, previous, stat.S_IMODE(os.fstat(read_fd).st_mode))
+    finally:
+        folder.flush()
+    raise _Changed(target)
+
+
 def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
     """Install ``writes`` ([(path, bytes)], the bibliography first; only ws.bib and
     ws.key_renames are taken) and return a Written. ``expected`` gives, for each path, the
@@ -597,25 +733,16 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                     if folder.identity(name) != identity:
                         raise OSError(errno.ESTALE, 'the prepared file was replaced by something else',
                                       str(target.parent / name))
-                    seen = folder.stamp(target.name)
-                    if folder.read(target.name)[0] != previous or folder.stamp(target.name) != seen:
-                        raise _Changed(target)
-                    if previous is not None and folder.exchange(name, target.name):
-                        # What came out must be the very file just read (same file, not written
-                        # since): two stat calls, so the new text stands unconfirmed for an instant
-                        # only. Otherwise it is taken back; and should the other program have
-                        # saved yet again in that instant, its newest save is the one left.
-                        placed = folder.identity(target.name) == identity
-                        if folder.stamp(name) != seen or not placed:
-                            folder.exchange(name, target.name)
-                            # The new text was in place and is not what came back: the other
-                            # program saved once more over it, and that newest save (an ordinary
-                            # file, nothing else) is the one to leave there.
-                            if placed and folder.identity(name) != identity and folder.ordinary(name):
-                                folder.exchange(name, target.name)
+                    with contextlib.ExitStack() as reading:
+                        # The file read stays open until the exchange has been looked at, so
+                        # "the very file just read" below cannot be another with its number.
+                        current, seen, read_fd = folder.read_held(target.name, reading)
+                        if current != previous:
                             raise _Changed(target)
-                        installed.append((target, folder, previous))
-                        continue
+                        if previous is not None and folder.exchange(name, target.name):
+                            _confirm(folder, target, name, identity, seen, read_fd, previous)
+                            installed.append((target, folder, previous))
+                            continue
                     intact = folder.move(name, target.name, identity)
                     installed.append((target, folder, previous))
                     if not intact:
@@ -630,10 +757,14 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                     try:
                         untouched = folder.read(target.name)[0] == written[target]
                     except OSError:
-                        untouched = False
-                    if untouched:
+                        # A link (or anything that is no file) where this write put a file: the
+                        # prepared name was swapped for it as it was moved. Not anyone's save.
+                        untouched = not folder.ordinary(target.name)
+                    try:
+                        if not untouched:
+                            raise OSError(errno.EBUSY, 'changed by something else', str(target))
                         folder.put(target.name, previous)
-                    else:
+                    except OSError:
                         conflicts.append(target)
                 if conflicts:
                     from .errors import WriteConflict
