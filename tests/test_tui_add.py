@@ -429,8 +429,8 @@ def test_a_real_model_reading_is_proposed_with_page_quotes_and_stays_unverified(
             await T.press(pilot, "enter")
             await T.press(pilot, "m")
             assert "[1] Dartmouth Chat (the default): set up" in T.shown(app, "#question")
-            await T.press(pilot, "1")
-            await T.settle(pilot, timeout=300)
+            await pilot.press("1")                       # the adapter allows the model 240 s, twice
+            await T.settle(pilot, timeout=600)
             assert name(app) == "ProposalScreen" and "read from the PDF by a model" in T.screen_text(app)
             findings = T.shown(app, "#findings")
             assert any(row[2].startswith("model reading, p.1") for row in T.changes(app).values())
