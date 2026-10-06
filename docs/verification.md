@@ -288,7 +288,9 @@ change to send. Before the file is touched, a record of the rows about to be add
 kept durably in `.bibcheck/approval-send/pending.json` (`writer.keep_record`). The file is
 read and replaced whole by name within its folder held open (`writer._Folder`, `O_NOFOLLOW`):
 a link in the place of `verification/` or of the file is refused before anything is read,
-and there is no half-written line. `api.settle_approval_send` settles the record: when the
+and there is no half-written line. (That holds for the library's folder and what is in it.
+The folders above the library, the path the library was opened by, are taken as the
+user's own and are not walked link by link.) `api.settle_approval_send` settles the record: when the
 send raises (the append and the progress callbacks are inside the protected block), when it
 succeeds, and whenever the library's lock is taken (`library.transaction`), which settles a
 send that was killed. If the file holds exactly what the send left and no commit holds it,
