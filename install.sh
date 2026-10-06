@@ -35,6 +35,12 @@
 
 set -eu
 
+# The folders uv names are read from its output. With colour forced in the environment
+# (FORCE_COLOR, CLICOLOR_FORCE) uv writes colour codes into them, so colour is off here.
+unset FORCE_COLOR CLICOLOR_FORCE
+NO_COLOR=1
+export NO_COLOR
+
 PACKAGE=cdlbib
 REPOSITORY=https://github.com/ContextLab/CDL-bibliography
 UV_INSTALLER=https://astral.sh/uv/install.sh

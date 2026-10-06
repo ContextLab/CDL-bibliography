@@ -479,6 +479,19 @@ def test_uv_present_and_the_default_python_too_old(box, online, shell):
 
 
 @need_uv
+def test_colour_forced_in_the_environment_does_not_reach_the_paths_the_script_reads(box, online):
+    """Found on 2026-10-06 by installing for real from a session with FORCE_COLOR=3: uv then
+    prints its folders with colour codes, the script took them as part of the path, and
+    reported a failed install that had succeeded."""
+    box.with_uv().with_python()
+    result = box.run(env=dict(box.env(), FORCE_COLOR="3", CLICOLOR_FORCE="1"))
+    out = ok(result)
+    assert "\x1b" not in result.stdout and "\x1b" not in result.stderr
+    assert "Installed: cdlbib 2.0.0" in out and f"Command:   {box.bin}/cdlbib (installed with uv)" in out
+    assert box.installed() == "cdlbib 2.0.0"
+
+
+@need_uv
 def test_running_again_changes_nothing_but_the_package_and_downloads_no_second_python(box, online):
     box.with_uv().with_old_python()
     ok(box.run())
