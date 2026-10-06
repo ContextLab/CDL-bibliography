@@ -10,15 +10,18 @@
 #   - uv is used where it is found (version 0.5.0 or later);
 #   - when uv is missing (or older), the script says so and downloads uv with uv's own
 #     installer (https://astral.sh/uv/install.sh) into a folder of its own;
-#   - when no Python 3.11 or later is installed, uv downloads one into uv's own folder.
+#   - the environment is made with a Python 3.11, 3.12 or 3.13 (the versions the package is
+#     tested on); when none is installed, uv downloads one into uv's own folder.
 #     The Python already on the computer and the default `python` are not changed.
 # With --no-uv nothing but the package is downloaded: an installed uv is used, else a
-# virtual environment is made with the newest Python 3.11+ on PATH.
+# virtual environment is made with the newest Python from 3.11 to 3.13 on PATH.
 # Running it again upgrades or repairs the installation in place.
 #
 # It never uses sudo, never edits a shell profile, and writes only to:
 #   ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/   install-state, uv/ (a downloaded uv),
+#                                                  dist/ (the wheel built from a checkout),
 #                                                  venv/ (--no-uv without uv)
+#   the checkout, when it is the source: build/ and src/cdlbib.egg-info/ (the build's own)
 #   ${XDG_BIN_HOME:-$HOME/.local/bin}/             links to the commands (--no-uv without uv)
 #   the folders of uv: `uv tool dir`, `uv tool dir --bin`, `uv python dir`, `uv cache dir`
 #   a temporary folder, removed when the script ends
@@ -37,7 +40,7 @@ REPOSITORY=https://github.com/ContextLab/CDL-bibliography
 UV_INSTALLER=https://astral.sh/uv/install.sh
 UV_MINIMUM=0.5.0    # the first uv whose installer takes UV_UNMANAGED_INSTALL; `uv tool install`
                     # has --with, --force and --reinstall-package, and `uv tool dir` has --bin
-PYTHON_REQUEST='>=3.11'
+PYTHON_REQUEST='>=3.11,<3.14'    # the versions the package's tests run on
 
 usage() {
     cat <<'EOF'
@@ -56,7 +59,7 @@ Options:
   --pypi          install cdlbib from PyPI instead of from GitHub or the checkout
   --ask           ask before installing and before downloading uv; without a terminal,
                   install nothing and print the commands instead
-  --no-uv         never download uv: use an installed uv, else a Python 3.11+ on PATH,
+  --no-uv         never download uv: use an installed uv, else a Python 3.11 to 3.13 on PATH,
                   else print what to install
   --uninstall     remove what this script installed
   --help          show this text
@@ -66,10 +69,11 @@ Source: the checkout this script sits in (when run as a file from one and none o
 
 How: with `uv tool install`. A uv on PATH (0.5.0 or later) is used; when there is none,
 the script says so and downloads uv with its installer (https://astral.sh/uv/install.sh)
-into ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/uv. When no Python 3.11 or later is
-installed, uv downloads one into its own folder; the default python is not changed.
+into ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/uv. The environment is made with a
+Python 3.11, 3.12 or 3.13; when none is installed, uv downloads one into its own folder.
+The default python is not changed.
 With --no-uv and no uv, a virtual environment is made in
-${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/venv with the newest Python 3.11+ on PATH,
+${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/venv with the newest Python from 3.11 to 3.13 on PATH,
 with links in ${XDG_BIN_HOME:-$HOME/.local/bin}.
 
 Running the script again upgrades or repairs the installation in place. It never uses
@@ -230,28 +234,45 @@ usable() {
     return 0
 }
 
-# Is the uv program $1 at least UV_MINIMUM?
-uv_new_enough() {
-    numbers=$("$1" --version 2>/dev/null | sed -n 's/^uv \([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1 \2/p' | sed -n 1p)
-    case $numbers in
-        ''|*[!0-9\ ]*) return 1 ;;
+# Is "MAJOR MINOR" at least UV_MINIMUM (0.5)? Anything that is not two numbers is not.
+new_enough() {
+    case $1 in
+        *[!0-9\ ]*) return 1 ;;
+        [0-9]*\ [0-9]*) ;;
+        *) return 1 ;;
     esac
-    major=${numbers% *}
-    minor=${numbers#* }
+    major=${1% *}
+    minor=${1#* }
+    case $major$minor in
+        *\ *) return 1 ;;
+    esac
     [ "$major" -gt 0 ] || [ "$minor" -ge 5 ]
 }
 
-# The newest released Python 3.11+ on PATH (the version is asked of the program, not read
+# Is the uv program $1 at least UV_MINIMUM?
+uv_new_enough() {
+    new_enough "$("$1" --version 2>/dev/null | sed -n 's/^uv \([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1 \2/p' | sed -n 1p)"
+}
+
+# Is the file $1 the installer of a uv that is at least UV_MINIMUM, and does it know the
+# variable that keeps it out of shell profiles? (Older installers ignore that variable,
+# install into ~/.cargo/bin and edit the profiles.)
+installer_new_enough() {
+    new_enough "$(sed -n 's/^APP_VERSION="\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1 \2/p' "$1" | sed -n 1p)" || return 1
+    grep -q 'UV_UNMANAGED_INSTALL' "$1"
+}
+
+# The newest released Python 3.11 to 3.13 on PATH (the version is asked of the program, not read
 # from its name), in $python; fails when there is none.
 find_python() {
     python=""
     best=0
-    for name in python3.14 python3.13 python3.12 python3.11 python3 python; do
+    for name in python3.13 python3.12 python3.11 python3 python; do
         candidate=$(program "$name") || continue
         usable "$candidate" || continue
         minor=$("$candidate" -I -B -c 'import sys
 v = sys.version_info
-print(v[1] if v[0] == 3 and v[1] >= 11 and v.releaselevel == "final" else 0)' 2>/dev/null) || continue
+print(v[1] if v[0] == 3 and 11 <= v[1] <= 13 and v.releaselevel == "final" else 0)' 2>/dev/null) || continue
         case $minor in
             ''|*[!0-9]*) continue ;;
         esac
@@ -360,7 +381,8 @@ remove_installed() {
                 warn "install.sh: uv was not found, so its $PACKAGE tool was left in place."
             elif "$old_uv" --no-config tool list 2>/dev/null | grep -q "^$PACKAGE "; then
                 run "$old_uv" --no-config tool uninstall "$PACKAGE" || warn "install.sh: uv did not uninstall $PACKAGE."
-            fi ;;
+            fi
+            rm -rf "$dist_dir" ;;
         venv)
             remove_venv_install ;;
         *)
@@ -373,6 +395,10 @@ remove_installed() {
 uninstall() {
     removed=0
     if remove_installed; then
+        removed=1
+    fi
+    if [ -d "$dist_dir" ]; then
+        run rm -rf "$dist_dir"
         removed=1
     fi
     if [ -d "$own_uv_dir" ]; then
@@ -406,7 +432,15 @@ install_uv() {
     say "$1: downloading uv with its installer ($UV_INSTALLER, saved to a temporary file and run with sh) into $own_uv_dir; no shell profile is changed."
     confirm "Download and run the uv installer?"
     download "$UV_INSTALLER" "$tmp/uv-install.sh"
-    run "$env" UV_UNMANAGED_INSTALL="$own_uv_dir" "$shell" "$tmp/uv-install.sh"
+    if [ "$dry" != 1 ] && ! installer_new_enough "$tmp/uv-install.sh"; then
+        die "the file from $UV_INSTALLER is not the installer of uv $UV_MINIMUM or later (older installers change shell profiles): it was not run. Nothing was installed."
+    fi
+    # UV_UNMANAGED_INSTALL: uv goes into that folder and nowhere else, no shell profile and
+    # no environment setting is changed, and no update record is written. UV_NO_MODIFY_PATH
+    # says the same about profiles once more. Variables that would send uv elsewhere are
+    # not passed on.
+    unset UV_INSTALL_DIR CARGO_DIST_FORCE_INSTALL_DIR
+    run "$env" UV_UNMANAGED_INSTALL="$own_uv_dir" UV_NO_MODIFY_PATH=1 INSTALLER_NO_MODIFY_PATH=1 "$shell" "$tmp/uv-install.sh"
     uv=$own_uv_dir/uv
     if [ "$dry" != 1 ] && ! uv_new_enough "$uv"; then
         die "the uv installer did not leave a working uv in $own_uv_dir."
@@ -415,27 +449,47 @@ install_uv() {
 
 uv_tool_install() {
     # --force replaces commands that are already there (an earlier or interrupted run);
-    # --reinstall-package builds cdlbib again from the source, so a changed checkout or
+    # --reinstall-package installs cdlbib again from the source, so a changed checkout or
     # branch is picked up, while the other packages are only brought up to date.
     # pip goes into the environment so that cdlbib can install an optional extra later,
     # also when uv is not on PATH. --no-config: no uv.toml or pyproject.toml of any folder
     # (or of the user) changes what is installed or from where; uv's environment variables
     # still apply.
-    uv_spec=$spec
-    if [ "$source" = local ]; then
-        case $checkout in
-            *[!A-Za-z0-9._~/-]*)
-                # uv cannot read a requirement whose address has such a character, however
-                # it is written. The checkout is reached through a link with a fixed name in
-                # the temporary folder, which is the folder uv runs in.
-                say "The path of the checkout has characters that uv does not take in a requirement: it is installed through a link in the temporary folder. (\`uv tool upgrade\` will not find it later; run this script again to upgrade.)"
-                [ "$dry" = 1 ] || rm -f "$tmp/src"
-                run ln -s "$checkout" "$tmp/src"
-                uv_spec=./src$bracket ;;
-        esac
+    if [ "$source" != local ]; then
+        run "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
+            --reinstall-package "$PACKAGE" -- "$spec"
+        return
     fi
-    run "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
-        --reinstall-package "$PACKAGE" -- "$uv_spec"
+    # A checkout is never named to `uv tool install`: uv records where a tool came from and
+    # `uv tool upgrade` installs from there again. A wheel is built from the checkout in
+    # the temporary folder, put into a folder of the user's own (replacing the one of an
+    # earlier run), and that file is what uv installs and records. uv runs inside that
+    # folder and is given the file's name only, so no path is part of the requirement.
+    run "$uv" --no-config build --wheel --python "$PYTHON_REQUEST" --out-dir "$tmp/dist" -- "$checkout"
+    if [ "$dry" = 1 ]; then
+        say "+ cp $(quoted "$tmp/dist/$PACKAGE-VERSION-py3-none-any.whl") $(quoted "$dist_dir/")"
+        say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "./$PACKAGE-VERSION-py3-none-any.whl$bracket")"
+        return
+    fi
+    set -- "$tmp/dist/$PACKAGE"-*.whl
+    if [ $# -ne 1 ] || [ ! -f "$1" ]; then
+        die "uv built no wheel of $PACKAGE in $tmp/dist."
+    fi
+    wheel=${1##*/}
+    case $wheel in
+        *[!A-Za-z0-9._-]*) die "the wheel that was built has an unexpected name: $wheel" ;;
+    esac
+    mkdir -p "$dist_dir"
+    chmod 700 "$dist_dir"
+    cp "$1" "$dist_dir/.new"
+    mv -f "$dist_dir/.new" "$dist_dir/$wheel"
+    for old in "$dist_dir"/*.whl; do
+        [ "$old" = "$dist_dir/$wheel" ] || rm -f "$old"
+    done
+    rm -rf "$tmp/dist"
+    say "+ cd $(quoted "$dist_dir") && $(quoted "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force --reinstall-package "$PACKAGE" -- "./$wheel$bracket")"
+    (cd "$dist_dir" && "$uv" --no-config tool install --python "$PYTHON_REQUEST" --with pip --force \
+        --reinstall-package "$PACKAGE" -- "./$wheel$bracket")
 }
 
 main() {
@@ -509,6 +563,14 @@ main() {
         die "--pypi cannot be used together with --ref or --repo."
     fi
 
+    # CDLBIB_UV_INSTALLER names the installer of one version of uv, on uv's own site only.
+    case ${CDLBIB_UV_INSTALLER:-} in
+        '') ;;
+        *..*|*[!A-Za-z0-9./:-]*) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh." ;;
+        https://astral.sh/uv/[0-9]*/install.sh) UV_INSTALLER=$CDLBIB_UV_INSTALLER ;;
+        *) die "CDLBIB_UV_INSTALLER takes an address of the form https://astral.sh/uv/VERSION/install.sh." ;;
+    esac
+
     os=$(uname -s 2>/dev/null) || os=unknown
     case $os in
         Darwin|Linux) ;;
@@ -519,7 +581,7 @@ main() {
             esac
             warn "Install by hand with uv (https://docs.astral.sh/uv/):"
             warn "  uv tool install --python \"$PYTHON_REQUEST\" \"cdlbib @ git+$REPOSITORY\""
-            warn "or with Python 3.11 or later:"
+            warn "or with Python 3.11, 3.12 or 3.13:"
             warn "  python -m pip install \"cdlbib @ git+$REPOSITORY\""
             exit 1 ;;
     esac
@@ -535,6 +597,7 @@ main() {
     home_dir=$data_dir/$PACKAGE
     venv=$home_dir/venv
     own_uv_dir=$home_dir/uv
+    dist_dir=$home_dir/dist
     state=$home_dir/install-state
 
     trap 'if [ -n "$tmp" ] && [ "$dry" != 1 ]; then rm -rf "$tmp"; fi' EXIT
@@ -618,12 +681,12 @@ main() {
             if [ -n "$python" ]; then
                 warn "$python cannot make a virtual environment (its venv module or ensurepip is missing)."
             else
-                warn "no Python 3.11 or later was found on PATH."
+                warn "no Python 3.11, 3.12 or 3.13 was found on PATH."
             fi
             warn "Nothing was installed. Install one of these, then run this script again:"
             warn "  uv $UV_MINIMUM or later (https://docs.astral.sh/uv/getting-started/installation/;"
             warn "    an installed uv is updated with: uv self update)"
-            warn "  Python 3.11 or later with its venv module (macOS: https://www.python.org/downloads/"
+            warn "  Python 3.11, 3.12 or 3.13 with its venv module (macOS: https://www.python.org/downloads/"
             warn "    or brew install python; Debian/Ubuntu: apt-get install python3 python3-venv)"
             warn "or run the script without --no-uv, which downloads uv."
             exit 1
@@ -631,6 +694,14 @@ main() {
     fi
 
     need_git
+    if [ "$method" = uv ] && [ "$source" = local ]; then
+        # uv cannot install a file whose path has one of these characters, however the
+        # path is written; refused here, before anything is downloaded.
+        odd=$(printf '%s|' "$dist_dir" | LC_ALL=C tr -d 'A-Za-z0-9._~/ \200-\377-')
+        if [ "$odd" != '|' ]; then
+            die "uv cannot install from $dist_dir (the path has a character other than letters, digits, spaces and . _ ~ / -). Set XDG_DATA_HOME to a folder without such characters, or use --no-uv. Nothing was installed."
+        fi
+    fi
     say "Installing $PACKAGE from $from."
     # One temporary folder for the script and for the programs it runs (uv, pip and uv's
     # installer leave files in TMPDIR); it is removed when the script ends.
@@ -669,7 +740,7 @@ main() {
     case $method in
         uv)
             if [ "$dry" != 1 ] && ! "$uv" --no-config python find "$PYTHON_REQUEST" >/dev/null 2>&1; then
-                say "No Python 3.11 or later was found: uv downloads one into its own folder ($("$uv" --no-config python dir)); the default python is not changed."
+                say "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder ($("$uv" --no-config python dir)); the default python is not changed."
             fi
             # An environment that does not work (an interrupted run, deleted files) is
             # removed first, so that the result is the same as a first installation.
@@ -694,7 +765,7 @@ main() {
             fi ;;
         venv)
             if [ "$dry" != 1 ] && [ -d "$venv" ] && ! "$venv/bin/python" -I -c 'import sys, pip
-raise SystemExit(0 if sys.version_info >= (3, 11) else 1)' 2>/dev/null; then
+raise SystemExit(0 if (3, 11) <= sys.version_info[:2] <= (3, 13) else 1)' 2>/dev/null; then
                 # Not a working environment (an interrupted run, or its Python is gone).
                 run rm -rf "$venv"
             fi

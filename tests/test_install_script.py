@@ -8,17 +8,31 @@ with no Python at all). The package is installed from a copy of this checkout, i
 whose name has a space; its dependencies come from PyPI, so the tests that install need
 the network and are skipped by name without it.
 
-The tests that download uv itself (uv's installer from astral.sh, and one old uv from
-GitHub's releases) run only when asked for:
+The tests that download uv itself (uv's installer from astral.sh, and one old uv program
+from GitHub's releases) run only when asked for:
 
     CDLBIB_TEST_INSTALL_UV_DOWNLOAD=1 pytest tests/test_install_script.py
 
-No test writes into the real home folder: every test compares the real ~/.local/bin, uv's
-real tool folder and the shell profiles before and after."""
+No test runs an old uv installer (those ignore UV_UNMANAGED_INSTALL, install into
+~/.cargo/bin and edit shell profiles): the one test that names such an installer checks that
+install.sh downloads it and refuses to run it.
+
+No test writes outside pytest's temporary folder. Every program a test starts gets an
+environment that is written out in full here, never a copy of the tester's: HOME and every
+variable that tells uv, its installer, cargo, pipx or a shell where to write (XDG_*, UV_*,
+CARGO_HOME, RUSTUP_HOME, PIPX_*, ZDOTDIR) name folders of the test. For every test the
+tester's own environment has those variables pointing at a folder that must stay empty, and
+the home folder the test run started with (and the account's, when HOME was replaced) is
+compared before and after each test and before and after the module: shell profiles,
+~/.config/fish, ~/.config/uv, ~/.cargo/bin, ~/.local/bin and uv's tool folder.
+
+Run on macOS only so far. On Linux the script has been run by nothing but the step in
+.github/workflows/autocheck.yml; these tests have not been run there."""
 import os
 import platform
 import pty
 import pwd
+import re
 import shutil
 import signal
 import socket
@@ -33,7 +47,24 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "install.sh"
-REAL_HOME = Path(pwd.getpwuid(os.getuid()).pw_dir)
+# The home folders that no test may change: the account's, and the one this run started
+# with (they differ when the suite is run with HOME replaced).
+REAL_HOMES = sorted({Path(pwd.getpwuid(os.getuid()).pw_dir), Path(os.environ.get("HOME") or "/nonexistent")})
+# For the few programs that are only asked for their version: no folder of anyone's to write to.
+BARE = {"PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "HOME": "/nonexistent", "PYTHONDONTWRITEBYTECODE": "1"}
+# What tells uv, its installer, cargo, rustup, pipx and zsh where to write, with the place
+# under a test's home folder that each one names in the environment the tests make.
+WRITE_PLACES = {"XDG_DATA_HOME": ".local/share", "XDG_BIN_HOME": ".local/bin", "XDG_CACHE_HOME": ".cache",
+                "XDG_CONFIG_HOME": ".config", "XDG_STATE_HOME": ".local/state",
+                "UV_TOOL_DIR": ".local/share/uv/tools", "UV_TOOL_BIN_DIR": ".local/bin",
+                "UV_PYTHON_INSTALL_DIR": ".local/share/uv/python", "UV_PYTHON_BIN_DIR": ".local/bin",
+                "UV_INSTALL_DIR": ".local/uv-install-dir", "CARGO_HOME": ".cargo", "RUSTUP_HOME": ".rustup",
+                "PIPX_HOME": ".local/pipx", "PIPX_BIN_DIR": ".local/bin", "PIPX_MAN_DIR": ".local/share/man",
+                "ZDOTDIR": "."}
+# In the tester's own environment the same variables, and the caches, name a folder that
+# every test checks is still empty.
+LEAK_NAMES = (*WRITE_PLACES, "UV_CACHE_DIR", "UV_PYTHON_CACHE_DIR", "PIP_CACHE_DIR", "CARGO_DIST_FORCE_INSTALL_DIR",
+              "UV_UNMANAGED_INSTALL")
 SYSTEM = "/usr/bin:/bin:/usr/sbin:/sbin"
 # What a shell script, uv's installer, pip and a Python build may call. Linked one by one,
 # so that the PATH of a test holds no Python, no uv and no git unless the test adds it.
@@ -49,7 +80,7 @@ SHELLS = sorted({os.path.realpath(found) for found in ("/bin/sh", shutil.which("
 def version_of(program):
     try:
         out = subprocess.run([program, "-B", "-c", "import sys; print(*sys.version_info[:2])"],
-                             capture_output=True, text=True, timeout=30)
+                             capture_output=True, text=True, timeout=30, env=BARE)
         major, minor = out.stdout.split()
         return int(major), int(minor)
     except (OSError, ValueError, subprocess.TimeoutExpired):
@@ -59,7 +90,7 @@ def version_of(program):
 def real_executable(program):
     """The interpreter itself (on macOS /usr/bin/python3 only starts the developer tools' one)."""
     out = subprocess.run([program, "-B", "-c", "import sys; print(getattr(sys, '_base_executable', '') or sys.executable)"],
-                         capture_output=True, text=True, timeout=30)
+                         capture_output=True, text=True, timeout=30, env=BARE)
     return out.stdout.strip() or program
 
 
@@ -72,8 +103,19 @@ def old_python():
     return None
 
 
+def python_between(low, high):
+    """A real released Python whose version is from low to high on this computer, or None:
+    the one running the tests when it fits, else one found by name."""
+    for name in (sys.executable, *(f"python3.{minor}" for minor in range(high[1], low[1] - 1, -1))):
+        found = name if os.path.isabs(name) else shutil.which(name)
+        if found and low <= (version_of(found) or (0, 0)) <= high:
+            return real_executable(found)
+    return None
+
+
 OLD_PYTHON = old_python()
-NEW_PYTHON = real_executable(sys.executable)   # the tests themselves need Python 3.11 or later
+NEW_PYTHON = python_between((3, 11), (3, 13))      # what install.sh installs with
+NEWER_PYTHON = python_between((3, 14), (3, 19))    # newer than the package is tested on
 UV = shutil.which("uv")
 need_uv = pytest.mark.skipif(not UV, reason="uv is not installed")
 
@@ -86,23 +128,67 @@ def listing(folder):
         return {}
 
 
+def tree(folder):
+    """{relative name: (size, modification time)} of everything under a folder ({} when absent)."""
+    found = {}
+    for base, folders, files in os.walk(folder):
+        for name in folders + files:
+            path = Path(base) / name
+            try:
+                found[str(path.relative_to(folder))] = (path.lstat().st_size, path.lstat().st_mtime_ns)
+            except OSError:
+                found[str(path.relative_to(folder))] = None
+    return found
+
+
 def real_home_state():
+    """What no test may change, in each of REAL_HOMES. Nothing is read but names, sizes and times."""
     folders = (".local/bin", ".local/share/uv/tools", ".local/share/uv/python", ".local/share/cdlbib",
-               ".cargo/bin", ".config/uv", ".config/fish/conf.d", "Library/Application Support/cdlbib")
-    profiles = (".zshrc", ".zshenv", ".zprofile", ".profile", ".bashrc", ".bash_profile", ".bash_login")
-    state = {name: listing(REAL_HOME / name) for name in folders}
-    for name in profiles:
-        path = REAL_HOME / name
-        state[name] = (path.stat().st_size, path.stat().st_mtime_ns) if path.exists() else None
+               ".cargo/bin", "Library/Application Support/cdlbib")
+    trees = (".config/fish", ".config/uv")
+    files = (".zshrc", ".zshenv", ".zprofile", ".zlogin", ".profile", ".bashrc", ".bash_profile", ".bash_login",
+             ".cargo/env", ".cargo/env.fish", ".local/bin/env", ".local/bin/env.fish")
+    state = {}
+    for home in REAL_HOMES:
+        for name in folders:
+            state[f"{home}/{name}"] = listing(home / name)
+        for name in trees:
+            state[f"{home}/{name}/**"] = tree(home / name)
+        for name in files:
+            path = home / name
+            try:
+                state[f"{home}/{name}"] = (path.lstat().st_size, path.lstat().st_mtime_ns)
+            except OSError:
+                state[f"{home}/{name}"] = None
     return state
 
 
-@pytest.fixture(autouse=True)
-def nothing_of_the_users_touched():
+def real_home_changes(before):
+    after = real_home_state()
+    return [name for name in before if before[name] != after[name]]
+
+
+@pytest.fixture(scope="module", autouse=True)
+def real_home_is_the_same_after_the_module():
     before = real_home_state()
     yield
-    after = real_home_state()
-    changed = [name for name in before if before[name] != after[name]]
+    changed = real_home_changes(before)
+    assert not changed, ("while tests/test_install_script.py ran, these changed in the real home folder "
+                         f"(by a test, or by something else at the same time): {changed}")
+
+
+@pytest.fixture(autouse=True)
+def nothing_of_the_users_touched(tmp_path_factory, monkeypatch):
+    """The tester's environment names a folder of this test for everything that uv, its
+    installer, cargo, pipx or zsh would write; that folder stays empty, and the real home
+    folder stays as it was."""
+    leak = tmp_path_factory.mktemp("must-stay-empty")
+    for name in LEAK_NAMES:
+        monkeypatch.setenv(name, str(leak / name.lower()))
+    before = real_home_state()
+    yield
+    assert sorted(os.listdir(leak)) == [], "a program was started with the tester's environment and wrote there"
+    changed = real_home_changes(before)
     assert not changed, f"the run changed the real home folder: {changed}"
 
 
@@ -157,6 +243,8 @@ class Box:
         return self
 
     def with_python(self, program=NEW_PYTHON, name="python3"):
+        if not program:
+            pytest.skip("this computer has no Python 3.11, 3.12 or 3.13")
         self.link(name, program)
         return self
 
@@ -169,10 +257,19 @@ class Box:
         return self
 
     def env(self, **more):
+        """The whole environment of a program a test starts. Nothing is taken from the tester's."""
         env = {"HOME": str(self.home), "PATH": str(self.programs), "TMPDIR": str(self.tmp), "SHELL": "/bin/zsh",
                "LANG": "en_US.UTF-8", "UV_CACHE_DIR": str(self.caches / "uv"),
-               "UV_PYTHON_CACHE_DIR": str(self.caches / "uv-python"), "PIP_CACHE_DIR": str(self.caches / "pip")}
+               "UV_PYTHON_CACHE_DIR": str(self.caches / "uv-python"), "PIP_CACHE_DIR": str(self.caches / "pip"),
+               "GIT_CONFIG_GLOBAL": os.devnull, "GIT_CONFIG_NOSYSTEM": "1", "GIT_TERMINAL_PROMPT": "0"}
+        env.update({name: str(self.home / place) for name, place in WRITE_PLACES.items()})
         env.update(more)
+        assert not set(env) - set(more) - {"HOME", "PATH", "TMPDIR", "SHELL", "LANG", "UV_CACHE_DIR", "PIP_CACHE_DIR",
+                                           "UV_PYTHON_CACHE_DIR", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_NOSYSTEM",
+                                           "GIT_TERMINAL_PROMPT", *WRITE_PLACES}
+        for name, value in env.items():
+            if name in WRITE_PLACES or name in ("HOME", "TMPDIR", "UV_CACHE_DIR", "PIP_CACHE_DIR", "UV_PYTHON_CACHE_DIR"):
+                assert Path(value).is_relative_to(self.root.parent) or Path(value).is_relative_to(self.caches), (name, value)
         return env
 
     def command(self, *args, shell="/bin/sh", script=None):
@@ -267,7 +364,7 @@ def test_no_uv_option_with_a_python_that_is_too_old_installs_nothing_and_says_wh
     out = box.with_old_python().run("--no-uv", shell=shell)
     assert out.returncode == 1, out.stdout + out.stderr
     assert "uv was not found, --no-uv was given, and" in out.stderr
-    assert "no Python 3.11 or later was found on PATH." in out.stderr
+    assert "no Python 3.11, 3.12 or 3.13 was found on PATH." in out.stderr
     assert "Nothing was installed." in out.stderr and "https://docs.astral.sh/uv/getting-started/installation/" in out.stderr
     assert box.files() == set() and box.leftovers() == []
 
@@ -283,12 +380,12 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
     assert "--ask was given and there is no terminal to ask on: nothing is installed." in lines
     assert any(line.startswith(f"+ '{box.programs}/curl' --proto '=https' --tlsv1.2 -fsSL -o '") and
                line.endswith("/uv-install.sh' https://astral.sh/uv/install.sh") for line in lines), out.stdout
-    assert any(line.startswith(f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={own_uv}' '{box.programs}/sh' ")
-               for line in lines), out.stdout
-    assert "The path of the checkout has characters that uv does not take in a requirement" in out.stdout
-    assert any(line.startswith(f"+ ln -s '{box.checkout}' '") and line.endswith("/src'") for line in lines), out.stdout
-    assert (f"+ '{own_uv}/uv' --no-config tool install --python '>=3.11' --with pip --force "
-            "--reinstall-package cdlbib -- './src[tui]'") in lines, out.stdout
+    assert any(line.startswith(f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={own_uv}' 'UV_NO_MODIFY_PATH=1' "
+                               f"'INSTALLER_NO_MODIFY_PATH=1' '{box.programs}/sh' ") for line in lines), out.stdout
+    assert any(line.startswith(f"+ '{own_uv}/uv' --no-config build --wheel --python '>=3.11,<3.14' --out-dir '")
+               and line.endswith(f"/dist' -- '{box.checkout}'") for line in lines), out.stdout
+    assert (f"+ cd '{box.data}/dist' && '{own_uv}/uv' --no-config tool install --python '>=3.11,<3.14' --with pip "
+            "--force --reinstall-package cdlbib -- './cdlbib-VERSION-py3-none-any.whl[tui]'") in lines, out.stdout
     assert lines[-1] == "Nothing was installed. Run the script without --ask, or in a terminal, to install."
     assert box.files() == set() and box.leftovers() == []
 
@@ -297,8 +394,9 @@ def test_ask_without_a_terminal_installs_nothing_and_prints_the_commands(box):
 def test_ask_without_a_terminal_and_uv_present_prints_the_one_command(box):
     out = box.with_uv().run("--ask")
     assert out.returncode == 1, out.stdout + out.stderr
-    assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
-            "--reinstall-package cdlbib -- ./src") in out.stdout.splitlines()
+    assert (f"+ cd '{box.data}/dist' && '{box.programs}/uv' --no-config tool install --python '>=3.11,<3.14' "
+            "--with pip --force --reinstall-package cdlbib -- ./cdlbib-VERSION-py3-none-any.whl"
+            ) in out.stdout.splitlines()
     assert "astral.sh" not in out.stdout and box.files() == set()
 
 
@@ -366,7 +464,7 @@ def test_uv_present_and_the_default_python_too_old(box, online, shell):
     box.with_uv().with_old_python()
     before = version_of(str(box.programs / "python3")) if OLD_PYTHON else None
     out = ok(box.run(shell=shell))
-    assert "No Python 3.11 or later was found: uv downloads one into its own folder" in out
+    assert "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
     assert f"Command:   {box.bin}/cdlbib (installed with uv)" in out
     assert [path.name for path in box.pythons.iterdir() if path.name.startswith("cpython-")], "uv downloaded no Python"
@@ -388,7 +486,7 @@ def test_running_again_changes_nothing_but_the_package_and_downloads_no_second_p
     for _ in range(2):
         again = ok(box.run())
         assert "Installed: cdlbib 2.0.0" in again and box.installed() == "cdlbib 2.0.0"
-        assert "No Python 3.11 or later was found" not in again
+        assert "No Python 3.11, 3.12 or 3.13 was found" not in again
         assert box.files() == files
         assert listing(box.pythons) == pythons
     assert box.leftovers() == []
@@ -605,16 +703,22 @@ def test_no_uv_and_no_usable_python_downloads_uv_once(box, online, shell):
     own_uv = box.data / "uv" / "uv"
     assert (f"uv was not found: downloading uv with its installer (https://astral.sh/uv/install.sh, saved to a "
             f"temporary file and run with sh) into {box.data / 'uv'}; no shell profile is changed.") in out
-    assert "No Python 3.11 or later was found: uv downloads one into its own folder" in out
+    assert "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
+    assert (f"+ '{box.programs}/env' 'UV_UNMANAGED_INSTALL={box.data / 'uv'}' 'UV_NO_MODIFY_PATH=1' "
+            f"'INSTALLER_NO_MODIFY_PATH=1' '{box.programs}/sh' ") in out
+    # UV_INSTALL_DIR and CARGO_HOME are set in this environment (to folders of the test): uv
+    # went to neither, and no profile of the home folder (ZDOTDIR is the home folder) was made.
     assert own_uv.is_file() and not (box.bin / "uv").exists() and not (box.home / ".cargo").exists()
+    assert not (box.home / ".local" / "uv-install-dir").exists()
+    assert not [name for name in os.listdir(box.home) if name.startswith((".z", ".bash", ".profile"))]
     assert not (box.home / ".config").exists(), "uv's installer wrote a receipt or a profile"
     assert not [name for name in os.listdir(box.home) if not name.startswith(".local") and name != ".cache"]
     assert box.leftovers() == []
     files, uv_before, pythons = box.files(), own_uv.stat().st_mtime_ns, listing(box.pythons)
 
     again = ok(box.run(shell=shell))
-    assert "downloading uv" not in again and "astral.sh" not in again and "No Python 3.11" not in again
+    assert "downloading uv" not in again and "astral.sh" not in again and "No Python 3.11," not in again
     assert own_uv.stat().st_mtime_ns == uv_before and listing(box.pythons) == pythons and box.files() == files
 
     own_uv.write_bytes(b"")          # what a download that was cut off can leave
@@ -654,7 +758,8 @@ def old_uv(folder):
     with tarfile.open(archive) as tar:
         tar.extractall(folder, filter="data")
     program = folder / f"uv-{target}" / "uv"
-    assert subprocess.run([str(program), "--version"], capture_output=True, text=True).stdout.startswith("uv 0.4.0")
+    assert subprocess.run([str(program), "--version"], capture_output=True, text=True,
+                          env=BARE).stdout.startswith("uv 0.4.0")
     return str(program)
 
 
@@ -672,7 +777,8 @@ def test_an_older_uv_on_path_is_left_as_it_is(box, online, tmp_path):
     assert f"{box.programs}/uv is older than uv 0.5.0 and is left as it is: downloading uv with its installer" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
     assert os.path.getsize(program) == size
-    assert subprocess.run([program, "--version"], capture_output=True, text=True).stdout.startswith("uv 0.4.0")
+    assert subprocess.run([program, "--version"], capture_output=True, text=True,
+                          env=BARE).stdout.startswith("uv 0.4.0")
     again = ok(box.run())
     assert "downloading uv" not in again and f"uv={box.data}/uv/uv" in (box.data / "install-state").read_text()
 
@@ -757,7 +863,8 @@ def test_script_file_started_in_a_hostile_folder_installs_the_checkout_with_the_
                          text=True, timeout=1800, start_new_session=True)
     assert out.returncode == 0, out.stdout + out.stderr
     assert f"Installing cdlbib from the checkout {box.checkout}." in out.stdout
-    assert f"+ '{box.programs}/uv' --no-config tool install" in out.stdout
+    assert f"+ '{box.programs}/uv' --no-config build --wheel" in out.stdout
+    assert f"+ cd '{box.data}/dist' && '{box.programs}/uv' --no-config tool install" in out.stdout
     assert "Installed: cdlbib 2.0.0" in out.stdout and box.installed() == "cdlbib 2.0.0"
     nothing_ran(folder)
 
@@ -791,7 +898,7 @@ def test_decoys_inside_the_checkout_itself_are_not_run(box, online):
                              stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=1800,
                              start_new_session=True)
         assert out.returncode == 0, out.stdout + out.stderr
-        assert f"+ '{box.programs}/uv' --no-config tool install" in out.stdout
+        assert f"+ '{box.programs}/uv' --no-config build --wheel" in out.stdout
         assert box.installed() == "cdlbib 2.0.0"
         assert not (box.checkout / "RAN").exists(), (box.checkout / "RAN").read_text()
 
@@ -818,7 +925,7 @@ def test_piped_script_in_a_hostile_folder_never_takes_the_folder_as_its_source(b
         out = piped(box, folder, "--ask", path=path, **more)
         assert out.returncode == 1, out.stdout + out.stderr
         assert "Installing cdlbib from https://github.com/ContextLab/CDL-bibliography." in out.stdout
-        assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11' --with pip --force "
+        assert (f"+ '{box.programs}/uv' --no-config tool install --python '>=3.11,<3.14' --with pip --force "
                 "--reinstall-package cdlbib -- 'cdlbib @ git+https://github.com/ContextLab/CDL-bibliography'"
                 ) in out.stdout.splitlines()
         assert str(folder) not in out.stdout + out.stderr
@@ -911,24 +1018,76 @@ def awkward_checkout(box, plain=False):
     return folder
 
 
+def recorded(box):
+    """Everything uv and the installer wrote down about where the tool came from: uv's
+    receipt and every file of cdlbib's *.dist-info in the tool's environment, as one text."""
+    texts = [(box.tool / "uv-receipt.toml").read_text(encoding="utf-8")]
+    for info in (box.tool / "lib").glob("python*/site-packages/cdlbib-*.dist-info"):
+        for path in info.iterdir():
+            if path.is_file():
+                texts.append(path.read_text(encoding="utf-8", errors="replace"))
+    return "\n".join(texts)
+
+
+def temporary_folder_of(out):
+    """The temporary folder a run of the script used, read from the command it printed."""
+    (line,) = [line for line in out.splitlines() if " build --wheel " in line]
+    found = re.search(r"--out-dir '?(.+/cdlbib-install\.[A-Za-z0-9]+)/dist'? -- ", line)
+    return Path(found.group(1))
+
+
 @need_uv
-def test_checkout_whose_path_could_be_read_as_a_requirement_is_installed_with_uv(box, online):
-    folder = awkward_checkout(box)
+@pytest.mark.parametrize("where", ["a path with a space", "a path that could be read as a requirement"])
+def test_uv_records_the_wheel_in_the_users_folder_and_nothing_in_a_temporary_folder(box, online, where):
+    """A checkout is installed as a wheel that the script builds and keeps in
+    ~/.local/share/cdlbib/dist (mode 700). uv records that file and nothing under TMPDIR, so
+    a package that someone later puts where the temporary folder was is never installed:
+    `uv tool upgrade cdlbib` leaves the tool as it is."""
+    folder = box.checkout if where == "a path with a space" else awkward_checkout(box)
     box.with_uv().with_python()
     out = ok(box.run("--extras", "tui"))
     assert f"Installing cdlbib from the checkout {folder}." in out
-    assert "The path of the checkout has characters that uv does not take in a requirement" in out
-    assert "--reinstall-package cdlbib -- './src[tui]'" in out
     assert "Installed: cdlbib 2.0.0" in out and box.installed() == "cdlbib 2.0.0"
+    dist = box.data / "dist"
+    assert sorted(os.listdir(dist)) == ["cdlbib-2.0.0-py3-none-any.whl"] and dist.stat().st_mode & 0o777 == 0o700
+    used = temporary_folder_of(out)
+    assert used.parent == box.tmp and not used.exists() and box.leftovers() == []
+    text = recorded(box)
+    assert f'path = "{dist}/cdlbib-2.0.0-py3-none-any.whl"' in text and 'extras = ["tui"]' in text
+    for forbidden in (str(box.tmp), "cdlbib-install.", str(folder), "/src"):
+        assert forbidden not in text.replace("/site-packages", ""), forbidden
     python = str(box.tool / "bin" / "python")
-    code = ("import textual, cdlbib, importlib.metadata as m, pathlib\n"
-            "print(pathlib.Path(cdlbib.__file__).parent.parent.name, m.version('cdlbib'))")
-    assert subprocess.run([python, "-c", code], env=box.env(), cwd=box.tmp, capture_output=True,
-                          text=True).stdout.strip() == "site-packages 2.0.0"
+    assert subprocess.run([python, "-I", "-c", "import textual"], env=box.env(), cwd=box.tmp).returncode == 0
+
+    # Someone recreates the temporary folder with a package of the same name in every place
+    # an earlier design could have recorded.
+    for decoy in (used / "src", used / "dist", used):
+        hostile_folder(decoy)
+    shutil.copytree(used / "src", used / "dist" / "cdlbib-2.0.0-py3-none-any.whl")
+    upgrade = subprocess.run([str(box.programs / "uv"), "--no-config", "tool", "upgrade", "cdlbib"], env=box.env(),
+                             cwd=box.tmp, capture_output=True, text=True, timeout=900)
+    assert upgrade.returncode == 0, upgrade.stdout + upgrade.stderr
+    assert box.installed() == "cdlbib 2.0.0" and recorded(box) == text
+    assert not list(used.rglob("RAN"))
+    shutil.rmtree(used)
+
+    # Again, and with a new version: one wheel, the same record, the same files.
+    files = box.files()
+    ok(box.run("--extras", "tui"))
+    assert box.files() == files and recorded(box).count(str(box.tmp)) == 0
     box.set_version("2.0.1")
     assert "Installed: cdlbib 2.0.1" in ok(box.run("--extras", "tui")) and box.leftovers() == []
+    assert sorted(os.listdir(dist)) == ["cdlbib-2.0.1-py3-none-any.whl"] and str(box.tmp) not in recorded(box)
     ok(box.run("--uninstall"))
-    assert not box.tool.exists()
+    assert not box.tool.exists() and not box.data.exists()
+
+
+@need_uv
+def test_data_folder_that_uv_cannot_install_from_is_refused_before_anything_is_done(box):
+    data = box.root / "data #1 [x]"
+    out = box.with_uv().with_python().run(env=box.env(XDG_DATA_HOME=str(data)))
+    assert out.returncode == 1 and f"uv cannot install from {data}/cdlbib/dist" in out.stderr, out.stdout + out.stderr
+    assert "Nothing was installed." in out.stderr and not data.exists() and box.files() == set()
 
 
 def test_checkout_whose_path_could_be_read_as_a_requirement_is_installed_with_pip(box, online):
@@ -948,17 +1107,62 @@ def test_checkout_whose_path_could_be_read_as_a_requirement_is_installed_with_pi
     assert "Installed: cdlbib 2.0.1" in ok(box.run("--no-uv", "--extras", "tui,pdf"))
 
 
+# --- the Python the environment is made with ---------------------------------------------------
+
 @need_uv
-def test_checkout_with_a_plain_path_is_named_to_uv_by_its_address(box, online):
-    """Letters, digits and . _ ~ / - only: uv gets `cdlbib @ file://PATH`, which its receipt
-    keeps, so the tool can also be upgraded with uv itself."""
-    folder = awkward_checkout(box, plain=True)
-    if any(character in str(folder) for character in " #@;[]"):
-        pytest.skip("the temporary folder of this run has no plain path")
-    out = ok(box.with_uv().with_python().run("--extras", "pdf"))
-    assert f"--reinstall-package cdlbib -- 'cdlbib[pdf] @ file://{folder}'" in out
-    assert "through a link" not in out and box.installed() == "cdlbib 2.0.0"
-    assert f'directory = "{folder}"' in (box.tool / "uv-receipt.toml").read_text()
+def test_uv_does_not_use_a_python_newer_than_the_package_is_tested_on(box, online):
+    """The only Python on PATH is 3.14 or later (a real one): uv is asked for >=3.11,<3.14,
+    so it downloads a 3.13 and the environment is made with that."""
+    if not NEWER_PYTHON:
+        pytest.skip("this computer has no Python 3.14 or later")
+    box.with_uv().with_python(NEWER_PYTHON)
+    assert version_of(str(box.programs / "python3")) >= (3, 14)
+    out = ok(box.run())
+    assert "No Python 3.11, 3.12 or 3.13 was found: uv downloads one into its own folder" in out
+    assert "--python '>=3.11,<3.14'" in out and box.installed() == "cdlbib 2.0.0"
+    assert (3, 11) <= version_of(str(box.tool / "bin" / "python")) <= (3, 13)
+    assert 'python = ">=3.11' in (box.tool / "uv-receipt.toml").read_text() and "<3.14" in (box.tool / "uv-receipt.toml").read_text()
+
+
+def test_no_uv_option_does_not_use_a_python_newer_than_the_package_is_tested_on(box):
+    if not NEWER_PYTHON:
+        pytest.skip("this computer has no Python 3.14 or later")
+    out = box.with_python(NEWER_PYTHON).run("--no-uv")
+    assert out.returncode == 1 and "no Python 3.11, 3.12 or 3.13 was found on PATH." in out.stderr, out.stdout + out.stderr
+    assert box.files() == set()
+
+
+@need_uv
+def test_uv_with_an_old_default_python_makes_the_environment_with_3_11_to_3_13(box, online):
+    ok(box.with_uv().with_old_python().run())
+    assert (3, 11) <= version_of(str(box.tool / "bin" / "python")) <= (3, 13)
+
+
+# --- the installer of uv -------------------------------------------------------------------------
+
+@download_uv
+def test_installer_of_a_uv_older_than_the_minimum_is_downloaded_but_never_run(box, online):
+    """CDLBIB_UV_INSTALLER names the installer of uv 0.4.0, which ignores UV_UNMANAGED_INSTALL,
+    installs into ~/.cargo/bin and edits shell profiles. install.sh reads its version and
+    refuses: nothing at all is written into the home folder of the test."""
+    if not box.link("curl"):
+        pytest.skip("curl is not installed")
+    out = box.run(env=box.env(CDLBIB_UV_INSTALLER="https://astral.sh/uv/0.4.0/install.sh"))
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert ("the file from https://astral.sh/uv/0.4.0/install.sh is not the installer of uv 0.5.0 or later "
+            "(older installers change shell profiles): it was not run. Nothing was installed.") in out.stderr
+    assert "UV_UNMANAGED_INSTALL=" not in out.stdout
+    assert box.files() == set() and box.leftovers() == []
+    assert not (box.home / ".cargo").exists() and not (box.home / ".zshrc").exists()
+
+
+def test_installer_address_must_be_one_of_uvs_own(box):
+    for address in ("https://example.org/uv/0.9.0/install.sh", "http://astral.sh/uv/0.9.0/install.sh",
+                    "https://astral.sh/uv/0.9.0/../../x/install.sh", "https://astral.sh/uv/0.9.0/install.sh?x",
+                    "https://astral.sh/uv/install.sh;x", "https://astral.sh.example.org/uv/0.9.0/install.sh"):
+        out = box.run(env=box.env(CDLBIB_UV_INSTALLER=address))
+        assert out.returncode == 1 and "CDLBIB_UV_INSTALLER takes an address of the form" in out.stderr, address
+    assert box.files() == set()
 
 
 # --- PATH entries that cannot be decided are left out --------------------------------------------

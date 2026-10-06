@@ -36,8 +36,8 @@ curl -LsSf https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/
 
 or, from a checkout of the repository, `sh install.sh`. The script installs `cdlbib`
 with [uv](https://docs.astral.sh/uv/) in an environment of its own. When `uv` is missing
-it says so and downloads it into `~/.local/share/cdlbib/uv/`; when no Python 3.11 or
-later is installed, `uv` downloads one into its own folder. The Python already installed
+it says so and downloads it into `~/.local/share/cdlbib/uv/`; when no Python 3.11, 3.12
+or 3.13 is installed, `uv` downloads one into its own folder. The Python already installed
 is not changed, no shell profile is edited and `sudo` is not used. `--ask` asks first,
 `--no-uv` downloads no `uv`, `--uninstall` removes what the script installed, and
 `--help` lists the options.
@@ -62,7 +62,7 @@ ERROR: Package 'cdlbib' requires a different Python: 3.9.13 not in '>=3.11'
 ```
 
 when the Python it belongs to (here 3.9.13) is older than 3.11. The install script does
-not use the default Python: `uv` finds a Python 3.11 or later, or downloads one, and
+not use the default Python: `uv` finds a Python from 3.11 to 3.13, or downloads one, and
 puts `cdlbib` into an environment made with it.
 
 The tool downloads the bibliography on first use and checks for updates when commands

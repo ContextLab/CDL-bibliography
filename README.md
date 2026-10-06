@@ -101,7 +101,7 @@ its own, and ends by running `cdlbib --version`:
 |-|-|
 |`uv` 0.5.0 or later is on `PATH`|uses it: `uv tool install`|
 |no `uv`, or an older one|prints one line saying so, downloads uv's installer (`https://astral.sh/uv/install.sh`) to a temporary file, and runs it so that `uv` goes into `~/.local/share/cdlbib/uv/` (`$XDG_DATA_HOME/cdlbib/uv/` when that variable is set); an older `uv` on `PATH` is left as it is|
-|no Python 3.11 or later|prints one line saying so; `uv` downloads a Python into its own folder. The Python already installed and the default `python` are not changed|
+|no Python 3.11, 3.12 or 3.13 (the versions the package is tested on; the script uses no other)|prints one line saying so; `uv` downloads a Python into its own folder. The Python already installed and the default `python` are not changed|
 
 The commands go into `~/.local/bin/` (the folder `uv tool dir --bin` prints). When that
 folder is not on `PATH`, the script prints the line to add for your shell; it does not
@@ -116,7 +116,7 @@ then removed and is installed again the next time it is needed.
 |`--repo URL`|installs from another `https` git repository|
 |`--pypi`|installs `cdlbib` from PyPI (for when it is published there)|
 |`--ask`|asks before downloading `uv` and before installing; without a terminal it installs nothing and prints the commands|
-|`--no-uv`|downloads no `uv`: uses a `uv` on `PATH`, else makes a virtual environment in `~/.local/share/cdlbib/venv/` with the newest Python 3.11+ on `PATH` and links the commands into `~/.local/bin/`; else prints what to install|
+|`--no-uv`|downloads no `uv`: uses a `uv` on `PATH`, else makes a virtual environment in `~/.local/share/cdlbib/venv/` with the newest Python from 3.11 to 3.13 on `PATH` and links the commands into `~/.local/bin/`; else prints what to install|
 |`--uninstall`|removes what the script installed|
 |`--help`|prints the options|
 
@@ -130,10 +130,16 @@ the checkout are not searched, by the script or by the programs it starts. `uv` 
 with `-I`, and both run in a temporary folder that is removed at the end. A checkout is
 the source only when the script is run as a file that lies in it.
 
-When the path of the checkout has a character other than letters, digits and `. _ ~ / -`
-(a space, for example), `uv` is given the checkout through a link in the temporary folder.
-`uv tool upgrade cdlbib` then cannot find the source later; running the script again
-upgrades.
+From a checkout, the script builds a wheel in the temporary folder, keeps it in
+`~/.local/share/cdlbib/dist/` (replacing the one of an earlier run) and installs that file.
+`uv` records that file as the tool's source, so `uv tool upgrade cdlbib` changes nothing;
+running the script again upgrades. The build leaves `build/` and `src/cdlbib.egg-info/`
+in the checkout. `--uninstall` removes the wheel.
+
+The installer of `uv` is run with `UV_UNMANAGED_INSTALL` set to the script's folder and
+`UV_NO_MODIFY_PATH=1`. The script reads the installer's version first and does not run
+one older than 0.5.0. `CDLBIB_UV_INSTALLER=https://astral.sh/uv/VERSION/install.sh`
+selects the installer of one version of `uv`.
 
 ### By hand
 
@@ -158,8 +164,8 @@ ERROR: Package 'cdlbib' requires a different Python: 3.9.13 not in '>=3.11'
 
 This message comes from `pip` when the Python it belongs to (here 3.9.13) is older than
 3.11. `pip` installs into its own Python, so the remedy is a newer Python, not a newer
-`pip`. The install script does not use the default Python: `uv` finds a Python 3.11 or
-later, or downloads one, and puts `cdlbib` into an environment made with it.
+`pip`. The install script does not use the default Python: `uv` finds a Python from 3.11
+to 3.13, or downloads one, and puts `cdlbib` into an environment made with it.
 
 ### The library
 
