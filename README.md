@@ -389,10 +389,29 @@ Use `--from FILE` for a UTF-8 file with one query per line. With no query argume
 so the citation services can identify your requests.
 
 The tool can build journal articles, arXiv preprints, papers in conference
-proceedings and book chapters from their source records. A chapter is built
-without its book's editors and place of publication, and a proceedings paper
-without a publisher or place: the record does not state them, or the citation
-check has no test for them, and the proposal lists them as unfilled. It does not
+proceedings and book chapters from their source records. What a record does not
+state is left out and listed in the proposal as unfilled:
+
+- A chapter is built without a place of publication, and a proceedings paper
+  without a publisher, place or editors.
+- A chapter's editors are written when the chapter's own Crossref record names
+  them. Most chapter records do not (Crossref keeps a book's editors on the
+  book's record), and the editors are then listed as unfilled.
+- A chapter's publisher is left out when the format check would write the
+  registry's name as another name: the registry names the current depositor
+  ("Springer US", "Springer New York"), which may not be the publisher printed
+  in the book.
+- The name of proceedings is written without its year and without the acronym
+  in parentheses at its end ("2017 IEEE Conference on Computer Vision and
+  Pattern Recognition (CVPR)" becomes "{IEEE} Conference on Computer Vision and
+  Pattern Recognition"), with ordinals and acronyms in the house form
+  [below](#verify).
+- The pages of an ACL Anthology paper are taken from the Anthology's own record,
+  which the citation check also reads; Crossref's page range for these papers is
+  sometimes wrong. If the Anthology cannot be read, Crossref's pages are
+  proposed as a question.
+
+It does not
 build books, theses, reports, software or datasets automatically. Enter those
 yourself and use `verify`. A linked published version
 is offered when the source records identify one. An identifier or close title
@@ -503,7 +522,11 @@ The formatting check verifies the following:
   - Article numbers and electronic locators that a journal prints instead of page numbers are kept as printed
   - Some types of errors may be autocorrected, although this must be treated with caution to ensure accuracy (e.g. "1002 - 15" may be autocorrected to "1002--1015")
 - Journal names must be properly capitalized and written out in full (e.g., "J. Neurosci" becomes "The Journal of Neuroscience").
-- Book titles must be properly capitalized and written out in full.
+- Book titles (the `booktitle` of a chapter or a proceedings paper) must be properly capitalized and written out in full.
+  - Ordinals are numerals with a superscript suffix: `30\textsuperscript{th}`, `21\textsuperscript{st}`.  A plain "30th" is rewritten wherever it stands.  An ordinal word is rewritten when it numbers a meeting ("the Fifth Annual Workshop" becomes "the 5\textsuperscript{th} Annual Workshop"); an ordinal word that is part of a title's wording ("Second Language Acquisition") is left alone, and a cardinal ("Thirty") is never made an ordinal.
+  - Acronyms keep their capitals, in curly braces: `{IEEE}`, `{ACM}`, `({MobiSys})`, `{NAACL}-{HLT}`.  A word typed with two or more capitals is braced as typed.  A name typed wholly in capitals is not read for acronyms.
+  - Four entries written with an ordinal word before this rule (decided 2026-10-06) are listed in [pending_house_forms.json](src/cdlbib/data/pending_house_forms.json).  The check names them on every run and does not count them as errors; the rule applies to every other entry.
+- The `edition` of a book is an ordinal in the same form: `2\textsuperscript{nd}` ("Second" and "2nd" are rewritten).
 - Article titles must be capitalized in sentence case, including the first word after a colon (e.g., "Memory: the review", not "Memory: The review").  Proper nouns and acronyms are protected with curly braces (e.g., "{fMRI} of the {Stroop} task").  Titles may not be (fully) enclosed in curly braces and may not end in '.'.  The checker can't tell a proper noun from an ordinary word, and it doesn't catch a capital "A" after a colon ("Memory: A review" passes), so check titles against the source.
 - Publisher names must be written out in full.
 - Addresses must be formatted properly:
@@ -662,6 +685,8 @@ cdlbib crossref status cdl.bib --keys manuscript-keys.txt
 ### How an entry is checked
 
 The checker first looks up the entry's DOI in Crossref. If there's no DOI, it searches Crossref by title and authors and compares the top candidates. A close title alone is never enough: to be verified, the entry's title, full author list (in order), year, and venue must match the source, and so must every other field the entry has (volume, issue, pages, publisher, DOI, and so on). If a DOI points to a different paper, the conflict is reported.
+
+The editors of a chapter, a proceedings paper or a book are compared the way authors are: the entry's `editor` field must be the record's whole list of editors, in order, by the same name rules. An entry with editors that the record does not name, or names differently, is `needs_review` and the result says which. An entry without an `editor` field is not asked for one. Ordinals compare equal however they are spelled ("Thirtieth", "30th", `30\textsuperscript{th}`).
 
 When Crossref can't settle an entry, the checker tries the other free sources in turn: PubMed records (through Europe PMC), the publisher's own front matter in open-access full text, library catalogues for books, preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite for software and datasets, the ACL Anthology, and the Society for Neuroscience abstract archive (which can identify an abstract, though [abstracts themselves aren't kept](#what-belongs-in-cdlbib)). Each source is only trusted for what it actually records. For example, a preprint server's record can verify a preprint but not the journal version.
 
@@ -978,7 +1003,9 @@ is skipped, and the skip names the program. CI installs these programs
 ([autocheck.yml](.github/workflows/autocheck.yml)). The tests in
 `tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
 (TinyTeX) and biber, about 140 MB, into pytest's temporary folder, and run only with
-`CDLBIB_TEST_TEX_INSTALL=1`. The three tests that call the live Dartmouth Chat service (in
+`CDLBIB_TEST_TEX_INSTALL=1`. CI sets it in a step of its own that runs before the system's
+TeX is installed, because those tests need a computer where `biber` and `bibtex` are not
+already in `/usr/bin`. The three tests that call the live Dartmouth Chat service (in
 `tests/test_intake_model.py`, `tests/test_tui_add.py` and `tests/test_web_flows.py`) run only
 with `CDLBIB_TEST_LIVE_MODEL=1` and a Dartmouth Chat key; a recorded real answer is replayed
 by `tests/test_intake_model.py` in every run.

@@ -739,3 +739,48 @@ table, and `check_bib(autofix=True)` of cdl.bib). The list of rows is frozen in
 | engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee | retarget | ieee conference on engineering in medicine, biology, and society | annual international conference of the ieee engineering in medicine and biology society | Same as the EMBC 2010 row: old target mis-expands 'Engineering in Medicine and Biology Society'. |
 | proc. intl. conference on learning and development (icdl) | retarget | proceedings of the international conference on learning and development | proceedings of the international conference on development and learning | ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name. |
 | mathematics $+$ physics | retarget | mathematics$+$ physics | mathematics $+$ physics | Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'. |
+
+## Builder and format rules (owner, 2026-10-06)
+
+Decisions of the owner on 2026-10-06, as given to Claude in the task brief of that day (the
+brief's wording is quoted where it is marked as the owner's; the rest is Claude's summary of
+the brief). What was built for each is in [verification.md](verification.md#editors-resolver-31).
+
+- **Editors are compared, and a chapter's are filled.** An `editor` field is compared with the
+  record's editors as authors are compared: complete, in order, by the same name rules. The
+  builder then fills `Editor` for a chapter from its record. Applied: `compare_record` compares
+  the field for `incollection`, `inproceedings` and `book`; an entry without the field is
+  compared exactly as before (all 37,270 saved Crossref comparisons of the baseline were
+  recomputed with the old and the new code: none differs for an entry without an `editor`
+  field; the 6,117 that differ are of entries with one, and differ only in the editor issue).
+  `RESOLVER_VERSION` 31; `POLICY` unchanged, because no entry with an `editor` field was ever
+  accepted through this comparison. What Claude found: Crossref rarely carries a book's
+  editors on the chapter's record (79 of 6,573 saved chapter candidates), so most chapters are
+  still built without editors; of the proceedings records that carry editors nearly all are
+  SPIE's.
+- **Ordinals: "numerals with superscript"** (the brief's quotation of the owner's choice), the
+  form the library uses: `30\textsuperscript{th}`. This extends the rule of 2026-09-25 ("Proper
+  ordinals everywhere", which names numeric ordinals) to ordinal words. Applied to `booktitle`
+  and `edition`. Claude's reading, not confirmed by the owner: an ordinal word is rewritten
+  only when it numbers a meeting ("the Fifth Annual Workshop"); "The Handbook of Second
+  Language Acquisition" (KrolSund03) and "... in the Twenty-First-Century University" (Hara96)
+  are not rewritten. The library had 44 book titles and 32 editions in the superscript form,
+  no plain "30th", and six book titles with an ordinal word; the rule changes four of them
+  (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96). Their data is NOT changed: they are listed in
+  `src/cdlbib/data/pending_house_forms.json` and the format check names them without failing,
+  until the owner approves the change.
+- **Acronyms in the titles of books and proceedings keep their capitals, in braces**
+  (`{IEEE}`, `{ACM}`). Applied to `booktitle`: a word given with two or more capitals is
+  braced as given. No existing entry is changed by it.
+- **ACL Anthology pages come from the Anthology.** The builder reads the Anthology's own
+  record through the Anthology check's client and cache and fills the pages from it; when it
+  cannot be read, Crossref's pages are proposed as a question, as before.
+- **Left as built.** A chapter's publisher is left out when the registry's name may not be
+  the publisher printed in the book, and the name of proceedings drops the year and the final
+  acronym.
+- **bibtex's version** is shown with its letter (`0.99e`).
+- **The tests that install biber and BibTeX for real run on every pull request.** Applied in
+  `.github/workflows/autocheck.yml`, in a step before the system's TeX is installed (those
+  tests need a computer without `/usr/bin/biber`). Their TeX Live's package manager is now
+  updated before anything is installed with it: the pinned TinyTeX release's `tlmgr` had fallen
+  behind the package repository and refused every installation.

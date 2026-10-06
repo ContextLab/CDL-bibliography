@@ -155,7 +155,7 @@ Deletion removes an entry from the current report. Identical content under anoth
 
 Fingerprint format `v2` is distinct from comparison `POLICY=2`. The upgrade retains the legacy hash calculation solely to recognize exact existing reviews. On an exact match, cache lookup appends a migrated row with the original policy, evidence and check time, plus `fingerprint_migration` provenance. It never relabels an edited entry. Run `status` before key renames when upgrading an old database; a legacy hash alone cannot establish that a renamed entry is otherwise unchanged. Two separate indexed queries avoid scanning the entire bibliography history for each lookup.
 
-`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
+`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. Revision 31 compares an `editor` field with the record's editors ([Editors](#editors-resolver-31)). A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
 
 Acceptance-restricting changes require a new `POLICY` or an explicit audit that reopens every affected approval. A policy mismatch invalidates cached reviews, including human decisions. Additive resolver improvements use `RESOLVER_VERSION` to revisit unresolved saved evidence once while preserving supported approvals and their original check times. Query-only changes do not invalidate already supported reviews. HTTP responses can be reused while applying revised comparisons.
 
@@ -418,6 +418,7 @@ Tests: `tests/test_approval_ledger.py`, and
 
 - Crossref deposits can be incomplete or incorrect. A metadata match is not independent corroboration from the PDF.
 - The Crossref comparison supports `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types (software and data in DataCite, repository preprints, catalogue books) need one of the other routes, and a field no route verifies blocks approval (`no deterministic verifier for this field`).
+- Crossref keeps a book's editors on the book's record. Few chapter records repeat them (79 of the 6,573 chapter records among the saved candidates of the 2026-09-30 baseline; 63 of 2,364 proceedings-paper records, nearly all of them SPIE's), so an `editor` field is seldom verified from Crossref ([Editors](#editors-resolver-31)).
 - A finite candidate set cannot establish global uniqueness. Exact title/author competitors among retrieved records block approval.
 - Initials agree with given names but do not establish personal identity. Use human source review for the stronger gate.
 - Direct Crossref publication dates must collapse to a single year, with one exception (resolver 28): when Crossref's print date and its issued date both equal the cited year, a later online/digitization date does not block, provided no linked PubMed, JATS or publisher record contradicts the print year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
@@ -769,6 +770,91 @@ every creator is compared in order. The SfN route can confirm a meeting abstract
 under the lab's rules conference abstracts are dropped from `cdl.bib` (see
 [Decision rules](#decision-rules-for-what-the-library-contains)).
 
+## Editors (resolver 31)
+
+Owner decision, 2026-10-06. The Crossref comparison (`verification.compare_record`)
+compares an entry's `editor` field with the record's `editor` list exactly as it compares
+authors (`author_evidence`, with the role named in the wording): the whole list, in order,
+surnames equal, initials agreeing with the source's given names, suffixes ignored, a
+byline listed twice counted once.
+
+|Entry|Record|Result|
+|-|-|-|
+|no `editor` field|any|no editor evidence and no editor issue: the comparison is the one made before this rule|
+|`editor` on `incollection`, `inproceedings` or `book`|names the same editors|`editor` evidence, no issue|
+|the same|names other editors, another order or another number|`editor: Editor surnames/order differ`, `editor: Missing editors or different editor counts`, `editor: Editor given names differ`, and so on|
+|the same|names no editors|`editor: the citation names editors and the source record names none`|
+|`editor` on any other type|any|`editor: no deterministic verifier for this field`, as before|
+
+This is an additive resolver change, so it raised `RESOLVER_VERSION` to 31 and not
+`POLICY`. Before it, every entry with an `editor` field got the issue `editor: no
+deterministic verifier for this field` from this comparison, so none was ever accepted
+through it; the rule can therefore accept entries that were unresolved and cannot
+withdraw an approval. Restoring `verification/baseline.jsonl.gz` and running `crossref
+auto-review --offline` gives the same status for every entry before and after the change
+(`human_verified=36, metadata_verified=6348`, and `pending` for the six entries added
+since the baseline was saved), with every saved result byte for byte the same.
+
+The entry builder (`complete.build`) writes a chapter's `Editor` from the chapter's own
+record when the record names editors, in the house name form, and lists the editors as
+unfilled otherwise. It does not fill the editors of a proceedings paper.
+
+## Ordinals and acronyms in book titles (2026-10-06)
+
+Owner decisions, 2026-10-06. Ordinals are numerals with a superscript suffix
+(`30\textsuperscript{th}`), and acronyms in the titles of books and proceedings keep their
+capitals in braces (`{IEEE}`). The format checker's formatter for `booktitle`
+(`helpers.format_booktitle`) and for `edition` (`helpers.format_edition`) writes both, and
+the builder uses the same formatter, so a built name is in the form the check accepts.
+
+|Given|Written|
+|-|-|
+|`16th Annual International Conference`|`16\textsuperscript{th} Annual International Conference`|
+|`the Fifth Annual Workshop`, `the Twenty-Third Annual Conference` (the ordinal numbers a meeting)|`the 5\textsuperscript{th} Annual Workshop`, `the 23\textsuperscript{rd} Annual Conference`|
+|`Second Language Acquisition`, `the Twenty-First-Century University` (the ordinal is part of the wording)|unchanged|
+|`the Thirty Years War`, `the 30 Annual Conference` (a cardinal)|unchanged|
+|`the 3th Workshop` (a numeral with the wrong suffix)|unchanged|
+|`NAACL-HLT`, `(MobiSys)`, `IEEE/CVF`, `ACM SIGKDD`|`{NAACL}-{HLT}`, `({MobiSys})`, `{IEEE/CVF}`, `{ACM} {SIGKDD}`|
+|a name given wholly in capitals|formatted as before: no acronym is read in it|
+|edition `Second`, `2nd`|`2\textsuperscript{nd}`|
+
+An ordinal word counts as numbering a meeting when the next word names a meeting
+(conference, workshop, symposium, meeting, congress, colloquium, convention, seminar,
+forum), with nothing between them but "annual", "biennial", "international", "national",
+"joint" and the like, or braced acronyms. Other ordinal words are left as written.
+
+The comparison reads the three spellings of an ordinal as equal (`verification.ordinal_form`,
+which reads the superscript form too), in the Crossref comparison and, since this change, in
+the ACL Anthology check's comparison of the proceedings' name.
+
+Four book titles of `cdl.bib` were written with an ordinal word that numbers a meeting
+before the rule. They are listed with their present and proposed text in
+`src/cdlbib/data/pending_house_forms.json`. The format check prints them on every run and
+does not count them as errors while each is exactly as listed; `--autofix` does not change
+them. Every other entry, and a listed entry whose text is anything else, is held to the rule.
+Changing the four entries changes their text, so their saved results would no longer apply
+and they would be verified again.
+
+## Builder rules left as built (2026-10-06)
+
+Two things the entry builder does were confirmed as they are:
+
+- A chapter's publisher is written from the Crossref record only when the format check's
+  publisher formatter leaves the registry's name as it is. A name the formatter turns into
+  another name (`Springer New York` becomes `Springer`) or respells (`Springer US` becomes
+  `Springer Us`) is not written, and the proposal lists it as unfilled: the registry names
+  the current depositor, which may not be the publisher printed in the book (AherBeat81:
+  Crossref has `Springer US`, the book's imprint is Plenum Press).
+- The name of proceedings is written without its year and without the acronym in
+  parentheses at its end (`verification.proceedings_name_forms`), the form the comparison
+  accepts for a source name with either.
+
+The builder reads the ACL Anthology's own record of an Anthology paper (through the
+Anthology check's client and cache, `acl_review.collect`) and takes the pages from it;
+Crossref's pages are proposed as a question only when the Anthology cannot be read or
+states no pages. The proposal is then checked as the gate checks it: when the Crossref
+comparison does not accept the entry, the Anthology check judges it.
+
 ## Correction, erratum and retraction notices
 
 A DOI-linked notice (from PubMed, JATS front matter, or a Crossref `update-to` /
@@ -889,4 +975,9 @@ change under `src/cdlbib/` or `verification/check_ci.py` separately.
 
 The separate `autocheck` workflow runs `cdlbib verify --no-citations` (the formatting
 check of `cdl.bib`) and `pytest tests` on Python 3.11 and 3.13 (job `test`), and builds the
-wheel and installs it into an empty environment (job `build`).
+wheel and installs it into an empty environment (job `build`). Before the system's TeX is
+installed, the `test` job runs `tests/test_texinstall.py` with `CDLBIB_TEST_TEX_INSTALL=1`:
+the tests that install biber and BibTeX for real, into a TeX Live of their own (TinyTeX,
+about 140 MB with biber). They assert that `biber` and `bibtex` are absent until
+installed, and their `PATH` includes `/usr/bin`, so they cannot run after the `apt`
+packages put both there; the step fails first if the runner already has one.
