@@ -40,6 +40,13 @@ LIBRARY = load_entries(ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib")
 
 ADDRESS = complete.Unfilled("address", "address: no source record states it", {})
 EDITOR = complete.Unfilled("editor", "editor: no source record states it", {})
+BOOKS_CROSSREF = "crossref (the book's own Crossref record)"
+BOOKS_CATALOGUE = "loc-catalogue (the book's Library of Congress record)"
+
+
+def with_editor(text, editors):
+    """An entry's text with an Editor line in its place (before Pages)."""
+    return text.replace("\tPages = ", "\tEditor = {" + editors + "},\n\tPages = ", 1)
 
 
 def library(key):
@@ -193,47 +200,65 @@ def test_a_chapter_is_built_byte_for_byte_as_the_library_has_it(client):
     # BobrNorm75, one of the three chapters of the library the verifier accepts from Crossref.
     assert record_of("10.1016/b978-0-12-108550-6.50010-0")["title"] == ["SOME PRINCIPLES OF MEMORY SCHEMATA"]
     proposal = propose(client, "10.1016/b978-0-12-108550-6.50010-0")
-    assert proposal.proposed_raw == library("BobrNorm75")
+    # The library's entry has no editors. Since the owner's decision of 2026-10-06 a chapter's
+    # editors are those of the book's own record, found by the chapter's ISBN: here the
+    # Library of Congress record (Crossref's record of the book names none).
+    assert "Editor" not in library("BobrNorm75")
+    assert proposal.proposed_raw == with_editor(library("BobrNorm75"), "D G Bobrow and A Collins")
+    assert change(proposal, "editor") == complete.FieldChange(
+        "editor", None, "D G Bobrow and A Collins", BOOKS_CATALOGUE, "filled")
     assert proposal.entry_type == "incollection" and proposal.status == "metadata_verified"
     assert proposal.complete is True and proposal.needs_decision is False and proposal.issues == []
-    # What the record cannot supply is listed, and is no reason for a decision. (The editor
-    # is a field the builder fills when the record names one, so it is listed in its place
-    # among the built fields, before the address.)
-    assert proposal.unfilled == [EDITOR, ADDRESS]
+    # What the record cannot supply is listed, and is no reason for a decision.
+    assert proposal.unfilled == [ADDRESS]
     assert client.requests == 0
 
 
-def test_a_chapter_whose_book_has_editors_is_built_without_them(client):
+def test_a_chapter_whose_book_has_editors_is_built_with_the_books_editors(client):
     # KahaEtal24, in The Oxford Handbook of Human Memory (edited by Kahana and Wagner). The
-    # chapter's Crossref record names no editor, so none is written.
+    # chapter's Crossref record names no editor; the book's own Crossref record, found by the
+    # chapter's ISBN, names both, and they are written (owner's decision 2026-10-06).
     record = record_of("10.1093/oxfordhb/9780190917982.013.2")
     assert "editor" not in record and "\tEditor = {M J Kahana and A D Wagner},\n" in library("KahaEtal24")
     assert record["container-title"] == ["The Oxford Handbook of Human Memory, Two Volume Pack"]
     proposal = propose(client, "10.1093/oxfordhb/9780190917982.013.2")
-    # Against the frozen library: no editor, and no braces around Oxford and University. The
-    # braces are the fixture's age: the format checker now writes both names without them.
-    assert proposal.proposed_raw == without(library("KahaEtal24"), "Editor").replace(
+    # Against the frozen library: no braces around Oxford and University. The braces are the
+    # fixture's age: the format checker now writes both names without them.
+    assert proposal.proposed_raw == library("KahaEtal24").replace(
         "{Oxford}", "Oxford").replace("{University}", "University")
+    assert change(proposal, "editor") == complete.FieldChange(
+        "editor", None, "M J Kahana and A D Wagner", BOOKS_CROSSREF, "filled")
     from cdlbib import helpers
     assert helpers.format_journal_name("The {Oxford} Handbook of Human Memory") == "The Oxford Handbook of Human Memory"
-    assert proposal.unfilled == [EDITOR, ADDRESS]
+    assert proposal.unfilled == [ADDRESS]
     assert proposal.status == "metadata_verified" and proposal.complete and not proposal.needs_decision
     assert client.requests == 0
 
 
-def test_typed_editors_are_kept_and_the_verifier_says_the_record_names_none(client):
-    # Since 2026-10-06 the verifier compares an editor field with the record's editors. This
-    # chapter's record names none, so the typed editors are kept, listed as stated by no
-    # source, and the verifier says what it could not compare them with.
+def test_typed_editors_are_kept_and_verified_by_the_books_record(client):
+    # Since 2026-10-06 the verifier compares an editor field with the record's editors, and for
+    # a chapter whose own record names none, with the book's own record. The library's entry
+    # is verified as it stands.
     proposal = complete.propose(complete.Query.from_entry(LIBRARY["KahaEtal24"]), client, client.cache)
     assert change(proposal, "editor") == complete.FieldChange(
         "editor", "M J Kahana and A D Wagner", "M J Kahana and A D Wagner", "typed", "kept")
-    assert proposal.unfilled == [EDITOR, ADDRESS]
-    assert proposal.status == "needs_review" and proposal.needs_decision is True
-    assert ("crossref 10.1093/oxfordhb/9780190917982.013.2: editor: the citation names editors and the source "
-            "record names none") in proposal.issues
-    assert not [issue for issue in proposal.issues if "no deterministic verifier" in issue]
+    assert proposal.unfilled == [ADDRESS]
+    assert proposal.status == "metadata_verified" and proposal.issues == []
     assert client.requests == 0
+
+
+def test_typed_editors_with_no_record_of_the_book_at_hand_are_kept_and_not_verified(client):
+    # The same entry when neither record of the book can be had (the saved lookups by ISBN are
+    # taken out of this client's cache, so both sources refuse): the typed editors are kept,
+    # the reason is given, and the verifier says what it could not compare them with.
+    with client.cache.db:
+        client.cache.db.execute("DELETE FROM responses WHERE request LIKE '%isbn%'")
+    proposal = complete.propose(complete.Query.from_entry(LIBRARY["KahaEtal24"]), client, client.cache)
+    assert change(proposal, "editor").kind == "kept"
+    assert unfilled(proposal, "editor").reason.startswith("editor: Crossref did not answer (offline: request to "
+                                                          "api.crossref.org refused); the Library of Congress")
+    assert proposal.status in ("needs_review", complete.LOOKUP_FAILED) and proposal.needs_decision is True
+    assert not [issue for issue in proposal.issues if "no deterministic verifier" in issue]
 
 
 def test_editors_a_record_names_are_written_in_house_form():
@@ -257,8 +282,11 @@ def test_a_series_number_after_a_book_title_is_not_part_of_it(client):
     # Klee56: Crossref's "Automata Studies. (AM-34)" (verification.book_title_forms).
     assert record_of("10.1515/9781400882618-002")["container-title"] == ["Automata Studies. (AM-34)"]
     proposal = propose(client, "10.1515/9781400882618-002")
-    assert proposal.proposed_raw == without(library("Klee56"), "Address", "Editor").replace("{University}", "University")
-    assert proposal.status == "metadata_verified" and proposal.unfilled == [EDITOR, ADDRESS]
+    # The editors are the book's own Crossref record's (owner's decision 2026-10-06), as the library has them.
+    assert proposal.proposed_raw == without(library("Klee56"), "Address").replace("{University}", "University")
+    assert change(proposal, "editor") == complete.FieldChange(
+        "editor", None, "C E Shannon and J McCarthy", BOOKS_CROSSREF, "filled")
+    assert proposal.status == "metadata_verified" and proposal.unfilled == [ADDRESS]
 
 
 def test_a_record_that_names_a_series_and_a_book_has_the_book_title_looked_up(client):
@@ -271,7 +299,8 @@ def test_a_record_that_names_a_series_and_a_book_has_the_book_title_looked_up(cl
     record = record_of("10.1007/978-0-387-21579-2_9")
     assert record["container-title"] == ["Lecture Notes in Statistics", "Nonlinear Estimation and Classification"]
     proposal = propose(client, "10.1007/978-0-387-21579-2_9")
-    assert proposal.proposed_raw == library("Scha03")
+    # The library's entry has no editors; they are the book's own Crossref record's.
+    assert proposal.proposed_raw == with_editor(library("Scha03"), "D D Denison and M H Hansen and C C Holmes and B Mallick and B Yu")
     assert change(proposal, "booktitle") == complete.FieldChange(
         "booktitle", None, "Nonlinear Estimation and Classification", "crossref (the book's own Crossref record)",
         "filled")
@@ -281,9 +310,11 @@ def test_a_record_that_names_a_series_and_a_book_has_the_book_title_looked_up(cl
     assert unfilled(proposal, "publisher") == complete.Unfilled(
         "publisher", "publisher: formatter changes the registry name", {"crossref": "Springer New York"})
     assert proposal.complete is True and proposal.needs_decision is False and proposal.status == "metadata_verified"
-    # Typed with its book title, as the library has it: every field is kept, and it is verified.
+    # Typed with its book title, as the library has it: every field is kept, the editors are
+    # filled, and it is verified.
     typed = complete.propose(complete.Query.from_entry(LIBRARY["Scha03"]), client, client.cache)
-    assert typed.proposed_raw == library("Scha03") and {c.kind for c in typed.changes} == {"kept"}
+    assert typed.proposed_raw == with_editor(library("Scha03"), "D D Denison and M H Hansen and C C Holmes and B Mallick and B Yu")
+    assert {c.field: c.kind for c in typed.changes if c.kind != "kept"} == {"editor": "filled"}
     assert typed.status == "metadata_verified" and typed.complete and not typed.needs_decision
     assert client.requests == 0
 
@@ -296,7 +327,8 @@ def test_a_publisher_name_the_formatter_respells_is_not_written(client):
     from cdlbib import helpers
     assert helpers.format_journal_name("Springer US", key=helpers.publisher_key, dotted_initials=True) == "Springer Us"
     proposal = propose(client, "10.1007/978-1-4684-1083-9_9")
-    assert proposal.proposed_raw == without(library("AherBeat81"), "Publisher")
+    assert proposal.proposed_raw == with_editor(without(library("AherBeat81"), "Publisher"),
+                                                "M P Friedman and J P Das and N O'Connor")
     assert unfilled(proposal, "publisher") == complete.Unfilled(
         "publisher", "publisher: formatter changes the registry name", {"crossref": "Springer US"})
     assert proposal.status == "metadata_verified" and proposal.complete

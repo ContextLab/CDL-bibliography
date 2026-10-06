@@ -2390,6 +2390,15 @@ def compare_record(fields, record, doi_alias=None):
         # list, in order, by the same name rules. An entry with no editor field is not asked
         # for one, whatever the record names.
         listed = record.get("editor") or []
+        book = None
+        if not listed and kind == "incollection":
+            # A chapter's record hardly ever names the book's editors: they are the editors
+            # of the book's own record, when one was found for this chapter by the rule of
+            # container_titles.book_editors and is kept in the record (resolver 32).
+            from .container_titles import valid_book_editors
+            book = valid_book_editors(record)
+            if book:
+                listed = book[0]
         editors, repeated_editors = collapse_repeated_byline(listed)
         try:
             editors_ok, detail = author_evidence(fields["editor"], editors, role="editor")
@@ -2398,8 +2407,14 @@ def compare_record(fields, record, doi_alias=None):
         evidence["editor"] = {"local": fields["editor"], "source": listed, "match": editors_ok, "detail": detail}
         if repeated_editors:
             evidence["editor"]["source_detail"] = repeated_editors
+        if book:
+            evidence["editor"]["source_record"] = {k: book[1].get(k) for k in ("source", "doi", "lccn", "isbn", "title")
+                                                   if book[1].get(k)}
         if not editors_ok:
-            issues.append("editor: " + detail if listed else NO_SOURCE_EDITORS)
+            looked = record.get("book-record") if isinstance(record.get("book-record"), dict) else {}
+            why = str(looked.get("reason") or "")
+            issues.append(("editor: " + detail + (" (the book's own record)" if book else "")) if listed
+                          else NO_SOURCE_EDITORS + ("; " + why if why else ""))
     years = set()
     for date in ("published", "published-print", "published-online", "issued"):
         for parts in record.get(date, {}).get("date-parts", []):
@@ -2680,6 +2695,17 @@ def verify_entry(entry, client):
             }
         )
         candidates = assess_candidates(fields, response)
+        for candidate in candidates:
+            # A chapter cited with editors whose record names none, and nothing else amiss:
+            # the book's own record is looked up (container_titles.book_editors), kept in the
+            # candidate's record, and the candidate is compared again.
+            if candidate["issues"] == [NO_SOURCE_EDITORS] and fields["ENTRYTYPE"].lower() == "incollection":
+                from .container_titles import BOOK_RECORD, book_editors
+                found = book_editors(candidate["record"], client)
+                if found:
+                    candidate["record"] = dict(candidate["record"], **{BOOK_RECORD: found})
+                    candidate["evidence"], candidate["issues"] = compare_record(
+                        fields, candidate["record"], response.get("doi_alias"))
         if candidates:
             good = [x for x in candidates if not x["issues"]]
             return outcome(

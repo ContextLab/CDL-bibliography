@@ -196,7 +196,7 @@ first result is the paper, `10.1038/s41586-021-03819-2`).
 ## `rule_responses.json`
 
 The lookups of `tests/test_complete_rules.py` (a chapter's editors, ordinals in the name of
-proceedings, the pages of an ACL Anthology paper): 8 responses, each requested once on
+proceedings, the pages of an ACL Anthology paper, a chapter's editors from the book's record): 28 responses, each requested once on
 2026-10-06 through `cdlbib.verification.PoliteClient`, in the form of `responses.json`.
 `record_rule_responses.py` beside this file is the script that made it: it fills an empty
 cache with `responses.json`, `type_responses.json` and what an earlier run of the script
@@ -218,3 +218,13 @@ from each saved URL. No body holds an e-mail address.
 | `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"` (2 requests) | `ReimGure19` and the Minsky chapter | the PubMed side of each entry the Crossref comparison did not accept at first (no result) |
 
 The Crossref record of `ReimGure19` (10.18653/v1/d19-1410) is in `type_responses.json`.
+
+The other 20 responses are the lookups of a chapter's BOOK by the chapter's ISBNs, for the
+book's editors (`container_titles.book_editors`): for the six chapters of
+`type_responses.json` (`KahaEtal24`, `Mann24`, `Klee56`, `BobrNorm75`, `Scha03`, `AherBeat81`)
+and two of `tests/fixtures/intake/chapters.json.gz` (`Mann23`, `MayeEtal92b`, with their
+chapter records). Each is a Crossref request `api.crossref.org/works?filter=isbn:<ISBN>,type:book,…`
+(the `request` is the client's cache key) or a Library of Congress search for the same ISBN
+(the `request` is the catalogue check's cache key, `loc-sru-v1:10:bath.isbn="<ISBN>"`, and the
+`response` is the search as that check caches it, with the MARCXML and its hash), and one
+Europe PMC lookup the verifier made for `Klee56` (no result).

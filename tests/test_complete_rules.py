@@ -367,3 +367,164 @@ def test_build_fills_the_anthologys_pages_only_from_a_usable_record():
     # A paper that is not the Anthology's is not touched by an Anthology record.
     cvpr = saved_record("10.1109/cvpr.2017.354")
     assert change(complete.build({"doi": cvpr["DOI"]}, cvpr, anthology=item), "pages").proposed == "3319--3327"
+
+
+# --- a chapter's editors are those of the book's own record (owner's decision 2026-10-06) ---------
+#
+# The chapters are entries of the frozen library; their Crossref records are in
+# type_responses.json. The lookups of each one's BOOK by the chapter's ISBN (Crossref's records
+# of a book type, then the Library of Congress catalogue: container_titles.book_editors) were
+# recorded once on 2026-10-06 into rule_responses.json.
+
+KAHANA, BOBROW = "10.1093/oxfordhb/9780190917982.013.2", "10.1016/b978-0-12-108550-6.50010-0"
+BOOKS_CROSSREF = "crossref (the book's own Crossref record)"
+BOOKS_CATALOGUE = "loc-catalogue (the book's Library of Congress record)"
+
+
+def test_a_chapter_is_built_with_the_books_editors_written_and_verified(client, tmp_path, monkeypatch):
+    from cdlbib import api, container_titles
+    from cdlbib.verification import load_entries, verify_entry
+    from cdlbib.workspace import Workspace
+    from test_complete_cli import refused_network
+    for name, value in refused_network().items():
+        monkeypatch.setenv(name, value)
+    record = saved_record(KAHANA)
+    assert "editor" not in record and record["ISBN"] == ["9780190917982", "9780190918019"]
+    # found: the book's own record, of a book type, with the chapter's ISBN and the book's title
+    found = container_titles.book_editors(record, client)
+    (source,) = found["sources"]
+    assert (source["source"], source["doi"], source["isbn"], source["type"]) == (
+        "crossref-book-record", "10.1093/oxfordhb/9780190917982.001.0001", "9780190917982", "edited-book")
+    assert source["title"] == record["container-title"][0] == "The Oxford Handbook of Human Memory, Two Volume Pack"
+    assert [(p["given"], p["family"]) for p in found["editor"]] == [("Michael J.", "Kahana"), ("Anthony D.", "Wagner")]
+    # built
+    ws = Workspace(tmp_path / "library")
+    ws.root.mkdir()
+    ws.bib.write_text("", encoding="utf-8")
+    proposal = complete.propose(complete.Query.parse(KAHANA), client, client.cache, ws=ws)
+    assert change(proposal, "editor") == complete.FieldChange("editor", None, "M J Kahana and A D Wagner", BOOKS_CROSSREF, "filled")
+    assert proposal.status == "metadata_verified" and proposal.issues == [] and not proposal.needs_decision
+    # written
+    assert api.apply_proposals(ws, [proposal]).written == ["KahaEtal24"]
+    entry = load_entries(ws.bib)["KahaEtal24"]
+    assert entry["fields"]["editor"] == "M J Kahana and A D Wagner" == LIBRARY["KahaEtal24"]["fields"]["editor"]
+    # verified: the verifier looks the book's record up by the same rule and keeps it with the candidate
+    result = verify_entry(entry, client)
+    assert result["status"] == "metadata_verified" and result["issues"] == []
+    (candidate,) = result["candidates"]
+    assert candidate["evidence"]["editor"]["match"] is True
+    assert candidate["evidence"]["editor"]["source_record"] == {
+        "source": "crossref-book-record", "doi": "10.1093/oxfordhb/9780190917982.001.0001", "isbn": "9780190917982",
+        "title": "The Oxford Handbook of Human Memory, Two Volume Pack"}
+    # ... and the saved candidate is judged again from what it holds, with no request (offline reassessment)
+    from cdlbib.auto_review import reassess
+    again = reassess(entry, result)
+    assert again["status"] == "metadata_verified" and again["candidates"][0]["evidence"] == candidate["evidence"]
+    assert client.requests == 0
+
+
+def test_typed_editors_that_are_not_the_books_need_review_with_the_reason(client, tmp_path):
+    typed = library("KahaEtal24").replace("{M J Kahana and A D Wagner}", "{M J Kahana and A D Wagoner}")
+    proposal = complete.propose(complete.Query.from_entry(typed_entry(tmp_path, typed)), client, client.cache)
+    assert change(proposal, "editor") == complete.FieldChange(
+        "editor", "M J Kahana and A D Wagoner", "M J Kahana and A D Wagner", BOOKS_CROSSREF, "question")
+    assert "\tEditor = {M J Kahana and A D Wagoner},\n" in proposal.proposed_raw   # the typed value stays until decided
+    assert proposal.status == "needs_review" and proposal.needs_decision is True
+    assert proposal.issues[0].startswith("editor: surname mismatch (crossref (the book's own Crossref record)): "
+                                         "cited 'A D Wagoner', source 'A D Wagner'")
+    assert f"crossref {KAHANA}: editor: Editor surnames/order differ (the book's own record)" in proposal.issues
+    # the other order, one editor too few, and a wrong initial
+    for editors, said in (("A D Wagner and M J Kahana", "editor: Editor surnames/order differ (the book's own record)"),
+                          ("M J Kahana", "editor: Missing editors or different editor counts (the book's own record)"),
+                          ("M J Kahana and B D Wagner", "editor: Editor given names differ (the book's own record)")):
+        fields = dict(LIBRARY["KahaEtal24"]["fields"], editor=editors)
+        record = dict(saved_record(KAHANA))
+        from cdlbib import container_titles
+        record[container_titles.BOOK_RECORD] = container_titles.book_editors(record, client)
+        assert said in compare_record(fields, record)[1], editors
+    assert client.requests == 0
+
+
+def test_a_chapter_whose_record_states_no_isbn_has_its_editors_left_unfilled_with_the_reason(client):
+    # Whitehouse 2004, in Progress in Brain Research (10.1016/s0079-6123(03)45022-x): the record of
+    # tests/fixtures/intake/chapters.json.gz carries no ISBN, so no record of the book can be looked up.
+    from intake_support import load_saved
+    load_saved(client, "chapters.json.gz")
+    doi = "10.1016/s0079-6123(03)45022-x"
+    record = client.crossref_doi(doi)["body"]["message"]
+    assert record["type"] == "book-chapter" and not record.get("ISBN") and not record.get("editor")
+    proposal = complete.propose(complete.Query.parse(doi), client, client.cache, allow_model=False)
+    assert unfilled(proposal, "editor") == complete.Unfilled(
+        "editor", "editor: the chapter's record states no ISBN, so the book's record cannot be looked up", {})
+    assert "Editor" not in (proposal.proposed_raw or "")
+    assert client.requests == 0
+
+
+def test_the_catalogue_names_the_editors_when_crossrefs_book_record_names_none(client):
+    # BobrNorm75: Crossref's record of the book (10.1016/c2009-0-22090-3) names no editor; the
+    # Library of Congress record (LCCN 75021630) names two.
+    from cdlbib import container_titles
+    found = container_titles.book_editors(saved_record(BOBROW), client)
+    assert [(s["source"], len(s["editor"])) for s in found["sources"]] == [("crossref-book-record", 0), ("loc-catalogue", 2)]
+    assert found["by"] == "loc-catalogue" and found["sources"][1]["lccn"] == "75021630"
+    proposal = propose(client, BOBROW)
+    assert change(proposal, "editor") == complete.FieldChange("editor", None, "D G Bobrow and A Collins", BOOKS_CATALOGUE, "filled")
+    assert proposal.status == "metadata_verified" and client.requests == 0
+
+
+def test_when_crossrefs_book_record_and_the_catalogue_disagree_no_editors_are_written(client):
+    """The two real records of BobrNorm75's book, with one part added in this test's own cache:
+    Crossref's book record, which names no editor, is given the catalogue's two in the other
+    order. Neither is chosen: the editors are unfilled, with both lists, and it is a decision.
+    An entry typed with either list is not verified by such a record."""
+    from cdlbib import container_titles
+    key = dumps(["https://api.crossref.org/works",
+                 {"filter": "isbn:9780121085506,type:book,type:edited-book,type:monograph,type:reference-book", "rows": 5},
+                 False])
+    saved = client.cache.response(key, float("inf"))
+    (item,) = saved["body"]["message"]["items"]
+    assert item["DOI"] == "10.1016/c2009-0-22090-3" and not item.get("editor")
+    item["editor"] = [{"given": "Allan", "family": "Collins"}, {"given": "Daniel G.", "family": "Bobrow"}]
+    client.cache.save_response(key, saved)
+
+    record = saved_record(BOBROW)
+    found = container_titles.book_editors(record, client)
+    assert "editor" not in found and found["disagreement"] is True
+    assert found["reason"] == ("the book's Crossref record and its Library of Congress record name different editors, "
+                               "and neither is chosen")
+    proposal = propose(client, BOBROW)
+    assert "Editor" not in proposal.proposed_raw
+    assert unfilled(proposal, "editor") == complete.Unfilled(
+        "editor", "editor: " + found["reason"],
+        {"crossref-book-record": "Allan Collins; Daniel G. Bobrow", "loc-catalogue": "Daniel G. Bobrow; Allan Collins"})
+    assert proposal.needs_decision is True and any(i.startswith("editor: " + found["reason"]) for i in proposal.issues)
+    fields = dict({c.field: c.proposed for c in proposal.changes}, ENTRYTYPE="incollection")
+    for editors in ("D G Bobrow and A Collins", "A Collins and D G Bobrow"):
+        _, issues = compare_record(dict(fields, editor=editors), dict(record, **{container_titles.BOOK_RECORD: found}))
+        assert issues == ["editor: the citation names editors and the source record names none; " + found["reason"]]
+    assert client.requests == 0
+
+
+def test_saved_book_evidence_is_judged_again_and_never_taken_from_another_book_or_a_series(client):
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    found = container_titles.book_editors(record, client)
+    fields = dict(LIBRARY["KahaEtal24"]["fields"])
+    fields.pop("address", None)
+    good = dict(record, **{container_titles.BOOK_RECORD: found})
+    assert compare_record(fields, good)[1] == []
+    none = ["editor: the citation names editors and the source record names none"]
+    # evidence found under an ISBN that is not the chapter's, under another title, or altered after it was found
+    other_isbn = dict(found, sources=[dict(found["sources"][0], isbn="9780387954714")])
+    other_title = dict(found, sources=[dict(found["sources"][0], title="Oxford Handbooks Online", names=["Oxford Handbooks Online"])])
+    altered = dict(found, editor=[{"given": "Someone", "family": "Else"}])
+    for bad in (other_isbn, other_title, altered, {"editor": found["editor"]}, "Kahana and Wagner"):
+        assert compare_record(fields, dict(record, **{container_titles.BOOK_RECORD: bad}))[1] == none
+    # a record that is not of a book type is never read (a series has the type book-series)
+    assert "book-series" not in container_titles.BOOK_TYPES
+    # an entry of another type is not given a book's editors
+    assert "editor: the citation names editors and the source record names none" in compare_record(
+        dict(fields, ENTRYTYPE="inproceedings"), good)[1]
+    # and an entry without an editor field is compared as before, whatever was found
+    bare = {k: v for k, v in fields.items() if k != "editor"}
+    assert compare_record(bare, good) == compare_record(bare, record)

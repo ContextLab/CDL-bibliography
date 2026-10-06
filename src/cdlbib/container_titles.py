@@ -114,9 +114,11 @@ def decide(titles, book_names):
     return hits[0] if len(hits) == 1 else None
 
 
-def from_crossref(client, record, titles):
-    """Step 1: a Crossref record of a book type that carries one of the chapter's ISBNs and
-    whose title (with or without its subtitle) is one of the two titles."""
+def crossref_books(client, record):
+    """The one lookup of a chapter's book at Crossref: for each of the chapter's ISBNs, the
+    records of a book type (never a series: ``BOOK_TYPES``) that carry that ISBN, as
+    ``(isbn, item, names, response)``; ``names`` is the record's title, with and without its
+    subtitle."""
     for isbn in _isbns(record):
         response = client.get(WORKS, {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in BOOK_TYPES), "rows": 5})
         items = (response.get("body") or {}).get("message", {}).get("items", [])
@@ -130,6 +132,25 @@ def from_crossref(client, record, titles):
             subtitles = [t for t in item.get("subtitle") or [] if isinstance(t, str)]
             if len(names) == 1 and len(subtitles) == 1:
                 names.append(names[0] + ": " + subtitles[0])
+            yield isbn, item, names, response
+
+
+def catalogue_books(client, cache, record):
+    """The one lookup of a chapter's book in the Library of Congress catalogue: for each of
+    the chapter's ISBNs, the records with that ISBN, as ``(isbn, xml, whole title, found)``."""
+    from .book_build import record_title
+    from .catalogue_discovery import fetch_query, identifier_query
+    for isbn in _isbns(record):
+        found = fetch_query(cache, client, identifier_query("isbn", isbn))
+        for xml in found["records"]:
+            yield isbn, xml, record_title(xml), found
+
+
+def from_crossref(client, record, titles):
+    """Step 1: a Crossref record of a book type that carries one of the chapter's ISBNs and
+    whose title (with or without its subtitle) is one of the two titles."""
+    if True:
+        for isbn, item, names, response in crossref_books(client, record):
             chosen = decide(titles, names)
             if chosen:
                 other = next(t for t in titles if t != chosen)
@@ -147,12 +168,10 @@ def from_catalogue(client, cache, record, titles):
     """Step 2: a Library of Congress record with one of the chapter's ISBNs whose transcribed
     title (with or without its subtitle) is one of the two titles."""
     import xml.etree.ElementTree as ET
-    from .book_build import record_title, summary
-    from .catalogue_discovery import M, fetch_query, identifier_query
-    for isbn in _isbns(record):
-        found = fetch_query(cache, client, identifier_query("isbn", isbn))
-        for xml in found["records"]:
-            whole = record_title(xml)
+    from .book_build import summary
+    from .catalogue_discovery import M
+    if True:
+        for isbn, xml, whole, found in catalogue_books(client, cache, record):
             chosen = decide(titles, [whole, whole.split(":")[0]])
             if not chosen:
                 continue
@@ -170,6 +189,118 @@ def from_catalogue(client, cache, record, titles):
                           "isbn": isbn, "title": whole, "series": series, "url": found["url"],
                           "document_sha256": found["document_sha256"], "retrieved_at": found["retrieved_at"]})
     return None
+
+
+# --- the editors of a chapter's book ----------------------------------------------------------------
+#
+# Owner's decision 2026-10-06: a chapter's editors come from the BOOK's record. A chapter's own
+# Crossref record hardly ever names them. The book's record is the one the two steps above
+# find: a Crossref record of a book type, then a Library of Congress record, with one of the
+# chapter's ISBNs, whose title is one of the chapter record's container titles. A series has
+# no record of a book type and no ISBN of the chapter's, so a series' editors are never taken.
+
+BOOK_RECORD = "book-record"    # the key under which what was found is kept in the chapter's record
+
+
+def _people(people):
+    return [{k: str(p.get(k) or "") for k in ("given", "family", "name", "suffix") if p.get(k)}
+            for p in people or [] if isinstance(p, dict)]
+
+
+def same_people(one, two):
+    """Whether two sources' lists name the same people in the same order, by the rule a
+    citation's byline is compared with a source's (``verification.author_evidence``): the
+    shorter given names of each pair are taken as the citation's."""
+    from .correction_proposals import house_byline
+    from .verification import author_evidence
+    if len(one) != len(two):
+        return False
+    try:
+        return author_evidence(house_byline(one), two)[0] or author_evidence(house_byline(two), one)[0]
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return False
+
+
+def book_editors(record, client, cache=None):
+    """What the book's own record says of the editors of the book a chapter is in: a dict
+    kept in the chapter's record under ``BOOK_RECORD`` (``verification.compare_record``
+    compares an entry's ``editor`` field with it when the chapter's record names no editor).
+
+    ``editor``: the editors, complete and in order, when a record of the book names them and
+    the records found do not disagree; else absent, with ``reason``. ``sources``: each record
+    found (``source``, its identifier, ``isbn``, ``title``, ``editor``, ``retrieved_at``).
+    None when ``record`` is no chapter's or names editors itself. Nothing is raised: a source
+    that did not answer is a ``reason``."""
+    if not isinstance(record, dict) or record.get("type") != "book-chapter" or record.get("editor"):
+        return None
+    venues = [" ".join(v.split()) for v in record.get("container-title") or [] if isinstance(v, str) and v.strip()]
+    cache = cache if cache is not None else client.cache
+    if not venues:
+        return {"reason": "the chapter's record names no book, so the book's record cannot be looked up"}
+    if not _isbns(record):
+        return {"reason": "the chapter's record states no ISBN, so the book's record cannot be looked up"}
+    sources, failed = [], []
+    try:
+        for isbn, item, names, response in crossref_books(client, record):
+            title = decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
+            if title:
+                sources.append({"source": "crossref-book-record", "doi": item.get("DOI"), "isbn": isbn, "type": item.get("type"),
+                                "title": names[0], "names": names, "editor": _people(item.get("editor")),
+                                "retrieved_at": response.get("retrieved_at")})
+                break
+    except (ProviderError, ValueError, KeyError, TypeError) as exc:
+        failed.append(f"Crossref did not answer ({exc})")
+    try:
+        from .book_build import summary
+        from .catalogue_review import parse_edition
+        for isbn, xml, whole, found in catalogue_books(client, cache, record):
+            names = [whole, whole.split(":")[0]]
+            title = decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
+            if not title:
+                continue
+            try:
+                people = _people(parse_edition(xml).get("editor"))
+            except ValueError:
+                people = []   # a record the catalogue check's grammar does not read names no one here
+            lead = summary(xml)
+            sources.append({"source": "loc-catalogue", "lccn": lead["lccn"], "isbn": isbn, "title": whole, "names": names,
+                            "editor": people, "url": found["url"], "document_sha256": found["document_sha256"],
+                            "retrieved_at": found["retrieved_at"]})
+            break
+    except (ProviderError, ValueError, KeyError, TypeError) as exc:
+        failed.append(f"the Library of Congress catalogue did not answer ({exc})")
+    found = {"sources": sources}
+    naming = [s for s in sources if s["editor"]]
+    if len(naming) == 2 and not same_people(naming[0]["editor"], naming[1]["editor"]):
+        found["reason"] = ("the book's Crossref record and its Library of Congress record name different editors, "
+                           "and neither is chosen")
+        found["disagreement"] = True
+    elif naming:
+        found["editor"] = naming[0]["editor"]
+        found["by"] = naming[0]["source"]
+    elif failed:
+        found["reason"] = "; ".join(failed) + "; the book's record could not be looked up"
+    elif sources:
+        found["reason"] = "the book's own record names no editors"
+    else:
+        found["reason"] = "no record of the book was found by the chapter's ISBN at Crossref or in the Library of Congress catalogue"
+    return found
+
+
+def valid_book_editors(record):
+    """The editors of ``record[BOOK_RECORD]`` when that is evidence about this chapter's
+    book: found by one of the chapter's own ISBNs, under a title that is one of the chapter
+    record's container titles, with no disagreement recorded. Else None. Judged again every
+    time the record is compared; nothing stored is trusted beyond this."""
+    found = record.get(BOOK_RECORD) if isinstance(record, dict) else None
+    if not isinstance(found, dict) or found.get("disagreement") or not isinstance(found.get("editor"), list):
+        return None
+    venues = tuple(v for v in record.get("container-title") or [] if isinstance(v, str))
+    source = next((s for s in found.get("sources") or [] if isinstance(s, dict) and s.get("source") == found.get("by")), None)
+    if (not source or source.get("editor") != found["editor"] or source.get("isbn") not in _isbns(record)
+            or not any(decide((v,), [str(n) for n in source.get("names") or []]) for v in venues)):
+        return None
+    return found["editor"], source
 
 
 # --- the publisher's page ---------------------------------------------------------------------------

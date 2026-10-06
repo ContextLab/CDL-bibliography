@@ -10,9 +10,9 @@ filled with
   on 2026-10-02 (the README beside it lists each request), stored as the client cached them;
 - tests/fixtures/completion/type_responses.json: the 24 responses fetched once on 2026-10-05
   for the papers in proceedings and the chapters of tests/test_complete_types.py;
-- tests/fixtures/completion/rule_responses.json: the 8 responses fetched once on 2026-10-06
+- tests/fixtures/completion/rule_responses.json: the 28 responses fetched once on 2026-10-06
   for tests/test_complete_rules.py (chapters whose records name editors; the ACL Anthology's
-  own records of two papers);
+  own records of two papers; each chapter's book looked up by ISBN for its editors);
 - tests/fixtures/arxiv_preprints.json: the arXiv, arXiv-page and DataCite documents the
   arXiv check's own tests use.
 

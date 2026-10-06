@@ -41,6 +41,11 @@ NO_ROUTE = {}     # an explicit configuration with no key: the keychain is not r
 @pytest.fixture
 def client(tmp_path):
     client = offline_client(tmp_path / "cache", "chapters.json.gz")
+    # The catalogue side of each chapter's book lookup (for the book's editors), recorded with
+    # the builder-rules responses (tests/fixtures/completion/rule_responses.json).
+    for item in json.loads((ROOT / "tests/fixtures/completion/rule_responses.json").read_text(encoding="utf-8")):
+        if isinstance(item["request"], str) and item["request"].startswith("loc-sru-v1:"):
+            client.cache.save_response(item["request"], item["response"])
     yield client
     client.cache.close()
 
@@ -82,8 +87,11 @@ def test_only_a_chapter_record_with_two_different_titles_is_looked_into(client):
 
 def test_the_books_own_crossref_record_says_which_title_is_the_books(client):
     proposal = propose(client, SCHA03, allow_model=False)
-    # byte for byte the library's entry (which has no publisher, address or editor)
-    assert proposal.proposed_raw == FROZEN["Scha03"]["raw"] and proposal.status == "metadata_verified"
+    # byte for byte the library's entry (which has no publisher or address), with the editors
+    # of the same book record (owner's decision 2026-10-06: a chapter's editors are the book's)
+    assert proposal.proposed_raw == FROZEN["Scha03"]["raw"].replace(
+        "\tPages = ", "\tEditor = {D D Denison and M H Hansen and C C Holmes and B Mallick and B Yu},\n\tPages = ") and proposal.status == "metadata_verified"
+    assert change(proposal, "editor").source == "crossref (the book's own Crossref record)"
     assert change(proposal, "booktitle") == complete.FieldChange(
         "booktitle", None, "Nonlinear Estimation and Classification", "crossref (the book's own Crossref record)",
         "filled")
@@ -123,8 +131,13 @@ def test_a_typed_book_title_is_kept_and_nothing_is_looked_up(tmp_path):
         client.cache.db.execute("DELETE FROM responses WHERE request LIKE '%filter%'")     # no book record saved
         client.cache.db.commit()
         typed = complete.propose(complete.Query.from_entry(FROZEN["Scha03"]), client, client.cache, allow_model=False)
+        # The typed title is kept and no title is looked up. The book's record is still asked
+        # for the editors (owner's decision 2026-10-06); with none saved here the request is
+        # refused, and the editors are left unfilled with that reason.
         assert typed.proposed_raw == FROZEN["Scha03"]["raw"] and {c.kind for c in typed.changes} == {"kept"}
-        assert typed.status == "metadata_verified" and typed.choices == [] and client.requests == 0
+        assert typed.status == "metadata_verified" and typed.choices == []
+        assert unfilled(typed, "editor").reason.startswith("editor: Crossref did not answer (offline: request to "
+                                                           "api.crossref.org refused)")
     finally:
         client.cache.close()
 

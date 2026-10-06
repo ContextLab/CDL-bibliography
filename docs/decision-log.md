@@ -789,7 +789,7 @@ stated order: "Try to resolve automatically through llm-driven web search." Appl
 
 Decisions of the owner on 2026-10-06, as given to Claude in the task brief of that day (the
 brief's wording is quoted where it is marked as the owner's; the rest is Claude's summary of
-the brief). What was built for each is in [verification.md](verification.md#editors-resolver-31).
+the brief). What was built for each is in [verification.md](verification.md#editors-resolvers-31-and-32).
 
 - **Editors are compared, and a chapter's are filled.** An `editor` field is compared with the
   record's editors as authors are compared: complete, in order, by the same name rules. The
@@ -804,6 +804,17 @@ the brief). What was built for each is in [verification.md](verification.md#edit
   candidates; of the library's 236 chapters, the accepted Crossref record is saved for 122 and
   none of those lists editors), so chapters are still built without editors from that record; of the proceedings records that carry editors nearly all are
   SPIE's.
+- **A chapter's editors come from the book's record** (owner, 2026-10-06, after the finding
+  above). Of the 227 chapters with an `Editor` field, 122 have their accepted Crossref chapter
+  record saved and none of those names an editor. Applied: the builder and the verifier find
+  the book by the lookup that settles a chapter's book title (the chapter's ISBN, Crossref's
+  record of a book type, then the Library of Congress record; `container_titles.book_editors`),
+  never a series. No record, a record without editors, or two records that disagree leave
+  `Editor` unfilled with the reason. `RESOLVER_VERSION` 32, additive. From saved records alone 7
+  of the 227 are confirmed by a saved record of their book; for 3 the book record lacks the
+  middle initials the entry gives; for 118 no record of the book was ever saved. Eight library
+  chapters were looked up for the tests: a record of the book named editors for all eight, and
+  they are the library's for the five whose entry has any.
 - **Ordinals: "numerals with superscript"** (the brief's quotation of the owner's choice), the
   form the library uses: `30\textsuperscript{th}`. This extends the rule of 2026-09-25 ("Proper
   ordinals everywhere", which names numeric ordinals) to ordinal words. Applied to `booktitle`
