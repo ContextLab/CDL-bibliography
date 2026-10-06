@@ -14,9 +14,10 @@ Why these two types and no other (``complete.KINDS``):
 - the verifier accepts a Crossref record for an entry only in four pairings
   (``verification.compare_record``): article/journal-article, inproceedings/
   proceedings-article, incollection/book-chapter and book/book;
-- it answers "no deterministic verifier for this field" to address, editor, edition,
-  series, school, institution, type, howpublished, organization and chapter, so an entry
-  with one of them is never verified from a record;
+- it answers "no deterministic verifier for this field" to address, edition, series,
+  school, institution, type, howpublished, organization and chapter, so an entry with one
+  of them is never verified from a record (an ``editor`` field is compared with the
+  record's editors since 2026-10-06: tests/test_complete_rules.py);
 - the record the client keeps (``verification.RECORD_FIELDS``) has no place of publication
   and no edition.
 """
@@ -78,7 +79,9 @@ def test_the_built_types_are_the_pairings_the_verifier_accepts():
     # A book is the verifier's fourth pairing and is not built: see the tests of books below.
     assert '"book": "book"' in source and "book" not in complete.KINDS
     # Nothing a chapter or a paper is built with is a field the verifier cannot check.
-    covered = {"title", "author", "year", "journal", "booktitle", "volume", "number", "pages", "publisher", "doi"}
+    # (An editor field is one it checks since 2026-10-06, so a chapter's editors are built.)
+    covered = {"title", "author", "year", "journal", "booktitle", "volume", "number", "pages", "publisher", "doi",
+               "editor"}
     for kind in complete.KINDS.values():
         assert set(kind.built) <= covered and not set(kind.unverified) & covered
         assert all(f'"{name}"' in source for name in kind.built)
@@ -109,15 +112,19 @@ def test_proceedings_papers_differ_from_the_library_only_where_the_format_checke
     xiao = propose(client, "10.1109/cvpr.2010.5539970")
     assert xiao.proposed_raw == library("XiaoEtal10").replace("{SUN} database", "Sun database")
     assert xiao.status == "metadata_verified" and not xiao.needs_decision
-    # NguyEtal18: the same in the title, and the library writes the ordinal 16\textsuperscript{th}
-    # (house rule "proper ordinals everywhere"), which the format checker does not write. Crossref
-    # gives the title and the subtitle apart; they are joined as the verifier joins them.
+    # NguyEtal18: the same in the title. The library writes the ordinal 16\textsuperscript{th}
+    # (house rule: ordinals are numerals with a superscript suffix), and since 2026-10-06 the
+    # format checker's formatter for a book title writes it so too: Crossref's "16th" is built
+    # as the library has it. Crossref gives the title and the subtitle apart; they are joined
+    # as the verifier joins them.
     record = record_of("10.1145/3210240.3210322")
     assert (record["title"], record["subtitle"]) == (["TYTH-Typing On Your Teeth"],
                                                      ["Tongue-Teeth Localization for Human-Computer Interface"])
+    assert record["container-title"] == ["Proceedings of the 16th Annual International Conference on Mobile Systems, "
+                                         "Applications, and Services"]
     nguyen = propose(client, "10.1145/3210240.3210322")
-    assert nguyen.proposed_raw == library("NguyEtal18").replace("16\\textsuperscript{th}", "16th").replace(
-        "{TYTH}-typing", "Tyth-typing")
+    assert "Proceedings of the 16\\textsuperscript{th} Annual International Conference" in library("NguyEtal18")
+    assert nguyen.proposed_raw == library("NguyEtal18").replace("{TYTH}-typing", "Tyth-typing")
     assert nguyen.status == "metadata_verified" and nguyen.complete and not nguyen.needs_decision
     assert client.requests == 0
 
@@ -134,22 +141,26 @@ def test_a_typed_paper_without_a_doi_is_found_by_its_title_and_pubmed_is_not_ask
     assert client.requests == 0
 
 
-def test_the_pages_of_an_acl_anthology_paper_are_a_question(client):
+def test_the_pages_of_an_acl_anthology_paper_are_a_question_when_the_anthology_is_not_read():
     # ReimGure19. Crossref deposits 3980-3990; the Anthology and the paper give 3982--3992
-    # (cdlbib.acl_review), which is what the library has. The builder does not read the Anthology.
-    assert record_of("10.18653/v1/d19-1410")["page"] == "3980-3990"
+    # (cdlbib.acl_review), which is what the library has. ``build`` reads no source: given the
+    # Crossref record alone, the pages are Crossref's and a question. (``propose`` reads the
+    # Anthology since 2026-10-06 and fills its pages: tests/test_complete_rules.py.)
+    record = record_of("10.18653/v1/d19-1410")
+    assert record["page"] == "3980-3990"
     assert "\tPages = {3982--3992}," in library("ReimGure19")
-    proposal = propose(client, "10.18653/v1/d19-1410")
+    proposal = complete.build({"doi": record["DOI"]}, record)
     assert change(proposal, "pages") == complete.FieldChange("pages", None, "3980--3990", "crossref", "question")
     assert proposal.issues == ["pages: 10.18653/v1/d19-1410 is an ACL Anthology paper; the Anthology's record "
                                "outranks Crossref's page range and was not read, so the pages are not confirmed"]
     assert proposal.needs_decision is True
     # The other differences from the library: the title's capitals (format_title) and "the 9th"
-    # in the proceedings' name, which the library's entry omits.
+    # in the proceedings' name, which the library's entry omits and the formatter writes as the
+    # house ordinal.
     assert proposal.proposed_raw == library("ReimGure19").replace("3982--3992", "3980--3990").replace(
         "Sentence-{BERT}: sentence embeddings using {S}iamese {BERT}-networks",
         "Sentence-bert: sentence embeddings using siamese bert-networks").replace(
-        "and the International Joint", "and the 9th International Joint")
+        "and the International Joint", "and the 9\\textsuperscript{th} International Joint")
 
 
 def test_a_paper_whose_record_has_no_date_is_not_complete(client):
@@ -183,14 +194,16 @@ def test_a_chapter_is_built_byte_for_byte_as_the_library_has_it(client):
     assert proposal.proposed_raw == library("BobrNorm75")
     assert proposal.entry_type == "incollection" and proposal.status == "metadata_verified"
     assert proposal.complete is True and proposal.needs_decision is False and proposal.issues == []
-    # What the record cannot supply is listed, and is no reason for a decision.
-    assert proposal.unfilled == [ADDRESS, EDITOR]
+    # What the record cannot supply is listed, and is no reason for a decision. (The editor
+    # is a field the builder fills when the record names one, so it is listed in its place
+    # among the built fields, before the address.)
+    assert proposal.unfilled == [EDITOR, ADDRESS]
     assert client.requests == 0
 
 
 def test_a_chapter_whose_book_has_editors_is_built_without_them(client):
     # KahaEtal24, in The Oxford Handbook of Human Memory (edited by Kahana and Wagner). The
-    # chapter's Crossref record names no editor, and the verifier has no check for one.
+    # chapter's Crossref record names no editor, so none is written.
     record = record_of("10.1093/oxfordhb/9780190917982.013.2")
     assert "editor" not in record and "\tEditor = {M J Kahana and A D Wagner},\n" in library("KahaEtal24")
     assert record["container-title"] == ["The Oxford Handbook of Human Memory, Two Volume Pack"]
@@ -201,29 +214,41 @@ def test_a_chapter_whose_book_has_editors_is_built_without_them(client):
         "{Oxford}", "Oxford").replace("{University}", "University")
     from cdlbib import helpers
     assert helpers.format_journal_name("The {Oxford} Handbook of Human Memory") == "The Oxford Handbook of Human Memory"
-    assert proposal.unfilled == [ADDRESS, EDITOR]
+    assert proposal.unfilled == [EDITOR, ADDRESS]
     assert proposal.status == "metadata_verified" and proposal.complete and not proposal.needs_decision
     assert client.requests == 0
 
 
-def test_typed_editors_are_kept_and_the_verifier_says_it_cannot_check_them(client):
+def test_typed_editors_are_kept_and_the_verifier_says_the_record_names_none(client):
+    # Since 2026-10-06 the verifier compares an editor field with the record's editors. This
+    # chapter's record names none, so the typed editors are kept, listed as stated by no
+    # source, and the verifier says what it could not compare them with.
     proposal = complete.propose(complete.Query.from_entry(LIBRARY["KahaEtal24"]), client, client.cache)
     assert change(proposal, "editor") == complete.FieldChange(
         "editor", "M J Kahana and A D Wagner", "M J Kahana and A D Wagner", "typed", "kept")
-    assert proposal.unfilled == [ADDRESS]
+    assert proposal.unfilled == [EDITOR, ADDRESS]
     assert proposal.status == "needs_review" and proposal.needs_decision is True
-    assert "crossref 10.1093/oxfordhb/9780190917982.013.2: editor: no deterministic verifier for this field" in proposal.issues
+    assert ("crossref 10.1093/oxfordhb/9780190917982.013.2: editor: the citation names editors and the source "
+            "record names none") in proposal.issues
+    assert not [issue for issue in proposal.issues if "no deterministic verifier" in issue]
     assert client.requests == 0
 
 
-def test_editors_a_record_names_are_listed_and_not_written():
+def test_editors_a_record_names_are_written_in_house_form():
+    # The real record of KahaEtal24 with one part added: the book's editors, as Crossref
+    # deposits editors on the chapter records that carry them. Since 2026-10-06 they are
+    # written, in the house name form, as the library's entry has them. (Real chapter records
+    # that name their editors: tests/test_complete_rules.py.)
     record = record_of("10.1093/oxfordhb/9780190917982.013.2")
     record["editor"] = [{"given": "Michael J.", "family": "Kahana"}, {"given": "Anthony D.", "family": "Wagner"}]
     proposal = complete.build({"doi": record["DOI"]}, record)
-    assert unfilled(proposal, "editor") == complete.Unfilled(
-        "editor", "editor: the verifier has no check for this field; the record's value is not written",
-        {"crossref": "Michael J. Kahana; Anthony D. Wagner"})
-    assert "Editor" not in proposal.proposed_raw and proposal.complete and not proposal.needs_decision
+    assert change(proposal, "editor") == complete.FieldChange(
+        "editor", None, "M J Kahana and A D Wagner", "crossref", "filled")
+    assert "\tEditor = {M J Kahana and A D Wagner},\n" in proposal.proposed_raw
+    assert "\tEditor = {M J Kahana and A D Wagner},\n" in library("KahaEtal24")
+    assert proposal.unfilled == [ADDRESS] and proposal.complete and not proposal.needs_decision
+    _, issues = compare_record(dict({c.field: c.proposed for c in proposal.changes}, ENTRYTYPE="incollection"), record)
+    assert issues == []
 
 
 def test_a_series_number_after_a_book_title_is_not_part_of_it(client):
@@ -231,7 +256,7 @@ def test_a_series_number_after_a_book_title_is_not_part_of_it(client):
     assert record_of("10.1515/9781400882618-002")["container-title"] == ["Automata Studies. (AM-34)"]
     proposal = propose(client, "10.1515/9781400882618-002")
     assert proposal.proposed_raw == without(library("Klee56"), "Address", "Editor").replace("{University}", "University")
-    assert proposal.status == "metadata_verified" and proposal.unfilled == [ADDRESS, EDITOR]
+    assert proposal.status == "metadata_verified" and proposal.unfilled == [EDITOR, ADDRESS]
 
 
 def test_a_record_that_names_a_series_and_a_book_fills_no_book_title(client):

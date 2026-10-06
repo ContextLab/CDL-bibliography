@@ -10,6 +10,9 @@ filled with
   on 2026-10-02 (the README beside it lists each request), stored as the client cached them;
 - tests/fixtures/completion/type_responses.json: the 24 responses fetched once on 2026-10-05
   for the papers in proceedings and the chapters of tests/test_complete_types.py;
+- tests/fixtures/completion/rule_responses.json: the 8 responses fetched once on 2026-10-06
+  for tests/test_complete_rules.py (chapters whose records name editors; the ACL Anthology's
+  own records of two papers);
 - tests/fixtures/arxiv_preprints.json: the arXiv, arXiv-page and DataCite documents the
   arXiv check's own tests use.
 
@@ -33,6 +36,7 @@ from test_machinery_2026_09_25 import RAME72, ZOLL90, crossref_contact
 ROOT = Path(__file__).resolve().parents[1]
 SAVED = json.loads((ROOT / "tests/fixtures/completion/responses.json").read_text(encoding="utf-8"))
 TYPES = json.loads((ROOT / "tests/fixtures/completion/type_responses.json").read_text(encoding="utf-8"))
+RULES = json.loads((ROOT / "tests/fixtures/completion/rule_responses.json").read_text(encoding="utf-8"))
 ARXIV = json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text(encoding="utf-8"))
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
@@ -51,8 +55,8 @@ def library_entry(key):
 def client(tmp_path):
     """The real client over a real cache holding the saved responses; no network."""
     client = xs.make_client(tmp_path / "responses.sqlite3", contact=CONTACT, offline=True)
-    for item in SAVED + TYPES:
-        request = item["request"]
+    for item in SAVED + TYPES + RULES:
+        request = item["request"]  # a list for an API request; a string for a saved document (the Anthology's BibTeX)
         if isinstance(request, list):  # PubMed requests name the caller's contact address
             url, params, xml = request
             request = dumps([url, {k: CONTACT if v == "CONTACT" else v for k, v in params.items()}, xml])

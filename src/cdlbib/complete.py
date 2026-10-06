@@ -68,7 +68,8 @@ class Kind:
     decision. ``expected``: fields listed as unfilled when no source states them.
     ``unverified``: house fields the library's entries of the type usually have that the
     verifier has no check for (``compare_record`` answers them "no deterministic verifier
-    for this field"): never filled, and listed as unfilled with what the record says."""
+    for this field") and the record the client keeps does not state: never filled, and
+    listed as unfilled."""
     record: str
     built: tuple
     required: tuple
@@ -81,9 +82,9 @@ KINDS = {
     "inproceedings": Kind("proceedings-article", ("author", "booktitle", "doi", "pages", "title", "volume", "year"),
                           ("author", "title", "booktitle", "year"), ("author", "booktitle", "pages", "title", "year")),
     "incollection": Kind("book-chapter",
-                         ("author", "booktitle", "doi", "pages", "publisher", "title", "volume", "year"),
+                         ("author", "booktitle", "doi", "editor", "pages", "publisher", "title", "volume", "year"),
                          ("author", "title", "booktitle", "year"),
-                         ("author", "booktitle", "pages", "publisher", "title", "year"), ("address", "editor")),
+                         ("author", "booktitle", "editor", "pages", "publisher", "title", "year"), ("address",)),
 }
 RECORD_KINDS = {kind.record: name for name, kind in KINDS.items()}
 
@@ -288,11 +289,12 @@ def _readable(record):
         value = record.get(part)
         if value is not None and not (isinstance(value, list) and all(isinstance(v, str) for v in value)):
             leave_out(part, "title")
-    people = record.get("author")
-    if people is not None and not (isinstance(people, list) and all(
-            isinstance(p, dict) and all(_is_text(p.get(k)) for k in ("given", "family", "name", "suffix"))
-            for p in people)):
-        leave_out("author", "author")
+    for part in ("author", "editor"):
+        people = record.get(part)
+        if people is not None and not (isinstance(people, list) and all(
+                isinstance(p, dict) and all(_is_text(p.get(k)) for k in ("given", "family", "name", "suffix"))
+                for p in people)):
+            leave_out(part, part)
     venues = record.get("container-title")
     if venues is not None and not (isinstance(venues, list) and all(isinstance(v, str) for v in venues)):
         leave_out("container-title", "journal")
@@ -361,7 +363,7 @@ _PARTICLES = ("de la", "de los", "de las", "van der", "van den", "van de", "del"
               "du", "di", "van", "von", "ter", "ten", "la", "le")
 
 
-def _family_question(people):
+def _family_question(people, name="author"):
     """A question for each name whose family name may have lost its first word to the given
     names: the family begins with a lower-case particle and the given names are two or more
     words ending in a full word (Crossref: given "Jaime Fernández", family "del Río"). A
@@ -372,7 +374,7 @@ def _family_question(people):
         last = given.split(" ")[-1].strip(".") if given else ""
         if (any(family.startswith(particle + " ") for particle in _PARTICLES) and len(given.split(" ")) > 1
                 and len(last) > 2 and last[1:].islower()):
-            asked.append(f"author: the source gives the given names {given!r} and the family name {family!r}; "
+            asked.append(f"{name}: the source gives the given names {given!r} and the family name {family!r}; "
                          f"the family name may be {last + ' ' + family!r}")
     return asked
 
@@ -401,6 +403,29 @@ def _author(record, mapped, typed):
     return _Value(value, source, values, _family_question(people) + doubts)
 
 
+def _editor(record, typed):
+    """The editors of the book a chapter is in, when the chapter's own record names them
+    (owner decision 2026-10-06): the record's ``editor`` list, complete and in order, in the
+    house name form the authors are written in (``correction_proposals.source_authors``;
+    the format checker's ``reformat_author``). The verifier compares an ``editor`` field with
+    the same list by the authors' rules (``verification.compare_record``). A record that
+    names no editor fills nothing: most chapter records do not name the book's editors."""
+    from .helpers import reformat_author
+    people = record.get("editor") or []
+    if not people:
+        return None
+    values = {"crossref": _people_text(people)}
+    try:
+        value = cp.source_authors({"author": people}, typed or None)
+    except ValueError as exc:
+        raise _Hold("editor: " + str(exc).replace("author", "editor"), values)
+    try:
+        value, doubts = _written("editor", value, reformat_author)
+    except _Hold as hold:
+        raise _Hold(hold.reason, values)
+    return _Value(value, "crossref", values, _family_question(people, "editor") + doubts)
+
+
 def _journal(record):
     from .helpers import format_journal_name
     venues = [_text(v) for v in record.get("container-title") or [] if _text(v)]
@@ -427,9 +452,10 @@ def _booktitle(record, kind):
     title in the form the verifier documents as the house form of a source name
     (``verification.proceedings_name_forms``: no year, no final acronym;
     ``verification.book_title_forms``: no series number, no volume-pack tail), through the
-    format checker's formatter for ``booktitle``. A record with several container titles
-    (a series and a book, in no stated order) fills nothing."""
-    from .helpers import format_journal_name
+    format checker's formatter for ``booktitle`` (``helpers.format_booktitle``: ordinals as
+    numerals with a superscript suffix, acronyms in braces). A record with several
+    container titles (a series and a book, in no stated order) fills nothing."""
+    from .helpers import format_booktitle
     from .verification import book_title_forms, ordinal_form, proceedings_name_forms
     venues = [_text(v) for v in record.get("container-title") or [] if _text(v)]
     if not venues:
@@ -439,14 +465,14 @@ def _booktitle(record, kind):
         raise _Hold("booktitle: no single registry title", values)
     source = html.unescape(venues[0])
     form = proceedings_name_forms(source) if kind == "inproceedings" else book_title_forms(source)
-    value = format_journal_name(cp.journal_text(form))
+    value = format_booktitle(cp.journal_text(form))
     try:
         if ordinal_form(normalized(value)) != ordinal_form(normalized(form)):
             raise _Hold("booktitle: formatter changes the title", values)
     except ValueError as exc:
         raise _Hold("booktitle: " + str(exc), values)
     try:
-        value, doubts = _written("booktitle", value, format_journal_name)
+        value, doubts = _written("booktitle", value, format_booktitle)
     except _Hold as hold:
         raise _Hold(hold.reason, values)
     return _Value(value, "crossref", values, doubts)
@@ -567,20 +593,50 @@ def _pages(record, mapped):
     return _Value(_cased(pages, printed).replace("-", "--"), source, values, doubts)
 
 
-def _proceedings_pages(outcome, doi):
-    """The pages of a paper in proceedings, as a question when the paper is in the ACL
-    Anthology: the Anthology's own record outranks Crossref's page range (``acl_review``;
-    Crossref deposits 3980-3990 for 10.18653/v1/d19-1410, the Anthology and the paper give
-    3982--3992), and the builder does not read the Anthology."""
-    from .acl_review import parse_id
+def _proceedings_pages(outcome, doi, anthology=None):
+    """The pages of a paper in proceedings. For a paper in the ACL Anthology the Anthology's
+    own record outranks Crossref's page range (``acl_review``; Crossref deposits 3980-3990
+    for 10.18653/v1/d19-1410, the Anthology and the paper give 3982--3992).
+
+    ``anthology``: the Anthology's record of the paper as the Anthology check reads it
+    (``anthology_record``), a string saying why it could not be read, or None when it was
+    not looked for. With the record, the pages are the Anthology's and are no question.
+    Without it (not looked for, not readable, or stating no pages) Crossref's pages are
+    written as a question."""
+    from .acl_review import pages as anthology_pages, parse_id
     try:
         parse_id(doi)
     except ValueError:
         return outcome
+    stated = anthology_pages(anthology.get("pages")) if isinstance(anthology, dict) else ""
+    if stated and re.fullmatch(r"\d+(?:--\d+)?", stated):
+        values = dict(outcome.values) if outcome is not None else {}
+        return _Value(stated, "acl-anthology", dict(values, **{"acl-anthology": stated}))
     if outcome is not None:
+        why = ("was read and states no usable pages" if isinstance(anthology, dict)
+               else f"could not be read ({anthology})" if anthology else "was not read")
         outcome.doubts.append(f"pages: {doi} is an ACL Anthology paper; the Anthology's record outranks Crossref's "
-                              "page range and was not read, so the pages are not confirmed")
+                              f"page range and {why}, so the pages are not confirmed")
     return outcome
+
+
+def anthology_record(client, cache, doi):
+    """The ACL Anthology's record of the paper with DOI ``doi``, for ``build``: the record
+    (``acl_review.record``'s fields) when it was read, a string saying why it could not be,
+    or None when the DOI is not an Anthology paper's. It is read as the Anthology check of
+    the verifier reads it, through the same client and into the same cache
+    (``acl_review.collect``), so the check that follows reads the saved copy."""
+    from . import acl_review
+    from .verification import ProviderError
+    try:
+        anthology_id = acl_review.parse_id(doi or "")
+    except ValueError:
+        return None
+    try:
+        raw = acl_review.collect(cache, client, {"ENTRYTYPE": "inproceedings", "doi": doi})
+        return acl_review.record(raw["record"], anthology_id)
+    except (ProviderError, ValueError, KeyError, TypeError) as exc:
+        return str(exc) or type(exc).__name__
 
 
 def _year(record, mapped, evidence):
@@ -697,7 +753,7 @@ def _formatters():
     """The format checker's formatter for each field it rewrites (``helpers.check_bib``)."""
     from . import helpers
     return {"title": helpers.format_title, "journal": helpers.format_journal_name,
-            "booktitle": helpers.format_journal_name, "publisher": _publisher_format,
+            "booktitle": helpers.format_booktitle, "edition": helpers.format_edition, "publisher": _publisher_format,
             "author": helpers.reformat_author, "editor": helpers.reformat_author,
             "address": lambda value: helpers.format_journal_name(value, key=helpers.address_key,
                                                                  force_caps=helpers.address_codes)}
@@ -705,8 +761,8 @@ def _formatters():
 
 def _house_form(name, value):
     """A typed value as the format checker would write it (helpers.check_bib rewrites the
-    title, the journal, the book title, the publisher, the address, the authors, the editors
-    and the pages; it leaves every other field alone), with
+    title, the journal, the book title, the edition, the publisher, the address, the authors,
+    the editors and the pages; it leaves every other field alone), with
     raw non-ASCII letters in the library's LaTeX form. A DOI is never rewritten. When the
     formatter would not leave the LaTeX form alone, the typed value is returned unchanged
     (``_house_question`` then says so)."""
@@ -754,7 +810,7 @@ def _usable_corroboration(mapped):
             and all(_is_text(mapped.get(k)) for k in ("volume", "issue", "page")))
 
 
-def build(typed_fields, record, corroborating=None):
+def build(typed_fields, record, corroborating=None, anthology=None):
     """Propose a complete entry for ``record``: an ``@article``, an ``@inproceedings`` or an
     ``@incollection`` (``KINDS``). With no typed entry type, the type is the one the record's
     type is built as; a typed type is never changed, and a record of another type fills
@@ -763,12 +819,16 @@ def build(typed_fields, record, corroborating=None):
     ``typed_fields``: the entry as typed, by lower-case field name, with ``ENTRYTYPE`` and
     ``ID`` when there are any (``{"doi": ...}`` alone is enough). ``record``: the Crossref
     record of the work. ``corroborating``: the PubMed record for the same DOI in the shape
-    ``auto_review.epmc_record`` returns, or None.
+    ``auto_review.epmc_record`` returns, or None. ``anthology``: for a paper in the ACL
+    Anthology, what ``anthology_record`` returned (the pages are then the Anthology's:
+    ``_proceedings_pages``), or None.
 
     A paper in proceedings has no publisher, address or editors filled, and a chapter no
-    address or editors: the record the client keeps states no place, and the verifier has
-    no check for an editor, so an entry with one could not be verified. A chapter's record
-    lists them under ``unfilled``.
+    address: the record the client keeps states no place. A chapter's editors are filled
+    when its own record names them (``_editor``; the verifier compares an ``editor`` field
+    with the record's editors as it compares authors) and are listed under ``unfilled``
+    when it names none, which is the usual case: Crossref keeps a book's editors on the
+    book's record, and few chapter records repeat them.
 
     Raises ``CompletionRefused`` when the record is a correction or retraction notice.
     """
@@ -870,9 +930,10 @@ def build(typed_fields, record, corroborating=None):
     makers = {
         "author": lambda: _author(record, mapped, typed.get("author")),
         "booktitle": lambda: _booktitle(record, kind),
+        "editor": lambda: _editor(record, typed.get("editor")),
         "journal": lambda: _journal(record),
         "number": lambda: _number(record, mapped),
-        "pages": lambda: _proceedings_pages(_pages(record, mapped), record_doi) if kind == "inproceedings"
+        "pages": lambda: _proceedings_pages(_pages(record, mapped), record_doi, anthology) if kind == "inproceedings"
         else _pages(record, mapped),
         "publisher": lambda: _publisher(record),
         "title": lambda: _title(record, mapped, typed.get("title"), evidence, unsupported),
@@ -957,14 +1018,14 @@ def build(typed_fields, record, corroborating=None):
             keep_typed(name, had)
             continue
         reason = None
-        if name == "author":
+        if name in ("author", "editor"):
             hold = cp.surname_change_hold(proposal.key_typed, had, value, source=source)
             if hold:  # a surname respelling is always the person's to decide
-                question(name, had, value, source, hold)
+                question(name, had, value, source, hold if name == "author" else hold.replace("author:", "editor:", 1))
                 continue
-            people = record.get("author") or (mapped or {}).get("author") or []
+            people = record.get(name) or ((mapped or {}).get("author") if name == "author" else None) or []
             if cp.byline_loses_detail(had, people):
-                reason = "author: citation byline has detail the source lacks"
+                reason = f"{name}: citation byline has detail the source lacks"
         if name == "pages" and cp.shortens_pages(had, value):
             reason = "pages: the source would shorten the cited range"
         if reason is None and cp.loses_characters(had, value, name):
@@ -982,13 +1043,9 @@ def build(typed_fields, record, corroborating=None):
     dropped = []
     for name in spec.unverified:
         if not typed.get(name):
-            # A field the library's entries of this type usually have. The verifier has no
-            # check for it, so it is not written; what the record says is listed.
-            people = record.get(name) if name == "editor" and isinstance(record.get(name), list) else []
-            stated = _people_text([p for p in people if isinstance(p, dict)])
-            proposal.unfilled.append(Unfilled(
-                name, f"{name}: the verifier has no check for this field; the record's value is not written"
-                if stated else f"{name}: no source record states it", {"crossref": stated} if stated else {}))
+            # A field the library's entries of this type usually have, which the record the
+            # client keeps does not state (a chapter's address): it is listed, not written.
+            proposal.unfilled.append(Unfilled(name, f"{name}: no source record states it", {}))
     for name in sorted(k for k in typed if k not in ("ENTRYTYPE", "ID") and k not in spec.built):
         if name == "publisher" and cp.drop_publisher_proposal(
                 {"fields": {"ENTRYTYPE": kind, "publisher": typed[name]}, "key": proposal.key_typed,
@@ -2062,6 +2119,24 @@ def _renamed_pubmed(proposal):
 
 # --- building and checking ----------------------------------------------------------------------
 
+def _anthology_checked(entry, client, result):
+    """The Anthology check's result for an entry the Crossref comparison did not accept, when
+    the entry's DOI or URL names an ACL Anthology paper and that check accepts it; otherwise
+    ``result``. As in the gate, where the Anthology check (``acl_review``) judges such an
+    entry after the Crossref comparison: the Anthology's record outranks Crossref's. An
+    entry that names no Anthology paper is not searched for, and an Anthology that cannot be
+    read leaves the Crossref result standing."""
+    from . import acl_review
+    from .verification import ACCEPTED, ProviderError
+    fields = entry["fields"]
+    try:
+        if acl_review.identifier(fields)[0] is None:
+            return result
+        judged = acl_review.assess_acl(fields, acl_review.collect(client.cache, client, fields))
+    except (ProviderError, ValueError, KeyError, TypeError):
+        return result
+    return judged if judged["status"] in ACCEPTED else result
+
 def checked(proposal, client, arxiv_raw=None):
     """Run ``proposal.proposed_raw`` through the format check and the verifier, and record
     what they say on the proposal: ``status`` is the verifier's and nothing else's;
@@ -2149,6 +2224,8 @@ def checked(proposal, client, arxiv_raw=None):
                                         "retrieved_at": response["retrieved_at"], "request_url": response["url"]}
                                        for raw in indexed[doi]]
                 result = reassess(entry, dict(result, candidates=candidates, attempts=attempts))
+            if result["status"] not in ACCEPTED:
+                result = _anthology_checked(entry, client, result)
     except ProviderError as exc:
         proposal.status = LOOKUP_FAILED
         add(f"The proposed entry could not be verified: a source did not answer ({exc})")
@@ -2227,7 +2304,13 @@ def _propose(query, client, cache, ws=None):
         if found.source == "arxiv":
             proposal = build_arxiv(typed, found.record)
         else:
-            proposal = build(typed, found.record, found.corroborating)
+            anthology = None
+            record_doi = found.record.get("DOI")
+            if (found.record.get("type") == KINDS["inproceedings"].record and isinstance(record_doi, str)
+                    and str(typed.get("ENTRYTYPE") or "inproceedings").lower() == "inproceedings"):
+                # An ACL Anthology paper: its pages are the Anthology's (``_proceedings_pages``).
+                anthology = anthology_record(client, cache if cache is not None else client.cache, record_doi)
+            proposal = build(typed, found.record, found.corroborating, anthology)
             if found.source == "pubmed":
                 _renamed_pubmed(proposal)
     except CompletionRefused as exc:
