@@ -668,6 +668,13 @@ lookup that the system resolver does not return from keeps its thread until it d
 hard stop of that would need a child process). A body is limited twice, as received and
 as unpacked: only gzip and deflate are asked for, and the decompressor is stopped at the
 limit, so a small compressed answer cannot become a large one.
+Whether a title is another title is asked in one way throughout, the verifier's own for a
+cited book title (`container_titles.title_is`: `verification.normalized`, and the record's
+title without a series number or volume-pack tail): for the two container titles, for the
+book's record, for the model's answer, for saved editor evidence, and, as whole words, for
+the lines of a page. A line the verifier does not read (math, markup) is neither taken to
+mention a title nor not to: quoted, it decides nothing.
+
 The model's choice counts only when its book title is one of the two and its passages lie
 on that page; what is judged is every whole line a passage touches, never the part of a
 line the model selected: one of those lines must hold the chosen title without the other,
@@ -682,7 +689,12 @@ confirmed. The proposal therefore keeps saying, in its issues (shown by the comm
 the terminal interface and the web interface) and in `choices` (`model_assisted: true`,
 `confirmed: false`), that the choice is model-assisted and unconfirmed, and it is never
 accepted without the person's decision. When such an entry is written, the mark is
-stored with it (`container_titles.keep_model_choice`): the entry's result is
+stored by the writer itself, before the entry is written and whichever interface accepted
+the proposal (`complete.apply` calls `container_titles.store_model_choices`; when the mark
+cannot be stored, nothing is written). It is bound to the entry's fingerprint and to the
+exact book title the choice wrote: an edit that keeps that title keeps the choice (the
+rechecked proposal says so again), one that changes it drops the choice, and a mark is
+refused for an entry with another book title. The entry's result is
 `needs_review` with the choice as its external evidence (kind `model-assisted-choice`:
 route, model, URL, quoted line, page hash), the record a model reading of a PDF uses. No
 automatic check accepts an entry that carries it; `crossref status` and the Library and

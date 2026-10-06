@@ -944,3 +944,208 @@ def test_a_model_assisted_title_stays_marked_after_the_entry_is_written(client, 
     from cdlbib.errors import CdlbibError
     with pytest.raises(CdlbibError, match="is not the entry that was written"):
         ct.keep_model_choice(ws, "Mann23", "another-fingerprint", ct.model_choice(proposal))
+
+
+# --- security review of 682ee79: the mark cannot drift from its entry; one title comparison ----------
+
+def _model_proposal(client, ws):
+    """A checked, planned proposal for Mann23 whose book title the recorded model reading chose."""
+    titles, _ = recorded_cache(client)
+    record = record_of(client, MANN23)
+    found = ct.from_model(client, client.cache, record, titles, environ=NO_ROUTE)
+    proposal = complete.build({}, dict(record, **{"container-title": [found.chosen]}))
+    ct.apply(proposal, found)
+    return complete._plan_proposal(ws, complete.checked(proposal, client), complete.Query(), ())
+
+
+def _stored(ws, key):
+    from cdlbib.verification import Cache
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        return cache.get(ws.bib, load_entries(ws.bib)[key])
+    finally:
+        cache.close()
+
+
+def test_the_mark_is_written_by_the_writer_itself_before_the_entry_or_nothing_is_written(client, tmp_path):
+    from cdlbib import api
+    from cdlbib.errors import CdlbibError
+    from intake_support import library
+    # the writer, called directly (not through the api): the mark is its own step
+    ws = library(tmp_path / "direct")
+    proposal = _model_proposal(client, ws)
+    choice = ct.model_choice(proposal)
+    assert choice["written"] == "Intracranial {EEG}" and choice["chosen"] == BOOK        # bound to the value written
+    done = complete.apply(ws, [proposal])
+    assert done.written == ["Mann23"] and done.notes[-1].startswith("Mann23: booktitle chosen with a model, unconfirmed")
+    stored = _stored(ws, "Mann23")
+    assert stored["status"] == "needs_review" and stored["external_evidence"]["booktitle"] == "Intracranial {EEG}"
+    assert stored["fingerprint"] == load_entries(ws.bib)["Mann23"]["fingerprint"]
+    # the mark cannot be stored (the database's path is a folder): the entry is not written either
+    blocked = library(tmp_path / "blocked")
+    blocked.work.mkdir(parents=True, exist_ok=True)
+    proposal = _model_proposal(client, blocked)
+    Path(blocked.database).mkdir()
+    for write in (lambda: complete.apply(blocked, [proposal]), lambda: api.apply_proposals(blocked, [proposal])):
+        with pytest.raises(CdlbibError, match="chosen with a model, and the record of that could not be stored"):
+            write()
+        assert blocked.bib.read_text(encoding="utf-8") == ""
+    # the mark is for one book title: it is refused for an entry with another
+    from cdlbib.verification import Cache
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        entry = load_entries(ws.bib)["Mann23"]
+        other = dict(entry, fields=dict(entry["fields"], booktitle="Another book"))
+        with pytest.raises(CdlbibError, match="the mark is for that title only"):
+            ct._put_choice(cache, ws.bib, other, choice)
+    finally:
+        cache.close()
+    import inspect
+    source = inspect.getsource(complete.apply)
+    assert source.index("store_model_choices(ws, accepted, result, entries)") < source.index("writer.commit(ws, writes")
+
+
+def test_an_edit_keeps_the_mark_unless_it_changes_the_book_title_and_the_gate_does_not_remove_it(tmp_path, monkeypatch):
+    from cdlbib import api
+    from intake_support import CONTACT, seeded_library
+    from test_complete_cli import refused_network
+    for name, value in refused_network().items():
+        monkeypatch.setenv(name, value)
+    ws = seeded_library(tmp_path / "lib", "chapters.json.gz", "book_isbns.json.gz")
+    client = offline_client(tmp_path / "cache", "chapters.json.gz", "book_isbns.json.gz")
+    try:
+        proposal = _model_proposal(client, ws)
+    finally:
+        client.cache.close()
+    # edited (the pages), rechecked: a recheck starts from no issues, and the choice is said again
+    edited = api.recheck_proposal(ws, proposal, proposal.proposed_raw.replace("803--836", "803--837"), mailto=CONTACT)
+    assert edited.needs_decision and any(ct.UNCONFIRMED in issue for issue in edited.issues)
+    assert ct.model_choice(edited, "Intracranial {EEG}")["chosen"] == BOOK
+    same = api.recheck_proposal(ws, proposal, proposal.proposed_raw, mailto=CONTACT)
+    assert same.needs_decision and sum(ct.UNCONFIRMED in issue for issue in same.issues) == 1
+    # accepted after the recheck, through the api (the one way the command line and both interfaces write)
+    assert api.apply_proposals(ws, [same]).written == ["Mann23"]
+    stored = _stored(ws, "Mann23")
+    assert stored["status"] == "needs_review" and stored["external_evidence"]["kind"] == ct.MODEL_CHOICE
+    # the gate judges the entry and leaves it unverified with its mark, although the verifier alone accepts it
+    check = api.check_keys(ws, ["Mann23"], mailto=CONTACT)
+    assert not check.citations.ok and check.citations.checked["Mann23"]["status"] == "needs_review"
+    after = _stored(ws, "Mann23")
+    assert after["status"] == "needs_review" and after["external_evidence"] == stored["external_evidence"]
+    from cdlbib.verification import verify_entry
+    again = offline_client(tmp_path / "again", "chapters.json.gz", "book_isbns.json.gz")
+    try:
+        assert verify_entry(load_entries(ws.bib)["Mann23"], again)["status"] == "metadata_verified"
+    finally:
+        again.cache.close()
+    # the person types another book title: the choice is theirs now, and no mark is written for it
+    other = seeded_library(tmp_path / "other", "chapters.json.gz", "book_isbns.json.gz")
+    typed = api.recheck_proposal(other, proposal, proposal.proposed_raw.replace(
+        "Booktitle = {Intracranial {EEG}}", "Booktitle = {Studies in Neuroscience, Psychology and Behavioral Economics}"),
+        mailto=CONTACT)
+    assert ct.model_choice(typed) is None and not any(ct.UNCONFIRMED in issue for issue in typed.issues)
+    assert api.apply_proposals(other, [typed]).written == ["Mann23"]
+    assert not (_stored(other, "Mann23") or {}).get("external_evidence")
+
+
+PAIRS = [
+    ("Intracranial EEG", "Intracranial EEG"),
+    ("intracranial eeg", "Intracranial EEG"),                                  # case
+    ("Caf\u00e9 society", "Cafe\u0301 society"),                               # NFC against NFD
+    ("Memory and cognition", "Memory\u00a0and cognition"),                     # a no-break space
+    ("Memory and cognition", "Memory\u200b and cognition"),                    # a zero-width space
+    ("Memory and cognition", "Mem\u00adory and cognition"),                    # a soft hyphen
+    ("Research & development", "Research &amp; development"),                  # an entity, unescaped or not
+    ("Research & development", "Research &amp;amp; development"),              # ... escaped twice
+    ("Memory", "Memory and cognition"),                                        # one title the start of the other
+    ("Memory and cognition", "Memory"),
+    ("Automata studies", "Automata Studies. (AM-34)"),                         # the record's series number
+    ("Automata Studies. (AM-34)", "Automata studies"),
+    ("The Oxford handbook of human memory", "The Oxford Handbook of Human Memory, Two Volume Pack"),
+    ("Intracranial EEG.", "Intracranial EEG"),                                 # a final full stop
+    ("Intracranial EEG", "Intracranial EEG."),
+    ("Intracranial EEG:", "Intracranial EEG"),
+    ("Intracranial {EEG}", "Intracranial EEG"),                                # house braces
+    ("Na\\\"ive models", "Na\u00efve models"),                                 # a LaTeX accent against the letter
+    ("Cost $x$ of memory", "Cost $x$ of memory"),                              # math: the verifier reads neither
+    ("A <i>title</i>", "A title"),
+    ("", "Intracranial EEG"),
+]
+
+
+def _verifier_says(cited, source):
+    """Whether ``compare_record`` accepts ``cited`` as the book title of a chapter whose record
+    names ``source`` as its one container title."""
+    from cdlbib.auto_review import safe_compare
+    fields = {"ENTRYTYPE": "incollection", "title": "A chapter", "author": "A Person", "year": "2020", "booktitle": cited}
+    record = {"type": "book-chapter", "DOI": "10.1234/x", "title": ["A chapter"], "container-title": [source],
+              "author": [{"given": "A", "family": "Person"}], "issued": {"date-parts": [[2020]]}}
+    evidence, issues = safe_compare(fields, record)
+    if any(issue.startswith("Unsupported source metadata") for issue in issues) or not cited:
+        return False
+    return not any(issue.startswith("booktitle") for issue in issues)
+
+
+@pytest.mark.parametrize("cited, source", PAIRS)
+def test_every_title_comparison_of_the_module_is_the_verifiers(cited, source):
+    verdict = _verifier_says(cited, source)
+    assert ct.title_is(cited, source) is verdict, (cited, source)
+    # each function of the module that asks "is this that title" gives the verifier's answer
+    assert ct._is_title(cited, [source]) is verdict
+    assert ct.same_title(cited, source) is (verdict or _verifier_says(source, cited))
+    other = "Some Quite Different Series"
+    assert (ct.decide((cited, other), [source]) == cited) is (verdict or _verifier_says(source, cited)) if cited else True
+    # the book of saved editor evidence is bound by the same comparison
+    record = {"type": "book-chapter", "ISBN": ["9780195333244"], "container-title": [source]}
+    kept = {"type": "book", "ISBN": ["9780195333244"], "title": [source], "editor": [{"given": "A", "family": "Person"}]}
+    found = {"editor": kept["editor"], "by": "crossref-book-record", "booktitle": source,
+             "sources": [{"source": "crossref-book-record", "isbn": "9780195333244", "record": kept}]}
+    bound = ct.valid_book_editors(dict(record, **{ct.BOOK_RECORD: found}), cited)
+    assert (bound is not None) is (verdict and bool(ct._key(source))), (cited, source)
+
+
+def test_lines_are_read_as_the_verifier_reads_titles_and_an_unreadable_line_decides_nothing():
+    titles = ("Lecture Notes in Statistics", "Caf\u00e9 society")
+    # the same title in another Unicode form, case or spacing is the same title in a line too, as the verifier has it
+    for line, expected in (("Part of the book: Cafe\u0301 Society", True), ("part of the book: CAF\u00c9 SOCIETY", True),
+                           ("Part of the book: Caf\u00e9\u00a0society", ct.title_is("Caf\u00e9 society", "Caf\u00e9\u00a0society")),
+                           ("Part of the book: Caf\u00e9 societies", False), ("Book series: Lecture Notes in Statistics", False)):
+        assert ct._mentions(line, titles[1]) is expected, line
+    # a line the verifier does not read (math, markup) is neither "mentions" nor "does not mention"
+    for line in ("Series: $x$ Lecture Notes in Statistics", "Book <span>Caf\u00e9 society</span>", "\\foo{Caf\u00e9 society}"):
+        assert ct._mentions(line, titles[0]) is None and ct._mentions(line, titles[1]) is None, line
+    assert ct.lines_about(["Series: $x$ of it", "plain"], titles) == ["Series: $x$ of it", "plain"]     # shown, not hidden
+
+    def reading(pages, value, line_number):
+        text = pages[0]["text"]
+        start = sum(len(line) + 1 for line in text.split("\n")[:line_number])
+        end = start + len(text.split("\n")[line_number])
+        digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        return {"source_text_sha256": digest, "fields": {"booktitle": {
+            "value": value, "grounding": "literal_text_present", "role_risk": [],
+            "passages": [{"page": 1, "start": start, "end": end, "quote": text[start:end]}]}}}
+
+    # a quoted line with markup: what it says of the other title is not known, so it decides nothing
+    pages = [{"page": 1, "text": "Part of the book: Caf\u00e9 society $x$\n"}]
+    with pytest.raises(ValueError, match="markup the citation check does not read"):
+        ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))
+    # the model names the title in another Unicode form: it is that title, and the registry's string comes out
+    pages = [{"page": 1, "text": "Part of the book: Cafe\u0301 society\n"}]
+    assert ct.choice_from_reading(titles, pages, reading(pages, "Cafe\u0301 society", 0))[0] == titles[1]
+    # 499, 500 and 501 characters: a line is whole below the cut, and not evidence at it (501 cannot be: it is cut to 500)
+    for length, usable in ((499, True), (500, False)):
+        line = ("Part of the book: Caf\u00e9 society " + "x" * 600)[:length]
+        pages = [{"page": 1, "text": line + "\n"}]
+        if usable:
+            assert ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))[0] == titles[1]
+        else:
+            with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+                ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))
+    (cut,) = ct.page_lines("<p>" + "y" * 501 + "</p>")
+    assert len(cut) == ct.LINE_CHARS
+    # a title that is the start of the other: a line with the longer one mentions both, and decides nothing
+    nested = ("Memory", "Memory and cognition")
+    pages = [{"page": 1, "text": "Part of the book: Memory and cognition\n"}]
+    for value in nested:
+        with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+            ct.choice_from_reading(nested, pages, reading(pages, value, 0))

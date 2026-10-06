@@ -2863,6 +2863,11 @@ def apply(ws, accepted, *, batch=None, before_commit=None):
             ledger, expected[ws.key_renames], data = writer.renames_recorded(
                 ws, result.renamed, 'Accepted entry completion key plan')
             writes.append((ledger, data))
+        # A book title a model chose is marked as such for the entry as it will be, before the
+        # entry is written and whichever interface accepted it; no mark, no write.
+        from . import container_titles
+        for key in container_titles.store_model_choices(ws, accepted, result, entries):
+            result.notes.append(f"{key}: booktitle chosen with a model, unconfirmed; the entry needs a person's review")
         if before_commit is not None:
             before_commit(entries, result)
         done = writer.commit(ws, writes, expected, batch=batch)

@@ -392,7 +392,10 @@ def test_a_chapter_is_built_with_the_books_editors_written_and_verified(client, 
     assert "editor" not in record and record["ISBN"] == ["9780190917982", "9780190918019"]
     # found: the book's own record, of a book type, with the chapter's ISBN and the book's title
     found = container_titles.book_editors(record, client)
-    (source,) = found["sources"]
+    # (the catalogue's two records of the handbook are found too since 2026-10-06: by the verifier's reading
+    # their title is the book's without its "Two Volume Pack" tail; its grammar reads no editors from them)
+    assert [(s["source"], s["editor"]) for s in found["sources"][1:]] == [("loc-catalogue", []), ("loc-catalogue", [])]
+    source = found["sources"][0]
     assert (source["source"], source["doi"], source["isbn"], source["type"]) == (
         "crossref-book-record", "10.1093/oxfordhb/9780190917982.001.0001", "9780190917982", "edited-book")
     assert source["title"] == record["container-title"][0] == "The Oxford Handbook of Human Memory, Two Volume Pack"
@@ -585,7 +588,7 @@ def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_ed
     two["body"]["message"]["total-results"] = 2
     client.cache.save_response(identity, two)
     found = container_titles.book_editors(record, client)
-    assert "editor" not in found and found["disagreement"] is True and len(found["sources"]) == 2
+    assert "editor" not in found and found["disagreement"] is True and len([s for s in found["sources"] if s["source"] == "crossref-book-record"]) == 2
     assert found["reason"] == "the 2 records found for the book name different editors, and none is chosen"
     assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None
     # two records that agree are evidence, and each is kept with its source record
@@ -593,7 +596,7 @@ def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_ed
     agreeing["body"]["message"]["items"][1]["editor"] = deepcopy(item["editor"])
     client.cache.save_response(identity, agreeing)
     both = container_titles.book_editors(record, client)
-    assert [p["family"] for p in both["editor"]] == ["Kahana", "Wagner"] and all("record" in s for s in both["sources"])
+    assert [p["family"] for p in both["editor"]] == ["Kahana", "Wagner"] and all(("record" in s) != ("marcxml" in s) for s in both["sources"])
     # an answer Crossref cut short (it counts more records than it returned) decides nothing
     short = deepcopy(answer)
     short["body"]["message"]["total-results"] = 9

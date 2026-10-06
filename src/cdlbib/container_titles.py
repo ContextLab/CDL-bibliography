@@ -94,16 +94,34 @@ def two_titles(record):
     if not isinstance(venues, list) or not all(isinstance(v, str) for v in venues):
         return None
     venues = [" ".join(v.split()) for v in venues if v.strip()]
-    if len(venues) != 2 or _key(venues[0]) == _key(venues[1]) or not all(_key(v) for v in venues):
+    if len(venues) != 2 or not all(_key(v) for v in venues) or same_title(venues[0], venues[1]):
         return None
     return tuple(venues)
 
 
 def _key(text):
+    """A title as the verifier reads a book title (``verification.normalized``, the transform
+    ``compare_record`` gives the ``booktitle`` field); "" for one it does not read."""
     try:
-        return normalize_title(html.unescape(str(text or "")))
+        return normalized(str(text or ""))
     except ValueError:
         return ""
+
+
+def title_is(cited, source):
+    """Whether ``cited`` is the book title ``source``, by the verifier's own rule for a cited
+    book title against a record's (``compare_record``: equal as ``verification.normalized``
+    reads them, or equal once the record's series number or volume-pack tail is taken off,
+    ``verification.book_title_forms``). Every "is this title that title" of this module is
+    this function; nothing here compares titles in another way."""
+    from .verification import book_title_forms
+    target = _key(cited)
+    return bool(target) and target in {_key(source), _key(book_title_forms(str(source or "")))}
+
+
+def same_title(one, two):
+    """``title_is`` either way round: for two titles of which neither is the citation's."""
+    return title_is(one, two) or title_is(two, one)
 
 
 def _isbns(record):
@@ -118,8 +136,7 @@ def _isbns(record):
 def decide(titles, book_names):
     """The one of ``titles`` that is among ``book_names`` (titles a source gives the book),
     when the other is not; else None."""
-    names = {_key(n) for n in book_names if _key(n)}
-    hits = [t for t in titles if _key(t) in names]
+    hits = [t for t in titles if any(same_title(t, name) for name in book_names)]
     return hits[0] if len(hits) == 1 else None
 
 
@@ -286,7 +303,7 @@ def _catalogue_source(xml, isbn):
 
 def _is_title(booktitle, names):
     """Whether ``booktitle`` is one of ``names`` by the comparison used for the two titles."""
-    return bool(_key(booktitle)) and _key(booktitle) in {_key(n) for n in names if _key(n)}
+    return any(title_is(booktitle, name) for name in names)
 
 
 def book_editors(record, client, cache=None):
@@ -414,7 +431,7 @@ def valid_book_editors(record, booktitle=None):
     cited = booktitle if booktitle is not None else found.get("booktitle")
     # The container titles of the chapter that the cited book title is, by the verifier's own
     # reading of a book title (a series number or a volume-pack tail is not part of it).
-    books = [v for v in venues if isinstance(cited, str) and (_is_title(cited, [v]) or _is_title(cited, [book_title_forms(v)]))]
+    books = [v for v in venues if isinstance(cited, str) and title_is(cited, v)]
     if not books:
         return None
     reread = []
@@ -428,7 +445,7 @@ def valid_book_editors(record, booktitle=None):
         else:
             read = None
         if read is None or read["editor"] is None or read["type"] not in BOOK_TYPES \
-                or not any(_is_title(v, read["names"]) for v in books):
+                or not any(same_title(v, name) for v in books for name in read["names"]):
             return None
         reread.append((source, read))
     naming = [(source, read) for source, read in reread if read["editor"]]
@@ -496,10 +513,14 @@ def page_lines(markup):
 
 
 def _mentions(line, title):
-    try:
-        return bool(re.search(r"(?<!\w)" + re.escape(normalized(html.unescape(title))) + r"(?!\w)", normalized(line)))
-    except ValueError:
-        return False
+    """Whether ``line`` holds ``title`` as whole words, both read as the verifier reads a book
+    title (``_key``). None when the line (or the title) is one the verifier does not read
+    (math, markup): such a line says nothing either way, and is never taken as "does not
+    mention"."""
+    wanted, text = _key(title), _key(line)
+    if not wanted or not text:
+        return None
+    return bool(re.search(r"(?<!\w)" + re.escape(wanted) + r"(?!\w)", text))
 
 
 def lines_about(lines, titles, around=2, limit=MAX_LINES):
@@ -508,7 +529,7 @@ def lines_about(lines, titles, around=2, limit=MAX_LINES):
     when the page mentions neither."""
     keep = set()
     for index, line in enumerate(lines):
-        if any(_mentions(line, t) for t in titles):
+        if any(_mentions(line, t) is not False for t in titles):      # a line that cannot be read is shown too
             keep.update(range(max(0, index - around), min(len(lines), index + around + 1)))
     return [lines[i] for i in sorted(keep)][:limit]
 
@@ -927,6 +948,9 @@ def choice_from_reading(titles, pages, extracted):
                          + ", ".join(str(r) for r in found["role_risk"]) + ")")
     # A line of LINE_CHARS or more was cut when the page was read (page_lines): what followed is
     # not known, the other title among it perhaps, so it cannot say which title is the book's.
+    if any(_mentions(q, chosen) is None or _mentions(q, other) is None for q in quotes):
+        raise ValueError("a quoted line holds markup the citation check does not read, so what it says of the "
+                         "titles is not known")
     alone = [q for q in quotes if len(q) < LINE_CHARS and _mentions(q, chosen) and not _mentions(q, other)]
     if not alone:
         raise ValueError("no quoted line contains the chosen title without the other, so the lines do not say "
@@ -1077,8 +1101,9 @@ def apply(proposal, resolution):
                         if c.field == "booktitle" else c for c in proposal.changes]
     said = (f"booktitle: the record names two titles, \"{resolution.titles[0]}\" and \"{resolution.titles[1]}\"; "
             f"\"{resolution.chosen}\" is taken as the book's. " + resolution.sentence)
+    written = next((c.proposed for c in proposal.changes if c.field == "booktitle"), None)
     proposal.choices.append(dict(resolution.evidence, field="booktitle", by=resolution.by,
-                                 chosen=resolution.chosen, other=resolution.other,
+                                 chosen=resolution.chosen, other=resolution.other, written=written,
                                  model_assisted=resolution.model_assisted,
                                  confirmed=not resolution.model_assisted,
                                  **({"statement": UNCONFIRMED} if resolution.model_assisted else {})))
@@ -1095,32 +1120,113 @@ def apply(proposal, resolution):
 MODEL_CHOICE = "model-assisted-choice"     # ``kind`` of the external evidence stored with such an entry
 
 
-def model_choice(proposal):
-    """The model-assisted choice of ``proposal`` (its record in ``choices``), or None."""
-    return next((c for c in getattr(proposal, "choices", None) or [] if c.get("model_assisted") and c.get("chosen")), None)
+def model_choice(proposal, booktitle=None):
+    """The model-assisted choice a proposal carries (its record in ``choices``), or None. The
+    choice is bound to the exact book title it wrote (``written``): with ``booktitle`` (the
+    book title of the entry as it will be written) it is returned only when that is still the
+    value, so a person who typed another title has dropped the choice, and nothing else has."""
+    choice = next((c for c in getattr(proposal, "choices", None) or []
+                   if c.get("field") == "booktitle" and c.get("model_assisted") and c.get("chosen")), None)
+    if choice is None or (booktitle is not None and booktitle != choice.get("written")):
+        return None
+    return choice
+
+
+def restate(proposal, fields):
+    """After a proposal was edited and rechecked: when its book title is still the one a
+    model chose, the proposal says so again and needs the person's decision again (a recheck
+    starts from no issues); when the person changed the book title, the choice is theirs and
+    the model's is taken off the proposal."""
+    carried = model_choice(proposal)
+    if carried is None:
+        return proposal
+    if model_choice(proposal, (fields or {}).get("booktitle")) is None:
+        proposal.choices = [c for c in proposal.choices if c is not carried]
+        return proposal
+    said = (f"booktitle: \"{carried['chosen']}\" was chosen between the record's two titles with a model "
+            f"({carried.get('route')}), from the line \"{carried.get('quote')}\" of {carried.get('url')}. " + UNCONFIRMED)
+    if not any(UNCONFIRMED in issue for issue in proposal.issues):
+        proposal.issues.append(said)
+    proposal.needs_decision = True
+    return proposal
+
+
+def _choice_evidence(choice):
+    return {"kind": MODEL_CHOICE, "summary": "booktitle chosen with a model, unconfirmed",
+            "statement": UNCONFIRMED, "model_assisted": True, "confirmed": False,
+            "reviewer": f"model:{choice.get('route')}", "booktitle": choice.get("written"),
+            "fields": {"booktitle": {"value": choice.get("chosen"), "quote": choice.get("quote"),
+                                     "page": choice.get("url")}},
+            **{k: choice.get(k) for k in ("route", "model", "url", "quote", "document_sha256", "chosen", "other",
+                                          "page_retrieved_at", "read_at")}}
+
+
+def _put_choice(cache, bibliography, entry, choice):
+    """Store the mark for ``entry`` (key, text, fields, fingerprint). The mark names the book
+    title it is about; an entry with another book title is refused. A person's approval of
+    this exact entry is left as it is."""
+    from .errors import CdlbibError
+    from .verification import outcome
+    if entry["fields"].get("booktitle") != choice.get("written") or not choice.get("written"):
+        raise CdlbibError(f"{entry['key']}: the book title is not the one the model-assisted choice wrote; "
+                          "the mark is for that title only.")
+    previous = cache.get(bibliography, entry)
+    if previous and previous.get("status") == "human_verified":
+        return previous
+    return cache.put(bibliography, entry, dict(
+        previous or outcome("needs_review", []), status="needs_review", external_evidence=_choice_evidence(choice),
+        issues=["booktitle chosen with a model, unconfirmed: human confirmation required"]))
+
+
+def store_model_choices(ws, accepted, planned, entries, database=None):
+    """Called by the writer (``complete.apply``) when everything is planned and nothing is
+    written yet: for each proposal about to be written whose book title a model chose (and
+    still is that title), the mark is stored for the entry as it WILL be (its fingerprint is
+    read from the exact text about to be written). The mark therefore exists before the
+    entry does, whichever interface accepted it; if it cannot be stored, ``CdlbibError`` is
+    raised and nothing is written. Returns the keys marked."""
+    import sqlite3
+    from .errors import CdlbibError
+    from .verification import Cache, run_lock
+    wanted = []
+    for outcome in planned.outcomes:
+        if outcome.status != "written":
+            continue
+        entry = entries[outcome.key]
+        choice = model_choice(accepted[outcome.index], entry["fields"].get("booktitle"))
+        if choice is not None:
+            wanted.append((entry, choice))
+    if not wanted:
+        return []
+    cache = None
+    try:
+        cache = Cache(database or ws.database, ledger=ws.revocations)
+        with run_lock(cache):
+            for entry, choice in wanted:
+                _put_choice(cache, ws.bib, entry, choice)
+    except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+        raise CdlbibError("The entry's book title was chosen with a model, and the record of that could not be "
+                          f"stored ({exc}); nothing was written.") from exc
+    finally:
+        if cache is not None:
+            cache.close()
+    return [entry["key"] for entry, _ in wanted]
 
 
 def keep_model_choice(ws, key, fingerprint, choice, database=None):
-    """Store with the library entry ``key`` that its book title was chosen with a model and
-    is unconfirmed: its result becomes ``needs_review`` with the choice as its
-    ``external_evidence`` (kind ``MODEL_CHOICE``: route, model, URL, quoted line, page hash),
-    bound to the entry's fingerprint. This is the record ``crossref attach-evidence`` and a
-    model reading of a PDF use, and it has their meaning: every automatic check leaves such
-    an entry ``needs_review`` (the verifier accepts either of the record's two titles, so
-    its acceptance would say nothing of the choice) until a person approves the entry, and
-    the Library and Review views and ``crossref status`` show it. It is never an approval,
-    and an entry a person has approved is left as it is. Returns the stored result."""
+    """Store the mark for the library entry ``key`` as it is now (the writer stores it itself,
+    before it writes: ``store_model_choices``; this is for an entry already in the library).
+    Its result becomes ``needs_review`` with the choice as its ``external_evidence`` (kind
+    ``MODEL_CHOICE``: route, model, URL, quoted line, page hash, and the book title it is
+    about), bound to the entry's fingerprint: the record ``crossref attach-evidence`` and a
+    model reading of a PDF use, with their meaning. Every automatic check leaves such an
+    entry ``needs_review`` (the verifier accepts either of the record's two titles, so its
+    acceptance would say nothing of the choice) until a person approves the entry; an edit of
+    the entry gives it a new fingerprint, and with it a new judgement. Never an approval."""
     import sqlite3
     from .errors import CdlbibError
     from .library import transaction
-    from .verification import Cache, load_entries, outcome, run_lock
-    evidence = {"kind": MODEL_CHOICE, "summary": "booktitle chosen with a model, unconfirmed",
-                "statement": UNCONFIRMED, "model_assisted": True, "confirmed": False,
-                "reviewer": f"model:{choice.get('route')}",
-                "fields": {"booktitle": {"value": choice.get("chosen"), "quote": choice.get("quote"),
-                                         "page": choice.get("url")}},
-                **{k: choice.get(k) for k in ("route", "model", "url", "quote", "document_sha256", "chosen", "other",
-                                              "page_retrieved_at", "read_at")}}
+    from .verification import Cache, load_entries, run_lock
     cache = None
     try:
         with transaction(ws):
@@ -1129,12 +1235,7 @@ def keep_model_choice(ws, key, fingerprint, choice, database=None):
                 entry = load_entries(ws.bib).get(key)
                 if entry is None or entry["fingerprint"] != fingerprint:
                     raise CdlbibError(f"{key} is not the entry that was written; the model-assisted mark was not stored.")
-                previous = cache.get(ws.bib, entry)
-                if previous and previous.get("status") == "human_verified":
-                    return previous
-                return cache.put(ws.bib, entry, dict(
-                    previous or outcome("needs_review", []), status="needs_review", external_evidence=evidence,
-                    issues=["booktitle chosen with a model, unconfirmed: human confirmation required"]))
+                return _put_choice(cache, ws.bib, entry, choice)
     except (OSError, ValueError, sqlite3.Error) as exc:
         raise CdlbibError(f"The model-assisted mark could not be stored: {exc}") from exc
     finally:
