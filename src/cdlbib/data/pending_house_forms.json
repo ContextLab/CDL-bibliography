@@ -1,33 +1,4 @@
 {
  "about": "Entries of cdl.bib written the way a house rule decided later now changes. The format check names each one on every run and does not count it as an error while the entry's value is exactly `value` and the formatter's is exactly `proposed`; the data is changed only when the owner approves it, and the entry is then taken off this list.",
- "entries": [
-  {
-   "key": "ClanEtal19",
-   "field": "booktitle",
-   "value": "Proceedings of the Second Workshop on Fact Extraction and Verification ({FEVER})",
-   "proposed": "Proceedings of the 2\\textsuperscript{nd} Workshop on Fact Extraction and Verification ({FEVER})",
-   "rule": "ordinals are numerals with a superscript suffix (2026-10-06)"
-  },
-  {
-   "key": "BoseEtal92",
-   "field": "booktitle",
-   "value": "Proceedings of the Fifth Annual Workshop on Computational Learning Theory",
-   "proposed": "Proceedings of the 5\\textsuperscript{th} Annual Workshop on Computational Learning Theory",
-   "rule": "ordinals are numerals with a superscript suffix (2026-10-06)"
-  },
-  {
-   "key": "SilbEtal01",
-   "field": "booktitle",
-   "value": "Proceedings of the Twenty-Third Annual Conference of the Cognitive Science Society",
-   "proposed": "Proceedings of the 23\\textsuperscript{rd} Annual Conference of the Cognitive Science Society",
-   "rule": "ordinals are numerals with a superscript suffix (2026-10-06)"
-  },
-  {
-   "key": "Beaz96",
-   "field": "booktitle",
-   "value": "Fourth Annual {USENIX} {Tcl/Tk} Workshop",
-   "proposed": "4\\textsuperscript{th} Annual {USENIX} {Tcl/Tk} Workshop",
-   "rule": "ordinals are numerals with a superscript suffix (2026-10-06)"
-  }
- ]
+ "entries": []
 }
