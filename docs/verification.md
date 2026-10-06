@@ -956,15 +956,31 @@ The comparison reads the three spellings of an ordinal as equal (`verification.o
 which reads the superscript form too), in the Crossref comparison and, since this change, in
 the ACL Anthology check's comparison of the proceedings' name.
 
-LaTeX in a name is read as spans of the text as given and put back after the word rules
-have run (`helpers._restore_spans`, for every field `format_journal_name` formats): the
-name of a command, the braced arguments of a command of two letters or more, mathematics
-between dollar signs, and a braced group that holds a capital and is not a caps-list word.
-Accents are left to the word rules as before. The acronym rule braces the given text in
-place; it puts no placeholder into the name. Comparing the formatter before and after this
-on every Journal, Booktitle, Publisher, Address and Edition of `cdl.bib` and of the frozen
-library fixture, and on every key of the three alias tables (16,922 values), no result
-differs.
+LaTeX in a name is case-sensitive, so a name is read once, left to right, into tokens
+(`helpers.name_tokens`, for every field `format_journal_name` formats and for `edition`),
+and the word, ordinal and acronym rules are applied to plain tokens only. The opaque tokens
+are written out exactly as given, and the result is the tokens put together again:
+
+|Token|Examples|
+|-|-|
+|opaque: a control sequence with the optional and braced arguments that follow it|`\LaTeX`, `\emph{Drosophila}`, `\textcolor[RGB]{0,0,0}{Title}`, an accent `\"{o}`|
+|opaque: a braced group that holds a group, a command, mathematics or a space|`{\"O}`, `{{Mixed} Case}`, `{Lopes da Silva}`|
+|opaque: mathematics|`$L_{AB} + Q$`, `\(a+b\)`|
+|plain: everything else; an escaped character is that character; a braced group of one word is the word rules' own (the caps list, `unbrace_ordinary`)|`\&`, `\{`, `{IEEE}`, `{University}`|
+
+A value whose braces or mathematics do not balance, or of more than 5,000 characters
+(`MAX_NAME_LENGTH`), is not formatted: every formatter returns it unchanged, and the format
+check stops with "The following fields cannot be formatted", naming the entry, the field and
+the reason, as it does for a page range it cannot read. No value of `cdl.bib` or of the
+frozen library fixture is such a value. The tokenizer looks at each character once.
+
+One consequence for the entry builder: an accented capital at the start of a word
+(`{\"O}sterreichische`) used to be lower-cased by the word rules, so such a name was
+written as the source has it and asked about; it is now written in its LaTeX form.
+
+Comparing the formatter before and after on every Journal, Booktitle, Publisher, Address
+and Edition of `cdl.bib` and of the frozen library fixture, and on every key of the three
+alias tables, no result differs.
 
 Entries already in the library that a new house rule would change can be held on a list,
 `src/cdlbib/data/pending_house_forms.json`, each with its present and its proposed text. The

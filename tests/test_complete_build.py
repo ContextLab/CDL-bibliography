@@ -766,9 +766,10 @@ def test_every_latex_form_survives_the_house_formatters_and_reads_back_the_same(
         journal = "Journal of " + written + " Studies"
         if helpers.format_journal_name(journal) != journal:
             lowered.append(char)
-    # The journal formatter lower-cases an accented capital that begins a word (and the
-    # command \\H); build then keeps the source's own character and asks (the test below).
-    assert "Ö" in lowered and "ö" not in lowered and len(lowered) < len(characters) / 2
+    # The journal formatter keeps every LaTeX form as given. (Until 2026-10-06 it lower-cased
+    # an accented capital that begins a word, and the command \\H; a command and what it
+    # marks is now a token the word rules do not re-case: helpers.name_tokens.)
+    assert lowered == []
     # A dot above is not in the table: the author formatter drops the period of {\.Z}.
     assert helpers.reformat_author("A {\\.Z}urek") != "A {\\.Z}urek"
     assert complete.latex_text("Żurek İlhan") == "Żurek İlhan" and complete.not_in_latex("Żurek İlhan") == ["Ż", "İ"]
@@ -802,17 +803,17 @@ def test_a_letter_whose_latex_form_the_formatter_would_change_is_kept_and_asked_
     kept = complete.build(typed, record)
     assert change(kept, "author") == complete.FieldChange("author", "P A Żurek", "P A Żurek", "typed", "kept")
     assert "\tAuthor = {P A Żurek},\n" in kept.proposed_raw
-    # A journal name whose accented capital the journal formatter would lower-case.
+    # A journal name with an accented capital at the start of a word. The journal formatter
+    # lower-cased that letter's LaTeX form until 2026-10-06, so the name was written as the
+    # source has it and asked about; the formatter now keeps the form, and the name is written
+    # in LaTeX with nothing to ask.
     record, _ = sources("Game62")
     record["container-title"] = ["Österreichische Zeitschrift für Soziologie"]
     journal = complete.build({"doi": record["DOI"]}, record)
-    assert change(journal, "journal").kind == "question"
-    # ("Für": the journal formatter capitalises every word that is not on its list.)
-    assert change(journal, "journal").proposed == "Österreichische Zeitschrift Für Soziologie"
-    assert journal.issues == [
-        "journal: the journal formatter does not keep the LaTeX form of 'Ö' (LATIN CAPITAL LETTER O WITH "
-        "DIAERESIS), 'ü' (LATIN SMALL LETTER U WITH DIAERESIS); written as the source has it"]
-    assert journal.needs_decision is True
+    # ("F{\\"u}r": the journal formatter capitalises every word that is not on its list.)
+    assert change(journal, "journal") == complete.FieldChange(
+        "journal", None, '{\\"O}sterreichische Zeitschrift F{\\"u}r Soziologie', "crossref", "filled")
+    assert journal.issues == [] and journal.needs_decision is False
 
 
 def test_every_accented_source_string_in_the_fixtures_survives_the_latex_form():
@@ -1054,11 +1055,14 @@ def test_page_forms_the_pagination_rule_does_not_know_are_left_unfilled():
 def test_house_question_says_when_a_typed_value_was_kept_because_the_formatter_would_change_it():
     # For every caller of _house_form (build, and the arXiv builder): when it returns the typed
     # value unchanged, _house_question gives the reason to raise, or None.
+    # The journal formatter keeps the LaTeX form of an accented capital since 2026-10-06, so
+    # this name is put in LaTeX and there is nothing to raise.
     typed = "Österreichische Zeitschrift Für Soziologie"
-    assert complete._house_form("journal", typed) == typed
-    assert complete._house_question("journal", typed) == (
-        "journal: the journal formatter does not keep the LaTeX form of 'Ö' (LATIN CAPITAL LETTER O WITH "
-        "DIAERESIS), 'ü' (LATIN SMALL LETTER U WITH DIAERESIS); the typed value is kept as typed")
+    assert complete._house_form("journal", typed) == '{\\"O}sterreichische Zeitschrift F{\\"u}r Soziologie'
+    assert complete._house_question("journal", typed) is None
+    # The author formatter still drops the period of a dot above ({\\.Z}): such a typed value
+    # is kept as typed, with the reason.
+    assert complete._house_form("author", "P A Żurek") == "P A Żurek"
     assert complete._house_question("journal", "Psychological Science") is None
     assert complete._house_question("author", 'S Fiedler and A Gl{\\"o}ckner') is None
 

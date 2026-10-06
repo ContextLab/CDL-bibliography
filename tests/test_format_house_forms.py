@@ -348,9 +348,10 @@ LONG = 50_000
 
 
 def hostile():
-    """Long inputs of the kinds that make a careless pattern slow: one piece repeated, alone,
+    """Long inputs of the kinds that make a careless reader slow: one piece repeated, alone,
     with a tail that matches nothing, and with a character in the middle that breaks the run."""
-    pieces = ("A.", "twenty-", " ", "1", "first ", "AB", "{AB}-", "30th ", "A", "Twenty-First ", "(", "th")
+    pieces = ("A.", "twenty-", " ", "1", "first ", "AB", "{AB}-", "30th ", "A", "Twenty-First ", "(", "th",
+              "\\emph{", "{", "}", "$", "$a", "\\a[", "\\\"", "\\emph{a} ", "{{a} b} ", "\\(", "\\", "{a}{b}")
     for piece in pieces:
         text = piece * (LONG // len(piece))
         yield repr(piece), text
@@ -358,18 +359,25 @@ def hostile():
         yield repr(piece) + " broken in the middle", text[:LONG // 2] + "#" + text[LONG // 2:]
 
 
-def test_the_rules_read_long_hostile_input_in_time_proportional_to_its_length():
-    """Titles come from registry records and from what a person types. Each rule added for
-    ordinals and acronyms, and each pattern the same change added or relies on elsewhere, reads
-    50,000 characters of every hostile kind well within a second (each takes hundredths)."""
+def test_everything_reads_long_hostile_input_in_time_proportional_to_its_length():
+    """Titles come from registry records and from what a person types. The tokenizer, each
+    rule, each formatter and each pattern the same change relies on elsewhere takes 50,000
+    characters of every hostile kind in under a quarter of a second."""
     import re
     import time
     from cdlbib import acl_review, texinstall, verification
-    rules = {"acronyms": helpers._braced_acronyms,
-             "opaque spans": lambda text: helpers._opaque_spans(text, frozenset()),
-             "restored spans": lambda text: helpers._restore_spans(text, text.lower()), "plain ordinals": helpers._plain_ordinals,
-             "meeting ordinals": helpers._meeting_ordinals, "two capitals": helpers._two_capitals,
-             "meeting window": helpers._numbers_a_meeting,
+
+    def tokens(text):
+        try:
+            return helpers.name_tokens(text)
+        except helpers.Unbalanced:
+            return None
+    rules = {"tokens": tokens, "unformattable": helpers.unformattable,
+             "book title": helpers.format_booktitle, "edition": helpers.format_edition,
+             "journal": helpers.format_journal_name, "publisher": lambda text: helpers.format_journal_name(
+                 text, key=helpers.publisher_key, dotted_initials=True),
+             "plain ordinals": helpers._plain_ordinals, "meeting ordinals": helpers._meeting_ordinals,
+             "two capitals": helpers._two_capitals, "meeting window": helpers._numbers_a_meeting,
              "ordinal_form": verification.ordinal_form, "anthology pages": acl_review.pages,
              "version": texinstall._VERSION.search, "pages": lambda text: re.fullmatch(r"\d+(?:--\d+)?", text)}
     slowest = (0.0, "", "")
@@ -379,26 +387,44 @@ def test_the_rules_read_long_hostile_input_in_time_proportional_to_its_length():
             started = time.perf_counter()
             rule(text)
             slowest = max(slowest, (time.perf_counter() - started, name, kind))
-    assert slowest[0] < 1.0, slowest
+    assert slowest[0] < 0.25, slowest
 
 
-def test_a_value_too_long_to_be_a_name_is_formatted_without_the_two_rules():
+def test_a_value_too_long_or_unbalanced_is_left_unchanged_and_reported(tmp_path):
     import time
-    assert helpers.MAX_RULE_LENGTH == 2000
-    name = "Proceedings of the 30th NAACL Conference"
-    long_name = name + " and" * 500
-    assert len(long_name) > helpers.MAX_RULE_LENGTH
-    assert helpers.format_booktitle(long_name) == helpers.format_journal_name(long_name)
-    assert "textsuperscript" not in helpers.format_booktitle(long_name)
-    assert helpers.format_edition("2nd " * 600) == "2nd " * 600
-    # At the longest length the rules read, every hostile kind is formatted at once; beyond
-    # it the formatter is the one every journal name already goes through.
-    for kind, text in hostile():
-        started = time.perf_counter()
-        helpers.format_booktitle(text[:helpers.MAX_RULE_LENGTH])
-        helpers.format_edition(text[:helpers.MAX_RULE_LENGTH])
-        assert time.perf_counter() - started < 1.0, kind
-        assert helpers.format_booktitle(text) == helpers.format_journal_name(text), kind
+    assert helpers.MAX_NAME_LENGTH == 5000
+    # Too long to be a name: unchanged (a command at its start too), and said to be so.
+    long_name = "\\LaTeX Proceedings of the 30th NAACL Conference" + " and" * 1300
+    assert len(long_name) > helpers.MAX_NAME_LENGTH
+    for formatter in (helpers.format_booktitle, helpers.format_journal_name, helpers.format_edition):
+        assert formatter(long_name) == long_name
+    assert helpers.unformattable(long_name) == "longer than 5000 characters"
+    # At the cap itself the value is read and formatted, quickly.
+    at_cap = ("\\LaTeX Proceedings of the 30th NAACL Conference" + " and" * 1300)[:helpers.MAX_NAME_LENGTH - 1].rstrip()
+    started = time.perf_counter()
+    written = helpers.format_booktitle(at_cap)
+    assert time.perf_counter() - started < 0.25
+    assert written.startswith("\\LaTeX Proceedings of the 30\\textsuperscript{th} {NAACL} Conference and and")
+    # Braces or mathematics that do not balance: unchanged, never guessed at.
+    for value, why in (("Proceedings of the {30th NAACL Meeting", "a brace that is never closed"),
+                       ("Proceedings of the 30th} NAACL Meeting", "a brace that closes nothing"),
+                       ("The $5 NAACL Workshop", "mathematics that is never closed"),
+                       ("The \\(x NAACL Workshop", "mathematics that is never closed"),
+                       ("\\emph{" * 3 + "NAACL Workshop", "a brace that is never closed")):
+        assert helpers.unformattable(value) == why
+        for formatter in (helpers.format_booktitle, helpers.format_journal_name, helpers.format_edition):
+            assert formatter(value) == value
+    assert helpers.unformattable("An escaped \\{ brace, \\$5 and \\} are characters") is None
+    # The format check reports such a field, as it reports a page range it cannot read.
+    bib = tmp_path / "some.bib"
+    text = entries("BauEtal17").replace("Booktitle = {{IEEE} Conference", "Booktitle = {\\emph{IEEE Conference")
+    assert text != entries("BauEtal17")
+    bib.write_text(text.replace("Pattern Recognition},", "Pattern Recognition}},"), encoding="utf-8")
+    assert helpers.unformattable(load_entries(bib)["BauEtal17"]["fields"]["booktitle"]) is None   # balanced: read
+    bib.write_text(entries("BauEtal17").replace("Booktitle = {{IEEE} Conference", "Booktitle = {$IEEE Conference"),
+                   encoding="utf-8")
+    with pytest.raises(Exception, match="cannot be formatted: \nBauEtal17: booktitle: mathematics that is never closed"):
+        check(bib)
 
 
 # --- LaTeX in a name is not re-cased, and no text of a name is mistaken for the formatter's own ------
@@ -411,8 +437,16 @@ def publisher(name):
     return helpers.format_journal_name(name, key=helpers.publisher_key, dotted_initials=True)
 
 
+def address(name):
+    return helpers.format_journal_name(name, key=helpers.address_key, force_caps=helpers.address_codes)
+
+
 FORMATTERS = {"booktitle": helpers.format_booktitle, "edition": helpers.format_edition,
-              "journal": helpers.format_journal_name, "publisher": publisher}
+              "journal": helpers.format_journal_name, "publisher": publisher, "address": address}
+
+
+def opaque_tokens(text):
+    return [part for is_opaque, part in helpers.name_tokens(text) if is_opaque]
 
 
 def balanced(text):
@@ -436,6 +470,22 @@ def balanced(text):
     ("Proceedings of the \\textit{ACM} Meeting", "Proceedings of the \\textit{ACM} Meeting"),
     ("On $L_p$ Spaces and ABCD", "On $L_p$ Spaces and {ABCD}"),
     ("The 30\\textsuperscript{th} and the 31st Meeting", "The 30\\textsuperscript{th} and the 31\\textsuperscript{st} Meeting"),
+    # A letter whose lower case is two characters, beside a command: no brace is gained.
+    ("\\emph{İ} \\LaTeX Workshop", "\\emph{İ} \\LaTeX Workshop"),
+    # A group that holds a group, optional arguments, mathematics with groups and spaces, a hyphen in an argument.
+    ("{{MixedCASE} OuterCASE} Workshop", "{{MixedCASE} OuterCASE} Workshop"),
+    ("\\textcolor[RGB]{0,0,0}{MiXeD Title} Workshop", "\\textcolor[RGB]{0,0,0}{MiXeD Title} Workshop"),
+    ("$L_{AB} + Q$ Workshop", "$L_{AB} + Q$ Workshop"), ("\\(a + B\\) Spaces", "\\(a + B\\) Spaces"),
+    ("\\emph{A-B} Workshop", "\\emph{A-B} Workshop"),
+    # The ordinal and acronym rules read plain words only: not what a command or a group holds.
+    ("\\emph{the 30th NAACL Meeting} of the 31st ACL Meeting",
+     "\\emph{the 30th NAACL Meeting} of the 31\\textsuperscript{st} {ACL} Meeting"),
+    ("{The Second Workshop on NLP} and the Third Workshop on NLP",
+     "{The Second Workshop on NLP} and the 3\\textsuperscript{rd} Workshop on {NLP}"),
+    ("$30th$ Meeting of the 30th Society", "$30th$ Meeting of the 30\\textsuperscript{th} Society"),
+    # An accented capital at the start of a word is kept (the word rules lower-cased it).
+    ('{\\"O}sterreichische NLP Zeitschrift', '{\\"O}sterreichische {NLP} Zeitschrift'),
+    ("AT\\&T Labs Workshop", "{AT\\&T} Labs Workshop"),
     # A braced group with a capital beside an unbraced part of a hyphenated word.
     ("Workshop on Tongue-{NLP} Systems", "Workshop on Tongue-{NLP} Systems"),
     # Accents and caps-list words are the rules' own, as before.
@@ -445,7 +495,9 @@ def balanced(text):
 def test_commands_mathematics_and_braced_capitals_are_kept_as_given(given, written):
     assert helpers.format_booktitle(given) == written
     assert helpers.format_booktitle(written) == written
-    assert COMMAND.findall(written) == COMMAND.findall(given) or "31st" in given
+    assert [t for t in opaque_tokens(written) if not t.startswith("\\textsuperscript")] == [
+        t for t in opaque_tokens(given) if not t.startswith("\\textsuperscript")]
+    assert balanced(written)
 
 
 def test_the_journal_formatter_keeps_a_command_too():
@@ -488,7 +540,27 @@ def test_properties_of_the_formatters_over_every_value_of_both_libraries():
         if balanced(value):
             assert balanced(once), where
         assert once.count("{{") <= value.count("{{") and once.count("}}") <= value.count("}}"), where
-    assert seen > 13000
+        if not aliased and not (field == "address" and isinstance(helpers.address_key.get(value.lower()), str)):
+            # every opaque token of the value is in the result, byte for byte and in order
+            assert [t for t in opaque_tokens(once) if not t.startswith("\\textsuperscript")] == [
+                t for t in opaque_tokens(value) if not t.startswith("\\textsuperscript")], where
+    assert seen > 13900
+
+
+def test_every_title_of_both_libraries_is_read_into_tokens_and_formatted_as_before():
+    """Titles go through format_title, which this change does not touch: each title of both
+    libraries is readable as tokens (its braces and mathematics balance), keeps its balance,
+    and a title of cdl.bib is left exactly as it is."""
+    for name, library in (("cdl.bib", LIBRARY), ("frozen", FROZEN)):
+        for key, entry in library.items():
+            title = entry["fields"].get("title")
+            if not title:
+                continue
+            assert helpers.unformattable(title) is None or len(title) > helpers.MAX_NAME_LENGTH, (name, key)
+            once = helpers.format_title(title)
+            assert balanced(once), (name, key)
+            if name == "cdl.bib":
+                assert once == title, (name, key)
 
 
 def test_the_same_properties_hold_for_names_with_commands_put_in():
