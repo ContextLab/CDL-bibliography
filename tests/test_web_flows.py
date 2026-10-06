@@ -750,7 +750,11 @@ def test_add_a_book_by_its_lccn_then_accept(tmp_path, monkeypatch):
             "@book{Galt83,\n\tAddress = {London},\n\tAuthor = {F Galton},\n\tPublisher = {Macmillan},\n"
             "\tTitle = {Inquiries into human faculty and its development},\n\tYear = {1883}}")
         assert {change["source"] for change in proposal["changes"]} == {"loc-catalogue"}
-        assert proposal["acceptable"] is True and proposal["why_not"] == [] and proposal["choices"] == []
+        assert proposal["acceptable"] is True and proposal["why_not"] == []
+        # the record the entry was built from, with the record's own field that carries the number asked for
+        (built,) = proposal["choices"]
+        assert (built["field"], built["by"], built["lccn"], built["matched"]) == (
+            "record", "loc-catalogue", "10032396", {"field": "010", "value": "10032396", "asked": "10032396"})
         assert proposal["notes"] == ["Built from the Library of Congress catalogue record LCCN 10032396."]
         done = site.ok("post", "/api/proposal/accept", {"proposal": proposal["id"]})
         assert done["written"] == ["Galt83"] and keys(ws) == ["Kaha12", "Game62", "Galt83"]

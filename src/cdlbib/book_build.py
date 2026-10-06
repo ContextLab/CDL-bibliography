@@ -93,6 +93,57 @@ def _other_isbn(digits):
     return None
 
 
+# --- the record's own identifiers ---------------------------------------------------------------------
+
+class WrongRecord(ValueError):
+    """The catalogue answered a standard-number query with records of which none carries
+    that number: an answer that echoes the query proves nothing about the record in it."""
+
+
+def same_isbn(one, two):
+    """Whether two ISBNs (digits, as ``isbn_text`` gives them) name the same edition: equal,
+    or the ten- and thirteen-digit forms of one number. Both must have a correct check digit."""
+    one, two = str(one or "").upper(), str(two or "").upper()
+    return bool(_isbn_valid(one) and _isbn_valid(two) and (one == two or _other_isbn(one) == two))
+
+
+def record_isbns(xml):
+    """The ISBNs the record itself states (MARC 020 $a; cancelled ones in $z are not its own)."""
+    _, subs = _marc(xml)
+    found = []
+    for value in subs("020", "a"):
+        digits = re.sub(r"[\- ]", "", (re.match(r"[\dXx\- ]+", value) or [""])[0]).upper()
+        if _isbn_valid(digits) and digits not in found:
+            found.append(digits)
+    return found
+
+
+def matched_identifier(xml, isbn=None, lccn=None):
+    """Where the record itself carries the number asked for: ``{"field": "020", "value":
+    its own ISBN}`` (the same number, in either length) or ``{"field": "010", "value": its
+    normalised LCCN}``; None when it does not."""
+    if isbn:
+        stated = record_isbns(xml)      # the number as asked when the record states it so, else its other length
+        own = isbn if isbn in stated else next((value for value in stated if same_isbn(value, isbn)), None)
+        return {"field": "020", "value": own, "asked": isbn} if own else None
+    if lccn:
+        _, subs = _marc(xml)
+        own = [normalized_lccn(value) for value in subs("010", "a")]
+        return {"field": "010", "value": lccn, "asked": lccn} if normalized_lccn(lccn) in own else None
+    return None
+
+
+def _own_records(found, how, **asked):
+    """The records of an answer that carry the number asked for; ``WrongRecord`` when the
+    answer has records and none does."""
+    kept = [xml for xml in found["records"] if matched_identifier(xml, **asked)]
+    if found["records"] and not kept:
+        raise WrongRecord(f"The catalogue's answer for {how} holds {len(found['records'])} "
+                          f"record{'s' if len(found['records']) != 1 else ''}, none of which carries that number "
+                          "itself; it is not used")
+    return kept
+
+
 # --- one record, for a person to choose ------------------------------------------------------------
 
 def _marc(xml):
@@ -162,12 +213,85 @@ def _braced_title(title, skip=()):
     words = title.split(" ")
     out = []
     for index, word in enumerate(words):
-        found = re.fullmatch(r"([^\w]*)(\w[\w'’.\-]*?)([^\w]*)", word)
-        if index and index not in skip and found and any(c.isupper() for c in found[2]) \
-                and not re.search(r"[{}\\$]", word):
+        # ``title`` is escaped text (``plain_source``): an escaped character is part of its word
+        found = re.fullmatch(r"([^\w\\]*)((?:\\[&%#_]|[\w'’.\-])+?)((?:\\[&%#_]|[^\w\\])*)", word)
+        # The first word is capitalised by position; a capital further inside it ("R&D", "fMRI")
+        # is the word's own, and the word is protected like any other.
+        capital = found and any(c.isupper() for c in (found[2][1:] if not index else found[2]))
+        if index not in skip and capital and not re.search(r"[{}$]", word):
             word = found[1] + "{" + found[2] + "}" + found[3]
         out.append(word)
     return " ".join(out)
+
+
+# A catalogue (or registry) string is plain text, and it is hostile until shown otherwise.
+# Two layers, both of which must hold for every textual field written from a source:
+# ``plain_source`` refuses what is not plain text and escapes the rest; ``checked_value``
+# refuses a finished value (after the formatter and the house braces) that could change the
+# structure of the entry. ``proved`` then reads the whole entry back.
+_UNREADABLE = re.compile(r"[~^$<>]")
+_SPECIAL = re.compile(r"[%&#_~^$\\{}<>@]")
+MAX_FIELD = 2000     # characters of one source value; a longer one is not a title, a name or a place
+
+
+def plain_source(name, text):
+    """A plain source string as TeX text, or ``ValueError`` with the reason.
+
+    Refused (the first layer; nothing is repaired): a value that is not a string or is
+    longer than ``MAX_FIELD``; a backslash, a brace, ``^^`` or a control character, a line
+    break among them (``intake.plain_text_problem``, the rule for text read from a PDF or by
+    a model: a source brings text, never markup); ``$ ~ ^ < >``, whose TeX forms the
+    verifier does not read; and ``@``. Escaped: ``% & # _`` (``intake.escape_plain``, the
+    package's one escaper). The result is checked again by ``checked_value``."""
+    from .intake import escape_plain, plain_text_problem
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError(f"{name}: the source gives no text")
+    if len(text) > MAX_FIELD:
+        raise ValueError(f"{name}: the source value is {len(text)} characters long; it is not written")
+    problem = plain_text_problem(name, text)
+    if problem:
+        raise ValueError(f"{name}: the source value has {problem}; it is not written")
+    if _UNREADABLE.search(text) or "@" in text:
+        raise ValueError(f"{name}: the source text has a character with no plain TeX form the check reads "
+                         "($, ~, ^, <, > or @); it is not written")
+    return checked_value(name, escape_plain(name, text))
+
+
+# The only commands a value built here may hold: the escapes of ``plain_source``, the house
+# ordinal, and the house accents ``complete.latex_text`` writes for a non-ASCII letter.
+_HOUSE_COMMAND = re.compile(r"""\\(?:[&%#_]|textsuperscript\{(?:st|nd|rd|th)\}|["'`^~=.][A-Za-z]|[cvuHrkdb]\{[A-Za-z]\}"""
+                            r"""|(?:o|O|l|L|ss|ae|AE|oe|OE|aa|AA|i)\})""")
+
+
+def checked_value(name, value):
+    """``value``, a finished field value, or ``ValueError`` (the second layer). It may not
+    change the structure of the entry it is written into (``intake.structure_problem``:
+    paired braces, no final backslash, no control character or line break, no ``@type{``, no
+    ``^^``), may not be longer than twice ``MAX_FIELD``, and may hold no command other than
+    the ones this module writes itself: nothing TeX would execute."""
+    from .intake import structure_problem
+    if not isinstance(value, str) or len(value) > 2 * MAX_FIELD:
+        raise ValueError(f"{name}: the value is too long to be written")
+    problem = structure_problem(value)
+    if problem:
+        raise ValueError(f"{name}: the value has {problem}; it is not written")
+    if "\\" in _HOUSE_COMMAND.sub("", value) or "@" in value:
+        raise ValueError(f"{name}: the value holds a TeX command or an @ that this builder does not write; "
+                         "it is not written")
+    return value
+
+
+def proved(raw, fields):
+    """``raw``, an assembled ``@book``, or ``ValueError``: it must read back as exactly one
+    entry with exactly ``fields`` (``intake._proved``: the library's reader and the strict
+    scanner both, as for an entry read from a PDF or by a model)."""
+    from .errors import CdlbibError
+    from .intake import _proved
+    try:
+        _proved(raw, "book", dict(fields))
+    except CdlbibError as exc:
+        raise ValueError(str(exc)) from None
+    return raw
 
 
 def _after_article(title):
@@ -230,8 +354,11 @@ def build_book(xml, key_typed=None):
     def write(name, value, formatter, raw):
         try:
             written, doubts = _written(name, value, formatter)
+            checked_value(name, written)          # the second layer: what the formatter and the braces made of it
         except _Hold as held:
             return hold(name, held.reason, raw)
+        except ValueError as exc:
+            return hold(name, str(exc), raw)
         fields[name], stated[name] = written, raw
         if doubts:
             proposal.issues.extend(doubts)
@@ -240,17 +367,26 @@ def build_book(xml, key_typed=None):
         else:
             proposal.changes.append(FieldChange(name, None, written, SOURCE, "filled"))
 
+    def plain(name, text, raw):
+        """``text`` escaped for TeX, or None after listing the field as unfilled."""
+        try:
+            return plain_source(name, text)
+        except ValueError as exc:
+            hold(name, str(exc), str(raw)[:200])
+            return None
+
     title = record["title"][0]
-    if re.search(r"[<>{}\\$]", title):
-        hold("title", "title: no plain catalogue title", title)
+    escaped = plain("title", title, title)
+    if escaped is None:
+        pass
     elif _title_case(title):
-        write("title", format_title(title), format_title, title)
+        write("title", format_title(escaped), format_title, title)
         proposal.issues.append("title: the catalogue record capitalises every word of the title, so no proper "
                                "noun could be told from it; brace the proper nouns")
         proposal.needs_decision = True
     else:
         doubtful = _after_article(title) if not record.get("author") else None
-        write("title", format_title(_braced_title(title, skip=(1,) if doubtful else ())), format_title, title)
+        write("title", format_title(_braced_title(escaped, skip=(1,) if doubtful else ())), format_title, title)
         if doubtful:
             proposal.issues.append(f"title: the record capitalises {doubtful!r} after the opening article, as the "
                                    "cataloguing rule does for a book entered under its title; it is written in "
@@ -261,6 +397,13 @@ def build_book(xml, key_typed=None):
         if not people:
             continue
         said = complete._people_text(people)
+        if any(not isinstance(p.get(part), str) or _SPECIAL.search(p[part]) or len(p[part]) > 200
+               or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", p[part])
+               for p in people for part in ("given", "family")):
+            # A name is written as initials and a surname, never escaped: one with a character
+            # TeX reads as a command is not written at all.
+            hold(name, f"{name}: a name in the record has a character that is not plain text in TeX", said[:200])
+            continue
         try:
             value = cp.source_authors({"author": [{"given": p["given"], "family": p["family"]} for p in people]})
         except ValueError as exc:
@@ -281,17 +424,17 @@ def build_book(xml, key_typed=None):
         proposal.issues.append(f"publisher: the record names {len(publishers)} publishers, each with its place "
                                f"({said}); the first is written, and the citation may name the other")
         proposal.needs_decision = True
-    if re.search(r"[<>{}\\$]", publisher):
-        hold("publisher", "publisher: no plain catalogue name", publisher)
-    else:
-        write("publisher", _publisher_format(publisher), _publisher_format, publisher)
+    escaped = plain("publisher", publisher, publisher)
+    if escaped is not None:
+        write("publisher", _publisher_format(escaped), _publisher_format, publisher)
     place, places = _place(record, xml, publisher)
-    if place:
+    escaped = plain("address", place, "; ".join(places)) if place else None
+    if escaped is not None:
         from .helpers import address_codes, address_key, format_journal_name
 
         def address_format(value):
             return format_journal_name(value, key=address_key, force_caps=address_codes)
-        write("address", address_format(place), address_format, "; ".join(places))
+        write("address", address_format(escaped), address_format, "; ".join(places))
         if len(places) > 1 and "address" in fields:
             proposal.notes.append(f"address: the record gives the publisher {len(places)} places ("
                                   + "; ".join(places) + "); the first is written")
@@ -324,7 +467,11 @@ def build_book(xml, key_typed=None):
         proposal.key_proposed = authors2key(names, year)
     else:
         hold("ID", "a key needs the authors (or, for an edited volume, the editors) and the year")
-    proposal.proposed_raw = complete.render("book", key_typed or proposal.key_proposed or complete.NO_KEY, fields)
+    key = key_typed or proposal.key_proposed or complete.NO_KEY
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9]{0,60}", key) or not re.fullmatch(r"[1-9]\d{3}", fields["year"]):
+        raise ValueError("the key or the year is not in the form an entry is written with")
+    # The whole entry is read back: one entry, these fields and no other (ValueError when not).
+    proposal.proposed_raw = proved(complete.render("book", key, fields), fields)
     complete._set_complete(proposal, fields)
     proposal.notes.insert(0, f"Built from the {SOURCE_NAME} record "
                           + (f"LCCN {lead['lccn']}" if lead["lccn"] else lead["record_id"])
@@ -353,7 +500,15 @@ def find_records(query, client, cache):
     before 2007 carries the ten-digit form only). A title and first author are searched as
     the catalogue check searches them (``catalogue_discovery.search_query``; without
     diacritics when the first search finds nothing), so the check later reads the same
-    saved response."""
+    saved response. Every answer is read under one deadline and a size limit
+    (``container_titles.within``)."""
+    import time
+    from .container_titles import RESOLVE_SECONDS, within
+    with within(client, time.monotonic() + RESOLVE_SECONDS):
+        return _find_records(query, client, cache)
+
+
+def _find_records(query, client, cache):
     if query.isbn:
         if not _isbn_valid(query.isbn):
             raise ValueError(f"{query.isbn} is not an ISBN: its check digit is wrong")
@@ -361,10 +516,13 @@ def find_records(query, client, cache):
         other = _other_isbn(query.isbn)
         if not found["records"] and other:
             found = fetch_query(cache, client, identifier_query("isbn", other))
-        return found["records"], f"the ISBN {query.isbn}", found["truncated"]
+        how = f"the ISBN {query.isbn}"
+        # The answer is believed only for the records that carry the number themselves.
+        return _own_records(found, how, isbn=query.isbn), how, found["truncated"]
     if query.lccn:
         found = fetch_query(cache, client, identifier_query("lccn", query.lccn))
-        return found["records"], f"the LCCN {query.lccn}", found["truncated"]
+        how = f"the LCCN {query.lccn}"
+        return _own_records(found, how, lccn=query.lccn), how, found["truncated"]
     fields = {"title": query.title or "", "author": query.author or ""}
     found = fetch_search(cache, client, fields)
     if not found["records"] and search_query(fields, fold_diacritics=True) != found["query"]:
@@ -400,6 +558,8 @@ def propose_book(query, client, cache):
     except ProviderError as exc:
         return nothing([f"The lookup failed: the {SOURCE_NAME} did not answer ({exc}); nothing is proposed"],
                        status=LOOKUP_FAILED)
+    except WrongRecord as exc:
+        return nothing([f"{exc}; nothing is proposed"])
     except ValueError as exc:
         return nothing([f"{exc}; nothing was looked up"])
     more = (" The catalogue lists more records than the ten it returned; give the ISBN or the LCCN."
@@ -447,10 +607,20 @@ def propose_book(query, client, cache):
     proposal.notes += [n for n in query.notes if n not in proposal.notes]
     if note:
         proposal.notes.insert(1, note)
+    proposal.choices.append(built_from(records[chosen], isbn=query.isbn, lccn=query.lccn))
     return proposal
 
 
-def catalogue_check(entry, result, client, cache=None):
+def built_from(xml, isbn=None, lccn=None):
+    """The record an entry was built from, kept on its proposal (``choices``): its catalogue
+    id and LCCN, and, when a number was asked for, the record's own field that carries it
+    (``matched``). ``catalogue_check`` holds the verifier's answer to this record."""
+    lead = summary(xml)
+    return {"field": "record", "by": SOURCE, "record_id": lead["record_id"], "lccn": lead["lccn"],
+            "isbns": record_isbns(xml), "matched": matched_identifier(xml, isbn=isbn, lccn=lccn)}
+
+
+def catalogue_check(entry, result, client, cache=None, record_id=None):
     """The verifier's result for a book the first check left unresolved, after the catalogue
     check: ``catalogue_review.review_book`` for the entry, under the conditions
     ``run_catalogue_review`` applies (a ``@book`` with authors or editors and no DOI, not yet
@@ -466,6 +636,15 @@ def catalogue_check(entry, result, client, cache=None):
     assessed["candidates"] = [c for c in result.get("candidates", []) if c.get("source") != SOURCE] + assessed["candidates"]
     assessed["attempts"] = list(result.get("attempts", [])) + attempts
     assessed["catalogue_review"] = {"policy": CATALOGUE_POLICY, "query": response["query"], "queries": queries}
+    if record_id and assessed.get("status") in ACCEPTED and assessed.get("accepted_record_id") != record_id:
+        # The entry was built from one record (the one that carries the number asked for); a
+        # check that verifies it against another record has not verified that book.
+        from .verification import outcome
+        held = outcome("needs_review", [
+            f"The catalogue check matched the entry to record {assessed.get('accepted_record_id')}, not to the "
+            f"record it was built from ({record_id}); it is not taken as verified"], assessed["candidates"])
+        held["attempts"], held["catalogue_review"] = assessed["attempts"], assessed["catalogue_review"]
+        return held
     return assessed
 
 
@@ -475,10 +654,13 @@ def leads(client, title, authors, year, rows):
     search (the check's own) needs a title and a surname."""
     if not title or not authors:
         return
+    import time
+    from .container_titles import RESOLVE_SECONDS, within
     fields = {"title": title, "author": authors[0]}
-    found = fetch_search(client.cache, client, fields)
-    if not found["records"] and search_query(fields, fold_diacritics=True) != found["query"]:
-        found = fetch_search(client.cache, client, fields, fold_diacritics=True)
+    with within(client, time.monotonic() + RESOLVE_SECONDS):
+        found = fetch_search(client.cache, client, fields)
+        if not found["records"] and search_query(fields, fold_diacritics=True) != found["query"]:
+            found = fetch_search(client.cache, client, fields, fold_diacritics=True)
     for xml in found["records"][:rows]:
         lead = summary(xml)
         names = lead.pop("_authors")
@@ -548,6 +730,8 @@ def propose_typed_book(query, client, cache):
                         "entry is left as typed; `cdlbib verify` checks it against Crossref"])
     try:
         records, chosen, how, truncated, shown = _typed_record(typed, client, cache, query)
+    except WrongRecord as exc:
+        return nothing([f"{exc}; the entry is left as typed"])
     except ProviderError as exc:
         return nothing([f"The lookup failed: the {SOURCE_NAME} did not answer ({exc}); the entry is left as typed"],
                        status=LOOKUP_FAILED)
@@ -606,6 +790,15 @@ def propose_typed_book(query, client, cache):
     if names and fields.get("year"):
         from .helpers import authors2key
         proposal.key_proposed = authors2key(names, fields["year"])
-    proposal.proposed_raw = complete.render("book", query.key or proposal.key_proposed or complete.NO_KEY, fields)
+    try:      # typed values are the person's own; the completed entry must still be one entry with these fields
+        proposal.proposed_raw = proved(
+            complete.render("book", query.key or proposal.key_proposed or complete.NO_KEY, fields), fields)
+    except ValueError as exc:
+        return nothing([f"The completed entry would not read back as one entry with the fields shown ({exc}); "
+                        "the entry is left as typed"])
     complete._set_complete(proposal, fields)
+    asked_isbn = isbn_text("ISBN " + str(typed.get("isbn") or "").split(",")[0].strip()) if typed.get("isbn") else None
+    asked_lccn = lccn_text("LCCN " + str(typed.get("lccn") or "")) if typed.get("lccn") else None
+    proposal.choices.append(built_from(xml, isbn=query.isbn or asked_isbn,
+                                       lccn=None if (query.isbn or asked_isbn) else (query.lccn or asked_lccn)))
     return proposal

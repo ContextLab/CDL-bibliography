@@ -2272,7 +2272,9 @@ def checked(proposal, client, arxiv_raw=None):
                 result = reassess(entry, dict(result, candidates=candidates, attempts=attempts))
                 # As the gate does next for a book (catalogue_review.run_catalogue_review).
                 from .book_build import catalogue_check
-                result = catalogue_check(entry, result, client)
+                built = next((c for c in proposal.choices if c.get("field") == "record" and c.get("by") == "loc-catalogue"),
+                             None) if proposal.edited_fields is None else None
+                result = catalogue_check(entry, result, client, record_id=(built or {}).get("record_id"))
             if result["status"] not in ACCEPTED:
                 result = _anthology_checked(entry, client, result)
     except ProviderError as exc:

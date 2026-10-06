@@ -609,6 +609,19 @@ catalogue route like any other book.
 | `address` | the publisher's first place; with the state's two-letter code when 008/15-17 names one of the states the check compares | the check does not accept the formatted place |
 | `edition` | a numbered statement, as `2\textsuperscript{nd}` | the statement is not a number the check's edition comparison reads ("Rev. ed."). The catalogue's older "2d ed." and "3d ed." are read as the second and third edition since 2026-10-06; the entry then stays `needs_review` |
 
+An answer to an ISBN or LCCN query is used only for the records that carry that number
+themselves (MARC 020 `$a`, the ten- and thirteen-digit forms of one ISBN counting as the
+same; MARC 010, normalised): an answer that echoes the query and holds another record is
+refused. The proposal keeps the record it was built from (`choices`: its catalogue id,
+LCCN, ISBNs, and the field that matched), and the catalogue check's verdict counts for the
+proposal only when it accepts that same record.
+
+Catalogue text is plain text. Before house braces are added it is escaped for TeX
+(`book_build.plain_source`, using the escaper of `intake`): `%`, `&`, `#` and `_`. The
+verifier compares the escaped field as equal to the record. A string with a backslash, a
+dollar sign, `~` or `^` is not written (the verifier does not read their TeX forms), and a
+name with any such character is not written either; the field is listed as unfilled.
+
 A search that returns several records is answered with the records and builds none. No
 DOI and no ISBN are written: the catalogue route is for a book without a supplied DOI, and
 an ISBN is not a house field.
@@ -623,13 +636,37 @@ both answered and neither decides, and a model route is set up: the `extract` ph
 research adapter reads the lines of the chapter's page at its publisher that mention
 either title. The page is fetched from `doi.org` and the fixed publisher hosts of
 `publisher_corrections` only, over HTTPS, each redirect checked before it is followed.
-The model's choice counts only when its book title is one of the two, its passages are
-lines of that page, one of them holds the chosen title without the other, and none holds
-the other alone. The result is recorded on the proposal (`choices`: the record or, for a
+The fetch uses a session made for it that carries no credentials (`trust_env` off: no
+`.netrc`, no proxy from the environment, so a machine that reaches the web only through a
+proxy cannot fetch the page; no auth; an empty cookie jar that lives for the one fetch).
+The host is resolved once to refuse private addresses and again by the connection; the
+connection is not pinned to the first answer, and what bounds this is that the host is
+one of the fixed public hosts and its certificate is verified, so another address cannot
+complete the TLS handshake and receives no request. One deadline covers the whole
+resolution, and it is enforced while bodies are read: the page, the catalogue's answer
+and Crossref's book lookup are each read from the socket in bounded steps with the clock
+checked before every step and a byte limit, and cancelled when either is passed.
+The model's choice counts only when its book title is one of the two and its passages lie
+on that page; what is judged is every whole line a passage touches, never the part of a
+line the model selected: one of those lines must hold the chosen title without the other,
+and none may hold the other alone. The result is recorded on the proposal (`choices`: the record or, for a
 model, the route, model, URL, quoted line and document hash), a model-assisted choice
 makes the proposal need a decision, and the entry is verified afterwards by the ordinary
-route. The verifier accepts either container title of such a record, so it does not
-confirm the choice.
+route. The verifier accepts either container title of such a record, so an entry with a
+model-assisted title can read `metadata_verified` without the choice having been
+confirmed. The proposal therefore keeps saying, in its issues (shown by the command line,
+the terminal interface and the web interface) and in `choices` (`model_assisted: true`,
+`confirmed: false`), that the choice is model-assisted and unconfirmed, and it is never
+accepted without the person's decision. Once the entry is written, the library holds
+only the entry: the gate's stored result does not carry that mark.
+
+A chapter's editors, when its own record names none, are taken from the book's record by
+the same lookups (`container_titles.book_editors`). Every record of the book in an answer
+is read, not the first; records that name different editors, an answer Crossref cut short
+(it counts more records than it returned), or an editor list with a member that is not a
+person decide nothing. The source records are kept, and each comparison reads them again:
+the record must be of a book type (never a series), carry one of the chapter's ISBNs, and
+have as its title the container title that the entry's book title is.
 
 ### Local PDF discovery
 

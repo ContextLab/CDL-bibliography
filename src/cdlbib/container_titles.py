@@ -42,11 +42,18 @@ MAX_PAGE_LINES = 5000     # lines kept of a page while it is parsed; the rest is
 PAGE_REDIRECTS = 6        # hops followed from doi.org to the page
 PAGE_SECONDS = 120        # the whole fetch of the page, all hops together
 RESOLVE_SECONDS = 900     # the whole resolution of one record (the adapter has its own 600 s limit)
+PAGE_BYTES = 2_000_000    # the most one hop of a page fetch may send
+RECORD_BYTES = 4_000_000  # the most a record source (Crossref, the catalogue) may send in one answer
 # The hosts a chapter's page is fetched from: the publisher hosts this package already
 # fetches DOI landing pages from (publisher_corrections.ISSUE_HEAD_HOSTS), fixed in the code.
 # doi.org only redirects; a redirect to any other host ends the fetch.
 from .publisher_corrections import ISSUE_HEAD_HOSTS  # noqa: E402
 PAGE_HOSTS = frozenset(ISSUE_HEAD_HOSTS)
+# Said with every model-assisted choice, in the proposal's issues and in its stored record,
+# whatever the verifier's status is: the verifier accepts either of the record's two titles.
+UNCONFIRMED = ("Model-assisted and unconfirmed: check the title against the page before accepting. The citation "
+               "check accepts either of the record's two titles, so a status of metadata_verified does not confirm "
+               "this choice.")
 HOW = ("To have a model read the publisher's page for it, set up a model route (`cdlbib setup` "
        "lists them; Dartmouth Chat is the default) and run the lookup again.")
 
@@ -119,14 +126,15 @@ def crossref_books(client, record):
     records of a book type (never a series: ``BOOK_TYPES``) that carry that ISBN, as
     ``(isbn, item, names, response)``; ``names`` is the record's title, with and without its
     subtitle."""
+    from .book_build import same_isbn
     for isbn in _isbns(record):
         response = client.get(WORKS, {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in BOOK_TYPES), "rows": 5})
         items = (response.get("body") or {}).get("message", {}).get("items", [])
         for item in items if isinstance(items, list) else []:
             if not isinstance(item, dict) or item.get("type") not in BOOK_TYPES:
                 continue
-            own = [re.sub(r"[\s-]", "", str(v)).upper() for v in item.get("ISBN") or []]
-            if isbn not in own:
+            own = [re.sub(r"[\s-]", "", str(v)).upper() for v in item.get("ISBN") or [] if isinstance(v, str)]
+            if not any(same_isbn(isbn, value) for value in own):
                 continue
             names = [t for t in item.get("title") or [] if isinstance(t, str)]
             subtitles = [t for t in item.get("subtitle") or [] if isinstance(t, str)]
@@ -138,12 +146,14 @@ def crossref_books(client, record):
 def catalogue_books(client, cache, record):
     """The one lookup of a chapter's book in the Library of Congress catalogue: for each of
     the chapter's ISBNs, the records with that ISBN, as ``(isbn, xml, whole title, found)``."""
-    from .book_build import record_title
+    from .book_build import matched_identifier, record_title
     from .catalogue_discovery import fetch_query, identifier_query
     for isbn in _isbns(record):
         found = fetch_query(cache, client, identifier_query("isbn", isbn))
         for xml in found["records"]:
-            yield isbn, xml, record_title(xml), found
+            # An answer that echoes the query proves nothing: the record must state the ISBN itself.
+            if matched_identifier(xml, isbn=isbn):
+                yield isbn, xml, record_title(xml), found
 
 
 def from_crossref(client, record, titles):
@@ -160,6 +170,8 @@ def from_crossref(client, record, titles):
                     f"The book's own Crossref record ({item.get('DOI')}, ISBN {isbn}) has the title "
                     f"\"{names[0]}\"" + (f" and names \"{other}\" as its series" if agrees else "") + "."),
                     evidence={"source": "crossref", "doi": item.get("DOI"), "isbn": isbn, "type": item.get("type"),
+                              "matched": {"field": "ISBN", "value": [v for v in item.get("ISBN") or []
+                                                                     if isinstance(v, str)], "asked": isbn},
                               "title": names[0], "series": series, "retrieved_at": response.get("retrieved_at")})
     return None
 
@@ -168,7 +180,7 @@ def from_catalogue(client, cache, record, titles):
     """Step 2: a Library of Congress record with one of the chapter's ISBNs whose transcribed
     title (with or without its subtitle) is one of the two titles."""
     import xml.etree.ElementTree as ET
-    from .book_build import summary
+    from .book_build import matched_identifier, summary
     from .catalogue_discovery import M
     if True:
         for isbn, xml, whole, found in catalogue_books(client, cache, record):
@@ -186,7 +198,8 @@ def from_catalogue(client, cache, record, titles):
                 f"The book's Library of Congress record (LCCN {lead['lccn']}, ISBN {isbn}) has the title "
                 f"\"{whole}\"" + (f" and names \"{other}\" as its series" if agrees else "") + "."),
                 evidence={"source": "loc-catalogue", "lccn": lead["lccn"], "record_id": lead["record_id"],
-                          "isbn": isbn, "title": whole, "series": series, "url": found["url"],
+                          "isbn": isbn, "matched": matched_identifier(xml, isbn=isbn),
+                          "title": whole, "series": series, "url": found["url"],
                           "document_sha256": found["document_sha256"], "retrieved_at": found["retrieved_at"]})
     return None
 
@@ -203,8 +216,21 @@ BOOK_RECORD = "book-record"    # the key under which what was found is kept in t
 
 
 def _people(people):
-    return [{k: str(p.get(k) or "") for k in ("given", "family", "name", "suffix") if p.get(k)}
-            for p in people or [] if isinstance(p, dict)]
+    """A source's list of people as plain dicts, or None when it is not a well-formed list:
+    every member a dict that names someone (a family name, or a name). A list with anything
+    else in it is no evidence at all: nothing is dropped from it to make it one."""
+    if not isinstance(people, list):
+        return None
+    out = []
+    for person in people:
+        if not isinstance(person, dict) or any(
+                person.get(k) is not None and not isinstance(person.get(k), str) for k in ("given", "family", "name", "suffix")):
+            return None
+        kept = {k: person[k] for k in ("given", "family", "name", "suffix") if person.get(k)}
+        if not (kept.get("family") or kept.get("name")):
+            return None
+        out.append(kept)
+    return out
 
 
 def same_people(one, two):
@@ -221,16 +247,58 @@ def same_people(one, two):
         return False
 
 
+def _crossref_source(item, isbn):
+    """What a Crossref record of a book says, read from the record itself: its type (a book
+    type, never a series), that it carries ``isbn``, its titles, and its editors (None for
+    a malformed list). None when the record is not a book's with that ISBN."""
+    from .book_build import same_isbn
+    if not isinstance(item, dict) or item.get("type") not in BOOK_TYPES:
+        return None
+    if not any(same_isbn(isbn, re.sub(r"[\s-]", "", v).upper()) for v in item.get("ISBN") or [] if isinstance(v, str)):
+        return None
+    names = [t for t in item.get("title") or [] if isinstance(t, str)]
+    subtitles = [t for t in item.get("subtitle") or [] if isinstance(t, str)]
+    if len(names) == 1 and len(subtitles) == 1:
+        names.append(names[0] + ": " + subtitles[0])
+    editors = _people(item.get("editor")) if item.get("editor") is not None else []
+    return {"names": names, "editor": editors, "type": item.get("type")}
+
+
+def _catalogue_source(xml, isbn):
+    """The same for a Library of Congress record (its MARC XML): it states ``isbn`` itself
+    (020), its transcribed title, and the editors the catalogue check's grammar reads."""
+    from .book_build import matched_identifier, record_title
+    from .catalogue_review import parse_edition
+    try:
+        if not matched_identifier(xml, isbn=isbn):
+            return None
+        whole = record_title(xml)
+    except (ValueError, TypeError):
+        return None
+    try:
+        editors = _people(parse_edition(xml).get("editor") or [])
+    except ValueError:
+        editors = []      # a record the catalogue check's grammar does not read names no one here
+    return {"names": [whole, whole.split(":")[0]], "editor": editors, "type": "book"}
+
+
+def _is_title(booktitle, names):
+    """Whether ``booktitle`` is one of ``names`` by the comparison used for the two titles."""
+    return bool(_key(booktitle)) and _key(booktitle) in {_key(n) for n in names if _key(n)}
+
+
 def book_editors(record, client, cache=None):
     """What the book's own record says of the editors of the book a chapter is in: a dict
     kept in the chapter's record under ``BOOK_RECORD`` (``verification.compare_record``
     compares an entry's ``editor`` field with it when the chapter's record names no editor).
 
-    ``editor``: the editors, complete and in order, when a record of the book names them and
-    the records found do not disagree; else absent, with ``reason``. ``sources``: each record
-    found (``source``, its identifier, ``isbn``, ``title``, ``editor``, ``retrieved_at``).
-    None when ``record`` is no chapter's or names editors itself. Nothing is raised: a source
-    that did not answer is a ``reason``."""
+    Every record of the book that is found is kept, each with the source record itself
+    (``record``: the Crossref item, or ``marcxml``), so that ``valid_book_editors`` reads the
+    editors from the source again and never from a summary. ``editor`` is set only when the
+    evidence is whole: every record found for one title that names editors names the same
+    ones, no list is malformed, and Crossref did not hold back records (its answer listed
+    every record it counted). Otherwise it is absent, with ``reason``. None when ``record``
+    is no chapter's or names editors itself. Nothing is raised."""
     if not isinstance(record, dict) or record.get("type") != "book-chapter" or record.get("editor"):
         return None
     venues = [" ".join(v.split()) for v in record.get("container-title") or [] if isinstance(v, str) and v.strip()]
@@ -239,45 +307,80 @@ def book_editors(record, client, cache=None):
         return {"reason": "the chapter's record names no book, so the book's record cannot be looked up"}
     if not _isbns(record):
         return {"reason": "the chapter's record states no ISBN, so the book's record cannot be looked up"}
-    sources, failed = [], []
+    sources, failed, undecided = [], [], []
+
+    def title_of(names):
+        return decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
+
+    # Each source is asked ISBN by ISBN until one answer holds a record of the book; that
+    # whole answer is then read: every record in it that is the book's, not the first one.
+    import time
+    deadline = time.monotonic() + RESOLVE_SECONDS
     try:
-        for isbn, item, names, response in crossref_books(client, record):
-            title = decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
-            if title:
-                sources.append({"source": "crossref-book-record", "doi": item.get("DOI"), "isbn": isbn, "type": item.get("type"),
-                                "title": names[0], "names": names, "editor": _people(item.get("editor")),
-                                "retrieved_at": response.get("retrieved_at")})
-                break
+        with within(client, deadline):
+            for isbn in _isbns(record):
+                response = client.get(WORKS, {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in BOOK_TYPES), "rows": 5})
+                message = (response.get("body") or {}).get("message", {})
+                listed = message.get("items") if isinstance(message.get("items"), list) else []
+                before = len(sources)
+                for item in listed:
+                    read = _crossref_source(item, isbn)
+                    if read is None or not title_of(read["names"]):
+                        continue
+                    if read["editor"] is None:
+                        undecided.append(f"the editor list of the Crossref record {item.get('DOI')} is not well formed")
+                    sources.append({"source": "crossref-book-record", "doi": item.get("DOI"), "isbn": isbn, "type": read["type"],
+                                    "title": read["names"][0], "names": read["names"], "booktitle": title_of(read["names"]),
+                                    "editor": read["editor"] or [], "record": item,
+                                    "retrieved_at": response.get("retrieved_at")})
+                total = message.get("total-results")
+                if isinstance(total, int) and total > len(listed):
+                    undecided.append(f"Crossref counts {total} book records with the ISBN {isbn} and returned {len(listed)}")
+                if len(sources) > before:
+                    break
     except (ProviderError, ValueError, KeyError, TypeError) as exc:
         failed.append(f"Crossref did not answer ({exc})")
     try:
         from .book_build import summary
-        from .catalogue_review import parse_edition
-        for isbn, xml, whole, found in catalogue_books(client, cache, record):
-            names = [whole, whole.split(":")[0]]
-            title = decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
-            if not title:
-                continue
-            try:
-                people = _people(parse_edition(xml).get("editor"))
-            except ValueError:
-                people = []   # a record the catalogue check's grammar does not read names no one here
-            lead = summary(xml)
-            sources.append({"source": "loc-catalogue", "lccn": lead["lccn"], "isbn": isbn, "title": whole, "names": names,
-                            "editor": people, "url": found["url"], "document_sha256": found["document_sha256"],
-                            "retrieved_at": found["retrieved_at"]})
-            break
+        from .catalogue_discovery import fetch_query, identifier_query
+        with within(client, deadline):
+            for isbn in _isbns(record):
+                found_ = fetch_query(cache, client, identifier_query("isbn", isbn))
+                before = len(sources)
+                for xml in found_["records"]:
+                    read = _catalogue_source(xml, isbn)
+                    if read is None or not title_of(read["names"]):
+                        continue
+                    lead = summary(xml)
+                    sources.append({"source": "loc-catalogue", "lccn": lead["lccn"], "record_id": lead["record_id"],
+                                    "isbn": isbn, "type": "book", "title": read["names"][0], "names": read["names"],
+                                    "booktitle": title_of(read["names"]), "editor": read["editor"] or [], "marcxml": xml,
+                                    "url": found_["url"], "document_sha256": found_["document_sha256"],
+                                    "retrieved_at": found_["retrieved_at"]})
+                if found_["truncated"]:
+                    undecided.append(f"the catalogue lists more records with the ISBN {isbn} than it returned")
+                if len(sources) > before:
+                    break
     except (ProviderError, ValueError, KeyError, TypeError) as exc:
         failed.append(f"the Library of Congress catalogue did not answer ({exc})")
     found = {"sources": sources}
     naming = [s for s in sources if s["editor"]]
-    if len(naming) == 2 and not same_people(naming[0]["editor"], naming[1]["editor"]):
-        found["reason"] = ("the book's Crossref record and its Library of Congress record name different editors, "
-                           "and neither is chosen")
+    titles = {_key(s["booktitle"]) for s in sources}
+    if undecided:
+        found["reason"] = "; ".join(undecided) + "; the editors are not taken from an incomplete answer"
+        found["disagreement"] = True
+    elif len(titles) > 1:
+        found["reason"] = "the records found by the chapter's ISBN are of books with different titles, and none is chosen"
+        found["disagreement"] = True
+    elif any(not same_people(naming[0]["editor"], other["editor"]) for other in naming[1:]):
+        found["reason"] = (("the book's Crossref record and its Library of Congress record name different editors, "
+                            "and neither is chosen") if len(naming) == 2 and naming[0]["source"] != naming[1]["source"]
+                           else f"the {len(naming)} records found for the book name different editors, and none is chosen")
         found["disagreement"] = True
     elif naming:
         found["editor"] = naming[0]["editor"]
         found["by"] = naming[0]["source"]
+        found["booktitle"] = naming[0]["booktitle"]
     elif failed:
         found["reason"] = "; ".join(failed) + "; the book's record could not be looked up"
     elif sources:
@@ -287,20 +390,54 @@ def book_editors(record, client, cache=None):
     return found
 
 
-def valid_book_editors(record):
-    """The editors of ``record[BOOK_RECORD]`` when that is evidence about this chapter's
-    book: found by one of the chapter's own ISBNs, under a title that is one of the chapter
-    record's container titles, with no disagreement recorded. Else None. Judged again every
-    time the record is compared; nothing stored is trusted beyond this."""
+def valid_book_editors(record, booktitle=None):
+    """The editors of ``record[BOOK_RECORD]``, as ``(editors, source)``, when that is
+    evidence about the book this chapter is cited in; else None. Judged again every time the
+    record is compared, from the source records kept there and from nothing derived:
+
+    - no disagreement or incomplete answer was recorded;
+    - every kept source is read again (``_crossref_source`` / ``_catalogue_source``): a
+      record of a book type (never a series), carrying one of the chapter's own ISBNs;
+    - the cited book is that record's: ``booktitle`` (the entry's book title; when None, the
+      title the lookup settled on) is one of the chapter record's container titles, by the
+      verifier's reading of a book title, and that container title is the source record's
+      title, by the comparison used for the two titles. Evidence about the series, or about
+      another book, is none for this entry;
+    - the editors are the ones the source record itself gives, and every source that names
+      editors names the same ones."""
     found = record.get(BOOK_RECORD) if isinstance(record, dict) else None
     if not isinstance(found, dict) or found.get("disagreement") or not isinstance(found.get("editor"), list):
         return None
-    venues = tuple(v for v in record.get("container-title") or [] if isinstance(v, str))
-    source = next((s for s in found.get("sources") or [] if isinstance(s, dict) and s.get("source") == found.get("by")), None)
-    if (not source or source.get("editor") != found["editor"] or source.get("isbn") not in _isbns(record)
-            or not any(decide((v,), [str(n) for n in source.get("names") or []]) for v in venues)):
+    from .verification import book_title_forms
+    venues = [v for v in record.get("container-title") or [] if isinstance(v, str)]
+    cited = booktitle if booktitle is not None else found.get("booktitle")
+    # The container titles of the chapter that the cited book title is, by the verifier's own
+    # reading of a book title (a series number or a volume-pack tail is not part of it).
+    books = [v for v in venues if isinstance(cited, str) and (_is_title(cited, [v]) or _is_title(cited, [book_title_forms(v)]))]
+    if not books:
         return None
-    return found["editor"], source
+    reread = []
+    for source in found.get("sources") or []:
+        if not isinstance(source, dict) or source.get("isbn") not in _isbns(record):
+            return None
+        if source.get("source") == "crossref-book-record":
+            read = _crossref_source(source.get("record"), source["isbn"])
+        elif source.get("source") == "loc-catalogue":
+            read = _catalogue_source(source.get("marcxml"), source["isbn"]) if isinstance(source.get("marcxml"), str) else None
+        else:
+            read = None
+        if read is None or read["editor"] is None or read["type"] not in BOOK_TYPES \
+                or not any(_is_title(v, read["names"]) for v in books):
+            return None
+        reread.append((source, read))
+    naming = [(source, read) for source, read in reread if read["editor"]]
+    chosen = next(((source, read) for source, read in naming if source.get("source") == found.get("by")), None)
+    if not chosen or chosen[1]["editor"] != found["editor"] \
+            or any(not same_people(chosen[1]["editor"], read["editor"]) for _, read in naming):
+        return None
+    source, read = chosen       # what is handed on is what the source record says, not the summary kept beside it
+    return read["editor"], dict(source, title=read["names"][0], names=read["names"], type=read["type"],
+                                editor=read["editor"])
 
 
 # --- the publisher's page ---------------------------------------------------------------------------
@@ -444,41 +581,193 @@ def public_address(text):
                                       or address.is_multicast or address.is_reserved or address.is_unspecified)
 
 
+class OutOfTime(ProviderError):
+    """The time allowed for a retrieval is over (or its body is over the size allowed): the
+    request was cancelled. A ``ProviderError``, so the paced client does not ask again."""
+
+
+class _Read:
+    """A response whose body was read whole under a deadline and a size limit, standing in
+    for the ``requests`` response wherever its body is used (``content``, ``text``,
+    ``json()``, ``iter_content``); everything else is the response's own."""
+
+    def __init__(self, response, body):
+        self._response, self.content = response, body
+        self.status_code, self.headers, self.url = response.status_code, response.headers, response.url
+
+    @property
+    def text(self):
+        return self.content.decode(self._response.encoding or "utf-8", errors="replace")
+
+    def json(self, **options):
+        return json.loads(self.content.decode("utf-8-sig"), **options)
+
+    def iter_content(self, chunk_size=65536, **options):
+        for start in range(0, len(self.content), chunk_size or 65536):
+            yield self.content[start:start + (chunk_size or 65536)]
+
+    def close(self):
+        self._response.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.close()
+        return False
+
+    def __getattr__(self, name):
+        return getattr(self._response, name)
+
+
+def read_bounded(response, deadline, limit):
+    """The body of a streamed response, read while the clock is watched: before every read
+    the time left is checked and set as the socket's timeout, each read takes what one
+    ``recv`` gives (so a server that drips bytes cannot hold a read open), and the body is
+    given up at ``limit`` bytes. On expiry the connection is closed and ``OutOfTime`` raised:
+    the retrieval ends at the deadline, not when the server chooses."""
+    import time
+    raw, chunks, size = response.raw, [], 0
+    try:
+        while True:
+            left = deadline - time.monotonic()
+            if left <= 0:
+                raise OutOfTime("the time allowed for this retrieval is over; it was cancelled")
+            try:
+                raw.connection.sock.settimeout(min(left, 15))      # one recv never waits past the deadline
+            except AttributeError:                                 # no live socket to set (a finished or foreign body)
+                pass
+            chunk = raw.read1(65536, decode_content=True) if hasattr(raw, "read1") else raw.read(1024, decode_content=True)
+            if not chunk:
+                break
+            size += len(chunk)
+            if size > limit:
+                raise OutOfTime(f"the answer is larger than {limit} bytes; it was cancelled")
+            chunks.append(chunk)
+    except OutOfTime:
+        response.close()
+        raise
+    except Exception as exc:  # noqa: BLE001 - a socket timeout or a broken stream: the retrieval failed, whatever raised
+        response.close()
+        late = deadline - time.monotonic() <= 0.5
+        raise OutOfTime("the time allowed for this retrieval is over; it was cancelled" if late
+                        else f"the answer could not be read ({type(exc).__name__})") from None
+    return _Read(response, b"".join(chunks))
+
+
+class _DeadlineSession:
+    """A session whose every ``get`` is streamed and read by ``read_bounded``: connecting,
+    waiting for the answer and reading its body all end at ``deadline``, and no body is
+    larger than ``limit``. What is asked is the wrapped session's business."""
+
+    def __init__(self, session, deadline, limit):
+        self.session, self.deadline, self.limit = session, deadline, limit
+
+    def get(self, url, *args, **options):
+        import time
+        left = self.deadline - time.monotonic()
+        if left <= 0:
+            raise OutOfTime("the time allowed for this retrieval is over; nothing was asked")
+        connect, read = options.get("timeout") if isinstance(options.get("timeout"), tuple) else (10, 40)
+        options.update(stream=True, timeout=(max(0.05, min(connect, left)), max(0.05, min(read, left))))
+        return read_bounded(self.session.get(url, *args, **options), self.deadline, self.limit)
+
+    def __getattr__(self, name):
+        return getattr(self.session, name)
+
+
+class within:
+    """``with within(client, deadline): ...``: every request the paced client makes inside
+    (Crossref's book lookup, the catalogue's search) is read by ``read_bounded`` under the
+    one ``deadline`` and ``RECORD_BYTES``. The client's own session is put back on leaving."""
+
+    def __init__(self, client, deadline, limit=None):
+        self.client, self.deadline, self.limit = client, deadline, RECORD_BYTES if limit is None else limit
+
+    def __enter__(self):
+        self.session = self.client.session
+        self.client.session = _DeadlineSession(self.session, self.deadline, self.limit)
+        return self
+
+    def __exit__(self, *exc):
+        self.client.session = self.session
+        return False
+
+
+def page_session():
+    """The session a publisher's page is fetched with, made for that one fetch and for
+    nothing else, so that no credential can ride on it:
+
+    - ``trust_env`` is off: no ``.netrc`` login, no ``REQUESTS_CA_BUNDLE``, and no proxy from
+      the environment. The proxy policy is therefore "none": the page is asked for directly,
+      and on a machine that reaches the web only through a proxy the fetch fails and the
+      book title stays unfilled (said in the reason);
+    - no ``auth``, no client certificate, no default parameters, and an empty cookie jar. The
+      jar lives for this one fetch: a publisher's own redirect chain sets a cookie on one hop
+      and reads it on the next (Springer's does), and nothing is kept afterwards;
+    - certificates are verified against the bundled authorities, always.
+
+    On the two DNS lookups: ``checked_url`` resolves the host to refuse private addresses, and
+    the connection resolves it again. They can differ (DNS rebinding), and the connection is
+    not pinned to the first answer. What bounds the harm is that every host is one of the
+    fixed public hosts of ``PAGE_HOSTS`` and the connection is HTTPS with the certificate
+    verified for that host name: an address that is not the publisher's cannot complete the
+    TLS handshake, so no request line, header or cookie is sent to it and no body is read
+    from it. What such an address does receive is a TCP connection and a TLS ClientHello
+    naming a public host."""
+    import requests
+    session = requests.Session()
+    session.trust_env = False
+    session.auth, session.cert, session.params, session.proxies = None, None, {}, {}
+    session.verify = True
+    session.cookies.clear()
+    session.headers.pop("Authorization", None)
+    return session
+
+
 class _CheckedSession:
-    """A ``requests`` session that asks for nothing ``checked_url`` refuses. The fetcher
-    (``search_tools.get_source``) calls ``get`` once per hop with redirects off, so every hop,
-    the first and each redirect target, is checked here in the form it is asked for."""
+    """A session that asks for nothing ``checked_url`` refuses and reads every answer by
+    ``read_bounded``. The fetcher (``search_tools.get_source``) calls ``get`` once per hop
+    with redirects off, so every hop, the first and each redirect target, is checked here in
+    the form it is asked for. A request may carry a User-Agent header and nothing else of
+    its own: no credentials, cookies, parameters or proxies are accepted from the caller."""
 
     def __init__(self, session, deadline):
         self.session, self.deadline, self.asked = session, deadline, []
 
     def get(self, url, **options):
-        import time
-        if time.monotonic() > self.deadline:
-            raise UnsafeURL("the time allowed for reading the page is over")
         if options.get("allow_redirects") is not False or options.get("params"):
             raise UnsafeURL("a request that would not be checked hop by hop")
+        if any(options.get(name) for name in ("auth", "cookies", "cert", "proxies", "data", "json")) \
+                or set(options.get("headers") or {}) - {"User-Agent"}:
+            raise UnsafeURL("a request that would carry credentials or other data")
         url = checked_url(url)
         self.asked.append(url)
-        return self.session.get(url, **options)
+        try:
+            return _DeadlineSession(self.session, self.deadline, PAGE_BYTES).get(url, **options)
+        except OutOfTime as exc:
+            raise UnsafeURL(str(exc)) from None
 
 
-def fetch_page(doi, session=None, deadline=None):
+def fetch_page(doi, deadline=None):
     """The page the chapter's DOI resolves to, as ``{"url", "lines", "document_sha256",
     "retrieved_at"}``; ``ValueError`` when it cannot be read.
 
     The fetcher is the package's own (``search_tools.get_source``, as
     ``publisher_corrections`` uses it): redirects are followed by hand, at most
-    ``PAGE_REDIRECTS``, the body is read as a stream and given up at two megabytes, each
-    request has its own timeouts, and no credentials are sent. Every hop is asked for only
-    after ``checked_url`` accepts it (``_CheckedSession``); the hosts are ``PAGE_HOSTS``, a
-    fixed list. Nothing of the record but its DOI goes into the first URL."""
+    ``PAGE_REDIRECTS``. Every hop is asked for only after ``checked_url`` accepts it, on a
+    session made for this fetch that carries no credentials (``page_session``), and its
+    answer is read by ``read_bounded``: the whole fetch, all hops and every byte of every
+    body, ends at ``deadline`` (``PAGE_SECONDS`` from now when none is given), and no body is
+    larger than ``PAGE_BYTES``. The hosts are ``PAGE_HOSTS``, a fixed list. Nothing of the
+    record but its DOI goes into the first URL."""
     import time
     from urllib.parse import quote
     import requests
     from .search_tools import SourceHTTPError, get_source
-    deadline = deadline if deadline is not None else time.monotonic() + PAGE_SECONDS
-    guarded = _CheckedSession(session or requests.Session(), deadline)
+    limit = time.monotonic() + PAGE_SECONDS
+    session = page_session()
+    guarded = _CheckedSession(session, min(limit, deadline) if deadline is not None else limit)
     try:
         markup, url = get_source(guarded, "https://doi.org/" + quote(doi, safe="/"), sorted(PAGE_HOSTS),
                                  max_redirects=PAGE_REDIRECTS,
@@ -493,6 +782,8 @@ def fetch_page(doi, session=None, deadline=None):
         outside = "explicitly allowed host" in str(exc)        # research.allowed_url's refusal (it repeats the URL)
         raise ValueError("the DOI leads to a host that is not one of the publisher hosts this package fetches from"
                          if outside else "the page redirects too often or is larger than 2 MB") from None
+    finally:
+        session.close()
     return {"url": checked_url(url, resolve=False), "lines": page_lines(markup),
             "document_sha256": hashlib.sha256(markup.encode("utf-8")).hexdigest(), "retrieved_at": now()}
 
@@ -528,12 +819,18 @@ def choice_from_reading(titles, pages, extracted):
     quotes = []
     for passage in found.get("passages") or []:
         try:
-            quote = text[passage["page"]][passage["start"]:passage["end"]]
+            whole, start, end = text[passage["page"]], passage["start"], passage["end"]
+            quote = whole[start:end]
         except (KeyError, TypeError):
             raise ValueError("the reading's passages are not lines of the page") from None
-        if not quote.strip() or quote != passage.get("quote"):
+        if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(whole) \
+                or not quote.strip() or quote != passage.get("quote"):
             raise ValueError("the reading's passages are not lines of the page")
-        quotes.append(quote.strip())
+        # What is judged is every whole line the passage touches, never the slice the model
+        # chose out of it: "Book: A; series: B" cannot be cut down to "B".
+        first = whole.rfind("\n", 0, start) + 1
+        last = whole.find("\n", end - 1 if whole[end - 1] == "\n" else end)
+        quotes += [line.strip() for line in whole[first:len(whole) if last < 0 else last].split("\n") if line.strip()]
     if not quotes or found.get("grounding") != "literal_text_present":
         raise ValueError("the model's book title is not literally on the lines it selected")
     if found.get("role_risk"):
@@ -569,7 +866,7 @@ def _saved(cache, doi, titles):
     return page, pages, cache.response("book-title-reading-v1:" + digest, READING_TTL)
 
 
-def from_model(client, cache, record, titles, announce=None, allow_model=None, environ=None):
+def from_model(client, cache, record, titles, announce=None, allow_model=None, environ=None, deadline=None):
     """Step 3. Returns a ``Resolution``: chosen with ``by`` "model", or not chosen with the
     ``reason`` (and ``question`` when the person is to be asked first)."""
     from . import deps
@@ -598,7 +895,7 @@ def from_model(client, cache, record, titles, announce=None, allow_model=None, e
                      f"asking {label} to read the publisher's page (one request; it can take a few minutes)")
         if page is None:
             try:
-                page = fetch_page(doi)
+                page = fetch_page(doi, deadline=deadline)
             except ValueError as exc:
                 return Resolution(titles, reason=f"the publisher's page could not be read ({exc}), so no model was asked")
             cache.save_response("book-title-page-v1:" + doi, page)
@@ -642,22 +939,24 @@ def resolve(record, client, cache=None, announce=None, allow_model=None, environ
         return None
     import time
     cache = cache if cache is not None else client.cache
-    started, failed = time.monotonic(), []
+    deadline, failed = time.monotonic() + RESOLVE_SECONDS, []
     for name, step in (("Crossref", lambda: from_crossref(client, record, titles)),
                        ("the Library of Congress catalogue", lambda: from_catalogue(client, cache, record, titles))):
         try:
-            found = step()
+            with within(client, deadline):       # one deadline for every byte of every record lookup
+                found = step()
         except (ProviderError, ValueError, KeyError, TypeError) as exc:
             failed.append(f"{name} did not answer ({exc})")
             continue
         if found:
             return found
-    if time.monotonic() - started > RESOLVE_SECONDS:
+    if time.monotonic() > deadline:
         failed.append("the record lookups took longer than the time allowed")
     if failed:
         return Resolution(titles, reason="; ".join(failed) + "; the book's own record could not be looked up, "
                                          "and no model is asked in its place")
-    found = from_model(client, cache, record, titles, announce=announce, allow_model=allow_model, environ=environ)
+    found = from_model(client, cache, record, titles, announce=announce, allow_model=allow_model, environ=environ,
+                       deadline=deadline)
     if not found.chosen:
         found.reason = "no record of the book says which is its title; " + (found.reason or "")
     return found
@@ -689,9 +988,11 @@ def apply(proposal, resolution):
             f"\"{resolution.chosen}\" is taken as the book's. " + resolution.sentence)
     proposal.choices.append(dict(resolution.evidence, field="booktitle", by=resolution.by,
                                  chosen=resolution.chosen, other=resolution.other,
-                                 model_assisted=resolution.model_assisted))
+                                 model_assisted=resolution.model_assisted,
+                                 confirmed=not resolution.model_assisted,
+                                 **({"statement": UNCONFIRMED} if resolution.model_assisted else {})))
     if resolution.model_assisted:
-        proposal.issues.append(said + " Check the title against the page before accepting.")
+        proposal.issues.append(said + " " + UNCONFIRMED)
         proposal.needs_decision = True
     else:
         proposal.notes.append(said)

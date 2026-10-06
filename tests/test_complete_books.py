@@ -588,3 +588,253 @@ def test_add_at_the_command_line_shows_the_catalogue_as_the_source(tmp_path, off
     assert "Verification: metadata_verified" in out and "Added: Kaha12" in out
     assert "Built from the Library of Congress catalogue record LCCN 2012007685" in out
     assert ws.bib.read_text(encoding="utf-8").strip() == KAHA12
+
+
+# --- review of 2026-10-06, item 6: the record must carry the number asked for --------------------
+
+def _hostile(client, genuine_query, asked_query):
+    """The catalogue's real answer to ``genuine_query``, saved as its answer to ``asked_query``
+    with the echoed query rewritten: an answer that echoes what was asked and holds another record."""
+    import hashlib
+    saved = dict(client.cache.response("loc-sru-v1:10:" + genuine_query, 10**9))
+    raw = saved["raw_xml"].replace(genuine_query.replace('"', "&quot;"), asked_query.replace('"', "&quot;")).replace(
+        genuine_query, asked_query)
+    saved.update(raw_xml=raw, query=asked_query, document_sha256=hashlib.sha256(raw.encode()).hexdigest())
+    client.cache.save_response("loc-sru-v1:10:" + asked_query, saved)
+
+
+def test_an_answer_that_echoes_the_isbn_and_holds_another_book_is_not_used(client, tmp_path):
+    # Kahana's record, returned for the ISBN of Nocedal and Wright's second edition (a valid ISBN).
+    _hostile(client, 'bath.isbn="9780195333244"', 'bath.isbn="9780387303031"')
+    proposal = book(client, "ISBN 9780387303031")
+    assert proposal.proposed_raw is None and proposal.status is None and proposal.needs_decision
+    assert proposal.issues == ["The catalogue's answer for the ISBN 9780387303031 holds 1 record, none of which "
+                               "carries that number itself; it is not used; nothing is proposed"]
+    _hostile(client, 'bath.lccn="10032396"', 'bath.lccn="2012007685"')
+    wrong = book(client, "LCCN 2012007685")
+    assert wrong.proposed_raw is None and "none of which carries that number itself" in wrong.issues[0]
+    # a typed book with that ISBN is left as typed for the same reason
+    typed = "@book{NoceWrig06,\n\tIsbn = {9780387303031},\n\tTitle = {Numerical optimization}}"
+    left = complete.propose(complete.Query.from_entry(typed_book(tmp_path, typed)), client, client.cache)
+    assert left.proposed_raw is None and left.issues[0].endswith("it is not used; the entry is left as typed")
+    assert client.requests == 0
+
+
+def test_the_record_built_from_is_kept_with_its_own_matching_field_and_the_check_is_held_to_it(client, tmp_path):
+    thirteen = book(client, "ISBN 9780195333244")
+    (built,) = thirteen.choices
+    assert built == {"field": "record", "by": "loc-catalogue", "record_id": "17200404", "lccn": "2012007685",
+                     "isbns": ["9780195333244", "0195333241"],
+                     "matched": {"field": "020", "value": "9780195333244", "asked": "9780195333244"}}
+    by_lccn = book(client, "LCCN 10032396")
+    assert by_lccn.choices[0]["matched"] == {"field": "010", "value": "10032396", "asked": "10032396"}
+    assert book(client, "Organization of memory", author="Tulving").choices[0]["matched"] is None     # no number was asked
+    # the two lengths of one ISBN are the same number; another number is not
+    response = client.cache.response('loc-sru-v1:10:bath.isbn="9780195333244"', 10**9)
+    (xml,) = catalogue_review.parse_search(response["raw_xml"], 'bath.isbn="9780195333244"')["records"]
+    assert book_build.record_isbns(xml) == ["9780195333244", "0195333241"]
+    assert book_build.matched_identifier(xml, isbn="0195333241")["value"] == "0195333241"
+    assert book_build.same_isbn("0195333241", "9780195333244") and book_build.same_isbn("9780195333244", "0195333241")
+    assert not book_build.same_isbn("9780195333244", "9780387303031")
+    assert not book_build.same_isbn("9780195333245", "9780195333245")              # a wrong check digit is no ISBN
+    assert book_build.matched_identifier(xml, isbn="9780387303031") is None
+    assert book_build.matched_identifier(xml, lccn="2012007685") and not book_build.matched_identifier(xml, lccn="10032396")
+    # the check's answer counts only for the record the entry was built from
+    entry = typed_book(tmp_path, KAHA12)
+    open_result = {"status": "needs_review", "issues": [], "candidates": [], "attempts": []}
+    same = book_build.catalogue_check(entry, dict(open_result), client, record_id="17200404")
+    assert same["status"] == "metadata_verified" and same["accepted_record_id"] == "17200404"
+    other = book_build.catalogue_check(entry, dict(open_result), client, record_id="999")
+    assert other["status"] == "needs_review" and other["issues"] == [
+        "The catalogue check matched the entry to record 17200404, not to the record it was built from (999); it is "
+        "not taken as verified"]
+    assert "accepted_record_id" not in other and client.requests == 0
+
+
+# --- item 8: plain source text is escaped before house braces are added ---------------------------
+
+def _altered(client, **swap):
+    """Kahana's real record with some of its transcribed text replaced."""
+    response = client.cache.response('loc-sru-v1:10:bath.isbn="9780195333244"', 10**9)
+    (xml,) = catalogue_review.parse_search(response["raw_xml"], 'bath.isbn="9780195333244"')["records"]
+    for old, new in swap.items():
+        assert old in xml
+        xml = xml.replace(old, new)
+    return xml
+
+
+def test_characters_tex_reads_as_commands_are_escaped_and_the_check_still_agrees(client, tmp_path):
+    xml = _altered(client, **{"Foundations of human memory": "100% human memory: R&amp;D notes on C# and snake_case",
+                              "Oxford University Press": "A&amp;B Press"})
+    built = book_build.build_book(xml)
+    assert "\tTitle = {100\\% human memory: {R\\&D} notes on {C}\\# and snake\\_case}" in built.proposed_raw
+    assert "\tPublisher = {{A\\&B} Press}" in built.proposed_raw            # and "B" is not lowered after the ampersand
+    assert built.unfilled == [] and not built.needs_decision
+    # no unescaped special character is left in any field of the entry
+    import re
+    fields = fields_of(built.proposed_raw, tmp_path)
+    for name, value in fields.items():
+        assert not re.search(r"(?<!\\)[%&#_~^$]", value), (name, value)
+    # the text reads back as exactly these fields through the strict scanner (nothing was cut at the %)
+    assert {k.lower(): v for k, v in intake.scan_entry(built.proposed_raw)[2].items()}["title"] == fields["title"]
+    # and the catalogue check compares the escaped fields as equal to the record's plain text
+    record = catalogue_review.parse_edition(xml)
+    evidence, issues = catalogue_review.compare_edition(dict(fields), record, xml)
+    assert issues == [] and evidence["title"]["match"] and evidence["publisher"]["match"]
+    assert book_build.plain_source("title", "100% & #1_a") == "100\\% \\& \\#1\\_a"
+    # a brace in source text is never taken for the builder's own: house braces are added after escaping
+    with pytest.raises(ValueError, match="a backslash or a brace"):
+        book_build.plain_source("title", "{Gestalt} & co")
+    assert book_build._braced_title(book_build.plain_source("title", "Essays on Gestalt & R&D")) == (
+        "Essays on {Gestalt} \\& {R\\&D}")
+
+
+def test_text_with_no_plain_tex_form_is_not_written(client):
+    for text in ("x ~ y", "x^2", "a \\textbf{b}", "cost $5"):
+        with pytest.raises(ValueError):
+            book_build.plain_source("title", text)
+    tilde = book_build.build_book(_altered(client, **{"Foundations of human memory": "Memory ~ a history"}))
+    assert "Title" not in tilde.proposed_raw and tilde.needs_decision and not tilde.complete
+    assert [u.field for u in tilde.unfilled] == ["title"] and "Memory ~ a history" in tilde.unfilled[0].source_values.values()
+    caret = book_build.build_book(_altered(client, **{"Oxford University Press": "X^2 Press"}))
+    assert "Publisher" not in caret.proposed_raw and caret.unfilled[0].field == "publisher"
+    assert caret.unfilled[0].reason.startswith("publisher: the source text has a character with no plain TeX form")
+    # a name is never escaped: one with such a character is not written
+    named = book_build.build_book(_altered(client, **{"Kahana, Michael J.": "Kah%ana, Michael J.",
+                                                     "Michael Jacob Kahana": "Michael Jacob Kah%ana"}))
+    assert "Author" not in named.proposed_raw and named.unfilled[0] == complete.Unfilled(
+        "author", "author: a name in the record has a character that is not plain text in TeX",
+        {"loc-catalogue": "Michael Jacob Kah%ana"})
+
+
+# --- security review of 2026-10-06: escaping and refusal are two layers, and the entry is read back ---
+
+ALLOWED_FIELDS = {"address", "author", "edition", "editor", "publisher", "title", "year"}
+HOSTILE = [
+    "Title}, Note = {x",
+    "}\n@misc{evil, title={x}}",
+    "x}\n\n@misc{evil,\n\ttitle = {x}}\n@book{again",
+    "\\input{/etc/passwd}",
+    "\\write18{rm -rf ~}",
+    "\\immediate\\write18{id}",
+    "100%\nNote = {x},",
+    "an opening { brace",
+    "a closing } brace",
+    "ends in a backslash\\",
+    "^^5cinput",
+    "tab\there",
+    "nul\x00here",
+    "@string{x = y}",
+    "A" * 100_000,
+    "$\\backslash$",
+]
+
+
+def _xml_text(text):
+    from xml.sax.saxutils import escape
+    return escape(text).replace("\x00", "&#0;") if "\x00" not in text else None
+
+
+def _sound(proposal, tmp_path):
+    """What must hold for any entry the builder returns, whatever the record said."""
+    import re
+    raw = proposal.proposed_raw
+    assert raw.count("@") == 1 and raw.startswith("@book{") and raw.endswith("}")
+    kind, key, scanned = intake.scan_entry(raw)                    # the strict scanner: one entry, plainly written
+    assert kind == "book" and set(scanned) <= ALLOWED_FIELDS, scanned
+    path = tmp_path / "back.bib"
+    path.write_text(raw + "\n", encoding="utf-8")
+    (entry,) = load_entries(path).values()                         # the library's own reader: exactly one entry
+    assert set(entry["fields"]) - {"ENTRYTYPE", "ID"} == set(scanned)
+    assert {k: v for k, v in entry["fields"].items() if k not in ("ENTRYTYPE", "ID")} == scanned
+    for name, value in scanned.items():
+        left = book_build._HOUSE_COMMAND.sub("", value)
+        assert "\\" not in left and "@" not in value, (name, value)         # no command TeX would run
+        assert intake.structure_problem(value) is None and len(value) <= 2 * book_build.MAX_FIELD
+        assert not re.search(r"(?<!\\)[%&#_~^$]", left), (name, value)
+    return scanned
+
+
+@pytest.mark.parametrize("field, original", [("title", "Foundations of human memory"),
+                                             ("publisher", "Oxford University Press"),
+                                             ("address", "New York :")])
+@pytest.mark.parametrize("hostile", HOSTILE, ids=[repr(h[:24]) for h in HOSTILE])
+def test_a_hostile_value_in_a_record_never_changes_the_structure_of_the_entry(client, tmp_path, field, original, hostile):
+    """The real record of Kahana 2012 with one transcribed value replaced, through the real
+    builder: the field is left unfilled with the reason, or the record is not read at all
+    (the check's grammar refuses it). Never a second entry, an extra field, or a command."""
+    text = _xml_text(hostile)
+    if text is None:
+        pytest.skip("a NUL cannot be written in XML at all: the catalogue cannot send it")
+    xml = _altered(client, **{original: text + (" :" if field == "address" else "")})
+    try:
+        built = book_build.build_book(xml)
+    except ValueError:
+        return                                                    # the check's grammar does not read such a record
+    scanned = _sound(built, tmp_path)
+    assert field not in scanned                                   # the hostile value is not written in any form
+    (missing,) = [u for u in built.unfilled if u.field == field]
+    assert missing.reason.startswith(field + ": ") and "it is not written" in missing.reason
+    assert all(len(v) <= 200 for v in missing.source_values.values())          # nor is 100,000 characters of it kept
+    assert "evil" not in built.proposed_raw and "Note" not in built.proposed_raw and "passwd" not in built.proposed_raw
+    if field != "title":
+        assert scanned["title"] == "Foundations of human memory"              # the rest of the entry is as it was
+
+
+def test_the_two_layers_each_refuse_on_their_own(client, tmp_path):
+    # layer 1: what is not plain text is refused, never repaired; what is plain is escaped
+    for hostile in HOSTILE:
+        with pytest.raises(ValueError):
+            book_build.plain_source("title", hostile)
+    assert book_build.plain_source("title", "100% of R&D, #1 in snake_case") == "100\\% of R\\&D, \\#1 in snake\\_case"
+    assert book_build.plain_source("title", "100% of it")[3] == "\\"            # the % cannot open a comment
+    # layer 2: a finished value is refused whatever produced it
+    for bad in ("x}, Note = {y", "{open", "close}", "ends\\", "a\nb", "\\input{x}", "\\write18{x}", "@misc{a", "a^^5cb",
+                "\\textbf{x}", "x" * (2 * book_build.MAX_FIELD + 1), "mail@host"):
+        with pytest.raises(ValueError):
+            book_build.checked_value("title", bad)
+    for good in ("100\\% {R\\&D} notes", "New York, {NY}", "2\\textsuperscript{nd}", "Gl{\\\"o}ckner and {\\o}rsted",
+                 "Fran{\\c{c}}ois"):
+        assert book_build.checked_value("title", good) == good
+    # the proof: an assembled entry must read back as exactly its fields
+    fields = {"title": "A book", "year": "2012"}
+    good = complete.render("book", "Key12", fields)
+    assert book_build.proved(good, fields) == good
+    for raw in (good.replace("{A book}", "{A book},\n\tNote = {x}"), good + "\n@misc{evil,\n\tTitle = {x}}",
+                good.replace("A book", "A book}, Note = {x"), good.replace("@book", "@misc")):
+        with pytest.raises(ValueError):
+            book_build.proved(raw, fields)
+    # the builder uses all three, and writes no source value by any other way
+    import inspect
+    source = inspect.getsource(book_build.build_book)
+    assert "plain(\"title\"" in source and "plain(\"publisher\"" in source and "plain(\"address\"" in source
+    assert "checked_value(name, written)" in source and "proved(complete.render(" in source
+    assert 'r"[1-9]\\d{3}", fields["year"]' in source                              # the year is a pattern, not text
+    assert "proved(" in inspect.getsource(book_build.propose_typed_book)
+    from cdlbib import container_titles
+    assert "render(" not in inspect.getsource(container_titles)                     # it writes no entry at all
+
+
+def test_a_name_with_and_or_braces_is_not_written(client, tmp_path):
+    hostile = [("Kahana, Michael J.", "Kahana and {Evil}, Michael J."), ("Kahana, Michael J.", "Kahana} and {x, Michael J."),
+               ("Kahana, Michael J.", "Kahana, Michael and Mallory"), ("Kahana, Michael J.", "Kahana\\input, Michael J.")]
+    for old, new in hostile:
+        for byline in ("Michael Jacob Kahana", None):
+            swap = {old: _xml_text(new)}
+            if byline:        # with the transcribed byline changed to agree, so that the grammar reads the record
+                given, family = new.split(", ")[1], new.split(", ")[0]
+                swap[byline] = _xml_text(f"{given} {family}")
+            try:
+                built = book_build.build_book(_altered(client, **swap))
+            except ValueError:
+                continue                                           # the check's grammar does not read the record
+            scanned = _sound(built, tmp_path)
+            assert "author" not in scanned and "Evil" not in built.proposed_raw and "Mallory" not in built.proposed_raw
+            assert [u.field for u in built.unfilled][:1] == ["author"]
+    # the name guard itself, on people as the grammar hands them over
+    record_people = [{"given": "Michael and Mallory", "family": "Kahana"}, {"given": "M", "family": "Kah{ana"},
+                     {"given": "M", "family": "and"}, {"given": "M\nJ", "family": "Kahana"}]
+    import re
+    for person in record_people:
+        assert any(book_build._SPECIAL.search(person[p]) or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", person[p])
+                   for p in ("given", "family")), person
