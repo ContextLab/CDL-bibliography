@@ -61,6 +61,25 @@ def strays(ws):
                   for path in folder.iterdir() if path.name.startswith(".") and path.name != ".bibcheck")
 
 
+def kept(ws):
+    """{path under .bibcheck/kept: its bytes, or where a link points, or "a folder"}: what
+    writes kept in their private folders."""
+    found = {}
+    for item in sorted((ws.work / "kept").rglob("*")) if (ws.work / "kept").is_dir() else ():
+        name = str(item.relative_to(ws.work / "kept"))
+        if item.is_symlink():
+            found[name] = "link to " + os.readlink(item)
+        elif item.is_file():
+            found[name] = item.read_bytes()
+        elif len(item.relative_to(ws.work / "kept").parts) > 1:
+            found[name] = "a folder"
+    return found
+
+
+def copies(ws):
+    return {item.name: item.read_bytes() for item in sorted((ws.work / "edits").glob("*-*"))} if (ws.work / "edits").is_dir() else {}
+
+
 def edit(ws, year="1999"):
     return api.save_edit(ws, "Kaha12", KAHA12.replace("2012", year), load_entries(ws.bib)["Kaha12"]["fingerprint"])
 
@@ -289,12 +308,23 @@ def test_a_folder_in_the_place_of_a_file_is_left_where_it_is(tmp_path):
         assert (library_folder / "cdl.bib" / "inside.txt").read_text(encoding="utf-8") == "a file of the user's\n"
         made, identity = folder.new(".made-", b"new text\n")
         assert folder.move(made, "cdl.bib", identity) is False
-        folder.clear(made)
+        os.unlink(library_folder / made)
+        folder._let_go(made)
         assert sorted(item.name for item in library_folder.iterdir()) == ["cdl.bib"] and (library_folder / "cdl.bib").is_dir()
-        assert writer._restore(folder, library_folder / "free", None, None, b"x") is True      # nothing there, none wanted
+        # the library-file step: the folder goes back under its name, the file made is kept aside
+        aside = writer._Aside(lambda: folder.sub(".bibcheck", create=True))
+        made, identity = folder.new(".made-", b"new text\n")
+        with pytest.raises(writer._Changed):
+            folder.install(made, "cdl.bib", b"what was expected\n", aside)
+        assert (library_folder / "cdl.bib" / "inside.txt").read_text(encoding="utf-8") == "a file of the user's\n"
+        assert [(label, foreign) for label, foreign, _ in aside.items] == [("cdl.bib.not-installed", False)]
+        assert (aside.path / "cdl.bib.not-installed").read_bytes() == b"new text\n"
+        assert writer._restore(folder, library_folder / "free", None, None, b"x", aside) is True      # nothing there, none wanted
         with pytest.raises(OSError):
-            writer._restore(folder, library_folder / "cdl.bib", b"old\n", 0o644, b"new text\n")
+            writer._restore(folder, library_folder / "cdl.bib", b"old\n", 0o644, b"new text\n", aside)
         assert (library_folder / "cdl.bib" / "inside.txt").is_file()
+        assert sorted(item.name for item in library_folder.iterdir()) == [".bibcheck", "cdl.bib"]
+        aside.close()
     finally:
         folder.close()
 
@@ -387,11 +417,234 @@ def test_a_link_found_in_the_bibliographys_place_after_the_exchange_is_not_left_
         if aside == "a link too":
             os.symlink(victim, prepared[0])
     STEPS[:] = [(announced(ws.bib), remember), (rename_call, swap_for_a_link), (next_open, take_the_file_away)]
-    with pytest.raises(CdlbibError):
+    with pytest.raises(WriteConflict) as refused:
         edit(ws)
     assert not ws.bib.is_symlink() and ws.bib.read_bytes() == before
     assert stat.S_IMODE(os.stat(ws.bib).st_mode) == 0o640
     assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n" and not victim.is_symlink()
     assert stat.S_IMODE(os.stat(victim).st_mode) == 0o666
+    # the link that stood in the bibliography's place is not removed: it is kept, and named
+    links = {name: what for name, what in kept(ws).items() if what == f"link to {victim}"}
+    assert links and all(str(ws.work / "kept" / name) in str(refused.value) for name in links), (kept(ws), str(refused.value))
+    assert "Nothing was written" in str(refused.value) or "written again" in str(refused.value)
+    assert strays(ws) == [] and writer.interrupted(ws)            # the record stays while something unexpected is kept
+    assert edit(ws, "2001").written == ["Kaha12"]                 # the next save settles it and goes through
+    assert writer.interrupted(ws) is None and set(links) <= set(kept(ws))
+
+
+# --- nothing that stood under a library name is removed -----------------------------------------------
+
+def test_a_program_that_holds_the_bibliography_open_loses_nothing_it_writes_after_a_save(ws):
+    """Another program opens the bibliography for writing and keeps it open. cdlbib saves an
+    edit: the file the other program has open is no longer the bibliography. What that
+    program writes then, at any time, goes into a file that is kept: the copy of that save
+    in .bibcheck/edits, the same file it has open. It is never a removed file."""
+    before = ws.bib.read_bytes()
+    theirs = os.open(ws.bib, os.O_WRONLY | os.O_APPEND)
+    try:
+        assert edit(ws).written == ["Kaha12"]
+        os.write(theirs, b"% written by the program that had it open\n")
+        held = os.fstat(theirs)
+        assert held.st_nlink == 1                                  # the file it holds still has a name
+        (copy,) = [item for item in (ws.work / "edits").iterdir() if item.name.endswith("-cdl.bib")]
+        assert (os.stat(copy).st_dev, os.stat(copy).st_ino) == (held.st_dev, held.st_ino)
+        assert copy.read_bytes() == before + b"% written by the program that had it open\n"
+        assert stat.S_IMODE(os.stat(copy).st_mode) == 0o600
+    finally:
+        os.close(theirs)
+    assert b"Year = {1999}" in ws.bib.read_bytes() and kept(ws) == {} and strays(ws) == []
+
+
+def test_a_save_in_place_after_the_content_was_checked_is_in_the_copy(ws):
+    """The schedule: the other program has the bibliography open; cdlbib exchanges it away
+    and reads it (it holds what was expected); THEN the other program writes its save through
+    its descriptor, before cdlbib does anything more with that file. The save is in the copy
+    kept for this write. (It used to be removed with the file.)"""
+    before = ws.bib.read_bytes()
+    theirs = os.open(ws.bib, os.O_WRONLY | os.O_APPEND)
+
+    def save_through_the_descriptor(event, args):          # just before the file that came out is moved aside
+        os.write(theirs, b"% saved after the check\n")
+    try:
+        STEPS[:] = [(announced(ws.bib), nothing), (rename_call, nothing), (rename_call, save_through_the_descriptor)]
+        assert edit(ws).written == ["Kaha12"]
+        assert os.fstat(theirs).st_nlink == 1
+    finally:
+        os.close(theirs)
+    assert list(copies(ws).values()) == [before + b"% saved after the check\n"]
+    assert b"Year = {1999}" in ws.bib.read_bytes() and kept(ws) == {}
+
+
+def test_a_save_written_into_the_new_file_while_it_stood_as_the_bibliography_is_kept(ws):
+    """The schedule: cdlbib reads A; another program saves B by rename; the exchange puts
+    cdlbib's file T in the bibliography's place and B comes out, so T is to be exchanged back;
+    just before that, a program overwrites the bibliography it sees (T) in place with its save
+    C. B is the bibliography again, the write is refused, and T, holding C, is kept in the
+    write's folder and named. (T used to be removed as cdlbib's own file.)"""
+    a = ws.bib.read_bytes()
+    b = a + b"% B, saved by rename\n"
+    c = b"% C, saved in place over the text that stood there\n"
+
+    def save_b_by_rename(event, args):
+        (ws.root / "cdl.bib.editor").write_bytes(b)
+        os.replace(ws.root / "cdl.bib.editor", ws.bib)
+
+    def save_c_in_place(event, args):
+        with open(ws.bib, "r+b") as stream:
+            assert b"Year = {1999}" in stream.read()               # it is cdlbib's new text that stands there
+            stream.seek(0)
+            stream.truncate()
+            stream.write(c)
+    STEPS[:] = [(announced(ws.bib), nothing), (rename_call, save_b_by_rename), (rename_call, save_c_in_place)]
+    with pytest.raises(CdlbibError, match="changed while applying; nothing was written") as refused:
+        edit(ws)
+    assert ws.bib.read_bytes() == b
+    (name,) = [name for name, what in kept(ws).items() if what == c]
+    assert name.endswith("cdl.bib.not-installed") and str(ws.work / "kept" / name) in str(refused.value)
     assert strays(ws) == [] and writer.interrupted(ws) is None
-    assert edit(ws, "2001").written == ["Kaha12"]                 # and the next save goes through
+    assert edit(ws, "2001").written == ["Kaha12"] and (ws.work / "kept" / name).read_bytes() == c
+
+
+def test_a_folder_that_could_not_be_exchanged_back_is_kept_and_the_record_stays(ws):
+    """The schedule: after the last reading, the bibliography is replaced by a folder. The
+    exchange puts cdlbib's file in its place and the folder comes out; the exchange back
+    fails (a real failure of the rename: the library's folder is made read-only for that one
+    call). The old text can then be written again, and is; but the folder that stood there
+    is neither removed nor left under a prepared name without a word: it is kept in the
+    write's folder, the error names it, and the record of the write stays."""
+    if os.geteuid() == 0:
+        pytest.skip("root renames in a read-only folder")
+    before = ws.bib.read_bytes()
+
+    def a_folder_in_its_place(event, args):
+        os.unlink(ws.bib)
+        os.mkdir(ws.bib)
+        (ws.bib / "inside.txt").write_text("a file of the user's\n", encoding="utf-8")
+
+    def read_only(event, args):
+        os.chmod(ws.root, 0o555)
+
+    def writable_again(event, args):
+        os.chmod(ws.root, 0o755)
+    STEPS[:] = [(announced(ws.bib), nothing), (rename_call, a_folder_in_its_place), (rename_call, read_only),
+                (rename_call, writable_again)]
+    try:
+        with pytest.raises(WriteConflict) as refused:
+            edit(ws)
+    finally:
+        os.chmod(ws.root, 0o755)
+    folders = [name for name, what in kept(ws).items() if what == "a folder"]
+    assert len(folders) == 1 and (ws.work / "kept" / folders[0] / "inside.txt").read_text(encoding="utf-8") == "a file of the user's\n"
+    assert str(ws.work / "kept" / folders[0]) in str(refused.value)
+    assert writer.interrupted(ws) and str(ws.work / "edits" / writer.PENDING) in str(refused.value)
+    assert ws.bib.is_file() and ws.bib.read_bytes() == before and strays(ws) == []
+
+
+def test_a_bibliography_removed_while_a_write_is_taken_back_is_written_again_and_that_is_said(ws):
+    writes, expected = two_files(ws)
+
+    def removed(event, args):
+        ledger_appears(ws)(event, args)
+        os.unlink(ws.bib)
+    STEPS[:] = [(announced(ws.key_renames), removed)]
+    with library.transaction(ws):
+        with pytest.raises(CdlbibError, match="was removed by something else while it was being written") as refused:
+            writer.commit(ws, writes, expected)
+    assert "changed while applying" in str(refused.value)
+    assert ws.bib.read_bytes() == expected[ws.bib] and strays(ws) == []
+    assert list(kept(ws).values()) == [expected[ws.bib]]       # the file the write had replaced: kept, not removed
+
+
+def test_an_error_that_is_not_of_the_system_takes_the_same_way_back(ws):
+    """An audit hook of the program that raises (as an interruption does) between the two
+    files of a write: the bibliography, already replaced, is taken back, the record of the
+    write is removed, and the error is the hook's own."""
+    writes, expected = two_files(ws)
+
+    def raises(event, args):
+        raise RuntimeError("raised by an audit hook")
+    STEPS[:] = [(announced(ws.key_renames), raises)]
+    with library.transaction(ws):
+        with pytest.raises(RuntimeError, match="raised by an audit hook"):
+            writer.commit(ws, writes, expected)
+    assert ws.bib.read_bytes() == expected[ws.bib] and not ws.key_renames.exists()
+    assert writer.interrupted(ws) is None and strays(ws) == []
+
+
+def test_reading_stops_at_the_size_the_file_had(tmp_path):
+    path = tmp_path / "grows"
+    path.write_bytes(b"x" * 1000)
+    fd = os.open(path, os.O_RDONLY)
+    try:
+        with open(path, "ab") as stream:                           # it has grown tenfold before it is read
+            stream.write(b"y" * 9000)
+        assert writer._read_fd(fd)[:2] == (b"x" * 1000 + b"y" * 9000, True)     # as it is now: stable
+    finally:
+        os.close(fd)
+    # a file with no end: one byte past the size it reports is read, and no more
+    fd = os.open("/dev/zero", os.O_RDONLY)
+    try:
+        data, stable, _ = writer._read_fd(fd)
+    finally:
+        os.close(fd)
+    assert (len(data), stable) == (1, False)
+
+
+# --- descriptors ----------------------------------------------------------------------------------------
+
+LEAKS = HEAD + """
+import errno, resource
+from cdlbib import writer
+resource.setrlimit(resource.RLIMIT_NOFILE, (64, resource.getrlimit(resource.RLIMIT_NOFILE)[1]))
+def descriptors():
+    return len(os.listdir('/dev/fd'))
+state = {{'armed': False, 'exchanged': False, 'held': []}}
+def audit(event, args):
+    if not state['armed']:
+        return
+    if event == 'os.rename' and args[2] == -1 and str(args[1]) == str(ws.bib):
+        state['exchanged'] = None
+    elif event == 'os.rename' and args[2] != -1 and state['exchanged'] is None:
+        state['exchanged'] = True
+    elif event == 'open' and state['exchanged'] is True and not state['held']:
+        try:
+            while True:
+                state['held'].append(os.dup(0))
+        except OSError as exc:
+            assert exc.errno == errno.EMFILE, exc
+sys.addaudithook(audit)
+baseline, counts, said = None, [], set()
+for turn in range({turns}):
+    opened = api.entry(ws, 'Zoll90').fingerprint
+    state.update(armed=True, exchanged=False, held=[])
+    try:
+        api.save_edit(ws, 'Zoll90', {raw!r}, opened)
+        said.add('DONE')
+    except CdlbibError as exc:
+        said.add(type(exc).__name__)
+    state['armed'] = False
+    for fd in state['held']:
+        os.close(fd)
+    with library.transaction(ws):            # settles the write
+        pass
+    if baseline is None:
+        baseline = descriptors()
+    counts.append(descriptors())
+import json
+print(json.dumps([sorted(said), baseline, sorted(set(counts))]))
+"""
+
+
+def test_descriptors_are_all_closed_again_after_failures_under_a_low_limit(ws):
+    """Twenty writes in one process, each brought to a real EMFILE (RLIMIT_NOFILE 64) at the
+    first file opened after the exchange, each settled afterwards: the number of descriptors
+    the process has open is the same after every one of them."""
+    process = child(LEAKS.format(root=str(ws.root), raw=RENAMED, turns=20), ws.root)
+    try:
+        said = line(process, 120)
+        assert process.wait(timeout=60) == 0, process.stderr.read()
+    finally:
+        finish(process)
+    import json
+    outcomes, baseline, counts = json.loads(said)
+    assert outcomes == ["WriteConflict"] and counts == [baseline], said

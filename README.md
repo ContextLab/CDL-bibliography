@@ -1034,6 +1034,8 @@ to a commit) also keeps a snapshot.
 
 The functions behind the commands are in the module `cdlbib.api`. They return result objects and raise subclasses of `cdlbib.errors.CdlbibError`. They do not print or prompt. `api.status` writes `.bibcheck/verification.sqlite3` and `.bibcheck/report.jsonl` in the library folder.
 
+Every write to `cdl.bib`, `verification/key-renames.json` and `verification/approvals.jsonl` goes through one writer (`cdlbib.writer`). cdlbib's own commands take a lock; an editor or a sync service that saves the same file at the same moment does not. Nothing such a program wrote is deleted by cdlbib: it is in the library, or in the copy kept for the write that replaced the file (`.bibcheck/edits/`, the newest 20 writes), or in `.bibcheck/kept/`, and then the error message names the path. What is not guaranteed is which of two saves made at the same moment ends up as the library file, and, in the library cdlbib manages (which keeps no copies beside itself), a write made through a descriptor a program still holds on a file that was replaced. The details are in [docs/verification.md](docs/verification.md) and in the module's docstring.
+
 ```python
 from cdlbib import api
 
