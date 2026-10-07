@@ -824,7 +824,7 @@ def drop_added_country(name, target):
 #     ("\LaTeX", "\emph{Drosophila}", "\textcolor[RGB]{0,0,0}{Title}", an accent "\"{o}" or "\'e");
 #   - a braced group that holds a group, a command, mathematics or a space
 #     ("{\"o}", "{{Mixed} Case}", "{Lopes da Silva}");
-#   - mathematics: "$...$" and "\(...\)".
+#   - mathematics: "$...$", "\(...\)", and displayed "$$...$$" and "\[...\]".
 # Plain: everything else, with an escaped character ("\{", "\}", "\$", "\%", "\&", "\_", "\#")
 # read as that character, and a braced group of one word without a command ("{IEEE}",
 # "{University}", "{Tcl/Tk}"), which the word rules own (the caps list, unbrace_ordinary).
@@ -872,8 +872,8 @@ def name_tokens(text):
         ch = text[i]
         if ch == "\\":
             following = text[i + 1:i + 2]
-            if following == "(":
-                close = text.find("\\)", i + 2)
+            if following in ("(", "["):             # mathematics, in line "\(...\)" or displayed "\[...\]"
+                close = text.find("\\)" if following == "(" else "\\]", i + 2)
                 if close < 0:
                     raise Unbalanced("mathematics that is never closed")
                 opaque(close + 2)
@@ -900,12 +900,15 @@ def name_tokens(text):
                     j += 1
                 opaque(j)
         elif ch == "$":
-            close = text.find("$", i + 1)
+            # "$$" opens displayed mathematics, which the next "$$" closes: never an empty "$$"
+            # followed by text that the word rules would then re-case.
+            mark = "$$" if text[i + 1:i + 2] == "$" else "$"
+            close = text.find(mark, i + len(mark))
             while close > 0 and text[close - 1] == "\\":
-                close = text.find("$", close + 1)
+                close = text.find(mark, close + 1)
             if close < 0:
                 raise Unbalanced("mathematics that is never closed")
-            opaque(close + 1)
+            opaque(close + len(mark))
         elif ch == "{":
             j = group(i)
             inner = text[i + 1:j - 1]
@@ -1367,17 +1370,26 @@ def _catalogue_ordinal(match):
 def format_edition(value):
     r"""The format checker's formatter for ``edition``: an ordinal, as a word or a plain
     numeral, is written as a numeral with a superscript suffix ("Second", "2nd" ->
-    ``2\textsuperscript{nd}``). In this field an ordinal is the number of the edition wherever
-    it stands. An ordinal followed by nothing but the word for an edition ("Second edition",
-    "2nd ed.") is written as the ordinal alone, as the library's editions are and as the
-    research route writes them (``research_forms.normalise_edition``). Everything else stays
-    as written ("Rev. and expanded"); a cardinal is not made an ordinal."""
+    ``2\textsuperscript{nd}``). An ordinal WORD is the number of the edition, and is rewritten,
+    only when it is the whole value or is followed by nothing but the word for an edition
+    ("Second", "Twenty-first", "Second edition"): inside a phrase it is part of the wording
+    and stays a word ("Second Language edition", "Revised second printing"). An ordinal
+    numeral is one wherever it stands ("Revised 2nd"). An ordinal followed by nothing but the
+    word for an edition ("Second edition", "2nd ed.") is written as the ordinal alone, as the
+    library's editions are and as the research route writes them
+    (``research_forms.normalise_edition``). Everything else stays as written ("Rev. and
+    expanded"); a cardinal is not made an ordinal."""
     if unformattable(value):
         return value
     pattern, number = _ordinal_words()
+    words = value.split()
+    if words and words[-1].lower() in ("ed", "ed.", "edn", "edn.", "edition"):
+        words = words[:-1]
+    bare = pattern.fullmatch(" ".join(words)) if 1 <= len(words) <= 2 else None
+    if bare and number(bare) is not None:
+        return house_ordinal(number(bare))
 
     def plain(text):
-        text = pattern.sub(lambda m: m[0] if number(m) is None else house_ordinal(number(m)), text)
         return _plain_ordinals(_CATALOGUE_ORDINAL.sub(_catalogue_ordinal, text))
     # the ordinal rules on the plain tokens only; what a command or a group holds is not read
     text = "".join(part if is_opaque else plain(part) for is_opaque, part in name_tokens(value))
