@@ -1948,9 +1948,13 @@ class Asked:
     def __init__(self, box, name, *args, shell="/bin/sh"):
         self.master, slave = pty.openpty()
         self.log = box.root / f"{name}.log"
+        # A test run started as a background job inherits an ignored SIGINT, and a shell cannot
+        # trap a signal that was ignored when it started: the script is started the way a
+        # terminal starts it, with SIGINT at its default.
         with open(self.log, "wb") as log:
             self.process = subprocess.Popen(box.command("--ask", *args, shell=shell), env=box.env(), cwd=box.root,
-                                            stdin=slave, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+                                            stdin=slave, stdout=log, stderr=subprocess.STDOUT, start_new_session=True,
+                                            preexec_fn=lambda: signal.signal(signal.SIGINT, signal.SIG_DFL))
         os.close(slave)
         self.pid = self.process.pid
 
