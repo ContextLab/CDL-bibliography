@@ -434,19 +434,25 @@ class _Folder:
             elif kind == "file" and isinstance(expected, bytes):
                 data, stable, _ = _read_fd(out)
                 good = stable and data == expected
-            elif kind == "link":
-                good = expected is A_LINK        # nobody's save: it is kept aside as something found, and replaced
-            elif kind == "absent" and placed and read_fd is not None and isinstance(expected, bytes):
-                data, stable, left = _read_fd(read_fd)   # removed at once by something else: was it the file read?
+            elif kind == "link" and expected is A_LINK:
+                good = True                      # nobody's save: it is kept aside as something found, and replaced
+            elif kind in ("absent", "link") and placed and read_fd is not None and isinstance(expected, bytes):
+                # Nothing, or a link, under the prepared name: the file that came out was removed at once
+                # by something else (and perhaps a link put in its place). Was it the file that
+                # was read? Then that file has no name any more, it holds what was expected, and
+                # nothing was lost; what stands under the prepared name never was the library
+                # file, and is kept aside, not put in its place.
+                data, stable, left = _read_fd(read_fd)
                 good = left.st_nlink == 0 and stable and data == expected
             else:
                 good = False
             if placed and good:
-                if kind == "link":
-                    aside.take(self, made, onto + ".found", foreign=True)
-                    was = None
+                if kind == "file":
+                    was = aside.take(self, made, onto + ".was", foreign=False)
                 else:
-                    was = aside.take(self, made, onto + ".was", foreign=False) if kind != "absent" else None
+                    if kind != "absent":
+                        aside.take(self, made, onto + ".found", foreign=True)
+                    was = None
                 self.flush()
                 self._let_go(made)
                 return was
@@ -472,6 +478,9 @@ class _Folder:
                     aside.take(self, made, onto + ".not-installed", foreign=False)
                 self._let_go(made)
                 self.flush()
+                if self.kind(onto) in ("link", "absent"):   # a link went back, or nothing: the caller looks at the name again
+                    raise OSError(errno.ESTALE, 'something that is not a file came out of the exchange and went back',
+                                  str(self.path / onto))
                 raise _Changed(self.path / onto)
             if self.kind(onto) == "file":
                 # Another program saved over the file made (or the prepared name was swapped for

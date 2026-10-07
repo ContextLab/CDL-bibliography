@@ -744,3 +744,29 @@ def test_what_a_successful_save_had_to_keep_aside_is_said_to_the_caller(ws):
     applied = edit(ws)
     assert applied.written == ["Kaha12"] and b"Year = {1999}" in ws.bib.read_bytes()
     assert kept(ws) and any(str(ws.work / "kept") in note for note in applied.notes), applied.notes
+
+
+def test_a_link_put_where_the_replaced_file_stood_aside_never_becomes_the_bibliography(ws, tmp_path):
+    """The exchange has put the new file in the bibliography's place, and the file it replaced
+    stands under the prepared name for the instant it takes to look at it. In that instant it
+    is removed and a link to a file outside is put under that name. The link never was the
+    bibliography and is not exchanged into its place: it is kept aside and named. The file
+    that was read is gone by the other program's doing, unwritten; the save stands."""
+    victim = tmp_path / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+    prepared = []
+
+    def remember(event, args):
+        prepared.append(str(args[0]))
+
+    def a_link_where_it_stands(event, args):
+        os.unlink(prepared[0])
+        os.symlink(victim, prepared[0])
+    STEPS[:] = [(announced(ws.bib), remember), (rename_call, nothing), (next_open, a_link_where_it_stands)]
+    applied = edit(ws)
+    assert applied.written == ["Kaha12"]
+    assert not ws.bib.is_symlink() and b"Year = {1999}" in ws.bib.read_bytes()
+    links = [name for name, what in kept(ws).items() if what == f"link to {victim}"]
+    assert len(links) == 1 and any(str(ws.work / "kept" / links[0]) in note for note in applied.notes), applied.notes
+    assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n" and strays(ws) == []
+    assert writer.interrupted(ws) is None and edit(ws, "2001").written == ["Kaha12"]
