@@ -121,6 +121,13 @@ run. With `--no-uv` a copy of the virtual environment is set aside in the same w
 reached is an error. In each case the script ends with an error and the installed command
 still works. An installation whose command does not run is removed and installed again.
 
+One run of the script at a time installs or removes. While it runs, the script holds a
+lock: the link `~/.local/share/cdlbib/install-lock`, whose text names its process. A second
+run started meanwhile (an installation or `--uninstall`) changes nothing and ends at once
+with an error that names the lock and the command that removes it. A lock left by a run
+that was killed is taken over when its process is gone; a lock the script cannot decide
+about (written on another computer, for example) stops it with the same error.
+
 A changed `UV_TOOL_DIR` or `UV_TOOL_BIN_DIR` that names the same folders (through a link)
 is the same installation. When they name other folders, the script changes nothing and
 says so; to move the installation, run `--uninstall`, then install with the new settings.

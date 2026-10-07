@@ -70,7 +70,7 @@ SYSTEM = "/usr/bin:/bin:/usr/sbin:/sbin"
 # What a shell script, uv's installer, pip and a Python build may call. Linked one by one,
 # so that the PATH of a test holds no Python, no uv and no git unless the test adds it.
 SYSTEM_TOOLS = ("sh awk base64 basename cat chmod cp cut date dirname env expr false find getconf grep gzip head "
-                "id install ld ldd ln ls mkdir mktemp mv od readlink rm rmdir sed sha256sum shasum sleep sort sw_vers tail "
+                "id install ld ldd ln ls mkdir mktemp mv od ps readlink rm rmdir sed sha256sum shasum sleep sort sw_vers tail "
                 "tar tee "
                 "touch tr true uname uniq wc which xargs xcode-select").split()
 COMMANDS = ("cdlbib", "cdlbib-adapter-dartmouth", "cdlbib-adapter-openai")
@@ -1646,6 +1646,8 @@ def nothing_set_aside(box):
     assert not (box.data / "venv.kept").exists()
     assert not (box.tool.parent / "cdlbib-kept-by-install-sh").exists()
     assert not [path.name for path in box.bin.iterdir() if path.name.endswith(".new")]
+    assert not os.path.lexists(box.data / "install-lock"), "the run ended and its lock is still there"
+    assert not os.path.lexists(box.data / "install-lock.takeover")
 
 
 def uv_that_fails_the_live_installation(box, damage):
@@ -1847,6 +1849,7 @@ def test_a_run_killed_without_warning_during_the_live_installation_is_undone_by_
     assert process.wait(timeout=120) == -signal.SIGKILL
     assert (box.data / "kept" / "where").is_file()
     assert (box.tool.parent / "cdlbib-kept-by-install-sh").is_dir()
+    assert holder(box) == process.pid, "the killed run could not give its lock back"
     for path in box.tmp.iterdir():          # the killed run could not remove its temporary folder
         shutil.rmtree(path)
 
@@ -1856,6 +1859,9 @@ def test_a_run_killed_without_warning_during_the_live_installation_is_undone_by_
     assert out.returncode == 1, out.stdout + out.stderr
     assert ("An earlier run was stopped while it replaced the installation: the installation that was there "
             "is put back.") in out.stdout
+    assert (f"A run of this script that is no longer running (process {process.pid}) left its lock: "
+            "this run takes it over.") in out.stdout
+    assert out.stdout.index("this run takes it over.") < out.stdout.index("An earlier run was stopped")
     assert box.installed() == "cdlbib 2.0.0"
     assert (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool)) == before
     nothing_set_aside(box)
@@ -1884,3 +1890,325 @@ def test_another_name_of_the_same_tool_directory_is_the_same_installation(box, o
     (alias / "bin").unlink()
     assert "Removed cdlbib." in ok(box.run("--uninstall", env=elsewhere))
     assert not box.tool.exists() and not box.data.exists()
+
+
+# --- one run at a time (codex round 5, item R5-2) -----------------------------------------------------
+# The lock is the link install-lock in the script's data folder; its text names the run that
+# holds it: PID:START:HOST. Every run here is the real script in a real process.
+
+HOST = re.sub(r"[^A-Za-z0-9.-]", "-", os.uname().nodename)
+# How this computer says when a process started (the script reads /proc where there is one, else ps).
+START_KIND = "proc" if os.path.exists(f"/proc/{os.getpid()}/stat") else "ps"
+ANOTHER_START = "proc-1" if START_KIND == "proc" else "ps-Thu-Jan-1-00-00-00-1970"
+
+
+def lock_text(box, name="install-lock"):
+    """The text of the lock, or None when there is no lock."""
+    path = box.data / name
+    return os.readlink(path) if os.path.islink(path) else None
+
+
+def holder(box):
+    """The process number in the lock (None without a lock); the rest of the text is checked."""
+    text = lock_text(box)
+    if text is None:
+        return None
+    match = re.fullmatch(rf"(\d+):{START_KIND}-[A-Za-z0-9-]+:{re.escape(HOST)}", text)
+    assert match, text
+    return int(match.group(1))
+
+
+def no_lock(box):
+    return not os.path.lexists(box.data / "install-lock") and not os.path.lexists(box.data / "install-lock.takeover")
+
+
+def gone_process():
+    """The number of a real process that has ended."""
+    process = subprocess.Popen(["/bin/sh", "-c", "exit 0"], env=BARE)
+    process.wait(timeout=30)
+    return process.pid
+
+
+def refused(out, box, pid=None, name="install-lock"):
+    assert out.returncode == 1, out.stdout + out.stderr
+    if pid is not None:
+        assert (f"install.sh: another run of this script is installing or removing cdlbib (process {pid} on "
+                in out.stderr), out.stderr
+    assert "Nothing was changed." in out.stderr, out.stderr
+    assert f"The lock is {box.data / name}\n" in out.stderr, out.stderr
+    assert (f"  rm -f '{box.data}/install-lock' '{box.data}/install-lock.takeover'\n" in out.stderr), out.stderr
+    assert "Installing cdlbib" not in out.stdout and "Removed" not in out.stdout and "Nothing to remove" not in out.stdout
+
+
+class Asked:
+    """The script started with --ask on a real pseudo-terminal. It takes the lock, then asks
+    its question and waits: a run that holds the lock for as long as the test wants, with no
+    network. What it prints goes to a file."""
+
+    def __init__(self, box, name, *args, shell="/bin/sh"):
+        self.master, slave = pty.openpty()
+        self.log = box.root / f"{name}.log"
+        with open(self.log, "wb") as log:
+            self.process = subprocess.Popen(box.command("--ask", *args, shell=shell), env=box.env(), cwd=box.root,
+                                            stdin=slave, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        os.close(slave)
+        self.pid = self.process.pid
+
+    def text(self):
+        return self.log.read_text(encoding="utf-8", errors="replace")
+
+    def asking(self):
+        return "[y/N]" in self.text()
+
+    def wait_until_asked(self):
+        deadline = time.time() + 120
+        while time.time() < deadline and not self.asking() and self.process.poll() is None:
+            time.sleep(0.05)
+        assert self.asking() and self.process.poll() is None, self.text()
+        return self
+
+    def end(self, how):
+        if how == "answered no":
+            os.write(self.master, b"n\n")
+        else:
+            os.killpg(self.pid, getattr(signal, how))
+        code = self.process.wait(timeout=120)
+        os.close(self.master)
+        return code
+
+    def stop(self):
+        if self.process.poll() is None:
+            os.killpg(self.pid, signal.SIGKILL)
+            self.process.wait(timeout=60)
+            os.close(self.master)
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("ending", ["answered no", "SIGINT", "SIGTERM", "SIGHUP"])
+def test_a_run_started_while_another_holds_the_lock_changes_nothing_and_the_lock_goes_when_the_first_ends(box, ending, shell):
+    """A live lock is refused, by an installation and by --uninstall, with a message that names
+    the lock and says how to remove it; the run that holds it gives it back when it stops
+    with an error and when it gets SIGINT, SIGTERM or SIGHUP."""
+    box.with_uv()
+    first = Asked(box, "first", shell=shell)
+    try:
+        first.wait_until_asked()
+        assert holder(box) == first.pid
+        text = lock_text(box)
+        for args in ((), ("--uninstall",), ("--no-uv",)):
+            started = time.time()
+            refused(box.run(*args, shell=shell), box, first.pid)
+            assert time.time() - started < 60, "the second run waited"
+            assert lock_text(box) == text and first.process.poll() is None
+        code = first.end(ending)
+    finally:
+        first.stop()
+    assert code == {"answered no": 1, "SIGINT": 130, "SIGTERM": 143, "SIGHUP": 143}[ending], first.text()
+    assert no_lock(box) and box.files() == set() and box.leftovers() == []
+    assert "Nothing to remove" in ok(box.run("--uninstall", shell=shell))
+    assert no_lock(box) and not box.data.exists()
+    assert list(box.home.iterdir()) == [], "a folder that was made for the lock is left"
+
+
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("left_by", ["a process that is gone", "a process whose number another process has now"])
+def test_a_lock_whose_process_is_gone_is_taken_over(box, left_by, shell):
+    """A lock that a killed run left: no process has its number, or a process that started at
+    another time has it (this test's own process, here)."""
+    pid = gone_process() if left_by == "a process that is gone" else os.getpid()
+    box.data.mkdir(parents=True)
+    os.symlink(f"{pid}:{ANOTHER_START}:{HOST}", box.data / "install-lock")
+    out = ok(box.with_uv().run("--uninstall", shell=shell))
+    assert f"A run of this script that is no longer running (process {pid}) left its lock: this run takes it over." in out
+    assert "Nothing to remove" in out
+    assert no_lock(box) and not box.data.exists() and box.files() == set()
+
+
+UNDECIDED = {
+    "a process that runs, and no start in the lock": lambda: f"{os.getpid()}:unknown:{HOST}",
+    "a process that runs, its start read another way": lambda: (
+        f"{os.getpid()}:{'ps-Thu-Jan-1-00-00-00-1970' if START_KIND == 'proc' else 'proc-1'}:{HOST}"),
+    "another computer": lambda: f"{gone_process()}:{ANOTHER_START}:another-computer.example",
+    "a text that is not a lock's": lambda: "something else",
+    "a process number that is not a number": lambda: f"12x:{ANOTHER_START}:{HOST}",
+}
+
+
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("what", [*UNDECIDED, "a folder"])
+def test_a_lock_that_cannot_be_shown_to_be_left_behind_is_not_taken_over(box, what, shell):
+    """Only a lock whose process is shown to be gone is taken over. Everything else stops the
+    script, at once, with the lock left as it is."""
+    box.data.mkdir(parents=True)
+    lock = box.data / "install-lock"
+    if what == "a folder":
+        (lock / "inside").mkdir(parents=True)
+    else:
+        os.symlink(UNDECIDED[what](), lock)
+    text = lock_text(box)
+    for args in (("--uninstall",), ()):
+        refused(box.with_uv().run(*args, shell=shell), box)
+        assert lock_text(box) == text and (text is not None or (lock / "inside").is_dir())
+        assert sorted(path.name for path in box.data.iterdir()) == ["install-lock"]
+        assert sorted(path.name for path in lock.iterdir()) == ["inside"] if text is None else True
+    assert box.leftovers() == []
+
+
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("taker", ["gone", "running"])
+def test_a_takeover_that_another_run_began_is_not_repeated(box, taker, shell):
+    """The lock's process is gone and another run holds install-lock.takeover (or was killed
+    holding it): this run takes nothing over, removes nothing, and names that link."""
+    box.data.mkdir(parents=True)
+    os.symlink(f"{gone_process()}:{ANOTHER_START}:{HOST}", box.data / "install-lock")
+    other = gone_process() if taker == "gone" else os.getpid()
+    os.symlink(f"{other}:{'unknown' if taker == 'running' else ANOTHER_START}:{HOST}", box.data / "install-lock.takeover")
+    texts = (lock_text(box), lock_text(box, "install-lock.takeover"))
+    refused(box.with_uv().run("--uninstall", shell=shell), box, other, name="install-lock.takeover")
+    assert (lock_text(box), lock_text(box, "install-lock.takeover")) == texts
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("start", ["no lock", "a lock whose process is gone"])
+def test_of_many_runs_started_together_one_gets_the_lock(box, start, shell):
+    """Eight runs at once, over nothing or over a lock that a killed run left: exactly one
+    reaches its question, with the lock in its name; the seven others changed nothing."""
+    box.with_uv()
+    if start != "no lock":
+        box.data.mkdir(parents=True)
+        os.symlink(f"{gone_process()}:{ANOTHER_START}:{HOST}", box.data / "install-lock")
+    runs = [Asked(box, f"run {number}", shell=shell) for number in range(8)]
+    try:
+        deadline = time.time() + 180
+        while time.time() < deadline:
+            going = [run for run in runs if run.process.poll() is None]
+            if len(going) <= 1 and all(run.asking() for run in going):
+                break
+            time.sleep(0.05)
+        assert len(going) == 1, [run.text() for run in runs]
+        winner = going[0]
+        time.sleep(1)
+        assert winner.process.poll() is None and winner.asking()
+        assert holder(box) == winner.pid and lock_text(box, "install-lock.takeover") is None
+        for run in runs:
+            if run is not winner:
+                assert run.process.returncode == 1, run.text()
+                assert "Nothing was changed." in run.text() and f"The lock is {box.data}/install-lock" in run.text()
+                assert "[y/N]" not in run.text()
+                os.close(run.master)
+        # The run that removes the old lock is one run; the lock it then makes can go to
+        # another that asked in that moment, so the one that says so need not be the winner.
+        took_over = [run for run in runs if "this run takes it over." in run.text()]
+        assert len(took_over) <= (start != "no lock") and all(run is winner for run in took_over)
+        assert winner.end("answered no") == 1
+    finally:
+        for run in runs:
+            run.stop()
+    assert no_lock(box) and box.files() == set()
+
+
+def uv_that_waits_in_the_live_installation(box, then):
+    """The uv of the box becomes a program that runs the real uv for everything except the
+    installation into the live tool directory: there it makes the file `reached`, waits for the
+    file `go`, and then fails after the real uv has replaced the environment and the program
+    has deleted its packages and its command ("fails"), or runs the real uv ("succeeds")."""
+    real = os.path.realpath(box.programs / "uv")
+    reached, go = box.root / "reached", box.root / "go"
+    (box.programs / "uv").unlink()
+    after = (f'    "{real}" "$@"\n    rm -rf "$UV_TOOL_DIR/cdlbib/lib"\n    rm -f "$UV_TOOL_BIN_DIR/cdlbib"\n'
+             '    echo "this uv fails the installation into the live tool directory" >&2\n    exit 1 ;;\n'
+             if then == "fails" else '    ;;\n')
+    (box.programs / "uv").write_text(
+        '#!/bin/sh\ncase " $* " in\n  *" tool install "*" --reinstall-package "*)\n'
+        f'    : > "{reached}"\n    while [ ! -e "{go}" ]; do sleep 1; done\n{after}esac\n'
+        f'exec "{real}" "$@"\n')
+    (box.programs / "uv").chmod(0o755)
+    return real, reached, go
+
+
+@need_uv
+@pytest.mark.parametrize("shell", SHELLS)
+@pytest.mark.parametrize("then", ["fails", "succeeds"])
+def test_a_run_started_while_another_replaces_the_installation_touches_nothing_of_it(box, online, then, shell):
+    """codex round 5, R5-2. The first run has set the working installation aside and its uv is
+    at work in the live tool directory (held there by the test). A second installation and an
+    --uninstall started now are refused; what the first run set aside is as it was. When the
+    first run's installation then fails, the installation that was there is put back and
+    works; when it succeeds, the new version is installed."""
+    box.with_uv().with_python()
+    ok(box.run(shell=shell))
+    wheel = box.data / "dist" / "cdlbib-2.0.0-py3-none-any.whl"
+    state = box.data / "install-state"
+    before = (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool))
+    box.set_version("2.0.1")
+    real, reached, go = uv_that_waits_in_the_live_installation(box, then)
+    log = box.root / "first.log"
+    with open(log, "wb") as output:
+        first = subprocess.Popen(box.command(shell=shell), env=box.env(), cwd=box.root, stdin=subprocess.DEVNULL,
+                                 stdout=output, stderr=subprocess.STDOUT, start_new_session=True)
+    try:
+        deadline = time.time() + 1800
+        while time.time() < deadline and not reached.exists() and first.poll() is None:
+            time.sleep(0.1)
+        assert reached.exists() and first.poll() is None, log.read_text(errors="replace")
+        kept_tool = box.tool.parent / "cdlbib-kept-by-install-sh"
+        assert holder(box) == first.pid
+        assert (box.data / "kept" / "where").is_file() and kept_tool.is_dir()
+        aside = (tree(kept_tool), tree(box.data / "kept"), state.read_bytes(), lock_text(box))
+        assert aside[0] == before[3], "what is set aside is the environment that was installed"
+        for args in ((), ("--uninstall",), ("--no-uv",), ()):
+            refused(box.run(*args, shell=shell), box, first.pid)
+            assert (tree(kept_tool), tree(box.data / "kept"), state.read_bytes(), lock_text(box)) == aside
+            assert first.poll() is None
+        go.write_text("")
+        code = first.wait(timeout=1800)
+    finally:
+        if first.poll() is None:
+            os.killpg(first.pid, signal.SIGKILL)
+            first.wait(timeout=60)
+    output = log.read_text(errors="replace")
+    if then == "fails":
+        assert code == 1, output
+        assert f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before." in output
+        assert box.installed() == "cdlbib 2.0.0"
+        assert (own_files(box), state.read_bytes(), digest(wheel), tree(box.tool)) == before
+    else:
+        assert code == 0, output
+        assert "Installed: cdlbib 2.0.1" in output and box.installed() == "cdlbib 2.0.1"
+    nothing_set_aside(box)
+    assert box.leftovers() == []
+    real_uv_again(box, real)
+    out = ok(box.run(shell=shell))
+    assert "Installed: cdlbib 2.0.1" in out and box.installed() == "cdlbib 2.0.1"
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.1-py3-none-any.whl"]
+    nothing_set_aside(box)
+    assert "Removed cdlbib." in ok(box.run("--uninstall", shell=shell))
+    assert not box.tool.exists() and not box.data.exists()
+
+
+@need_uv
+def test_what_another_run_set_aside_is_never_deleted_to_make_room(box, online):
+    """Something stands where this run would set the installation aside, and no record says
+    it is an unfinished replacement: it is not deleted. The run stops, the installation is
+    unchanged, and the message names what is in the way."""
+    box.with_uv().with_python()
+    ok(box.run())
+    state = box.data / "install-state"
+    before = (state.read_bytes(), tree(box.tool))
+    in_the_way = box.tool.parent / "cdlbib-kept-by-install-sh"
+    (in_the_way / "bin").mkdir(parents=True)
+    (in_the_way / "bin" / "the only copy").write_text("of an installation another run set aside\n")
+    box.set_version("2.0.1")
+    out = box.run()
+    assert out.returncode == 1, out.stdout + out.stderr
+    assert f"install.sh: {in_the_way} is there, and this run did not put it there." in out.stderr, out.stderr
+    assert f"The installation that was there is unchanged: {box.bin}/cdlbib runs as before." in out.stderr
+    assert (in_the_way / "bin" / "the only copy").read_text() == "of an installation another run set aside\n"
+    assert box.installed() == "cdlbib 2.0.0" and (state.read_bytes(), tree(box.tool)) == before
+    assert no_lock(box) and not (box.data / "kept").exists()
+    assert sorted(os.listdir(box.data / "dist")) == ["cdlbib-2.0.0-py3-none-any.whl"]
+    shutil.rmtree(in_the_way)
+    assert "Installed: cdlbib 2.0.1" in ok(box.run())
+    nothing_set_aside(box)

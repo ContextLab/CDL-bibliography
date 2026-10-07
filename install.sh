@@ -26,6 +26,8 @@
 # It never uses sudo, never edits a shell profile, and writes only to:
 #   ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/   install-state (what was installed, where,
 #                                                  and with which uv), uv/ (a downloaded uv),
+#                                                  install-lock (while the script runs: one
+#                                                  run at a time installs or removes),
 #                                                  kept/ and venv.kept/ (the installation that
 #                                                  is being replaced, until the new one runs),
 #                                                  dist/ (the wheel built from a checkout),
@@ -131,6 +133,11 @@ their place fails or its `cdlbib --version` does not run (by this run, or by the
 when this one was killed). The script then ends with an error and the old command works.
 With --no-uv a copy of the virtual environment is set aside in the same way. An
 installation whose command does not run is removed and installed again.
+
+One run at a time installs or removes: while the script runs it holds a lock, the link
+${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/install-lock, which names its process. A second
+run started meanwhile changes nothing and ends with an error that names the lock. A lock
+left by a run that was killed is taken over when its process is gone.
 
 --uninstall removes the installation recorded in
 ${XDG_DATA_HOME:-$HOME/.local/share}/cdlbib/install-state (uv's tool directory, the folder
@@ -771,11 +778,27 @@ keep_link() {
     return 0
 }
 
+# Is there nothing at $1? Says so when there is something.
+not_there() {
+    if [ -e "$1" ] || [ -L "$1" ]; then
+        warn "install.sh: $1 is there, and this run did not put it there. It can hold an installation that another"
+        warn "run set aside, so it was left as it is. Look at it, and move it away or delete it, before running this script again."
+        return 1
+    fi
+    return 0
+}
+
 # Start: $1 is uv's tool directory when its environment will be replaced (else empty), $2
 # the name of the new wheel (or empty), $3 what happens to the virtual environment: "new"
 # (there is none, one will be made), "copy" (it will be changed in place) or "same".
 keep_begin() {
-    rm -rf "$keep" "$home_dir/venv.kept" || return 1
+    # This run holds the lock and keep_recover has run, so nothing that was set aside can
+    # be here. What is here all the same is not this run's: it is left as it is.
+    not_there "$keep" || return 1
+    not_there "$home_dir/venv.kept" || return 1
+    if [ -n "$1" ]; then
+        not_there "$1/$KEPT_TOOL" || return 1
+    fi
     mkdir -p "$keep/bin" || return 1
     k_had_tool=0
     k_had_wheel=0
@@ -813,7 +836,6 @@ keep_begin() {
     mv -f "$keep/where.new" "$keep/where" || return 1
     keeping=1
     if [ "$k_had_tool" = 1 ]; then
-        rm -rf "${1:?}/$KEPT_TOOL" || return 1
         mv "$1/$PACKAGE" "$1/$KEPT_TOOL" || return 1
     fi
     if [ "$k_had_wheel" = 1 ]; then
@@ -945,6 +967,190 @@ failed() {
     die "$1 No working $PACKAGE was installed."
 }
 
+# ---- One run at a time ---------------------------------------------------------------------
+# What is set aside, the state file and uv's tool are shared by every run of this script
+# for one user, so one run at a time may look at them or change them: recovery,
+# installation, putting back and --uninstall all happen with the lock held.
+#   $lock            a symbolic link whose text is PID:START:HOST of the run that holds it.
+#                    Making a link fails when the name is taken, and the link has its text
+#                    from the first moment, so there is no lock without an owner.
+#   $lock.takeover   the same, held for a moment by the one run that replaces a lock whose
+#                    process is gone; two runs can therefore not both take over one lock.
+# START is when the process started (from /proc, else from ps): a process number is given
+# out again after a while, and a lock is not honoured for a process that only has the number.
+# A lock is taken over only when its process is shown to be gone. Whatever cannot be decided
+# (another computer, no way to ask for the start) counts as a run that is still going: the
+# script then stops and says how to remove the lock. It never waits.
+
+# When the process $1 started, as one word; nothing when it is not running or cannot be asked.
+process_start() {
+    if [ -r "/proc/$1/stat" ]; then
+        # The 22nd field; the second is the program's name in parentheses, which can hold spaces.
+        ticks=$(sed -n '1s/^.*) \([^ ]* \)\{19\}\([0-9][0-9]*\) .*$/\2/p' "/proc/$1/stat" 2>/dev/null) || ticks=""
+        if [ -n "$ticks" ]; then
+            printf 'proc-%s\n' "$ticks"
+            return 0
+        fi
+    fi
+    [ -n "$lock_ps" ] || return 0
+    # One time zone and one language, so that two runs write the same start the same way.
+    lstart=$(LC_ALL=C TZ=UTC0 "$lock_ps" -p "$1" -o lstart= 2>/dev/null | sed -n -e '1s/[^A-Za-z0-9]\{1,\}/-/g' -e '1s/^-//' -e '1s/-$//' -e 1p) || lstart=""
+    if [ -n "$lstart" ]; then
+        printf 'ps-%s\n' "$lstart"
+    fi
+    return 0
+}
+
+# Is the run that wrote the lock text $1 gone for certain? (Fails when it runs, and when
+# that cannot be decided.) Sets lock_pid and lock_host.
+lock_owner_gone() {
+    lock_pid=${1%%:*}
+    lock_rest=${1#*:}
+    lock_start=${lock_rest%%:*}
+    lock_host=${lock_rest#*:}
+    case $1 in
+        *:*:*) ;;
+        *) lock_pid=""; return 1 ;;
+    esac
+    case $lock_pid in
+        ''|*[!0-9]*) lock_pid=""; return 1 ;;
+    esac
+    [ "$lock_host" = "$lock_my_host" ] || return 1
+    now=$(process_start "$lock_pid")
+    if [ -z "$now" ]; then
+        # No start to read: gone when no process has the number, undecided otherwise.
+        if kill -0 "$lock_pid" 2>/dev/null; then
+            return 1
+        fi
+        # kill also fails for the process of another user (a run started with sudo), so the
+        # process is looked for once more; where it cannot be looked for, nothing is decided.
+        if [ -n "$lock_ps" ]; then
+            if "$lock_ps" -p "$lock_pid" >/dev/null 2>&1; then
+                return 1
+            fi
+            return 0
+        fi
+        if [ -d "/proc/$$" ]; then
+            [ ! -d "/proc/$lock_pid" ]
+            return
+        fi
+        return 1
+    fi
+    # A process has the number. It is another one only when both starts were read the same
+    # way and differ.
+    case $lock_start in
+        proc-*) case $now in proc-*) ;; *) return 1 ;; esac ;;
+        ps-*) case $now in ps-*) ;; *) return 1 ;; esac ;;
+        *) return 1 ;;
+    esac
+    [ "$now" != "$lock_start" ]
+}
+
+# Stop: the lock $1 is not this run's to take (lock_pid: the process it names, when it
+# could be read).
+lock_refused() {
+    if [ -n "$lock_pid" ]; then
+        warn "install.sh: another run of this script is installing or removing $PACKAGE (process $lock_pid on $lock_host),"
+        warn "or was stopped in a way that this run cannot tell from that. Nothing was changed."
+    else
+        warn "install.sh: $1 is there and is not a lock that this script can read. Nothing was changed."
+    fi
+    warn "The lock is $1"
+    warn "Wait until that run has ended, then run this script again. When no such run exists any more"
+    warn "(the computer was restarted, or the process is gone), remove the lock and run the script again:"
+    warn "  $(quoted rm -f "$lock" "$lock.takeover")"
+    exit 1
+}
+
+# Take the lock, or stop. Nothing that is shared is looked at before this.
+lock_take() {
+    lock=$home_dir/install-lock
+    lock_ps=$(program ps) || lock_ps=""
+    lock_ln=$(program ln) || die "ln was not found on PATH."
+    lock_readlink=$(program readlink) || die "readlink was not found on PATH."
+    lock_my_host=$(uname -n 2>/dev/null | sed -n -e '1s/[^A-Za-z0-9.-]/-/g' -e 1p) || lock_my_host=""
+    [ -n "$lock_my_host" ] || lock_my_host=unknown
+    lock_my_start=$(process_start "$$")
+    mine=$$:${lock_my_start:-unknown}:$lock_my_host
+    attempt=0
+    while [ "$attempt" -lt 20 ]; do
+        attempt=$((attempt + 1))
+        lock_pid=""
+        # The folder can go between these lines (a run that ends removes it when it is
+        # empty); then the link cannot be made and this is done again.
+        # The folders above it that are not there yet are noted (the topmost one), so that a
+        # run that installs nothing leaves none of them behind.
+        if [ -z "$lock_top" ]; then
+            above=$home_dir
+            while [ -n "$above" ] && [ ! -d "$above" ]; do
+                lock_top=$above
+                above=${above%/*}
+            done
+        fi
+        mkdir -p "$home_dir" || die "$home_dir could not be made. Nothing was changed."
+        if [ -d "$lock" ] && [ ! -L "$lock" ]; then
+            lock_refused "$lock"
+        fi
+        # From here on the end of the script removes a link with this text (lock_release).
+        lock_me=$mine
+        if "$lock_ln" -s "$lock_me" "$lock" 2>/dev/null; then
+            if [ "$("$lock_readlink" "$lock" 2>/dev/null)" = "$lock_me" ]; then
+                return 0
+            fi
+            continue
+        fi
+        owner=$("$lock_readlink" "$lock" 2>/dev/null) || owner=""
+        if [ -z "$owner" ]; then
+            if [ -e "$lock" ] || [ -L "$lock" ]; then
+                lock_refused "$lock"
+            fi
+            continue    # given back between the lines above
+        fi
+        lock_owner_gone "$owner" || lock_refused "$lock"
+        gone=$lock_pid
+        # The process that held the lock is gone. Only the run that holds $lock.takeover
+        # replaces it, and only while the lock still has the text that was judged.
+        if ! "$lock_ln" -s "$lock_me" "$lock.takeover" 2>/dev/null; then
+            taker=$("$lock_readlink" "$lock.takeover" 2>/dev/null) || taker=""
+            if [ -z "$taker" ] && [ ! -e "$lock.takeover" ] && [ ! -L "$lock.takeover" ]; then
+                continue
+            fi
+            lock_owner_gone "$taker" || true
+            lock_refused "$lock.takeover"
+        fi
+        if [ "$("$lock_readlink" "$lock" 2>/dev/null)" = "$owner" ]; then
+            rm -f "$lock" || die "the lock $lock could not be removed. Nothing was changed."
+        fi
+        if "$lock_ln" -s "$lock_me" "$lock" 2>/dev/null && [ "$("$lock_readlink" "$lock" 2>/dev/null)" = "$lock_me" ]; then
+            rm -f "$lock.takeover"
+            say "A run of this script that is no longer running (process $gone) left its lock: this run takes it over."
+            return 0
+        fi
+        rm -f "$lock.takeover"
+    done
+    die "the lock $lock could not be taken: it changed hands $attempt times. Nothing was changed. Run this script again."
+}
+
+# Give the lock back: only links with this run's own text are removed.
+lock_release() {
+    [ -n "${lock_me:-}" ] || return 0
+    if [ "$("$lock_readlink" "$lock.takeover" 2>/dev/null)" = "$lock_me" ]; then
+        rm -f "$lock.takeover"
+    fi
+    if [ "$("$lock_readlink" "$lock" 2>/dev/null)" = "$lock_me" ]; then
+        rm -f "$lock"
+    fi
+    # The data folder goes when it is empty, and so do the folders above it that this run made.
+    made=$home_dir
+    while rmdir "$made" 2>/dev/null; do
+        if [ -z "$lock_top" ] || [ "$made" = "$lock_top" ]; then
+            break
+        fi
+        made=${made%/*}
+    done
+    return 0
+}
+
 # At the end of the script, however it ends.
 finish() {
     if [ "${keeping:-0}" = 1 ]; then
@@ -953,6 +1159,7 @@ finish() {
     if [ -n "$tmp" ] && [ "$dry" != 1 ]; then
         rm -rf "$tmp"
     fi
+    lock_release
 }
 
 main() {
@@ -1072,6 +1279,8 @@ main() {
 
     keep=$home_dir/kept
     keeping=0
+    lock_me=""
+    lock_top=""
     working=0
     command_dir=""
     trap finish EXIT
@@ -1104,6 +1313,7 @@ main() {
     done
 
     if [ "$action" = uninstall ]; then
+        lock_take
         keep_recover
         uninstall
         exit 0
@@ -1130,6 +1340,11 @@ main() {
         dry=1
         say "--ask was given and there is no terminal to ask on: nothing is installed."
         say "These are the commands that would run:"
+    fi
+    # One run at a time, from before the first look at what is installed until the script
+    # ends. A run that only prints commands changes nothing and takes no lock.
+    if [ "$dry" != 1 ]; then
+        lock_take
     fi
 
     # How to install it: with a uv that is already here, else with a downloaded one;
@@ -1301,7 +1516,10 @@ main() {
                         # The installed environment, its wheel of the same name, the command
                         # links and the state file are set aside; they come back if anything
                         # from here on fails.
-                        keep_begin "$tools" "$wheel" same || failed "The installed version could not be set aside."
+                        if ! keep_begin "$tools" "$wheel" same; then
+                            [ "$keeping" = 1 ] || rm -rf "$dist_dir/.new"
+                            failed "The installed version could not be set aside."
+                        fi
                     fi
                     mv -f "$dist_dir/.new/$wheel" "$dist_dir/$wheel" || failed "the wheel could not be moved into $dist_dir."
                     rmdir "$dist_dir/.new" || failed "$dist_dir/.new could not be removed."
