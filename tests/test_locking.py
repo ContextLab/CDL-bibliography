@@ -505,7 +505,7 @@ while not os.path.exists(stop):
         os.close(fd)
     with open(log, 'a') as stream:
         stream.write('%d\\n' % number)
-    time.sleep(random.random() * 0.02)
+    time.sleep(random.random() * 0.05)
 """
 
 
@@ -526,10 +526,15 @@ def test_nothing_a_program_writes_in_place_is_ever_removed(ws, tmp_path, monkeyp
     try:
         while not log.exists():
             time.sleep(0.01)
-        for number in range(150):
+        # At least 150 saves, and on until three have completed: on a loaded machine every one
+        # of 150 can meet a line being written (a save takes about as long as the pause
+        # between two lines), and a run in which no file was ever replaced shows nothing.
+        for number in range(3000):
+            if number >= 150 and done >= 3:
+                break
             try:
                 current = api.entry(ws, "Kaha12")
-                applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", str(1500 + number)), current.fingerprint)
+                applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", str(1000 + number)), current.fingerprint)
                 done += applied.written == ["Kaha12"]
             except CdlbibError:
                 refused += 1
@@ -547,6 +552,6 @@ def test_nothing_a_program_writes_in_place_is_ever_removed(ws, tmp_path, monkeyp
                 found.setdefault(int(text.rsplit(b" ", 1)[1]), []).append(str(place.relative_to(ws.root)))
     print("writer saves completed:", done, "refused:", refused, "lines written in place:", len(written),
           "of them in the bibliography:", sum(1 for where in found.values() if "cdl.bib" in where), "(held open: only until the first save replaces the file)" if how == "held open" else "")
-    assert done + refused == 150 and done >= 1 and len(written) > 30
+    assert done + refused >= 150 and done >= 3 and len(written) > 30
     assert sorted(found) == written == list(range(1, len(written) + 1)), sorted(set(written) - set(found))
     assert not list(ws.root.glob(".cdl.bib-*")) and not list(ws.root.glob(".rollback-*"))
