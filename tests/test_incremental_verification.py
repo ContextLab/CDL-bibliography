@@ -8,9 +8,8 @@ import sys
 import pytest
 from typer.testing import CliRunner
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import verification as v
-from verification_cli import app, select_keys
+from cdlbib import verification as v
+from cdlbib.verification_cli import app, select_keys
 
 
 BIB = "@book{Old, title={Old}, author={Alice Smith}, year={2020}, publisher={Press}}"
@@ -280,7 +279,7 @@ def test_secondary_source_approvals_survive_snapshot_restore(tmp_path, source):
 
 
 def test_auto_review_never_recompares_current_approved_entry(tmp_path, monkeypatch):
-    import auto_review
+    from cdlbib import auto_review
 
     bib, cache, entry, _ = setup_cache(tmp_path)
     cache.put(bib, entry, {"status": "metadata_verified"})
@@ -294,8 +293,8 @@ def test_auto_review_never_recompares_current_approved_entry(tmp_path, monkeypat
 
 
 def test_keys_restrict_all_automatic_layers(tmp_path, monkeypatch):
-    import auto_review
-    import fulltext_review
+    from cdlbib import auto_review
+    from cdlbib import fulltext_review
 
     bib, cache, entry, _ = setup_cache(tmp_path)
     cache.put(bib, entry, {"status": "needs_review"})
@@ -314,7 +313,7 @@ def test_keys_restrict_all_automatic_layers(tmp_path, monkeypatch):
 def test_resolver_upgrade_revisits_unresolved_once_without_network(
     tmp_path, monkeypatch
 ):
-    import auto_review
+    from cdlbib import auto_review
 
     bib, cache, entry, _ = setup_cache(tmp_path)
     cache.put(

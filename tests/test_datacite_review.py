@@ -14,9 +14,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'bibcheck'))
-import datacite_review as d  # noqa: E402
-import verification as v  # noqa: E402
+from cdlbib import datacite_review as d  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 DATA = json.loads((ROOT / 'tests/fixtures/routes/datacite_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'

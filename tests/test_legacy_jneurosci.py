@@ -6,9 +6,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from pmc_metadata import article_front
-from fulltext_review import assess_fulltext
+from cdlbib.pmc_metadata import article_front
+from cdlbib.fulltext_review import assess_fulltext
 
 
 def fixture(key="OMarEtal94"):

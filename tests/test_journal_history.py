@@ -3,9 +3,8 @@ from copy import deepcopy
 from pathlib import Path
 import sys
 import pytest
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from correction_proposals import JEP_HISTORY, journal_history_proposal
-from verification import assess_candidates, normalize_journal
+from cdlbib.correction_proposals import JEP_HISTORY, journal_history_proposal
+from cdlbib.verification import assess_candidates, normalize_journal
 from test_verification import entry, record, response
 
 
@@ -36,7 +35,7 @@ def test_history_proposal_changes_only_the_incorrect_successor_title(entry, reco
     "Journal of Physiology-Paris",
 ])
 def test_formatter_preserves_publication_identity(title):
-    from helpers import format_journal_name
+    from cdlbib.helpers import format_journal_name
     assert normalize_journal(format_journal_name(title)) == normalize_journal(title)
     assert format_journal_name(format_journal_name(title)) == format_journal_name(title)
 
@@ -44,7 +43,7 @@ def test_formatter_preserves_publication_identity(title):
 def test_alias_cutting_a_hyphenated_suffix_is_not_applied():
     """journal_key maps 'journal of physiology-paris' to 'journal of physiology', a
     different journal (LachEtal03, wave-4 review). Other aliases still apply."""
-    from helpers import format_journal_name
+    from cdlbib.helpers import format_journal_name
     assert format_journal_name("Journal of Physiology-Paris") == "Journal of Physiology-Paris"
     assert format_journal_name("Journal of Physiology") == "Journal of Physiology"
     # negative control: a hyphen alias that re-punctuates the same journal still applies

@@ -7,10 +7,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import verification as v
-from auto_review import reassess, select_result
-from source_locators import locator_dois, source_coordinates
+from cdlbib import verification as v
+from cdlbib.auto_review import reassess, select_result
+from cdlbib.source_locators import locator_dois, source_coordinates
 
 FIXTURE = json.loads((Path(__file__).parent / 'fixtures/article_locator.json').read_text())
 

@@ -1,0 +1,1701 @@
+[
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1515%2F9783110858778-003",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1515/9783110858778-003",
+     "ISBN": [
+      "9783110858778"
+     ],
+     "URL": "https://doi.org/10.1515/9783110858778-003",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Minsky",
+       "given": "M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Frame Conceptions and Text Understanding"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Metzing",
+       "given": "Dieter",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "http://www.degruyter.com/view/books/9783110858778/9783110858778-003/9783110858778-003.xml",
+       "content-type": "text/html",
+       "content-version": "vor",
+       "intended-application": "text-mining"
+      },
+      {
+       "URL": "https://www.degruyter.com/document/doi/10.1515/9783110858778-003/pdf",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "1-25",
+     "published": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1979,
+        12,
+        31
+       ]
+      ]
+     },
+     "publisher": "De Gruyter",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "A Framework For Representing Knowledge"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:22.899255+00:00",
+   "url": "https://api.crossref.org/works/10.1515%2F9783110858778-003"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1093%2Fmed%2F9780197549469.003.0016",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1093/med/9780197549469.003.0016",
+     "ISBN": [
+      "0197549462",
+      "9780197549469",
+      "9780197549490"
+     ],
+     "URL": "https://doi.org/10.1093/med/9780197549469.003.0016",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Merricks",
+       "given": "Edward M.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Schevon",
+       "given": "Catherine A.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Jasper's Basic Mechanisms of the Epilepsies"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Avoli",
+       "given": "Massimo",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "de Curtis",
+       "given": "Marco",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Bernard",
+       "given": "Christophe",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Soltesz",
+       "given": "Ivan",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://academic.oup.com/book/57972/chapter/476207839",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "325-350",
+     "published": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2024,
+        7
+       ]
+      ]
+     },
+     "publisher": "Oxford University PressNew York",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Human Single-Neuron Recordings in Epilepsy"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:23.999008+00:00",
+   "url": "https://api.crossref.org/works/10.1093%2Fmed%2F9780197549469.003.0016"
+  }
+ },
+ {
+  "request": "acl-source-v1:https://aclanthology.org/D19-1410.bib",
+  "response": {
+   "body": "@inproceedings{reimers-gurevych-2019-sentence,\n    title = \"Sentence-{BERT}: Sentence Embeddings using {S}iamese {BERT}-Networks\",\n    author = \"Reimers, Nils  and\n      Gurevych, Iryna\",\n    editor = \"Inui, Kentaro  and\n      Jiang, Jing  and\n      Ng, Vincent  and\n      Wan, Xiaojun\",\n    booktitle = \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-1410/\",\n    doi = \"10.18653/v1/D19-1410\",\n    pages = \"3982--3992\"\n}\n\n",
+   "document_sha256": "87982968ae942aacbfea0637807abb8f8fbb4d534f9fd16447eb0b817774c44b",
+   "retrieved_at": "2026-10-06T16:32:25.539923+00:00",
+   "url": "https://aclanthology.org/D19-1410.bib"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.18653/v1/d19-1410\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.18653/v1/d19-1410\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:33.900704+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.18653%2Fv1%2Fd19-1410%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-6607",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.18653/v1/d19-6607",
+     "URL": "https://doi.org/10.18653/v1/d19-6607",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Clancy",
+       "given": "Ryan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Ilyas",
+       "given": "Ihab F.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Lin",
+       "given": "Jimmy",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "page": "39-46",
+     "published": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2019
+       ]
+      ]
+     },
+     "publisher": "Association for Computational Linguistics",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Scalable Knowledge Graph Construction from Text Collections"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:34.458310+00:00",
+   "url": "https://api.crossref.org/works/10.18653%2Fv1%2Fd19-6607"
+  }
+ },
+ {
+  "request": "acl-source-v1:https://aclanthology.org/D19-6607.bib",
+  "response": {
+   "body": "@inproceedings{clancy-etal-2019-scalable,\n    title = \"Scalable Knowledge Graph Construction from Text Collections\",\n    author = \"Clancy, Ryan  and\n      Ilyas, Ihab F.  and\n      Lin, Jimmy\",\n    editor = \"Thorne, James  and\n      Vlachos, Andreas  and\n      Cocarascu, Oana  and\n      Christodoulopoulos, Christos  and\n      Mittal, Arpit\",\n    booktitle = \"Proceedings of the Second Workshop on Fact Extraction and VERification (FEVER)\",\n    month = nov,\n    year = \"2019\",\n    address = \"Hong Kong, China\",\n    publisher = \"Association for Computational Linguistics\",\n    url = \"https://aclanthology.org/D19-6607/\",\n    doi = \"10.18653/v1/D19-6607\",\n    pages = \"39--46\"\n}\n\n",
+   "document_sha256": "f4aa9c7871794d406a1e1f8033a34239fa6230d4d8751a7358a9acc67c727272",
+   "retrieved_at": "2026-10-06T16:32:35.614122+00:00",
+   "url": "https://aclanthology.org/D19-6607.bib"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1515/9783110858778-003\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1515/9783110858778-003\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:32:43.423853+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1515%2F9783110858778-003%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1117%2F12.2309486",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1117/12.2309486",
+     "URL": "https://doi.org/10.1117/12.2309486",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Debayle",
+       "given": "Johan",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Hatami",
+       "given": "Nima",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Gavet",
+       "given": "Yann",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Tenth International Conference on Machine Vision (ICMV 2017)"
+     ],
+     "editor": [
+      {
+       "affiliation": [],
+       "family": "Zhou",
+       "given": "Jianhong",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Radeva",
+       "given": "Petia",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Nikolaev",
+       "given": "Dmitry",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Verikas",
+       "given": "Antanas",
+       "role": [
+        {
+         "role": "editor",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "page": "23",
+     "published": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2018,
+        4,
+        13
+       ]
+      ]
+     },
+     "publisher": "SPIE",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Classification of time-series images using deep convolutional neural networks"
+     ],
+     "type": "proceedings-article"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T16:47:12.425393+00:00",
+   "url": "https://api.crossref.org/works/10.1117%2F12.2309486"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9780190917982,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1093/oxfordhb/9780190917982.001.0001",
+       "ISBN": [
+        "9780190917982",
+        "9780190918019"
+       ],
+       "URL": "https://doi.org/10.1093/oxfordhb/9780190917982.001.0001",
+       "editor": [
+        {
+         "affiliation": [
+          {
+           "name": "Psychology, University of Pennsylvania"
+          }
+         ],
+         "family": "Kahana",
+         "given": "Michael J.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [
+          {
+           "name": "Psychology, Stanford University"
+          }
+         ],
+         "family": "Wagner",
+         "given": "Anthony D.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2024,
+          6,
+          25
+         ]
+        ]
+       },
+       "published": {
+        "date-parts": [
+         [
+          2024,
+          6,
+          25
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2024,
+          7,
+          18
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2024,
+          6,
+          25
+         ]
+        ]
+       },
+       "publisher": "Oxford University Press",
+       "subtitle": [
+        "Foundations and Applications"
+       ],
+       "title": [
+        "The Oxford Handbook of Human Memory, Two Volume Pack"
+       ],
+       "type": "edited-book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:54:55.436180+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9780190917982%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9780190917982\"",
+  "response": {
+   "document_sha256": "93b39e428a1f5da9d36dfe58bc37be8ad4bb8d95bc1d24cb47340f20c7635715",
+   "query": "bath.isbn=\"9780190917982\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>2</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>02439cam a22004218i 4500</leader>\n  <controlfield tag=\"001\">22924294</controlfield>\n  <controlfield tag=\"005\">20250607120330.8</controlfield>\n  <controlfield tag=\"006\">m    |o  d |     </controlfield>\n  <controlfield tag=\"007\">cr_|||||||||||</controlfield>\n  <controlfield tag=\"008\">221117s2022    nyu     ob    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">22924294</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ecip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"e\">ecip ebook</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">ecip ebook 2023-01-10</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2022054448</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190918002</subfield>\n    <subfield code=\"q\">(epub)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190918019</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190917982</subfield>\n    <subfield code=\"q\">(hardback)</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"b\">eng</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"e\">rda</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">BF371</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153.1/2</subfield>\n    <subfield code=\"2\">23/eng/20230109</subfield>\n  </datafield>\n  <datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Wagner, Anthony David,</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <subfield code=\"a\">The Oxford handbook of human memory :</subfield>\n    <subfield code=\"b\">foundations and applications /</subfield>\n    <subfield code=\"c\">[by Anthony D. Wagner, Michael J. Kahana].</subfield>\n  </datafield>\n  <datafield tag=\"263\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">2304</subfield>\n  </datafield>\n  <datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <subfield code=\"a\">New York, NY :</subfield>\n    <subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">[2022]</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">1 online resource</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">computer</subfield>\n    <subfield code=\"b\">c</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">online resource</subfield>\n    <subfield code=\"b\">cr</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">Oxford library of psychology</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and index.</subfield>\n  </datafield>\n  <datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</subfield>\n    <subfield code=\"c\">Provided by publisher.</subfield>\n  </datafield>\n  <datafield tag=\"588\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Description based on print version record and CIP data provided by publisher; resource not viewed.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Memory.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Kahana, Michael Jacob,</subfield>\n    <subfield code=\"d\">1969-</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <subfield code=\"i\">Print version:</subfield>\n    <subfield code=\"a\">Wagner, Anthony David.</subfield>\n    <subfield code=\"t\">Oxford handbook of human memory</subfield>\n    <subfield code=\"d\">New York, NY : Oxford University Press, [2022]</subfield>\n    <subfield code=\"z\">9780190917982</subfield>\n    <subfield code=\"w\">(DLC) 2022054447</subfield>\n  </datafield>\n  <datafield tag=\"985\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LC online resource</subfield>\n    <subfield code=\"d\">2023-01-10</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>02584cam a2200385 i 4500</leader>\n  <controlfield tag=\"001\">22868951</controlfield>\n  <controlfield tag=\"005\">20250607115932.0</controlfield>\n  <controlfield tag=\"008\">221117s2024    nyua     b    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">22868951</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ecip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"b\">1 shelf copy</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"b\">rm14 2022-11-17</subfield>\n    <subfield code=\"i\">rm14 2022-11-17 (TW)</subfield>\n    <subfield code=\"w\">rm14 2022-11-17 (TW)</subfield>\n    <subfield code=\"a\">xn18 2024-10-03 vols. 1-2 to CIP ver.</subfield>\n    <subfield code=\"a\">rk20 2 024-10-08 book received in ART</subfield>\n    <subfield code=\"f\">rk24 2024-10-15 to CMD</subfield>\n    <subfield code=\"u\">rp09 2025-05-05 label; 245 c; 020 q ; copy 1, v. 2 CHIIP return</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2022054447</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190917982</subfield>\n    <subfield code=\"q\">(v. 1 ; hardback)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780197743539</subfield>\n    <subfield code=\"q\">(v. 2 ; hardback)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780197746141</subfield>\n    <subfield code=\"q\">(set ; hardcover)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190918019</subfield>\n    <subfield code=\"q\">(online)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190918002</subfield>\n    <subfield code=\"q\">(epub)</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"b\">eng</subfield>\n    <subfield code=\"e\">rda</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">BF371</subfield>\n    <subfield code=\"b\">.W24 2024</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153.1/2</subfield>\n    <subfield code=\"2\">23/eng/20230109</subfield>\n  </datafield>\n  <datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Kahana, Michael Jacob,</subfield>\n    <subfield code=\"d\">1969-</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <subfield code=\"a\">The Oxford handbook of human memory :</subfield>\n    <subfield code=\"b\">foundations and applications /</subfield>\n    <subfield code=\"c\">edited by Michael J. Kahana and Anthony D. Wagner.</subfield>\n  </datafield>\n  <datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <subfield code=\"a\">New York, NY, United States of America :</subfield>\n    <subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">[2024]</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">2 volumes :</subfield>\n    <subfield code=\"b\">illustrations ;</subfield>\n    <subfield code=\"c\">26 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">Oxford library of psychology</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and index.</subfield>\n  </datafield>\n  <datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</subfield>\n    <subfield code=\"c\">Provided by publisher.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Memory.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Wagner, Anthony David,</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <subfield code=\"i\">Online version:</subfield>\n    <subfield code=\"a\">Wagner, Anthony David.</subfield>\n    <subfield code=\"t\">Oxford handbook of human memory</subfield>\n    <subfield code=\"d\">New York, NY : Oxford University Press, [2024]</subfield>\n    <subfield code=\"z\">9780190918019</subfield>\n    <subfield code=\"w\">(DLC) 2022054448</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>2</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9780190917982\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>02439cam a22004218i 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">22924294</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607120330.8</ns0:controlfield>\n  <ns0:controlfield tag=\"006\">m    |o  d |     </ns0:controlfield>\n  <ns0:controlfield tag=\"007\">cr_|||||||||||</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">221117s2022    nyu     ob    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">22924294</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip ebook</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">ecip ebook 2023-01-10</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2022054448</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190918002</ns0:subfield>\n    <ns0:subfield code=\"q\">(epub)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190918019</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"q\">(hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"b\">eng</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"e\">rda</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">BF371</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153.1/2</ns0:subfield>\n    <ns0:subfield code=\"2\">23/eng/20230109</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Wagner, Anthony David,</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <ns0:subfield code=\"a\">The Oxford handbook of human memory :</ns0:subfield>\n    <ns0:subfield code=\"b\">foundations and applications /</ns0:subfield>\n    <ns0:subfield code=\"c\">[by Anthony D. Wagner, Michael J. Kahana].</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"263\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">2304</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <ns0:subfield code=\"a\">New York, NY :</ns0:subfield>\n    <ns0:subfield code=\"b\">Oxford University Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">[2022]</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">1 online resource</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">computer</ns0:subfield>\n    <ns0:subfield code=\"b\">c</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">online resource</ns0:subfield>\n    <ns0:subfield code=\"b\">cr</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">Oxford library of psychology</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</ns0:subfield>\n    <ns0:subfield code=\"c\">Provided by publisher.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"588\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Description based on print version record and CIP data provided by publisher; resource not viewed.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Memory.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Kahana, Michael Jacob,</ns0:subfield>\n    <ns0:subfield code=\"d\">1969-</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <ns0:subfield code=\"i\">Print version:</ns0:subfield>\n    <ns0:subfield code=\"a\">Wagner, Anthony David.</ns0:subfield>\n    <ns0:subfield code=\"t\">Oxford handbook of human memory</ns0:subfield>\n    <ns0:subfield code=\"d\">New York, NY : Oxford University Press, [2022]</ns0:subfield>\n    <ns0:subfield code=\"z\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"w\">(DLC) 2022054447</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"985\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LC online resource</ns0:subfield>\n    <ns0:subfield code=\"d\">2023-01-10</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>",
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>02584cam a2200385 i 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">22868951</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607115932.0</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">221117s2024    nyua     b    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">22868951</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"b\">1 shelf copy</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"b\">rm14 2022-11-17</ns0:subfield>\n    <ns0:subfield code=\"i\">rm14 2022-11-17 (TW)</ns0:subfield>\n    <ns0:subfield code=\"w\">rm14 2022-11-17 (TW)</ns0:subfield>\n    <ns0:subfield code=\"a\">xn18 2024-10-03 vols. 1-2 to CIP ver.</ns0:subfield>\n    <ns0:subfield code=\"a\">rk20 2 024-10-08 book received in ART</ns0:subfield>\n    <ns0:subfield code=\"f\">rk24 2024-10-15 to CMD</ns0:subfield>\n    <ns0:subfield code=\"u\">rp09 2025-05-05 label; 245 c; 020 q ; copy 1, v. 2 CHIIP return</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2022054447</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"q\">(v. 1 ; hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780197743539</ns0:subfield>\n    <ns0:subfield code=\"q\">(v. 2 ; hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780197746141</ns0:subfield>\n    <ns0:subfield code=\"q\">(set ; hardcover)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190918019</ns0:subfield>\n    <ns0:subfield code=\"q\">(online)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190918002</ns0:subfield>\n    <ns0:subfield code=\"q\">(epub)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"b\">eng</ns0:subfield>\n    <ns0:subfield code=\"e\">rda</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">BF371</ns0:subfield>\n    <ns0:subfield code=\"b\">.W24 2024</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153.1/2</ns0:subfield>\n    <ns0:subfield code=\"2\">23/eng/20230109</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Kahana, Michael Jacob,</ns0:subfield>\n    <ns0:subfield code=\"d\">1969-</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <ns0:subfield code=\"a\">The Oxford handbook of human memory :</ns0:subfield>\n    <ns0:subfield code=\"b\">foundations and applications /</ns0:subfield>\n    <ns0:subfield code=\"c\">edited by Michael J. Kahana and Anthony D. Wagner.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <ns0:subfield code=\"a\">New York, NY, United States of America :</ns0:subfield>\n    <ns0:subfield code=\"b\">Oxford University Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">[2024]</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">2 volumes :</ns0:subfield>\n    <ns0:subfield code=\"b\">illustrations ;</ns0:subfield>\n    <ns0:subfield code=\"c\">26 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">Oxford library of psychology</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</ns0:subfield>\n    <ns0:subfield code=\"c\">Provided by publisher.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Memory.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Wagner, Anthony David,</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <ns0:subfield code=\"i\">Online version:</ns0:subfield>\n    <ns0:subfield code=\"a\">Wagner, Anthony David.</ns0:subfield>\n    <ns0:subfield code=\"t\">Oxford handbook of human memory</ns0:subfield>\n    <ns0:subfield code=\"d\">New York, NY : Oxford University Press, [2024]</ns0:subfield>\n    <ns0:subfield code=\"z\">9780190918019</ns0:subfield>\n    <ns0:subfield code=\"w\">(DLC) 2022054448</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+   ],
+   "retrieved_at": "2026-10-06T18:54:57.232922+00:00",
+   "total_records": 2,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229780190917982%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9780190918019\"",
+  "response": {
+   "document_sha256": "8d9ead53fdae0ea2221f9fce192d5fb78f0063089a6d2fef6d33910e51115391",
+   "query": "bath.isbn=\"9780190918019\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>2</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>02439cam a22004218i 4500</leader>\n  <controlfield tag=\"001\">22924294</controlfield>\n  <controlfield tag=\"005\">20250607120330.8</controlfield>\n  <controlfield tag=\"006\">m    |o  d |     </controlfield>\n  <controlfield tag=\"007\">cr_|||||||||||</controlfield>\n  <controlfield tag=\"008\">221117s2022    nyu     ob    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">22924294</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ecip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"e\">ecip ebook</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">ecip ebook 2023-01-10</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2022054448</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190918002</subfield>\n    <subfield code=\"q\">(epub)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190918019</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190917982</subfield>\n    <subfield code=\"q\">(hardback)</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"b\">eng</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"e\">rda</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">BF371</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153.1/2</subfield>\n    <subfield code=\"2\">23/eng/20230109</subfield>\n  </datafield>\n  <datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Wagner, Anthony David,</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <subfield code=\"a\">The Oxford handbook of human memory :</subfield>\n    <subfield code=\"b\">foundations and applications /</subfield>\n    <subfield code=\"c\">[by Anthony D. Wagner, Michael J. Kahana].</subfield>\n  </datafield>\n  <datafield tag=\"263\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">2304</subfield>\n  </datafield>\n  <datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <subfield code=\"a\">New York, NY :</subfield>\n    <subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">[2022]</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">1 online resource</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">computer</subfield>\n    <subfield code=\"b\">c</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">online resource</subfield>\n    <subfield code=\"b\">cr</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">Oxford library of psychology</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and index.</subfield>\n  </datafield>\n  <datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</subfield>\n    <subfield code=\"c\">Provided by publisher.</subfield>\n  </datafield>\n  <datafield tag=\"588\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Description based on print version record and CIP data provided by publisher; resource not viewed.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Memory.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Kahana, Michael Jacob,</subfield>\n    <subfield code=\"d\">1969-</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <subfield code=\"i\">Print version:</subfield>\n    <subfield code=\"a\">Wagner, Anthony David.</subfield>\n    <subfield code=\"t\">Oxford handbook of human memory</subfield>\n    <subfield code=\"d\">New York, NY : Oxford University Press, [2022]</subfield>\n    <subfield code=\"z\">9780190917982</subfield>\n    <subfield code=\"w\">(DLC) 2022054447</subfield>\n  </datafield>\n  <datafield tag=\"985\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LC online resource</subfield>\n    <subfield code=\"d\">2023-01-10</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>02584cam a2200385 i 4500</leader>\n  <controlfield tag=\"001\">22868951</controlfield>\n  <controlfield tag=\"005\">20250607115932.0</controlfield>\n  <controlfield tag=\"008\">221117s2024    nyua     b    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">22868951</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ecip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"b\">1 shelf copy</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"b\">rm14 2022-11-17</subfield>\n    <subfield code=\"i\">rm14 2022-11-17 (TW)</subfield>\n    <subfield code=\"w\">rm14 2022-11-17 (TW)</subfield>\n    <subfield code=\"a\">xn18 2024-10-03 vols. 1-2 to CIP ver.</subfield>\n    <subfield code=\"a\">rk20 2 024-10-08 book received in ART</subfield>\n    <subfield code=\"f\">rk24 2024-10-15 to CMD</subfield>\n    <subfield code=\"u\">rp09 2025-05-05 label; 245 c; 020 q ; copy 1, v. 2 CHIIP return</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2022054447</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780190917982</subfield>\n    <subfield code=\"q\">(v. 1 ; hardback)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780197743539</subfield>\n    <subfield code=\"q\">(v. 2 ; hardback)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780197746141</subfield>\n    <subfield code=\"q\">(set ; hardcover)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190918019</subfield>\n    <subfield code=\"q\">(online)</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"z\">9780190918002</subfield>\n    <subfield code=\"q\">(epub)</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"b\">eng</subfield>\n    <subfield code=\"e\">rda</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">BF371</subfield>\n    <subfield code=\"b\">.W24 2024</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153.1/2</subfield>\n    <subfield code=\"2\">23/eng/20230109</subfield>\n  </datafield>\n  <datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Kahana, Michael Jacob,</subfield>\n    <subfield code=\"d\">1969-</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <subfield code=\"a\">The Oxford handbook of human memory :</subfield>\n    <subfield code=\"b\">foundations and applications /</subfield>\n    <subfield code=\"c\">edited by Michael J. Kahana and Anthony D. Wagner.</subfield>\n  </datafield>\n  <datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <subfield code=\"a\">New York, NY, United States of America :</subfield>\n    <subfield code=\"b\">Oxford University Press,</subfield>\n    <subfield code=\"c\">[2024]</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">2 volumes :</subfield>\n    <subfield code=\"b\">illustrations ;</subfield>\n    <subfield code=\"c\">26 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">Oxford library of psychology</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and index.</subfield>\n  </datafield>\n  <datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</subfield>\n    <subfield code=\"c\">Provided by publisher.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Memory.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Wagner, Anthony David,</subfield>\n    <subfield code=\"e\">author.</subfield>\n  </datafield>\n  <datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <subfield code=\"i\">Online version:</subfield>\n    <subfield code=\"a\">Wagner, Anthony David.</subfield>\n    <subfield code=\"t\">Oxford handbook of human memory</subfield>\n    <subfield code=\"d\">New York, NY : Oxford University Press, [2024]</subfield>\n    <subfield code=\"z\">9780190918019</subfield>\n    <subfield code=\"w\">(DLC) 2022054448</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>2</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9780190918019\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>02439cam a22004218i 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">22924294</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607120330.8</ns0:controlfield>\n  <ns0:controlfield tag=\"006\">m    |o  d |     </ns0:controlfield>\n  <ns0:controlfield tag=\"007\">cr_|||||||||||</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">221117s2022    nyu     ob    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">22924294</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip ebook</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">ecip ebook 2023-01-10</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2022054448</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190918002</ns0:subfield>\n    <ns0:subfield code=\"q\">(epub)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190918019</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"q\">(hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"b\">eng</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"e\">rda</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">BF371</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153.1/2</ns0:subfield>\n    <ns0:subfield code=\"2\">23/eng/20230109</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Wagner, Anthony David,</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <ns0:subfield code=\"a\">The Oxford handbook of human memory :</ns0:subfield>\n    <ns0:subfield code=\"b\">foundations and applications /</ns0:subfield>\n    <ns0:subfield code=\"c\">[by Anthony D. Wagner, Michael J. Kahana].</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"263\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">2304</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <ns0:subfield code=\"a\">New York, NY :</ns0:subfield>\n    <ns0:subfield code=\"b\">Oxford University Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">[2022]</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">1 online resource</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">computer</ns0:subfield>\n    <ns0:subfield code=\"b\">c</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">online resource</ns0:subfield>\n    <ns0:subfield code=\"b\">cr</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">Oxford library of psychology</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</ns0:subfield>\n    <ns0:subfield code=\"c\">Provided by publisher.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"588\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Description based on print version record and CIP data provided by publisher; resource not viewed.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Memory.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Kahana, Michael Jacob,</ns0:subfield>\n    <ns0:subfield code=\"d\">1969-</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <ns0:subfield code=\"i\">Print version:</ns0:subfield>\n    <ns0:subfield code=\"a\">Wagner, Anthony David.</ns0:subfield>\n    <ns0:subfield code=\"t\">Oxford handbook of human memory</ns0:subfield>\n    <ns0:subfield code=\"d\">New York, NY : Oxford University Press, [2022]</ns0:subfield>\n    <ns0:subfield code=\"z\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"w\">(DLC) 2022054447</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"985\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LC online resource</ns0:subfield>\n    <ns0:subfield code=\"d\">2023-01-10</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>",
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>02584cam a2200385 i 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">22868951</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607115932.0</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">221117s2024    nyua     b    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">22868951</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ecip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"b\">1 shelf copy</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"b\">rm14 2022-11-17</ns0:subfield>\n    <ns0:subfield code=\"i\">rm14 2022-11-17 (TW)</ns0:subfield>\n    <ns0:subfield code=\"w\">rm14 2022-11-17 (TW)</ns0:subfield>\n    <ns0:subfield code=\"a\">xn18 2024-10-03 vols. 1-2 to CIP ver.</ns0:subfield>\n    <ns0:subfield code=\"a\">rk20 2 024-10-08 book received in ART</ns0:subfield>\n    <ns0:subfield code=\"f\">rk24 2024-10-15 to CMD</ns0:subfield>\n    <ns0:subfield code=\"u\">rp09 2025-05-05 label; 245 c; 020 q ; copy 1, v. 2 CHIIP return</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2022054447</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780190917982</ns0:subfield>\n    <ns0:subfield code=\"q\">(v. 1 ; hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780197743539</ns0:subfield>\n    <ns0:subfield code=\"q\">(v. 2 ; hardback)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780197746141</ns0:subfield>\n    <ns0:subfield code=\"q\">(set ; hardcover)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190918019</ns0:subfield>\n    <ns0:subfield code=\"q\">(online)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"z\">9780190918002</ns0:subfield>\n    <ns0:subfield code=\"q\">(epub)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"b\">eng</ns0:subfield>\n    <ns0:subfield code=\"e\">rda</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">BF371</ns0:subfield>\n    <ns0:subfield code=\"b\">.W24 2024</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153.1/2</ns0:subfield>\n    <ns0:subfield code=\"2\">23/eng/20230109</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"100\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Kahana, Michael Jacob,</ns0:subfield>\n    <ns0:subfield code=\"d\">1969-</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"1\" ind2=\"4\">\n    <ns0:subfield code=\"a\">The Oxford handbook of human memory :</ns0:subfield>\n    <ns0:subfield code=\"b\">foundations and applications /</ns0:subfield>\n    <ns0:subfield code=\"c\">edited by Michael J. Kahana and Anthony D. Wagner.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"264\" ind1=\" \" ind2=\"1\">\n    <ns0:subfield code=\"a\">New York, NY, United States of America :</ns0:subfield>\n    <ns0:subfield code=\"b\">Oxford University Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">[2024]</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">2 volumes :</ns0:subfield>\n    <ns0:subfield code=\"b\">illustrations ;</ns0:subfield>\n    <ns0:subfield code=\"c\">26 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">Oxford library of psychology</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"520\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">\"This Oxford Handbook of Human Memory covers the science of human memory, its application to clinical disorders, and its broader implications for learning and memory in real-world contexts. Written by field leaders, the handbook integrates behavioral, neural, and computational evidence with current theories of how we learn and remember. Following a section of foundational chapters, subsequent sections include chapters that cover forms and attributes of memory, encoding and retrieval processes and their interactions, individual differences, memory disorders and therapies, learning and memory in educational settings, and the role of memory in society. The handbook's authoritative chapters document the current state of knowledge and provide a roadmap for the next generation of memory scientists, established peers, and practitioners\"--</ns0:subfield>\n    <ns0:subfield code=\"c\">Provided by publisher.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Memory.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Wagner, Anthony David,</ns0:subfield>\n    <ns0:subfield code=\"e\">author.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"776\" ind1=\"0\" ind2=\"8\">\n    <ns0:subfield code=\"i\">Online version:</ns0:subfield>\n    <ns0:subfield code=\"a\">Wagner, Anthony David.</ns0:subfield>\n    <ns0:subfield code=\"t\">Oxford handbook of human memory</ns0:subfield>\n    <ns0:subfield code=\"d\">New York, NY : Oxford University Press, [2024]</ns0:subfield>\n    <ns0:subfield code=\"z\">9780190918019</ns0:subfield>\n    <ns0:subfield code=\"w\">(DLC) 2022054448</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+   ],
+   "retrieved_at": "2026-10-06T18:55:00.929170+00:00",
+   "total_records": 2,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229780190918019%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9781400882618,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1515/9781400882618",
+       "ISBN": [
+        "9781400882618"
+       ],
+       "URL": "https://doi.org/10.1515/9781400882618",
+       "editor": [
+        {
+         "affiliation": [],
+         "family": "Shannon",
+         "given": "C. E.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "McCarthy",
+         "given": "J.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1956,
+          12,
+          31
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://www.degruyter.com/view/books/9781400882618/9781400882618/9781400882618.xml",
+         "content-type": "text/html",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://www.degruyter.com/document/doi/10.1515/9781400882618/pdf",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          1956,
+          12,
+          31
+         ]
+        ]
+       },
+       "published-online": {
+        "date-parts": [
+         [
+          2016,
+          5,
+          24
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1956,
+          12,
+          31
+         ]
+        ]
+       },
+       "publisher": "Princeton University Press",
+       "title": [
+        "Automata Studies. (AM-34)"
+       ],
+       "type": "edited-book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:55:05.223863+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9781400882618%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9781400882618\"",
+  "response": {
+   "document_sha256": "30a86c443194339a40f29966f3377e7bdc4e7445146989e9a11b3a31256c2088",
+   "query": "bath.isbn=\"9781400882618\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9781400882618\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [],
+   "retrieved_at": "2026-10-06T18:55:06.336087+00:00",
+   "total_records": 0,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229781400882618%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9780121085506,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1016/c2009-0-22090-3",
+       "ISBN": [
+        "9780121085506"
+       ],
+       "URL": "https://doi.org/10.1016/c2009-0-22090-3",
+       "issued": {
+        "date-parts": [
+         [
+          1975
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:C20090220903?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:C20090220903?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          1975
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1975
+         ]
+        ]
+       },
+       "publisher": "Elsevier",
+       "title": [
+        "Representation and Understanding"
+       ],
+       "type": "edited-book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:55:09.598808+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9780121085506%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9780121085506\"",
+  "response": {
+   "document_sha256": "d1c63011034f48f5e13544c1e2e15e6391437aadfdb49bbf54bf52690f0cc8e3",
+   "query": "bath.isbn=\"9780121085506\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>01305cam a2200349 i 4500</leader>\n  <controlfield tag=\"001\">3634564</controlfield>\n  <controlfield tag=\"005\">20250607153702.2</controlfield>\n  <controlfield tag=\"008\">751208s1975    nyua     b    101 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">3634564</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">2</subfield>\n    <subfield code=\"e\">ocip</subfield>\n    <subfield code=\"f\">19</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-893, LCAPM-150</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">   75021630 </subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">0121085503</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780121085506</subfield>\n  </datafield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"9\">(DLC)   75021630</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">BF311</subfield>\n    <subfield code=\"b\">.R388</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">153.4</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">Representation and understanding :</subfield>\n    <subfield code=\"b\">studies in cognitive science /</subfield>\n    <subfield code=\"c\">edited by Daniel G. Bobrow and Allan Collins.</subfield>\n  </datafield>\n  <datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">New York :</subfield>\n    <subfield code=\"b\">Academic Press,</subfield>\n    <subfield code=\"c\">1975.</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">xii, 427 p. :</subfield>\n    <subfield code=\"b\">ill. ;</subfield>\n    <subfield code=\"c\">24 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">Language, thought, and culture</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographies and indexes.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Cognition</subfield>\n    <subfield code=\"v\">Congresses.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Cognitive science</subfield>\n    <subfield code=\"v\">Congresses.</subfield>\n  </datafield>\n  <datafield tag=\"655\" ind1=\" \" ind2=\"7\">\n    <subfield code=\"a\">Conference papers and proceedings.</subfield>\n    <subfield code=\"2\">lcgft</subfield>\n    <subfield code=\"0\">https://id.loc.gov/authorities/genreForms/gf2014026068</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Bobrow, Daniel G.</subfield>\n    <subfield code=\"q\">(Daniel Gureasko),</subfield>\n    <subfield code=\"d\">1935-</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Collins, Allan,</subfield>\n    <subfield code=\"d\">1937-</subfield>\n  </datafield>\n  <datafield tag=\"991\" ind1=\" \" ind2=\" \">\n    <subfield code=\"b\">c-GenColl</subfield>\n    <subfield code=\"h\">BF311</subfield>\n    <subfield code=\"i\">.R388</subfield>\n    <subfield code=\"p\">00004767421</subfield>\n    <subfield code=\"t\">Copy 1</subfield>\n    <subfield code=\"w\">BOOKS</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9780121085506\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>01305cam a2200349 i 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">3634564</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607153702.2</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">751208s1975    nyua     b    101 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">3634564</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">2</ns0:subfield>\n    <ns0:subfield code=\"e\">ocip</ns0:subfield>\n    <ns0:subfield code=\"f\">19</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-893, LCAPM-150</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">   75021630 </ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">0121085503</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780121085506</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"9\">(DLC)   75021630</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">BF311</ns0:subfield>\n    <ns0:subfield code=\"b\">.R388</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">153.4</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">Representation and understanding :</ns0:subfield>\n    <ns0:subfield code=\"b\">studies in cognitive science /</ns0:subfield>\n    <ns0:subfield code=\"c\">edited by Daniel G. Bobrow and Allan Collins.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">New York :</ns0:subfield>\n    <ns0:subfield code=\"b\">Academic Press,</ns0:subfield>\n    <ns0:subfield code=\"c\">1975.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">xii, 427 p. :</ns0:subfield>\n    <ns0:subfield code=\"b\">ill. ;</ns0:subfield>\n    <ns0:subfield code=\"c\">24 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">Language, thought, and culture</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographies and indexes.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Cognition</ns0:subfield>\n    <ns0:subfield code=\"v\">Congresses.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Cognitive science</ns0:subfield>\n    <ns0:subfield code=\"v\">Congresses.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"655\" ind1=\" \" ind2=\"7\">\n    <ns0:subfield code=\"a\">Conference papers and proceedings.</ns0:subfield>\n    <ns0:subfield code=\"2\">lcgft</ns0:subfield>\n    <ns0:subfield code=\"0\">https://id.loc.gov/authorities/genreForms/gf2014026068</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Bobrow, Daniel G.</ns0:subfield>\n    <ns0:subfield code=\"q\">(Daniel Gureasko),</ns0:subfield>\n    <ns0:subfield code=\"d\">1935-</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Collins, Allan,</ns0:subfield>\n    <ns0:subfield code=\"d\">1937-</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"991\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"b\">c-GenColl</ns0:subfield>\n    <ns0:subfield code=\"h\">BF311</ns0:subfield>\n    <ns0:subfield code=\"i\">.R388</ns0:subfield>\n    <ns0:subfield code=\"p\">00004767421</ns0:subfield>\n    <ns0:subfield code=\"t\">Copy 1</ns0:subfield>\n    <ns0:subfield code=\"w\">BOOKS</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+   ],
+   "retrieved_at": "2026-10-06T18:55:10.810371+00:00",
+   "total_records": 1,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229780121085506%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9780387954714,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1007/978-0-387-21579-2",
+       "ISBN": [
+        "9780387954714",
+        "9780387215792"
+       ],
+       "ISSN": [
+        "0930-0325"
+       ],
+       "URL": "https://doi.org/10.1007/978-0-387-21579-2",
+       "container-title": [
+        "Lecture Notes in Statistics"
+       ],
+       "editor": [
+        {
+         "affiliation": [],
+         "family": "Denison",
+         "given": "David D.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Hansen",
+         "given": "Mark H.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Holmes",
+         "given": "Christopher C.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Mallick",
+         "given": "Bani",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "Yu",
+         "given": "Bin",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2003
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-0-387-21579-2.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-0-387-21579-2",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          2003
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2003
+         ]
+        ]
+       },
+       "publisher": "Springer New York",
+       "title": [
+        "Nonlinear Estimation and Classification"
+       ],
+       "type": "book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:55:14.050272+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9780387954714%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9780387954714\"",
+  "response": {
+   "document_sha256": "a09925e6c4aebe2970fd78ee22e2717225e8b6f4dd07472f02686ec0365480bf",
+   "query": "bath.isbn=\"9780387954714\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>01427cam a22003494a 4500</leader>\n  <controlfield tag=\"001\">12900331</controlfield>\n  <controlfield tag=\"005\">20250606194135.0</controlfield>\n  <controlfield tag=\"008\">020820s2003    nyua     b    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">12900331</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ocip</subfield>\n    <subfield code=\"f\">20</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <subfield code=\"a\">acquire</subfield>\n    <subfield code=\"b\">2 shelf copies</subfield>\n    <subfield code=\"x\">policy default</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pc17 2002-08-20 to ASCD</subfield>\n    <subfield code=\"c\">jp25 2002-08-22 to subject</subfield>\n    <subfield code=\"d\">jp99 2002-08-27</subfield>\n    <subfield code=\"e\">jp05 2002-08-27 to Dewey</subfield>\n    <subfield code=\"a\">aa07 2002-08-28</subfield>\n    <subfield code=\"a\">ps17 2003-02-10 1 copy rec'd., to CIP ver.;</subfield>\n    <subfield code=\"f\">jc09 2003-02-13</subfield>\n    <subfield code=\"g\">jc17 2003-02-20 to BCCD</subfield>\n    <subfield code=\"a\">jp10 2003-11-25 to BCCD copy 2</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LCAP batch update 2025-06-01-04:00: LCAPM-644, LCAPM-150</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">  2002030566</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">0387954716</subfield>\n    <subfield code=\"q\">pbk. : alk. paper</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780387954714</subfield>\n    <subfield code=\"q\">(pbk. : alk. paper)</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pcc</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">QA276.8</subfield>\n    <subfield code=\"b\">.N64 2003</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">519.5/44</subfield>\n    <subfield code=\"2\">21</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">Nonlinear estimation and classification /</subfield>\n    <subfield code=\"c\">editors, David D. Denison ... [et al.].</subfield>\n  </datafield>\n  <datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">New York :</subfield>\n    <subfield code=\"b\">Springer,</subfield>\n    <subfield code=\"c\">c2003.</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">vii, 474 p. :</subfield>\n    <subfield code=\"b\">ill. ;</subfield>\n    <subfield code=\"c\">24 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Lecture notes in statistics ;</subfield>\n    <subfield code=\"v\">171</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and index.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Estimation theory.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Nonlinear theories.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Denison, David D.</subfield>\n  </datafield>\n  <datafield tag=\"830\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Lecture notes in statistics (Springer-Verlag) ;</subfield>\n    <subfield code=\"v\">v. 171.</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9780387954714\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>01427cam a22003494a 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">12900331</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250606194135.0</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">020820s2003    nyua     b    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">12900331</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ocip</ns0:subfield>\n    <ns0:subfield code=\"f\">20</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"925\" ind1=\"0\" ind2=\" \">\n    <ns0:subfield code=\"a\">acquire</ns0:subfield>\n    <ns0:subfield code=\"b\">2 shelf copies</ns0:subfield>\n    <ns0:subfield code=\"x\">policy default</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pc17 2002-08-20 to ASCD</ns0:subfield>\n    <ns0:subfield code=\"c\">jp25 2002-08-22 to subject</ns0:subfield>\n    <ns0:subfield code=\"d\">jp99 2002-08-27</ns0:subfield>\n    <ns0:subfield code=\"e\">jp05 2002-08-27 to Dewey</ns0:subfield>\n    <ns0:subfield code=\"a\">aa07 2002-08-28</ns0:subfield>\n    <ns0:subfield code=\"a\">ps17 2003-02-10 1 copy rec'd., to CIP ver.;</ns0:subfield>\n    <ns0:subfield code=\"f\">jc09 2003-02-13</ns0:subfield>\n    <ns0:subfield code=\"g\">jc17 2003-02-20 to BCCD</ns0:subfield>\n    <ns0:subfield code=\"a\">jp10 2003-11-25 to BCCD copy 2</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LCAP batch update 2025-06-01-04:00: LCAPM-644, LCAPM-150</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">  2002030566</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">0387954716</ns0:subfield>\n    <ns0:subfield code=\"q\">pbk. : alk. paper</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780387954714</ns0:subfield>\n    <ns0:subfield code=\"q\">(pbk. : alk. paper)</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"042\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pcc</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">QA276.8</ns0:subfield>\n    <ns0:subfield code=\"b\">.N64 2003</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">519.5/44</ns0:subfield>\n    <ns0:subfield code=\"2\">21</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">Nonlinear estimation and classification /</ns0:subfield>\n    <ns0:subfield code=\"c\">editors, David D. Denison ... [et al.].</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">New York :</ns0:subfield>\n    <ns0:subfield code=\"b\">Springer,</ns0:subfield>\n    <ns0:subfield code=\"c\">c2003.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">vii, 474 p. :</ns0:subfield>\n    <ns0:subfield code=\"b\">ill. ;</ns0:subfield>\n    <ns0:subfield code=\"c\">24 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Lecture notes in statistics ;</ns0:subfield>\n    <ns0:subfield code=\"v\">171</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and index.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Estimation theory.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Nonlinear theories.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Denison, David D.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"830\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Lecture notes in statistics (Springer-Verlag) ;</ns0:subfield>\n    <ns0:subfield code=\"v\">v. 171.</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+   ],
+   "retrieved_at": "2026-10-06T18:55:15.220460+00:00",
+   "total_records": 1,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229780387954714%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9781468410853,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1007/978-1-4684-1083-9",
+       "ISBN": [
+        "9781468410853",
+        "9781468410839"
+       ],
+       "URL": "https://doi.org/10.1007/978-1-4684-1083-9",
+       "editor": [
+        {
+         "affiliation": [],
+         "family": "Friedman",
+         "given": "Morton P.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        },
+        {
+         "affiliation": [],
+         "family": "Das",
+         "given": "J. P.",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        },
+        {
+         "affiliation": [],
+         "family": "O’Connor",
+         "given": "Neil",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "additional"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1981
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/978-1-4684-1083-9.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "http://link.springer.com/content/pdf/10.1007/978-1-4684-1083-9",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          1981
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1981
+         ]
+        ]
+       },
+       "publisher": "Springer US",
+       "title": [
+        "Intelligence and Learning"
+       ],
+       "type": "book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:55:18.591043+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9781468410853%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9781468410853\"",
+  "response": {
+   "document_sha256": "e8fc7c9a20f34695c1095d7c631fe1bcd096fee77a5409f5425ab7761c6ff051",
+   "query": "bath.isbn=\"9781468410853\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9781468410853\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [],
+   "retrieved_at": "2026-10-06T18:55:19.699492+00:00",
+   "total_records": 0,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229781468410853%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9781468410839\"",
+  "response": {
+   "document_sha256": "d95c54551027b782b181774c943a6fca097a3ff5d2b187d7be65071f824253b3",
+   "query": "bath.isbn=\"9781468410839\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9781468410839\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [],
+   "retrieved_at": "2026-10-06T18:55:22.906741+00:00",
+   "total_records": 0,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229781468410839%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+   {
+    "format": "json",
+    "pageSize": 100,
+    "query": "DOI:\"10.1515/9781400882618-002\"",
+    "resultType": "core"
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "hitCount": 0,
+    "request": {
+     "cursorMark": "*",
+     "pageSize": 100,
+     "queryString": "DOI:\"10.1515/9781400882618-002\"",
+     "resultType": "core",
+     "sort": "",
+     "synonym": false
+    },
+    "resultList": {
+     "result": []
+    },
+    "version": "6.9"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:55:30.769052+00:00",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1515%2F9781400882618-002%22&format=json&resultType=core&pageSize=100"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1007%2F978-3-031-20910-9_48",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1007/978-3-031-20910-9_48",
+     "ISBN": [
+      "9783031209093",
+      "9783031209109"
+     ],
+     "ISSN": [
+      "2196-6605",
+      "2196-6613"
+     ],
+     "URL": "https://doi.org/10.1007/978-3-031-20910-9_48",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Manning",
+       "given": "Jeremy R.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      }
+     ],
+     "container-title": [
+      "Studies in Neuroscience, Psychology and Behavioral Economics",
+      "Intracranial EEG"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        2023
+       ]
+      ]
+     },
+     "link": [
+      {
+       "URL": "https://link.springer.com/content/pdf/10.1007/978-3-031-20910-9_48",
+       "content-type": "unspecified",
+       "content-version": "vor",
+       "intended-application": "similarity-checking"
+      }
+     ],
+     "page": "803-836",
+     "published": {
+      "date-parts": [
+       [
+        2023
+       ]
+      ]
+     },
+     "published-online": {
+      "date-parts": [
+       [
+        2023,
+        8,
+        2
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        2023
+       ]
+      ]
+     },
+     "publisher": "Springer International Publishing",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "How Can I Identify Stimulus-Driven Neural Activity Patterns in Multi-Patient ECoG Data?"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:56:35.720065+00:00",
+   "url": "https://api.crossref.org/works/10.1007%2F978-3-031-20910-9_48"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9783031209093,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1007/978-3-031-20910-9",
+       "ISBN": [
+        "9783031209093",
+        "9783031209109"
+       ],
+       "ISSN": [
+        "2196-6605",
+        "2196-6613"
+       ],
+       "URL": "https://doi.org/10.1007/978-3-031-20910-9",
+       "container-title": [
+        "Studies in Neuroscience, Psychology and Behavioral Economics"
+       ],
+       "editor": [
+        {
+         "affiliation": [],
+         "family": "Axmacher",
+         "given": "Nikolai",
+         "role": [
+          {
+           "role": "editor",
+           "vocabulary": "crossref"
+          }
+         ],
+         "sequence": "first"
+        }
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          2023
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-3-031-20910-9.pdf",
+         "content-type": "application/pdf",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://link.springer.com/content/pdf/10.1007/978-3-031-20910-9",
+         "content-type": "unspecified",
+         "content-version": "vor",
+         "intended-application": "similarity-checking"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          2023
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          2023
+         ]
+        ]
+       },
+       "publisher": "Springer International Publishing",
+       "subtitle": [
+        "A Guide for Cognitive Neuroscientists"
+       ],
+       "title": [
+        "Intracranial EEG"
+       ],
+       "type": "book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:56:36.820969+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9783031209093%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9783031209093\"",
+  "response": {
+   "document_sha256": "1119fdf29bc78af9ca58448fb9ee139674145deba22111047d55fed8385584f3",
+   "query": "bath.isbn=\"9783031209093\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9783031209093\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [],
+   "retrieved_at": "2026-10-06T18:56:38.428096+00:00",
+   "total_records": 0,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229783031209093%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9783031209109\"",
+  "response": {
+   "document_sha256": "7bb59707c1ce84ac222fbcb9d7381280ead41d36f6f9b78df74383662e8ef70b",
+   "query": "bath.isbn=\"9783031209109\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>0</zs:numberOfRecords><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9783031209109\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [],
+   "retrieved_at": "2026-10-06T18:56:42.012269+00:00",
+   "total_records": 0,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229783031209109%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works/10.1016%2Fs0166-4115%2808%2960886-9",
+   {},
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "DOI": "10.1016/s0166-4115(08)60886-9",
+     "ISBN": [
+      "9780444890146"
+     ],
+     "ISSN": [
+      "0166-4115"
+     ],
+     "URL": "https://doi.org/10.1016/s0166-4115(08)60886-9",
+     "author": [
+      {
+       "affiliation": [],
+       "family": "Mayer",
+       "given": "Richard E.",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "first"
+      },
+      {
+       "affiliation": [],
+       "family": "Lewis",
+       "given": "Anne Bovenmyer",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      },
+      {
+       "affiliation": [],
+       "family": "Hegarty",
+       "given": "Mary",
+       "role": [
+        {
+         "role": "author",
+         "vocabulary": "crossref"
+        }
+       ],
+       "sequence": "additional"
+      }
+     ],
+     "container-title": [
+      "Advances in Psychology",
+      "The Nature and Origins of Mathematical Skills"
+     ],
+     "issued": {
+      "date-parts": [
+       [
+        1992
+       ]
+      ]
+     },
+     "page": "137-153",
+     "published": {
+      "date-parts": [
+       [
+        1992
+       ]
+      ]
+     },
+     "published-print": {
+      "date-parts": [
+       [
+        1992
+       ]
+      ]
+     },
+     "publisher": "Elsevier",
+     "relation": {},
+     "subtitle": [],
+     "title": [
+      "Chapter 4 Mathematical Misunderstandings: Qualitative Reasoning About Quantitative Problems"
+     ],
+     "type": "book-chapter"
+    },
+    "message-type": "work",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:56:45.174862+00:00",
+   "url": "https://api.crossref.org/works/10.1016%2Fs0166-4115%2808%2960886-9"
+  }
+ },
+ {
+  "request": [
+   "https://api.crossref.org/works",
+   {
+    "filter": "isbn:9780444890146,type:book,type:edited-book,type:monograph,type:reference-book",
+    "rows": 5
+   },
+   false
+  ],
+  "response": {
+   "body": {
+    "message": {
+     "facets": {},
+     "items": [
+      {
+       "DOI": "10.1016/s0166-4115(08)x6036-4",
+       "ISBN": [
+        "9780444890146"
+       ],
+       "ISSN": [
+        "0166-4115"
+       ],
+       "URL": "https://doi.org/10.1016/s0166-4115(08)x6036-4",
+       "container-title": [
+        "Advances in Psychology"
+       ],
+       "issued": {
+        "date-parts": [
+         [
+          1992
+         ]
+        ]
+       },
+       "link": [
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:S0166411508X60364?httpAccept=text/xml",
+         "content-type": "text/xml",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        },
+        {
+         "URL": "https://api.elsevier.com/content/article/PII:S0166411508X60364?httpAccept=text/plain",
+         "content-type": "text/plain",
+         "content-version": "vor",
+         "intended-application": "text-mining"
+        }
+       ],
+       "published": {
+        "date-parts": [
+         [
+          1992
+         ]
+        ]
+       },
+       "published-print": {
+        "date-parts": [
+         [
+          1992
+         ]
+        ]
+       },
+       "publisher": "Elsevier",
+       "title": [
+        "The Nature and Origins of Mathematical Skills"
+       ],
+       "type": "book"
+      }
+     ],
+     "items-per-page": 5,
+     "query": {
+      "search-terms": null,
+      "start-index": 0
+     },
+     "total-results": 1
+    },
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "status": "ok"
+   },
+   "http_status": 200,
+   "retrieved_at": "2026-10-06T18:56:46.274494+00:00",
+   "url": "https://api.crossref.org/works?filter=isbn%3A9780444890146%2Ctype%3Abook%2Ctype%3Aedited-book%2Ctype%3Amonograph%2Ctype%3Areference-book&rows=5"
+  }
+ },
+ {
+  "request": "loc-sru-v1:10:bath.isbn=\"9780444890146\"",
+  "response": {
+   "document_sha256": "5e4d49e2a0313ed4d2fd4153b067ef24cbdb993c60938c77fd2e8df70d3d8ca1",
+   "query": "bath.isbn=\"9780444890146\"",
+   "raw_xml": "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>marcxml</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns=\"http://www.loc.gov/MARC21/slim\">\n  <leader>01350pam a2200349 a 4500</leader>\n  <controlfield tag=\"001\">3449540</controlfield>\n  <controlfield tag=\"005\">20250607151910.4</controlfield>\n  <controlfield tag=\"008\">920430s1992    ne a     b    001 0 eng  </controlfield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">3449540</subfield>\n  </datafield>\n  <datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">7</subfield>\n    <subfield code=\"b\">cbc</subfield>\n    <subfield code=\"c\">orignew</subfield>\n    <subfield code=\"d\">1</subfield>\n    <subfield code=\"e\">ocip</subfield>\n    <subfield code=\"f\">19</subfield>\n    <subfield code=\"g\">y-gencatlg</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">pc01 to bc00 04-30-92; bc27 to SCD 05-01-92; fg04 05-04-92; fl42 05-13-92; CIP ver. jh16 to SL 09-17-92</subfield>\n  </datafield>\n  <datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-150</subfield>\n  </datafield>\n  <datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">   92017326 </subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">0444890149</subfield>\n  </datafield>\n  <datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">9780444890146</subfield>\n  </datafield>\n  <datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <subfield code=\"9\">(DLC)   92017326</subfield>\n  </datafield>\n  <datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">DLC</subfield>\n    <subfield code=\"c\">DLC</subfield>\n    <subfield code=\"d\">DLC</subfield>\n  </datafield>\n  <datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">QA11</subfield>\n    <subfield code=\"b\">.N37 1992</subfield>\n  </datafield>\n  <datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <subfield code=\"a\">370.15/651</subfield>\n    <subfield code=\"2\">20</subfield>\n  </datafield>\n  <datafield tag=\"245\" ind1=\"0\" ind2=\"4\">\n    <subfield code=\"a\">The Nature and origins of mathematical skills /</subfield>\n    <subfield code=\"c\">edited by Jamie I.D. Campbell.</subfield>\n  </datafield>\n  <datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Amsterdam ;</subfield>\n    <subfield code=\"a\">New York :</subfield>\n    <subfield code=\"b\">North-Holland,</subfield>\n    <subfield code=\"c\">1992.</subfield>\n  </datafield>\n  <datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">x, 569 p. :</subfield>\n    <subfield code=\"b\">ill. ;</subfield>\n    <subfield code=\"c\">23 cm.</subfield>\n  </datafield>\n  <datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">text</subfield>\n    <subfield code=\"b\">txt</subfield>\n    <subfield code=\"2\">rdacontent</subfield>\n  </datafield>\n  <datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">unmediated</subfield>\n    <subfield code=\"b\">n</subfield>\n    <subfield code=\"2\">rdamedia</subfield>\n  </datafield>\n  <datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">volume</subfield>\n    <subfield code=\"b\">nc</subfield>\n    <subfield code=\"2\">rdacarrier</subfield>\n  </datafield>\n  <datafield tag=\"490\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Advances in psychology ;</subfield>\n    <subfield code=\"v\">91</subfield>\n  </datafield>\n  <datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <subfield code=\"a\">Includes bibliographical references and indexes.</subfield>\n  </datafield>\n  <datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Mathematical ability.</subfield>\n  </datafield>\n  <datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <subfield code=\"a\">Campbell, Jamie I. D.</subfield>\n  </datafield>\n  <datafield tag=\"830\" ind1=\" \" ind2=\"0\">\n    <subfield code=\"a\">Advances in psychology (Amsterdam, Netherlands) ;</subfield>\n    <subfield code=\"v\">91.</subfield>\n  </datafield>\n  <datafield tag=\"856\" ind1=\"4\" ind2=\"2\">\n    <subfield code=\"3\">Publisher description</subfield>\n    <subfield code=\"u\">http://www.loc.gov/catdir/enhancements/fy0745/92017326-d.html</subfield>\n  </datafield>\n  <datafield tag=\"991\" ind1=\" \" ind2=\" \">\n    <subfield code=\"b\">c-GenColl</subfield>\n    <subfield code=\"h\">QA11</subfield>\n    <subfield code=\"i\">.N37 1992</subfield>\n    <subfield code=\"t\">Copy 1</subfield>\n    <subfield code=\"w\">BOOKS</subfield>\n  </datafield>\n</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records><zs:echoedSearchRetrieveRequest><zs:version>1.1</zs:version><zs:query>bath.isbn=\"9780444890146\"</zs:query><zs:maximumRecords>10</zs:maximumRecords><zs:recordPacking>xml</zs:recordPacking><zs:recordSchema>marcxml</zs:recordSchema></zs:echoedSearchRetrieveRequest></zs:searchRetrieveResponse>\n",
+   "records": [
+    "<ns0:record xmlns:ns0=\"http://www.loc.gov/MARC21/slim\">\n  <ns0:leader>01350pam a2200349 a 4500</ns0:leader>\n  <ns0:controlfield tag=\"001\">3449540</ns0:controlfield>\n  <ns0:controlfield tag=\"005\">20250607151910.4</ns0:controlfield>\n  <ns0:controlfield tag=\"008\">920430s1992    ne a     b    001 0 eng  </ns0:controlfield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">3449540</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"906\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">7</ns0:subfield>\n    <ns0:subfield code=\"b\">cbc</ns0:subfield>\n    <ns0:subfield code=\"c\">orignew</ns0:subfield>\n    <ns0:subfield code=\"d\">1</ns0:subfield>\n    <ns0:subfield code=\"e\">ocip</ns0:subfield>\n    <ns0:subfield code=\"f\">19</ns0:subfield>\n    <ns0:subfield code=\"g\">y-gencatlg</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">pc01 to bc00 04-30-92; bc27 to SCD 05-01-92; fg04 05-04-92; fl42 05-13-92; CIP ver. jh16 to SL 09-17-92</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"955\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">LCAP batch update 2025-06-02-04:00: LCAPM-644, LCAPM-150</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"010\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">   92017326 </ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">0444890149</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"020\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">9780444890146</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"035\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"9\">(DLC)   92017326</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"040\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">DLC</ns0:subfield>\n    <ns0:subfield code=\"c\">DLC</ns0:subfield>\n    <ns0:subfield code=\"d\">DLC</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"050\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">QA11</ns0:subfield>\n    <ns0:subfield code=\"b\">.N37 1992</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"082\" ind1=\"0\" ind2=\"0\">\n    <ns0:subfield code=\"a\">370.15/651</ns0:subfield>\n    <ns0:subfield code=\"2\">20</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"245\" ind1=\"0\" ind2=\"4\">\n    <ns0:subfield code=\"a\">The Nature and origins of mathematical skills /</ns0:subfield>\n    <ns0:subfield code=\"c\">edited by Jamie I.D. Campbell.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"260\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Amsterdam ;</ns0:subfield>\n    <ns0:subfield code=\"a\">New York :</ns0:subfield>\n    <ns0:subfield code=\"b\">North-Holland,</ns0:subfield>\n    <ns0:subfield code=\"c\">1992.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"300\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">x, 569 p. :</ns0:subfield>\n    <ns0:subfield code=\"b\">ill. ;</ns0:subfield>\n    <ns0:subfield code=\"c\">23 cm.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"336\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">text</ns0:subfield>\n    <ns0:subfield code=\"b\">txt</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacontent</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"337\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">unmediated</ns0:subfield>\n    <ns0:subfield code=\"b\">n</ns0:subfield>\n    <ns0:subfield code=\"2\">rdamedia</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"338\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">volume</ns0:subfield>\n    <ns0:subfield code=\"b\">nc</ns0:subfield>\n    <ns0:subfield code=\"2\">rdacarrier</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"490\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Advances in psychology ;</ns0:subfield>\n    <ns0:subfield code=\"v\">91</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"504\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"a\">Includes bibliographical references and indexes.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"650\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Mathematical ability.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"700\" ind1=\"1\" ind2=\" \">\n    <ns0:subfield code=\"a\">Campbell, Jamie I. D.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"830\" ind1=\" \" ind2=\"0\">\n    <ns0:subfield code=\"a\">Advances in psychology (Amsterdam, Netherlands) ;</ns0:subfield>\n    <ns0:subfield code=\"v\">91.</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"856\" ind1=\"4\" ind2=\"2\">\n    <ns0:subfield code=\"3\">Publisher description</ns0:subfield>\n    <ns0:subfield code=\"u\">http://www.loc.gov/catdir/enhancements/fy0745/92017326-d.html</ns0:subfield>\n  </ns0:datafield>\n  <ns0:datafield tag=\"991\" ind1=\" \" ind2=\" \">\n    <ns0:subfield code=\"b\">c-GenColl</ns0:subfield>\n    <ns0:subfield code=\"h\">QA11</ns0:subfield>\n    <ns0:subfield code=\"i\">.N37 1992</ns0:subfield>\n    <ns0:subfield code=\"t\">Copy 1</ns0:subfield>\n    <ns0:subfield code=\"w\">BOOKS</ns0:subfield>\n  </ns0:datafield>\n</ns0:record>"
+   ],
+   "retrieved_at": "2026-10-06T18:56:47.462502+00:00",
+   "total_records": 1,
+   "truncated": false,
+   "url": "https://lx2.loc.gov/sru/lcdb?operation=searchRetrieve&version=1.1&query=bath.isbn%3D%229780444890146%22&maximumRecords=10&recordSchema=marcxml&recordPacking=xml"
+  }
+ }
+]

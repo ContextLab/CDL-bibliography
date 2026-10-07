@@ -1,0 +1,4 @@
+{
+ "about": "Entries of cdl.bib written the way a house rule decided later now changes. The format check names each one on every run and does not count it as an error while the entry's value is exactly `value` and the formatter's is exactly `proposed`; the data is changed only when the owner approves it, and the entry is then taken off this list.",
+ "entries": []
+}

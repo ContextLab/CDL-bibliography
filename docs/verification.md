@@ -1,13 +1,18 @@
 # Citation verification design
 
-This is the design reference for `bibcheck.py crossref` and the `verify` gate. The
+This is the design reference for `cdlbib crossref` and the `verify` gate. The
 [README](../README.md) covers everyday use. The dated folders in
 [verification/](../verification/README.md) record how the library was brought to its
 current state; sections below that describe a dated pilot or measurement say so.
 
+The command downloads a managed library when no bibliography was named or found.
+Run `cdlbib where` to find it; see [Installation](../README.md#installation) for
+locations, lookup order and updates. An existing clone is used without being updated
+by the tool. Explicit bibliography arguments select that file instead.
+
 ## Current state
 
-As of September 30, 2026, `bibcheck.py crossref status cdl.bib` (after restoring
+As of September 30, 2026, `cdlbib crossref status cdl.bib` (after restoring
 `verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=36,
 metadata_verified=6348`: every entry is verified. The 36 human approvals are the user's own
 answers, recorded with the page or message they came from (see the decision log sections dated
@@ -150,7 +155,7 @@ Deletion removes an entry from the current report. Identical content under anoth
 
 Fingerprint format `v2` is distinct from comparison `POLICY=2`. The upgrade retains the legacy hash calculation solely to recognize exact existing reviews. On an exact match, cache lookup appends a migrated row with the original policy, evidence and check time, plus `fingerprint_migration` provenance. It never relabels an edited entry. Run `status` before key renames when upgrading an old database; a legacy hash alone cannot establish that a renamed entry is otherwise unchanged. Two separate indexed queries avoid scanning the entire bibliography history for each lookup.
 
-`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
+`auto_review.resolver_version` independently versions additive resolver improvements. A new resolver revision reconsiders unresolved saved evidence once and preserves completed provider-lookups; it does not recheck current accepted entries. Revision 2 added exact PNAS and Journal of Neuroscience title variants. Revision 3 adds narrowly bounded corporate publisher names, corroborated issue labels, and explicit final-article DOI handling; see the [resolution audit](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/resolution-2026-09-15/README.md). Revision 4 separates explicitly dotted initials such as `A.A.` into the same tokens as `A A`; it does not infer missing names or expand undotted acronyms. Newly eligible secondary DOI targets reopen the relevant checkpoint while retaining already-queried DOIs. Revision 31 compares an `editor` field with the record's editors ([Editors](#editors-resolvers-31-and-32)); revision 32 compares a chapter's editors with the book's own record. A stricter acceptance-policy change must still use the separate policy invalidation mechanism.
 
 Acceptance-restricting changes require a new `POLICY` or an explicit audit that reopens every affected approval. A policy mismatch invalidates cached reviews, including human decisions. Additive resolver improvements use `RESOLVER_VERSION` to revisit unresolved saved evidence once while preserving supported approvals and their original check times. Query-only changes do not invalidate already supported reviews. HTTP responses can be reused while applying revised comparisons.
 
@@ -221,13 +226,14 @@ A human should check the publication's identity and edition, all cited authors a
 
 ### Revoking an approval
 
-`crossref revoke KEY --by WHO --reason WHY [--fingerprint FP ...]` withdraws a human
+`crossref revoke KEY --reason WHY [--fingerprint FP ...]` withdraws a human
 approval that should not stand, for example one recorded in someone's name without their
 decision. By default it revokes every human approval recorded for the key, including ones on
 older text that later edits made lapse; `--fingerprint` restricts it to specific texts. For
 each approval it appends one row to `verification/revocations.jsonl` and to the database's
 `revocations` table. The row records the key, the approved fingerprint, the approval
-(reviewer, source, note, time) and its digest, `revoked_at`, `revoked_by` and the reason. The
+(reviewer, source, note, time) and its digest, `revoked_at`, `revoked_by` (the GitHub login
+of the `gh` CLI) and the reason. The
 entry becomes `needs_review`, and the revoked approval is kept under `revoked_approval`.
 
 A revocation matches an approval on its fingerprint, and on either its exact
@@ -247,10 +253,206 @@ new approval). The database's copy and the ledger's copy of a revocation both co
 
 Tests: `tests/test_revocation.py` (real entries and approval rows frozen from commit 7f3eead).
 
+### Sharing an approval: the approvals ledger
+
+`verification/approvals.jsonl` is the counterpart of `revocations.jsonl` for approvals. It
+is written by `cdlbib send` (`api.send`, which the terminal and web interfaces call through
+`api.send_checked`) and by nothing else; `approve` writes only to the database.
+
+Writing. Before `send` decides whether there is anything to send, `api.approvals_waiting`
+lists the rows to add: one for each entry whose stored result in the local database is a
+current `human_verified` result for exactly the entry's text, with a `human_review` that
+has a non-blank reviewer, source, note and `github_login`, that is not revoked, and whose
+(fingerprint, digest) pair is not in the file yet. When nobody is logged in, no row is
+added, each waiting approval is reported as not sent for that reason, and `send` goes on in
+its usual order (the gate, then the refusal for the missing login; an approval alone is the
+"no changes" refusal with those lines). When such a row exists, `send` asks
+`gh` who is logged in (`identity.current`) and keeps only the rows recorded under that user:
+the same `github_id` when the review has an integer one, else the same login ignoring case.
+The others, and stored approvals under a login that are not valid rows, are returned as
+`unsent` (`{"key", "login", "why"}`); `progress` receives `approval of KEY not sent: WHY`
+for each, and the refusal when nothing else is to be sent lists them. An approval whose
+`human_review` names no GitHub login is in neither list. `record_approval` refuses a
+reviewer, source or note over the row limits, and a review with a `github_login` that would
+not be a valid row, so an approval made with `approve` can always be written. It also
+refuses a review whose source and note equal a revoked approval's of the same text after
+white space is collapsed and case folded, the rule `shared_revoked` applies to rows. The
+library state lists `approvals`, `unsent_approvals` and the `login` they were told apart by;
+it asks `gh` only with `refresh`, and otherwise uses the user `gh` last named in the
+process (`api.known_identity`), or none. The rows are appended before the gate
+(`verification.append_approvals`: one line each, `json.dumps` with sorted keys and no
+spaces; earlier lines are not touched), and `progress` receives a line for each. The file
+is under `verification/`, so it is committed and pushed with the change, and it alone is a
+change to send. Before the file is touched, a record of the rows about to be added
+(checksums of the file before and after, the added bytes, git's index entry for the file) is
+kept durably in `.bibcheck/approval-send/pending.json` (`writer.keep_record`). The file is
+read and replaced whole by name within its folder held open (`writer._Folder`, `O_NOFOLLOW`):
+a link in the place of `verification/` or of the file is refused before anything is read,
+and there is no half-written line. (That holds for the library's folder and what is in it.
+The folders above the library, the path the library was opened by, are taken as the
+user's own and are not walked link by link.)
+
+**Other programs writing the library's files while cdlbib writes them.** cdlbib's own
+commands take a lock; an editor, a sync service or a script does not. What then holds
+(`src/cdlbib/writer.py` says how):
+
+- A file of the library (`cdl.bib`, `verification/key-renames.json`,
+  `verification/approvals.jsonl`) that cdlbib replaces is not deleted then, and so nothing
+  another program wrote into it is. It is in the library; or it IS the copy kept for the
+  write that replaced it (`.bibcheck/edits/<time>-<file name>`, and
+  `.bibcheck/replaced/<time>-<file name>` in the library cdlbib manages); or it is in the
+  folder of a write that had to keep something aside (`.bibcheck/kept/<time>-<random>/`),
+  and then that write's message, the notes of a save that succeeded, or the command that
+  settles a killed write names the path.
+- How long: the copies of the newest 20 writes are kept; a copy older than that is deleted
+  by a later successful write, with whatever a program wrote into it in the meantime.
+  `.bibcheck/kept` has no limit and cdlbib never deletes from it: every conflict, and every
+  settled write that left something beside the library, can leave whole files there. Look at
+  what a message names, and then delete the folders in `.bibcheck/kept` yourself (any of
+  them, at any time; cdlbib does not read them again once that write has been settled).
+- A program that saves by rename, as editors do: a save made while cdlbib writes makes
+  cdlbib's write refuse ("changed while applying; nothing was written"), and stays.
+- A program that writes the file in place, or keeps it open: what it writes before cdlbib's
+  exchange makes the write refuse; what it writes afterwards through a descriptor it still
+  holds goes into the copy in `.bibcheck/edits` (or `.bibcheck/replaced`), which is the file
+  it has open, not into the library.
+- Not guaranteed: which of two saves made at the same moment ends up as the library file.
+  For an instant cdlbib's new text stands under the file's name before it is confirmed; a
+  program that reads the file in that instant and then saves what it read replaces, itself,
+  whatever another program saved in between.
+- When a write cannot tell what state a file is in, it says so, keeps its record
+  (`.bibcheck/edits/write-in-progress.json`), and the next command that writes settles it. `api.settle_approval_send` settles the record: when the
+send raises (the append and the progress callbacks are inside the protected block), when it
+succeeds, and whenever the library's lock is taken (`library.transaction`), which settles a
+send that was killed. If the file holds exactly what the send left and no commit holds it,
+the file is put back to the bytes it had (removed when it did not exist) and the index
+entry to what it was; if a commit holds it, only the record is dropped; if anything else
+changed the file, it is not written to, and the refusal (or the settled line) says that it
+was not put back and names the rows. The approvals stay in the database.
+
+Before anything is written, `send` compares the working tree's file with the copy in the
+commit the checkout is on (`_outgoing_ledger`): the committed bytes must still be there,
+first, and every added line must be a valid row. gh is asked who is logged in once, when a
+row waits or the file has uncommitted rows; those rows, the rows the send adds, and (after
+the upstream base is fetched) every row the upstream does not have must have been recorded
+under that user (`_require_own`), and gh is asked again after the gate and before
+publication (`_still`): another answer, or none, refuses the send. `api.approvals_note` adds to the pull
+request's text the entries whose current approval is a row that the upstream base's copy of
+the file does not hold, whether or not the entry differs from the reference.
+
+A row:
+
+|Field|Content|
+|-|-|
+|`key`|The entry's key when the row was written. Informational: matching is by fingerprint.|
+|`fingerprint`|The content fingerprint of the approved text.|
+|`human_review`|The stored record: `reviewer`, `github_login`, `github_id`, `source`, `note`.|
+|`approval_digest`|`approval_digest(human_review)`, the identity revocations use.|
+|`approved_at`|The stored result's `checked_at`. It is beside `human_review`, not inside it, because the digest is a hash of `human_review`.|
+|`policy`|The `POLICY` the approval was stored under.|
+
+Reading. `Cache.get` returns the stored result when it is a human approval. Otherwise it
+looks for rows with the entry's fingerprint (`Cache.shared_approval`) and returns a
+`human_verified` view built from the newest row whose `policy` is the current `POLICY` and
+that no revocation matches (`shared_revoked`, below). The view keeps the stored result's evidence, takes `human_review` from
+the row and `checked_at` from `approved_at`, and is not written to the database
+(`Cache.stored` is the result without the ledger). Every command that reads results through
+`Cache.get` therefore sees the approval, with no `restore`. A row is treated as an approval
+stored in the database is: there, the newest stored result for the text is the current one,
+whatever its status. So a result stored in the reader's database for the same text with a
+`checked_at` strictly later than the row's `approved_at` outranks the row (any stored
+status: `needs_review`, `provider_error`, `metadata_verified`), and the entry has that
+result's status. The times are compared as parsed instants with a zone, not as text. A
+stored result whose `checked_at` is missing or cannot be read counts as later than any row,
+so that a failed check is not hidden for want of its date. With nothing stored, or a
+stored result no later than the approval, the row counts. A newer row, or a new `approve`,
+recorded after that result counts again. Tests:
+`test_a_result_stored_after_the_approval_outranks_a_ledger_row_as_it_does_a_local_approval`
+and the two after it in `tests/test_approval_ledger.py`.
+
+Validation. `scan_approval_ledger` reads the file and returns the valid rows and a list of
+problems; it does not raise for anything the file holds. A line is ignored, and reported
+with its line number, when it is longer than 32 KiB (32,768 bytes), is not UTF-8 JSON, names a field
+twice, or is not a valid row (`shared_approval_problem`): exactly the six fields; a `v2:`
+fingerprint; a `human_review` with non-blank text for `reviewer` (at most 200 characters),
+`github_login` (a GitHub login), `source` (4,000) and `note` (8,000), an integer
+`github_id` when present, and no other field; an `approval_digest` equal to the digest
+computed from `human_review` (the stored digest is never used for anything else); an
+`approved_at` that is a time with a zone and not more than five minutes ahead of the
+reader's clock (`approved_at` is typed text; a row dated in the future is ignored and
+reported, is never written, and `send` refuses a ledger that holds a new one); a `policy`; and, as written (compact JSON plus the
+newline), at most 32,768 bytes. `record_approval` applies the same byte limit to the row an
+approval would become, and refuses one that would take the ledger over 8 MiB;
+`approval_lines` checks both again when a send adds rows. A file larger than 8 MiB, or one that cannot be
+read, is ignored whole and reported. `api.approval_problems`, `crossref status` (standard
+error), the progress lines of `send` and the notes of the library state show the problems.
+`append_approvals` refuses to write a row that is not valid, and `approvals_to_send` does
+not list an approval whose row would not be.
+
+Which copy is read (the trust model). A row is text that anyone can type, so what a typed
+row can do depends on which copy of the file a command reads:
+
+|Reader|Copy of `approvals.jsonl` read|
+|-|-|
+|Pull request check (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`.|
+|Push check with a base (`check_ci.py`; the workflow runs on pushes to `master` only)|The pushed commit's own, copied to `.bibcheck/pushed-approvals.jsonl` and passed the same way, after `crossref check-ledger` has compared it with the base revision's.|
+|The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. This holds whichever entries are checked (new and edited, `--all`, or chosen keys); when all entries or chosen keys are checked and `master`'s file cannot be downloaded, no row counts and the gate prints a line saying so. No environment variable names a ledger.|
+|`crossref status`, `crossref verify` run by hand, the library views, `restore`, `snapshot`, a push check without a base, a manual workflow run|The file beside the revocation ledger the cache was opened with: the checkout's own.|
+|A cache opened without a ledger|None.|
+
+In the first two rows a row counts only once it is on the branch the change is compared
+with, so a row cannot approve an entry in the check or the gate of the change that adds
+it. In the third, the working tree's file has the trust of the checkout itself, which is
+what `crossref restore` of a snapshot file, or an `approve` in the local database, already
+has: none of them is read by the pull request check. An approval the sender recorded with
+`approve` is in the sender's database and counts in the sender's own gate, as before.
+
+Rows are validated when they enter the ledger, not only when they are read. `send` writes
+only rows that are valid at that moment and refuses a ledger whose uncommitted lines are not
+(`ledger_additions`). The pull request check runs `crossref check-ledger --base FILE` first:
+it fails when a line the base revision holds was removed or changed, or when an added line
+is not, at the time of the run, a valid row under the current `POLICY` whose fingerprint is
+that of an entry of the same commit's `cdl.bib` and whose `key` is that entry's key (any of
+them, where the same text stands under several keys). So nothing can be merged today and
+begin to count later: not a row dated ahead of the clock, not a row for another policy, not
+a row for a text that no entry has yet. `send` applies the same function to the working
+tree. Lines the base already holds are not checked again: a row whose entry was edited or
+removed since no longer matches any entry and is not an error for later changes. A reader still validates
+every row each time, and a row typed into a working tree is subject to the reader's clock
+there.
+
+One revocation rule (`approval_revoked`, asked through `Cache.revoked`). Every reader of
+approvals asks it, over every revocation the cache knows (`Cache.revocations`: the
+database's `revocations` table, which also receives the rows of a restored snapshot and of
+`--trusted-revocations`, and the revocation ledger file): `Cache.stored` for an approval in
+the database, `Cache.shared_approval` for a ledger row, `import_snapshot` for a restored
+result, and `record_approval` for a review about to be recorded. `current_results`,
+`status`, `snapshot`, the library views, `approvals_note` and `approvals_waiting` read
+through `Cache.get`/`Cache.stored`. A revocation revokes an approval with the same
+fingerprint when any of these holds: the digest computed from its `human_review` is
+one the revocation names (`revoked_digests`); its time (a row's `approved_at`, a stored
+result's `checked_at`) is not after `revoked_at`, compared as instants, or cannot be read;
+or its `source` and `note`, with white space collapsed and case folded,
+equal those of the approval the revocation carries. The third rule means a copy of a revoked
+review with other spacing, another time, another reviewer or another `github_id` is not a
+new decision. `approved_at` is typed text like the rest of the row, so a row with a new note
+and a later time counts as a new decision, as a new `approve` with a new note does.
+
+`record_revocation` also finds approvals that exist only as ledger rows (rows
+with the key, or with the entry's current fingerprint), so `crossref revoke` works on a
+computer whose database never stored the approval. The approvals ledger is not edited; the
+revocation row is what makes the approval stop counting. `restore` stores a snapshot's
+result for a text even when a ledger row approves it. `snapshot` exports current results,
+so an approval read from the ledger is written into a new baseline as `human_verified`.
+
+Tests: `tests/test_approval_ledger.py`, and
+`test_a_pull_request_reads_the_approvals_ledger_of_its_base_only` in `tests/test_check_ci.py`.
+
 ## Operational limits
 
 - Crossref deposits can be incomplete or incorrect. A metadata match is not independent corroboration from the PDF.
 - The Crossref comparison supports `article`, `inproceedings`, `book`, and `incollection` only when the Crossref type agrees. Other types (software and data in DataCite, repository preprints, catalogue books) need one of the other routes, and a field no route verifies blocks approval (`no deterministic verifier for this field`).
+- Crossref keeps a book's editors on the book's record. Few chapter records repeat them (79 of the 6,573 chapter records among the saved candidates of the 2026-09-30 baseline; 63 of 2,364 proceedings-paper records, nearly all of them SPIE's), so an `editor` field is seldom verified from Crossref ([Editors](#editors-resolvers-31-and-32)).
 - A finite candidate set cannot establish global uniqueness. Exact title/author competitors among retrieved records block approval.
 - Initials agree with given names but do not establish personal identity. Use human source review for the stronger gate.
 - Direct Crossref publication dates must collapse to a single year, with one exception (resolver 28): when Crossref's print date and its issued date both equal the cited year, a later online/digitization date does not block, provided no linked PubMed, JATS or publisher record contradicts the print year. A separately identified PubMed issue record can resolve an online/print split only when it confirms the print year plus the same volume and pages. The Cambridge publisher-head layer can also corroborate that print year, requiring matching DOI, ISSN, title, ordered authors, venue, volume and pages. It reads explicit publication metadata and retains archival online dates separately. No automatic ±1-year tolerance is used.
@@ -323,7 +525,7 @@ for the measured outcome and its limits.
 
 ## Concrete LLM adapter and batch queue
 
-The included `bibcheck/openai_research_adapter.py` uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), [web search](https://developers.openai.com/api/docs/guides/tools-web-search), and [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs). Set `OPENAI_API_KEY` and `BIBCHECK_RESEARCH_MODEL` explicitly. The model must support these capabilities. Discovery must actually execute a completed web-search call; extraction receives the downloaded PDF page text and has no tools. Refusals, incomplete responses, duplicate fields, or missing page quotes fail closed. Usage and source traces are retained with successful evidence. The key is never printed or written into a report, and API calls use `store=false`.
+The included `src/cdlbib/openai_research_adapter.py` uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), [web search](https://developers.openai.com/api/docs/guides/tools-web-search), and [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs). Set `OPENAI_API_KEY` and `BIBCHECK_RESEARCH_MODEL` explicitly. The model must support these capabilities. Discovery must actually execute a completed web-search call; extraction receives the downloaded PDF page text and has no tools. Refusals, incomplete responses, duplicate fields, or missing page quotes fail closed. Usage and source traces are retained with successful evidence. The key is never printed or written into a report, and API calls use `store=false`.
 
 Python adapters are invoked with the current Python interpreter; other executable adapters retain the original subprocess contract. `research-batch` defaults to ten unresolved entries, caps a single invocation at 100, checkpoints success/failure, skips unchanged prior attempts, and stops after three consecutive failures. `--retry-failed` deliberately revisits failures. Edits invalidate research findings through the same exact-entry fingerprints. Ordinary `verify`, `auto-review`, and `fulltext-review` never invoke a commercial provider.
 
@@ -332,13 +534,13 @@ OpenAI request limits are four web-tool calls per discovery and 4,000 output tok
 
 ## Dartmouth Chat and custom search
 
-`bibcheck/dartmouth_research_adapter.py` uses Dartmouth's documented `/api/chat/completions` endpoint and `DARTMOUTH_CHAT_API_KEY`. `BIBCHECK_RESEARCH_MODEL` defaults to `zai-org.glm-5.3`, live-confirmed on September 14, 2026. `--check-model` and every adapter invocation check `/api/models` for that exact ID and free eligibility; they never substitute another provider. Both **Local** and **Free** tags qualify, but an explicit nonzero or malformed price overrides the tag and rejects inference. Run `python bibcheck/dartmouth_models.py .bibcheck/dartmouth-models.json` to refresh a sanitized catalog without private upstream metadata. See [Dartmouth model tags](https://rc.dartmouth.edu/ai/online-resources/understanding-tags/), [API usage](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/basic_usage/) and [model discovery](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/model_list/).
+`src/cdlbib/dartmouth_research_adapter.py` uses Dartmouth's documented `/api/chat/completions` endpoint and `DARTMOUTH_CHAT_API_KEY`. `BIBCHECK_RESEARCH_MODEL` defaults to `zai-org.glm-5.3`, live-confirmed on September 14, 2026. `--check-model` and every adapter invocation check `/api/models` for that exact ID and free eligibility; they never substitute another provider. Both **Local** and **Free** tags qualify, but an explicit nonzero or malformed price overrides the tag and rejects inference. Run `python -m cdlbib.dartmouth_models .bibcheck/dartmouth-models.json` to refresh a sanitized catalog without private upstream metadata. See [Dartmouth model tags](https://rc.dartmouth.edu/ai/online-resources/understanding-tags/), [API usage](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/basic_usage/) and [model discovery](https://rcweb.dartmouth.edu/~d20964h/2024-12-11-dartmouth-chat-api/model_list/).
 
 The full GLM 5.3 model is the selected free text model; Flash is a separate faster multimodal option. The [full model card](https://huggingface.co/zai-org/GLM-5.3) describes text-only input despite Dartmouth's reported vision capability. Requests use maximum reasoning, temperature 1, top-p 0.95, clear thinking history, a 16,000-token output cap, and a 240-second read timeout. Model benchmarks informed selection; the repository's representative source audit tests actual extraction behavior separately. The adapter was first built and piloted with `qwen.qwen3.5-122b`, which it still supports with its own settings (below); the live results in this section date from that Qwen configuration, not the GLM default.
 
 The model uses a client-side JSON action loop, so native function calling or hosted search support is not required. It can request `web_search(query)`, see the results, revise its query, select a retrieved PDF source by index, or report that the source remains unresolved. Only these actions are interpreted; no shell commands, arbitrary functions, or model-supplied URLs execute. Tool data is explicitly untrusted. Allowed hosts govern page and PDF retrieval, including redirects. URLs from registry records and publisher `citation_pdf_url` metadata can also supply candidates. A link is a discovery clue, not evidence that the publication/version matches.
 
-`bibcheck/search_tools.py` provides two explicitly selected free backends:
+`src/cdlbib/search_tools.py` provides two explicitly selected free backends:
 
 - `BIBCHECK_SEARCH_BACKEND=europepmc` (default): the [Europe PMC REST API](https://europepmc.org/RestfulWebService), including full-text PDF links when supplied by its records. It covers scholarly literature, not general web content.
 - `BIBCHECK_SEARCH_BACKEND=duckduckgo`: a parser for DuckDuckGo's public HTML search interface. This is experimental, not an official search-results API or the Instant Answer API. Challenges, throttling, and unrecognized pages fail without proxy rotation, challenge bypass, or automatic retry. There is no silent provider fallback.
@@ -356,7 +558,7 @@ Validation (September 2026, Qwen configuration): both search connectors returned
 
 ### Local credentials and live debugging
 
-If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads `.bibcheck/secrets/dartmouth_chat_api_key.txt` (or `BIBCHECK_DARTMOUTH_KEY_FILE`). The local secrets directory is ignored by Git; use directory permissions `700` and file permissions `600`. The environment variable takes precedence. The key must be a single nonempty token. Never include it in source files, command arguments, reports, or prompts.
+If `DARTMOUTH_CHAT_API_KEY` is unset, the Dartmouth adapter reads the key from the system keychain: the item `dartmouth-chat-api-key`, with your operating-system user name as the account (`keyring set dartmouth-chat-api-key "$USER"` stores it). The OpenAI adapter does the same with `OPENAI_API_KEY` and the item `openai-api-key`. The key file `.bibcheck/secrets/dartmouth_chat_api_key.txt` and `BIBCHECK_DARTMOUTH_KEY_FILE` are no longer read. The keychain read waits at most 60 seconds. On macOS, an item created with the `security` command makes macOS show an access prompt the first time Python reads it; choose "Always Allow". The environment variable takes precedence. The key must be a single nonempty token. Never include it in source files, command arguments, reports, or prompts.
 
 The pilot script `verification/dartmouth_pilot.py` (now on the [archive repository](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/dartmouth_pilot.py)), run as `python verification/dartmouth_pilot.py --key ElSo18 --backend europepmc`, ran a bounded live attempt without altering the bibliography or verification database. Diagnostics and returned model evidence are saved under ignored `.bibcheck/debug/` with restricted permissions; credentials are redacted before diagnostic writes. Diagnostic responses retain content, usage and sanitized errors, excluding request headers and model reasoning text. `--allow-host` adds an exact permitted source host. `--landing-url` starts discovery from a known publisher page, fetching its metadata before model selection. `--source-url` skips discovery to isolate extraction against an already retrieved PDF; its evidence explicitly records that discovery was not exercised in that run. The script checks the model ID, downloads the actual PDF, extracts up to the first five pages (`--pages 1` isolates the front page), and applies the same quote checks as production research. A successful extraction probe is not evidence of a successful end-to-end search run or a citation approval.
 
@@ -418,12 +620,182 @@ reviews accept only the exact ordinary or year-refined query derived from the
 current citation. Explicit edition numbers compare across standard numeric and
 English ordinal spellings; a missing or qualified edition is not inferred.
 
+### Books built from catalogue records
+
+`cdlbib add` builds a `@book` from one MARC record of the same catalogue
+(`cdlbib.book_build`). The request is the catalogue check's
+(`catalogue_discovery.fetch_query`: the same endpoint, pacing and response cache); the
+query is `bath.isbn="…"` or `bath.lccn="…"` for a standard number, and the check's own
+title/author query for a title search, so the check later reads the same saved response.
+The record is read by the check's grammar (`catalogue_review.parse_edition`) and each
+built field is kept only when the check's comparison (`catalogue_review.compare_edition`)
+accepts it for that record. The proposal's status comes from the verifier: the first
+check, then `catalogue_review.review_book`, the function `run_catalogue_review` also
+calls. No approval is recorded, and a written book is verified by `verify` through the
+catalogue route like any other book.
+
+| Field | Written from | Not written when |
+|-|-|-|
+| `title` | 245 `$a` and `$b`, through the title formatter; a capitalised word after the first is braced | the record's title has markup |
+| `author` / `editor` | the people the grammar reads, as initials and surname | the byline is incomplete or corporate (the grammar then reads no record) |
+| `year` | 008 date 1 (the grammar requires the transcribed date to agree) | |
+| `publisher` | the transcribed publisher, through the publisher formatter; the first of two is written as a question | the check does not accept the formatted name |
+| `address` | the publisher's first place; with the state's two-letter code when 008/15-17 names one of the states the check compares | the check does not accept the formatted place |
+| `edition` | a numbered statement, as `2\textsuperscript{nd}` | the statement is not a number the check's edition comparison reads ("Rev. ed."). The catalogue's older "2d ed." and "3d ed." are read as the second and third edition since 2026-10-06; the entry then stays `needs_review` |
+
+An answer to an ISBN or LCCN query is used only for the records that carry that number
+themselves (MARC 020 `$a`, the ten- and thirteen-digit forms of one ISBN counting as the
+same; MARC 010, normalised): an answer that echoes the query and holds another record is
+refused, and so is the one matching record of an answer the catalogue cut short (it
+counts more records than it returned): the rest was not seen. The proposal keeps the record it was built from (`choices`: its catalogue id,
+LCCN, ISBNs, and the field that matched), and the proposal is verified only by the
+catalogue check's acceptance of that same record: an acceptance that came any other way
+(another source, another record) is put to the catalogue check before it is returned.
+
+Catalogue text is plain text. Before house braces are added it is escaped for TeX
+(`book_build.plain_source`, using the escaper of `intake`): `%`, `&`, `#` and `_`. The
+verifier compares the escaped field as equal to the record. A string with a backslash, a
+dollar sign, `~` or `^` is not written (the verifier does not read their TeX forms), and a
+name with any such character is not written either; the field is listed as unfilled.
+
+The same two layers and proof hold for every builder (`complete.build`,
+`complete.build_arxiv`): each value a source fills goes through
+`book_build.finished_source` (nothing that changes the entry's structure, no command but
+the house's own, no `~ ^ $`, `% & # _` escaped; a DOI may hold none of these), a list of
+names with a character TeX reads as a command, a control character or the word "and" in
+a name is not written, and the rendered entry must read back as one entry of its type
+with exactly its fields (`intake._proved`). Before 2026-10-06 the article, proceedings
+and chapter builders refused markup in a journal, book title or publisher and in names
+(`< > { } \ $`), constrained volume, number and pages by pattern, and wrote a title as
+the formatter returned it: a `%`, an unbalanced brace or a command in a Crossref title
+reached the entry. None of the 109 saved records of the tests is built differently.
+
+A search that returns several records is answered with the records and builds none. No
+DOI and no ISBN are written: the catalogue route is for a book without a supplied DOI, and
+an ISBN is not a house field.
+
+### A chapter record with two container titles
+
+When a `book-chapter` record has two container titles, `cdlbib.container_titles` chooses
+between them and can produce no other string: (1) a Crossref record of a book type with
+one of the chapter's ISBNs whose title is one of the two; (2) the Library of Congress
+record with one of those ISBNs whose transcribed title is one of the two; (3) only when
+both answered and neither decides, and a model route is set up: the `extract` phase of the
+research adapter reads the lines of the chapter's page at its publisher that mention
+either title. The page is fetched from `doi.org` and the fixed publisher hosts of
+`publisher_corrections` only, over HTTPS, each redirect checked before it is followed.
+The fetch uses a session made for it that carries no credentials (`trust_env` off: no
+`.netrc`, no proxy from the environment, so a machine that reaches the web only through a
+proxy cannot fetch the page; no auth; an empty cookie jar that lives for the one fetch).
+The host is resolved once to refuse private addresses and again by the connection; the
+connection is not pinned to the first answer, and what bounds this is that the host is
+one of the fixed public hosts and its certificate is verified, so another address cannot
+complete the TLS handshake and receives no request. One deadline covers the whole
+resolution and is a hard one for the caller: each retrieval (the page, the catalogue's
+answer, Crossref's book lookup) runs on a thread of its own, and at the deadline the
+caller is released with "no answer within N seconds" whatever that thread is doing: a
+host lookup, a connection, waiting for headers, reading a chunk-size line or a body. The
+connection is then shut down. What is not bounded is the abandoned thread itself: a host
+lookup that the system resolver does not return from keeps its thread until it does (a
+hard stop of that would need a child process). A body is limited twice, as received and
+as unpacked: only gzip and deflate are asked for, and the decompressor is stopped at the
+limit, so a small compressed answer cannot become a large one. The client's own waiting
+between requests (its pacing, a `Retry-After`, the pause before a retry) is inside the same
+deadline: `PoliteClient.pause` does not start a wait that would end after it, and raises
+"the time allowed for this retrieval would be over before the next request could be made"
+with nothing more asked. The model adapter is started with the time that is left of the
+resolution as its limit (at most its own 600 seconds), and is not started when none is
+left.
+Whether a title is another title is asked in one way throughout, and it is the verifier
+itself that is asked (`container_titles.verifier_verdict`: the `booktitle` evidence of
+`verification.compare_record` for a chapter, with every form that check accepts: case,
+braces, typography, an ordinal the formatter rewrote, the record's series number or
+volume-pack tail). It answers yes, no, or cannot say: for the two container titles, for the
+book's record, for the model's answer, for saved editor evidence, and, as whole words, for
+the lines of a page. A line the verifier does not read (math, markup) is neither taken to
+mention a title nor not to: quoted, it decides nothing.
+
+The model's choice counts only when its book title is one of the two and its passages lie
+on that page; what is judged is every whole line a passage touches, never the part of a
+line the model selected: one of those lines must hold the chosen title without the other,
+and none may hold the other alone. A block of the page longer than 500 characters is cut
+to that length, and a cut line is not taken as evidence for a title: what was cut may
+have named the other one. Which lines were cut is recorded by the page parser as it cuts
+them (`page_text`; saved with the page as `cut`, and given to `choice_from_reading` as the
+positions of those lines among the lines the model read), so it does not depend on the
+length of a line after white space is stripped from it. A block of which the parser kept
+only part (over 4000 characters of text) and a metadata line over 500 characters are
+recorded as cut too. For a page saved before this record was kept, and whatever the
+record says, a line of 500 characters or more, counted before anything is stripped, is
+taken as cut. The result is recorded on the proposal (`choices`: the record or, for a
+model, the route, model, URL, quoted line and document hash), a model-assisted choice
+makes the proposal need a decision, and the entry is verified afterwards by the ordinary
+route. The verifier accepts either container title of such a record, so an entry with a
+model-assisted title can read `metadata_verified` without the choice having been
+confirmed. The proposal therefore keeps saying, in its issues (shown by the command line,
+the terminal interface and the web interface) and in `choices` (`model_assisted: true`,
+`confirmed: false`), that the choice is model-assisted and unconfirmed, and it is never
+accepted without the person's decision. When such an entry is written, the mark is
+stored by the writer itself, before the entry is written and whichever interface accepted
+the proposal (`complete.apply` calls `container_titles.store_model_choices`; when the mark
+cannot be stored, nothing is written). The choice is kept in a table of its own in the
+verification database (`model_choices`: bibliography, citation key, the choice, when it was
+recorded, and the approval that cleared it), apart from the result of the entry's text. A
+result is replaced by every later check and is found by the exact fingerprint of the text,
+so the choice is not kept there alone. It belongs to the entry by its citation key (and by
+the keys the entry had before, read from `verification/key-renames.json` beside the
+revocation ledger the cache was opened with) and by the book title the choice wrote.
+`Cache.marked` applies it to every result that is read (`Cache.get`) and every result
+that is stored (`Cache.put`): while the choice is unresolved, the result carries it as
+`model_choice` and as its `external_evidence` (kind `model-assisted-choice`: route, model,
+URL, quoted line, page hash; other external evidence already on the result is left in
+place), its first issue is "booktitle chosen with a model, unconfirmed: human
+confirmation required", and a status of `metadata_verified` is stored and read as
+`needs_review`. Any other status is kept (a `provider_error` stays one, so the entry is
+checked again as usual) and carries the mark. A check with `--refresh`, a retry of
+unresolved entries, a failed lookup, and an edit of the entry that leaves its book title
+the same title (white space, another field, the citation key) therefore do not take the
+mark off. An entry whose new text has not been checked yet has no stored result and reads
+`pending`; its first check is stored with the mark.
+
+Only two events end it. A person's approval of the entry (a `human_verified` result,
+stored in the database or read from the approvals ledger) clears the choices that are
+about the entry; the approval is recorded with them, and if it is later revoked they are
+unresolved again. And a book title that the verifier itself says is a different title
+from the one chosen (`container_titles.still_chosen`): the choice is not about such an
+entry, and is about it again if the chosen title is put back. The same title in another
+form (case, braces, spacing, an ordinal rewritten) is still the choice, and so is a title
+the verifier cannot judge: the mark and the need for a decision are kept. A rechecked
+proposal says the choice again. A result that carries the mark in a database written
+before the table existed, or restored from a snapshot, has its choice recorded in the
+table when the result is read; a marked result that is never read before its entry is
+edited is not found this way. The table is added to an existing database when it is
+opened and the database's schema number is unchanged (1), so a copy of the package from
+before this table opens the same database and does not apply the choices. `crossref
+status` and the Library and Review views show "booktitle chosen with a model,
+unconfirmed" until a person approves the entry.
+
+A chapter's editors, when its own record names none, are taken from the book's record by
+the same lookups (`container_titles.book_editors`). Every record of the book in an answer
+under every one of the chapter's ISBNs is read, not the first; records that name different editors, an answer Crossref cut short
+(it counts more records than it returned), or an editor list with a member that is not a
+person decide nothing. A record met a second time (the same DOI at Crossref, the same
+record number in the catalogue) is passed over only when it says the same as the first
+time (its type, titles and editors as read); the same identifier with other contents
+decides nothing, and records that state no identifier are never taken for each other. At
+most four ISBNs of a chapter are looked up; a record that states more is not looked up in
+part, and neither its editors nor the choice between its two titles is taken from records
+(no model is asked in their place). When a source does not answer for any of the ISBNs,
+the editors the other answers name are not taken: the answer is incomplete. The source records are kept, and each comparison reads them again:
+the record must be of a book type (never a series), carry one of the chapter's ISBNs, and
+have as its title the container title that the entry's book title is.
+
 ### Local PDF discovery
 
 To index a user-provided paper folder without changing it:
 
 ```sh
-.venv/bin/python bibcheck/local_library.py "/path/to/Papers" --bibliography cdl.bib
+python -m cdlbib.local_library "/path/to/Papers" --bibliography cdl.bib
 ```
 
 The default output is ignored `.bibcheck/local-library/`. Each PDF is hashed;
@@ -443,7 +815,7 @@ For PDFs whose ordinary extraction failed, an optional local OCR pass uses
 Poppler and Tesseract:
 
 ```sh
-.venv/bin/python bibcheck/local_ocr.py --bibliography cdl.bib
+python -m cdlbib.local_ocr --bibliography cdl.bib
 ```
 
 It reads the existing index and writes to ignored `.bibcheck/local-library-ocr/`.
@@ -531,7 +903,7 @@ Provider documentation: [bioRxiv API](https://api.biorxiv.org/) and
 ### arXiv repository verification
 
 `verify --auto-review` also checks explicitly cited arXiv articles through
-`bibcheck/arxiv_review.py`. It compares complete ordered author lists, titles,
+`src/cdlbib/arxiv_review.py`. It compares complete ordered author lists, titles,
 identifiers, dates and version histories across the Atom API, repository HTML
 head/history and DataCite's DOI record. Legacy identifiers in volume/pages and
 split volume/number fields are checked as repository identifiers. Unsupported
@@ -574,7 +946,7 @@ authoritative source (Crossref or PubMed) when identity is established; see
 [phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/phase0-2026-09-22/README.md) in the archive repository. Catalogue policy 7
 widens the Library of Congress record parser
 ([catalogue-phase0-2026-09-22/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/catalogue-phase0-2026-09-22/README.md)).
-`bibcheck/pdf_evidence.py` is a position-aware local-PDF verifier with a
+`src/cdlbib/pdf_evidence.py` is a position-aware local-PDF verifier with a
 subtle-error benchmark (`verification/pdf-benchmark/README.md`); it is **not** wired
 into any approval path.
 
@@ -588,10 +960,10 @@ in the archive repository.
 
 |Route|Module|Source|
 |-|-|-|
-|PsyArXiv|`bibcheck/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
-|Software and data|`bibcheck/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
-|ACL Anthology|`bibcheck/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
-|SfN abstracts|`bibcheck/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
+|PsyArXiv|`src/cdlbib/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
+|Software and data|`src/cdlbib/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
+|ACL Anthology|`src/cdlbib/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
+|SfN abstracts|`src/cdlbib/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
 
 A route can verify an entry, propose source-backed field values, flag a published
 version for replacement, or hold the entry. Only PsyArXiv is supported among OSF
@@ -601,6 +973,168 @@ and never verifies. Software titles take the house form `{Owner}/repo: {version}
 every creator is compared in order. The SfN route can confirm a meeting abstract, but
 under the lab's rules conference abstracts are dropped from `cdl.bib` (see
 [Decision rules](#decision-rules-for-what-the-library-contains)).
+
+## Editors (resolvers 31 and 32)
+
+Owner decision, 2026-10-06. The Crossref comparison (`verification.compare_record`)
+compares an entry's `editor` field with the record's `editor` list exactly as it compares
+authors (`author_evidence`, with the role named in the wording): the whole list, in order,
+surnames equal, initials agreeing with the source's given names, suffixes ignored, a
+byline listed twice counted once.
+
+|Entry|Record|Result|
+|-|-|-|
+|no `editor` field|any|no editor evidence and no editor issue: the comparison is the one made before this rule|
+|`editor` on `incollection`, `inproceedings` or `book`|names the same editors|`editor` evidence, no issue|
+|the same|names other editors, another order or another number|`editor: Editor surnames/order differ`, `editor: Missing editors or different editor counts`, `editor: Editor given names differ`, and so on|
+|the same|names no editors|`editor: the citation names editors and the source record names none`|
+|`editor` on any other type|any|`editor: no deterministic verifier for this field`, as before|
+
+This is an additive resolver change, so it raised `RESOLVER_VERSION` to 31 and not
+`POLICY`. Before it, every entry with an `editor` field got the issue `editor: no
+deterministic verifier for this field` from this comparison, so none was ever accepted
+through it; the rule can therefore accept entries that were unresolved and cannot
+withdraw an approval. Restoring `verification/baseline.jsonl.gz` and running `crossref
+auto-review --offline` gives the same status for every entry before and after the change
+(`human_verified=36, metadata_verified=6348`, and `pending` for the six entries added
+since the baseline was saved), with every saved result byte for byte the same.
+
+The entry builder (`complete.build`) writes a chapter's `Editor` from the chapter's own
+record when the record names editors, in the house name form. It does not fill the
+editors of a proceedings paper.
+
+### A chapter's editors from the book's record (resolver 32)
+
+Owner decision, 2026-10-06: a chapter's editors come from the book's record. Of the 227
+chapters of the library with an `Editor` field, 122 have their accepted Crossref chapter
+record saved, and none of those records names an editor.
+
+`container_titles.book_editors` finds the book by the lookup that settles a chapter's book
+title, and no other: for each of the chapter's ISBNs, Crossref's records of a book type
+(`book`, `edited-book`, `monograph`, `reference-book`; never a series) and then the Library
+of Congress record, each taken only when its title is one of the chapter record's container
+titles. The requests, the cache and the bounds are those of that lookup.
+
+|Found|Editors|
+|-|-|
+|one record of the book names editors|those editors|
+|both name editors and agree (compared as a byline is compared with a source)|Crossref's|
+|both name editors and disagree|none: "the book's Crossref record and its Library of Congress record name different editors, and neither is chosen"|
+|a record of the book that names no editors (or one the catalogue check's grammar does not read)|none: "the book's own record names no editors"|
+|no ISBN on the chapter's record, or no record with it under the book's title|none, with that reason|
+|a source did not answer for one of the ISBNs, although another answer names editors|none: "... the editors are not taken from an incomplete answer"|
+|more than four ISBNs on the chapter's record|none, and nothing is asked: "the chapter's record states N ISBNs and only 4 are looked up, so not every record of the book would be read"|
+|one DOI (or catalogue record number) met twice with different type, titles or editors|none: "Crossref gave the record ... more than once, with different titles or editors"|
+
+The builder keeps what was found in the chapter's record under `book-record` and writes
+`Editor` from it. The verifier does the same for a chapter cited with editors whose record
+names none, when nothing else in the comparison is amiss (`verify_entry`): it looks the book
+up, keeps what it found in the candidate's saved record, and `compare_record` compares the
+entry's editors with it by the authors' rules. The saved evidence is judged again on every
+comparison (`container_titles.valid_book_editors`): it counts only if it was found under one
+of the chapter record's own ISBNs and a title that is one of its container titles, names
+the source its editors came from, and records no disagreement. Offline reassessment
+therefore needs no request. The issue for a mismatch ends "(the book's own record)".
+
+Additive, so `RESOLVER_VERSION` 32 and the same `POLICY`: before it, such an entry had the
+issue that its record names no editors. The offline recomputation over the baseline gives
+every entry the status it had (the four book titles the owner had rewritten that day are
+`pending`, as edited entries are). From saved records alone, 7 of the 227 chapters have a
+saved record of their book that confirms their editors (Mann23, KahaEtal24, Mann24,
+OReiEtal99, OhrtGron99, HealPark01, RoedEtal01a); for 3 the saved book record names the same
+people without the middle initials the entry gives, which the name rules do not accept
+(HashEtal08, BravEtal08, KaneEtal08); 92 have no saved chapter record, 7 a chapter record
+without an ISBN, and for 118 no record of the book was ever saved. For eight chapters of the
+library the book was looked up for the tests (KahaEtal24, Mann24, Klee56, BobrNorm75, Scha03,
+AherBeat81, Mann23, MayeEtal92b): a record of the book named editors for all eight, six from
+Crossref and two from the Library of Congress, and they are the library's editors for the
+five of them whose library entry has any.
+
+## Ordinals and acronyms in book titles (2026-10-06)
+
+Owner decisions, 2026-10-06. Ordinals are numerals with a superscript suffix
+(`30\textsuperscript{th}`), and acronyms in the titles of books and proceedings keep their
+capitals in braces (`{IEEE}`). The format checker's formatter for `booktitle`
+(`helpers.format_booktitle`) and for `edition` (`helpers.format_edition`) writes both, and
+the builder uses the same formatter, so a built name is in the form the check accepts.
+
+|Given|Written|
+|-|-|
+|`16th Annual International Conference`|`16\textsuperscript{th} Annual International Conference`|
+|`the Fifth Annual Workshop`, `the Twenty-Third Annual Conference` (the ordinal numbers a meeting)|`the 5\textsuperscript{th} Annual Workshop`, `the 23\textsuperscript{rd} Annual Conference`|
+|`Second Language Acquisition`, `the Twenty-First-Century University` (the ordinal is part of the wording)|unchanged|
+|`the Thirty Years War`, `the 30 Annual Conference` (a cardinal)|unchanged|
+|`the 3th Workshop` (a numeral with the wrong suffix)|unchanged|
+|`NAACL-HLT`, `(MobiSys)`, `IEEE/CVF`, `ACM SIGKDD`|`{NAACL}-{HLT}`, `({MobiSys})`, `{IEEE/CVF}`, `{ACM} {SIGKDD}`|
+|a name given wholly in capitals|formatted as before: no acronym is read in it|
+|edition `Second`, `2nd`, `Second edition`, `2nd ed.`|`2\textsuperscript{nd}`|
+|edition `2` (a cardinal), `3th` (a wrong suffix)|unchanged (the research route's own normaliser, `research_forms.normalise_edition`, writes both as ordinals)|
+|edition `Second Language edition`, `Revised second edition` (an ordinal word inside a phrase)|unchanged: an ordinal word is rewritten only when it is the whole value or is followed by nothing but the word for an edition|
+|edition `Revised 2nd edition` (an ordinal numeral inside a phrase)|`Revised 2\textsuperscript{nd} edition`|
+
+An ordinal word counts as numbering a meeting when the next word names a meeting
+(conference, workshop, symposium, meeting, congress, colloquium, convention, seminar,
+forum), with nothing between them but "annual", "biennial", "international", "national",
+"joint" and the like, or braced acronyms. Other ordinal words are left as written.
+
+The comparison reads the three spellings of an ordinal as equal (`verification.ordinal_form`,
+which reads the superscript form too), in the Crossref comparison and, since this change, in
+the ACL Anthology check's comparison of the proceedings' name.
+
+LaTeX in a name is case-sensitive, so a name is read once, left to right, into tokens
+(`helpers.name_tokens`, for every field `format_journal_name` formats and for `edition`),
+and the word, ordinal and acronym rules are applied to plain tokens only. The opaque tokens
+are written out exactly as given, and the result is the tokens put together again:
+
+|Token|Examples|
+|-|-|
+|opaque: a control sequence with the optional and braced arguments that follow it|`\LaTeX`, `\emph{Drosophila}`, `\textcolor[RGB]{0,0,0}{Title}`, an accent `\"{o}`|
+|opaque: a braced group that holds a group, a command, mathematics or a space|`{\"O}`, `{{Mixed} Case}`, `{Lopes da Silva}`|
+|opaque: mathematics, in line or displayed|`$L_{AB} + Q$`, `\(a+b\)`, `$$L_{AB} + Q$$`, `\[a+b\]`|
+|plain: everything else; an escaped character is that character; a braced group of one word is the word rules' own (the caps list, `unbrace_ordinary`)|`\&`, `\{`, `{IEEE}`, `{University}`|
+
+A value whose braces or mathematics do not balance, or of more than 5,000 characters
+(`MAX_NAME_LENGTH`), is not formatted: every formatter returns it unchanged, and the format
+check stops with "The following fields cannot be formatted", naming the entry, the field and
+the reason, as it does for a page range it cannot read. No value of `cdl.bib` or of the
+frozen library fixture is such a value. The tokenizer looks at each character once.
+
+One consequence for the entry builder: an accented capital at the start of a word
+(`{\"O}sterreichische`) used to be lower-cased by the word rules, so such a name was
+written as the source has it and asked about; it is now written in its LaTeX form.
+
+Comparing the formatter before and after on every Journal, Booktitle, Publisher, Address
+and Edition of `cdl.bib` and of the frozen library fixture, and on every key of the three
+alias tables, no result differs.
+
+Entries already in the library that a new house rule would change can be held on a list,
+`src/cdlbib/data/pending_house_forms.json`, each with its present and its proposed text. The
+format check prints a listed entry on every run and does not count it as an error while it
+is exactly as listed; `--autofix` does not change it. Every other entry, and a listed entry
+whose text is anything else, is held to the rule. The list is empty. The ordinal rule
+changed four book titles (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96), which were held on
+the list and then rewritten in `cdl.bib` on 2026-10-06 with the owner's approval. Their
+text changed, so their saved results no longer apply until they are approved again.
+
+## Builder rules left as built (2026-10-06)
+
+Two things the entry builder does were confirmed as they are:
+
+- A chapter's publisher is written from the Crossref record only when the format check's
+  publisher formatter leaves the registry's name as it is. A name the formatter turns into
+  another name (`Springer New York` becomes `Springer`) or respells (`Springer US` becomes
+  `Springer Us`) is not written, and the proposal lists it as unfilled: the registry names
+  the current depositor, which may not be the publisher printed in the book (AherBeat81:
+  Crossref has `Springer US`, the book's imprint is Plenum Press).
+- The name of proceedings is written without its year and without the acronym in
+  parentheses at its end (`verification.proceedings_name_forms`), the form the comparison
+  accepts for a source name with either.
+
+The builder reads the ACL Anthology's own record of an Anthology paper (through the
+Anthology check's client and cache, `acl_review.collect`) and takes the pages from it;
+Crossref's pages are proposed as a question only when the Anthology cannot be read or
+states no pages. The proposal is then checked as the gate checks it: when the Crossref
+comparison does not accept the entry, the Anthology check judges it.
 
 ## Correction, erratum and retraction notices
 
@@ -636,7 +1170,7 @@ user, who dropped the entry (GrilEtal06b).
 
 ## Research route
 
-`bibcheck/research_route.py` covers the entries that the September 2026 research waves
+`src/cdlbib/research_route.py` covers the entries that the September 2026 research waves
 verified field by field. Their saved results in `verification/baseline.jsonl.gz` have
 status `metadata_verified` and `accepted_source = research-evidence`; each records, for
 every field, the researched value, the quotation, the source URL and the sha256 of the
@@ -645,7 +1179,7 @@ fetched page. The research files, the route's design notes and the
 archive repository ([research-route-2026-09-27/README.md](https://github.com/ContextLab/CDL-bibliography-stacks/blob/main/verification/research-route-2026-09-27/README.md)).
 The command is not on this branch, because it read those research files; neither is
 the code that read them or its tests (tests/fixtures/research_route/). What stays in
-`bibcheck/research_route.py` is the re-check below and everything it calls.
+`src/cdlbib/research_route.py` is the re-check below and everything it calls.
 
 An entry was approved only when:
 
@@ -664,8 +1198,8 @@ resolution and manual rows whose notes say so, and are flagged `browser_or_scan`
 `valid_research_approval` is registered as an approval validator, so `crossref restore`
 re-checks every research approval offline from the snapshot alone: the saved record must
 be complete and self-consistent, and it must re-derive to the same approval with the
-research validator's quote matching (`bibcheck/research_quotes.py`) and the post-check's
-house normalisers (`bibcheck/research_forms.py`), both copied unchanged from the research
+research validator's quote matching (`src/cdlbib/research_quotes.py`) and the post-check's
+house normalisers (`src/cdlbib/research_forms.py`), both copied unchanged from the research
 tools. Where a local `.bibcheck/research-pilot/` body cache exists, a quote is searched
 again in its body; otherwise the recorded quote result is used. Editing an entry sends it
 back through ordinary verification. `tests/test_research_route.py` runs the re-check on 14
@@ -680,20 +1214,34 @@ This route is separate from the optional LLM adapter below: `crossref research` 
 
 `.github/workflows/citation-check.yml` (workflow name "Citation verification") runs
 `verification/check_ci.py` on pull requests to `master`, pushes to `master`, and manual
-dispatch. All jobs share one serial concurrency group, and `CROSSREF_MAILTO` comes from
-the repository's Actions variable.
+dispatch. All jobs share one serial concurrency group. The shared
+`.github/actions/crossref-contact` action supplies the public CI contact from its
+`mailto.txt`; the repository's `CROSSREF_MAILTO` Actions variable overrides it when
+available. This lets fork pull requests run when GitHub supplies an empty variable.
 
 - On a pull request or push, it writes the base revision's `cdl.bib` to
   `.bibcheck/base.bib`, restores the base revision's `verification/baseline.jsonl.gz`
   (never the snapshot in the pull request), and runs
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
-  edited content is gated; key-only renames are excluded.
+  edited content is gated; key-only renames are excluded. It also writes the base
+  revision's `verification/approvals.jsonl` to `.bibcheck/base-approvals.jsonl` (an empty
+  file when the base has none). `crossref check-ledger --base` compares the checkout's
+  file with that copy first. On a pull request the copy is then passed as
+  `--trusted-approvals`, so the checker reads approvals from it and not from the pull
+  request's file. On a push the pushed commit's own file is passed instead
+  (`.bibcheck/pushed-approvals.jsonl`): a push to `master` is content that is already
+  merged, so a row that came in with it counts for an entry the same push changed. The base revision's
+  `verification/revocations.jsonl` is written to `.bibcheck/base-revocations.jsonl` and
+  passed as `--trusted-revocations` to `restore` and `verify`, which add its rows to the
+  database's `revocations` table; they count together with the rows of the pull request's
+  own file, so a pull request that deletes a revocation line does not undo it.
 - A push whose base revision is not in the history (a force-push, rewritten history, or
   a new branch) has nothing to compare against. Its content is already merged, so the job
   restores the pushed commit's own `verification/baseline.jsonl.gz` and runs
   `crossref status cdl.bib` (offline): every entry must have an accepted result for its
   exact current text. Pull requests never take this path; one without a base is refused.
 - A manual run restores the committed baseline and checks the whole library.
+- The last two read the checked-out commit's own `verification/approvals.jsonl`.
 - The SQLite database is kept in the Actions cache, keyed by ref; a pull request can
   fall back to the `master` cache, and `master` never restores a pull-request cache. The
   report and a checkpoint snapshot are uploaded as artifacts. The cache only saves
@@ -702,11 +1250,20 @@ the repository's Actions variable.
 - Exit status: `0` when every selected entry is verified, `1` otherwise, `2` for a
   configuration or provider error.
 
-Because approvals are trusted only from the base branch, a pull request that adds a
-`human_verified` approval to `baseline.jsonl.gz` still fails its own check for that
-entry; a maintainer merges it after checking the approval. The job runs the pull
+Because a pull request's approvals are trusted only from the base branch, a pull request
+that adds a `human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`,
+still fails its own check for an entry it also adds or edits; a maintainer merges it after
+checking the approval. The check of the push that the merge makes reads the merged
+`approvals.jsonl`, so there the row counts and the entry is `human_verified`. A pull request that only adds rows to `approvals.jsonl` changes no
+entry, so no entry is selected and the check passes without reading those rows. The job runs the pull
 request's own code, so this guarantee assumes the checker itself is unchanged; review any
-change under `bibcheck/` or `verification/check_ci.py` separately.
+change under `src/cdlbib/` or `verification/check_ci.py` separately.
 
-The separate `autocheck` workflow runs `bibcheck/test.py` (the formatting check of
-`cdl.bib`) and `pytest tests` on Python 3.11.
+The separate `autocheck` workflow runs `cdlbib verify --no-citations` (the formatting
+check of `cdl.bib`) and `pytest tests` on Python 3.11 and 3.13 (job `test`), and builds the
+wheel and installs it into an empty environment (job `build`). Before the system's TeX is
+installed, the `test` job runs `tests/test_texinstall.py` with `CDLBIB_TEST_TEX_INSTALL=1`:
+the tests that install biber and BibTeX for real, into a TeX Live of their own (TinyTeX,
+about 140 MB with biber). They assert that `biber` and `bibtex` are absent until
+installed, and their `PATH` includes `/usr/bin`, so they cannot run after the `apt`
+packages put both there; the step fails first if the runner already has one.

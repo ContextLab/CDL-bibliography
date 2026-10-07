@@ -14,8 +14,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import research_quotes as V  # noqa: E402
+from cdlbib import research_quotes as V  # noqa: E402
 
 
 def ok(field, value, quotes):

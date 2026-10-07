@@ -739,3 +739,130 @@ table, and `check_bib(autofix=True)` of cdl.bib). The list of rows is frozen in
 | engineering in medicine and biology society, 2008. embs 2008. 30th annual international conference of the ieee | retarget | ieee conference on engineering in medicine, biology, and society | annual international conference of the ieee engineering in medicine and biology society | Same as the EMBC 2010 row: old target mis-expands 'Engineering in Medicine and Biology Society'. |
 | proc. intl. conference on learning and development (icdl) | retarget | proceedings of the international conference on learning and development | proceedings of the international conference on development and learning | ICDL is the (IEEE) International Conference on Development and Learning; this table already maps the 3rd ICDL to 'proceedings of the international conference on development and learning'. Old target transposes the name. |
 | mathematics $+$ physics | retarget | mathematics$+$ physics | mathematics $+$ physics | Open Library: 'Mathematics + Physics' (L Streit ed., World Scientific 1985); old target 'mathematics$+$ physics' drops the space before '+'. |
+
+## Books from catalogue records; a chapter's two container titles (user, 2026-10-06)
+
+User, 2026-10-06: "the builder creates book entries from Library of Congress records, which
+the checker already uses." Applied (`cdlbib.book_build`):
+
+- **One source for building and checking.** A `@book` is built from one MARC record of the
+  Library of Congress SRU catalogue, fetched by the catalogue check's own request function
+  and cache, read by its grammar (`catalogue_review.parse_edition`), and each built field is
+  kept only when its comparison (`catalogue_review.compare_edition`) accepts it. A record the
+  grammar does not read gives no entry. A built book is a proposal; its status is the
+  verifier's, and nothing records an approval.
+- **Asked for by** ISBN (`bath.isbn`), LCCN (`bath.lccn`), or title and first author (the
+  check's title/author query). Several records are listed as candidates and none is taken;
+  a given year picks an edition only when exactly one record with the title has it.
+- **Not changed:** the formatter; a typed `@book` entry and a book's Crossref record are
+  still not completed.
+- **Found while building, not decided:** the publisher is written as the catalogue
+  transcribes it ("L Erlbaum Associates"); of two publishers the first is written as a
+  question (the library cites Tulv83 by the second); an edition statement that is not a
+  number is not written, and that entry stays `needs_review`. (LC's older "2d ed." was not
+  written either when this was built; it is read as the second edition since the ordinal
+  rule below.)
+
+User, 2026-10-06, on a chapter record that gives a series title and a book title in no
+stated order: "Try to resolve automatically through llm-driven web search." Applied
+(`cdlbib.container_titles`):
+
+- **Records first.** The book's own Crossref record (a book-type record with one of the
+  chapter's ISBNs), then its Library of Congress record: the title either gives the book is
+  taken. In the frozen library this decides Scha03, Mann23 and MayeEtal92b. Crossref's
+  `/journals/{ISSN}` does not know book-series ISSNs (404 for 0079-6123, 1569-7339 and
+  0930-0325), so the series' ISSN decides nothing.
+- **Then a model, only to choose between the two titles.** When both record sources
+  answered and neither decides, and a model route is set up, the adapter's `extract` phase
+  reads the lines of the chapter's page at its publisher that mention either title. The
+  choice counts only when the model's book title is one of the two, a line it selected holds
+  that title without the other, and none holds the other alone. It is announced before it
+  runs (`--ask`: asked first), recorded with route, model, URL and quoted line, marked
+  model-assisted, makes the proposal need a decision, and is not a verification.
+- **Limits found.** The page is fetched from `doi.org` and the fixed publisher hosts of
+  `publisher_corrections` only; Elsevier's landing page (the publisher of the chapters the
+  records do not decide, e.g. 10.1016/s0079-6123(03)45022-x) gives no readable text there,
+  so those stay unfilled with the reason. The verifier accepts either container title of
+  such a record, so it does not confirm the choice.
+
+## Builder and format rules (owner, 2026-10-06)
+
+Decisions of the owner on 2026-10-06, as given to Claude in the task brief of that day (the
+brief's wording is quoted where it is marked as the owner's; the rest is Claude's summary of
+the brief). What was built for each is in [verification.md](verification.md#editors-resolvers-31-and-32).
+
+- **Editors are compared, and a chapter's are filled.** An `editor` field is compared with the
+  record's editors as authors are compared: complete, in order, by the same name rules. The
+  builder then fills `Editor` for a chapter from its record. Applied: `compare_record` compares
+  the field for `incollection`, `inproceedings` and `book`; an entry without the field is
+  compared exactly as before (all 37,270 saved Crossref comparisons of the baseline were
+  recomputed with the old and the new code: none differs for an entry without an `editor`
+  field; the 6,117 that differ are of entries with one, and differ only in the editor issue).
+  `RESOLVER_VERSION` 31; `POLICY` unchanged, because no entry with an `editor` field was ever
+  accepted through this comparison. What Claude found: Crossref rarely carries a book's
+  editors on the chapter's record (79 of the 6,573 chapter-type records among all saved search
+  candidates; of the library's 236 chapters, the accepted Crossref record is saved for 122 and
+  none of those lists editors), so chapters are still built without editors from that record; of the proceedings records that carry editors nearly all are
+  SPIE's.
+- **A chapter's editors come from the book's record** (owner, 2026-10-06, after the finding
+  above). Of the 227 chapters with an `Editor` field, 122 have their accepted Crossref chapter
+  record saved and none of those names an editor. Applied: the builder and the verifier find
+  the book by the lookup that settles a chapter's book title (the chapter's ISBN, Crossref's
+  record of a book type, then the Library of Congress record; `container_titles.book_editors`),
+  never a series. No record, a record without editors, or two records that disagree leave
+  `Editor` unfilled with the reason. `RESOLVER_VERSION` 32, additive. From saved records alone 7
+  of the 227 are confirmed by a saved record of their book; for 3 the book record lacks the
+  middle initials the entry gives; for 118 no record of the book was ever saved. Eight library
+  chapters were looked up for the tests: a record of the book named editors for all eight, and
+  they are the library's for the five whose entry has any.
+- **Ordinals: "numerals with superscript"** (the brief's quotation of the owner's choice), the
+  form the library uses: `30\textsuperscript{th}`. This extends the rule of 2026-09-25 ("Proper
+  ordinals everywhere", which names numeric ordinals) to ordinal words. Applied to `booktitle`
+  and `edition`. An ordinal word is rewritten
+  only when it numbers a meeting (confirmed by the owner on 2026-10-06) ("the Fifth Annual Workshop"); "The Handbook of Second
+  Language Acquisition" (KrolSund03) and "... in the Twenty-First-Century University" (Hara96)
+  are not rewritten. The library had 44 book titles and 32 editions in the superscript form,
+  no plain "30th", and six book titles with an ordinal word; the rule changes four of them
+  (ClanEtal19, BoseEtal92, SilbEtal01, Beaz96). The owner approved the change on 2026-10-06 and the four were rewritten in cdl.bib that day;
+  an edit ends an entry's saved result, and the owner re-approves the four. The mechanism that
+  listed them (`src/cdlbib/data/pending_house_forms.json`, named by the format check without
+  failing) remains, with an empty list.
+  A library catalogue's older "2d ed." and "3d ed." are read as the second and third edition,
+  by the format check and by the catalogue check's edition comparison
+  (`catalogue_review.normalized_edition`), so the book builder writes them; "Rev. ed." is
+  still not written. The format check leaves an edition "2" (a cardinal) and "3th" (a wrong
+  suffix) as written; the research route's own normaliser writes both as ordinals.
+- **Acronyms in the titles of books and proceedings keep their capitals, in braces**
+  (`{IEEE}`, `{ACM}`). Applied to `booktitle`: a word given with two or more capitals is
+  braced as given ("Computer Vision -- {ECCV} 2014", which the formatter wrote "Eccv"). No
+  existing entry is changed by it. A value over 2,000 characters is formatted without the
+  two rules, and the rules read long input in time proportional to its length.
+- **ACL Anthology pages come from the Anthology.** The builder reads the Anthology's own
+  record through the Anthology check's client and cache and fills the pages from it; when it
+  cannot be read, Crossref's pages are proposed as a question, as before.
+- **Left as built.** A chapter's publisher is left out when the registry's name may not be
+  the publisher printed in the book, and the name of proceedings drops the year and the final
+  acronym.
+- **bibtex's version** is shown with its letter (`0.99e`).
+- **The tests that install biber and BibTeX for real run on every pull request.** Applied in
+  `.github/workflows/autocheck.yml`, in a step before the system's TeX is installed (those
+  tests need a computer without `/usr/bin/biber`). Their TeX Live's package manager is now
+  updated before anything is installed with it: the pinned TinyTeX release's `tlmgr` had fallen
+  behind the package repository and refused every installation.
+
+User, 2026-10-06 (later), on three questions the work above raised:
+
+- **The catalogue in a title-and-author search:** "only when it's a book OR when other
+  searches fail". `find_candidates` asks the Library of Congress when the person says the
+  work is a book (`add --book`, the Book switch of the Search tab), and then asks nothing
+  else; otherwise only when Crossref, PubMed and arXiv gave no lead, and the progress lines
+  say that this is why. A paper search that finds leads makes no catalogue request.
+- **Chapters with no ISBN whose publisher page cannot be read (Elsevier):** staying
+  unfilled is accepted. The reason shown says that no record decides, why no model was
+  asked, and that the book title is to be typed in.
+- **Typed book entries:** "Yes, complete typed book entries from catalogue". A typed `@book`
+  is completed from its catalogue record (by `isbn`/`lccn`, else title and first author,
+  the typed year or edition choosing among editions; several editions are candidates). A
+  typed value the record does not agree with is a question and is not overwritten. A typed
+  book with a DOI is left as typed: the catalogue route is for a book without a supplied
+  DOI, and Crossref's record of a book has no edition and no place to build from.

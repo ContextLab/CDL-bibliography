@@ -4,8 +4,7 @@ import pytest
 from pathlib import Path
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import author_evidence, given_name_tokens
+from cdlbib.verification import author_evidence, given_name_tokens
 
 
 @pytest.mark.parametrize("local,source,expected", [
@@ -62,8 +61,8 @@ def test_dotted_initials_do_not_relax_author_order_or_suffixes():
 
 
 def test_resolver_reopens_only_new_secondary_targets(tmp_path):
-    from auto_review import run_auto_review
-    from verification import Cache, load_entries
+    from cdlbib.auto_review import run_auto_review
+    from cdlbib.verification import Cache, load_entries
 
     bib = tmp_path / "a.bib"
     bib.write_text("@article{A,author={A A Smith},title={Local title typo},year={2020},journal={Journal},volume={2},pages={1--9}}")

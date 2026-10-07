@@ -14,9 +14,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'bibcheck'))
-import acl_review as a  # noqa: E402
-import verification as v  # noqa: E402
+from cdlbib import acl_review as a  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 DATA = json.loads((ROOT / 'tests/fixtures/routes/acl_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'

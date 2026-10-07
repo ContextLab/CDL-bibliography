@@ -3,10 +3,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from source_passages import materialize, numbered_passages
-from research import validate_findings
-from publisher_metadata import PublisherMetadata
+from cdlbib.source_passages import materialize, numbered_passages
+from cdlbib.research import validate_findings
+from cdlbib.publisher_metadata import PublisherMetadata
 
 
 def finding(field, value, ids):

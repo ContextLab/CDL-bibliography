@@ -14,9 +14,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import extra_sources as xs  # noqa: E402
-from verification import Cache, ProviderError, dumps  # noqa: E402
+from cdlbib import extra_sources as xs  # noqa: E402
+from cdlbib.verification import Cache, ProviderError, dumps  # noqa: E402
 
 # PMID 13896567 (efetch, 2026-09-23): Games 1962, J Exp Psychol 63:1-11.
 GAMES_XML = """<PubmedArticleSet>
@@ -271,7 +270,7 @@ def test_book_review_does_not_verify_the_book():
 
 
 def test_book_review_is_not_identified_as_an_article_of_the_book_year():
-    from correction_proposals import single_source_identity
+    from cdlbib.correction_proposals import single_source_identity
     as_article = dict(BART32, ENTRYTYPE="article", journal="British Journal of Educational Psychology",
                       volume="3", pages="187--192")
     assert single_source_identity(as_article, REMEMBERING_REVIEW) is None  # 1932 book, 1933 review

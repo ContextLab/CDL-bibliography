@@ -6,9 +6,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import compare_record, normalize_pages, normalize_title, normalized
-from auto_review import compatible_authors, select_result
+from cdlbib.verification import compare_record, normalize_pages, normalize_title, normalized
+from cdlbib.auto_review import compatible_authors, select_result
 
 
 def test_monospace_text_is_preserved_including_nested_markup():
@@ -75,7 +74,7 @@ def test_terminal_period_does_not_hide_other_fields_or_competing_dois():
 
 @pytest.mark.parametrize("hyphen", ["‐", "‑"])
 def test_unicode_hyphens_preserve_word_boundaries_and_name_parts(hyphen):
-    from verification import author_evidence
+    from cdlbib.verification import author_evidence
     assert normalize_title("Self" + hyphen + "reference") == normalize_title("Self-reference")
     assert normalize_title("Self" + hyphen + "reference") != normalize_title("Self reference")
     assert normalize_title("Self" + hyphen + "reference") != normalize_title("Selfreference")
@@ -85,7 +84,7 @@ def test_unicode_hyphens_preserve_word_boundaries_and_name_parts(hyphen):
 
 @pytest.mark.parametrize("name", ["Journal of Physiology", "Lancet Neurology", "New England Journal of Medicine", "Annals of Mathematical Statistics", "Computer Journal"])
 def test_documented_journal_article_variants_are_confined_to_venues(name):
-    from verification import normalize_journal
+    from cdlbib.verification import normalize_journal
     assert normalize_journal(name) == normalize_journal("The " + name)
     assert normalize_title(name) != normalize_title("The " + name)
 
@@ -99,7 +98,7 @@ def test_documented_journal_article_variants_are_confined_to_venues(name):
     ("A Journal", "The A Journal"),
 ])
 def test_venue_variants_preserve_distinct_and_historical_journals(left, right):
-    from verification import normalize_journal
+    from cdlbib.verification import normalize_journal
     assert normalize_journal(left) != normalize_journal(right)
 
 
@@ -108,7 +107,7 @@ def test_venue_variants_preserve_distinct_and_historical_journals(left, right):
     'International Journal of Robotics Research', 'European Physical Journal B', 'Journal of Experimental Biology',
     'British Journal for the Philosophy of Science', 'Journal of Abnormal and Social Psychology'])
 def test_further_catalogued_article_variants(name):
-    from verification import normalize_journal
+    from cdlbib.verification import normalize_journal
     assert normalize_journal(name) == normalize_journal('The ' + name)
     assert normalize_title(name) != normalize_title('The ' + name)
 
@@ -121,5 +120,5 @@ def test_further_catalogued_article_variants(name):
     ('Journal of Abnormal and Social Psychology', 'Journal of Abnormal Psychology'),
 ])
 def test_journal_article_variants_preserve_names_and_historical_titles(left, right):
-    from verification import normalize_journal
+    from cdlbib.verification import normalize_journal
     assert normalize_journal(left) != normalize_journal(right)

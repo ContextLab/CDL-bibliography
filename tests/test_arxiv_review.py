@@ -7,11 +7,10 @@ import sys
 from types import SimpleNamespace
 
 import pytest
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'bibcheck'))
-import arxiv_review as a
-import verification as v
-from auto_review import POLICY, RESOLVER_VERSION, reassess, secondary_notice_flags
-from verification_cli import DeferredClient
+from cdlbib import arxiv_review as a
+from cdlbib import verification as v
+from cdlbib.auto_review import POLICY, RESOLVER_VERSION, reassess, secondary_notice_flags
+from cdlbib.verification_cli import DeferredClient
 
 DATA = json.loads((Path(__file__).parent/'fixtures/arxiv_preprints.json').read_text())
 
@@ -218,7 +217,7 @@ def test_notice_survives_edit_without_doi_or_candidates_and_restore(tmp_path):
 
 def test_normal_cli_uses_source_route_and_unchanged_repeat(tmp_path):
     from typer.testing import CliRunner
-    from verification_cli import app
+    from cdlbib.verification_cli import app
     c,bib,cache=seed(tmp_path);cache.close();database=tmp_path/'cache.sqlite3'
     args=['verify',str(bib),'--database',str(database),'--report',str(tmp_path/'report'),'--auto-review']
     first=CliRunner().invoke(app,args);assert first.exit_code==0,first.output

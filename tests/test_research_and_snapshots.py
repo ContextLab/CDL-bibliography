@@ -7,17 +7,16 @@ import pytest
 import requests
 from typer.testing import CliRunner
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from research import allowed_url, download_pdf, invoke_adapter, validate_findings
-from verification import (
+from cdlbib.research import allowed_url, download_pdf, invoke_adapter, validate_findings
+from cdlbib.verification import (
     Cache,
     current_results,
     export_snapshot,
     import_snapshot,
     load_entries,
 )
-from verification_cli import app
-import research
+from cdlbib.verification_cli import app
+from cdlbib import research
 
 
 def test_pdf_mirror_fallback_records_failed_source(tmp_path, monkeypatch):
@@ -240,7 +239,7 @@ def test_gate_requires_human_and_rejects_unknown_keys(tmp_path):
 
 def test_scanned_pdf_requires_human(tmp_path):
     pypdf = pytest.importorskip("pypdf")
-    from research import extract_pages
+    from cdlbib.research import extract_pages
 
     writer = pypdf.PdfWriter()
     writer.add_blank_page(width=300, height=300)
@@ -253,7 +252,7 @@ def test_scanned_pdf_requires_human(tmp_path):
 def test_actual_pdf_text_extraction(tmp_path):
     pypdf = pytest.importorskip("pypdf")
     from pypdf.generic import DictionaryObject, NameObject, DecodedStreamObject
-    from research import extract_pages
+    from cdlbib.research import extract_pages
 
     writer = pypdf.PdfWriter()
     page = writer.add_blank_page(width=300, height=300)
@@ -277,7 +276,7 @@ def test_actual_pdf_text_extraction(tmp_path):
 
 
 def test_reports_cannot_overwrite_bibliography_or_cache(tmp_path):
-    from verification import write_report
+    from cdlbib.verification import write_report
 
     bib = tmp_path / "a.bib"
     original = "@book{A,title={One},year={2020}}"
@@ -294,7 +293,7 @@ def test_reports_cannot_overwrite_bibliography_or_cache(tmp_path):
 
 
 def test_bad_output_fails_before_any_requests(tmp_path):
-    from verification import run_verification
+    from cdlbib.verification import run_verification
 
     bib = tmp_path / "a.bib"
     bib.write_text("@book{A,title={One},year={2020}}")

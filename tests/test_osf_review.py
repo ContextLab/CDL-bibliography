@@ -13,9 +13,8 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'bibcheck'))
-import osf_review as o  # noqa: E402
-import verification as v  # noqa: E402
+from cdlbib import osf_review as o  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 DATA = json.loads((ROOT / 'tests/fixtures/routes/osf_review.json').read_text())
 CONTACT = 'jeremy.r.manning@dartmouth.edu'  # the project's real Crossref contact
@@ -98,7 +97,7 @@ def test_title_discovery_proposes_the_doi_and_then_verifies():
 
 def test_control_older_version_is_corrected_to_the_latest():
     c = case('ControlOsfVersion')
-    from correction_proposals import house_byline
+    from cdlbib.correction_proposals import house_byline
     c['fields']['author'] = house_byline(o.contributors(c['raw']['contributors'], 'vbc87_v2'))
     result = assess(c)
     cand = result['candidates'][0]

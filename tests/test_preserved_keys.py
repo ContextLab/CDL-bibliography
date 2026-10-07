@@ -9,9 +9,8 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import helpers  # noqa: E402
-from helpers import authors2key, check_entries  # noqa: E402
+from cdlbib import helpers  # noqa: E402
+from cdlbib.helpers import authors2key, check_entries  # noqa: E402
 
 
 def test_key_follows_corrected_year_with_no_exception():
@@ -33,6 +32,7 @@ def test_key_check_runs_on_other_fields_too():
 
 def test_no_key_override_table():
     assert not (ROOT / "bibcheck" / "key_overrides.json").exists()
+    assert not (ROOT / "src" / "cdlbib" / "data" / "key_overrides.json").exists()
     assert not hasattr(helpers, "key_overrides")
 
 

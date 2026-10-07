@@ -6,10 +6,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import reassess, run_auto_review
-from helpers import format_journal_name
-from verification import Cache, normalize_journal, normalize_title
+from cdlbib.auto_review import reassess, run_auto_review
+from cdlbib.helpers import format_journal_name
+from cdlbib.verification import Cache, normalize_journal, normalize_title
 
 CASES = {r["key"]: r for r in json.loads(
     (Path(__file__).parent / "fixtures/documented_journal_brands.json").read_text())}
@@ -61,7 +60,7 @@ def test_journal_equivalence_does_not_remove_title_brands_or_other_blockers():
 
 
 def test_additive_resolver_reuses_real_review_without_new_requests(tmp_path):
-    from verification import load_entries
+    from cdlbib.verification import load_entries
     case = CASES["WainJord08"]
     bib = tmp_path / "source.bib"
     bib.write_text(case["entry"]["raw"][:-1] + ",\nDoi = {10.1561/2200000001}}")

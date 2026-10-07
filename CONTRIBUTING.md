@@ -5,29 +5,34 @@ All citation information should be entered using [BibDesk](https://bibdesk.sourc
 Please follow the formatting conventions specified [here](README.md#verify), and the rules for what belongs in the bibliography specified [here](README.md#what-belongs-in-cdlbib).  In short: copy every field from the published version of the paper (ideally starting from its DOI), and don't add conference abstracts or anything you can't verify.
 
 # Procedure for adding a citation to the BibTeX file
-## Fork this repository
-1. Create a personal fork of the CDL-bibliography repository by pressing the "Fork" button in the upper right of the repository's page (when viewed on GitHub)
-2. Clone the fork to your local machine
-3. Set the ContextLab fork of the repository as a "remote" of your copy: `git remote add upstream https://github.com/ContextLab/CDL-bibliography.git`
-4. Install the checker's dependencies (see [Installation](README.md#installation)), and set `CROSSREF_MAILTO` to your email address
+## Get the bibliography
+
+Install `cdlbib` and set `CROSSREF_MAILTO` to your email address as described in
+[Installation](README.md#installation). No clone is needed. Run `cdlbib where` to
+find the bibliography to edit. If you already work in a clone, the tool uses it
+and never updates it.
 
 ## Modifying the BibTex file
-1. Before making any changes, make sure you're working with the latest version: `git pull upstream master`.  If you modify cdl.bib *after* someone has made changes to the master branch, you'll need to resolve merge conflicts.
+1. For the managed library, run `cdlbib update` before editing. See
+   [Managed-library updates](README.md#managed-library-updates) for unsent edits,
+   backups and undo. If you use your own clone, update it yourself.
 2. Search cdl.bib (by title and by the first author's surname) to make sure the paper isn't already there, possibly under a key with a suffix (e.g., `MannEtal21b`) or as a preprint that should be updated to the published version.
-3. Add an entry for the article (using the [citation key naming system](README.md#verify)) and fill in the relevant information, including the DOI if the paper has one.
-4. If the citation key (let's call it `<KEYNAME>`) already exists in the database, do the following:
-
-  - Rename the existing `<KEYNAME>` entry to `<KEYNAME>a`
-  - Rename the new `<KEYNAME>` entry to `<KEYNAME>b`
-  - If `<KEYNAME>b` already exists, rename the new entry to `<KEYNAME>c` (and so on).
+3. Run `cdlbib add` with the paper's DOI, PMID, arXiv identifier or title. Review
+   the source-backed proposal and choose accept, edit or skip; see
+   [add](README.md#add). For a type the tool does not build automatically, enter
+   it yourself using the [citation key naming system](README.md#verify).
+4. Review any duplicate or key-renaming message before accepting. The tool plans
+   suffixes and records accepted renames in `verification/key-renames.json`.
 5. Verify the formatting of the modified .bib file and the accuracy of your new entry (correct any problems until this passes):
 ```
-python bibcheck.py verify --verbose
+cdlbib verify --verbose
 ```
+   `verify` can offer source-backed completions before its checks. Review them as
+   you would an `add` proposal; use `--no-complete` to check the entry as typed.
    If your entry can't be verified automatically, see [Human review](README.md#human-review).
-6. Generate a change log and commit the change(s):
+6. Generate a change log and send the change(s) as a pull request into the main CDL fork:
 ```
-python bibcheck.py commit --verbose
+cdlbib send --verbose
 ```
-7. Push the change (`git push`).
-8. To incorporate your changes into the main CDL fork, submit a pull request (press the "Pull request" button on your personal fork's GitHub page).  The pull request is checked automatically; once an admin reviews it, it'll be incorporated into the main fork and shared with the world (go science)!
+   `send` pushes a new branch to your personal fork and opens the pull request; it prints the pull request's address.
+7. The pull request is checked automatically; once an admin reviews it, it'll be incorporated into the main fork and shared with the world (go science)!

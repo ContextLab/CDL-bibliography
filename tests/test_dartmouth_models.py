@@ -3,9 +3,8 @@ from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from dartmouth_models import PREFERRED_TEXT_MODEL, require_free, summarize_model
-import dartmouth_research_adapter as adapter
+from cdlbib.dartmouth_models import PREFERRED_TEXT_MODEL, require_free, summarize_model
+from cdlbib import dartmouth_research_adapter as adapter
 
 
 def model(tags=(), input_cost=None, output_cost=None):

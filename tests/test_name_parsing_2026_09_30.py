@@ -16,9 +16,8 @@ import sys
 from bibtexparser.customization import splitname as bibtex_splitname
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from name_parsing import protect_tilde_accents, splitname  # noqa: E402
-from verification import author_evidence, normalized  # noqa: E402
+from cdlbib.name_parsing import protect_tilde_accents, splitname  # noqa: E402
+from cdlbib.verification import author_evidence, normalized  # noqa: E402
 
 POLLOCK = ("M L Pollock and B A Franklin and G J Balady and B L Chaitman and J L Fleg and "
            "B Fletcher and M Limacher and I L Pi\\~{n}a and R A Stein and M Williams and T Bazzarre")

@@ -5,9 +5,9 @@ import sys
 import pytest
 from typer.testing import CliRunner
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import (
+from cdlbib.verification import (
     Cache,
+    record_approval,
     PoliteClient,
     ProviderError,
     author_evidence,
@@ -19,7 +19,7 @@ from verification import (
     run_verification,
     verify_entry,
 )
-from verification_cli import app
+from cdlbib.verification_cli import app
 
 
 BIB = r"""@article{Test20,
@@ -312,26 +312,18 @@ def test_stale_human_approval_and_offline_exit(entry, tmp_path):
     path, e = entry
     database = str(tmp_path / "cache.sqlite3")
     runner = CliRunner()
-    result = runner.invoke(
-        app,
-        [
-            "approve",
-            "Test20",
-            "--fname",
-            str(path),
-            "--database",
-            database,
-            "--fingerprint",
-            "stale",
-            "--reviewer",
-            "Human",
-            "--source",
-            "Book",
-            "--note",
-            "Checked all fields",
-        ],
-    )
-    assert result.exit_code == 2
+    cache = Cache(database)
+    try:
+        with pytest.raises(ValueError, match="Entry changed since review; approval rejected"):
+            record_approval(
+                cache,
+                str(path),
+                "Test20",
+                "stale",
+                {"reviewer": "Human", "source": "Book", "note": "Checked all fields"},
+            )
+    finally:
+        cache.close()
     assert (
         runner.invoke(app, ["status", str(path), "--database", database]).exit_code == 1
     )
@@ -403,7 +395,7 @@ def test_cached_evidence_can_be_reassessed_without_network(entry, record, tmp_pa
 
 
 def test_recheck_that_reproduces_an_approval_writes_nothing(entry, record, tmp_path):
-    from auto_review import reassess
+    from cdlbib.auto_review import reassess
 
     path, e = entry
     cache = Cache(tmp_path / "cache.sqlite3")

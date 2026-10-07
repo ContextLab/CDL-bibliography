@@ -4,9 +4,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import dartmouth_research_adapter as adapter
-import search_tools
+from cdlbib import dartmouth_research_adapter as adapter
+from cdlbib import search_tools
 
 ENV = {
     "DARTMOUTH_CHAT_API_KEY": "test-secret",
@@ -212,21 +211,42 @@ def test_model_preflight_no_silent_substitution(tmp_path, monkeypatch):
         adapter.run(payload(), ModelSession([]), {})
 
 
-def test_local_key_file_and_environment_precedence(tmp_path, monkeypatch):
-    monkeypatch.chdir(tmp_path)
-    path = tmp_path / "local-key.txt"
-    path.write_text("fixture-file-key\n")
-    config = {"BIBCHECK_DARTMOUTH_KEY_FILE": str(path)}
-    assert adapter.configuration(config)[0] == "fixture-file-key"
-    assert (
-        adapter.configuration(dict(config, **ENV))[0] == ENV["DARTMOUTH_CHAT_API_KEY"]
-    )
-    path.write_text("two tokens")
-    with pytest.raises(ValueError, match="single token"):
-        adapter.configuration(config)
-    path.write_text("")
-    with pytest.raises(ValueError, match="local Dartmouth key file"):
-        adapter.configuration(config)
+def test_keychain_and_environment_precedence(monkeypatch, usable_keychain):
+    import getpass
+    import os
+    import uuid
+
+    import keyring
+
+    from cdlbib import secrets
+
+    item = "cdlbib-test-" + uuid.uuid4().hex
+    user = getpass.getuser()
+    try:
+        keyring.set_password(item, user, "fixture-keychain-key")
+    except keyring.errors.KeyringError as exc:
+        pytest.skip(f"no usable system keychain here ({type(exc).__name__})")
+    try:
+        monkeypatch.setitem(
+            secrets.KEYS, "dartmouth-chat", secrets.Key(env="DARTMOUTH_CHAT_API_KEY", item=item)
+        )
+        monkeypatch.delenv("DARTMOUTH_CHAT_API_KEY", raising=False)
+        assert adapter.configuration(os.environ)[0] == "fixture-keychain-key"
+        monkeypatch.setenv("DARTMOUTH_CHAT_API_KEY", ENV["DARTMOUTH_CHAT_API_KEY"])
+        assert adapter.configuration(os.environ)[0] == ENV["DARTMOUTH_CHAT_API_KEY"]
+        keyring.set_password(item, user, "two tokens")
+        monkeypatch.delenv("DARTMOUTH_CHAT_API_KEY")
+        with pytest.raises(ValueError, match="single token"):
+            adapter.configuration(os.environ)
+        keyring.delete_password(item, user)
+        with pytest.raises(ValueError) as err:
+            adapter.configuration(os.environ)
+        assert "DARTMOUTH_CHAT_API_KEY" in str(err.value) and item in str(err.value)
+    finally:
+        try:
+            keyring.delete_password(item, user)
+        except keyring.errors.PasswordDeleteError:
+            pass
 
 
 def test_search_cache_and_duckduckgo_redirect_parsing(tmp_path, monkeypatch):

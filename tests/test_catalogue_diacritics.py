@@ -9,11 +9,10 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import catalogue_review as cr
-from catalogue_discovery import M, S, search_query
-import verification as v
-from verification_cli import DeferredClient
+from cdlbib import catalogue_review as cr
+from cdlbib.catalogue_discovery import M, S, search_query
+from cdlbib import verification as v
+from cdlbib.verification_cli import DeferredClient
 
 CASE = json.loads((Path(__file__).parent/'fixtures/catalogue_diacritics.json').read_text())
 

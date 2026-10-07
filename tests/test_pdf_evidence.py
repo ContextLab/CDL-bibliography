@@ -13,10 +13,9 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
 sys.path.insert(0, str(ROOT / "verification" / "pdf-benchmark"))
 
-import pdf_evidence as P  # noqa: E402
+from cdlbib import pdf_evidence as P  # noqa: E402
 
 LIBRARY = Path(json.loads((ROOT / "verification" / "pdf-benchmark" / "cases.json").read_text())["library_default"])
 CACHE = ROOT / ".bibcheck" / "pdf-benchmark" / "layout"

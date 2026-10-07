@@ -1,0 +1,188 @@
+{
+ "MeyeEtal88": {
+  "crossref": {
+   "record": {
+    "DOI": "10.1037/0033-295x.95.2.183",
+    "ISSN": [
+     "1939-1471",
+     "0033-295X"
+    ],
+    "URL": "https://doi.org/10.1037/0033-295x.95.2.183",
+    "author": [
+     {
+      "affiliation": [],
+      "family": "Meyer",
+      "given": "David E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "first"
+     },
+     {
+      "affiliation": [],
+      "family": "Irwin",
+      "given": "David E.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Osman",
+      "given": "Allen M.",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     },
+     {
+      "affiliation": [],
+      "family": "Kounois",
+      "given": "John",
+      "role": [
+       {
+        "role": "author",
+        "vocabulary": "crossref"
+       }
+      ],
+      "sequence": "additional"
+     }
+    ],
+    "container-title": [
+     "Psychological Review"
+    ],
+    "issue": "2",
+    "issued": {
+     "date-parts": [
+      [
+       1988
+      ]
+     ]
+    },
+    "link": [
+     {
+      "URL": "http://psycnet.apa.org/journals/rev/95/2/183.pdf",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+     }
+    ],
+    "page": "183-237",
+    "published": {
+     "date-parts": [
+      [
+       1988
+      ]
+     ]
+    },
+    "published-online": {
+     "date-parts": [
+      [
+       1988
+      ]
+     ]
+    },
+    "publisher": "American Psychological Association (APA)",
+    "title": [
+     "The dynamics of cognition and action: Mental processes inferred from speed-accuracy decomposition."
+    ],
+    "type": "journal-article",
+    "volume": "95"
+   },
+   "retrieved_at": "2026-09-25T03:44:02.708176+00:00",
+   "url": "https://doi.org/10.1037/0033-295x.95.2.183"
+  },
+  "doi": "10.1037/0033-295x.95.2.183",
+  "europepmc": {
+   "raw_record": {
+    "authorList": {
+     "author": [
+      {
+       "firstName": "D E",
+       "fullName": "Meyer DE",
+       "initials": "DE",
+       "lastName": "Meyer"
+      },
+      {
+       "firstName": "D E",
+       "fullName": "Irwin DE",
+       "initials": "DE",
+       "lastName": "Irwin"
+      },
+      {
+       "firstName": "A M",
+       "fullName": "Osman AM",
+       "initials": "AM",
+       "lastName": "Osman"
+      },
+      {
+       "firstName": "J",
+       "fullName": "Kounios J",
+       "initials": "J",
+       "lastName": "Kounios"
+      }
+     ]
+    },
+    "doi": "10.1037/0033-295x.95.2.183",
+    "firstPublicationDate": "1988-04-01",
+    "fullTextUrlList": {
+     "fullTextUrl": [
+      {
+       "availability": "Subscription required",
+       "availabilityCode": "S",
+       "documentStyle": "doi",
+       "site": "DOI",
+       "url": "https://doi.org/10.1037/0033-295x.95.2.183"
+      }
+     ]
+    },
+    "id": "3375399",
+    "isOpenAccess": "N",
+    "journalInfo": {
+     "dateOfPublication": "1988 Apr",
+     "issue": "2",
+     "journal": {
+      "essn": "1939-1471",
+      "isoabbreviation": "Psychol Rev",
+      "issn": "0033-295X",
+      "medlineAbbreviation": "Psychol Rev",
+      "nlmid": "0376476",
+      "title": "Psychological review"
+     },
+     "journalIssueId": 573377,
+     "monthOfPublication": 4,
+     "printPublicationDate": "1988-04-01",
+     "volume": "95",
+     "yearOfPublication": 1988
+    },
+    "pageInfo": "183-237",
+    "pubTypeList": {
+     "pubType": [
+      "Research Support, U.S. Gov't, P.H.S.",
+      "Journal Article"
+     ]
+    },
+    "pubYear": "1988",
+    "source": "MED",
+    "title": "The dynamics of cognition and action: mental processes inferred from speed-accuracy decomposition."
+   },
+   "request_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1037%2F0033-295x.95.2.183%22&format=json&resultType=core&pageSize=100",
+   "retrieved_at": "2026-09-25T03:40:32.661091+00:00",
+   "url": "https://europepmc.org/article/MED/3375399"
+  },
+  "origin": {
+   "case": "MeyeEtal88",
+   "file": "tests/fixtures/apply-2026-09-25-cases.json.gz"
+  }
+ }
+}

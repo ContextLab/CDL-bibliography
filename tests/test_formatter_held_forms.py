@@ -11,8 +11,7 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-import helpers  # noqa: E402
+from cdlbib import helpers  # noqa: E402
 
 
 def journal(name):

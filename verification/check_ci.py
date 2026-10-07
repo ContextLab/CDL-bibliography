@@ -2,6 +2,18 @@
 
 PR snapshots come from the trusted base revision, not the proposed changes.
 PR caches remain scoped to their merge ref; master never restores a PR cache.
+For a pull request the approvals ledger (verification/approvals.jsonl) is read from
+the base revision too: the checker is given the base's copy (an empty file when the
+base has none) with --trusted-approvals, so rows a pull request adds are not read.
+For a push the pushed commit's own ledger is given instead: what is pushed to the
+branch is already merged there, by someone who may write to it, so the rows a merge
+brings in count for the entries the same merge changes. The base
+revision's revocations (verification/revocations.jsonl) are given with
+--trusted-revocations and honoured together with the checkout's own: a pull
+request that removes a revocation line does not undo the revocation. What the
+change adds to the approvals ledger is checked first (crossref check-ledger): a
+removed or altered line, or an added line that is not a valid row at the time of
+the run, fails the check.
 
 A push whose previous commit is not in the history (a force-push or rewritten
 history, or a new branch) has no base to compare against. Pushed content is
@@ -12,6 +24,7 @@ every entry must have an accepted result for its exact current text.
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -41,7 +54,9 @@ def main():
     work.mkdir(exist_ok=True)
     base = os.environ.get("BASE_REVISION", "")
     event = os.environ.get("EVENT_NAME", "")
-    command = [sys.executable, "bibcheck.py", "crossref"]
+    # The command installed beside this interpreter, else the one on PATH.
+    sibling = Path(sys.executable).parent / "cdlbib"
+    command = [str(sibling) if sibling.exists() else shutil.which("cdlbib"), "crossref"]
     snapshot = Path("verification/baseline.jsonl.gz")
     if event == "push" and not commit_exists(base):
         print(f"Base revision {base or '(none)'} is not in the history (force-push or new branch); "
@@ -62,10 +77,37 @@ def main():
         else:
             trusted.write_bytes(data)
             snapshot = trusted
+        # Human approvals shared in the ledger count from the base revision only.
+        approvals = work / "base-approvals.jsonl"
+        try:
+            approvals.write_bytes(git_file(base, "verification/approvals.jsonl"))
+        except subprocess.CalledProcessError:
+            approvals.write_bytes(b"")
+        revocations = work / "base-revocations.jsonl"
+        try:
+            revocations.write_bytes(git_file(base, "verification/revocations.jsonl"))
+        except subprocess.CalledProcessError:
+            revocations.write_bytes(b"")
+        trusted_ledgers = ["--trusted-revocations", str(revocations.resolve())]
+        # Rows are validated when they enter: a change that removes or alters a ledger line,
+        # or adds a line that is not a valid row now, under the current policy, for an entry
+        # of this commit's cdl.bib under its key, fails here (nothing can be merged today to
+        # start counting later: not a future date, another policy, or a text nobody has yet).
+        entering = subprocess.run(command + ["check-ledger", "--base", str(approvals.resolve())])
+        if entering.returncode:
+            return entering.returncode
+        if event == "push":
+            # Pushed content is already merged: the rows that came in with it, valid as just
+            # checked, count. A pull request keeps the base's copy.
+            pushed = Path("verification/approvals.jsonl")
+            approvals = work / "pushed-approvals.jsonl"
+            approvals.write_bytes(pushed.read_bytes() if pushed.is_file() and not pushed.is_symlink() else b"")
     elif event != "workflow_dispatch":
         raise ValueError("Unsupported event")
+    else:
+        approvals, trusted_ledgers = None, []
     if snapshot is not None:
-        subprocess.run(command + ["restore", str(snapshot)], check=True)
+        subprocess.run(command + ["restore", str(snapshot)] + trusted_ledgers, check=True)
     verify = command + [
         "verify",
         "cdl.bib",
@@ -74,7 +116,7 @@ def main():
         str(work / "checkpoint.jsonl.gz"),
     ]
     if event != "workflow_dispatch":
-        verify += ["--against", str(base_bib)]
+        verify += ["--against", str(base_bib), "--trusted-approvals", str(approvals.resolve())] + trusted_ledgers
     return subprocess.run(verify).returncode
 
 

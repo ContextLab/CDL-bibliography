@@ -27,10 +27,9 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "bibcheck"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import pdf_evidence as P  # noqa: E402
+from cdlbib import pdf_evidence as P  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 CACHE = ROOT / ".bibcheck" / "pdf-benchmark" / "layout"
@@ -86,7 +85,7 @@ def load_needs_review():
 
 
 def coverage(library):
-    from verification import load_entries
+    from cdlbib.verification import load_entries
     entries = load_entries(ROOT / "cdl.bib")
     known = sorted({e["fields"]["journal"] for e in entries.values() if e["fields"].get("journal")})
     review = load_needs_review()
@@ -143,7 +142,7 @@ def stress(library):
     reported 'supported' is listed for manual review rather than counted.
     """
     import build
-    from verification import load_entries
+    from cdlbib.verification import load_entries
     entries = load_entries(ROOT / "cdl.bib")
     known = sorted({e["fields"]["journal"] for e in entries.values() if e["fields"].get("journal")})
     manifest = json.loads((ROOT / ".bibcheck" / "local-library" / "manifest.json").read_text())

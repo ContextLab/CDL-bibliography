@@ -5,10 +5,9 @@ from pathlib import Path
 import sys
 import re
 import pytest
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import reassess
-from correction_proposals import publication_proposal, replace_publication
-from verification import load_entries
+from cdlbib.auto_review import reassess
+from cdlbib.correction_proposals import publication_proposal, replace_publication
+from cdlbib.verification import load_entries
 
 
 def case(tmp_path):

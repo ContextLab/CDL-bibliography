@@ -3,9 +3,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from fulltext_review import assess_fulltext, front_record
-from auto_review import reassess, select_result
+from cdlbib.fulltext_review import assess_fulltext, front_record
+from cdlbib.auto_review import reassess, select_result
 import test_auto_review
 from test_auto_review import candidate
 
@@ -135,8 +134,8 @@ def test_recheck_uses_raw_front_matter_and_preserves_download_hash(sample):
 @pytest.mark.parametrize("legacy_status", [200, 404])
 def test_new_pmc_target_is_checked_after_legacy_fulltext_pass(tmp_path, sample, legacy_status):
     from copy import deepcopy
-    from fulltext_review import run_fulltext_review
-    from verification import Cache, load_entries
+    from cdlbib.fulltext_review import run_fulltext_review
+    from cdlbib.verification import Cache, load_entries
     from test_auto_review import secondary
     fields, record, raw = sample
     path = tmp_path / "sample.bib"

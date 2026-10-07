@@ -8,11 +8,10 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-from publisher_year_review import assess_publisher_year, run_publisher_year_review
-from publisher_metadata import PublisherMetadata
-from verification import Cache, load_entries, export_snapshot, import_snapshot
-from auto_review import reassess
+from cdlbib.publisher_year_review import assess_publisher_year, run_publisher_year_review
+from cdlbib.publisher_metadata import PublisherMetadata
+from cdlbib.verification import Cache, load_entries, export_snapshot, import_snapshot
+from cdlbib.auto_review import reassess
 from test_resolution_rules import pilot
 
 
@@ -125,7 +124,7 @@ def test_local_run_repeat_and_snapshot_preserve_provenance(tmp_path, monkeypatch
         calls.append(doi)
         return source("MillMcGi52")
 
-    monkeypatch.setattr("publisher_year_review.fetch_head", fetch)
+    monkeypatch.setattr("cdlbib.publisher_year_review.fetch_head", fetch)
 
     class Client:
         requests = 0
@@ -146,8 +145,8 @@ def test_local_run_repeat_and_snapshot_preserve_provenance(tmp_path, monkeypatch
 
 
 def test_deferred_publisher_requests_are_counted_and_cached(tmp_path, monkeypatch):
-    from publisher_year_review import fetch_head
-    from verification_cli import DeferredClient
+    from cdlbib.publisher_year_review import fetch_head
+    from cdlbib.verification_cli import DeferredClient
 
     class Session:
         headers = {}
@@ -155,7 +154,7 @@ def test_deferred_publisher_requests_are_counted_and_cached(tmp_path, monkeypatc
         def get(self, *args, **kwargs):
             return None
 
-    monkeypatch.setattr("verification.requests.Session", Session)
+    monkeypatch.setattr("cdlbib.verification.requests.Session", Session)
 
     def get_source(session, url, hosts):
         session.get(url)
@@ -165,7 +164,7 @@ def test_deferred_publisher_requests_are_counted_and_cached(tmp_path, monkeypatc
             "https://www.cambridge.org/core/journals/x",
         )
 
-    monkeypatch.setattr("publisher_year_review.get_source", get_source)
+    monkeypatch.setattr("cdlbib.publisher_year_review.get_source", get_source)
     cache = Cache(tmp_path / "v.sqlite3")
     client = DeferredClient(cache, "test@example.org", 0.5, False)
     first = fetch_head(cache, client, "10.1234/a")
@@ -179,15 +178,15 @@ def test_deferred_publisher_requests_are_counted_and_cached(tmp_path, monkeypatc
 
 @pytest.mark.parametrize("status", [429, 500, 503])
 def test_transient_publisher_failures_remain_retryable(tmp_path, monkeypatch, status):
-    from publisher_year_review import fetch_head
-    from search_tools import SourceHTTPError
-    from verification import ProviderError
-    from verification_cli import DeferredClient
+    from cdlbib.publisher_year_review import fetch_head
+    from cdlbib.search_tools import SourceHTTPError
+    from cdlbib.verification import ProviderError
+    from cdlbib.verification_cli import DeferredClient
 
     def fail(*args):
         raise SourceHTTPError(status, "60")
 
-    monkeypatch.setattr("publisher_year_review.get_source", fail)
+    monkeypatch.setattr("cdlbib.publisher_year_review.get_source", fail)
     cache = Cache(tmp_path / "v.sqlite3")
     client = DeferredClient(cache, None, 1, False)
     with pytest.raises(ProviderError):

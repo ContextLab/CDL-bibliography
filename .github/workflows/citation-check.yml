@@ -23,10 +23,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: ./.github/actions/crossref-contact
+        with:
+          mailto: ${{ vars.CROSSREF_MAILTO }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pip install -r requirements-verification.txt
+      - run: python -m pip install .
       - uses: actions/cache/restore@v4
         with:
           path: .bibcheck/verification.sqlite3
@@ -36,7 +39,6 @@ jobs:
             citations-v2-refs/heads/master-
       - name: Verify new and edited citations (manual runs check the full library)
         env:
-          CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
           BASE_REVISION: ${{ github.event.pull_request.base.sha || github.event.before }}
           EVENT_NAME: ${{ github.event_name }}
         run: python verification/check_ci.py

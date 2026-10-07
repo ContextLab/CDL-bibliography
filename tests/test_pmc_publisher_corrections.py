@@ -6,11 +6,10 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-from auto_review import reassess
-from correction_proposals import replace_field
-from pmc_corrections import pmc_publisher_proposal
-from verification import load_entries
+from cdlbib.auto_review import reassess
+from cdlbib.correction_proposals import replace_field
+from cdlbib.pmc_corrections import pmc_publisher_proposal
+from cdlbib.verification import load_entries
 
 
 CASES = json.loads((Path(__file__).parent / 'fixtures/pmc_publishers.json').read_text())

@@ -3,8 +3,7 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-from local_library import index_library, find_candidates
+from cdlbib.local_library import index_library, find_candidates
 
 
 def test_content_cache_rename_edit_delete(tmp_path):

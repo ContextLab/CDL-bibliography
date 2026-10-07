@@ -8,11 +8,10 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import catalogue_review as cr
-from catalogue_discovery import M, S, search_query
-import verification as v
-from verification_cli import DeferredClient
+from cdlbib import catalogue_review as cr
+from cdlbib.catalogue_discovery import M, S, search_query
+from cdlbib import verification as v
+from cdlbib.verification_cli import DeferredClient
 
 CASES = json.loads((Path(__file__).parent / 'fixtures/catalogue_dated_books.json').read_text())
 
@@ -99,8 +98,8 @@ def test_supplied_edition_must_not_be_inferred_when_source_omits_it():
 
 
 def test_bibliography_polishing_preserves_the_edition_that_was_verified(tmp_path):
-    from correction_proposals import replace_field
-    import helpers
+    from cdlbib.correction_proposals import replace_field
+    from cdlbib import helpers
     case = CASES['NoceWrig06']; entry = case['entry']
     proposal = {'key': entry['key'], 'fingerprint': entry['fingerprint'],
                 'changes': {'edition': {'before': None, 'after': '2'}}}

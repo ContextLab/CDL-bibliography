@@ -6,10 +6,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'bibcheck'))
-import pmc_metadata as pmc
-from verification import Cache, PoliteClient, ProviderError, current_results, load_entries, export_snapshot, import_snapshot
-from verification_cli import DeferredClient
+from cdlbib import pmc_metadata as pmc
+from cdlbib.verification import Cache, PoliteClient, ProviderError, current_results, load_entries, export_snapshot, import_snapshot
+from cdlbib.verification_cli import DeferredClient
 from test_auto_review import candidate, secondary
 from test_pmc_metadata import Response, Session
 import test_auto_review
@@ -58,7 +57,7 @@ def test_changed_fields_are_reassessed_using_cached_document(tmp_path, sample):
     entry = load_entries(bib)['A']
     assert current_results(bib, cache)['A']['status'] == 'pending'
     # Mimic normal registry/secondary stages for the new fingerprint.
-    from auto_review import reassess
+    from cdlbib.auto_review import reassess
     cache.put(bib, entry, reassess(entry, previous))
     result = run(bib, cache, client)['A']
     assert result['status'] == 'needs_review'
@@ -140,7 +139,7 @@ def test_bulk_hours_checked_before_network_but_cache_hits_are_allowed(tmp_path, 
 
 def test_deferred_client_applies_and_restores_pmc_pacing(tmp_path, monkeypatch):
     cache = Cache(tmp_path / 'cache.sqlite3')
-    import verification_cli
+    from cdlbib import verification_cli
     observed = []
     class ObservedSession(Session):
         def get(self, *args, **kwargs):

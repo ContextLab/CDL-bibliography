@@ -6,8 +6,7 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from auto_review import (
+from cdlbib.auto_review import (
     assess_epmc,
     expanded_pages,
     fetch_epmc,
@@ -15,7 +14,7 @@ from auto_review import (
     run_auto_review,
     select_result,
 )
-from verification import (
+from cdlbib.verification import (
     Cache,
     ProviderError,
     assess_candidates,

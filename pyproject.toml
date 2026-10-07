@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cdlbib"
+version = "2.0.0"
+description = "Format and citation-accuracy checker for the CDL bibliography"
+readme = "docs/pypi.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+  "bibtexparser>=1.4.3,<2",
+  "pylatexenc>=2.10",
+  "requests>=2.31,<3",
+  "typer>=0.15.4,<1",
+  "unidecode>=1.1.1",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "xlrd>=2.0.1",
+  "tqdm>=4.66.3",
+  "keyring>=24",
+]
+
+[project.optional-dependencies]
+research = ["pypdf>=6.0,<7"]
+pdf = ["pypdfium2>=4"]
+tui = ["textual>=8,<9"]
+
+[project.scripts]
+cdlbib = "cdlbib.cli:main"
+cdlbib-adapter-dartmouth = "cdlbib.dartmouth_research_adapter:main"
+cdlbib-adapter-openai = "cdlbib.openai_research_adapter:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cdlbib = ["data/*", "web/static/*", "web/static/js/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

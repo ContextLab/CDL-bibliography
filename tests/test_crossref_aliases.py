@@ -6,9 +6,8 @@ import sys
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from verification import Cache, PoliteClient, ProviderError, assess_candidates, compare_record, valid_doi_alias
-from auto_review import reassess, select_result
+from cdlbib.verification import Cache, PoliteClient, ProviderError, assess_candidates, compare_record, valid_doi_alias
+from cdlbib.auto_review import reassess, select_result
 from test_verification import Clock, FakeResponse, Session, entry, record, response
 
 ALIAS = "10.1234/alias"
@@ -112,7 +111,7 @@ def test_alias_does_not_hide_an_erratum_or_multiple_pubmed_identities(entry, rec
 
 
 def test_alias_lookup_requires_receipt_and_retains_negative_checkpoint(entry, record):
-    from auto_review import alias_targets, apply_alias_lookup
+    from cdlbib.auto_review import alias_targets, apply_alias_lookup
     doubled = "10.1234//example"
     old = dict(record, DOI=doubled)
     local = deepcopy(entry[1])
@@ -129,14 +128,14 @@ def test_alias_lookup_requires_receipt_and_retains_negative_checkpoint(entry, re
 
 
 def test_live_alias_workflow_repeats_without_requests_or_writes(tmp_path, entry, record):
-    from auto_review import run_auto_review
+    from cdlbib.auto_review import run_auto_review
     doubled = "10.1234//example"
     cache, session, client = client_for(tmp_path, [
         FakeResponse(301, {}, {"Location": "/works/10.1234/example"}),
         FakeResponse(200, response(record)["body"]),
     ])
     path, local = entry
-    from verification import load_entries
+    from cdlbib.verification import load_entries
     path.write_text(path.read_text().replace(",\n doi={10.1234/example}", ""))
     local = load_entries(path)["Test20"]
     fields = local["fields"]
@@ -155,8 +154,8 @@ def test_live_alias_workflow_repeats_without_requests_or_writes(tmp_path, entry,
 
 
 def test_alias_and_secondary_lookup_share_the_entry_limit(tmp_path, entry, record):
-    from auto_review import run_auto_review
-    from verification import load_entries
+    from cdlbib.auto_review import run_auto_review
+    from cdlbib.verification import load_entries
     path, _ = entry
     raw = path.read_text().replace(",\n doi={10.1234/example}", "")
     second = raw.replace("Test20", "Test21").replace("year={2020}", "year={2019}")

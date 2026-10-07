@@ -11,18 +11,19 @@ from copy import deepcopy
 import gzip
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "bibcheck"))
-import auto_review  # noqa: E402
-import catalogue_review  # noqa: E402
-import correction_proposals as cp  # noqa: E402
-import helpers  # noqa: E402
-import verification as v  # noqa: E402
+CDLBIB = next((str(p) for p in [Path(sys.executable).parent / "cdlbib"] if p.exists()), None) or shutil.which("cdlbib")
+from cdlbib import auto_review  # noqa: E402
+from cdlbib import catalogue_review  # noqa: E402
+from cdlbib import correction_proposals as cp  # noqa: E402
+from cdlbib import helpers  # noqa: E402
+from cdlbib import verification as v  # noqa: E402
 
 CASES = json.loads(gzip.open(ROOT / "tests/fixtures/machinery-2026-09-25-cases.json.gz").read())["cases"]
 STAGE1 = json.loads(gzip.open(ROOT / "tests/fixtures/apply-2026-09-25-cases.json.gz").read())
@@ -91,13 +92,13 @@ def test_duplicate_fields_are_an_error(tmp_path, monkeypatch):
 def test_bibcheck_verify_surfaces_errors_and_exits_nonzero(tmp_path):
     entry, _ = case("KothEtal25")
     bad = write_bib(tmp_path / "bad.bib", entry["raw"].replace("IMAG.a.136", "IMAG.a.136--IMAG.a.1"))
-    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(bad)], cwd=ROOT,
+    run = subprocess.run([CDLBIB, "verify", "--fname", str(bad)], cwd=ROOT,
                          capture_output=True, text=True)
     assert run.returncode == 1
     assert "page numbers are ambiguous or incorrect" in run.stderr and "KothEtal25" in run.stderr
     good = write_bib(tmp_path / "good.bib", entry["raw"])
     # Format only: the citation part of the gate is tested in section 16.
-    run = subprocess.run([sys.executable, "bibcheck.py", "verify", "--fname", str(good), "--no-citations"], cwd=ROOT,
+    run = subprocess.run([CDLBIB, "verify", "--fname", str(good), "--no-citations"], cwd=ROOT,
                          capture_output=True, text=True)
     assert run.returncode == 0 and "looks good!" in run.stdout
 
@@ -209,7 +210,9 @@ def test_mann24_volume_pack_is_not_part_of_the_book_title():
     record = crossref(previous, "10.1093/oxfordhb/9780190917982.013.38")["record"]
     evidence, issues = v.compare_record(entry["fields"], record)
     assert evidence["booktitle"]["match"]
-    assert issues == ["editor: no deterministic verifier for this field"]  # no editor checker yet
+    # Editors are compared since 2026-10-06 (resolver 31); this chapter's record names none.
+    assert "editor" not in record
+    assert issues == ["editor: the citation names editors and the source record names none"]
     assert not v.compare_record(edited(entry, booktitle="The {Oxford} Handbook of Human Memory, Volume 1")["fields"],
                                 record)[0]["booktitle"]["match"]
 
@@ -266,8 +269,10 @@ def test_kleene56_series_number_is_the_only_difference():
     record = crossref(previous, "10.1515/9781400882618-002")["record"]
     evidence, issues = v.compare_record(entry["fields"], record)
     assert evidence["booktitle"]["match"]
-    assert issues == ["address: no deterministic verifier for this field",
-                      "editor: no deterministic verifier for this field"]
+    # Editors are compared since 2026-10-06 (resolver 31); this chapter's record names none.
+    assert "editor" not in record
+    assert issues == ["editor: the citation names editors and the source record names none",
+                      "address: no deterministic verifier for this field"]
     assert not v.compare_record(edited(entry, booktitle="Automata Studies II")["fields"], record)[0]["booktitle"]["match"]
 
 
@@ -622,7 +627,7 @@ def recheck(tmp_path, key, fields, approval):
 def route_case(module, fixture, key):
     import importlib
     data = json.loads((ROOT / "tests/fixtures/routes" / fixture).read_text())
-    return importlib.import_module(module), deepcopy(data[key])
+    return importlib.import_module("cdlbib." + module), deepcopy(data[key])
 
 
 def test_recheck_cached_keeps_the_franliu18_osf_approval(tmp_path):
@@ -648,7 +653,7 @@ def test_recheck_cached_still_reopens_an_invalid_route_approval(tmp_path):
 
 
 def test_recheck_cached_keeps_arxiv_approvals(tmp_path):
-    import arxiv_review as a
+    from cdlbib import arxiv_review as a
     c = deepcopy(json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text())["PianHill22"])
     approval = a.assess_arxiv(c["fields"], c["raw"])
     assert approval["status"] == "metadata_verified"
@@ -809,7 +814,7 @@ def crossref_contact():
 def gate(tmp_path, *args):
     env = dict(__import__("os").environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools",
                CROSSREF_MAILTO=crossref_contact())
-    return subprocess.run([sys.executable, str(ROOT / "bibcheck.py"), *args], cwd=ROOT, env=env,
+    return subprocess.run([CDLBIB, *args], cwd=ROOT, env=env,
                           capture_output=True, text=True, timeout=1800)
 
 
@@ -849,7 +854,7 @@ def test_verify_no_citations_is_offline_and_format_only(tmp_path):
     assert run.returncode == 1 and "Rame72" in run.stderr
 
 
-def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
+def test_send_refuses_an_unresolved_entry_and_sends_only_the_bib(tmp_path, monkeypatch):
     import os
     env = dict(os.environ, DEVELOPER_DIR="/Library/Developer/CommandLineTools")
     repo = tmp_path / "repo"
@@ -870,16 +875,38 @@ def test_commit_refuses_an_unresolved_entry_and_commits_only_the_bib(tmp_path):
     (repo / "notes.txt").write_text("edited, must not be committed\n")
     db = str(tmp_path / "db.sqlite3")
     bib.write_text(ZOLL90 + "\n\n" + RAME72 % "2" + "\n")
-    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
-    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not committed" in run.stdout
+    run = gate(tmp_path, "send", "--fname", str(bib), "--reference", str(base), "--database", db)
+    assert run.returncode == 1 and "UNRESOLVED Rame72" in run.stdout and "not sent" in run.stdout
     assert git("rev-list", "--count", "HEAD").strip() == "1"
+    # With the entry right, the change is sent. `cdlbib send` itself needs a GitHub login and
+    # the user's fork, which CI does not have, so the second half runs the gate (`verify`, the
+    # same check_library gate send runs) and then the step send runs after it,
+    # publish.deliver (commit on a cdlbib/... branch, push), against a local bare repository.
+    from cdlbib import api, publish
+    from cdlbib.workspace import Workspace
     bib.write_text(ZOLL90 + "\n\n" + RAME72 % "1" + "\n")
-    run = gate(tmp_path, "commit", "--fname", str(bib), "--reference", str(base), "--database", db)
+    run = gate(tmp_path, "verify", "--fname", str(bib), "--reference", str(base), "--database", db)
     assert run.returncode == 0, run.stdout + run.stderr
-    assert git("rev-list", "--count", "HEAD").strip() == "2"
+    monkeypatch.setenv("DEVELOPER_DIR", "/Library/Developer/CommandLineTools")
+    remote = tmp_path / "fork.git"
+    subprocess.run(["git", "init", "-q", "--bare", str(remote)], env=env, check=True)
+    start, on = git("rev-parse", "HEAD").strip(), git("rev-parse", "--abbrev-ref", "HEAD").strip()
+    # Model the real PR base separately from its empty fork destination. The outgoing
+    # history check fetches this base; the original notes.txt belongs to that base.
+    upstream = tmp_path / "upstream.git"
+    subprocess.run(["git", "init", "-q", "--bare", str(upstream)], env=env, check=True)
+    git("push", "-q", str(upstream), f"{start}:refs/heads/{on}")
+    branch = "cdlbib/test/2026-09-25-add-rame72"
+    sent = publish.deliver(Workspace.for_bib(bib), branch, api.compare(str(base), str(bib)).summary.strip(), str(remote),
+                           upstream_url=str(upstream), base=on)
+    assert sent == ["cdl.bib"]
+    pushed = subprocess.run(["git", "rev-parse", branch], cwd=remote, env=env, capture_output=True, text=True, check=True).stdout
+    assert pushed == git("rev-parse", "HEAD") and git("rev-parse", "--abbrev-ref", "HEAD").strip() == branch
+    assert git("rev-list", "--count", f"{start}..HEAD").strip() == "1" and git("rev-parse", on).strip() == start
     assert git("show", "--name-only", "--format=%s", "HEAD").split() [-1] == "cdl.bib"
     assert "Rame72" in git("log", "-1", "--format=%B")
-    assert "notes.txt" in git("status", "--porcelain")  # the other edit stays uncommitted
+    assert git("status", "--porcelain", "--", "notes.txt") == " M notes.txt\n"  # the other edit stays uncommitted
+    assert (repo / "notes.txt").read_text() == "edited, must not be committed\n"
 
 
 def test_verify_all_checks_unchanged_entries_too(tmp_path):
@@ -907,5 +934,5 @@ def test_verify_all_checks_unchanged_entries_too(tmp_path):
     ("É Durkheim", "É Durkheim"),
 ])
 def test_reformat_author_keeps_latex_accented_initials(cited, expected):
-    from helpers import reformat_author
+    from cdlbib.helpers import reformat_author
     assert reformat_author(cited) == expected

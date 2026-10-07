@@ -1,9 +1,8 @@
 from pathlib import Path
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bibcheck"))
-from discovery_review import run_discovery_review
-from verification import Cache, load_entries
+from cdlbib.discovery_review import run_discovery_review
+from cdlbib.verification import Cache, load_entries
 
 
 def test_expanded_discovery_uses_strict_checks_and_checkpoints(tmp_path):
@@ -79,8 +78,8 @@ def test_frozen_benchmark_recomputes_records():
 
 
 def test_discovered_doi_gets_secondary_lookup_without_repeating_old_doi(tmp_path):
-    from auto_review import run_auto_review
-    from verification import assess_candidates, POLICY
+    from cdlbib.auto_review import run_auto_review
+    from cdlbib.verification import assess_candidates, POLICY
 
     bib = tmp_path / "a.bib"
     bib.write_text(
