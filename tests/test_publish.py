@@ -8,6 +8,7 @@ reason where no user is logged in or the user has no fork. No mocks.
 import datetime
 import json
 import os
+import uuid
 import re
 import shlex
 import shutil
@@ -650,7 +651,7 @@ def test_pull_request_inside_my_own_fork(tmp_path, monkeypatch):
         pytest.skip(fork)
     work = fork_clone(tmp_path, monkeypatch, fork)
     ws = Workspace(work)
-    branch = f"cdlbib/{login}/test-{os.getpid()}"
+    branch = f"cdlbib/{login}/test-{os.getpid()}-{uuid.uuid4().hex[:12]}"
     url = None
     try:
         ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + "\n% cdlbib test edit\n", encoding="utf-8")
@@ -779,7 +780,7 @@ def test_after_a_send_the_update_reads_the_pull_request_inside_my_own_fork(tmp_p
     monkeypatch.delenv("CDLBIB_LIBRARY", raising=False)
     workspace.select_library(None)
     ws = Workspace(root)
-    branch, url = f"cdlbib/{login}/test-{os.getpid()}-after-send", None
+    branch, url = f"cdlbib/{login}/test-{os.getpid()}-{uuid.uuid4().hex[:12]}-after-send", None
     head = f"{login}:{branch}"
     try:
         assert api.is_managed(ws) and git(root, "rev-parse", "--abbrev-ref", "HEAD") != branch
@@ -823,7 +824,7 @@ def test_a_push_that_cannot_sign_in_names_gh_auth_setup_git(tmp_path, monkeypatc
         pytest.skip(fork)
     work = fork_clone(tmp_path, monkeypatch, fork)
     ws = Workspace(work)
-    branch = f"cdlbib/{login}/test-{os.getpid()}-signin"
+    branch = f"cdlbib/{login}/test-{os.getpid()}-{uuid.uuid4().hex[:12]}-signin"
     try:
         ws.bib.write_text(ws.bib.read_text(encoding="utf-8") + "\n% cdlbib test edit\n", encoding="utf-8")
         home = tmp_path / "empty-home"; home.mkdir()
