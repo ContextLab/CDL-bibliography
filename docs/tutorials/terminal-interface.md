@@ -74,7 +74,14 @@ They run one at a time, in the order they were started. Typing a search does not
 a running job. Reading an entry's details does: until they are read, the right half shows
 what the table knows of the entry (authors, year, title, venue, DOI, status) and the line
 `The entry's text, issues and evidence load when the running job finishes: ...`. An entry
-that was read before is shown at once.
+that was read before is shown at once. `e` pressed meanwhile opens the editor at once: it
+shows `reading KEY ...`, reads the entry in its turn, takes typing when the text is there,
+and then does a preview or a save that was asked for in the meantime. `a` and `v` are
+refused until the entry's text and evidence are shown.
+
+Keys are handled one at a time, in the order pressed: a key typed quickly after another
+acts on what the first one did (the letters after `/` go into the search box, the key
+after `F5` is the Check view's).
 
 ## Keys
 

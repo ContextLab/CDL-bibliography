@@ -12,9 +12,10 @@ from textual.widgets import DataTable, Input, TabbedContent, TabPane
 from .. import api
 from ..errors import CdlbibError
 from . import render
-from .widgets import Shown, Table, View, add_rows, fill_table, mark
+from .widgets import Shown, Table, View, add_rows, fill_table, focus_now, mark
 
 CHUNK = 400     # rows put into the table at a time; more are added as the cursor nears the end
+NOT_READ = "{key}: its text and evidence are still being read. Approve or revoke it when they are shown."
 
 
 class DetailPanes(Vertical):
@@ -121,7 +122,7 @@ class LibraryView(View):
     # --- what the app tells ------------------------------------------------------------------
 
     def activated(self):
-        self.query_one("#entries", DataTable).focus()
+        focus_now(self.query_one("#entries", DataTable))
 
     def library_changed(self):
         self._stale = True
@@ -246,10 +247,10 @@ class LibraryView(View):
     # --- actions -----------------------------------------------------------------------------
 
     def action_search(self):
-        self.query_one("#search", Input).focus()
+        focus_now(self.query_one("#search", Input))
 
     def action_table(self):
-        self.query_one("#entries", DataTable).focus()
+        focus_now(self.query_one("#entries", DataTable))
 
     def action_filter(self):
         present = [None] + sorted({item.status for item in self.app.entries})
@@ -260,16 +261,25 @@ class LibraryView(View):
         self.query_one("#library-detail", DetailPanes).next_tab()
 
     def _current(self):
+        """The selected entry's detail, for approving or revoking: only when it is read and
+        shown. An approval is of the text and evidence the person sees, so while they are still
+        being read the key is refused, in words, and nothing is queued for later."""
         detail = self.detail
         if detail is None or detail.key != self.selected:
-            self.app.notify("No entry is selected yet.")
+            self.app.notify(NOT_READ.format(key=self.selected) if self.selected else "No entry is selected yet.")
             return None
         return detail
 
     def action_edit(self):
-        detail = self._current()
-        if detail is not None:
+        """The editor opens at once. When the selected entry's detail is still being read (it
+        waits behind a running job), the editor reads the entry itself: the key is not lost."""
+        detail = self.detail
+        if detail is not None and detail.key == self.selected:
             self.app.edit(detail)
+        elif self.selected:
+            self.app.edit(key=self.selected)
+        else:
+            self.app.notify("No entry is selected yet.")
 
     def action_new(self):
         self.app.edit(None)

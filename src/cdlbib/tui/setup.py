@@ -10,7 +10,7 @@ from textual.widgets import Button, Input, Static
 
 from .. import api, deps, prompts
 from ..errors import ExportFailed, TexLinkRefused
-from .widgets import Shown, View
+from .widgets import Shown, View, focus_now
 
 
 class SetupView(View):
@@ -66,7 +66,7 @@ class SetupView(View):
         self.query_one("#x-force", Button).label = Text(self.FORCE[self.force])
 
     def activated(self):
-        self.query_one("#setup-check", Button).focus()
+        focus_now(self.query_one("#setup-check", Button))
         if self.report is None:
             self._read(probe=())
 
@@ -76,7 +76,7 @@ class SetupView(View):
             self.result()
 
     def action_leave_box(self):
-        self.query_one("#setup-check", Button).focus()
+        focus_now(self.query_one("#setup-check", Button))
 
     @on(Button.Pressed)
     def _pressed(self, event):

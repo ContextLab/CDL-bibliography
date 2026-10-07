@@ -16,7 +16,7 @@ from textual.widgets import Button, DataTable, Input, Select, Static, TabbedCont
 from .. import api
 from . import render
 from .proposal import ProposalScreen
-from .widgets import ChoiceScreen, FilePicker, Shown, Table, View, fill_table
+from .widgets import ChoiceScreen, FilePicker, Shown, Table, View, fill_table, focus_now
 
 
 class AddView(View):
@@ -137,7 +137,7 @@ class AddView(View):
     def _focus_tab(self):
         target = {"add-search": "#s-title", "add-identifier": "#i-ids", "add-pdf": "#p-path",
                   "add-manual": "#m-entrytype"}[self.tab]
-        self.query_one(target).focus()
+        focus_now(self.query_one(target))
 
     @on(TabbedContent.TabActivated, "#add-tabs")
     def _tab_shown(self, event):
@@ -161,7 +161,7 @@ class AddView(View):
         return action not in tabs or tabs[action] == self.tab
 
     def action_leave_box(self):
-        self.query_one("#add-tabs", TabbedContent).query_one("Tabs").focus()
+        focus_now(self.query_one("#add-tabs", TabbedContent).query_one("Tabs"))
 
     @on(Button.Pressed)
     def _pressed(self, event):
@@ -213,7 +213,7 @@ class AddView(View):
             self._fill_leads()
             self._leads_message()
             if self.leads:
-                self.query_one("#s-results", DataTable).focus()
+                focus_now(self.query_one("#s-results", DataTable))
         self.app.job("find records", lambda job: api.find_candidates(self.app.ws, title=title, authors=authors,
                                                                      year=year, progress=job.progress, book=book),
                      done, lambda exc: self._search_message([str(exc)], "error"))
@@ -318,7 +318,7 @@ class AddView(View):
             else:
                 self._pdf_message("Read: its text is below. l looks up its source record; o opens the PDF itself in "
                                   "the system viewer.")
-            self.query_one("#p-lookup", Button).focus()
+            focus_now(self.query_one("#p-lookup", Button))
         self.app.job(f"read {Path(path).name}", lambda job: api.read_pdf(path, progress=job.progress), read,
                      lambda exc: self._pdf_message(str(exc), role="error"))
 

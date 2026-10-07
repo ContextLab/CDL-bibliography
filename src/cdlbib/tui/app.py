@@ -6,7 +6,7 @@ one worker (cdlbib.tui.worker); what the core returns is shown as it is.
 import threading
 
 from rich.text import Text
-from textual import on
+from textual import events, on
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.message import Message
@@ -241,6 +241,10 @@ class CdlbibApp(App):
         self.seen = set()            # completion offers already decided in this sitting (touched by jobs only)
         self._revision = None        # the revision the entries were read at (touched by jobs only)
         self._leaving = False
+        self._front = "library"      # the view the person asked for last
+        self._key_in_hand = None     # the key being handled now (see on_event)
+        self._keys_held = []         # the keys pressed since, in order
+        self._reporting_to_a_view = 0    # a view's job is handing over its result now (interface's thread only)
         self.jobs = Runner(self.call_from_thread, self.say, self.ask, self._jobs_changed, self._unexpected)
         for mode in ("dark", "light"):
             self.register_theme(themes.build(mode))
@@ -336,12 +340,23 @@ class CdlbibApp(App):
     def job(self, label, call, done=None, failed=None, key=None, quiet=False):
         """Queue an api call; its result goes to ``done``, its CdlbibError to ``failed`` (by
         default shown as a notification; the log has it too)."""
-        owner = self.screen if len(self.screen_stack) > 1 else None
+        # A job belongs to the dialog or editor that is open when it is queued, with one exception:
+        # a job queued by the result of a view's job (a check that ends, then reads the library
+        # again) is the view's too, whatever was opened over the view meanwhile.
+        owner = self.screen if len(self.screen_stack) > 1 and not self._reporting_to_a_view else None
 
         def still_there(callback):
             """A job started from a dialog or an editor reports to it only while it is open."""
-            if callback is None or owner is None:
-                return callback
+            if callback is None:
+                return None
+            if owner is None:
+                def to_a_view(*args):
+                    self._reporting_to_a_view += 1
+                    try:
+                        return callback(*args)
+                    finally:
+                        self._reporting_to_a_view -= 1
+                return to_a_view
             return lambda *args: callback(*args) if owner in self._screen_stack else None
 
         def started(job):
@@ -447,6 +462,79 @@ class CdlbibApp(App):
         if self.jobs.idle and self.is_mounted:
             self.refresh_library()
 
+    # --- keys: one at a time, in the order pressed -------------------------------------------------
+
+    KEY_PASSES = 2       # how often what a key set off is followed from the focused part up to the app
+    KEY_PATIENCE = 20.0  # seconds after which a held key is let through whatever became of the one before
+
+    async def on_event(self, event):
+        """A key is handled only when the key before it has been handled everywhere.
+
+        Textual hands a key to the part that has the focus, and from there up, part by part, to
+        the app, each in its own queue; what the key does (move the focus, open the editor, show
+        another view) is done somewhere on that way. A second key that is already waiting (typed
+        quickly, or while the interface was busy drawing) would be handed out before the first
+        has arrived: the letter after ``/`` would go to the table, ctrl+p after ``e`` to the view
+        behind the editor that is about to open, and be lost. So the next key is held here until
+        the one before it has gone all the way, and a screen it opened has drawn its parts."""
+        if not isinstance(event, events.Key) or event.is_forwarded:
+            await super().on_event(event)
+            return
+        if self._key_in_hand is not None:
+            self._keys_held.append(event)
+            return
+        self._key_in_hand = event
+        self._key_timer = self.set_timer(self.KEY_PATIENCE, lambda: self._key_handled(event))
+        try:
+            await super().on_event(event)
+        finally:
+            self._follow_key(event, self._key_target(), self.KEY_PASSES)
+
+    @property
+    def keys_pending(self):
+        """A key is being handled, or keys are held behind it."""
+        return self._key_in_hand is not None or bool(self._keys_held)
+
+    def _key_target(self):
+        try:
+            return self.focused or self.screen
+        except Exception:                    # no screen is left: the app is closing
+            return self
+
+    def _follow_key(self, key, node, passes):
+        """Go the way the key goes: a callback at the end of the queue of ``node`` (behind the
+        key, and behind what the key has put there), then of its parent, up to the app; then
+        once more from the part that has the focus now, behind what the first pass set off."""
+        def passed():
+            if node is not self:
+                self._follow_key(key, node.parent or self, passes)
+            elif passes > 1:
+                self._follow_key(key, self._key_target(), passes - 1)
+            else:
+                return self._screen_drawn(key)
+        if node.call_later(passed):
+            return
+        if node is not self:                 # that part is closing; the way goes on at its parent
+            self._follow_key(key, node.parent or self, passes)
+        elif self._key_in_hand is key:       # the app is closing: no key is handled any more
+            self._key_in_hand, self._keys_held = None, []
+
+    def _screen_drawn(self, key):
+        """An editor or a dialog the key opened has its parts and its focus before the next key."""
+        screen = self.screen_stack[-1] if self.screen_stack else None
+        waits = screen is not None and not screen.is_mounted
+        if waits and screen.call_later(lambda: self.call_later(self._screen_drawn, key)):
+            return None
+        return self._key_handled(key)
+
+    async def _key_handled(self, key):
+        if self._key_in_hand is not key:     # let through already, after KEY_PATIENCE
+            return
+        self._key_in_hand = None
+        self._key_timer.stop()
+        if self._keys_held:
+            await self.on_event(self._keys_held.pop(0))
+
     # --- views -------------------------------------------------------------------------------
 
     def view(self, name):
@@ -461,14 +549,24 @@ class CdlbibApp(App):
             self.notify("Close this first (esc); the views are behind it.")
             return
         self.query_one("#views", TabbedContent).active = name
+        self._to_front(name)
+
+    def _to_front(self, name):
+        """The view is in front from now on: it loads what it shows and has the focus before the
+        next key is handled, so a key typed right after the view's own key is that view's."""
+        self._front = name
         self.view(name).activated()
         self.call_after_refresh(self.view(name).relayout)
 
     @on(TabbedContent.TabActivated, "#views")
     def _view_shown(self, event):
-        if event.tabbed_content.id == "views" and event.pane is not None and event.pane.id in dict(VIEWS):
-            self.view(event.pane.id).activated()
-            self.call_after_refresh(self.view(event.pane.id).relayout)
+        """The tabs say a view was shown: by a click on its tab (it is brought to the front), or
+        as the late echo of a view's key (nothing more to do; and when another view's key was
+        pressed since, the echo is of a view that is no longer the one in front)."""
+        if event.tabbed_content.id != "views" or event.pane is None or event.pane.id not in dict(VIEWS):
+            return
+        if event.pane.id == self.active_view and event.pane.id != self._front:
+            self._to_front(event.pane.id)
 
     def action_help(self):
         if isinstance(self.screen, TextScreen):
@@ -535,15 +633,16 @@ class CdlbibApp(App):
 
     # --- actions several views share ------------------------------------------------------------
 
-    def edit(self, detail=None):
-        """Open the editor on an entry (``detail``: desk.EntryDetail), or on a new one."""
+    def edit(self, detail=None, key=None):
+        """Open the editor on an entry (``detail``: desk.EntryDetail), on a new one, or on the
+        entry ``key`` whose detail is not read yet (the editor reads it itself)."""
         def closed(lines):
             if lines:
                 for line in lines:
                     self.say(line)
                 self.notify(lines[0])
                 self.refresh_library()
-        self.push_screen(EditScreen(detail), closed)
+        self.push_screen(EditScreen(detail, key), closed)
 
     def check_keys(self, keys, label):
         def call(job):

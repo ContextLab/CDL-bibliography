@@ -10,6 +10,15 @@ from textual.screen import ModalScreen
 from textual.scrollbar import ScrollBar, ScrollBarRender
 from textual.widgets import Button, DataTable, DirectoryTree, Input, Static
 
+
+def focus_now(widget):
+    """Give ``widget`` the focus before the next key is handled. Textual's own ``focus()`` puts
+    the change at the end of the queue of messages, behind the keys that are already waiting
+    there: typed quickly, the key after the one that moved the focus (the letter after ``/``,
+    the action after the key of a view) would go to the part that had the focus before."""
+    widget.screen.set_focus(widget)
+
+
 class WholeCells(ScrollBarRender):
     """A scrollbar drawn in whole cells only: no partial-block glyphs at its ends."""
     VERTICAL_BARS = [" "]
@@ -334,7 +343,7 @@ class PromptScreen(ModalScreen):
         inputs = list(self.query(Input))
         position = inputs.index(event.input)
         if position + 1 < len(inputs):
-            inputs[position + 1].focus()
+            focus_now(inputs[position + 1])
         else:
             self.action_accept()
 
@@ -383,6 +392,12 @@ class View(Vertical):
 
     def activated(self):
         """The view was brought to the front: load what it shows and take the focus."""
+
+    def on_descendant_focus(self, event):
+        """The app alone says which view is in front. Left to themselves, Textual's tabs follow
+        the focus: they switch, some messages later, to the pane holding whatever part was
+        focused, and that late switch would undo the key of another view pressed meanwhile."""
+        event.stop()
 
     def relayout(self):
         """Lay out again what was drawn while the view was not on the screen (it had no size

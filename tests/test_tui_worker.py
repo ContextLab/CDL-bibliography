@@ -1,5 +1,6 @@
 """The terminal interface's one job worker: every call into cdlbib.api runs on its thread and
-never two at once; quitting asks while a job runs; and a job that needs an optional package
+never two at once; keys that arrive faster than they are handled act in the order pressed, and
+what a view's job queues is the view's; quitting asks while a job runs; and a job that needs an optional package
 has it installed from inside the interface (asked first with --ask), for real, in a scratch
 environment. No mocks: the calls into cdlbib.api are observed with Python's own profiling
 hook, and the packages are installed by uv or pip.
@@ -117,6 +118,119 @@ def test_rapid_actions_run_one_at_a_time_and_only_on_the_worker(tmp_path):
     for key in ("Zoll90", "Kaha12"):                                    # the checks did run: each stored a result
         assert api.entry(ws, key).status != "pending" and api.entry(ws, key).result.get("checked_at")
     assert api.entry(ws, "Game62").status == "pending"
+
+
+def test_keys_that_arrive_faster_than_they_are_handled_act_in_order_each_on_what_the_one_before_did(tmp_path):
+    """Keys typed quickly, or while the interface is busy, wait in the app's queue together.
+    Here they are put there with nothing in between. Each acts where the key before it left the
+    interface: the action's key in the view whose key came just before, the letters in the search
+    box that / opened, ctrl+p in the editor that e opened."""
+    ws = T.library(tmp_path / "lib", ZOLL90, KAHA12, GAME62)
+    T.seed_responses(ws, T.COMPLETION)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+
+            async def burst(*keys):
+                for key in keys:
+                    app.simulate_key(key)
+                await T.settle(pilot)
+                return [label for label, _, _ in app.jobs.history]
+
+            labels = await burst("f3", "f5", "m")                            # two views' keys, then the second view's own
+            assert app.active_view == "check" and app.focused.id == "check-selected"
+            assert labels.count("format check") == 1 and "Format check of the library" in T.shown(app, "#check-result")
+            labels = await burst("f8", "c")                                 # c is Setup's here, not Check's "check selected"
+            assert app.active_view == "setup" and labels.count("check what this computer has") == 1
+            assert labels.count("read the setup") == 1 and not [label for label in labels if label.startswith("check Z")]
+            labels = await burst("f2", "f3", "f5", "f8", "f2", "slash", "k", "a", "h", "a", "escape", "e", "ctrl+p")
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == KAHA12
+            assert app.screen.previewed[0] == KAHA12 and labels.count("preview the edit of Kaha12") == 1
+            labels = await burst("escape", "n", "x", "y", "ctrl+p")          # typed into the editor that n opens
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.key is None and app.screen.text == "xy"
+            assert labels.count("preview the new entry") == 1 and app.screen.previewed[0] == "xy"
+            await burst("escape", "y", "f3", "f2")                          # the question is answered, then the views' keys
+            assert len(app.screen_stack) == 1 and app.active_view == "library" and app.focused.id == "entries"
+            assert app.screen.query_one("#search").value == "kaha"
+            assert [key.value for key in app.screen.query_one("#entries").rows] == ["Kaha12"]
+            assert "Close this first (esc); the views are behind it." not in app.notices
+            return app.jobs
+    jobs = T.run(journey())
+    assert jobs.most_active == 1
+    assert api.entry(ws, "Kaha12").raw == KAHA12 and len(api.entries(ws)) == 3   # nothing was written
+
+
+def test_a_part_that_does_not_answer_holds_the_next_key_for_a_while_and_not_for_ever(tmp_path):
+    import asyncio
+
+    from textual.widget import Widget
+    ws = T.library(tmp_path / "lib", ZOLL90, KAHA12)
+
+    class Stuck(Widget, can_focus=True):
+        """A part of the screen whose handling of the key x does not end until it is let go."""
+
+        async def on_key(self, event):
+            if event.key == "x":
+                await self.go.wait()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            app.KEY_PATIENCE = 1.5
+            stuck = Stuck()
+            stuck.go = asyncio.Event()
+            await app.screen.mount(stuck)
+            app.screen.set_focus(stuck)
+            await pilot.pause()
+            assert app.focused is stuck
+            started = time.monotonic()
+            app.simulate_key("x")
+            app.simulate_key("f5")
+            await asyncio.sleep(0.5)
+            assert app.active_view == "library" and app.keys_pending       # f5 waits for x to have been handled
+            while app.active_view != "check" and time.monotonic() - started < 30:
+                await asyncio.sleep(0.05)
+            assert app.active_view == "check" and time.monotonic() - started >= 1.5   # ... and then goes through
+            stuck.go.set()
+            await T.settle(pilot)
+            assert not app.keys_pending and app.focused.id == "check-selected"
+            await T.press(pilot, "m")                                      # the keys after it are handled as ever
+            assert "format check" in [label for label, _, _ in app.jobs.history]
+    T.run(journey())
+
+
+def test_what_a_views_job_queues_is_done_though_an_editor_was_opened_and_closed_meanwhile(tmp_path):
+    """A check that ends reads the library again. That reading is the view's job, not the job of
+    the editor that happens to be open when the check ends: closing the editor does not drop it."""
+    ws = T.library(tmp_path / "lib", GAME62, ZOLL90)
+    T.seed_responses(ws, T.COMPLETION)
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            first, second = threading.Event(), threading.Event()
+            assert "· pending 2" in T.screen_text(app)
+            app.job("a first long job", lambda job: first.wait(30))
+            await pilot.press("c")                                          # check Game62: waits behind the first job
+            app.job("a second long job", lambda job: second.wait(30))
+            await pilot.press("e")
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == GAME62
+            first.set()                                                     # the check runs and ends under the open editor
+            await T.until(pilot, lambda: "check Game62" in [label for label, _, _ in app.jobs.history],
+                          what="the end of the check")
+            await pilot.pause(0.3)
+            assert app.jobs.busy_label == "a second long job" and app.jobs.waiting >= 1   # the reading waits its turn
+            await pilot.press("escape")                                     # ... and the editor is closed before it
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ != "EditScreen"
+            second.set()
+            await T.settle(pilot)
+            assert "✓ metadata_verified 1" in T.screen_text(app)            # the table and the counts follow the check
+            assert app.view("library").detail.status == "metadata_verified"  # and the entry's details were read again
+    T.run(journey())
+    assert api.entry(ws, "Game62").status == "metadata_verified"
 
 
 def test_quitting_while_a_job_runs_asks_and_waits_or_stays(tmp_path):

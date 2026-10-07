@@ -64,12 +64,13 @@ TUI_SEARCH = ROOT / "tests/fixtures/intake/tui_search.json.gz"
 
 
 async def settle(pilot, timeout=120.0):
-    """Wait until the job worker is idle and the interface has drawn what the jobs returned."""
+    """Wait until every key pressed has been handled (the app handles them one at a time and
+    holds the rest), the job worker is idle and the interface has drawn what the jobs returned."""
     app, deadline = pilot.app, time.monotonic() + timeout
     quiet = 0
     while quiet < 3:
         await pilot.pause(0.02)
-        quiet = quiet + 1 if app.jobs.idle else 0
+        quiet = quiet + 1 if app.jobs.idle and not app.keys_pending else 0
         if time.monotonic() > deadline:
             raise AssertionError(f"jobs still running after {timeout} s: {app.jobs.busy_label}; log: {app.log_lines[-10:]}")
     for _ in range(50):                  # a screen that was just pushed has drawn its parts
