@@ -1379,3 +1379,293 @@ def test_whether_it_is_still_the_models_choice_is_the_verifiers_answer_and_defau
         source = inspect.getsource(function)
         assert "!=" not in source.replace('!= "written"', "") and "normalize" not in source, function.__name__
     assert "compare_record(" in inspect.getsource(ct.verifier_verdict)
+
+
+# --- review of 2026-10-06, round 5 ----------------------------------------------------------------
+#
+# R5-3: the mark of a model-assisted book title is kept apart from the result of one text
+# (Cache.record_model_choice) and applied to every result read and stored (Cache.marked).
+
+def _verify(ws, tmp_path, name, **options):
+    """``run_verification`` of Mann23 (or the key given) in the library's own database, with the
+    saved lookups (a transport that refuses every request). Returns the entry's stored result."""
+    from cdlbib.verification import Cache, run_verification
+    key = options.pop("key", "Mann23")
+    refuse = options.pop("refuse", False)
+    client = offline_client(tmp_path / name, "chapters.json.gz", "book_isbns.json.gz")
+    client.refresh = refuse                    # with ``refuse`` nothing saved is used: every lookup is refused
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        run_verification(str(ws.bib), cache, client, str(ws.report), keys=[key], **options)
+    finally:
+        cache.close()
+        client.cache.close()
+    return _stored(ws, key)
+
+
+def _has_mark(stored):
+    kept = (stored or {}).get("external_evidence") or {}
+    return (kept.get("kind") == ct.MODEL_CHOICE and kept.get("confirmed") is False
+            and (stored or {}).get("model_choice") == kept and stored["issues"][0] == ct.MODEL_CHOICE_ISSUE)
+
+
+def test_a_fresh_check_a_retry_or_a_provider_failure_does_not_take_the_mark_off(tmp_path, monkeypatch):
+    from cdlbib.verification import ACCEPTED, ProviderError
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    assert _path_accept(ws).written == ["Mann23"] and _marked(ws)
+    first = _stored(ws, "Mann23")
+    # a refresh: the verifier's fresh result (it accepts either title) is stored with the mark, not in its place
+    refreshed = _verify(ws, tmp_path, "refresh", refresh=True)
+    assert refreshed["checked_at"] != first["checked_at"] and refreshed["candidates"]
+    assert refreshed["status"] == "needs_review" and _has_mark(refreshed) and _marked(ws)
+    assert refreshed["external_evidence"] == first["external_evidence"]
+    # a retry of the entries that are not accepted
+    retried = _verify(ws, tmp_path, "retry", retry=True)
+    assert retried["status"] == "needs_review" and _has_mark(retried) and _marked(ws)
+    # a provider that does not answer: the failure is stored, and the mark with it
+    with pytest.raises(ProviderError):
+        _verify(ws, tmp_path, "outage", refresh=True, refuse=True)
+    failed = _stored(ws, "Mann23")
+    assert failed["status"] == "provider_error" and _has_mark(failed)
+    # ... and the check after the outage (a provider_error is always checked again) is marked too
+    after = _verify(ws, tmp_path, "after")
+    assert after["status"] == "needs_review" and after["status"] not in ACCEPTED and _has_mark(after) and _marked(ws)
+
+
+def test_an_edit_of_anything_but_the_book_title_keeps_the_mark_and_only_an_approval_ends_it(tmp_path, monkeypatch):
+    from cdlbib import api
+    from cdlbib.verification import Cache, record_approval, record_revocation
+    from intake_support import CONTACT
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    assert _path_accept(ws).written == ["Mann23"] and _marked(ws)
+
+    def edit(key, change, same_text=False):
+        entry = load_entries(ws.bib)[key]
+        text = change(entry["raw"])
+        assert text != entry["raw"]
+        done = api.save_edit(ws, key, text, entry["fingerprint"])
+        (written,) = done.written
+        after = load_entries(ws.bib)[written]
+        assert (after["fingerprint"] == entry["fingerprint"]) is same_text      # a key is not part of a fingerprint
+        return written
+
+    def review(key, note):
+        cache = Cache(ws.database, ledger=ws.revocations)
+        try:
+            return record_approval(cache, ws.bib, key, load_entries(ws.bib)[key]["fingerprint"], dict(
+                reviewer="@fixture", source="the publisher's page", note=note, github_login="fixture", github_id=1))
+        finally:
+            cache.close()
+
+    # white space only: another fingerprint, the same book title. Nothing is stored for the new text yet;
+    # the check of it is stored with the mark, and the gate does not pass it.
+    assert edit("Mann23", lambda raw: raw.replace("\tYear", "\t  Year")) == "Mann23"
+    assert _stored(ws, "Mann23") is None
+    checked = _verify(ws, tmp_path, "space")
+    assert checked["status"] == "needs_review" and _has_mark(checked) and _marked(ws)
+    gate = api.check_keys(ws, ["Mann23"], mailto=CONTACT)
+    assert not gate.ok and gate.citations.checked["Mann23"]["status"] == "needs_review"
+    assert api.entry(ws, "Mann23").external_evidence["kind"] == ct.MODEL_CHOICE
+    # another field (the author's name in full), and the key itself: the renamed entry is still the entry
+    assert edit("Mann23", lambda raw: raw.replace("{J R Manning}", "{Jeremy R Manning}")) == "Mann23"
+    assert _has_mark(_verify(ws, tmp_path, "author"))
+    assert edit("Mann23", lambda raw: raw.replace("{Mann23,", "{Mann23z,"), same_text=True) == "Mann23z"
+    assert json.loads(ws.key_renames.read_text(encoding="utf-8"))[-1]["new_key"] == "Mann23z"
+    assert _marked(ws, "Mann23z")
+    # ... and its next edit, under the new key, is an edit of the entry the choice was recorded for
+    assert edit("Mann23z", lambda raw: raw.replace("\tPages", "\t  Pages")) == "Mann23z"
+    assert _stored(ws, "Mann23z") is None
+    renamed = _verify(ws, tmp_path, "renamed", key="Mann23z")
+    assert renamed["status"] == "needs_review" and _has_mark(renamed) and _marked(ws, "Mann23z")
+    # a person's approval of the entry ends it ...
+    assert review("Mann23z", "book title checked")["status"] == "human_verified"
+    assert _stored(ws, "Mann23z")["status"] == "human_verified"
+    # ... and that approval revoked, it is unresolved again
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        record_revocation(cache, ws.bib, "Mann23z", "approved in error", "fixture")
+    finally:
+        cache.close()
+    revoked = _stored(ws, "Mann23z")
+    assert revoked["status"] not in ("human_verified", "metadata_verified") and _has_mark(revoked)
+    assert _has_mark(_verify(ws, tmp_path, "revoked", key="Mann23z", refresh=True))
+    # approved again (a new decision), then edited: the choice was confirmed by a person, and the entry is
+    # checked as any other
+    assert review("Mann23z", "book title checked again, against the page")["status"] == "human_verified"
+    assert edit("Mann23z", lambda raw: raw.replace("\t  Year", "\tYear")) == "Mann23z"
+    plain = _verify(ws, tmp_path, "approved", key="Mann23z")
+    assert plain["status"] == "metadata_verified" and "model_choice" not in plain and not plain.get("external_evidence")
+    assert plain["issues"] == [] and load_entries(ws.bib)["Mann23z"]["fields"]["booktitle"] == "Intracranial {EEG}"
+
+
+def test_a_book_title_changed_to_a_different_one_is_no_longer_the_models_choice(tmp_path, monkeypatch):
+    from cdlbib import api
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    assert _path_accept(ws).written == ["Mann23"] and _marked(ws)
+    entry = load_entries(ws.bib)["Mann23"]
+    # the same title in another form (the verifier takes it for the same): still the model's choice
+    api.save_edit(ws, "Mann23", entry["raw"].replace("{Intracranial {EEG}}", "{intracranial {EEG}}"), entry["fingerprint"])
+    assert load_entries(ws.bib)["Mann23"]["fields"]["booktitle"] == "intracranial {EEG}"
+    assert _has_mark(_verify(ws, tmp_path, "form"))
+    # the record's other title, typed by the person: the verifier says it is a different title
+    entry = load_entries(ws.bib)["Mann23"]
+    api.save_edit(ws, "Mann23", entry["raw"].replace("{intracranial {EEG}}", "{" + SERIES + "}"), entry["fingerprint"])
+    theirs = _verify(ws, tmp_path, "theirs")
+    assert "model_choice" not in theirs and not theirs.get("external_evidence")
+    assert ct.MODEL_CHOICE_ISSUE not in theirs["issues"]
+
+
+def test_a_mark_stored_before_choices_were_kept_apart_is_taken_up_when_it_is_read(tmp_path, monkeypatch):
+    """A database written before the ``model_choices`` table (or a restored snapshot) holds the
+    mark only in the result of one text. Reading that result records the choice, so the next
+    check does not lose it."""
+    from cdlbib.verification import Cache
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    assert _path_accept(ws).written == ["Mann23"]
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        with cache.db:
+            assert cache.db.execute("DELETE FROM model_choices").rowcount == 1
+        entry = load_entries(ws.bib)["Mann23"]
+        assert cache.model_choices(ws.bib, entry) == []
+        assert _has_mark(cache.get(ws.bib, entry))
+        ((_, evidence, pending),) = cache.model_choices(ws.bib, entry)
+        assert pending and evidence["chosen"] == BOOK
+    finally:
+        cache.close()
+    assert _has_mark(_verify(ws, tmp_path, "again", refresh=True))
+
+
+# Item 11: whether a line was cut is said where it is cut, and carried to the judgement of the reading.
+
+def test_a_cut_line_that_ends_in_a_space_is_still_a_cut_line():
+    """The review's reproduction: the 500th character of the block is a space, so the cut line
+    is 499 characters once it is stripped. It was taken for a whole line, and the series for
+    the book; what was cut off names the book."""
+    titles = ("Series Title", "Actual Book")
+    prefix = "Series: Series Title "
+    paragraph = prefix + "x" * (499 - len(prefix)) + " ; book: Actual Book"
+    lines, cut = ct.page_text(f"<html><body><p>{paragraph}</p></body></html>")
+    (line,) = lines
+    assert len(line) == 500 and line.endswith(" ") and len(line.strip()) == 499 and cut == [0]
+    assert "Actual Book" not in line and ct.page_lines(f"<p>{paragraph}</p>") == lines
+    page = {"lines": lines, "cut": cut}
+    pages = ct.pages_for(page, titles)
+    assert ct.cut_for(page, titles) == {0}
+    digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    start = pages[0]["text"].index("Series Title")
+    reading = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": start, "end": start + 12, "quote": "Series Title"}]}}}
+    for cut_lines in (ct.cut_for(page, titles), ()):          # by the flag, and without it by the line as it stands
+        with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+            ct.choice_from_reading(titles, pages, reading, cut=cut_lines)
+    # a page saved before the flag was kept: its lines of 500 characters are taken as cut
+    assert ct.cut_for({"lines": lines}, titles) == {0}
+    # the flag alone decides for a line whose length says nothing: a block whose text was dropped while the
+    # page was parsed (more than the parser keeps of one block), and a metadata line that was cut
+    spaced = "<p>Series Title" + " " * 5000 + "<b>; book: Actual Book</b></p>"
+    lines, cut = ct.page_text(spaced)
+    assert lines == ["Series Title"] and cut == [0]
+    short = {"lines": lines, "cut": cut}
+    pages = ct.pages_for(short, titles)
+    digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    reading = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": 0, "end": 12, "quote": "Series Title"}]}}}
+    with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+        ct.choice_from_reading(titles, pages, reading, cut=ct.cut_for(short, titles))
+    assert ct.choice_from_reading(titles, pages, reading, cut=()) == ("Series Title", "Series Title")   # a whole line
+    meta = '<meta name="citation_inbook_title" content="Series Title ' + "y" * 600 + ' Actual Book"><p>Actual Book</p>'
+    lines, cut = ct.page_text(meta)
+    assert cut == [0] and len(lines[0]) == 500 and lines[1] == "Actual Book"
+    # the positions are those of the lines the model is given, not of the page's
+    page = {"lines": ["nothing here"] * 5 + lines, "cut": [5]}
+    assert ct.pages_for(page, titles)[0]["text"].split("\n")[2] == lines[0] and ct.cut_for(page, titles) == {2}
+    # the recorded page has no cut line among those the model was given
+    assert ct.cut_for(RECORDED["page"], tuple(RECORDED["titles"])) == set()
+
+
+# Item 9: one deadline for the whole operation, the waiting between requests and the adapter included.
+
+def test_the_clients_own_waiting_is_inside_the_deadline(tmp_path):
+    """A server answers 429 with ``Retry-After: 100``. The client would wait 100 seconds before
+    asking again, outside the timed request; inside ``within`` it does not wait past the
+    deadline, and asks nothing more."""
+    import time
+    from cdlbib.verification import Cache, PoliteClient
+    from intake_support import CONTACT
+
+    def busy(handler):
+        handler.send_response(429)
+        handler.send_header("Retry-After", "100")
+        handler.send_header("Content-Length", "0")
+        handler.end_headers()
+
+    cache = Cache(tmp_path / "responses.sqlite3")
+    try:
+        with _Server(busy) as server:
+            client = PoliteClient(cache, CONTACT, interval=0.5, session=_plain_session())
+            started = time.monotonic()
+            with ct.within(client, started + 3):
+                assert client.deadline == started + 3
+                with pytest.raises(ct.OutOfTime, match="would be over before the next request could be made"):
+                    client.get(server.url + "/works")
+            assert time.monotonic() - started < 3 and len(server.seen) == 1 and client.requests == 1
+            assert client.deadline is None and not isinstance(client.session, ct._DeadlineSession)
+            # the pacing before a first request is held to it too, and nothing is asked
+            client.next_request = client.clock() + 60
+            started = time.monotonic()
+            with ct.within(client, started + 1):
+                with pytest.raises(ct.OutOfTime):
+                    client.get(server.url + "/again")
+            assert time.monotonic() - started < 1 and len(server.seen) == 1
+            # without a deadline the client waits as it always did (a short wait here)
+            client.next_request = client.clock() + 0.2
+            with pytest.raises(ct.ProviderError, match="HTTP 429"):
+                client.pause(0.2)
+                client.sleep = lambda seconds: None        # the Retry-After waits are not sat through here
+                client.get(server.url + "/third")
+    finally:
+        cache.close()
+    assert issubclass(ct.OutOfTime, ct.ProviderError)
+
+
+def test_the_adapter_is_given_no_more_than_the_time_that_is_left(client, tmp_path):
+    import inspect
+    import time
+    from cdlbib import research
+    script = tmp_path / "slow_adapter.py"
+    script.write_text("import sys, time\nsys.stdin.read()\ntime.sleep(60)\nprint('{}')\n", encoding="utf-8")
+    started = time.monotonic()
+    with pytest.raises(ValueError, match="Research adapter failed: TimeoutExpired"):
+        research.invoke_adapter(script, {"phase": "extract"}, timeout=1)
+    assert time.monotonic() - started < 20
+    assert research.ADAPTER_SECONDS == 600                    # the limit when no shorter one is given
+    quick = tmp_path / "quick_adapter.py"
+    quick.write_text("import sys\nsys.stdin.read()\nprint('{\"phase\": \"extract\"}')\n", encoding="utf-8")
+    assert research.invoke_adapter(quick, {}, timeout=10_000) == {"phase": "extract"} == research.invoke_adapter(quick, {})
+    # the resolution's deadline has passed when the model would be asked: it is not asked (no reading is saved
+    # for this page, a route is set up, and the page itself is saved)
+    titles = tuple(RECORDED["titles"])
+    client.cache.save_response("book-title-page-v1:" + RECORDED["doi"], RECORDED["page"])
+    record = record_of(client, MANN23)
+    announced = []
+    found = ct.from_model(client, client.cache, record, titles, announce=announced.append, allow_model=True,
+                          environ={"DARTMOUTH_CHAT_API_KEY": "not-a-key-and-never-sent"}, deadline=time.monotonic() - 1)
+    assert found.chosen is None and found.reason == (
+        "the time allowed for the resolution was over before a model could be asked, so no model was asked")
+    source = inspect.getsource(ct.from_model)
+    assert "timeout=left" in source and "deadline - time.monotonic()" in source

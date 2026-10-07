@@ -491,7 +491,9 @@ so and has the model read the chapter's page at its publisher; `--ask` makes it
 ask you first. The model can only pick one of the record's two titles, and only
 when a line it quotes from the page contains that title without the other. Such a
 choice is marked "model-assisted", the proposal then waits for your decision, and
-it is not a verification. Without a model route the book title is left unfilled,
+it is not a verification. Once the entry is written it reads `needs_review` with that
+mark until you approve it; checking it again, or editing anything but its book title,
+does not take the mark off. Without a model route the book title is left unfilled,
 as before, with the reason.
 
 The tool does not build theses, reports, software or datasets automatically. Enter those
@@ -607,9 +609,9 @@ The formatting check verifies the following:
 - Book titles (the `booktitle` of a chapter or a proceedings paper) must be properly capitalized and written out in full.
   - Ordinals are numerals with a superscript suffix: `30\textsuperscript{th}`, `21\textsuperscript{st}`.  A plain "30th" is rewritten wherever it stands.  An ordinal word is rewritten when it numbers a meeting ("the Fifth Annual Workshop" becomes "the 5\textsuperscript{th} Annual Workshop"); an ordinal word that is part of a title's wording ("Second Language Acquisition") is left alone, and a cardinal ("Thirty") is never made an ordinal.
   - Acronyms keep their capitals, in curly braces: `{IEEE}`, `{ACM}`, `({MobiSys})`, `{NAACL}-{HLT}`.  A word typed with two or more capitals is braced as typed.  A name typed wholly in capitals is not read for acronyms.
-  - LaTeX in a name is kept as typed: a command with its arguments (`\LaTeX`, `\emph{Drosophila}`, an accent such as `{\"O}`), mathematics (`$...$`), and a braced group that holds a group, a command or a space.  A journal, book title, publisher, address or edition whose braces or mathematics do not balance, or that is longer than 5,000 characters, is not formatted: the check stops and names the entry and the field.
+  - LaTeX in a name is kept as typed: a command with its arguments (`\LaTeX`, `\emph{Drosophila}`, an accent such as `{\"O}`), mathematics (`$...$`, `\(...\)`, and displayed `$$...$$` and `\[...\]`), and a braced group that holds a group, a command or a space.  A journal, book title, publisher, address or edition whose braces or mathematics do not balance, or that is longer than 5,000 characters, is not formatted: the check stops and names the entry and the field.
   - When a new house rule would change entries already in the library, those entries can be listed in [pending_house_forms.json](src/cdlbib/data/pending_house_forms.json) with their present and proposed text.  The check names a listed entry on every run and does not count it as an error while its text is exactly as listed; the rule applies to every other entry.  The list is empty: the four book titles the ordinal rule changed were rewritten on 2026-10-06 with the owner's approval.
-- The `edition` of a book is an ordinal in the same form: `2\textsuperscript{nd}` ("Second" and "2nd" are rewritten).
+- The `edition` of a book is an ordinal in the same form: `2\textsuperscript{nd}` ("Second" and "2nd" are rewritten).  An ordinal word is rewritten only when it is the whole value or is followed by nothing but the word for an edition ("Second", "Second edition"); inside a phrase it stays a word ("Second Language edition").  A numeral such as "2nd" is rewritten wherever it stands.
 - Article titles must be capitalized in sentence case, including the first word after a colon (e.g., "Memory: the review", not "Memory: The review").  Proper nouns and acronyms are protected with curly braces (e.g., "{fMRI} of the {Stroop} task").  Titles may not be (fully) enclosed in curly braces and may not end in '.'.  The checker can't tell a proper noun from an ordinary word, and it doesn't catch a capital "A" after a colon ("Memory: A review" passes), so check titles against the source.
 - Publisher names must be written out in full.
 - Addresses must be formatted properly:

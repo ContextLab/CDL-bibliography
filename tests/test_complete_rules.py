@@ -748,3 +748,126 @@ def test_no_proposal_built_from_the_saved_records_is_changed_by_the_guard(client
         if guarded.proposed_raw:                       # and what is proposed reads back as one entry of its type
             book_build.proved(guarded.proposed_raw, complete._written_fields(guarded), guarded.entry_type)
     assert changed == {}, changed      # no saved record has a value the guard refuses
+
+
+# --- review of 2026-10-06, round 5: R5-4 (records met twice), item 7 (a cut list, a failed lookup) ----
+
+def test_a_record_met_again_with_other_editors_or_another_title_is_a_disagreement(client):
+    """R5-4: the chapter's second ISBN gives a record with the SAME DOI as the first one's and
+    other editors (or none, or another title). It is not skipped as "the same record": what
+    it says is compared, and a difference leaves the editors undecided."""
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    whole = container_titles.book_editors(record, client)
+    assert [p["family"] for p in whole["editor"]] == ["Kahana", "Wagner"]
+    _, first = _crossref_books_answer(client, "9780190917982")
+    second_identity, second = _crossref_books_answer(client, "9780190918019")
+    (item,) = first["body"]["message"]["items"]
+    assert "9780190918019" in item["ISBN"]                 # the book's record carries both of the chapter's ISBNs
+
+    def answer_with(changed):
+        answer = deepcopy(second)
+        answer["body"]["message"].update(items=[changed])
+        answer["body"]["message"]["total-results"] = 1
+        client.cache.save_response(second_identity, answer)
+        return container_titles.book_editors(record, client)
+
+    for changed in (dict(deepcopy(item), editor=[{"given": "Someone", "family": "Else"}]),       # other editors
+                    {k: v for k, v in deepcopy(item).items() if k != "editor"},                    # none at all
+                    dict(deepcopy(item), title=["Another Book Altogether"])):                      # another title
+        found = answer_with(changed)
+        assert "editor" not in found and found["disagreement"] is True, changed.get("title")
+        assert found["reason"] == (f"Crossref gave the record {item['DOI']} more than once, with different titles or "
+                                   "editors; the editors are not taken from an incomplete answer")
+        assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None
+    # the same record, saying the same, met again under the other ISBN: one source, and the editors stand
+    found = answer_with(deepcopy(item))
+    assert [p["family"] for p in found["editor"]] == ["Kahana", "Wagner"]
+    assert len([s for s in found["sources"] if s["source"] == "crossref-book-record"]) == 1
+    assert client.requests == 0
+
+
+def test_records_without_an_identifier_are_never_each_others_duplicates(client):
+    """R5-4: two records of the book that state no DOI are two records. Before, both read as
+    "DOI None", the second was skipped unread, and its other editors were never compared."""
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    identity, answer = _crossref_books_answer(client, "9780190917982")
+    second_identity, second = _crossref_books_answer(client, "9780190918019")
+    (item,) = answer["body"]["message"]["items"]
+    nameless = {k: v for k, v in deepcopy(item).items() if k != "DOI"}
+    other = dict(deepcopy(nameless), editor=[{"given": "Someone", "family": "Else"}])
+    two = deepcopy(answer)
+    two["body"]["message"].update(items=[nameless, other])
+    two["body"]["message"]["total-results"] = 2
+    client.cache.save_response(identity, two)
+    emptied = deepcopy(second)
+    emptied["body"]["message"].update(items=[])
+    emptied["body"]["message"]["total-results"] = 0
+    client.cache.save_response(second_identity, emptied)
+    found = container_titles.book_editors(record, client)
+    assert len([s for s in found["sources"] if s["source"] == "crossref-book-record"]) == 2
+    assert "editor" not in found and found["disagreement"] is True
+    assert found["reason"] == "the 2 records found for the book name different editors, and none is chosen"
+    # The catalogue's records likewise. Its two real records of the handbook each come back under both of the
+    # chapter's ISBNs. In the answer to the second ISBN, the record 22868951 (which states the first ISBN) is
+    # made to state the second and to bear another title: one record id, given twice, saying different things.
+    import hashlib
+    from cdlbib.catalogue_discovery import identifier_query
+    client.cache.save_response(identity, answer)
+    client.cache.save_response(second_identity, second)
+    whole = container_titles.book_editors(record, client)
+    assert [p["family"] for p in whole["editor"]] == ["Kahana", "Wagner"]
+    assert sorted(s["record_id"] for s in whole["sources"] if s["source"] == "loc-catalogue") == ["22868951", "22924294"]
+    key = "loc-sru-v1:10:" + identifier_query("isbn", "9780190918019")
+    saved = client.cache.response(key, 10**9)
+    blocks = saved["raw_xml"].split("<zs:record>")
+    (at,) = [n for n, block in enumerate(blocks) if '<controlfield tag="001">22868951</controlfield>' in block]
+    changed = blocks[at].replace("9780190917982", "9780190918019").replace("handbook of human memory", "handbook of other things")
+    assert changed != blocks[at] and "handbook of other things" in changed
+    raw = "<zs:record>".join(blocks[:at] + [changed] + blocks[at + 1:])
+    client.cache.save_response(key, dict(saved, raw_xml=raw, document_sha256=hashlib.sha256(raw.encode()).hexdigest()))
+    twice = container_titles.book_editors(record, client)
+    assert "editor" not in twice and twice["disagreement"] is True
+    assert twice["reason"] == ("the catalogue gave the record 22868951 more than once, with different titles or editors; "
+                               "the editors are not taken from an incomplete answer")
+    assert client.requests == 0
+
+
+def test_a_chapter_with_more_isbns_than_are_looked_up_establishes_nothing(client):
+    """Item 7: the list of ISBNs is cut at ``MAX_ISBNS``. A record of the book under an ISBN
+    that is not looked up would never be read, so a cut list fills no editors and chooses
+    no title, and nothing is asked."""
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    assert container_titles.book_editors(record, client)["editor"]
+    more = dict(record, ISBN=record["ISBN"] + [f"97800000000{n:02d}" for n in range(3)])
+    assert len(container_titles._isbns(more)) == container_titles.MAX_ISBNS == 4 and container_titles.isbns_cut(record) is None
+    found = container_titles.book_editors(more, client)
+    assert found == {"sources": [], "reason": (
+        "the chapter's record states 5 ISBNs and only 4 are looked up, so not every record of the book would be "
+        "read; the editors are not taken from an incomplete answer")}
+    assert container_titles.valid_book_editors(dict(more, **{container_titles.BOOK_RECORD: found})) is None
+    two = dict(more, **{"container-title": ["Oxford Handbooks Online", record["container-title"][0]]})
+    resolution = container_titles.resolve(two, client, allow_model=False)
+    assert resolution.chosen is None and resolution.reason.startswith(
+        "the chapter's record states 5 ISBNs and only 4 are looked up")
+    assert client.requests == 0
+
+
+def test_a_lookup_that_failed_leaves_the_editors_unfilled_whatever_the_others_said(client):
+    """Item 7: Crossref's record of the book names its editors, and the lookup under the
+    chapter's second ISBN is not answered (it is not among the saved answers, and the
+    transport refuses). What was read is then not every record: no editors are taken."""
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    assert container_titles.book_editors(record, client)["editor"]
+    second_identity, _ = _crossref_books_answer(client, "9780190918019")
+    with client.cache.db:
+        client.cache.db.execute("DELETE FROM responses WHERE request=?", (second_identity,))
+    found = container_titles.book_editors(record, client)
+    assert [s["source"] for s in found["sources"]][0] == "crossref-book-record" and found["sources"][0]["editor"]
+    assert "editor" not in found and "by" not in found
+    assert found["reason"].startswith("Crossref did not answer (offline: request to api.crossref.org refused)")
+    assert found["reason"].endswith("; the editors are not taken from an incomplete answer")
+    assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None

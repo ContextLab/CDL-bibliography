@@ -52,8 +52,15 @@ def _adapter_reason(exc):
     return f": {found.group(1)}" if found else ""
 
 
-def invoke_adapter(executable, payload):
+ADAPTER_SECONDS = 600     # the most an adapter is given to answer
+
+
+def invoke_adapter(executable, payload, timeout=None):
+    """The adapter's one JSON object. ``timeout``: the seconds it is given when that is less
+    than ``ADAPTER_SECONDS`` (the time left of a caller's own deadline); the adapter is
+    stopped at the limit."""
     executable = locate_adapter(executable)  # a .py path is run with this interpreter
+    limit = ADAPTER_SECONDS if timeout is None else max(0.001, min(ADAPTER_SECONDS, timeout))
     try:
         result = subprocess.run(
             [sys.executable, str(executable)]
@@ -62,7 +69,7 @@ def invoke_adapter(executable, payload):
             input=dumps(payload),
             text=True,
             capture_output=True,
-            timeout=600,
+            timeout=limit,
             check=True,
         )
     except (subprocess.SubprocessError, OSError) as exc:

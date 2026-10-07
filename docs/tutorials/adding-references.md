@@ -350,7 +350,11 @@ asked (one request, which can take a few minutes), or, with `cdlbib --ask add ..
 you first. The model may only pick one of the record's two titles, from a line of the
 publisher's page that it quotes. The proposal then shows the source as
 `crossref (model-assisted choice)` with the quoted line and the page's address, and waits
-for your decision. It is not a verification.
+for your decision. It is not a verification. If you accept it, the entry is written and
+reads `needs_review` ("booktitle chosen with a model, unconfirmed") until you approve it.
+Checking the entry again, or editing anything but its book title, does not take that
+mark off; changing the book title to a different title does, because the title is then
+yours.
 
 ### A book
 
