@@ -50,15 +50,15 @@ is not changed, no shell profile is edited and `sudo` is not used. `--ask` asks 
 By hand, with Python 3.11 or later available:
 
 ```bash
-uv tool install --python ">=3.11" "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
-pipx install --python python3.11 "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
-python3.11 -m pip install "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+uv tool install --python ">=3.11" cdlbib
+pipx install --python python3.11 cdlbib
+python3.11 -m pip install cdlbib
 ```
 
-These commands and the `curl` form need the package to be on the repository's `master`
-branch. Once `cdlbib` is published on PyPI, the same commands take `cdlbib` in place of
-the quoted text (for example `python3.11 -m pip install cdlbib`), and the script takes
-`--pypi`.
+These install the version on PyPI. The `curl` form installs the `master` branch of the
+repository; with `--pypi` the script installs the version on PyPI. To install the
+`master` branch by hand, give `"cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"`
+in place of `cdlbib`.
 
 `pip` prints
 

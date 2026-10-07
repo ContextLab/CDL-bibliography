@@ -60,11 +60,6 @@ services as the CLI. Accepting proposed metadata remains separate from a human
 approval. When an update is available and there are unsent changes, the web
 interface asks the same question as the command line.
 
-[Issue #95](https://github.com/ContextLab/CDL-bibliography/issues/95) records the
-full design, the work supplied by [PR #94](https://github.com/ContextLab/CDL-bibliography/pull/94),
-and remaining milestones. PyPI publication is a separate, manual maintainer step; see
-[Releasing](docs/releasing.md).
-
 The former `bibcheck.py` and `bibverify.py` entry points are now `cdlbib` and
 `cdlbib crossref`. `commit` is now `send`. The old `magic` command is replaced by
 source-supported completion in `add`, `verify` and `send`, using the existing house
@@ -74,7 +69,7 @@ formatter. The older fuzzy-matching verifier and its `--workers` option are reti
 
 `cdlbib` is used on macOS with Python 3.11 and tested automatically on Linux (Ubuntu) with Python 3.11 and 3.13. Windows is untested.
 
-`cdlbib` needs Python 3.11 or later. It is not on PyPI yet.
+`cdlbib` needs Python 3.11 or later. It is on PyPI as [`cdlbib`](https://pypi.org/project/cdlbib/).
 
 ### With the install script (macOS and Linux)
 
@@ -137,7 +132,7 @@ says so; to move the installation, run `--uninstall`, then install with the new 
 |`--extras research,pdf,tui`|also installs these optional extras (default: none)|
 |`--ref NAME`|installs that branch, tag or commit of the GitHub repository|
 |`--repo URL`|installs from another `https` git repository|
-|`--pypi`|installs `cdlbib` from PyPI (for when it is published there)|
+|`--pypi`|installs `cdlbib` from PyPI|
 |`--ask`|asks before downloading `uv` and before installing; without a terminal it installs nothing and prints the commands|
 |`--no-uv`|downloads no `uv`: uses a `uv` on `PATH`, else makes a virtual environment in `~/.local/share/cdlbib/venv/` with the newest Python from 3.11 to 3.13 on `PATH` and links the commands into `~/.local/bin/`; else prints what to install|
 |`--uninstall`|removes what the script installed, as recorded in `~/.local/share/cdlbib/install-state` (`uv`'s tool directory, the folder of the commands and the `uv` that was used), whatever `UV_TOOL_DIR` is now; when that cannot be done (no `uv`, or `uv` fails) it removes nothing else, keeps the record, says what to do and ends with an error|
@@ -190,18 +185,18 @@ the expected digest.
 
 ### By hand
 
-Any of these, with Python 3.11 or later available:
+Any of these, with Python 3.11 or later available, installs the version on PyPI:
 
 ```bash
-uv tool install --python ">=3.11" "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
-pipx install --python python3.11 "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
-python3.11 -m pip install "cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"
+uv tool install --python ">=3.11" cdlbib
+pipx install --python python3.11 cdlbib
+python3.11 -m pip install cdlbib
 ```
 
 `pipx` and `pip` need a Python 3.11 or later to be installed already (`python3.11` above
-stands for it); `uv` downloads one when there is none. Once `cdlbib` is published on
-PyPI, the same commands take `cdlbib` in place of the quoted text, for example
-`python3.11 -m pip install cdlbib`.
+stands for it); `uv` downloads one when there is none. To install the `master` branch
+of the repository instead, give `"cdlbib @ git+https://github.com/ContextLab/CDL-bibliography"`
+in place of `cdlbib`.
 
 ### "requires a different Python"
 
