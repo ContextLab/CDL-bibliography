@@ -485,3 +485,73 @@ def test_a_program_that_ignores_the_lock_never_has_a_save_written_over(ws, tmp_p
     assert kept == saved == list(range(1, len(saved) + 1))            # not one of its saves was written over
     assert set(load_entries(ws.bib)) == {"Zoll90", "Kaha12"} and not list(ws.root.glob(".cdl.bib-*"))
     assert writer.interrupted(ws) is None
+
+
+IN_PLACE = """
+import os, random, sys, time
+bib, stop, log, how = sys.argv[1:5]
+number = 0
+held = os.open(bib, os.O_WRONLY | os.O_APPEND) if how == 'held open' else None
+while not os.path.exists(stop):
+    number += 1
+    line = b'%% written in place %d\\n' % number
+    if held is not None:                          # a program that opened the file once and keeps writing to it
+        os.write(held, line)
+        os.fsync(held)
+    else:                                         # a program that opens the file by its name for each save
+        fd = os.open(bib, os.O_WRONLY | os.O_APPEND)
+        os.write(fd, line)
+        os.fsync(fd)
+        os.close(fd)
+    with open(log, 'a') as stream:
+        stream.write('%d\\n' % number)
+    time.sleep(random.random() * 0.05)
+"""
+
+
+@pytest.mark.parametrize("how", ["held open", "opened for each save"])
+def test_nothing_a_program_writes_in_place_is_ever_removed(ws, tmp_path, monkeypatch, how):
+    """A second real process writes numbered lines into cdl.bib IN PLACE, over and over (through
+    one descriptor it keeps open, or opening the file by name each time), while this one
+    saves edits through the writer. Whatever instant a line is written at, it exists
+    afterwards: in the bibliography, in the copy kept for a save (.bibcheck/edits: the very
+    file that save replaced), or in the folder of a write that kept something
+    (.bibcheck/kept). No file that program wrote into is removed. (The copies of all the
+    saves are kept for this: the test sets the number kept above the number of saves.)"""
+    monkeypatch.setattr(writer, "KEEP_EDITS", 10_000)
+    stop, log = tmp_path / "stop", tmp_path / "written.txt"
+    program = subprocess.Popen([sys.executable, "-c", IN_PLACE, str(ws.bib), str(stop), str(log), how],
+                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    done = refused = 0
+    try:
+        while not log.exists():
+            time.sleep(0.01)
+        # At least 150 saves, and on until three have completed: on a loaded machine every one
+        # of 150 can meet a line being written (a save takes about as long as the pause
+        # between two lines), and a run in which no file was ever replaced shows nothing.
+        for number in range(3000):
+            if number >= 150 and done >= 3:
+                break
+            try:
+                current = api.entry(ws, "Kaha12")
+                applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", str(1000 + number)), current.fingerprint)
+                done += applied.written == ["Kaha12"]
+            except CdlbibError:
+                refused += 1
+    finally:
+        stop.write_text("stop", encoding="utf-8")
+        out, err = program.communicate(timeout=30)
+    assert program.returncode == 0, err
+    written = [int(text) for text in log.read_text().split()]
+    places = [ws.bib] + [item for folder in (ws.work / "edits", ws.work / "kept") if folder.is_dir()
+                         for item in folder.rglob("*") if item.is_file() and not item.is_symlink()]
+    found = {}
+    for place in places:
+        for text in place.read_bytes().splitlines():
+            if text.startswith(b"% written in place "):
+                found.setdefault(int(text.rsplit(b" ", 1)[1]), []).append(str(place.relative_to(ws.root)))
+    print("writer saves completed:", done, "refused:", refused, "lines written in place:", len(written),
+          "of them in the bibliography:", sum(1 for where in found.values() if "cdl.bib" in where), "(held open: only until the first save replaces the file)" if how == "held open" else "")
+    assert done + refused >= 150 and done >= 3 and len(written) > 30
+    assert sorted(found) == written == list(range(1, len(written) + 1)), sorted(set(written) - set(found))
+    assert not list(ws.root.glob(".cdl.bib-*")) and not list(ws.root.glob(".rollback-*"))

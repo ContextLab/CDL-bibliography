@@ -290,7 +290,31 @@ read and replaced whole by name within its folder held open (`writer._Folder`, `
 a link in the place of `verification/` or of the file is refused before anything is read,
 and there is no half-written line. (That holds for the library's folder and what is in it.
 The folders above the library, the path the library was opened by, are taken as the
-user's own and are not walked link by link.) `api.settle_approval_send` settles the record: when the
+user's own and are not walked link by link.)
+
+**Other programs writing the library's files while cdlbib writes them.** cdlbib's own
+commands take a lock; an editor, a sync service or a script does not. What then holds
+(`src/cdlbib/writer.py` says how):
+
+- Nothing another program wrote into `cdl.bib`, `verification/key-renames.json` or
+  `verification/approvals.jsonl` is ever deleted by cdlbib. It is either in the library, or
+  in the copy kept for the write that replaced the file (`.bibcheck/edits/<time>-<file name>`;
+  the copies of the newest 20 writes are kept), or in the folder of a write that had to keep
+  something (`.bibcheck/kept/<time>-<random>/`), and then the message of that write names
+  the path. cdlbib never removes anything from `.bibcheck/kept`.
+- A program that saves by rename, as editors do: a save made while cdlbib writes makes
+  cdlbib's write refuse ("changed while applying; nothing was written"), and stays.
+- A program that writes the file in place, or keeps it open: what it writes before cdlbib's
+  exchange makes the write refuse; what it writes afterwards through a descriptor it still
+  holds goes into the copy in `.bibcheck/edits`, which is the file it has open, not into the
+  library.
+- Not guaranteed: which of two saves made at the same moment ends up as the library file.
+  For an instant cdlbib's new text stands under the file's name before it is confirmed; a
+  program that reads the file in that instant and then saves what it read replaces, itself,
+  whatever another program saved in between. In the managed library (which keeps no copies
+  beside itself) a write through a descriptor still held on a replaced file is lost.
+- When a write cannot tell what state a file is in, it says so, keeps its record
+  (`.bibcheck/edits/write-in-progress.json`), and the next command that writes settles it. `api.settle_approval_send` settles the record: when the
 send raises (the append and the progress callbacks are inside the protected block), when it
 succeeds, and whenever the library's lock is taken (`library.transaction`), which settles a
 send that was killed. If the file holds exactly what the send left and no commit holds it,

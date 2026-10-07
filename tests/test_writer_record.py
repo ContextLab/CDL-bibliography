@@ -241,7 +241,7 @@ def test_paths_swapped_for_links_while_writes_run_never_reach_outside_the_librar
         for number in range(3000):
             if number >= 150 and done >= 3:
                 break
-            year = str(1000 + number)
+            year = str(3000 + number)             # never 1899 or 2050, the years of the saves before and after
             current = load_entries(ws.bib)["Kaha12"]
             try:
                 applied = api.save_edit(ws, "Kaha12", KAHA12.replace("2012", year), current["fingerprint"])

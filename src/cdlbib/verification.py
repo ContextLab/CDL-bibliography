@@ -728,15 +728,15 @@ def approval_lines(before, rows):
 def write_ledger(ledger, data, mode=None):
     """Make the approvals ledger hold exactly ``data`` (None: remove it), whole: prepared
     beside it and moved into place by name within its folder held open, never through a link."""
-    folder = _ledger_folder(ledger, create=data is not None)
+    from . import writer
+    folder = _ledger_folder(ledger, create=data is not None)      # refuses a link in the folder's place (ValueError)
     if folder is None:
         return
+    folder.close()
     try:
-        folder.put(Path(ledger).name, data, mode)
+        writer.replace_library_file(ledger, data, mode)
     except OSError as exc:
         raise ValueError(f"{ledger} could not be written ({exc.strerror or exc})") from exc
-    finally:
-        folder.close()
 
 
 def append_approvals(ledger, rows):
