@@ -969,7 +969,7 @@ copying the file. This method also works with command-line TeX Live on Linux;
 `BIBINPUTS` is unnecessary when the personal-tree link resolves correctly.
 
 # Using the bibtex file on Overleaf
-Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization), so (unlike what earlier versions of this readme suggested) you can't add this repository to an Overleaf project as a submodule. Link the file instead; this is set up once per project.
+Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization), so (unlike for local documents) you can't add this repository to an Overleaf project as a submodule. Link the file instead; this is set up once per project.
 
 1. In the project's file list, choose **New file**, then **From external URL** ([Overleaf's instructions](https://docs.overleaf.com/managing-projects-and-files/adding-files-to-a-project/adding-a-file-from-a-url)).
 2. Give this address: `https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib`
