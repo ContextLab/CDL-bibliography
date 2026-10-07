@@ -355,6 +355,14 @@ class Running:
         return self.app.close(wait)
 
 
+class Server(ThreadingHTTPServer):
+    # Connections that wait to be accepted. http.server's own number is 5: with that, a page
+    # (or a test) that opens more connections at once than the serving thread has yet taken
+    # has some of them reset by Linux when the computer is busy, and the request fails with
+    # "Connection reset by peer" although nothing refused it.
+    request_queue_size = 128
+
+
 def start(ws, port=0, log=None):
     """Bind 127.0.0.1:``port`` (0: a port the system picks) for the library ``ws`` and start
     the job worker, whose first job is api.prepare. Returns Running; nothing is served until
@@ -362,7 +370,7 @@ def start(ws, port=0, log=None):
     app = App(ws, log=log)
     handler = type("CdlbibHandler", (Handler,), {"app": app})
     try:
-        httpd = ThreadingHTTPServer((LOOPBACK, port), handler)
+        httpd = Server((LOOPBACK, port), handler)
     except OSError as exc:
         app.store.close()
         raise CdlbibError(f"The web interface could not listen on {LOOPBACK}:{port}: {exc}") from exc
