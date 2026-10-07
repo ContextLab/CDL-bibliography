@@ -312,7 +312,9 @@ def test_a_folder_in_the_place_of_a_file_is_left_where_it_is(tmp_path):
         folder._let_go(made)
         assert sorted(item.name for item in library_folder.iterdir()) == ["cdl.bib"] and (library_folder / "cdl.bib").is_dir()
         # the library-file step: the folder goes back under its name, the file made is kept aside
-        aside = writer._Aside(lambda: folder.sub(".bibcheck", create=True))
+        import contextlib
+        stack = contextlib.ExitStack()
+        aside = writer._Aside(lambda: folder.sub(".bibcheck", create=True), stack)
         made, identity = folder.new(".made-", b"new text\n")
         with pytest.raises(writer._Changed):
             folder.install(made, "cdl.bib", b"what was expected\n", aside)
@@ -324,7 +326,7 @@ def test_a_folder_in_the_place_of_a_file_is_left_where_it_is(tmp_path):
             writer._restore(folder, library_folder / "cdl.bib", b"old\n", 0o644, b"new text\n", aside)
         assert (library_folder / "cdl.bib" / "inside.txt").is_file()
         assert sorted(item.name for item in library_folder.iterdir()) == [".bibcheck", "cdl.bib"]
-        aside.close()
+        stack.close()
     finally:
         folder.close()
 
@@ -538,6 +540,12 @@ def test_a_folder_that_could_not_be_exchanged_back_is_kept_and_the_record_stays(
     assert str(ws.work / "kept" / folders[0]) in str(refused.value)
     assert writer.interrupted(ws) and str(ws.work / "edits" / writer.PENDING) in str(refused.value)
     assert ws.bib.is_file() and ws.bib.read_bytes() == before and strays(ws) == []
+    # The next command settles the write, and says where that folder is before the record goes
+    # (it finds the write's private folder from the record's stamp).
+    lines = api.recover_interrupted(ws)
+    assert len(lines) == 1 and str(ws.work / "kept" / folders[0]) in lines[0], lines
+    assert "was not what was expected" in lines[0] and writer.interrupted(ws) is None
+    assert (ws.work / "kept" / folders[0] / "inside.txt").is_file()
 
 
 def test_a_bibliography_removed_while_a_write_is_taken_back_is_written_again_and_that_is_said(ws):
@@ -648,3 +656,91 @@ def test_descriptors_are_all_closed_again_after_failures_under_a_low_limit(ws):
     import json
     outcomes, baseline, counts = json.loads(said)
     assert outcomes == ["WriteConflict"] and counts == [baseline], said
+
+
+# --- what a later command must not lose or pass over ---------------------------------------------------
+
+AT_THE_END = HEAD + """
+opened = api.entry(ws, 'Zoll90').fingerprint
+def audit(event, args):
+    if event == 'os.remove' and str(args[0]) == 'write-in-progress.json':
+        print('paused', flush=True)
+        signal.pause()
+sys.addaudithook(audit)
+api.save_edit(ws, 'Zoll90', {raw!r}, opened)
+"""
+
+
+def test_a_ledger_copy_that_is_the_file_a_program_has_open_survives_the_settling_of_a_killed_write(ws):
+    """Another program has the key-rename ledger open. A write of both files replaces them
+    (the ledger that program has open becomes the write's copy of it) and is killed just
+    before its record is removed. The next command settles the write. What the other
+    program then writes through its descriptor is still in a file with a name: the settling
+    did not remove the copies."""
+    ws.key_renames.parent.mkdir()
+    ws.key_renames.write_bytes(b"[]\n")
+    theirs = os.open(ws.key_renames, os.O_WRONLY | os.O_APPEND)
+    try:
+        process = child(AT_THE_END.format(root=str(ws.root), raw=RENAMED), ws.root)
+        try:
+            assert line(process) == "paused"
+            process.kill()
+            process.wait(timeout=10)
+        finally:
+            finish(process)
+        held = os.fstat(theirs)
+        (copy,) = [item for item in (ws.work / "edits").iterdir() if item.name.endswith("-" + ws.key_renames.name)]
+        assert (os.stat(copy).st_dev, os.stat(copy).st_ino) == (held.st_dev, held.st_ino) and writer.interrupted(ws)
+        lines = api.recover_interrupted(ws)
+        assert len(lines) == 1 and "nothing is missing" in lines[0] and writer.interrupted(ws) is None
+        os.write(theirs, b"% written by the program that had it open\n")
+        assert os.fstat(theirs).st_nlink == 1 and copy.read_bytes() == b"[]\n% written by the program that had it open\n"
+    finally:
+        os.close(theirs)
+    assert b"Zoller1990" in ws.bib.read_bytes() and b"Zoller1990" in ws.key_renames.read_bytes()
+
+
+def test_the_record_stays_when_something_unexpected_was_kept_whatever_was_raised(ws, tmp_path):
+    """The prepared file is swapped for a link just before the exchange, so a link has to be
+    kept aside; and while that is being dealt with, an audit hook of the program raises an
+    error that is not the system's. The bibliography is as it was, the link is kept, the
+    error is the hook's own, and the record of the write is NOT removed: something
+    unexpected was kept, and the next command is to say so."""
+    victim = tmp_path / "victim.txt"
+    victim.write_text("not cdlbib's to touch\n", encoding="utf-8")
+    before, prepared = ws.bib.read_bytes(), []
+
+    def remember(event, args):
+        prepared.append(str(args[0]))
+
+    def swap_for_a_link(event, args):
+        os.unlink(prepared[0])
+        os.symlink(victim, prepared[0])
+
+    def raises(event, args):
+        raise RuntimeError("raised by an audit hook")
+    STEPS[:] = [(announced(ws.bib), remember), (rename_call, swap_for_a_link), (rename_call, nothing), (rename_call, raises)]
+    with pytest.raises(RuntimeError, match="raised by an audit hook"):
+        edit(ws)
+    assert ws.bib.read_bytes() == before and not ws.bib.is_symlink() and strays(ws) == []
+    links = [name for name, what in kept(ws).items() if what == f"link to {victim}"]
+    assert len(links) == 1 and writer.interrupted(ws)
+    lines = api.recover_interrupted(ws)
+    assert len(lines) == 1 and str(ws.work / "kept" / links[0]) in lines[0] and writer.interrupted(ws) is None
+    assert victim.read_text(encoding="utf-8") == "not cdlbib's to touch\n"
+
+
+def test_what_a_successful_save_had_to_keep_aside_is_said_to_the_caller(ws):
+    """A save completes, but the file it replaced cannot become its copy (a folder was put in
+    the copy's place): it stays in the write's private folder, and the result of the save
+    says so, with the path."""
+    def a_folder_in_the_copys_place(event, args):
+        (copy,) = [item for item in (ws.work / "edits").iterdir() if item.name.endswith("-cdl.bib")]
+        os.unlink(copy)
+        os.mkdir(copy)
+        (copy / "inside.txt").write_text("x\n", encoding="utf-8")
+    STEPS[:] = [(announced(ws.bib), nothing), (rename_call, nothing), (rename_call, nothing),
+                (rename_call, a_folder_in_the_copys_place)]
+    applied = edit(ws)
+    assert applied.written == ["Kaha12"] and b"Year = {1999}" in ws.bib.read_bytes()
+    assert kept(ws) and any(str(ws.work / "kept") in note for note in applied.notes), applied.notes

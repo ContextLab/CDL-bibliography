@@ -750,6 +750,7 @@ def save_edit(ws, key, raw, expected_fingerprint=None, *, batch=None):
             writes.append((ledger, data))
         done = writer.commit(ws, writes, expected, batch=batch, operation="entry edit")
         result.written, result.backup, result.saved_copy = [plan.new_key], done.backup, done.saved_copy
+        result.notes += done.notes          # what the write kept aside, with its path
     except CdlbibError:
         raise
     except (OSError, UnicodeError, ValueError, TypeError) as exc:
