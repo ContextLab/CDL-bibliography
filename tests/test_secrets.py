@@ -156,6 +156,7 @@ def backend(monkeypatch):
     previous = keyring.get_keyring()
     monkeypatch.setitem(secrets.KEYS, "scratch", secrets.Key(env="CDLBIB_TEST_SCRATCH_KEY", item="cdlbib-test-unused"))
     monkeypatch.delenv("CDLBIB_TEST_SCRATCH_KEY", raising=False)
+    monkeypatch.delenv("CDLBIB_NO_KEYCHAIN", raising=False)
     yield keyring.set_keyring
     keyring.set_keyring(previous)
 
@@ -247,3 +248,40 @@ def test_a_copy_of_the_environment_never_reaches_the_keychain(backend, monkeypat
     assert secrets.get("scratch") == "from-keychain"
     with pytest.raises(SecretNotFound):
         secrets.get("scratch", dict(os.environ))
+
+
+# ---- CDLBIB_NO_KEYCHAIN: the keychain is not read ----
+
+def test_no_keychain_setting_keeps_a_stored_key_from_being_read(scratch_key, monkeypatch):
+    """A real stored item is found without the setting and not read with it."""
+    assert secrets.get("scratch") == "value-from-keychain"
+    monkeypatch.setenv("CDLBIB_NO_KEYCHAIN", "1")
+    with pytest.raises(SecretNotFound, match="CDLBIB_NO_KEYCHAIN=1: the system keychain was not read"):
+        secrets.get("scratch")
+    monkeypatch.setenv("CDLBIB_TEST_SCRATCH_KEY", "sk-from-env")
+    assert secrets.get("scratch") == "sk-from-env"
+
+
+def test_no_keychain_setting_never_calls_the_backend(backend, monkeypatch):
+    """With the setting, a backend that fails on any read is never asked."""
+    class Refuses(keyring.backend.KeyringBackend):
+        priority = 1
+
+        def get_password(self, service, username):
+            raise AssertionError("the keychain was read")
+
+        def set_password(self, service, username, password):
+            raise AssertionError("the keychain was written")
+
+        def delete_password(self, service, username):
+            raise AssertionError("the keychain was written")
+
+    backend(Refuses())
+    monkeypatch.setenv("CDLBIB_NO_KEYCHAIN", "1")
+    with pytest.raises(SecretNotFound, match="keychain was not read"):
+        secrets.get("scratch")
+
+
+def test_the_test_session_does_not_read_the_keychain():
+    """tests/conftest.py sets the variable for every test that does not ask for the keychain."""
+    assert os.environ.get("CDLBIB_TEST_LIVE_MODEL") == "1" or os.environ.get("CDLBIB_NO_KEYCHAIN") == "1"

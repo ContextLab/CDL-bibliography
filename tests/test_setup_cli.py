@@ -95,12 +95,40 @@ def test_a_probe_is_announced_and_gives_a_definite_answer(texenv, monkeypatch, t
 
 
 def test_the_keychain_probe_reads_a_real_keychain(usable_keychain, monkeypatch):
-    """Only where a usable keychain exists (tests/conftest.py); it reads, never writes."""
+    """Only where a usable keychain exists (tests/conftest.py). The item read is one this test makes
+    and removes, so a key this machine's keychain holds is never read."""
+    import getpass
+    import uuid
+
+    import keyring
+
+    from cdlbib import secrets
+
+    item = "cdlbib-test-" + uuid.uuid4().hex
+    monkeypatch.setitem(secrets.KEYS, "openai", secrets.Key(env="OPENAI_API_KEY", item=item))
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
-    said = []
-    found = {feature.name: feature for feature in api.features(probe=("openai",), progress=said.append)}
-    assert said == ["reading the system keychain for the OpenAI key ..."]
-    assert found["OpenAI key"].available in (True, False) and "not checked" not in found["OpenAI key"].detail
+
+    def probed():
+        said = []
+        found = {feature.name: feature for feature in api.features(probe=("openai",), progress=said.append)}
+        assert said == ["reading the system keychain for the OpenAI key ..."]
+        assert "not checked" not in found["OpenAI key"].detail
+        return found["OpenAI key"]
+
+    assert probed().available is False
+    try:
+        keyring.set_password(item, getpass.getuser(), "sk-test-do-not-print-0123456789")
+    except keyring.errors.KeyringError as exc:
+        pytest.skip(f"no usable system keychain here ({type(exc).__name__})")
+    try:
+        there = probed()
+        assert there.available is True and there.detail == "stored in the system keychain"
+        monkeypatch.setenv("CDLBIB_NO_KEYCHAIN", "1")
+        said = []
+        off = {feature.name: feature for feature in api.features(probe=("openai",), progress=said.append)}["OpenAI key"]
+        assert said == ["not reading the system keychain for the OpenAI key (CDLBIB_NO_KEYCHAIN=1) ..."] and off.available is False and "CDLBIB_NO_KEYCHAIN=1" in off.detail
+    finally:
+        keyring.delete_password(item, getpass.getuser())
 
 
 # --- setup --------------------------------------------------------------------------------

@@ -1933,6 +1933,10 @@ def features(probe=(), progress=None):
         if name not in wanted:
             return Feature(label, None, f"not checked: {variable} is not set, and the system keychain was not read",
                            secrets.places(name))
+        if secrets.keychain_off():
+            say(f"not reading the system keychain for the {label} ({secrets.NO_KEYCHAIN}=1) ...")
+            return Feature(label, False, f"{variable} is not set, and {secrets.NO_KEYCHAIN}=1 keeps the system "
+                           "keychain from being read", f"Set the environment variable {variable}.")
         say(f"reading the system keychain for the {label} ...")
         try:
             secrets.get(name)

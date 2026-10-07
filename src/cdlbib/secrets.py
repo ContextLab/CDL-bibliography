@@ -10,6 +10,10 @@ The keychain read waits at most KEYCHAIN_TIMEOUT seconds. On macOS the read can
 block on a GUI "allow access" prompt (for example for an item made with the
 ``security`` tool); an unattended process would otherwise hang. On timeout
 SecretNotFound says so: choose "Always Allow" in the prompt, then retry.
+
+When the environment variable CDLBIB_NO_KEYCHAIN is set to 1, the keychain is
+never read: only the key's environment variable counts. This is for unattended
+runs (a scheduled job, a test run) on a machine whose keychain holds a key.
 """
 from dataclasses import dataclass
 import getpass
@@ -19,6 +23,7 @@ import threading
 from .errors import SecretMalformed, SecretNotFound
 
 KEYCHAIN_TIMEOUT = 60
+NO_KEYCHAIN = "CDLBIB_NO_KEYCHAIN"
 
 
 @dataclass(frozen=True)
@@ -39,6 +44,11 @@ class KeychainTimeout(Exception):
 
 def reads_real_environment(environ):
     return environ is None or environ is os.environ
+
+
+def keychain_off(environ=None):
+    """CDLBIB_NO_KEYCHAIN=1: this process is not to read the keychain."""
+    return (os.environ if environ is None else environ).get(NO_KEYCHAIN) == "1"
 
 
 def _within(seconds, fn):
@@ -95,6 +105,9 @@ def get(name, environ=None):
     source = os.environ if environ is None else environ
     value = source.get(key.env) or ""
     if not value and reads_real_environment(environ):
+        if keychain_off():
+            raise SecretNotFound(f"No API key found ({NO_KEYCHAIN}=1: the system keychain was not read). "
+                                 f"Set the environment variable {key.env}.")
         value = from_keychain(name)
     if not value:
         raise SecretNotFound(f"No API key found. {places(name)}")

@@ -74,6 +74,13 @@ def _real_data_folder():
 _MANAGED = tempfile.mkdtemp(prefix="cdlbib-test-managed-")
 atexit.register(shutil.rmtree, _MANAGED, True)
 os.environ["CDLBIB_HOME"] = str(Path(_MANAGED) / "home")
+# No test reads a key this machine's keychain happens to hold: results would differ from one
+# machine to the next, and macOS asks the person at the screen each time another Python reads
+# such an item. The tests of the keychain itself (usable_keychain, and the backends of
+# tests/test_secrets.py) take this away and use items of their own; so does a live-model run,
+# which is asked for by name and needs the stored key.
+if os.environ.get("CDLBIB_TEST_LIVE_MODEL") != "1":
+    os.environ["CDLBIB_NO_KEYCHAIN"] = "1"
 os.environ["CDLBIB_UPSTREAM"] = str(build_upstream(_MANAGED))
 _REAL_DATA_FOLDER = _real_data_folder()
 _REAL_DATA_FOLDER_EXISTED = _REAL_DATA_FOLDER.exists()
@@ -212,11 +219,16 @@ def keychain_problem():
 
 
 @pytest.fixture
-def usable_keychain():
-    """Skip, before any keychain write, when this environment has no usable keychain."""
+def usable_keychain(monkeypatch):
+    """Skip, before any keychain write, when this environment has no usable keychain.
+
+    A test that asks for this reads the keychain on purpose (tests/conftest.py turns that off
+    for every other test).
+    """
     problem = keychain_problem()
     if problem:
         pytest.skip("no system keychain is available: " + problem)
+    monkeypatch.delenv("CDLBIB_NO_KEYCHAIN", raising=False)
 
 
 # The tests that call a live model service run only when asked for: the service's answer time

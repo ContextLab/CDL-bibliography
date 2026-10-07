@@ -46,6 +46,10 @@ instead:
 export DARTMOUTH_CHAT_API_KEY='paste-your-key-here'
 ```
 
+When the environment variable `CDLBIB_NO_KEYCHAIN` is set to `1`, `cdlbib` does not read
+the keychain at all; only the key's environment variable counts. The test suite sets it, so
+the tests never read a key stored on the machine that runs them.
+
 On macOS, a keychain item created with the `security` command makes macOS show an
 access prompt the first time Python reads it; choose "Always Allow". `cdlbib` waits at
 most 60 seconds for the keychain. When no key is found, it prints:
