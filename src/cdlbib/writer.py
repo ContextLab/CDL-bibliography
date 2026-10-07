@@ -1327,6 +1327,11 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
             return held.found["work"]
         aside = _Aside(work, held)
         try:
+            # The private folder of this write is made and held before anything else (a write
+            # that has nowhere to keep what it pushes aside does not start), and the record of
+            # the write names it by its stamp. It comes before the files are prepared, so that
+            # they stand beside the library, under names of their own, as briefly as can be.
+            aside.folder()
             # Prepare every file before replacing either, so permission/disk failures
             # during preparation leave both originals intact.
             for target, data in writes:
@@ -1338,10 +1343,6 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                 if folder.read(target.name)[0] != previous:
                     raise CdlbibError(f'{target} changed while applying; nothing was written')
             managed, extra = api.is_managed(ws), []
-            # The private folder of this write is made and held before anything is replaced (a
-            # write that has nowhere to keep what it pushes aside does not start), and the
-            # record of the write names it.
-            aside.folder()
             if managed:
                 done.backup = library.completion_checkpoint(ws, batch)
                 library._mark(done.backup, operation)
