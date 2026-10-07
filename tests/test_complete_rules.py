@@ -26,9 +26,9 @@ import pytest
 
 from cdlbib import complete
 from cdlbib.acl_review import assess_acl
-from cdlbib.verification import author_evidence, compare_record, dumps
+from cdlbib.verification import author_evidence, compare_record, dumps, load_entries
 
-from test_complete_identify import CONTACT, RULES, client, propose, typed_entry  # noqa: F401
+from test_complete_identify import CONTACT, RULES, SAVED, TYPES, client, propose, typed_entry  # noqa: F401
 from test_complete_types import LIBRARY, change, library, record_of as saved_record, unfilled
 
 MINSKY, JASPER, SPIE = "10.1515/9783110858778-003", "10.1093/med/9780197549469.003.0016", "10.1117/12.2309486"
@@ -392,7 +392,10 @@ def test_a_chapter_is_built_with_the_books_editors_written_and_verified(client, 
     assert "editor" not in record and record["ISBN"] == ["9780190917982", "9780190918019"]
     # found: the book's own record, of a book type, with the chapter's ISBN and the book's title
     found = container_titles.book_editors(record, client)
-    (source,) = found["sources"]
+    # (the catalogue's two records of the handbook are found too since 2026-10-06: by the verifier's reading
+    # their title is the book's without its "Two Volume Pack" tail; its grammar reads no editors from them)
+    assert [(s["source"], s["editor"]) for s in found["sources"][1:]] == [("loc-catalogue", []), ("loc-catalogue", [])]
+    source = found["sources"][0]
     assert (source["source"], source["doi"], source["isbn"], source["type"]) == (
         "crossref-book-record", "10.1093/oxfordhb/9780190917982.001.0001", "9780190917982", "edited-book")
     assert source["title"] == record["container-title"][0] == "The Oxford Handbook of Human Memory, Two Volume Pack"
@@ -585,7 +588,7 @@ def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_ed
     two["body"]["message"]["total-results"] = 2
     client.cache.save_response(identity, two)
     found = container_titles.book_editors(record, client)
-    assert "editor" not in found and found["disagreement"] is True and len(found["sources"]) == 2
+    assert "editor" not in found and found["disagreement"] is True and len([s for s in found["sources"] if s["source"] == "crossref-book-record"]) == 2
     assert found["reason"] == "the 2 records found for the book name different editors, and none is chosen"
     assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None
     # two records that agree are evidence, and each is kept with its source record
@@ -593,7 +596,7 @@ def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_ed
     agreeing["body"]["message"]["items"][1]["editor"] = deepcopy(item["editor"])
     client.cache.save_response(identity, agreeing)
     both = container_titles.book_editors(record, client)
-    assert [p["family"] for p in both["editor"]] == ["Kahana", "Wagner"] and all("record" in s for s in both["sources"])
+    assert [p["family"] for p in both["editor"]] == ["Kahana", "Wagner"] and all(("record" in s) != ("marcxml" in s) for s in both["sources"])
     # an answer Crossref cut short (it counts more records than it returned) decides nothing
     short = deepcopy(answer)
     short["body"]["message"]["total-results"] = 9
@@ -610,3 +613,138 @@ def test_a_second_record_with_other_editors_or_an_answer_cut_short_leaves_the_ed
     assert "editor" not in bad and "is not well formed" in bad["reason"]
     client.cache.save_response(identity, answer)
     assert container_titles.book_editors(record, client)["editor"] == whole["editor"] and client.requests == 0
+
+
+def test_a_record_under_another_isbn_of_the_chapter_with_other_editors_leaves_them_undecided(client):
+    """Every ISBN of the chapter is asked (re-review of 2026-10-06): a record of the book under
+    the chapter's second ISBN that names other editors is read, and decides that nothing is."""
+    from cdlbib import container_titles
+    record = saved_record(KAHANA)
+    assert record["ISBN"] == ["9780190917982", "9780190918019"]
+    whole = container_titles.book_editors(record, client)
+    assert [p["family"] for p in whole["editor"]] == ["Kahana", "Wagner"] and client.requests == 0
+    first_identity, first = _crossref_books_answer(client, "9780190917982")
+    second_identity, second = _crossref_books_answer(client, "9780190918019")
+    assert second is not None                                     # the second ISBN is asked, and its answer is saved
+    (item,) = first["body"]["message"]["items"]
+    other = dict(deepcopy(item), DOI="10.1093/oxfordhb/9780190918019.001.0001", ISBN=["9780190918019"],
+                 editor=[{"given": "Someone", "family": "Else"}])
+    conflicting = deepcopy(second)
+    conflicting["body"]["message"].update(items=[other])
+    conflicting["body"]["message"]["total-results"] = 1
+    client.cache.save_response(second_identity, conflicting)
+    found = container_titles.book_editors(record, client)
+    assert "editor" not in found and found["disagreement"] is True
+    assert sorted(s["isbn"] for s in found["sources"] if s["source"] == "crossref-book-record") == [
+        "9780190917982", "9780190918019"]
+    assert container_titles.valid_book_editors(dict(record, **{container_titles.BOOK_RECORD: found})) is None
+    # the same record found under both ISBNs is one record, and agrees with itself
+    client.cache.save_response(second_identity, first)
+    again = container_titles.book_editors(record, client)
+    assert [p["family"] for p in again["editor"]] == ["Kahana", "Wagner"]
+    assert len([s for s in again["sources"] if s["source"] == "crossref-book-record"]) == 1
+    client.cache.save_response(second_identity, second)
+    assert client.requests == 0
+
+
+# --- re-review, item 8: every source-filled field of every builder is guarded and read back ----------
+
+HOSTILE_RECORD = {"type": "journal-article", "DOI": "10.1234/x", "title": ["A plain title"],
+                  "author": [{"given": "John", "family": "Smith"}], "container-title": ["Journal of Tests"],
+                  "volume": "3", "issue": "2", "page": "1-9", "published-print": {"date-parts": [[2020]]},
+                  "issued": {"date-parts": [[2020]]}}
+
+
+def _built(**changed):
+    return complete.build({}, dict(deepcopy(HOSTILE_RECORD), **changed))
+
+
+def _one_entry(proposal, tmp_path, kind="article"):
+    from cdlbib import book_build, intake
+    raw = proposal.proposed_raw
+    assert raw.count("@") == 1 and raw.startswith("@" + kind + "{")
+    scanned = intake.scan_entry(raw)[2]
+    path = tmp_path / "back.bib"
+    path.write_text(raw + "\n", encoding="utf-8")
+    (entry,) = load_entries(path).values()
+    assert {k: v for k, v in entry["fields"].items() if k not in ("ENTRYTYPE", "ID")} == scanned
+    for name, value in scanned.items():
+        if name != "doi":
+            assert "\\" not in book_build._HOUSE_COMMAND.sub("", value), (name, value)
+    return scanned
+
+
+def test_names_with_characters_tex_reads_as_commands_are_not_written_by_any_builder(tmp_path):
+    for family in ("Smith%", "Smith_", "Smith#", "Smith~", "Smith^", "Smi\x00th", "Smith&Co", "Smith and Jones", "Sm{i}th"):
+        with pytest.raises(complete._Hold) as held:
+            complete._editor({"editor": [{"given": "John", "family": family}]}, None)
+        assert held.value.reason.startswith("editor: ") and "is not written" in held.value.reason, family
+        with pytest.raises(complete._Hold):
+            complete._author({"author": [{"given": "John", "family": family}]}, None, None)
+        proposal = _built(author=[{"given": "John", "family": family}])
+        scanned = _one_entry(proposal, tmp_path)
+        assert "author" not in scanned and any(u.field == "author" for u in proposal.unfilled), family
+    plain = complete._editor({"editor": [{"given": "John", "family": "Smith"}]}, None)
+    assert plain.value == "J Smith"
+
+
+@pytest.mark.parametrize("title", ["A title}, Note = {x", "}\n@misc{evil, title={x}}", "\\input{/etc/passwd}",
+                                   "\\write18{id}", "an opening { brace", "x" * 100_000, "a ~ b", "a^2", "cost $5",
+                                   "a\x00b", "mail@host"])
+def test_a_hostile_title_from_a_registry_record_is_left_unfilled(tmp_path, title):
+    proposal = _built(title=[title])
+    if proposal.proposed_raw is None:                    # the comparator could not read the record at all
+        return
+    scanned = _one_entry(proposal, tmp_path)
+    assert "title" not in scanned and "evil" not in proposal.proposed_raw and "passwd" not in proposal.proposed_raw
+    assert scanned["journal"] == "Journal of Tests" and scanned["author"] == "J Smith"
+    (missing,) = [u for u in proposal.unfilled if u.field == "title"]
+    assert all(len(v) <= 200 for v in missing.source_values.values())
+
+
+def test_specials_in_a_registry_title_are_escaped_and_the_verifier_still_matches(tmp_path):
+    # Before 2026-10-06 the article builder wrote "Title = {100% of it ...}": the % began a comment.
+    proposal = _built(title=["100% of it: R&D in snake_case #1"])
+    scanned = _one_entry(proposal, tmp_path)
+    assert scanned["title"] == "100\\% of it: r\\&d in snake\\_case \\#1"
+    _, issues = compare_record(dict(scanned, ENTRYTYPE="article"), dict(HOSTILE_RECORD, title=["100% of it: R&D in snake_case #1"]))
+    assert not [issue for issue in issues if issue.startswith("title")]
+    # a DOI is written as it is, so it may hold none of these
+    odd = _built(DOI="10.1234/a%b")
+    assert "doi" not in _one_entry(odd, tmp_path) and any(u.field == "doi" for u in odd.unfilled)
+    assert _one_entry(_built(DOI="10.1234/a_b(c)"), tmp_path)["doi"] == "10.1234/a_b(c)"
+    # every builder's entry is read back before it is proposed
+    import inspect
+    assert inspect.getsource(complete.build).count("_proved_or_held(") == 1
+    assert inspect.getsource(complete.build_arxiv).count("_proved_or_held(") == 1
+    assert inspect.getsource(complete.build).count("_guarded(name, makers[name]())") == 1
+    assert inspect.getsource(complete.build_arxiv).count("_guarded(name, makers[name]())") == 1
+
+
+def test_no_proposal_built_from_the_saved_records_is_changed_by_the_guard(client):
+    """Every Crossref record the builder's fixtures hold: the guard refuses no value of any of
+    them, and each built entry reads back as one entry of its type. (That the built text of
+    each is byte for byte what it was before the guard was checked once against the previous
+    source, 2026-10-06; the tests that compare built entries with the library's hold it.)"""
+    from cdlbib import book_build
+    records = {}
+    for item in SAVED + TYPES + RULES:
+        body = item["response"].get("body")
+        message = body.get("message") if isinstance(body, dict) else None
+        for record in ([message] + list(message.get("items") or [])) if isinstance(message, dict) else []:
+            if isinstance(record, dict) and record.get("DOI") and record.get("type") in complete.RECORD_KINDS:
+                records.setdefault(record["DOI"].lower(), record)
+    assert len(records) > 40
+    changed = {}
+    for doi, record in sorted(records.items()):
+        try:
+            guarded = complete.build({}, deepcopy(record))
+        except Exception as exc:  # noqa: BLE001 - a notice is refused by both alike
+            assert type(exc).__name__ == "CompletionRefused"
+            continue
+        refused = [u.field for u in guarded.unfilled if "it is not written" in u.reason]
+        if refused:
+            changed[doi] = refused
+        if guarded.proposed_raw:                       # and what is proposed reads back as one entry of its type
+            book_build.proved(guarded.proposed_raw, complete._written_fields(guarded), guarded.entry_type)
+    assert changed == {}, changed      # no saved record has a value the guard refuses

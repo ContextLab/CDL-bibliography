@@ -36,9 +36,11 @@ from .verification import ProviderError, normalize_title, normalized, now
 BOOK_TYPES = ("book", "edited-book", "monograph", "reference-book")
 WORKS = "https://api.crossref.org/works"
 PAGE_TTL = 30 * 86400
+PAGE_KEY = "book-title-page-v1:"      # the response-cache key of a fetched page, before the DOI
 READING_TTL = 365 * 86400
 MAX_LINES = 150           # lines of a page a model is given
 MAX_PAGE_LINES = 5000     # lines kept of a page while it is parsed; the rest is not read
+LINE_CHARS = 500          # characters kept of one block of a page; a line this long was cut
 PAGE_REDIRECTS = 6        # hops followed from doi.org to the page
 PAGE_SECONDS = 120        # the whole fetch of the page, all hops together
 RESOLVE_SECONDS = 900     # the whole resolution of one record (the adapter has its own 600 s limit)
@@ -92,16 +94,55 @@ def two_titles(record):
     if not isinstance(venues, list) or not all(isinstance(v, str) for v in venues):
         return None
     venues = [" ".join(v.split()) for v in venues if v.strip()]
-    if len(venues) != 2 or _key(venues[0]) == _key(venues[1]) or not all(_key(v) for v in venues):
+    if len(venues) != 2 or not all(_key(v) for v in venues) or same_title(venues[0], venues[1]):
         return None
     return tuple(venues)
 
 
 def _key(text):
+    """A title as the verifier reads a book title (``verification.normalized``, the transform
+    ``compare_record`` gives the ``booktitle`` field); "" for one it does not read."""
     try:
-        return normalize_title(html.unescape(str(text or "")))
+        return normalized(str(text or ""))
     except ValueError:
         return ""
+
+
+def verifier_verdict(cited, source):
+    """What the verifier itself says of ``cited`` as the book title of a chapter whose record
+    names ``source``: True (it accepts it), False (it finds a mismatch) or None (it cannot
+    say: a title it does not read, or no title). This IS the verifier: the answer is read
+    from ``verification.compare_record``'s own evidence for the ``booktitle`` field of an
+    ``@incollection`` against a ``book-chapter`` record, with every form that check accepts
+    (case, braces, typography, an ordinal the formatter rewrote, a series number or
+    volume-pack tail of the record). It is the single comparison of this module: whether two
+    titles are the same, whether a line's title is the book's, whether saved editor evidence
+    is about the cited book, and whether an entry's book title is still the one a model
+    chose are all asked here and nowhere else."""
+    from .verification import compare_record
+    if not isinstance(cited, str) or not isinstance(source, str) or not cited.strip() or not source.strip():
+        return None
+    if not _key(cited) or not _key(source):          # one of them is not a title the verifier reads
+        return None
+    try:
+        evidence, _ = compare_record({"ENTRYTYPE": "incollection", "booktitle": cited},
+                                     {"type": "book-chapter", "container-title": [source]})
+        found = evidence.get("booktitle")
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return None
+    return bool(found["match"]) if isinstance(found, dict) and "match" in found else None
+
+
+def title_is(cited, source):
+    """Whether the verifier accepts ``cited`` as the book title ``source`` (``verifier_verdict``
+    is True). False also when it cannot say: use ``verifier_verdict`` where "cannot say" must
+    not be read as "different"."""
+    return verifier_verdict(cited, source) is True
+
+
+def same_title(one, two):
+    """``title_is`` either way round: for two titles of which neither is the citation's."""
+    return title_is(one, two) or title_is(two, one)
 
 
 def _isbns(record):
@@ -116,8 +157,7 @@ def _isbns(record):
 def decide(titles, book_names):
     """The one of ``titles`` that is among ``book_names`` (titles a source gives the book),
     when the other is not; else None."""
-    names = {_key(n) for n in book_names if _key(n)}
-    hits = [t for t in titles if _key(t) in names]
+    hits = [t for t in titles if any(same_title(t, name) for name in book_names)]
     return hits[0] if len(hits) == 1 else None
 
 
@@ -284,7 +324,7 @@ def _catalogue_source(xml, isbn):
 
 def _is_title(booktitle, names):
     """Whether ``booktitle`` is one of ``names`` by the comparison used for the two titles."""
-    return bool(_key(booktitle)) and _key(booktitle) in {_key(n) for n in names if _key(n)}
+    return any(title_is(booktitle, name) for name in names)
 
 
 def book_editors(record, client, cache=None):
@@ -312,8 +352,9 @@ def book_editors(record, client, cache=None):
     def title_of(names):
         return decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
 
-    # Each source is asked ISBN by ISBN until one answer holds a record of the book; that
-    # whole answer is then read: every record in it that is the book's, not the first one.
+    # Each source is asked for every ISBN of the chapter (its print and electronic forms may
+    # have records of their own), and every answer is read whole: every record that is the
+    # book's, under any of the ISBNs, has to agree before the editors are taken.
     import time
     deadline = time.monotonic() + RESOLVE_SECONDS
     try:
@@ -322,8 +363,9 @@ def book_editors(record, client, cache=None):
                 response = client.get(WORKS, {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in BOOK_TYPES), "rows": 5})
                 message = (response.get("body") or {}).get("message", {})
                 listed = message.get("items") if isinstance(message.get("items"), list) else []
-                before = len(sources)
                 for item in listed:
+                    if isinstance(item, dict) and any(s_.get("doi") == item.get("DOI") for s_ in sources):
+                        continue                  # the same record, found again under another ISBN
                     read = _crossref_source(item, isbn)
                     if read is None or not title_of(read["names"]):
                         continue
@@ -336,8 +378,6 @@ def book_editors(record, client, cache=None):
                 total = message.get("total-results")
                 if isinstance(total, int) and total > len(listed):
                     undecided.append(f"Crossref counts {total} book records with the ISBN {isbn} and returned {len(listed)}")
-                if len(sources) > before:
-                    break
     except (ProviderError, ValueError, KeyError, TypeError) as exc:
         failed.append(f"Crossref did not answer ({exc})")
     try:
@@ -346,12 +386,13 @@ def book_editors(record, client, cache=None):
         with within(client, deadline):
             for isbn in _isbns(record):
                 found_ = fetch_query(cache, client, identifier_query("isbn", isbn))
-                before = len(sources)
                 for xml in found_["records"]:
                     read = _catalogue_source(xml, isbn)
                     if read is None or not title_of(read["names"]):
                         continue
                     lead = summary(xml)
+                    if any(s_.get("record_id") == lead["record_id"] for s_ in sources):
+                        continue                  # the same record, found again under another ISBN
                     sources.append({"source": "loc-catalogue", "lccn": lead["lccn"], "record_id": lead["record_id"],
                                     "isbn": isbn, "type": "book", "title": read["names"][0], "names": read["names"],
                                     "booktitle": title_of(read["names"]), "editor": read["editor"] or [], "marcxml": xml,
@@ -359,8 +400,6 @@ def book_editors(record, client, cache=None):
                                     "retrieved_at": found_["retrieved_at"]})
                 if found_["truncated"]:
                     undecided.append(f"the catalogue lists more records with the ISBN {isbn} than it returned")
-                if len(sources) > before:
-                    break
     except (ProviderError, ValueError, KeyError, TypeError) as exc:
         failed.append(f"the Library of Congress catalogue did not answer ({exc})")
     found = {"sources": sources}
@@ -408,12 +447,11 @@ def valid_book_editors(record, booktitle=None):
     found = record.get(BOOK_RECORD) if isinstance(record, dict) else None
     if not isinstance(found, dict) or found.get("disagreement") or not isinstance(found.get("editor"), list):
         return None
-    from .verification import book_title_forms
     venues = [v for v in record.get("container-title") or [] if isinstance(v, str)]
     cited = booktitle if booktitle is not None else found.get("booktitle")
     # The container titles of the chapter that the cited book title is, by the verifier's own
     # reading of a book title (a series number or a volume-pack tail is not part of it).
-    books = [v for v in venues if isinstance(cited, str) and (_is_title(cited, [v]) or _is_title(cited, [book_title_forms(v)]))]
+    books = [v for v in venues if isinstance(cited, str) and title_is(cited, v)]
     if not books:
         return None
     reread = []
@@ -427,7 +465,7 @@ def valid_book_editors(record, booktitle=None):
         else:
             read = None
         if read is None or read["editor"] is None or read["type"] not in BOOK_TYPES \
-                or not any(_is_title(v, read["names"]) for v in books):
+                or not any(same_title(v, name) for v in books for name in read["names"]):
             return None
         reread.append((source, read))
     naming = [(source, read) for source, read in reread if read["editor"]]
@@ -456,7 +494,7 @@ class _PageText(HTMLParser):
     def _end_line(self):
         text = " ".join("".join(self.current).split())
         if text and len(self.lines) < MAX_PAGE_LINES:
-            self.lines.append(text[:500])
+            self.lines.append(text[:LINE_CHARS])
         self.current = []
 
     def handle_starttag(self, tag, attrs):
@@ -483,19 +521,26 @@ class _PageText(HTMLParser):
 
 
 def page_lines(markup):
-    """The lines of an HTML page: its citation metadata first, then its text."""
+    """The lines of an HTML page: its citation metadata first, then its text, a line per
+    block. A block longer than ``LINE_CHARS`` is cut to that length; a line of that length
+    is therefore known to be (or may be) incomplete, and ``choice_from_reading`` does not take
+    it as evidence for a title."""
     parser = _PageText()
     parser.feed(markup)
     parser.close()
     parser._end_line()
-    return [line[:500] for line in parser.meta + parser.lines]
+    return [line[:LINE_CHARS] for line in parser.meta + parser.lines]
 
 
 def _mentions(line, title):
-    try:
-        return bool(re.search(r"(?<!\w)" + re.escape(normalized(html.unescape(title))) + r"(?!\w)", normalized(line)))
-    except ValueError:
-        return False
+    """Whether ``line`` holds ``title`` as whole words, both read as the verifier reads a book
+    title (``_key``). None when the line (or the title) is one the verifier does not read
+    (math, markup): such a line says nothing either way, and is never taken as "does not
+    mention"."""
+    wanted, text = _key(title), _key(line)
+    if not wanted or not text:
+        return None
+    return bool(re.search(r"(?<!\w)" + re.escape(wanted) + r"(?!\w)", text))
 
 
 def lines_about(lines, titles, around=2, limit=MAX_LINES):
@@ -504,7 +549,7 @@ def lines_about(lines, titles, around=2, limit=MAX_LINES):
     when the page mentions neither."""
     keep = set()
     for index, line in enumerate(lines):
-        if any(_mentions(line, t) for t in titles):
+        if any(_mentions(line, t) is not False for t in titles):      # a line that cannot be read is shown too
             keep.update(range(max(0, index - around), min(len(lines), index + around + 1)))
     return [lines[i] for i in sorted(keep)][:limit]
 
@@ -620,57 +665,141 @@ class _Read:
         return getattr(self._response, name)
 
 
+def _inflater(encoding):
+    """What turns the bytes of a body sent with ``Content-Encoding: encoding`` into the body:
+    None for an unencoded one, a zlib decompressor for gzip and deflate. Any other encoding
+    is refused (``OutOfTime``): it is not asked for, and not inflated blind."""
+    import zlib
+    encoding = str(encoding or "").strip().lower()
+    if encoding in ("", "identity"):
+        return None
+    if encoding in ("gzip", "x-gzip", "deflate"):
+        return zlib.decompressobj(47)          # gzip or zlib framing, told apart from the header
+    raise OutOfTime("the answer is in an encoding that was not asked for; it was not read")
+
+
 def read_bounded(response, deadline, limit):
-    """The body of a streamed response, read while the clock is watched: before every read
-    the time left is checked and set as the socket's timeout, each read takes what one
-    ``recv`` gives (so a server that drips bytes cannot hold a read open), and the body is
-    given up at ``limit`` bytes. On expiry the connection is closed and ``OutOfTime`` raised:
-    the retrieval ends at the deadline, not when the server chooses."""
+    """The body of a streamed response, read as it was sent (not yet decompressed) in small
+    steps, with two limits of ``limit`` bytes: on what is received, and on what it inflates
+    to (a small gzip cannot become a large body: the decompressor is given the room that is
+    left and stopped there). The clock is looked at between steps; the hard stop at the
+    deadline is ``timed``, which runs this."""
     import time
-    raw, chunks, size = response.raw, [], 0
+    raw, chunks, received, size = response.raw, [], 0, 0
+    inflate = _inflater(response.headers.get("Content-Encoding"))
     try:
-        while True:
-            left = deadline - time.monotonic()
-            if left <= 0:
+        for chunk in raw.stream(8192, decode_content=False):
+            if time.monotonic() > deadline:
                 raise OutOfTime("the time allowed for this retrieval is over; it was cancelled")
-            try:
-                raw.connection.sock.settimeout(min(left, 15))      # one recv never waits past the deadline
-            except AttributeError:                                 # no live socket to set (a finished or foreign body)
-                pass
-            chunk = raw.read1(65536, decode_content=True) if hasattr(raw, "read1") else raw.read(1024, decode_content=True)
-            if not chunk:
-                break
+            received += len(chunk)
+            if received > limit:
+                raise OutOfTime(f"the answer is larger than {limit} bytes; it was cancelled")
+            if inflate is not None:
+                chunk = inflate.decompress(chunk, limit - size + 1)
+                if inflate.unconsumed_tail:
+                    raise OutOfTime(f"the answer is larger than {limit} bytes when it is unpacked; it was cancelled")
             size += len(chunk)
             if size > limit:
-                raise OutOfTime(f"the answer is larger than {limit} bytes; it was cancelled")
+                raise OutOfTime(f"the answer is larger than {limit} bytes when it is unpacked; it was cancelled")
             chunks.append(chunk)
     except OutOfTime:
         response.close()
         raise
-    except Exception as exc:  # noqa: BLE001 - a socket timeout or a broken stream: the retrieval failed, whatever raised
+    except Exception as exc:  # noqa: BLE001 - a socket timeout, a broken stream, bad compressed data: no answer
         response.close()
-        late = deadline - time.monotonic() <= 0.5
-        raise OutOfTime("the time allowed for this retrieval is over; it was cancelled" if late
-                        else f"the answer could not be read ({type(exc).__name__})") from None
+        if time.monotonic() > deadline - 0.5:
+            raise OutOfTime("the time allowed for this retrieval is over; it was cancelled") from None
+        raise OutOfTime(f"the answer could not be read ({type(exc).__name__})") from None
     return _Read(response, b"".join(chunks))
 
 
+def _quietly(action):
+    try:
+        action()
+    except Exception:  # noqa: BLE001 - best effort
+        pass
+
+
+def timed(deadline, allowed, work, cancel=None):
+    """``work()``'s result, or ``OutOfTime`` at ``deadline`` whatever ``work`` is doing then:
+    looking a host up, connecting, waiting for headers, reading a chunk-size line, a trailer
+    or a body. ``work`` runs on a thread of its own; this one waits for it no longer than the
+    time left, then calls ``cancel`` (which closes what ``work`` holds, so that its blocked
+    read ends) and goes on. The caller is released at the deadline; the abandoned thread is a
+    daemon and ends when its closed socket or its own timeouts end it. ``allowed``: the whole
+    seconds the retrieval was given, for the message."""
+    import threading
+    import time
+    box = {}
+
+    def run():
+        try:
+            box["value"] = work()
+        except BaseException as exc:  # noqa: BLE001 - handed to the caller below
+            box["error"] = exc
+
+    left = deadline - time.monotonic()
+    if left <= 0:
+        raise OutOfTime(f"no answer within {allowed} seconds; nothing was asked")
+    worker = threading.Thread(target=run, daemon=True)
+    worker.start()
+    worker.join(left)
+    if worker.is_alive():
+        if cancel is not None:
+            # Closing is done on a thread of its own and not waited for: closing a response
+            # another thread is reading can itself wait for that read. The caller is released now.
+            threading.Thread(target=_quietly, args=(cancel,), daemon=True).start()
+        raise OutOfTime(f"no answer within {allowed} seconds; the request was cancelled")
+    if "error" in box:
+        raise box["error"]
+    return box["value"]
+
+
 class _DeadlineSession:
-    """A session whose every ``get`` is streamed and read by ``read_bounded``: connecting,
-    waiting for the answer and reading its body all end at ``deadline``, and no body is
-    larger than ``limit``. What is asked is the wrapped session's business."""
+    """A session whose every ``get`` is a hard-bounded retrieval: the request and the reading
+    of its body run under ``timed``, so the caller has its answer or ``OutOfTime`` by
+    ``deadline``, and no body is larger than ``limit``, as sent or unpacked. Only gzip and
+    deflate are asked for. What is asked is the wrapped session's business."""
 
     def __init__(self, session, deadline, limit):
+        import time
         self.session, self.deadline, self.limit = session, deadline, limit
+        self.allowed = max(1, round(deadline - time.monotonic()))
 
     def get(self, url, *args, **options):
         import time
         left = self.deadline - time.monotonic()
         if left <= 0:
-            raise OutOfTime("the time allowed for this retrieval is over; nothing was asked")
+            raise OutOfTime(f"no answer within {self.allowed} seconds; nothing was asked")
         connect, read = options.get("timeout") if isinstance(options.get("timeout"), tuple) else (10, 40)
-        options.update(stream=True, timeout=(max(0.05, min(connect, left)), max(0.05, min(read, left))))
-        return read_bounded(self.session.get(url, *args, **options), self.deadline, self.limit)
+        options.update(stream=True, timeout=(max(0.05, min(connect, left)), max(0.05, min(read, left))),
+                       headers=dict(options.get("headers") or {}, **{"Accept-Encoding": "gzip, deflate"}))
+        held = {}
+
+        def work():
+            import requests
+            try:
+                held["response"] = self.session.get(url, *args, **options)
+                return read_bounded(held["response"], self.deadline, self.limit)
+            except (requests.Timeout, OutOfTime) as exc:
+                # A timeout of the transport that falls at the deadline is the deadline (the socket
+                # timeouts are cut to the time left); one that falls before it is the transport's own.
+                if self.deadline - time.monotonic() < 0.5 and "larger than" not in str(exc):
+                    raise OutOfTime(f"no answer within {self.allowed} seconds; the request was cancelled") from None
+                raise
+
+        def cancel():
+            import socket
+            response = held.get("response")
+            if response is None:
+                return
+            connection = getattr(response.raw, "connection", None) or getattr(response.raw, "_connection", None)
+            sock = getattr(connection, "sock", None)
+            if sock is not None:
+                sock.shutdown(socket.SHUT_RDWR)      # ends the read the abandoned thread is blocked in
+            response.close()
+
+        return timed(self.deadline, self.allowed, work, cancel)
 
     def __getattr__(self, name):
         return getattr(self.session, name)
@@ -741,10 +870,11 @@ class _CheckedSession:
         if any(options.get(name) for name in ("auth", "cookies", "cert", "proxies", "data", "json")) \
                 or set(options.get("headers") or {}) - {"User-Agent"}:
             raise UnsafeURL("a request that would carry credentials or other data")
-        url = checked_url(url)
-        self.asked.append(url)
+        bounded = _DeadlineSession(self.session, self.deadline, PAGE_BYTES)
         try:
-            return _DeadlineSession(self.session, self.deadline, PAGE_BYTES).get(url, **options)
+            url = timed(self.deadline, bounded.allowed, lambda: checked_url(url))     # the DNS lookup is timed too
+            self.asked.append(url)
+            return bounded.get(url, **options)
         except OutOfTime as exc:
             raise UnsafeURL(str(exc)) from None
 
@@ -836,7 +966,12 @@ def choice_from_reading(titles, pages, extracted):
     if found.get("role_risk"):
         raise ValueError("the lines the model selected may not state the work's own book title ("
                          + ", ".join(str(r) for r in found["role_risk"]) + ")")
-    alone = [q for q in quotes if _mentions(q, chosen) and not _mentions(q, other)]
+    # A line of LINE_CHARS or more was cut when the page was read (page_lines): what followed is
+    # not known, the other title among it perhaps, so it cannot say which title is the book's.
+    if any(_mentions(q, chosen) is None or _mentions(q, other) is None for q in quotes):
+        raise ValueError("a quoted line holds markup the citation check does not read, so what it says of the "
+                         "titles is not known")
+    alone = [q for q in quotes if len(q) < LINE_CHARS and _mentions(q, chosen) and not _mentions(q, other)]
     if not alone:
         raise ValueError("no quoted line contains the chosen title without the other, so the lines do not say "
                          "which is the book's")
@@ -858,7 +993,7 @@ def _route(environ=None):
 
 def _saved(cache, doi, titles):
     """(page, pages, reading) from the response cache, as far as they are saved."""
-    page = cache.response("book-title-page-v1:" + doi, PAGE_TTL)
+    page = cache.response(PAGE_KEY + doi, PAGE_TTL)
     if page is None:
         return None, None, None
     pages = pages_for(page, titles)
@@ -898,7 +1033,7 @@ def from_model(client, cache, record, titles, announce=None, allow_model=None, e
                 page = fetch_page(doi, deadline=deadline)
             except ValueError as exc:
                 return Resolution(titles, reason=f"the publisher's page could not be read ({exc}), so no model was asked")
-            cache.save_response("book-title-page-v1:" + doi, page)
+            cache.save_response(PAGE_KEY + doi, page)
             pages = pages_for(page, titles)
         if not pages:
             return Resolution(titles, reason=f"the publisher's page ({page['url']}) gives no text that names "
@@ -986,8 +1121,9 @@ def apply(proposal, resolution):
                         if c.field == "booktitle" else c for c in proposal.changes]
     said = (f"booktitle: the record names two titles, \"{resolution.titles[0]}\" and \"{resolution.titles[1]}\"; "
             f"\"{resolution.chosen}\" is taken as the book's. " + resolution.sentence)
+    written = next((c.proposed for c in proposal.changes if c.field == "booktitle"), None)
     proposal.choices.append(dict(resolution.evidence, field="booktitle", by=resolution.by,
-                                 chosen=resolution.chosen, other=resolution.other,
+                                 chosen=resolution.chosen, other=resolution.other, written=written,
                                  model_assisted=resolution.model_assisted,
                                  confirmed=not resolution.model_assisted,
                                  **({"statement": UNCONFIRMED} if resolution.model_assisted else {})))
@@ -997,3 +1133,150 @@ def apply(proposal, resolution):
     else:
         proposal.notes.append(said)
     return proposal
+
+
+# --- after the entry is written -------------------------------------------------------------------
+
+MODEL_CHOICE = "model-assisted-choice"     # ``kind`` of the external evidence stored with such an entry
+
+
+def still_chosen(booktitle, choice):
+    """Whether an entry whose book title is ``booktitle`` still carries the model's choice.
+    False in one case only: the verifier itself says ``booktitle`` is a different title from
+    the one the model chose (``verifier_verdict`` is False for the chosen registry title, and
+    for the form of it that was written). A title the verifier takes for the same one in
+    another form (case, braces, spacing, a final full stop, an ordinal rewritten) is still
+    the choice, and so is anything the verifier cannot judge: the mark is kept unless the
+    title was plainly changed."""
+    if not isinstance(booktitle, str) or not booktitle.strip():
+        return False                       # no book title at all: there is nothing the choice is about
+    verdicts = [verifier_verdict(booktitle, str(choice.get(name) or "")) for name in ("chosen", "written")
+                if choice.get(name)]
+    return not verdicts or not all(verdict is False for verdict in verdicts)
+
+
+def model_choice(proposal, booktitle=None):
+    """The model-assisted choice a proposal carries (its record in ``choices``), or None.
+    With ``booktitle`` (the book title of the entry as it will be written) it is returned
+    unless the person changed the title to a different one (``still_chosen``, which is the
+    verifier's judgement and no other)."""
+    choice = next((c for c in getattr(proposal, "choices", None) or []
+                   if isinstance(c, dict) and c.get("field") == "booktitle" and c.get("model_assisted")), None)
+    if choice is None or (booktitle is not None and not still_chosen(booktitle, choice)):
+        return None
+    return choice
+
+
+def restate(proposal, fields):
+    """After a proposal was edited and rechecked: when its book title is still the one a
+    model chose, the proposal says so again and needs the person's decision again (a recheck
+    starts from no issues); when the person changed the book title, the choice is theirs and
+    the model's is taken off the proposal."""
+    carried = model_choice(proposal)
+    if carried is None:
+        return proposal
+    if model_choice(proposal, (fields or {}).get("booktitle")) is None:
+        # The one way a choice leaves a proposal: the person typed a book title the verifier says is another.
+        proposal.choices = [c for c in proposal.choices if c is not carried]
+        proposal.notes.append(f"booktitle: you changed the book title a model had chosen (\"{carried.get('chosen')}\"); "
+                              "the title is now yours, and the entry is checked as any other")
+        return proposal
+    said = (f"booktitle: \"{carried['chosen']}\" was chosen between the record's two titles with a model "
+            f"({carried.get('route')}), from the line \"{carried.get('quote')}\" of {carried.get('url')}. " + UNCONFIRMED)
+    if not any(UNCONFIRMED in issue for issue in proposal.issues):
+        proposal.issues.append(said)
+    proposal.needs_decision = True
+    return proposal
+
+
+def _choice_evidence(choice):
+    return {"kind": MODEL_CHOICE, "summary": "booktitle chosen with a model, unconfirmed",
+            "statement": UNCONFIRMED, "model_assisted": True, "confirmed": False,
+            "reviewer": f"model:{choice.get('route')}", "booktitle": choice.get("written"),
+            "single_comparison": "container_titles.verifier_verdict",
+            "fields": {"booktitle": {"value": choice.get("chosen"), "quote": choice.get("quote"),
+                                     "page": choice.get("url")}},
+            **{k: choice.get(k) for k in ("route", "model", "url", "quote", "document_sha256", "chosen", "other",
+                                          "page_retrieved_at", "read_at")}}
+
+
+def _put_choice(cache, bibliography, entry, choice):
+    """Store the mark for ``entry`` (key, text, fields, fingerprint). The mark names the book
+    title it is about; an entry with another book title is refused. A person's approval of
+    this exact entry is left as it is."""
+    from .errors import CdlbibError
+    from .verification import outcome
+    if not still_chosen(entry["fields"].get("booktitle"), choice):
+        raise CdlbibError(f"{entry['key']}: the book title is not the one the model-assisted choice wrote; "
+                          "the mark is for that title only.")
+    previous = cache.get(bibliography, entry)
+    if previous and previous.get("status") == "human_verified":
+        return previous
+    return cache.put(bibliography, entry, dict(
+        previous or outcome("needs_review", []), status="needs_review", external_evidence=_choice_evidence(choice),
+        issues=["booktitle chosen with a model, unconfirmed: human confirmation required"]))
+
+
+def store_model_choices(ws, accepted, planned, entries, database=None):
+    """Called by the writer (``complete.apply``) when everything is planned and nothing is
+    written yet: for each proposal about to be written whose book title a model chose (and
+    still is that title), the mark is stored for the entry as it WILL be (its fingerprint is
+    read from the exact text about to be written). The mark therefore exists before the
+    entry does, whichever interface accepted it; if it cannot be stored, ``CdlbibError`` is
+    raised and nothing is written. Returns the keys marked."""
+    import sqlite3
+    from .errors import CdlbibError
+    from .verification import Cache, run_lock
+    wanted = []
+    for outcome in planned.outcomes:
+        if outcome.status != "written":
+            continue
+        entry = entries[outcome.key]
+        choice = model_choice(accepted[outcome.index], entry["fields"].get("booktitle"))
+        if choice is not None:
+            wanted.append((entry, choice))
+    if not wanted:
+        return []
+    cache = None
+    try:
+        cache = Cache(database or ws.database, ledger=ws.revocations)
+        with run_lock(cache):
+            for entry, choice in wanted:
+                _put_choice(cache, ws.bib, entry, choice)
+    except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+        raise CdlbibError("The entry's book title was chosen with a model, and the record of that could not be "
+                          f"stored ({exc}); nothing was written.") from exc
+    finally:
+        if cache is not None:
+            cache.close()
+    return [entry["key"] for entry, _ in wanted]
+
+
+def keep_model_choice(ws, key, fingerprint, choice, database=None):
+    """Store the mark for the library entry ``key`` as it is now (the writer stores it itself,
+    before it writes: ``store_model_choices``; this is for an entry already in the library).
+    Its result becomes ``needs_review`` with the choice as its ``external_evidence`` (kind
+    ``MODEL_CHOICE``: route, model, URL, quoted line, page hash, and the book title it is
+    about), bound to the entry's fingerprint: the record ``crossref attach-evidence`` and a
+    model reading of a PDF use, with their meaning. Every automatic check leaves such an
+    entry ``needs_review`` (the verifier accepts either of the record's two titles, so its
+    acceptance would say nothing of the choice) until a person approves the entry; an edit of
+    the entry gives it a new fingerprint, and with it a new judgement. Never an approval."""
+    import sqlite3
+    from .errors import CdlbibError
+    from .library import transaction
+    from .verification import Cache, load_entries, run_lock
+    cache = None
+    try:
+        with transaction(ws):
+            cache = Cache(database or ws.database, ledger=ws.revocations)
+            with run_lock(cache):
+                entry = load_entries(ws.bib).get(key)
+                if entry is None or entry["fingerprint"] != fingerprint:
+                    raise CdlbibError(f"{key} is not the entry that was written; the model-assisted mark was not stored.")
+                return _put_choice(cache, ws.bib, entry, choice)
+    except (OSError, ValueError, sqlite3.Error) as exc:
+        raise CdlbibError(f"The model-assisted mark could not be stored: {exc}") from exc
+    finally:
+        if cache is not None:
+            cache.close()

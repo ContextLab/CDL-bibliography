@@ -281,14 +281,55 @@ def checked_value(name, value):
     return value
 
 
-def proved(raw, fields):
-    """``raw``, an assembled ``@book``, or ``ValueError``: it must read back as exactly one
-    entry with exactly ``fields`` (``intake._proved``: the library's reader and the strict
-    scanner both, as for an entry read from a PDF or by a model)."""
+def finished_source(name, value):
+    """A value a builder made from a source record, after its formatter, as it may be
+    written; ``ValueError`` when it may not. For the builders whose formatters take the
+    source text as it comes (``complete.build``, ``complete.build_arxiv``): the value must
+    pass ``checked_value`` (no change to the entry's structure, no command but the house's
+    own), may hold no ``~``, ``^`` or ``$`` and be no longer than ``MAX_FIELD``, and has its
+    ``% & # _`` escaped. A DOI is written as it is, so it may hold none of these at all
+    (``intake.plain_text_problem``)."""
+    from .intake import VERBATIM_FIELDS, plain_text_problem
+    if not isinstance(value, str) or len(value) > MAX_FIELD:
+        raise ValueError(f"{name}: the source value is too long to be written")
+    if name in VERBATIM_FIELDS:
+        problem = plain_text_problem(name, value)
+        if problem or "@" in value:
+            raise ValueError(f"{name}: the source value has {problem or 'an @'}; it is not written")
+        return value
+    checked_value(name, value)
+    bare = _HOUSE_COMMAND.sub("", value)
+    if re.search(r"[~^$]", bare):
+        raise ValueError(f"{name}: the source text has a character with no plain TeX form the check reads "
+                         "($, ~ or ^); it is not written")
+    escaped = re.sub(r"(?<!\\)[%&#_]", lambda found: "\\" + found[0], value)
+    return checked_value(name, escaped)
+
+
+def plain_people(name, people):
+    """``ValueError`` when a person of a source's list has a name part that is not plain text
+    for a byline: a character TeX reads as a command, a control character, the word "and"
+    (which would make two people of one), or more than 200 characters. Names are written as
+    initials and a surname and are never escaped, so such a list is not written at all."""
+    for person in people or []:
+        for part in ("given", "family", "name", "suffix"):
+            text = person.get(part) if isinstance(person, dict) else None
+            if text is None:
+                continue
+            if not isinstance(text, str) or len(text) > 200 or _SPECIAL.search(text) \
+                    or re.search(r"(?i)(?:^|\s)and(?:\s|$)|[\x00-\x1f\x7f]", text):
+                raise ValueError(f"{name}: a name in the record has a character that is not plain text in TeX, "
+                                 "or the word 'and'; the list is not written")
+
+
+def proved(raw, fields, entry_type="book"):
+    """``raw``, an assembled entry of ``entry_type``, or ``ValueError``: it must read back as
+    exactly one entry with exactly ``fields`` (``intake._proved``: the library's reader and
+    the strict scanner both, as for an entry read from a PDF or by a model)."""
     from .errors import CdlbibError
     from .intake import _proved
     try:
-        _proved(raw, "book", dict(fields))
+        _proved(raw, entry_type, dict(fields))
     except CdlbibError as exc:
         raise ValueError(str(exc)) from None
     return raw
@@ -569,6 +610,10 @@ def propose_book(query, client, cache):
     leads = [summary(xml) for xml in records]
     chosen, note = None, None
     if query.isbn or query.lccn:
+        if truncated:
+            # One record of a cut answer is not the only record: the rest was never seen.
+            return nothing([f"The catalogue's answer for {how} was cut short, so the record in it cannot be "
+                            "taken as the only one with that number; nothing is proposed." + more], leads)
         if len(records) == 1:
             chosen = 0
         else:
@@ -628,15 +673,21 @@ def catalogue_check(entry, result, client, cache=None, record_id=None):
     from .catalogue_review import CATALOGUE_POLICY, review_book
     from .verification import ACCEPTED
     fields = entry["fields"]
-    if (result.get("status") in ACCEPTED or result.get("status") != "needs_review"
-            or result.get("external_evidence") or str(fields.get("ENTRYTYPE") or "").lower() != "book"
-            or fields.get("doi") or not (fields.get("author") or fields.get("editor"))):
+    book = (str(fields.get("ENTRYTYPE") or "").lower() == "book" and not fields.get("doi")
+            and bool(fields.get("author") or fields.get("editor")) and not result.get("external_evidence"))
+    # An entry built from one catalogue record is verified only by the catalogue check's
+    # acceptance of that record: an acceptance that came some other way (another source,
+    # another record) is not returned as it is, but put to the catalogue check below.
+    bound = bool(record_id) and book and result.get("status") in ACCEPTED and not (
+        result.get("accepted_source") == SOURCE and result.get("accepted_record_id") == record_id)
+    if not bound and (result.get("status") in ACCEPTED or result.get("status") != "needs_review" or not book):
         return result
     response, assessed, attempts, queries = review_book(cache if cache is not None else client.cache, client, fields)
     assessed["candidates"] = [c for c in result.get("candidates", []) if c.get("source") != SOURCE] + assessed["candidates"]
     assessed["attempts"] = list(result.get("attempts", [])) + attempts
     assessed["catalogue_review"] = {"policy": CATALOGUE_POLICY, "query": response["query"], "queries": queries}
-    if record_id and assessed.get("status") in ACCEPTED and assessed.get("accepted_record_id") != record_id:
+    if record_id and assessed.get("status") in ACCEPTED and not (
+            assessed.get("accepted_source") == SOURCE and assessed.get("accepted_record_id") == record_id):
         # The entry was built from one record (the one that carries the number asked for); a
         # check that verifies it against another record has not verified that book.
         from .verification import outcome
@@ -685,7 +736,7 @@ def _typed_record(typed, client, cache, query=None):
         isbn, lccn = query.isbn, query.lccn
     if isbn or lccn:
         records, how, truncated = find_records(Query(isbn=isbn, lccn=None if isbn else lccn, book=True), client, cache)
-        return records, (0 if len(records) == 1 else None), how, truncated, range(len(records))
+        return records, (0 if len(records) == 1 and not truncated else None), how, truncated, range(len(records))
     names = typed.get("author") or typed.get("editor") or ""
     if not typed.get("title") or not names:
         raise ValueError("A typed book is looked up by its ISBN or LCCN, or by its title together with its authors "

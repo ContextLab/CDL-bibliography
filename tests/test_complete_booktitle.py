@@ -40,7 +40,7 @@ NO_ROUTE = {}     # an explicit configuration with no key: the keychain is not r
 
 @pytest.fixture
 def client(tmp_path):
-    client = offline_client(tmp_path / "cache", "chapters.json.gz")
+    client = offline_client(tmp_path / "cache", "chapters.json.gz", "book_isbns.json.gz")
     # The catalogue side of each chapter's book lookup (for the book's editors), recorded with
     # the builder-rules responses (tests/fixtures/completion/rule_responses.json).
     for item in json.loads((ROOT / "tests/fixtures/completion/rule_responses.json").read_text(encoding="utf-8")):
@@ -512,7 +512,7 @@ def test_every_hop_is_checked_and_a_redirect_to_a_private_address_is_never_follo
                 guarded.get("https://link.springer.com/chapter/x", **options)
         # and nothing at all once the time allowed is over
         late = ct._CheckedSession(inner, time.monotonic() - 1)
-        with pytest.raises(ct.UnsafeURL, match="the time allowed"):
+        with pytest.raises(ct.UnsafeURL, match="no answer within 1 seconds; nothing was asked"):
             late.get("https://link.springer.com/chapter/x", allow_redirects=False)
         assert inner.urls == []
     finally:
@@ -629,7 +629,7 @@ def test_a_server_that_drips_bytes_is_cut_off_at_the_deadline(tmp_path):
     with _Server(drip) as server:
         started = time.monotonic()
         guarded = ct._DeadlineSession(_plain_session(), started + 1.5, 10**6)
-        with pytest.raises(ct.OutOfTime, match="the time allowed for this retrieval is over; it was cancelled"):
+        with pytest.raises(ct.OutOfTime, match="no answer within [12] seconds; the request was cancelled"):
             guarded.get(server.url + "/page", timeout=(5, 15), allow_redirects=False)
         assert 1.2 < time.monotonic() - started < 4          # at the deadline, not after the minute the body takes
         # the same through the paced client's own session, as the Crossref book lookup and the catalogue are read:
@@ -641,7 +641,7 @@ def test_a_server_that_drips_bytes_is_cut_off_at_the_deadline(tmp_path):
             started = time.monotonic()
             with ct.within(client, started + 1.5):
                 assert isinstance(client.session, ct._DeadlineSession)
-                with pytest.raises(ct.ProviderError, match="the time allowed"):
+                with pytest.raises(ct.ProviderError, match="no answer within [12] seconds"):
                     client.get(server.url + "/works", {"rows": 5})
             assert client.session is own and time.monotonic() - started < 4
             assert [path.split("?")[0] for path, _ in server.seen if path.startswith("/")] == ["/page", "/works"]
@@ -808,3 +808,574 @@ def test_a_catalogue_answer_for_a_books_isbn_must_hold_a_record_with_that_isbn(t
         assert list(ct.catalogue_books(books, books.cache, record)) == [] and books.requests == 0
     finally:
         books.cache.close()
+
+
+# --- re-review of 2026-10-06: a hard deadline, cut lines, and the mark that stays --------------------
+
+def test_the_deadline_holds_before_headers_inside_chunk_framing_and_against_a_small_gzip_that_inflates(tmp_path):
+    """Three real servers that an inactivity timeout does not catch: one never sends its
+    headers, one drips a chunk-extension line (read inside the HTTP library, before any body
+    byte is handed over), one sends 300 KB of gzip that unpacks to 300 MB."""
+    import time
+    import zlib
+
+    def answer(request):
+        if request.path.startswith("/silent"):
+            time.sleep(20)                                   # connected, and no status line
+        elif request.path.startswith("/chunk"):
+            request.send_response(200)
+            request.send_header("Transfer-Encoding", "chunked")
+            request.end_headers()
+            request.wfile.write(b"5;ext=")
+            for _ in range(100):                             # the extension of the first chunk-size line, forever
+                request.wfile.write(b"x")
+                request.wfile.flush()
+                time.sleep(0.2)
+        else:
+            packer = zlib.compressobj(9, zlib.DEFLATED, 31)
+            body = b"".join(packer.compress(b"\0" * 1_000_000) for _ in range(300)) + packer.flush()
+            assert len(body) < 400_000
+            request.send_response(200)
+            request.send_header("Content-Encoding", "gzip")
+            request.send_header("Content-Length", str(len(body)))
+            request.end_headers()
+            request.wfile.write(body)
+
+    with _Server(answer) as server:
+        for path in ("/silent", "/chunk"):
+            started = time.monotonic()
+            guarded = ct._DeadlineSession(_plain_session(), started + 1.5, 10**6)
+            with pytest.raises(ct.OutOfTime, match="no answer within [12] seconds; the request was cancelled"):
+                guarded.get(server.url + path, timeout=(5, 15))
+            assert 1.2 < time.monotonic() - started < 3.5, path           # released at the deadline
+        started = time.monotonic()
+        guarded = ct._DeadlineSession(_plain_session(), started + 30, 1_000_000)
+        with pytest.raises(ct.OutOfTime, match="larger than 1000000 bytes when it is unpacked"):
+            guarded.get(server.url + "/bomb", timeout=(5, 15))
+        assert time.monotonic() - started < 10
+        sent = [headers.get("Accept-Encoding") for path, headers in server.seen if path.startswith("/")]
+        assert sent == ["gzip, deflate"] * 3                              # nothing else is asked for
+    # an encoding that was not asked for is not unpacked at all
+    with pytest.raises(ct.OutOfTime, match="an encoding that was not asked for"):
+        ct._inflater("br")
+    # anything else that the bounded work does is released at the deadline too (a host lookup, for one)
+    started = time.monotonic()
+    with pytest.raises(ct.OutOfTime, match="no answer within 1 seconds"):
+        ct.timed(started + 0.5, 1, lambda: time.sleep(10))
+    assert time.monotonic() - started < 2
+    assert ct.timed(time.monotonic() + 5, 5, lambda: "done") == "done"
+    with pytest.raises(KeyError):
+        ct.timed(time.monotonic() + 5, 5, lambda: {}["missing"])
+
+
+def test_a_line_that_was_cut_is_no_evidence_for_a_title():
+    """The re-review's case: one paragraph names the series, 500 characters of filler, then
+    the book. The page's lines are cut at 500 characters, so the book's name is gone from
+    the line that is judged: such a line cannot make the series the book."""
+    titles = ("Series Title", "Actual Book")
+    block = "Series: Series Title " + "filler " * 80 + "; book: Actual Book"
+    (line,) = ct.page_lines(f"<html><body><p>{block}</p></body></html>")
+    assert len(line) == ct.LINE_CHARS == 500 and "Actual Book" not in line and "Series Title" in line
+    pages = [{"page": 1, "text": line + "\n"}]
+    digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    start = line.index("Series Title")
+    reading = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": start, "end": start + 12, "quote": "Series Title"}]}}}
+    with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+        ct.choice_from_reading(titles, pages, reading)
+    # the same words in a line that is whole are evidence, as before
+    whole = [{"page": 1, "text": "Book series: Other\nPart of the book: Series Title\n"}]
+    digest = hashlib.sha256(json.dumps(whole, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+    at = whole[0]["text"].index("Series Title")
+    good = {"source_text_sha256": digest, "fields": {"booktitle": {
+        "value": "Series Title", "grounding": "literal_text_present", "role_risk": [],
+        "passages": [{"page": 1, "start": at, "end": at + 12, "quote": "Series Title"}]}}}
+    assert ct.choice_from_reading(titles, whole, good)[0] == "Series Title"
+    # none of the recorded reading's own lines was cut
+    assert all(len(line) < ct.LINE_CHARS for line in RECORDED["page"]["lines"] if BOOK in line and SERIES not in line)
+
+
+def test_a_model_assisted_title_stays_marked_after_the_entry_is_written(client, tmp_path):
+    from cdlbib import api, auto_review
+    from cdlbib.verification import Cache, record_approval
+    from intake_support import library
+    titles, _ = recorded_cache(client)
+    record = record_of(client, MANN23)
+    found = ct.from_model(client, client.cache, record, titles, environ=NO_ROUTE)
+    proposal = complete.build({}, dict(record, **{"container-title": [found.chosen]}))
+    ct.apply(proposal, found)
+    ws = library(tmp_path / "lib")
+    proposal = complete._plan_proposal(ws, complete.checked(proposal, client), complete.Query(), ())
+    assert proposal.status == "metadata_verified" and ct.model_choice(proposal)["chosen"] == BOOK
+    done = api.apply_proposals(ws, [proposal])
+    assert done.written == ["Mann23"]
+    assert done.notes[-1] == "Mann23: booktitle chosen with a model, unconfirmed; the entry needs a person's review"
+    entry = load_entries(ws.bib)["Mann23"]
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        stored = cache.get(ws.bib, entry)
+        # the verifier would accept this entry (it accepts either title); the stored result does not say so
+        assert stored["status"] == "needs_review"
+        assert stored["issues"] == ["booktitle chosen with a model, unconfirmed: human confirmation required"]
+        kept = stored["external_evidence"]
+        assert (kept["kind"], kept["summary"], kept["model_assisted"], kept["confirmed"]) == (
+            ct.MODEL_CHOICE, "booktitle chosen with a model, unconfirmed", True, False)
+        assert (kept["route"], kept["model"], kept["chosen"], kept["other"]) == ("dartmouth", "zai-org.glm-5.3", BOOK, SERIES)
+        assert kept["url"] == RECORDED["page"]["url"] and kept["document_sha256"] == RECORDED["page"]["document_sha256"]
+        assert kept["quote"] == "meta citation_inbook_title: Intracranial EEG / Intracranial EEG"
+        assert kept["fields"]["booktitle"] == {"value": BOOK, "quote": kept["quote"], "page": kept["url"]}
+        # judged again from what is saved (as every later check does), it is still not accepted
+        again = auto_review.reassess(entry, stored)
+        assert again["status"] == "needs_review" and again["external_evidence"] == kept
+        # what the views read
+        detail = api.entry(ws, "Mann23")
+        assert detail.status == "needs_review" and detail.external_evidence["summary"].startswith("booktitle chosen with a model")
+        assert api.status(ws).counts.get("needs_review") == 1 if hasattr(api.status(ws), "counts") else True
+        # a person's approval stands, and the mark is not put over it
+        record_approval(cache, ws.bib, "Mann23", entry["fingerprint"], dict(
+            reviewer="@fixture", source="the publisher's page", note="title checked", github_login="fixture", github_id=1))
+    finally:
+        cache.close()
+    after = ct.keep_model_choice(ws, "Mann23", entry["fingerprint"], ct.model_choice(proposal))
+    assert after["status"] == "human_verified"
+    # a proposal with no model-assisted choice stores nothing of the kind
+    assert ct.model_choice(complete.build({}, record)) is None
+    from cdlbib.errors import CdlbibError
+    with pytest.raises(CdlbibError, match="is not the entry that was written"):
+        ct.keep_model_choice(ws, "Mann23", "another-fingerprint", ct.model_choice(proposal))
+
+
+# --- security review of 682ee79: the mark cannot drift from its entry; one title comparison ----------
+
+def _model_proposal(client, ws):
+    """A checked, planned proposal for Mann23 whose book title the recorded model reading chose."""
+    titles, _ = recorded_cache(client)
+    record = record_of(client, MANN23)
+    found = ct.from_model(client, client.cache, record, titles, environ=NO_ROUTE)
+    proposal = complete.build({}, dict(record, **{"container-title": [found.chosen]}))
+    ct.apply(proposal, found)
+    return complete._plan_proposal(ws, complete.checked(proposal, client), complete.Query(), ())
+
+
+def _stored(ws, key):
+    from cdlbib.verification import Cache
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        return cache.get(ws.bib, load_entries(ws.bib)[key])
+    finally:
+        cache.close()
+
+
+def test_the_mark_is_written_by_the_writer_itself_before_the_entry_or_nothing_is_written(client, tmp_path):
+    from cdlbib import api
+    from cdlbib.errors import CdlbibError
+    from intake_support import library
+    # the writer, called directly (not through the api): the mark is its own step
+    ws = library(tmp_path / "direct")
+    proposal = _model_proposal(client, ws)
+    choice = ct.model_choice(proposal)
+    assert choice["written"] == "Intracranial {EEG}" and choice["chosen"] == BOOK        # bound to the value written
+    done = complete.apply(ws, [proposal])
+    assert done.written == ["Mann23"] and done.notes[-1].startswith("Mann23: booktitle chosen with a model, unconfirmed")
+    stored = _stored(ws, "Mann23")
+    assert stored["status"] == "needs_review" and stored["external_evidence"]["booktitle"] == "Intracranial {EEG}"
+    assert stored["fingerprint"] == load_entries(ws.bib)["Mann23"]["fingerprint"]
+    # the mark cannot be stored (the database's path is a folder): the entry is not written either
+    blocked = library(tmp_path / "blocked")
+    blocked.work.mkdir(parents=True, exist_ok=True)
+    proposal = _model_proposal(client, blocked)
+    Path(blocked.database).mkdir()
+    for write in (lambda: complete.apply(blocked, [proposal]), lambda: api.apply_proposals(blocked, [proposal])):
+        with pytest.raises(CdlbibError, match="chosen with a model, and the record of that could not be stored"):
+            write()
+        assert blocked.bib.read_text(encoding="utf-8") == ""
+    # the mark is for one book title: it is refused for an entry with another
+    from cdlbib.verification import Cache
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        entry = load_entries(ws.bib)["Mann23"]
+        other = dict(entry, fields=dict(entry["fields"], booktitle="Another book"))
+        with pytest.raises(CdlbibError, match="the mark is for that title only"):
+            ct._put_choice(cache, ws.bib, other, choice)
+    finally:
+        cache.close()
+    import inspect
+    source = inspect.getsource(complete.apply)
+    assert source.index("store_model_choices(ws, accepted, result, entries)") < source.index("writer.commit(ws, writes")
+
+
+def test_an_edit_keeps_the_mark_unless_it_changes_the_book_title_and_the_gate_does_not_remove_it(tmp_path, monkeypatch):
+    from cdlbib import api
+    from intake_support import CONTACT, seeded_library
+    from test_complete_cli import refused_network
+    for name, value in refused_network().items():
+        monkeypatch.setenv(name, value)
+    ws = seeded_library(tmp_path / "lib", "chapters.json.gz", "book_isbns.json.gz")
+    client = offline_client(tmp_path / "cache", "chapters.json.gz", "book_isbns.json.gz")
+    try:
+        proposal = _model_proposal(client, ws)
+    finally:
+        client.cache.close()
+    # edited (the pages), rechecked: a recheck starts from no issues, and the choice is said again
+    edited = api.recheck_proposal(ws, proposal, proposal.proposed_raw.replace("803--836", "803--837"), mailto=CONTACT)
+    assert edited.needs_decision and any(ct.UNCONFIRMED in issue for issue in edited.issues)
+    assert ct.model_choice(edited, "Intracranial {EEG}")["chosen"] == BOOK
+    same = api.recheck_proposal(ws, proposal, proposal.proposed_raw, mailto=CONTACT)
+    assert same.needs_decision and sum(ct.UNCONFIRMED in issue for issue in same.issues) == 1
+    # accepted after the recheck, through the api (the one way the command line and both interfaces write)
+    assert api.apply_proposals(ws, [same]).written == ["Mann23"]
+    stored = _stored(ws, "Mann23")
+    assert stored["status"] == "needs_review" and stored["external_evidence"]["kind"] == ct.MODEL_CHOICE
+    # the gate judges the entry and leaves it unverified with its mark, although the verifier alone accepts it
+    check = api.check_keys(ws, ["Mann23"], mailto=CONTACT)
+    assert not check.citations.ok and check.citations.checked["Mann23"]["status"] == "needs_review"
+    after = _stored(ws, "Mann23")
+    assert after["status"] == "needs_review" and after["external_evidence"] == stored["external_evidence"]
+    from cdlbib.verification import verify_entry
+    again = offline_client(tmp_path / "again", "chapters.json.gz", "book_isbns.json.gz")
+    try:
+        assert verify_entry(load_entries(ws.bib)["Mann23"], again)["status"] == "metadata_verified"
+    finally:
+        again.cache.close()
+    # the person types another book title: the choice is theirs now, and no mark is written for it
+    other = seeded_library(tmp_path / "other", "chapters.json.gz", "book_isbns.json.gz")
+    typed = api.recheck_proposal(other, proposal, proposal.proposed_raw.replace(
+        "Booktitle = {Intracranial {EEG}}", "Booktitle = {Studies in Neuroscience, Psychology and Behavioral Economics}"),
+        mailto=CONTACT)
+    assert ct.model_choice(typed) is None and not any(ct.UNCONFIRMED in issue for issue in typed.issues)
+    assert api.apply_proposals(other, [typed]).written == ["Mann23"]
+    assert not (_stored(other, "Mann23") or {}).get("external_evidence")
+
+
+PAIRS = [
+    ("Intracranial EEG", "Intracranial EEG"),
+    ("intracranial eeg", "Intracranial EEG"),                                  # case
+    ("Caf\u00e9 society", "Cafe\u0301 society"),                               # NFC against NFD
+    ("Memory and cognition", "Memory\u00a0and cognition"),                     # a no-break space
+    ("Memory and cognition", "Memory\u200b and cognition"),                    # a zero-width space
+    ("Memory and cognition", "Mem\u00adory and cognition"),                    # a soft hyphen
+    ("Research & development", "Research &amp; development"),                  # an entity, unescaped or not
+    ("Research & development", "Research &amp;amp; development"),              # ... escaped twice
+    ("Memory", "Memory and cognition"),                                        # one title the start of the other
+    ("Memory and cognition", "Memory"),
+    ("Automata studies", "Automata Studies. (AM-34)"),                         # the record's series number
+    ("Automata Studies. (AM-34)", "Automata studies"),
+    ("The Oxford handbook of human memory", "The Oxford Handbook of Human Memory, Two Volume Pack"),
+    ("Intracranial EEG.", "Intracranial EEG"),                                 # a final full stop
+    ("Intracranial EEG", "Intracranial EEG."),
+    ("Intracranial EEG:", "Intracranial EEG"),
+    ("Intracranial {EEG}", "Intracranial EEG"),                                # house braces
+    ("Na\\\"ive models", "Na\u00efve models"),                                 # a LaTeX accent against the letter
+    ("Cost $x$ of memory", "Cost $x$ of memory"),                              # math: the verifier reads neither
+    ("A <i>title</i>", "A title"),
+    ("", "Intracranial EEG"),
+]
+
+
+def _verifier_says(cited, source):
+    """Whether ``compare_record`` accepts ``cited`` as the book title of a chapter whose record
+    names ``source`` as its one container title."""
+    from cdlbib.auto_review import safe_compare
+    fields = {"ENTRYTYPE": "incollection", "title": "A chapter", "author": "A Person", "year": "2020", "booktitle": cited}
+    record = {"type": "book-chapter", "DOI": "10.1234/x", "title": ["A chapter"], "container-title": [source],
+              "author": [{"given": "A", "family": "Person"}], "issued": {"date-parts": [[2020]]}}
+    evidence, issues = safe_compare(fields, record)
+    if any(issue.startswith("Unsupported source metadata") for issue in issues) or not cited:
+        return False
+    return not any(issue.startswith("booktitle") for issue in issues)
+
+
+@pytest.mark.parametrize("cited, source", PAIRS)
+def test_every_title_comparison_of_the_module_is_the_verifiers(cited, source):
+    verdict = _verifier_says(cited, source)
+    assert ct.title_is(cited, source) is verdict, (cited, source)
+    # each function of the module that asks "is this that title" gives the verifier's answer
+    assert ct._is_title(cited, [source]) is verdict
+    assert ct.same_title(cited, source) is (verdict or _verifier_says(source, cited))
+    other = "Some Quite Different Series"
+    assert (ct.decide((cited, other), [source]) == cited) is (verdict or _verifier_says(source, cited)) if cited else True
+    # the book of saved editor evidence is bound by the same comparison
+    record = {"type": "book-chapter", "ISBN": ["9780195333244"], "container-title": [source]}
+    kept = {"type": "book", "ISBN": ["9780195333244"], "title": [source], "editor": [{"given": "A", "family": "Person"}]}
+    found = {"editor": kept["editor"], "by": "crossref-book-record", "booktitle": source,
+             "sources": [{"source": "crossref-book-record", "isbn": "9780195333244", "record": kept}]}
+    bound = ct.valid_book_editors(dict(record, **{ct.BOOK_RECORD: found}), cited)
+    assert (bound is not None) is (verdict and bool(ct._key(source))), (cited, source)
+
+
+def test_lines_are_read_as_the_verifier_reads_titles_and_an_unreadable_line_decides_nothing():
+    titles = ("Lecture Notes in Statistics", "Caf\u00e9 society")
+    # the same title in another Unicode form, case or spacing is the same title in a line too, as the verifier has it
+    for line, expected in (("Part of the book: Cafe\u0301 Society", True), ("part of the book: CAF\u00c9 SOCIETY", True),
+                           ("Part of the book: Caf\u00e9\u00a0society", ct.title_is("Caf\u00e9 society", "Caf\u00e9\u00a0society")),
+                           ("Part of the book: Caf\u00e9 societies", False), ("Book series: Lecture Notes in Statistics", False)):
+        assert ct._mentions(line, titles[1]) is expected, line
+    # a line the verifier does not read (math, markup) is neither "mentions" nor "does not mention"
+    for line in ("Series: $x$ Lecture Notes in Statistics", "Book <span>Caf\u00e9 society</span>", "\\foo{Caf\u00e9 society}"):
+        assert ct._mentions(line, titles[0]) is None and ct._mentions(line, titles[1]) is None, line
+    assert ct.lines_about(["Series: $x$ of it", "plain"], titles) == ["Series: $x$ of it", "plain"]     # shown, not hidden
+
+    def reading(pages, value, line_number):
+        text = pages[0]["text"]
+        start = sum(len(line) + 1 for line in text.split("\n")[:line_number])
+        end = start + len(text.split("\n")[line_number])
+        digest = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        return {"source_text_sha256": digest, "fields": {"booktitle": {
+            "value": value, "grounding": "literal_text_present", "role_risk": [],
+            "passages": [{"page": 1, "start": start, "end": end, "quote": text[start:end]}]}}}
+
+    # a quoted line with markup: what it says of the other title is not known, so it decides nothing
+    pages = [{"page": 1, "text": "Part of the book: Caf\u00e9 society $x$\n"}]
+    with pytest.raises(ValueError, match="markup the citation check does not read"):
+        ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))
+    # the model names the title in another Unicode form: it is that title, and the registry's string comes out
+    pages = [{"page": 1, "text": "Part of the book: Cafe\u0301 society\n"}]
+    assert ct.choice_from_reading(titles, pages, reading(pages, "Cafe\u0301 society", 0))[0] == titles[1]
+    # 499, 500 and 501 characters: a line is whole below the cut, and not evidence at it (501 cannot be: it is cut to 500)
+    for length, usable in ((499, True), (500, False)):
+        line = ("Part of the book: Caf\u00e9 society " + "x" * 600)[:length]
+        pages = [{"page": 1, "text": line + "\n"}]
+        if usable:
+            assert ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))[0] == titles[1]
+        else:
+            with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+                ct.choice_from_reading(titles, pages, reading(pages, "Caf\u00e9 society", 0))
+    (cut,) = ct.page_lines("<p>" + "y" * 501 + "</p>")
+    assert len(cut) == ct.LINE_CHARS
+    # a title that is the start of the other: a line with the longer one mentions both, and decides nothing
+    nested = ("Memory", "Memory and cognition")
+    pages = [{"page": 1, "text": "Part of the book: Memory and cognition\n"}]
+    for value in nested:
+        with pytest.raises(ValueError, match="no quoted line contains the chosen title without the other"):
+            ct.choice_from_reading(nested, pages, reading(pages, value, 0))
+
+
+# --- security review of 1585598: the review gate cannot be passed by a title in another form ---------
+
+MANN23_TYPED = ("@incollection{Mann23,\n\tAuthor = {J R Manning},\n\tDoi = {10.1007/978-3-031-20910-9_48},\n"
+                "\tPages = {803--836},\n\tTitle = {How can {I} identify stimulus-driven neural activity patterns in "
+                "multi-patient {ECoG} data?},\n\tYear = {2023}}")
+
+
+def _undecided_library(folder):
+    """A library whose saved lookups leave the two titles of Mann23 to the model: Crossref's
+    real answers to the book lookups, with their one record taken out (an answer that lists
+    no book record; the catalogue's real answers list none), and the recorded page and model
+    reading in the library's own cache. Everything then goes through cdlbib.api."""
+    from cdlbib import extra_sources as xs
+    from cdlbib.verification import dumps
+    from intake_support import CONTACT, load_saved, seeded_library
+    ws = seeded_library(folder, "chapters.json.gz", "book_isbns.json.gz")
+    client = xs.make_client(ws.database, contact=CONTACT, offline=True)
+    try:
+        for isbn in ("9783031209093", "9783031209109"):
+            identity = dumps([ct.WORKS, {"filter": f"isbn:{isbn}," + ",".join("type:" + t for t in ct.BOOK_TYPES),
+                                         "rows": 5}, False])
+            answer = deepcopy(client.cache.response(identity, 10**9))
+            answer["body"]["message"].update(items=[])
+            answer["body"]["message"]["total-results"] = 0
+            client.cache.save_response(identity, answer)
+        recorded_cache(client)
+    finally:
+        client.cache.close()
+    return ws
+
+
+def _marked(ws, key="Mann23"):
+    """Whether the written entry reads as unverified, with the model-assisted mark."""
+    stored = _stored(ws, key) or {}
+    kept = stored.get("external_evidence") or {}
+    return stored.get("status") == "needs_review" and kept.get("kind") == ct.MODEL_CHOICE and kept.get("confirmed") is False
+
+
+def _proposed(ws):
+    from cdlbib import api
+    from intake_support import CONTACT
+    lines = []
+    (proposal,) = api.propose_new(ws, [MANN23], mailto=CONTACT, progress=lines.append, allow_model=False)
+    return proposal
+
+
+def _path_accept(ws):
+    from cdlbib import api
+    return api.apply_proposals(ws, [_proposed(ws)])
+
+
+def _path_recheck_unchanged(ws):
+    from cdlbib import api
+    from intake_support import CONTACT
+    proposal = _proposed(ws)
+    return api.apply_proposals(ws, [api.recheck_proposal(ws, proposal, proposal.proposed_raw, mailto=CONTACT)])
+
+
+def _path_edit_another_field(ws):
+    from cdlbib import api
+    from intake_support import CONTACT
+    proposal = _proposed(ws)
+    edited = api.recheck_proposal(ws, proposal, proposal.proposed_raw.replace("803--836", "803--837"), mailto=CONTACT)
+    return api.apply_proposals(ws, [edited])
+
+
+def _path_accept_all_remaining(ws):
+    """What "accept all remaining" does in every interface: the proposals that need no
+    decision are written. A model-assisted one needs a decision, so it is not among them;
+    written all the same (as an interface that forgot to ask would), it is still marked."""
+    from cdlbib import api
+    proposal = _proposed(ws)
+    remaining = [item for item in [proposal] if not item.needs_decision and api.acceptable(item)]
+    assert remaining == [] and proposal.needs_decision
+    return api.apply_proposals(ws, [proposal])
+
+
+def _path_completion_of_a_typed_entry(ws):
+    """The completion step before verify and send: the entry is in the library as typed,
+    without its book title, and is offered its completion."""
+    from cdlbib import api
+    from intake_support import CONTACT
+    ws.bib.write_text(MANN23_TYPED + "\n", encoding="utf-8")
+    (offer,) = list(api.completion_offers(ws, reference=None, mailto=CONTACT))
+    (proposal,) = offer.proposals
+    assert proposal.typed_raw == MANN23_TYPED
+    return api.apply_proposals(ws, [proposal])
+
+
+def _path_completion_proposed_for_keys(ws):
+    from cdlbib import api
+    from intake_support import CONTACT
+    ws.bib.write_text(MANN23_TYPED + "\n", encoding="utf-8")
+    (proposal,) = api.propose(ws, keys=["Mann23"], reference=None, mailto=CONTACT)
+    return api.apply_proposals(ws, [proposal])
+
+
+PATHS = [("accept (command line, terminal interface, web)", _path_accept),
+         ("recheck without a change, then accept", _path_recheck_unchanged),
+         ("edit another field, recheck, then accept", _path_edit_another_field),
+         ("accept all remaining", _path_accept_all_remaining),
+         ("the completion offers before verify and send", _path_completion_of_a_typed_entry),
+         ("completion proposed for chosen keys", _path_completion_proposed_for_keys)]
+
+
+@pytest.mark.parametrize("name, path", PATHS, ids=[name for name, _ in PATHS])
+def test_no_path_writes_a_model_assisted_title_that_reads_as_verified(tmp_path, monkeypatch, name, path):
+    from cdlbib import api
+    from cdlbib.verification import Cache, record_approval, verify_entry
+    from intake_support import CONTACT
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    done = path(ws)
+    assert done.written == ["Mann23"], name
+    entry = load_entries(ws.bib)["Mann23"]
+    assert entry["fields"]["booktitle"] == "Intracranial {EEG}"
+    assert _marked(ws), name                                              # written, and not plainly verified
+    assert any("chosen with a model, unconfirmed" in note for note in done.notes)
+    # the verifier alone would accept it; the gate, which is what a send runs, does not
+    client = offline_client(tmp_path / "v", "chapters.json.gz", "book_isbns.json.gz")
+    try:
+        alone = verify_entry(entry, client)["status"]
+    finally:
+        client.cache.close()
+    # (on the path that edits the pages, the verifier has its own finding about the pages)
+    assert alone == ("needs_review" if "837" in entry["fields"]["pages"] else "metadata_verified"), name
+    check = api.check_keys(ws, ["Mann23"], mailto=CONTACT)
+    assert not check.ok and check.citations.checked["Mann23"]["status"] == "needs_review" and _marked(ws)
+    assert api.completion_due(ws, reference=None).keys == ["Mann23"]     # it is still an entry that is not accepted
+    # the one event that ends it: a person's recorded approval of this entry
+    cache = Cache(ws.database, ledger=ws.revocations)
+    try:
+        record_approval(cache, ws.bib, "Mann23", entry["fingerprint"], dict(
+            reviewer="@fixture", source="the publisher's page", note="book title checked", github_login="fixture",
+            github_id=1))
+    finally:
+        cache.close()
+    assert _stored(ws, "Mann23")["status"] == "human_verified"
+
+
+EDITS = [("in lower case", "intracranial {EEG}"),
+         ("without the formatter's braces", "Intracranial EEG"),
+         ("all in braces", "{Intracranial EEG}"),
+         ("with a no-break space", "Intracranial {EEG}"),
+         ("with a zero-width space", "Intracranial​ {EEG}"),
+         ("with a final full stop", "Intracranial {EEG}."),
+         ("with a final colon", "Intracranial {EEG}:"),
+         ("the other registry title", "Studies in Neuroscience, Psychology and Behavioral Economics"),
+         ("the other registry title, in lower case", "studies in neuroscience, psychology and behavioral economics"),
+         ("another title altogether", "A Different Book"),
+         ("a title the verifier cannot read", "Intracranial {EEG} $x$")]
+
+
+@pytest.mark.parametrize("what, booktitle", EDITS, ids=[what for what, _ in EDITS])
+def test_an_edited_book_title_keeps_the_mark_unless_the_verifier_says_it_is_another_title(tmp_path, monkeypatch, what,
+                                                                                          booktitle):
+    """The person edits the book title of a model-assisted proposal and accepts it. The mark
+    is dropped in one case only: the verifier itself says the new title is a different one."""
+    from cdlbib import api
+    from cdlbib.errors import CdlbibError
+    from intake_support import CONTACT
+    from test_complete_cli import refused_network
+    for variable, value in refused_network().items():
+        monkeypatch.setenv(variable, value)
+    ws = _undecided_library(tmp_path / "lib")
+    proposal = _proposed(ws)
+    assert ct.model_choice(proposal)["chosen"] == BOOK and proposal.needs_decision
+    verdict = ct.verifier_verdict(booktitle, BOOK)                        # the verifier's own answer, and no other
+    assert verdict is _verifier_says(booktitle, BOOK) or (verdict is None and not _verifier_says(booktitle, BOOK))
+    edited_text = proposal.proposed_raw.replace("Booktitle = {Intracranial {EEG}}", "Booktitle = {" + booktitle + "}")
+    assert edited_text != proposal.proposed_raw or booktitle == "Intracranial {EEG}"
+    try:
+        edited = api.recheck_proposal(ws, proposal, edited_text, mailto=CONTACT)
+    except CdlbibError:
+        return                                                            # the edited text is not an entry: nothing to accept
+    kept = ct.model_choice(edited, booktitle) is not None
+    assert kept is (verdict is not False), what                           # kept unless plainly another title
+    if kept:
+        assert edited.needs_decision and any(ct.UNCONFIRMED in issue for issue in edited.issues), what
+    else:
+        assert ct.model_choice(edited) is None and any("you changed the book title" in note for note in edited.notes)
+    if not edited.proposed_raw or edited.duplicate_of:
+        return
+    try:
+        done = api.apply_proposals(ws, [edited])
+    except CdlbibError:
+        return
+    if done.written:
+        assert _marked(ws) is kept, what                                  # written with the mark, or as the person's own title
+
+
+def test_whether_it_is_still_the_models_choice_is_the_verifiers_answer_and_defaults_to_kept():
+    choice = {"field": "booktitle", "model_assisted": True, "chosen": "Proceedings of the Fifth Workshop on Memory",
+              "written": "Proceedings of the 5\\textsuperscript{th} Workshop on Memory"}
+    same = ["Proceedings of the Fifth Workshop on Memory", "Proceedings of the 5\\textsuperscript{th} Workshop on Memory",
+            "proceedings of the fifth workshop on memory", "Proceedings of the {Fifth} Workshop on Memory",
+            "Proceedings of the Fifth Workshop on Memory"]
+    for title in same:
+        assert ct.verifier_verdict(title, choice["chosen"]) is True and ct.still_chosen(title, choice), title
+    acronym = {"field": "booktitle", "model_assisted": True, "chosen": "Computer Vision – ECCV 2014",
+               "written": "Computer Vision -- Eccv 2014"}
+    for title in ("Computer Vision -- {ECCV} 2014", "Computer Vision -- Eccv 2014", "computer vision -- eccv 2014"):
+        assert ct.still_chosen(title, acronym), title
+    for title in ("Lecture Notes in Computer Science", "Computer Vision -- {ECCV} 2016"):
+        assert ct.verifier_verdict(title, acronym["chosen"]) is False and not ct.still_chosen(title, acronym), title
+    # uncertain, unreadable or broken: the mark is kept
+    for title in ("Computer Vision $x$", "Computer <i>Vision</i> \\foo{x}"):
+        assert ct.verifier_verdict(title, acronym["chosen"]) is None and ct.still_chosen(title, acronym), title
+    assert ct.still_chosen("Anything at all", {"field": "booktitle", "model_assisted": True})          # no title recorded
+    assert ct.still_chosen("Anything", {"field": "booktitle", "model_assisted": True, "chosen": "$x$", "written": None})
+    assert not ct.still_chosen("", acronym) and not ct.still_chosen(None, acronym)                     # no book title at all
+
+    class Carrier:
+        choices = [acronym]
+    assert ct.model_choice(Carrier) is acronym and ct.model_choice(Carrier, "Computer Vision -- {ECCV} 2014") is acronym
+    assert ct.model_choice(Carrier, "Lecture Notes in Computer Science") is None
+    # a choice whose record lost its title is still a choice (nothing recorded cannot mean "not model-assisted")
+    Carrier.choices = [{"field": "booktitle", "model_assisted": True}]
+    assert ct.model_choice(Carrier, "Whatever") is not None
+    import inspect
+    for function in (ct.still_chosen, ct.title_is):
+        assert "verifier_verdict(" in inspect.getsource(function)
+    for function in (ct.model_choice, ct._put_choice, ct.restate, ct.store_model_choices):
+        source = inspect.getsource(function)
+        assert "!=" not in source.replace('!= "written"', "") and "normalize" not in source, function.__name__
+    assert "compare_record(" in inspect.getsource(ct.verifier_verdict)

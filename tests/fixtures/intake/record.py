@@ -9,6 +9,7 @@
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py books
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py chapters
     CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py typed
+    CROSSREF_MAILTO=you@example.org python tests/fixtures/intake/record.py isbns
     python tests/fixtures/intake/record.py booktitle      (needs the Dartmouth Chat key)
 
 (or add the path of a verification cache whose Crossref requests name the contact, as
@@ -142,6 +143,38 @@ def typed(ws, client, folder):
     print(FALLBACK_SEARCH, "->", [(lead["source"], lead["year"]) for lead in found], found.errors, lines, file=sys.stderr)
 
 
+def chapter_records():
+    """Every chapter record with an ISBN that the saved responses of the builder's tests hold
+    (tests/fixtures/completion/*.json and the files of this folder), by DOI."""
+    found = {}
+    files = sorted((HERE.parent / "completion").glob("*.json")) + sorted(HERE.glob("*.json.gz"))
+    for path in files:
+        try:
+            data = json.loads(gzip.open(path).read().decode("utf-8")) if path.suffix == ".gz" else json.loads(
+                path.read_text(encoding="utf-8"))
+        except ValueError:
+            continue
+        for item in data if isinstance(data, list) else []:
+            body = (item.get("response") or {}).get("body") if isinstance(item, dict) else None
+            message = body.get("message") if isinstance(body, dict) else None
+            records = [message] + list(message.get("items") or []) if isinstance(message, dict) else []
+            for record in records:
+                if isinstance(record, dict) and record.get("type") == "book-chapter" and record.get("ISBN") and record.get("DOI"):
+                    found.setdefault(record["DOI"].lower(), record)
+    return found
+
+
+def isbns(ws, client, folder):
+    """The lookups of each such chapter's book under EVERY one of the chapter's ISBNs (Crossref's
+    book-type records, the Library of Congress catalogue), as ``container_titles.book_editors``
+    asks them since the review of 2026-10-06."""
+    from cdlbib import container_titles
+    for doi, record in sorted(chapter_records().items()):
+        found = container_titles.book_editors(record, client) or {}
+        print(doi, record.get("ISBN"), "->", [(s["source"], len(s["editor"])) for s in found.get("sources", [])],
+              found.get("reason"), file=sys.stderr)
+
+
 def chapters(ws, client, folder):
     from cdlbib import api, complete
     for doi in CHAPTERS:
@@ -228,7 +261,7 @@ def main(part, contact_source=None, route=None):
         contact = client.contact
         try:
             {"searches": searches, "pdfs": pdfs, "web": web, "tui": tui, "books": books, "chapters": chapters,
-             "typed": typed}[part](Workspace(folder), client, folder)
+             "typed": typed, "isbns": isbns}[part](Workspace(folder), client, folder)
         finally:
             client.cache.close()
         rows = sqlite3.connect(folder / "responses.sqlite3").execute(
@@ -246,7 +279,7 @@ def main(part, contact_source=None, route=None):
         assert contact not in json.dumps(response) and contact not in json.dumps(request)
         saved.append({"request": request, "response": response})
     name = {"searches": "searches.json.gz", "pdfs": "pdf_lookups.json.gz", "web": "web_searches.json.gz",
-            "tui": "tui_search.json.gz", "books": "books.json.gz", "chapters": "chapters.json.gz", "typed": "typed_books.json.gz"}[part]
+            "tui": "tui_search.json.gz", "books": "books.json.gz", "chapters": "chapters.json.gz", "typed": "typed_books.json.gz", "isbns": "book_isbns.json.gz"}[part]
     with gzip.GzipFile(HERE / name, "wb", mtime=0) as handle:
         handle.write(json.dumps(saved, ensure_ascii=False, sort_keys=True, indent=1).encode("utf-8"))
     print(len(saved), "responses saved to", name, file=sys.stderr)

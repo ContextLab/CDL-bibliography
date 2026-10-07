@@ -1347,7 +1347,15 @@ def propose(ws, keys=None, reference='github', mailto=None, database=None, progr
 
 
 def apply_proposals(ws, accepted, *, batch=None):
-    """Write only the explicitly accepted proposals; see complete.apply."""
+    """Write only the explicitly accepted proposals; see complete.apply.
+
+    An accepted proposal whose book title was chosen with a model (container_titles) keeps
+    that mark: the writer stores it for the entry before it writes the entry
+    (container_titles.store_model_choices, called by complete.apply), so the entry's result
+    is ``needs_review`` with the choice as external evidence, and the Library and Review
+    views and `crossref status` show "booktitle chosen with a model, unconfirmed" until a
+    person approves the entry. When the mark cannot be stored, nothing is written
+    (CdlbibError). ``Applied.notes`` names each entry marked."""
     from .complete import apply
     return apply(ws, accepted, batch=batch)
 
@@ -1443,7 +1451,10 @@ def recheck_proposal(ws, proposal, raw, mailto=None, database=None, resolved_fie
             item.needs_decision = True
         path = database or ws.database
         client = extra_sources.make_client(path, contact=mailto or extra_sources.contact_email(path))
-        return complete.checked(item, client)
+        checked = complete.checked(item, client)
+        # A book title a model chose says so again after an edit, unless the edit changed that title.
+        from . import container_titles
+        return container_titles.restate(checked, fields)
     except CdlbibError:
         raise
     except (OSError, ValueError, TypeError, KeyError, ProviderError, sqlite3.Error) as exc:

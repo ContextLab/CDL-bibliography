@@ -51,11 +51,22 @@ def library_entry(key):
     return FROZEN[start:FROZEN.index("}}\n", start) + 2]
 
 
+def _book_isbns():
+    import gzip
+    path = Path(__file__).resolve().parent / "fixtures/intake/book_isbns.json.gz"
+    return json.loads(gzip.open(path).read().decode("utf-8"))
+
+
+BOOK_ISBNS = _book_isbns()
+
+
 @pytest.fixture
 def client(tmp_path):
     """The real client over a real cache holding the saved responses; no network."""
     client = xs.make_client(tmp_path / "responses.sqlite3", contact=CONTACT, offline=True)
-    for item in SAVED + TYPES + RULES:
+    # BOOK_ISBNS: the lookups of each fixture chapter's book under every one of the chapter's ISBNs
+    # (tests/fixtures/intake/book_isbns.json.gz), which container_titles.book_editors asks since 2026-10-06.
+    for item in SAVED + TYPES + RULES + BOOK_ISBNS:
         request = item["request"]  # a list for an API request; a string for a saved document (the Anthology's BibTeX)
         if isinstance(request, list):  # PubMed requests name the caller's contact address
             url, params, xml = request
