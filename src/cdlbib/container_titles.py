@@ -145,13 +145,32 @@ def same_title(one, two):
     return title_is(one, two) or title_is(two, one)
 
 
-def _isbns(record):
+MAX_ISBNS = 4             # ISBNs of one chapter that are looked up; a record with more is not looked up in part
+
+
+def _all_isbns(record):
     found = []
     for value in record.get("ISBN") or []:
         digits = re.sub(r"[\s-]", "", str(value)).upper()
         if re.fullmatch(r"\d{9}[\dX]|\d{13}", digits) and digits not in found:
             found.append(digits)
-    return found[:4]
+    return found
+
+
+def _isbns(record):
+    """The ISBNs of the record that are looked up: its first ``MAX_ISBNS``."""
+    return _all_isbns(record)[:MAX_ISBNS]
+
+
+def isbns_cut(record):
+    """Why the lookups by ``record``'s ISBNs cannot be the whole evidence, or None: the record
+    states more ISBNs than are looked up, so a record of the book under one of the others
+    would not be read. Nothing is established from a list that was cut."""
+    count = len(_all_isbns(record))
+    if count <= MAX_ISBNS:
+        return None
+    return (f"the chapter's record states {count} ISBNs and only {MAX_ISBNS} are looked up, so not every record of "
+            "the book would be read")
 
 
 def decide(titles, book_names):
@@ -347,7 +366,12 @@ def book_editors(record, client, cache=None):
         return {"reason": "the chapter's record names no book, so the book's record cannot be looked up"}
     if not _isbns(record):
         return {"reason": "the chapter's record states no ISBN, so the book's record cannot be looked up"}
+    if isbns_cut(record):
+        return {"sources": [], "reason": isbns_cut(record) + "; the editors are not taken from an incomplete answer"}
     sources, failed, undecided = [], [], []
+    # A record met again is the same evidence only when it says the same: by identifier AND by
+    # what is read from it. A record with no identifier is never another's duplicate.
+    seen_crossref, seen_catalogue = {}, {}
 
     def title_of(names):
         return decide(tuple(venues), names) if len(venues) > 1 else (venues[0] if decide((venues[0],), names) else None)
@@ -364,9 +388,19 @@ def book_editors(record, client, cache=None):
                 message = (response.get("body") or {}).get("message", {})
                 listed = message.get("items") if isinstance(message.get("items"), list) else []
                 for item in listed:
-                    if isinstance(item, dict) and any(s_.get("doi") == item.get("DOI") for s_ in sources):
-                        continue                  # the same record, found again under another ISBN
                     read = _crossref_source(item, isbn)
+                    doi = item.get("DOI") if isinstance(item, dict) else None
+                    if isinstance(doi, str) and doi.strip():
+                        if doi in seen_crossref:
+                            earlier, earlier_read = seen_crossref[doi]
+                            if earlier_read == read:
+                                continue          # the same record, found again (under another ISBN), saying the same
+                            if earlier != item:
+                                undecided.append(f"Crossref gave the record {doi} more than once, with different "
+                                                 "titles or editors")
+                                continue
+                            # the very same record, which carries this ISBN and not the one it was first found under
+                        seen_crossref[doi] = (item, read if read is not None else seen_crossref.get(doi, (None, None))[1])
                     if read is None or not title_of(read["names"]):
                         continue
                     if read["editor"] is None:
@@ -388,11 +422,26 @@ def book_editors(record, client, cache=None):
                 found_ = fetch_query(cache, client, identifier_query("isbn", isbn))
                 for xml in found_["records"]:
                     read = _catalogue_source(xml, isbn)
+                    try:
+                        lead = summary(xml)
+                    except (ValueError, KeyError, TypeError):
+                        if read is not None and title_of(read["names"]):
+                            raise
+                        continue                  # not a record that can be read, and not the book's
+                    number = lead.get("record_id")
+                    if isinstance(number, str) and number.strip():
+                        if number in seen_catalogue:
+                            earlier, earlier_read = seen_catalogue[number]
+                            if earlier_read == read:
+                                continue          # the same record, found again (under another ISBN), saying the same
+                            if earlier != xml:
+                                undecided.append(f"the catalogue gave the record {number} more than once, with "
+                                                 "different titles or editors")
+                                continue
+                            # the very same record, which states this ISBN and not the one it was first found under
+                        seen_catalogue[number] = (xml, read if read is not None else seen_catalogue.get(number, (None, None))[1])
                     if read is None or not title_of(read["names"]):
                         continue
-                    lead = summary(xml)
-                    if any(s_.get("record_id") == lead["record_id"] for s_ in sources):
-                        continue                  # the same record, found again under another ISBN
                     sources.append({"source": "loc-catalogue", "lccn": lead["lccn"], "record_id": lead["record_id"],
                                     "isbn": isbn, "type": "book", "title": read["names"][0], "names": read["names"],
                                     "booktitle": title_of(read["names"]), "editor": read["editor"] or [], "marcxml": xml,
@@ -416,6 +465,10 @@ def book_editors(record, client, cache=None):
                             "and neither is chosen") if len(naming) == 2 and naming[0]["source"] != naming[1]["source"]
                            else f"the {len(naming)} records found for the book name different editors, and none is chosen")
         found["disagreement"] = True
+    elif failed and naming:
+        # A source that did not answer (for any of the ISBNs) may hold a record that names other
+        # editors: what the others say is then not the whole evidence.
+        found["reason"] = "; ".join(failed) + "; the editors are not taken from an incomplete answer"
     elif naming:
         found["editor"] = naming[0]["editor"]
         found["by"] = naming[0]["source"]
@@ -490,12 +543,17 @@ class _PageText(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.lines, self.current, self.skipping, self.meta = [], [], 0, []
+        # Which lines are not the whole of their block (indexes into ``lines`` and ``meta``): said
+        # here, where the cutting is done, and never worked out afterwards from a line's length.
+        self.cut, self.meta_cut, self.dropped = set(), set(), False
 
     def _end_line(self):
         text = " ".join("".join(self.current).split())
         if text and len(self.lines) < MAX_PAGE_LINES:
+            if len(text) > LINE_CHARS or self.dropped:
+                self.cut.add(len(self.lines))
             self.lines.append(text[:LINE_CHARS])
-        self.current = []
+        self.current, self.dropped = [], False
 
     def handle_starttag(self, tag, attrs):
         if tag in self.SKIPPED:
@@ -505,7 +563,10 @@ class _PageText(HTMLParser):
             name, content = str(named.get("name") or named.get("property") or ""), str(named.get("content") or "")
             if (re.fullmatch(r"(?i)(?:citation_|dc\.|prism\.)[\w.]*title[\w.]*", name) and content.strip()
                     and len(self.meta) < 50):
-                self.meta.append(f"meta {name}: " + " ".join(content.split()))
+                line = f"meta {name}: " + " ".join(content.split())
+                if len(line) > LINE_CHARS:
+                    self.meta_cut.add(len(self.meta))
+                self.meta.append(line[:LINE_CHARS])
         elif tag in self.BLOCKS and tag not in ("span", "a"):
             self._end_line()
 
@@ -516,20 +577,31 @@ class _PageText(HTMLParser):
             self._end_line()
 
     def handle_data(self, data):
-        if not self.skipping and len(self.lines) < MAX_PAGE_LINES and sum(map(len, self.current)) < 4000:
+        if self.skipping or len(self.lines) >= MAX_PAGE_LINES:
+            return
+        if sum(map(len, self.current)) < 4000:
             self.current.append(data[:4000])
+            self.dropped = self.dropped or len(data) > 4000
+        elif data.strip():
+            self.dropped = True           # text of this block that is not kept: its line is not whole
 
 
-def page_lines(markup):
-    """The lines of an HTML page: its citation metadata first, then its text, a line per
-    block. A block longer than ``LINE_CHARS`` is cut to that length; a line of that length
-    is therefore known to be (or may be) incomplete, and ``choice_from_reading`` does not take
-    it as evidence for a title."""
+def page_text(markup):
+    """``(lines, cut)`` of an HTML page. ``lines``: its citation metadata first, then its
+    text, a line per block. A block longer than ``LINE_CHARS`` is cut to that length. ``cut``:
+    the indexes of the lines that were cut, said by the parser as it cuts them. A cut line
+    is incomplete, and ``choice_from_reading`` does not take it as evidence for a title."""
     parser = _PageText()
     parser.feed(markup)
     parser.close()
     parser._end_line()
-    return [line[:LINE_CHARS] for line in parser.meta + parser.lines]
+    lines = [line[:LINE_CHARS] for line in parser.meta + parser.lines]
+    return lines, sorted(parser.meta_cut | {len(parser.meta) + index for index in parser.cut})
+
+
+def page_lines(markup):
+    """The lines of ``page_text`` alone."""
+    return page_text(markup)[0]
 
 
 def _mentions(line, title):
@@ -543,15 +615,20 @@ def _mentions(line, title):
     return bool(re.search(r"(?<!\w)" + re.escape(wanted) + r"(?!\w)", text))
 
 
-def lines_about(lines, titles, around=2, limit=MAX_LINES):
-    """The lines that mention one of the two titles, each with the ``around`` lines before
-    and after it, in page order, at most ``limit``: what a model is given to read. Empty
-    when the page mentions neither."""
+def _about(lines, titles, around=2, limit=MAX_LINES):
+    """The indexes of the lines ``lines_about`` gives, in page order."""
     keep = set()
     for index, line in enumerate(lines):
         if any(_mentions(line, t) is not False for t in titles):      # a line that cannot be read is shown too
             keep.update(range(max(0, index - around), min(len(lines), index + around + 1)))
-    return [lines[i] for i in sorted(keep)][:limit]
+    return sorted(keep)[:limit]
+
+
+def lines_about(lines, titles, around=2, limit=MAX_LINES):
+    """The lines that mention one of the two titles, each with the ``around`` lines before
+    and after it, in page order, at most ``limit``: what a model is given to read. Empty
+    when the page mentions neither."""
+    return [lines[i] for i in _about(lines, titles, around, limit)]
 
 
 class UnsafeURL(ValueError):
@@ -626,9 +703,7 @@ def public_address(text):
                                       or address.is_multicast or address.is_reserved or address.is_unspecified)
 
 
-class OutOfTime(ProviderError):
-    """The time allowed for a retrieval is over (or its body is over the size allowed): the
-    request was cancelled. A ``ProviderError``, so the paced client does not ask again."""
+from .verification import OutOfTime  # noqa: E402,F401 - the retrieval's time is over: a ``ProviderError``
 
 
 class _Read:
@@ -814,12 +889,15 @@ class within:
         self.client, self.deadline, self.limit = client, deadline, RECORD_BYTES if limit is None else limit
 
     def __enter__(self):
-        self.session = self.client.session
+        self.session, self.before = self.client.session, getattr(self.client, "deadline", None)
         self.client.session = _DeadlineSession(self.session, self.deadline, self.limit)
+        # The client's own waiting (its pacing, a Retry-After, the pause before a retry) is held
+        # to the same deadline: ``PoliteClient.pause`` does not sleep past it.
+        self.client.deadline = self.deadline if self.before is None else min(self.before, self.deadline)
         return self
 
     def __exit__(self, *exc):
-        self.client.session = self.session
+        self.client.session, self.client.deadline = self.session, self.before
         return False
 
 
@@ -914,7 +992,8 @@ def fetch_page(doi, deadline=None):
                          if outside else "the page redirects too often or is larger than 2 MB") from None
     finally:
         session.close()
-    return {"url": checked_url(url, resolve=False), "lines": page_lines(markup),
+    lines, cut = page_text(markup)
+    return {"url": checked_url(url, resolve=False), "lines": lines, "cut": cut,
             "document_sha256": hashlib.sha256(markup.encode("utf-8")).hexdigest(), "retrieved_at": now()}
 
 
@@ -924,7 +1003,20 @@ def pages_for(page, titles):
     return [{"page": 1, "text": "\n".join(lines) + "\n"}] if lines else []
 
 
-def choice_from_reading(titles, pages, extracted):
+def cut_for(page, titles):
+    """Which lines of ``pages_for(page, titles)`` were cut when the page was read: their
+    positions in that text (0 for its first line), from the page's own record of it
+    (``page["cut"]``, ``page_text``). A page saved before that record was kept has none: for
+    such a page every line of ``LINE_CHARS`` characters, counted as it was saved and before
+    anything is stripped from it, is taken as cut."""
+    lines = page["lines"]
+    recorded = page.get("cut")
+    cut = ({i for i in recorded if type(i) is int} if isinstance(recorded, list)
+           else {i for i, line in enumerate(lines) if len(line) >= LINE_CHARS})
+    return {position for position, index in enumerate(_about(lines, titles)) if index in cut}
+
+
+def choice_from_reading(titles, pages, extracted, cut=()):
     """The book title a model reading supports, as ``(title, quotation)``; ``ValueError``
     with the reason when it supports none. The reading (``research`` adapter, ``extract``
     phase) is of exactly ``pages``; its ``booktitle`` must be one of the two titles and
@@ -932,7 +1024,13 @@ def choice_from_reading(titles, pages, extracted):
     of those lines must literally contain the chosen title and not the other, and none may
     contain the other title without the chosen one (a line that cites the book with its
     series holds both and decides nothing). The quotation returned is the lines that hold
-    the chosen title alone; the title returned is the registry's string, never the model's."""
+    the chosen title alone; the title returned is the registry's string, never the model's.
+
+    ``cut``: the positions (0 for the first) of the lines of the one page that were cut when
+    the page was read (``cut_for``). A cut line is never evidence for a title: what followed
+    in it is not known. Whatever ``cut`` says, a line of ``LINE_CHARS`` characters or more,
+    counted before anything is stripped from it, is taken as cut too."""
+    cut = set(cut or ())
     if not isinstance(extracted, dict) or not isinstance(extracted.get("fields"), dict):
         raise ValueError("the reading is not in the expected form")
     expected = hashlib.sha256(json.dumps(pages, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
@@ -946,7 +1044,7 @@ def choice_from_reading(titles, pages, extracted):
         raise ValueError("the book title the model named is not one of the record's two titles")
     other = next(t for t in titles if t != chosen)
     text = {p["page"]: p["text"] for p in pages}
-    quotes = []
+    quotes, cut_quotes = [], set()
     for passage in found.get("passages") or []:
         try:
             whole, start, end = text[passage["page"]], passage["start"], passage["end"]
@@ -960,18 +1058,24 @@ def choice_from_reading(titles, pages, extracted):
         # chose out of it: "Book: A; series: B" cannot be cut down to "B".
         first = whole.rfind("\n", 0, start) + 1
         last = whole.find("\n", end - 1 if whole[end - 1] == "\n" else end)
-        quotes += [line.strip() for line in whole[first:len(whole) if last < 0 else last].split("\n") if line.strip()]
+        position = whole.count("\n", 0, first)       # the first touched line's place among the page's lines
+        for offset, line in enumerate(whole[first:len(whole) if last < 0 else last].split("\n")):
+            if line.strip():
+                quotes.append(line.strip())
+                # Said for the line as it stands in the page, never for what is left of it after stripping.
+                if position + offset in cut or len(line) >= LINE_CHARS:
+                    cut_quotes.add(line.strip())
     if not quotes or found.get("grounding") != "literal_text_present":
         raise ValueError("the model's book title is not literally on the lines it selected")
     if found.get("role_risk"):
         raise ValueError("the lines the model selected may not state the work's own book title ("
                          + ", ".join(str(r) for r in found["role_risk"]) + ")")
-    # A line of LINE_CHARS or more was cut when the page was read (page_lines): what followed is
-    # not known, the other title among it perhaps, so it cannot say which title is the book's.
+    # A line that was cut when the page was read (page_text): what followed is not known, the
+    # other title among it perhaps, so it cannot say which title is the book's.
     if any(_mentions(q, chosen) is None or _mentions(q, other) is None for q in quotes):
         raise ValueError("a quoted line holds markup the citation check does not read, so what it says of the "
                          "titles is not known")
-    alone = [q for q in quotes if len(q) < LINE_CHARS and _mentions(q, chosen) and not _mentions(q, other)]
+    alone = [q for q in quotes if q not in cut_quotes and _mentions(q, chosen) and not _mentions(q, other)]
     if not alone:
         raise ValueError("no quoted line contains the chosen title without the other, so the lines do not say "
                          "which is the book's")
@@ -1040,9 +1144,15 @@ def from_model(client, cache, record, titles, announce=None, allow_model=None, e
                                              "either title (some publishers' pages cannot be read by a program), "
                                              "so no model was asked")
         from .intake import _adapter
+        import time
+        # The adapter is given what is left of the resolution's time and no more (its own limit is 600 s).
+        left = None if deadline is None else deadline - time.monotonic()
+        if left is not None and left <= 0:
+            return Resolution(titles, reason="the time allowed for the resolution was over before a model could "
+                                             "be asked, so no model was asked")
         try:
             extracted = invoke_adapter(_adapter(route), {"phase": "extract", "instructions": INSTRUCTIONS,
-                                                         "entry": {}, "pages": pages})
+                                                         "entry": {}, "pages": pages}, timeout=left)
         except ValueError as exc:
             return Resolution(titles, reason=f"{label} did not return a reading ({exc})")
         reading = {"route": route, "extracted": extracted, "retrieved_at": now()}
@@ -1050,7 +1160,7 @@ def from_model(client, cache, record, titles, announce=None, allow_model=None, e
     if not pages:
         return Resolution(titles, reason=f"the publisher's page ({page['url']}) names neither title")
     try:
-        chosen, quote = choice_from_reading(titles, pages, reading.get("extracted"))
+        chosen, quote = choice_from_reading(titles, pages, reading.get("extracted"), cut=cut_for(page, titles))
     except ValueError as exc:
         return Resolution(titles, reason=f"a model read the publisher's page ({page['url']}) and its reading "
                                          f"does not decide it: {exc}")
@@ -1074,6 +1184,9 @@ def resolve(record, client, cache=None, announce=None, allow_model=None, environ
         return None
     import time
     cache = cache if cache is not None else client.cache
+    if isbns_cut(record):
+        return Resolution(titles, reason=isbns_cut(record) + "; the book's own record is not looked up in part, "
+                                         "and no model is asked in its place")
     deadline, failed = time.monotonic() + RESOLVE_SECONDS, []
     for name, step in (("Crossref", lambda: from_crossref(client, record, titles)),
                        ("the Library of Congress catalogue", lambda: from_catalogue(client, cache, record, titles))):
@@ -1137,7 +1250,7 @@ def apply(proposal, resolution):
 
 # --- after the entry is written -------------------------------------------------------------------
 
-MODEL_CHOICE = "model-assisted-choice"     # ``kind`` of the external evidence stored with such an entry
+from .verification import MODEL_CHOICE, MODEL_CHOICE_ISSUE  # noqa: E402 - ``kind`` of the mark, and its issue
 
 
 def still_chosen(booktitle, choice):
@@ -1201,20 +1314,25 @@ def _choice_evidence(choice):
 
 
 def _put_choice(cache, bibliography, entry, choice):
-    """Store the mark for ``entry`` (key, text, fields, fingerprint). The mark names the book
+    """Record the choice for ``entry`` (key, text, fields, fingerprint) and store its mark. The
+    choice is kept by the entry's key in the cache's own table (``Cache.record_model_choice``),
+    apart from the result of this text, so that a later check or an edit does not lose it
+    (``Cache.marked`` applies it to every result read and stored). The mark names the book
     title it is about; an entry with another book title is refused. A person's approval of
-    this exact entry is left as it is."""
+    this exact entry is left as it is, and is what clears the choice."""
     from .errors import CdlbibError
     from .verification import outcome
     if not still_chosen(entry["fields"].get("booktitle"), choice):
         raise CdlbibError(f"{entry['key']}: the book title is not the one the model-assisted choice wrote; "
                           "the mark is for that title only.")
+    evidence = _choice_evidence(choice)
     previous = cache.get(bibliography, entry)
+    cache.record_model_choice(bibliography, entry["key"], evidence)
     if previous and previous.get("status") == "human_verified":
-        return previous
+        return cache.get(bibliography, entry)        # the approval of this exact entry clears the choice (Cache.marked)
     return cache.put(bibliography, entry, dict(
-        previous or outcome("needs_review", []), status="needs_review", external_evidence=_choice_evidence(choice),
-        issues=["booktitle chosen with a model, unconfirmed: human confirmation required"]))
+        previous or outcome("needs_review", []), status="needs_review", external_evidence=evidence,
+        issues=[MODEL_CHOICE_ISSUE]))
 
 
 def store_model_choices(ws, accepted, planned, entries, database=None):

@@ -691,7 +691,13 @@ connection is then shut down. What is not bounded is the abandoned thread itself
 lookup that the system resolver does not return from keeps its thread until it does (a
 hard stop of that would need a child process). A body is limited twice, as received and
 as unpacked: only gzip and deflate are asked for, and the decompressor is stopped at the
-limit, so a small compressed answer cannot become a large one.
+limit, so a small compressed answer cannot become a large one. The client's own waiting
+between requests (its pacing, a `Retry-After`, the pause before a retry) is inside the same
+deadline: `PoliteClient.pause` does not start a wait that would end after it, and raises
+"the time allowed for this retrieval would be over before the next request could be made"
+with nothing more asked. The model adapter is started with the time that is left of the
+resolution as its limit (at most its own 600 seconds), and is not started when none is
+left.
 Whether a title is another title is asked in one way throughout, and it is the verifier
 itself that is asked (`container_titles.verifier_verdict`: the `booktitle` evidence of
 `verification.compare_record` for a chapter, with every form that check accepts: case,
@@ -705,8 +711,15 @@ The model's choice counts only when its book title is one of the two and its pas
 on that page; what is judged is every whole line a passage touches, never the part of a
 line the model selected: one of those lines must hold the chosen title without the other,
 and none may hold the other alone. A block of the page longer than 500 characters is cut
-to that length, and a line of that length is not taken as evidence for a title: what was
-cut may have named the other one. The result is recorded on the proposal (`choices`: the record or, for a
+to that length, and a cut line is not taken as evidence for a title: what was cut may
+have named the other one. Which lines were cut is recorded by the page parser as it cuts
+them (`page_text`; saved with the page as `cut`, and given to `choice_from_reading` as the
+positions of those lines among the lines the model read), so it does not depend on the
+length of a line after white space is stripped from it. A block of which the parser kept
+only part (over 4000 characters of text) and a metadata line over 500 characters are
+recorded as cut too. For a page saved before this record was kept, and whatever the
+record says, a line of 500 characters or more, counted before anything is stripped, is
+taken as cut. The result is recorded on the proposal (`choices`: the record or, for a
 model, the route, model, URL, quoted line and document hash), a model-assisted choice
 makes the proposal need a decision, and the entry is verified afterwards by the ordinary
 route. The verifier accepts either container title of such a record, so an entry with a
@@ -717,23 +730,55 @@ the terminal interface and the web interface) and in `choices` (`model_assisted:
 accepted without the person's decision. When such an entry is written, the mark is
 stored by the writer itself, before the entry is written and whichever interface accepted
 the proposal (`complete.apply` calls `container_titles.store_model_choices`; when the mark
-cannot be stored, nothing is written). It is bound to the entry's fingerprint and to the
-book title the choice wrote. Only two events end it: a person's approval of the entry, or
-a book title that the verifier itself says is a different title from the one chosen
-(`container_titles.still_chosen`). The same title in another form (case, braces, spacing,
-an ordinal rewritten) is still the choice, and so is a title the verifier cannot judge: the
-mark and the need for a decision are kept. A rechecked proposal says the choice again. The entry's result is
-`needs_review` with the choice as its external evidence (kind `model-assisted-choice`:
-route, model, URL, quoted line, page hash), the record a model reading of a PDF uses. No
-automatic check accepts an entry that carries it; `crossref status` and the Library and
-Review views show "booktitle chosen with a model, unconfirmed" until a person approves
-the entry.
+cannot be stored, nothing is written). The choice is kept in a table of its own in the
+verification database (`model_choices`: bibliography, citation key, the choice, when it was
+recorded, and the approval that cleared it), apart from the result of the entry's text. A
+result is replaced by every later check and is found by the exact fingerprint of the text,
+so the choice is not kept there alone. It belongs to the entry by its citation key (and by
+the keys the entry had before, read from `verification/key-renames.json` beside the
+revocation ledger the cache was opened with) and by the book title the choice wrote.
+`Cache.marked` applies it to every result that is read (`Cache.get`) and every result
+that is stored (`Cache.put`): while the choice is unresolved, the result carries it as
+`model_choice` and as its `external_evidence` (kind `model-assisted-choice`: route, model,
+URL, quoted line, page hash; other external evidence already on the result is left in
+place), its first issue is "booktitle chosen with a model, unconfirmed: human
+confirmation required", and a status of `metadata_verified` is stored and read as
+`needs_review`. Any other status is kept (a `provider_error` stays one, so the entry is
+checked again as usual) and carries the mark. A check with `--refresh`, a retry of
+unresolved entries, a failed lookup, and an edit of the entry that leaves its book title
+the same title (white space, another field, the citation key) therefore do not take the
+mark off. An entry whose new text has not been checked yet has no stored result and reads
+`pending`; its first check is stored with the mark.
+
+Only two events end it. A person's approval of the entry (a `human_verified` result,
+stored in the database or read from the approvals ledger) clears the choices that are
+about the entry; the approval is recorded with them, and if it is later revoked they are
+unresolved again. And a book title that the verifier itself says is a different title
+from the one chosen (`container_titles.still_chosen`): the choice is not about such an
+entry, and is about it again if the chosen title is put back. The same title in another
+form (case, braces, spacing, an ordinal rewritten) is still the choice, and so is a title
+the verifier cannot judge: the mark and the need for a decision are kept. A rechecked
+proposal says the choice again. A result that carries the mark in a database written
+before the table existed, or restored from a snapshot, has its choice recorded in the
+table when the result is read; a marked result that is never read before its entry is
+edited is not found this way. The table is added to an existing database when it is
+opened and the database's schema number is unchanged (1), so a copy of the package from
+before this table opens the same database and does not apply the choices. `crossref
+status` and the Library and Review views show "booktitle chosen with a model,
+unconfirmed" until a person approves the entry.
 
 A chapter's editors, when its own record names none, are taken from the book's record by
 the same lookups (`container_titles.book_editors`). Every record of the book in an answer
 under every one of the chapter's ISBNs is read, not the first; records that name different editors, an answer Crossref cut short
 (it counts more records than it returned), or an editor list with a member that is not a
-person decide nothing. The source records are kept, and each comparison reads them again:
+person decide nothing. A record met a second time (the same DOI at Crossref, the same
+record number in the catalogue) is passed over only when it says the same as the first
+time (its type, titles and editors as read); the same identifier with other contents
+decides nothing, and records that state no identifier are never taken for each other. At
+most four ISBNs of a chapter are looked up; a record that states more is not looked up in
+part, and neither its editors nor the choice between its two titles is taken from records
+(no model is asked in their place). When a source does not answer for any of the ISBNs,
+the editors the other answers name are not taken: the answer is incomplete. The source records are kept, and each comparison reads them again:
 the record must be of a book type (never a series), carry one of the chapter's ISBNs, and
 have as its title the container title that the entry's book title is.
 
@@ -969,6 +1014,9 @@ titles. The requests, the cache and the bounds are those of that lookup.
 |both name editors and disagree|none: "the book's Crossref record and its Library of Congress record name different editors, and neither is chosen"|
 |a record of the book that names no editors (or one the catalogue check's grammar does not read)|none: "the book's own record names no editors"|
 |no ISBN on the chapter's record, or no record with it under the book's title|none, with that reason|
+|a source did not answer for one of the ISBNs, although another answer names editors|none: "... the editors are not taken from an incomplete answer"|
+|more than four ISBNs on the chapter's record|none, and nothing is asked: "the chapter's record states N ISBNs and only 4 are looked up, so not every record of the book would be read"|
+|one DOI (or catalogue record number) met twice with different type, titles or editors|none: "Crossref gave the record ... more than once, with different titles or editors"|
 
 The builder keeps what was found in the chapter's record under `book-record` and writes
 `Editor` from it. The verifier does the same for a chapter cited with editors whose record
@@ -1013,6 +1061,8 @@ the builder uses the same formatter, so a built name is in the form the check ac
 |a name given wholly in capitals|formatted as before: no acronym is read in it|
 |edition `Second`, `2nd`, `Second edition`, `2nd ed.`|`2\textsuperscript{nd}`|
 |edition `2` (a cardinal), `3th` (a wrong suffix)|unchanged (the research route's own normaliser, `research_forms.normalise_edition`, writes both as ordinals)|
+|edition `Second Language edition`, `Revised second edition` (an ordinal word inside a phrase)|unchanged: an ordinal word is rewritten only when it is the whole value or is followed by nothing but the word for an edition|
+|edition `Revised 2nd edition` (an ordinal numeral inside a phrase)|`Revised 2\textsuperscript{nd} edition`|
 
 An ordinal word counts as numbering a meeting when the next word names a meeting
 (conference, workshop, symposium, meeting, congress, colloquium, convention, seminar,
@@ -1032,7 +1082,7 @@ are written out exactly as given, and the result is the tokens put together agai
 |-|-|
 |opaque: a control sequence with the optional and braced arguments that follow it|`\LaTeX`, `\emph{Drosophila}`, `\textcolor[RGB]{0,0,0}{Title}`, an accent `\"{o}`|
 |opaque: a braced group that holds a group, a command, mathematics or a space|`{\"O}`, `{{Mixed} Case}`, `{Lopes da Silva}`|
-|opaque: mathematics|`$L_{AB} + Q$`, `\(a+b\)`|
+|opaque: mathematics, in line or displayed|`$L_{AB} + Q$`, `\(a+b\)`, `$$L_{AB} + Q$$`, `\[a+b\]`|
 |plain: everything else; an escaped character is that character; a braced group of one word is the word rules' own (the caps list, `unbrace_ordinary`)|`\&`, `\{`, `{IEEE}`, `{University}`|
 
 A value whose braces or mathematics do not balance, or of more than 5,000 characters

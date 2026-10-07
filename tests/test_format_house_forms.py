@@ -583,3 +583,45 @@ def test_the_same_properties_hold_for_names_with_commands_put_in():
             assert helpers.format_booktitle(once) == once, (given, once)
             assert COMMAND.findall(once) == COMMAND.findall(given), (given, once)
             assert balanced(once) and once.count("{{") <= given.count("{{"), (given, once)
+
+
+# --- review of 2026-10-06, round 5, item 16: displayed mathematics, and an ordinal inside a phrase ----
+
+@pytest.mark.parametrize("given", [
+    "$$L_{AB} + Q$$ Workshop", "\\[L_{AB} + Q\\] Workshop", "Workshop on $$L_{AB} + Q$$ and \\[X_{CD}\\]",
+    "$$$$ Workshop", "$$a\\$$b$$ Workshop",
+])
+def test_displayed_mathematics_is_not_re_cased(given):
+    r"""``$$...$$`` and ``\[...\]`` are mathematics like ``$...$`` and ``\(...\)``: one opaque
+    token each, written as given by every formatter, twice over."""
+    spans = [part for part in opaque_tokens(given) if part.startswith(("$$", "\\["))]
+    assert spans and all(part.endswith(("$$", "\\]")) and len(part) >= 4 for part in spans)
+    for name, formatter in FORMATTERS.items():
+        once = formatter(given)
+        assert all(span in once for span in spans), (name, once)
+        assert formatter(once) == once, (name, once)
+    assert helpers.format_booktitle("$$L_{AB} + Q$$ Workshop") == "$$L_{AB} + Q$$ Workshop"
+    assert helpers.format_journal_name("\\[L_{AB} + Q\\] Workshop") == "\\[L_{AB} + Q\\] Workshop"
+
+
+def test_displayed_mathematics_that_is_never_closed_is_left_unchanged_and_reported():
+    for value in ("The $$x NAACL Workshop", "The \\[x NAACL Workshop", "$$x$ NAACL Workshop"):
+        assert helpers.unformattable(value) == "mathematics that is never closed"
+        for formatter in FORMATTERS.values():
+            assert formatter(value) == value
+
+
+@pytest.mark.parametrize("given, written", [
+    # an ordinal word inside a phrase is part of the wording: it stays a word
+    ("Second Language edition", "Second Language edition"), ("Second Language", "Second Language"),
+    ("Revised second edition", "Revised second edition"), ("Third revised", "Third revised"),
+    ("First-Year edition", "First-Year edition"), ("Twenty-First-Century edition", "Twenty-First-Century edition"),
+    # the bare ordinal of an edition, alone or before the word for an edition, is the numeral
+    ("Second", "2\\textsuperscript{nd}"), ("Second edition", "2\\textsuperscript{nd}"),
+    ("second ed.", "2\\textsuperscript{nd}"), ("Twenty first edn", "21\\textsuperscript{st}"),
+    ("Twenty-third Edition", "23\\textsuperscript{rd}"),
+    # an ordinal numeral is one wherever it stands, as before
+    ("Revised 2nd edition", "Revised 2\\textsuperscript{nd} edition"),
+])
+def test_an_ordinal_word_inside_a_phrase_of_an_edition_stays_a_word(given, written):
+    assert helpers.format_edition(given) == written and helpers.format_edition(written) == written

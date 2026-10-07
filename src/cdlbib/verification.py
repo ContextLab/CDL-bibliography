@@ -36,6 +36,12 @@ import requests
 
 POLICY = "2"
 ACCEPTED = {"metadata_verified", "human_verified"}
+# A chapter's book title chosen with a model's help (container_titles): the ``kind`` of the
+# mark such an entry's result carries, and the issue it reads with, until a person approves
+# the entry (Cache.marked).
+MODEL_CHOICE = "model-assisted-choice"
+MODEL_CHOICE_ISSUE = "booktitle chosen with a model, unconfirmed: human confirmation required"
+KEY_RENAMES_NAME = "key-renames.json"
 RECORD_FIELDS = {
     "DOI",
     "alias",
@@ -797,8 +803,13 @@ class Cache:
             CREATE TABLE IF NOT EXISTS revocations (
                 fingerprint TEXT NOT NULL, approval_digest TEXT NOT NULL, record TEXT NOT NULL,
                 PRIMARY KEY (fingerprint, approval_digest));
+            CREATE TABLE IF NOT EXISTS model_choices (
+                id INTEGER PRIMARY KEY, bibliography TEXT NOT NULL, key TEXT NOT NULL,
+                choice TEXT NOT NULL, recorded_at TEXT NOT NULL, cleared TEXT);
+            CREATE INDEX IF NOT EXISTS model_choice_lookup ON model_choices (bibliography, key, id);
             PRAGMA user_version=1;
         """)
+        self._renames = (None, [])  # (path and stat of the key-rename ledger as read, its (old, new) pairs)
 
     def close(self):
         self.db.close()
@@ -899,8 +910,134 @@ class Cache:
 
     def get(self, bibliography, entry, any_policy=False):
         """The current result of ``entry``: what this database stores for exactly its text
-        (``stored``), or the human approval the approvals ledger holds for it."""
-        return self.shared_approval(entry, self.stored(bibliography, entry, any_policy=any_policy))
+        (``stored``), or the human approval the approvals ledger holds for it; with the mark
+        of a book title chosen with a model, while that choice is unresolved (``marked``)."""
+        return self.marked(bibliography, entry,
+                           self.shared_approval(entry, self.stored(bibliography, entry, any_policy=any_policy)))
+
+    # --- a book title chosen with a model -------------------------------------------------------
+    #
+    # The choice is kept in a table of its own (``model_choices``), by bibliography and
+    # citation key, and not only in the result of the entry's text at the time: a result is
+    # replaced by every later check and is found by the exact fingerprint of the text, so a
+    # mark kept there alone was lost by a fresh check and by any edit. ``marked`` is the one
+    # place the choice is applied, to every result read (``get``) and every result stored
+    # (``put``).
+
+    def record_model_choice(self, bibliography, key, evidence):
+        """Keep ``evidence`` (the mark: kind ``MODEL_CHOICE``, the title chosen and the form
+        of it that was written) as an unresolved model-assisted choice of the entry ``key``."""
+        bibliography, text = str(Path(bibliography).resolve()), dumps(evidence)
+        with self.db:
+            if not self.db.execute(
+                    "SELECT 1 FROM model_choices WHERE bibliography=? AND key=? AND choice=? AND cleared IS NULL",
+                    (bibliography, key, text)).fetchone():
+                self.db.execute("INSERT INTO model_choices (bibliography,key,choice,recorded_at) VALUES (?,?,?,?)",
+                                (bibliography, key, text, now()))
+
+    def key_names(self, key):
+        """``key`` and the keys the entry had before, by the key-rename ledger that goes with
+        this cache's revocation ledger (the same folder): a renamed entry is still the entry.
+        ``key`` alone when no ledger is named or it cannot be read."""
+        ledger = self.ledger if self.ledger is not None else REVOCATION_LEDGER
+        names = [key]
+        if not ledger:
+            return names
+        path = Path(ledger).with_name(KEY_RENAMES_NAME)
+        try:
+            stat = path.stat()
+            state = (str(path), stat.st_mtime_ns, stat.st_size)
+        except OSError:
+            return names
+        if self._renames[0] != state:
+            try:
+                records = json.loads(path.read_text(encoding="utf-8"))
+                pairs = [(r["old_key"], r["new_key"]) for r in records
+                         if isinstance(r, dict) and isinstance(r.get("old_key"), str) and isinstance(r.get("new_key"), str)]
+            except (OSError, ValueError, TypeError):
+                pairs = []
+            self._renames = (state, pairs)
+        for old, new in reversed(self._renames[1]):
+            if new in names and old not in names:
+                names.append(old)
+        return names
+
+    def model_choices(self, bibliography, entry):
+        """The model-assisted choices recorded for ``entry`` (its key, or a key it had) that
+        are about the book title it has now, newest first, as ``(id, evidence, pending)``. A
+        choice is about the entry unless the verifier says its book title is a different one
+        (``container_titles.still_chosen``). ``pending``: no approval of the entry cleared
+        it, or the approval that did was revoked."""
+        names = self.key_names(entry["key"])
+        rows = self.db.execute(
+            f"SELECT id,choice,cleared FROM model_choices WHERE bibliography=? AND key IN ({','.join('?' * len(names))}) "
+            "ORDER BY id DESC", (str(Path(bibliography).resolve()), *names)).fetchall()
+        if not rows:
+            return []
+        from .container_titles import still_chosen
+        booktitle, found, revocations = (entry.get("fields") or {}).get("booktitle"), [], None
+        for identifier, text, cleared in rows:
+            evidence = json.loads(text)
+            if not still_chosen(booktitle, {"chosen": evidence.get("chosen"), "written": evidence.get("booktitle")}):
+                continue
+            pending = True
+            if cleared:
+                by = json.loads(cleared)
+                revocations = self.revocations() if revocations is None else revocations
+                pending = bool(self.revoked(by.get("fingerprint"), by.get("human_review"), by.get("approved_at"),
+                                            revocations))
+            found.append((identifier, evidence, pending))
+        return found
+
+    def marked(self, bibliography, entry, result):
+        """``result`` (of ``entry``; None stays None) as it reads while a model-assisted choice
+        of the entry's book title is unresolved: the choice is its ``model_choice`` and its
+        ``external_evidence`` (other external evidence already there is left in place), the
+        issue ``MODEL_CHOICE_ISSUE`` is its first, and a status of ``metadata_verified`` reads
+        ``needs_review`` (the verifier accepts either of the record's two titles, so its
+        acceptance says nothing of the choice). Applied to every result read and stored, so
+        no check, retry or refresh, and no edit that leaves the book title the same title,
+        takes the mark off.
+
+        Two things end it. A person's approval of the entry (a ``human_verified`` result,
+        stored here or read from the approvals ledger) clears the choices that are about the
+        entry, and is recorded with them; if that approval is revoked they are unresolved
+        again. And a book title the verifier says is a different one: the choice is not about
+        such an entry (``model_choices``).
+
+        A stored result that carries the mark with no recorded choice (a database written
+        before the table existed, a restored snapshot) has the choice recorded from it."""
+        if result is None:
+            return None
+        choices = self.model_choices(bibliography, entry)
+        if result.get("status") == "human_verified":
+            waiting = [identifier for identifier, _, pending in choices if pending]
+            if waiting and not self.revocation_for(entry["fingerprint"], result):
+                cleared = dumps({"key": entry["key"], "fingerprint": entry["fingerprint"],
+                                 "human_review": result.get("human_review"), "approved_at": result.get("checked_at")})
+                with self.db:
+                    self.db.executemany("UPDATE model_choices SET cleared=? WHERE id=?",
+                                        [(cleared, identifier) for identifier in waiting])
+            return result
+        evidence = next((evidence for _, evidence, pending in choices if pending), None)
+        if evidence is None:
+            carried = result.get("external_evidence")
+            if choices or not isinstance(carried, dict) or carried.get("kind") != MODEL_CHOICE:
+                return result
+            from .container_titles import still_chosen
+            if not still_chosen((entry.get("fields") or {}).get("booktitle"),
+                                {"chosen": carried.get("chosen"), "written": carried.get("booktitle")}):
+                return result
+            self.record_model_choice(bibliography, entry["key"], carried)
+            evidence = carried
+        marked = dict(result, model_choice=evidence)
+        other = result.get("external_evidence")
+        if not isinstance(other, dict) or not other or other.get("kind") == MODEL_CHOICE:
+            marked["external_evidence"] = evidence
+        marked["issues"] = [MODEL_CHOICE_ISSUE] + [i for i in result.get("issues") or [] if i != MODEL_CHOICE_ISSUE]
+        if result.get("status") in ACCEPTED:
+            marked["status"] = "needs_review"
+        return marked
 
     def stored(self, bibliography, entry, any_policy=False):
         # Separate indexed lookups: an OR across the two fingerprint formats
@@ -1001,6 +1138,7 @@ class Cache:
             fingerprint=entry["fingerprint"],
             policy=POLICY,
         )
+        result = self.marked(bibliography, entry, result)
         self.store(bibliography, entry, result)
         return result
 
@@ -1178,6 +1316,12 @@ class ProviderError(RuntimeError):
     pass
 
 
+class OutOfTime(ProviderError):
+    """The time allowed for a retrieval is over (or its body is over the size allowed): the
+    request was cancelled, or not made. A ``ProviderError``, so the paced client does not
+    ask again."""
+
+
 def crossref_work_doi(url):
     """Recognize only an HTTPS Crossref work endpoint, never a publisher URL."""
     parsed = urlparse(url)
@@ -1235,13 +1379,26 @@ class PoliteClient:
             }
         )
         self.sleep, self.clock, self.refresh = sleep, clock, refresh
+        # A whole operation's deadline (time.monotonic), set by its caller for the time it
+        # runs (container_titles.within); None: no deadline. ``pause`` does not wait past it.
+        self.deadline = None
         self.next_request = 0
         self.host_intervals = {}
         self.requests = 0
 
+    def pause(self, seconds):
+        """Wait ``seconds`` (pacing, a Retry-After, the pause before a retry), unless the wait
+        would end after ``deadline``: then nothing is waited for and nothing more is asked
+        (``OutOfTime``), so that the waiting between requests is inside the operation's time
+        like the requests themselves."""
+        if self.deadline is not None and seconds > 0 and time.monotonic() + seconds > self.deadline:
+            raise OutOfTime("the time allowed for this retrieval would be over before the next request could be "
+                            "made; it was not made")
+        self.sleep(seconds)
+
     def source_request(self, *args, **kwargs):
         """Count and pace one bounded publisher request (including redirects)."""
-        self.sleep(max(0, self.next_request - self.clock()))
+        self.pause(max(0, self.next_request - self.clock()))
         self.requests += 1
         try:
             return self.session.get(*args, **kwargs)
@@ -1258,7 +1415,7 @@ class PoliteClient:
         if cached is not None and not self.refresh:
             return cached
         for attempt in range(4):
-            self.sleep(max(0, self.next_request - self.clock()))
+            self.pause(max(0, self.next_request - self.clock()))
             minimum = 3.1 if host == "export.arxiv.org" else self.interval
             delay = max(minimum, self.host_intervals.get(host, 0))
             try:
