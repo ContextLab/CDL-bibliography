@@ -2,9 +2,12 @@
 
 PR snapshots come from the trusted base revision, not the proposed changes.
 PR caches remain scoped to their merge ref; master never restores a PR cache.
-The approvals ledger (verification/approvals.jsonl) is read from the base revision
-too: the checker is given the base's copy (an empty file when the base has none)
-with --trusted-approvals, so rows a pull request adds are not read. The base
+For a pull request the approvals ledger (verification/approvals.jsonl) is read from
+the base revision too: the checker is given the base's copy (an empty file when the
+base has none) with --trusted-approvals, so rows a pull request adds are not read.
+For a push the pushed commit's own ledger is given instead: what is pushed to the
+branch is already merged there, by someone who may write to it, so the rows a merge
+brings in count for the entries the same merge changes. The base
 revision's revocations (verification/revocations.jsonl) are given with
 --trusted-revocations and honoured together with the checkout's own: a pull
 request that removes a revocation line does not undo the revocation. What the
@@ -93,6 +96,12 @@ def main():
         entering = subprocess.run(command + ["check-ledger", "--base", str(approvals.resolve())])
         if entering.returncode:
             return entering.returncode
+        if event == "push":
+            # Pushed content is already merged: the rows that came in with it, valid as just
+            # checked, count. A pull request keeps the base's copy.
+            pushed = Path("verification/approvals.jsonl")
+            approvals = work / "pushed-approvals.jsonl"
+            approvals.write_bytes(pushed.read_bytes() if pushed.is_file() and not pushed.is_symlink() else b"")
     elif event != "workflow_dispatch":
         raise ValueError("Unsupported event")
     else:

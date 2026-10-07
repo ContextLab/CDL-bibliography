@@ -394,7 +394,8 @@ row can do depends on which copy of the file a command reads:
 
 |Reader|Copy of `approvals.jsonl` read|
 |-|-|
-|Pull request check, and push check with a base (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`.|
+|Pull request check (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`.|
+|Push check with a base (`check_ci.py`; the workflow runs on pushes to `master` only)|The pushed commit's own, copied to `.bibcheck/pushed-approvals.jsonl` and passed the same way, after `crossref check-ledger` has compared it with the base revision's.|
 |The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. This holds whichever entries are checked (new and edited, `--all`, or chosen keys); when all entries or chosen keys are checked and `master`'s file cannot be downloaded, no row counts and the gate prints a line saying so. No environment variable names a ledger.|
 |`crossref status`, `crossref verify` run by hand, the library views, `restore`, `snapshot`, a push check without a base, a manual workflow run|The file beside the revocation ledger the cache was opened with: the checkout's own.|
 |A cache opened without a ledger|None.|
@@ -1224,8 +1225,12 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
   edited content is gated; key-only renames are excluded. It also writes the base
   revision's `verification/approvals.jsonl` to `.bibcheck/base-approvals.jsonl` (an empty
-  file when the base has none) and passes it as `--trusted-approvals`, so the checker
-  reads approvals from that copy and not from the pull request's file. The base revision's
+  file when the base has none). `crossref check-ledger --base` compares the checkout's
+  file with that copy first. On a pull request the copy is then passed as
+  `--trusted-approvals`, so the checker reads approvals from it and not from the pull
+  request's file. On a push the pushed commit's own file is passed instead
+  (`.bibcheck/pushed-approvals.jsonl`): a push to `master` is content that is already
+  merged, so a row that came in with it counts for an entry the same push changed. The base revision's
   `verification/revocations.jsonl` is written to `.bibcheck/base-revocations.jsonl` and
   passed as `--trusted-revocations` to `restore` and `verify`, which add its rows to the
   database's `revocations` table; they count together with the rows of the pull request's
@@ -1245,10 +1250,11 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
 - Exit status: `0` when every selected entry is verified, `1` otherwise, `2` for a
   configuration or provider error.
 
-Because approvals are trusted only from the base branch, a pull request that adds a
-`human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`, still
-fails its own check for an entry it also adds or edits; a maintainer merges it after
-checking the approval. A pull request that only adds rows to `approvals.jsonl` changes no
+Because a pull request's approvals are trusted only from the base branch, a pull request
+that adds a `human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`,
+still fails its own check for an entry it also adds or edits; a maintainer merges it after
+checking the approval. The check of the push that the merge makes reads the merged
+`approvals.jsonl`, so there the row counts and the entry is `human_verified`. A pull request that only adds rows to `approvals.jsonl` changes no
 entry, so no entry is selected and the check passes without reading those rows. The job runs the pull
 request's own code, so this guarantee assumes the checker itself is unchanged; review any
 change under `src/cdlbib/` or `verification/check_ci.py` separately.

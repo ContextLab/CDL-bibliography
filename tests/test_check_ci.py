@@ -177,6 +177,60 @@ def test_a_pull_request_reads_the_approvals_ledger_of_its_base_only(clone):
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
 
 
+def test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_changes(clone):
+    """One commit edits an entry so that it needs a person's review and adds a valid ledger row
+    approving that exact text (an edit and its approval merged together). As a pull request
+    against the commit before it, the row is the pull request's own: the entry needs review and
+    the check fails. As the push of that same commit, the row is already merged and counts:
+    the entry is human_verified and the check passes. A row for another text of the entry
+    does not count on a push either."""
+    from cdlbib import verification as v
+    key = "Zoll90"
+    start = head(clone)
+    bib = clone / "cdl.bib"
+    before = v.load_entries(str(bib))[key]
+    assert before["raw"].count("1990") >= 1
+    edited = before["raw"].replace("1990", "1890")                           # no source gives this year
+    text = bib.read_bytes().decode("utf-8")
+    assert edited != before["raw"] and text.count(before["raw"]) == 1
+    bib.write_bytes(text.replace(before["raw"], edited).encode("utf-8"))
+    entry = v.load_entries(str(bib))[key]
+    assert entry["fingerprint"] != before["fingerprint"]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Fixture: an edit and its approval in one commit.", "github_login": "octocat", "github_id": 583231}
+
+    def commit(fingerprint, message):
+        row = {"key": key, "fingerprint": fingerprint, "human_review": review,
+               "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+        assert v.valid_shared_approval(row)
+        with open(clone / "verification" / "approvals.jsonl", "a", encoding="utf-8") as stream:
+            stream.write(v.dumps(row) + "\n")
+        subprocess.run(["git", "add", "cdl.bib", "verification/approvals.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
+
+    try:
+        commit(entry["fingerprint"], "Zoll90 edited, with its approval")
+        run = run_ci(clone, "pull_request", start)
+        assert run.returncode == 1, run.stdout + run.stderr                  # the pull request's own row is not read
+        assert reported(clone, key) == "needs_review"
+        assert (clone / ".bibcheck" / "base-approvals.jsonl").read_bytes() == subprocess.run(
+            ["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True).stdout
+        run = run_ci(clone, "push", start)
+        assert run.returncode == 0, run.stdout + run.stderr                  # merged: the row counts
+        assert reported(clone, key) == "human_verified"
+        assert (clone / ".bibcheck" / "pushed-approvals.jsonl").read_bytes() == (clone / "verification" / "approvals.jsonl").read_bytes()
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+    try:                                                                     # the edit alone: no row for this text
+        bib.write_bytes(text.replace(before["raw"], edited).encode("utf-8"))
+        subprocess.run(["git", "commit", "-q", "-m", "Zoll90 edited, no approval", "cdl.bib"], cwd=clone, check=True)
+        run = run_ci(clone, "push", start)
+        assert run.returncode == 1, run.stdout + run.stderr
+        assert reported(clone, key) == "needs_review"
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
 def test_a_pull_request_that_deletes_a_revocation_does_not_revive_the_base_approval(clone):
     """The base holds a ledger approval of Zoll90 and, in verification/revocations.jsonl only,
     its revocation. The pull request deletes that revocation line. The check honours the base

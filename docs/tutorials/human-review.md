@@ -154,7 +154,8 @@ takes precedence. After a revocation, a line for the same text counts only if it
 after the revocation and its source and note differ from the revoked review's by more than
 spacing and capitals.
 
-The pull request check reads the file from the base branch only. The checks of
+The pull request check reads the file from the base branch only; the check of a push to
+`master` (a merge) reads the pushed commit's own file. The checks of
 `cdlbib verify` and `cdlbib send` on new and edited entries read it from the reference
 they compare with (the `master` branch on GitHub), not from the working copy.
 
