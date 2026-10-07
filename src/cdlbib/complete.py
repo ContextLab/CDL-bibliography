@@ -2872,6 +2872,7 @@ def apply(ws, accepted, *, batch=None, before_commit=None):
             before_commit(entries, result)
         done = writer.commit(ws, writes, expected, batch=batch)
         result.backup, result.saved_copy = done.backup, done.saved_copy
+        result.notes += done.notes          # what the write kept aside, with its path
         return result
     except (OSError, UnicodeError, ValueError, TypeError) as exc:
         raise CdlbibError(f'Entry completion could not be written: {exc}') from exc

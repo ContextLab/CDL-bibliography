@@ -341,6 +341,32 @@ def test_a_library_that_cannot_be_written_is_a_cdlbib_error_and_stays_whole(ws):
     assert not list(ws.root.glob(".cdl.bib-*"))
 
 
+def test_a_program_that_holds_the_managed_bibliography_open_loses_nothing_it_writes_after_a_save(managed):
+    """Another program has the managed library's cdl.bib open for writing while cdlbib saves an
+    edit. What it writes afterwards goes into the file that save replaced, and that file is
+    kept (.bibcheck/replaced; the managed library keeps no copies in edits): it still has a
+    name, and holds the line."""
+    import os
+    ws = Workspace(library.download())
+    before = ws.bib.read_bytes()
+    theirs = os.open(ws.bib, os.O_WRONLY | os.O_APPEND)
+    try:
+        applied = api.save_edit(ws, "Zoll90", ZOLL90.replace("{27}", "{28}"), fingerprint(ws, "Zoll90"))
+        assert applied.written == ["Zoll90"]
+        os.write(theirs, b"% written by the program that had it open\n")
+        held = os.fstat(theirs)
+        assert held.st_nlink == 1                                  # the file it holds still has a name
+        (kept,) = list((ws.work / "replaced").iterdir())
+        assert kept.name.endswith("-cdl.bib") and (os.stat(kept).st_dev, os.stat(kept).st_ino) == (held.st_dev, held.st_ino)
+        assert kept.read_bytes() == before + b"% written by the program that had it open\n"
+    finally:
+        os.close(theirs)
+    assert not (ws.work / "edits").exists() and not (ws.work / "kept").exists(), sorted(str(p) for p in (ws.work / "kept").rglob("*"))
+    for number in range(writer.KEEP_EDITS + 3):                    # and they do not pile up without end
+        api.save_edit(ws, "Zoll90", ZOLL90.replace("{27}", "{%d}" % (30 + number)), fingerprint(ws, "Zoll90"))
+    assert len(list((ws.work / "replaced").iterdir())) == writer.KEEP_EDITS
+
+
 def test_a_save_in_the_managed_library_is_backed_up_and_undone(managed):
     ws = Workspace(library.download())
     before = ws.bib.read_bytes()

@@ -17,31 +17,38 @@ at: first whether it is the very file that was read (one descriptor comparison),
 content, read through its own descriptor. When it is not what was read, the two are
 exchanged back at once and the write is refused.
 
-NOTHING IS REMOVED. Whatever stood under a library name (cdl.bib, the key-rename ledger, the
-approvals ledger), at any instant, is never unlinked by this module, on any path: not the
-file a write replaced, not a link or a folder found in a file's place, and not the writer's
-own new file once it has stood under the name. Each is moved, by the same flagged rename
-from one held folder into another, to one of two places beside the library:
+WHAT IS KEPT, AND FOR HOW LONG. Whatever stood under a library name (cdl.bib, the key-rename
+ledger, the approvals ledger), at any instant, is not unlinked when it is replaced, on any
+path: not the file a write replaced, not a link or a folder found in a file's place, and not
+the writer's own new file once it has stood under the name. Each is moved, by the same
+flagged rename from one held folder into another, to one of these places beside the library.
+The first two are bounded (a file there is removed when it is KEEP_EDITS writes old, which
+is the one way a file that once was a library file is ever removed); the third is not:
 
 - <.bibcheck>/edits/<UTC stamp>-<file name>: the file a successful write replaced IS that
   write's copy (the copy made before the write is exchanged for it). The copies of the
   newest KEEP_EDITS writes are kept; an older one is removed by a later successful write.
-  That is the one place where a file that once was a library file is removed, and the rule
-  by which it is: it is KEEP_EDITS writes old.
+  Settling a killed write (``recover``) leaves them where they are, the ledger's too.
+- <.bibcheck>/replaced/<UTC stamp>-<file name>: the same for the managed library, which
+  keeps no copies in edits (its backup is the command's checkpoint): the files its newest
+  KEEP_EDITS writes replaced.
 - <.bibcheck>/kept/<UTC stamp>-<random>/: the private folder of one write (made with an
   exclusive mkdir, for the user only, before anything is replaced; removed again when the
   write leaves it empty). In it stay, under names that say what they were: the writer's
   own file that was exchanged back out (<name>.not-installed), the file a write replaced
   when the write was then taken back (<name>.was), and anything unexpected that came out of
   a library name (<name>.found: another program's superseded save, a link, a folder). They
-  are named in the error, and cdlbib never removes them: they are for the user to look at.
+  are named in the error, or in the notes of a write that succeeded, or by the command that
+  settles a killed write. cdlbib never removes them and sets no limit on them: each
+  conflict and each settled write can leave whole files there, so <.bibcheck>/kept grows
+  until the user, having looked, deletes the folders in it (any of them, at any time:
+  nothing reads them again once the write they belong to has been settled).
 
-Only files that never stood under a library name are removed: a prepared file that was never
-exchanged in (after it was moved into the private folder and found there to be that file),
-and cdlbib's own records and copies under .bibcheck. (The managed library keeps no copies
-beside itself; its backup is the command's checkpoint. There the file a write replaced is
-read once more in the private folder and removed when it holds exactly the bytes the
-checkpoint holds; see the last point below.)
+Otherwise only files that never stood under a library name are removed: a prepared file
+that was never exchanged in (after it was moved into the private folder and found there to
+be that file), and cdlbib's own records under .bibcheck. The record of a write names its
+private folder by its stamp, so the command that settles a killed write finds what that
+write had kept aside, and says it.
 
 WHAT IS GUARANTEED against a program that ignores the lock, and what is not:
 
@@ -51,7 +58,8 @@ WHAT IS GUARANTEED against a program that ignores the lock, and what is not:
 - A program that overwrites cdl.bib in place: what it writes is never deleted either. Written
   before the exchange, it is found by content and exchanged back. Written after (through a
   descriptor it still holds on the file that was replaced), it is in that write's copy in
-  <.bibcheck>/edits, the very file it has open, or in the write's private folder.
+  <.bibcheck>/edits (<.bibcheck>/replaced in the managed library), the very file it has
+  open, or in the write's private folder; until that copy is KEEP_EDITS writes old.
 - NOT guaranteed: which of two saves made at the same moment ends up as the library file.
   For the instant between the exchange and the look at what came out (one open and one
   descriptor comparison when the other save was made by rename; the reading of the file
@@ -61,8 +69,6 @@ WHAT IS GUARANTEED against a program that ignores the lock, and what is not:
   save itself (seen once in about a hundred runs of the test that hammers the file from a
   second process, on a loaded machine). And a program that keeps writing through a
   descriptor on a file that has been replaced is writing into a copy, not into the library.
-- NOT guaranteed in the managed library: a write made through a descriptor a program still
-  holds on the replaced file, AFTER that file's last reading, goes into a removed file.
 - A write returns as done only when the library file is the file the writer prepared. When
   it cannot be established what state a file is in (no descriptors left to open it, an
   input/output error, a rename that fails), nothing is claimed: the record of the write in
@@ -119,6 +125,7 @@ from pathlib import Path
 from .errors import CdlbibError
 
 EDITS = "edits"                      # under the library's .bibcheck/
+REPLACED = "replaced"                # under the managed library's .bibcheck/: the files its newest writes replaced
 KEEP_EDITS = 20                      # pre-write copies kept for a library cdlbib does not manage
 PENDING = "write-in-progress.json"
 
@@ -372,7 +379,8 @@ class _Folder:
         """Put the file made here as ``made`` under the library name ``onto`` (both names in
         this folder), where ``onto`` is expected to hold ``expected``: bytes (a file with
         exactly them), None (nothing: the name is taken only while it is free,
-        FileExistsError otherwise) or ANY_FILE (any ordinary file).
+        FileExistsError otherwise), ANY_FILE (any ordinary file) or A_LINK (a link, which is
+        nobody's save: it is kept aside and replaced, without the name ever being free).
 
         Nothing that stands under a library name, or ever stood under one, is removed here:
         not what the exchange pushed aside, not a link or a folder found in its place, and not
@@ -426,13 +434,25 @@ class _Folder:
             elif kind == "file" and isinstance(expected, bytes):
                 data, stable, _ = _read_fd(out)
                 good = stable and data == expected
-            elif kind == "absent" and placed and read_fd is not None and isinstance(expected, bytes):
-                data, stable, left = _read_fd(read_fd)   # removed at once by something else: was it the file read?
+            elif kind == "link" and expected is A_LINK:
+                good = True                      # nobody's save: it is kept aside as something found, and replaced
+            elif kind in ("absent", "link") and placed and read_fd is not None and isinstance(expected, bytes):
+                # Nothing, or a link, under the prepared name: the file that came out was removed at once
+                # by something else (and perhaps a link put in its place). Was it the file that
+                # was read? Then that file has no name any more, it holds what was expected, and
+                # nothing was lost; what stands under the prepared name never was the library
+                # file, and is kept aside, not put in its place.
+                data, stable, left = _read_fd(read_fd)
                 good = left.st_nlink == 0 and stable and data == expected
             else:
                 good = False
             if placed and good:
-                was = aside.take(self, made, onto + ".was", foreign=False) if kind != "absent" else None
+                if kind == "file":
+                    was = aside.take(self, made, onto + ".was", foreign=False)
+                else:
+                    if kind != "absent":
+                        aside.take(self, made, onto + ".found", foreign=True)
+                    was = None
                 self.flush()
                 self._let_go(made)
                 return was
@@ -458,6 +478,9 @@ class _Folder:
                     aside.take(self, made, onto + ".not-installed", foreign=False)
                 self._let_go(made)
                 self.flush()
+                if self.kind(onto) in ("link", "absent"):   # a link went back, or nothing: the caller looks at the name again
+                    raise OSError(errno.ESTALE, 'something that is not a file came out of the exchange and went back',
+                                  str(self.path / onto))
                 raise _Changed(self.path / onto)
             if self.kind(onto) == "file":
                 # Another program saved over the file made (or the prepared name was swapped for
@@ -596,8 +619,17 @@ class _Folder:
                 return
             if name in self.exposed:
                 aside.take(self, name, name.lstrip('.') + ".found", foreign=True)
-            else:
+                return
+            try:
                 aside.discard(self, name, fd)
+            except OSError:
+                # No private folder can be had (the folder it is made in is being moved about).
+                # The file made here never stood under a library name: it is removed where it
+                # is, when the name is still that file.
+                if fd is None or self.is_file_of(name, fd) is None:
+                    raise
+                with contextlib.suppress(FileNotFoundError):
+                    os.unlink(name, dir_fd=self.fd)
         finally:
             self._let_go(name)
 
@@ -661,33 +693,40 @@ class _Aside:
     it holds: (its name here, whether it is something unexpected, the path it came from).
     When the write ends with the folder empty, the folder is removed."""
 
-    def __init__(self, work):
+    def __init__(self, work, held):
         self.work = work                     # gives the held folder .bibcheck (made if need be); it is not closed here
+        self.held = held                     # the stack of the write: this folder is closed before the ones it is in
         self.items, self.notes, self._folders, self.name = [], [], [], None
 
     def folder(self):
         if not self._folders:
             work = self.work()
-            self._folders.append(work)
             kept = work.sub(KEPT, create=True)
             if kept is None:
                 raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(work.path / KEPT))
-            self._folders.append(kept)
-            stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
-            while True:
-                name = f"{stamp}-{secrets.token_hex(6)}"
+            try:
+                stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+                while True:
+                    name = f"{stamp}-{secrets.token_hex(6)}"
+                    try:
+                        os.mkdir(name, 0o700, dir_fd=kept.fd)
+                        break
+                    except FileExistsError:
+                        continue
+                own = kept.sub(name)
+                if own is None:
+                    raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(kept.path / name))
                 try:
-                    os.mkdir(name, 0o700, dir_fd=kept.fd)
-                    break
-                except FileExistsError:
-                    continue
-            own = kept.sub(name)
-            if own is None:
-                raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(kept.path / name))
-            self._folders.append(own)
-            self.name = name
-            own.flush()
-            kept.flush()
+                    own.flush()
+                    kept.flush()
+                except BaseException:
+                    own.close()
+                    raise
+            except BaseException:
+                kept.close()
+                raise
+            self._folders, self.name = [work, kept, own], name      # all three, or none
+            self.held.callback(self.close)
         return self._folders[2]
 
     @property
@@ -844,6 +883,7 @@ class _Held(contextlib.ExitStack):
 
 _STAMP = re.compile(r"\d{8}T\d{6}\.\d{6}Z")
 _SHA = re.compile(r"[0-9a-f]{64}")
+_KEPT_NAME = re.compile(r"\d{8}T\d{6}\.\d{6}Z-[0-9a-f]{12}")
 
 
 def _records(held, folder, create=False):
@@ -919,7 +959,8 @@ def _targets(ws):
 def _record(ws, raw):
     """The record of the write in progress (``raw``: its bytes), checked: (stamp, {name:
     (before, after)}, {name: the prepared file's name}). ValueError when it is not exactly
-    what _copies writes."""
+    what _copies writes. (The stamp also names the write's private folder: <.bibcheck>/kept/
+    <stamp>-<random>, where what the write kept aside is found by a later command.)"""
     data = json.loads(raw.decode('utf-8'))
     known = _targets(ws)
     if not isinstance(data, dict) or set(data) != {"stamp", "targets", "staged"}:
@@ -1012,10 +1053,20 @@ def recover(ws):
                 raise CdlbibError(f"An earlier write to {ws.bib} was interrupted, and the library was changed since; "
                                   f"nothing was changed now. The bibliography as it was before that write is {copy}. "
                                   f"Compare the two, then delete {marker}.")
+        replaced = [name for name, (before, after) in recorded.items() if now[name] == after and before != after]
+        whole = not replaced or len(replaced) == len([1 for before, after in recorded.values() if before != after])
+        for name, (before, after) in recorded.items():
+            target, folder = known[name], folders[name]
+            if folder is None:
+                continue
+            if whole:                    # nothing has to be put back: the copies and prepared files are not needed, nor read
+                if folder.identity(staged[name]) is not None:
+                    prepared.append((folder, staged[name], None))
+                continue
             kept = f"{stamp}-{target.name}"
             try:
                 held_copy = edits.read(kept)[0]
-                waiting = folder.read(staged[name])[0] if folder is not None else None
+                waiting = folder.read(staged[name])[0]
             except OSError as exc:
                 raise refuse(f"a copy or prepared file of {target} is not an ordinary file") from exc
             if held_copy is not None:
@@ -1026,14 +1077,11 @@ def recover(ws):
                 if _sha(waiting) not in (before, after):      # the new file, or the old one it was exchanged with
                     raise refuse(f"the prepared file {target.parent / staged[name]} is not the one that write made")
                 prepared.append((folder, staged[name], waiting))
-        replaced = [name for name, (before, after) in recorded.items() if now[name] == after and before != after]
-        whole = not replaced or len(replaced) == len([1 for before, after in recorded.values() if before != after])
         if not whole:
             for name in replaced:
                 if recorded[name][0] is not None and name not in saved:
                     raise refuse(f"the copy of {known[name]} from before it is missing")
-        aside = _Aside(lambda: held.found["work"])
-        held.callback(aside.close)
+        aside = _Aside(lambda: held.found["work"], held)
         if not whole:
             try:
                 # From the bytes that were read and checked, by name in the held folder, with the
@@ -1045,28 +1093,57 @@ def recover(ws):
                                      "put back; it was left as it is now. " + aside.said())
             except OSError as exc:
                 raise refuse(f"the library could not be put back ({exc}). " + aside.said()) from exc
-        for folder, name, waiting in prepared:      # what the dead writer left beside the file: kept, not removed
-            aside.take(folder, name, name.lstrip('.') + ".prepared", foreign=False)
-        for name in saved:
-            if name != "bib":
-                edits.remove(f"{stamp}-{known[name].name}")
+        try:
+            for folder, name, waiting in prepared:      # what the dead writer left beside the file: kept, not removed
+                aside.take(folder, name, name.lstrip('.') + (".prepared" if waiting is not None else ".found"),
+                           foreign=waiting is None)
+        except OSError as exc:
+            raise refuse(f"what that write left beside the library could not be moved aside ({exc})") from exc
+        # The copies stay, also the ledger's: since a write's copy is the very file it replaced,
+        # one may be a file another program still has open. They go the way of all copies
+        # (the newest KEEP_EDITS writes are kept).
+        # What that write itself had to keep aside as unexpected is said now, before its record goes.
+        found_then = []
+        try:
+            then = held.found["work"].sub(KEPT)
+            if then is not None:
+                held.callback(then.close)
+                for kept_name in sorted(name for name in then.names()
+                                        if name.startswith(stamp + "-") and _KEPT_NAME.fullmatch(name)):
+                    own = then.sub(kept_name)
+                    if own is not None:
+                        held.callback(own.close)
+                        found_then += [str(ws.work / KEPT / kept_name / name) for name in sorted(own.names())
+                                       if ".found" in name]
+        except OSError as exc:
+            raise refuse(f"what that write kept aside (in {ws.work / KEPT}) could not be looked at "
+                         f"({exc.strerror or exc})") from exc
         edits.remove(PENDING)
+        said_kept = ""
+        if found_then:
+            said_kept += ("; during that write something stood in a library file's place that was not what was "
+                          "expected, and is kept as " + ", ".join(found_then))
+        if aside.items:
+            said_kept += "; " + aside.said()
     if not whole:
         return [f"an earlier write to {ws.bib} was interrupted part-way; the library was put back as it was before "
-                f"that write (the bibliography as it was is also in {copy})"]
+                f"that write (the bibliography as it was is also in {copy})" + said_kept]
     if replaced:
-        return [f"an earlier write to {ws.bib} was interrupted just after it had written everything; nothing is missing"]
-    return [f"an earlier write to {ws.bib} was interrupted before anything was written; the library is as it was"]
+        return [f"an earlier write to {ws.bib} was interrupted just after it had written everything; nothing is "
+                "missing" + said_kept]
+    return [f"an earlier write to {ws.bib} was interrupted before anything was written; the library is as it was"
+            + said_kept]
 
 
-def _copies(held, staged, writes):
+def _copies(held, staged, writes, stamp=None):
     """Copy what is about to be replaced into <.bibcheck>/edits and record the write as in
     progress (logical names, checksums and the prepared files' names: no path). Returns (the
     copy of the bibliography, the names of the copies only a recovery needs)."""
     ws = held.ws
     edits = held.edits(create=True)
     names = {path: name for name, path in _targets(ws).items()}
-    stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    # The stamp of the write: its private folder's (see _record), so that a later command finds it.
+    stamp = stamp or datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     after = dict(writes)
     targets, prepared, copy, extra = {}, {}, None, []
     for target, _, temporary, _, previous in staged:
@@ -1120,27 +1197,6 @@ def _file_as_copy(aside, edits, was, copy):
     edits.flush()
 
 
-def _drop_as_backed_up(aside, was, expected):
-    """For the managed library, whose backup of the write is its command checkpoint and which
-    keeps no copies beside itself: the file a write replaced (``was``: its name in
-    ``aside``) is read once more in the private folder, through its own descriptor, and
-    removed there when it holds exactly ``expected``, the bytes the checkpoint holds.
-    Otherwise it stays in the private folder. (A program that still has that file open and
-    writes into it after this last reading writes into a removed file: see the module's
-    account of what is not guaranteed.)"""
-    folder = aside.folder()
-    kind, fd = folder.look(was)
-    try:
-        if kind == "file" and _read_fd(fd)[:2] == (expected, True) and folder.is_file_of(was, fd) is not None:
-            os.unlink(was, dir_fd=folder.fd)
-            aside.forget(was)
-        else:
-            aside.items = [(name, True if name == was else foreign, source) for name, foreign, source in aside.items]
-    finally:
-        if fd is not None:
-            os.close(fd)
-
-
 def _restore(folder, target, previous, mode, ours, aside):
     """Make ``target`` hold ``previous`` again (None: not be there), with the permission bits
     ``mode``, where this write put ``ours`` (bytes). What is there is looked at first, by
@@ -1159,6 +1215,7 @@ def _restore(folder, target, previous, mode, ours, aside):
         finally:
             os.close(fd)
         if stable and data == previous:
+            folder.flush()               # as it was, and that is on the disk too (an error here is raised)
             return True
         if not (stable and data == ours):
             return False
@@ -1185,12 +1242,13 @@ def _restore(folder, target, previous, mode, ours, aside):
                            "before the write was written again.")
         expected = None
     elif kind == "link":
-        aside.take(folder, target.name, target.name + ".found", foreign=True)
         aside.notes.append(f"A link stood in the place of {target} while it was being written; it is kept aside"
                            + ("" if previous is None else ", and the text from before the write was written again") + ".")
         if previous is None:
+            aside.take(folder, target.name, target.name + ".found", foreign=True)
+            folder.flush()
             return True
-        expected = None
+        expected = A_LINK
     else:
         raise OSError(errno.EISDIR, 'something that is neither a file nor a link stands in its place', str(target))
     made, _ = folder.new('.rollback-', previous, mode)
@@ -1223,8 +1281,7 @@ def replace_library_file(path, data, mode=None):
                 raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(above.path / ".bibcheck"))
             held.callback(found.close)
             return found
-        aside = _Aside(work)
-        held.callback(aside.close)
+        aside = _Aside(work, held)
         if data is None:
             was = aside.take(folder, path.name, path.name + ".was", foreign=False)
             folder.flush()
@@ -1277,9 +1334,13 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                     raise OSError(errno.ENOENT, 'the folder was moved away while it was being used', str(ws.work))
                 held._keep("work", found)
             return held.found["work"]
-        aside = _Aside(work)
-        held.callback(aside.close)
+        aside = _Aside(work, held)
         try:
+            # The private folder of this write is made and held before anything else (a write
+            # that has nowhere to keep what it pushes aside does not start), and the record of
+            # the write names it by its stamp. It comes before the files are prepared, so that
+            # they stand beside the library, under names of their own, as briefly as can be.
+            aside.folder()
             # Prepare every file before replacing either, so permission/disk failures
             # during preparation leave both originals intact.
             for target, data in writes:
@@ -1295,12 +1356,9 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                 done.backup = library.completion_checkpoint(ws, batch)
                 library._mark(done.backup, operation)
             else:
-                done.saved_copy, extra = _copies(held, staged, writes)
+                done.saved_copy, extra = _copies(held, staged, writes, aside.name.rsplit("-", 1)[0])
             installed, replaced = [], []
             try:
-                # The private folder of this write is made and held before anything is
-                # replaced: a write that has nowhere to keep what it pushes aside does not start.
-                aside.folder()
                 # The backups are made; only now is each file read again and compared with what
                 # the caller planned from, and replaced: exchanged with the prepared file in
                 # one step, after which what came out is checked, by its content, to be what
@@ -1366,7 +1424,9 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                         "meantime; it was left as it is now. What it held before this write is in " + str(kept)
                         + ". Compare the two" + ("" if managed else f", then delete {ws.work / EDITS / PENDING}") + "."
                         + beside, files=conflicts) from None
-                if aside.paths(foreign=True) and isinstance(stopped, (OSError, _Changed)):
+                if aside.paths(foreign=True) and not isinstance(stopped, (OSError, _Changed)):
+                    raise                # the record stays, as below; the error is the one that was raised
+                if aside.paths(foreign=True):
                     raise WriteConflict(
                         f"Nothing was written: something else changed the library's files while {ws.bib} was being "
                         f"written ({stopped if isinstance(stopped, OSError) else 'changed while applying'}). The "
@@ -1385,12 +1445,19 @@ def commit(ws, writes, expected, *, batch=None, operation="entry completion"):
                 raise
             # Done. The file each replaced becomes the copy of this write (so a program that
             # still has it open writes into a file that is kept, not into nothing).
-            before = {target: previous for target, _, _, _, previous in staged}
             if managed:
-                for target, was in replaced:
-                    if was is not None:
-                        with contextlib.suppress(OSError):
-                            _drop_as_backed_up(aside, was, before[target])
+                # The managed library's backup is the command's checkpoint, and it keeps no
+                # copies in edits. The files its writes replaced are kept all the same (a
+                # program may still have one open): in <.bibcheck>/replaced, the newest
+                # KEEP_EDITS writes'.
+                stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+                with contextlib.suppress(OSError, AttributeError):   # they then stay in the private folder, which is named
+                    kept_files = work().sub(REPLACED, create=True)
+                    held.callback(kept_files.close)
+                    for target, was in replaced:
+                        if was is not None:
+                            _file_as_copy(aside, kept_files, was, f"{stamp}-{target.name}")
+                    _prune(kept_files, [path.name for path in _targets(ws).values()])
                 library._unmark()
                 library._prune(library.backups_folder(), ws.root)
             else:

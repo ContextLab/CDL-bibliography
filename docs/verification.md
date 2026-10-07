@@ -296,23 +296,30 @@ user's own and are not walked link by link.)
 commands take a lock; an editor, a sync service or a script does not. What then holds
 (`src/cdlbib/writer.py` says how):
 
-- Nothing another program wrote into `cdl.bib`, `verification/key-renames.json` or
-  `verification/approvals.jsonl` is ever deleted by cdlbib. It is either in the library, or
-  in the copy kept for the write that replaced the file (`.bibcheck/edits/<time>-<file name>`;
-  the copies of the newest 20 writes are kept), or in the folder of a write that had to keep
-  something (`.bibcheck/kept/<time>-<random>/`), and then the message of that write names
-  the path. cdlbib never removes anything from `.bibcheck/kept`.
+- A file of the library (`cdl.bib`, `verification/key-renames.json`,
+  `verification/approvals.jsonl`) that cdlbib replaces is not deleted then, and so nothing
+  another program wrote into it is. It is in the library; or it IS the copy kept for the
+  write that replaced it (`.bibcheck/edits/<time>-<file name>`, and
+  `.bibcheck/replaced/<time>-<file name>` in the library cdlbib manages); or it is in the
+  folder of a write that had to keep something aside (`.bibcheck/kept/<time>-<random>/`),
+  and then that write's message, the notes of a save that succeeded, or the command that
+  settles a killed write names the path.
+- How long: the copies of the newest 20 writes are kept; a copy older than that is deleted
+  by a later successful write, with whatever a program wrote into it in the meantime.
+  `.bibcheck/kept` has no limit and cdlbib never deletes from it: every conflict, and every
+  settled write that left something beside the library, can leave whole files there. Look at
+  what a message names, and then delete the folders in `.bibcheck/kept` yourself (any of
+  them, at any time; cdlbib does not read them again once that write has been settled).
 - A program that saves by rename, as editors do: a save made while cdlbib writes makes
   cdlbib's write refuse ("changed while applying; nothing was written"), and stays.
 - A program that writes the file in place, or keeps it open: what it writes before cdlbib's
   exchange makes the write refuse; what it writes afterwards through a descriptor it still
-  holds goes into the copy in `.bibcheck/edits`, which is the file it has open, not into the
-  library.
+  holds goes into the copy in `.bibcheck/edits` (or `.bibcheck/replaced`), which is the file
+  it has open, not into the library.
 - Not guaranteed: which of two saves made at the same moment ends up as the library file.
   For an instant cdlbib's new text stands under the file's name before it is confirmed; a
   program that reads the file in that instant and then saves what it read replaces, itself,
-  whatever another program saved in between. In the managed library (which keeps no copies
-  beside itself) a write through a descriptor still held on a replaced file is lost.
+  whatever another program saved in between.
 - When a write cannot tell what state a file is in, it says so, keeps its record
   (`.bibcheck/edits/write-in-progress.json`), and the next command that writes settles it. `api.settle_approval_send` settles the record: when the
 send raises (the append and the progress callbacks are inside the protected block), when it
