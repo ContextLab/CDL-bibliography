@@ -30,6 +30,11 @@ SYMBOLS = {"times": "\u00d7", "pm": "\u00b1", "textregistered": "\u00ae", "textt
 
 def delatex(text):
     """LaTeX accent macros to Unicode: \\'{e}, \\'e, {\\'e}, \\c{c}, \\v{s} ..."""
+    if "\\" not in text and "$" not in text:
+        # Every rule below needs a backslash or a dollar sign: with neither, only the braces
+        # go. (Most values and quotes are such, and restoring a snapshot asks 120,000 times.)
+        return text.replace("{", "").replace("}", "")
+
     def repl(m):
         return unicodedata.normalize("NFC", m[2] + ACCENTS[m[1]])
     # Math sub/superscripts keep their content: {GABA$_A$} -> GABAA, $_{2}$ -> 2.

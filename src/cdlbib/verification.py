@@ -110,25 +110,36 @@ def top_level_parts(text):
 
 
 _READ_ONCE = contextvars.ContextVar("cdlbib_read_once", default=None)
+_READ_BY_CONTENT = contextvars.ContextVar("cdlbib_read_by_content", default=False)
+_SAME_BYTES = "\0sha256"  # in the store of read_once, before a digest: no path begins so
 
 
 @contextlib.contextmanager
-def read_once():
+def read_once(by_content=False):
     """Within this block ``load_entries`` parses a file once for each state of it (its path,
     modification time and size, read afresh at every call) and hands every caller a copy of
     its own. For a run that reads one large library many times over (the citation gate asked
     about a few chosen keys read the 6,481-entry library some thirty times, minutes of
-    parsing). A file that changes is parsed again. Not used by the gate a send runs. Yields
-    the store ({(path, mtime_ns, size): entries}); a block inside another shares its store."""
+    parsing). A file that changes is parsed again, and its earlier parse is let go; the parses
+    of other files stay (a check against a base file reads the two in turn), and a file with
+    the very bytes of one already parsed (the base copy of an unchanged bibliography) is not
+    parsed again: nothing in an entry depends on the file's name. Not used by the gate a send
+    runs. Yields the store ({(path, mtime_ns, size): entries}, and the same entries under
+    their bytes' digest); a block inside another shares its store.
+
+    ``by_content``: the state of a file is its bytes, read and digested at every call, and
+    not its modification time and size, which an edit that keeps the size can leave as they
+    were when it is made within one tick of the file system's clock. For a run whose last
+    reading decides it (``crossref verify``): an edit made during the run cannot pass."""
     held = _READ_ONCE.get()
-    if held is not None:
-        yield held
-        return
-    token = _READ_ONCE.set({})
+    mode = _READ_BY_CONTENT.set(by_content or _READ_BY_CONTENT.get())
+    token = _READ_ONCE.set({}) if held is None else None
     try:
         yield _READ_ONCE.get()
     finally:
-        _READ_ONCE.reset(token)
+        if token is not None:
+            _READ_ONCE.reset(token)
+        _READ_BY_CONTENT.reset(mode)
 
 
 def load_entries(filename):
@@ -143,20 +154,37 @@ def load_entries(filename):
     if held is None:
         return _load_entries(filename)
     path = Path(filename).resolve()
-    before = os.stat(path)
-    state = (str(path), before.st_mtime_ns, before.st_size)
-    if state not in held:
-        entries = _load_entries(filename)
-        after = os.stat(path)
-        if (after.st_mtime_ns, after.st_size) != state[1:]:       # changed while it was read: not kept
-            return entries
-        held.clear()
-        held[state] = entries
+
+    def keep(state, same, entries):
+        for earlier in [name for name in held if name[0] == state[0]]:   # the file as it was before
+            del held[earlier]
+        held[state] = held[same] = entries
+        parsed = {id(found) for name, found in held.items() if name[0] != _SAME_BYTES}
+        for name in [name for name, found in held.items() if name[0] == _SAME_BYTES and id(found) not in parsed]:
+            del held[name]                                                # bytes no file has any more
+
+    if _READ_BY_CONTENT.get():
+        data = path.read_bytes()
+        same = (_SAME_BYTES, hashlib.sha256(data).hexdigest())
+        state = (str(path), *same)
+        if state not in held:
+            keep(state, same, held[same] if same in held else _load_entries(filename, data))
+    else:
+        before = os.stat(path)
+        state = (str(path), before.st_mtime_ns, before.st_size)
+        if state not in held:
+            data = path.read_bytes()
+            same = (_SAME_BYTES, hashlib.sha256(data).hexdigest())
+            entries = held[same] if same in held else _load_entries(filename, data)
+            after = os.stat(path)
+            if (after.st_mtime_ns, after.st_size) != state[1:]:       # changed while it was read: not kept
+                return {key: dict(entry, fields=dict(entry["fields"])) for key, entry in entries.items()}
+            keep(state, same, entries)
     return {key: dict(entry, fields=dict(entry["fields"])) for key, entry in held[state].items()}
 
 
-def _load_entries(filename):
-    text = Path(filename).read_bytes().decode("utf-8-sig")
+def _load_entries(filename, data=None):
+    text = (Path(filename).read_bytes() if data is None else data).decode("utf-8-sig")
     blocks, definitions, pos = [], [], 0
     while pos < len(text):
         if text[pos].isspace():
@@ -810,6 +838,7 @@ class Cache:
             PRAGMA user_version=1;
         """)
         self._renames = (None, [])  # (path and stat of the key-rename ledger as read, its (old, new) pairs)
+        self.bookkeeping = 0        # changes made through this connection that no result is read from
 
     def close(self):
         self.db.close()
@@ -1172,6 +1201,14 @@ class Cache:
                     self.db.execute("INSERT OR IGNORE INTO source_article_locators VALUES (?,?,?)",
                                     (next(iter(locators)), identity, body))
 
+    def _checkpoint(self, table, end):
+        """Record how far the audit history has been indexed. No result is read from these
+        rows, so the changes are counted apart (``bookkeeping``; see ``_made_from``)."""
+        before = self.db.total_changes
+        with self.db:
+            self.db.execute(f"INSERT OR REPLACE INTO {table} VALUES (1,?)", (end,))
+        self.bookkeeping += self.db.total_changes - before
+
     def index_notices(self):
         """Incrementally migrate negative evidence from immutable audit history."""
         row = self.db.execute("SELECT review_id FROM notice_checkpoint WHERE singleton=1").fetchone()
@@ -1181,26 +1218,26 @@ class Cache:
             AND (result LIKE '%commentCorrectionList%' OR result LIKE '%isRetracted%' OR result LIKE '%biorxiv-preprint%' OR result LIKE '%arxiv-repository%')""", (last, end))
         for (body,) in rows:
             self.remember_notices(json.loads(body).get("candidates", []))
-        with self.db:
-            self.db.execute("INSERT OR REPLACE INTO notice_checkpoint VALUES (1,?)", (end,))
+        if last != end or not row:
+            self._checkpoint("notice_checkpoint", end)
         row = self.db.execute("SELECT review_id FROM author_suffix_checkpoint WHERE singleton=1").fetchone()
         last = row[0] if row else 0
         for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%fullName%'", (last, end)):
             self.remember_notices(json.loads(body).get("candidates", []))
-        with self.db:
-            self.db.execute("INSERT OR REPLACE INTO author_suffix_checkpoint VALUES (1,?)", (end,))
+        if last != end or not row:
+            self._checkpoint("author_suffix_checkpoint", end)
         row = self.db.execute("SELECT review_id FROM jats_notice_checkpoint WHERE singleton=1").fetchone()
         last = row[0] if row else 0
         for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%pmc-jats%'", (last, end)):
             self.remember_notices(json.loads(body).get("candidates", []))
-        with self.db:
-            self.db.execute("INSERT OR REPLACE INTO jats_notice_checkpoint VALUES (1,?)", (end,))
+        if last != end or not row:
+            self._checkpoint("jats_notice_checkpoint", end)
         row = self.db.execute("SELECT review_id FROM article_locator_checkpoint WHERE singleton=1").fetchone()
         last = row[0] if row else 0
         for (body,) in self.db.execute("SELECT result FROM reviews WHERE id>? AND id<=? AND result LIKE '%pmc-jats%'", (last, end)):
             self.remember_notices(json.loads(body).get("candidates", []))
-        with self.db:
-            self.db.execute("INSERT OR REPLACE INTO article_locator_checkpoint VALUES (1,?)", (end,))
+        if last != end or not row:
+            self._checkpoint("article_locator_checkpoint", end)
 
     def retain_notices(self, entry, result):
         if result.get("status") == "human_verified":
@@ -1691,8 +1728,18 @@ def normalized(value):
     """Conservative typography normalization; retain accents, subtitles and math.
 
     Unknown commands/math/semantic HTML are unresolved, never silently erased.
+
+    The form of a text depends on the text alone, so it is worked out once for each text and
+    remembered (``_normalized``): a check of the whole library asked for the same few thousand
+    journal names, pages and years half a million times, each a new LaTeX reader (a quarter
+    of a run of ``crossref verify``). A text that is refused is refused again each time.
     """
-    value = html.unescape(str(value))
+    return _normalized(str(value))
+
+
+@lru_cache(maxsize=1 << 17)
+def _normalized(value):
+    value = html.unescape(value)
     value = re.sub(r"</?(?:i|b|em|strong|jats:italic|jats:bold)\b[^>]*>", "", value)
     if re.search(r"[$<>]|\\[\[\]()]", value):
         raise ValueError("Math or semantic markup needs source review")
@@ -2922,8 +2969,38 @@ def verify_entry(entry, client):
     return outcome("needs_review", issues, candidates, attempts)
 
 
-def current_results(filename, cache, entries=None):
-    entries = entries if entries is not None else load_entries(filename)
+def current_results(filename, cache, entries=None, read_at=None):
+    """The current result of every entry ({key: result}; an entry with none is pending).
+
+    Within ``unchanged_outputs_kept`` the results read last are handed back (a copy of the
+    mapping) while everything they were read from is as it was (``_made_from``) and they are
+    the results of these very entries; reading the whole library's results again takes
+    seconds, and every review layer ends by doing it. ``read_at``: ``_made_from`` as it was
+    before ``entries`` were read from the file, from a caller that read them just now; the
+    results of entries given without it are not kept (the file may have been another then)."""
+    kept = _KEPT_OUTPUTS.get()
+    if kept is None:
+        return _current_results(filename, cache, entries if entries is not None else load_entries(filename))
+    before = _made_from(filename, cache)
+    found = kept.get("results")
+    if found and found[0] == before and (entries is None or (
+            entries.keys() == found[1].keys()
+            and all(found[1][key].get("fingerprint") == entry["fingerprint"] for key, entry in entries.items()))):
+        return dict(found[1])
+    keep = entries is None or (read_at is not None and _but_own_writes(read_at) == _but_own_writes(before))
+    results = _current_results(filename, cache, entries if entries is not None else load_entries(filename))
+    kept.pop("results", None)
+    after = _made_from(filename, cache)
+    # Kept only when the bibliography, the ledgers and other connections' writing are as they
+    # were before the reading. What the reading itself stored through this connection (a
+    # result brought up to date) is part of the state the results are kept with.
+    if keep and _but_own_writes(before) == _but_own_writes(after):
+        kept["results"] = (after, results)
+        return dict(results)
+    return results
+
+
+def _current_results(filename, cache, entries):
     return {
         key: cache.get(filename, entry)
         or dict(
@@ -2934,6 +3011,120 @@ def current_results(filename, cache, entries=None):
         )
         for key, entry in entries.items()
     }
+
+
+def _ledgers(filename, cache):
+    """The ledgers of approvals and revocations a check of ``filename`` with ``cache`` can
+    read: the library's own two and the ones the cache names."""
+    own = workspace.Workspace.for_bib(filename)
+    ledgers = {own.revocations, own.approvals}
+    named = cache.ledger if cache.ledger is not None else REVOCATION_LEDGER
+    if named:
+        ledgers |= {Path(named), approval_ledger(named)}
+    if cache.approvals:
+        ledgers.add(Path(cache.approvals))
+    return ledgers
+
+
+_KEPT_OUTPUTS = contextvars.ContextVar("cdlbib_kept_outputs", default=None)
+
+
+@contextlib.contextmanager
+def unchanged_outputs_kept():
+    """Within this block ``write_report`` and ``export_snapshot`` leave a file they wrote in
+    this block as it is when nothing it is made from has changed since (``_made_from``), and
+    hand back the results they wrote; and ``current_results`` hands back the results it read
+    last on the same condition. For a run of many steps that each end by reading the whole
+    library's results and writing both files (``crossref verify --auto-review``: the Crossref
+    check and eleven review layers; a change of one entry spent nine minutes reading the same
+    results thirty-two times and writing the same two files twelve times over). Results are
+    read again, and a file written again, as soon as the bibliography, the database, a ledger
+    or the file itself is not as it was.
+
+    One thing a result depends on is not in that state: the clock, for a ledger row whose
+    time of approval is still ahead (it starts to count when its time comes). So the write
+    that decides a run is made outside this block, as ``crossref verify`` does."""
+    held = _KEPT_OUTPUTS.get()
+    if held is not None:
+        yield held
+        return
+    token = _KEPT_OUTPUTS.set({})
+    try:
+        yield _KEPT_OUTPUTS.get()
+    finally:
+        _KEPT_OUTPUTS.reset(token)
+
+
+def _file_state(path):
+    """A file an output is written to, as it stands: path, inode, modification time, size."""
+    try:
+        found = os.stat(path)
+    except OSError:
+        return (str(path), None)
+    return (str(path), found.st_mtime_ns, found.st_size, found.st_ino)
+
+
+def _file_bytes(path):
+    """A file that is read, as it stands: its path and the digest of its bytes (None when it
+    cannot be read). Not its modification time: see ``read_once``."""
+    try:
+        return (str(path), hashlib.sha256(Path(path).read_bytes()).hexdigest())
+    except OSError:
+        return (str(path), None)
+
+
+def _made_from(filename, cache):
+    """The state of everything the current results of ``filename`` are read from: the
+    bibliography file, each ledger that can be read (approvals, revocations, key renames;
+    the library's, the cache's and the default workspace's), each by its path and the
+    digest of its bytes, and the database: every change made through this connection but
+    the indexing checkpoints, which no result is read from, and the counter SQLite moves
+    when another connection commits."""
+    ledgers = set(_ledgers(filename, cache))
+    try:
+        ledgers.add(Path(workspace.default().revocations))
+    except Exception:  # no default workspace can be named here: then none is read either
+        pass
+    ledgers |= {Path(ledger).with_name(KEY_RENAMES_NAME) for ledger in list(ledgers)}
+    return (
+        _file_bytes(Path(filename).resolve()),
+        str(cache.path), cache.db.total_changes - cache.bookkeeping,
+        cache.db.execute("PRAGMA data_version").fetchone()[0],
+        cache.db.in_transaction,
+        tuple(sorted(_file_bytes(Path(ledger).resolve()) for ledger in ledgers)),
+    )
+
+
+def _kept_output(kind, filename, cache, output):
+    """The results ``kind`` ("report" or "snapshot") wrote to ``output`` in this block, when
+    the file and everything it was made from are as they were then; else None."""
+    kept = _KEPT_OUTPUTS.get()
+    if kept is None:
+        return None
+    found = kept.get((kind, str(Path(output).resolve())))
+    if found and found[0] == _made_from(filename, cache) and found[1] == _file_state(Path(output).resolve()):
+        return dict(found[2])
+    return None
+
+
+def _but_own_writes(made_from):
+    """``_made_from`` without the count of this connection's own changes."""
+    return made_from[:2] + made_from[3:]
+
+
+def _keep_output(kind, filename, cache, output, results):
+    """Remember that ``kind`` wrote ``results`` to ``output``: only when they are the results
+    kept for the state everything is in now (``current_results``), so that a change made
+    while they were read or written leaves nothing remembered."""
+    kept = _KEPT_OUTPUTS.get()
+    if kept is None:
+        return
+    name = (kind, str(Path(output).resolve()))
+    kept.pop(name, None)
+    found, now_made_from = kept.get("results"), _made_from(filename, cache)
+    if found and found[0] == now_made_from and found[1].keys() == results.keys() and all(
+            found[1][key] is result for key, result in results.items()):
+        kept[name] = (now_made_from, _file_state(Path(output).resolve()), found[1])
 
 
 def validate_output_path(filename, output, cache):
@@ -2948,14 +3139,7 @@ def validate_output_path(filename, output, cache):
             raise ValueError(
                 "Output path would overwrite the bibliography or verification database"
             )
-    own = workspace.Workspace.for_bib(filename)
-    ledgers = {own.revocations, own.approvals}
-    named = cache.ledger if cache.ledger is not None else REVOCATION_LEDGER
-    if named:
-        ledgers |= {Path(named), approval_ledger(named)}
-    if cache.approvals:
-        ledgers.add(Path(cache.approvals))
-    for protected in ledgers:
+    for protected in _ledgers(filename, cache):
         if output.resolve() == protected.resolve() or (
             output.exists() and protected.exists() and output.samefile(protected)
         ):
@@ -2968,6 +3152,9 @@ def export_snapshot(filename, cache, output):
     """Portable, compressed JSON Lines; do not commit a changing binary SQLite DB."""
     validate_output_path(filename, output, cache)
     cache.index_notices()
+    kept = _kept_output("snapshot", filename, cache, output)
+    if kept is not None:
+        return kept
     results = current_results(filename, cache)
     path = Path(output)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -2998,6 +3185,7 @@ def export_snapshot(filename, cache, output):
         for result in results.values():
             stream.write(dumps(result) + "\n")
     os.replace(temporary, path)
+    _keep_output("snapshot", filename, cache, output, results)
     return results
 
 
@@ -3322,8 +3510,12 @@ def import_snapshot(filename, cache, snapshot):
 
 def write_report(filename, cache, report):
     validate_output_path(filename, report, cache)
+    kept = _kept_output("report", filename, cache, report)
+    if kept is not None:
+        return kept
+    read_at = _made_from(filename, cache) if _KEPT_OUTPUTS.get() is not None else None
     entries = load_entries(filename)  # re-read: edits during a run cannot pass
-    results = current_results(filename, cache, entries)
+    results = current_results(filename, cache, entries, read_at=read_at)
     path = Path(report)
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
@@ -3342,6 +3534,7 @@ def write_report(filename, cache, report):
                 row["report_advisories"] = advisories
             output.write(dumps(row) + "\n")
     os.replace(temporary, path)
+    _keep_output("report", filename, cache, report, results)
     return results
 
 
