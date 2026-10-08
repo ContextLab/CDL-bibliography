@@ -8,7 +8,7 @@
 
 For CDL members, the goal is one accurate, consistent bibliography across written documents. Other groups are welcome to adapt the approach for their own libraries.
 
-As of September 30, 2026, every one of the 6,384 entries in `cdl.bib` has been checked against the published record. 6,348 entries match their source's metadata, and a person reviewed and approved the remaining 36 against the source itself. New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
+As of October 8, 2026, every one of the 6,391 entries in `cdl.bib` has been checked against the published record. 6,351 entries match their source's metadata, and a person reviewed and approved the remaining 40 against the source itself. New and edited entries are checked automatically on every pull request. "Verified" means the citation agrees with the published record. It does not guarantee the record is error-free, so please still look over the rendered bibliography of anything you submit.
 
 ## Contents
 
@@ -990,7 +990,9 @@ Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integ
 
 The linked file is a copy that Overleaf fetched when you added it, and it changes only when you refresh it. After a pull request with new references is merged into this repository, select `cdl.bib` in the file list, press **Refresh**, and recompile. GitHub serves the file from a cache for up to five minutes (`cache-control: max-age=300`), so a refresh sooner than that after a merge can return the previous version.
 
-Tried on October 7, 2026 in one Overleaf project, with BibTeX and `apacite`: the link accepted `cdl.bib` (2,001,177 bytes) and the project compiled in a few seconds. Not tried yet: a refresh after a merge, and whether a copy of a project ("Make a copy") keeps the link.
+Tried on October 7 and 8, 2026 in an Overleaf project on a Premium account, with BibTeX and `apacite`: the link accepted `cdl.bib` (about 2 MB) and a 30-page paper compiled in a few seconds; after a reference was merged into this repository, **Refresh** brought it in and `\\cite` found it; a copy of the project ("Make a copy") kept the link. Not tried: a free Overleaf account.
+
+To use one .tex file both on Overleaf and in a local checkout that has this repository as a submodule, put the linked file where the submodule would be: make a folder `CDL-bibliography` beside the .tex file, add the linked `cdl.bib` inside it, and write `\\bibliography{CDL-bibliography/cdl}`. This compiled on Overleaf in the same test; it was not tried in a project that also uses Overleaf's GitHub synchronization.
 
 Uploading `cdl.bib` to the project also works, with the same `\bibliography{cdl}` line. An uploaded copy is not linked to this repository: to update it, upload the file again. Overleaf's [plan limits](https://docs.overleaf.com/getting-started/free-and-premium-plans/plan-limits) give 2 MB as the largest editable text file, and `cdl.bib` is about that size.
 

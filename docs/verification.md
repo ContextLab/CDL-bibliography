@@ -12,11 +12,13 @@ by the tool. Explicit bibliography arguments select that file instead.
 
 ## Current state
 
-As of September 30, 2026, `cdlbib crossref status cdl.bib` (after restoring
-`verification/baseline.jsonl.gz`) reports `6384 entries: human_verified=36,
-metadata_verified=6348`: every entry is verified. The 36 human approvals are the user's own
-answers, recorded with the page or message they came from (see the decision log sections dated
-2026-09-30). Run the command again for the current figures. The `accepted_source` of each
+As of October 8, 2026, `cdlbib crossref status cdl.bib` (after restoring
+`verification/baseline.jsonl.gz`) reports `6391 entries: human_verified=40,
+metadata_verified=6351`: every entry is verified. Of the 40 human approvals, 35 are the user's
+own answers of September 30, 2026, recorded with the page or message they came from (see the
+decision log sections dated 2026-09-30), and 5 are rows of `verification/approvals.jsonl`
+recorded since (four entries whose `booktitle` was changed, one of which had been among the
+36 approved on September 30, and one new entry). Run the command again for the current figures. The `accepted_source` of each
 approval in the committed baseline (snapshot of 2026-09-30) breaks down as follows:
 
 |Source (`accepted_source`)|Approvals|
