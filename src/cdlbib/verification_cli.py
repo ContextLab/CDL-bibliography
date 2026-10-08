@@ -571,10 +571,12 @@ def verify(
                 )
                 if auto_review and selected:
                     results = run_review_layers(fname, cache, client, report, selected, limit, snapshot)
-            # Reread both selection and results so concurrent edits cannot pass: this report
-            # is always written, from the file and the database as they are now.
-            results = write_report(fname, cache, report)
-            selected = select_keys(fname, keys, against, entries=results)
+                # Reread both selection and results so concurrent edits cannot pass. The
+                # bibliography, the base and the ledgers are read again and told by their
+                # bytes, and the database by its changes: the results the last step read are
+                # used only when all of those are as they were then.
+                results = write_report(fname, cache, report)
+                selected = select_keys(fname, keys, against, entries=results)
         good = summary({key: results[key] for key in selected})
         typer.echo(f"Report: {report}; network requests: {client.requests}")
         if not good:

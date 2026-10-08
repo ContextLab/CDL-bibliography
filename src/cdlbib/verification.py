@@ -3042,8 +3042,10 @@ def unchanged_outputs_kept():
     or the file itself is not as it was.
 
     One thing a result depends on is not in that state: the clock, for a ledger row whose
-    time of approval is still ahead (it starts to count when its time comes). So the write
-    that decides a run is made outside this block, as ``crossref verify`` does."""
+    time of approval is further ahead than the allowance (``APPROVAL_CLOCK_ALLOWANCE``; it
+    starts to count when the clock reaches that). Results kept from a moment earlier can
+    only lack such an approval, never hold one that a fresh reading would not: within this
+    block a check is at most stricter than outside it, by the seconds between its steps."""
     held = _KEPT_OUTPUTS.get()
     if held is not None:
         yield held
