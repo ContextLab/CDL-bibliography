@@ -707,7 +707,7 @@ def restore(
             done = verification.restore_snapshot(fname, cache, snapshot, additions)
         typer.echo(f"Restored {done['restored']} matching reviews")
         told = done["additions"]
-        if told:
+        if told and told["rows"]:     # a file that holds its header alone: nothing more to say
             typer.echo(f"{told['restored']} of them from {told['path']} ({told['rows']} "
                        f"result{'' if told['rows'] == 1 else 's'} saved since the snapshot)")
             unmatched = told["unmatched"]

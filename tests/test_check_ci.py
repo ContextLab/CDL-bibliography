@@ -329,7 +329,7 @@ def test_the_results_saved_since_the_snapshot_are_read_from_the_revision_the_sna
         assert run.returncode == 1, run.stdout + run.stderr
         assert reported(clone, key) == "needs_review"
         assert (clone / ".bibcheck" / "base-additions.jsonl").read_bytes() == at_start.stdout
-        assert "baseline-additions.jsonl (0 results saved since the snapshot)" in run.stdout
+        assert "saved since the snapshot" not in run.stdout                  # the base's file holds no result
         assert "1 entry not verified: Zoll90 (" in run.stdout and "needing a maintainer" not in run.stdout
 
         run = run_ci(clone, "push", start, keep=True)                        # nor on the push of that commit

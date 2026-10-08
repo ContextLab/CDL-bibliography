@@ -119,6 +119,9 @@ def test_with_nothing_to_add_the_file_holds_its_header_alone(tmp_path):
     ws, done = saved(tmp_path, KEYS, [])
     assert f"0 results that {ws.baseline} lacks" in done.output
     assert ws.additions.read_text(encoding="utf-8") == HEADER
+    # Restored with such a file beside the snapshot, the output is what it is without one.
+    done = run(ws, "restore", str(ws.baseline), database=tmp_path / "fresh.sqlite3")
+    assert done.exit_code == 0 and done.output == "Restored 5 matching reviews\n"
 
 
 def test_an_entry_without_a_result_has_no_line(tmp_path):
