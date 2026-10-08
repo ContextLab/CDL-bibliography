@@ -1240,6 +1240,13 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   restores the pushed commit's own `verification/baseline.jsonl.gz` and runs
   `crossref status cdl.bib` (offline): every entry must have an accepted result for its
   exact current text. Pull requests never take this path; one without a base is refused.
+- After a push to `master` whose check passed, the job exports the results of the whole
+  library (`crossref snapshot`), provided `crossref status` finds an accepted result for
+  every entry. A second job, `baseline`, the only one with permission to write to the
+  repository, commits that file as `verification/baseline.jsonl.gz` when its unpacked
+  contents differ from the committed file's. So the saved results follow `cdl.bib` without
+  anyone saving them by hand. The commit is made with the workflow's own token, which
+  starts no further workflow run.
 - A manual run restores the committed baseline and checks the whole library.
 - The last two read the checked-out commit's own `verification/approvals.jsonl`.
 - The SQLite database is kept in the Actions cache, keyed by ref; a pull request can

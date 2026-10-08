@@ -48,6 +48,26 @@ jobs:
         with:
           path: .bibcheck/verification.sqlite3
           key: citations-v2-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+      # After a push to master whose check passed: the results of the whole library, as this
+      # run holds them, for the job below to save as verification/baseline.jsonl.gz. Nothing is
+      # made unless every entry has an accepted result for its present text (crossref status).
+      - name: Export the saved results of the whole library
+        if: github.event_name == 'push' && success()
+        run: |
+          if cdlbib crossref status cdl.bib; then
+            cdlbib crossref snapshot .bibcheck/baseline-candidate.jsonl.gz
+          else
+            echo "::notice::Not every entry has an accepted result; verification/baseline.jsonl.gz is left as it is."
+          fi
+      - name: Hand the saved results to the next job
+        if: github.event_name == 'push' && success() && hashFiles('.bibcheck/baseline-candidate.jsonl.gz') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline-candidate
+          path: .bibcheck/baseline-candidate.jsonl.gz
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
       - name: Preserve portable evidence and report
         if: always()
         uses: actions/upload-artifact@v4
@@ -57,3 +77,50 @@ jobs:
             .bibcheck/report.jsonl
             .bibcheck/checkpoint.jsonl.gz
           if-no-files-found: warn
+
+  # Keeps verification/baseline.jsonl.gz in step with cdl.bib: after a push to master whose
+  # citation check passed, the results exported above are committed when their contents differ
+  # from the committed file's. This is the only job that may write to the repository, and it
+  # runs no code from the checkout: it copies one file and commits it. A commit made with the
+  # workflow's own token starts no workflow run, so this does not repeat itself.
+  baseline:
+    needs: citations
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - id: candidate
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: baseline-candidate
+          path: ${{ runner.temp }}/candidate
+      - name: Commit the saved results when they changed
+        if: steps.candidate.outcome == 'success'
+        env:
+          CANDIDATE: ${{ runner.temp }}/candidate/baseline-candidate.jsonl.gz
+        run: |
+          gzip -t "$CANDIDATE"
+          # Compared unpacked: two archives of the same lines differ in their headers.
+          if [ -f verification/baseline.jsonl.gz ] && [ "$(gzip -dc "$CANDIDATE" | sha256sum)" = "$(gzip -dc verification/baseline.jsonl.gz | sha256sum)" ]; then
+            echo "verification/baseline.jsonl.gz already holds these results."
+            exit 0
+          fi
+          cp "$CANDIDATE" verification/baseline.jsonl.gz
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add verification/baseline.jsonl.gz
+          git commit -m "verification: saved results of the library as of ${GITHUB_SHA::7} (automatic)"
+          # master may have moved on while the check ran: this commit touches one file, so it
+          # is replayed on the newer master; when that master's own run is to come, its results
+          # replace these in turn.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:master; then exit 0; fi
+            git pull --rebase origin master
+          done
+          echo "::warning::verification/baseline.jsonl.gz could not be pushed; the next push to master will save it."
