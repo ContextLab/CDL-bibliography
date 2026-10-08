@@ -14,15 +14,12 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 
-# The entries of the committed cdl.bib that have no saved result yet in the committed snapshot
-# (verification/baseline.jsonl.gz), each for a known reason. The clone the tests run in is the
-# committed library without exactly these.
-NO_SAVED_RESULT = {
-    # added by ContextLab#97, after the snapshot was last saved
-    "Krak06", "NielEtal03", "SoloEtal21", "RobeZadr14", "BlagEtal04", "ZadrDond00",
-    # their book titles were edited (approved by the owner, 2026-10-06), which gave them new fingerprints
-    "ClanEtal19", "BoseEtal92", "SilbEtal01", "Beaz96",
-}
+# The most entries of the committed cdl.bib that may be without a saved result in the committed
+# snapshot (verification/baseline.jsonl.gz). Some always are: a pull request that adds a
+# reference, or edits one, is checked before anything is saved for the new text, and what it
+# adds stays without a saved result until the snapshot is next saved. Were most of the library
+# without one, the tests below would no longer be checking the library.
+MOST_WITHOUT_A_SAVED_RESULT = 200
 
 
 @pytest.fixture(scope="module")
@@ -52,14 +49,14 @@ def clone(tmp_path_factory):
     finally:
         cache.close()
     without = sorted(key for key, result in saved.items() if result is None or result["status"] == "pending")
-    # Exactly the entries known to have no saved result, by name: any other entry without one
-    # (an approved entry that was edited, a new entry nobody has listed) fails here instead of
-    # being taken out of the library the tests then check.
-    assert without == sorted(NO_SAVED_RESULT), (
-        "The entries of the committed cdl.bib without a saved result in verification/baseline.jsonl.gz are not "
-        f"the ones listed in NO_SAVED_RESULT. Not listed: {sorted(set(without) - set(NO_SAVED_RESULT))}; listed "
-        f"but saved (or gone): {sorted(set(NO_SAVED_RESULT) - set(without))}. Refresh the baseline (cdlbib "
-        "crossref snapshot, after verifying them), or extend or shorten the list in tests/test_check_ci.py.")
+    # These tests are about the script and a library with its saved results, so the entries
+    # that have none are taken out of the clone's library, whichever they are: a pull request
+    # that adds a reference must not fail them. They are few; were they many, the saved
+    # results would be out of step with the library, and that fails here.
+    assert len(without) <= MOST_WITHOUT_A_SAVED_RESULT and len(without) * 20 <= len(entries), (
+        f"{len(without)} of {len(entries)} entries of the committed cdl.bib have no saved result in "
+        f"verification/baseline.jsonl.gz, among them {without[:10]}. Save the results again "
+        "(cdlbib crossref snapshot, after verifying the entries).")
     if without:
         text = bib.read_bytes().decode("utf-8")
         for key in without:

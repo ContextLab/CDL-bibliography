@@ -37,6 +37,19 @@ environment variable, or `~/Library/texmf` on macOS and `~/texmf` elsewhere. The
 names the file's path, so it stays valid when the library is updated. `cdlbib` records the
 link it made in `tex-link.json` in its data folder.
 
+The link shows the library as it is on your computer. TeX does not fetch anything: when a
+reference has been added to the bibliography on GitHub since your copy was last updated,
+`\cite` does not find it until the copy is updated. The copy `cdlbib` manages is updated
+when a `cdlbib` command runs, at most once a day; `cdlbib update` updates it at once.
+Before citing a reference that was added recently, run:
+
+```bash
+cdlbib update
+```
+
+Installing a newer version of `cdlbib` is not needed for this, and does not do it: the
+bibliography is not part of the package.
+
 `setup` first prints two progress lines, then the report:
 
 ```text

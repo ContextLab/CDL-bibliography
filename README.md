@@ -279,6 +279,11 @@ computer.
 
 When a command uses the managed library, it checks for updates at most once a day
 when the command runs. There is no background updater. `cdlbib update` checks now.
+Compiling a paper runs no `cdlbib` command, so it does not update the library: after
+someone else's references are merged on GitHub, run `cdlbib update` (or any `cdlbib`
+command, a day or more after the last check) before citing them. The bibliography is
+downloaded from GitHub and is not part of the package, so the version of `cdlbib` that is
+installed does not decide which references you have.
 If the upstream cannot be reached, the command uses the downloaded copy and prints
 a notice. Failed automatic checks retry when a command runs after about an hour.
 A first download needs a connection and Git.
