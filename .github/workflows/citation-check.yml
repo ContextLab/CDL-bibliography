@@ -5,6 +5,11 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  # A maintainer's approval of a pull request makes the approvals the pull request adds
+  # count in its check (verification/check_ci.py), so the check runs again when a review is
+  # submitted or dismissed. (This event has no branch filter; the job has the condition.)
+  pull_request_review:
+    types: [submitted, dismissed]
   workflow_dispatch:
 
 permissions:
@@ -17,8 +22,14 @@ concurrency:
 
 jobs:
   citations:
+    if: github.event_name != 'pull_request_review' || github.event.pull_request.base.ref == 'master'
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    # pull-requests: read is for the one question the check asks about a pull request's
+    # reviews (who approved its present head commit).
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,6 +52,13 @@ jobs:
         env:
           BASE_REVISION: ${{ github.event.pull_request.base.sha || github.event.before }}
           EVENT_NAME: ${{ github.event_name }}
+          # Who vouches for approvals a pull request adds is asked of GitHub with these
+          # facts of the event (empty for other events) and this job's read-only token.
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: python verification/check_ci.py
       - name: Save resumable database, including unresolved results
         if: always()
@@ -48,6 +66,25 @@ jobs:
         with:
           path: .bibcheck/verification.sqlite3
           key: citations-v2-${{ github.ref }}-${{ github.run_id }}-${{ github.run_attempt }}
+      # After a push to master whose check passed: the results this run holds that the
+      # committed snapshot (verification/baseline.jsonl.gz) lacks, for the job below to commit
+      # as verification/baseline-additions.jsonl. A failure here does not fail the check.
+      - name: Export the results saved since the snapshot
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && success()
+        continue-on-error: true
+        run: cdlbib crossref snapshot --additions-to verification/baseline.jsonl.gz .bibcheck/baseline-additions.jsonl
+      - name: Hand those results to the next job
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' && success() && hashFiles('.bibcheck/baseline-additions.jsonl') != ''
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          # Named by the attempt: a run that is started again never picks up the file of an
+          # earlier attempt when its own export made none.
+          name: baseline-additions-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .bibcheck/baseline-additions.jsonl
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
       - name: Preserve portable evidence and report
         if: always()
         uses: actions/upload-artifact@v4
@@ -57,3 +94,60 @@ jobs:
             .bibcheck/report.jsonl
             .bibcheck/checkpoint.jsonl.gz
           if-no-files-found: warn
+
+  # Keeps the saved results in step with cdl.bib without committing the 16 MB snapshot again:
+  # after a push to master whose citation check passed, the results exported above are
+  # committed as verification/baseline-additions.jsonl (text, one result a line) when they
+  # differ from the committed file, and only while master is still at the commit that was
+  # checked. This is the only job that may write to the repository, and it runs no code
+  # from the checkout: it checks one file, copies it and commits that one path. A commit
+  # made with the workflow's own token starts no workflow run, so this does not repeat itself.
+  save-results:
+    needs: citations
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - id: candidate
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: baseline-additions-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/candidate
+      - name: Commit the results saved since the snapshot when they changed
+        if: steps.candidate.outcome == 'success'
+        env:
+          CANDIDATE: ${{ runner.temp }}/candidate/baseline-additions.jsonl
+          SAVED: verification/baseline-additions.jsonl
+        run: |
+          # The file must be what is expected, or nothing is committed: a regular file of at
+          # most 5 MB, UTF-8 text, every line one JSON object, the first the additions header.
+          test -f "$CANDIDATE"
+          test ! -L "$CANDIDATE"
+          test "$(wc -c < "$CANDIDATE")" -le 5000000
+          python3 -c 'import json, sys; lines = open(sys.argv[1], "rb").read().decode("utf-8").split("\n"); assert lines[-1] == "" and len(lines) >= 2, "no final newline"; rows = [json.loads(line) for line in lines[:-1]]; assert all(type(row) is dict for row in rows), "a line is not an object"; assert rows[0].get("additions") is True and rows[0].get("schema") == 2, "no additions header"' "$CANDIDATE"
+          # The results are those of the commit that was checked. When master is no longer at
+          # that commit, they are not saved: they would stand for a library that is not the
+          # one on master now, and the push that moved master has a run of its own to come.
+          if [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
+            echo "::notice::master has moved on from $GITHUB_SHA; its newer run saves the results."
+            exit 0
+          fi
+          if [ -f "$SAVED" ] && cmp -s "$CANDIDATE" "$SAVED"; then
+            echo "$SAVED already holds these results."
+            exit 0
+          fi
+          cp "$CANDIDATE" "$SAVED"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$SAVED"
+          git commit -m "verification: results saved since the snapshot, as of $GITHUB_SHA (automatic)" -- "$SAVED"
+          # No force and no replaying: a push that is refused means master moved in this
+          # moment, and then the newer run saves the results.
+          git push origin HEAD:master \
+            || echo "::notice::master moved while this was being saved; its newer run saves the results."

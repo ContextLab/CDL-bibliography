@@ -11,11 +11,28 @@ temporary folder in place of `/tmp`), from the commit tagged `v2.0.0`.
 - [ ] **Start from a clean checkout of the commit to release.** `git status --short`
   prints nothing.
 
+- [ ] **Fold the results saved since the snapshot into it.** In a checkout of the commit to
+  release, restore the saved results, check that every entry has one, and write a whole
+  snapshot. `crossref snapshot` empties `verification/baseline-additions.jsonl` to its
+  header line, because the new snapshot holds those results itself
+  ([what the file is](verification.md#results-saved-since-the-snapshot)). Commit both files.
+
+  ```bash
+  cdlbib crossref restore verification/baseline.jsonl.gz
+  cdlbib crossref status cdl.bib
+  cdlbib crossref snapshot verification/baseline.jsonl.gz
+  git add verification/baseline.jsonl.gz verification/baseline-additions.jsonl
+  git commit -m "verification: the results saved since the snapshot, folded into it"
+  ```
+
+  When the additions file holds its header alone (one line), there is nothing to fold in
+  and this step is skipped.
+
 - [ ] **Check the version.** `grep '^version' pyproject.toml` prints the version to
   release:
 
   ```
-  version = "2.0.0"
+  version = "2.0.1"
   ```
 
 - [ ] **Install the build tools** in a virtual environment:

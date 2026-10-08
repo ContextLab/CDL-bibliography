@@ -22,7 +22,7 @@ def run(*args, cwd, env=None):
 def test_help_and_version_work_outside_a_library(tmp_path):
     assert run("--help", cwd=tmp_path).returncode == 0
     out = run("--version", cwd=tmp_path)
-    assert out.returncode == 0 and out.stdout.strip() == "cdlbib 2.0.0"
+    assert out.returncode == 0 and out.stdout.strip() == "cdlbib 2.0.1"
 
 
 def test_library_command_outside_a_library_uses_the_downloaded_one(tmp_path):

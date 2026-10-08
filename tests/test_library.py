@@ -469,14 +469,30 @@ def test_an_upstream_beginning_with_a_dash_is_not_a_git_option(managed, tmp_path
 @contextlib.contextmanager
 def helpers_seen(pattern):
     """While the block runs, collect the PID of every process whose command line matches
-    ``pattern`` (pgrep -f): the stalled transport and the git processes that started it."""
+    ``pattern`` (pgrep -f): the stalled transport and the git processes that started it.
+    Only processes this test process started count, directly or through others (pgrep sees
+    the whole computer: another program's own `sleep 60`, started once a minute by a loop
+    that had nothing to do with the tests, failed the test of the stalled download on
+    2026-10-08). A process is asked for its ancestors when it is first seen, while those
+    that started it are still running."""
     import threading
-    seen, stop = set(), threading.Event()
+    seen, others, stop = set(), set(), threading.Event()
+
+    def ours(pid):
+        for _ in range(64):
+            if pid == os.getpid():
+                return True
+            parent = subprocess.run(["ps", "-o", "ppid=", "-p", str(pid)], capture_output=True, text=True).stdout.strip()
+            if not parent.isdigit() or int(parent) <= 1:
+                return False
+            pid = int(parent)
+        return False
 
     def poll():
         while not stop.is_set():
             found = subprocess.run(["pgrep", "-f", pattern], capture_output=True, text=True).stdout.split()
-            seen.update(int(pid) for pid in found)
+            for pid in {int(pid) for pid in found} - seen - others:
+                (seen if ours(pid) else others).add(pid)
             stop.wait(0.2)
 
     thread = threading.Thread(target=poll, daemon=True)

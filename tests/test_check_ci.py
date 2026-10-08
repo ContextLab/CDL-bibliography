@@ -15,10 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 # The most entries of the committed cdl.bib that may be without a saved result in the committed
-# snapshot (verification/baseline.jsonl.gz). Some always are: a pull request that adds a
-# reference, or edits one, is checked before anything is saved for the new text, and what it
-# adds stays without a saved result until the snapshot is next saved. Were most of the library
-# without one, the tests below would no longer be checking the library.
+# snapshot (verification/baseline.jsonl.gz) and the results saved since it
+# (verification/baseline-additions.jsonl), which is restored with it. Some can be: a pull
+# request that adds a reference, or edits one, is checked before anything is saved for the new
+# text, and what it adds stays without a saved result until the workflow has saved it in the
+# additions file after the merge. Were most of the library without one, the tests below would
+# no longer be checking the library.
 MOST_WITHOUT_A_SAVED_RESULT = 200
 
 
@@ -45,7 +47,9 @@ def clone(tmp_path_factory):
     # exactly the entries whose present text has a saved result in the committed snapshot.
     # (Read from the snapshot itself, not from the history: actions/checkout fetches one
     # commit, and there the commit that last saved the snapshot cannot be asked for.)
-    # The snapshot is restored by the command the script itself runs, then asked entry by entry.
+    # The snapshot is restored by the command the script itself runs, which reads the results
+    # saved since (verification/baseline-additions.jsonl) with it: an entry whose result is
+    # there is saved, and stays in the clone's library. Then it is asked entry by entry.
     import shutil
     from cdlbib import verification
     from cdlbib.workspace import Workspace
@@ -66,8 +70,8 @@ def clone(tmp_path_factory):
     # results would be out of step with the library, and that fails here.
     assert len(without) <= MOST_WITHOUT_A_SAVED_RESULT and len(without) * 20 <= len(entries), (
         f"{len(without)} of {len(entries)} entries of the committed cdl.bib have no saved result in "
-        f"verification/baseline.jsonl.gz, among them {without[:10]}. Save the results again "
-        "(cdlbib crossref snapshot, after verifying the entries).")
+        f"verification/baseline.jsonl.gz or verification/baseline-additions.jsonl, among them {without[:10]}. "
+        "Save the results again (cdlbib crossref snapshot, after verifying the entries).")
     if without:
         text = bib.read_bytes().decode("utf-8")
         for key in without:
@@ -90,6 +94,10 @@ def run_ci(repo, event, base, keep=False, python=None, path=None):
     the package, unless given); ``path``: a folder put first on its PATH."""
     env = dict(os.environ, EVENT_NAME=event, BASE_REVISION=base,
                CROSSREF_MAILTO=os.environ.get("CROSSREF_MAILTO", "check-ci-test@example.org"))
+    # The facts of a pull request and the token come from the workflow alone; none is given
+    # here, whatever this machine's environment holds, so nobody vouches for added approvals.
+    for name in ("GITHUB_TOKEN", "GH_TOKEN", "PR_AUTHOR", "PR_NUMBER", "PR_HEAD_SHA", "PR_REPOSITORY"):
+        env.pop(name, None)
     if path:
         env["PATH"] = str(path) + os.pathsep + env.get("PATH", "")
     if not keep:
@@ -180,6 +188,12 @@ def test_a_pull_request_reads_the_approvals_ledger_of_its_base_only(clone):
         run = run_ci(clone, "pull_request", start)
         assert run.returncode == 0, run.stdout + run.stderr                  # no entry changed: nothing is gated
         assert reported(clone, key) == "metadata_verified"                   # and the row approved nothing
+        # Nobody vouches for the row (GitHub cannot be asked without a token), and the run says
+        # so in one line and ends with what the check came to.
+        assert ("The 1 approval this pull request adds: not counted, since who vouches for them could not be "
+                "learned from GitHub (no GITHUB_TOKEN was given).") in run.stdout
+        assert run.stdout.rstrip().endswith("Result of the citation check of this pull request:\n"
+                                            "No entry is new or edited: nothing to verify.")
         at_base = subprocess.run(["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True)
         assert (clone / ".bibcheck" / "base-approvals.jsonl").read_bytes() == at_base.stdout
         run = run_ci(clone, "push", head(clone))                             # the base holds the row
@@ -238,6 +252,20 @@ def test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_
         assert reported(clone, key) == "needs_review"
         assert (clone / ".bibcheck" / "base-approvals.jsonl").read_bytes() == subprocess.run(
             ["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True).stdout
+        # Without a token GitHub is not asked who vouches for the row: it does not count (fail
+        # closed), one line says so, and the run ends by naming the entry as one that waits for
+        # a maintainer's approval, which is not a failed verification.
+        assert ("The 1 approval this pull request adds: not counted, since who vouches for them could not be "
+                "learned from GitHub (no GITHUB_TOKEN was given).") in run.stdout
+        assert run.stdout.rstrip().endswith(
+            "Result of the citation check of this pull request:\n"
+            "1 entry needing a maintainer's approval (approve this pull request on GitHub, or record the "
+            "approval as a maintainer): Zoll90")
+        assert not (clone / ".bibcheck" / "vouched-approvals.jsonl").exists()
+        assert (clone / ".bibcheck" / "proposed-approvals.jsonl").read_bytes() == (clone / "verification" / "approvals.jsonl").read_bytes()
+        as_review = run_ci(clone, "pull_request_review", start, keep=True)      # a review was submitted: the same check
+        assert as_review.returncode == 1 and as_review.stdout.rstrip().endswith("approval as a maintainer): Zoll90"), \
+            as_review.stdout + as_review.stderr
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
     try:                                                                     # the edit alone: no row for this text
@@ -248,6 +276,90 @@ def test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_
         assert reported(clone, key) == "needs_review"
         assert (clone / ".bibcheck" / "pushed-approvals.jsonl").read_bytes() == subprocess.run(
             ["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True).stdout
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_the_results_saved_since_the_snapshot_are_read_from_the_revision_the_snapshot_is_read_from(clone):
+    """One commit edits Zoll90 into a text no source supports and adds, to
+    verification/baseline-additions.jsonl, a saved result approving that exact text (a real
+    human approval, recorded and exported by the commands). The additions file is read with
+    the snapshot and from the same revision as it:
+      - the committed library checked whole (a push without a base): the checkout's own
+        snapshot and additions, so the entry has its result;
+      - as a pull request against the commit before: the base's, which has no such line, so
+        the pull request gains nothing from the line it adds, and the entry is checked and fails;
+      - as the push of that commit: the base's as well (the snapshot of a push is the base's);
+      - once the base holds the line (the commit after): it is restored."""
+    from cdlbib import verification as v
+    key = "Zoll90"
+    start = head(clone)
+    bib = clone / "cdl.bib"
+    additions = clone / "verification" / "baseline-additions.jsonl"
+    at_start = subprocess.run(["git", "show", f"{start}:verification/baseline-additions.jsonl"], cwd=clone, capture_output=True)
+    assert at_start.returncode == 0 and additions.read_bytes() == at_start.stdout
+    before = v.load_entries(str(bib))[key]
+    edited = before["raw"].replace("1990", "1890")
+    text = bib.read_bytes().decode("utf-8")
+    assert edited != before["raw"] and text.count(before["raw"]) == 1
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Fixture: a saved result added by the change it approves.", "github_login": "octocat", "github_id": 583231}
+    try:
+        bib.write_bytes(text.replace(before["raw"], edited).encode("utf-8"))
+        entry = v.load_entries(str(bib))[key]
+        assert entry["fingerprint"] != before["fingerprint"]
+        subprocess.run(["rm", "-rf", ".bibcheck"], cwd=clone, check=True)
+        cache = v.Cache(clone / ".bibcheck" / "typed.sqlite3", ledger=clone / "verification" / "revocations.jsonl")
+        try:
+            v.record_approval(cache, str(bib), key, entry["fingerprint"], dict(review))
+            added = v.export_additions(str(bib), cache, clone / "verification" / "baseline.jsonl.gz", additions)
+        finally:
+            cache.close()
+        assert list(added) == [key] and added[key]["status"] == "human_verified"
+        assert additions.read_bytes().startswith(at_start.stdout) and additions.read_bytes().count(b"\n") == at_start.stdout.count(b"\n") + 1
+        subprocess.run(["git", "add", "cdl.bib", "verification/baseline-additions.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "Zoll90 edited, with a saved result for the new text"], cwd=clone, check=True)
+
+        run = run_ci(clone, "push", MISSING)                                 # the committed library, checked whole
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert reported(clone, key) == "human_verified"
+        assert "1 of them from verification/baseline-additions.jsonl" in run.stdout
+
+        run = run_ci(clone, "pull_request", start)                           # the pull request's own line is not read
+        assert run.returncode == 1, run.stdout + run.stderr
+        assert reported(clone, key) == "needs_review"
+        assert (clone / ".bibcheck" / "base-additions.jsonl").read_bytes() == at_start.stdout
+        assert "saved since the snapshot" not in run.stdout                  # the base's file holds no result
+        assert "1 entry not verified: Zoll90 (" in run.stdout and "needing a maintainer" not in run.stdout
+
+        run = run_ci(clone, "push", start, keep=True)                        # nor on the push of that commit
+        assert run.returncode == 1, run.stdout + run.stderr
+        assert reported(clone, key) == "needs_review"
+        assert (clone / ".bibcheck" / "base-additions.jsonl").read_bytes() == at_start.stdout
+
+        run = run_ci(clone, "push", head(clone))                             # the base holds the line
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert reported(clone, key) == "human_verified"
+        assert (clone / ".bibcheck" / "base-additions.jsonl").read_bytes() == additions.read_bytes()
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_a_base_without_an_additions_file_restores_its_snapshot_alone(clone):
+    """The base revision has the snapshot and no additions file (every revision before the
+    file was introduced): the script says so to restore (--no-additions) and nothing that
+    lies about in the work folder under the additions' name is read."""
+    start = head(clone)
+    try:
+        subprocess.run(["git", "rm", "-q", "verification/baseline-additions.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "no additions file"], cwd=clone, check=True)
+        subprocess.run(["rm", "-rf", ".bibcheck"], cwd=clone, check=True)
+        (clone / ".bibcheck").mkdir()
+        (clone / ".bibcheck" / "base-snapshot-additions.jsonl").write_text("not an additions file\n")
+        run = run_ci(clone, "push", head(clone), keep=True)
+        assert run.returncode == 0, run.stdout + run.stderr
+        assert "Restored" in run.stdout and "saved since the snapshot" not in run.stdout
+        assert not (clone / ".bibcheck" / "base-additions.jsonl").exists()
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
 

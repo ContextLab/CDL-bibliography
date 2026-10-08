@@ -171,6 +171,95 @@ A single JSON object would require repeated whole-file rewrites and careful lock
 
 Snapshots have a schema/policy header and one record per entry. Schema 2 restores by key-independent content fingerprint. Schema 1 restores only exact legacy key/fingerprint matches and records the migration. Restore validates the complete file before writes, maps reviews to the destination bibliography path, accepts matching fingerprints only, and does not overwrite local reviews. Machine approvals require recorded evidence from Crossref or from one of the review layers listed under [Current state](#current-state); secondary approvals retain their raw source metadata and provenance. The later routes (OSF, DataCite, ACL, SfN, research evidence) register an approval validator with `verification.register_approval_validator`, and an imported approval must pass it. Snapshot files are trusted data, not cryptographic certificates. They exclude HTTP cache entries and downloaded PDF bytes; archive those separately if needed.
 
+### Results saved since the snapshot
+
+`verification/baseline.jsonl.gz` is about 16 MB of gzip, and git stores a changed gzip file
+whole, so it is not committed again each time a reference is merged. The results verified
+after it was written are kept in a second file beside it,
+`verification/baseline-additions.jsonl`.
+
+What it is. Plain UTF-8 JSON Lines, not compressed. The first line is the header
+`{"additions":true,"policy":"2","schema":2}` (the current `POLICY`) and nothing else: no
+date and no count, so the header does not change when a result is added. Each further line
+is one result, the same record a schema-2 snapshot holds for an entry, written the same
+way (`verification.dumps`). The lines are in the order of the citation keys (by code
+point), so one more result is one more line and no other line changes
+(`test_one_more_result_is_one_more_line_and_no_other_line_changes`). The file holds a line
+for an entry of the current `cdl.bib` when the snapshot has no result for the entry's
+present text (no row with its fingerprint other than a `pending` one) and the entry has a
+result; `pending` and `provider_error` are not results and have no line. It has none of
+the snapshot header's sections (`source_notices`, `source_author_suffixes`,
+`source_article_locators`, `revocations`): the notices in a result's own candidates are
+remembered when it is restored, as a snapshot row's are, and revocations are read from
+`verification/revocations.jsonl`. On October 8, 2026 a result in the snapshot was 3,676
+bytes at the median and 22,449 on average (the largest 695,169), and the additions for
+the library as it stood held no result (43 bytes, the header).
+
+Who writes it.
+
+- `cdlbib crossref snapshot --additions-to verification/baseline.jsonl.gz [OUTPUT]`
+  (`verification.export_additions`) writes the file whole from the current results:
+  `OUTPUT`, or the file beside the named snapshot (its name without `.jsonl.gz` and with
+  `-additions.jsonl`). With nothing to add it writes the header alone; it does not remove
+  the file. It refuses a named snapshot that is not a complete schema-2 snapshot of the
+  current policy, rows `restore` would refuse (it runs the same check before writing), a
+  result over 2 MiB as a line and a file over 16 MiB (`ADDITIONS_ROW_MAX_BYTES`,
+  `ADDITIONS_MAX_BYTES`; the message says to save a whole snapshot instead).
+- The `Citation verification` workflow runs that command after a push to `master` whose
+  check passed, and its `save-results` job commits the file (see
+  [Continuous integration](#continuous-integration)).
+- `cdlbib crossref snapshot verification/baseline.jsonl.gz` (a whole snapshot, "folding
+  in") empties the additions file beside the snapshot it wrote, when there is one, to its
+  header alone, and prints a line saying so: the new snapshot holds those results itself.
+  It makes no additions file where there was none. `crossref verify --snapshot` and the
+  review layers, which also write snapshots, do not touch an additions file. Folding in is
+  done by hand, at a release ([release checklist](releasing.md)).
+
+Who reads it. `cdlbib crossref restore SNAPSHOT` reads the file beside `SNAPSHOT` with it
+when there is one; `--additions FILE` names another and `--no-additions` reads the
+snapshot alone. (`verification.import_snapshot` reads one only when given its path.) Both
+files are read and validated whole before anything is written: if either is refused,
+nothing is restored. The snapshot's rows are restored first and the additions' by the same
+rule after them, so an entry whose text the snapshot already has a result for keeps that
+one. `restore` prints `Restored N matching reviews` as before, then, when the additions
+file holds any result, how many came from it, and names the lines whose fingerprint is the text of no entry (the entry
+was edited since): such a line restores nothing, as such a row of a snapshot restores
+nothing, and is not an error.
+
+What is refused. A line goes through the function a snapshot row goes through
+(`_validated_records`), so everything `restore` refuses in a snapshot row it refuses in an
+additions line, in the same words: a missing key, fingerprint, policy or status, another
+policy, an unknown status, a key seen twice, a human approval without its audit record, a
+machine approval without its source evidence or one its route's validator rejects. The
+file's own form is checked besides (`read_additions`, `_validated_additions`): a link or
+anything that is not a regular file, a file over 16 MiB, bytes that are not UTF-8, a line
+over 2 MiB, an empty line, a line that is not a JSON object, a first line that is not the
+header of the current policy, a fingerprint that is not a `v2:` fingerprint, a `pending`
+row. Each refusal names the file and the line or key.
+
+Trust. The additions file has the trust of the snapshot it is read with, and no more: a
+`human_verified` line is restored exactly as the same row of the snapshot would be (a
+revocation the cache knows turns it into `needs_review`, from the ledger file or from
+`--trusted-revocations`). What decides is which copy a reader takes, and every reader takes
+the additions from where it takes the snapshot:
+
+|Reader|Snapshot and additions read|
+|-|-|
+|Pull request check (`check_ci.py`)|The base revision's, both: `.bibcheck/base-snapshot.jsonl.gz` and `.bibcheck/base-additions.jsonl`, the latter passed as `--additions` (`--no-additions` when the base has no such file). The pull request's own copy is never read, so a line a pull request adds does nothing in its own check.|
+|Push check with a base|The base revision's, both, in the same way: the pushed commit's own additions are not read, as its own snapshot is not. (Only the approvals ledger is read from the pushed commit.)|
+|Push check without a base, a manual workflow run, `crossref restore` run by hand|The checkout's own snapshot and the additions file beside it.|
+
+`validate_output_path` protects the library's additions file like the ledgers: a report or a
+whole snapshot (`status --report`, `snapshot`, `verify --snapshot`) cannot be written to
+it, by its path, through a link, or under another name of the same file; and the additions
+cannot be written over the bibliography, the database, a ledger, or the snapshot they are
+made for.
+
+Tests: `tests/test_baseline_additions.py`, and
+`test_the_results_saved_since_the_snapshot_are_read_from_the_revision_the_snapshot_is_read_from`
+and `test_a_base_without_an_additions_file_restores_its_snapshot_alone` in
+`tests/test_check_ci.py`.
+
 `verify --against BASE.bib` and `status --against BASE.bib` gate entries whose content fingerprints are absent from the base. This includes dependency changes and new entries; key-only renames are excluded. `--keys` is an alternative explicit selection. Selection is propagated to every free review layer, and the final gate rereads the bibliography to detect edits during checking. Full reports retain the historical backlog without letting it mask failures in selected entries. The Actions implementation is described under [Continuous integration](#continuous-integration).
 
 SQLite serializes writes. The runner additionally takes an OS advisory lock for the whole run, preventing two processes sharing a cache from multiplying request rates. Independent caches/machines do not share that lock; users must coordinate aggregate traffic. A blocked run does not hold an open SQLite write transaction while waiting on the network.
@@ -396,15 +485,15 @@ row can do depends on which copy of the file a command reads:
 
 |Reader|Copy of `approvals.jsonl` read|
 |-|-|
-|Pull request check (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`.|
+|Pull request check (`check_ci.py`)|The base revision's, passed as `crossref verify --trusted-approvals FILE`; followed, when someone with write access vouches for them, by the rows the pull request adds ([below](#approvals-a-pull-request-adds)).|
 |Push check with a base (`check_ci.py`; the workflow runs on pushes to `master` only)|The pushed commit's own, copied to `.bibcheck/pushed-approvals.jsonl` and passed the same way, after `crossref check-ledger` has compared it with the base revision's.|
 |The citation gate of `cdlbib verify` and `cdlbib send` when it compares with a reference (`citation_gate`)|The reference's (`reference_approvals`): for `github`, `master`'s file, downloaded to `.bibcheck/reference-approvals.jsonl` (empty when `master` has none); for a reference file, an empty one. This holds whichever entries are checked (new and edited, `--all`, or chosen keys); when all entries or chosen keys are checked and `master`'s file cannot be downloaded, no row counts and the gate prints a line saying so. No environment variable names a ledger.|
 |`crossref status`, `crossref verify` run by hand, the library views, `restore`, `snapshot`, a push check without a base, a manual workflow run|The file beside the revocation ledger the cache was opened with: the checkout's own.|
 |A cache opened without a ledger|None.|
 
-In the first two rows a row counts only once it is on the branch the change is compared
-with, so a row cannot approve an entry in the check or the gate of the change that adds
-it. In the third, the working tree's file has the trust of the checkout itself, which is
+In the first row a row counts once it is on the branch the change is compared with, or
+when an account with write access to the repository vouches for it; in the second, once it
+is merged. In the third, the working tree's file has the trust of the checkout itself, which is
 what `crossref restore` of a snapshot file, or an `approve` in the local database, already
 has: none of them is read by the pull request check. An approval the sender recorded with
 `approve` is in the sender's database and counts in the sender's own gate, as before.
@@ -449,6 +538,85 @@ so an approval read from the ledger is written into a new baseline as `human_ver
 
 Tests: `tests/test_approval_ledger.py`, and
 `test_a_pull_request_reads_the_approvals_ledger_of_its_base_only` in `tests/test_check_ci.py`.
+
+### Approvals a pull request adds
+
+On a pull request (the workflow events `pull_request` and `pull_request_review`) the rows
+the pull request itself adds to `verification/approvals.jsonl` count in its own check when
+someone with write access to the base repository vouches for them. Pushes and manual runs
+are as before.
+
+The rows. `crossref check-ledger` runs first, as before, and fails the run unless every
+line of the base revision's ledger is kept and every added line is a valid row now, under
+the current policy, for an entry of the pull request's `cdl.bib` under its key. A row that
+is invalid never gets further, and a row counts only for the text whose fingerprint it
+carries.
+
+Who vouches (`verification/check_ci.py`: `vouchers`, `rows_that_count`). Either of:
+
+1. The pull request's author has write access: GitHub's answer to
+   `GET /repos/{owner}/{repo}/collaborators/{login}/permission` has `permission` `admin`,
+   `maintain` or `write` and is about that login. Then the added rows whose
+   `human_review.github_login` is the author's login (compared without case) count.
+2. An account with write access (the same question) approved the pull request, and that
+   approval stands for the present head commit: in the answer to
+   `GET /repos/{owner}/{repo}/pulls/{number}/reviews` (every page), the account's latest
+   review whose state is `APPROVED`, `CHANGES_REQUESTED` or `DISMISSED` is `APPROVED` and
+   its `commit_id` is the pull request's head SHA. An approval of an earlier head does not
+   count, a later request for changes or a dismissal cancels it, and `COMMENTED` reviews
+   decide nothing either way. Then every added row counts, whoever recorded it.
+
+Where the facts come from. The workflow passes the author's login, the pull request's
+number, its head SHA and the repository from the event (`github.event.pull_request.*`,
+`github.repository`) as `PR_AUTHOR`, `PR_NUMBER`, `PR_HEAD_SHA` and `PR_REPOSITORY`, and
+the job's token as `GITHUB_TOKEN`; the script asks `api.github.com` itself. Nothing is
+taken from a file of the checkout, and nothing in a row says who vouches: a contributor who
+types a maintainer's login into a row gains nothing, because the author GitHub names is
+then not that login (rule 1) or has no write access, and no review exists (rule 2). When
+the token or a fact is missing, GitHub cannot be reached, or an answer is not of the
+expected form, nobody vouches: the run prints one line saying so (without the token) and
+the rows do not count.
+
+How they count. The rows that count are written after the base revision's to
+`.bibcheck/vouched-approvals.jsonl`, which is passed as `--trusted-approvals`, and the
+run uses a database of its own, made anew (`.bibcheck/vouched.sqlite3`): in the kept
+database, the `needs_review` result an earlier run of the same pull request stored for the
+text is later than the row and would outrank it (`Cache.shared_approval`). Revocations are
+as before: the base revision's and the checkout's together.
+
+What the run prints. A line saying whether the added rows count and on whose word, and, at
+the end of every pull request run, the output of `cdlbib crossref check-summary` for the
+new and edited entries:
+
+```
+Result of the citation check of this pull request:
+3 entries verified against their sources: A, B, C
+1 entry approved by a person's review (@login): D
+1 entry needing a maintainer's approval (approve this pull request on GitHub, or record the approval as a maintainer): E
+1 entry not verified: F (the first reason the checker gives)
+```
+
+`@login` is the reviewer the approval names. An entry is in the third group when it is not
+accepted and a valid, unrevoked row of the pull request's own ledger approves its present
+text. The run's exit status is `0` only when the last two groups are empty, `1` otherwise,
+and `2` for a configuration or provider error as before.
+
+Limits. A pull request runs its own copy of the checker, so this rule, like the rest of the
+check, assumes `src/cdlbib/` and `verification/check_ci.py` are unchanged; a change there
+needs separate review. A run started by `pull_request_review` is shown on the pull request
+as a check of its own beside the one the `pull_request` event started: after a maintainer
+approves, the earlier check stays red beside the new green one until someone presses
+**Re-run** on it (it then reads the approval and passes). For a pull request
+from a fork GitHub gives the job a read-only token; whether that token may ask the
+collaborator-permission question has not been tried, and if it may not, the rule fails
+closed (nobody vouches). The job that saves the additions was run on a fork's `master` on
+October 8, 2026 (a push with nothing new: no commit; a push with one new entry: one commit
+of one line). The pull request rule has not yet run on a pull request that carries an
+approval.
+
+Tests: `tests/test_pull_request_vouching.py` (the decision on answers recorded from
+`api.github.com`, `tests/fixtures/github_vouching/README.md`; one test asks GitHub itself),
+and the pull request runs of `tests/test_check_ci.py`, which have no token.
 
 ## Operational limits
 
@@ -1223,7 +1391,9 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
 
 - On a pull request or push, it writes the base revision's `cdl.bib` to
   `.bibcheck/base.bib`, restores the base revision's `verification/baseline.jsonl.gz`
-  (never the snapshot in the pull request), and runs
+  (never the snapshot in the pull request) together with the base revision's
+  `verification/baseline-additions.jsonl`
+  ([Results saved since the snapshot](#results-saved-since-the-snapshot)), and runs
   `crossref verify cdl.bib --auto-review --against .bibcheck/base.bib`. Only new or
   edited content is gated; key-only renames are excluded. It also writes the base
   revision's `verification/approvals.jsonl` to `.bibcheck/base-approvals.jsonl` (an empty
@@ -1239,8 +1409,8 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   own file, so a pull request that deletes a revocation line does not undo it.
 - A push whose base revision is not in the history (a force-push, rewritten history, or
   a new branch) has nothing to compare against. Its content is already merged, so the job
-  restores the pushed commit's own `verification/baseline.jsonl.gz` and runs
-  `crossref status cdl.bib` (offline): every entry must have an accepted result for its
+  restores the pushed commit's own `verification/baseline.jsonl.gz`, with the additions
+  file beside it, and runs `crossref status cdl.bib` (offline): every entry must have an accepted result for its
   exact current text. Pull requests never take this path; one without a base is refused.
 - A manual run restores the committed baseline and checks the whole library.
 - The last two read the checked-out commit's own `verification/approvals.jsonl`.
@@ -1251,7 +1421,21 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   file in the pull request.
 - Exit status: `0` when every selected entry is verified, `1` otherwise, `2` for a
   configuration or provider error.
-- The script runs its `cdlbib crossref` commands (`check-ledger`, `restore`, `verify` or
+- After a push to `master` whose check passed, the `citations` job runs
+  `cdlbib crossref snapshot --additions-to verification/baseline.jsonl.gz .bibcheck/baseline-additions.jsonl`
+  and uploads the file as an artifact named by the run's id and attempt, so a run started
+  again never picks up the file of an earlier attempt. Neither step can fail the check
+  (`continue-on-error`). The `save-results` job, the only one with `contents: write`,
+  checks out `master`, downloads that artifact and runs no code from the checkout. It
+  commits nothing unless the file is a regular file of at most 5,000,000 bytes, UTF-8
+  text, every line a JSON object and the first the additions header; unless `master` is
+  still at the commit that was checked; and unless the file differs from the committed
+  one. Then it copies it to `verification/baseline-additions.jsonl`, commits that one path
+  and pushes without force; a refused push is left to the newer run. A commit made with
+  the workflow's token starts no workflow run. These two jobs have not run: a workflow
+  cannot be run before it is merged. Its file passes `actionlint`, and the checks of the
+  commit step were run by hand on a good file and on files of each refused kind.
+- The script runs its `cdlbib crossref` commands (`check-ledger`, `restore`, `verify` and, on a pull request, `check-summary`; or
   `status`) in its own process when the package is installed for the Python that runs it,
   so the bibliography is parsed once for each text its file has during the run and not once
   by each command; with a Python that does not have the package it runs the installed
@@ -1261,10 +1445,12 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   again. On the 6,391-entry library (2026-10-08, one edited entry, two network requests)
   that run took 41 seconds where it had taken nine minutes.
 
-Because a pull request's approvals are trusted only from the base branch, a pull request
-that adds a `human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`,
-still fails its own check for an entry it also adds or edits; a maintainer merges it after
-checking the approval. The check of the push that the merge makes reads the merged
+Because a pull request's saved results are read only from the base branch, a pull request
+that adds a `human_verified` approval to `baseline.jsonl.gz` or to
+`baseline-additions.jsonl` gains nothing from it in its own check. A row it adds to
+`approvals.jsonl` counts there only when someone with write access vouches for it
+([Approvals a pull request adds](#approvals-a-pull-request-adds)); otherwise the entry is
+listed as needing a maintainer's approval and the check fails. The check of the push that the merge makes reads the merged
 `approvals.jsonl`, so there the row counts and the entry is `human_verified`. A pull request that only adds rows to `approvals.jsonl` changes no
 entry, so no entry is selected and the check passes without reading those rows. The job runs the pull
 request's own code, so this guarantee assumes the checker itself is unchanged; review any

@@ -626,17 +626,41 @@ def status(
 @app.command()
 def snapshot(
     ctx: typer.Context,
-    output: str = typer.Argument("verification/baseline.jsonl.gz"),
+    output: Optional[str] = typer.Argument(
+        None, help="The file to write [default: verification/baseline.jsonl.gz; with --additions-to, "
+                   "the additions file beside that snapshot]."),
     fname: str = typer.Option("cdl.bib", "--fname"),
     database: Optional[str] = typer.Option(None, "--database"),
+    additions_to: Optional[str] = typer.Option(
+        None, "--additions-to", metavar="SNAPSHOT",
+        help="Write only the results this snapshot lacks, as plain JSON Lines, to OUTPUT "
+             "(SNAPSHOT's name with -additions.jsonl when not given)."),
 ):
-    """Export a portable compressed JSONL audit snapshot for backup or sharing."""
+    """Export a portable compressed JSONL audit snapshot for backup or sharing.
+
+    A whole snapshot empties the additions file beside it (NAME-additions.jsonl), when there
+    is one: the snapshot holds those results itself. With --additions-to SNAPSHOT, only the
+    results SNAPSHOT lacks are written, to the additions file."""
     fname = bib(ctx, fname)
     database, _ = paths(fname, database)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
+        if additions_to:
+            output = output or str(verification.additions_beside(additions_to))
+            added = verification.export_additions(fname, cache, additions_to, output)
+            typer.echo(f"{len(added)} result{'' if len(added) == 1 else 's'} that {additions_to} lacks"
+                       + (": " + ", ".join(added) if 0 < len(added) <= 20 else ""))
+            typer.echo(output)
+            return
+        output = output or "verification/baseline.jsonl.gz"
+        beside = verification.additions_beside(output)
+        if beside.is_symlink() or beside.resolve() == Path(output).resolve():
+            raise ValueError(f"{beside} is a link; the snapshot was not written")
         summary(export_snapshot(fname, cache, output))
         typer.echo(output)
+        emptied = verification.empty_additions(fname, cache, output)
+        if emptied:
+            typer.echo(f"{emptied}: emptied (the snapshot holds its results now)")
     except (ValueError, OSError) as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)
@@ -654,17 +678,43 @@ def restore(
         None, "--trusted-revocations",
         help="Also honour the revocations in this ledger file "
              "(verification/check_ci.py passes the base revision's copy)."),
+    additions: Optional[str] = typer.Option(
+        None, "--additions",
+        help="Read the results saved since the snapshot from this file instead of the one beside "
+             "the snapshot (NAME-additions.jsonl; verification/check_ci.py passes the base revision's copy)."),
+    no_additions: bool = typer.Option(
+        False, "--no-additions", help="Read the snapshot alone, whether or not an additions file lies beside it."),
 ):
-    """Restore matching reviews from a trusted snapshot; changed entries stay pending."""
+    """Restore matching reviews from a trusted snapshot; changed entries stay pending.
+
+    The results saved since the snapshot (the file NAME-additions.jsonl beside it, when there
+    is one) are restored with it."""
     fname = bib(ctx, fname)
     database, _ = paths(fname, database)
+    if additions and no_additions:
+        typer.echo("Give --additions FILE or --no-additions, not both", err=True)
+        raise typer.Exit(2)
     cache = Cache(database, ledger=revocation_ledger(fname))
     try:
+        if no_additions:
+            additions = None
+        elif not additions:
+            beside = verification.additions_beside(snapshot)
+            additions = str(beside) if beside.exists() or beside.is_symlink() else None
         with run_lock(cache):
             if trusted_revocations:
                 cache.remember_revocations(verification.read_revocation_ledger(trusted_revocations))
-            count = import_snapshot(fname, cache, snapshot)
-        typer.echo(f"Restored {count} matching reviews")
+            done = verification.restore_snapshot(fname, cache, snapshot, additions)
+        typer.echo(f"Restored {done['restored']} matching reviews")
+        told = done["additions"]
+        if told and told["rows"]:     # a file that holds its header alone: nothing more to say
+            typer.echo(f"{told['restored']} of them from {told['path']} ({told['rows']} "
+                       f"result{'' if told['rows'] == 1 else 's'} saved since the snapshot)")
+            unmatched = told["unmatched"]
+            if unmatched:
+                typer.echo(f"Not restored from {told['path']}: {', '.join(unmatched[:20])}"
+                           + (f" and {len(unmatched) - 20} more" if len(unmatched) > 20 else "")
+                           + " (no entry has the text the result was saved for)")
     except (ValueError, OSError, StopIteration) as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(2)
@@ -696,6 +746,109 @@ def check_ledger(
     typer.echo(f"approvals ledger: {len(rows)} row{'' if len(rows) == 1 else 's'} added"
                + (f", {len(problems)} problem{'' if len(problems) == 1 else 's'}" if problems else ""))
     if problems:
+        raise typer.Exit(1)
+
+
+def check_groups(fname, cache, against, proposed=None):
+    """The entries of ``fname`` that are new or edited relative to ``against``, in four groups
+    by what their check came to, as a pull request's reader needs them: {"verified": keys
+    verified against their sources, "approved": {key: who reviewed it}, "waiting": keys that
+    are not accepted here and that a row of ``proposed`` (the approvals ledger of the change
+    itself, which this check does not count) would approve as they stand, "failed": {key: the
+    first reason given}}. ``cache`` reads the approvals that count."""
+    entries = load_entries(fname)
+    results = verification.current_results(fname, cache, entries)
+    selected = sorted(select_keys(fname, None, against, entries=entries))
+    # A row of the change's own ledger for exactly the entry's text, valid, under the current
+    # policy and not revoked. (Not asked through Cache.get: there the result this very check
+    # stored for the text, being later than the row, would outrank it.)
+    proposing = set()
+    if proposed is not None and any(results[key]["status"] not in ACCEPTED for key in selected):
+        other = Cache(cache.path, ledger=cache.ledger, approvals=proposed)
+        try:
+            revocations = other.revocations()
+            for key in selected:
+                for row in other.shared_approvals().get(entries[key]["fingerprint"], []):
+                    if row["policy"] == verification.POLICY and not other.revoked(
+                            row["fingerprint"], row["human_review"], row["approved_at"], revocations):
+                        proposing.add(key)
+        finally:
+            other.close()
+    groups = {"verified": [], "approved": {}, "waiting": [], "failed": {}}
+    for key in selected:
+        result = results[key]
+        if result["status"] == "human_verified":
+            review = result.get("human_review") or {}
+            groups["approved"][key] = ("@" + review["github_login"] if review.get("github_login")
+                                       else str(review.get("reviewer") or "a reviewer"))
+        elif result["status"] in ACCEPTED:
+            groups["verified"].append(key)
+        elif key in proposing:
+            groups["waiting"].append(key)
+        else:
+            issues = [str(issue) for issue in result.get("issues") or [] if str(issue).strip()]
+            reason = " ".join(issues[0].split()) if issues else result["status"]
+            groups["failed"][key] = reason if len(reason) <= 300 else reason[:299] + "…"
+    return groups
+
+
+def group_lines(groups):
+    """``check_groups`` as the lines a person reads on the pull request, a line a group."""
+    def counted(n):
+        return f"{n} entry" if n == 1 else f"{n} entries"
+    lines = []
+    if groups["verified"]:
+        lines.append(f"{counted(len(groups['verified']))} verified against their sources: "
+                     + ", ".join(groups["verified"]))
+    by = {}
+    for key, who in groups["approved"].items():
+        by.setdefault(who, []).append(key)
+    for who in sorted(by):
+        lines.append(f"{counted(len(by[who]))} approved by a person's review ({who}): " + ", ".join(by[who]))
+    if groups["waiting"]:
+        lines.append(f"{counted(len(groups['waiting']))} needing a maintainer's approval (approve this pull "
+                     "request on GitHub, or record the approval as a maintainer): " + ", ".join(groups["waiting"]))
+    if groups["failed"]:
+        lines.append(f"{counted(len(groups['failed']))} not verified: "
+                     + "; ".join(f"{key} ({reason})" for key, reason in groups["failed"].items()))
+    if not lines:
+        lines.append("No entry is new or edited: nothing to verify.")
+    return lines
+
+
+@app.command("check-summary")
+def check_summary(
+    ctx: typer.Context,
+    fname: str = typer.Argument("cdl.bib"),
+    against: str = typer.Option(..., "--against", help="The base .bib file: entries new or edited relative to it are listed."),
+    database: Optional[str] = typer.Option(None, "--database"),
+    trusted_approvals: Optional[str] = typer.Option(
+        None, "--trusted-approvals", help="The approvals ledger that counts (as for `crossref verify`)."),
+    trusted_revocations: Optional[str] = typer.Option(
+        None, "--trusted-revocations", help="Also honour the revocations in this ledger file."),
+    proposed_approvals: Optional[str] = typer.Option(
+        None, "--proposed-approvals",
+        help="The approvals ledger of the change itself: an entry that only a row of it would approve is "
+             "listed as needing a maintainer's approval. Its rows count for nothing else."),
+):
+    """Offline: say in plain lines what the check of the new and edited entries came to
+    (verified against their sources; approved by a person's review; needing a maintainer's
+    approval; not verified). Exit 1 unless the last two groups are empty."""
+    fname = bib(ctx, fname)
+    database, _ = paths(fname, database)
+    cache = Cache(database, ledger=revocation_ledger(fname), approvals=trusted_approvals)
+    try:
+        if trusted_revocations:
+            cache.remember_revocations(verification.read_revocation_ledger(trusted_revocations))
+        groups = check_groups(fname, cache, against, proposed_approvals)
+    except (ValueError, OSError) as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(2)
+    finally:
+        cache.close()
+    for line in group_lines(groups):
+        typer.echo(line)
+    if groups["waiting"] or groups["failed"]:
         raise typer.Exit(1)
 
 

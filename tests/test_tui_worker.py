@@ -239,6 +239,17 @@ def test_quitting_while_a_job_runs_asks_and_waits_or_stays(tmp_path):
     shutil.copy(conftest.FROZEN_LIBRARY, root / "cdl.bib")
     from cdlbib.tui import CdlbibApp
     from cdlbib.workspace import Workspace
+    # This test needs the first job (reading and preparing 6,481 entries) to last the second
+    # or so its key presses take, as it does in a process that has prepared no library yet.
+    # The package keeps what it computed for a text (functools.lru_cache), so a test that
+    # prepared the same library earlier in the same process (tests/test_desk_prepare.py, when
+    # the two files run in one job) left the job with almost nothing to do, and it was over
+    # before "w" was pressed. Start as a new process starts: with nothing kept.
+    for name, module in list(sys.modules.items()):
+        if name == "cdlbib" or name.startswith("cdlbib."):
+            for value in list(vars(module).values()):
+                if callable(getattr(value, "cache_clear", None)):
+                    value.cache_clear()
     seen = {}
 
     async def journey():
