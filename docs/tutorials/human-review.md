@@ -158,7 +158,9 @@ The pull request check reads the file from the base branch. It counts the lines 
 request itself adds only when someone with write access to the repository vouches for them:
 the pull request's author, for approvals the author recorded, or a reviewer who approved the
 pull request on GitHub at its latest commit
-([details](../verification.md#approvals-a-pull-request-adds)). The check of a push to
+([details](../verification.md#approvals-a-pull-request-adds)). After a reviewer approves,
+GitHub shows a new, passing citations check beside the earlier failed one; press **Re-run**
+on the failed one and it passes too. The check of a push to
 `master` (a merge) reads the pushed commit's own file. The checks of
 `cdlbib verify` and `cdlbib send` on new and edited entries read it from the reference
 they compare with (the `master` branch on GitHub), not from the working copy.

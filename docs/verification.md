@@ -604,10 +604,15 @@ and `2` for a configuration or provider error as before.
 Limits. A pull request runs its own copy of the checker, so this rule, like the rest of the
 check, assumes `src/cdlbib/` and `verification/check_ci.py` are unchanged; a change there
 needs separate review. A run started by `pull_request_review` is shown on the pull request
-as a check of its own beside the one the `pull_request` event started. For a pull request
+as a check of its own beside the one the `pull_request` event started: after a maintainer
+approves, the earlier check stays red beside the new green one until someone presses
+**Re-run** on it (it then reads the approval and passes). For a pull request
 from a fork GitHub gives the job a read-only token; whether that token may ask the
 collaborator-permission question has not been tried, and if it may not, the rule fails
-closed (nobody vouches). The workflow as changed has not run: it cannot before it is merged.
+closed (nobody vouches). The job that saves the additions was run on a fork's `master` on
+October 8, 2026 (a push with nothing new: no commit; a push with one new entry: one commit
+of one line). The pull request rule has not yet run on a pull request that carries an
+approval.
 
 Tests: `tests/test_pull_request_vouching.py` (the decision on answers recorded from
 `api.github.com`, `tests/fixtures/github_vouching/README.md`; one test asks GitHub itself),
