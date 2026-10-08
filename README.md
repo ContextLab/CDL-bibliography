@@ -969,11 +969,27 @@ copying the file. This method also works with command-line TeX Live on Linux;
 `BIBINPUTS` is unnecessary when the personal-tree link resolves correctly.
 
 # Using the bibtex file on Overleaf
-Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization), so (unlike what earlier versions of this readme suggested) you can't add this repository to an Overleaf project as a submodule.  Instead, either:
-- Upload `cdl.bib` to your project, or
-- Use Overleaf's [Add from External URL](https://docs.overleaf.com/managing-projects-and-files/adding-files-to-a-project/adding-a-file-from-a-url) option with the [raw bibliography](https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib).  The linked file is updated only when you refresh it, so refresh it when you want the latest version (and check the resulting citations).
+Overleaf projects [can't contain git submodules](https://docs.overleaf.com/integrations-and-add-ons/git-integration-and-github-synchronization/github-synchronization), so (unlike for local documents) you can't add this repository to an Overleaf project as a submodule. Link the file instead; this is set up once per project.
 
-Either way, change the `\bibliography{...}` line in your .tex file to `\bibliography{cdl}`.
+1. In the project's file list, choose **New file**, then **From external URL** ([Overleaf's instructions](https://docs.overleaf.com/managing-projects-and-files/adding-files-to-a-project/adding-a-file-from-a-url)).
+2. Give this address: `https://raw.githubusercontent.com/ContextLab/CDL-bibliography/master/cdl.bib`
+3. Name the file `cdl.bib` and put it in the project's main folder. If the project already holds an uploaded `cdl.bib`, delete or rename that one first.
+4. In your .tex file, refer to it by name, with the bibliography style your paper uses:
+
+   ```latex
+   \bibliographystyle{apacite}
+   \bibliography{cdl}
+   ```
+
+   BibTeX reads a file of the project, not a web address, so this line is the same whether `cdl.bib` was linked or uploaded.
+
+The linked file is a copy that Overleaf fetched when you added it, and it changes only when you refresh it. After a pull request with new references is merged into this repository, select `cdl.bib` in the file list, press **Refresh**, and recompile. GitHub serves the file from a cache for up to five minutes (`cache-control: max-age=300`), so a refresh sooner than that after a merge can return the previous version.
+
+Tried on October 7, 2026 in one Overleaf project, with BibTeX and `apacite`: the link accepted `cdl.bib` (2,001,177 bytes) and the project compiled in a few seconds. Not tried yet: a refresh after a merge, and whether a copy of a project ("Make a copy") keeps the link.
+
+Uploading `cdl.bib` to the project also works, with the same `\bibliography{cdl}` line. An uploaded copy is not linked to this repository: to update it, upload the file again. Overleaf's [plan limits](https://docs.overleaf.com/getting-started/free-and-premium-plans/plan-limits) give 2 MB as the largest editable text file, and `cdl.bib` is about that size.
+
+Overleaf's free plan stops a compile after 10 seconds (see the plan limits above). Dartmouth provides Overleaf accounts with a longer limit; see [Dartmouth on Overleaf](https://services.dartmouth.edu/TDClient/1806/Portal/KB/Article/153940/Dartmouth-on-Overleaf).
 
 # Using the bibtex file as a submodule of a paper's repository
 As an alternative to the managed-library setup, if you write your paper in a Git

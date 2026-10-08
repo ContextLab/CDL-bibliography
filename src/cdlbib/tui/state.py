@@ -8,7 +8,7 @@ from textual.widgets import Button, DataTable
 from .. import api, prompts
 from ..errors import UpdateConflict, UpdateNeedsDecision
 from . import render
-from .widgets import ChoiceScreen, Shown, Table, View, fill_table
+from .widgets import ChoiceScreen, Shown, Table, View, fill_table, focus_now
 
 
 class StateView(View):
@@ -48,7 +48,7 @@ class StateView(View):
 
     def activated(self):
         self.state_changed()
-        self.query_one("#state-refresh", Button).focus()
+        focus_now(self.query_one("#state-refresh", Button))
         if not self.loaded:
             self.action_backups()
 

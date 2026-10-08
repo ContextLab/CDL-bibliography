@@ -8,7 +8,7 @@ from textual.widgets import Button, Static
 
 from .. import api, prompts
 from . import render
-from .widgets import Shown, View
+from .widgets import Shown, View, focus_now
 
 
 class CheckView(View):
@@ -37,7 +37,7 @@ class CheckView(View):
         self.state_changed()
         if self.last is None:
             self.query_one("#check-result", Shown).show("The result of a check is shown here.")
-        self.query_one("#check-selected", Button).focus()
+        focus_now(self.query_one("#check-selected", Button))
 
     def state_changed(self):
         selected = self.app.view("library").selected

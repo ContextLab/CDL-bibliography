@@ -7,8 +7,8 @@ from textual.containers import Horizontal, Vertical
 from textual.widgets import DataTable
 
 from .. import api
-from .library import DetailPanes
-from .widgets import Shown, Table, View, fill_table, mark
+from .library import NOT_READ, DetailPanes
+from .widgets import Shown, Table, View, fill_table, focus_now, mark
 
 
 class ReviewView(View):
@@ -48,7 +48,7 @@ class ReviewView(View):
         self.query_one("#queue", Table).filler = self._fill
 
     def activated(self):
-        self.query_one("#queue", DataTable).focus()
+        focus_now(self.query_one("#queue", DataTable))
         if self.stale:
             self.action_reload()
 
@@ -137,9 +137,10 @@ class ReviewView(View):
     # --- actions -----------------------------------------------------------------------------
 
     def _current(self):
+        """As LibraryView._current: an entry is approved or revoked only when its detail is shown."""
         detail = self.query_one("#review-detail", DetailPanes).detail
         if detail is None or detail.key != self.selected:
-            self.app.notify("No entry is selected.")
+            self.app.notify(NOT_READ.format(key=self.selected) if self.selected else "No entry is selected.")
             return None
         return detail
 
@@ -157,9 +158,15 @@ class ReviewView(View):
             self.app.revoke(detail)
 
     def action_edit(self):
-        detail = self._current()
-        if detail is not None:
+        """As in the Library view: an entry whose detail is still being read is opened at once,
+        and the editor reads it itself."""
+        detail = self.query_one("#review-detail", DetailPanes).detail
+        if detail is not None and detail.key == self.selected:
             self.app.edit(detail)
+        elif self.selected:
+            self.app.edit(key=self.selected)
+        else:
+            self.app.notify("No entry is selected.")
 
     def action_check(self):
         if self.selected:

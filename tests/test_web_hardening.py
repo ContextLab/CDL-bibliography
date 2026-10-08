@@ -342,6 +342,44 @@ def test_uploads_that_arrive_together_get_names_of_their_own_and_never_exceed_th
     assert site.running.app.store.used("bundle") == sum(len(data) for data in on_disk.values())
 
 
+def test_requests_that_arrive_faster_than_the_server_takes_them_are_all_answered(tmp_path, monkeypatch):
+    """Seen on a slow GitHub runner: one of 24 uploads sent together ended with "Connection
+    reset by peer". Here the real server takes each connection a third of a second late, as
+    its thread does on a busy computer, while 24 threads send 80 requests. Every one is
+    answered. (With http.server's own queue of 5 waiting connections, Linux resets about a
+    fifth of them.)"""
+    web.isolate(monkeypatch, tmp_path / "env")
+    running = server.start(web.make_library(tmp_path / "library", ZOLL90))
+    assert running.httpd.request_queue_size >= 64
+    take = running.httpd.get_request
+
+    def late():
+        time.sleep(0.3)
+        return take()
+
+    running.httpd.get_request = late
+    running.serve_in_thread()
+    client = web.Client(running)
+    try:
+        kind = "application/octet-stream"
+        bundle = client.ok("upload", "/api/export/upload", b"0", kind, name="main.tex")["bundle"]
+
+        def one(number):                    # the uploads of the test above, which is where it was seen
+            try:
+                return client.raw("POST", "/api/export/upload", client.headers(post=True, **{"Content-Type": kind}),
+                                  data=f"file {number}".encode(), params={"name": "main.tex", "bundle": bundle}).status_code
+            except Exception as exc:        # the failure this test is about is an exception of requests
+                return f"{type(exc).__name__}: {exc}"
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=24) as pool:
+            answers = list(pool.map(one, range(1, 80)))
+        # Each request got the server's answer: taken (200), or refused as one file too many (400).
+        assert set(answers) <= {200, 400}, [answer for answer in answers if answer not in (200, 400)][:3]
+        assert answers.count(200) == store.MAX_BUNDLE_FILES - 1
+    finally:
+        running.stop()
+
+
 def test_stopping_cancels_what_waits_and_removes_the_folder_only_after_the_running_job(tmp_path, monkeypatch):
     web.isolate(monkeypatch, tmp_path / "env")
     running, client = web.start(web.make_library(tmp_path / "library", ZOLL90))

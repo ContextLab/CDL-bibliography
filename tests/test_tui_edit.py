@@ -377,3 +377,127 @@ def test_an_entry_changed_by_another_program_after_it_was_opened_is_never_the_ne
     T.run(journey())
     text = ws.bib.read_text(encoding="utf-8")
     assert "Number = {11}" in text and "Volume = {28}" in text              # both changes are in the file
+
+
+def test_an_entry_whose_details_are_not_read_yet_opens_at_once_and_a_preview_asked_then_runs_on_its_text(ws):
+    import threading
+    before = ws.bib.read_bytes()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            hold = threading.Event()
+            app.job("a long check", lambda job: hold.wait(30))               # every reading waits behind it
+            await pilot.press("down")                                        # Kaha12: its details are not read yet
+            await pilot.press("e", "ctrl+p")                                 # ... and the keys are pressed at once
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and "Edit Kaha12" in T.screen_text(app)
+            editor = app.screen.query_one("#editor")
+            assert app.screen.text == "" and editor.read_only
+            message = T.shown(app, "#edit-message")
+            assert message.startswith("reading Kaha12 ... the editor takes typing when its text is here "
+                                      "(after the running job: a long check)")
+            assert "Asked for, and done when the text is here: the preview." in message
+            assert "reading Kaha12 ..." in T.screen_text(app)
+            await pilot.press("x", "enter", "ctrl+r")                        # nothing is typed into a text that is not here
+            await pilot.pause(0.2)
+            assert app.screen.text == "" and app.screen.unsaved() is None
+            assert "the preview, the formatter's text." in T.shown(app, "#edit-message")
+            assert not [label for label, _, _ in app.jobs.history if label.startswith("preview")]   # never on the empty text
+            assert app.notices == []                                         # and the key was not refused
+            hold.set()
+            await T.settle(pilot)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == KAHA12 and not editor.read_only
+            assert app.screen.previewed[0] == KAHA12 and app.screen.opened == api.entry(ws, "Kaha12").fingerprint
+            labels = [label for label, _, _ in app.jobs.history]
+            assert labels.count("read Kaha12") >= 1 and labels.count("preview the edit of Kaha12") == 1
+            assert labels.index("a long check") < labels.index("preview the edit of Kaha12")
+            assert "The text is what the file already holds; there is nothing to save." in T.shown(app, "#edit-message")
+            assert "(the text is what the file already holds)" in T.shown(app, "#preview")
+            assert ws.bib.read_bytes() == before
+            # The editor is the one every entry gets: the text that arrived is edited, previewed and saved.
+            await T.press(pilot, "pagedown", "end", "left", "left", "backspace", "3")
+            await T.press(pilot, "ctrl+p")
+            assert "-    Year = {2012}}" in T.shown(app, "#preview") and "+    Year = {2013}}" in T.shown(app, "#preview")
+            await T.press(pilot, "ctrl+s")
+            assert type(app.screen).__name__ != "EditScreen" and "Saved: Kaha12" in app.log_lines
+    T.run(journey())
+    assert ws.bib.read_bytes() == before.replace(b"{2012}", b"{2013}")
+    assert api.entry(ws, "Zoll90").raw == ZOLL90
+
+
+def test_a_save_asked_before_the_text_is_here_previews_it_first_and_closing_meanwhile_does_nothing(ws):
+    import threading
+    before = ws.bib.read_bytes()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            hold = threading.Event()
+            app.job("a long check", lambda job: hold.wait(30))
+            await pilot.press("down", "e", "ctrl+s")                         # a save of a text not read yet
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ""
+            assert "Asked for, and done when the text is here: the save." in T.shown(app, "#edit-message")
+            hold.set()
+            await T.settle(pilot)
+            assert app.screen.text == KAHA12 and ws.bib.read_bytes() == before        # as ctrl+s on a text not previewed
+            labels = [label for label, _, _ in app.jobs.history]
+            assert labels.count("preview the edit of Kaha12") == 1 and "save Kaha12" not in labels
+            assert "The text is what the file already holds; there is nothing to save." in T.shown(app, "#edit-message")
+            await T.press(pilot, "escape")
+            assert type(app.screen).__name__ != "EditScreen"
+
+            # Closed while its text is still being read: no question (nothing was typed), and what was
+            # asked for is not done later behind the person's back.
+            hold.clear()
+            app.job("another long check", lambda job: hold.wait(30))
+            await pilot.press("up")                                          # Zoll90 was read before: shown at once
+            app.view("library").reload_detail()                              # ... and is to be read again (as after a check)
+            await pilot.press("e", "ctrl+p", "ctrl+s")
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ""
+            assert "reading Zoll90 ..." in T.shown(app, "#edit-message")
+            await pilot.press("escape")
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ != "EditScreen"                 # closed at once, without a question
+            hold.set()
+            await T.settle(pilot)
+            assert type(app.screen).__name__ != "EditScreen"
+            labels = [label for label, _, _ in app.jobs.history]
+            assert "preview the edit of Zoll90" not in labels and "save Zoll90" not in labels
+    T.run(journey())
+    assert ws.bib.read_bytes() == before
+
+
+def test_an_entry_that_cannot_be_read_says_so_in_the_editor_and_is_read_again_with_a_key(ws):
+    import threading
+    before = ws.bib.read_text(encoding="utf-8")
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            hold = threading.Event()
+            app.job("a long check", lambda job: hold.wait(30))
+            await pilot.press("down", "e", "ctrl+p")
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ""
+            ws.bib.write_text(ZOLL90 + "\n", encoding="utf-8")              # Kaha12 is taken out of the file meanwhile
+            hold.set()
+            await T.settle(pilot)
+            assert type(app.screen).__name__ == "EditScreen" and app.screen.text == ""
+            message = T.shown(app, "#edit-message")
+            assert "Kaha12 could not be read, so there is no text to edit. ctrl+o tries again; esc closes" in message
+            assert app.screen.query_one("#editor").read_only
+            await T.press(pilot, "ctrl+p", "ctrl+s", "x")                    # nothing is previewed, saved or typed
+            assert app.screen.text == "" and not [label for label, _, _ in app.jobs.history if label.startswith(("preview", "save"))]
+            ws.bib.write_text(before, encoding="utf-8")                      # ... and put back
+            await T.press(pilot, "ctrl+o")
+            assert app.screen.text == KAHA12 and not app.screen.query_one("#editor").read_only
+            assert app.screen.previewed is None                              # the preview asked for earlier is not run now
+            await T.press(pilot, "ctrl+p")
+            assert app.screen.previewed[0] == KAHA12
+            await T.press(pilot, "escape")
+            assert type(app.screen).__name__ != "EditScreen"
+    T.run(journey())
+    assert ws.bib.read_text(encoding="utf-8") == before

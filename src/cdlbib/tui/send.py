@@ -7,7 +7,7 @@ from textual.widgets import Button, Input, Static
 
 from .. import api, prompts
 from ..errors import GateFailed
-from .widgets import Shown, View
+from .widgets import Shown, View, focus_now
 
 
 class SendView(View):
@@ -42,7 +42,7 @@ class SendView(View):
 
     def activated(self):
         self.state_changed()
-        self.query_one("#send-go", Button).focus()
+        focus_now(self.query_one("#send-go", Button))
 
     def recolour(self):
         self.state_changed()
@@ -50,7 +50,7 @@ class SendView(View):
             self.result()
 
     def action_leave_box(self):
-        self.query_one("#send-go", Button).focus()
+        focus_now(self.query_one("#send-go", Button))
 
     @on(Button.Pressed, "#send-go")
     def _pressed(self, event):
@@ -58,7 +58,7 @@ class SendView(View):
 
     @on(Input.Submitted, "#send-summary")
     def _entered(self, event):
-        self.query_one("#send-go", Button).focus()
+        focus_now(self.query_one("#send-go", Button))
 
     # --- what will be sent -------------------------------------------------------------------
 

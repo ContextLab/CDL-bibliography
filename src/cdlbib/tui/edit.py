@@ -15,7 +15,13 @@ EXAMPLE = "@article{Key20,\n    Author = {A Author and B Author},\n    Journal =
 
 
 class EditScreen(Screen):
-    """Dismisses with the lines that say what was saved, or None."""
+    """Dismisses with the lines that say what was saved, or None.
+
+    Opened with an entry's detail, with nothing (a new entry), or with only the ``key`` of an
+    entry whose detail has not been read yet: the editor then opens at once, reads the entry
+    itself (a job, in its turn on the one worker) and says so; until the text is here nothing
+    can be typed into it, and a preview, a save or the formatter's text asked for meanwhile is
+    remembered and done, in the order asked, when it is here: never on the empty text."""
 
     BINDINGS = [
         Binding("ctrl+p", "preview", "Preview", priority=True),
@@ -31,10 +37,13 @@ class EditScreen(Screen):
     EditScreen #edit-message { height: auto; padding: 0 1; }
     """
 
-    def __init__(self, detail=None):
+    def __init__(self, detail=None, key=None):
         super().__init__()
         self.detail = detail                 # desk.EntryDetail of the entry; None for a new one
-        self.key = detail.key if detail is not None else None
+        self.key = detail.key if detail is not None else key
+        self.unread = detail is None and key is not None     # the entry's text is not in the editor yet
+        self.reading = False                 # the job that reads it is queued or running
+        self.asked = []                      # the actions asked for before the text was here, in order
         self.original = detail.raw if detail is not None else ""
         self.previewed = None                # (the text previewed, desk.EditPreview)
         # The fingerprint of the entry as it was when this editor was opened: what a save says it
@@ -63,6 +72,54 @@ class EditScreen(Screen):
             "ctrl+p shows what saving would do: the diff, the house-format findings, a key change, "
             "the status the edit loses, other entries it affects.\nctrl+s saves the text that was previewed.")
         self._message("")
+        if self.unread:
+            editor.read_only = True          # nothing is typed into a text that is not here yet
+            self._read()
+
+    # --- an entry opened before its text was read ------------------------------------------------
+
+    def _read(self):
+        self.reading = True
+        self._waiting()
+
+        def read(detail):
+            self.detail, self.original, self.opened = detail, detail.raw, detail.fingerprint
+            self.unread = self.reading = False
+            editor = self.query_one("#editor", TextArea)
+            editor.load_text(detail.raw)
+            editor.read_only = False
+            self._message("")
+            asked, self.asked = self.asked, []
+            for name in asked:               # each as if its key were pressed now
+                getattr(self, f"action_{name}")()
+
+        def failed(exc):
+            self.reading, self.asked = False, []
+            self._message(f"{exc}\n{self.key} could not be read, so there is no text to edit. ctrl+o tries again; "
+                          "esc closes the editor.", "error")
+        self.app.job(f"read {self.key}", lambda job: api.entry(self.app.ws, self.key), read, failed)
+
+    WORDS = {"preview": "the preview", "save": "the save", "formatter": "the formatter's text"}
+
+    def _waiting(self):
+        running = self.app.jobs.busy_label
+        line = f"reading {self.key} ... the editor takes typing when its text is here"
+        if running and running != f"read {self.key}":
+            line += f" (after the running job: {running})"
+        if self.asked:
+            names = list(dict.fromkeys(self.WORDS[name] for name in self.asked))
+            line += f"\nAsked for, and done when the text is here: {', '.join(names)}"
+        self._message(line + ".", "accent")
+
+    def _later(self, name):
+        """True when the entry's text is not here yet: the action is remembered (while the text
+        is being read), and nothing is done now."""
+        if not self.unread:
+            return False
+        if self.reading:
+            self.asked.append(name)
+            self._waiting()
+        return True
 
     @property
     def text(self):
@@ -78,7 +135,7 @@ class EditScreen(Screen):
     # --- preview -----------------------------------------------------------------------------
 
     def action_preview(self, then=None):
-        if self.saving:
+        if self.saving or self._later("preview"):
             return
         raw = self.text
 
@@ -104,7 +161,10 @@ class EditScreen(Screen):
 
     def action_reload(self):
         """Read the entry again from the file; the text in the editor is replaced only after a yes."""
-        if self.saving or self.key is None:
+        if self.saving or self.key is None or self.reading:
+            return
+        if self.unread:                      # the first reading failed: read again
+            self._read()
             return
 
         def read(detail):
@@ -123,7 +183,7 @@ class EditScreen(Screen):
                      lambda exc: self._message(str(exc), "error"))
 
     def action_formatter(self):
-        if self.saving:
+        if self.saving or self._later("formatter"):
             return
         if self.previewed is None or self.previewed[0] != self.text:
             self._message("Preview first (ctrl+p): the formatter's text belongs to a preview of this text.", "warning")
@@ -138,7 +198,7 @@ class EditScreen(Screen):
     # --- save --------------------------------------------------------------------------------
 
     def action_save(self):
-        if self.saving:
+        if self.saving or self._later("save"):
             return
         raw = self.text
         if self.previewed is None or self.previewed[0] != raw:

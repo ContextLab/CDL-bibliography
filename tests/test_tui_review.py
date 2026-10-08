@@ -183,6 +183,47 @@ def test_without_a_login_approving_shows_how_to_log_in_and_records_nothing(ws):
         path.name: path.read_bytes() for path in ws.root.rglob("*") if path.is_file() and path.name in before}
 
 
+def test_an_entry_of_the_queue_not_read_yet_is_edited_at_once_but_never_approved_unseen(ws, monkeypatch):
+    import threading
+    T.offline(monkeypatch)
+    before = ws.bib.read_bytes()
+
+    async def journey():
+        async with T.opened(ws) as pilot:
+            app = pilot.app
+            await T.press(pilot, "f3")
+            await T.press(pilot, "t")
+            assert queue_keys(app) == ["Zoll90", "Kaha12"] and "@article{Zoll90," in T.shown(app, "#review-detail #t-entry")
+            hold = threading.Event()
+            app.job("a long check", lambda job: hold.wait(30))
+            await pilot.press("down", "e", "ctrl+p")                        # Kaha12: its details wait behind the job
+            await pilot.pause(0.3)
+            assert type(app.screen).__name__ == "EditScreen" and "Edit Kaha12" in T.screen_text(app)
+            assert app.screen.text == "" and "reading Kaha12 ..." in T.shown(app, "#edit-message")
+            hold.set()
+            await T.settle(pilot)
+            assert app.screen.text == KAHA12 and app.screen.previewed[0] == KAHA12
+            assert [label for label, _, _ in app.jobs.history].count("preview the edit of Kaha12") == 1
+            await T.press(pilot, "escape")
+            assert type(app.screen).__name__ != "EditScreen" and "@book{Kaha12," in T.shown(app, "#review-detail #t-entry")
+
+            # An approval is of what the person sees: while Zoll90's details are not shown, a and v
+            # are refused in words, and nothing is asked or recorded when they arrive.
+            hold.clear()
+            app.job("another long check", lambda job: hold.wait(30))
+            refused = "Zoll90: its text and evidence are still being read. Approve or revoke it when they are shown."
+            await pilot.press("up", "a", "v")
+            await pilot.pause(0.3)
+            assert len(app.screen_stack) == 1 and app.notices[-2:] == [refused, refused]
+            hold.set()
+            await T.settle(pilot)
+            assert len(app.screen_stack) == 1 and "@article{Zoll90," in T.shown(app, "#review-detail #t-entry")
+            assert "ask gh who is logged in" not in [label for label, _, _ in app.jobs.history]
+    T.run(journey())
+    assert ws.bib.read_bytes() == before
+    assert all(api.entry(ws, key).human_review is None for key in ("Zoll90", "Kaha12"))
+
+
 def test_checking_the_selected_entry_runs_the_gate_and_shows_its_lines(tmp_path, monkeypatch):
     T.offline(monkeypatch)
     ws = T.library(tmp_path / "lib", GAME62, ZOLL90.replace("{27}", "{28}").replace("1053--1065", "1053-1065"))
