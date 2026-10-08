@@ -53,6 +53,7 @@ jobs:
       # made unless every entry has an accepted result for its present text (crossref status).
       - name: Export the saved results of the whole library
         if: github.event_name == 'push' && success()
+        continue-on-error: true    # the check's own result does not depend on this
         run: |
           if cdlbib crossref status cdl.bib; then
             cdlbib crossref snapshot .bibcheck/baseline-candidate.jsonl.gz
@@ -61,6 +62,7 @@ jobs:
           fi
       - name: Hand the saved results to the next job
         if: github.event_name == 'push' && success() && hashFiles('.bibcheck/baseline-candidate.jsonl.gz') != ''
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: baseline-candidate
