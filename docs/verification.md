@@ -1244,7 +1244,8 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   library (`crossref snapshot`), provided `crossref status` finds an accepted result for
   every entry. A second job, `baseline`, the only one with permission to write to the
   repository, commits that file as `verification/baseline.jsonl.gz` when its unpacked
-  contents differ from the committed file's. So the saved results follow `cdl.bib` without
+  contents differ from the committed file's and `master` is still at the commit that was
+  checked (when it has moved on, the newer push's run saves them). So the saved results follow `cdl.bib` without
   anyone saving them by hand. The commit is made with the workflow's own token, which
   starts no further workflow run.
 - A manual run restores the committed baseline and checks the whole library.

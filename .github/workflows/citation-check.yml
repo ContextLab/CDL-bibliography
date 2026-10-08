@@ -65,7 +65,9 @@ jobs:
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
-          name: baseline-candidate
+          # Named by the attempt: a run that is started again never picks up the file of an
+          # earlier attempt when its own export made none.
+          name: baseline-candidate-${{ github.run_id }}-${{ github.run_attempt }}
           path: .bibcheck/baseline-candidate.jsonl.gz
           include-hidden-files: true
           if-no-files-found: error
@@ -82,8 +84,9 @@ jobs:
 
   # Keeps verification/baseline.jsonl.gz in step with cdl.bib: after a push to master whose
   # citation check passed, the results exported above are committed when their contents differ
-  # from the committed file's. This is the only job that may write to the repository, and it
-  # runs no code from the checkout: it copies one file and commits it. A commit made with the
+  # from the committed file's, and only while master is still at the commit that was checked.
+  # This is the only job that may write to the repository, and it runs no code from the
+  # checkout: it copies one file and commits it. A commit made with the
   # workflow's own token starts no workflow run, so this does not repeat itself.
   baseline:
     needs: citations
@@ -100,7 +103,7 @@ jobs:
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
-          name: baseline-candidate
+          name: baseline-candidate-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/candidate
       - name: Commit the saved results when they changed
         if: steps.candidate.outcome == 'success'
@@ -108,6 +111,13 @@ jobs:
           CANDIDATE: ${{ runner.temp }}/candidate/baseline-candidate.jsonl.gz
         run: |
           gzip -t "$CANDIDATE"
+          # The results are those of the commit that was checked. When master is no longer at
+          # that commit, they are not saved: they would stand for a library that is not the
+          # one on master now, and the push that moved master has a run of its own to come.
+          if [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then
+            echo "::notice::master has moved on from ${GITHUB_SHA::7}; its newer run saves the results."
+            exit 0
+          fi
           # Compared unpacked: two archives of the same lines differ in their headers.
           if [ -f verification/baseline.jsonl.gz ] && [ "$(gzip -dc "$CANDIDATE" | sha256sum)" = "$(gzip -dc verification/baseline.jsonl.gz | sha256sum)" ]; then
             echo "verification/baseline.jsonl.gz already holds these results."
@@ -118,11 +128,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add verification/baseline.jsonl.gz
           git commit -m "verification: saved results of the library as of ${GITHUB_SHA::7} (automatic)"
-          # master may have moved on while the check ran: this commit touches one file, so it
-          # is replayed on the newer master; when that master's own run is to come, its results
-          # replace these in turn.
-          for attempt in 1 2 3; do
-            if git push origin HEAD:master; then exit 0; fi
-            git pull --rebase origin master
-          done
-          echo "::warning::verification/baseline.jsonl.gz could not be pushed; the next push to master will save it."
+          # No force and no replaying: a push that is refused means master moved in this
+          # moment, and then the newer run saves the results.
+          git push origin HEAD:master \
+            || echo "::notice::master moved while this was being saved; its newer run saves the results."
