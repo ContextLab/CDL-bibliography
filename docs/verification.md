@@ -1249,6 +1249,15 @@ available. This lets fork pull requests run when GitHub supplies an empty variab
   file in the pull request.
 - Exit status: `0` when every selected entry is verified, `1` otherwise, `2` for a
   configuration or provider error.
+- The script runs its `cdlbib crossref` commands (`check-ledger`, `restore`, `verify` or
+  `status`) in its own process when the package is installed for the Python that runs it,
+  so the bibliography is parsed once for each text its file has during the run and not once
+  by each command; with a Python that does not have the package it runs the installed
+  `cdlbib` command, one process per command. Within one `crossref verify --auto-review` the
+  Crossref check and the review layers likewise share one parse, and a layer that changed
+  nothing does not read every result and write the report and the checkpoint snapshot
+  again. On the 6,391-entry library (2026-10-08, one edited entry, two network requests)
+  that run took 41 seconds where it had taken nine minutes.
 
 Because a pull request's approvals are trusted only from the base branch, a pull request
 that adds a `human_verified` approval to `baseline.jsonl.gz`, or a row to `approvals.jsonl`,
