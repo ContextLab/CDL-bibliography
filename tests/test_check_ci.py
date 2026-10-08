@@ -22,6 +22,17 @@ ROOT = Path(__file__).resolve().parents[1]
 MOST_WITHOUT_A_SAVED_RESULT = 200
 
 
+@pytest.fixture(scope="module", autouse=True)
+def one_parse_of_each_text():
+    """The tests read the clone's bibliography themselves, for an entry's text and fingerprint
+    (seven times, six seconds each): within this module it is parsed once for each text the
+    file has, told by the file's bytes (verification.read_once). The script's own runs are
+    other processes and read it for themselves."""
+    from cdlbib import verification
+    with verification.read_once(by_content=True):
+        yield
+
+
 @pytest.fixture(scope="module")
 def clone(tmp_path_factory):
     repo = tmp_path_factory.mktemp("ci") / "repo"
@@ -72,15 +83,18 @@ def clone(tmp_path_factory):
     return repo
 
 
-def run_ci(repo, event, base, keep=False):
+def run_ci(repo, event, base, keep=False, python=None, path=None):
     """One run of the script. ``keep``: the results of the run before stay (.bibcheck), as the
     workflow's cache keeps them from one run on a branch to the next; otherwise the run
-    starts with none."""
+    starts with none. ``python``: the interpreter that runs the script (this one, which has
+    the package, unless given); ``path``: a folder put first on its PATH."""
     env = dict(os.environ, EVENT_NAME=event, BASE_REVISION=base,
                CROSSREF_MAILTO=os.environ.get("CROSSREF_MAILTO", "check-ci-test@example.org"))
+    if path:
+        env["PATH"] = str(path) + os.pathsep + env.get("PATH", "")
     if not keep:
         subprocess.run(["rm", "-rf", ".bibcheck"], cwd=repo, check=True)
-    return subprocess.run([sys.executable, "verification/check_ci.py"], cwd=repo, env=env,
+    return subprocess.run([str(python or sys.executable), "verification/check_ci.py"], cwd=repo, env=env,
                           capture_output=True, text=True)
 
 
@@ -209,10 +223,10 @@ def test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_
         subprocess.run(["git", "add", "cdl.bib", "verification/approvals.jsonl"], cwd=clone, check=True)
         subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
 
-    # The edited text is checked against its sources once (the pull request run, which takes
-    # minutes): the push run before it reads the row and checks nothing, and the push run
-    # after it finds the result the pull request run stored, as a run on a branch finds the
-    # results of the run before it in the workflow's cache.
+    # The edited text is checked against its sources once (the pull request run): the push
+    # run before it reads the row and checks nothing, and the push run after it finds the
+    # result the pull request run stored, as a run on a branch finds the results of the run
+    # before it in the workflow's cache.
     try:
         commit(entry["fingerprint"], "Zoll90 edited, with its approval")
         run = run_ci(clone, "push", start)
@@ -313,5 +327,42 @@ def test_a_pull_request_that_adds_a_row_that_is_no_valid_row_today_fails_the_che
         commit(kept + (v.dumps(row) + "\n").encode("utf-8").replace(b"Compared", b"compared"), "the row altered")
         run = run_ci(clone, "pull_request", base)
         assert run.returncode == 1 and "already held was removed or changed" in run.stdout, run.stdout + run.stderr
+    finally:
+        subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
+
+
+def test_a_python_without_the_package_runs_the_installed_command_with_the_same_outcome(clone, tmp_path):
+    """The script runs its `cdlbib crossref` commands in its own process when the package is
+    installed for the Python that runs it (every test above), and otherwise as the installed
+    command, a process each (here: found on PATH). The same check gives the same status and
+    prints the same either way: a pull request that adds a ledger row dated in the future
+    fails, naming the line, before the baseline is read."""
+    from cdlbib import verification as v
+    bare = tmp_path / "bare"
+    subprocess.run([sys.executable, "-m", "venv", "--without-pip", str(bare)], check=True, capture_output=True)
+    python = bare / "bin" / "python"
+    missing = subprocess.run([str(python), "-c", "import cdlbib"], capture_output=True, text=True)
+    assert missing.returncode != 0 and "No module named 'cdlbib'" in missing.stderr     # it has no package
+    assert not (bare / "bin" / "cdlbib").exists()                                       # nor the command beside it
+    installed = Path(sys.executable).parent                                             # where this Python's command is
+    assert (installed / "cdlbib").exists()
+    entry = v.load_entries(str(clone / "cdl.bib"))["Zoll90"]
+    review = {"reviewer": "@octocat", "source": "https://doi.org/10.1002/tea.3660271011",
+              "note": "Compared every field with the printed article.", "github_login": "octocat", "github_id": 583231}
+    row = {"key": "Zoll90", "fingerprint": entry["fingerprint"], "human_review": review,
+           "approval_digest": v.approval_digest(review), "approved_at": "2099-01-01T00:00:00+00:00", "policy": v.POLICY}
+    start = head(clone)
+    refused = "is not a valid approval row: approved_at (2099-01-01T00:00:00+00:00) is later than the present time"
+    try:
+        with open(clone / "verification" / "approvals.jsonl", "a", encoding="utf-8") as stream:
+            stream.write(v.dumps(row) + "\n")
+        subprocess.run(["git", "add", "verification/approvals.jsonl"], cwd=clone, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", "a row dated 2099"], cwd=clone, check=True)
+        own = run_ci(clone, "pull_request", start)                                      # in this Python's process
+        other = run_ci(clone, "pull_request", start, python=python, path=installed)     # as the command on PATH
+        for run in (own, other):
+            assert run.returncode == 1, run.stdout + run.stderr
+            assert refused in run.stdout and "Restored" not in run.stdout
+        assert own.stdout == other.stdout
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)

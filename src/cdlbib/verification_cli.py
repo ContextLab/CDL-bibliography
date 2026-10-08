@@ -547,26 +547,36 @@ def verify(
                 validate_output_path(selection_input, report, cache)
                 if snapshot:
                     validate_output_path(selection_input, snapshot, cache)
-        selected = select_keys(fname, keys, against)
-        client = DeferredClient(cache, mailto, interval, refresh)
-        results = run_verification(
-            fname,
-            cache,
-            client,
-            report,
-            retry=retry_unresolved,
-            refresh=refresh,
-            limit=limit,
-            wait=wait,
-            snapshot=snapshot,
-            recheck_cached=recheck_cached,
-            keys=selected,
-        )
-        if auto_review and selected:
-            results = run_review_layers(fname, cache, client, report, selected, limit, snapshot)
-        # Reread both selection and results so concurrent edits cannot pass.
-        results = write_report(fname, cache, report)
-        selected = select_keys(fname, keys, against, entries=results)
+        # The bibliography is parsed once for each text it has during the run, not once for
+        # each step (verification.read_once, by the file's bytes: the Crossref check and the
+        # eleven review layers each read it three times, forty parses of the whole library for
+        # one changed entry), and a step that changed nothing does not read every result and
+        # write the report and the snapshot again (verification.unchanged_outputs_kept).
+        with verification.read_once(by_content=True):
+            selected = select_keys(fname, keys, against)
+            client = DeferredClient(cache, mailto, interval, refresh)
+            with verification.unchanged_outputs_kept():
+                results = run_verification(
+                    fname,
+                    cache,
+                    client,
+                    report,
+                    retry=retry_unresolved,
+                    refresh=refresh,
+                    limit=limit,
+                    wait=wait,
+                    snapshot=snapshot,
+                    recheck_cached=recheck_cached,
+                    keys=selected,
+                )
+                if auto_review and selected:
+                    results = run_review_layers(fname, cache, client, report, selected, limit, snapshot)
+                # Reread both selection and results so concurrent edits cannot pass. The
+                # bibliography, the base and the ledgers are read again and told by their
+                # bytes, and the database by its changes: the results the last step read are
+                # used only when all of those are as they were then.
+                results = write_report(fname, cache, report)
+                selected = select_keys(fname, keys, against, entries=results)
         good = summary({key: results[key] for key in selected})
         typer.echo(f"Report: {report}; network requests: {client.requests}")
         if not good:

@@ -369,3 +369,187 @@ def test_report_cannot_overwrite_comparison_base(tmp_path, command):
     assert result.exit_code == 2, result.output
     assert base.read_text() == BIB
     cache.close()
+
+
+def test_a_normalized_text_is_remembered_and_a_refused_one_refused_again():
+    assert v.normalized("The {\\'E}cole  Normale") == v.normalized("The {\\'E}cole  Normale") == "the école normale"
+    assert v.normalized(1990) == "1990"
+    for _ in range(2):
+        with pytest.raises(ValueError, match="Math or semantic markup"):
+            v.normalized("$x$")
+        with pytest.raises(ValueError, match="Unknown LaTeX command"):
+            v.normalized("\\foo{x}")
+
+
+def test_read_once_parses_a_copy_with_the_same_bytes_once_and_a_changed_file_again(tmp_path):
+    bib, base = tmp_path / "test.bib", tmp_path / "base.bib"
+    bib.write_text(BIB)
+    base.write_text(BIB)
+    plain = v.load_entries(bib)
+    files = (str(bib.resolve()), str(base.resolve()))
+    with v.read_once() as store:
+        first, copy = v.load_entries(bib), v.load_entries(base)
+        assert first == copy == plain
+        parses = [found for name, found in store.items() if name[0] in files]
+        assert len(parses) == 2 and parses[0] is parses[1]            # one parse serves both files
+        first["Old"]["fields"]["title"] = "spoiled by the caller"      # each caller has a copy of its own
+        assert v.load_entries(bib) == plain
+        base.write_text(BIB.replace("{2020}", "{920}"))                # the base changes: parsed again
+        changed = v.load_entries(base)
+        assert changed["Old"]["fields"]["year"] == "920" and changed["Old"]["fingerprint"] != plain["Old"]["fingerprint"]
+        assert v.load_entries(bib) == plain                            # and the other file's parse stays
+        bib.write_text(BIB.replace("{2020}", "{920}"))                 # now the two have the same bytes again
+        assert v.load_entries(bib) == changed
+        assert len([name for name in store if name[0] in files]) == 2 and len(store) == 3   # the first text's parse was let go
+    assert v.load_entries(base) == changed
+
+
+def test_read_once_by_content_sees_an_edit_that_keeps_the_size_and_the_modification_time(tmp_path):
+    import os
+    bib, base = tmp_path / "test.bib", tmp_path / "base.bib"
+    bib.write_text(BIB)
+    base.write_text(BIB)
+    plain = v.load_entries(bib)
+    files = (str(bib.resolve()), str(base.resolve()))
+
+    def edit_unseen(text):
+        """Another text of the same size, with the file's times put back as they were."""
+        before = bib.stat()
+        bib.write_text(text)
+        os.utime(bib, ns=(before.st_atime_ns, before.st_mtime_ns))
+        after = bib.stat()
+        assert (after.st_mtime_ns, after.st_size) == (before.st_mtime_ns, before.st_size)
+
+    with v.read_once(by_content=True) as store:
+        assert v.load_entries(bib) == v.load_entries(base) == plain
+        parses = [found for name, found in store.items() if name[0] in files]
+        assert len(parses) == 2 and parses[0] is parses[1]            # one parse serves both files
+        edit_unseen(BIB.replace("{2020}", "{1920}"))
+        changed = v.load_entries(bib)
+        assert changed["Old"]["fields"]["year"] == "1920" and changed["Old"]["fingerprint"] != plain["Old"]["fingerprint"]
+        assert v.load_entries(base) == plain
+        with v.read_once():                                            # a block inside reads the same way
+            edit_unseen(BIB.replace("{2020}", "{1820}"))
+            assert v.load_entries(bib)["Old"]["fields"]["year"] == "1820"
+        edit_unseen(BIB)
+        assert v.load_entries(bib) == plain
+        assert len([name for name in store if name[0] in files]) == 2 and len(store) == 3
+    # Control: by the file's time and size (the plain block), that same edit is not seen.
+    with v.read_once():
+        assert v.load_entries(bib) == plain
+        edit_unseen(BIB.replace("{2020}", "{1920}"))
+        assert v.load_entries(bib) == plain
+    assert v.load_entries(bib) == changed
+
+
+def _written(path):
+    """What tells one writing of a file from the next: each is a new file moved into place."""
+    found = path.stat()
+    return found.st_ino, found.st_mtime_ns, found.st_size
+
+
+def test_unchanged_outputs_are_kept_only_while_nothing_they_are_made_from_changes(tmp_path):
+    import os
+    bib, cache, entry, original = setup_cache(tmp_path)
+    report, snapshot = tmp_path / "out" / "report.jsonl", tmp_path / "out" / "snapshot.jsonl.gz"
+
+    def read():
+        rows = [json.loads(line) for line in report.read_text(encoding="utf-8").splitlines()]
+        with gzip.open(snapshot, "rt", encoding="utf-8") as stream:
+            saved = [json.loads(line) for line in stream][1:]
+        assert [(r["key"], r["status"]) for r in rows] == [(r["key"], r["status"]) for r in saved]
+        return {r["key"]: r["status"] for r in rows}
+
+    def both():
+        results = v.write_report(bib, cache, report)
+        assert v.export_snapshot(bib, cache, snapshot) == results == v.current_results(bib, cache)
+        assert {key: r["status"] for key, r in results.items()} == read()   # what is handed back is what the files say
+        return results, _written(report), _written(snapshot)
+
+    # Outside the block every call writes both files anew.
+    _, first_report, first_snapshot = both()
+    _, again_report, again_snapshot = both()
+    assert again_report != first_report and again_snapshot != first_snapshot
+
+    with v.unchanged_outputs_kept():
+        results, kept_report, kept_snapshot = both()
+        assert results == {"Old": original}
+        results["Old"] = "spoiled by the caller"                           # each caller has a mapping of its own
+        for _ in range(2):                                                 # nothing changed: nothing is written
+            results, same_report, same_snapshot = both()
+            assert results == {"Old": original} and (same_report, same_snapshot) == (kept_report, kept_snapshot)
+
+        # A result stored through this connection.
+        stored = cache.put(bib, entry, {"status": "needs_review", "issues": ["Checked again"]})
+        results, new_report, new_snapshot = both()
+        assert results == {"Old": stored} and read() == {"Old": "needs_review"}
+        assert new_report != kept_report and new_snapshot != kept_snapshot
+        assert both()[1:] == (new_report, new_snapshot)
+
+        # A result stored through another connection (another process using the database).
+        other = v.Cache(cache.path)
+        approved = other.put(bib, entry, APPROVAL)
+        other.close()
+        results, newer_report, newer_snapshot = both()
+        assert results == {"Old": approved} and read() == {"Old": "human_verified"}
+        assert newer_report != new_report and newer_snapshot != new_snapshot
+        assert both()[1:] == (newer_report, newer_snapshot)
+
+        # The bibliography edited: the entry is another text, with no result. (Told by the
+        # file's bytes: this edit keeps its size, and its times are put back.)
+        times = bib.stat()
+        bib.write_text(BIB.replace("{2020}", "{1920}"))
+        os.utime(bib, ns=(times.st_atime_ns, times.st_mtime_ns))
+        assert (bib.stat().st_mtime_ns, bib.stat().st_size) == (times.st_mtime_ns, times.st_size)
+        results, edited_report, edited_snapshot = both()
+        assert results["Old"]["status"] == "pending" and read() == {"Old": "pending"}
+        assert edited_report != newer_report and edited_snapshot != newer_snapshot
+        assert both()[1:] == (edited_report, edited_snapshot)
+
+        # A row for that text added to the approvals ledger this cache reads.
+        edited = v.load_entries(bib)["Old"]
+        review = {"reviewer": "@octocat", "source": "https://example.org/book", "note": "Compared every field.",
+                  "github_login": "octocat", "github_id": 583231}
+        row = {"key": "Old", "fingerprint": edited["fingerprint"], "human_review": review,
+               "approval_digest": v.approval_digest(review), "approved_at": v.now(), "policy": v.POLICY}
+        assert v.valid_shared_approval(row)
+        ledger = v.approval_ledger()
+        assert ledger is not None and ledger.parent == tmp_path and not ledger.exists()
+        ledger.write_text(v.dumps(row) + "\n", encoding="utf-8")
+        results, ledger_report, ledger_snapshot = both()
+        assert results["Old"]["status"] == "human_verified" and read() == {"Old": "human_verified"}
+        assert ledger_report != edited_report and ledger_snapshot != edited_snapshot
+        assert both()[1:] == (ledger_report, ledger_snapshot)
+
+        # Its revocation added to the revocation ledger.
+        revocation = {"key": "Old", "fingerprint": row["fingerprint"], "approval": review,
+                      "approval_digest": row["approval_digest"], "approval_checked_at": row["approved_at"],
+                      "revoked_at": v.now(), "revoked_by": "@hubot", "reason": "Recorded in error."}
+        assert v.valid_revocation(revocation)
+        Path(v.REVOCATION_LEDGER).write_text(v.dumps(revocation) + "\n", encoding="utf-8")
+        results, revoked_report, revoked_snapshot = both()
+        assert results["Old"]["status"] == "pending" and read() == {"Old": "pending"}
+        assert revoked_report != ledger_report and revoked_snapshot != ledger_snapshot
+        assert both()[1:] == (revoked_report, revoked_snapshot)
+
+        # A file that is gone, or was replaced by other hands, is written again.
+        report.unlink()
+        snapshot.write_bytes(b"not a snapshot")
+        results, back_report, back_snapshot = both()
+        assert results["Old"]["status"] == "pending" and back_report != revoked_report and back_snapshot != revoked_snapshot
+
+        # Indexing the history writes its checkpoints and changes no result: nothing is written.
+        cache.index_notices()
+        assert both()[1:] == (back_report, back_snapshot)
+
+        # Results of entries the caller read itself are the results of those entries.
+        earlier = v.load_entries(bib)
+        bib.write_text(BIB)
+        assert v.current_results(bib, cache, earlier)["Old"]["status"] == "pending"
+        assert v.current_results(bib, cache)["Old"] == approved
+        assert v.current_results(bib, cache, earlier)["Old"]["status"] == "pending"
+
+    # After the block every call writes again.
+    _, after_report, _ = both()
+    assert both()[1] != after_report
+    cache.close()
