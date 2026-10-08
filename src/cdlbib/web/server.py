@@ -374,10 +374,15 @@ def start(ws, port=0, log=None):
     except OSError as exc:
         app.store.close()
         raise CdlbibError(f"The web interface could not listen on {LOOPBACK}:{port}: {exc}") from exc
-    httpd.daemon_threads = True
-    running = Running(app, httpd)
-    app.hosts = (f"{LOOPBACK}:{running.port}", f"localhost:{running.port}")
-    app.start()
+    try:
+        httpd.daemon_threads = True
+        running = Running(app, httpd)
+        app.hosts = (f"{LOOPBACK}:{running.port}", f"localhost:{running.port}")
+        app.start()
+    except BaseException:            # an interrupt here too: the port and the folder of uploads are given back
+        httpd.server_close()
+        app.close()
+        raise
     return running
 
 
@@ -389,27 +394,32 @@ def run(port=0, open_browser=True, say=print):
         if line.startswith("internal error") or line.rsplit(" ", 1)[-1] >= "400":
             print(line, file=sys.stderr)
 
-    running = start(ws, port=port, log=log)
-    say(f"cdlbib web: {ws.bib}")
-    say(f"open: {running.url}")
-    say("This address works on this computer only, and until this command is stopped (Ctrl-C).")
-    if open_browser:
-        try:
-            webbrowser.open(running.url)
-        except Exception as exc:        # no browser to open: the address is printed above
-            say(f"the browser could not be opened ({type(exc).__name__}); open the address above")
     def stop(signum, frame):
         raise KeyboardInterrupt
 
-    # Started as a background job, a process inherits "ignore" for SIGINT and could then only be
-    # killed, which would leave the uploads behind: the server answers both signals itself.
+    # The server answers SIGINT and SIGTERM itself, from before it makes its folder of uploads:
+    # a signal's own death would leave that folder behind. (Started as a background job, a
+    # process also inherits "ignore" for SIGINT and could then only be killed.) Taken over
+    # only when serving began, the signals found a window: after the address was printed and
+    # while the browser was being opened, SIGTERM still killed the process outright.
     earlier = {number: signal.signal(number, stop) for number in (signal.SIGINT, signal.SIGTERM)}
+    running = None
     try:
+        running = start(ws, port=port, log=log)
+        say(f"cdlbib web: {ws.bib}")
+        say(f"open: {running.url}")
+        say("This address works on this computer only, and until this command is stopped (Ctrl-C).")
+        if open_browser:
+            try:
+                webbrowser.open(running.url)
+            except Exception as exc:        # no browser to open: the address is printed above
+                say(f"the browser could not be opened ({type(exc).__name__}); open the address above")
         running.serve()
     except KeyboardInterrupt:
         pass
     finally:
         for number, handler in earlier.items():
             signal.signal(number, handler)
-        running.httpd.server_close()
-        running.app.close()
+        if running is not None:
+            running.httpd.server_close()
+            running.app.close()
