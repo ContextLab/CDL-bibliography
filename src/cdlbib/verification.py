@@ -3129,25 +3129,34 @@ def _keep_output(kind, filename, cache, output, results):
         kept[name] = (now_made_from, _file_state(Path(output).resolve()), found[1])
 
 
-def validate_output_path(filename, output, cache):
-    """Reports/snapshots must never overwrite the bibliography, the working DB, or a ledger
-    of approvals or revocations: the library's own two and the ones this cache reads, by
-    path, through a link, or as another name of the same file."""
+def validate_output_path(filename, output, cache, additions=False):
+    """Reports/snapshots must never overwrite the bibliography, the working DB, a ledger
+    of approvals or revocations (the library's own two and the ones this cache reads), or
+    the library's file of results saved since its snapshot (``Workspace.additions``): by
+    path, through a link, or as another name of the same file. ``additions``: the output is
+    that file's own writer (``export_additions``), which may write there and nowhere else
+    that is protected."""
     output = Path(output)
+
+    def same(protected):
+        return output.resolve() == protected.resolve() or (
+            output.exists() and protected.exists() and output.samefile(protected))
+
     for protected in (Path(filename), cache.path):
-        if output.resolve() == protected.resolve() or (
-            output.exists() and protected.exists() and output.samefile(protected)
-        ):
+        if same(protected):
             raise ValueError(
                 "Output path would overwrite the bibliography or verification database"
             )
     for protected in _ledgers(filename, cache):
-        if output.resolve() == protected.resolve() or (
-            output.exists() and protected.exists() and output.samefile(protected)
-        ):
+        if same(protected):
             raise ValueError(
                 "Output path would overwrite a ledger of approvals or revocations"
             )
+    if not additions and same(workspace.Workspace.for_bib(filename).additions):
+        raise ValueError(
+            "Output path would overwrite the results saved since the snapshot "
+            "(that file is written with `crossref snapshot --additions-to SNAPSHOT`)"
+        )
 
 
 def export_snapshot(filename, cache, output):
@@ -3189,6 +3198,238 @@ def export_snapshot(filename, cache, output):
     os.replace(temporary, path)
     _keep_output("snapshot", filename, cache, output, results)
     return results
+
+
+# Results saved since the snapshot (2026-10-08). verification/baseline.jsonl.gz holds the
+# saved result of every entry at the time it was written, and is 16 MB of gzip that git
+# stores whole each time it changes. What is verified after it was written goes into a
+# second file beside it, verification/baseline-additions.jsonl: plain UTF-8 JSON Lines, a
+# header line and then one result per line, in the order of the keys. A result is the same
+# record a snapshot holds and is validated by the same function (``_validated_records``);
+# the header is {"additions": true, "policy": POLICY, "schema": 2} and nothing else, so
+# that saving one more result adds one line and changes no other. ``export_additions``
+# writes the file, ``import_snapshot`` reads it with the snapshot it lies beside, and
+# `crossref snapshot` (a new whole snapshot, which holds those results itself) empties it.
+# The file has the trust of the snapshot it is read with and no more: whoever reads the
+# snapshot of a revision reads the additions of that same revision (verification/check_ci.py).
+ADDITIONS_SUFFIX = "-additions.jsonl"
+ADDITIONS_MAX_BYTES = 16 * 1024 * 1024       # the whole file; fold it into the snapshot long before
+ADDITIONS_ROW_MAX_BYTES = 2 * 1024 * 1024    # one result as written, with its newline
+
+
+def additions_beside(snapshot):
+    """The additions file that goes with ``snapshot``: in the same folder, the snapshot's
+    name without .jsonl.gz (or .gz, or .jsonl) and with -additions.jsonl
+    (verification/baseline.jsonl.gz: verification/baseline-additions.jsonl)."""
+    path = Path(snapshot)
+    name = path.name
+    for ending in (".jsonl.gz", ".gz", ".jsonl"):
+        if name.endswith(ending) and len(name) > len(ending):
+            name = name[: -len(ending)]
+            break
+    return path.with_name(name + ADDITIONS_SUFFIX)
+
+
+def additions_header():
+    return {"additions": True, "policy": POLICY, "schema": 2}
+
+
+def read_additions(path):
+    """The records of an additions file, as parsed lines: nothing of it is used unless the
+    whole of it can be read. Refused, with the reason: a link or anything that is no regular
+    file, a file over ADDITIONS_MAX_BYTES, bytes that are not UTF-8, a line over
+    ADDITIONS_ROW_MAX_BYTES, an empty line, a line that is not one JSON object, a first line
+    that is not this policy's additions header. The records are validated by the caller
+    (``_validated_additions``), as a snapshot's are."""
+    path = Path(path)
+    if path.is_symlink() or not path.is_file():
+        raise ValueError(f"Additions file {path} is not a regular file (a link is not read)")
+    size = path.stat().st_size
+    if size > ADDITIONS_MAX_BYTES:
+        raise ValueError(f"Additions file {path} is {size} bytes, over the limit of {ADDITIONS_MAX_BYTES}; "
+                         "nothing of it was read")
+    data = path.read_bytes()
+    try:
+        data.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"Additions file {path} is not UTF-8 text: {exc}") from None
+    lines = data.split(b"\n")
+    if lines and lines[-1] == b"":
+        lines.pop()
+    parsed = []
+    for number, line in enumerate(lines, 1):
+        if len(line) + 1 > ADDITIONS_ROW_MAX_BYTES:
+            raise ValueError(f"Additions file {path}, line {number}: {len(line) + 1} bytes, over the limit of "
+                             f"{ADDITIONS_ROW_MAX_BYTES} for one result; nothing of the file was read")
+        try:
+            record = json.loads(line)
+        except ValueError as exc:
+            raise ValueError(f"Additions file {path}, line {number} is not a JSON object: {exc}") from None
+        if not isinstance(record, dict):
+            raise ValueError(f"Additions file {path}, line {number} is not a JSON object")
+        parsed.append(record)
+    if not parsed or parsed[0] != additions_header():
+        raise ValueError(
+            f"Additions file {path} does not begin with the header of this policy "
+            f"({dumps(additions_header())}); reverify with the current policy"
+        )
+    return parsed[1:]
+
+
+def _validated_records(records, what="snapshot"):
+    """Refuse (ValueError) the first of ``records`` that may not be restored; the one check of
+    a result read from a snapshot or from an additions file (``what``, for the message)."""
+    seen = set()
+    statuses = ACCEPTED | {"pending", "needs_review", "provider_error"}
+    for result in records:
+        if (
+            not isinstance(result, dict)
+            or not {"key", "fingerprint", "policy", "status"} <= result.keys()
+            or result["status"] not in statuses
+            or result["policy"] != POLICY
+            or result["key"] in seen
+        ):
+            key = result.get("key") if isinstance(result, dict) else None
+            raise ValueError(f"Invalid {what} review record: {key!r} (needs key, fingerprint, policy "
+                             f"{POLICY!r}, a known status and a key not seen before)")
+        if result["status"] == "human_verified" and not result.get("human_review"):
+            raise ValueError(f"Human approval is missing its audit record: {result['key']}")
+        if result["status"] == "metadata_verified" and not route_approval_valid(result) and not any(
+            c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
+            and c.get("evidence")
+            and c.get("issues") == []
+            and (
+                c.get("source") == "crossref"
+                or (
+                    result.get("accepted_source") == c.get("source")
+                    and result.get("accepted_doi") == c.get("doi")
+                    and (
+                        c.get("raw_record")
+                        if c.get("source") == "europepmc"
+                        else (
+                            c.get("raw_metadata") and c.get("document_sha256")
+                            if c.get("source") == "publisher-head"
+                            else (c.get("raw_marcxml") and c.get("document_sha256") and c.get("edition_binding")
+                                  if c.get("source") == "catalogue-imprint"
+                                  else c.get("raw_xml") and c.get("medline_record"))
+                        )
+                    )
+                )
+            )
+            for c in result.get("candidates", [])
+        ):
+            raise ValueError(
+                f"Machine approval is missing its source evidence: {result['key']} "
+                f"(accepted_source {result.get('accepted_source')!r}: {approval_rejection_reason(result)}). "
+                f"Nothing was restored: the snapshot import is all-or-nothing."
+            )
+        seen.add(result["key"])
+
+
+def _validated_additions(records):
+    """``_validated_records`` and what an additions file requires besides: a key that is
+    text, the fingerprint of a text (schema 2), and a result that is one (not ``pending``:
+    an entry without a result has no line)."""
+    for result in records:
+        if {"key", "fingerprint", "status"} <= result.keys() and (
+                not isinstance(result["key"], str) or not result["key"].strip()
+                or not isinstance(result["fingerprint"], str) or not _FINGERPRINT.fullmatch(result["fingerprint"])
+                or result["status"] == "pending"):
+            raise ValueError(f"Invalid additions review record: {result['key']!r} (needs a key, the v2 "
+                             "fingerprint of an entry's text and a status other than pending)")
+    _validated_records(records, "additions")
+
+
+def snapshot_fingerprints(snapshot):
+    """The fingerprints of the texts ``snapshot`` holds a result for (a row that is not
+    ``pending``). The snapshot must be one `restore` would read: schema 2, this policy,
+    complete."""
+    with gzip.open(snapshot, "rt", encoding="utf-8") as stream:
+        try:
+            header = json.loads(next(stream))
+        except StopIteration:
+            raise ValueError(f"{snapshot} is empty: not a verification snapshot") from None
+        if not isinstance(header, dict) or header.get("schema") != 2 or header.get("policy") != POLICY:
+            raise ValueError(
+                f"{snapshot} is not a schema-2 snapshot of the current policy; results cannot be saved as additions to it"
+            )
+        held, count = set(), 0
+        for line in stream:
+            count += 1
+            row = json.loads(line)
+            if isinstance(row, dict) and row.get("status") != "pending" and isinstance(row.get("fingerprint"), str):
+                held.add(row["fingerprint"])
+    if count != header.get("entries"):
+        raise ValueError("Incomplete verification snapshot")
+    return held
+
+
+def _write_additions(output, lines):
+    """The additions file, whole and in place of the one before: the header and ``lines``."""
+    path = Path(output)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        dir=path.parent, prefix=path.name + ".", suffix=".tmp", delete=False
+    ) as handle:
+        temporary = handle.name
+        handle.write((dumps(additions_header()) + "\n").encode("utf-8"))
+        for line in lines:
+            handle.write(line)
+    os.replace(temporary, path)
+
+
+def export_additions(filename, cache, snapshot, output):
+    """Write to ``output`` the current results that ``snapshot`` lacks: for each entry of
+    ``filename`` whose present text has no result in ``snapshot`` (``snapshot_fingerprints``),
+    its current result, when it has one (``pending`` is none, and ``provider_error`` is a
+    lookup that failed, not a result). One line each after the header, in the order of the
+    keys (by code point), so that one more result is one more line. With nothing to add the
+    file holds its header alone. Nothing is written that `restore` would refuse: the rows
+    are validated as it validates them, and a row or a file over the limits is refused
+    here. Returns the results written, by key."""
+    validate_output_path(filename, output, cache, additions=True)
+    snapshot, target = Path(snapshot), Path(output)
+    if target.resolve() == snapshot.resolve() or (target.exists() and snapshot.exists() and target.samefile(snapshot)):
+        raise ValueError("Output path would overwrite the snapshot the additions are made for")
+    if target.is_symlink():
+        raise ValueError(f"Additions file {target} is a link; it is not written through")
+    held = snapshot_fingerprints(snapshot)
+    results = current_results(filename, cache)
+    added = {key: results[key] for key in sorted(results)
+             if results[key]["status"] not in {"pending", "provider_error"}
+             and results[key]["fingerprint"] not in held}
+    _validated_additions(list(added.values()))
+    lines, total = [], len(dumps(additions_header())) + 1
+    for key, result in added.items():
+        line = (dumps(result) + "\n").encode("utf-8")
+        if len(line) > ADDITIONS_ROW_MAX_BYTES:
+            raise ValueError(f"The result of {key} is {len(line)} bytes as a line, over the limit of "
+                             f"{ADDITIONS_ROW_MAX_BYTES} for an additions file; save a whole snapshot instead "
+                             "(crossref snapshot)")
+        total += len(line)
+        lines.append(line)
+    if total > ADDITIONS_MAX_BYTES:
+        raise ValueError(f"The {len(added)} results the snapshot lacks are {total} bytes, over the limit of "
+                         f"{ADDITIONS_MAX_BYTES} for an additions file; save a whole snapshot instead "
+                         "(crossref snapshot), which holds them itself")
+    _write_additions(target, lines)
+    return added
+
+
+def empty_additions(filename, cache, snapshot):
+    """After a whole snapshot was written to ``snapshot``: the additions file beside it, when
+    there is one, holds nothing any more (its header alone); the snapshot holds every
+    current result itself. Returns the file's path when it was emptied, else None (no such
+    file, or it was empty already). No file is made where there was none, and a link is
+    left alone."""
+    beside = additions_beside(snapshot)
+    if beside.is_symlink() or not beside.is_file():
+        return None
+    validate_output_path(filename, beside, cache, additions=True)
+    if beside.read_bytes() == (dumps(additions_header()) + "\n").encode("utf-8"):
+        return None
+    _write_additions(beside, [])
+    return beside
 
 
 def valid_print_year_approval(result):
@@ -3375,13 +3616,29 @@ def result_advisories(fields, result):
     return notes
 
 
-def import_snapshot(filename, cache, snapshot):
+def import_snapshot(filename, cache, snapshot, additions=None):
     """Restore only matching fingerprints/policy from a trusted local snapshot.
 
     The entire file is validated before any rows are written. A snapshot is an
     audit artifact with the same trust as its source repository, not a signed
     certificate. Restoring it never blesses changed entries.
+
+    ``additions``: the file of results saved since the snapshot (``read_additions``), read
+    with it; see ``restore_snapshot``. Returns the number of results restored.
     """
+    return restore_snapshot(filename, cache, snapshot, additions)["restored"]
+
+
+def restore_snapshot(filename, cache, snapshot, additions=None):
+    """``import_snapshot``, and what became of the additions file.
+
+    ``additions`` (a path, or None for none) is read and validated whole, like the snapshot,
+    before anything is written: both files or nothing. Its rows are the snapshot's kind of
+    row, checked by the same function, and restored by the same rule after the snapshot's
+    (an entry whose text the snapshot already gave a result keeps that one). A row whose
+    fingerprint is the text of no entry is not restored, as in a snapshot; its key is
+    reported. Returns {"restored": results stored, "additions": None or {"path", "rows",
+    "restored", "unmatched": [the keys of rows no entry's text matched]}}."""
     entries = load_entries(filename)
     with gzip.open(snapshot, "rt", encoding="utf-8") as stream:
         header = json.loads(next(stream))
@@ -3396,51 +3653,11 @@ def import_snapshot(filename, cache, snapshot):
         records = [json.loads(line) for line in stream]
     if len(records) != header.get("entries"):
         raise ValueError("Incomplete verification snapshot")
-    seen = set()
-    statuses = ACCEPTED | {"pending", "needs_review", "provider_error"}
-    for result in records:
-        if (
-            not isinstance(result, dict)
-            or not {"key", "fingerprint", "policy", "status"} <= result.keys()
-            or result["status"] not in statuses
-            or result["policy"] != POLICY
-            or result["key"] in seen
-        ):
-            key = result.get("key") if isinstance(result, dict) else None
-            raise ValueError(f"Invalid snapshot review record: {key!r} (needs key, fingerprint, policy "
-                             f"{POLICY!r}, a known status and a key not seen before)")
-        if result["status"] == "human_verified" and not result.get("human_review"):
-            raise ValueError(f"Human approval is missing its audit record: {result['key']}")
-        if result["status"] == "metadata_verified" and not route_approval_valid(result) and not any(
-            c.get("source") in {"crossref", "europepmc", "pmc-jats", "publisher-head", "catalogue-imprint"}
-            and c.get("evidence")
-            and c.get("issues") == []
-            and (
-                c.get("source") == "crossref"
-                or (
-                    result.get("accepted_source") == c.get("source")
-                    and result.get("accepted_doi") == c.get("doi")
-                    and (
-                        c.get("raw_record")
-                        if c.get("source") == "europepmc"
-                        else (
-                            c.get("raw_metadata") and c.get("document_sha256")
-                            if c.get("source") == "publisher-head"
-                            else (c.get("raw_marcxml") and c.get("document_sha256") and c.get("edition_binding")
-                                  if c.get("source") == "catalogue-imprint"
-                                  else c.get("raw_xml") and c.get("medline_record"))
-                        )
-                    )
-                )
-            )
-            for c in result.get("candidates", [])
-        ):
-            raise ValueError(
-                f"Machine approval is missing its source evidence: {result['key']} "
-                f"(accepted_source {result.get('accepted_source')!r}: {approval_rejection_reason(result)}). "
-                f"Nothing was restored: the snapshot import is all-or-nothing."
-            )
-        seen.add(result["key"])
+    _validated_records(records)
+    added = None
+    if additions is not None:
+        added = read_additions(additions)
+        _validated_additions(added)
     notices = header.get("source_notices", [])
     from .auto_review import secondary_notice_flags, secondary_suffix_dois
     if not isinstance(notices, list) or any(not isinstance(c, dict) or not secondary_notice_flags([c]) for c in notices):
@@ -3459,7 +3676,7 @@ def import_snapshot(filename, cache, snapshot):
     known_revocations = cache.revocations()
     # Even an edited entry must retain known warnings from the trusted baseline.
     cache.remember_notices(notices + suffixes + locators)
-    for result in records:
+    for result in records + (added or []):
         cache.remember_notices(result.get("candidates", []))
     # Schema 1 includes the key in its hash and can migrate only an exact match.
     # Schema 2 is portable across key renames as well as clone paths.
@@ -3467,47 +3684,54 @@ def import_snapshot(filename, cache, snapshot):
     for entry in entries.values():
         by_fingerprint.setdefault(entry["fingerprint"], []).append(entry)
     count = 0
+    told = None if added is None else {"path": str(additions), "rows": len(added), "restored": 0, "unmatched": []}
     with cache.db:
-        for result in records:
-            if header["schema"] == 1:
-                entry = entries.get(result["key"])
-                matches = (
-                    [entry]
-                    if entry and entry["legacy_fingerprint"] == result["fingerprint"]
-                    else []
-                )
-            else:
-                matches = by_fingerprint.get(result["fingerprint"], [])
-            for entry in matches:
-                # ``stored``: an approval in the approvals ledger does not keep the snapshot's
-                # result (the evidence) for the same text out of the database.
-                if result["status"] == "pending" or cache.stored(filename, entry):
-                    continue
-                restored = dict(
-                    result, key=entry["key"], fingerprint=entry["fingerprint"]
-                )
-                revocation = cache.revocation_for(entry["fingerprint"], restored, known_revocations)
-                if revocation:
-                    # An older snapshot cannot resurrect a revoked human approval.
-                    restored = revoked_view(restored, revocation)
-                if header["schema"] == 1:
-                    restored["fingerprint_migration"] = {
-                        "key": result["key"],
-                        "fingerprint": result["fingerprint"],
-                    }
-                cache.db.execute(
-                    """INSERT INTO reviews
-                    (bibliography,key,fingerprint,policy,result) VALUES (?,?,?,?,?)""",
-                    (
-                        str(Path(filename).resolve()),
-                        entry["key"],
-                        entry["fingerprint"],
-                        POLICY,
-                        dumps(restored),
-                    ),
-                )
-                count += 1
-    return count
+        # The snapshot's rows, then the additions' (always schema 2).
+        for schema, rows, tally in ((header["schema"], records, None), (2, added or [], told)):
+            for result in rows:
+                if schema == 1:
+                    entry = entries.get(result["key"])
+                    matches = (
+                        [entry]
+                        if entry and entry["legacy_fingerprint"] == result["fingerprint"]
+                        else []
+                    )
+                else:
+                    matches = by_fingerprint.get(result["fingerprint"], [])
+                if tally is not None and not matches:
+                    tally["unmatched"].append(result["key"])
+                for entry in matches:
+                    # ``stored``: an approval in the approvals ledger does not keep the snapshot's
+                    # result (the evidence) for the same text out of the database.
+                    if result["status"] == "pending" or cache.stored(filename, entry):
+                        continue
+                    restored = dict(
+                        result, key=entry["key"], fingerprint=entry["fingerprint"]
+                    )
+                    revocation = cache.revocation_for(entry["fingerprint"], restored, known_revocations)
+                    if revocation:
+                        # An older snapshot cannot resurrect a revoked human approval.
+                        restored = revoked_view(restored, revocation)
+                    if schema == 1:
+                        restored["fingerprint_migration"] = {
+                            "key": result["key"],
+                            "fingerprint": result["fingerprint"],
+                        }
+                    cache.db.execute(
+                        """INSERT INTO reviews
+                        (bibliography,key,fingerprint,policy,result) VALUES (?,?,?,?,?)""",
+                        (
+                            str(Path(filename).resolve()),
+                            entry["key"],
+                            entry["fingerprint"],
+                            POLICY,
+                            dumps(restored),
+                        ),
+                    )
+                    count += 1
+                    if tally is not None:
+                        tally["restored"] += 1
+    return {"restored": count, "additions": told}
 
 
 def write_report(filename, cache, report):

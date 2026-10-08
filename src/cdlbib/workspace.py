@@ -32,6 +32,11 @@ class Workspace:
         return self.root / "verification" / "baseline.jsonl.gz"
 
     @property
+    def additions(self):
+        """The results saved since the baseline was written (verification.additions_beside)."""
+        return self.root / "verification" / "baseline-additions.jsonl"
+
+    @property
     def revocations(self):
         return self.root / "verification" / "revocations.jsonl"
 
