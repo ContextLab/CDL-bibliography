@@ -75,10 +75,14 @@ def clone(tmp_path_factory):
     return repo
 
 
-def run_ci(repo, event, base):
+def run_ci(repo, event, base, keep=False):
+    """One run of the script. ``keep``: the results of the run before stay (.bibcheck), as the
+    workflow's cache keeps them from one run on a branch to the next; otherwise the run
+    starts with none."""
     env = dict(os.environ, EVENT_NAME=event, BASE_REVISION=base,
                CROSSREF_MAILTO=os.environ.get("CROSSREF_MAILTO", "check-ci-test@example.org"))
-    subprocess.run(["rm", "-rf", ".bibcheck"], cwd=repo, check=True)
+    if not keep:
+        subprocess.run(["rm", "-rf", ".bibcheck"], cwd=repo, check=True)
     return subprocess.run([sys.executable, "verification/check_ci.py"], cwd=repo, env=env,
                           capture_output=True, text=True)
 
@@ -208,25 +212,31 @@ def test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_
         subprocess.run(["git", "add", "cdl.bib", "verification/approvals.jsonl"], cwd=clone, check=True)
         subprocess.run(["git", "commit", "-q", "-m", message], cwd=clone, check=True)
 
+    # The edited text is checked against its sources once (the pull request run, which takes
+    # minutes): the push run before it reads the row and checks nothing, and the push run
+    # after it finds the result the pull request run stored, as a run on a branch finds the
+    # results of the run before it in the workflow's cache.
     try:
         commit(entry["fingerprint"], "Zoll90 edited, with its approval")
+        run = run_ci(clone, "push", start)
+        assert run.returncode == 0, run.stdout + run.stderr                  # merged: the row counts
+        assert reported(clone, key) == "human_verified"
+        assert (clone / ".bibcheck" / "pushed-approvals.jsonl").read_bytes() == (clone / "verification" / "approvals.jsonl").read_bytes()
         run = run_ci(clone, "pull_request", start)
         assert run.returncode == 1, run.stdout + run.stderr                  # the pull request's own row is not read
         assert reported(clone, key) == "needs_review"
         assert (clone / ".bibcheck" / "base-approvals.jsonl").read_bytes() == subprocess.run(
             ["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True).stdout
-        run = run_ci(clone, "push", start)
-        assert run.returncode == 0, run.stdout + run.stderr                  # merged: the row counts
-        assert reported(clone, key) == "human_verified"
-        assert (clone / ".bibcheck" / "pushed-approvals.jsonl").read_bytes() == (clone / "verification" / "approvals.jsonl").read_bytes()
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
     try:                                                                     # the edit alone: no row for this text
         bib.write_bytes(text.replace(before["raw"], edited).encode("utf-8"))
         subprocess.run(["git", "commit", "-q", "-m", "Zoll90 edited, no approval", "cdl.bib"], cwd=clone, check=True)
-        run = run_ci(clone, "push", start)
+        run = run_ci(clone, "push", start, keep=True)
         assert run.returncode == 1, run.stdout + run.stderr
         assert reported(clone, key) == "needs_review"
+        assert (clone / ".bibcheck" / "pushed-approvals.jsonl").read_bytes() == subprocess.run(
+            ["git", "show", f"{start}:verification/approvals.jsonl"], cwd=clone, capture_output=True).stdout
     finally:
         subprocess.run(["git", "reset", "-q", "--hard", start], cwd=clone, check=True)
 

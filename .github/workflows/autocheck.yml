@@ -17,7 +17,9 @@ jobs:
   # The format check and the test suite, on each supported Python. The suite takes one and a
   # half to three hours on one runner, so its test files are dealt out to six jobs per Python
   # (file number N of the sorted list goes to job N modulo 6): every file runs in exactly one
-  # of them, and the six run side by side.
+  # of them, and the six run side by side. tests/test_check_ci.py is not in that list: its
+  # tests check entries against their sources and took 80 minutes of a job between them, so
+  # they have two jobs of their own (its slowest test, and the others), which need no TeX.
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -25,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ['3.11', '3.13']
-        shard: [1, 2, 3, 4, 5, 6]
+        shard: [1, 2, 3, 4, 5, 6, check-ci-1, check-ci-2]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -72,6 +74,7 @@ jobs:
       # (bibtex-extra), luacode (luatex), the Type 1 fonts of the T1 encoding (cm-super) and
       # Latin Modern for LuaLaTeX and XeLaTeX (lmodern, fonts-lmodern).
       - name: install TeX, Ghostscript, poppler and tesseract
+        if: ${{ !startsWith(matrix.shard, 'check-ci') }}
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
@@ -87,12 +90,20 @@ jobs:
       - name: run pytest
         run : |
           cdlbib verify --no-citations
-          ls tests/test_*.py | sort > all-files.txt
-          awk -v jobs=6 -v job=${{ matrix.shard }} 'NR % jobs == job - 1' all-files.txt > files.txt
-          echo "$(wc -l < files.txt) of $(wc -l < all-files.txt) test files run in this job:"
-          cat files.txt
-          test -s files.txt
-          python -m pytest -q -rs --durations=25 $(cat files.txt)
+          slowest=test_a_push_reads_the_approvals_the_pushed_commit_brings_for_the_entries_it_changes
+          case "${{ matrix.shard }}" in
+            check-ci-1)
+              python -m pytest -q -rs --durations=25 tests/test_check_ci.py -k "$slowest" ;;
+            check-ci-2)
+              python -m pytest -q -rs --durations=25 tests/test_check_ci.py -k "not $slowest" ;;
+            *)
+              ls tests/test_*.py | grep -v '^tests/test_check_ci\.py$' | sort > all-files.txt
+              awk -v jobs=6 -v job=${{ matrix.shard }} 'NR % jobs == job - 1' all-files.txt > files.txt
+              echo "$(wc -l < files.txt) of $(wc -l < all-files.txt) test files run in this job:"
+              cat files.txt
+              test -s files.txt
+              python -m pytest -q -rs --durations=25 $(cat files.txt) ;;
+          esac
 
   build:
     runs-on: ubuntu-latest
