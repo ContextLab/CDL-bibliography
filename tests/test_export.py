@@ -567,6 +567,31 @@ def test_lualatex_runs_when_it_is_named(ws, tmp_path):
     done = export.bbl(ws, file, engine="lualatex")
     assert done.engine == "lualatex" and "\\bibitem{Zoll90}" in done.path.read_text(encoding="utf-8")
     assert export.cited(file, engine="lualatex").how == "compiled"
+    # A LuaTeX older than 1.24 (TeX Live 2025, e.g. Ubuntu 26.04) cannot read TeX's own files under
+    # openin_any=p, so only that one runs with openin_any=r, and the notes say so; a newer one keeps p.
+    version = export._luatex_version(shutil.which("lualatex"))
+    assert version is not None
+    relaxed = [note for note in done.cited.notes if "openin_any=r" in note]
+    assert len(relaxed) == (1 if version < export.LUATEX_PARANOID_READS else 0)
+
+
+def test_only_an_old_luatex_reads_outside_the_build_folder(tmp_path):
+    """The reading limit is relaxed for lualatex on LuaTeX < 1.24 alone: every other engine, and a
+    newer LuaTeX, keep openin_any=p, and writing stays openout_any=p in every case."""
+    need("lualatex")
+    program = shutil.which("lualatex")
+    version = export._luatex_version(program)
+    env = {"openin_any": "p", "openout_any": "p"}
+    for engine in ("pdflatex", "latex", "xelatex"):
+        notes = []
+        assert export._reading(engine, program, env, notes) is env and notes == []
+    notes = []
+    chosen = export._reading("lualatex", program, env, notes)
+    assert chosen["openout_any"] == "p" and env == {"openin_any": "p", "openout_any": "p"}
+    if version < export.LUATEX_PARANOID_READS:
+        assert chosen["openin_any"] == "r" and len(notes) == 1 and f"LuaTeX {version[0]}.{version[1]}" in notes[0]
+    else:
+        assert chosen is env and notes == []
 
 
 @pytest.mark.parametrize("backend", ["bibtex", "biber"])

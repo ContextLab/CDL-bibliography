@@ -673,11 +673,17 @@ def test_after_values_must_be_stated_by_a_source():
 def test_issue_lookup_replays_stored_responses_with_zero_requests(tmp_path):
     """The real lookup code over stored PubMed/publisher responses (no network)."""
     import sqlite3
+    import time
     from cdlbib.publisher_corrections import _summary_matches, issue_lookup
     from cdlbib.verification import Cache, PoliteClient
     cache = Cache(tmp_path / "lookups.sqlite3")
+    # The bodies are the responses recorded on 2026-09-24. They are stored as fetched now: the
+    # client only reuses a response younger than its 30-day TTL, so with the recorded times the
+    # replay missed the cache (and reached for the network) from 2026-10-24 on.
+    stored_at = time.time()
     for request, fetched, body in FIX["replay"]["responses"]:
-        cache.db.execute("INSERT INTO responses VALUES (?, ?, ?)", (request, fetched, body))
+        assert isinstance(fetched, (int, float))   # the recorded time, replaced by stored_at
+        cache.db.execute("INSERT INTO responses VALUES (?, ?, ?)", (request, stored_at, body))
     cache.db.commit()
 
     class NoNetwork:
