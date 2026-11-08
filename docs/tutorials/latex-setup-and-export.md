@@ -467,6 +467,12 @@ wrote ~/demo/p4/main.bbl: bibtex, style plain, lualatex, 1 cited key
 cdl.bib in the paper's folder was used as it is
 ```
 
+LaTeX normally reads only the files in the temporary copy (`openin_any=p`). LuaTeX
+older than 1.24 (TeX Live 2025 and earlier) cannot open TeX's own files under that
+limit, so with such a LuaTeX the run uses `openin_any=r`: any file except a dotfile
+can be read, and writing stays limited to the copy. One more line of the output then
+starts `lualatex runs LuaTeX 1.22` (or whichever version it is) and says this.
+
 For the same paper, `cdlbib export` without `--bbl` reads the citations from the `.tex`
 source, prints the message above followed by `Not compiled`, and writes the `.bib`.
 

@@ -1060,6 +1060,11 @@ wrote /absolute/path/to/paper/main.bbl: bibtex, style plain, pdflatex, 2 cited k
   `BibTeX could not find: labstyle.bst. Supply the file, or the folder that holds it, as an input (--inputs PATH).`
 - A paper that asks for LuaLaTeX is compiled only with `--engine lualatex`, and a
   `biblatex` source map that contains code is refused.
+- LaTeX may read only the files in the temporary copy (`openin_any=p`). LuaTeX
+  older than 1.24 (TeX Live 2025 and earlier, for example Ubuntu 26.04's packages)
+  cannot open TeX's own files under that limit, so with such a LuaTeX,
+  `--engine lualatex` runs with `openin_any=r` (any file except dotfiles can be
+  read; writing stays limited to the copy), and the result's notes say so.
 
 The web interface's Setup view makes the `.bib` from uploaded `.tex`, `.aux` or
 `.bcf` files; it does not make a `.bbl`.

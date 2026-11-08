@@ -532,12 +532,44 @@ def _made(path):
     return Path(path).read_bytes()
 
 
+LUATEX_PARANOID_READS = (1, 24)    # the first LuaTeX that reads TeX's own files with openin_any=p
+
+
+@functools.lru_cache(maxsize=None)
+def _luatex_version(program):
+    """(major, minor) of the LuaTeX that ``program`` runs, from its --version line ("This is
+    LuaHBTeX, Version 1.22.0 (TeX Live 2025/Debian)"); None when it does not say."""
+    run = _run([program, "--version"], None, {name: os.environ[name] for name in _KEPT_VARIABLES
+                                               if os.environ.get(name)}, "engine")
+    found = re.search(r"\bVersion (\d+)\.(\d+)", run.stdout or "")
+    return (int(found[1]), int(found[2])) if found else None
+
+
+def _reading(engine, program, env, notes):
+    """The environment ``engine`` runs in. It is ``env`` (reading only below the build folder,
+    openin_any=p), except for a LuaTeX older than 1.24: that one refuses every file it opens by
+    an absolute path under openin_any=p, TeX's own included (luaotfload's Unicode data, then
+    article.cls), so no document compiles. It then runs with openin_any=r (any file but
+    dotfiles may be read; writing stays below the build folder), and ``notes`` says so."""
+    if engine != "lualatex":
+        return env
+    version = _luatex_version(program)
+    if version is None or version >= LUATEX_PARANOID_READS:
+        return env
+    notes.append(f"lualatex runs LuaTeX {version[0]}.{version[1]}, which cannot open TeX's own files when reading "
+                 "is limited to the build folder (openin_any=p), so it ran with openin_any=r: it could read any file "
+                 "except dotfiles; writing stayed limited to the build folder")
+    return dict(env, openin_any="r")
+
+
 def _latex(build, engine):
     """One LaTeX run of the copy, which writes the .aux (and biblatex's .bcf). Raises
     ExportFailed naming a missing class or package, or with the error and the end of the log."""
     name = build.main.name
-    run = _run([_program(engine), "-no-shell-escape", "-interaction=nonstopmode", "-halt-on-error", ENGINES[engine],
-                "./" + name if name.startswith("-") else name], build.folder, build.env["latex"], "engine")
+    program = _program(engine)
+    env = _reading(engine, program, build.env["latex"], build.notes)
+    run = _run([program, "-no-shell-escape", "-interaction=nonstopmode", "-halt-on-error", ENGINES[engine],
+                "./" + name if name.startswith("-") else name], build.folder, env, "engine")
     if run.returncode == 0:
         return
     logged = _made(build.main.with_suffix(".log"))
