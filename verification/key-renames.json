@@ -1882,5 +1882,12 @@
   "date": "2026-11-09",
   "reason": "Accepted entry completion key plan",
   "commit": null
+ },
+ {
+  "old_key": "AchiEtal17",
+  "new_key": "AchiEtal17a",
+  "date": "2026-11-09",
+  "reason": "Accepted entry completion key plan",
+  "commit": null
  }
 ]
