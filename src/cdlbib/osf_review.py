@@ -1,4 +1,9 @@
-"""Verify PsyArXiv (OSF) preprint citations against the OSF API.
+"""Verify PsyArXiv and other OSF preprint citations against the OSF API.
+
+The OSF preprint servers share one API; each has its own DOI prefix and name
+(``PROVIDERS``): PsyArXiv, SocArXiv, EdArXiv, MetaArXiv and OSF Preprints. A
+citation names its server as the journal, and its identifiers must carry that
+server's DOI prefix.
 
 User rules (verification/resolution-plan-2026-09-22/README.md):
 * a preprint cites its LATEST version; the year is that version's date;
@@ -32,38 +37,61 @@ from .verification import (author_evidence, current_results, export_snapshot, lo
 OSF_POLICY = '1'
 SOURCE = 'osf-repository'
 API = 'https://api.osf.io/v2/'
-PROVIDERS = {'psyarxiv': ('10.31234', 'psyarxiv')}  # provider id: (DOI prefix, cited journal)
+# provider id: (DOI prefix, cited journal as normalized). Names as cited are in NAMES.
+PROVIDERS = {'psyarxiv': ('10.31234', 'psyarxiv'), 'socarxiv': ('10.31235', 'socarxiv'),
+             'edarxiv': ('10.35542', 'edarxiv'), 'metaarxiv': ('10.31222', 'metaarxiv'),
+             'osf': ('10.31219', 'osf preprints')}
+NAMES = {'psyarxiv': 'PsyArXiv', 'socarxiv': 'SocArXiv', 'edarxiv': 'EdArXiv', 'metaarxiv': 'MetaArXiv',
+         'osf': 'OSF Preprints'}
 ID = r'[a-z0-9]{5}'
 PREPRINT_FIELDS = ('title,version,is_latest_version,date_published,date_withdrawn,reviews_state,'
                    'doi,is_published,public,date_created,provider,primary_file')
 USER_FIELDS = 'full_name,given_name,middle_names,family_name,suffix'
 
 
-def parse_id(value):
-    """(base id, version or None) from an OSF/PsyArXiv DOI or URL."""
+def parse_id(value, provider='psyarxiv'):
+    """(base id, version or None) from an OSF preprint DOI or URL of ``provider``."""
     text = normalized(value).strip()
     text = re.sub(r'^(?:https?://)?(?:dx\.)?doi\.org/', '', text)
     text = re.sub(r'^doi:\s*', '', text)
-    match = (re.fullmatch(r'10\.31234/osf\.io/(' + ID + r')(?:_v([1-9]\d*))?', text)
-             or re.fullmatch(r'(?:https?://)?(?:www\.)?(?:osf\.io/preprints/psyarxiv/|psyarxiv\.com/|osf\.io/)('
-                             + ID + r')(?:_v([1-9]\d*))?/?', text))
+    prefix = re.escape(PROVIDERS[provider][0])
+    own = r'|' + re.escape(provider) + r'\.com/' if provider == 'psyarxiv' else ''
+    match = (re.fullmatch(prefix + r'/osf\.io/(' + ID + r')(?:_v([1-9]\d*))?', text)
+             or re.fullmatch(r'(?:https?://)?(?:www\.)?(?:osf\.io/preprints/' + re.escape(provider) + r'/'
+                             + own + r'|osf\.io/)(' + ID + r')(?:_v([1-9]\d*))?/?', text))
     if not match:
-        raise ValueError('Not a PsyArXiv/OSF preprint identifier')
+        raise ValueError('Not a ' + NAMES[provider] + ' (OSF) preprint identifier')
     return match[1], int(match[2]) if match[2] else None
+
+
+def provider_of(fields):
+    """The OSF provider an entry cites by its journal, or None."""
+    try:
+        cited = normalized(fields.get('journal', ''))
+    except ValueError:
+        return None
+    return next((p for p, (_, name) in PROVIDERS.items() if name == cited), None)
+
+
+def doi_provider(doi):
+    """The OSF provider whose DOI prefix ``doi`` has, or None."""
+    text = str(doi or '').strip().lower()
+    return next((p for p, (prefix, _) in PROVIDERS.items() if text.startswith(prefix + '/osf.io/')), None)
 
 
 def identifier(fields):
     """(base, cited version, identity fields) or (None, None, []) for title discovery.
 
-    Raises ValueError when the entry is not a PsyArXiv article or its
+    Raises ValueError when the entry is not an OSF preprint article or its
     identifiers conflict."""
-    if fields.get('ENTRYTYPE') != 'article' or normalized(fields.get('journal', '')) != 'psyarxiv':
-        raise ValueError('This route requires a PsyArXiv article citation')
+    provider = provider_of(fields)
+    if fields.get('ENTRYTYPE') != 'article' or provider is None:
+        raise ValueError('This route requires a PsyArXiv (or other OSF preprint server) article citation')
     supplied = []
     for field in ('doi', 'volume', 'url', 'eprint', 'pages', 'number'):
         if field in fields:
             try:
-                supplied.append((field, *parse_id(fields[field])))
+                supplied.append((field, *parse_id(fields[field], provider)))
             except ValueError:
                 if field in ('doi', 'url', 'eprint'):
                     raise
@@ -211,10 +239,11 @@ def assess_osf(fields, raw):
                  'issues': [], 'evidence': {}, 'proposal': None, 'category': 'held'}
     try:
         base, cited_version, identity_fields = identifier(fields)
+        provider = provider_of(fields)
         if base is None:
             if raw.get('discovered_by') != 'title' or not raw.get('base'):
                 raise ValueError('No PsyArXiv identifier and no title discovery envelope')
-            hits = [r for r in page(raw['search'], search_url(raw['search_title']))
+            hits = [r for r in page(raw['search'], search_url(raw['search_title'], provider))
                     if normalize_title(r['attributes'].get('title', '')) == normalize_title(fields.get('title', ''))]
             if normalize_title(raw['search_title']) != normalize_title(fields.get('title', '')):
                 raise ValueError('Saved title search is for another title')
@@ -225,6 +254,8 @@ def assess_osf(fields, raw):
             raise ValueError('Saved OSF source belongs to another preprint')
         rows = version_rows(raw['versions'], base)
         latest = rows[-1]; attrs = latest['attributes']
+        if any(r['relationships']['provider']['data']['id'] != provider for r in rows):
+            raise ValueError('OSF preprint belongs to another server than the one cited')
         if any(r['attributes'].get('date_withdrawn') or r['attributes'].get('reviews_state') == 'withdrawn' for r in rows):
             raise ValueError('OSF preprint is withdrawn')
         if attrs.get('reviews_state') not in ('accepted', None) or attrs.get('is_published') is not True or attrs.get('public') is False:
@@ -239,7 +270,7 @@ def assess_osf(fields, raw):
         released = max(stamp(attrs['date_published']), dates[-1])
         doi = version_doi(base, latest, rows)
         candidate.update(doi=doi, version=attrs['version'], latest_date=released.isoformat(),
-                         file_revisions=len(dates), url='https://osf.io/preprints/psyarxiv/' + latest['id'])
+                         file_revisions=len(dates), url='https://osf.io/preprints/' + provider + '/' + latest['id'])
         evidence, issues = candidate['evidence'], candidate['issues']
         proposal = {}
 
@@ -262,7 +293,7 @@ def assess_osf(fields, raw):
         check('author', authors, by_ok, byline)
         check('year', {'year': released.year, 'role': 'latest version date', 'version': attrs['version']},
               fields.get('year') == str(released.year), str(released.year))
-        check('journal', 'PsyArXiv', True)
+        check('journal', NAMES[provider], True)
         cited_doi = fields.get('doi')
         check('doi', doi, bool(cited_doi) and normalized(cited_doi) == doi, doi)
         if cited_version and cited_version != attrs['version']:
@@ -314,13 +345,14 @@ def applicable(fields):
 def collect(cache, client, fields):
     """Fetch (or reuse) every OSF document the assessment needs."""
     base, _, _ = identifier(fields)
+    provider = provider_of(fields)
     raw = {}
     fetch = lambda url, check: fetch_document(cache, client, url, 'osf-source-v1:' + url, validate=check)
     if base is None:
         title = fields.get('title', '')
         raw.update(discovered_by='title', search_title=title)
-        raw['search'] = fetch(search_url(title), lambda s: page(s, search_url(title)))
-        hits = {r['id'].split('_')[0] for r in page(raw['search'], search_url(title))
+        raw['search'] = fetch(search_url(title, provider), lambda s: page(s, search_url(title, provider)))
+        hits = {r['id'].split('_')[0] for r in page(raw['search'], search_url(title, provider))
                 if normalize_title(r['attributes'].get('title', '')) == normalize_title(title)}
         if len(hits) != 1:
             raw['base'] = None
@@ -337,7 +369,7 @@ def collect(cache, client, fields):
 
 
 PRESERVED = ('auto_review', 'discovery_review', 'catalogue_review', 'preprint_review', 'arxiv_review',
-             'research_attempt', 'datacite_review', 'acl_review', 'sfn_review')
+             'research_attempt', 'datacite_review', 'acl_review', 'sfn_review', 'posted_review')
 
 
 def merge(previous, result, source, attempt_url):

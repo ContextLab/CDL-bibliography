@@ -84,6 +84,17 @@ def clone(tmp_path_factory):
         assert all(kept[key]["fingerprint"] == entries[key]["fingerprint"] for key in kept)
         subprocess.run(["git", "commit", "-q", "-m", "cdl.bib: the entries the saved results are for", "cdl.bib"],
                        cwd=repo, check=True)
+    # The tests start from a library whose results are all in the snapshot and whose additions
+    # file holds its header alone, as after a whole snapshot. After a merge, master's workflow
+    # commits the merged results to verification/baseline-additions.jsonl. So here they are
+    # saved as a whole snapshot, the way a maintainer folds them in: `crossref snapshot` writes
+    # every restored result to the snapshot and empties the additions file beside it.
+    additions = repo / "verification" / "baseline-additions.jsonl"
+    if additions.read_bytes() != (verification.dumps(verification.additions_header()) + "\n").encode("utf-8"):
+        subprocess.run([str(sibling) if sibling.exists() else shutil.which("cdlbib"), "crossref", "snapshot"],
+                       cwd=repo, check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-q", "-m", "verification: the results saved since, folded into the snapshot",
+                        "verification/baseline.jsonl.gz", "verification/baseline-additions.jsonl"], cwd=repo, check=True)
     return repo
 
 

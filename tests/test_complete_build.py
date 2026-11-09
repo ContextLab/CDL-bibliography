@@ -543,7 +543,7 @@ def test_a_corrected_article_is_built_and_says_that_a_correction_exists():
         "\tJournal = {Nature Methods},\n"
         "\tNumber = {3},\n"
         "\tPages = {261--272},\n"
-        "\tTitle = {Scipy 1.0: fundamental algorithms for scientific computing in {Python}},\n"
+        "\tTitle = {{SciPy} 1.0: fundamental algorithms for scientific computing in {Python}},\n"
         "\tVolume = {17},\n"
         "\tYear = {2020}}")
 

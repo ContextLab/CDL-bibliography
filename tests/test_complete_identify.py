@@ -14,7 +14,10 @@ filled with
   for tests/test_complete_rules.py (chapters whose records name editors; the ACL Anthology's
   own records of two papers; each chapter's book looked up by ISBN for its editors);
 - tests/fixtures/arxiv_preprints.json: the arXiv, arXiv-page and DataCite documents the
-  arXiv check's own tests use.
+  arXiv check's own tests use;
+- tests/fixtures/completion/preprint_responses.json: the 29 responses fetched once on
+  2026-11-09 for the bioRxiv, medRxiv, OSF and other preprint servers of
+  tests/test_complete_preprints.py.
 
 So a lookup the fixtures do not hold fails as a refused request, and ``client.requests == 0``
 shows that none was attempted. Expected entries are the exact text of the same work's entry
@@ -37,6 +40,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SAVED = json.loads((ROOT / "tests/fixtures/completion/responses.json").read_text(encoding="utf-8"))
 TYPES = json.loads((ROOT / "tests/fixtures/completion/type_responses.json").read_text(encoding="utf-8"))
 RULES = json.loads((ROOT / "tests/fixtures/completion/rule_responses.json").read_text(encoding="utf-8"))
+PREPRINTS = json.loads((ROOT / "tests/fixtures/completion/preprint_responses.json").read_text(encoding="utf-8"))
 ARXIV = json.loads((ROOT / "tests/fixtures/arxiv_preprints.json").read_text(encoding="utf-8"))
 RECORDS = json.loads((ROOT / "tests/fixtures/completion/records.json").read_text(encoding="utf-8"))
 FROZEN = (ROOT / "tests/fixtures/cdl-prewave1-2026-09-26.bib").read_text(encoding="utf-8")
@@ -66,7 +70,7 @@ def client(tmp_path):
     client = xs.make_client(tmp_path / "responses.sqlite3", contact=CONTACT, offline=True)
     # BOOK_ISBNS: the lookups of each fixture chapter's book under every one of the chapter's ISBNs
     # (tests/fixtures/intake/book_isbns.json.gz), which container_titles.book_editors asks since 2026-10-06.
-    for item in SAVED + TYPES + RULES + BOOK_ISBNS:
+    for item in SAVED + TYPES + RULES + BOOK_ISBNS + PREPRINTS:
         request = item["request"]  # a list for an API request; a string for a saved document (the Anthology's BibTeX)
         if isinstance(request, list):  # PubMed requests name the caller's contact address
             url, params, xml = request
@@ -402,11 +406,22 @@ def test_a_preprint_doi_whose_record_names_the_published_article_offers_the_arti
     assert client.requests == 0
 
 
-def test_a_preprint_doi_that_names_no_published_version_is_left_as_typed(client):
-    # The bioRxiv preprint of ChenEtal21: its own Crossref record has no link to the article.
-    proposal = propose(client, "10.1101/2020.01.27.922062")
-    assert proposal.proposed_raw is None and proposal.unsupported == "posted-content" and proposal.status is None
-    assert proposal.issues == ["A record of type posted-content is not built automatically; the entry is left as typed"]
+def test_a_preprint_doi_that_names_no_published_version_is_built_as_the_preprint(client):
+    # Until 2026-11-09 a posted-content record was left as typed ("A record of type
+    # posted-content is not built automatically"). A bioRxiv preprint whose Crossref record and
+    # bioRxiv history name no published version is now built in the house form of the
+    # library's bioRxiv entries (tests/test_complete_preprints.py has the other servers). The
+    # bioRxiv preprint of ChenEtal21, which this test used, has a Crossref record with no link
+    # to the article, but its bioRxiv history names it, and the article is offered
+    # (test_complete_preprints.py, test_a_preprint_whose_history_names_its_article_offers_the_article).
+    proposal = propose(client, "10.64898/2026.03.19.712982")
+    assert proposal.unsupported is None and proposal.status == "metadata_verified"
+    assert proposal.proposed_raw.startswith("@article{RaviEtal26,\n") and proposal.issues == []
+    assert "\tJournal = {{bioRxiv}},\n" in proposal.proposed_raw
+    assert "\tVolume = {10.64898/2026.03.19.712982},\n" in proposal.proposed_raw
+    assert proposal.candidates == [] and not proposal.needs_decision
+    found = complete.identify(complete.Query.parse("10.64898/2026.03.19.712982"), client)
+    assert found.source == "preprint" and found.published_for is None and found.record["route"] == "biorxiv"
     assert client.requests == 0
 
 
