@@ -46,7 +46,7 @@ As of October 8, 2026, every one of the 6,391 entries in `cdl.bib` has been chec
 | DOI/PMID/arXiv and title-with-author lookup; review, edit or skip source-supported entries | `cdlbib add`; web: Add |
 | Search by title, authors or both, with a list of candidates to choose from | web: Add, "Search" tab |
 | PDF intake: the first page beside what was read, lookup of the source record, reading with a language model, and a manual-entry form filled from the PDF | web: Add, "PDF" and "Manual" tabs |
-| Entries built from source records: journal articles, arXiv preprints, papers in conference proceedings, book chapters, and books (from Library of Congress catalogue records) | `cdlbib add`; web: Add |
+| Entries built from source records: journal articles, preprints (arXiv, bioRxiv, medRxiv, PsyArXiv and the other OSF servers, Research Square, SSRN, ChemRxiv and other Crossref-registered servers), papers in conference proceedings, book chapters, and books (from Library of Congress catalogue records) | `cdlbib add`; web: Add |
 | House-format and citation checks, source evidence, GitHub-attributed human approvals and revocations | `cdlbib verify`, `cdlbib crossref`; web: Check, Library, Review |
 | Contributions through your own fork and an opened or updated PR | `cdlbib send`; web: Send |
 | System-wide LaTeX setup: one link in your TeX tree | `cdlbib setup`; web: Setup |
@@ -428,6 +428,7 @@ Look up a paper by DOI, PMID, arXiv identifier or title:
 cdlbib add 10.1002/tea.3660271011
 cdlbib add PMID:13896567
 cdlbib add arXiv:2208.02957
+cdlbib add 10.1101/2021.05.10.443308     # bioRxiv; medRxiv, PsyArXiv, SSRN, ... DOIs work the same way
 cdlbib add "Students' misunderstandings and misconceptions in college freshman chemistry (general and organic)" --author Zoller --year 1990
 cdlbib add "ISBN 9780195333244"
 cdlbib add "LCCN 2012007685"
@@ -438,8 +439,22 @@ Use `--from FILE` for a UTF-8 file with one query per line. With no query argume
 `add` also reads BibTeX from standard input. Set `CROSSREF_MAILTO` or pass `--mailto`
 so the citation services can identify your requests.
 
-The tool can build journal articles, arXiv preprints, papers in conference
-proceedings and book chapters from their source records. What a record does not
+The tool can build journal articles, preprints, papers in conference
+proceedings and book chapters from their source records. A preprint DOI whose
+record or server names a published version is answered with that version (house
+rule: cite the published version); otherwise the preprint is built in the house
+form, `Journal = {{bioRxiv}}` and so on, from the server's own records:
+
+| Server | Sources | House form |
+|-|-|-|
+| arXiv | arXiv API and page, DataCite | `Volume` = arXiv identifier, `Doi` = DataCite DOI |
+| bioRxiv, medRxiv | api.biorxiv.org version history, Crossref, the bioRxiv version page when it can be read | `Doi` and `Volume` = the DOI; with several versions `Volume` pins the latest (`<DOI>v2`) |
+| PsyArXiv, SocArXiv, EdArXiv, MetaArXiv, OSF Preprints | OSF API (versions, bibliographic contributors, file revisions), Crossref | `Doi` = the latest version's DOI; no `Volume` |
+| Research Square, SSRN, ChemRxiv, Preprints.org, EcoEvoRxiv, TechRxiv, Authorea | the Crossref record of the DOI | `Doi` and `Volume` = the DOI |
+
+The year is that of the latest version. Each built preprint is then checked by
+the same route `cdlbib verify` uses for its server (see
+[docs/verification.md](docs/verification.md#repository-preprints)). What a record does not
 state is left out and listed in the proposal as unfilled:
 
 - A chapter is built without a place of publication, and a proceedings paper
@@ -619,7 +634,7 @@ The formatting check verifies the following:
   - LaTeX in a name is kept as typed: a command with its arguments (`\LaTeX`, `\emph{Drosophila}`, an accent such as `{\"O}`), mathematics (`$...$`, `\(...\)`, and displayed `$$...$$` and `\[...\]`), and a braced group that holds a group, a command or a space.  A journal, book title, publisher, address or edition whose braces or mathematics do not balance, or that is longer than 5,000 characters, is not formatted: the check stops and names the entry and the field.
   - When a new house rule would change entries already in the library, those entries can be listed in [pending_house_forms.json](src/cdlbib/data/pending_house_forms.json) with their present and proposed text.  The check names a listed entry on every run and does not count it as an error while its text is exactly as listed; the rule applies to every other entry.  The list is empty: the four book titles the ordinal rule changed were rewritten on 2026-10-06 with the owner's approval.
 - The `edition` of a book is an ordinal in the same form: `2\textsuperscript{nd}` ("Second" and "2nd" are rewritten).  An ordinal word is rewritten only when it is the whole value or is followed by nothing but the word for an edition ("Second", "Second edition"); inside a phrase it stays a word ("Second Language edition").  A numeral such as "2nd" is rewritten wherever it stands.
-- Article titles must be capitalized in sentence case, including the first word after a colon (e.g., "Memory: the review", not "Memory: The review").  Proper nouns and acronyms are protected with curly braces (e.g., "{fMRI} of the {Stroop} task").  Titles may not be (fully) enclosed in curly braces and may not end in '.'.  The checker can't tell a proper noun from an ordinary word, and it doesn't catch a capital "A" after a colon ("Memory: A review" passes), so check titles against the source.
+- Article titles must be capitalized in sentence case, including the first word after a colon (e.g., "Memory: the review", not "Memory: The review").  Proper nouns and acronyms are protected with curly braces (e.g., "{fMRI} of the {Stroop} task").  Titles may not be (fully) enclosed in curly braces and may not end in '.'.  When `cdlbib add` builds a title from a source record, a word with a capital of its own after its first letter ("1kD", "SAYCam", "iPhone") is kept as the source spells it, in braces; other words are put in sentence case, and all-capital words follow `caps.txt`. The checker can't tell a proper noun from an ordinary word, and it doesn't catch a capital "A" after a colon ("Memory: A review" passes), so check titles against the source.
 - Publisher names must be written out in full.
 - Addresses must be formatted properly:
   - US states are abbreviated with their two-letter codes, in curly braces (e.g., "Cambridge, Massachusetts" and "Cambridge, Mass." both become "Cambridge, {MA}")
@@ -780,7 +795,7 @@ The checker first looks up the entry's DOI in Crossref. If there's no DOI, it se
 
 The editors of a chapter, a proceedings paper or a book are compared the way authors are: the entry's `editor` field must be the record's whole list of editors, in order, by the same name rules. For a chapter whose own record names no editors, the record is the book's own, found by the chapter's ISBN as the builder finds it. An entry with editors that the record does not name, or names differently, is `needs_review` and the result says which. An entry without an `editor` field is not asked for one. Ordinals compare equal however they are spelled ("Thirtieth", "30th", `30\textsuperscript{th}`).
 
-When Crossref can't settle an entry, the checker tries the other free sources in turn: PubMed records (through Europe PMC), the publisher's own front matter in open-access full text, library catalogues for books, preprint servers (arXiv, bioRxiv, PsyArXiv), DataCite for software and datasets, the ACL Anthology, and the Society for Neuroscience abstract archive (which can identify an abstract, though [abstracts themselves aren't kept](#what-belongs-in-cdlbib)). Each source is only trusted for what it actually records. For example, a preprint server's record can verify a preprint but not the journal version.
+When Crossref can't settle an entry, the checker tries the other free sources in turn: PubMed records (through Europe PMC), the publisher's own front matter in open-access full text, library catalogues for books, preprint servers (arXiv; bioRxiv and medRxiv; PsyArXiv and the other OSF servers; the Crossref records of Research Square, SSRN, ChemRxiv and other servers), DataCite for software and datasets, the ACL Anthology, and the Society for Neuroscience abstract archive (which can identify an abstract, though [abstracts themselves aren't kept](#what-belongs-in-cdlbib)). Each source is only trusted for what it actually records. For example, a preprint server's record can verify a preprint but not the journal version.
 
 If a correction, erratum, retraction, or expression of concern is linked to an entry, the entry is flagged for review. A retraction or expression of concern keeps it flagged. A correction that couldn't be read can be accepted when Crossref and Europe PMC show no retraction; the result then records that the notice was not read.
 

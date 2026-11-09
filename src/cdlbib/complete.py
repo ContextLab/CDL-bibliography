@@ -376,6 +376,34 @@ _BANNER_WORDS = (r"RETRACTED ARTICLE|Retracted Article|Retracted article|RETRACT
 _BANNER = re.compile(r"^(?:(?:\[(?:" + _BANNER_WORDS + r")\]\s*:?|(?:" + _BANNER_WORDS + r")\s*:)\s*)+")
 # A title that announces a retraction rather than carrying a banner.
 _NOTICE_TITLE = re.compile(r"^(?:Retraction|RETRACTION|Removal|Withdrawal)(?: [Nn]otice| NOTICE)?\s*:")
+# Punctuation that may surround a word of a title without being part of it.
+_TITLE_WORD_EDGE = "()[]\"'“”‘’.,:;!?"
+
+
+def _mixed_case_braced(title):
+    """``title`` with each word whose capitals are the source's own spelling in braces, so the
+    sentence case of ``format_title`` keeps them: a word with a lower-case letter and a
+    capital after its first character ("(1kD)" -> "({1kD})", "SAYCam:" -> "{SAYCam}:",
+    "BabyView", "iPhone"). Each part of a hyphenated word is judged alone ("Self-Supervised"
+    is title case, not a name). Left as they are: a word with braces, a backslash or "$", a
+    word whose only capital is its first ("Collecting"), and one with no lower-case letter
+    ("EEG", which caps.txt decides)."""
+    words = []
+    for word in title.split(" "):
+        if any(c in word for c in "{}\\$"):
+            words.append(word)
+            continue
+        parts = []
+        for part in word.split("-"):
+            core = part.strip(_TITLE_WORD_EDGE)
+            if core and any(c.islower() for c in core) and any(c.isupper() for c in core[1:]):
+                start = part.index(core)
+                part = part[:start] + "{" + core + "}" + part[start + len(core):]
+            parts.append(part)
+        words.append("-".join(parts))
+    return " ".join(words)
+
+
 def _title(record, mapped, typed, evidence, unsupported):
     from .helpers import format_title
     if "title" not in evidence:
@@ -393,7 +421,7 @@ def _title(record, mapped, typed, evidence, unsupported):
         if cp.normalize_title_safe(second) != cp.normalize_title_safe(titles[0]):
             raise _Hold("title: sources disagree", values, disagreement=True)
     # Formatting belongs to the same autofix helper used by check_bib.
-    value = format_title(titles[0])
+    value = format_title(_mixed_case_braced(titles[0]))
     value, doubts = _written("title", value, format_title)
     return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts)
 
@@ -1542,6 +1570,11 @@ def _from_doi(client, doi, follow=True, wanted=frozenset({"journal-article"})):
                     "published version, which is proposed here (house rule: cite the published version).",
                     published.note)
                 return published
+    if record.get("type") == "posted-content" and record.get("subtype") == "preprint":
+        # A posted preprint: built from its server's own records (``build_preprint``).
+        preprint = _preprint_identified(client, client.cache, record, response, doi, alias, wanted)
+        if preprint is not None:
+            return preprint
     # A correction or retraction notice is refused by the builder: PubMed is not asked about it.
     mapped, _, unused = (None, None, None) if _is_notice(record) else _corroboration(client, record)
     # The DOI was given, so its record is the record; what looks like an abstract is said.
@@ -2084,6 +2117,26 @@ def build_arxiv(typed_fields, raw):
         "volume": lambda: _Value(identifier, "arxiv", {"arxiv": identifier}),
         "year": year_value,
     }
+    fields = _fill_preprint(proposal, typed, kind, lambda name: _guarded(name, makers[name]()), _ARXIV_BUILT,
+                            evidence, record, _renamed, lambda had: _same_arxiv(had, base, version))
+    _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
+    _set_complete(proposal, fields)
+    return proposal
+
+
+def _fill_preprint(proposal, typed, kind, make, built, evidence, record, rename, same_identifier,
+                   dropped_fields=None):
+    """Decide each field of a preprint's house entry from its maker, as ``build`` decides
+    them (the rule ``build_arxiv`` and ``build_preprint`` share): a typed value stays when
+    the source has the same value; a source value fills an empty field; a differing value
+    replaces the typed one unless it would lose detail or change a surname (a question).
+    ``make(name)``: the builder's maker for the field, through the source guard
+    (``_guarded``). ``rename`` turns ``build``'s source names into the preprint's; ``same_identifier(had)``
+    says whether a typed ``doi`` or ``volume`` is the source's identifier written another
+    way. ``dropped_fields``: {field: reason} for typed fields the house form leaves out."""
+    from .helpers import authors2key, split_names
+    keep = set(_field_order())
+    dropped_fields = dict(dropped_fields or {})
     fields = {}
 
     def keep_typed(name, had):
@@ -2105,12 +2158,12 @@ def build_arxiv(typed_fields, raw):
         proposal.issues.extend([reasons] if isinstance(reasons, str) else reasons)
         proposal.needs_decision = True
 
-    for name in _ARXIV_BUILT:
+    for name in built:
         had = typed.get(name)
         try:
-            outcome = _guarded(name, makers[name]())
+            outcome = make(name)
         except _Hold as hold:
-            held = Unfilled(name, hold.reason, {_renamed(k): v for k, v in hold.values.items()})
+            held = Unfilled(name, hold.reason, {rename(k): v for k, v in hold.values.items()})
             if had:
                 keep_typed(name, had)
                 if hold.disagreement or not evidence.get(name, {}).get("match"):
@@ -2123,8 +2176,8 @@ def build_arxiv(typed_fields, raw):
                 keep_typed(name, had)
             proposal.unfilled.append(Unfilled(name, f"{name}: no source record states it", {}))
             continue
-        value, source = outcome.value, _renamed(outcome.source)
-        values = {_renamed(k): v for k, v in outcome.values.items()}
+        value, source = outcome.value, rename(outcome.source)
+        values = {rename(k): v for k, v in outcome.values.items()}
         if not had:
             if outcome.doubts:
                 question(name, None, value, source, outcome.doubts)
@@ -2134,7 +2187,7 @@ def build_arxiv(typed_fields, raw):
             continue
         same = value == had or (name != "year" and evidence.get(name, {}).get("match"))
         if name in ("volume", "doi"):
-            same = same or _same_arxiv(had, base, version)  # the same identifier, written another way
+            same = same or same_identifier(had)  # the same identifier, written another way
         if same:
             keep_typed(name, had)
             continue
@@ -2158,8 +2211,10 @@ def build_arxiv(typed_fields, raw):
             proposal.changes.append(FieldChange(name, had, value, source, "changed"))
 
     dropped = []
-    for name in sorted(k for k in typed if k not in ("ENTRYTYPE", "ID") and k not in _ARXIV_BUILT):
-        if name == "publisher":
+    for name in sorted(k for k in typed if k not in ("ENTRYTYPE", "ID") and k not in built):
+        if name in dropped_fields:
+            dropped.append(FieldChange(name, typed[name], None, dropped_fields[name], "dropped"))
+        elif name == "publisher":
             dropped.append(FieldChange(name, typed[name], None, "house rule: no publisher on an article", "dropped"))
         elif name in keep:
             keep_typed(name, typed[name])
@@ -2174,9 +2229,274 @@ def build_arxiv(typed_fields, raw):
     if not proposal.key_typed and not proposal.key_proposed:
         proposal.unfilled.append(Unfilled("ID", "a key needs the authors and the year", {}))
     proposal.doi = fields.get("doi") or proposal.doi
+    return fields
+
+
+
+
+# --- other preprint servers ---------------------------------------------------------------------
+#
+# A DOI whose Crossref record is a posted preprint (type posted-content, subtype preprint) is
+# built in the house form of the library's preprints, from the server's own records where it
+# has them, and checked by that server's route of the citation check:
+#
+#   bioRxiv, medRxiv   api.biorxiv.org version history (+ Crossref)   preprint_review
+#   PsyArXiv, SocArXiv, EdArXiv, MetaArXiv, OSF Preprints   the OSF API  osf_review
+#   Research Square, SSRN, ChemRxiv, Preprints.org, EcoEvoRxiv, TechRxiv, Authorea
+#                      the Crossref record                            posted_review
+#
+# The house forms (counted in cdl.bib, 2026-11-09): bioRxiv has Volume = the DOI in most of
+# its entries that carry the identifier twice (DeHaEtal25), and so do the other DOI servers;
+# PsyArXiv entries have the DOI only (decision log, 2026-09-30: "PsyArXiv DOIs stored in
+# volume move to doi"), and so do the other OSF servers. A preprint with several versions
+# cites the latest (decision log, 2026-09-24); bioRxiv and medRxiv pin it in Volume
+# (``<DOI>v<N>``), the OSF servers and the others by the version's own DOI.
+
+_PREPRINT_BUILT = ("author", "doi", "journal", "title", "volume", "year")
+# ``Proposal.record_source`` of an entry ``build_preprint`` made: such an entry, edited or not,
+# is checked by its server's route (``_preprint_checked``), as the gate checks it.
+PREPRINT_SOURCES = frozenset({"crossref+biorxiv", "crossref+medrxiv", "osf+crossref", "crossref-preprint"})
+_BIORXIV_PREFIXES = ("10.1101/", "10.64898/")
+
+
+def _server_journal(name):
+    """The journal of a preprint server's entries: the name braced, as the format checker
+    writes it (``{bioRxiv}``, written ``Journal = {{bioRxiv}}``)."""
+    from .helpers import format_journal_name
+    return format_journal_name("{" + name + "}")
+
+
+def _preprint_identified(client, cache, record, response, doi, alias, wanted):
+    """The sources of a posted preprint, as ``Identified`` (``source`` "preprint"); a
+    published version a server names is offered first, as for a Crossref link. None when the
+    DOI belongs to no server this builder knows (the record is then left as it was)."""
+    from . import osf_review as osf
+    from . import posted_review as posted
+    from . import preprint_review as pr
+    own = record.get("DOI") if isinstance(record.get("DOI"), str) else doi
+    lowered = own.lower()
+    # The Crossref response as the posted-content check keeps it (no contact address).
+    kept = {k: response.get(k) for k in ("retrieved_at", "http_status", "body")}
+    kept["url"] = str(response.get("url") or "").split("?", 1)[0]
+    found = {"DOI": own, "crossref": record, "crossref_response": kept}
+
+    def offered(published_doi, said_by):
+        target = _doi_text(str(published_doi or ""))
+        if not target or normalize_doi(target) == normalize_doi(own):
+            return None
+        published = _from_doi(client, target, follow=False)
+        if published.record is None or published.record.get("type") not in wanted:
+            return None
+        published.candidates = [_summary(published.record), _summary(record)]
+        published.published_for = doi
+        published.note = _notes(alias, f"The DOI {doi} is a preprint; {said_by} names {published.record.get('DOI')} "
+                                "as the published version, which is proposed here (house rule: cite the "
+                                "published version).", published.note)
+        return published
+
+    if lowered.startswith(_BIORXIV_PREFIXES):
+        api, where = None, None
+        # medRxiv numbers its postings with eight digits (2025.06.01.25328748), bioRxiv with
+        # six: that server is asked first, the other when it has no such posting.
+        order = ("medrxiv", "biorxiv") if re.search(r"\.\d{8}$", lowered) else ("biorxiv", "medrxiv")
+        for name in order:
+            fields = {"ENTRYTYPE": "article", "journal": pr.SERVERS[name][1], "doi": own}
+            try:
+                api, html = pr.collect(cache, client, fields)
+            except ValueError:  # this server has no posting with the DOI
+                continue
+            where = name
+            break
+        if where is None:
+            return None
+        rows = pr.versions(api, normalize_doi(own), where)
+        if len(rows) > 1:  # the latest version, pinned; its page is read when it can be
+            api, html = pr.collect(cache, client, dict(fields, volume=f"{own}v{len(rows)}"))
+        found.update(route="biorxiv", server=where, name=pr.SERVERS[where][1], api=api, html=html, rows=rows)
+        published = offered(rows[-1].get("published") if rows[-1].get("published") != "NA" else None,
+                            f"its {pr.SERVERS[where][1]} record")
+        return published or Identified(record=found, source="preprint", note=alias)
+    provider = osf.doi_provider(lowered)
+    if provider:
+        fields = {"ENTRYTYPE": "article", "journal": osf.NAMES[provider], "doi": own}
+        raw = osf.collect(cache, client, fields)
+        found.update(route="osf", server=provider, name=osf.NAMES[provider], osf=raw)
+        rows = osf.version_rows(raw["versions"], raw["base"])
+        published = offered(rows[-1]["attributes"].get("doi"), "its OSF record")
+        return published or Identified(record=found, source="preprint", note=alias)
+    name = posted.server_name(own)
+    if name:
+        found.update(route="posted", server=name, name=name)
+        return Identified(record=found, source="preprint", note=alias)
+    return None
+
+
+def _preprint_renamed(route, server):
+    second = {"biorxiv": server, "osf": "crossref", "posted": "crossref"}[route]
+    first = "osf" if route == "osf" else "crossref"
+
+    def renamed(text):
+        return text.replace("crossref", "\0").replace("pubmed", second).replace("\0", first)
+    return renamed
+
+
+def build_preprint(typed_fields, found):
+    """Propose a preprint of bioRxiv, medRxiv, an OSF server or another Crossref-registered
+    server in the house form, from what ``_preprint_identified`` collected::
+
+        @article{RaviEtal26,
+        	Author = {H Raviv and L Hasenfratz and ... and U Hasson},
+        	Doi = {10.64898/2026.03.19.712982},
+        	Journal = {{bioRxiv}},
+        	Title = {...},
+        	Volume = {10.64898/2026.03.19.712982},
+        	Year = {2026}}
+
+    An OSF preprint has no Volume and its Doi is the latest version's. Each value is decided
+    as ``build`` decides it (``_fill_preprint``)."""
+    from . import osf_review as osf
+    from . import posted_review as posted
+    from . import preprint_review as pr
+    from .preprint_review import people as byline_people
+    typed = {(k if k in ("ENTRYTYPE", "ID") else k.lower()): v for k, v in typed_fields.items()
+             if v is not None and str(v) != ""}
+    if typed.get("ID") == NO_KEY:
+        del typed["ID"]
+    kind = str(typed.get("ENTRYTYPE") or "article").lower()
+    route, crossref = found["route"], found["crossref"]
+    proposal = Proposal(key_typed=typed.get("ID") or None, entry_type=kind,
+                        record_source={"biorxiv": f"crossref+{found['server']}", "osf": "osf+crossref",
+                                       "posted": "crossref-preprint"}[route], doi=typed.get("doi") or found["DOI"])
+    if kind != "article":
+        proposal.unsupported = kind
+        proposal.issues.append(f"An entry of type {kind} is not built automatically; the entry is left as typed")
+        return proposal
+    crossref, _ = _readable(crossref)
+    _refuse_notice(crossref)
+    second_people, second_title, dropped_fields = None, None, {}
+    try:
+        if route == "biorxiv":
+            rows = found["rows"]
+            latest = rows[-1]
+            doi = normalize_doi(found["DOI"])
+            identifier = doi if len(rows) == 1 else f"{doi}v{len(rows)}"
+            people = crossref.get("author") or []
+            second_people = byline_people([n.strip() for n in latest["authors"].rstrip(";").split(";")])
+            if not compatible_authors({"author": people}, {"author": second_people}) and pr.same_surnames(
+                    second_people, people):
+                # The history writes the same people with fewer initials or without accents: it
+                # corroborates who they are and their order, and the names are the registry's.
+                second_people = None
+            title, second_title = _text((crossref.get("title") or [""])[0]), _text(latest["title"])
+            year = latest["date"][:4]
+            first_year = str(((crossref.get("published") or {}).get("date-parts") or [[None]])[0][0] or "")
+            year_values = {found["server"]: year} if len(rows) > 1 else {found["server"]: year, "crossref": first_year}
+            out_doi = found["DOI"]
+            withdrawn = pr.notice_dois({"source": pr.SOURCE, "doi": doi, "raw_record": {"api": found["api"]}})
+            if any(row["type"].lower() not in pr.POSTING_TYPES[found["server"]] for row in rows):
+                withdrawn = True
+        elif route == "osf":
+            raw = found["osf"]
+            rows = osf.version_rows(raw["versions"], raw["base"])
+            latest = rows[-1]
+            attrs = latest["attributes"]
+            people = osf.contributors(raw["contributors"], latest["id"])
+            title = _text(attrs["title"])
+            dates = osf.file_dates(raw["file_versions"], raw["file_id"]) if raw.get("file_id") else []
+            released = max([osf.stamp(attrs["date_published"])] + dates[-1:])
+            year = str(released.year)
+            year_values = {"osf": year}
+            identifier, out_doi = None, osf.version_doi(raw["base"], latest, rows)
+            withdrawn = any(r["attributes"].get("date_withdrawn") or r["attributes"].get("reviews_state") == "withdrawn"
+                            for r in rows)
+            dropped_fields["volume"] = f"house rule: a {osf.NAMES[found['server']]} identifier belongs in doi"
+        else:
+            people = crossref.get("author") or []
+            title = _text((crossref.get("title") or [""])[0])
+            year = posted.posted_year(crossref)
+            year_values = {"crossref": year}
+            identifier = out_doi = found["DOI"]
+            withdrawn = False
+    except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
+        raise CompletionRefused(f"The records of the preprint {found['DOI']} cannot be read ({exc})") from exc
+    if withdrawn:
+        proposal.issues.append(f"The preprint {found['DOI']} carries a withdrawal or notice in its server's "
+                               "record; it is not added without a decision")
+        proposal.needs_decision = True
+    relation = crossref.get("relation") if isinstance(crossref.get("relation"), dict) else {}
+    if route == "posted" and set(relation) & posted.VERSIONS:
+        proposal.issues.append(f"The Crossref record of {found['DOI']} names other versions of this preprint; "
+                               "check that this is the latest (house rule: cite the latest version)")
+        proposal.needs_decision = True
+    if typed.get("doi") and route != "osf" and normalize_doi(str(typed["doi"])) != normalize_doi(found["DOI"]):
+        proposal.issues.append(f"doi: the record's DOI {found['DOI']} is not the typed DOI {typed['doi']}; "
+                               "nothing was filled from it")
+        return _as_typed(proposal, typed, kind, {"doi": (typed["doi"], "typed")})
+
+    record = {"type": "posted-content", "DOI": out_doi, "title": [title], "container-title": [found["name"]],
+              "author": people, "published": {"date-parts": [[int(year)]]} if year.isdigit() else {}}
+    if identifier:
+        record["volume"] = identifier
+    second = {}
+    if second_people is not None:
+        second["author"] = second_people
+    if second_title is not None:
+        second["title"] = [second_title]
+    keep = set(_field_order())
+    house = {k: v for k, v in typed.items() if k in keep and k != "publisher"}
+    evidence, compare_issues = safe_compare(dict(house, ENTRYTYPE="article"), record)
+    unsupported = next((i for i in compare_issues if i.startswith("Unsupported source metadata")), None)
+
+    def year_value():
+        if len(set(year_values.values())) != 1 or not re.fullmatch(r"[1-9]\d{3}", year):
+            raise _Hold("year: sources disagree", year_values, disagreement=True)
+        return _Value(year, "+".join(year_values), year_values)
+
+    def doi_value():
+        latest_doi = _Value(out_doi, "osf" if route == "osf" else "crossref", {"osf" if route == "osf" else "crossref": out_doi})
+        if route == "osf" and typed.get("doi") and normalize_doi(str(typed["doi"])) != normalize_doi(out_doi):
+            latest_doi.doubts.append(f"doi: the latest version of this preprint is {out_doi}, not the typed "
+                                     f"{typed['doi']} (house rule: cite the latest version)")
+        return latest_doi
+
+    makers = {
+        "author": lambda: _author(record, second or None, typed.get("author")),
+        "doi": doi_value,
+        "journal": lambda: _Value(_server_journal(found["name"]), "house rule", {}),
+        "title": lambda: _title(record, second or None, typed.get("title"), evidence, unsupported),
+        "volume": lambda: _Value(identifier, found["server"] if route == "biorxiv" else "crossref",
+                                 {"crossref": identifier}) if identifier else None,
+        "year": year_value,
+    }
+
+    def same_identifier(had):
+        try:
+            text = re.sub(r"^(?:https?://)?(?:dx\.)?doi\.org/", "", str(had).strip(), flags=re.I)
+            return bool(identifier) and normalize_doi(text) == normalize_doi(identifier)
+        except ValueError:
+            return False
+
+    built = tuple(n for n in _PREPRINT_BUILT if n != "volume" or identifier)
+    fields = _fill_preprint(proposal, typed, kind, lambda name: _guarded(name, makers[name]()), built, evidence,
+                            record, _preprint_renamed(route, found["server"]), same_identifier, dropped_fields)
+    proposal.unfilled = [u for u in proposal.unfilled if u.field != "volume" or identifier]
     _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
     _set_complete(proposal, fields)
     return proposal
+
+
+def preprint_assessment(found):
+    """The citation check's judge of a built preprint: the route the gate runs for its server,
+    over the documents the builder read (``checked`` calls it with the entry's fields)."""
+    from . import osf_review as osf
+    from . import posted_review as posted
+    from . import preprint_review as pr
+    route = found["route"]
+    if route == "biorxiv":
+        return lambda fields: pr.assess_preprint(fields, found["api"], found["html"], found["crossref"])
+    if route == "osf":
+        return lambda fields: osf.assess_osf(fields, found["osf"])
+    return lambda fields: posted.assess_posted(fields, {"crossref": found["crossref_response"]})
 
 
 def _written_fields(proposal):
@@ -2224,12 +2544,42 @@ def _anthology_checked(entry, client, result):
         return result
     return judged if judged["status"] in ACCEPTED else result
 
-def checked(proposal, client, arxiv_raw=None):
+def _preprint_checked(entry, client, result):
+    """The preprint route's result for an entry the Crossref comparison did not accept, when
+    the entry cites a preprint of bioRxiv, medRxiv, an OSF server or another server of
+    ``posted_review.SERVERS`` and that route accepts it; otherwise ``result``. As in the gate,
+    where those routes judge such an entry after the Crossref comparison. ``checked`` asks it
+    for an entry ``build_preprint`` made that was then edited (``api.recheck_proposal``):
+    the builder's own documents are not at hand, and the route reads its sources again (from
+    the response cache when it has them)."""
+    from . import osf_review, posted_review, preprint_review
+    from .verification import ACCEPTED, ProviderError
+    fields = entry["fields"]
+    try:
+        if osf_review.applicable(fields) and osf_review.identifier(fields)[0]:
+            judged = osf_review.assess_osf(fields, osf_review.collect(client.cache, client, fields))
+        elif posted_review.applicable(fields):
+            judged = posted_review.assess_posted(fields, posted_review.collect(client.cache, client, fields))
+        else:
+            try:
+                doi = preprint_review.identifier(fields)[0]
+            except ValueError:
+                return result
+            api, html = preprint_review.collect(client.cache, client, fields)
+            primary = (client.crossref_doi(doi).get("body") or {}).get("message", {})
+            judged = preprint_review.assess_preprint(fields, api, html, primary)
+    except (ProviderError, ValueError, KeyError, TypeError):
+        return result
+    return judged if judged["status"] in ACCEPTED else result
+
+
+def checked(proposal, client, arxiv_raw=None, assess=None):
     """Run ``proposal.proposed_raw`` through the format check and the verifier, and record
     what they say on the proposal: ``status`` is the verifier's and nothing else's;
     ``issues`` gains its findings, those of the closest source record, and the format
     checker's. ``arxiv_raw``: the arXiv documents, for an arXiv preprint (the arXiv check
-    judges it, as in the gate).
+    judges it, as in the gate). ``assess``: for another preprint, the judge its server's route
+    gives (``preprint_assessment``), called with the entry's fields.
 
     The verifier takes an entry as ``verification.load_entries`` gives it (``key``,
     ``raw``, ``fields``, ``fingerprint``) and the project has no parser for one entry's
@@ -2290,6 +2640,8 @@ def checked(proposal, client, arxiv_raw=None):
         if arxiv_raw is not None:
             from .arxiv_review import assess_arxiv
             result = assess_arxiv(entry["fields"], arxiv_raw)
+        elif assess is not None:
+            result = assess(entry["fields"])
         else:
             result = verify_entry(entry, client)
             if result["status"] not in ACCEPTED:
@@ -2313,6 +2665,8 @@ def checked(proposal, client, arxiv_raw=None):
                 result = reassess(entry, dict(result, candidates=candidates, attempts=attempts))
             if result["status"] not in ACCEPTED:
                 result = _anthology_checked(entry, client, result)
+            if result["status"] not in ACCEPTED and proposal.record_source in PREPRINT_SOURCES:
+                result = _preprint_checked(entry, client, result)
             # As the gate does next for a book (catalogue_review.run_catalogue_review). An entry built
             # from one catalogue record is held to that record, whatever accepted it before this.
             from .book_build import catalogue_check
@@ -2412,6 +2766,8 @@ def _propose(query, client, cache, ws=None, announce=None, allow_model=None):
     try:
         if found.source == "arxiv":
             proposal = build_arxiv(typed, found.record)
+        elif found.source == "preprint":
+            proposal = build_preprint(typed, found.record)
         else:
             record = found.record
             if found.source != "pubmed" and not typed.get("booktitle"):
@@ -2485,7 +2841,8 @@ def _propose(query, client, cache, ws=None, announce=None, allow_model=None):
         proposal.proposed_raw = render(proposal.entry_type, proposal.key_typed or proposal.key_proposed or NO_KEY,
                                        fields)
         _set_complete(proposal, fields)
-    return checked(proposal, client, found.record if found.source == "arxiv" else None)
+    return checked(proposal, client, found.record if found.source == "arxiv" else None,
+                   assess=preprint_assessment(found.record) if found.source == "preprint" else None)
 
 
 @dataclass

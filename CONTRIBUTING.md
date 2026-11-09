@@ -17,7 +17,7 @@ and never updates it.
    [Managed-library updates](README.md#managed-library-updates) for unsent edits,
    backups and undo. If you use your own clone, update it yourself.
 2. Search cdl.bib (by title and by the first author's surname) to make sure the paper isn't already there, possibly under a key with a suffix (e.g., `MannEtal21b`) or as a preprint that should be updated to the published version.
-3. Run `cdlbib add` with the paper's DOI, PMID, arXiv identifier or title. Review
+3. Run `cdlbib add` with the paper's DOI (a preprint DOI from bioRxiv, medRxiv, PsyArXiv and other servers works too), PMID, arXiv identifier or title. Review
    the source-backed proposal and choose accept, edit or skip; see
    [add](README.md#add). For a type the tool does not build automatically, enter
    it yourself using the [citation key naming system](README.md#verify).

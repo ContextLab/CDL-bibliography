@@ -184,6 +184,35 @@ Keys are entries of `tests/fixtures/cdl-prewave1-2026-09-26.bib`.
 | `api.crossref.org/works?query.bibliographic=network dissection: … D Bau 2017 {IEEE} Conference on Computer Vision and Pattern Recognition&rows=5` | `BauEtal17` | | a typed paper without its DOI, found by title |
 | `www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:"…"` (6 requests) | `Scha03`, `Kais90`, `KahaEtal24`, `BauEtal17`, and the two works not in the library | | the PubMed side: of the article 10.1167/15.11.1 (one result), of the meeting abstract, and of each DOI whose entry the citation check did not accept at first (no result) |
 
+## `preprint_responses.json`
+
+The lookups of `tests/test_complete_preprints.py` (and of the preprint tests of
+`test_complete_identify.py` and `test_complete_cli.py`): 29 responses, each requested once on
+2026-11-09 through `cdlbib.verification.PoliteClient` with the project's contact address.
+`record_preprint_responses.py` beside this file is the script that made it: it runs
+`cdlbib.complete.propose` on the queries below and writes out every response the client used.
+The `request` is the client's cache key: a list for an API request, a string for a document
+a preprint route fetched (`biorxiv-details-v1:<DOI>`, `medrxiv-details-v1:<DOI>`,
+`biorxiv-html-v1:<URL>`, `osf-source-v1:<URL>`). Two alterations: the contact address is
+removed from each saved URL, and an e-mail address inside a body is replaced by
+`[address removed]` (one in the Crossref record of 10.1016/j.cub.2021.07.061, and the
+`citation_author_email` tags of the three bioRxiv version pages, which write addresses as
+`name{at}host`); the SHA-256 of each changed page is computed again over the saved body.
+
+| Query | Work | Why |
+|-|-|-|
+| `10.64898/2026.03.19.712982` | the First 1,000 Days (1kD) project (bioRxiv, 2026) | the 2026 bioRxiv DOI prefix; one version |
+| `10.1101/2021.05.10.443308` | `XieEtal21` | a bioRxiv preprint with two versions (the latest is pinned) |
+| `10.1101/2025.06.01.25328748` | a medRxiv preprint (Lemma et al., 2025) | medRxiv; history and registry agree |
+| `10.1101/2025.05.29.25327068` | a medRxiv preprint (Harrison et al., 2025) | the history's title is not the registry's |
+| `10.31234/osf.io/mhxtd_v1` | `FitzEtal26a` | PsyArXiv, a versioned DOI |
+| `10.31234/osf.io/erzfp` | `MannEtal23a` | PsyArXiv, an unversioned DOI |
+| `10.31235/osf.io/kv2qc` | a SocArXiv preprint (Burnell and Everill, 2024) | an OSF server other than PsyArXiv |
+| `10.21203/rs.3.rs-4840802/v1` | a Research Square preprint (2024) | a server known by its Crossref record |
+| `10.2139/ssrn.5238498` | an SSRN preprint (2025) | the same |
+| `10.1101/2020.01.27.922062` | the bioRxiv preprint of `ChenEtal21` | its bioRxiv history names the published article (Crossref, PubMed lookups of the article included) |
+| the hand-typed `RaviEtal26` entry | the 1kD project | a typed entry whose title differs from the registered one |
+
 ## title_only.json
 
 Two Crossref responses fetched once on 2026-10-05 for `tests/test_core_lookups.py`, stored
