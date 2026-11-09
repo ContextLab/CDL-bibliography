@@ -2089,20 +2089,21 @@ def build_arxiv(typed_fields, raw):
         "volume": lambda: _Value(identifier, "arxiv", {"arxiv": identifier}),
         "year": year_value,
     }
-    fields = _fill_preprint(proposal, typed, kind, makers, _ARXIV_BUILT, evidence, record, _renamed,
-                            lambda had: _same_arxiv(had, base, version))
+    fields = _fill_preprint(proposal, typed, kind, lambda name: _guarded(name, makers[name]()), _ARXIV_BUILT,
+                            evidence, record, _renamed, lambda had: _same_arxiv(had, base, version))
     _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
     _set_complete(proposal, fields)
     return proposal
 
 
-def _fill_preprint(proposal, typed, kind, makers, built, evidence, record, rename, same_identifier,
+def _fill_preprint(proposal, typed, kind, make, built, evidence, record, rename, same_identifier,
                    dropped_fields=None):
     """Decide each field of a preprint's house entry from its maker, as ``build`` decides
     them (the rule ``build_arxiv`` and ``build_preprint`` share): a typed value stays when
     the source has the same value; a source value fills an empty field; a differing value
     replaces the typed one unless it would lose detail or change a surname (a question).
-    ``rename`` turns ``build``'s source names into the preprint's; ``same_identifier(had)``
+    ``make(name)``: the builder's maker for the field, through the source guard
+    (``_guarded``). ``rename`` turns ``build``'s source names into the preprint's; ``same_identifier(had)``
     says whether a typed ``doi`` or ``volume`` is the source's identifier written another
     way. ``dropped_fields``: {field: reason} for typed fields the house form leaves out."""
     from .helpers import authors2key, split_names
@@ -2132,7 +2133,7 @@ def _fill_preprint(proposal, typed, kind, makers, built, evidence, record, renam
     for name in built:
         had = typed.get(name)
         try:
-            outcome = _guarded(name, makers[name]())
+            outcome = make(name)
         except _Hold as hold:
             held = Unfilled(name, hold.reason, {rename(k): v for k, v in hold.values.items()})
             if had:
@@ -2448,8 +2449,8 @@ def build_preprint(typed_fields, found):
             return False
 
     built = tuple(n for n in _PREPRINT_BUILT if n != "volume" or identifier)
-    fields = _fill_preprint(proposal, typed, kind, makers, built, evidence, record,
-                            _preprint_renamed(route, found["server"]), same_identifier, dropped_fields)
+    fields = _fill_preprint(proposal, typed, kind, lambda name: _guarded(name, makers[name]()), built, evidence,
+                            record, _preprint_renamed(route, found["server"]), same_identifier, dropped_fields)
     proposal.unfilled = [u for u in proposal.unfilled if u.field != "volume" or identifier]
     _proved_or_held(proposal, kind, proposal.key_typed or proposal.key_proposed or NO_KEY, fields)
     _set_complete(proposal, fields)

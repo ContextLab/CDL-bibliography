@@ -213,6 +213,7 @@ def assess_preprint(fields, api, html, primary):
             if not same_surnames(people(api_names), source_people):
                 raise ValueError('Repository author order/names conflict with the registry record')
             byline, page_title = None, row['title']
+            candidate['version_page'] = 'not read'
         if (primary.get('type') != 'posted-content' or primary.get('subtype') != 'preprint'
                 or normalize_doi(primary.get('DOI', '')) != doi
                 or primary.get('update-to') or primary.get('updated-by')):
@@ -258,8 +259,7 @@ def assess_preprint(fields, api, html, primary):
                 check('publisher', one('publisher'), normalized(fields['publisher']) == normalized(one('publisher')))
         for field in set(fields) - {'ID', 'force', 'ENTRYTYPE', 'journal', 'title', 'author', 'year', 'publisher'} - set(identity_fields):
             candidate['issues'].append(field + ': no preprint verifier for this field')
-        candidate.update(version=version, url=html_url(doi, version, where), retrieved_at=api['retrieved_at'],
-                         version_page='read' if byline is not None else 'not read')
+        candidate.update(version=version, url=html_url(doi, version, where), retrieved_at=api['retrieved_at'])
     except (ValueError, KeyError, TypeError, AttributeError) as exc:
         candidate['issues'].append('Preprint unresolved: ' + str(exc))
     result = outcome('needs_review' if candidate['issues'] else 'metadata_verified', candidate['issues'], [candidate])

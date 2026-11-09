@@ -123,7 +123,7 @@ def test_a_biorxiv_version_page_that_cannot_be_read_leaves_the_registry_and_hist
         assert preprint_review.valid_preprint_approval(result)
     # With the page, it is the page's byline that is compared.
     read = preprint_review.assess_preprint(fields, api, saved("biorxiv-html-v1:"), primary)
-    assert read["status"] == "metadata_verified" and read["candidates"][0]["version_page"] == "read"
+    assert read["status"] == "metadata_verified" and "version_page" not in read["candidates"][0]
     # Without the page, an earlier version is not checked against the current registry record.
     two = deepcopy(fields)
     two["volume"] = ONE_KD + "v1"
