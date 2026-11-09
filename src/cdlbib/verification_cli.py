@@ -40,6 +40,7 @@ from . import osf_review  # noqa: E402,F401
 from . import datacite_review  # noqa: E402,F401
 from . import acl_review  # noqa: E402,F401
 from . import sfn_abstracts  # noqa: E402,F401
+from . import posted_review  # noqa: E402,F401  (other preprint servers via Crossref, 2026-11-09)
 from . import research_route  # noqa: E402,F401  (research-evidence approvals, 2026-09-27)
 
 app = typer.Typer(
@@ -351,10 +352,12 @@ def run_review_layers(fname, cache, client, report, selected, limit=None, snapsh
     results = run_auto_review(fname, cache, report, client, limit, snapshot, keys=selected)
     for layer in (run_fulltext_review, run_pmc_metadata_review, run_publisher_year_review,
                   run_catalogue_review, run_preprint_review, run_arxiv_review,
-                  # Repository/registry routes (2026-09-25): PsyArXiv via OSF,
-                  # software/data via DataCite, ACL Anthology, SfN abstract planner.
+                  # Repository/registry routes (2026-09-25): PsyArXiv and the other OSF
+                  # servers via OSF, software/data via DataCite, ACL Anthology, SfN abstract
+                  # planner; other preprint servers via their Crossref records (2026-11-09).
                   osf_review.run_osf_review, datacite_review.run_datacite_review,
-                  acl_review.run_acl_review, sfn_abstracts.run_sfn_review):
+                  acl_review.run_acl_review, sfn_abstracts.run_sfn_review,
+                  posted_review.run_posted_review):
         results = layer(fname, cache, client, report, limit, snapshot, keys=selected)
     return results
 

@@ -1,8 +1,16 @@
-"""Verify a bioRxiv version from repository history, HTML head and DOI metadata.
+"""Verify a bioRxiv or medRxiv version from repository history, HTML head and DOI metadata.
 
 Repository identifiers in legacy volume/pages slots are checked as identifiers,
 never confused with journal publication coordinates. No journal version replaces
 an explicitly cited preprint. All source bodies remain portable and recheckable.
+
+Both servers answer at api.biorxiv.org and register their DOIs with Crossref
+(prefix 10.1101, and 10.64898 for bioRxiv postings from 2026). A bioRxiv version
+page's HTML head is used when it can be read. When it cannot (the site answers
+automated requests with a Cloudflare refusal, HTTP 403 or 429 "error code: 1015"),
+and always for medRxiv, the cited version must be the latest one and the
+repository history and the Crossref record must agree with each other on the
+complete ordered byline, the title and the first posting date (policy 3).
 """
 from copy import deepcopy
 from datetime import date
@@ -17,15 +25,29 @@ from .verification import (ProviderError, author_evidence, current_results, expo
                           load_entries, normalize_doi, normalize_title, normalized, now,
                           outcome, run_lock, validate_output_path, write_report)
 
-PREPRINT_POLICY = '2'
+PREPRINT_POLICY = '3'
 SOURCE = 'biorxiv-preprint'
 MAX_BYTES = 2_000_000
-BIO_ID = r'10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}'
+BIO_ID = r'10\.(?:1101|64898)/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}'
+# The servers of api.biorxiv.org: the cited journal (normalized) -> (API server, name as cited).
+SERVERS = {'biorxiv': ('biorxiv', 'bioRxiv'), 'medrxiv': ('medrxiv', 'medRxiv')}
+# Each server's article type for an ordinary posting in the API's version history.
+POSTING_TYPES = {'biorxiv': {'new results'}, 'medrxiv': {'publishaheadofprint'}}
+
+
+def server(fields):
+    """The api.biorxiv.org server an entry cites (``biorxiv`` or ``medrxiv``)."""
+    try:
+        cited = normalized(fields.get('journal', ''))
+    except ValueError:
+        cited = None
+    if fields.get('ENTRYTYPE') != 'article' or cited not in SERVERS:
+        raise ValueError('This route requires an explicitly cited bioRxiv or medRxiv preprint')
+    return SERVERS[cited][0]
 
 
 def identifier(fields):
-    if fields.get('ENTRYTYPE') != 'article' or normalized(fields.get('journal', '')) != 'biorxiv':
-        raise ValueError('This route requires an explicitly cited bioRxiv preprint')
+    server(fields)
     found = []
     for field in ('doi', 'volume', 'pages'):
         if field not in fields:
@@ -44,14 +66,14 @@ def identifier(fields):
     return found[0][1], next((x[2] for x in found if x[2]), None), [x[0] for x in found]
 
 
-def api_url(doi):
-    if not re.fullmatch(BIO_ID, doi):
-        raise ValueError('Invalid bioRxiv DOI')
-    return 'https://api.biorxiv.org/details/biorxiv/' + doi + '/na/json'
+def api_url(doi, server='biorxiv'):
+    if not re.fullmatch(BIO_ID, doi) or server not in POSTING_TYPES:
+        raise ValueError('Invalid bioRxiv/medRxiv DOI or server')
+    return 'https://api.biorxiv.org/details/' + server + '/' + doi + '/na/json'
 
 
-def html_url(doi, version):
-    return 'https://www.biorxiv.org/content/' + doi + 'v' + str(version)
+def html_url(doi, version, server='biorxiv'):
+    return 'https://www.' + server + '.org/content/' + doi + 'v' + str(version)
 
 
 def checked_body(source, url):
@@ -63,15 +85,15 @@ def checked_body(source, url):
     return body
 
 
-def versions(source, doi):
-    data = json.loads(checked_body(source, api_url(doi)))
+def versions(source, doi, server='biorxiv'):
+    data = json.loads(checked_body(source, api_url(doi, server)))
     if (not isinstance(data, dict) or len(data.get('messages', [])) != 1
             or data['messages'][0].get('status') != 'ok'
             or not isinstance(data.get('collection'), list) or not 1 <= len(data['collection']) <= 50):
         raise ValueError('Missing or incomplete repository history')
     rows = data['collection']
     for index, row in enumerate(rows, 1):
-        if (row.get('doi') != doi or row.get('server', '').lower() != 'biorxiv'
+        if (row.get('doi') != doi or row.get('server', '').lower() != server
                 or row.get('version') != str(index)
                 or any(not isinstance(row.get(k), str) or not row[k].strip()
                        for k in ('title', 'authors', 'date', 'type', 'published'))):
@@ -83,11 +105,18 @@ def versions(source, doi):
     return rows
 
 
+def api_server(source):
+    """The server named in a saved API document's URL (``biorxiv`` for older envelopes)."""
+    match = re.match(r'https://api\.biorxiv\.org/details/([a-z]+)/', str(source.get('url', '')))
+    return match[1] if match and match[1] in POSTING_TYPES else 'biorxiv'
+
+
 def notice_dois(candidate):
     if candidate.get('source') != SOURCE:
         return set()
     try:
-        doi = candidate['doi']; rows = versions(candidate['raw_record']['api'], doi)
+        doi = candidate['doi']; api = candidate['raw_record']['api']
+        rows = versions(api, doi, api_server(api))
         if any(re.search(r'withdraw|retract|correct|expression of concern', row['type'], re.I)
                or re.match(r'\s*(?:withdrawn|retracted|correction)\s*:', row['title'], re.I)
                for row in rows):
@@ -108,13 +137,41 @@ def people(names):
     return result
 
 
+def same_surnames(first, second):
+    """Whether two bylines name the same number of people with the same family names, in
+    order, up to accents (the medRxiv history writes "Bokwa-Dabrowska" for the registry's
+    "Bokwa-D\u0105browska")."""
+    from unidecode import unidecode
+
+    def folded(person):
+        return unidecode(normalized(person.get('family', '') or '')).lower()
+    try:
+        return len(first) == len(second) and all(folded(a) and folded(a) == folded(b) for a, b in zip(first, second))
+    except (ValueError, AttributeError, TypeError):
+        return False
+
+
+def has_page(html):
+    """Whether a saved version page is present (rather than a recorded refusal or nothing)."""
+    return isinstance(html, dict) and 'body' in html
+
+
 def assess_preprint(fields, api, html, primary):
+    """Judge one cited bioRxiv/medRxiv version.
+
+    ``html``: the saved version page, or ``{}`` / ``{'unavailable': reason, 'url': ...}``
+    when it was not read (always for medRxiv). Without a page the cited version must be
+    the latest, and the repository's byline for it and the Crossref record's byline must
+    agree in full, in order; the entry is then compared with both."""
     candidate = {'source': SOURCE, 'doi': api.get('doi'), 'raw_record': {'api': api, 'html': html, 'crossref': primary},
                  'evidence': {}, 'issues': [], 'checked_fields': deepcopy(fields)}
     try:
         doi, explicit, identity_fields = identifier(fields); candidate['doi'] = doi
-        rows = versions(api, doi)
-        if notice_dois(candidate) or any(row['type'].lower() != 'new results' for row in rows):
+        where = server(fields); name = SERVERS[normalized(fields['journal'])][1]
+        if api_server(api) != where:
+            raise ValueError('Repository history is for another server')
+        rows = versions(api, doi, where)
+        if notice_dois(candidate) or any(row['type'].lower() not in POSTING_TYPES[where] for row in rows):
             raise ValueError('Repository history contains a withdrawal, notice or unsupported article type')
         if explicit is None and len(rows) != 1:
             raise ValueError('Multiple repository versions require an explicit version identifier')
@@ -122,22 +179,40 @@ def assess_preprint(fields, api, html, primary):
         if version > len(rows):
             raise ValueError('Cited version is absent from repository history')
         row = rows[version - 1]
-        parser = PublisherMetadata(); parser.feed(checked_body(html, html_url(doi, version)))
-        metadata = parser.source_metadata()
-        def one(name):
-            values = metadata.get('citation_' + name, [])
-            if len(values) != 1:
-                raise ValueError('Missing or ambiguous repository HTML ' + name)
-            return values[0]
-        if (one('doi') != doi or one('id') != doi.split('/', 1)[1] + 'v' + str(version)
-                or one('public_url') != html_url(doi, version)
-                or normalized(one('journal_title')) != 'biorxiv'
-                or one('date') != row['date'] or normalized(one('section')) != 'new results'):
-            raise ValueError('Repository page identity, version, venue or date conflicts')
-        html_people = people(metadata.get('citation_author', []))
-        api_names = row['authors'].rstrip(';').split(';')
-        if not author_evidence(' and '.join(n.strip() for n in api_names), html_people)[0]:
-            raise ValueError('API author order/names conflict with the version page')
+        api_names = [n.strip() for n in row['authors'].rstrip(';').split(';')]
+        if has_page(html):
+            if where != 'biorxiv':
+                raise ValueError('Only bioRxiv version pages are read')
+            parser = PublisherMetadata(); parser.feed(checked_body(html, html_url(doi, version, where)))
+            metadata = parser.source_metadata()
+            def one(name):
+                values = metadata.get('citation_' + name, [])
+                if len(values) != 1:
+                    raise ValueError('Missing or ambiguous repository HTML ' + name)
+                return values[0]
+            if (one('doi') != doi or one('id') != doi.split('/', 1)[1] + 'v' + str(version)
+                    or one('public_url') != html_url(doi, version, where)
+                    or normalized(one('journal_title')) != 'biorxiv'
+                    or one('date') != row['date'] or normalized(one('section')) != 'new results'):
+                raise ValueError('Repository page identity, version, venue or date conflicts')
+            page_title = one('title')
+            byline = metadata.get('citation_author', [])
+            source_people = people(byline)
+            if not author_evidence(' and '.join(api_names), source_people)[0]:
+                raise ValueError('API author order/names conflict with the version page')
+        else:
+            # Without the page, the registry's (current) record must describe this version.
+            if version != len(rows):
+                raise ValueError('An earlier version is checked only against its version page')
+            if not isinstance(primary.get('author'), list) or not primary['author']:
+                raise ValueError('Registry record has no byline')
+            source_people = primary['author']
+            # The history's byline gives initials, sometimes fewer than the registry's given
+            # names (medRxiv: "Lyons, J." for Jessica G. Lyons): it corroborates the people,
+            # their number and order; the given names are the registry's.
+            if not same_surnames(people(api_names), source_people):
+                raise ValueError('Repository author order/names conflict with the registry record')
+            byline, page_title = None, row['title']
         if (primary.get('type') != 'posted-content' or primary.get('subtype') != 'preprint'
                 or normalize_doi(primary.get('DOI', '')) != doi
                 or primary.get('update-to') or primary.get('updated-by')):
@@ -157,12 +232,12 @@ def assess_preprint(fields, api, html, primary):
         titles = primary.get('title', [])
         if len(titles) != 1 or primary.get('subtitle'):
             raise ValueError('Registry preprint title is ambiguous')
-        if (normalize_title(row['title']) != normalize_title(one('title'))
+        if (normalize_title(row['title']) != normalize_title(page_title)
                 or normalize_title(titles[0]) != normalize_title(row['title'])):
             raise ValueError('Repository and registry preprint titles conflict')
         # Require the complete version byline, and registry corroboration. A
         # later registry byline never replaces an earlier repository byline.
-        if not author_evidence(' and '.join(metadata.get('citation_author', [])), primary.get('author', []))[0]:
+        if byline is not None and not author_evidence(' and '.join(byline), primary.get('author', []))[0]:
             raise ValueError('Registry author order/names conflict with the version page')
         evidence = candidate['evidence']
         def check(field, source, match):
@@ -170,17 +245,21 @@ def assess_preprint(fields, api, html, primary):
             if not match:
                 candidate['issues'].append(field + ': missing evidence or mismatch')
         check('ENTRYTYPE', 'repository preprint', fields['ENTRYTYPE'] == 'article')
-        check('journal', 'bioRxiv', normalized(fields['journal']) == 'biorxiv')
+        check('journal', name, normalized(fields['journal']) == where)
         check('title', row['title'], normalize_title(fields.get('title', '')) == normalize_title(row['title']))
-        check('author', html_people, author_evidence(fields.get('author', ''), html_people)[0])
+        check('author', source_people, author_evidence(fields.get('author', ''), source_people)[0])
         check('year', row['date'], fields.get('year') == row['date'][:4])
         for field in identity_fields:
             check(field, {'doi': doi, 'version': version, 'role': 'repository identifier'}, True)
         if 'publisher' in fields:
-            check('publisher', one('publisher'), normalized(fields['publisher']) == normalized(one('publisher')))
+            if byline is None:
+                candidate['issues'].append('publisher: no preprint verifier for this field')
+            else:
+                check('publisher', one('publisher'), normalized(fields['publisher']) == normalized(one('publisher')))
         for field in set(fields) - {'ID', 'force', 'ENTRYTYPE', 'journal', 'title', 'author', 'year', 'publisher'} - set(identity_fields):
             candidate['issues'].append(field + ': no preprint verifier for this field')
-        candidate.update(version=version, url=html_url(doi, version), retrieved_at=api['retrieved_at'])
+        candidate.update(version=version, url=html_url(doi, version, where), retrieved_at=api['retrieved_at'],
+                         version_page='read' if byline is not None else 'not read')
     except (ValueError, KeyError, TypeError, AttributeError) as exc:
         candidate['issues'].append('Preprint unresolved: ' + str(exc))
     result = outcome('needs_review' if candidate['issues'] else 'metadata_verified', candidate['issues'], [candidate])
@@ -270,6 +349,30 @@ def fetch_document(cache, client, url, identity, validate=None):
     return saved
 
 
+def collect(cache, client, fields):
+    """(history, version page) for a cited bioRxiv/medRxiv preprint, fetched or reused.
+
+    The page is read only for bioRxiv, and only for a version the history has. A page the
+    site refuses (Cloudflare answers automated requests with HTTP 403 or 429) is recorded as
+    ``{'unavailable': reason, 'url': url}``; the assessment then falls back on the registry."""
+    doi, explicit, _ = identifier(fields)
+    where = server(fields)
+    api = fetch_document(cache, client, api_url(doi, where),
+                         ('biorxiv' if where == 'biorxiv' else where) + '-details-v1:' + doi,
+                         validate=lambda source: versions(source, doi, where))
+    rows = versions(api, doi, where)
+    selected = explicit or (1 if len(rows) == 1 else None)
+    negative = notice_dois({'source': SOURCE, 'doi': doi, 'raw_record': {'api': api}})
+    html = {}
+    if where == 'biorxiv' and selected and selected <= len(rows) and not negative:
+        url = html_url(doi, selected, where)
+        try:
+            html = fetch_document(cache, client, url, 'biorxiv-html-v1:' + url)
+        except ProviderError as exc:
+            html = {'unavailable': str(exc), 'url': url}
+    return api, html
+
+
 def run_preprint_review(filename, cache, client, report, limit=None, snapshot=None, keys=None):
     validate_output_path(filename, report, cache)
     if snapshot:
@@ -293,15 +396,7 @@ def run_preprint_review(filename, cache, client, report, limit=None, snapshot=No
                     continue
                 if limit is not None and count >= limit:
                     break
-                api = fetch_document(cache, client, api_url(doi), 'biorxiv-details-v1:' + doi,
-                                     validate=lambda source: versions(source, doi))
-                rows = versions(api, doi)
-                selected = explicit or (1 if len(rows) == 1 else None)
-                negative = notice_dois({'source': SOURCE, 'doi': doi, 'raw_record': {'api': api}})
-                html = {}
-                if selected and selected <= len(rows) and not negative:
-                    url = html_url(doi, selected)
-                    html = fetch_document(cache, client, url, 'biorxiv-html-v1:' + url)
+                api, html = collect(cache, client, entry['fields'])
                 primaries = [c['record'] for c in previous.get('candidates', [])
                              if c.get('source') == 'crossref' and c.get('doi') == doi]
                 if not primaries:
