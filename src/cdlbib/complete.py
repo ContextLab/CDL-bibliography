@@ -381,9 +381,9 @@ _TITLE_WORD_EDGE = "()[]\"'“”‘’.,:;!?"
 
 
 def _mixed_case_braced(title):
-    """``title`` with each word whose capitals are the source's own spelling in braces, so the
-    sentence case of ``format_title`` keeps them: a word with a lower-case letter and a
-    capital after its first character ("(1kD)" -> "({1kD})", "SAYCam:" -> "{SAYCam}:",
+    """``title`` with braces around each word that breaks sentence case, so that
+    ``format_title``, which puts the rest in sentence case, leaves it as spelled: a word with
+    a lower-case letter and a capital after its first character ("(1kD)" -> "({1kD})", "SAYCam:" -> "{SAYCam}:",
     "BabyView", "iPhone"). Each part of a hyphenated word is judged alone ("Self-Supervised"
     is title case, not a name). Left as they are: a word with braces, a backslash or "$", a
     word whose only capital is its first ("Collecting"), and one with no lower-case letter
