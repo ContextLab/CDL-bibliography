@@ -29,7 +29,7 @@ ONE_KD = "10.64898/2026.03.19.712982"
 ONE_KD_AUTHORS = ("H Raviv and L Hasenfratz and K Gousios and M Faryna and R Beaty and D Johnson and B Chen and "
                   "A Altenhof and B Ryan and C A Greenberg and Z Hong and G Assayag and A Tsyhanov and V Malakhov "
                   "and T Rosenwein and O Raviv and C Lew-Williams and U Hasson")
-ONE_KD_TITLE = ("The first 1,000 days (1kd) project - collecting and analyzing an ultra-dense naturalistic "
+ONE_KD_TITLE = ("The first 1,000 days ({1kD}) project - collecting and analyzing an ultra-dense naturalistic "
                 "dataset of human baby development")
 
 
@@ -380,3 +380,31 @@ def test_the_gate_runs_the_posted_route_after_the_other_preprint_routes():
     assert source.index("run_preprint_review") < source.index("run_osf_review") < source.index("run_posted_review")
     from cdlbib.verification import APPROVAL_VALIDATORS
     assert posted_review.valid_posted_approval in APPROVAL_VALIDATORS
+
+
+# --- a title's own capitals ---------------------------------------------------------------------
+
+def test_a_word_with_capitals_of_its_own_keeps_them_in_braces():
+    # Registered titles whose words were lowered to "1kd", "Saycam" and "babyview" (2026-11-09).
+    from cdlbib.helpers import format_title
+    cases = {
+        "The First 1,000 Days (1kD) Project - Collecting and Analyzing an Ultra-Dense Naturalistic Dataset of "
+        "Human Baby Development":
+            "The first 1,000 days ({1kD}) project - collecting and analyzing an ultra-dense naturalistic dataset of "
+            "human baby development",
+        "SAYCam: A Large, Longitudinal Audiovisual Dataset Recorded From the Infant\u2019s Perspective":
+            "{SAYCam}: A large, longitudinal audiovisual dataset recorded from the infant\u2019s perspective",
+        "The BabyView dataset: High-resolution egocentric videos of infants' and young children's everyday "
+        "experiences":
+            "The {BabyView} dataset: high-resolution egocentric videos of infants' and young children's everyday "
+            "experiences",
+        "Self-Supervised Learning Through the Eyes of a Child": "Self-supervised learning through the eyes of a child",
+        "Re-imagining fMRI for awake behaving infants": "Re-imagining {fMRI} for awake behaving infants",
+    }
+    for source, house in cases.items():
+        assert format_title(complete._mixed_case_braced(source)) == house, source
+
+
+def test_words_without_capitals_of_their_own_are_left_to_the_house_rules():
+    assert complete._mixed_case_braced("EEG Collecting {DNA} $x^A$ \\'Etude iPhone-Based") == (
+        "EEG Collecting {DNA} $x^A$ \\'Etude {iPhone}-Based")

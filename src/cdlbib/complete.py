@@ -376,6 +376,34 @@ _BANNER_WORDS = (r"RETRACTED ARTICLE|Retracted Article|Retracted article|RETRACT
 _BANNER = re.compile(r"^(?:(?:\[(?:" + _BANNER_WORDS + r")\]\s*:?|(?:" + _BANNER_WORDS + r")\s*:)\s*)+")
 # A title that announces a retraction rather than carrying a banner.
 _NOTICE_TITLE = re.compile(r"^(?:Retraction|RETRACTION|Removal|Withdrawal)(?: [Nn]otice| NOTICE)?\s*:")
+# Punctuation that may surround a word of a title without being part of it.
+_TITLE_WORD_EDGE = "()[]\"'“”‘’.,:;!?"
+
+
+def _mixed_case_braced(title):
+    """``title`` with each word whose capitals are the source's own spelling in braces, so the
+    sentence case of ``format_title`` keeps them: a word with a lower-case letter and a
+    capital after its first character ("(1kD)" -> "({1kD})", "SAYCam:" -> "{SAYCam}:",
+    "BabyView", "iPhone"). Each part of a hyphenated word is judged alone ("Self-Supervised"
+    is title case, not a name). Left as they are: a word with braces, a backslash or "$", a
+    word whose only capital is its first ("Collecting"), and one with no lower-case letter
+    ("EEG", which caps.txt decides)."""
+    words = []
+    for word in title.split(" "):
+        if any(c in word for c in "{}\\$"):
+            words.append(word)
+            continue
+        parts = []
+        for part in word.split("-"):
+            core = part.strip(_TITLE_WORD_EDGE)
+            if core and any(c.islower() for c in core) and any(c.isupper() for c in core[1:]):
+                start = part.index(core)
+                part = part[:start] + "{" + core + "}" + part[start + len(core):]
+            parts.append(part)
+        words.append("-".join(parts))
+    return " ".join(words)
+
+
 def _title(record, mapped, typed, evidence, unsupported):
     from .helpers import format_title
     if "title" not in evidence:
@@ -393,7 +421,7 @@ def _title(record, mapped, typed, evidence, unsupported):
         if cp.normalize_title_safe(second) != cp.normalize_title_safe(titles[0]):
             raise _Hold("title: sources disagree", values, disagreement=True)
     # Formatting belongs to the same autofix helper used by check_bib.
-    value = format_title(titles[0])
+    value = format_title(_mixed_case_braced(titles[0]))
     value, doubts = _written("title", value, format_title)
     return _Value(value, "crossref+pubmed" if second else "crossref", values, doubts)
 
