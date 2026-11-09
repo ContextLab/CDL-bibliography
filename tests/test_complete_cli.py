@@ -238,11 +238,35 @@ def test_actual_add_selected_source_callback(tmp_path,client,answers,expected):
 
 
 def test_actual_add_unsupported_is_visible_and_refused(tmp_path,client):
+    # A record type the builder does not make: DaviHink97's Crossref record is a monograph
+    # (tests/fixtures/completion/type_responses.json). Until 2026-11-09 this test used a
+    # bioRxiv preprint (10.1101/2020.01.27.922062), whose posted-content record is now built.
     ws,_=setup(tmp_path,client)
-    status,out=terminal(tmp_path,ADD,'a\ns\n',argv=add_args(tmp_path,'10.1101/2020.01.27.922062'))
+    status,out=terminal(tmp_path,ADD,'a\ns\n',argv=add_args(tmp_path,'10.1017/CBO9780511802843'))
     assert status==1,out
-    assert 'Unsupported: posted-content' in out and 'Cannot accept:' in out
+    assert 'Unsupported: monograph' in out and 'Cannot accept:' in out
     assert out.count('Your choice [a/e/s/A/q]')==2 and not ws.bib.read_text()
+
+
+def test_actual_add_builds_and_writes_a_biorxiv_preprint(tmp_path,client):
+    ws,_=setup(tmp_path,client)
+    status,out=terminal(tmp_path,ADD,'a\n',argv=add_args(tmp_path,'10.64898/2026.03.19.712982'))
+    assert status==0,out
+    assert 'Unsupported' not in out and 'Verification: metadata_verified' in out and 'Added: RaviEtal26' in out
+    text=ws.bib.read_text()
+    assert '\tJournal = {{bioRxiv}},\n' in text and '\tVolume = {10.64898/2026.03.19.712982},\n' in text
+    from cdlbib.verification import load_entries
+    assert set(load_entries(ws.bib))=={'RaviEtal26'}
+
+
+def test_actual_add_builds_and_writes_a_psyarxiv_preprint(tmp_path,client):
+    ws,_=setup(tmp_path,client)
+    status,out=terminal(tmp_path,ADD,'a\n',argv=add_args(tmp_path,'10.31234/osf.io/mhxtd_v1'))
+    assert status==0,out
+    assert 'Verification: metadata_verified' in out and 'Added: FitzEtal26' in out
+    text=ws.bib.read_text()
+    assert '\tJournal = {{PsyArXiv}},\n' in text and '\tDoi = {10.31234/osf.io/mhxtd_v1},\n' in text
+    assert 'Volume' not in text
 
 
 def test_actual_add_from_three_distinct_identifiers(tmp_path,client):

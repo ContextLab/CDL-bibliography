@@ -1048,7 +1048,8 @@ author headings, wrong editions and conflicting publishers remain unresolved.
 
 ### Repository preprints
 
-`verify --auto-review` now has a separate bioRxiv preprint route. It binds the
+`verify --auto-review` now has a separate bioRxiv and medRxiv preprint route
+(`src/cdlbib/preprint_review.py`, policy 3). It binds the
 repository's complete version history to the exact version-page HTML head and
 Crossref's posted-content/preprint DOI record. Title, complete ordered authors,
 posting year, repository, identifiers and every other supplied bibliographic
@@ -1065,7 +1066,39 @@ version blocks approval even when an earlier version is explicitly cited. Raw
 repository history, version HTML and registry records travel with the snapshot;
 known withdrawal evidence survives subsequent entry edits and fresh restores.
 All source retrieval is paced and cached. Key-only renames reuse approval; other
-edits invalidate it. This route currently covers bioRxiv, not arXiv or PsyArXiv.
+edits invalidate it. arXiv and PsyArXiv have routes of their own (below).
+
+Both servers answer at `api.biorxiv.org/details/<server>/<DOI>`; bioRxiv DOIs carry
+the prefix 10.1101 or, from 2026, 10.64898. The citation names the server as its
+journal (`{bioRxiv}`, `{medRxiv}`), and the history must be that server's. The
+version page is read only for bioRxiv. When it cannot be read (in November 2026 the
+sites answered automated requests with Cloudflare refusals: HTTP 429 "error code:
+1015" at bioRxiv at times, HTTP 403 at medRxiv always), the refusal is recorded and
+the registry fallback applies: the cited version must be the latest; the history's
+byline for it must name the same people in the same order as the Crossref record
+(family names compared up to accents, since the medRxiv history drops them and
+gives fewer initials); the history's and registry's titles and first posting date
+must agree; and the entry is compared with the registry's full byline, the
+history's title and the version's year. Real medRxiv records often disagree (the
+registry keeps a submission-time title or byline); those stay `needs_review`.
+
+### Other preprint servers
+
+`src/cdlbib/posted_review.py` (the last `--auto-review` layer) checks preprints of
+Research Square, SSRN, ChemRxiv, Preprints.org, EcoEvoRxiv, TechRxiv and Authorea,
+servers that register their DOIs with Crossref and have no route of their own. The
+server is named by the DOI's prefix (`posted_review.SERVERS`) and must be the cited
+journal. The Crossref record of the cited DOI must be a posted-content preprint
+with no notice; the title, the complete ordered byline, the posting year and the
+DOI (and `volume`, which in the house form repeats it) must agree; any other field
+blocks approval. Each of these servers gives every version its own DOI, so the DOI
+names the version cited; a record that names other versions (`has-version`,
+`is-version-of`) or a published version (`is-preprint-of`) is held for a person.
+The Crossref response (without the contact address) travels with the result, and
+`valid_posted_approval` rechecks it offline.
+
+`cdlbib add` builds the preprints of all these routes
+(`complete.build_preprint`) and checks each with its server's route.
 
 Provider documentation: [bioRxiv API](https://api.biorxiv.org/) and
 [bioRxiv withdrawal policy](https://connect.biorxiv.org/news/2023/08/15/preprint_withdrawals).
@@ -1130,14 +1163,16 @@ in the archive repository.
 
 |Route|Module|Source|
 |-|-|-|
-|PsyArXiv|`src/cdlbib/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
+|PsyArXiv and the other OSF servers|`src/cdlbib/osf_review.py`|OSF API v2: version list, bibliographic contributors, primary-file revisions|
+|Other preprint servers (2026-11-09)|`src/cdlbib/posted_review.py`|the Crossref record of the preprint DOI|
 |Software and data|`src/cdlbib/datacite_review.py`|DataCite REST API (`/dois/<doi>`, title search)|
 |ACL Anthology|`src/cdlbib/acl_review.py`|`https://aclanthology.org/<id>.bib`; OpenAlex only nominates identifiers|
 |SfN abstracts|`src/cdlbib/sfn_abstracts.py`|the abstractsonline.com meeting planner (2009-2015 meeting keys confirmed)|
 
 A route can verify an entry, propose source-backed field values, flag a published
-version for replacement, or hold the entry. Only PsyArXiv is supported among OSF
-preprint servers (`osf_review.PROVIDERS`). A preprint is compared with its latest
+version for replacement, or hold the entry. The OSF route covers PsyArXiv, SocArXiv,
+EdArXiv, MetaArXiv and OSF Preprints (`osf_review.PROVIDERS`); the cited journal names
+the server, and the identifiers must carry its DOI prefix. A preprint is compared with its latest
 version, and when OSF lists a published article DOI the entry is classed `replacement`
 and never verifies. Software titles take the house form `{Owner}/repo: {version}` and
 every creator is compared in order. The SfN route can confirm a meeting abstract, but
