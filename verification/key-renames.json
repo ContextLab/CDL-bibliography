@@ -1875,5 +1875,12 @@
   "reason": "Force field removed (user 2026-10-01: no overrides); Force only exempted the key check, so the key now follows the entry's printed year 2001. Crossref 10.1017/s0140525x01003922: published-print 2001-02 (vol 24, issue 1, 87-114)",
   "user_note": "I want *every* entry in cdl.bib to follow the same rules. There shouldn't be overrides.",
   "decision_source": "user, Claude Code session of 2026-10-01"
+ },
+ {
+  "old_key": "HanEtal24",
+  "new_key": "HanEtal24a",
+  "date": "2026-11-09",
+  "reason": "Accepted entry completion key plan",
+  "commit": null
  }
 ]
