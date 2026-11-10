@@ -19,6 +19,7 @@ from pathlib import Path
 import random
 import re
 import sqlite3
+import ssl
 import tempfile
 import time
 import unicodedata
@@ -1385,6 +1386,26 @@ def valid_doi_alias(receipt, requested, prime):
         return False
 
 
+# Hosts that refuse urllib3's own TLS context.  pmc.ncbi.nlm.nih.gov (Google front end) answers
+# 403 when post-handshake authentication is offered together with OP_NO_TICKET, which is what
+# urllib3's context sets; either setting alone is accepted, and so is Python's default context
+# (checked 2026-11-10 against the OAI endpoint).  Certificates are verified either way.
+DEFAULT_TLS_HOSTS = ("pmc.ncbi.nlm.nih.gov",)
+
+
+class DefaultTLSAdapter(requests.adapters.HTTPAdapter):
+    """An HTTPAdapter whose connections use ``ssl.create_default_context()`` (certificate and
+    host name checks on) instead of the context urllib3 builds."""
+
+    def init_poolmanager(self, *args, **kwargs):
+        kwargs["ssl_context"] = ssl.create_default_context()
+        return super().init_poolmanager(*args, **kwargs)
+
+    def proxy_manager_for(self, proxy, **kwargs):
+        kwargs["ssl_context"] = ssl.create_default_context()
+        return super().proxy_manager_for(proxy, **kwargs)
+
+
 class PoliteClient:
     """Serial requests, persistent connections, adaptive pacing and bounded retries.
 
@@ -1415,6 +1436,9 @@ class PoliteClient:
                 "User-Agent": f"bibcheck/2.0 (https://github.com/ContextLab/CDL-bibliography; mailto:{mailto})"
             }
         )
+        if callable(getattr(self.session, "mount", None)):   # a requests session, not a stand-in
+            for host in DEFAULT_TLS_HOSTS:
+                self.session.mount(f"https://{host}/", DefaultTLSAdapter())
         self.sleep, self.clock, self.refresh = sleep, clock, refresh
         # A whole operation's deadline (time.monotonic), set by its caller for the time it
         # runs (container_titles.within); None: no deadline. ``pause`` does not wait past it.
