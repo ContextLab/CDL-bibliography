@@ -1134,7 +1134,9 @@ The tests of `cdlbib setup`, `cdlbib export` and PDF intake run the real program
 installation, Ghostscript (`gs`), `pdftoppm` and `tesseract`. The browser tests of
 the web interface use Playwright's Chromium. A test whose program is not installed
 is skipped, and the skip names the program. CI installs these programs
-([autocheck.yml](.github/workflows/autocheck.yml)). The tests in
+([autocheck.yml](.github/workflows/autocheck.yml)) with apt; when the runner cannot resolve
+`archive.ubuntu.com`, a step before it sends lookups for `ubuntu.com` to public DNS
+resolvers (1.1.1.1, 8.8.8.8). The tests in
 `tests/test_texinstall.py` that install biber and BibTeX for real download a TeX Live
 (the newest TinyTeX release at the time of the run, found from the redirect of its
 "latest release" page) and biber, about 140 MB, into pytest's temporary folder, and run only
