@@ -42,6 +42,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      # apt (playwright's --with-deps, and the TeX step below) needs the *.ubuntu.com
+      # mirrors. On 2026-11-11 the runners' Azure DNS server (168.63.129.16) stopped
+      # resolving every *.ubuntu.com name ("Temporary failure resolving
+      # 'archive.ubuntu.com'") on ubuntu-24.04 and ubuntu-26.04 alike, while public
+      # resolvers answered. When the runner cannot resolve the archive, send lookups for
+      # ubuntu.com (only) to public resolvers; when it can, this step changes nothing.
+      - name: resolve the Ubuntu archive through public DNS if the runner's DNS cannot
+        run: |
+          if getent hosts archive.ubuntu.com >/dev/null; then
+            echo "archive.ubuntu.com resolves; DNS left as it is"
+            exit 0
+          fi
+          echo "archive.ubuntu.com does not resolve; using 1.1.1.1 and 8.8.8.8 for ubuntu.com"
+          sudo mkdir -p /etc/systemd/resolved.conf.d
+          printf '[Resolve]\nDNS=1.1.1.1 8.8.8.8\nDomains=~ubuntu.com\n' \
+            | sudo tee /etc/systemd/resolved.conf.d/ubuntu-archive.conf
+          sudo systemctl restart systemd-resolved
+          for i in 1 2 3 4 5; do getent hosts archive.ubuntu.com && break; sleep 2; done
+          getent hosts archive.ubuntu.com security.ubuntu.com azure.archive.ubuntu.com
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
