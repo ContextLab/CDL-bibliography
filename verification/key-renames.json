@@ -1889,5 +1889,19 @@
   "date": "2026-11-09",
   "reason": "Accepted entry completion key plan",
   "commit": null
+ },
+ {
+  "old_key": "ChanEtal20",
+  "new_key": "ChanEtal20a",
+  "date": "2026-11-17",
+  "reason": "Accepted entry completion key plan",
+  "commit": null
+ },
+ {
+  "old_key": "LoveEtal22",
+  "new_key": "LoveEtal17",
+  "date": "2026-11-17",
+  "reason": "Citation key edited by hand",
+  "commit": null
  }
 ]
