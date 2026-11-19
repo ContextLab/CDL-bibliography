@@ -1903,5 +1903,61 @@
   "date": "2026-11-17",
   "reason": "Citation key edited by hand",
   "commit": null
+ },
+ {
+  "old_key": "ZhanEtal24",
+  "new_key": "ZhanEtal24a",
+  "date": "2026-11-18",
+  "reason": "Accepted entry completion key plan",
+  "commit": null
+ },
+ {
+  "old_key": "Open26",
+  "new_key": "Open26b",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "ChenEtal24d",
+  "new_key": "ChenEtal25",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "GolcSurd23",
+  "new_key": "GolcSurd24",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "MirzEtal24",
+  "new_key": "MirzEtal25",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "YaoEtal22",
+  "new_key": "YaoEtal23",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "ZhonEtal25",
+  "new_key": "ZhonEtal26",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
+ },
+ {
+  "old_key": "FuEtal24",
+  "new_key": "FuEtal26",
+  "date": "2026-11-18",
+  "reason": "Citation key edited by hand",
+  "commit": null
  }
 ]
